@@ -133,7 +133,7 @@ genrule {
     ],
     cmd: "mkdir -p $(genDir)/files && " +
         "$(location aprotoc) -Ipackages/modules/Bluetooth/system -Iexternal/protobuf/src --plugin=protoc-gen-grpc=$(location protoc-gen-grpc-python-plugin) $(locations :BlueberryFacadeProto) --grpc_out=$(genDir)/files --python_out=$(genDir)/files && " +
-        "find $(genDir)/files -type d -exec touch {}/__init__.py \\; &&" +
+        "for dir in `find $(genDir)/files -type d`; do touch $$dir/__init__.py; done &&" +
         "$(location soong_zip) -C $(genDir)/files -D $(genDir)/files -o $(out)",
     srcs: [
         ":BlueberryFacadeProto",
@@ -164,4 +164,21 @@ cc_library_headers {
         "com.android.btservices",
     ],
     min_sdk_version: "30",
+}
+
+genrule {
+    name: "BluetoothCertAndSrcs",
+    tools: ["soong_zip"],
+    srcs: [
+        ":gd_smp_packets_python3_gen",
+        ":hci_packets_python3_gen",
+        "blueberry/**/*.py",
+        "blueberry/**/*.yaml",
+        "setup.py",
+    ],
+    out: ["bluetooth_cert_srcs.zip"],
+    cmd: "$(location soong_zip) -d -o $(out) " +
+        "-C packages/modules/Bluetooth/system -D packages/modules/Bluetooth/system " +
+        "-C `dirname $(location :hci_packets_python3_gen)` -f $(location :hci_packets_python3_gen) " +
+        "-C `dirname $(location :gd_smp_packets_python3_gen)` -f $(location :gd_smp_packets_python3_gen) ",
 }

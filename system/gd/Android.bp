@@ -303,6 +303,7 @@ cc_binary {
         // Needed here to guarantee that generated zip file is created before
         // bluetooth_cert_tests.zip is packaged
         "BlueberryFacadeAndCertGeneratedStub_py",
+        "BluetoothCertAndSrcs",
     ],
     generated_sources: [
         "BlueberryFacadeGeneratedStub_cc",
