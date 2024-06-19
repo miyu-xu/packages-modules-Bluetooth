@@ -16,6 +16,24 @@
       "message": "It looks like the unit tests cover 0% of the new code.  Are there any tests you could add?",
       "revId": "9b3e223eb3286027a7587532e4c3c838308ab003",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc3ebb41_f5f856e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-19T00:13:58Z",
+      "side": 1,
+      "message": "I\u0027ve looked into this, the shim layer\u0027s callbacks are not testable as I understand. And on the broadcaster side, the callback testing is also not covered well. while we do have similar testings in state_machine_test, but it doesn\u0027t cover the logic we added here in broadcaster.\nI can investigate further into other options, or if you have some suggestions?",
+      "parentUuid": "7c0b888b_74980085",
+      "revId": "9b3e223eb3286027a7587532e4c3c838308ab003",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
