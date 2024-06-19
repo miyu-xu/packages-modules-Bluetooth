@@ -283,9 +283,11 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(tBTA_AV_HNDL bta_av_handle,
         bool config_updated = false;
         tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
         GetPeerEncoderParameters(p_peer->addr, &peer_params);
-        p_peer->GetCodecs()->setCodecUserConfig(high_priority_mandatory, &peer_params,
-                                                p_sink->codec_caps, result_codec_config,
-                                                &restart_input, &restart_output, &config_updated);
+        p_peer->GetCodecs()->setCodecUserConfig(
+            false, /* TODO: use the real value instead of this place holder */
+            high_priority_mandatory, &peer_params, p_sink->codec_caps,
+            result_codec_config, &restart_input, &restart_output,
+            &config_updated);
       } else {
         log::warn("mandatory codec not found for peer {}", p_peer->addr);
       }
@@ -798,9 +800,11 @@ bool BtaAvCo::SetCodecUserConfig(const RawAddress& peer_address,
 
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
-  if (!p_peer->GetCodecs()->setCodecUserConfig(codec_user_config, &peer_params, p_sink->codec_caps,
-                                               result_codec_config, &restart_input, &restart_output,
-                                               &config_updated)) {
+  if (!p_peer->GetCodecs()->setCodecUserConfig(
+          false, /* TODO: use the real value instead of this place holder */
+          codec_user_config, &peer_params, p_sink->codec_caps,
+          result_codec_config, &restart_input, &restart_output,
+          &config_updated)) {
     success = false;
     goto done;
   }
@@ -884,9 +888,10 @@ bool BtaAvCo::SetCodecAudioConfig(const btav_a2dp_codec_config_t& codec_audio_co
 
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
-  if (!p_peer->GetCodecs()->setCodecAudioConfig(codec_audio_config, &peer_params,
-                                                p_sink->codec_caps, result_codec_config,
-                                                &restart_output, &config_updated)) {
+  if (!p_peer->GetCodecs()->setCodecAudioConfig(
+          false, /* TODO: use the real value instead of this place holder */
+          codec_audio_config, &peer_params, p_sink->codec_caps,
+          result_codec_config, &restart_output, &config_updated)) {
     return false;
   }
 
@@ -1111,8 +1116,10 @@ const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
       continue;
     }
 
-    if (!p_peer->GetCodecs()->setCodecConfig(p_sink->codec_caps, true /* is_capability */,
-                                             new_codec_config, false /* select_current_codec */)) {
+    if (!p_peer->GetCodecs()->setCodecConfig(
+            false, /* TODO: use the real value instead of this place holder */
+            p_sink->codec_caps, true /* is_capability */, new_codec_config,
+            false /* select_current_codec */)) {
       log::verbose("cannot set source codec {}", iter->name());
     } else {
       log::verbose("feasible to set source codec {}", iter->name());
@@ -1176,8 +1183,10 @@ const BtaAvCoSep* BtaAvCo::AttemptSourceCodecSelection(const A2dpCodecConfig& co
     log::verbose("peer Sink for codec {} not found", codec_config.name());
     return nullptr;
   }
-  if (!p_peer->GetCodecs()->setCodecConfig(p_sink->codec_caps, true /* is_capability */,
-                                           new_codec_config, true /* select_current_codec */)) {
+  if (!p_peer->GetCodecs()->setCodecConfig(
+          false, /* TODO: use the real value instead of this place holder */
+          p_sink->codec_caps, true /* is_capability */, new_codec_config,
+          true /* select_current_codec */)) {
     log::verbose("cannot set source codec {}", codec_config.name());
     return nullptr;
   }
@@ -1202,8 +1211,10 @@ const BtaAvCoSep* BtaAvCo::AttemptSinkCodecSelection(const A2dpCodecConfig& code
     log::verbose("peer Source for codec {} not found", codec_config.name());
     return nullptr;
   }
-  if (!p_peer->GetCodecs()->setSinkCodecConfig(p_source->codec_caps, true /* is_capability */,
-                                               new_codec_config, true /* select_current_codec */)) {
+  if (!p_peer->GetCodecs()->setSinkCodecConfig(
+          false, /* TODO: use the real value instead of this place holder */
+          p_source->codec_caps, true /* is_capability */, new_codec_config,
+          true /* select_current_codec */)) {
     log::verbose("cannot set sink codec {}", codec_config.name());
     return nullptr;
   }
@@ -1239,7 +1250,9 @@ bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
     // The peer Sink device does not support this codec
     return false;
   }
-  if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(p_sink->codec_caps)) {
+  if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(
+          false, /* TODO: use the real value instead of this place holder */
+          p_sink->codec_caps)) {
     log::warn("cannot update peer {} codec capabilities for {}", p_peer->addr,
               A2DP_CodecName(p_sink->codec_caps));
     return false;
@@ -1270,7 +1283,9 @@ bool BtaAvCo::UpdateSelectableSinkCodec(const A2dpCodecConfig& codec_config, Bta
     // The peer Source device does not support this codec
     return false;
   }
-  if (!p_peer->GetCodecs()->setPeerSourceCodecCapabilities(p_source->codec_caps)) {
+  if (!p_peer->GetCodecs()->setPeerSourceCodecCapabilities(
+          false, /* TODO: use the real value instead of this place holder */
+          p_source->codec_caps)) {
     log::warn("cannot update peer {} codec capabilities for {}", p_peer->addr,
               A2DP_CodecName(p_source->codec_caps));
     return false;
@@ -1345,9 +1360,10 @@ tA2DP_STATUS BtaAvCo::SetCodecOtaConfig(BtaAvCoPeer* p_peer, const uint8_t* p_ot
 
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
-  auto status = p_peer->GetCodecs()->setCodecOtaConfig(p_ota_codec_config, &peer_params,
-                                                       result_codec_config, &restart_input,
-                                                       &restart_output, &config_updated);
+  const tA2DP_STATUS status = p_peer->GetCodecs()->setCodecOtaConfig(
+    false, /* TODO: use the real value instead of this place holder */
+    p_ota_codec_config, &peer_params, result_codec_config,
+    &restart_input, &restart_output, &config_updated);
   if (status != A2DP_SUCCESS) {
     log::error("peer {} : cannot set OTA config, status: 0x{:x}", p_peer->addr, status);
     return status;
