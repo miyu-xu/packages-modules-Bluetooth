@@ -160,7 +160,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       std::unique_ptr<uint8_t, void (*)(void*)> p_result_codec_config(
           reinterpret_cast<uint8_t*>(calloc(500, sizeof(uint8_t))), free);
       if (p_result_codec_config) {
-        codecs->setCodecConfig(peer_codec_info, fdp->ConsumeBool(),
+        codecs->setCodecConfig(fdp->ConsumeBool(), peer_codec_info, fdp->ConsumeBool(),
                                p_result_codec_config.get(), fdp->ConsumeBool());
       }
     },
@@ -183,7 +183,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       std::unique_ptr<uint8_t, void (*)(void*)> p_result_codec_config(
           reinterpret_cast<uint8_t*>(calloc(500, sizeof(uint8_t))), free);
       if (p_result_codec_config) {
-        codecs->setSinkCodecConfig(peer_codec_info, fdp->ConsumeBool(),
+        codecs->setSinkCodecConfig(fdp->ConsumeBool(), peer_codec_info, fdp->ConsumeBool(),
                                    p_result_codec_config.get(),
                                    fdp->ConsumeBool());
       }
@@ -212,7 +212,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       bool restart_input, restart_output, config_updated;
       uint8_t* p_result_codec_config =
           reinterpret_cast<uint8_t*>(&result_codec_config);
-      codecs->setCodecUserConfig(codec_user_config, &p_peer_params,
+      codecs->setCodecUserConfig(fdp->ConsumeBool(), codec_user_config, &p_peer_params,
                                  p_peer_sink_capabilities,
                                  p_result_codec_config, &restart_input,
                                  &restart_output, &config_updated);
@@ -240,7 +240,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
           reinterpret_cast<uint8_t*>(&result_codec_config);
       bool p_restart_output, p_config_updated;
       codecs->setCodecAudioConfig(
-          codec_audio_config, &p_peer_params, p_peer_sink_capabilities,
+          fdp->ConsumeBool(), codec_audio_config, &p_peer_params, p_peer_sink_capabilities,
           p_result_codec_config, &p_restart_output, &p_config_updated);
     },
 
@@ -264,7 +264,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       uint8_t* p_result_codec_config =
           reinterpret_cast<uint8_t*>(&result_codec_config);
       bool p_restart_input, p_restart_output, p_config_updated;
-      codecs->setCodecOtaConfig(p_ota_codec_config, &p_peer_params,
+      codecs->setCodecOtaConfig(fdp->ConsumeBool(), p_ota_codec_config, &p_peer_params,
                                 p_result_codec_config, &p_restart_input,
                                 &p_restart_output, &p_config_updated);
     },
@@ -282,7 +282,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       if (p_peer_codec_capabilities == nullptr) {
         return;
       }
-      codecs->setPeerSinkCodecCapabilities(p_peer_codec_capabilities);
+      codecs->setPeerSinkCodecCapabilities(fdp->ConsumeBool(), p_peer_codec_capabilities);
     },
 
     // setPeerSourceCodecCapabilities
@@ -298,7 +298,7 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       if (p_peer_codec_capabilities == nullptr) {
         return;
       }
-      codecs->setPeerSourceCodecCapabilities(p_peer_codec_capabilities);
+      codecs->setPeerSourceCodecCapabilities(fdp->ConsumeBool(), p_peer_codec_capabilities);
     },
 
     // getCodecConfigAndCapabilities

@@ -354,6 +354,7 @@ bool A2dpCodecConfig::isCodecConfigEmpty(
 }
 
 bool A2dpCodecConfig::setCodecUserConfig(
+    const bool is_in_48kHz_aac_allow_list,
     const btav_a2dp_codec_config_t& codec_user_config,
     const btav_a2dp_codec_config_t& codec_audio_config,
     const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
@@ -375,8 +376,8 @@ bool A2dpCodecConfig::setCodecUserConfig(
   codec_user_config_ = codec_user_config;
   btav_a2dp_codec_config_t saved_codec_audio_config = codec_audio_config_;
   codec_audio_config_ = codec_audio_config;
-  bool success =
-      setCodecConfig(p_peer_codec_info, is_capability, p_result_codec_config);
+  bool success = setCodecConfig(is_in_48kHz_aac_allow_list, p_peer_codec_info,
+                                is_capability, p_result_codec_config);
   if (!success) {
     // Restore the local copy of the user and audio config
     codec_user_config_ = saved_codec_user_config;
@@ -718,14 +719,16 @@ bool A2dpCodecs::isSupportedCodec(btav_a2dp_codec_index_t codec_index) {
   return indexed_codecs_.find(codec_index) != indexed_codecs_.end();
 }
 
-bool A2dpCodecs::setCodecConfig(const uint8_t* p_peer_codec_info,
+bool A2dpCodecs::setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                                const uint8_t* p_peer_codec_info,
                                 bool is_capability,
                                 uint8_t* p_result_codec_config,
                                 bool select_current_codec) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
   A2dpCodecConfig* a2dp_codec_config = findSourceCodecConfig(p_peer_codec_info);
   if (a2dp_codec_config == nullptr) return false;
-  if (!a2dp_codec_config->setCodecConfig(p_peer_codec_info, is_capability,
+  if (!a2dp_codec_config->setCodecConfig(is_in_48kHz_aac_allow_list,
+                                         p_peer_codec_info, is_capability,
                                          p_result_codec_config)) {
     return false;
   }
@@ -735,14 +738,16 @@ bool A2dpCodecs::setCodecConfig(const uint8_t* p_peer_codec_info,
   return true;
 }
 
-bool A2dpCodecs::setSinkCodecConfig(const uint8_t* p_peer_codec_info,
+bool A2dpCodecs::setSinkCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                                    const uint8_t* p_peer_codec_info,
                                     bool is_capability,
                                     uint8_t* p_result_codec_config,
                                     bool select_current_codec) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
   A2dpCodecConfig* a2dp_codec_config = findSinkCodecConfig(p_peer_codec_info);
   if (a2dp_codec_config == nullptr) return false;
-  if (!a2dp_codec_config->setCodecConfig(p_peer_codec_info, is_capability,
+  if (!a2dp_codec_config->setCodecConfig(is_in_48kHz_aac_allow_list,
+                                         p_peer_codec_info, is_capability,
                                          p_result_codec_config)) {
     return false;
   }
@@ -753,6 +758,7 @@ bool A2dpCodecs::setSinkCodecConfig(const uint8_t* p_peer_codec_info,
 }
 
 bool A2dpCodecs::setCodecUserConfig(
+    const bool is_in_48kHz_aac_allow_list,
     const btav_a2dp_codec_config_t& codec_user_config,
     const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
     const uint8_t* p_peer_sink_capabilities, uint8_t* p_result_codec_config,
@@ -780,8 +786,8 @@ bool A2dpCodecs::setCodecUserConfig(
   // Reuse the existing codec audio config
   codec_audio_config = a2dp_codec_config->getCodecAudioConfig();
   if (!a2dp_codec_config->setCodecUserConfig(
-          codec_user_config, codec_audio_config, p_peer_params,
-          p_peer_sink_capabilities, true, p_result_codec_config,
+          is_in_48kHz_aac_allow_list, codec_user_config, codec_audio_config,
+          p_peer_params, p_peer_sink_capabilities, true, p_result_codec_config,
           p_restart_input, p_restart_output, p_config_updated)) {
     goto fail;
   }
@@ -856,6 +862,7 @@ fail:
 }
 
 bool A2dpCodecs::setCodecAudioConfig(
+    const bool is_in_48kHz_aac_allow_list,
     const btav_a2dp_codec_config_t& codec_audio_config,
     const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
     const uint8_t* p_peer_sink_capabilities, uint8_t* p_result_codec_config,
@@ -872,9 +879,9 @@ bool A2dpCodecs::setCodecAudioConfig(
   codec_user_config = a2dp_codec_config->getCodecUserConfig();
   bool restart_input = false;  // Flag ignored - input was just restarted
   if (!a2dp_codec_config->setCodecUserConfig(
-          codec_user_config, codec_audio_config, p_peer_params,
-          p_peer_sink_capabilities, true, p_result_codec_config, &restart_input,
-          p_restart_output, p_config_updated)) {
+          is_in_48kHz_aac_allow_list, codec_user_config, codec_audio_config,
+          p_peer_params, p_peer_sink_capabilities, true, p_result_codec_config,
+          &restart_input, p_restart_output, p_config_updated)) {
     return false;
   }
 
@@ -882,7 +889,7 @@ bool A2dpCodecs::setCodecAudioConfig(
 }
 
 bool A2dpCodecs::setCodecOtaConfig(
-    const uint8_t* p_ota_codec_config,
+    const bool is_in_48kHz_aac_allow_list, const uint8_t* p_ota_codec_config,
     const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
     uint8_t* p_result_codec_config, bool* p_restart_input,
     bool* p_restart_output, bool* p_config_updated) {
@@ -939,9 +946,9 @@ bool A2dpCodecs::setCodecOtaConfig(
   // Reuse the existing codec user config and codec audio config
   codec_audio_config = a2dp_codec_config->getCodecAudioConfig();
   if (!a2dp_codec_config->setCodecUserConfig(
-          codec_user_config, codec_audio_config, p_peer_params,
-          p_ota_codec_config, false, p_result_codec_config, p_restart_input,
-          p_restart_output, p_config_updated)) {
+          is_in_48kHz_aac_allow_list, codec_user_config, codec_audio_config,
+          p_peer_params, p_ota_codec_config, false, p_result_codec_config,
+          p_restart_input, p_restart_output, p_config_updated)) {
     log::warn("cannot set codec configuration for peer OTA codec {}",
               A2DP_CodecName(p_ota_codec_config));
     goto fail;
@@ -959,6 +966,7 @@ fail:
 }
 
 bool A2dpCodecs::setPeerSinkCodecCapabilities(
+    const bool is_in_48kHz_aac_allow_list,
     const uint8_t* p_peer_codec_capabilities) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
 
@@ -975,10 +983,12 @@ bool A2dpCodecs::setPeerSinkCodecCapabilities(
       !A2DP_IsPeerSinkCodecValid(p_peer_codec_capabilities))
     return false;
 
-  return a2dp_codec_config->setPeerCodecCapabilities(p_peer_codec_capabilities);
+  return a2dp_codec_config->setPeerCodecCapabilities(is_in_48kHz_aac_allow_list,
+                                                     p_peer_codec_capabilities);
 }
 
 bool A2dpCodecs::setPeerSourceCodecCapabilities(
+    const bool is_in_48kHz_aac_allow_list,
     const uint8_t* p_peer_codec_capabilities) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
 
@@ -986,7 +996,8 @@ bool A2dpCodecs::setPeerSourceCodecCapabilities(
   A2dpCodecConfig* a2dp_codec_config =
       findSinkCodecConfig(p_peer_codec_capabilities);
   if (a2dp_codec_config == nullptr) return false;
-  return a2dp_codec_config->setPeerCodecCapabilities(p_peer_codec_capabilities);
+  return a2dp_codec_config->setPeerCodecCapabilities(is_in_48kHz_aac_allow_list,
+                                                     p_peer_codec_capabilities);
 }
 
 bool A2dpCodecs::getCodecConfigAndCapabilities(

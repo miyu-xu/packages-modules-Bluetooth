@@ -99,8 +99,8 @@ class A2dpOpusTest : public ::testing::Test {
     ASSERT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
     codec_config_ = a2dp_codecs_->findSinkCodecConfig(kCodecInfoOpusCapability);
     ASSERT_NE(codec_config_, nullptr);
-    ASSERT_TRUE(a2dp_codecs_->setSinkCodecConfig(kCodecInfoOpusCapability, true,
-                                                 codec_info_result, true));
+    ASSERT_TRUE(a2dp_codecs_->setSinkCodecConfig(
+        false, kCodecInfoOpusCapability, true, codec_info_result, true));
     ASSERT_EQ(a2dp_codecs_->getCurrentCodecConfig(), codec_config_);
     // Compare the result codec with the local test codec info
     for (size_t i = 0; i < kCodecInfoOpusCapability[0] + 1; i++) {
