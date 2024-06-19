@@ -1146,7 +1146,7 @@ void LeAudioDevice::DeactivateAllAses(void) {
     ase.active = false;
     ase.reconfigure = 0;
     ase.cis_id = bluetooth::le_audio::kInvalidCisId;
-    ase.cis_conn_hdl = 0;
+    ase.cis_conn_hdl = bluetooth::le_audio::kInvalidCisConnHandle;
   }
 }
 
