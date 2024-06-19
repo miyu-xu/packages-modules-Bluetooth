@@ -165,3 +165,91 @@ cc_library_headers {
     ],
     min_sdk_version: "30",
 }
+
+HOST_TARGET_SHARED_LIBS = [
+    ":libbase",
+    ":libbinder",
+    ":libbinder_ndk",
+    ":libc++",
+    ":libcrypto",
+    ":libcutils",
+    ":libgrpc++",
+    ":libgrpc_wrap",
+    ":liblog",
+    ":liblzma",
+    ":libprotobuf-cpp-full",
+    ":libssl",
+    ":libunwindstack",
+    ":libutils",
+    ":libz",
+    ":server_configurable_flags",
+]
+
+HOST_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+    ":libbluetooth",
+    ":libbluetooth_gd",
+    ":libchrome",
+    ":libevent",
+    ":libflatbuffers-cpp",
+]
+
+TARGET_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+    ":android.hardware.bluetooth@1.0",
+    ":android.hardware.bluetooth@1.1",
+    ":libandroid_runtime_lazy",
+    ":libhidlbase",
+    ":libstatslog_bt",
+]
+
+filegroup {
+    name: "bluetooth_cert_and_srcs",
+    srcs: [
+        ":gd_smp_packets_python3_gen",
+        ":hci_packets_python3_gen",
+        "blueberry/**/*.py",
+        "blueberry/**/*.yaml",
+        "setup.py",
+    ],
+}
+
+cc_genrule {
+    name: "bluetooth_host_libs",
+    compile_multilib: "first",
+    host_supported: true,
+    tools: ["soong_zip"],
+    srcs: HOST_LIBRARIES,
+    out: ["bluetooth_host_libs.zip"],
+    cmd: "mkdir lib64 && cp $(in) lib64 && " +
+        "$(location soong_zip) -d -o $(out) -C . -D lib64",
+}
+
+cc_genrule {
+    name: "archive_bluetooth_cert_tests",
+    compile_multilib: "first",
+    tools: [
+        "bluetooth_stack_with_facade",
+        "bt_topshim_facade",
+        "root-canal",
+        "soong_zip",
+    ],
+    srcs: [
+        ":BlueberryFacadeAndCertGeneratedStub_py",
+        ":bluetooth_cert_and_srcs",
+        ":bluetooth_host_libs",
+        ":bluetooth_stack_with_facade-target",
+    ],
+    out: ["bluetooth_cert_tests.zip"],
+    cmd: "echo \"Packaging Bluetooth Cert Tests\" into $(out) && " +
+        "mkdir bluetooth_cert_tests && " +
+        "unzip -oq $(location :BlueberryFacadeAndCertGeneratedStub_py) -d bluetooth_cert_tests && " +
+        "mkdir target && cp $(location :bluetooth_stack_with_facade-target) target/bluetooth_stack_with_facade && " +
+        "unzip -oq $(location :bluetooth_host_libs) &&" +
+        "$(location soong_zip) -o $(out) " +
+        "-C packages/modules/Bluetooth/system -D packages/modules/Bluetooth/system " +
+        "-C bluetooth_cert_tests -D bluetooth_cert_tests " +
+        "-C . -D lib64 " +
+        "-C . -D target " +
+        "-C `dirname $(location bluetooth_stack_with_facade)` -f $(location bluetooth_stack_with_facade) " +
+        "-C `dirname $(location bt_topshim_facade)` -f $(location bt_topshim_facade) " +
+        "-C `dirname $(location root-canal)` -f $(location root-canal) ",
+}
