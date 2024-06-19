@@ -90,8 +90,8 @@ class A2dpLdacTest : public ::testing::Test {
     source_codec_config_ =
         a2dp_codecs_->findSourceCodecConfig(kCodecInfoLdacCapability);
     ASSERT_NE(source_codec_config_, nullptr);
-    ASSERT_TRUE(a2dp_codecs_->setCodecConfig(kCodecInfoLdacCapability, true,
-                                                source_codec_info_result, true));
+    ASSERT_TRUE(a2dp_codecs_->setCodecConfig(
+        false, kCodecInfoLdacCapability, true, source_codec_info_result, true));
     ASSERT_EQ(a2dp_codecs_->getCurrentCodecConfig(), source_codec_config_);
     // Compare the result codec with the local test codec info
     for (size_t i = 0; i < kCodecInfoLdacCapability[0] + 1; i++) {
