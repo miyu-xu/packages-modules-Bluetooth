@@ -52,6 +52,24 @@
       "parentUuid": "5669fd68_2b0e8d83",
       "revId": "447cde516ee09ba3b303f3562bca885e1eaa129f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f17800f_1098c752",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-19T00:29:01Z",
+      "side": 1,
+      "message": "sry, I missed this question, it should only present in the EA.\n\n2.5.2 Auracast™ Broadcast Audio Related Data in Extended Advertisements\n\nhttps://www.bluetooth.com/wp-content/uploads/2022/10/Auracast-Transmitter_Recommendations.pdf",
+      "parentUuid": "686ae614_13640ac7",
+      "revId": "447cde516ee09ba3b303f3562bca885e1eaa129f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
