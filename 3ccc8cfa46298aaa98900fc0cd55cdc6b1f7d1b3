@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03422fed_df65eb6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-19T11:29:03Z",
+      "side": 1,
+      "message": "This is only idea how this should be changed - currently the quality isn\u0027t matched with what would be streamed (sound may be distorted on earbuds)",
+      "revId": "3ccc8cfa46298aaa98900fc0cd55cdc6b1f7d1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
