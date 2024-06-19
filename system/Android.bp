@@ -165,3 +165,115 @@ cc_library_headers {
     ],
     min_sdk_version: "30",
 }
+
+HOST_TARGET_SHARED_LIBS = [
+    ":libbase",
+    ":libbinder",
+    ":libbinder_ndk",
+    ":libc++",
+    ":libcrypto",
+    ":libcutils",
+    ":libgrpc++",
+    ":libgrpc_wrap",
+    ":liblog",
+    ":liblzma",
+    ":libprotobuf-cpp-full",
+    ":libssl",
+    ":libunwindstack",
+    ":libutils",
+    ":libz",
+    ":server_configurable_flags",
+]
+
+HOST_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+    ":libbluetooth",
+    ":libbluetooth_gd",
+    ":libchrome",
+    ":libevent",
+    ":libflatbuffers-cpp",
+]
+
+TARGET_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+    ":android.hardware.bluetooth@1.0",
+    ":android.hardware.bluetooth@1.1",
+    ":libandroid_runtime_lazy",
+    ":libhidlbase",
+    ":libstatslog_bt",
+]
+
+cc_genrule {
+    name: "bluetooth_host_libs",
+    compile_multilib: "first",
+    host_supported: true,
+    // device_supported: false,
+    tools: ["soong_zip"],
+    srcs: HOST_LIBRARIES,
+    out: ["bluetooth_host_libs.zip"],
+    cmd: "mkdir lib64 && cp $(in) lib64 && " +
+        "$(location soong_zip) -d -o $(out) -C . -D lib64",
+}
+
+cc_genrule {
+    name: "bluetooth_target_libs_and_bin",
+    compile_multilib: "first",
+    tools: ["soong_zip"],
+    srcs: [":bluetooth_stack_with_facade"] + TARGET_LIBRARIES,
+    out: ["bluetooth_target_libs_and_bin.zip"],
+    cmd: "mkdir target && cp $(in) target && " +
+        "$(location soong_zip) -d -o $(out) -C . -D target",
+}
+
+cc_genrule {
+    name: "archive_bluetooth_cert_tests",
+    compile_multilib: "first",
+    // host_supported: true,
+    tools: [
+        "bluetooth_stack_with_facade",
+        "bt_topshim_facade",
+        "root-canal",
+        "soong_zip",
+    ],
+    tool_files: [
+        ":bluetooth_target_libs_and_bin",
+    ],
+    srcs: [
+        ":BlueberryFacadeAndCertGeneratedStub_py",
+        ":bluetooth_host_libs",
+        ":gd_smp_packets_python3_gen",
+        ":hci_packets_python3_gen",
+        ":llvm-tools",
+        "blueberry/**/*.py",
+        "blueberry/**/*.yaml",
+        "setup.py",
+    ],
+    dist: {
+        targets: ["bluetooth_stack_with_facade"],
+    },
+    out: ["bluetooth_cert_tests.zip"],
+    cmd: "BTDIR=packages/modules/Bluetooth/system; " +
+        "for dir in `find $$BTDIR/blueberry/* -type d`; do touch $$dir/__init__.py;done &&" +
+        "mkdir bluetooth_cert_tests && " +
+        "unzip -oq $(location :BlueberryFacadeAndCertGeneratedStub_py) -d bluetooth_cert_tests && " +
+        "unzip -oq $(location :bluetooth_host_libs) && " +
+        "unzip -oq $(location :bluetooth_target_libs_and_bin) && " +
+        "echo Packaging Bluetooth Cert Tests; " +
+        "LLVMDIR=`dirname $$(find prebuilts/clang -type d -name bin)`; " +
+        "$(location soong_zip) -o $(out) " +
+        "-C $$BTDIR -D $$BTDIR " +
+        "-C bluetooth_cert_tests -D bluetooth_cert_tests " +
+        "-C . -D lib64 " +
+        "-C . -D target " +
+        // Hostside Python libraries will be placed on the top.
+        "-C `dirname $(location :gd_smp_packets_python3_gen)` -f $(location :gd_smp_packets_python3_gen) " +
+        "-C `dirname $(location :hci_packets_python3_gen)`    -f $(location :hci_packets_python3_gen) " +
+        // Hostside executables will be placed on the top.
+        "-C `dirname $(location bluetooth_stack_with_facade)` -f $(location bluetooth_stack_with_facade) " +
+        "-C `dirname $(location bt_topshim_facade)`           -f $(location bt_topshim_facade) " +
+        "-C `dirname $(location root-canal)`                  -f $(location root-canal) " +
+        // llvm-tools for bluetooth cert tests.
+        "-P llvm_binutils " +
+        "-C $$LLVMDIR -f `find $$LLVMDIR -name llvm-cov` " +
+        "-C $$LLVMDIR -f `find $$LLVMDIR -name llvm-profdata` " +
+        "-C $$LLVMDIR -f `find $$LLVMDIR -name llvm-symbolizer` " +
+        "-C $$LLVMDIR -f `find $$LLVMDIR -name libc++.so`",
+}
