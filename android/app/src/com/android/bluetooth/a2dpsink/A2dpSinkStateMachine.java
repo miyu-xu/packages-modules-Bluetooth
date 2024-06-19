@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.media.AudioFormat;
 import android.os.Looper;
 import android.os.Message;
+import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
@@ -331,6 +332,14 @@ class A2dpSinkStateMachine extends StateMachine {
         intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, mMostRecentState);
         intent.putExtra(BluetoothProfile.EXTRA_STATE, currentState);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mDevice);
+        if(currentState == BluetoothProfile.STATE_DISCONNECTED) {
+            int conection_timeout = BluetoothProperties.autoreconnect().orElse(0);
+            if (conection_timeout == 1) {
+                Log.d(TAG, "A2DP sink auto-reconnect for Connection Time out");
+                intent.putExtra(BluetoothProfile.EXTRA_DISCONNECT_REASON, 8);
+                BluetoothProperties.autoreconnect(0);
+            }
+        }
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
         mService.connectionStateChanged(mDevice, mMostRecentState, currentState);
         mMostRecentState = currentState;
