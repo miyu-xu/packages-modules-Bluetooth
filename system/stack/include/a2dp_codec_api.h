@@ -164,7 +164,9 @@ protected:
   // See |A2dpCodecs.setCodecConfig| for detailed description of
   // the actual mechanism used to compute the configuration.
   // Returns true on success, othewise false.
-  virtual bool setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
+  virtual bool setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                              const uint8_t* p_peer_codec_info,
+                              bool is_capability,
                               uint8_t* p_result_codec_config) = 0;
 
   // Sets the user prefered codec configuration.
@@ -183,7 +185,8 @@ protected:
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
   // Returns true on success, otherwise false.
-  bool setCodecUserConfig(const btav_a2dp_codec_config_t& codec_user_config,
+  bool setCodecUserConfig(const bool is_in_48kHz_aac_allow_list,
+                          const btav_a2dp_codec_config_t& codec_user_config,
                           const btav_a2dp_codec_config_t& codec_audio_config,
                           const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                           const uint8_t* p_peer_codec_info, bool is_capability,
@@ -193,7 +196,9 @@ protected:
   // Sets the codec capabilities for a peer.
   // |p_peer_codec_capabiltities| is the peer codec capabilities to set.
   // Returns true on success, otherwise false.
-  virtual bool setPeerCodecCapabilities(const uint8_t* p_peer_codec_capabilities) = 0;
+  virtual bool setPeerCodecCapabilities(
+      const bool is_in_48kHz_aac_allow_list,
+      const uint8_t* p_peer_codec_capabilities) = 0;
 
   // Constructor where |codec_index| is the unique index that identifies the
   // codec. The user-friendly name is |name|.
@@ -352,14 +357,18 @@ public:
   //
   // The result codec configuration is stored in |p_result_codec_config|.
   // Returns true on success, othewise false.
-  bool setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
-                      uint8_t* p_result_codec_config, bool select_current_codec);
+  bool setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                      const uint8_t* p_peer_codec_info, bool is_capability,
+                      uint8_t* p_result_codec_config,
+                      bool select_current_codec);
 
   // Sets the A2DP Sink codec configuration to be used with a peer Source
   // device.
   // [See setCodecConfig() for description]
-  bool setSinkCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
-                          uint8_t* p_result_codec_config, bool select_current_codec);
+  bool setSinkCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                          const uint8_t* p_peer_codec_info, bool is_capability,
+                          uint8_t* p_result_codec_config,
+                          bool select_current_codec);
 
   // Sets the user prefered codec configuration.
   // |codec_user_config| contains the preferred codec configuration.
@@ -374,7 +383,8 @@ public:
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
   // Returns true on success, otherwise false.
-  bool setCodecUserConfig(const btav_a2dp_codec_config_t& codec_user_config,
+  bool setCodecUserConfig(const bool is_in_48kHz_aac_allow_list,
+                          const btav_a2dp_codec_config_t& codec_user_config,
                           const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                           const uint8_t* p_peer_sink_capabilities, uint8_t* p_result_codec_config,
                           bool* p_restart_input, bool* p_restart_output, bool* p_config_updated);
@@ -391,7 +401,8 @@ public:
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
   // Returns true on success, otherwise false.
-  bool setCodecAudioConfig(const btav_a2dp_codec_config_t& codec_audio_config,
+  bool setCodecAudioConfig(const bool is_in_48kHz_aac_allow_list,
+                           const btav_a2dp_codec_config_t& codec_audio_config,
                            const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                            const uint8_t* p_peer_sink_capabilities, uint8_t* p_result_codec_config,
                            bool* p_restart_output, bool* p_config_updated);
@@ -413,7 +424,8 @@ public:
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
   // Returns true on success, otherwise false.
-  bool setCodecOtaConfig(const uint8_t* p_ota_codec_config,
+  bool setCodecOtaConfig(const bool is_in_48kHz_aac_allow_list,
+                         const uint8_t* p_ota_codec_config,
                          const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                          uint8_t* p_result_codec_config, bool* p_restart_input,
                          bool* p_restart_output, bool* p_config_updated);
@@ -421,12 +433,14 @@ public:
   // Sets the codec capabilities for a Sink peer.
   // |p_peer_codec_capabiltities| is the peer codec capabilities to set.
   // Returns true on success, otherwise false.
-  bool setPeerSinkCodecCapabilities(const uint8_t* p_peer_codec_capabilities);
+  bool setPeerSinkCodecCapabilities(const bool is_in_48kHz_aac_allow_list,
+                                    const uint8_t* p_peer_codec_capabilities);
 
   // Sets the codec capabilities for a Source peer.
   // |p_peer_codec_capabiltities| is the peer codec capabilities to set.
   // Returns true on success, otherwise false.
-  bool setPeerSourceCodecCapabilities(const uint8_t* p_peer_codec_capabilities);
+  bool setPeerSourceCodecCapabilities(const bool is_in_48kHz_aac_allow_list,
+                                      const uint8_t* p_peer_codec_capabilities);
 
   // Gets the current codec configuration and the capabilities of
   // all configured codecs.
