@@ -62,11 +62,7 @@ object Permissions {
     }
 
     private fun restorePermissions(permissions: Set<String>) {
-        if (UiAutomation.ALL_PERMISSIONS.equals(permissions)) {
-            uiAutomation.adoptShellPermissionIdentity()
-        } else {
-            uiAutomation.adoptShellPermissionIdentity(*permissions.map { it }.toTypedArray())
-        }
+        uiAutomation.dropShellPermissionIdentity()
         Log.d(TAG, "Restored ${permissions}")
     }
 
