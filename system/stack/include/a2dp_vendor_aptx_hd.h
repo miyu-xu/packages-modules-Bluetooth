@@ -36,9 +36,14 @@ public:
   virtual ~A2dpCodecConfigAptxHd();
 
   bool init() override;
-  tA2DP_STATUS setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
-                              uint8_t* p_result_codec_config) override;
-  bool setPeerCodecCapabilities(const uint8_t* p_peer_codec_capabilities) override;
+  tA2DP_STATUS setCodecConfig(
+    const bool is_in_48kHz_aac_allow_list,
+    const uint8_t* p_peer_codec_info,
+    bool is_capability,
+    uint8_t* p_result_codec_config) override;
+  bool setPeerCodecCapabilities(
+    const bool is_in_48kHz_aac_allow_list,
+    const uint8_t* p_peer_codec_capabilities) override;
 
 private:
   bool useRtpHeaderMarkerBit() const override;
