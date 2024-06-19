@@ -54,6 +54,10 @@ public interface BluetoothProfile {
     @SuppressLint("ActionValue")
     String EXTRA_PREVIOUS_STATE = "android.bluetooth.profile.extra.PREVIOUS_STATE";
 
+    @SuppressLint("ActionValue")
+    String EXTRA_DISCONNECT_REASON =
+            "android.bluetooth.profile.extra.DISCONNECT_REASON";
+
     /** The profile is in disconnected state */
     int STATE_DISCONNECTED = 0;
 
