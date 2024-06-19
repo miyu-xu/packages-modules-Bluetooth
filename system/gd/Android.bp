@@ -306,9 +306,6 @@ cc_binary {
         "BlueberryFacadeGeneratedStub_h",
         "BluetoothGeneratedBundlerSchema_h_bfbs",
         "BluetoothGeneratedDumpsysDataSchema_h",
-        // Needed here to guarantee that generated zip file is created before
-        // bluetooth_cert_tests.zip is packaged
-        "BlueberryFacadeAndCertGeneratedStub_py",
     ],
     generated_sources: [
         "BlueberryFacadeGeneratedStub_cc",
@@ -374,6 +371,14 @@ cc_binary {
         address: true,
         cfi: true,
     },
+}
+
+cc_genrule {
+    name: "bluetooth_stack_with_facade-target",
+    srcs: [":bluetooth_stack_with_facade"],
+    compile_multilib: "first",
+    out: ["bluetooth_stack_with_facade-target"],
+    cmd: "cp $(location :bluetooth_stack_with_facade) $(out)",
 }
 
 cc_test {
