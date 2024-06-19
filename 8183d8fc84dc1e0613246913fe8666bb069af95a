@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7748f9b8_acd8a740",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T03:25:36Z",
+      "side": 1,
+      "message": "Can we verify that bumble received this exact data for all set APIs?",
+      "revId": "8183d8fc84dc1e0613246913fe8666bb069af95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
