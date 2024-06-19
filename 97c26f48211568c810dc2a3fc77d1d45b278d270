@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8abe415d_ac4b6ac4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T03:17:34Z",
+      "side": 1,
+      "message": "Wait for BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED intent with the preferred transport",
+      "parentUuid": "8112b885_2ce10b38",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a6b4022_203ed323",
         "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
         "patchSetId": 11
