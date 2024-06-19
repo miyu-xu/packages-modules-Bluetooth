@@ -601,7 +601,8 @@ static bool select_audio_channel_mode(
   return false;
 }
 
-bool A2dpCodecConfigAptx::setCodecConfig(const uint8_t* p_peer_codec_info,
+bool A2dpCodecConfigAptx::setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                                         const uint8_t* p_peer_codec_info,
                                          bool is_capability,
                                          uint8_t* p_result_codec_config) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
@@ -905,6 +906,7 @@ fail:
 }
 
 bool A2dpCodecConfigAptx::setPeerCodecCapabilities(
+    const bool is_in_48kHz_aac_allow_list,
     const uint8_t* p_peer_codec_capabilities) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
   tA2DP_APTX_CIE peer_info_cie;
