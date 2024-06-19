@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15018aea_6b53edc8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "Guard this test with FLAG_ALLOW_SWITCHING_HID_AND_HOGP flag",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f93a604_172c29f9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "We should verify that that the previous transport was disconnected and the new transport was connected.",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8112b885_2ce10b38",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Thread.sleep should never be used in tests or in production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nThread.sleep should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6b4022_203ed323",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Thread.sleep should never be used in tests or in production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nThread.sleep should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adeb59ba_f76a14eb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Thread.sleep should never be used in tests or in production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nThread.sleep should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cffc824_55c0e13f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "2024",
+      "fixSuggestions": [
+        {
+          "fixId": "abb84c86_50d905c3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright (C) 2024 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f140818_c77aa028",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "This test case does not really test connection",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f8cc3f_eab2c3aa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-19T02:50:36Z",
+      "side": 1,
+      "message": "How do we know that the connection attempt has concluded.",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
