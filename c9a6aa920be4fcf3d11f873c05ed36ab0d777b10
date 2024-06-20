@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73decb21_75f9579e",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-20T10:58:10Z",
+      "side": 1,
+      "message": "yes, important log.",
+      "parentUuid": "151b51a2_750590ad",
+      "range": {
+        "startLine": 162,
+        "startChar": 2,
+        "endLine": 162,
+        "endChar": 16
+      },
+      "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66a7c33b_2338d337",
@@ -136,6 +160,24 @@
           ]
         }
       ],
+      "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3e12905_585165a0",
+        "filename": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-20T10:58:10Z",
+      "side": 1,
+      "message": "We just want to clear what is available and don\u0027t want to stay there in a while.",
+      "parentUuid": "0389b6b7_57778359",
       "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
