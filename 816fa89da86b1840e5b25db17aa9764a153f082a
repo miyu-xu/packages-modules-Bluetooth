@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ba8456_b7125581",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T09:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a49200_151b353b",
+      "range": {
+        "startLine": 207,
+        "startChar": 37,
+        "endLine": 207,
+        "endChar": 47
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4f90498_a611fc99",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-06-18T16:35:10Z",
       "side": 1,
       "message": "There are a lot of different status and reasons here.  Do we want to print which one it is, instead of just \"failed to connect\"?  It looks like we might have been connected, and had a problem disconnecting.",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 5
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5fa66a_38ca7d8a",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T09:43:17Z",
+      "side": 1,
+      "message": "Adding reason in log in line 207.\nCompare with csis_client.cc and has_client.cc, it seems I should not check status here. Receive OnGattDisconnected mean disconnected.",
+      "parentUuid": "c4f90498_a611fc99",
       "range": {
         "startLine": 217,
         "startChar": 0,
@@ -106,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ddaecb_43b012cd",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T09:43:17Z",
+      "side": 1,
+      "message": "You are right, line 605 handled it.\nThanks",
+      "parentUuid": "3e9ad68f_2506fa2d",
+      "range": {
+        "startLine": 579,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 13
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fec1c3a3_7a7ea8ca",
@@ -143,6 +215,30 @@
           ]
         }
       ],
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942f5765_96331eba",
+        "filename": "system/bta/ras/ras_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T09:43:17Z",
+      "side": 1,
+      "message": "Good catch, thanks!",
+      "parentUuid": "fec1c3a3_7a7ea8ca",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 26
+      },
       "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +284,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8903281f_7b353aeb",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T09:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f014da75_3fc0fc54",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 39
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f79ba4df_3bbc2e7d",
@@ -201,6 +321,30 @@
       "writtenOn": "2024-06-18T16:35:10Z",
       "side": 1,
       "message": "PERSISTED\n```suggestion\n    case ResponseCodeValue::PERSISTED:\n      return \"PERSISTED\";\n```",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 39
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d2e0bc_4a6872dc",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T09:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f79ba4df_3bbc2e7d",
       "range": {
         "startLine": 124,
         "startChar": 0,
