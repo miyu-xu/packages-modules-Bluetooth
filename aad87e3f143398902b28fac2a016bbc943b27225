@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2289122_d7c2479a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T21:13:13Z",
+      "side": 1,
+      "message": "The issue with current implementation is that the inner class is private and you are making a workaround to simulate a call on the onDeviceAdded/Removed (and even there, we are just calling a helper method and not the full implementation.\n\nI don\u0027t see the benefit of having an inner class. I may be wrong but since both lifetime are the same and we can\u0027t have the callback without the manager nor the manager without the callback, that sounded fine to me :/",
+      "parentUuid": "a1f0434b_0952d412",
+      "range": {
+        "startLine": 110,
+        "startChar": 33,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa2edbc6_d8fa85f7",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 1
@@ -149,6 +173,30 @@
           ]
         }
       ],
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5834cf04_ac6d5bca",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T21:13:13Z",
+      "side": 1,
+      "message": "I solved it by mocking the underlying AudioDevicePort type",
+      "parentUuid": "aa2edbc6_d8fa85f7",
+      "range": {
+        "startLine": 1226,
+        "startChar": 8,
+        "endLine": 1226,
+        "endChar": 65
+      },
       "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
