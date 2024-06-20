@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3dd5a912_27674469",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T21:15:19Z",
+      "side": 1,
+      "message": "another approach could be to deal most of the static logic inside the AudioManagerAudioDeviceCallback, and only offer 2 \"API\" method:\n`onWiredConnected`\n`onWiredDisconnected`\n\nThen you can test the AudioManagerAudioDeviceCallback on its own, and create new test for the activeDeviceManager that directly start from the `onWired{Disc,C}onnected`",
+      "parentUuid": "b2289122_d7c2479a",
+      "range": {
+        "startLine": 110,
+        "startChar": 33,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa2edbc6_d8fa85f7",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 1
