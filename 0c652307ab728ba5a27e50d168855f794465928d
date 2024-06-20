@@ -1,0 +1,369 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7d97e8_0b25b6f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "Locked, but we are not locking. And the method is proctected by mLock",
+      "range": {
+        "startLine": 810,
+        "startChar": 12,
+        "endLine": 810,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e55067b2_d6b9ee42",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 810,
+                "startChar": 0,
+                "endLine": 811,
+                "endChar": 0
+              },
+              "replacement": "            setFallbackDeviceActive();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1259,
+                "startChar": 0,
+                "endLine": 1259,
+                "endChar": 0
+              },
+              "replacement": "\n    private void setFallbackDeviceActive() {\n        synchronized (mLock) {\n            setFallbackDeviceActiveLocked();\n        }\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce12499d_b27e2b8f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "Why do we need SuppressLint ?",
+      "range": {
+        "startLine": 816,
+        "startChar": 0,
+        "endLine": 816,
+        "endChar": 53
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a37f54f_2e6a2781",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "I try to remove this inner class and directly extend the ActiveDeviceManager from it with https://r.android.com/3140076.\n\nLet me know what you think and fill free to incorporate some idea in this CL",
+      "range": {
+        "startLine": 817,
+        "startChar": 18,
+        "endLine": 817,
+        "endChar": 49
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a87103_7e19cd7c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "Before we check if there is a wired device, then we run wiredAudioDeviceConnected\n\nNow for each device, if it is a wired device we run wiredAudioDeviceConnected.\n\nin a theoretical point of view, the method wiredAudioDeviceConnected can now be called multiple times.\n\nIs this change intended ?",
+      "range": {
+        "startLine": 821,
+        "startChar": 9,
+        "endLine": 823,
+        "endChar": 13
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e488f14d_93b81a35",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "typo: disconnected",
+      "range": {
+        "startLine": 1221,
+        "startChar": 32,
+        "endLine": 1221,
+        "endChar": 43
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e97baf7_23200f5a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "Can you use the @EnableFlag annotation.\n\nThis is the new recommended way of doing it.",
+      "range": {
+        "startLine": 1224,
+        "startChar": 0,
+        "endLine": 1224,
+        "endChar": 85
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a337e3f3_7b48e21d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "import android.platform.test.annotations.EnableFlag;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1222,
+                "startChar": 0,
+                "endLine": 1222,
+                "endChar": 0
+              },
+              "replacement": "    @EnableFlag(Flags.FLAG_FALLBACK_WHEN_WIRED_AUDIO_DISCONNECTED)\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1224,
+                "startChar": 0,
+                "endLine": 1225,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1243,
+                "startChar": 0,
+                "endLine": 1244,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aaa0ad9_3e4839bf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "typo headphone",
+      "range": {
+        "startLine": 1225,
+        "startChar": 24,
+        "endLine": 1225,
+        "endChar": 33
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93227f2_71aa7d34",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "Comment say we are connecting an a2dp headphone and not an a2dp + hfp headphone.\nThe type of the device is also a2dp.\n\nShould we remove this line ?",
+      "range": {
+        "startLine": 1227,
+        "startChar": 42,
+        "endLine": 1228,
+        "endChar": 48
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8ef3e1_d1cfc6f2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 1232,
+        "startChar": 25,
+        "endLine": 1232,
+        "endChar": 34
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd8de4c8_476dc26b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "We never connected any hearing aid, why this is still called and checked ?",
+      "range": {
+        "startLine": 1235,
+        "startChar": 79,
+        "endLine": 1237,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ac31abad_83803334",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1235,
+                "startChar": 0,
+                "endLine": 1237,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "074568a5_a72aa486",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:12:23Z",
+      "side": 1,
+      "message": "It is not needed to restore the flag value",
+      "range": {
+        "startLine": 1243,
+        "startChar": 0,
+        "endLine": 1243,
+        "endChar": 86
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c4d51a35_d07f9d84",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1243,
+                "startChar": 0,
+                "endLine": 1244,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
