@@ -410,6 +410,8 @@ typedef struct {
   uint16_t last_service_handle; /* handle of last service */
   tGATT_SVC_CHG gattp_attr; /* GATT profile attribute service change */
   tGATT_IF gatt_if;
+  tGATT_IF dis_if;
+  tGATT_IF custom_if;
   std::list<tGATT_HDL_LIST_ELEM>* hdl_list_info;
   std::list<tGATT_SRV_LIST_ELEM>* srv_list_info;
 
@@ -436,6 +438,7 @@ typedef struct {
       handle_of_h_r; /* Handle of the handles reused characteristic value */
   uint16_t handle_cl_supported_feat;
   uint16_t handle_sr_supported_feat;
+  uint16_t handle_of_pnp;
   uint8_t
       gatt_svr_supported_feat_mask; /* Local supported features as a server */
 
