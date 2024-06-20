@@ -24,6 +24,7 @@
 
 #include "acl_manager/assembler.h"
 #include "common/strings.h"
+#include "controller.h"
 #include "hal/ranging_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/distance_measurement_interface.h"
@@ -35,6 +36,7 @@
 #include "os/repeating_alarm.h"
 #include "packet/packet_view.h"
 #include "ras/ras_packets.h"
+#include "stack/include/btm_ble_api.h"
 
 using namespace bluetooth::ras;
 using bluetooth::hci::acl_manager::PacketViewForRecombination;
@@ -68,6 +70,8 @@ static constexpr uint8_t kTxPwrDelta = 0x00;
 static constexpr uint8_t kProcedureDataBufferSize = 0x10;  // Buffer size of Procedure data
 static constexpr uint16_t kMtuForRasData = 507;            // 512 - 5
 static constexpr uint16_t kRangingCounterMask = 0x0FFF;
+static constexpr uint16_t kTxOctets = 251;
+static constexpr uint16_t kTxTime = 2120;
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsProcedureData {
@@ -199,14 +203,12 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   }
 
   ~impl() {}
-  void start(
-      os::Handler* handler,
-      hal::RangingHal* ranging_hal,
-      hci::HciLayer* hci_layer,
-      hci::AclManager* acl_manager) {
+  void start(os::Handler* handler, hal::RangingHal* ranging_hal, hci::HciLayer* hci_layer,
+             hci::Controller* controller, hci::AclManager* acl_manager) {
     handler_ = handler;
     ranging_hal_ = ranging_hal;
     hci_layer_ = hci_layer;
+    controller_ = controller;
     acl_manager_ = acl_manager;
     hci_layer_->RegisterLeEventHandler(
         hci::SubeventCode::TRANSMIT_POWER_REPORTING,
@@ -231,14 +233,14 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
 
   void register_distance_measurement_callbacks(DistanceMeasurementCallbacks* callbacks) {
     distance_measurement_callbacks_ = callbacks;
-    if (ranging_hal_->IsBound()) {
+    if (com::android::bluetooth::flags::channel_sounding_in_stack() && ranging_hal_->IsBound()) {
       distance_measurement_callbacks_->OnVendorSpecificCharacteristics(
           ranging_hal_->GetVendorSpecificCharacteristics());
     }
   }
 
-  void start_distance_measurement(
-      const Address& address, uint16_t interval, DistanceMeasurementMethod method) {
+  void start_distance_measurement(const Address address, uint16_t interval,
+                                  DistanceMeasurementMethod method) {
     log::info("Address:{}, method:{}", address, method);
     uint16_t connection_handle = acl_manager_->HACK_GetLeHandle(address);
 
@@ -328,7 +330,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         std::chrono::milliseconds(cs_trackers_[connection_handle].interval_ms));
   }
 
-  void stop_distance_measurement(const Address& address, DistanceMeasurementMethod method) {
+  void stop_distance_measurement(const Address address, DistanceMeasurementMethod method) {
     log::info("Address:{}, method:{}", address, method);
     switch (method) {
       case METHOD_AUTO:
@@ -354,6 +356,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
           cs_trackers_[connection_handle].repeating_alarm.reset();
           send_le_cs_procedure_enable(connection_handle, Enable::DISABLED);
           cs_trackers_.erase(connection_handle);
+          send_le_set_data_length(connection_handle, BTM_BLE_DATA_SIZE_MAX,
+                                  BTM_BLE_DATA_TX_TIME_MAX);
         }
       } break;
     }
@@ -570,6 +574,16 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         handler_->BindOnce(check_status<LeCsProcedureEnableStatusView>));
   }
 
+  void send_le_set_data_length(uint16_t connection_handle, uint16_t tx_octets, uint16_t tx_time) {
+    tx_octets = std::min<uint16_t>(tx_octets,
+                                   controller_->GetLeMaximumDataLength().supported_max_tx_octets_);
+    tx_time = std::min<uint16_t>(tx_time,
+                                 controller_->GetLeMaximumDataLength().supported_max_tx_time_);
+    hci_layer_->EnqueueCommand(
+            LeSetDataLengthBuilder::Create(connection_handle, tx_octets, tx_time),
+            handler_->BindOnce(check_complete<LeSetDataLengthCompleteView>));
+  }
+
   void on_cs_read_local_supported_capabilities(CommandCompleteView view) {
     auto complete_view = LeCsReadLocalSupportedCapabilitiesCompleteView::Create(view);
     if (!complete_view.IsValid()) {
@@ -618,6 +632,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         event_view.GetMaxAntennaPathsSupported(),
         event_view.GetRolesSupported().ToString(),
         event_view.GetOptionalSubfeaturesSupported().phase_based_ranging_);
+    send_le_set_data_length(connection_handle, kTxOctets, kTxTime);
   }
 
   void on_cs_set_default_settings_complete(CommandCompleteView view) {
@@ -1531,6 +1546,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   os::Handler* handler_;
   hal::RangingHal* ranging_hal_;
   hci::HciLayer* hci_layer_;
+  hci::Controller* controller_;
   hci::AclManager* acl_manager_;
   hci::DistanceMeasurementInterface* distance_measurement_interface_;
   std::unordered_map<Address, RSSITracker> rssi_trackers;
@@ -1554,15 +1570,13 @@ DistanceMeasurementManager::~DistanceMeasurementManager() = default;
 void DistanceMeasurementManager::ListDependencies(ModuleList* list) const {
   list->add<hal::RangingHal>();
   list->add<hci::HciLayer>();
+  list->add<hci::Controller>();
   list->add<hci::AclManager>();
 }
 
 void DistanceMeasurementManager::Start() {
-  pimpl_->start(
-      GetHandler(),
-      GetDependency<hal::RangingHal>(),
-      GetDependency<hci::HciLayer>(),
-      GetDependency<AclManager>());
+  pimpl_->start(GetHandler(), GetDependency<hal::RangingHal>(), GetDependency<hci::HciLayer>(),
+                GetDependency<hci::Controller>(), GetDependency<AclManager>());
 }
 
 void DistanceMeasurementManager::Stop() {
