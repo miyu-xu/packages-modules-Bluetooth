@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac7432ba_f2f2a597",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-20T22:17:13Z",
+      "side": 1,
+      "message": "what if the source doesn\u0027t have PBP profile enabled? encryption bit won\u0027t be present then this might not work.\n\nalso what\u0027s motivation of moving this to PA?",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
