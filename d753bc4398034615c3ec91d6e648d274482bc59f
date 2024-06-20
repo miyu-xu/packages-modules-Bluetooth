@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bdae7b3_27d85663",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-06-20T09:29:43Z",
+      "side": 1,
+      "message": "Is it refactor or something specific for aac 48kHz allowlist?",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "350a975a_1802db91",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 428,
+                "startChar": 0,
+                "endLine": 428,
+                "endChar": 0
+              },
+              "replacement": "        // TODO(b/232431111): Remove this branch after a2dp_variable_aac_capability is removed\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d753bc4398034615c3ec91d6e648d274482bc59f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
