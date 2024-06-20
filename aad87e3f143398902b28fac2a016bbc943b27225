@@ -1,0 +1,156 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1f0434b_0952d412",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:11Z",
+      "side": 1,
+      "message": "That\u0027s pretty significant design change and I am not sure if it\u0027s necessary here. The callbacks of AudioDeviceCallback are simple, and only two of them, but wouldn\u0027t it be misleading to say ActiveDeviceManager extends AudioDeviceCallback - just to override two methods?",
+      "range": {
+        "startLine": 110,
+        "startChar": 33,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bcc5eb6c_8b7ab843",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 110,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "public class ActiveDeviceManager extends AudioDeviceCallback {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 239,
+                "startChar": 0,
+                "endLine": 246,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 835,
+                "startChar": 0,
+                "endLine": 836,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 842,
+                "startChar": 0,
+                "endLine": 843,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa2edbc6_d8fa85f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:11Z",
+      "side": 1,
+      "message": "```\nSTACKTRACE:\norg.mockito.exceptions.base.MockitoException: \nCannot mock/spy class android.media.AudioDeviceInfo\nMockito cannot mock/spy because :\n - final or anonymous class\n        at com.android.bluetooth.btservice.ActiveDeviceManagerTest.wiredAudioDeviceDisconnected_setFallbackDevice(ActiveDeviceManagerTest.java:1226)\n```\n\nthat\u0027s why I needed to do it other way. I tried to change mockito lib in Android.bp:\nfrom ```\"mockito-target\"``` to ```\"mockito-target-inline\"``` or ```\"mockito-target-extended\"``` with\n```\njni_libs: [\n    \"libdexmakerjvmtiagent\",\n    \"libstaticjvmtiagent\",\n], \n```\nbut none worked... Also I tried to do a wrapper on that class but without any luck. Do you have any other solution for mocking final class? ;/\nI see that it\u0027s managed somehow here for example: \n```packages/services/Car/tests/carservice_unit_test/src/com/android/car/audio/CarAudioDeviceInfoTest.java```\nbut I don\u0027t know how they managed that...",
+      "range": {
+        "startLine": 1226,
+        "startChar": 8,
+        "endLine": 1226,
+        "endChar": 65
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fceb6e70_69196d8e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 44,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1226,
+                "startChar": 0,
+                "endLine": 1232,
+                "endChar": 0
+              },
+              "replacement": "        mActiveDeviceManager.onAudioDevicesAdded(\n                new int[] {BluetoothAdapter.AUDIO_DEVICE_OUT_BLUETOOTH_A2DP});\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1237,
+                "startChar": 0,
+                "endLine": 1238,
+                "endChar": 0
+              },
+              "replacement": "        mActiveDeviceManager.onAudioDevicesAdded(\n                new int[] {BluetoothAdapter.AUDIO_DEVICE_OUT_WIRED_HEADSET});\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1241,
+                "startChar": 0,
+                "endLine": 1242,
+                "endChar": 0
+              },
+              "replacement": "        mActiveDeviceManager.onAudioDevicesRemoved(\n                new int[] {BluetoothAdapter.AUDIO_DEVICE_OUT_WIRED_HEADSET});\n"
+            }
+          ]
+        }
+      ],
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
