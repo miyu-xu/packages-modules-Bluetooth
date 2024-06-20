@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e87715_5f3284f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-20T22:10:52Z",
+      "side": 1,
+      "message": "@belusiak@google.com let\u0027s also add some tests for those. we can do that in a separate CL though.",
+      "revId": "b5db40c0e0f7bb1d2166258634afc6e942db463b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b9ae818_0dd710ee",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-20T22:10:52Z",
+      "side": 1,
+      "message": "What about changing the name to something like UpdateAudioActiveStateOnMetadata? it\u0027s not on subgroups anymore.",
+      "revId": "b5db40c0e0f7bb1d2166258634afc6e942db463b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ec4b13_2279252a",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-20T22:10:52Z",
+      "side": 1,
+      "message": "If we\u0027re going to change audio state with audioSuspend/audioResume, is it still necessary to do this here?\n\nIn this case, we\u0027re duplicating the call of UpdateAudioActiveStateOnSubgroups?\ne.g. OnAudioSuspend -\u003e called once -\u003e switch state to configured -\u003e at line 1051, we called again.",
+      "revId": "b5db40c0e0f7bb1d2166258634afc6e942db463b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
