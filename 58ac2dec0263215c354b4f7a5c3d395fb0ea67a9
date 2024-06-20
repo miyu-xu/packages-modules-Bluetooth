@@ -64,6 +64,30 @@
       },
       "revId": "58ac2dec0263215c354b4f7a5c3d395fb0ea67a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de4a6a81_1a47deeb",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-20T19:22:59Z",
+      "side": 1,
+      "message": "Based on the specification, the HCI_LE_Set_Data_Length command allows the Host to suggest the maximum transmission payload size and maximum packet transmission time. The Controller may use smaller or larger values based on local information.\n\nWe would like to suggest the length for CS before CS starts, but this is not a hard requirement for the controller. The controller can choose a value based on local information.\n\nOr should I send another command to change back to the default value when CS stops?",
+      "parentUuid": "dbeeb8c2_1df16500",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 626,
+        "endChar": 73
+      },
+      "revId": "58ac2dec0263215c354b4f7a5c3d395fb0ea67a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
