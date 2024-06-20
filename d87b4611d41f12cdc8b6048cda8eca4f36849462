@@ -56,6 +56,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67cb113b_575573f6",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-20T11:16:38Z",
+      "side": 1,
+      "message": "There was a whole mechanism for not accepting parameters in some cases. See https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2955879/4/system/stack/l2cap/l2c_ble_conn_params.cc#b344",
+      "range": {
+        "startLine": 1102,
+        "startChar": 7,
+        "endLine": 1102,
+        "endChar": 35
+      },
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8c012b2_e05b61a0",
         "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
         "patchSetId": 4
