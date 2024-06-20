@@ -1,0 +1,148 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f2b768b_0fde2f6f",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-20T16:17:09Z",
+      "side": 1,
+      "message": "nit: Please cast to int16_t directly as it is the input type for the function.\n(same in some other places)",
+      "range": {
+        "startLine": 1988,
+        "startChar": 18,
+        "endLine": 1988,
+        "endChar": 60
+      },
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3424284_694ce8ee",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-20T16:17:09Z",
+      "side": 1,
+      "message": "`tBTA_AG_UUID_CODEC::BTA_AG_SCO_APTX_SWB_SETTINGS_Q0`",
+      "range": {
+        "startLine": 221,
+        "startChar": 9,
+        "endLine": 221,
+        "endChar": 73
+      },
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b905e1ce_b420406e",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-20T16:17:09Z",
+      "side": 1,
+      "message": "Can you update the type of set_codec_datapath to also input tBTA_AG_UUID_CODEC ?",
+      "range": {
+        "startLine": 379,
+        "startChar": 5,
+        "endLine": 379,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9c3b392b_52f100e6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+              "range": {
+                "startLine": 379,
+                "startChar": 0,
+                "endLine": 380,
+                "endChar": 0
+              },
+              "replacement": "void set_codec_datapath(tBTA_AG_UUID_CODEC codec_uuid) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+              "range": {
+                "startLine": 383,
+                "startChar": 0,
+                "endLine": 385,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+              "range": {
+                "startLine": 386,
+                "startChar": 0,
+                "endLine": 388,
+                "endChar": 0
+              },
+              "replacement": "  if (codec_uuid \u003d\u003d tBTA_AG_UUID_CODEC::UUID_CODEC_LC3 \u0026\u0026 get_offload_enabled()) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+              "range": {
+                "startLine": 392,
+                "startChar": 0,
+                "endLine": 393,
+                "endChar": 0
+              },
+              "replacement": "  switch (codec_uuid) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+              "range": {
+                "startLine": 426,
+                "startChar": 0,
+                "endLine": 427,
+                "endChar": 0
+              },
+              "replacement": "    switch (codec_uuid) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc028e4_10d284b4",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-20T16:17:09Z",
+      "side": 1,
+      "message": "Please document that the enum values are assigned by the specification.",
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
