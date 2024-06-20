@@ -2474,6 +2474,14 @@ private:
     group->ClearPendingAvailableContextsChange();
     group->ClearPendingConfiguration();
 
+    /* If all CISes are disconnected, notify upper layer about IDLE state,
+     * otherwise wait for */
+    if (!group->HaveAllCisesDisconnected()) {
+      log::warn("Not all CISes removed for group {}, waiting...", group->group_id_);
+      group->PrintDebugState();
+      return;
+    }
+
     cancel_watchdog_if_needed(group->group_id_);
     ReleaseCisIds(group);
     RemoveCigForGroup(group);
