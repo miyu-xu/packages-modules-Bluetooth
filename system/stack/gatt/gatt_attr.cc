@@ -112,6 +112,32 @@ static tGATT_CBACK gatt_profile_cback = {
     .p_subrate_chg_cb = nullptr,
 };
 
+static tGATT_CBACK dis_profile_cback = {
+    .p_conn_cb = nullptr,
+    .p_cmpl_cb = nullptr,
+    .p_disc_res_cb = nullptr,
+    .p_disc_cmpl_cb = nullptr,
+    .p_req_cb = gatt_request_cback,
+    .p_enc_cmpl_cb = nullptr,
+    .p_congestion_cb = nullptr,
+    .p_phy_update_cb = nullptr,
+    .p_conn_update_cb = nullptr,
+    .p_subrate_chg_cb = nullptr,
+};
+
+static tGATT_CBACK custom_profile_cback = {
+    .p_conn_cb = nullptr,
+    .p_cmpl_cb = nullptr,
+    .p_disc_res_cb = nullptr,
+    .p_disc_cmpl_cb = nullptr,
+    .p_req_cb = nullptr,
+    .p_enc_cmpl_cb = nullptr,
+    .p_congestion_cb = nullptr,
+    .p_phy_update_cb = nullptr,
+    .p_conn_update_cb = nullptr,
+    .p_subrate_chg_cb = nullptr,
+};
+
 /*******************************************************************************
  *
  * Function         gatt_profile_find_conn_id_by_bd_addr
@@ -265,6 +291,17 @@ tGATT_STATUS read_attr_value(uint16_t conn_id, uint16_t handle,
   if (handle == gatt_cb.handle_of_h_r) {
     /* GATT_UUID_GATT_SRV_CHGD */
     return GATT_READ_NOT_PERMIT;
+  }
+
+  if (handle == gatt_cb.handle_of_pnp) {
+    if (is_long) return GATT_NOT_LONG;
+
+    UINT8_TO_STREAM(p, 0x01);     // VID source
+    UINT16_TO_STREAM(p, 0x00E0);  // VID
+    UINT16_TO_STREAM(p, 0xC405);  // PID
+    UINT16_TO_STREAM(p, 0x9999);  // version
+    p_value->len = 7;
+    return GATT_SUCCESS;
   }
 
   return GATT_NOT_FOUND;
@@ -463,6 +500,53 @@ void gatt_profile_db_init(void) {
   gatt_cb.gatt_cl_supported_feat_mask |= BLE_GATT_CL_SUP_FEAT_CACHING_BITMASK;
 
   log::verbose("gatt_if={} EATT supported", gatt_cb.gatt_if);
+
+  tmp.fill(0xc4);  // any number is fine here
+  gatt_cb.dis_if = GATT_Register(Uuid::From128BitBE(tmp), "DisDb",
+                                 &dis_profile_cback, false);
+  GATT_StartIf(gatt_cb.dis_if);
+
+  btgatt_db_element_t dis_service[] = {
+      {
+          .uuid = Uuid::From16Bit(0x180A),  // DIS service
+          .type = BTGATT_DB_SECONDARY_SERVICE,
+      },
+      {
+          .uuid = Uuid::From16Bit(0x2A50),  // PNP UUID
+          .type = BTGATT_DB_CHARACTERISTIC,
+          .properties = GATT_CHAR_PROP_BIT_READ,
+          .permissions = GATT_PERM_READ,
+      }};
+  if (GATTS_AddService(gatt_cb.dis_if, dis_service,
+                       sizeof(dis_service) / sizeof(btgatt_db_element_t)) !=
+      GATT_SERVICE_STARTED) {
+    log::warn("Unable to add DIS server service dis_if:{}", gatt_cb.dis_if);
+  }
+
+  gatt_cb.handle_of_pnp = dis_service[1].attribute_handle;
+
+  tmp.fill(0xc5);  // any number is fine here
+  gatt_cb.custom_if = GATT_Register(Uuid::From128BitBE(tmp), "CustomDb",
+                                    &custom_profile_cback, false);
+  GATT_StartIf(gatt_cb.custom_if);
+
+  uint8_t custom_uuid[] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88,
+                           0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff};
+  btgatt_db_element_t custom_service[] = {
+      {
+          .uuid = Uuid::From128BitLE(custom_uuid),
+          .type = BTGATT_DB_PRIMARY_SERVICE,
+      },
+      {
+          .attribute_handle = dis_service[0].attribute_handle,
+          .type = BTGATT_DB_INCLUDED_SERVICE,
+      }};
+  if (GATTS_AddService(gatt_cb.custom_if, custom_service,
+                       sizeof(custom_service) / sizeof(btgatt_db_element_t)) !=
+      GATT_SERVICE_STARTED) {
+    log::warn("Unable to add Custom server service custom_if:{}",
+              gatt_cb.custom_if);
+  }
 }
 
 /*******************************************************************************
