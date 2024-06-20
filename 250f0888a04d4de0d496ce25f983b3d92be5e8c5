@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe9dd45_70352db4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3271,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T05:57:16Z",
+      "side": 1,
+      "message": "Didn\u0027t you mean to add the guarded by on the mCallbackList ?, and then inside register and unregister, us a synchronized key word ?",
+      "revId": "250f0888a04d4de0d496ce25f983b3d92be5e8c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
