@@ -112,6 +112,30 @@
       },
       "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8142d5f6_167d72af",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-20T07:53:17Z",
+      "side": 1,
+      "message": "I\u0027m moving to first patchset of this CL as a way to move this blocking from JNI to Main thread. As mentioned above, we already call scan start from the main thread so this change is not big change. This will help to solve the problem in the Bug.\n\nI\u0027m adding follow up CLs which does a refactor which allows to start the scan in the background thread with proper sync on stop.",
+      "parentUuid": "29aaafb2_58050a73",
+      "range": {
+        "startLine": 2980,
+        "startChar": 28,
+        "endLine": 2980,
+        "endChar": 36
+      },
+      "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
