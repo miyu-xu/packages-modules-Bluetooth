@@ -21,6 +21,7 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
+import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAudioHandoverPolicies;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
@@ -1922,6 +1923,37 @@ public class BassClientService extends ProfileService {
                     }
                 }
             }
+
+            if (leaudioBigDependsOnAudioState()) {
+                BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
+                if (srcDevice == null) {
+                    log("No device found.");
+                    return;
+                }
+                PeriodicAdvertisementResult result =
+                        getPeriodicAdvertisementResult(
+                                srcDevice, getBroadcastIdForSyncHandle(syncHandle));
+                if (result == null) {
+                    log("No PA record found");
+                    return;
+                }
+                if (!result.isNotified()) {
+                    result.setNotified(true);
+                    BaseData baseData = getBase(syncHandle);
+                    if (baseData == null) {
+                        log("No BaseData found");
+                        return;
+                    }
+                    BluetoothLeBroadcastMetadata metaData =
+                            getBroadcastMetadataFromBaseData(
+                                    baseData,
+                                    srcDevice,
+                                    syncHandle,
+                                    result.getPublicBroadcastData().isEncrypted());
+                    log("Notify broadcast source found");
+                    mCallbacks.notifySourceFound(metaData);
+                }
+            }
         }
 
         @Override
@@ -1946,30 +1978,32 @@ public class BassClientService extends ProfileService {
                             + syncHandle
                             + ", encrypted ="
                             + encrypted);
-            BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
-            if (srcDevice == null) {
-                log("No device found.");
-                return;
-            }
-            PeriodicAdvertisementResult result =
-                    getPeriodicAdvertisementResult(
-                            srcDevice, getBroadcastIdForSyncHandle(syncHandle));
-            if (result == null) {
-                log("No PA record found");
-                return;
-            }
-            if (!result.isNotified()) {
-                result.setNotified(true);
-                BaseData baseData = getBase(syncHandle);
-                if (baseData == null) {
-                    log("No BaseData found");
+            if (!leaudioBigDependsOnAudioState()) {
+                BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
+                if (srcDevice == null) {
+                    log("No device found.");
                     return;
                 }
-                BluetoothLeBroadcastMetadata metaData =
-                        getBroadcastMetadataFromBaseData(
-                                baseData, srcDevice, syncHandle, encrypted);
-                log("Notify broadcast source found");
-                mCallbacks.notifySourceFound(metaData);
+                PeriodicAdvertisementResult result =
+                        getPeriodicAdvertisementResult(
+                                srcDevice, getBroadcastIdForSyncHandle(syncHandle));
+                if (result == null) {
+                    log("No PA record found");
+                    return;
+                }
+                if (!result.isNotified()) {
+                    result.setNotified(true);
+                    BaseData baseData = getBase(syncHandle);
+                    if (baseData == null) {
+                        log("No BaseData found");
+                        return;
+                    }
+                    BluetoothLeBroadcastMetadata metaData =
+                            getBroadcastMetadataFromBaseData(
+                                    baseData, srcDevice, syncHandle, encrypted);
+                    log("Notify broadcast source found");
+                    mCallbacks.notifySourceFound(metaData);
+                }
             }
         }
 
