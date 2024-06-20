@@ -34,6 +34,24 @@
       "parentUuid": "c2254909_cfc28b07",
       "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f98b1822_637feb03",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-20T17:44:55Z",
+      "side": 1,
+      "message": "You should explicitly add the SysProps module dependency in the snoop module instead.\n```\nvoid SnoopLogger::ListDependencies(ModuleList* /* list */) const {\n  list-\u003eadd\u003cSyspropsModule\u003e();\n}\n```\nThis will solve the ordering problem.",
+      "parentUuid": "0759e9ed_e9d3773c",
+      "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
