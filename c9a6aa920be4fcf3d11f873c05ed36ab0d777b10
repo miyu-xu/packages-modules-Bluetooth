@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151b51a2_750590ad",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-20T06:42:52Z",
+      "side": 1,
+      "message": "You don\u0027t need this one, because you log in every case ?",
+      "range": {
+        "startLine": 162,
+        "startChar": 2,
+        "endLine": 162,
+        "endChar": 16
+      },
+      "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a7c33b_2338d337",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-20T06:42:52Z",
+      "side": 1,
+      "message": "No need for comma and space at start, same below",
+      "range": {
+        "startLine": 165,
+        "startChar": 15,
+        "endLine": 165,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2dcaca76_c9d6cb16",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\", completed with a success\");\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+              "range": {
+                "startLine": 168,
+                "startChar": 0,
+                "endLine": 169,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\", completed with a failure\");\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+              "range": {
+                "startLine": 177,
+                "startChar": 0,
+                "endLine": 178,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\", completed with a success\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
