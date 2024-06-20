@@ -68,6 +68,8 @@ static constexpr uint8_t kTxPwrDelta = 0x00;
 static constexpr uint8_t kProcedureDataBufferSize = 0x10;  // Buffer size of Procedure data
 static constexpr uint16_t kMtuForRasData = 507;            // 512 - 5
 static constexpr uint16_t kRangingCounterMask = 0x0FFF;
+static constexpr uint16_t kTxOctets = 251;
+static constexpr uint16_t kTxTime = 2120;
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsProcedureData {
@@ -231,14 +233,14 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
 
   void register_distance_measurement_callbacks(DistanceMeasurementCallbacks* callbacks) {
     distance_measurement_callbacks_ = callbacks;
-    if (ranging_hal_->IsBound()) {
+    if (com::android::bluetooth::flags::channel_sounding_in_stack() && ranging_hal_->IsBound()) {
       distance_measurement_callbacks_->OnVendorSpecificCharacteristics(
           ranging_hal_->GetVendorSpecificCharacteristics());
     }
   }
 
   void start_distance_measurement(
-      const Address& address, uint16_t interval, DistanceMeasurementMethod method) {
+      const Address address, uint16_t interval, DistanceMeasurementMethod method) {
     log::info("Address:{}, method:{}", address, method);
     uint16_t connection_handle = acl_manager_->HACK_GetLeHandle(address);
 
@@ -328,7 +330,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         std::chrono::milliseconds(cs_trackers_[connection_handle].interval_ms));
   }
 
-  void stop_distance_measurement(const Address& address, DistanceMeasurementMethod method) {
+  void stop_distance_measurement(const Address address, DistanceMeasurementMethod method) {
     log::info("Address:{}, method:{}", address, method);
     switch (method) {
       case METHOD_AUTO:
@@ -618,6 +620,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         event_view.GetMaxAntennaPathsSupported(),
         event_view.GetRolesSupported().ToString(),
         event_view.GetOptionalSubfeaturesSupported().phase_based_ranging_);
+
+    hci_layer_->EnqueueCommand(
+        LeSetDataLengthBuilder::Create(connection_handle, kTxOctets, kTxTime),
+        handler_->BindOnce(check_complete<LeSetDataLengthCompleteView>));
   }
 
   void on_cs_set_default_settings_complete(CommandCompleteView view) {
