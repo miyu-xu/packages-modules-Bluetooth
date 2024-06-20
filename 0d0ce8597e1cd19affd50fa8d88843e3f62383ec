@@ -46,6 +46,30 @@
       },
       "revId": "0d0ce8597e1cd19affd50fa8d88843e3f62383ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a26957_e5b249cd",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-20T21:47:42Z",
+      "side": 1,
+      "message": "This serialization actually cannot fail, as proof let me pull out the generated code:\n\n```\nimpl Serializable for GattServiceChangedBuilder {\n    fn serialize(\u0026self, writer: \u0026mut impl BitWriter) -\u003e Result\u003c(), SerializeError\u003e {\n        self.start_handle.serialize(writer)?;\n        self.end_handle.serialize(writer)?;\n        Ok(())\n    }\n}\n\npub trait Serializable {\n    fn to_vec(\u0026self) -\u003e Result\u003cVec\u003cu8\u003e, SerializeError\u003e {\n        let mut out \u003d vec![];\n        self.write(\u0026mut out)?;\n        Ok(out)\n    }\n}\n```\n\nThe unwrap will be gone once I complete the switch to the new generator and implement infallible conversion operators.",
+      "parentUuid": "287cc40e_01b394c7",
+      "range": {
+        "startLine": 139,
+        "startChar": 33,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "0d0ce8597e1cd19affd50fa8d88843e3f62383ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
