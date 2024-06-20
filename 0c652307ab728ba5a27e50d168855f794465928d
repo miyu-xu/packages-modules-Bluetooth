@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6cdc63_48899e19",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd7d97e8_0b25b6f0",
+      "range": {
+        "startLine": 810,
+        "startChar": 12,
+        "endLine": 810,
+        "endChar": 41
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce12499d_b27e2b8f",
@@ -65,6 +89,30 @@
       "writtenOn": "2024-06-20T05:12:23Z",
       "side": 1,
       "message": "Why do we need SuppressLint ?",
+      "range": {
+        "startLine": 816,
+        "startChar": 0,
+        "endLine": 816,
+        "endChar": 53
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b2ae9ee_67917d48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "ce12499d_b27e2b8f",
       "range": {
         "startLine": 816,
         "startChar": 0,
@@ -100,6 +148,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb1b27ed_d8a07822",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Please check the comments there :) Thank you for your comments, you pointed many significant things ;)",
+      "parentUuid": "5a37f54f_2e6a2781",
+      "range": {
+        "startLine": 817,
+        "startChar": 18,
+        "endLine": 817,
+        "endChar": 49
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4a87103_7e19cd7c",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 2
@@ -123,6 +195,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d8fe8fb_f8cb4ffb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Practically without any hub (two wired audio devs connected with a hub to the phone is probably the rarest of all cases :D) there won\u0027t be more than one, but yes, this is not intended, so I will remove it",
+      "parentUuid": "f4a87103_7e19cd7c",
+      "range": {
+        "startLine": 821,
+        "startChar": 9,
+        "endLine": 823,
+        "endChar": 13
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e488f14d_93b81a35",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 2
@@ -134,6 +230,30 @@
       "writtenOn": "2024-06-20T05:12:23Z",
       "side": 1,
       "message": "typo: disconnected",
+      "range": {
+        "startLine": 1221,
+        "startChar": 32,
+        "endLine": 1221,
+        "endChar": 43
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac593ae_4e7caa5c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e488f14d_93b81a35",
       "range": {
         "startLine": 1221,
         "startChar": 32,
@@ -215,6 +335,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e40b2d8_71de9a8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e97baf7_23200f5a",
+      "range": {
+        "startLine": 1224,
+        "startChar": 0,
+        "endLine": 1224,
+        "endChar": 85
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9aaa0ad9_3e4839bf",
@@ -228,6 +372,30 @@
       "writtenOn": "2024-06-20T05:12:23Z",
       "side": 1,
       "message": "typo headphone",
+      "range": {
+        "startLine": 1225,
+        "startChar": 24,
+        "endLine": 1225,
+        "endChar": 33
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "581dc46b_3d1efc6e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aaa0ad9_3e4839bf",
       "range": {
         "startLine": 1225,
         "startChar": 24,
@@ -261,6 +429,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57182867_68f6f566",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f93227f2_71aa7d34",
+      "range": {
+        "startLine": 1227,
+        "startChar": 42,
+        "endLine": 1228,
+        "endChar": 48
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb8ef3e1_d1cfc6f2",
@@ -274,6 +466,30 @@
       "writtenOn": "2024-06-20T05:12:23Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 1232,
+        "startChar": 25,
+        "endLine": 1232,
+        "endChar": 34
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "676c0f19_9e878eaa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb8ef3e1_d1cfc6f2",
       "range": {
         "startLine": 1232,
         "startChar": 25,
@@ -325,6 +541,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8227850a_7698c7f1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "I\u0027ve seen it done for another test - probably to check and assure the one right code path:\n```\n    /**\n     * Called when a wired audio device is connected. It might be called multiple times each time a\n     * wired audio device is connected.\n     */\n    @VisibleForTesting\n    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)\n    void wiredAudioDeviceConnected() {\n        Log.d(TAG, \"wiredAudioDeviceConnected\");\n        setA2dpActiveDevice(null, true);\n        setHfpActiveDevice(null);\n        setHearingAidActiveDevice(null, true);\n        setLeAudioActiveDevice(null, true);\n    }\n```\nbut it might be removed.",
+      "parentUuid": "cd8de4c8_476dc26b",
+      "range": {
+        "startLine": 1235,
+        "startChar": 79,
+        "endLine": 1237,
+        "endChar": 0
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "074568a5_a72aa486",
@@ -362,6 +602,30 @@
           ]
         }
       ],
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59216482_add8adff",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-20T12:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "074568a5_a72aa486",
+      "range": {
+        "startLine": 1243,
+        "startChar": 0,
+        "endLine": 1243,
+        "endChar": 86
+      },
       "revId": "0c652307ab728ba5a27e50d168855f794465928d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
