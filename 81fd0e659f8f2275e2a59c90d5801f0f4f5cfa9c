@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b546154_e1a7f4a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T06:05:22Z",
+      "side": 1,
+      "message": "Do you have a bug tracking ? some run to repro ?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 81
+      },
+      "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eec04fe_06e70732",
+        "filename": "framework/tests/util/src/Permissions.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-20T06:05:22Z",
+      "side": 1,
+      "message": "I believe this is breaking more usage than it is solving.\n\nwe may want to drop the permission only if the previous permission was of size 0.",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "58e93cf1_16b2ae09",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/util/src/Permissions.kt",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "        // Drop all permissions to restore the initial state\n"
+            }
+          ]
+        }
+      ],
+      "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
