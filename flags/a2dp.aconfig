@@ -87,6 +87,13 @@ flag {
 }
 
 flag {
+    name: "a2dp_variable_aac_capability"
+    namespace: "bluetooth"
+    description: "Enable AAC 48 kHz sampling rate for sink devices in the allow list"
+    bug: "38443632"
+}
+
+flag {
     name: "a2dp_aidl_encoding_interval"
     namespace: "bluetooth"
     description: "Configure the data interval in audio BT HAL's PcmConfig"
