@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23e06bd9_4647bd42",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-20T18:19:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3f2b768b_0fde2f6f",
+      "range": {
+        "startLine": 1988,
+        "startChar": 18,
+        "endLine": 1988,
+        "endChar": 60
+      },
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3424284_694ce8ee",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-20T16:17:09Z",
       "side": 1,
       "message": "`tBTA_AG_UUID_CODEC::BTA_AG_SCO_APTX_SWB_SETTINGS_Q0`",
+      "range": {
+        "startLine": 221,
+        "startChar": 9,
+        "endLine": 221,
+        "endChar": 73
+      },
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b30c732c_5e4b7e6b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-20T18:19:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d3424284_694ce8ee",
       "range": {
         "startLine": 221,
         "startChar": 9,
@@ -128,6 +176,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26cef6e3_ecfa971e",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-20T18:19:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b905e1ce_b420406e",
+      "range": {
+        "startLine": 379,
+        "startChar": 5,
+        "endLine": 379,
+        "endChar": 23
+      },
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdc028e4_10d284b4",
@@ -141,6 +213,24 @@
       "writtenOn": "2024-06-20T16:17:09Z",
       "side": 1,
       "message": "Please document that the enum values are assigned by the specification.",
+      "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "614e0d15_3adc9c27",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-20T18:19:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cdc028e4_10d284b4",
       "revId": "9d6d6660f4f106a590f6e1b2b36d04caa6b80341",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
