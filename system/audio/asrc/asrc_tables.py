@@ -1,55 +1,46 @@
-#!/usr/bin/env python3
+#!/ usr / bin / env python3
 #
-# Copyright 2023 The Android Open Source Project
+#Copyright 2023 The Android Open Source Project
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+#Licensed under the Apache License, Version 2.0(the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#http:  // www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-import numpy as np
-from scipy import signal
-import sys
-
-KERNEL_Q = 512
-KERNEL_A = 16
-
-KAISER_BETA = 12.5
-
-#
-# Transfer function
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
 #
 
-a = KERNEL_A
-q = KERNEL_Q
-beta = KAISER_BETA
+import numpy as np from scipy import signal import sys
 
-w = signal.kaiser(2 * a * q + 1, beta)
-k = np.sinc(np.linspace(-a, a, 2 * a * q + 1)) * w
+    KERNEL_Q = 512 KERNEL_A = 16
 
-h = k[:-1].reshape((2 * a, q)).T
-h = np.append(h, [np.roll(h[0], -1)], axis=0)
-h = np.flip(h, axis=0)
-
-d = h[1:] - h[:-1]
+    KAISER_BETA = 12.5
 
 #
-# File header
+#Transfer function
 #
 
-print("""\
+    a = KERNEL_A q = KERNEL_Q beta = KAISER_BETA
+
+    w = signal.kaiser(2 * a * q + 1, beta) k = np.sinc(np.linspace(- a, a, 2 * a * q + 1)) * w
+
+                                                       h = k[ : - 1].reshape((2 * a, q)).T h = np.append(h, [np.roll(h[0], - 1)], axis = 0) h = np.flip(h, axis = 0)
+
+                                                                                                                                                            d = h[1 : ] - h[ : - 1]
+
+#
+#File header
+#
+
+                                                                                                                                                        print(""
+                                                                                                                                                              "\
 /*
- * Copyright 2023 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                              * Copyright 2023 The Android Open Source Project ** Licensed under the Apache License, Version 2.0(the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -61,8 +52,7 @@ print("""\
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/* This file is auto-generated using "{}".  DO NOT EDIT. */
+ /* This file is auto-generated using "{}".  DO NOT EDIT. */
 
 #include "asrc_tables.h"
 
@@ -103,11 +93,11 @@ for q in range(len(h) - 1):
 print("""
   }
 };
-// clang-format off""")
+     // clang-format off""")
 
 #
-# File footer
+#File footer
 #
 
 print("""
-} // namespace bluetooth::audio::asrc""")
+ }  // namespace bluetooth::audio::asrc""")

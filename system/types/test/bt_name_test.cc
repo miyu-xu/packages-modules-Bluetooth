@@ -36,7 +36,7 @@ TEST(BtNameTest, new_name) {
 }
 
 TEST(BtNameTest, new_name_nullptr) {
-  BD_NAME bd_name1 = {0};
+  BD_NAME bd_name1 = { 0 };
   bd_name_from_char_pointer(bd_name1, nullptr);
   ASSERT_TRUE(bd_name_is_empty(bd_name1));
 

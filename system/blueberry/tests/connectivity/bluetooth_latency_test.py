@@ -1,4 +1,4 @@
-# Lint as: python3
+#Lint as : python3
 """Tests for blueberry.tests.bluetooth.bluetooth_latency."""
 
 from __future__ import absolute_import
@@ -14,11 +14,11 @@ import time
 from mobly import asserts
 from mobly import test_runner
 from mobly.signals import TestAbortClass
-# Internal import
+#Internal import
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import bt_test_utils
 from blueberry.utils import metrics_utils
-# Internal import
+#Internal import
 
 
 class BluetoothLatencyTest(blueberry_base_test.BlueberryBaseTest):
@@ -36,7 +36,7 @@ class BluetoothLatencyTest(blueberry_base_test.BlueberryBaseTest):
         The latency of the transfer milliseconds.
     """
 
-    # Generates a random message to transfer
+#Generates a random message to transfer
     message = (''.join(
         random.choice(string.ascii_letters + string.digits) for _ in range(6)))
     start_time = time.time()
@@ -56,9 +56,9 @@ class BluetoothLatencyTest(blueberry_base_test.BlueberryBaseTest):
     self.phone.init_setup()
     self.phone.sl4a_setup()
 
-    # We treat the secondary phone as a derived_bt_device in order for the
-    # generic script to work with this android phone properly. Data will be sent
-    # from first phone to the second phone.
+#We treat the secondary phone as a derived_bt_device in order for the
+#generic script to work with this android phone properly.Data will be sent
+#from first phone to the second phone.
     self.derived_bt_device = self.android_devices[1]
     self.derived_bt_device.init_setup()
     self.derived_bt_device.sl4a_setup()

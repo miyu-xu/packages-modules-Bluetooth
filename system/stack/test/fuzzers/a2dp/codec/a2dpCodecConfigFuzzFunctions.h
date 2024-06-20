@@ -18,210 +18,207 @@
 #define BT_STACK_FUZZ_A2DP_CODECCONFIG_FUNCTIONS_H_
 
 #include <fuzzer/FuzzedDataProvider.h>
+
 #include <vector>
+
 #include "a2dp_codec_api.h"
+#include "fuzzers/a2dp/codec/a2dpCodecConfigFuzzHelpers.h"
 #include "fuzzers/a2dp/codec/a2dpCodecHelperFunctions.h"
 #include "fuzzers/a2dp/codec/a2dpCodecInfoFuzzFunctions.h"
 #include "fuzzers/common/commonFuzzHelpers.h"
-
-#include "fuzzers/a2dp/codec/a2dpCodecConfigFuzzHelpers.h"
 
 /* This is a vector of lambda functions the fuzzer will pull from.
  *  This is done so new functions can be added to the fuzzer easily
  *  without requiring modifications to the main fuzzer file. This also
  *  allows multiple fuzzers to include this file, if functionality is needed.
  */
-std::vector<std::function<void(FuzzedDataProvider*)>>
-    a2dp_codec_config_operations = {
-        // createCodec
-        [](FuzzedDataProvider* fdp) -> void {
-          // Generate our arguments
-          btav_a2dp_codec_index_t codec_index = getArbitraryBtavCodecIndex(fdp);
-          btav_a2dp_codec_priority_t codec_priority =
-              getArbitraryBtavCodecPriority(fdp);
-          // Create our new codec
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              A2dpCodecConfig::createCodec(codec_index, codec_priority));
-          // Push it to our vector
-          if (codec_config) {
-            a2dp_codec_config_vect.push_back(codec_config);
-          }
-        },
+std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_config_operations = {
+  // createCodec
+  [](FuzzedDataProvider* fdp) -> void {
+    // Generate our arguments
+    btav_a2dp_codec_index_t codec_index = getArbitraryBtavCodecIndex(fdp);
+    btav_a2dp_codec_priority_t codec_priority = getArbitraryBtavCodecPriority(fdp);
+    // Create our new codec
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            A2dpCodecConfig::createCodec(codec_index, codec_priority));
+    // Push it to our vector
+    if (codec_config) {
+      a2dp_codec_config_vect.push_back(codec_config);
+    }
+  },
 
-        // A2dpCodecConfig Destructor
-        [](FuzzedDataProvider* fdp) -> void {
-          if (a2dp_codec_config_vect.empty()) {
-            return;
-          }
-          // Get random vector index
-          size_t index = fdp->ConsumeIntegralInRange<size_t>(
-              0, a2dp_codec_config_vect.size() - 1);
-          // Remove from vector
-          a2dp_codec_config_vect.erase(a2dp_codec_config_vect.begin() + index);
-        },
+  // A2dpCodecConfig Destructor
+  [](FuzzedDataProvider* fdp) -> void {
+    if (a2dp_codec_config_vect.empty()) {
+      return;
+    }
+    // Get random vector index
+    size_t index = fdp->ConsumeIntegralInRange<size_t>(0, a2dp_codec_config_vect.size() - 1);
+    // Remove from vector
+    a2dp_codec_config_vect.erase(a2dp_codec_config_vect.begin() + index);
+  },
 
-        // codecIndex
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // codecIndex
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->codecIndex();
-        },
+    codec_config->codecIndex();
+  },
 
-        // name
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // name
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->name();
-        },
+    codec_config->name();
+  },
 
-        // codecPriority
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // codecPriority
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->codecPriority();
-        },
+    codec_config->codecPriority();
+  },
 
-        // getCodecSpecificConfig
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecSpecificConfig
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          tBT_A2DP_OFFLOAD a2dp_offload = generateArbitrarytA2dpOffload(fdp);
-          codec_config->getCodecSpecificConfig(&a2dp_offload);
-        },
+    tBT_A2DP_OFFLOAD a2dp_offload = generateArbitrarytA2dpOffload(fdp);
+    codec_config->getCodecSpecificConfig(&a2dp_offload);
+  },
 
-        // getTrackBitRate
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getTrackBitRate
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getTrackBitRate();
-        },
+    codec_config->getTrackBitRate();
+  },
 
-        // copyOutOtaCodecConfig
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // copyOutOtaCodecConfig
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          uint8_t* codec_info =
-              getArbitraryVectorElement(fdp, a2dp_codec_info_vect, true);
-          codec_config->copyOutOtaCodecConfig(codec_info);
-        },
+    uint8_t* codec_info = getArbitraryVectorElement(fdp, a2dp_codec_info_vect, true);
+    codec_config->copyOutOtaCodecConfig(codec_info);
+  },
 
-        // getCodecConfig
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecConfig
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getCodecConfig();
-        },
+    codec_config->getCodecConfig();
+  },
 
-        // getCodecCapability
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecCapability
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getCodecCapability();
-        },
+    codec_config->getCodecCapability();
+  },
 
-        // getCodecLocalCapability
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecLocalCapability
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getCodecLocalCapability();
-        },
+    codec_config->getCodecLocalCapability();
+  },
 
-        // getCodecSelectableCapability
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecSelectableCapability
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getCodecSelectableCapability();
-        },
+    codec_config->getCodecSelectableCapability();
+  },
 
-        // getCodecUserConfig
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecUserConfig
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getCodecUserConfig();
-        },
+    codec_config->getCodecUserConfig();
+  },
 
-        // getCodecAudioConfig
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getCodecAudioConfig
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getCodecAudioConfig();
-        },
+    codec_config->getCodecAudioConfig();
+  },
 
-        // getAudioBitsPerSample
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getAudioBitsPerSample
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          codec_config->getAudioBitsPerSample();
-        },
+    codec_config->getAudioBitsPerSample();
+  },
 
-        // getAudioBitsPerSample
-        [](FuzzedDataProvider* fdp) -> void {
-          std::shared_ptr<A2dpCodecConfig> codec_config(
-              getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
-          if (codec_config == nullptr) {
-            return;
-          }
+  // getAudioBitsPerSample
+  [](FuzzedDataProvider* fdp) -> void {
+    std::shared_ptr<A2dpCodecConfig> codec_config(
+            getArbitraryVectorElement(fdp, a2dp_codec_config_vect, false));
+    if (codec_config == nullptr) {
+      return;
+    }
 
-          const btav_a2dp_codec_config_t btav_codec_config =
-              getArbitraryBtavCodecConfig(fdp);
-          codec_config->isCodecConfigEmpty(btav_codec_config);
-        },
+    const btav_a2dp_codec_config_t btav_codec_config = getArbitraryBtavCodecConfig(fdp);
+    codec_config->isCodecConfigEmpty(btav_codec_config);
+  },
 
-        // Dependency calling: CodecInfo
-        [](FuzzedDataProvider* fdp) -> void {
-          callArbitraryCodecInfoFunction(fdp, a2dp_codec_info_operations);
-        }};
+  // Dependency calling: CodecInfo
+  [](FuzzedDataProvider* fdp) -> void {
+    callArbitraryCodecInfoFunction(fdp, a2dp_codec_info_operations);
+  }
+};
 
-#endif  // BT_STACK_FUZZ_A2DP_CODECCONFIG_FUNCTIONS_H_
+#endif // BT_STACK_FUZZ_A2DP_CODECCONFIG_FUNCTIONS_H_

@@ -29,7 +29,7 @@ namespace bluetooth {
 namespace os {
 
 std::optional<std::string> GetSystemProperty(const std::string& property) {
-  std::array<char, PROPERTY_VALUE_MAX> value_array{0};
+  std::array<char, PROPERTY_VALUE_MAX> value_array{ 0 };
   auto value_len = property_get(property.c_str(), value_array.data(), nullptr);
   if (value_len <= 0) {
     return std::nullopt;
@@ -39,10 +39,8 @@ std::optional<std::string> GetSystemProperty(const std::string& property) {
 
 bool SetSystemProperty(const std::string& property, const std::string& value) {
   if (value.size() >= PROPERTY_VALUE_MAX) {
-    log::error(
-        "Property value's maximum size is {}, but {} chars were given",
-        PROPERTY_VALUE_MAX - 1,
-        value.size());
+    log::error("Property value's maximum size is {}, but {} chars were given",
+               PROPERTY_VALUE_MAX - 1, value.size());
     return false;
   }
   auto ret = property_set(property.c_str(), value.c_str());
@@ -75,10 +73,8 @@ int GetAndroidVendorReleaseVersion() {
     log::info("ro.vendor.build.version.release_or_codename does not exist");
     return 0;
   }
-  log::info(
-      "ro.vendor.build.version.release_or_codename='{}', length={}",
-      value->c_str(),
-      value->length());
+  log::info("ro.vendor.build.version.release_or_codename='{}', length={}", value->c_str(),
+            value->length());
   auto int_value = common::Int64FromString(*value);
   if (int_value) {
     return static_cast<int>(*int_value);
@@ -107,9 +103,7 @@ int GetAndroidVendorReleaseVersion() {
   }
 }
 
-bool ClearSystemPropertiesForHost() {
-  return false;
-}
+bool ClearSystemPropertiesForHost() { return false; }
 
-}  // namespace os
-}  // namespace bluetooth
+} // namespace os
+} // namespace bluetooth

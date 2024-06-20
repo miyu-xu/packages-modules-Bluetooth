@@ -26,7 +26,7 @@ namespace storage {
 // A config serializable module
 template <typename T>
 class Serializable {
- public:
+  public:
   Serializable() = default;
   virtual ~Serializable() = default;
 
@@ -36,20 +36,18 @@ class Serializable {
   virtual std::string ToString() const = 0;
   // T must implement FromString(const std::string&), otherwise, it will fail to compile
   // Parse string from GD stack
-  static std::optional<T> FromString(const std::string& str) {
-    return T::FromString(str);
-  }
+  static std::optional<T> FromString(const std::string& str) { return T::FromString(str); }
 
   // Legacy handling
 
   // Serialize to string used in legacy stack config, this may not be the same as ToString()
   virtual std::string ToLegacyConfigString() const = 0;
-  // T must implement FromLegacyConfigString(const std::string&), otherwise, it will fail to compile
-  // Parse string from legacy config
+  // T must implement FromLegacyConfigString(const std::string&), otherwise, it will fail to
+  // compile Parse string from legacy config
   static std::optional<T> FromLegacyConfigString(const std::string& str) {
     return T::FromLegacyConfigString(str);
   }
 };
 
-}  // namespace storage
-}  // namespace bluetooth
+} // namespace storage
+} // namespace bluetooth

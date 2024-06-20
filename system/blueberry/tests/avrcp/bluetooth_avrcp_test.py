@@ -1,4 +1,4 @@
-# Lint as: python3
+#Lint as : python3
 """Tests for AVRCP basic functionality."""
 
 from __future__ import absolute_import
@@ -14,10 +14,10 @@ from blueberry.controllers import android_bt_target_device
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import bt_constants
 
-# The audio source path of BluetoothMediaPlayback in the SL4A app.
+#The audio source path of BluetoothMediaPlayback in the SL4A app.
 ANDROID_MEDIA_PATH = '/sdcard/Music/test'
 
-# Timeout for track change and playback state update in second.
+#Timeout for track change and playback state update in second.
 MEDIA_UPDATE_TIMEOUT_SEC = 3
 
 
@@ -47,7 +47,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
       device.init_setup()
       device.sl4a_setup()
 
-    # The device which role is AVRCP Target (TG).
+#The device which role is AVRCP Target(TG).
     self.pri_device = self.android_devices[0]
 
     if len(self.android_devices) > 1 and not self.derived_bt_devices:
@@ -56,11 +56,11 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     else:
       self.derived_bt_device = self.derived_bt_devices[0]
 
-    # Check if the derived bt device is android bt target device.
+#Check if the derived bt device is android bt target device.
     self.is_android_bt_target_device = isinstance(
         self.derived_bt_device, android_bt_target_device.AndroidBtTargetDevice)
 
-    # Check if the audio files exist on the primary device.
+#Check if the audio files exist on the primary device.
     try:
       self.audio_files = self.pri_device.adb.shell(
           'ls %s' % ANDROID_MEDIA_PATH).decode().split('\n')[:-1]
@@ -80,25 +80,25 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     self.pri_device.set_target(self.derived_bt_device)
     self.pri_device.pair_and_connect_bluetooth(self.mac_address)
     self.pri_device.allow_extra_permissions()
-    # Gives more time for the pairing between two devices.
+#Gives more time for the pairing between two devices.
     time.sleep(3)
 
     if self.is_android_bt_target_device:
       self.derived_bt_device.add_sec_ad_device(self.pri_device)
 
-    # Starts BluetoothSL4AAudioSrcMBS on the phone.
+#Starts BluetoothSL4AAudioSrcMBS on the phone.
     if self.is_android_bt_target_device:
       self.derived_bt_device.init_ambs_for_avrcp()
     else:
       self.pri_device.sl4a.bluetoothMediaPhoneSL4AMBSStart()
-      # Waits for BluetoothSL4AAudioSrcMBS to be active.
+#Waits for BluetoothSL4AAudioSrcMBS to be active.
       time.sleep(1)
-    # Changes the playback state to Playing in order to other Media passthrough
-    # commands can work.
+#Changes the playback state to Playing in order to other Media passthrough
+#commands can work.
     self.pri_device.sl4a.bluetoothMediaHandleMediaCommandOnPhone(
         bt_constants.CMD_MEDIA_PLAY)
 
-    # Collects media metadata of all tracks.
+#Collects media metadata of all tracks.
     self.tracks = []
     for _ in range(len(self.audio_files)):
       self.tracks.append(self.pri_device.get_current_track_info())
@@ -106,14 +106,14 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
           bt_constants.CMD_MEDIA_SKIP_NEXT)
     self.pri_device.log.info('Tracks: %s' % self.tracks)
 
-    # Sets Playback state to Paused as default.
+#Sets Playback state to Paused as default.
     self.pri_device.sl4a.bluetoothMediaHandleMediaCommandOnPhone(
         bt_constants.CMD_MEDIA_PAUSE)
 
   def teardown_class(self):
     """Teardown class for bluetooth avrcp media play test."""
     super(BluetoothAvrcpTest, self).teardown_class()
-    # Stops BluetoothSL4AAudioSrcMBS after all test methods finish.
+#Stops BluetoothSL4AAudioSrcMBS after all test methods finish.
     if self.is_android_bt_target_device:
       self.derived_bt_device.stop_ambs_for_avrcp()
     else:
@@ -122,13 +122,13 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
   def teardown_test(self):
     """Teardown test for bluetooth avrcp media play test."""
     super(BluetoothAvrcpTest, self).teardown_test()
-    # Adds 1 second waiting time to fix the NullPointerException when executing
-    # the following sl4a.bluetoothMediaHandleMediaCommandOnPhone method.
+#Adds 1 second waiting time to fix the NullPointerException when executing
+#the following sl4a.bluetoothMediaHandleMediaCommandOnPhone method.
     time.sleep(1)
-    # Sets Playback state to Paused after a test method finishes.
+#Sets Playback state to Paused after a test method finishes.
     self.pri_device.sl4a.bluetoothMediaHandleMediaCommandOnPhone(
         bt_constants.CMD_MEDIA_PAUSE)
-    # Buffer between tests.
+#Buffer between tests.
     time.sleep(1)
 
   def wait_for_media_info_sync(self):
@@ -137,7 +137,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     Waits for sync the current playback state and Now playing track info from
     the android bt target device to the phone.
     """
-    # Check if Playback state is sync.
+#Check if Playback state is sync.
     expected_state = self.pri_device.get_current_playback_state()
     self.derived_bt_device.verify_playback_state_changed(
         expected_state=expected_state,
@@ -147,7 +147,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
             (self.derived_bt_device.get_current_playback_state(),
              expected_state)))
 
-    # Check if Now Playing track is sync.
+#Check if Now Playing track is sync.
     expected_track = self.pri_device.get_current_track_info()
     self.derived_bt_device.verify_current_track_changed(
         expected_track=expected_track,
@@ -172,7 +172,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     Raises:
       signals.TestError: raised if the test command is invalid.
     """
-    # Checks if the test command is valid.
+#Checks if the test command is valid.
     if test_command not in [bt_constants.CMD_MEDIA_PLAY,
                             bt_constants.CMD_MEDIA_PAUSE]:
       raise signals.TestError(
@@ -180,14 +180,14 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
           (test_command, bt_constants.CMD_MEDIA_PLAY,
            bt_constants.CMD_MEDIA_PAUSE))
 
-    # Make sure the playback state is playing if testing the command "pause".
+#Make sure the playback state is playing if testing the command "pause".
     if (self.pri_device.get_current_playback_state() !=
         bt_constants.STATE_PLAYING and
         test_command == bt_constants.CMD_MEDIA_PAUSE):
       self.pri_device.sl4a.bluetoothMediaHandleMediaCommandOnPhone(
           bt_constants.CMD_MEDIA_PLAY)
 
-    # Makes sure Media info is the same between two sides.
+#Makes sure Media info is the same between two sides.
     if self.is_android_bt_target_device:
       self.wait_for_media_info_sync()
     self.pri_device.log.info(
@@ -202,10 +202,10 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
       command_sender.pause()
       expected_state = bt_constants.STATE_PAUSED
 
-    # Verify that the playback state is changed.
+#Verify that the playback state is changed.
     self.pri_device.log.info('Expected playback state: %s' % expected_state)
     device_check_list = [self.pri_device]
-    # Check the playback state from the android bt target device.
+#Check the playback state from the android bt target device.
     if self.is_android_bt_target_device:
       device_check_list.append(self.derived_bt_device)
     for device in device_check_list:
@@ -233,7 +233,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     Raises:
       signals.TestError: raised if the test command is invalid.
     """
-    # Checks if the test command is valid.
+#Checks if the test command is valid.
     if test_command not in [bt_constants.CMD_MEDIA_SKIP_NEXT,
                             bt_constants.CMD_MEDIA_SKIP_PREV]:
       raise signals.TestError(
@@ -241,13 +241,13 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
           (test_command, bt_constants.CMD_MEDIA_SKIP_NEXT,
            bt_constants.CMD_MEDIA_SKIP_PREV))
 
-    # Make sure the track index is not 0 if testing the command "skipPrev".
+#Make sure the track index is not 0 if testing the command "skipPrev".
     if (self.tracks.index(self.pri_device.get_current_track_info()) == 0
         and test_command == bt_constants.CMD_MEDIA_SKIP_PREV):
       self.pri_device.sl4a.bluetoothMediaHandleMediaCommandOnPhone(
           bt_constants.CMD_MEDIA_SKIP_NEXT)
 
-    # Makes sure Media info is the same between two sides.
+#Makes sure Media info is the same between two sides.
     if self.is_android_bt_target_device:
       self.wait_for_media_info_sync()
     current_track = self.pri_device.get_current_track_info()
@@ -257,8 +257,8 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     expected_track = None
     if test_command == bt_constants.CMD_MEDIA_SKIP_NEXT:
       command_sender.track_next()
-      # It will return to the first track by skipNext if now playing is the last
-      # track.
+#It will return to the first track by skipNext if now playing is the last
+#track.
       if current_index + 1 == len(self.tracks):
         expected_track = self.tracks[0]
       else:
@@ -267,10 +267,10 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
       command_sender.track_previous()
       expected_track = self.tracks[current_index - 1]
 
-    # Verify that the now playing track is changed.
+#Verify that the now playing track is changed.
     self.pri_device.log.info('Expected track: %s' % expected_track)
     device_check_list = [self.pri_device]
-    # Check the playback state from the android bt target device.
+#Check the playback state from the android bt target device.
     if self.is_android_bt_target_device:
       device_check_list.append(self.derived_bt_device)
     for device in device_check_list:

@@ -19,7 +19,7 @@
 #include "stack/include/bt_dev_class.h"
 
 class StackIncludeTest : public ::testing::Test {
- protected:
+  protected:
   void SetUp() override {}
 
   void TearDown() override {}
@@ -29,7 +29,7 @@ TEST_F(StackIncludeTest, dev_class_simple_zeros) {
   int mn = 0;
   int mj = 0;
   int sv = 0;
-  DEV_CLASS dev_class{0xff};
+  DEV_CLASS dev_class{ 0xff };
   FIELDS_TO_COD(dev_class, mn, mj, sv);
   BTM_COD_MINOR_CLASS(mn, dev_class);
   BTM_COD_MAJOR_CLASS(mj, dev_class);
@@ -43,7 +43,7 @@ TEST_F(StackIncludeTest, dev_class_simple_ones) {
   int mn = 0xff;
   int mj = 0xff;
   int sv = 0xffff;
-  DEV_CLASS dev_class{0x00};
+  DEV_CLASS dev_class{ 0x00 };
   FIELDS_TO_COD(dev_class, mn, mj, sv);
   BTM_COD_MINOR_CLASS(mn, dev_class);
   BTM_COD_MAJOR_CLASS(mj, dev_class);

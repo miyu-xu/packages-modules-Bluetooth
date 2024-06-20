@@ -28,8 +28,10 @@
 
 namespace {
 
-const std::unordered_set<std::string_view> kEncryptKeyNameList = {
-    "LinkKey", "LE_KEY_PENC", "LE_KEY_PID", "LE_KEY_LID", "LE_KEY_PCSRK", "LE_KEY_LENC", "LE_KEY_LCSRK"};
+const std::unordered_set<std::string_view> kEncryptKeyNameList = { "LinkKey",      "LE_KEY_PENC",
+                                                                   "LE_KEY_PID",   "LE_KEY_LID",
+                                                                   "LE_KEY_PCSRK", "LE_KEY_LENC",
+                                                                   "LE_KEY_LCSRK" };
 
 bool TrimAfterNewLine(std::string& value) {
   std::string value_no_newline;
@@ -45,28 +47,32 @@ bool InEncryptKeyNameList(std::string key) {
   return kEncryptKeyNameList.find(key) != kEncryptKeyNameList.end();
 }
 
-}  // namespace
+} // namespace
 
 namespace bluetooth {
 namespace storage {
 
-const std::unordered_set<std::string_view> kLePropertyNames = {
-    "LE_KEY_PENC", "LE_KEY_PID", "LE_KEY_PCSRK", "LE_KEY_LENC", "LE_KEY_LCSRK"};
+const std::unordered_set<std::string_view> kLePropertyNames = { "LE_KEY_PENC", "LE_KEY_PID",
+                                                                "LE_KEY_PCSRK", "LE_KEY_LENC",
+                                                                "LE_KEY_LCSRK" };
 
 const std::unordered_set<std::string_view> kClassicPropertyNames = {
-    "LinkKey", "SdpDiMaufacturer", "SdpDiModel", "SdpDiHardwareVersion", "SdpDiVendorSource"};
+  "LinkKey", "SdpDiMaufacturer", "SdpDiModel", "SdpDiHardwareVersion", "SdpDiVendorSource"
+};
 
 const std::string ConfigCache::kDefaultSectionName = "Global";
 
 std::string kEncryptedStr = "encrypted";
 
-ConfigCache::ConfigCache(size_t temp_device_capacity, std::unordered_set<std::string_view> persistent_property_names)
+ConfigCache::ConfigCache(size_t temp_device_capacity,
+                         std::unordered_set<std::string_view> persistent_property_names)
     : persistent_property_names_(std::move(persistent_property_names)),
       information_sections_(),
       persistent_devices_(),
       temporary_devices_(temp_device_capacity) {}
 
-void ConfigCache::SetPersistentConfigChangedCallback(std::function<void()> persistent_config_changed_callback) {
+void ConfigCache::SetPersistentConfigChangedCallback(
+        std::function<void()> persistent_config_changed_callback) {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   persistent_config_changed_callback_ = std::move(persistent_config_changed_callback);
 }
@@ -77,9 +83,8 @@ ConfigCache::ConfigCache(ConfigCache&& other) noexcept
       information_sections_(std::move(other.information_sections_)),
       persistent_devices_(std::move(other.persistent_devices_)),
       temporary_devices_(std::move(other.temporary_devices_)) {
-  log::assert_that(
-      other.persistent_config_changed_callback_ == nullptr,
-      "Can't assign after setting the callback");
+  log::assert_that(other.persistent_config_changed_callback_ == nullptr,
+                   "Can't assign after setting the callback");
 }
 
 ConfigCache& ConfigCache::operator=(ConfigCache&& other) noexcept {
@@ -88,9 +93,8 @@ ConfigCache& ConfigCache::operator=(ConfigCache&& other) noexcept {
   }
   std::lock_guard<std::recursive_mutex> my_lock(mutex_);
   std::lock_guard<std::recursive_mutex> others_lock(other.mutex_);
-  log::assert_that(
-      other.persistent_config_changed_callback_ == nullptr,
-      "Can't assign after setting the callback");
+  log::assert_that(other.persistent_config_changed_callback_ == nullptr,
+                   "Can't assign after setting the callback");
   persistent_config_changed_callback_ = {};
   persistent_property_names_ = std::move(other.persistent_property_names_);
   information_sections_ = std::move(other.information_sections_);
@@ -103,13 +107,12 @@ bool ConfigCache::operator==(const ConfigCache& rhs) const {
   std::lock_guard<std::recursive_mutex> my_lock(mutex_);
   std::lock_guard<std::recursive_mutex> others_lock(rhs.mutex_);
   return persistent_property_names_ == rhs.persistent_property_names_ &&
-         information_sections_ == rhs.information_sections_ && persistent_devices_ == rhs.persistent_devices_ &&
-         temporary_devices_ == rhs.temporary_devices_;
+          information_sections_ == rhs.information_sections_ &&
+          persistent_devices_ == rhs.persistent_devices_ &&
+          temporary_devices_ == rhs.temporary_devices_;
 }
 
-bool ConfigCache::operator!=(const ConfigCache& rhs) const {
-  return !(*this == rhs);
-}
+bool ConfigCache::operator!=(const ConfigCache& rhs) const { return !(*this == rhs); }
 
 void ConfigCache::Clear() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
@@ -129,7 +132,7 @@ void ConfigCache::Clear() {
 bool ConfigCache::HasSection(const std::string& section) const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   return information_sections_.contains(section) || persistent_devices_.contains(section) ||
-         temporary_devices_.contains(section);
+          temporary_devices_.contains(section);
 }
 
 bool ConfigCache::HasProperty(const std::string& section, const std::string& property) const {
@@ -149,7 +152,8 @@ bool ConfigCache::HasProperty(const std::string& section, const std::string& pro
   return false;
 }
 
-std::optional<std::string> ConfigCache::GetProperty(const std::string& section, const std::string& property) const {
+std::optional<std::string> ConfigCache::GetProperty(const std::string& section,
+                                                    const std::string& property) const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   auto section_iter = information_sections_.find(section);
   if (section_iter != information_sections_.end()) {
@@ -189,7 +193,9 @@ void ConfigCache::SetProperty(std::string section, std::string property, std::st
   if (!IsDeviceSection(section)) {
     auto section_iter = information_sections_.find(section);
     if (section_iter == information_sections_.end()) {
-      section_iter = information_sections_.try_emplace_back(section, common::ListMap<std::string, std::string>{}).first;
+      section_iter = information_sections_
+                             .try_emplace_back(section, common::ListMap<std::string, std::string>{})
+                             .first;
     }
     section_iter->second.insert_or_assign(property, std::move(value));
     PersistentConfigChangedCallback();
@@ -200,17 +206,22 @@ void ConfigCache::SetProperty(std::string section, std::string property, std::st
     // move paired devices or create new paired device when a link key is set
     auto section_properties = temporary_devices_.extract(section);
     if (section_properties) {
-      section_iter = persistent_devices_.try_emplace_back(section, std::move(section_properties->second)).first;
+      section_iter =
+              persistent_devices_.try_emplace_back(section, std::move(section_properties->second))
+                      .first;
     } else {
-      section_iter = persistent_devices_.try_emplace_back(section, common::ListMap<std::string, std::string>{}).first;
+      section_iter = persistent_devices_
+                             .try_emplace_back(section, common::ListMap<std::string, std::string>{})
+                             .first;
     }
   }
   if (section_iter != persistent_devices_.end()) {
     bool is_encrypted = value == kEncryptedStr;
     if ((!value.empty()) && os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
-        os::ParameterProvider::IsCommonCriteriaMode() && InEncryptKeyNameList(property) && !is_encrypted) {
+        os::ParameterProvider::IsCommonCriteriaMode() && InEncryptKeyNameList(property) &&
+        !is_encrypted) {
       if (os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
-              section + "-" + property, value)) {
+                  section + "-" + property, value)) {
         value = kEncryptedStr;
       }
     }
@@ -220,7 +231,8 @@ void ConfigCache::SetProperty(std::string section, std::string property, std::st
   }
   section_iter = temporary_devices_.find(section);
   if (section_iter == temporary_devices_.end()) {
-    auto triple = temporary_devices_.try_emplace(section, common::ListMap<std::string, std::string>{});
+    auto triple =
+            temporary_devices_.try_emplace(section, common::ListMap<std::string, std::string>{});
     section_iter = std::get<0>(triple);
   }
   section_iter->second.insert_or_assign(property, std::move(value));
@@ -242,7 +254,8 @@ bool ConfigCache::RemoveProperty(const std::string& section, const std::string& 
   auto section_iter = information_sections_.find(section);
   if (section_iter != information_sections_.end()) {
     auto value = section_iter->second.extract(property);
-    // if section is empty after removal, remove the whole section as empty section is not allowed
+    // if section is empty after removal, remove the whole section as empty section is not
+    // allowed
     if (section_iter->second.size() == 0) {
       information_sections_.erase(section_iter);
     }
@@ -256,7 +269,8 @@ bool ConfigCache::RemoveProperty(const std::string& section, const std::string& 
   section_iter = persistent_devices_.find(section);
   if (section_iter != persistent_devices_.end()) {
     auto value = section_iter->second.extract(property);
-    // if section is empty after removal, remove the whole section as empty section is not allowed
+    // if section is empty after removal, remove the whole section as empty section is not
+    // allowed
     if (section_iter->second.size() == 0) {
       persistent_devices_.erase(section_iter);
     } else if (value && IsPersistentProperty(property)) {
@@ -266,9 +280,10 @@ bool ConfigCache::RemoveProperty(const std::string& section, const std::string& 
     }
     if (value.has_value()) {
       PersistentConfigChangedCallback();
-      if (os::ParameterProvider::GetBtKeystoreInterface() != nullptr && os::ParameterProvider::IsCommonCriteriaMode() &&
-          InEncryptKeyNameList(property)) {
-        os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(section + "-" + property, "");
+      if (os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
+          os::ParameterProvider::IsCommonCriteriaMode() && InEncryptKeyNameList(property)) {
+        os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
+                section + "-" + property, "");
       }
       return true;
     } else {
@@ -296,16 +311,17 @@ void ConfigCache::ConvertEncryptOrDecryptKeyIfNeeded() {
       auto property_iter = section_iter->second.find(std::string(property));
       if (property_iter != section_iter->second.end()) {
         bool is_encrypted = property_iter->second == kEncryptedStr;
-        if ((!property_iter->second.empty()) && os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
+        if ((!property_iter->second.empty()) &&
+            os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
             os::ParameterProvider::IsCommonCriteriaMode() && !is_encrypted) {
           if (os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
-                  section + "-" + std::string(property), property_iter->second)) {
+                      section + "-" + std::string(property), property_iter->second)) {
             SetProperty(section, std::string(property), kEncryptedStr);
           }
         }
         if (os::ParameterProvider::GetBtKeystoreInterface() != nullptr && is_encrypted) {
-          std::string value_str =
-              os::ParameterProvider::GetBtKeystoreInterface()->get_key(section + "-" + std::string(property));
+          std::string value_str = os::ParameterProvider::GetBtKeystoreInterface()->get_key(
+                  section + "-" + std::string(property));
           if (!os::ParameterProvider::IsCommonCriteriaMode()) {
             SetProperty(section, std::string(property), value_str);
           }
@@ -326,7 +342,7 @@ bool ConfigCache::IsPersistentProperty(const std::string& property) const {
 void ConfigCache::RemoveSectionWithProperty(const std::string& property) {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   size_t num_persistent_removed = 0;
-  for (auto* config_section : {&information_sections_, &persistent_devices_}) {
+  for (auto* config_section : { &information_sections_, &persistent_devices_ }) {
     for (auto it = config_section->begin(); it != config_section->end();) {
       if (it->second.contains(property)) {
         log::info("Removing persistent section {} with property {}", it->first, property);
@@ -375,7 +391,8 @@ void ConfigCache::Commit(std::queue<MutationEntry>& mutation_entries) {
       case MutationEntry::EntryType::REMOVE_SECTION:
         RemoveSection(entry.section);
         break;
-        // do not write a default case so that when a new enum is defined, compilation would fail automatically
+        // do not write a default case so that when a new enum is defined, compilation would
+        // fail automatically
     }
   }
 }
@@ -383,7 +400,7 @@ void ConfigCache::Commit(std::queue<MutationEntry>& mutation_entries) {
 std::string ConfigCache::SerializeToLegacyFormat() const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   std::stringstream serialized;
-  for (const auto* config_section : {&information_sections_, &persistent_devices_}) {
+  for (const auto* config_section : { &information_sections_, &persistent_devices_ }) {
     for (const auto& section : *config_section) {
       serialized << "[" << section.first << "]" << std::endl;
       for (const auto& property : section.second) {
@@ -396,14 +413,15 @@ std::string ConfigCache::SerializeToLegacyFormat() const {
 }
 
 std::vector<ConfigCache::SectionAndPropertyValue> ConfigCache::GetSectionNamesWithProperty(
-    const std::string& property) const {
+        const std::string& property) const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   std::vector<SectionAndPropertyValue> result;
-  for (auto* config_section : {&information_sections_, &persistent_devices_}) {
+  for (auto* config_section : { &information_sections_, &persistent_devices_ }) {
     for (const auto& elem : *config_section) {
       auto it = elem.second.find(property);
       if (it != elem.second.end()) {
-        result.emplace_back(SectionAndPropertyValue{.section = elem.first, .property = it->second});
+        result.emplace_back(
+                SectionAndPropertyValue{ .section = elem.first, .property = it->second });
         continue;
       }
     }
@@ -411,7 +429,7 @@ std::vector<ConfigCache::SectionAndPropertyValue> ConfigCache::GetSectionNamesWi
   for (const auto& elem : temporary_devices_) {
     auto it = elem.second.find(property);
     if (it != elem.second.end()) {
-      result.emplace_back(SectionAndPropertyValue{.section = elem.first, .property = it->second});
+      result.emplace_back(SectionAndPropertyValue{ .section = elem.first, .property = it->second });
       continue;
     }
   }
@@ -447,15 +465,16 @@ std::vector<std::string> ConfigCache::GetPropertyNames(const std::string& sectio
 namespace {
 
 bool FixDeviceTypeInconsistencyInSection(
-    const std::string& section_name, common::ListMap<std::string, std::string>& device_section_entries) {
+        const std::string& section_name,
+        common::ListMap<std::string, std::string>& device_section_entries) {
   if (!hci::Address::IsValidAddress(section_name)) {
     return false;
   }
   auto device_type_iter = device_section_entries.find("DevType");
   if (device_type_iter != device_section_entries.end() &&
       device_type_iter->second == std::to_string(hci::DeviceType::DUAL)) {
-    // We might only have one of classic/LE keys for a dual device, but it is still a dual device,
-    // so we should not change the DevType.
+    // We might only have one of classic/LE keys for a dual device, but it is still a dual
+    // device, so we should not change the DevType.
     return false;
   }
 
@@ -493,12 +512,12 @@ bool FixDeviceTypeInconsistencyInSection(
   return inconsistent;
 }
 
-}  // namespace
+} // namespace
 
 bool ConfigCache::FixDeviceTypeInconsistencies() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   bool persistent_device_changed = false;
-  for (auto* config_section : {&information_sections_, &persistent_devices_}) {
+  for (auto* config_section : { &information_sections_, &persistent_devices_ }) {
     for (auto& elem : *config_section) {
       if (FixDeviceTypeInconsistencyInSection(elem.first, elem.second)) {
         persistent_device_changed = true;
@@ -518,7 +537,8 @@ bool ConfigCache::FixDeviceTypeInconsistencies() {
 }
 
 bool ConfigCache::HasAtLeastOneMatchingPropertiesInSection(
-    const std::string& section, const std::unordered_set<std::string_view>& property_names) const {
+        const std::string& section,
+        const std::unordered_set<std::string_view>& property_names) const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   const common::ListMap<std::string, std::string>* section_ptr;
   if (!IsDeviceSection(section)) {
@@ -550,5 +570,5 @@ bool ConfigCache::IsPersistentSection(const std::string& section) const {
   return persistent_devices_.contains(section);
 }
 
-}  // namespace storage
-}  // namespace bluetooth
+} // namespace storage
+} // namespace bluetooth

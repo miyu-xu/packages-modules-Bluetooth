@@ -39,20 +39,19 @@ XBT_INLINE_ int32_t packCodeword(Encoder_data* EncoderDataPt) {
    * such that the XOR of the sync contributions from the left and right
    * channel give the actual sync bit value. The per-channel sync bit
    * contribution overwrites the HH code lsb in the packed codeword. */
-  syncContribution =
-      (EncoderDataPt->m_qdata[0].qCode ^ EncoderDataPt->m_qdata[1].qCode ^
-       EncoderDataPt->m_qdata[2].qCode ^ EncoderDataPt->m_qdata[3].qCode ^
-       EncoderDataPt->m_dithSyncRandBit) &
-      0x1;
+  syncContribution = (EncoderDataPt->m_qdata[0].qCode ^ EncoderDataPt->m_qdata[1].qCode ^
+                      EncoderDataPt->m_qdata[2].qCode ^ EncoderDataPt->m_qdata[3].qCode ^
+                      EncoderDataPt->m_dithSyncRandBit) &
+          0x1;
   hhCode = (EncoderDataPt->m_qdata[HH].qCode & 0x1eL) | syncContribution;
 
   /* Pack the 24-bit codeword with the appropriate number of lsbs from each
    * quantised code (LL=9, LH=6, HL=4, HH=5). */
   codeword = (EncoderDataPt->m_qdata[LL].qCode & 0x1ff) |
-             ((EncoderDataPt->m_qdata[LH].qCode & 0x3f) << 9) |
-             ((EncoderDataPt->m_qdata[HL].qCode & 0xf) << 15) | (hhCode << 19);
+          ((EncoderDataPt->m_qdata[LH].qCode & 0x3f) << 9) |
+          ((EncoderDataPt->m_qdata[HL].qCode & 0xf) << 15) | (hhCode << 19);
 
   return codeword;
 }
 
-#endif  // CODEWORDPACKER_H
+#endif // CODEWORDPACKER_H

@@ -31,7 +31,8 @@ void Mutation::Add(MutationEntry entry) {
   switch (entry.property_type) {
     case MutationEntry::PropertyType::NORMAL:
       if (entry.entry_type != MutationEntry::EntryType::SET) {
-        // When an item is removed from normal config, it must be removed from temp config as well
+        // When an item is removed from normal config, it must be removed from temp config
+        // as well
         memory_only_config_entries_.emplace(entry);
       }
       normal_config_entries_.emplace(std::move(entry));
@@ -39,7 +40,8 @@ void Mutation::Add(MutationEntry entry) {
     case MutationEntry::PropertyType::MEMORY_ONLY:
       memory_only_config_entries_.emplace(std::move(entry));
       break;
-      // do not write a default case so that when a new enum is defined, compilation would fail automatically
+      // do not write a default case so that when a new enum is defined, compilation would
+      // fail automatically
   }
 }
 
@@ -48,5 +50,5 @@ void Mutation::Commit() {
   memory_only_config_->Commit(memory_only_config_entries_);
 }
 
-}  // namespace storage
-}  // namespace bluetooth
+} // namespace storage
+} // namespace bluetooth

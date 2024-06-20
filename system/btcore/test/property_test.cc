@@ -29,7 +29,9 @@ using bluetooth::Uuid;
 class PropertyTest : public ::testing::Test {};
 
 TEST_F(PropertyTest, addr) {
-  RawAddress addr0 = {{0x1, 0x2, 0x3, 0x4, 0x5, 0x6}};
+  RawAddress addr0 = {
+    { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 }
+  };
   bt_property_t* property = property_new_addr(&addr0);
 
   EXPECT_EQ(addr0.address[0], ((uint8_t*)property->val)[0]);
@@ -48,7 +50,9 @@ TEST_F(PropertyTest, addr) {
 }
 
 TEST_F(PropertyTest, device_class) {
-  bt_device_class_t dc0 = {{0x01, 0x23, 0x45}};
+  bt_device_class_t dc0 = {
+    { 0x01, 0x23, 0x45 }
+  };
   bt_property_t* property = property_new_device_class(&dc0);
 
   EXPECT_EQ(dc0._[0], ((uint8_t*)property->val)[0]);
@@ -135,10 +139,18 @@ TEST_F(PropertyTest, scan_mode) {
 }
 
 TEST_F(PropertyTest, uuids) {
-  Uuid uuid0 = Uuid::From128BitBE({{
-      0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb,
-      0xcc, 0xdd, 0xee, 0xff,
-  }});
+  Uuid uuid0 = Uuid::From128BitBE({
+          {
+           0x00, 0x11,
+           0x22, 0x33,
+           0x44, 0x55,
+           0x66, 0x77,
+           0x88, 0x99,
+           0xaa, 0xbb,
+           0xcc, 0xdd,
+           0xee, 0xff,
+           }
+  });
   bt_property_t* property = property_new_uuids(&uuid0, 1);
 
   EXPECT_EQ(0, memcmp(uuid0.To128BitBE().data(), property->val, sizeof(Uuid)));
@@ -155,18 +167,47 @@ TEST_F(PropertyTest, uuids) {
 TEST_F(PropertyTest, copy) {
   {
     Uuid uuids[] = {
-        Uuid::From128BitBE({{
-            0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa,
-            0xbb, 0xcc, 0xdd, 0xee, 0xff,
-        }}),
-        Uuid::From128BitBE({{
-            0xf0, 0xe1, 0xd2, 0xc3, 0xf4, 0xe5, 0xd6, 0xc7, 0xf8, 0xe9, 0xda,
-            0xcb, 0xfc, 0xed, 0xde, 0xcf,
-        }}),
+      Uuid::From128BitBE({ {
+ 0x00,
+ 0x11,
+ 0x22,
+ 0x33,
+ 0x44,
+ 0x55,
+ 0x66,
+ 0x77,
+ 0x88,
+ 0x99,
+ 0xaa,
+ 0xbb,
+ 0xcc,
+ 0xdd,
+ 0xee,
+ 0xff,
+ } }
+      ),
+      Uuid::From128BitBE({ {
+ 0xf0,
+ 0xe1,
+ 0xd2,
+ 0xc3,
+ 0xf4,
+ 0xe5,
+ 0xd6,
+ 0xc7,
+ 0xf8,
+ 0xe9,
+ 0xda,
+ 0xcb,
+ 0xfc,
+ 0xed,
+ 0xde,
+ 0xcf,
+ } }
+      ),
     };
 
-    bt_property_t* property0 =
-        property_new_uuids(uuids, sizeof(uuids) / sizeof(Uuid));
+    bt_property_t* property0 = property_new_uuids(uuids, sizeof(uuids) / sizeof(Uuid));
 
     bt_property_t property1;
     property_copy(&property1, property0);
@@ -178,10 +219,14 @@ TEST_F(PropertyTest, copy) {
 
 TEST_F(PropertyTest, equals) {
   {
-    RawAddress addr0 = {{0x1, 0x2, 0x3, 0x4, 0x5, 0x6}};
+    RawAddress addr0 = {
+      { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 }
+    };
     bt_property_t* property0 = property_new_addr(&addr0);
 
-    bt_device_class_t dc0 = {{0x01, 0x23, 0x45}};
+    bt_device_class_t dc0 = {
+      { 0x01, 0x23, 0x45 }
+    };
     bt_property_t* property1 = property_new_device_class(&dc0);
 
     EXPECT_FALSE(property_equals(property0, property1));
@@ -191,7 +236,9 @@ TEST_F(PropertyTest, equals) {
   }
 
   {
-    RawAddress addr = {{0x1, 0x2, 0x3, 0x4, 0x5, 0x6}};
+    RawAddress addr = {
+      { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 }
+    };
     bt_property_t* property0 = property_new_addr(&addr);
     bt_property_t* property1 = property_new_addr(&addr);
 
@@ -202,10 +249,14 @@ TEST_F(PropertyTest, equals) {
   }
 
   {
-    RawAddress addr0 = {{0x1, 0x2, 0x3, 0x4, 0x5, 0x6}};
+    RawAddress addr0 = {
+      { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6 }
+    };
     bt_property_t* property0 = property_new_addr(&addr0);
 
-    RawAddress addr1 = {{0x1, 0x2, 0x3, 0x4, 0x5, 0xff}};
+    RawAddress addr1 = {
+      { 0x1, 0x2, 0x3, 0x4, 0x5, 0xff }
+    };
     bt_property_t* property1 = property_new_addr(&addr1);
 
     EXPECT_FALSE(property_equals(property0, property1));

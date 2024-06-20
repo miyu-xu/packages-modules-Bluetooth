@@ -54,10 +54,10 @@ TEST(PlayItemResponseTest, invalidTest) {
   auto test_packet = TestPlayItemReqPacket::Make(packet_copy);
   ASSERT_FALSE(test_packet->IsValid());
 
-  std::vector<uint8_t> short_packet = {0x00, 0x01, 0x02, 0x03, 0x04};
+  std::vector<uint8_t> short_packet = { 0x00, 0x01, 0x02, 0x03, 0x04 };
   test_packet = TestPlayItemReqPacket::Make(short_packet);
   ASSERT_FALSE(test_packet->IsValid());
 }
 
-}  // namespace avrcp
-}  // namespace bluetooth
+} // namespace avrcp
+} // namespace bluetooth

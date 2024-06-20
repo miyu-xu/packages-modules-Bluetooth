@@ -33,17 +33,16 @@ using ::aidl::android::hardware::bluetooth::audio::SessionType;
 ::hfp::sco_config recordHfpCodecInfo(CodecInfo codecInfo) {
   auto hfp_transport = codecInfo.transport.get<CodecInfo::Transport::hfp>();
   ::hfp::sco_config config{
-      .inputDataPath = hfp_transport.inputDataPath,
-      .outputDataPath = hfp_transport.outputDataPath,
-      .useControllerCodec = hfp_transport.useControllerCodec,
+    .inputDataPath = hfp_transport.inputDataPath,
+    .outputDataPath = hfp_transport.outputDataPath,
+    .useControllerCodec = hfp_transport.useControllerCodec,
   };
   return config;
 }
 
-std::unique_ptr<ProviderInfo>
-bluetooth::audio::aidl::ProviderInfo::GetProviderInfo(SessionType sessionType) {
-  auto provider_info =
-      BluetoothAudioClientInterface::GetProviderInfo(sessionType);
+std::unique_ptr<ProviderInfo> bluetooth::audio::aidl::ProviderInfo::GetProviderInfo(
+        SessionType sessionType) {
+  auto provider_info = BluetoothAudioClientInterface::GetProviderInfo(sessionType);
 
   std::vector<CodecInfo> codecInfos;
   if (provider_info.has_value()) {
@@ -53,8 +52,7 @@ bluetooth::audio::aidl::ProviderInfo::GetProviderInfo(SessionType sessionType) {
   return std::make_unique<ProviderInfo>(sessionType, std::move(codecInfos));
 }
 
-ProviderInfo::ProviderInfo(SessionType sessionType,
-                           std::vector<CodecInfo> codecs)
+ProviderInfo::ProviderInfo(SessionType sessionType, std::vector<CodecInfo> codecs)
     : codecInfos(std::move(codecs)) {
   for (auto codecInfo : codecInfos) {
     if (codecInfo.id == CodecId::Core::CVSD) {
@@ -71,8 +69,7 @@ ProviderInfo::ProviderInfo(SessionType sessionType,
   }
 }
 
-const std::unordered_map<int, ::hfp::sco_config>&
-ProviderInfo::GetHfpScoConfig() {
+const std::unordered_map<int, ::hfp::sco_config>& ProviderInfo::GetHfpScoConfig() {
   return hfpScoConfigMap;
 }
-}  // namespace bluetooth::audio::aidl
+} // namespace bluetooth::audio::aidl

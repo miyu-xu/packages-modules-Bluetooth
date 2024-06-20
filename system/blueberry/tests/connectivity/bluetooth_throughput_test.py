@@ -1,4 +1,4 @@
-# Lint as: python3
+#Lint as : python3
 """Tests for blueberry.tests.bluetooth.bluetooth_throughput."""
 
 from __future__ import absolute_import
@@ -12,10 +12,10 @@ from mobly import asserts
 from mobly import test_runner
 from mobly.controllers.android_device_lib.jsonrpc_client_base import ApiError
 from mobly.signals import TestAbortClass
-# Internal import
+#Internal import
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import metrics_utils
-# Internal import
+#Internal import
 
 
 class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
@@ -39,7 +39,7 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
         The throughput of the transfer in bytes per second.
     """
 
-    # TODO(user): Need to fix throughput send/receive methods
+#TODO(user) : Need to fix throughput send / receive methods
     (self.phone.sl4a
      .bluetoothConnectionThroughputSend(num_of_buffers, buffer_size))
 
@@ -99,9 +99,9 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
           'Not enough android phones detected (need at least two)')
     self.phone = self.android_devices[0]
 
-    # We treat the secondary phone as a derived_bt_device in order for the
-    # generic script to work with this android phone properly. Data will be sent
-    # from first phone to the second phone.
+#We treat the secondary phone as a derived_bt_device in order for the
+#generic script to work with this android phone properly.Data will be sent
+#from first phone to the second phone.
     self.derived_bt_device = self.android_devices[1]
     self.phone.init_setup()
     self.derived_bt_device.init_setup()
@@ -164,33 +164,25 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
     while True:
       logging.info('Trying buffer size %d', current_buffer_size)
       try:
-        throughput = self._measure_throughput(
-            num_of_buffers, current_buffer_size)
-        logging.info('The throughput is %d at buffer size of %d', throughput,
-                     current_buffer_size)
-      except ApiError:
-        maximum_buffer_size = current_buffer_size - 1
-        logging.info('Max buffer size: %d bytes', maximum_buffer_size)
-        logging.info('Max throughput: %d bytes-per-second', throughput)
-        self.record_data({
-            'Test Name': 'test_maximum_buffer_size',
-            'sponge_properties': {
-                'maximum_buffer_size': maximum_buffer_size
-            }
-        })
-        return True
-      current_buffer_size += 1
+        throughput
+= self._measure_throughput(num_of_buffers, current_buffer_size)
+      logging.info('The throughput is %d at buffer size of %d', throughput, current_buffer_size)
+          except ApiError : maximum_buffer_size =
+    current_buffer_size -
+    1 logging.info('Max buffer size: %d bytes', maximum_buffer_size)
+        logging.info('Max throughput: %d bytes-per-second', throughput) self.record_data({
+            'Test Name' : 'test_maximum_buffer_size',
+            'sponge_properties' : {'maximum_buffer_size' : maximum_buffer_size}
+        }) return True current_buffer_size += 1
 
-  def teardown_test(self):
-    self.phone.sl4a.bluetoothSocketConnStop()
-    self.derived_bt_device.sl4a.bluetoothSocketConnStop()
+                                              def
+                                              teardown_test(self)
+    : self.phone.sl4a.bluetoothSocketConnStop() self.derived_bt_device.sl4a
+          .bluetoothSocketConnStop()
 
-  def teardown_class(self):
-    self.phone.factory_reset_bluetooth()
-    self.derived_bt_device.factory_reset_bluetooth()
-    logging.info('Factory resetting Bluetooth on devices.')
-    super(BluetoothThroughputTest, self).teardown_class()
+              def teardown_class(self)
+    : self.phone.factory_reset_bluetooth() self.derived_bt_device.factory_reset_bluetooth() logging
+          .info('Factory resetting Bluetooth on devices.') super(BluetoothThroughputTest, self)
+          .teardown_class()
 
-
-if __name__ == '__main__':
-  test_runner.main()
+              if __name__ == '__main__' : test_runner.main()

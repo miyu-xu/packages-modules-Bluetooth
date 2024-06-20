@@ -33,7 +33,7 @@ PacketView<little_endian>::PacketView(const std::forward_list<class View> fragme
 
 template <bool little_endian>
 PacketView<little_endian>::PacketView(std::shared_ptr<const std::vector<uint8_t>> packet)
-    : fragments_({View(packet, 0, packet->size())}), length_(packet->size()) {}
+    : fragments_({ View(packet, 0, packet->size()) }), length_(packet->size()) {}
 
 template <bool little_endian>
 Iterator<little_endian> PacketView<little_endian>::begin() const {
@@ -121,5 +121,5 @@ void PacketView<little_endian>::Append(PacketView to_add) {
 // Explicit instantiations for both types of PacketViews.
 template class PacketView<true>;
 template class PacketView<false>;
-}  // namespace packet
-}  // namespace bluetooth
+} // namespace packet
+} // namespace bluetooth

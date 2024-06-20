@@ -23,7 +23,7 @@
 class PropertiesTest : public ::testing::Test {};
 
 TEST_F(PropertiesTest, test_default_value) {
-  char value[PROPERTY_VALUE_MAX] = {0};
+  char value[PROPERTY_VALUE_MAX] = { 0 };
   osi_property_get("very.useful.test", value, "very_useful_value");
   ASSERT_STREQ(value, "very_useful_value");
 }

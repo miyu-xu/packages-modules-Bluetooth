@@ -21,7 +21,7 @@
 #include "parse_location.h"
 
 class BodyField : public PacketField {
- public:
+  public:
   BodyField(ParseLocation loc);
 
   static const std::string kFieldType;
@@ -53,5 +53,5 @@ class BodyField : public PacketField {
   virtual void GenStringRepresentation(std::ostream& s, std::string accessor) const override;
 
   // Body fields can only be dynamically sized.
-  const SizeField* size_field_{nullptr};
+  const SizeField* size_field_{ nullptr };
 };

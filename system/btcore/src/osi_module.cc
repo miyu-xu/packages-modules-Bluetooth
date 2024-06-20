@@ -27,9 +27,7 @@
 #include "osi/include/osi.h"
 #include "osi/include/wakelock.h"
 
-future_t* osi_init(void) {
-  return future_new_immediate(FUTURE_SUCCESS);
-}
+future_t* osi_init(void) { return future_new_immediate(FUTURE_SUCCESS); }
 
 future_t* osi_clean_up(void) {
   alarm_cleanup();
@@ -37,9 +35,9 @@ future_t* osi_clean_up(void) {
   return future_new_immediate(FUTURE_SUCCESS);
 }
 
-EXPORT_SYMBOL extern const module_t osi_module = {.name = OSI_MODULE,
-                                                  .init = osi_init,
-                                                  .start_up = NULL,
-                                                  .shut_down = NULL,
-                                                  .clean_up = osi_clean_up,
-                                                  .dependencies = {NULL}};
+EXPORT_SYMBOL extern const module_t osi_module = { .name = OSI_MODULE,
+                                                   .init = osi_init,
+                                                   .start_up = NULL,
+                                                   .shut_down = NULL,
+                                                   .clean_up = osi_clean_up,
+                                                   .dependencies = { NULL } };

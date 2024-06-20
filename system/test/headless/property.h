@@ -78,7 +78,7 @@ struct bt_property_t {
     return oss.str();
   }
 
- protected:
+  protected:
   bt_property_t(const uint8_t* data, const size_t len) {
     this->len = len;
     this->data = std::make_unique<uint8_t[]>(len);
@@ -94,28 +94,26 @@ struct bt_property_t {
 namespace property {
 
 struct void_t : public bt_property_t {
-  void_t(const uint8_t* data, const size_t len, int type)
-      : bt_property_t(data, len) {
+  void_t(const uint8_t* data, const size_t len, int type) : bt_property_t(data, len) {
     this->type = (::bt_property_type_t)type;
   }
 
- public:
+  public:
   virtual std::string ToString() const override {
-    return fmt::format("Unimplemented property type:{} name:{}", type,
-                       bt_property_type_text(type));
+    return fmt::format("Unimplemented property type:{} name:{}", type, bt_property_type_text(type));
   }
 };
 
 struct uuid_t : public bt_property_t {
- public:
+  public:
   uuid_t(const uint8_t* data, const size_t len) : bt_property_t(data, len) {}
 
   std::deque<bluetooth::Uuid> get_uuids() const {
     std::deque<bluetooth::Uuid> uuids;
     bluetooth::Uuid* p_uuid = reinterpret_cast<bluetooth::Uuid*>(data.get());
     for (size_t i = 0; i < num_uuid(); i++, p_uuid++) {
-      bluetooth::Uuid uuid = bluetooth::Uuid::From128BitBE(
-          reinterpret_cast<const uint8_t*>(p_uuid));
+      bluetooth::Uuid uuid =
+              bluetooth::Uuid::From128BitBE(reinterpret_cast<const uint8_t*>(p_uuid));
       uuids.push_back(uuid);
     }
     return uuids;
@@ -125,7 +123,7 @@ struct uuid_t : public bt_property_t {
     return fmt::format("Number of uuids:{}", get_uuids().size());
   }
 
- private:
+  private:
   size_t num_uuid() const { return len / sizeof(bluetooth::Uuid); }
 };
 
@@ -139,9 +137,7 @@ struct name_t : public bt_property_t {
     return std::string(s);
   }
 
-  virtual std::string ToString() const override {
-    return fmt::format("Name:{}", get_name());
-  }
+  virtual std::string ToString() const override { return fmt::format("Name:{}", get_name()); }
 };
 
 struct bdaddr_t : public bt_property_t {
@@ -163,8 +159,7 @@ struct bdaddr_t : public bt_property_t {
 };
 
 struct class_of_device_t : public bt_property_t {
-  class_of_device_t(const uint8_t* data, const size_t len)
-      : bt_property_t(data, len) {
+  class_of_device_t(const uint8_t* data, const size_t len) : bt_property_t(data, len) {
     type = BT_PROPERTY_CLASS_OF_DEVICE;
   }
 
@@ -179,8 +174,7 @@ struct class_of_device_t : public bt_property_t {
 };
 
 struct type_of_device_t : public bt_property_t {
-  type_of_device_t(const uint8_t* data, const size_t len)
-      : bt_property_t(data, len) {
+  type_of_device_t(const uint8_t* data, const size_t len) : bt_property_t(data, len) {
     type = BT_PROPERTY_TYPE_OF_DEVICE;
   }
 
@@ -194,16 +188,15 @@ struct type_of_device_t : public bt_property_t {
   }
 };
 
-}  // namespace property
+} // namespace property
 
-bluetooth::test::headless::bt_property_t* property_factory(
-    const ::bt_property_t& bt_property);
+bluetooth::test::headless::bt_property_t* property_factory(const ::bt_property_t& bt_property);
 
 template <typename T>
 T* get_property_type(bluetooth::test::headless::bt_property_t* bt_property) {
   return static_cast<T*>(bt_property);
 }
 
-}  // namespace headless
-}  // namespace test
-}  // namespace bluetooth
+} // namespace headless
+} // namespace test
+} // namespace bluetooth

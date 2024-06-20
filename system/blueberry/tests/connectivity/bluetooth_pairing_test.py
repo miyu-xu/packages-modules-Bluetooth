@@ -21,8 +21,8 @@ class BluetoothPairingTest(blueberry_base_test.BlueberryBaseTest):
   def setup_class(self):
     """Standard Mobly setup class."""
     super(BluetoothPairingTest, self).setup_class()
-    # Adds a use case that derived_bt_device initiates a pairing request to
-    # primary_device. Enable this case if allow_pairing_reverse is 1.
+#Adds a use case that derived_bt_device initiates a pairing request to
+#primary_device.Enable this case if allow_pairing_reverse is 1.
     self.allow_pairing_reverse = int(self.user_params.get(
         'allow_pairing_reverse', 0))
 
@@ -32,9 +32,9 @@ class BluetoothPairingTest(blueberry_base_test.BlueberryBaseTest):
       self.primary_device.sl4a_setup()
 
       if len(self.android_devices) > 1 and not self.derived_bt_devices:
-        # In the case of pairing phone to phone, we need to treat the
-        # secondary phone as a derived_bt_device in order for the generic script
-        # to work with this android phone properly.
+#In the case of pairing phone to phone, we need to treat the
+#secondary phone as a derived_bt_device in order for the generic script
+#to work with this android phone properly.
         self.derived_bt_device = self.android_devices[1]
         self.derived_bt_devices.append(self.derived_bt_device)
         self.derived_bt_device.init_setup()
@@ -43,8 +43,8 @@ class BluetoothPairingTest(blueberry_base_test.BlueberryBaseTest):
         self.derived_bt_device = self.derived_bt_devices[0]
         self.derived_bt_device.factory_reset_bluetooth()
     else:
-      # In the case of pairing mock to mock, at least 2 derived_bt_device is
-      # required. The first derived_bt_device is treated as primary_device.
+#In the case of pairing mock to mock, at least 2 derived_bt_device is
+#required.The first derived_bt_device is treated as primary_device.
       self.primary_device = self.derived_bt_devices[0]
       self.primary_device.init_setup()
       self.derived_bt_device = self.derived_bt_devices[1]
@@ -65,18 +65,18 @@ class BluetoothPairingTest(blueberry_base_test.BlueberryBaseTest):
     if self.allow_pairing_reverse:
       device_list.append((self.derived_bt_device, self.primary_device))
     for initiator, receiver in device_list:
-      # get mac address of device to pair with
+#get mac address of device to pair with
       mac_address = receiver.get_bluetooth_mac_address()
       logging.info('Receiver BT MAC Address: %s', mac_address)
-      # put device into pairing mode
+#put device into pairing mode
       receiver.activate_pairing_mode()
-      # initiate pairing from initiator
+#initiate pairing from initiator
       initiator.set_target(receiver)
       with asserts.assert_not_raises(signals.ControllerError):
         initiator.pair_and_connect_bluetooth(mac_address)
       if self.allow_pairing_reverse and initiator != self.derived_bt_device:
         logging.info('===== Reversing Pairing =====')
-        # Resets Bluetooth status for two sides.
+#Resets Bluetooth status for two sides.
         initiator.factory_reset_bluetooth()
         receiver.factory_reset_bluetooth()
 

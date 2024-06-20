@@ -174,4 +174,4 @@ inline uint16_t sco_codec_type_to_id(tBTM_SCO_CODEC_TYPE codec_type) {
       return 0;
   }
 }
-#endif  // BTM_API_TYPES_H
+#endif // BTM_API_TYPES_H

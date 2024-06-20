@@ -7,7 +7,7 @@ from mobly import signals
 from blueberry.utils import asserts
 from blueberry.utils import blueberry_base_test
 
-# Connection state change sleep time in seconds.
+#Connection state change sleep time in seconds.
 CONNECTION_STATE_CHANGE_SLEEP_SEC = 5
 
 
@@ -33,9 +33,9 @@ class BluetoothConnectionTest(blueberry_base_test.BlueberryBaseTest):
 
   def setup_test(self):
     super().setup_test()
-    # Checks if A2DP and HSP profiles are connected.
+#Checks if A2DP and HSP profiles are connected.
     self.assert_a2dp_and_hsp_connection_state(connected=True)
-    # Buffer between tests.
+#Buffer between tests.
     time.sleep(CONNECTION_STATE_CHANGE_SLEEP_SEC)
 
   def assert_a2dp_and_hsp_connection_state(self, connected):
@@ -56,7 +56,7 @@ class BluetoothConnectionTest(blueberry_base_test.BlueberryBaseTest):
                                  self.mac_address)
     self.primary_device.disconnect_bluetooth(self.mac_address)
     self.assert_a2dp_and_hsp_connection_state(connected=False)
-    # Buffer time for connection state change.
+#Buffer time for connection state change.
     time.sleep(CONNECTION_STATE_CHANGE_SLEEP_SEC)
     self.primary_device.log.info('Connecting the device "%s"...' %
                                  self.mac_address)

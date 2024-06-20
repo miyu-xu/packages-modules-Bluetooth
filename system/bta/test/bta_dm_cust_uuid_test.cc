@@ -25,22 +25,24 @@
 using bluetooth::Uuid;
 
 namespace {
-  uint32_t handle1 = 1;
-  uint32_t handle2 = 2;
-  static const Uuid uuid1 = Uuid::From128BitBE(
-    Uuid::UUID128Bit{{0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88,
-                      0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}});
-  static const Uuid uuid2 = Uuid::From128BitBE(
-    Uuid::UUID128Bit{{0x00, 0x00, 0x00, 0x00, 0x22, 0x22, 0x22, 0x22, 0x33,
-                      0x33, 0x55, 0x55, 0x55, 0x55, 0x55, 0x59}});
-}
+uint32_t handle1 = 1;
+uint32_t handle2 = 2;
+static const Uuid uuid1 = Uuid::From128BitBE(Uuid::UUID128Bit{
+        { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee,
+         0xff }
+});
+static const Uuid uuid2 = Uuid::From128BitBE(Uuid::UUID128Bit{
+        { 0x00, 0x00, 0x00, 0x00, 0x22, 0x22, 0x22, 0x22, 0x33, 0x33, 0x55, 0x55, 0x55, 0x55, 0x55,
+         0x59 }
+});
+} // namespace
 
 // Test we can remove/add 128 bit custom UUID from/to bta_dm_cb.bta_custom_uuid
 TEST_F(BtaWithMocksTest, test_add_remove_cust_uuid) {
   tBTA_CUSTOM_UUID& curr0 = bta_dm_cb.bta_custom_uuid[0];
   tBTA_CUSTOM_UUID& curr1 = bta_dm_cb.bta_custom_uuid[1];
-  tBTA_CUSTOM_UUID curr0_expect = {uuid1, handle1};
-  tBTA_CUSTOM_UUID curr1_expect = {uuid2, handle2};
+  tBTA_CUSTOM_UUID curr0_expect = { uuid1, handle1 };
+  tBTA_CUSTOM_UUID curr1_expect = { uuid2, handle2 };
   // Add first 128 bit custom UUID
   bta_dm_eir_update_cust_uuid(curr0_expect, true);
   ASSERT_STREQ(uuid1.ToString().c_str(), curr0.custom_uuid.ToString().c_str());

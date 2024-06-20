@@ -16,15 +16,15 @@
  *
  ******************************************************************************/
 
-#include <gtest/gtest.h>
-
 #include "raw_address.h"
+
+#include <gtest/gtest.h>
 
 static const char* test_addr = "12:34:56:78:9a:bc";
 static const char* test_addr2 = "cb:a9:87:65:43:21";
 
 TEST(RawAddressUnittest, test_constructor_array) {
-  RawAddress bdaddr({0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc});
+  RawAddress bdaddr({ 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc });
 
   ASSERT_EQ(0x12, bdaddr.address[0]);
   ASSERT_EQ(0x34, bdaddr.address[1]);
@@ -65,7 +65,7 @@ TEST(RawAddressUnittest, test_to_from_str) {
 }
 
 TEST(RawAddressUnittest, test_from_octets) {
-  static const uint8_t test_addr_array[] = {0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc};
+  static const uint8_t test_addr_array[] = { 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc };
 
   RawAddress bdaddr;
   size_t expected_result = RawAddress::kLength;
@@ -180,16 +180,20 @@ TEST(RawAddressTest, BdAddrFromString) {
   memset(&addr, 0, sizeof(addr));
 
   EXPECT_TRUE(RawAddress::FromString("00:00:00:00:00:00", addr));
-  const RawAddress result0 = {{0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
+  const RawAddress result0 = {
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+  };
   EXPECT_EQ(0, memcmp(&addr, &result0, sizeof(addr)));
 
   EXPECT_TRUE(RawAddress::FromString("ab:01:4C:d5:21:9f", addr));
-  const RawAddress result1 = {{0xab, 0x01, 0x4c, 0xd5, 0x21, 0x9f}};
+  const RawAddress result1 = {
+    { 0xab, 0x01, 0x4c, 0xd5, 0x21, 0x9f }
+  };
   EXPECT_EQ(0, memcmp(&addr, &result1, sizeof(addr)));
 }
 
 TEST(RawAddressTest, BdAddrFromArray) {
-  std::array<uint8_t, 6> mac = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66};
+  std::array<uint8_t, 6> mac = { 0x11, 0x22, 0x33, 0x44, 0x55, 0x66 };
   RawAddress bdaddr(mac);
 
   std::string ret = bdaddr.ToString();
@@ -200,7 +204,7 @@ TEST(RawAddressTest, BdAddrFromArray) {
 }
 
 TEST(RawAddress, ToStringForLoggingTest) {
-  std::array<uint8_t, 6> addr_bytes = {0x11, 0x22, 0x33, 0x44, 0x55, 0xab};
+  std::array<uint8_t, 6> addr_bytes = { 0x11, 0x22, 0x33, 0x44, 0x55, 0xab };
   RawAddress addr(addr_bytes);
   const std::string redacted_loggable_str = "xx:xx:xx:xx:55:ab";
   const std::string loggbable_str = "11:22:33:44:55:ab";

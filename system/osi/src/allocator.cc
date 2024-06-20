@@ -24,12 +24,13 @@
 using namespace bluetooth;
 
 char* osi_strdup(const char* str) {
-  size_t size = strlen(str) + 1;  // + 1 for the null terminator
+  size_t size = strlen(str) + 1; // + 1 for the null terminator
   char* new_string = (char*)malloc(size);
-  log::assert_that(new_string != nullptr,
-                   "assert failed: new_string != nullptr");
+  log::assert_that(new_string != nullptr, "assert failed: new_string != nullptr");
 
-  if (!new_string) return NULL;
+  if (!new_string) {
+    return NULL;
+  }
 
   memcpy(new_string, str, size);
   return new_string;
@@ -37,13 +38,16 @@ char* osi_strdup(const char* str) {
 
 char* osi_strndup(const char* str, size_t len) {
   size_t size = strlen(str);
-  if (len < size) size = len;
+  if (len < size) {
+    size = len;
+  }
 
   char* new_string = (char*)malloc(size + 1);
-  log::assert_that(new_string != nullptr,
-                   "assert failed: new_string != nullptr");
+  log::assert_that(new_string != nullptr, "assert failed: new_string != nullptr");
 
-  if (!new_string) return NULL;
+  if (!new_string) {
+    return NULL;
+  }
 
   memcpy(new_string, str, size);
   new_string[size] = '\0';
@@ -74,9 +78,9 @@ void osi_free_and_reset(void** p_ptr) {
   *p_ptr = NULL;
 }
 
-const allocator_t allocator_calloc = {osi_calloc, osi_free};
+const allocator_t allocator_calloc = { osi_calloc, osi_free };
 
-const allocator_t allocator_malloc = {osi_malloc, osi_free};
+const allocator_t allocator_malloc = { osi_malloc, osi_free };
 
 OsiObject::OsiObject(void* ptr) : ptr_(ptr) {}
 

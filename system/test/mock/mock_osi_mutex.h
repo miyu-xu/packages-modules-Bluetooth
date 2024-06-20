@@ -38,8 +38,8 @@ namespace osi_mutex {
 // Params: void
 // Return: void
 struct mutex_global_lock {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
+  std::function<void(void)> body{ [](void) {} };
+  void operator()(void) { body(); }
 };
 extern struct mutex_global_lock mutex_global_lock;
 
@@ -47,13 +47,13 @@ extern struct mutex_global_lock mutex_global_lock;
 // Params: void
 // Return: void
 struct mutex_global_unlock {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
+  std::function<void(void)> body{ [](void) {} };
+  void operator()(void) { body(); }
 };
 extern struct mutex_global_unlock mutex_global_unlock;
 
-}  // namespace osi_mutex
-}  // namespace mock
-}  // namespace test
+} // namespace osi_mutex
+} // namespace mock
+} // namespace test
 
 // END mockcify generation

@@ -244,7 +244,7 @@ typedef struct {
 static const uint32_t numPoleFilterCoeffs = 2;
 
 /* Subband-specific number of predictor zero filter coefficients. */
-static const uint32_t numZeroFilterCoeffs[4] = {24, 12, 6, 12};
+static const uint32_t numZeroFilterCoeffs[4] = { 24, 12, 6, 12 };
 
 /* Delta is scaled by 4 positions within the quantiser and inverse quantiser. */
 static const uint32_t deltaScale = 4;
@@ -252,4 +252,4 @@ static const uint32_t deltaScale = 4;
 #ifdef _GCC
 #pragma GCC visibility pop
 #endif
-#endif  // APTXPARAMETERS_H
+#endif // APTXPARAMETERS_H

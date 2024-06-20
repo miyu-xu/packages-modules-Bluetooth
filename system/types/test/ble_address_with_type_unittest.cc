@@ -17,8 +17,7 @@
 #include "types/ble_address_with_type.h"
 
 #include <gtest/gtest.h>
-static constexpr uint8_t RAW_ADDRESS_TEST1[6] = {0x01, 0x02, 0x03,
-                                                 0x04, 0x05, 0x06};
+static constexpr uint8_t RAW_ADDRESS_TEST1[6] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 };
 
 TEST(BleAddressWithTypeTest, to_ble_addr_type) {
   for (unsigned i = 0; i < 0xff + 1; i++) {
@@ -50,9 +49,11 @@ TEST(BleAddressWithTypeTest, from_ble_addr_type) {
     tBLE_ADDR_TYPE type;
     uint8_t value;
   } type_table[] = {
-      {BLE_ADDR_PUBLIC, 0},       {BLE_ADDR_RANDOM, 1},
-      {BLE_ADDR_PUBLIC_ID, 2},    {BLE_ADDR_RANDOM_ID, 3},
-      {BLE_ADDR_ANONYMOUS, 0xff},
+    {    BLE_ADDR_PUBLIC,    0 },
+    {    BLE_ADDR_RANDOM,    1 },
+    { BLE_ADDR_PUBLIC_ID,    2 },
+    { BLE_ADDR_RANDOM_ID,    3 },
+    { BLE_ADDR_ANONYMOUS, 0xff },
   };
 
   for (unsigned i = 0; i < sizeof(type_table) / sizeof(type_table[0]); i++) {
@@ -61,7 +62,7 @@ TEST(BleAddressWithTypeTest, from_ble_addr_type) {
 }
 
 TEST(BleAddressWithTypeTest, STREAM_TO_BLE_ADDR_TYPE) {
-  uint8_t buf[256] = {0x00, 0x01, 0x02, 0x03};
+  uint8_t buf[256] = { 0x00, 0x01, 0x02, 0x03 };
   buf[10] = 0x01;
   buf[20] = 0x02;
   buf[30] = 0x03;
@@ -100,12 +101,18 @@ TEST(BleAddressWithTypeTest, STREAM_TO_BLE_ADDR_TYPE) {
 }
 
 TEST(BleAddressWithTypeTest, TYPED_ADDRESS_TRANSPORT) {
-  tAclLinkSpec linkSpecA = {{BLE_ADDR_PUBLIC, RAW_ADDRESS_TEST1},
-                            BT_TRANSPORT_AUTO};
-  tAclLinkSpec linkSpecB = {{BLE_ADDR_PUBLIC, RAW_ADDRESS_TEST1},
-                            BT_TRANSPORT_BR_EDR};
-  tAclLinkSpec linkSpecC = {{BLE_ADDR_PUBLIC, RAW_ADDRESS_TEST1},
-                            BT_TRANSPORT_LE};
+  tAclLinkSpec linkSpecA = {
+    { BLE_ADDR_PUBLIC, RAW_ADDRESS_TEST1 },
+    BT_TRANSPORT_AUTO
+  };
+  tAclLinkSpec linkSpecB = {
+    { BLE_ADDR_PUBLIC, RAW_ADDRESS_TEST1 },
+    BT_TRANSPORT_BR_EDR
+  };
+  tAclLinkSpec linkSpecC = {
+    { BLE_ADDR_PUBLIC, RAW_ADDRESS_TEST1 },
+    BT_TRANSPORT_LE
+  };
 
   ASSERT_EQ(linkSpecA, linkSpecB);
   ASSERT_EQ(linkSpecA, linkSpecC);
@@ -117,7 +124,7 @@ TEST(BleAddressWithTypeTest, TYPED_ADDRESS_TRANSPORT) {
 }
 
 TEST(BleAddressWithTypeTest, BLE_ADDR_TYPE_TO_STREAM) {
-  uint8_t buf[256] = {0};
+  uint8_t buf[256] = { 0 };
   uint8_t* p = buf;
 
   BLE_ADDR_TYPE_TO_STREAM(p, BLE_ADDR_PUBLIC);
@@ -126,7 +133,7 @@ TEST(BleAddressWithTypeTest, BLE_ADDR_TYPE_TO_STREAM) {
   BLE_ADDR_TYPE_TO_STREAM(p, BLE_ADDR_RANDOM_ID);
   BLE_ADDR_TYPE_TO_STREAM(p, BLE_ADDR_ANONYMOUS);
 
-  const uint8_t exp[] = {0x0, 0x1, 0x2, 0x3, 0xff};
+  const uint8_t exp[] = { 0x0, 0x1, 0x2, 0x3, 0xff };
   ASSERT_EQ(*exp, *buf);
   ASSERT_EQ(5, p - buf);
 }

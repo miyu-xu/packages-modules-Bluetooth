@@ -25,35 +25,34 @@ namespace {
 TEST(StackManagerTest, DISABLED_start_and_shutdown_no_module) {
   StackManager stack_manager;
   ModuleList module_list;
-  os::Thread thread{"test_thread", os::Thread::Priority::NORMAL};
+  os::Thread thread{ "test_thread", os::Thread::Priority::NORMAL };
   stack_manager.StartUp(&module_list, &thread);
   stack_manager.ShutDown();
 }
 
 class TestModuleNoDependency : public Module {
- public:
+  public:
   static const ModuleFactory Factory;
 
- protected:
+  protected:
   void ListDependencies(ModuleList* /* list */) const {}
   void Start() override {}
   void Stop() override {}
-  std::string ToString() const override {
-    return std::string("TestModuleDep");
-  }
+  std::string ToString() const override { return std::string("TestModuleDep"); }
 };
 
-const ModuleFactory TestModuleNoDependency::Factory = ModuleFactory([]() { return new TestModuleNoDependency(); });
+const ModuleFactory TestModuleNoDependency::Factory =
+        ModuleFactory([]() { return new TestModuleNoDependency(); });
 
 TEST(StackManagerTest, DISABLED_get_module_instance) {
   StackManager stack_manager;
   ModuleList module_list;
   module_list.add<TestModuleNoDependency>();
-  os::Thread thread{"test_thread", os::Thread::Priority::NORMAL};
+  os::Thread thread{ "test_thread", os::Thread::Priority::NORMAL };
   stack_manager.StartUp(&module_list, &thread);
   EXPECT_NE(stack_manager.GetInstance<TestModuleNoDependency>(), nullptr);
   stack_manager.ShutDown();
 }
 
-}  // namespace
-}  // namespace bluetooth
+} // namespace
+} // namespace bluetooth

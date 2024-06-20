@@ -10,7 +10,7 @@ from absl import flags
 
 import grpc
 
-# Internal import
+#Internal import
 from blueberry.grpc import blueberry_device_controller_service
 from blueberry.grpc.proto import blueberry_device_controller_pb2_grpc
 

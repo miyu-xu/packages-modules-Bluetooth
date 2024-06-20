@@ -21,31 +21,31 @@ constexpr char kDefaultGeneratedOutputPath[] = ".";
 constexpr char kDefaultNamespace[] = "";
 constexpr char kDefaultNamespaceDelim[] = "::";
 constexpr char kDefaultTitle[] = "Bundled schema tables";
-}  // namespace
+} // namespace
 
 struct Opts {
-  bool verbose{false};
-  bool read{false};
-  bool write{false};
-  const char* filename{kDefaultBundleDataFile};
-  const char* gen{kDefaultGeneratedOutputPath};
-  const char* main_root_name{nullptr};
-  const char* ns_name{kDefaultNamespace};
-  const char* title{kDefaultTitle};
+  bool verbose{ false };
+  bool read{ false };
+  bool write{ false };
+  const char* filename{ kDefaultBundleDataFile };
+  const char* gen{ kDefaultGeneratedOutputPath };
+  const char* main_root_name{ nullptr };
+  const char* ns_name{ kDefaultNamespace };
+  const char* title{ kDefaultTitle };
   struct {
-    int c{0};
-    char** v{nullptr};
+    int c{ 0 };
+    char** v{ nullptr };
   } arg;
 };
 extern Opts opts;
 
 namespace {
-namespace helper {  // Part of flatbuffers API
+namespace helper { // Part of flatbuffers API
 constexpr bool AsBinaryFile = true;
 constexpr bool AsTextFile = false;
-}  // namespace helper
+} // namespace helper
 
-}  // namespace
+} // namespace
 
 /**
  * Read and parse a previously generated bundle data file

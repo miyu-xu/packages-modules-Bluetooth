@@ -21,7 +21,7 @@ class BtStub(object):
   perform actions on the Bluetooth device.
   """
 
-  # Connection Commands
+#Connection Commands
   def power_off(self) -> None:
     """Prompt the user to power off the Bluetooth device."""
     six.moves.input('Power Off Bluetooth device, then press enter.')
@@ -58,7 +58,7 @@ class BtStub(object):
     six.moves.input('Factory reset Bluetooth on the Bluetooth device, '
                     'then press enter.')
 
-  # A2DP: Bluetooth stereo streaming protocol methods.
+#A2DP : Bluetooth stereo streaming protocol methods.
   def is_audio_playing(self) -> bool:
     """Prompt the user to indicate if the audio is playing.
 
@@ -69,7 +69,7 @@ class BtStub(object):
                                     'true/false.')
     return bool(audio_playing)
 
-  # AVRCP Commands
+#AVRCP Commands
   def volume_up(self) -> None:
     """Prompt the user to raise the volume on the Bluetooth device."""
     six.moves.input('Press the Volume Up Button on the Bluetooth device, '
@@ -121,8 +121,8 @@ class BtStub(object):
     six.moves.input('Press the Rewind option on the Bluetooth device, '
                     'then press enter.')
 
-  # TODO(user): browse_media_content may need more work in terms of input
-  # params and value(s) returned
+#TODO(user) : browse_media_content may need more work in terms of input
+#params and value(s) returned
   def browse_media_content(self, directory: str = '') -> List[Any]:
     """Prompt the user to enter to the paired device media folders.
 
@@ -152,7 +152,7 @@ class BtStub(object):
     """
     six.moves.input('Shuffle a playlist')
 
-  # HFP (Hands Free Phone protocol) Commands
+#HFP(Hands Free Phone protocol) Commands
   def call_volume_up(self) -> None:
     """Prompt the user to press the volume up button on an active call.
 
@@ -286,7 +286,7 @@ class BtStub(object):
     """
     six.moves.input('Initiate a call to the last number dialed.')
 
-  # TODO(user): does this method need a input parameter?
+#TODO(user) : does this method need a input parameter ?
   def route_call_audio(self) -> None:
     """Prompt user to route a call from AG to HF, and vice versa.
 

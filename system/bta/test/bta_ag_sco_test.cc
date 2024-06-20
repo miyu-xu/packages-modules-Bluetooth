@@ -32,18 +32,17 @@ tBTM_CB btm_cb;
 LeAudioClient* LeAudioClient::Get() { return nullptr; }
 bool LeAudioClient::IsLeAudioClientInStreaming() { return false; }
 
-const RawAddress kRawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
+const RawAddress kRawAddress({ 0x11, 0x22, 0x33, 0x44, 0x55, 0x66 });
 
 class BtaAgScoParameterSelectionTest
-    : public ::testing::TestWithParam<
-          std::tuple<tBTA_AG_FEAT, tBTA_AG_PEER_FEAT, bool>> {
- protected:
+    : public ::testing::TestWithParam<std::tuple<tBTA_AG_FEAT, tBTA_AG_PEER_FEAT, bool>> {
+  protected:
   void SetUp() override {
     test::mock::device_esco_parameters::esco_parameters_for_codec.body =
-        [this](esco_codec_t codec) {
-          this->codec = codec;
-          return enh_esco_params_t{};
-        };
+            [this](esco_codec_t codec) {
+              this->codec = codec;
+              return enh_esco_params_t{};
+            };
     bluetooth::hci::testing::mock_controller_ = &controller_;
   }
   void TearDown() override {
@@ -59,17 +58,16 @@ TEST_P(BtaAgScoParameterSelectionTest, create_sco_cvsd) {
 
   const auto [feature, peer_feature, is_local] = GetParam();
   tBTA_AG_SCB scb{
-      .peer_addr = kRawAddress,
-      .features = feature,
-      .peer_features = peer_feature,
-      .sco_idx = BTM_INVALID_SCO_INDEX,
-      .inuse_codec = UUID_CODEC_CVSD,
+    .peer_addr = kRawAddress,
+    .features = feature,
+    .peer_features = peer_feature,
+    .sco_idx = BTM_INVALID_SCO_INDEX,
+    .inuse_codec = UUID_CODEC_CVSD,
   };
 
   this->codec = ESCO_CODEC_UNKNOWN;
   bta_ag_create_sco(&scb, is_local);
-  if ((scb.features & BTA_AG_FEAT_ESCO_S4) &&
-      (scb.peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+  if ((scb.features & BTA_AG_FEAT_ESCO_S4) && (scb.peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
     ASSERT_EQ(this->codec, ESCO_CODEC_CVSD_S4);
   } else {
     ASSERT_EQ(this->codec, ESCO_CODEC_CVSD_S3);
@@ -81,11 +79,11 @@ TEST_P(BtaAgScoParameterSelectionTest, create_pending_sco_cvsd) {
 
   const auto [feature, peer_feature, is_local] = GetParam();
   tBTA_AG_SCB scb{
-      .peer_addr = kRawAddress,
-      .features = feature,
-      .peer_features = peer_feature,
-      .sco_idx = BTM_INVALID_SCO_INDEX,
-      .inuse_codec = UUID_CODEC_CVSD,
+    .peer_addr = kRawAddress,
+    .features = feature,
+    .peer_features = peer_feature,
+    .sco_idx = BTM_INVALID_SCO_INDEX,
+    .inuse_codec = UUID_CODEC_CVSD,
   };
 
   this->codec = ESCO_CODEC_UNKNOWN;
@@ -96,8 +94,7 @@ TEST_P(BtaAgScoParameterSelectionTest, create_pending_sco_cvsd) {
     tBTM_ESCO_CONN_REQ_EVT_DATA data;
     bta_ag_sco_conn_rsp(&scb, &data);
   }
-  if ((scb.features & BTA_AG_FEAT_ESCO_S4) &&
-      (scb.peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+  if ((scb.features & BTA_AG_FEAT_ESCO_S4) && (scb.peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
     ASSERT_EQ(this->codec, ESCO_CODEC_CVSD_S4);
   } else {
     ASSERT_EQ(this->codec, ESCO_CODEC_CVSD_S3);
@@ -106,21 +103,20 @@ TEST_P(BtaAgScoParameterSelectionTest, create_pending_sco_cvsd) {
 
 std::vector<std::tuple<tBTA_AG_FEAT, tBTA_AG_PEER_FEAT, bool>>
 BtaAgScoParameterSelectionTestParameters() {
-  tBTA_AG_FEAT features[] = {0, BTA_AG_FEAT_ESCO_S4};
-  tBTA_AG_PEER_FEAT peer_features[] = {0, BTA_AG_PEER_FEAT_ESCO_S4};
-  bool is_local_or_orig[] = {false, true};
+  tBTA_AG_FEAT features[] = { 0, BTA_AG_FEAT_ESCO_S4 };
+  tBTA_AG_PEER_FEAT peer_features[] = { 0, BTA_AG_PEER_FEAT_ESCO_S4 };
+  bool is_local_or_orig[] = { false, true };
   std::vector<std::tuple<tBTA_AG_FEAT, tBTA_AG_PEER_FEAT, bool>> params;
 
   for (auto i : features) {
     for (auto j : peer_features) {
       for (auto k : is_local_or_orig) {
-        params.push_back({i, j, k});
+        params.push_back({ i, j, k });
       }
     }
   }
   return params;
 }
 
-INSTANTIATE_TEST_SUITE_P(
-    BtaAgScoParameterSelectionTests, BtaAgScoParameterSelectionTest,
-    ::testing::ValuesIn(BtaAgScoParameterSelectionTestParameters()));
+INSTANTIATE_TEST_SUITE_P(BtaAgScoParameterSelectionTests, BtaAgScoParameterSelectionTest,
+                         ::testing::ValuesIn(BtaAgScoParameterSelectionTestParameters()));

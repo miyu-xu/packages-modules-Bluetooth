@@ -26,14 +26,14 @@
 
 namespace base {
 class MessageLoop;
-}  // namespace base
+} // namespace base
 
 namespace {
-const RawAddress bdaddr1({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
-}  // namespace
+const RawAddress bdaddr1({ 0x11, 0x22, 0x33, 0x44, 0x55, 0x66 });
+} // namespace
 
 class BtaHfClientSecurityTest : public testing::Test {
- protected:
+  protected:
   void SetUp() override {
     // Reset the memory block, this is the state on which the allocate handle
     // would start operating
@@ -58,7 +58,7 @@ TEST_F(BtaHfClientSecurityTest, test_parse_overflow_buffer) {
   ASSERT_TRUE(cb != NULL);
 
   uint16_t len = BTA_HF_CLIENT_AT_PARSER_MAX_LEN * 2 + 3;
-  char buf[BTA_HF_CLIENT_AT_PARSER_MAX_LEN * 2 + 3] = {'\n'};
+  char buf[BTA_HF_CLIENT_AT_PARSER_MAX_LEN * 2 + 3] = { '\n' };
 
   bta_hf_client_at_parse(cb, (char*)(&buf[0]), len);
 

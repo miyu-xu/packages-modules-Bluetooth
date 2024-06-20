@@ -38,28 +38,28 @@ namespace osi_thread_scheduler {
 // Params: pid_t linux_tid
 // Return: bool
 struct thread_scheduler_enable_real_time {
-  bool return_value{false};
-  std::function<bool(pid_t linux_tid)> body{
-      [this](pid_t /* linux_tid */) { return return_value; }};
-  bool operator()(pid_t linux_tid) { return body(linux_tid); };
+  bool return_value{ false };
+  std::function<bool(pid_t linux_tid)> body{ [this](pid_t /* linux_tid */) {
+    return return_value;
+  } };
+  bool operator()(pid_t linux_tid) { return body(linux_tid); }
 };
-extern struct thread_scheduler_enable_real_time
-    thread_scheduler_enable_real_time;
+extern struct thread_scheduler_enable_real_time thread_scheduler_enable_real_time;
 
 // Name: osi_fifo_scheduing_priority_range
 // Params: int& min, int& max
 // Return: bool
 struct thread_scheduler_get_priority_range {
-  bool return_value{false};
-  std::function<bool(int& min, int& max)> body{
-      [this](int& /* min */, int& /* max */) { return return_value; }};
-  bool operator()(int& min, int& max) { return body(min, max); };
+  bool return_value{ false };
+  std::function<bool(int& min, int& max)> body{ [this](int& /* min */, int& /* max */) {
+    return return_value;
+  } };
+  bool operator()(int& min, int& max) { return body(min, max); }
 };
-extern struct thread_scheduler_get_priority_range
-    thread_scheduler_get_priority_range;
+extern struct thread_scheduler_get_priority_range thread_scheduler_get_priority_range;
 
-}  // namespace osi_thread_scheduler
-}  // namespace mock
-}  // namespace test
+} // namespace osi_thread_scheduler
+} // namespace mock
+} // namespace test
 
 // END mockcify generation

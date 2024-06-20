@@ -28,7 +28,7 @@ from mobly import asserts
 from mobly import signals
 from mobly.controllers import android_device
 
-# Internal import
+#Internal import
 from blueberry.utils import android_bluetooth_decorator
 from blueberry.utils import bt_constants
 from blueberry.utils import bt_test_utils as btutils
@@ -40,8 +40,8 @@ ADB_PATH = '/sdcard/Music/'
 WAVE_FILE_TEMPLATE = 'recorded_audio_%s.wav'
 DEFAULT_WAIT_TIME = 3.0
 
-# A MediaBrowserService implemented in the SL4A app to intercept Media keys and
-# commands.
+#A MediaBrowserService implemented in the SL4A app to intercept Media keys and
+#commands.
 BLUETOOTH_SL4A_AUDIO_SRC_MBS = 'BluetoothSL4AAudioSrcMBS'
 
 A2DP_HFP_PROFILES = [
@@ -67,7 +67,7 @@ class AndroidBtTargetDevice(object):
     self.audio_params = config.get('audio_params', None)
 
     if self.serial:
-      # self._ad for accessing the device at the end of the test
+#self._ad for accessing the device at the end of the test
       self._ad = android_device.AndroidDevice(self.serial)
       self.aud = adb_ui_device.AdbUiDevice(self._ad)
       self.pri_ad = android_bluetooth_decorator.AndroidBluetoothDecorator(
@@ -171,7 +171,7 @@ class AndroidBtTargetDevice(object):
     """Answers an incoming phone call."""
     if not self.is_hfp_connected():
       self.hfp_connect()
-    # Make sure the device is in ringing state.
+#Make sure the device is in ringing state.
     if not self.wait_for_call_state(
         bt_constants.CALL_STATE_RINGING, bt_constants.CALL_STATE_TIMEOUT_SEC):
       raise signals.ControllerError(
@@ -282,7 +282,7 @@ class AndroidBtTargetDevice(object):
 
     time.sleep(DEFAULT_WAIT_TIME)
 
-    # Check if the media session "BluetoothSL4AAudioSrcMBS" is active on sec_ad.
+#Check if the media session "BluetoothSL4AAudioSrcMBS" is active on sec_ad.
     active_sessions = self.sec_ad.sl4a.bluetoothMediaGetActiveMediaSessions()
     if BLUETOOTH_SL4A_AUDIO_SRC_MBS not in active_sessions:
       raise signals.ControllerError('Failed to start AvrcpMediaBrowserService.')
@@ -290,7 +290,7 @@ class AndroidBtTargetDevice(object):
     self.log.info('Connecting to A2dp media browser service')
     self.sl4a.bluetoothMediaConnectToCarMBS()
 
-    # TODO(user) Wait for an event back instead of sleep
+#TODO(user) Wait for an event back instead of sleep
     time.sleep(DEFAULT_WAIT_TIME)
     self.avrcp_ready = True
     return self.avrcp_ready
@@ -399,7 +399,7 @@ class AndroidBtTargetDevice(object):
     """Rejects an incoming phone call."""
     if not self.is_hfp_connected():
       self.hfp_connect()
-    # Make sure the device is in ringing state.
+#Make sure the device is in ringing state.
     if not self.wait_for_call_state(
         bt_constants.CALL_STATE_RINGING, bt_constants.CALL_STATE_TIMEOUT_SEC):
       raise signals.ControllerError(

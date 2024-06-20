@@ -23,7 +23,7 @@ from absl import flags
 from absl import logging
 import grpc
 
-# Internal import
+#Internal import
 from blueberry.grpc.proto import blueberry_device_controller_pb2
 from blueberry.grpc.proto import blueberry_device_controller_pb2_grpc
 
@@ -42,7 +42,7 @@ class GrpcBtSyncMock(object):
     self.mac_address = config['mac_address']
 
   def __del__(self) -> None:
-    # pytype: disable=attribute-error
+#pytype : disable = attribute - error
     self.server_proc.terminate()
     del self.channel_creds
     del self.channel
@@ -50,7 +50,7 @@ class GrpcBtSyncMock(object):
 
   def setup(self) -> None:
     """Setup the gRPC server that the sync mock will respond to."""
-    # pytype: disable=attribute-error
+#pytype : disable = attribute - error
     server_path = self.get_user_params()['mh_files']['grpc_server'][0]
     logging.info('Start gRPC server: %s', server_path)
     self.server_proc = subprocess.Popen([server_path],
@@ -78,12 +78,9 @@ class GrpcBtSyncMock(object):
     request = blueberry_device_controller_pb2.TargetMacAddress(
         mac_address=target_mac_address)
     try:
-      # pytype: disable=attribute-error
-      response = self.stub.PairAndConnectBluetooth(request)
-      logging.info('pair and connect bluetooth response: %s', response)
-      if response.error:
-        print('error handler TO BE IMPLEMENTED')
-      else:
-        return response.pairing_time_sec, response.connection_time_sec
-    except grpc.RpcError as rpc_error:
-      print(rpc_error)
+#pytype : disable = attribute - error
+      response
+= self.stub.PairAndConnectBluetooth(request)
+      logging.info('pair and connect bluetooth response: %s', response) if response
+          .error : print('error handler TO BE IMPLEMENTED') else : return response.pairing_time_sec,
+    response.connection_time_sec except grpc.RpcError as rpc_error : print(rpc_error)

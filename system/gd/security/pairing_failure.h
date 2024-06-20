@@ -27,9 +27,10 @@ namespace security {
 
 /* This structure holds the information about the failure in case of airing failure */
 struct PairingFailure {
-  /* A place in code that triggered this failure. It can be modified by functions that pass the error to a location that
-   * better reflect the current state of flow. i.e. instead of generic location responsible for waiting for packet,
-   * replace it with location of receiving specific packet in a specific flow */
+  /* A place in code that triggered this failure. It can be modified by functions that pass the
+   * error to a location that better reflect the current state of flow. i.e. instead of generic
+   * location responsible for waiting for packet, replace it with location of receiving specific
+   * packet in a specific flow */
   // base::Location location;
 
   /* This is the failure message, that will be passed, either into upper layers,
@@ -37,21 +38,23 @@ struct PairingFailure {
   std::string message;
 
   /* If failure is due to mismatch of received code, this contains the received opcode */
-  Code received_code_{0};
+  Code received_code_{ 0 };
 
   /* if the failure is due to "SMP failure", this field contains the reson code
    */
-  PairingFailedReason reason{0};
+  PairingFailedReason reason{ 0 };
 
   PairingFailure(/*const base::Location& location, */ const std::string& message)
       : /*location(location), */ message(message) {}
 
-  PairingFailure(/*const base::Location& location, */ const std::string& message, Code received_code)
+  PairingFailure(
+          /*const base::Location& location, */ const std::string& message, Code received_code)
       : /*location(location), */ message(message), received_code_(received_code) {}
 
-  PairingFailure(/*const base::Location& location, */ const std::string& message, PairingFailedReason reason)
+  PairingFailure(/*const base::Location& location, */ const std::string& message,
+                 PairingFailedReason reason)
       : /*location(location),*/ message(message), reason(reason) {}
 };
 
-}  // namespace security
-}  // namespace bluetooth
+} // namespace security
+} // namespace bluetooth

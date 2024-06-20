@@ -41,9 +41,10 @@ namespace osi_future {
 // Return: void*
 struct future_await {
   void* return_value{};
-  std::function<void*(future_t* future)> body{
-      [this](future_t* /* future */) { return return_value; }};
-  void* operator()(future_t* future) { return body(future); };
+  std::function<void*(future_t* future)> body{ [this](future_t* /* future */) {
+    return return_value;
+  } };
+  void* operator()(future_t* future) { return body(future); }
 };
 extern struct future_await future_await;
 
@@ -51,9 +52,9 @@ extern struct future_await future_await;
 // Params: void
 // Return: future_t*
 struct future_new {
-  future_t* return_value{0};
-  std::function<future_t*(void)> body{[this](void) { return return_value; }};
-  future_t* operator()(void) { return body(); };
+  future_t* return_value{ 0 };
+  std::function<future_t*(void)> body{ [this](void) { return return_value; } };
+  future_t* operator()(void) { return body(); }
 };
 extern struct future_new future_new;
 
@@ -61,10 +62,11 @@ extern struct future_new future_new;
 // Params: const char* name
 // Return: future_t*
 struct future_new_named {
-  future_t* return_value{0};
-  std::function<future_t*(const char* name)> body{
-      [this](const char* /* name */) { return return_value; }};
-  future_t* operator()(const char* name) { return body(name); };
+  future_t* return_value{ 0 };
+  std::function<future_t*(const char* name)> body{ [this](const char* /* name */) {
+    return return_value;
+  } };
+  future_t* operator()(const char* name) { return body(name); }
 };
 extern struct future_new_named future_new_named;
 
@@ -72,12 +74,12 @@ extern struct future_new_named future_new_named;
 // Params: void* value
 // Return: future_t*
 struct future_new_immediate {
-  future_t* return_value{0};
-  std::function<future_t*(void* value)> body{[this](void* /* value */) {
+  future_t* return_value{ 0 };
+  std::function<future_t*(void* value)> body{ [this](void* /* value */) {
     bluetooth::log::fatal("unexpectedly called");
     return return_value;
-  }};
-  future_t* operator()(void* value) { return body(value); };
+  } };
+  future_t* operator()(void* value) { return body(value); }
 };
 extern struct future_new_immediate future_new_immediate;
 
@@ -85,14 +87,14 @@ extern struct future_new_immediate future_new_immediate;
 // Params: future_t* future, void* value
 // Return: void
 struct future_ready {
-  std::function<void(future_t* future, void* value)> body{
-      [](future_t* /* future */, void* /* value */) {}};
-  void operator()(future_t* future, void* value) { body(future, value); };
+  std::function<void(future_t* future, void* value)> body{ [](future_t* /* future */,
+                                                              void* /* value */) {} };
+  void operator()(future_t* future, void* value) { body(future, value); }
 };
 extern struct future_ready future_ready;
 
-}  // namespace osi_future
-}  // namespace mock
-}  // namespace test
+} // namespace osi_future
+} // namespace mock
+} // namespace test
 
 // END mockcify generation

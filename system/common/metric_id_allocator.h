@@ -22,16 +22,16 @@
 #include <string>
 #include <thread>
 #include <unordered_set>
-#include "raw_address.h"
 
 #include "lru.h"
+#include "raw_address.h"
 
 namespace bluetooth {
 
 namespace common {
 
 class MetricIdAllocator {
- public:
+  public:
   using Callback = std::function<bool(const RawAddress& address, const int id)>;
 
   static const size_t kMaxNumUnpairedDevicesInMemory;
@@ -60,8 +60,8 @@ class MetricIdAllocator {
    * successful id deletion for forgotten device,
    * @return true if successfully initialized
    */
-  bool Init(const std::unordered_map<RawAddress, int>& paired_device_map,
-            Callback save_id_callback, Callback forget_device_callback);
+  bool Init(const std::unordered_map<RawAddress, int>& paired_device_map, Callback save_id_callback,
+            Callback forget_device_callback);
 
   /**
    * Close the allocator. should be called when Bluetooth process is killed
@@ -111,11 +111,11 @@ class MetricIdAllocator {
    */
   static bool IsValidId(const int id);
 
- protected:
+  protected:
   // Singleton
   MetricIdAllocator();
 
- private:
+  private:
   static const std::string LOGGING_TAG;
   mutable std::mutex id_allocator_mutex_;
 
@@ -123,8 +123,8 @@ class MetricIdAllocator {
   LegacyLruCache<RawAddress, int> temporary_device_cache_;
   std::unordered_set<int> id_set_;
 
-  int next_id_{kMinId};
-  bool initialized_{false};
+  int next_id_{ kMinId };
+  bool initialized_{ false };
   Callback save_id_callback_;
   Callback forget_device_callback_;
 
@@ -135,5 +135,5 @@ class MetricIdAllocator {
   MetricIdAllocator& operator=(MetricIdAllocator const&) = delete;
 };
 
-}  // namespace common
-}  // namespace bluetooth
+} // namespace common
+} // namespace bluetooth

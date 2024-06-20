@@ -1,4 +1,4 @@
-# Fuzzers for libbt-audio-hal-interface
+#Fuzzers for libbt - audio - hal - interface
 
 ## Plugin Design Considerations
 The fuzzer plugins for `libbt-audio-hal-interface` are designed based on the understanding of the

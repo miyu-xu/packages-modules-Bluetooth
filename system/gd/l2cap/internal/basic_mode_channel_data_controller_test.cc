@@ -49,7 +49,7 @@ void sync_handler(os::Handler* handler) {
 }
 
 class BasicModeDataControllerTest : public ::testing::Test {
- protected:
+  protected:
   void SetUp() override {
     thread_ = new os::Thread("test_thread", os::Thread::Priority::NORMAL);
     user_handler_ = new os::Handler(thread_);
@@ -70,11 +70,12 @@ class BasicModeDataControllerTest : public ::testing::Test {
 };
 
 TEST_F(BasicModeDataControllerTest, transmit) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
-  BasicModeDataController controller{1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
+  BasicModeDataController controller{ 1, 1, channel_queue.GetDownEnd(), queue_handler_,
+                                      &scheduler };
   EXPECT_CALL(scheduler, OnPacketsReady(1, 1));
-  controller.OnSdu(CreateSdu({'a', 'b', 'c', 'd'}));
+  controller.OnSdu(CreateSdu({ 'a', 'b', 'c', 'd' }));
   auto next_packet = controller.GetNextPacket();
   EXPECT_NE(next_packet, nullptr);
   auto view = GetPacketView(std::move(next_packet));
@@ -86,10 +87,11 @@ TEST_F(BasicModeDataControllerTest, transmit) {
 }
 
 TEST_F(BasicModeDataControllerTest, receive) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
-  BasicModeDataController controller{1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
-  auto base_view = GetPacketView(BasicFrameBuilder::Create(1, CreateSdu({'a', 'b', 'c', 'd'})));
+  BasicModeDataController controller{ 1, 1, channel_queue.GetDownEnd(), queue_handler_,
+                                      &scheduler };
+  auto base_view = GetPacketView(BasicFrameBuilder::Create(1, CreateSdu({ 'a', 'b', 'c', 'd' })));
   controller.OnPdu(base_view);
   sync_handler(queue_handler_);
   auto packet_view = channel_queue.GetUpEnd()->TryDequeue();
@@ -98,7 +100,7 @@ TEST_F(BasicModeDataControllerTest, receive) {
   EXPECT_EQ(data, "abcd");
 }
 
-}  // namespace
-}  // namespace internal
-}  // namespace l2cap
-}  // namespace bluetooth
+} // namespace
+} // namespace internal
+} // namespace l2cap
+} // namespace bluetooth

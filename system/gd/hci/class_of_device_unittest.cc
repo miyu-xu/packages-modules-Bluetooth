@@ -16,15 +16,15 @@
  *
  ******************************************************************************/
 
+#include "hci/class_of_device.h"
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-
-#include "hci/class_of_device.h"
 
 using bluetooth::hci::ClassOfDevice;
 
 static const char* test_class = "efc-d-ab";
-static const uint8_t test_bytes[]{0xab, 0xcd, 0xef};
+static const uint8_t test_bytes[]{ 0xab, 0xcd, 0xef };
 
 TEST(ClassOfDeviceUnittest, test_constructor_array) {
   ClassOfDevice cod(test_bytes);
@@ -90,11 +90,15 @@ TEST(ClassOfDeviceTest, classOfDeviceFromString) {
   ClassOfDevice cod;
 
   ASSERT_TRUE(ClassOfDevice::FromString("000-0-00", cod));
-  const ClassOfDevice result0 = {{0x00, 0x00, 0x00}};
+  const ClassOfDevice result0 = {
+    { 0x00, 0x00, 0x00 }
+  };
   ASSERT_EQ(0, memcmp(cod.data(), result0.data(), ClassOfDevice::kLength));
 
   ASSERT_TRUE(ClassOfDevice::FromString("ab2-1-4C", cod));
-  const ClassOfDevice result1 = {{0x4c, 0x21, 0xab}};
+  const ClassOfDevice result1 = {
+    { 0x4c, 0x21, 0xab }
+  };
   ASSERT_EQ(0, memcmp(cod.data(), result1.data(), ClassOfDevice::kLength));
 }
 

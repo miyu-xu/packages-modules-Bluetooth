@@ -1,4 +1,4 @@
-# Lint as: python3
+#Lint as : python3
 """Tests for testing audio capture in android bt target controller.
 
   location of the controller:
@@ -37,8 +37,8 @@ class BluetoothAudioCaptureTest(blueberry_base_test.BlueberryBaseTest):
     self.derived_bt_device.activate_pairing_mode()
     self.pri_phone.sl4a.bluetoothDiscoverAndBond(self.mac_address)
     self.pri_phone.wait_for_connection_success(self.mac_address)
-    # Gives more time for the pairing between the pri_phone and the
-    # derived_bt_device (the android bt target device)
+#Gives more time for the pairing between the pri_phone and the
+#derived_bt_device(the android bt target device)
     time.sleep(3)
     self.derived_bt_device.add_sec_ad_device(self.pri_phone)
     self.derived_bt_device.disconnect_all()

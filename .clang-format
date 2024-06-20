@@ -14,11 +14,27 @@
 # limitations under the License.
 #
 
-#
-# Below are some minor deviations from the default Google style to
-# accommodate for handling of the large legacy code base.
-#
 
+# AOSP is based on google style with some modification commented below
 BasedOnStyle: Google
-CommentPragmas: NOLINT:.*
-DerivePointerAlignment: false
+
+---
+Language: Cpp
+IndentWidth: 2 # AOSP ask for 4, but we are not ready to touch every single line 
+ColumnLimit: 100 # vs 80
+ContinuationIndentWidth: 8 # vs 4
+AccessModifierOffset: -4 # vs -1
+Standard: c++20 # vs Auto
+AllowShortIfStatementsOnASingleLine: Never # vs WithoutElse
+AllowShortLoopsOnASingleLine: false # vs true
+SpacesBeforeTrailingComments: 1 # vs 2
+
+# Allow clang-format to automatically fix more things
+RemoveSemicolon: true
+InsertBraces: true
+RemoveParentheses: ReturnStatement
+
+# Improve overall alignment in the code
+AlignOperands: false
+Cpp11BracedListStyle: false
+AlignArrayOfStructures: Right

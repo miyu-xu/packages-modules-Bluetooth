@@ -31,7 +31,7 @@ static const char* test_addr = "bc:9a:78:56:34:12";
 static const char* test_addr2 = "21:43:65:87:a9:cb";
 
 TEST(AddressUnittest, test_constructor_array) {
-  Address bdaddr({0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc});
+  Address bdaddr({ 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc });
 
   ASSERT_EQ(0x12, bdaddr.address[0]);
   ASSERT_EQ(0x34, bdaddr.address[1]);
@@ -72,7 +72,7 @@ TEST(AddressUnittest, test_to_from_str) {
 }
 
 TEST(AddressUnittest, test_from_octets) {
-  static const uint8_t test_addr_array[] = {0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc};
+  static const uint8_t test_addr_array[] = { 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc };
 
   Address bdaddr;
   size_t expected_result = Address::kLength;
@@ -186,11 +186,15 @@ TEST(AddressTest, BdAddrFromString) {
   Address addr = {};
 
   ASSERT_TRUE(Address::FromString("00:00:00:00:00:00", addr));
-  const Address result0 = {{0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
+  const Address result0 = {
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+  };
   ASSERT_EQ(0, memcmp(addr.data(), result0.data(), Address::kLength));
 
   ASSERT_TRUE(Address::FromString("ab:01:4C:d5:21:9f", addr));
-  const Address result1 = {{0x9f, 0x21, 0xd5, 0x4c, 0x01, 0xab}};
+  const Address result1 = {
+    { 0x9f, 0x21, 0xd5, 0x4c, 0x01, 0xab }
+  };
   ASSERT_EQ("ab:01:4c:d5:21:9f", addr.ToString());
   ASSERT_EQ("ab:01:4c:d5:21:9f", result1.ToString());
   ASSERT_THAT(addr.address, testing::ElementsAre(0x9f, 0x21, 0xd5, 0x4c, 0x01, 0xab));
@@ -206,8 +210,12 @@ TEST(AddressTest, BdAddrFromStringToStringEquivalent) {
 }
 
 TEST(AddressTest, BdAddrSameValueSameOrder) {
-  Address addr1{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Address addr2{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  Address addr1{
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Address addr2{
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
   // Test if two addresses with same byte value have the same hash
   struct std::hash<bluetooth::hci::Address> hasher;
   ASSERT_EQ(hasher(addr1), hasher(addr2));
@@ -220,13 +228,17 @@ TEST(AddressTest, BdAddrSameValueSameOrder) {
 }
 
 TEST(AddressTest, BdAddrHashDifferentForDifferentAddressesZeroAddr) {
-  Address addr1{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  Address addr1{
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
   struct std::hash<Address> hasher;
   ASSERT_NE(hasher(addr1), hasher(Address::kEmpty));
 }
 
 TEST(AddressTest, BdAddrHashDifferentForDifferentAddressesFullAddr) {
-  Address addr1{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  Address addr1{
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
   struct std::hash<Address> hasher;
   ASSERT_NE(hasher(addr1), hasher(Address::kAny));
 }
@@ -237,7 +249,9 @@ TEST(AddressTest, BdAddrHashDifferentForDifferentAddressesZeroAndFullAddr) {
 }
 
 TEST(AddressTest, ToStringForLoggingTestOutputUnderDebuggablePropAndInitFlag) {
-  Address addr{{0xab, 0x55, 0x44, 0x33, 0x22, 0x11}};
+  Address addr{
+    { 0xab, 0x55, 0x44, 0x33, 0x22, 0x11 }
+  };
   const std::string redacted_loggable_str = "xx:xx:xx:xx:55:ab";
   const std::string loggable_str = "11:22:33:44:55:ab";
 
@@ -248,8 +262,12 @@ TEST(AddressTest, ToStringForLoggingTestOutputUnderDebuggablePropAndInitFlag) {
 }
 
 TEST(AddressTest, Inequalities) {
-  Address addr1{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Address addr2{{0x02, 0x03, 0x04, 0x05, 0x06, 0x07}};
+  Address addr1{
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Address addr2{
+    { 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 }
+  };
   ASSERT_TRUE(addr1 < addr2);
   ASSERT_TRUE(addr2 > addr1);
 

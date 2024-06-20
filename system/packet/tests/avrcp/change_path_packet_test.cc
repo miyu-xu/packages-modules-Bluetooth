@@ -38,8 +38,7 @@ TEST(ChangePathResponseBuilderTest, builderTest) {
 TEST(ChangePathResponseBuilderTest, builderErrorStatusTest) {
   // NOTE: The num items in folder field doesn't matter when the status is
   // not NO_ERROR
-  auto builder =
-      ChangePathResponseBuilder::MakeBuilder(Status::INVALID_DIRECTION, 2);
+  auto builder = ChangePathResponseBuilder::MakeBuilder(Status::INVALID_DIRECTION, 2);
   ASSERT_EQ(builder->size(), change_path_error_response.size());
 
   auto test_packet = TestChangePathReqPacket::Make();
@@ -66,7 +65,7 @@ TEST(ChangePathRequestTest, invalidTest) {
   auto test_packet = TestChangePathReqPacket::Make(packet_copy);
   ASSERT_FALSE(test_packet->IsValid());
 
-  std::vector<uint8_t> short_packet = {0x00, 0x01, 0x02, 0x03, 0x04};
+  std::vector<uint8_t> short_packet = { 0x00, 0x01, 0x02, 0x03, 0x04 };
   test_packet = TestChangePathReqPacket::Make(short_packet);
   ASSERT_FALSE(test_packet->IsValid());
 }
@@ -80,5 +79,5 @@ TEST(ChangePathRequestBuilder, builderTest) {
   ASSERT_EQ(test_packet->GetData(), change_path_request);
 }
 
-}  // namespace avrcp
-}  // namespace bluetooth
+} // namespace avrcp
+} // namespace bluetooth

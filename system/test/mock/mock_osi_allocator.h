@@ -40,9 +40,8 @@ namespace osi_allocator {
 // Return: void*
 struct osi_calloc {
   void* return_value{};
-  std::function<void*(size_t size)> body{
-      [this](size_t /* size */) { return return_value; }};
-  void* operator()(size_t size) { return body(size); };
+  std::function<void*(size_t size)> body{ [this](size_t /* size */) { return return_value; } };
+  void* operator()(size_t size) { return body(size); }
 };
 extern struct osi_calloc osi_calloc;
 
@@ -50,8 +49,8 @@ extern struct osi_calloc osi_calloc;
 // Params: void* ptr
 // Return: void
 struct osi_free {
-  std::function<void(void* ptr)> body{[](void* /* ptr */) {}};
-  void operator()(void* ptr) { body(ptr); };
+  std::function<void(void* ptr)> body{ [](void* /* ptr */) {} };
+  void operator()(void* ptr) { body(ptr); }
 };
 extern struct osi_free osi_free;
 
@@ -59,8 +58,8 @@ extern struct osi_free osi_free;
 // Params: void** p_ptr
 // Return: void
 struct osi_free_and_reset {
-  std::function<void(void** p_ptr)> body{[](void** /* p_ptr */) {}};
-  void operator()(void** p_ptr) { body(p_ptr); };
+  std::function<void(void** p_ptr)> body{ [](void** /* p_ptr */) {} };
+  void operator()(void** p_ptr) { body(p_ptr); }
 };
 extern struct osi_free_and_reset osi_free_and_reset;
 
@@ -69,9 +68,8 @@ extern struct osi_free_and_reset osi_free_and_reset;
 // Return: void*
 struct osi_malloc {
   void* return_value{};
-  std::function<void*(size_t size)> body{
-      [this](size_t /* size */) { return return_value; }};
-  void* operator()(size_t size) { return body(size); };
+  std::function<void*(size_t size)> body{ [this](size_t /* size */) { return return_value; } };
+  void* operator()(size_t size) { return body(size); }
 };
 extern struct osi_malloc osi_malloc;
 
@@ -79,10 +77,11 @@ extern struct osi_malloc osi_malloc;
 // Params: const char* str
 // Return: char*
 struct osi_strdup {
-  char* return_value{0};
-  std::function<char*(const char* str)> body{
-      [this](const char* /* str */) { return return_value; }};
-  char* operator()(const char* str) { return body(str); };
+  char* return_value{ 0 };
+  std::function<char*(const char* str)> body{ [this](const char* /* str */) {
+    return return_value;
+  } };
+  char* operator()(const char* str) { return body(str); }
 };
 extern struct osi_strdup osi_strdup;
 
@@ -90,15 +89,16 @@ extern struct osi_strdup osi_strdup;
 // Params: const char* str, size_t len
 // Return: char*
 struct osi_strndup {
-  char* return_value{0};
+  char* return_value{ 0 };
   std::function<char*(const char* str, size_t len)> body{
-      [this](const char* /* str */, size_t /* len */) { return return_value; }};
-  char* operator()(const char* str, size_t len) { return body(str, len); };
+    [this](const char* /* str */, size_t /* len */) { return return_value; }
+  };
+  char* operator()(const char* str, size_t len) { return body(str, len); }
 };
 extern struct osi_strndup osi_strndup;
 
-}  // namespace osi_allocator
-}  // namespace mock
-}  // namespace test
+} // namespace osi_allocator
+} // namespace mock
+} // namespace test
 
 // END mockcify generation

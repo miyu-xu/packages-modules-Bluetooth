@@ -51,7 +51,7 @@ void sync_handler(os::Handler* handler) {
 }
 
 class ErtmDataControllerTest : public ::testing::Test {
- protected:
+  protected:
   void SetUp() override {
     thread_ = new os::Thread("test_thread", os::Thread::Priority::NORMAL);
     user_handler_ = new os::Handler(thread_);
@@ -72,12 +72,12 @@ class ErtmDataControllerTest : public ::testing::Test {
 };
 
 TEST_F(ErtmDataControllerTest, transmit_no_fcs) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
   testing::MockILink link;
-  ErtmController controller{&link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
+  ErtmController controller{ &link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler };
   EXPECT_CALL(scheduler, OnPacketsReady(1, 1));
-  controller.OnSdu(CreateSdu({'a', 'b', 'c', 'd'}));
+  controller.OnSdu(CreateSdu({ 'a', 'b', 'c', 'd' }));
   auto next_packet = controller.GetNextPacket();
   EXPECT_NE(next_packet, nullptr);
   auto view = GetPacketView(std::move(next_packet));
@@ -95,13 +95,13 @@ TEST_F(ErtmDataControllerTest, transmit_no_fcs) {
 }
 
 TEST_F(ErtmDataControllerTest, receive_no_fcs) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
   testing::MockILink link;
-  ErtmController controller{&link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
-  auto segment = CreateSdu({'a', 'b', 'c', 'd'});
-  auto builder = EnhancedInformationFrameBuilder::Create(1, 0, Final::NOT_SET, 0,
-                                                         SegmentationAndReassembly::UNSEGMENTED, std::move(segment));
+  ErtmController controller{ &link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler };
+  auto segment = CreateSdu({ 'a', 'b', 'c', 'd' });
+  auto builder = EnhancedInformationFrameBuilder::Create(
+          1, 0, Final::NOT_SET, 0, SegmentationAndReassembly::UNSEGMENTED, std::move(segment));
   auto base_view = GetPacketView(std::move(builder));
   controller.OnPdu(base_view);
   sync_handler(queue_handler_);
@@ -112,22 +112,23 @@ TEST_F(ErtmDataControllerTest, receive_no_fcs) {
 }
 
 TEST_F(ErtmDataControllerTest, reassemble_valid_sdu) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
   testing::MockILink link;
-  ErtmController controller{&link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
-  auto segment1 = CreateSdu({'a'});
-  auto segment2 = CreateSdu({'b', 'c'});
-  auto segment3 = CreateSdu({'d', 'e', 'f'});
-  auto builder1 = EnhancedInformationStartFrameBuilder::Create(1, 0, Final::NOT_SET, 0, 6, std::move(segment1));
+  ErtmController controller{ &link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler };
+  auto segment1 = CreateSdu({ 'a' });
+  auto segment2 = CreateSdu({ 'b', 'c' });
+  auto segment3 = CreateSdu({ 'd', 'e', 'f' });
+  auto builder1 = EnhancedInformationStartFrameBuilder::Create(1, 0, Final::NOT_SET, 0, 6,
+                                                               std::move(segment1));
   auto base_view = GetPacketView(std::move(builder1));
   controller.OnPdu(base_view);
-  auto builder2 = EnhancedInformationFrameBuilder::Create(1, 1, Final::NOT_SET, 0,
-                                                          SegmentationAndReassembly::CONTINUATION, std::move(segment2));
+  auto builder2 = EnhancedInformationFrameBuilder::Create(
+          1, 1, Final::NOT_SET, 0, SegmentationAndReassembly::CONTINUATION, std::move(segment2));
   base_view = GetPacketView(std::move(builder2));
   controller.OnPdu(base_view);
-  auto builder3 = EnhancedInformationFrameBuilder::Create(1, 2, Final::NOT_SET, 0, SegmentationAndReassembly::END,
-                                                          std::move(segment3));
+  auto builder3 = EnhancedInformationFrameBuilder::Create(
+          1, 2, Final::NOT_SET, 0, SegmentationAndReassembly::END, std::move(segment3));
   base_view = GetPacketView(std::move(builder3));
   controller.OnPdu(base_view);
   sync_handler(queue_handler_);
@@ -138,22 +139,23 @@ TEST_F(ErtmDataControllerTest, reassemble_valid_sdu) {
 }
 
 TEST_F(ErtmDataControllerTest, reassemble_invalid_sdu_size_in_start_frame_will_disconnect) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
   testing::MockILink link;
-  ErtmController controller{&link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
-  auto segment1 = CreateSdu({'a'});
-  auto segment2 = CreateSdu({'b', 'c'});
-  auto segment3 = CreateSdu({'d', 'e', 'f'});
-  auto builder1 = EnhancedInformationStartFrameBuilder::Create(1, 0, Final::NOT_SET, 0, 10, std::move(segment1));
+  ErtmController controller{ &link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler };
+  auto segment1 = CreateSdu({ 'a' });
+  auto segment2 = CreateSdu({ 'b', 'c' });
+  auto segment3 = CreateSdu({ 'd', 'e', 'f' });
+  auto builder1 = EnhancedInformationStartFrameBuilder::Create(1, 0, Final::NOT_SET, 0, 10,
+                                                               std::move(segment1));
   auto base_view = GetPacketView(std::move(builder1));
   controller.OnPdu(base_view);
-  auto builder2 = EnhancedInformationFrameBuilder::Create(1, 1, Final::NOT_SET, 0,
-                                                          SegmentationAndReassembly::CONTINUATION, std::move(segment2));
+  auto builder2 = EnhancedInformationFrameBuilder::Create(
+          1, 1, Final::NOT_SET, 0, SegmentationAndReassembly::CONTINUATION, std::move(segment2));
   base_view = GetPacketView(std::move(builder2));
   controller.OnPdu(base_view);
-  auto builder3 = EnhancedInformationFrameBuilder::Create(1, 2, Final::NOT_SET, 0, SegmentationAndReassembly::END,
-                                                          std::move(segment3));
+  auto builder3 = EnhancedInformationFrameBuilder::Create(
+          1, 2, Final::NOT_SET, 0, SegmentationAndReassembly::END, std::move(segment3));
   base_view = GetPacketView(std::move(builder3));
   EXPECT_CALL(link, SendDisconnectionRequest(1, 1));
   controller.OnPdu(base_view);
@@ -163,13 +165,13 @@ TEST_F(ErtmDataControllerTest, reassemble_invalid_sdu_size_in_start_frame_will_d
 }
 
 TEST_F(ErtmDataControllerTest, transmit_with_fcs) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
   testing::MockILink link;
-  ErtmController controller{&link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
+  ErtmController controller{ &link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler };
   controller.EnableFcs(true);
   EXPECT_CALL(scheduler, OnPacketsReady(1, 1));
-  controller.OnSdu(CreateSdu({'a', 'b', 'c', 'd'}));
+  controller.OnSdu(CreateSdu({ 'a', 'b', 'c', 'd' }));
   auto next_packet = controller.GetNextPacket();
   EXPECT_NE(next_packet, nullptr);
   auto view = GetPacketView(std::move(next_packet));
@@ -187,14 +189,14 @@ TEST_F(ErtmDataControllerTest, transmit_with_fcs) {
 }
 
 TEST_F(ErtmDataControllerTest, receive_packet_with_fcs) {
-  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{10};
+  common::BidiQueue<Scheduler::UpperEnqueue, Scheduler::UpperDequeue> channel_queue{ 10 };
   testing::MockScheduler scheduler;
   testing::MockILink link;
-  ErtmController controller{&link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler};
+  ErtmController controller{ &link, 1, 1, channel_queue.GetDownEnd(), queue_handler_, &scheduler };
   controller.EnableFcs(true);
-  auto segment = CreateSdu({'a', 'b', 'c', 'd'});
+  auto segment = CreateSdu({ 'a', 'b', 'c', 'd' });
   auto builder = EnhancedInformationFrameWithFcsBuilder::Create(
-      1, 0, Final::NOT_SET, 0, SegmentationAndReassembly::UNSEGMENTED, std::move(segment));
+          1, 0, Final::NOT_SET, 0, SegmentationAndReassembly::UNSEGMENTED, std::move(segment));
   auto base_view = GetPacketView(std::move(builder));
   controller.OnPdu(base_view);
   sync_handler(queue_handler_);
@@ -204,7 +206,7 @@ TEST_F(ErtmDataControllerTest, receive_packet_with_fcs) {
   EXPECT_EQ(data, "abcd");
 }
 
-}  // namespace
-}  // namespace internal
-}  // namespace l2cap
-}  // namespace bluetooth
+} // namespace
+} // namespace internal
+} // namespace l2cap
+} // namespace bluetooth

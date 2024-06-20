@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-#include "storage/device.h"
+#include "storage/le_device.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include "storage/classic_device.h"
-#include "storage/le_device.h"
+#include "storage/device.h"
 #include "storage/mutation.h"
 
 using bluetooth::hci::Address;
@@ -36,7 +36,9 @@ using ::testing::Optional;
 TEST(LeDeviceTest, create_new_le_device) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  bluetooth::hci::Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  bluetooth::hci::Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
   LeDevice device(&config, &memory_only_config, address.ToString());
   ASSERT_FALSE(device.GetAddressType());
 }
@@ -44,7 +46,9 @@ TEST(LeDeviceTest, create_new_le_device) {
 TEST(LeDeviceTest, set_property) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
   LeDevice device(&config, &memory_only_config, address.ToString());
   ASSERT_FALSE(device.GetAddressType());
   Mutation mutation(&config, &memory_only_config);
@@ -56,11 +60,15 @@ TEST(LeDeviceTest, set_property) {
 TEST(LeDeviceTest, equality_test) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  bluetooth::hci::Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  bluetooth::hci::Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
   LeDevice device1(&config, &memory_only_config, address.ToString());
   LeDevice device2(&config, &memory_only_config, address.ToString());
   ASSERT_EQ(device1, device2);
-  bluetooth::hci::Address address3 = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x07}};
+  bluetooth::hci::Address address3 = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x07 }
+  };
   LeDevice device3(&config, &memory_only_config, address3.ToString());
   ASSERT_NE(device1, device3);
 }
@@ -86,11 +94,16 @@ TEST(LeDeviceTest, operator_less_than) {
     larger_memory_only_config_ptr = &memory_only_config1;
   }
 
-  bluetooth::hci::Address smaller_address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  bluetooth::hci::Address larger_address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x07}};
+  bluetooth::hci::Address smaller_address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  bluetooth::hci::Address larger_address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x07 }
+  };
 
   {
-    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
+    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr,
+                     smaller_address.ToString());
     LeDevice device2(larger_config_ptr, larger_memory_only_config_ptr, larger_address.ToString());
     ASSERT_TRUE(device1 < device2);
   }
@@ -121,7 +134,8 @@ TEST(LeDeviceTest, operator_less_than) {
 
   {
     LeDevice device1(larger_config_ptr, larger_memory_only_config_ptr, larger_address.ToString());
-    LeDevice device2(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
+    LeDevice device2(smaller_config_ptr, smaller_memory_only_config_ptr,
+                     smaller_address.ToString());
     ASSERT_FALSE(device1 < device2);
   }
 
@@ -138,25 +152,29 @@ TEST(LeDeviceTest, operator_less_than) {
   }
 
   {
-    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
+    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr,
+                     smaller_address.ToString());
     LeDevice device2(smaller_config_ptr, larger_memory_only_config_ptr, smaller_address.ToString());
     ASSERT_TRUE(device1 < device2);
   }
 
   {
-    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
+    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr,
+                     smaller_address.ToString());
     LeDevice device2(smaller_config_ptr, smaller_memory_only_config_ptr, larger_address.ToString());
     ASSERT_TRUE(device1 < device2);
   }
 
   {
-    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
+    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr,
+                     smaller_address.ToString());
     LeDevice device2(larger_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
     ASSERT_TRUE(device1 < device2);
   }
 
   {
-    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
+    LeDevice device1(smaller_config_ptr, smaller_memory_only_config_ptr,
+                     smaller_address.ToString());
     LeDevice device2(smaller_config_ptr, larger_memory_only_config_ptr, larger_address.ToString());
     ASSERT_TRUE(device1 < device2);
   }

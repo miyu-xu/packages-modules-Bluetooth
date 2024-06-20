@@ -36,14 +36,13 @@ const Uuid PRIMARY_SERVICE = Uuid::From16Bit(GATT_UUID_PRI_SERVICE);
 const Uuid SECONDARY_SERVICE = Uuid::From16Bit(GATT_UUID_SEC_SERVICE);
 const Uuid INCLUDE = Uuid::From16Bit(GATT_UUID_INCLUDE_SERVICE);
 const Uuid CHARACTERISTIC = Uuid::From16Bit(GATT_UUID_CHAR_DECLARE);
-const Uuid CHARACTERISTIC_EXTENDED_PROPERTIES =
-    Uuid::From16Bit(GATT_UUID_CHAR_EXT_PROP);
+const Uuid CHARACTERISTIC_EXTENDED_PROPERTIES = Uuid::From16Bit(GATT_UUID_CHAR_EXT_PROP);
 
 Uuid SERVICE_1_UUID = Uuid::FromString("1800");
 Uuid SERVICE_2_UUID = Uuid::FromString("1801");
 Uuid SERVICE_1_CHAR_1_UUID = Uuid::FromString("2a00");
 Uuid SERVICE_1_CHAR_1_DESC_1_UUID = Uuid::FromString("2902");
-}  // namespace
+} // namespace
 
 /* This test makes sure that each possible GATT cache element is properly
  * serialized into StoredAttribute */
@@ -57,7 +56,7 @@ TEST(GattDatabaseTest, serialize_deserialize_binary_test) {
   builder.AddDescriptor(0x0006, CHARACTERISTIC_EXTENDED_PROPERTIES);
 
   // Set value of only «Characteristic Extended Properties» descriptor
-  builder.SetValueOfDescriptors({0x0001});
+  builder.SetValueOfDescriptors({ 0x0001 });
 
   Database db = builder.Build();
   std::vector<StoredAttribute> serialized = db.Serialize();
@@ -107,10 +106,9 @@ TEST(GattCacheTest, stored_attribute_to_binary_service_test) {
   memset(&attr, 0, sizeof(attr));
 
   attr = {
-      .handle = 0x0001,
-      .type = PRIMARY_SERVICE,
-      .value = {.service = {.uuid = Uuid::FromString("1800"),
-                            .end_handle = 0x001c}},
+    .handle = 0x0001,
+    .type = PRIMARY_SERVICE,
+    .value = { .service = { .uuid = Uuid::FromString("1800"), .end_handle = 0x001c } },
   };
 
   constexpr size_t len = sizeof(StoredAttribute);
@@ -140,15 +138,15 @@ TEST(GattCacheTest, stored_attribute_to_binary_included_service_test) {
   memset(&attr, 0, sizeof(attr));
 
   attr = {
-      .handle = 0x0001,
-      .type = INCLUDE,
-      .value = {.included_service =
-                    {
-                        .handle = 0x0010,
-                        .end_handle = 0x001f,
-                        .uuid = Uuid::FromString("1801"),
-                    }},
-  };
+            .handle = 0x0001,
+            .type = INCLUDE,
+            .value = {.included_service =
+                              {
+                                      .handle = 0x0010,
+                                      .end_handle = 0x001f,
+                                      .uuid = Uuid::FromString("1801"),
+                              }},
+    };
 
   constexpr size_t len = sizeof(StoredAttribute);
   // clang-format off
@@ -174,11 +172,11 @@ TEST(GattCacheTest, stored_attribute_to_binary_characteristic_test) {
   memset(&attr, 0, sizeof(attr));
 
   attr = {
-      .handle = 0x0002,
-      .type = CHARACTERISTIC,
-      .value = {.characteristic = {.properties = 0x02,
+    .handle = 0x0002,
+    .type = CHARACTERISTIC,
+    .value = { .characteristic = { .properties = 0x02,
                                    .value_handle = 0x0003,
-                                   .uuid = Uuid::FromString("2a00")}},
+                                   .uuid = Uuid::FromString("2a00") } },
   };
 
   constexpr size_t len = sizeof(StoredAttribute);
@@ -206,9 +204,9 @@ TEST(GattCacheTest, stored_attribute_to_binary_descriptor_test) {
   /* make sure padding at end of union is cleared */
   memset(&attr, 0, sizeof(attr));
 
-  attr = {.handle = 0x0003,
-          .type = Uuid::FromString("2902"),
-          .value = {.characteristic_extended_properties = 0x00}};
+  attr = { .handle = 0x0003,
+           .type = Uuid::FromString("2902"),
+           .value = { .characteristic_extended_properties = 0x00 } };
 
   constexpr size_t len = sizeof(StoredAttribute);
   // clang-format off
@@ -248,14 +246,14 @@ TEST(GattDatabaseTest, hash_test) {
   builder.AddCharacteristic(0x0015, 0x0016, Uuid::From16Bit(0x2A19), 0x02);
 
   // set characteristic extended properties descriptor values
-  std::vector<uint16_t> descriptorValues = {0x0000};
+  std::vector<uint16_t> descriptorValues = { 0x0000 };
   builder.SetValueOfDescriptors(descriptorValues);
 
   Database db = builder.Build();
 
   // Big endian example from Bluetooth SPEC V5.2, Vol 3, Part G, APPENDIX B
-  Octet16 expected_hash{0xF1, 0xCA, 0x2D, 0x48, 0xEC, 0xF5, 0x8B, 0xAC,
-                        0x8A, 0x88, 0x30, 0xBB, 0xB9, 0xFB, 0xA9, 0x90};
+  Octet16 expected_hash{ 0xF1, 0xCA, 0x2D, 0x48, 0xEC, 0xF5, 0x8B, 0xAC,
+                         0x8A, 0x88, 0x30, 0xBB, 0xB9, 0xFB, 0xA9, 0x90 };
 
   Octet16 hash = db.Hash();
   // Convert output hash from little endian to big endian
@@ -266,16 +264,15 @@ TEST(GattDatabaseTest, hash_test) {
 
 /* This test makes sure that Descriptor represented in StoredAttribute have
  * proper binary format. */
-TEST(GattCacheTest,
-     stored_attribute_to_binary_characteristic_extended_properties_test) {
+TEST(GattCacheTest, stored_attribute_to_binary_characteristic_extended_properties_test) {
   StoredAttribute attr;
 
   /* make sure padding at end of union is cleared */
   memset(&attr, 0, sizeof(attr));
 
-  attr = {.handle = 0x0003,
-          .type = Uuid::FromString("2900"),
-          .value = {.characteristic_extended_properties = 0x0001}};
+  attr = { .handle = 0x0003,
+           .type = Uuid::FromString("2900"),
+           .value = { .characteristic_extended_properties = 0x0001 } };
 
   constexpr size_t len = sizeof(StoredAttribute);
   // clang-format off
@@ -300,14 +297,12 @@ TEST(GattCacheTest,
 
 /* This test makes sure that Descriptor represented in StoredAttribute have
  * proper binary format. */
-TEST(
-    GattCacheTest,
-    stored_attribute_serialized_to_binary_characteristic_extended_properties_test) {
+TEST(GattCacheTest, stored_attribute_serialized_to_binary_characteristic_extended_properties_test) {
   StoredAttribute attr;
 
-  attr = {.handle = 0x0003,
-          .type = Uuid::FromString("2900"),
-          .value = {.characteristic_extended_properties = 0x0001}};
+  attr = { .handle = 0x0003,
+           .type = Uuid::FromString("2900"),
+           .value = { .characteristic_extended_properties = 0x0001 } };
 
   constexpr size_t len = StoredAttribute::kSizeOnDisk;
   std::vector<uint8_t> serialized;
@@ -343,14 +338,13 @@ TEST(GattCacheTest, stored_attributes_serialized_to_binary_test) {
   log::error("{}", base::HexEncode(&attr, StoredAttribute::kSizeOnDisk));
   */
 
-  memcpy(
-      attr_bytes,
-      "\x03\x00"  // handle
-      "\x00\x00\x29\x00\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // Uuid
-      "\x34\x12" /* extended property */
-      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
-      "\x00",
-      StoredAttribute::kSizeOnDisk);
+  memcpy(attr_bytes,
+         "\x03\x00"                                                         // handle
+         "\x00\x00\x29\x00\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB" // Uuid
+         "\x34\x12"                                                         /* extended property */
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00",
+         StoredAttribute::kSizeOnDisk);
   attr = *(StoredAttribute*)attr_bytes;
 
   std::vector<uint8_t> serialized;
@@ -374,14 +368,13 @@ TEST(GattCacheTest, stored_attributes_serialized_to_binary_test) {
   };
   log::error("{}", base::HexEncode(&attr, StoredAttribute::kSizeOnDisk));
   */
-  memcpy(
-      attr_bytes,
-      "\x03\x02"  // handle
-      "\x00\x00\x28\x00\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // Type
-      "\x00\x00\x42\x03\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // Uuid
-      "\x03\x12"  // end_handle
-      "\x00\x00",
-      StoredAttribute::kSizeOnDisk);
+  memcpy(attr_bytes,
+         "\x03\x02"                                                         // handle
+         "\x00\x00\x28\x00\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB" // Type
+         "\x00\x00\x42\x03\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB" // Uuid
+         "\x03\x12"                                                         // end_handle
+         "\x00\x00",
+         StoredAttribute::kSizeOnDisk);
   attr = *(StoredAttribute*)attr_bytes;
 
   StoredAttribute::SerializeStoredAttribute(attr, serialized);
@@ -404,14 +397,13 @@ TEST(GattCacheTest, stored_attributes_serialized_to_binary_test) {
 
   log::error("{}", base::HexEncode(&attr, StoredAttribute::kSizeOnDisk));
   */
-  memcpy(
-      attr_bytes,
-      "\x04\x03"  // handle
-      "\x00\x00\x28\x01\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // type
-      "\x00\x00\x43\x03\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // UUID
-      "\x03\x12"  // end_handle
-      "\x00\x000",
-      StoredAttribute::kSizeOnDisk);
+  memcpy(attr_bytes,
+         "\x04\x03"                                                         // handle
+         "\x00\x00\x28\x01\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB" // type
+         "\x00\x00\x43\x03\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB" // UUID
+         "\x03\x12"                                                         // end_handle
+         "\x00\x000",
+         StoredAttribute::kSizeOnDisk);
   attr = *(StoredAttribute*)attr_bytes;
 
   StoredAttribute::SerializeStoredAttribute(attr, serialized);
@@ -435,14 +427,13 @@ TEST(GattCacheTest, stored_attributes_serialized_to_binary_test) {
   log::error("{}", base::HexEncode(&attr, StoredAttribute::kSizeOnDisk));
   */
 
-  memcpy(
-      attr_bytes,
-      "\x03\x01"  // handle
-      "\x00\x00\x28\x02\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // type
-      "\x34\x01"  // handle
-      "\x38\x01"  // end_handle
-      "\x00\x00\x34\x56\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB",  // Uuid
-      StoredAttribute::kSizeOnDisk);
+  memcpy(attr_bytes,
+         "\x03\x01"                                                          // handle
+         "\x00\x00\x28\x02\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // type
+         "\x34\x01"                                                          // handle
+         "\x38\x01"                                                          // end_handle
+         "\x00\x00\x34\x56\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB", // Uuid
+         StoredAttribute::kSizeOnDisk);
   attr = *(StoredAttribute*)attr_bytes;
 
   StoredAttribute::SerializeStoredAttribute(attr, serialized);
@@ -462,15 +453,14 @@ TEST(GattCacheTest, stored_attributes_serialized_to_binary_test) {
   };
   log::error("{}", base::HexEncode(&attr, StoredAttribute::kSizeOnDisk));
   */
-  memcpy(
-      attr_bytes,
-      "\x03\x01"  // handle
-      "\x00\x00\x28\x03\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // type
-      "\x04"      // properties
-      "\x00"      // padding
-      "\x02\x03"  // value_handle
-      "\x00\x00\x34\x56\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB",  // uuid
-      StoredAttribute::kSizeOnDisk);
+  memcpy(attr_bytes,
+         "\x03\x01"                                                          // handle
+         "\x00\x00\x28\x03\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // type
+         "\x04"                                                              // properties
+         "\x00"                                                              // padding
+         "\x02\x03"                                                          // value_handle
+         "\x00\x00\x34\x56\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB", // uuid
+         StoredAttribute::kSizeOnDisk);
   attr = *(StoredAttribute*)attr_bytes;
 
   StoredAttribute::SerializeStoredAttribute(attr, serialized);
@@ -488,13 +478,12 @@ TEST(GattCacheTest, stored_attributes_serialized_to_binary_test) {
   };
   log::error("{}", base::HexEncode(&attr, StoredAttribute::kSizeOnDisk));
   */
-  memcpy(
-      attr_bytes,
-      "\x03\x01"  // handle
-      "\x00\x00\x44\x44\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB"  // type
-      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
-      "\x00\x00",
-      StoredAttribute::kSizeOnDisk);
+  memcpy(attr_bytes,
+         "\x03\x01"                                                         // handle
+         "\x00\x00\x44\x44\x00\x00\x10\x00\x80\x00\x00\x80\x5F\x9B\x34\xFB" // type
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00",
+         StoredAttribute::kSizeOnDisk);
   attr = *(StoredAttribute*)attr_bytes;
 
   StoredAttribute::SerializeStoredAttribute(attr, serialized);
@@ -529,7 +518,7 @@ TEST(GattDatabaseTest, serialized_hash_test) {
   builder.AddCharacteristic(0x0015, 0x0016, Uuid::From16Bit(0x2A19), 0x02);
 
   // set characteristic extended properties descriptor values
-  std::vector<uint16_t> descriptorValues = {0x0000};
+  std::vector<uint16_t> descriptorValues = { 0x0000 };
   builder.SetValueOfDescriptors(descriptorValues);
 
   Database db = builder.Build();
@@ -542,15 +531,13 @@ TEST(GattDatabaseTest, serialized_hash_test) {
   std::vector<StoredAttribute> attr_from_disk(serialized.size());
   std::copy(bytes.cbegin(), bytes.cend(), (uint8_t*)attr_from_disk.data());
   bool is_successful = false;
-  Database db_from_disk =
-      gatt::Database::Deserialize(attr_from_disk, &is_successful);
+  Database db_from_disk = gatt::Database::Deserialize(attr_from_disk, &is_successful);
   ASSERT_TRUE(is_successful);
   is_successful = false;
-  Database db_from_serialized =
-      gatt::Database::Deserialize(serialized, &is_successful);
+  Database db_from_serialized = gatt::Database::Deserialize(serialized, &is_successful);
   ASSERT_TRUE(is_successful);
 
   EXPECT_EQ(db_from_disk.Hash(), db_from_serialized.Hash());
 }
 
-}  // namespace gatt
+} // namespace gatt

@@ -26,8 +26,7 @@ namespace avrcp {
 using TestSetAddrPlayerPacket = TestPacketType<SetAddressedPlayerRequest>;
 
 TEST(SetAddressedPlayerResponseBuilderTest, builderTest) {
-  auto builder =
-      SetAddressedPlayerResponseBuilder::MakeBuilder(Status::NO_ERROR);
+  auto builder = SetAddressedPlayerResponseBuilder::MakeBuilder(Status::NO_ERROR);
   ASSERT_EQ(builder->size(), set_addressed_player_response.size());
 
   auto test_packet = TestSetAddrPlayerPacket::Make();
@@ -36,15 +35,13 @@ TEST(SetAddressedPlayerResponseBuilderTest, builderTest) {
 }
 
 TEST(SetAddressedPlayerRequestTest, getterTest) {
-  auto test_packet =
-      TestSetAddrPlayerPacket::Make(set_addressed_player_request);
+  auto test_packet = TestSetAddrPlayerPacket::Make(set_addressed_player_request);
 
   ASSERT_EQ(test_packet->GetPlayerId(), 0x0000u);
 }
 
 TEST(SetAddressedPlayerRequestTest, validTest) {
-  auto test_packet =
-      TestSetAddrPlayerPacket::Make(set_addressed_player_request);
+  auto test_packet = TestSetAddrPlayerPacket::Make(set_addressed_player_request);
   ASSERT_TRUE(test_packet->IsValid());
 }
 
@@ -54,10 +51,10 @@ TEST(SetAddressedPlayerRequestTest, invalidTest) {
   auto test_packet = TestSetAddrPlayerPacket::Make(packet_copy);
   ASSERT_FALSE(test_packet->IsValid());
 
-  std::vector<uint8_t> short_packet = {0x00, 0x01, 0x02, 0x03, 0x04};
+  std::vector<uint8_t> short_packet = { 0x00, 0x01, 0x02, 0x03, 0x04 };
   test_packet = TestSetAddrPlayerPacket::Make(short_packet);
   ASSERT_FALSE(test_packet->IsValid());
 }
 
-}  // namespace avrcp
-}  // namespace bluetooth
+} // namespace avrcp
+} // namespace bluetooth

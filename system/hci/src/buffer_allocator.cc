@@ -29,6 +29,6 @@ static void* buffer_alloc(size_t size) {
   return osi_malloc(size);
 }
 
-static const allocator_t interface = {buffer_alloc, osi_free};
+static const allocator_t interface = { buffer_alloc, osi_free };
 
 const allocator_t* buffer_allocator_get_interface() { return &interface; }

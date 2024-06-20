@@ -9,8 +9,8 @@ from mobly import signals
 from mobly.controllers import android_device
 
 from blueberry.controllers import derived_bt_device
-# Internal import
-# Internal import
+#Internal import
+#Internal import
 from blueberry.utils.ui_pages import fitbit_companion  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import account_pages  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import context  # pylint: disable=no-name-in-module,import-error
@@ -41,7 +41,7 @@ class FitbitAppDecorator:
         self._ad, do_go_home=False, safe_get=True)
 
     if not apk_utils.is_apk_installed(self._ad, _FITBIT_PACKAGE_NAME):
-      # Fitbit App is not installed, install it now.
+#Fitbit App is not installed, install it now.
       self.ui_context.log.info('Installing Fitbit App...')
       fitbit_companion.go_google_play_page(self.ui_context)
       self.ui_context.expect_page(other_pages.GooglePlayPage)
@@ -97,7 +97,8 @@ class FitbitAppDecorator:
 
     log.debug('Start the pair-pin subscription...')
     try:
-      fitbit_device._device.bt.pair_pin_start()
+      fitbit_device
+._device.bt.pair_pin_start()
     except fitbit_tracker_cli.CliError as err:
       if err and 'Already subscribed on pubsub' in err.output[0]:
         log.warning('Fitbit device already subscribed on pubsub!')
@@ -131,16 +132,16 @@ class FitbitAppDecorator:
     self.ui_context.expect_page(pairing_pages.ConfirmChargePage)
     self.ui_context.page.next()
     if self.ui_context.is_page(other_pages.LocationDisabledPage):
-      # Optional page when you are required to enable location
-      # permission for Fitbit device.
+#Optional page when you are required to enable location
+#permission for Fitbit device.
       log.info('Enabling location permission...')
       self.ui_context.page.enable()
       self.ui_context.expect_page(other_pages.SettingLocation)
       self.ui_context.page.set(True)
       self.ui_context.page.back()
 
-    # TODO(user): Move pairing logic into fitbit_companion package while
-    #   it may be used in many places.
+#TODO(user) : Move pairing logic into fitbit_companion package while
+#it may be used in many places.
     self.ui_context.expect_page(pairing_pages.Pairing4DigitPage, wait_sec=150)
     pins = fitbit_device._device.bt.pair_pin_show()
     log.info('Pairing pins=%s...', pins)
@@ -205,10 +206,10 @@ class FitbitAppDecorator:
     ])
 
     if self.ui_context.is_page(pairing_pages.PremiumPage):
-      # Preminum page is optional.
+#Preminum page is optional.
       self.ui_context.page.done()
     elif self.ui_context.is_page(other_pages.PurchaseFail):
-      # Optional page observed during manual pairing experiment.
+#Optional page observed during manual pairing experiment.
       self.ui_context.page.ok()
 
     log.info('Completed pairing process and start evaluation process...')

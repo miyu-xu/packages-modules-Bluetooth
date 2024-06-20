@@ -43,8 +43,7 @@ enum : uint16_t {
   BTM_BLE_LIMITED_DISCOVERABLE = 0x0100,
   BTM_BLE_GENERAL_DISCOVERABLE = 0x0200,
   BTM_BLE_MAX_DISCOVERABLE = BTM_BLE_GENERAL_DISCOVERABLE,
-  BTM_BLE_DISCOVERABLE_MASK =
-      (BTM_BLE_LIMITED_DISCOVERABLE | BTM_BLE_GENERAL_DISCOVERABLE),
+  BTM_BLE_DISCOVERABLE_MASK = (BTM_BLE_LIMITED_DISCOVERABLE | BTM_BLE_GENERAL_DISCOVERABLE),
 };
 
 /* Connectable modes */
@@ -131,8 +130,8 @@ typedef struct {
 /* Callback function for notifications when the BTM gets inquiry response.
  * First param is inquiry results database, second is pointer of EIR.
  */
-typedef void(tBTM_INQ_RESULTS_CB)(tBTM_INQ_RESULTS* p_inq_results,
-                                  const uint8_t* p_eir, uint16_t eir_len);
+typedef void(tBTM_INQ_RESULTS_CB)(tBTM_INQ_RESULTS* p_inq_results, const uint8_t* p_eir,
+                                  uint16_t eir_len);
 
 typedef struct {
   uint32_t inq_count; /* Used for determining if a response has already been */
@@ -162,12 +161,11 @@ typedef struct {
 
 typedef struct {
   uint64_t time_of_resp;
-  uint32_t
-      inq_count; /* "timestamps" the entry with a particular inquiry count   */
-                 /* Used for determining if a response has already been      */
-                 /* received for the current inquiry operation. (We do not   */
-                 /* want to flood the caller with multiple responses from    */
-                 /* the same device.                                         */
+  uint32_t inq_count; /* "timestamps" the entry with a particular inquiry count   */
+                      /* Used for determining if a response has already been      */
+                      /* received for the current inquiry operation. (We do not   */
+                      /* want to flood the caller with multiple responses from    */
+                      /* the same device.                                         */
   tBTM_INQ_INFO inq_info;
   bool in_use;
   bool scan_rsp;
@@ -183,10 +181,10 @@ typedef struct /* contains the parameters passed to the inquiry functions */
 typedef struct {
   // Possible inquiry completion status
   enum STATUS {
-    CANCELED,      // Expected user API cancel
-    TIMER_POPPED,  // Expected controller initiated timeout
-    NOT_STARTED,   // Unexpected controller unable to execute inquiry command
-    SSP_ACTIVE,    // Unexpected secure simple pairing is operational
+    CANCELED,     // Expected user API cancel
+    TIMER_POPPED, // Expected controller initiated timeout
+    NOT_STARTED,  // Unexpected controller unable to execute inquiry command
+    SSP_ACTIVE,   // Unexpected secure simple pairing is operational
   };
   STATUS status;
   tHCI_STATUS hci_status;
@@ -195,16 +193,14 @@ typedef struct {
   long long start_time_ms;
 } tBTM_INQUIRY_CMPL;
 
-inline std::string btm_inquiry_cmpl_status_text(
-    const tBTM_INQUIRY_CMPL::STATUS& status) {
+inline std::string btm_inquiry_cmpl_status_text(const tBTM_INQUIRY_CMPL::STATUS& status) {
   switch (status) {
     CASE_RETURN_TEXT(tBTM_INQUIRY_CMPL::CANCELED);
     CASE_RETURN_TEXT(tBTM_INQUIRY_CMPL::TIMER_POPPED);
     CASE_RETURN_TEXT(tBTM_INQUIRY_CMPL::NOT_STARTED);
     CASE_RETURN_TEXT(tBTM_INQUIRY_CMPL::SSP_ACTIVE);
     default:
-      return std::string("UNKNOWN[") + std::to_string(status) +
-             std::string("]");
+      return std::string("UNKNOWN[") + std::to_string(status) + std::string("]");
   }
 }
 
@@ -233,8 +229,8 @@ struct tBTM_INQUIRY_VAR_ST {
   uint16_t inq_scan_type;
   uint16_t page_scan_type; /* current page scan type */
 
-  RawAddress remname_bda; /* Name of bd addr for active remote name request */
-  bool remname_active; /* State of a remote name request by external API */
+  RawAddress remname_bda;           /* Name of bd addr for active remote name request */
+  bool remname_active;              /* State of a remote name request by external API */
   tBT_DEVICE_TYPE remname_dev_type; /* Whether it's LE or BREDR name request */
 
   tBTM_CMPL_CB* p_inq_cmpl_cb;
@@ -242,9 +238,8 @@ struct tBTM_INQUIRY_VAR_ST {
   uint32_t inq_counter; /* Counter incremented each time an inquiry completes */
   /* Used for determining whether or not duplicate devices */
   /* have responded to the same inquiry */
-  tBTM_INQ_PARMS inqparms; /* Contains the parameters for the current inquiry */
-  tBTM_INQUIRY_CMPL
-      inq_cmpl_info; /* Status and number of responses from the last inquiry */
+  tBTM_INQ_PARMS inqparms;         /* Contains the parameters for the current inquiry */
+  tBTM_INQUIRY_CMPL inq_cmpl_info; /* Status and number of responses from the last inquiry */
 
   uint16_t per_min_delay; /* Current periodic minimum delay */
   uint16_t per_max_delay; /* Current periodic maximum delay */
@@ -253,8 +248,7 @@ struct tBTM_INQUIRY_VAR_ST {
                            Clear) */
 
 #define BTM_INQ_INACTIVE_STATE 0
-#define BTM_INQ_ACTIVE_STATE \
-  3 /* Actual inquiry or periodic inquiry is in progress */
+#define BTM_INQ_ACTIVE_STATE 3 /* Actual inquiry or periodic inquiry is in progress */
 
   uint8_t state;      /* Current state that the inquiry process is in */
   uint8_t inq_active; /* Bit Mask indicating type of inquiry is active */
@@ -307,6 +301,5 @@ tINQ_DB_ENT* btm_inq_db_find(const RawAddress& p_bda);
 
 namespace fmt {
 template <>
-struct formatter<tBTM_INQUIRY_CMPL::STATUS>
-    : enum_formatter<tBTM_INQUIRY_CMPL::STATUS> {};
-}  // namespace fmt
+struct formatter<tBTM_INQUIRY_CMPL::STATUS> : enum_formatter<tBTM_INQUIRY_CMPL::STATUS> {};
+} // namespace fmt

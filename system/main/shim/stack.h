@@ -32,11 +32,11 @@ class Btm;
 
 namespace legacy {
 class Acl;
-};  // namespace legacy
+}; // namespace legacy
 
 // GD shim stack, having modes corresponding to legacy stack
 class Stack {
- public:
+  public:
   static Stack* GetInstance();
 
   Stack();
@@ -76,7 +76,7 @@ class Stack {
 
   size_t NumModules() const { return num_modules_; }
 
- private:
+  private:
   struct impl;
   std::shared_ptr<impl> pimpl_;
 
@@ -85,9 +85,9 @@ class Stack {
   bool is_running_ = false;
   os::Thread* stack_thread_ = nullptr;
   os::Handler* stack_handler_ = nullptr;
-  size_t num_modules_{0};
+  size_t num_modules_{ 0 };
   void Start(ModuleList* modules);
 };
 
-}  // namespace shim
-}  // namespace bluetooth
+} // namespace shim
+} // namespace bluetooth

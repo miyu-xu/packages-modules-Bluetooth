@@ -25,47 +25,44 @@
 using ::bluetooth::audio::a2dp::update_codec_offloading_capabilities;
 
 extern "C" {
-struct android_namespace_t* android_get_exported_namespace(const char*) {
-  return nullptr;
-}
+struct android_namespace_t* android_get_exported_namespace(const char*) { return nullptr; }
 }
 
 constexpr tA2DP_CTRL_ACK kCtrlAckStatus[] = {
-    A2DP_CTRL_ACK_SUCCESS,        A2DP_CTRL_ACK_FAILURE,
-    A2DP_CTRL_ACK_INCALL_FAILURE, A2DP_CTRL_ACK_UNSUPPORTED,
-    A2DP_CTRL_ACK_PENDING,        A2DP_CTRL_ACK_DISCONNECT_IN_PROGRESS};
+  A2DP_CTRL_ACK_SUCCESS,     A2DP_CTRL_ACK_FAILURE, A2DP_CTRL_ACK_INCALL_FAILURE,
+  A2DP_CTRL_ACK_UNSUPPORTED, A2DP_CTRL_ACK_PENDING, A2DP_CTRL_ACK_DISCONNECT_IN_PROGRESS
+};
 
 constexpr int32_t kRandomStringLength = 256;
 
 static void source_init_delayed(void) {}
 
 constexpr btav_a2dp_codec_index_t kCodecIndices[] = {
-    BTAV_A2DP_CODEC_INDEX_SOURCE_SBC,  BTAV_A2DP_CODEC_INDEX_SOURCE_AAC,
-    BTAV_A2DP_CODEC_INDEX_SOURCE_APTX, BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD,
-    BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC, BTAV_A2DP_CODEC_INDEX_SINK_SBC,
-    BTAV_A2DP_CODEC_INDEX_SINK_AAC,    BTAV_A2DP_CODEC_INDEX_SINK_LDAC};
+  BTAV_A2DP_CODEC_INDEX_SOURCE_SBC,  BTAV_A2DP_CODEC_INDEX_SOURCE_AAC,
+  BTAV_A2DP_CODEC_INDEX_SOURCE_APTX, BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD,
+  BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC, BTAV_A2DP_CODEC_INDEX_SINK_SBC,
+  BTAV_A2DP_CODEC_INDEX_SINK_AAC,    BTAV_A2DP_CODEC_INDEX_SINK_LDAC
+};
 
-std::vector<std::vector<btav_a2dp_codec_config_t>>
-CodecOffloadingPreferenceGenerator() {
+std::vector<std::vector<btav_a2dp_codec_config_t>> CodecOffloadingPreferenceGenerator() {
   std::vector<std::vector<btav_a2dp_codec_config_t>> offloadingPreferences = {
-      std::vector<btav_a2dp_codec_config_t>(0)};
+    std::vector<btav_a2dp_codec_config_t>(0)
+  };
   btav_a2dp_codec_config_t btavCodecConfig = {};
   for (btav_a2dp_codec_index_t i : kCodecIndices) {
     btavCodecConfig.codec_type = i;
     auto duplicated_preferences = offloadingPreferences;
-    for (auto iter = duplicated_preferences.begin();
-         iter != duplicated_preferences.end(); ++iter) {
+    for (auto iter = duplicated_preferences.begin(); iter != duplicated_preferences.end(); ++iter) {
       iter->push_back(btavCodecConfig);
     }
-    offloadingPreferences.insert(offloadingPreferences.end(),
-                                 duplicated_preferences.begin(),
+    offloadingPreferences.insert(offloadingPreferences.end(), duplicated_preferences.begin(),
                                  duplicated_preferences.end());
   }
   return offloadingPreferences;
 }
 
 class A2dpEncodingFuzzer {
- public:
+  public:
   ~A2dpEncodingFuzzer() {
     delete (mCodec);
     mCodec = nullptr;
@@ -74,7 +71,7 @@ class A2dpEncodingFuzzer {
   static A2dpCodecConfig* mCodec;
 };
 
-A2dpCodecConfig* A2dpEncodingFuzzer::mCodec{nullptr};
+A2dpCodecConfig* A2dpEncodingFuzzer::mCodec{ nullptr };
 
 void A2dpEncodingFuzzer::process(const uint8_t* data, size_t size) {
   FuzzedDataProvider fdp(data, size);
@@ -83,7 +80,7 @@ void A2dpEncodingFuzzer::process(const uint8_t* data, size_t size) {
   }
 
   osi_property_set("persist.bluetooth.a2dp_offload.disabled",
-                   fdp.PickValueInArray({"true", "false"}));
+                   fdp.PickValueInArray({ "true", "false" }));
 
   std::string name = fdp.ConsumeRandomLengthString(kRandomStringLength);
   bluetooth::common::MessageLoopThread messageLoopThread(name);

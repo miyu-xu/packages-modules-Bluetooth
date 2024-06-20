@@ -58,7 +58,7 @@ using H4Packet = std::vector<uint8_t>;
 std::queue<std::pair<uint8_t, HciPacket>> incoming_packets_queue_;
 
 class TestHciHalCallbacks : public HciHalCallbacks {
- public:
+  public:
   void hciEventReceived(HciPacket packet) override {
     incoming_packets_queue_.emplace(kH4Event, packet);
   }
@@ -78,7 +78,7 @@ class TestHciHalCallbacks : public HciHalCallbacks {
 
 // An implementation of rootcanal desktop HCI server which listens on localhost:kListeningPort
 class FakeRootcanalDesktopHciServer {
- public:
+  public:
   FakeRootcanalDesktopHciServer() {
     struct sockaddr_in listen_address;
     socklen_t sockaddr_in_size = sizeof(struct sockaddr_in);
@@ -107,9 +107,7 @@ class FakeRootcanalDesktopHciServer {
     }
   }
 
-  ~FakeRootcanalDesktopHciServer() {
-    close(listen_fd_);
-  }
+  ~FakeRootcanalDesktopHciServer() { close(listen_fd_); }
 
   int Accept() {
     int accept_fd;
@@ -136,12 +134,12 @@ class FakeRootcanalDesktopHciServer {
     return accept_fd;
   }
 
- private:
+  private:
   int listen_fd_ = -1;
 };
 
 class HciHalRootcanalTest : public ::testing::Test {
- protected:
+  protected:
   void SetUp() override {
     thread_ = new Thread("test_thread", Thread::Priority::NORMAL);
 
@@ -149,7 +147,8 @@ class HciHalRootcanalTest : public ::testing::Test {
     fake_server_ = new FakeRootcanalDesktopHciServer;
     hal_ = fake_registry_.Start<HciHal>(thread_);
     hal_->registerIncomingPacketCallback(&callbacks_);
-    fake_server_socket_ = fake_server_->Accept();  // accept() after client is connected to avoid blocking
+    fake_server_socket_ =
+            fake_server_->Accept(); // accept() after client is connected to avoid blocking
     std::queue<std::pair<uint8_t, HciPacket>> empty;
     std::swap(incoming_packets_queue_, empty);
   }
@@ -176,11 +175,14 @@ class HciHalRootcanalTest : public ::testing::Test {
   Thread* thread_;
 };
 
-void check_packet_equal(std::pair<uint8_t, HciPacket> hci_packet1_type_data_pair, H4Packet h4_packet2) {
+void check_packet_equal(std::pair<uint8_t, HciPacket> hci_packet1_type_data_pair,
+                        H4Packet h4_packet2) {
   auto packet1_hci_size = hci_packet1_type_data_pair.second.size();
   ASSERT_EQ(packet1_hci_size + 1, h4_packet2.size());
   ASSERT_EQ(hci_packet1_type_data_pair.first, h4_packet2[0]);
-  ASSERT_EQ(memcmp(hci_packet1_type_data_pair.second.data(), h4_packet2.data() + 1, packet1_hci_size), 0);
+  ASSERT_EQ(
+          memcmp(hci_packet1_type_data_pair.second.data(), h4_packet2.data() + 1, packet1_hci_size),
+          0);
 }
 
 HciPacket make_sample_hci_cmd_pkt(uint8_t parameter_total_length) {
@@ -357,7 +359,7 @@ TEST_F(HciHalRootcanalTest, send_hci_cmd) {
   auto size_read = read_with_retry(fake_server_socket_, read_buf.data(), read_buf.size());
 
   ASSERT_EQ(size_read, 1 + hci_data.size());
-  check_packet_equal({kH4Command, hci_data}, read_buf);
+  check_packet_equal({ kH4Command, hci_data }, read_buf);
 }
 
 TEST_F(HciHalRootcanalTest, send_acl) {
@@ -369,7 +371,7 @@ TEST_F(HciHalRootcanalTest, send_acl) {
   auto size_read = read_with_retry(fake_server_socket_, read_buf.data(), read_buf.size());
 
   ASSERT_EQ(size_read, 1 + acl_packet.size());
-  check_packet_equal({kH4Acl, acl_packet}, read_buf);
+  check_packet_equal({ kH4Acl, acl_packet }, read_buf);
 }
 
 TEST_F(HciHalRootcanalTest, send_sco) {
@@ -381,7 +383,7 @@ TEST_F(HciHalRootcanalTest, send_sco) {
   auto size_read = read_with_retry(fake_server_socket_, read_buf.data(), read_buf.size());
 
   ASSERT_EQ(size_read, 1 + sco_packet.size());
-  check_packet_equal({kH4Sco, sco_packet}, read_buf);
+  check_packet_equal({ kH4Sco, sco_packet }, read_buf);
 }
 
 TEST_F(HciHalRootcanalTest, send_multiple_acl_batch) {
@@ -396,7 +398,7 @@ TEST_F(HciHalRootcanalTest, send_multiple_acl_batch) {
   for (int i = 0; i < num_packets; i++) {
     auto size_read = read_with_retry(fake_server_socket_, read_buf.data(), read_buf.size());
     ASSERT_EQ(size_read, 1 + acl_packet.size());
-    check_packet_equal({kH4Acl, acl_packet}, read_buf);
+    check_packet_equal({ kH4Acl, acl_packet }, read_buf);
   }
 }
 
@@ -410,15 +412,16 @@ TEST_F(HciHalRootcanalTest, send_multiple_acl_sequential) {
     H4Packet read_buf(1 + 2 + 2 + acl_payload_size);
     auto size_read = read_with_retry(fake_server_socket_, read_buf.data(), read_buf.size());
     ASSERT_EQ(size_read, 1 + acl_packet.size());
-    check_packet_equal({kH4Acl, acl_packet}, read_buf);
+    check_packet_equal({ kH4Acl, acl_packet }, read_buf);
   }
 }
 
 TEST(HciHalHidlTest, serialize) {
-  std::vector<uint8_t> bytes = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-  auto packet_bytes = hal::SerializePacket(std::unique_ptr<packet::BasePacketBuilder>(new packet::RawBuilder(bytes)));
+  std::vector<uint8_t> bytes = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+  auto packet_bytes = hal::SerializePacket(
+          std::unique_ptr<packet::BasePacketBuilder>(new packet::RawBuilder(bytes)));
   ASSERT_EQ(bytes, packet_bytes);
 }
-}  // namespace
-}  // namespace hal
-}  // namespace bluetooth
+} // namespace
+} // namespace hal
+} // namespace bluetooth

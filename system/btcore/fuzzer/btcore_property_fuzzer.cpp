@@ -26,10 +26,10 @@ using bluetooth::Uuid;
 constexpr int32_t kRandomStringLength = 256;
 
 class BTCorePropertyFuzzer {
- public:
+  public:
   void process(const uint8_t* data, size_t size);
 
- private:
+  private:
   std::unique_ptr<FuzzedDataProvider> mFdp = nullptr;
 };
 
@@ -37,22 +37,22 @@ void BTCorePropertyFuzzer::process(const uint8_t* data, size_t size) {
   mFdp = std::make_unique<FuzzedDataProvider>(data, size);
   uint8_t addr[RawAddress::kLength];
   mFdp->ConsumeData(addr, sizeof(uint8_t) * RawAddress::kLength);
-  RawAddress btAddress = {addr};
+  RawAddress btAddress = { addr };
   bt_property_t* property = property_new_addr(&btAddress);
   property_as_addr(property);
   property_free(property);
 
-  bt_device_class_t deviceClass = {{mFdp->ConsumeIntegral<uint8_t>(),
-                                    mFdp->ConsumeIntegral<uint8_t>(),
-                                    mFdp->ConsumeIntegral<uint8_t>()}};
+  bt_device_class_t deviceClass = {
+    { mFdp->ConsumeIntegral<uint8_t>(), mFdp->ConsumeIntegral<uint8_t>(),
+     mFdp->ConsumeIntegral<uint8_t>() }
+  };
   property = property_new_device_class(&deviceClass);
 
   const bt_device_class_t* pDeviceClass = property_as_device_class(property);
   (void)device_class_to_int(pDeviceClass);
   property_free(property);
 
-  bt_device_type_t deviceType =
-      (bt_device_type_t)(mFdp->ConsumeIntegral<uint32_t>());
+  bt_device_type_t deviceType = (bt_device_type_t)(mFdp->ConsumeIntegral<uint32_t>());
   property = property_new_device_type(deviceType);
   (void)property_as_device_type(property);
   property_free(property);
@@ -88,7 +88,7 @@ void BTCorePropertyFuzzer::process(const uint8_t* data, size_t size) {
 
   mFdp->ConsumeData(uuid, uuidSize);
   Uuid uuidLE = Uuid::From128BitLE(uuid);
-  Uuid uuids[] = {uuidBE, uuidLE};
+  Uuid uuids[] = { uuidBE, uuidLE };
   bt_property_t* propertySrc = property_new_uuids(uuids, std::size(uuids));
   bt_property_t propertyDest;
   (void)property_copy(&propertyDest, propertySrc);

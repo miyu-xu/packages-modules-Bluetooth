@@ -55,8 +55,7 @@ std::string uuid::getUuidName(const bluetooth::Uuid& uuid) {
   }
 }
 
-bool ParseControlPointCommand(ControlPointCommand* command,
-                              const uint8_t* value, uint16_t len) {
+bool ParseControlPointCommand(ControlPointCommand* command, const uint8_t* value, uint16_t len) {
   // Check for minimum expected length
   switch (value[0]) {
     case (uint8_t)Opcode::ABORT_OPERATION:
@@ -151,4 +150,4 @@ bool IsRangingServiceCharacteristic(const bluetooth::Uuid& uuid) {
   }
 }
 
-}  // namespace ras
+} // namespace ras

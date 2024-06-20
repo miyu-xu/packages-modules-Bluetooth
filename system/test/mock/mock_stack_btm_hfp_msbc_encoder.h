@@ -42,10 +42,9 @@ namespace stack_btm_hfp_msbc_encoder {
 struct hfp_msbc_encode_frames {
   static uint32_t return_value;
   std::function<uint32_t(int16_t* input, uint8_t* output)> body{
-      [](int16_t* /* input */, uint8_t* /* output */) { return return_value; }};
-  uint32_t operator()(int16_t* input, uint8_t* output) {
-    return body(input, output);
+    [](int16_t* /* input */, uint8_t* /* output */) { return return_value; }
   };
+  uint32_t operator()(int16_t* input, uint8_t* output) { return body(input, output); }
 };
 extern struct hfp_msbc_encode_frames hfp_msbc_encode_frames;
 
@@ -53,8 +52,8 @@ extern struct hfp_msbc_encode_frames hfp_msbc_encode_frames;
 // Params: void
 // Return: void
 struct hfp_msbc_encoder_cleanup {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
+  std::function<void(void)> body{ [](void) {} };
+  void operator()(void) { body(); }
 };
 extern struct hfp_msbc_encoder_cleanup hfp_msbc_encoder_cleanup;
 
@@ -62,13 +61,13 @@ extern struct hfp_msbc_encoder_cleanup hfp_msbc_encoder_cleanup;
 // Params: void
 // Return: void
 struct hfp_msbc_encoder_init {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
+  std::function<void(void)> body{ [](void) {} };
+  void operator()(void) { body(); }
 };
 extern struct hfp_msbc_encoder_init hfp_msbc_encoder_init;
 
-}  // namespace stack_btm_hfp_msbc_encoder
-}  // namespace mock
-}  // namespace test
+} // namespace stack_btm_hfp_msbc_encoder
+} // namespace mock
+} // namespace test
 
 // END mockcify generation

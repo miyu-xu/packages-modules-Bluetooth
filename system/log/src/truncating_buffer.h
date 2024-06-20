@@ -45,11 +45,11 @@ struct truncating_buffer {
         if ((c & 0b11000000) == 0b10000000) {
           continue;
         }
-        size_t char_len = (c & 0b10000000) == 0b00000000   ? 1
-                          : (c & 0b11100000) == 0b11000000 ? 2
-                          : (c & 0b11110000) == 0b11100000 ? 3
-                          : (c & 0b11111000) == 0b11110000 ? 4
-                                                           : 0;
+        size_t char_len = (c & 0b10000000) == 0b00000000 ? 1
+                : (c & 0b11100000) == 0b11000000         ? 2
+                : (c & 0b11110000) == 0b11100000         ? 3
+                : (c & 0b11111000) == 0b11110000         ? 4
+                                                         : 0;
         if ((n + 1) < char_len) {
           len -= n + 1;
         }
@@ -61,9 +61,9 @@ struct truncating_buffer {
     return buffer;
   }
 
- private:
+  private:
   char buffer[buffer_size];
-  size_t len{0};
+  size_t len{ 0 };
 };
 
-}  // namespace bluetooth::log_internal
+} // namespace bluetooth::log_internal

@@ -29,7 +29,7 @@ using ::aidl::android::hardware::bluetooth::audio::CodecInfo;
 using ::aidl::android::hardware::bluetooth::audio::SessionType;
 
 class ProviderInfo {
- public:
+  public:
   static std::unique_ptr<ProviderInfo> GetProviderInfo(SessionType sessionType);
 
   ProviderInfo(SessionType sessionType, std::vector<CodecInfo> codecs);
@@ -38,9 +38,8 @@ class ProviderInfo {
 
   const std::unordered_map<int, ::hfp::sco_config>& GetHfpScoConfig();
 
- private:
+  private:
   const std::vector<CodecInfo> codecInfos;
-  std::unordered_map<int /* HFP CODEC in UUID_CODEC_XXX */, ::hfp::sco_config>
-      hfpScoConfigMap;
+  std::unordered_map<int /* HFP CODEC in UUID_CODEC_XXX */, ::hfp::sco_config> hfpScoConfigMap;
 };
-}  // namespace bluetooth::audio::aidl
+} // namespace bluetooth::audio::aidl

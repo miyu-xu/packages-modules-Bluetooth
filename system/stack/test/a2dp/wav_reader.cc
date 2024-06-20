@@ -46,7 +46,7 @@ WavReader::~WavReader() {
 WavHeader WavReader::GetHeader() const { return header_; }
 
 void WavReader::ReadSamples() {
-  std::istreambuf_iterator<char> start{wavFile_}, end;
+  std::istreambuf_iterator<char> start{ wavFile_ }, end;
   samples_ = std::vector<uint8_t>(start, end);
 }
 
@@ -54,5 +54,5 @@ uint8_t* WavReader::GetSamples() { return &samples_[0]; }
 
 size_t WavReader::GetSampleCount() { return samples_.size(); }
 
-}  // namespace testing
-}  // namespace bluetooth
+} // namespace testing
+} // namespace bluetooth

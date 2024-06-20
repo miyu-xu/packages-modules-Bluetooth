@@ -38,12 +38,8 @@ using bluetooth::common::ToHexString;
 using bluetooth::common::ToString;
 using bluetooth::common::Uint64FromString;
 
-static inline bool is_arch32() {
-  return sizeof(long) == 4;
-}
-static inline bool is_arch64() {
-  return sizeof(long) == 8;
-}
+static inline bool is_arch32() { return sizeof(long) == 4; }
+static inline bool is_arch64() { return sizeof(long) == 8; }
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winteger-overflow"
@@ -57,16 +53,16 @@ TEST(StringsTest, to_hex_string_from_number) {
   ASSERT_EQ(ToHexString(INT_MIN), "INT_MIN");
   if (is_arch32()) {
     ASSERT_EQ(ToHexString(1 + INT_MAX), "INT_MIN");
-    ASSERT_EQ(ToHexString(2 + INT_MAX), "-0x7fffffff");  // Rolled over
-    ASSERT_EQ(ToHexString(-1 - INT_MIN), "0x7fffffff");  // Rolled over
+    ASSERT_EQ(ToHexString(2 + INT_MAX), "-0x7fffffff"); // Rolled over
+    ASSERT_EQ(ToHexString(-1 - INT_MIN), "0x7fffffff"); // Rolled over
     ASSERT_EQ(ToHexString(LONG_MAX), "0x7fffffff");
     ASSERT_EQ(ToHexString(LONG_MAX - 1L), "0x7ffffffe");
     ASSERT_EQ(ToHexString(LONG_MIN), "LONG_MIN");
     ASSERT_EQ(ToHexString(LONG_MIN + 1L), "-0x7fffffff");
   } else if (is_arch64()) {
     ASSERT_EQ(ToHexString((signed long)INT_MIN), "-0x0000000080000000");
-    ASSERT_EQ(ToHexString(1 + INT_MAX), "INT_MIN");      // Rolled over
-    ASSERT_EQ(ToHexString(2 + INT_MAX), "-0x7fffffff");  // Rolled over
+    ASSERT_EQ(ToHexString(1 + INT_MAX), "INT_MIN");     // Rolled over
+    ASSERT_EQ(ToHexString(2 + INT_MAX), "-0x7fffffff"); // Rolled over
     ASSERT_EQ(ToHexString(1L + INT_MAX), "0x0000000080000000");
     ASSERT_EQ(ToHexString(2L + INT_MAX), "0x0000000080000001");
     ASSERT_EQ(ToHexString(-1L + INT_MIN), "-0x0000000080000001");
@@ -87,8 +83,8 @@ TEST(StringsTest, to_hex_string_from_number_unsigned_int) {
   ASSERT_EQ(ToHexString(3U), "0x00000003");
   ASSERT_EQ(ToHexString(25U), "0x00000019");
   ASSERT_EQ(ToHexString(UINT_MAX), "0xffffffff");
-  ASSERT_EQ(ToHexString(1U + UINT_MAX), "0x00000000");  // Rolled over
-  ASSERT_EQ(ToHexString(2U + UINT_MAX), "0x00000001");  // Rolled over
+  ASSERT_EQ(ToHexString(1U + UINT_MAX), "0x00000000"); // Rolled over
+  ASSERT_EQ(ToHexString(2U + UINT_MAX), "0x00000001"); // Rolled over
 }
 #pragma clang diagnostic pop
 
@@ -117,32 +113,48 @@ TEST(StringsTest, split_string_test) {
 }
 
 TEST(StringsTest, join_string_test) {
-  ASSERT_THAT(StringJoin({{"1", "2", "3"}}, ","), StrEq("1,2,3"));
-  ASSERT_THAT(StringJoin({{}}, ","), StrEq(""));
-  ASSERT_THAT(StringJoin({{"1"}}, ","), StrEq("1"));
-  ASSERT_THAT(StringJoin({{"1", "2", "3"}}, ",,"), StrEq("1,,2,,3"));
-  ASSERT_THAT(StringJoin({{"1", ",", "3"}}, ",,"), StrEq("1,,,,,3"));
+  ASSERT_THAT(StringJoin(
+                      {
+                              { "1", "2", "3" }
+  },
+                      ","),
+              StrEq("1,2,3"));
+  ASSERT_THAT(StringJoin({ {} }, ","), StrEq(""));
+  ASSERT_THAT(StringJoin({ { "1" } }, ","), StrEq("1"));
+  ASSERT_THAT(StringJoin(
+                      {
+                              { "1", "2", "3" }
+  },
+                      ",,"),
+              StrEq("1,,2,,3"));
+  ASSERT_THAT(StringJoin(
+                      {
+                              { "1", ",", "3" }
+  },
+                      ",,"),
+              StrEq("1,,,,,3"));
 }
 
 TEST(StringsTest, to_hex_string_test) {
   // normal
-  ASSERT_THAT(ToHexString({0x12, 0x34, 0x56, 0xab}), Eq("123456ab"));
+  ASSERT_THAT(ToHexString({ 0x12, 0x34, 0x56, 0xab }), Eq("123456ab"));
   // empty
   ASSERT_THAT(ToHexString({}), Eq(""));
   // unary
-  ASSERT_THAT(ToHexString({0x12}), Eq("12"));
+  ASSERT_THAT(ToHexString({ 0x12 }), Eq("12"));
   // half
-  ASSERT_THAT(ToHexString({0x6, 0x5, 0x56, 0xb}), Eq("0605560b"));
+  ASSERT_THAT(ToHexString({ 0x6, 0x5, 0x56, 0xb }), Eq("0605560b"));
   // other types
-  std::array<uint8_t, 2> a = {0x12, 0x56};
+  std::array<uint8_t, 2> a = { 0x12, 0x56 };
   ASSERT_THAT(ToHexString(a.begin(), a.end()), Eq("1256"));
-  std::vector<uint8_t> b = {0x34, 0x78};
+  std::vector<uint8_t> b = { 0x34, 0x78 };
   ASSERT_THAT(ToHexString(b.begin(), b.end()), Eq("3478"));
 }
 
 TEST(StringsTest, from_hex_string_test) {
   // normal
-  ASSERT_THAT(FromHexString("aabbccdd1122"), Optional(ElementsAre(0xaa, 0xbb, 0xcc, 0xdd, 0x11, 0x22)));
+  ASSERT_THAT(FromHexString("aabbccdd1122"),
+              Optional(ElementsAre(0xaa, 0xbb, 0xcc, 0xdd, 0x11, 0x22)));
   // empty
   ASSERT_THAT(FromHexString(""), Optional(IsEmpty()));
   // unary
@@ -184,7 +196,8 @@ TEST(StringsTest, int64_from_and_to_string_test) {
   // INT64_MAX+1
   ASSERT_FALSE(Int64FromString("9223372036854775808"));
   // INT64_MIN
-  ASSERT_THAT(Int64FromString("-9223372036854775808"), Optional(Eq(int64_t(-9223372036854775807LL - 1))));
+  ASSERT_THAT(Int64FromString("-9223372036854775808"),
+              Optional(Eq(int64_t(-9223372036854775807LL - 1))));
   ASSERT_THAT(ToString(int64_t(-9223372036854775807LL - 1)), StrEq("-9223372036854775808"));
   // INT64_MIN-1
   ASSERT_FALSE(Int64FromString("-9223372036854775809"));
@@ -207,7 +220,8 @@ TEST(StringsTest, uint64_from_and_to_string_test) {
   ASSERT_THAT(Uint64FromString("4294967295"), Optional(Eq(uint64_t(4294967295))));
   ASSERT_THAT(ToString(uint64_t(4294967295)), StrEq("4294967295"));
   // UINT64_MAX
-  ASSERT_THAT(Uint64FromString("18446744073709551615"), Optional(Eq(uint64_t(18446744073709551615ULL))));
+  ASSERT_THAT(Uint64FromString("18446744073709551615"),
+              Optional(Eq(uint64_t(18446744073709551615ULL))));
   ASSERT_THAT(ToString(uint64_t(18446744073709551615ULL)), StrEq("18446744073709551615"));
   // UINT64_MAX+1
   ASSERT_FALSE(Uint64FromString("18446744073709551616"));
@@ -242,22 +256,28 @@ TEST(StringsTest, string_format_time_test) {
 TEST(StringsTest, string_format_time_with_ms_in_the_beginning_test) {
   std::string format("%Y-%m-%d %H:%M:%S");
   std::time_t from_time = 0;
-  std::chrono::time_point<std::chrono::system_clock> time_point = std::chrono::system_clock::from_time_t(from_time);
+  std::chrono::time_point<std::chrono::system_clock> time_point =
+          std::chrono::system_clock::from_time_t(from_time);
 
-  ASSERT_THAT(StringFormatTimeWithMilliseconds(format, time_point, gmtime), StrEq("1970-01-01 00:00:00.000"));
+  ASSERT_THAT(StringFormatTimeWithMilliseconds(format, time_point, gmtime),
+              StrEq("1970-01-01 00:00:00.000"));
 }
 
 TEST(StringsTest, string_format_time_with_ms_test) {
   std::string format("%Y-%m-%d %H:%M:%S");
   std::time_t from_time1 = 1234567890;
-  std::chrono::time_point<std::chrono::system_clock> time_point1 = std::chrono::system_clock::from_time_t(from_time1);
+  std::chrono::time_point<std::chrono::system_clock> time_point1 =
+          std::chrono::system_clock::from_time_t(from_time1);
   std::time_t from_time2 = 1234567890;
-  std::chrono::time_point<std::chrono::system_clock> time_point2 = std::chrono::system_clock::from_time_t(from_time2);
+  std::chrono::time_point<std::chrono::system_clock> time_point2 =
+          std::chrono::system_clock::from_time_t(from_time2);
 
   time_point2 += std::chrono::milliseconds(1);
 
-  ASSERT_THAT(StringFormatTimeWithMilliseconds(format, time_point1, gmtime), StrEq("2009-02-13 23:31:30.000"));
-  ASSERT_THAT(StringFormatTimeWithMilliseconds(format, time_point2, gmtime), StrEq("2009-02-13 23:31:30.001"));
+  ASSERT_THAT(StringFormatTimeWithMilliseconds(format, time_point1, gmtime),
+              StrEq("2009-02-13 23:31:30.000"));
+  ASSERT_THAT(StringFormatTimeWithMilliseconds(format, time_point2, gmtime),
+              StrEq("2009-02-13 23:31:30.001"));
 }
 
 class ExampleClass {};
@@ -271,4 +291,4 @@ TEST(StringsTest, example_class_to_string_test) {
   ASSERT_THAT(ToString(obj), StrEq("ExampleClass"));
 }
 
-}  // namespace testing
+} // namespace testing

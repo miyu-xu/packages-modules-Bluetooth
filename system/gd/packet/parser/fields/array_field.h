@@ -21,7 +21,7 @@
 #include "type_def.h"
 
 class ArrayField : public PacketField {
- public:
+  public:
   ArrayField(std::string name, int element_size, int fixed_size, ParseLocation loc);
 
   ArrayField(std::string name, TypeDef* type_def, int fixed_size, ParseLocation loc);
@@ -66,9 +66,9 @@ class ArrayField : public PacketField {
 
   const std::string name_;
 
-  const PacketField* element_field_{nullptr};
+  const PacketField* element_field_{ nullptr };
 
   const Size element_size_{};
 
-  const int array_size_{-1};
+  const int array_size_{ -1 };
 };

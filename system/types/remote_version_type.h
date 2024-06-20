@@ -24,14 +24,14 @@
 #include <string>
 
 struct tREMOTE_VERSION_INFO {
-  uint8_t lmp_version{0};
-  uint16_t lmp_subversion{0};
-  uint16_t manufacturer{0};
-  bool valid{false};
+  uint8_t lmp_version{ 0 };
+  uint16_t lmp_subversion{ 0 };
+  uint16_t manufacturer{ 0 };
+  bool valid{ false };
   std::string ToString() const {
-    return (valid) ? base::StringPrintf("%02hhu-%05hu-%05hu", lmp_version,
-                                        lmp_subversion, manufacturer)
-                   : std::string("UNKNOWN");
+    return (valid)
+            ? base::StringPrintf("%02hhu-%05hu-%05hu", lmp_version, lmp_subversion, manufacturer)
+            : std::string("UNKNOWN");
   }
 };
 

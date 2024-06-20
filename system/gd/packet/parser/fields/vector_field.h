@@ -22,7 +22,7 @@
 #include "type_def.h"
 
 class VectorField : public PacketField {
- public:
+  public:
   VectorField(std::string name, int element_size, std::string size_modifier, ParseLocation loc);
 
   VectorField(std::string name, TypeDef* type_def, std::string size_modifier, ParseLocation loc);
@@ -71,13 +71,13 @@ class VectorField : public PacketField {
 
   const std::string name_;
 
-  const PacketField* element_field_{nullptr};
+  const PacketField* element_field_{ nullptr };
 
   const Size element_size_{};
 
   // Size is always in bytes, unless it is a count.
-  const SizeField* size_field_{nullptr};
+  const SizeField* size_field_{ nullptr };
 
   // Size modifier is only used when size_field_ is of type SIZE and is not used with COUNT.
-  std::string size_modifier_{""};
+  std::string size_modifier_{ "" };
 };

@@ -42,11 +42,11 @@ int main(int argc, char** argv) {
   if (log_level_arg == nullptr) {
     log_level_arg = "--v=0";
   }
-  const char* logging_argv[] = {"bt_stack", log_level_arg};
+  const char* logging_argv[] = { "bt_stack", log_level_arg };
   // Init command line object with logging switches
   if (!base::CommandLine::Init(2, logging_argv)) {
-    log::fatal("base::CommandLine::Init failed, arg0={}, arg1={}",
-               logging_argv[0], logging_argv[1]);
+    log::fatal("base::CommandLine::Init failed, arg0={}, arg1={}", logging_argv[0],
+               logging_argv[1]);
     return 1;
   }
 

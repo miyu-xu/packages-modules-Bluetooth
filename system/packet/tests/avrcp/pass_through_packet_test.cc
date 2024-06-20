@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
+#include "pass_through_packet.h"
+
 #include <gtest/gtest.h>
 
 #include "avrcp_test_packets.h"
 #include "packet_test_helper.h"
-#include "pass_through_packet.h"
 
 namespace bluetooth {
 namespace avrcp {
@@ -40,8 +41,7 @@ TEST(PassThroughPacketBuilderTest, builderTest) {
 }
 
 TEST(PassThroughPacketTest, getterTest) {
-  auto test_packet =
-      TestPassThroughPacket::Make(pass_through_command_play_pushed);
+  auto test_packet = TestPassThroughPacket::Make(pass_through_command_play_pushed);
   ASSERT_EQ(test_packet->GetKeyState(), KeyState::PUSHED);
   ASSERT_EQ(test_packet->GetOperationId(), 0x44);
 
@@ -51,8 +51,7 @@ TEST(PassThroughPacketTest, getterTest) {
 }
 
 TEST(PassThroughPacketTest, validTest) {
-  auto test_packet =
-      TestPassThroughPacket::Make(pass_through_command_play_pushed);
+  auto test_packet = TestPassThroughPacket::Make(pass_through_command_play_pushed);
   ASSERT_TRUE(test_packet->IsValid());
 
   test_packet = TestPassThroughPacket::Make(pass_through_command_play_released);
@@ -65,10 +64,10 @@ TEST(PassThroughPacketTest, invalidTest) {
   auto test_packet = TestPassThroughPacket::Make(packet_copy);
   ASSERT_FALSE(test_packet->IsValid());
 
-  std::vector<uint8_t> short_packet = {0, 1, 2, 3, 4, 5};
+  std::vector<uint8_t> short_packet = { 0, 1, 2, 3, 4, 5 };
   test_packet = TestPassThroughPacket::Make(short_packet);
   ASSERT_FALSE(test_packet->IsValid());
 }
 
-}  // namespace avrcp
-}  // namespace bluetooth
+} // namespace avrcp
+} // namespace bluetooth

@@ -30,19 +30,18 @@
 extern tBTM_CB btm_cb;
 
 namespace {
-const RawAddress kRawAddress = RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
-const RawAddress kRawAddress2 =
-    RawAddress({0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc});
-const BD_NAME kBdName = {'A', ' ', 'B', 'd', ' ', 'N', 'a', 'm', 'e', '\0'};
+const RawAddress kRawAddress = RawAddress({ 0x11, 0x22, 0x33, 0x44, 0x55, 0x66 });
+const RawAddress kRawAddress2 = RawAddress({ 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc });
+const BD_NAME kBdName = { 'A', ' ', 'B', 'd', ' ', 'N', 'a', 'm', 'e', '\0' };
 const BD_NAME kEmptyName = "";
 
 tBTM_REMOTE_DEV_NAME gBTM_REMOTE_DEV_NAME{};
-bool gBTM_REMOTE_DEV_NAME_sent{false};
+bool gBTM_REMOTE_DEV_NAME_sent{ false };
 
-}  // namespace
+} // namespace
 
 class BtmInqTest : public BtmWithMocksTest {
- protected:
+  protected:
   void SetUp() override {
     BtmWithMocksTest::SetUp();
     btm_cb = {};
@@ -52,7 +51,7 @@ class BtmInqTest : public BtmWithMocksTest {
 };
 
 class BtmInqActiveTest : public BtmInqTest {
- protected:
+  protected:
   void SetUp() override {
     BtmInqTest::SetUp();
     gBTM_REMOTE_DEV_NAME = {};
@@ -61,11 +60,10 @@ class BtmInqActiveTest : public BtmInqTest {
     btm_cb.btm_inq_vars.remname_active = true;
     btm_cb.btm_inq_vars.remname_bda = kRawAddress;
     btm_cb.btm_inq_vars.remname_dev_type = BT_DEVICE_TYPE_BREDR;
-    btm_cb.btm_inq_vars.p_remname_cmpl_cb =
-        [](const tBTM_REMOTE_DEV_NAME* name) {
-          gBTM_REMOTE_DEV_NAME = *name;
-          gBTM_REMOTE_DEV_NAME_sent = true;
-        };
+    btm_cb.btm_inq_vars.p_remname_cmpl_cb = [](const tBTM_REMOTE_DEV_NAME* name) {
+      gBTM_REMOTE_DEV_NAME = *name;
+      gBTM_REMOTE_DEV_NAME_sent = true;
+    };
   }
 
   void TearDown() override { BtmInqTest::TearDown(); }

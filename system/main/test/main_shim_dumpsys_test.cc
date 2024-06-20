@@ -38,11 +38,11 @@ constexpr char kTrue[] = "1";
 constexpr char kFalse[] = "0";
 constexpr char kReadOnlyDebuggableProperty[] = "ro.debuggable";
 
-}  // namespace
+} // namespace
 
 class MainShimDumpsysTest : public testing::Test {
- public:
- protected:
+  public:
+  protected:
   void SetUp() override {
     bluetooth::common::InitFlags::SetAllForTesting();
 
@@ -55,8 +55,8 @@ class MainShimDumpsysTest : public testing::Test {
   void TearDown() override { stack_manager_.ShutDown(); }
   StackManager stack_manager_;
 
-  os::Thread* thread_{nullptr};
-  os::Handler* handler_{nullptr};
+  os::Thread* thread_{ nullptr };
+  os::Handler* handler_{ nullptr };
 };
 
 TEST_F(MainShimDumpsysTest, dumpsys_developer) {
@@ -64,8 +64,7 @@ TEST_F(MainShimDumpsysTest, dumpsys_developer) {
 
   std::promise<void> promise;
   auto future = promise.get_future();
-  stack_manager_.GetInstance<shim::Dumpsys>()->Dump(STDOUT_FILENO, nullptr,
-                                                    std::move(promise));
+  stack_manager_.GetInstance<shim::Dumpsys>()->Dump(STDOUT_FILENO, nullptr, std::move(promise));
   future.get();
 }
 
@@ -74,7 +73,6 @@ TEST_F(MainShimDumpsysTest, dumpsys_user) {
 
   std::promise<void> promise;
   auto future = promise.get_future();
-  stack_manager_.GetInstance<shim::Dumpsys>()->Dump(STDOUT_FILENO, nullptr,
-                                                    std::move(promise));
+  stack_manager_.GetInstance<shim::Dumpsys>()->Dump(STDOUT_FILENO, nullptr, std::move(promise));
   future.get();
 }

@@ -39,21 +39,30 @@ TEST(DeviceTest, create_new_device_using_legacy_key_address) {
   ConfigCache memory_only_config(10, {});
 
   // A new device
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_FALSE(device.Exists());
   ASSERT_FALSE(device.GetClassOfDevice());
 
   // An existing device
-  Address address2 = {{0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}};
+  Address address2 = {
+    { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff }
+  };
   config.SetProperty(address2.ToString(), "Name", "hello");
-  Device device2(&config, &memory_only_config, address2, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Device device2(&config, &memory_only_config, address2,
+                 Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_TRUE(device2.Exists());
   ASSERT_THAT(device2.GetName(), Optional(StrEq("hello")));
 
   // devices with the same key address and config pointer are the same
-  Address address3 = {{0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}};
-  Device device3(&config, &memory_only_config, address3, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address3 = {
+    { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff }
+  };
+  Device device3(&config, &memory_only_config, address3,
+                 Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_EQ(device2, device3);
   ASSERT_TRUE(device3.Exists());
   ASSERT_THAT(device3.GetName(), Optional(StrEq("hello")));
@@ -64,21 +73,30 @@ TEST(DeviceTest, create_new_device_using_classic_address) {
   ConfigCache memory_only_config(10, {});
 
   // A new device
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::CLASSIC_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::CLASSIC_ADDRESS);
   ASSERT_FALSE(device.Exists());
   ASSERT_FALSE(device.GetClassOfDevice());
 
   // An existing device
-  Address address2 = {{0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}};
+  Address address2 = {
+    { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff }
+  };
   config.SetProperty(address2.ToString(), "Name", "hello");
-  Device device2(&config, &memory_only_config, address2, Device::ConfigKeyAddressType::CLASSIC_ADDRESS);
+  Device device2(&config, &memory_only_config, address2,
+                 Device::ConfigKeyAddressType::CLASSIC_ADDRESS);
   ASSERT_TRUE(device2.Exists());
   ASSERT_THAT(device2.GetName(), Optional(StrEq("hello")));
 
   // devices with the same key address and config pointer are the same
-  Address address3 = {{0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}};
-  Device device3(&config, &memory_only_config, address3, Device::ConfigKeyAddressType::CLASSIC_ADDRESS);
+  Address address3 = {
+    { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff }
+  };
+  Device device3(&config, &memory_only_config, address3,
+                 Device::ConfigKeyAddressType::CLASSIC_ADDRESS);
   ASSERT_EQ(device2, device3);
   ASSERT_TRUE(device3.Exists());
   ASSERT_THAT(device3.GetName(), Optional(StrEq("hello")));
@@ -89,19 +107,28 @@ TEST(DeviceTest, create_new_device_using_le_identity_address) {
   ConfigCache memory_only_config(10, {});
 
   // A new device
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LE_IDENTITY_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::LE_IDENTITY_ADDRESS);
   ASSERT_FALSE(device.Exists());
   ASSERT_FALSE(device.GetClassOfDevice());
 
   // An existing device
-  Address pseudo_first_seen_address = {{0xab, 0xcd, 0xef, 0x12, 0x34, 0x56}};
-  Address le_identity_address = {{0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}};
+  Address pseudo_first_seen_address = {
+    { 0xab, 0xcd, 0xef, 0x12, 0x34, 0x56 }
+  };
+  Address le_identity_address = {
+    { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff }
+  };
   // first seen address used as key
   config.SetProperty(pseudo_first_seen_address.ToString(), "Name", "hello");
-  config.SetProperty(pseudo_first_seen_address.ToString(), "LeIdentityAddr", le_identity_address.ToString());
+  config.SetProperty(pseudo_first_seen_address.ToString(), "LeIdentityAddr",
+                     le_identity_address.ToString());
   config.SetProperty(address.ToString(), "Name", "world");
-  Device device2(&config, &memory_only_config, le_identity_address, Device::ConfigKeyAddressType::LE_IDENTITY_ADDRESS);
+  Device device2(&config, &memory_only_config, le_identity_address,
+                 Device::ConfigKeyAddressType::LE_IDENTITY_ADDRESS);
   ASSERT_TRUE(device2.Exists());
   ASSERT_THAT(device2.GetName(), Optional(StrEq("hello")));
 }
@@ -109,8 +136,11 @@ TEST(DeviceTest, create_new_device_using_le_identity_address) {
 TEST(DeviceTest, set_property) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_FALSE(device.Exists());
   ASSERT_FALSE(device.GetName());
   Mutation mutation(&config, &memory_only_config);
@@ -123,8 +153,11 @@ TEST(DeviceTest, set_property) {
 TEST(DeviceTest, set_device_type) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_FALSE(device.Exists());
   ASSERT_FALSE(device.GetName());
   {
@@ -144,8 +177,11 @@ TEST(DeviceTest, set_device_type) {
 TEST(DeviceTest, get_le_and_bredr) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_FALSE(device.GetDeviceType());
   ASSERT_DEATH({ device.Le(); }, MatchesRegex(".*"));
   ASSERT_DEATH({ device.Classic(); }, MatchesRegex(".*"));
@@ -198,20 +234,28 @@ TEST(DeviceTest, get_le_and_bredr) {
 TEST(DeviceTest, equality_test) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  Address address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  Device device1(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
-  Device device2(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  Device device1(&config, &memory_only_config, address,
+                 Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Device device2(&config, &memory_only_config, address,
+                 Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_EQ(device1, device2);
 
   // different config cache
   ConfigCache config_alt(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config_alt(10, {});
-  Device device3(&config_alt, &memory_only_config_alt, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Device device3(&config_alt, &memory_only_config_alt, address,
+                 Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_NE(device1, device3);
 
   // different address
-  Address address_alt = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x07}};
-  Device device4(&config, &memory_only_config, address_alt, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Address address_alt = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x07 }
+  };
+  Device device4(&config, &memory_only_config, address_alt,
+                 Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_NE(device1, device4);
 
   Device device5 = std::move(device2);
@@ -225,9 +269,12 @@ TEST(DeviceTest, equality_test) {
 TEST(DeviceTest, remove_config_test) {
   ConfigCache config(10, Device::kLinkKeyProperties);
   ConfigCache memory_only_config(10, {});
-  Address address = {{0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff}};
+  Address address = {
+    { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff }
+  };
   config.SetProperty(address.ToString(), "Name", "hello");
-  Device device(&config, &memory_only_config, address, Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
+  Device device(&config, &memory_only_config, address,
+                Device::ConfigKeyAddressType::LEGACY_KEY_ADDRESS);
   ASSERT_TRUE(device.Exists());
   ASSERT_THAT(device.GetName(), Optional(StrEq("hello")));
   Mutation mutation(&config, &memory_only_config);
@@ -258,8 +305,12 @@ TEST(DeviceTest, operator_less_than) {
     larger_memory_only_config_ptr = &memory_only_config1;
   }
 
-  bluetooth::hci::Address smaller_address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
-  bluetooth::hci::Address larger_address = {{0x01, 0x02, 0x03, 0x04, 0x05, 0x07}};
+  bluetooth::hci::Address smaller_address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 }
+  };
+  bluetooth::hci::Address larger_address = {
+    { 0x01, 0x02, 0x03, 0x04, 0x05, 0x07 }
+  };
 
   {
     Device device1(smaller_config_ptr, smaller_memory_only_config_ptr, smaller_address.ToString());
