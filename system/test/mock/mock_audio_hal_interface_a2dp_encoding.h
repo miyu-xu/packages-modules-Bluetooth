@@ -48,9 +48,9 @@ namespace audio_hal_interface_a2dp_encoding {
 // Params: const tA2DP_CTRL_ACK& status
 // Return: void
 struct ack_stream_started {
-  std::function<void(const tA2DP_CTRL_ACK& status)> body{
-      [](const tA2DP_CTRL_ACK& /* status */) {}};
-  void operator()(const tA2DP_CTRL_ACK& status) { body(status); };
+  std::function<void(BluetoothAudioStatus status)> body{
+      [](BluetoothAudioStatus /* status */) {}};
+  void operator()(BluetoothAudioStatus status) { body(status); };
 };
 extern struct ack_stream_started ack_stream_started;
 
@@ -58,9 +58,9 @@ extern struct ack_stream_started ack_stream_started;
 // Params: const tA2DP_CTRL_ACK& status
 // Return: void
 struct ack_stream_suspended {
-  std::function<void(const tA2DP_CTRL_ACK& status)> body{
-      [](const tA2DP_CTRL_ACK& /* status */) {}};
-  void operator()(const tA2DP_CTRL_ACK& status) { body(status); };
+  std::function<void(BluetoothAudioStatus status)> body{
+      [](BluetoothAudioStatus /* status */) {}};
+  void operator()(BluetoothAudioStatus status) { body(status); };
 };
 extern struct ack_stream_suspended ack_stream_suspended;
 
