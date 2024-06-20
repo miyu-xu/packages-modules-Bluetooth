@@ -85,3 +85,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "a2dp_variable_aac_capability"
+    namespace: "bluetooth"
+    description: "Enable AAC 48 kHz sampling rate for sink devices in the allow list"
+    bug: "38443632"
+}
