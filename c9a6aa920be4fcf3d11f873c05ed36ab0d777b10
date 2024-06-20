@@ -83,6 +83,61 @@
       ],
       "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0389b6b7_57778359",
+        "filename": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-20T06:43:48Z",
+      "side": 1,
+      "message": "Why newspace here but not in previous file ?",
+      "fixSuggestions": [
+        {
+          "fixId": "700ba002_e7f8f242",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+              "range": {
+                "startLine": 753,
+                "startChar": 0,
+                "endLine": 754,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+              "range": {
+                "startLine": 755,
+                "startChar": 0,
+                "endLine": 757,
+                "endChar": 0
+              },
+              "replacement": "  while (mDataMQ-\u003eavailableToRead() \u003e 0) {\n    size_t size \u003d mDataMQ-\u003eavailableToRead();\n    uint8_t p_buf[size];\n    if (mDataMQ-\u003eread(p_buf, size) !\u003d size)\n      log::warn(\"failed to flush data queue!\");\n"
+            },
+            {
+              "path": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+              "range": {
+                "startLine": 758,
+                "startChar": 0,
+                "endLine": 763,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "c9a6aa920be4fcf3d11f873c05ed36ab0d777b10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
