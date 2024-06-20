@@ -388,3 +388,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_scan_start_in_background_thread"
+    namespace: "bluetooth"
+    description: "Run scan start in the background thread"
+    bug: "348299929"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
