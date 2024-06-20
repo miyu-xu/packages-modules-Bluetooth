@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cf0886_6d4677b7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3264,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-20T05:16:24Z",
+      "side": 1,
+      "message": "Thanks, looks like I confused in this file two mCallbacks and previous change in this file was pointless.",
+      "parentUuid": "be85101e_cdf174a3",
+      "range": {
+        "startLine": 3264,
+        "startChar": 22,
+        "endLine": 3264,
+        "endChar": 40
+      },
+      "revId": "7844c2f61be5a9e2a68e7c08972eccf44030a69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1241ee8_c27ba640",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-19T21:39:02Z",
       "side": 1,
       "message": "This can never be null",
+      "range": {
+        "startLine": 3313,
+        "startChar": 4,
+        "endLine": 3316,
+        "endChar": 13
+      },
+      "revId": "7844c2f61be5a9e2a68e7c08972eccf44030a69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7602db8e_24077406",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3316,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-20T05:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1241ee8_c27ba640",
       "range": {
         "startLine": 3313,
         "startChar": 4,
