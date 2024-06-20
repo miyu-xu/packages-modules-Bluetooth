@@ -19,7 +19,6 @@ package com.android.bluetooth.btservice;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
@@ -47,6 +46,7 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -107,7 +107,8 @@ import java.util.Set;
  * UI), disconnecting the wired audio device will have no impact. E.g., music will continue
  * streaming over the active Bluetooth device.
  */
-public class ActiveDeviceManager implements AdapterService.BluetoothStateCallback {
+public class ActiveDeviceManager extends AudioDeviceCallback
+        implements AdapterService.BluetoothStateCallback {
     private static final String TAG = ActiveDeviceManager.class.getSimpleName();
     @VisibleForTesting static final int A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS = 5_000;
 
@@ -117,7 +118,6 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
     private HandlerThread mHandlerThread = null;
     private Handler mHandler = null;
     private final AudioManager mAudioManager;
-    private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback;
 
     private final Object mLock = new Object();
 
@@ -782,44 +782,38 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         }
     }
 
+    private static boolean isWiredAudioHeadset(AudioDeviceInfo deviceInfo) {
+        switch (deviceInfo.getType()) {
+            case AudioDeviceInfo.TYPE_WIRED_HEADSET:
+            case AudioDeviceInfo.TYPE_WIRED_HEADPHONES:
+            case AudioDeviceInfo.TYPE_USB_HEADSET:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     /** Notifications of audio device connection and disconnection events. */
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    private class AudioManagerAudioDeviceCallback extends AudioDeviceCallback {
-        private boolean isWiredAudioHeadset(AudioDeviceInfo deviceInfo) {
-            switch (deviceInfo.getType()) {
-                case AudioDeviceInfo.TYPE_WIRED_HEADSET:
-                case AudioDeviceInfo.TYPE_WIRED_HEADPHONES:
-                case AudioDeviceInfo.TYPE_USB_HEADSET:
-                    return true;
-                default:
-                    break;
-            }
-            return false;
+    @Override
+    public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
+        if (!Arrays.stream(addedDevices).anyMatch(ActiveDeviceManager::isWiredAudioHeadset)) {
+            return;
         }
+        Log.d(TAG, "onAudioDevicesAdded: ");
+        wiredAudioDeviceConnected();
+    }
 
-        @Override
-        public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
-            Log.d(TAG, "onAudioDevicesAdded");
-            boolean hasAddedWiredDevice = false;
-            for (AudioDeviceInfo deviceInfo : addedDevices) {
-                Log.d(
-                        TAG,
-                        "Audio device added: "
-                                + deviceInfo.getProductName()
-                                + " type: "
-                                + deviceInfo.getType());
-                if (isWiredAudioHeadset(deviceInfo)) {
-                    hasAddedWiredDevice = true;
-                    break;
-                }
-            }
-            if (hasAddedWiredDevice) {
-                wiredAudioDeviceConnected();
-            }
+    @Override
+    public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
+        if (!Flags.fallbackWhenWiredAudioDisconnected()) {
+            return;
         }
-
-        @Override
-        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {}
+        if (!Arrays.stream(removedDevices).anyMatch(ActiveDeviceManager::isWiredAudioHeadset)) {
+            return;
+        }
+        synchronized (mLock) {
+            setFallbackDeviceActiveLocked();
+        }
     }
 
     ActiveDeviceManager(AdapterService service, ServiceFactory factory) {
@@ -827,7 +821,6 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         mDbManager = mAdapterService.getDatabase();
         mFactory = factory;
         mAudioManager = service.getSystemService(AudioManager.class);
-        mAudioManagerAudioDeviceCallback = new AudioManagerAudioDeviceCallback();
     }
 
     void start() {
@@ -838,14 +831,14 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         mp.threadStart(mHandlerThread);
         mHandler = new Handler(mp.handlerThreadGetLooper(mHandlerThread));
 
-        mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
+        mAudioManager.registerAudioDeviceCallback(this, mHandler);
         mAdapterService.registerBluetoothStateCallback((command) -> mHandler.post(command), this);
     }
 
     void cleanup() {
         Log.d(TAG, "cleanup()");
 
-        mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAudioDeviceCallback);
+        mAudioManager.unregisterAudioDeviceCallback(this);
         mAdapterService.unregisterBluetoothStateCallback(this);
         if (mHandlerThread != null) {
             mHandlerThread.quit();
