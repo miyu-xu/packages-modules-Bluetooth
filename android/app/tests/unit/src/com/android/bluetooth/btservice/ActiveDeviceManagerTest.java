@@ -40,8 +40,11 @@ import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.content.Context;
+import android.media.AudioDeviceInfo;
+import android.media.AudioDevicePort;
 import android.media.AudioManager;
 import android.os.test.TestLooper;
+import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 import android.util.ArrayMap;
 import android.util.SparseIntArray;
@@ -1215,6 +1218,34 @@ public class ActiveDeviceManagerTest {
         verify(mA2dpService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(isNull());
         verify(mHearingAidService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+    }
+
+    /** A wired audio device is disconnected. Check if falls back to connected A2DP. */
+    @Test
+    @EnableFlags(Flags.FLAG_FALLBACK_WHEN_WIRED_AUDIO_DISCONNECTED)
+    public void wiredAudioDeviceDisconnected_setFallbackDevice() {
+        AudioDevicePort a2dpPort = mock(AudioDevicePort.class);
+        doReturn(AudioDeviceInfo.TYPE_BLUETOOTH_A2DP).when(a2dpPort).type();
+        AudioDevicePort usbPort = mock(AudioDevicePort.class);
+        doReturn(AudioDeviceInfo.TYPE_USB_HEADSET).when(usbPort).type();
+
+        AudioDeviceInfo a2dpDevice = new AudioDeviceInfo(a2dpPort);
+        AudioDeviceInfo usbDevice = new AudioDeviceInfo(usbPort);
+
+        mActiveDeviceManager.onAudioDevicesAdded(new AudioDeviceInfo[] {a2dpDevice});
+        // Connect A2DP heaphones
+        a2dpConnected(mA2dpDevice, false);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
+
+        // Connect wired heaphones
+        mActiveDeviceManager.onAudioDevicesAdded(new AudioDeviceInfo[] {usbDevice});
+        verify(mA2dpService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+
+        // Disconnect wired headphones
+        mActiveDeviceManager.onAudioDevicesRemoved(new AudioDeviceInfo[] {usbDevice});
+
+        // Verify that active device will fallback to A2DP
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
     }
 
     /**
