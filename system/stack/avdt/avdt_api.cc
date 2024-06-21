@@ -34,10 +34,9 @@
 #include "avdtc_api.h"
 #include "bta/include/bta_sec_api.h"
 #include "internal_include/bt_target.h"
-#include "l2c_api.h"
-#include "os/log.h"
 #include "stack/include/a2dp_codec_api.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/l2cap_interface.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -98,8 +97,9 @@ void avdt_scb_transport_channel_timer_timeout(void* data) {
  ******************************************************************************/
 void AVDT_Register(AvdtpRcb* p_reg, tAVDT_CTRL_CBACK* p_cback) {
   /* register PSM with L2CAP */
-  if (!L2CA_RegisterWithSecurity(AVDT_PSM, avdt_l2c_appl, true /* enable_snoop */, nullptr,
-                                 kAvdtpMtu, 0, BTA_SEC_AUTHENTICATE)) {
+  if (!stack::l2cap::get_interface().L2CA_RegisterWithSecurity(
+              AVDT_PSM, avdt_l2c_appl, true /* enable_snoop */, nullptr, kAvdtpMtu, 0,
+              BTA_SEC_AUTHENTICATE)) {
     log::error("Unable to register with L2CAP profile AVDT psm:AVDT_PSM[0x0019]");
   }
 
@@ -129,7 +129,7 @@ void AVDT_Register(AvdtpRcb* p_reg, tAVDT_CTRL_CBACK* p_cback) {
  ******************************************************************************/
 void AVDT_Deregister(void) {
   /* deregister PSM with L2CAP */
-  L2CA_Deregister(AVDT_PSM);
+  stack::l2cap::get_interface().L2CA_Deregister(AVDT_PSM);
 }
 
 void AVDT_AbortReq(uint8_t handle) {
