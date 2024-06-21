@@ -170,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce698c79_948a304c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-21T13:37:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb1b27ed_d8a07822",
+      "range": {
+        "startLine": 817,
+        "startChar": 18,
+        "endLine": 817,
+        "endChar": 49
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4a87103_7e19cd7c",
@@ -207,6 +231,30 @@
       "side": 1,
       "message": "Practically without any hub (two wired audio devs connected with a hub to the phone is probably the rarest of all cases :D) there won\u0027t be more than one, but yes, this is not intended, so I will remove it",
       "parentUuid": "f4a87103_7e19cd7c",
+      "range": {
+        "startLine": 821,
+        "startChar": 9,
+        "endLine": 823,
+        "endChar": 13
+      },
+      "revId": "0c652307ab728ba5a27e50d168855f794465928d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7463e4_72e15c46",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-21T13:37:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d8fe8fb_f8cb4ffb",
       "range": {
         "startLine": 821,
         "startChar": 9,
