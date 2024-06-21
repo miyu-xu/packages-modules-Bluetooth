@@ -16,6 +16,59 @@
       "message": "Is this the read request callback? Do we need to add cb here?",
       "revId": "ff12bef828f9309724cfedf0de14f48e2e8beda9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "687028aa_61e3d2a3",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-21T09:20:10Z",
+      "side": 1,
+      "message": "i think it\u0027s for read characteristic handling. our custom profile doesn\u0027t have characteristics so no need for the handler.",
+      "parentUuid": "4cffe8a7_137a488d",
+      "revId": "ff12bef828f9309724cfedf0de14f48e2e8beda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72cf8394_60e34c46",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-21T09:20:10Z",
+      "side": 1,
+      "message": "based on the latest test, attribute_handle.might be not the correct handle, perhaps it should have been value_handle or something",
+      "fixSuggestions": [
+        {
+          "fixId": "ee0ad39d_007e2954",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 526,
+                "startChar": 0,
+                "endLine": 527,
+                "endChar": 0
+              },
+              "replacement": "  gatt_cb.handle_of_pnp \u003d dis_service[1].value.dclr_value.val_handle;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff12bef828f9309724cfedf0de14f48e2e8beda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
