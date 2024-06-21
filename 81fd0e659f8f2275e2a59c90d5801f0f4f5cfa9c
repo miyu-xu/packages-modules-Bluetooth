@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8ecca76_e3441fcc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T18:03:31Z",
+      "side": 1,
+      "message": "Please, add `Bug: 346909845` to this CL\n\nAlso add\n`Flag: TEST_ONLY` to notify that this only impact test\nAlso add\n`Test: atest CtsStatsdAtomHostTestCases` or the appropriate command to reproduce the failure\n\nI tried to reproduce, but it looks like the issue is specific to some devices / form factor",
+      "parentUuid": "e919a57c_c5b26278",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 81
+      },
+      "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4eec04fe_06e70732",
         "filename": "framework/tests/util/src/Permissions.kt",
         "patchSetId": 1
@@ -103,6 +127,30 @@
       "side": 1,
       "message": "About the usage of adoptShellPermissionIdentity and dropShellPermissionIdentity, I think whether we can refer to other cases, such as \npackages/modules/Bluetooth/service/tests/src/com/android/server/bluetooth/BluetoothServiceBinderTest.java\n\nIn the setup(), BluetoothServiceBinderTest call adoptShellPermissionIdentity for two permissions and in the tearDown() it call dropShellPermissionIdentity().\n\nI think it\u0027s same as this case, so I believe this won\u0027t break more.\n\nPlease help check, thanks.",
       "parentUuid": "4eec04fe_06e70732",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d79dbb9d_8cc92133",
+        "filename": "framework/tests/util/src/Permissions.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T18:03:31Z",
+      "side": 1,
+      "message": "The whole point of this method/utiliy is to restore the permission after being done executing.\n\nThis change is completely removing the feature.\n\nUnfortunately in BluetoothServiceBinderTest we are not using this utility at all. You are comparing a unit test that doesn\u0027t intent to check permission at all vs cts tests.\n\nFor example `SystemBluetoothTest.java` is taking CONNECT and PRIVILEGED in [setup](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:cts/tests/tests/bluetooth/src/android/bluetooth/cts/SystemBluetoothTest.java;l\u003d85;drc\u003d985e9f23a965bdd0e59900b3f33b0fbe9319b884), and in test it [start](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:cts/tests/tests/bluetooth/src/android/bluetooth/cts/SystemBluetoothTest.java;l\u003d157;drc\u003d985e9f23a965bdd0e59900b3f33b0fbe9319b884) a discovery with the SCAN permission only.\n\nAfter the call, it should have CONNECT and PRIVILEGED.\n\n----\n\nInstead, please, check for a size \u003d\u003d 0 before dropping the identity\n\n```suggestion\n        if (UiAutomation.ALL_PERMISSIONS.equals(permissions)) {\n            uiAutomation.adoptShellPermissionIdentity()\n        } else if (permissions.size() \u003d\u003d 0) {\n            uiAutomation.dropShellPermissionIdentity()\n        } else {\n            uiAutomation.adoptShellPermissionIdentity(*permissions.map { it }.toTypedArray())\n        }\n```",
+      "parentUuid": "e3920ff6_c5324a18",
       "range": {
         "startLine": 65,
         "startChar": 21,
