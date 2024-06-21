@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ebc4466_a40ee216",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-21T16:05:58Z",
+      "side": 1,
+      "message": "I find this confusing.\n\nI\u0027m not quite sure that checking for \"tv\" string is a good way to decide if device is not mobile. Can build characteristic be upper case ? or just randomly contain tv in it ? \n\nCan you have method called \"is_tv\" instead, and have logic for TV form factor ?",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
