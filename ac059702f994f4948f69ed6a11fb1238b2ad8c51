@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8543433_8509b1ab",
+        "filename": "system/gd/l2cap/le/internal/link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-21T18:08:56Z",
+      "side": 1,
+      "message": "@jpawlowski@google.com, did you have an implementation for this from yesterday?",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 19
+      },
+      "revId": "ac059702f994f4948f69ed6a11fb1238b2ad8c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
