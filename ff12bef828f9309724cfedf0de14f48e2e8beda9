@@ -87,6 +87,24 @@
       ],
       "revId": "ff12bef828f9309724cfedf0de14f48e2e8beda9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7083aa49_e47f3665",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-21T18:54:38Z",
+      "side": 1,
+      "message": "We probably need to modify read_attr_value function to return the value. I will try to check how to test that.",
+      "parentUuid": "72cf8394_60e34c46",
+      "revId": "ff12bef828f9309724cfedf0de14f48e2e8beda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
