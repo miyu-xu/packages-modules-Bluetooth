@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0644835_7b3589f8",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:04:19Z",
+      "side": 0,
+      "message": "There is no occurrence of it in the code. we are already using clang-format off and clang format on in the section that are willingly non formatted\n\ncf https://cs.android.com/search?q\u003df:packages%2Fmodules%2Fbluetooth%20NOLINT:.*%20-f:.clang-format\u0026sq\u003d",
+      "parentUuid": "e6f99ae0_562e7113",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "dc7465ac29255802becc5a3dbb1968695b07bb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bc03571_128b2ac7",
         "filename": "service/.clang-format",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-21T21:38:44Z",
       "side": 0,
       "message": "Same, is it from the Google style ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 36
+      },
+      "revId": "dc7465ac29255802becc5a3dbb1968695b07bb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a17a1d5_fb7500e8",
+        "filename": "service/.clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:04:19Z",
+      "side": 0,
+      "message": "This whole file is not used. there is no native code in the service folder",
+      "parentUuid": "7bc03571_128b2ac7",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-06-21T21:38:44Z",
       "side": 0,
       "message": "Is it included in the default Google style ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 52
+      },
+      "revId": "dc7465ac29255802becc5a3dbb1968695b07bb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cc28864_f255abec",
+        "filename": "system/gd/.clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:04:19Z",
+      "side": 0,
+      "message": "`AllowShortFunctionsOnASingleLine` is set to `All` in the google style\n\n`ConstructorInitializerAllOnOneLineOrOnePerLine` is deprecated and replaced by `PackConstructorInitializers`.\nThe google style set it to `NextLine`",
+      "parentUuid": "08efc5eb_2d01d068",
       "range": {
         "startLine": 26,
         "startChar": 0,
