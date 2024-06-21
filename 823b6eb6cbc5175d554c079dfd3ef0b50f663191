@@ -22,6 +22,30 @@
       },
       "revId": "823b6eb6cbc5175d554c079dfd3ef0b50f663191",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42934d1c_ca5a8fd7",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-21T18:18:19Z",
+      "side": 1,
+      "message": "There is no need to use base_interval. We already set it to controller, and it will know to adjust connection interval to be multiplication of this value.\n\nIf base_interval is 0, we clear recommendation, and we don\u0027t need to adjust the connection intervals.",
+      "parentUuid": "2fe790b3_c9904265",
+      "range": {
+        "startLine": 1452,
+        "startChar": 6,
+        "endLine": 1452,
+        "endChar": 19
+      },
+      "revId": "823b6eb6cbc5175d554c079dfd3ef0b50f663191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
