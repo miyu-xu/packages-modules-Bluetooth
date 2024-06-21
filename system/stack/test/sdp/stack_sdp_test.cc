@@ -31,6 +31,7 @@
 #include "test/fake/fake_osi.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_l2cap_api.h"
+#include "test/mock/mock_stack_l2cap_interface.h"
 
 #ifndef BT_DEFAULT_BUFFER_SIZE
 #define BT_DEFAULT_BUFFER_SIZE (4096 + 16)
@@ -47,7 +48,9 @@ class StackSdpWithMocksTest : public ::testing::Test {
 protected:
   void SetUp() override {
     fake_osi_ = std::make_unique<test::fake::FakeOsi>();
+    bluetooth::testing::stack::l2cap::set_interface(&mock_stack_l2cap_interface_);
 
+#if 0
     test::mock::stack_l2cap_api::L2CA_ConnectReqWithSecurity.body =
             [](uint16_t /* psm */, const RawAddress& /* p_bd_addr */, uint16_t /* sec_level */) {
               return ++L2CA_ConnectReqWithSecurity_cid;
@@ -62,6 +65,7 @@ protected:
             [](uint16_t psm, const tL2CAP_APPL_INFO& /* p_cb_info */, bool /* enable_snoop */,
                tL2CAP_ERTM_INFO* /* p_ertm_info */, uint16_t /* my_mtu */,
                uint16_t /* required_remote_mtu */, uint16_t /* sec_level */) { return psm; };
+#endif
   }
 
   void TearDown() override {
@@ -70,9 +74,11 @@ protected:
     test::mock::stack_l2cap_api::L2CA_DataWrite = {};
     test::mock::stack_l2cap_api::L2CA_DisconnectReq = {};
 
+    bluetooth::testing::stack::l2cap::reset_interface();
     fake_osi_.reset();
   }
 
+  bluetooth::testing::stack::l2cap::Mock mock_stack_l2cap_interface_;
   std::unique_ptr<test::fake::FakeOsi> fake_osi_;
 };
 
