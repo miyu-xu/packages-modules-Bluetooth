@@ -30,13 +30,15 @@
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/gatt_api.h"
-#include "stack/include/l2c_api.h"
+#include "stack/include/l2cap_types.h"
 #include "stack/sdp/internal/sdp_api.h"
 #include "test/mock/mock_stack_sdp_legacy_api.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
 #define TEST_BT com::android::bluetooth::flags
+
+uint16_t L2CA_LeCreditDefault() { return UINT16_MAX; }
 
 namespace bluetooth {
 namespace legacy {
