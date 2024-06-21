@@ -34,6 +34,24 @@
       "parentUuid": "ac7432ba_f2f2a597",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e9dc55_a0206be0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-21T09:57:53Z",
+      "side": 1,
+      "message": "In Auracast-Transmitter_Recommendations\n2.5.2.1 Public Broadcast Announcement Service (Mandatory)\nThat service is showed as Mandatory.",
+      "parentUuid": "5250b19a_830b1cd9",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
