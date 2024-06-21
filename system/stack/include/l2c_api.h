@@ -32,6 +32,7 @@
 
 #include "hcidefs.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/l2c_property.h"
 #include "types/bt_transport.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
@@ -178,14 +179,6 @@ constexpr uint16_t L2CAP_LE_MIN_MTU = 23;  // Minimum SDU size
 constexpr uint16_t L2CAP_LE_MIN_MPS = 23;
 constexpr uint16_t L2CAP_LE_MAX_MPS = 65533;
 constexpr uint16_t L2CAP_LE_CREDIT_MAX = 65535;
-
-// This is initial amout of credits we send, and amount to which we increase
-// credits once they fall below threshold
-uint16_t L2CA_LeCreditDefault();
-
-// If credit count on remote fall below this value, we send back credits to
-// reach default value.
-uint16_t L2CA_LeCreditThreshold();
 
 // Max number of CIDs in the L2CAP CREDIT BASED CONNECTION REQUEST
 constexpr uint16_t L2CAP_CREDIT_BASED_MAX_CIDS = 5;
