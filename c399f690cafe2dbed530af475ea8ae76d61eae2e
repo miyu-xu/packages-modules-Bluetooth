@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47a216df_2d81f6d3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-21T00:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a4870bc_e1866004",
+      "range": {
+        "startLine": 41,
+        "startChar": 57,
+        "endLine": 41,
+        "endChar": 66
+      },
+      "revId": "c399f690cafe2dbed530af475ea8ae76d61eae2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "481785bc_0fb2622f",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-06-20T19:34:47Z",
       "side": 1,
       "message": "Tag all of these as @VisibleForTesting",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 10
+      },
+      "revId": "c399f690cafe2dbed530af475ea8ae76d61eae2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ecc7393_48233248",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-21T00:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "481785bc_0fb2622f",
       "range": {
         "startLine": 74,
         "startChar": 4,
