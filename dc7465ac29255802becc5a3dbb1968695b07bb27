@@ -140,6 +140,30 @@
       },
       "revId": "dc7465ac29255802becc5a3dbb1968695b07bb27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8054a70_90bb6f00",
+        "filename": "system/gd/.clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:05:20Z",
+      "side": 0,
+      "message": "FYI to see the default value of the style you can look at:\nhttps://github.com/llvm/llvm-project/blob/main/clang/lib/Format/Format.cpp\n\nThe GoogleStyle inherit from LlvmStyle.",
+      "parentUuid": "8cc28864_f255abec",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 52
+      },
+      "revId": "dc7465ac29255802becc5a3dbb1968695b07bb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
