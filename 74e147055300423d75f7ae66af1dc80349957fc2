@@ -46,6 +46,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2ff561_219bd502",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T18:41:42Z",
+      "side": 1,
+      "message": "Same as Jakub, this looks like a hack.\n\nThere are other situation in witch we are doing TV specific code like at the start of profile in the app using the [packageManager](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/Utils.java;l\u003d1279;drc\u003dc4b770ab77ea5c3e62204c8870ebf54dd8b5eb94).\n\nI know that we are here in native (and I am not sure on how to call the packageManager from here), but I think it would be ok to have this value passed as an extra parameter of the init.\n\nWhat do you think ?",
+      "parentUuid": "4d4aaba7_325c6e03",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
