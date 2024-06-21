@@ -31,8 +31,6 @@
 #include <string>
 
 #include "internal_include/bt_target.h"
-#include "l2c_api.h"
-#include "l2cdefs.h"
 #include "macros.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
@@ -40,6 +38,9 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_sec_api_types.h"
 #include "stack/include/hci_error_code.h"
+#include "stack/include/l2cap_interface.h"
+#include "stack/include/l2cdefs.h"
+#include "stack/l2cap/internal/l2c_api.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
 
