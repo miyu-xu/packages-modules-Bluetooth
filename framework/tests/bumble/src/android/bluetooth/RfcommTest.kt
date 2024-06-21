@@ -259,6 +259,19 @@ class RfcommTest {
         }
     }
 
+    @Test
+    fun connectTwoInsecureClients() {
+        startServer { serverId1 ->
+            Log.i(TAG, "asdf starting second server")
+            startServer("Test2", SERIAL_PORT_UUID) { serverId2 ->
+                runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+                createAndConnectSocket(isSecure = false, serverId1, TEST_UUID)
+                createAndConnectSocket(isSecure = false, serverId2, SERIAL_PORT_UUID)
+            }
+        }
+    }
+
     private fun createAndConnectSocket(
         isSecure: Boolean,
         server: ServerId,
@@ -314,9 +327,9 @@ class RfcommTest {
         flow.first()
     }
 
-    private fun startServer(block: (ServerId) -> Unit) {
+    private fun startServer(name: String = TEST_SERVER_NAME, uuid: String = TEST_UUID, block: (ServerId) -> Unit) {
         val request =
-            StartServerRequest.newBuilder().setName(TEST_SERVER_NAME).setUuid(TEST_UUID).build()
+            StartServerRequest.newBuilder().setName(name).setUuid(uuid).build()
         val response = mBumble.rfcommBlocking().startServer(request)
 
         try {
@@ -336,7 +349,8 @@ class RfcommTest {
         private val TAG = RfcommTest::class.java.getSimpleName()
         private val GRPC_TIMEOUT = Duration.ofSeconds(10)
         private val BOND_TIMEOUT = Duration.ofSeconds(20)
-        private const val TEST_UUID = "00001101-0000-1000-8000-00805F9B34FB"
+        private const val TEST_UUID = "2ac5d8f1-f58d-48ac-a16b-cdeba0892d65"
+        private const val SERIAL_PORT_UUID = "00001101-0000-1000-8000-00805F9B34FB"
         private const val TEST_SERVER_NAME = "RFCOMM Server"
     }
 }
