@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861a5787_776b3772",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-21T23:26:32Z",
+      "side": 1,
+      "message": "I tested it and the main functionality of this scanner is not working anymore\n\nTest stps.\n\n1. Bond with LeAudio headset or hearing aids (Make sure LeAudio toggle is ON)\n2. Disable headset and Bluetooth\n3. Enable Bluetooth and wait 30 sec so direct connect timeout fires\n4. Power off screen.\n\n5. At this point when you check btsnoop, you will see that Scanner is not enabled.\n6. Enable your LeAudio headset which will do Targeted Announcements (you can check with a sniffer or other phone)\n7. Since scanner is not enabled, headset will not be reconnected.",
+      "revId": "cc32d2d207dd188be10ba74a99e68ab223bf3356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
