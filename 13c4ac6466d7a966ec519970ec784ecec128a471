@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25773753_cd0b6edf",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "I really don\u0027t like having a promise passed to the btif_av_source context, especially because forgetting to resolve the promise equates locking the caller thread and the JNI interface. This could happen for any number of reason (lost event, remote disconnection..).\n\nTracing this promise into btif_a2dp_source, it seems to be used as locking mechanism to prevent races when reconfiguring, and not to wait until the configuration has been fully applied.\n\nWe should be able to figure something that does not rely on this.",
+      "range": {
+        "startLine": 105,
+        "startChar": 21,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99b6a21e_c404226a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "A better name would be BTIF_AV_RECONFIGURE_REQ_EVT",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572c6f74_0a19542c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1856,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "When ignoring the event like this you expose the JNI interface to being blocked due to the promise never being set.",
+      "range": {
+        "startLine": 1856,
+        "startChar": 9,
+        "endLine": 1856,
+        "endChar": 39
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0601907d_50295174",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2539,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "info",
+      "range": {
+        "startLine": 2539,
+        "startChar": 13,
+        "endLine": 2539,
+        "endChar": 17
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "620bb546_8c319582",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2674,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "start",
+      "range": {
+        "startLine": 2674,
+        "startChar": 21,
+        "endLine": 2674,
+        "endChar": 22
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d31c5b2d_c143b1ab",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2681,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "That case should never occur, because only one set_codec_config_preference request can be executed at a time (because of the future).",
+      "range": {
+        "startLine": 2677,
+        "startChar": 8,
+        "endLine": 2681,
+        "endChar": 9
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3679bb3c_1b8b23dc",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4498,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T22:55:49Z",
+      "side": 1,
+      "message": "nit: Please inline this function.",
+      "range": {
+        "startLine": 4498,
+        "startChar": 19,
+        "endLine": 4498,
+        "endChar": 45
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
