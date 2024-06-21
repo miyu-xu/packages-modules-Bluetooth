@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e10444e_529e6502",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-21T10:09:04Z",
+      "side": 1,
+      "message": "@rongxuan@google.com\nI use 10s and 30min even if, we know that audioHal delayed onAudioSuspend about 5s from playback paused. I did not subtract it, as I cannot guaranty that this value does not change.",
+      "revId": "780294ba97a9e18bd530f2af1406388d6aa5c22b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
