@@ -39,7 +39,7 @@
 #include "stack/include/btm_sec_api_types.h"
 #include "stack/include/hci_error_code.h"
 #include "stack/include/l2c_api.h"
-#include "stack/include/l2cdefs.h"
+#include "stack/include/l2cap_interface.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
 
@@ -49,6 +49,9 @@
 
 constexpr uint16_t L2CAP_CREDIT_BASED_MIN_MTU = 64;
 constexpr uint16_t L2CAP_CREDIT_BASED_MIN_MPS = 64;
+
+constexpr uint16_t L2CAP_INITIATOR_LOCAL = 1;
+constexpr uint16_t L2CAP_INITIATOR_REMOTE = 0;
 
 /*
  * Timeout values (in milliseconds).

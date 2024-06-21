@@ -55,6 +55,8 @@ using namespace bluetooth;
 extern fixed_queue_t* btu_general_alarm_queue;
 tL2C_AVDT_CHANNEL_INFO av_media_channels[MAX_ACTIVE_AVDT_CONN];
 
+constexpr uint16_t L2CAP_LE_CREDIT_THRESHOLD = 64;
+
 tBT_TRANSPORT l2c_get_transport_from_fixed_cid(uint16_t fixed_cid) {
   if (fixed_cid >= L2CAP_ATT_CID && fixed_cid <= L2CAP_SMP_CID) {
     return BT_TRANSPORT_LE;
