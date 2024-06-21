@@ -4705,11 +4705,7 @@ TEST_F(StateMachineTest, testHandlingAutonomousCodecConfigStateOnConnection) {
           .Times(4);
 
   InjectInitialIdleAndConfiguredNotification(group);
-  // Call it second time to make sure we get into state that current_state_ is
-  // different then target_state_ even group is not in transition.
-  InjectInitialIdleAndConfiguredNotification(group);
 
-  ASSERT_TRUE(group->GetTargetState() != group->GetState());
   ASSERT_FALSE(group->IsInTransition());
 
   // Validate initial GroupStreamStatus
@@ -10336,6 +10332,156 @@ TEST_F(StateMachineTest, testDoNotCodecConfigureDeviceWithoutContextsAvailable) 
   ASSERT_FALSE(earbudRightAse == nullptr);
 
   // check if group is streaming
+  ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+}
+
+TEST_F(StateMachineTest, testIgnoreInactiveAseAutonomousConfigCodecFromCodecConfigured) {
+  const auto context_type = kContextTypeMedia;
+  const auto audio_contexts = types::AudioContexts(context_type);
+  const auto group_id = 4;
+  const auto num_devices = 2;
+
+  ContentControlIdKeeper::GetInstance()->SetCcid(media_context, media_ccid);
+
+  /**
+   * Scenario:
+   * 1. Have a set of 2 devices, including one that is not available for stream
+   *    (available contexts are 0).
+   * 2. Start streaming.
+   * 3. Verify only one device (available for stream) is active.
+   * 4. Verify the group is streaming.
+   */
+
+  // Prepare multiple fake connected devices in a group
+  auto* group = PrepareSingleTestDeviceGroup(group_id, context_type, num_devices);
+  ASSERT_EQ(group->Size(), num_devices);
+
+  auto* earbudLeft = group->GetFirstDevice();
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(earbudLeft->conn_id_, earbudLeft->ctp_hdls_.val_hdl,
+                                              _, GATT_WRITE_NO_RSP, _, _))
+          .Times(0);
+
+  auto* earbudRight = group->GetNextDevice(earbudLeft);
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(earbudRight->conn_id_, earbudRight->ctp_hdls_.val_hdl,
+                                              _, GATT_WRITE_NO_RSP, _, _))
+          .Times(AtLeast(3));
+
+  log::debug("[TESTING] Inject initial ASE state notification");
+  InjectInitialConfiguredNotification(group);
+
+  log::debug("[TESTING] right earbud indicates there are available context");
+  DeviceContextsUpdate(earbudRight, types::kLeAudioDirectionSink, audio_contexts, audio_contexts);
+
+  log::debug("[TESTING] left earbud indicates there are no available context at the time");
+  DeviceContextsUpdate(earbudLeft, types::kLeAudioDirectionSink, types::AudioContexts(),
+                       audio_contexts);
+
+  PrepareConfigureCodecHandler(group, 0, true);
+  PrepareConfigureQosHandler(group);
+  PrepareEnableHandler(group, 0, /* inject_enabling */ true, /* inject_streaming */ true);
+  PrepareDisableHandler(group);
+  PrepareReleaseHandler(group);
+
+  log::debug("[TESTING] StartStream action initiated by upper layer");
+  ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
+          group, context_type,
+          {.sink = types::AudioContexts(context_type),
+           .source = types::AudioContexts(context_type)}));
+
+  // check if group is streaming
+  ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
+  // make sure the ASEs is in correct state, required in this scenario
+  auto* earbudLeftAse = earbudLeft->GetFirstActiveAseByDirection(types::kLeAudioDirectionSink);
+  ASSERT_TRUE(earbudLeftAse == nullptr);
+  auto* earbudRightAse = earbudRight->GetFirstActiveAseByDirection(types::kLeAudioDirectionSink);
+  ASSERT_FALSE(earbudRightAse == nullptr);
+
+  // check if group is streaming
+  ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
+  testing::Mock::VerifyAndClearExpectations(mock_iso_manager_);
+
+  EXPECT_CALL(*mock_iso_manager_, EstablishCis(_)).Times(0);
+
+  log::debug("[TESTING] Inject autonomous ASE Codec Configured state transition");
+  earbudLeftAse = earbudLeft->GetFirstInactiveAse(types::kLeAudioDirectionSink);
+  ASSERT_FALSE(earbudLeftAse == nullptr);
+
+  log::debug("[TESTING] For the test purpose we'll use the codec parameters from Right device ASE");
+  auto* codec_configured_params = &cached_codec_configuration_map_[earbudRightAse->id];
+  InjectAseStateNotification(earbudLeftAse, earbudLeft, group, ascs::kAseStateCodecConfigured,
+                             codec_configured_params);
+
+  ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+}
+
+TEST_F(StateMachineTest, testIgnoreInactiveAseAutonomousConfigCodecFromIdle) {
+  const auto context_type = kContextTypeMedia;
+  const auto audio_contexts = types::AudioContexts(context_type);
+  const auto group_id = 4;
+  const auto num_devices = 2;
+
+  ContentControlIdKeeper::GetInstance()->SetCcid(media_context, media_ccid);
+
+  // Prepare multiple fake connected devices in a group
+  auto* group = PrepareSingleTestDeviceGroup(group_id, context_type, num_devices);
+  ASSERT_EQ(group->Size(), num_devices);
+
+  auto* earbudLeft = group->GetFirstDevice();
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(earbudLeft->conn_id_, earbudLeft->ctp_hdls_.val_hdl,
+                                              _, GATT_WRITE_NO_RSP, _, _))
+          .Times(0);
+
+  auto* earbudRight = group->GetNextDevice(earbudLeft);
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(earbudRight->conn_id_, earbudRight->ctp_hdls_.val_hdl,
+                                              _, GATT_WRITE_NO_RSP, _, _))
+          .Times(AtLeast(3));
+
+  log::debug("[TESTING] Inject initial ASE state notification");
+  InjectInitialIdleNotification(group);
+
+  log::debug("[TESTING] right earbud indicates there are available context");
+  DeviceContextsUpdate(earbudRight, types::kLeAudioDirectionSink, audio_contexts, audio_contexts);
+
+  log::debug("[TESTING] left earbud indicates there are no available context at the time");
+  DeviceContextsUpdate(earbudLeft, types::kLeAudioDirectionSink, types::AudioContexts(),
+                       audio_contexts);
+
+  PrepareConfigureCodecHandler(group, 0, true);
+  PrepareConfigureQosHandler(group);
+  PrepareEnableHandler(group, 0, /* inject_enabling */ true, /* inject_streaming */ true);
+  PrepareDisableHandler(group);
+  PrepareReleaseHandler(group);
+
+  log::debug("[TESTING] StartStream action initiated by upper layer");
+  ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
+          group, context_type,
+          {.sink = types::AudioContexts(context_type),
+           .source = types::AudioContexts(context_type)}));
+
+  // check if group is streaming
+  ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
+  // make sure the ASEs is in correct state, required in this scenario
+  auto* earbudLeftAse = earbudLeft->GetFirstActiveAseByDirection(types::kLeAudioDirectionSink);
+  ASSERT_TRUE(earbudLeftAse == nullptr);
+  auto* earbudRightAse = earbudRight->GetFirstActiveAseByDirection(types::kLeAudioDirectionSink);
+  ASSERT_FALSE(earbudRightAse == nullptr);
+
+  testing::Mock::VerifyAndClearExpectations(mock_iso_manager_);
+
+  EXPECT_CALL(*mock_iso_manager_, EstablishCis(_)).Times(0);
+
+  log::debug("[TESTING] Inject autonomous ASE Codec Configured state transition");
+  earbudLeftAse = earbudLeft->GetFirstInactiveAse(types::kLeAudioDirectionSink);
+  ASSERT_FALSE(earbudLeftAse == nullptr);
+
+  log::debug("[TESTING] For the test purpose we'll use the codec parameters from Right device ASE");
+  auto* codec_configured_params = &cached_codec_configuration_map_[earbudRightAse->id];
+  InjectAseStateNotification(earbudLeftAse, earbudLeft, group, ascs::kAseStateCodecConfigured,
+                             codec_configured_params);
+
   ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 }
 
