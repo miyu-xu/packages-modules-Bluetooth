@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ffff2ba_db4536ea",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-21T15:51:13Z",
+      "side": 1,
+      "message": "Not mMockLeCallControl ? That\u0027s the only one where you removed the Mock in the name :D",
+      "range": {
+        "startLine": 97,
+        "startChar": 46,
+        "endLine": 97,
+        "endChar": 60
+      },
+      "revId": "ed26173a41649e4a6004805ecde831a006389007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
