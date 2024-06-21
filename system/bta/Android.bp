@@ -771,6 +771,7 @@ cc_test {
     name: "bluetooth_le_audio_codec_manager_test",
     test_suites: ["general-tests"],
     defaults: [
+        "aconfig_lib_cc_static_link.defaults",
         "bluetooth_flatbuffer_bundler_defaults",
         "fluoride_defaults",
         "mts_defaults",
@@ -843,6 +844,7 @@ cc_test {
         "libgmock",
         "libosi",
     ],
+    ldflags: ["-Wl,--allow-multiple-definition"],
     sanitize: {
         cfi: false,
     },

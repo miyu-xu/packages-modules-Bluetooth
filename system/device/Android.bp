@@ -81,6 +81,7 @@ cc_test {
     name: "net_test_device_iot_config",
     test_suites: ["general-tests"],
     defaults: [
+        "aconfig_lib_cc_static_link.defaults",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -117,4 +118,5 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     cflags: ["-Wno-unused-parameter"],
+    ldflags: ["-Wl,--allow-multiple-definition"],
 }

@@ -131,6 +131,7 @@ cc_test {
     name: "bluetooth-test-audio-hal-a2dp-provider-info",
     test_suites: ["general-tests"],
     defaults: [
+        "aconfig_lib_cc_shared_link.defaults",
         "fluoride_defaults",
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
@@ -204,6 +205,7 @@ cc_defaults {
         "libbluetooth_headers",
     ],
     defaults: [
+        "aconfig_lib_cc_shared_link.defaults",
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
@@ -281,6 +283,7 @@ cc_test {
     name: "bluetooth-test-audio-hal-aidl-leaudio-utils",
     host_supported: true,
     defaults: [
+        "aconfig_lib_cc_shared_link.defaults",
         "fluoride_defaults",
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",

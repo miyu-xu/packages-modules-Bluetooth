@@ -191,6 +191,7 @@ cc_defaults {
         "packages/modules/Bluetooth/system/types",
     ],
     export_static_lib_headers: ["libbluetooth_rust_interop"],
+    ldflags: ["-Wl,--allow-multiple-definition"],
 }
 
 cc_library {
@@ -520,6 +521,7 @@ cc_test {
     name: "bluetooth_test_gdx_unit",
     test_suites: ["device-tests"],
     defaults: [
+        "aconfig_lib_cc_shared_link.defaults",
         "gd_defaults",
         "mts_defaults",
     ],
@@ -577,6 +579,9 @@ cc_test {
         address: true,
     },
     min_sdk_version: "Tiramisu",
+    ldflags: [
+        "-Wl,--allow-multiple-definition",
+    ],
 }
 
 cc_test {
