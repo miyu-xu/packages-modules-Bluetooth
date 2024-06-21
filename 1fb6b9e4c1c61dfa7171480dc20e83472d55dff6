@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba8fe24_c68dad75",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-21T00:42:32Z",
+      "side": 1,
+      "message": "nit: move this into the if statement to make it more readable",
+      "range": {
+        "startLine": 319,
+        "startChar": 2,
+        "endLine": 319,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b418b11c_8e935951",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 319,
+                "startChar": 0,
+                "endLine": 320,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 433,
+                "startChar": 0,
+                "endLine": 433,
+                "endChar": 0
+              },
+              "replacement": "        bool ignore_ntf_when_already_connected \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1fb6b9e4c1c61dfa7171480dc20e83472d55dff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
