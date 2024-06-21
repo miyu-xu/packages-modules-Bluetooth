@@ -26,7 +26,7 @@
 
 // Original included files, if any
 #include "stack/include/bt_hdr.h"
-#include "stack/include/l2c_api.h"
+#include "stack/l2cap/internal/l2c_api.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
