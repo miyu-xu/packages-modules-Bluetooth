@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d4a8e0_0738e18a",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T17:26:39Z",
+      "side": 1,
+      "message": "This need to be removed too",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 1
+      },
+      "revId": "6a780c5847c523eeac674a908871030674ed40d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
