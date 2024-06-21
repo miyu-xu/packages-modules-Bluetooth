@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f633218e_b50d11c7",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:42:27Z",
+      "side": 1,
+      "message": "This is pretty explicit in the android guide style:\ngo/android-cppstyle#whitespace-formatting\n\nI understand that the IndendWidth will update too much, but this have a very limited impact.\n\n\u003e GD has the most classes\n\nFyi There are 1050 in GD, 1370 in the rest of the code",
+      "parentUuid": "8912c35a_28f45e07",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3623846b_a1c82e61",
         "filename": ".clang-format",
         "patchSetId": 4
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88bec225_02f72c2c",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:42:27Z",
+      "side": 1,
+      "message": "`IndendWidth` is the only one yes.\n\nEvery other are defined accordingly to go/android-cppstyle and I put in the comment the default value before override (either defined by GoogleStyle or by it\u0027s parent, the LlvmStyle).\n\nI didn\u0027t put any personal code change even if I wanted to do some 😐",
+      "parentUuid": "3623846b_a1c82e61",
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c55ade55_3d65a9a5",
         "filename": "CPPLINT.cfg",
         "patchSetId": 4
@@ -54,6 +96,30 @@
       "writtenOn": "2024-06-21T22:32:46Z",
       "side": 1,
       "message": "Can we remove this and the access modifier indentation?  I don\u0027t think there are enough of them to make it worth the special case.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 25
+      },
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34422664_ecac1847",
+        "filename": "CPPLINT.cfg",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:42:27Z",
+      "side": 1,
+      "message": "Yes, I will do if we decide to go this way",
+      "parentUuid": "c55ade55_3d65a9a5",
       "range": {
         "startLine": 3,
         "startChar": 0,
