@@ -21,6 +21,7 @@
 #include "l2cdefs.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
+#include "stack/include/l2cap_interface.h"
 #include "types/raw_address.h"
 
 using bluetooth::eatt::eatt_impl;
@@ -48,7 +49,8 @@ struct EattExtension::impl {
     reg_info_.pL2CA_DataInd_Cb = eatt_data_ind;
     reg_info_.pL2CA_CreditBasedCollisionInd_Cb = eatt_collision_ind;
 
-    if (L2CA_RegisterLECoc(BT_PSM_EATT, reg_info_, BTM_SEC_NONE, {}) == 0) {
+    if (stack::l2cap::get_interface().L2CA_RegisterLECoc(BT_PSM_EATT, reg_info_, BTM_SEC_NONE,
+                                                         {}) == 0) {
       log::error("cannot register EATT");
     } else {
       eatt_impl_ = std::make_unique<eatt_impl>();
@@ -61,7 +63,7 @@ struct EattExtension::impl {
       return;
     }
     eatt_impl_.reset(nullptr);
-    L2CA_DeregisterLECoc(BT_PSM_EATT);
+    stack::l2cap::get_interface().L2CA_DeregisterLECoc(BT_PSM_EATT);
   }
 
   bool IsRunning() { return eatt_impl_ ? true : false; }
