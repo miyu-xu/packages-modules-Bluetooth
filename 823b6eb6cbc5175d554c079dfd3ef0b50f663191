@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe790b3_c9904265",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-21T16:27:18Z",
+      "side": 1,
+      "message": "I don\u0027t see base_interval being used here.  Why do we check if it is non-zero?",
+      "range": {
+        "startLine": 1452,
+        "startChar": 6,
+        "endLine": 1452,
+        "endChar": 19
+      },
+      "revId": "823b6eb6cbc5175d554c079dfd3ef0b50f663191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
