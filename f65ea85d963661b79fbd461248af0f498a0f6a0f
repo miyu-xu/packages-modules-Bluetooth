@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d767876_344c5e99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-06-21T17:03:15Z",
+      "side": 1,
+      "message": "Please provide `Flag: EXEMPT \u003creason\u003e`. Also could you implement a regression test for that change?",
+      "revId": "f65ea85d963661b79fbd461248af0f498a0f6a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
