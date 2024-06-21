@@ -16,6 +16,24 @@
       "message": "Please provide `Flag: EXEMPT \u003creason\u003e`. Also could you implement a regression test for that change?",
       "revId": "f65ea85d963661b79fbd461248af0f498a0f6a0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b158dfdc_a6aef58e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-06-21T18:51:05Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "7d767876_344c5e99",
+      "revId": "f65ea85d963661b79fbd461248af0f498a0f6a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
