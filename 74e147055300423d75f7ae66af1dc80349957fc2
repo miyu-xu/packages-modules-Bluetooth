@@ -118,6 +118,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c6117b9_7f767575",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2024-06-21T22:47:52Z",
+      "side": 1,
+      "message": "It looks like there\u0027s no enforcement of [7.4.3/C-3-5](https://source.android.com/docs/compatibility/14/android-14-cdd#743_bluetooth) in CTS.\n\nIs there another test suite similar to WiFi\u0027s ACTS that is conducted in a lab, which might cover RPA?\n\nIf this is currently not tested, then it seems that we can maybe do nothing. NFFs generally don\u0027t have Mainline modules, so the vendors may be patching Bluetooth to have similar behavior.\n\nThe next best thing is to enforce in CTS that this flag is false; I suppose that test would have the 7.4.3/C-3-5 label, even though it tests only one narrow aspect.\n\nLMK what you think.",
+      "parentUuid": "bc0436ce_704cda58",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
