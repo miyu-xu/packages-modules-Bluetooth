@@ -24,6 +24,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2cdefs.h"
 #include "stack/include/sdpdefs.h"
+#include "stack/l2cap/internal/l2c_api.h"
 #include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdpint.h"
 #include "test/fake/fake_osi.h"
@@ -75,7 +76,7 @@ public:
             [](uint16_t psm, const RawAddress& raw_address) { return kDummyCID; };
     test::mock::stack_l2cap_api::L2CA_ConnectReqWithSecurity.body =
             [](uint16_t psm, const RawAddress& p_bd_addr, uint16_t sec_level) {
-              return L2CA_ConnectReq(psm, p_bd_addr);
+              return ::L2CA_ConnectReq(psm, p_bd_addr);
             };
     test::mock::stack_l2cap_api::L2CA_DataWrite.body = [](uint16_t cid,
                                                           BT_HDR* p_data) -> tL2CAP_DW_RESULT {
