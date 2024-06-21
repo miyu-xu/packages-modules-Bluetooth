@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d501854a_537dc160",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:15:49Z",
+      "side": 0,
+      "message": "Can you keep the test but just remove the start part of it ?",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "ea5f03ed6f00e2dd73bb7070c82ed4be1f4de5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
