@@ -30,7 +30,6 @@
 
 #include "btif/include/btif_hh.h"
 #include "hal/hci_hal.h"
-#include "hci/acl_manager.h"
 #include "hci/acl_manager/classic_acl_connection.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
@@ -48,7 +47,6 @@
 #include "main/shim/ble_scanner_interface_impl.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/helpers.h"
-#include "main/shim/le_advertising_manager.h"
 #include "main/shim/le_scanning_manager.h"
 #include "main/shim/utils.h"
 #include "os/handler.h"
@@ -86,6 +84,8 @@ tBTM_SEC_CB btm_sec_cb;
 btif_hh_cb_t btif_hh_cb;
 
 struct bluetooth::hci::LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback {};
+
+uint16_t L2CA_LeCreditDefault() { return UINT16_MAX; }
 
 namespace {
 const hci::Address kAddress = {{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};

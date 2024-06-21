@@ -52,6 +52,8 @@ void btm_inq_remote_name_timer_timeout(void*) {}
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions("mock broadcast audio config options");
 
+uint16_t L2CA_LeCreditDefault() { return UINT16_MAX; }
+
 namespace {
 
 using testing::Return;
