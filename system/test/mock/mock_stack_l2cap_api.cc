@@ -22,6 +22,8 @@
  */
 #include "test/mock/mock_stack_l2cap_api.h"
 
+#include "stack/include/l2cap_interface.h"
+
 // Original included files, if any
 
 #include "test/common/mock_functions.h"
@@ -243,10 +245,6 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status) {
 bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_local_cid) {
   inc_func_call_count(__func__);
   return test::mock::stack_l2cap_api::L2CA_isMediaChannel(handle, channel_id, is_local_cid);
-}
-uint16_t L2CA_LeCreditDefault() {
-  inc_func_call_count(__func__);
-  return test::mock::stack_l2cap_api::L2CA_LeCreditDefault();
 }
 uint16_t L2CA_LeCreditThreshold() {
   inc_func_call_count(__func__);

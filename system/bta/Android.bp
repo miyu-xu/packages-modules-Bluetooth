@@ -267,6 +267,7 @@ cc_test {
         ":TestMockStackGatt",
         ":TestMockStackHid",
         ":TestMockStackL2cap",
+        ":TestMockStackL2capInterface",
         ":TestMockStackMetrics",
         ":TestMockStackPan",
         ":TestMockStackRfcomm",

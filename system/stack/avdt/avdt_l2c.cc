@@ -29,13 +29,11 @@
 #include "avdt_int.h"
 #include "bta/include/bta_av_api.h"
 #include "device/include/interop.h"
-#include "l2c_api.h"
-#include "l2cdefs.h"
 #include "osi/include/allocator.h"
-#include "osi/include/osi.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_status.h"
+#include "stack/include/l2cap_interface.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -209,7 +207,7 @@ void avdt_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid, uint16
 
   /* If we reject the connection, send DisconnectReq */
   if (result != L2CAP_CONN_OK) {
-    if (!L2CA_DisconnectReq(lcid)) {
+    if (!stack::l2cap::get_interface().L2CA_DisconnectReq(lcid)) {
       log::warn("Unable to disconnect L2CAP cid:{}", lcid);
     }
     return;
@@ -363,7 +361,7 @@ void avdt_l2c_disconnect_ind_cback(uint16_t lcid, bool ack_needed) {
 }
 
 void avdt_l2c_disconnect(uint16_t lcid) {
-  if (!L2CA_DisconnectReq(lcid)) {
+  if (!stack::l2cap::get_interface().L2CA_DisconnectReq(lcid)) {
     log::warn("Unable to disconnect L2CAP cid:{}", lcid);
   }
 
