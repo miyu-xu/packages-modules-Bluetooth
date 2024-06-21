@@ -40,8 +40,6 @@
 #include "internal_include/bt_trace.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/entry.h"
-#include "os/log.h"
-#include "os/system_properties.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
@@ -75,29 +73,6 @@ uint16_t L2CA_RegisterWithSecurity(
       false, "", 0, sec_level, psm, 0, 0);
   return ret;
 }
-
-uint16_t L2CA_LeCreditDefault() {
-  static const uint16_t sL2CAP_LE_CREDIT_DEFAULT =
-      bluetooth::os::GetSystemPropertyUint32Base(
-          "bluetooth.l2cap.le.credit_default.value", 0xffff);
-  return sL2CAP_LE_CREDIT_DEFAULT;
-}
-
-uint16_t L2CA_LeCreditThreshold() {
-  static const uint16_t sL2CAP_LE_CREDIT_THRESHOLD =
-      bluetooth::os::GetSystemPropertyUint32Base(
-          "bluetooth.l2cap.le.credit_threshold.value", 0x0040);
-  return sL2CAP_LE_CREDIT_THRESHOLD;
-}
-
-static bool check_l2cap_credit() {
-  log::assert_that(L2CA_LeCreditThreshold() < L2CA_LeCreditDefault(),
-                   "Threshold must be smaller than default credits");
-  return true;
-}
-
-// Replace static assert with startup assert depending of the config
-static const bool enforce_assert = check_l2cap_credit();
 
 /*******************************************************************************
  *
