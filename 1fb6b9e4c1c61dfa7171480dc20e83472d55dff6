@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a0991d8_2e3b4c95",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ba8fe24_c68dad75",
+      "range": {
+        "startLine": 319,
+        "startChar": 2,
+        "endLine": 319,
+        "endChar": 49
+      },
+      "revId": "1fb6b9e4c1c61dfa7171480dc20e83472d55dff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56390466_9f568922",
@@ -75,6 +99,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2351b9_9dde32c1",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56390466_9f568922",
+      "range": {
+        "startLine": 449,
+        "startChar": 14,
+        "endLine": 449,
+        "endChar": 55
+      },
+      "revId": "1fb6b9e4c1c61dfa7171480dc20e83472d55dff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50916241_956c8973",
@@ -88,6 +136,30 @@
       "writtenOn": "2024-06-21T00:57:08Z",
       "side": 1,
       "message": "```suggestion\n        if (com::android::bluetooth::flags::\n                ignore_notify_when_already_connected()) {\n           bool notify_required \u003d true;\n       \n          for (int i \u003d 0; i \u003c BTA_AG_MAX_NUM_CLIENTS; i++) {\n            if ((i !\u003d idx) \u0026\u0026\n                (BTHF_CONNECTION_STATE_CONNECTED \u003d\u003d btif_hf_cb[i].state) \u0026\u0026\n                (connected_bda \u003d\u003d btif_hf_cb[i].connected_bda)) {\n              // There is already an active connection on this device.\n              // Skip upper layer notification\n              notify_required \u003d false;\n              break;\n            }\n          }\n\n          if (notify_required) {\n            bt_hf_callbacks-\u003eConnectionStateCallback(btif_hf_cb[idx].state,\n                                                     \u0026connected_bda);\n          }\n        } else {\n          bt_hf_callbacks-\u003eConnectionStateCallback(btif_hf_cb[idx].state,\n                                                   \u0026connected_bda);\n        }\n```",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 9
+      },
+      "revId": "1fb6b9e4c1c61dfa7171480dc20e83472d55dff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95051950_593c0cd9",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50916241_956c8973",
       "range": {
         "startLine": 433,
         "startChar": 0,
