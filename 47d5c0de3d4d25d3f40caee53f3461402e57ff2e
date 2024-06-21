@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a637d1f_c796d8f1",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-21T18:11:58Z",
+      "side": 1,
+      "message": "Nit: I\u0027d like these methods to have some indication that they are intended to be used by our app internally only (no permissions check etc. here). Maybe naming them (un)registerScannerInternal and putting a comment could be helpful.",
+      "range": {
+        "startLine": 1085,
+        "startChar": 16,
+        "endLine": 1085,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7fa8a151_e1778065",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 1082,
+                "startChar": 0,
+                "endLine": 1083,
+                "endChar": 0
+              },
+              "replacement": "        registerScannerInternal(callback, workSource);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 1085,
+                "startChar": 0,
+                "endLine": 1086,
+                "endChar": 0
+              },
+              "replacement": "    public void registerScannerInternal(IScannerCallback callback, WorkSource workSource) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 1100,
+                "startChar": 0,
+                "endLine": 1101,
+                "endChar": 0
+              },
+              "replacement": "        unregisterScannerInternal(scannerId);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 1103,
+                "startChar": 0,
+                "endLine": 1104,
+                "endChar": 0
+              },
+              "replacement": "    public void unregisterScannerInternal(int scannerId) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "47d5c0de3d4d25d3f40caee53f3461402e57ff2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
