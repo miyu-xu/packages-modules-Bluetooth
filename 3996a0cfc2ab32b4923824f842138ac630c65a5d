@@ -249,6 +249,24 @@
       "parentUuid": "e641ea88_0633a763",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "591819ee_e4e4062a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-21T00:22:17Z",
+      "side": 1,
+      "message": "If it\u0027s working with this CL, should we land this change then?",
+      "parentUuid": "e2ea4887_fe697f06",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
