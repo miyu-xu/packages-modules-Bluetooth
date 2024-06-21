@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74c8dfbb_a20b88ed",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe9f054f_942efcef",
+      "range": {
+        "startLine": 133,
+        "startChar": 6,
+        "endLine": 135,
+        "endChar": 1
+      },
+      "revId": "5d6f428419382aefbd68157a8d8790e988a95b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b16aa49f_847e804e",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Apologies.",
       "parentUuid": "b16aa49f_847e804e",
+      "range": {
+        "startLine": 141,
+        "startChar": 10,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "5d6f428419382aefbd68157a8d8790e988a95b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62abb855_3ab4f2d7",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9181f665_c1071a5a",
       "range": {
         "startLine": 141,
         "startChar": 10,
