@@ -1997,14 +1997,16 @@ private:
          * configuration/reconfiguration
          */
         if (!ParseAseStatusCodecConfiguredStateParams(rsp, len, data)) {
-          StopStream(group);
+          if (ase->active) {
+            StopStream(group);
+          }
           return;
         }
 
         uint16_t cig_curr_max_trans_lat_mtos = group->GetMaxTransportLatencyMtos();
         uint16_t cig_curr_max_trans_lat_stom = group->GetMaxTransportLatencyStom();
 
-        if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+        if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING && ase->active) {
           /* We are here because of the reconnection of the single device.
            * Reconfigure CIG if current CIG supported Max Transport Latency for
            * a direction, cannot be supported by the newly connected member
@@ -2022,6 +2024,11 @@ private:
 
         qos_config_update(rsp, ase->qos_preferences, ase->qos_config);
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
+
+        if (!ase->active) {
+          log::warn("Ignore configuration of non-active ASE");
+          return;
+        }
 
         if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
           /* This is autonomus change of the remote device */
@@ -2124,13 +2131,20 @@ private:
          * configuration/reconfiguration
          */
         if (!ParseAseStatusCodecConfiguredStateParams(rsp, len, data)) {
-          StopStream(group);
+          if (ase->active) {
+            StopStream(group);
+          }
           return;
         }
 
         /* This may be a notification from a re-configured ASE */
         ase->reconfigure = false;
         qos_config_update(rsp, ase->qos_preferences, ase->qos_config);
+
+        if (!ase->active) {
+          log::warn("Ignore reconfiguration of non-active ASE");
+          return;
+        }
 
         if (leAudioDevice->HaveAnyUnconfiguredAses()) {
           /* Waiting for others to be reconfigured */
