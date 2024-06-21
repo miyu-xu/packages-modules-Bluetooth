@@ -132,6 +132,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ffc7ed1_a78a36f2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-21T13:49:53Z",
+      "side": 1,
+      "message": "Please check current approach, no significant design changes, not many changes in ActiveDeviceManager, only a little overhead in test, but works like a charm ;)",
+      "parentUuid": "3dd5a912_27674469",
+      "range": {
+        "startLine": 110,
+        "startChar": 33,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa2edbc6_d8fa85f7",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 1
@@ -215,6 +239,30 @@
       "side": 1,
       "message": "I solved it by mocking the underlying AudioDevicePort type",
       "parentUuid": "aa2edbc6_d8fa85f7",
+      "range": {
+        "startLine": 1226,
+        "startChar": 8,
+        "endLine": 1226,
+        "endChar": 65
+      },
+      "revId": "aad87e3f143398902b28fac2a016bbc943b27225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb40ea62_51e69fe3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-21T13:49:53Z",
+      "side": 1,
+      "message": "That\u0027s brilliant! Thank you",
+      "parentUuid": "5834cf04_ac6d5bca",
       "range": {
         "startLine": 1226,
         "startChar": 8,
