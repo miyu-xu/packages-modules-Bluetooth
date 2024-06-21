@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44d7f2f2_44319547",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-21T16:13:38Z",
+      "side": 1,
+      "message": "nit:",
+      "fixSuggestions": [
+        {
+          "fixId": "32de4fa2_c949ba93",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble_conn_params.cc",
+              "range": {
+                "startLine": 330,
+                "startChar": 0,
+                "endLine": 331,
+                "endChar": 0
+              },
+              "replacement": "  if (p_lcb \u003d\u003d nullptr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5242037b55ab113c1e0abf453a21a0058e46a2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
