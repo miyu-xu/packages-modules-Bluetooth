@@ -184,6 +184,7 @@ cc_test {
         ":TestMockLegacyHciInterface",
         ":TestMockMainShimEntry",
         ":TestMockStack",
+        ":TestMockStackL2capInterface",
         "shim/acl.cc",
         "shim/acl_api.cc",
         "shim/acl_legacy_interface.cc",
