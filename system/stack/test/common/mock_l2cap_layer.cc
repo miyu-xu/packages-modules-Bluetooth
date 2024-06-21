@@ -31,6 +31,7 @@ void bluetooth::l2cap::SetMockInterface(MockL2capInterface* mock_l2cap_interface
 
 tL2C_CCB* l2cu_find_ccb_by_cid(tL2C_LCB* p_lcb, uint16_t local_cid) { return nullptr; }
 
+#if 0
 uint16_t L2CA_Register(uint16_t psm, const tL2CAP_APPL_INFO& p_cb_info, bool enable_snoop,
                        tL2CAP_ERTM_INFO* p_ertm_info, uint16_t my_mtu, uint16_t required_remote_mtu,
                        uint16_t sec_level) {
@@ -86,3 +87,4 @@ bool L2CA_ReconfigCreditBasedConnsReq(const RawAddress& bd_addr, std::vector<uin
 uint16_t L2CA_LeCreditDefault() { return l2cap_interface->LeCreditDefault(); }
 
 uint16_t L2CA_LeCreditThreshold() { return l2cap_interface->LeCreditThreshold(); }
+#endif

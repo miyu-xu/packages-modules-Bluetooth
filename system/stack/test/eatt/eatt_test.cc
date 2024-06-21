@@ -23,16 +23,16 @@
 
 #include "bind_helpers.h"
 #include "hci/controller_interface_mock.h"
-#include "l2c_api.h"
 #include "mock_btif_storage.h"
 #include "mock_btm_api_layer.h"
 #include "mock_eatt.h"
 #include "mock_gatt_layer.h"
-#include "mock_l2cap_layer.h"
+// #include "mock_l2cap_layer.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/l2cdefs.h"
 #include "test/mock/mock_main_shim_entry.h"
+#include "test/mock/mock_stack_l2cap_interface.h"
 #include "types/raw_address.h"
 
 using testing::_;
@@ -64,7 +64,7 @@ tGATT_TCB* gatt_find_tcb_by_addr(const RawAddress& bda, tBT_TRANSPORT transport)
 namespace {
 const RawAddress test_address({0x11, 0x11, 0x11, 0x11, 0x11, 0x11});
 
-class EattTest : public testing::Test {
+class EattTest : public ::testing::Test {
 protected:
   void ConnectDeviceEattSupported(int num_of_accepted_connections, bool collision = false) {
     ON_CALL(gatt_interface_, ClientReadSupportedFeatures)
@@ -78,7 +78,7 @@ protected:
     });
 
     std::vector<uint16_t> test_local_cids{61, 62, 63, 64, 65};
-    EXPECT_CALL(l2cap_interface_, ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
+    EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
             .WillOnce(Return(test_local_cids));
 
     eatt_instance_->Connect(test_address);
@@ -87,7 +87,8 @@ protected:
       /* Collision should be handled only if all channels has been rejected in
        * first place.*/
       if (num_of_accepted_connections == 0) {
-        EXPECT_CALL(l2cap_interface_, ConnectCreditBasedReq(BT_PSM_EATT, test_address, _)).Times(1);
+        EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
+                .Times(1);
       }
 
       l2cap_app_info_.pL2CA_CreditBasedCollisionInd_Cb(test_address);
@@ -136,14 +137,14 @@ protected:
     });
 
     std::vector<uint16_t> test_local_cids{61, 62, 63, 64, 65};
-    EXPECT_CALL(l2cap_interface_, ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
+    EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
             .WillOnce(Return(test_local_cids));
 
     eatt_instance_->Connect(test_address);
 
     // Let the remote connect while we are trying to connect
     EXPECT_CALL(l2cap_interface_,
-                ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
+                L2CA_ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
             .WillOnce(Return(true));
     l2cap_app_info_.pL2CA_CreditBasedConnectInd_Cb(test_address, incoming_cids, BT_PSM_EATT,
                                                    EATT_MIN_MTU_MPS, 1);
@@ -195,7 +196,7 @@ protected:
   }
 
   void DisconnectEattDevice(std::vector<uint16_t> cids) {
-    EXPECT_CALL(l2cap_interface_, DisconnectRequest(_)).Times(cids.size());
+    EXPECT_CALL(l2cap_interface_, L2CA_DisconnectReq(_)).Times(cids.size());
     eatt_instance_->Disconnect(test_address);
 
     ASSERT_TRUE(test_tcb.eatt == 0);
@@ -205,7 +206,7 @@ protected:
     le_buffer_size_.le_data_packet_length_ = 128;
     le_buffer_size_.total_num_le_packets_ = 24;
     ON_CALL(controller_, GetLeBufferSize).WillByDefault(Return(le_buffer_size_));
-    bluetooth::l2cap::SetMockInterface(&l2cap_interface_);
+    bluetooth::testing::stack::l2cap::set_interface(&l2cap_interface_);
     bluetooth::manager::SetMockBtmApiInterface(&btm_api_interface_);
     bluetooth::manager::SetMockBtifStorageInterface(&btif_storage_interface_);
     bluetooth::gatt::SetMockGattInterface(&gatt_interface_);
@@ -214,15 +215,14 @@ protected:
     // Clear the static memory for each test case
     memset(&test_tcb, 0, sizeof(test_tcb));
 
-    EXPECT_CALL(l2cap_interface_, RegisterLECoc(BT_PSM_EATT, _, _))
+    EXPECT_CALL(l2cap_interface_, L2CA_RegisterLECoc(BT_PSM_EATT, _, _, _))
             .WillOnce(DoAll(SaveArg<1>(&l2cap_app_info_), Return(BT_PSM_EATT)));
 
     ON_CALL(btif_storage_interface_, LoadBondedEatt).WillByDefault([]() { return; });
-
     hci_role_ = HCI_ROLE_CENTRAL;
 
-    ON_CALL(l2cap_interface_, GetBleConnRole(_)).WillByDefault(DoAll(Return(hci_role_)));
-
+    // CMM
+    // ON_CALL(l2cap_interface_, L2CA_GetBleConnRole(_)).WillByDefault(DoAll(Return(hci_role_)));
     eatt_instance_ = EattExtension::GetInstance();
     eatt_instance_->Start();
 
@@ -230,7 +230,7 @@ protected:
   }
 
   void TearDown() override {
-    EXPECT_CALL(l2cap_interface_, DeregisterLECoc(BT_PSM_EATT)).Times(1);
+    EXPECT_CALL(l2cap_interface_, L2CA_DeregisterLECoc(BT_PSM_EATT)).Times(1);
 
     eatt_instance_->Stop();
     eatt_instance_ = nullptr;
@@ -238,7 +238,7 @@ protected:
     connected_cids_.clear();
 
     bluetooth::gatt::SetMockGattInterface(nullptr);
-    bluetooth::l2cap::SetMockInterface(nullptr);
+    bluetooth::testing::stack::l2cap::reset_interface();
     bluetooth::manager::SetMockBtifStorageInterface(nullptr);
     bluetooth::manager::SetMockBtmApiInterface(nullptr);
     bluetooth::hci::testing::mock_controller_ = nullptr;
@@ -248,7 +248,9 @@ protected:
 
   bluetooth::manager::MockBtifStorageInterface btif_storage_interface_;
   bluetooth::manager::MockBtmApiInterface btm_api_interface_;
-  bluetooth::l2cap::MockL2capInterface l2cap_interface_;
+  bluetooth::testing::stack::l2cap::Mock l2cap_interface_;
+
+  //  bluetooth::l2cap::MockL2capInterface l2cap_interface_;
   bluetooth::gatt::MockGattInterface gatt_interface_;
   bluetooth::hci::testing::MockControllerInterface controller_;
   bluetooth::hci::LeBufferSize le_buffer_size_;
@@ -270,7 +272,7 @@ TEST_F(EattTest, IncomingEattConnectionByUnknownDevice) {
   ON_CALL(btm_api_interface_, IsEncrypted)
           .WillByDefault([](const RawAddress& addr, tBT_TRANSPORT transport) { return true; });
   EXPECT_CALL(l2cap_interface_,
-              ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
+              L2CA_ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
           .WillOnce(Return(true));
 
   l2cap_app_info_.pL2CA_CreditBasedConnectInd_Cb(test_address, incoming_cids, BT_PSM_EATT,
@@ -297,7 +299,7 @@ TEST_F(EattTest, IncomingEattConnectionByKnownDevice) {
   std::vector<uint16_t> incoming_cids{71, 72, 73, 74, 75};
 
   EXPECT_CALL(l2cap_interface_,
-              ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
+              L2CA_ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
           .WillOnce(Return(true));
 
   l2cap_app_info_.pL2CA_CreditBasedConnectInd_Cb(test_address, incoming_cids, BT_PSM_EATT,
@@ -327,8 +329,8 @@ TEST_F(EattTest, IncomingEattConnectionByKnownDeviceEncryptionOff) {
   eatt_instance_->Connect(test_address);
   std::vector<uint16_t> incoming_cids{71, 72, 73, 74, 75};
 
-  EXPECT_CALL(l2cap_interface_,
-              ConnectCreditBasedRsp(test_address, 1, _, L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP, _))
+  EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedRsp(test_address, 1, _,
+                                                           L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP, _))
           .WillOnce(Return(true));
 
   l2cap_app_info_.pL2CA_CreditBasedConnectInd_Cb(test_address, incoming_cids, BT_PSM_EATT,
@@ -344,9 +346,9 @@ TEST_F(EattTest, IncomingEattConnectionByUnknownDeviceEncryptionOff) {
           .WillByDefault([](const RawAddress& addr, tBT_TRANSPORT transport) { return false; });
   ON_CALL(btm_api_interface_, IsLinkKeyKnown)
           .WillByDefault([](const RawAddress& addr, tBT_TRANSPORT transport) { return false; });
-  EXPECT_CALL(
-          l2cap_interface_,
-          ConnectCreditBasedRsp(test_address, 1, _, L2CAP_LE_RESULT_INSUFFICIENT_AUTHENTICATION, _))
+  EXPECT_CALL(l2cap_interface_,
+              L2CA_ConnectCreditBasedRsp(test_address, 1, _,
+                                         L2CAP_LE_RESULT_INSUFFICIENT_AUTHENTICATION, _))
           .WillOnce(Return(true));
 
   l2cap_app_info_.pL2CA_CreditBasedConnectInd_Cb(test_address, incoming_cids, BT_PSM_EATT,
@@ -362,7 +364,7 @@ TEST_F(EattTest, ReconnectInitiatedByRemoteSucceed) {
           .WillByDefault([](const RawAddress& addr, tBT_TRANSPORT transport) { return true; });
 
   EXPECT_CALL(l2cap_interface_,
-              ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
+              L2CA_ConnectCreditBasedRsp(test_address, 1, incoming_cids, L2CAP_CONN_OK, _))
           .WillOnce(Return(true));
 
   l2cap_app_info_.pL2CA_CreditBasedConnectInd_Cb(test_address, incoming_cids, BT_PSM_EATT,
@@ -401,13 +403,13 @@ TEST_F(EattTest, ConnectFailedEattNotSupported) {
     return false;
   });
 
-  EXPECT_CALL(l2cap_interface_, ConnectCreditBasedReq(BT_PSM_EATT, test_address, _)).Times(0);
+  EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedReq(BT_PSM_EATT, test_address, _)).Times(0);
   eatt_instance_->Connect(test_address);
   ASSERT_TRUE(eatt_instance_->IsEattSupportedByPeer(test_address) == false);
 }
 
 TEST_F(EattTest, ConnectFailedSlaveOnTheLink) {
-  EXPECT_CALL(l2cap_interface_, ConnectCreditBasedReq(BT_PSM_EATT, test_address, _)).Times(0);
+  EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedReq(BT_PSM_EATT, test_address, _)).Times(0);
 
   hci_role_ = HCI_ROLE_PERIPHERAL;
   eatt_instance_->Connect(test_address);
@@ -433,7 +435,7 @@ TEST_F(EattTest, ReconfigAllSucceed) {
   ConnectDeviceEattSupported(3);
 
   std::vector<uint16_t> cids;
-  EXPECT_CALL(l2cap_interface_, ReconfigCreditBasedConnsReq(_, _, _))
+  EXPECT_CALL(l2cap_interface_, L2CA_ReconfigCreditBasedConnsReq(_, _, _))
           .WillOnce(DoAll(SaveArg<1>(&cids), Return(true)));
 
   uint16_t new_mtu = 300;
@@ -458,7 +460,7 @@ TEST_F(EattTest, ReconfigAllFailed) {
   ConnectDeviceEattSupported(4);
 
   std::vector<uint16_t> cids;
-  EXPECT_CALL(l2cap_interface_, ReconfigCreditBasedConnsReq(_, _, _))
+  EXPECT_CALL(l2cap_interface_, L2CA_ReconfigCreditBasedConnsReq(_, _, _))
           .WillOnce(DoAll(SaveArg<1>(&cids), Return(true)));
 
   uint16_t new_mtu = 300;
@@ -483,7 +485,7 @@ TEST_F(EattTest, ReconfigSingleSucceed) {
   ConnectDeviceEattSupported(2);
 
   std::vector<uint16_t> cids;
-  EXPECT_CALL(l2cap_interface_, ReconfigCreditBasedConnsReq(_, _, _))
+  EXPECT_CALL(l2cap_interface_, L2CA_ReconfigCreditBasedConnsReq(_, _, _))
           .WillOnce(DoAll(SaveArg<1>(&cids), Return(true)));
 
   uint16_t new_mtu = 300;
@@ -508,7 +510,7 @@ TEST_F(EattTest, ReconfigSingleFailed) {
   ConnectDeviceEattSupported(2);
 
   std::vector<uint16_t> cids;
-  EXPECT_CALL(l2cap_interface_, ReconfigCreditBasedConnsReq(_, _, _))
+  EXPECT_CALL(l2cap_interface_, L2CA_ReconfigCreditBasedConnsReq(_, _, _))
           .WillOnce(DoAll(SaveArg<1>(&cids), Return(true)));
 
   uint16_t new_mtu = 300;
@@ -587,7 +589,7 @@ TEST_F(EattTest, ChannelUnavailableWhileOpening) {
   ON_CALL(gatt_interface_, GetEattSupport).WillByDefault(Return(true));
 
   // expect
-  EXPECT_CALL(l2cap_interface_, ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
+  EXPECT_CALL(l2cap_interface_, L2CA_ConnectCreditBasedReq(BT_PSM_EATT, test_address, _))
           .WillOnce(Return(std::vector<uint16_t>{61}));
 
   // act: start
@@ -604,7 +606,7 @@ TEST_F(EattTest, ChannelUnavailableWhileOpening) {
 
 TEST_F(EattTest, ChannelUnavailableWhileReconfiguring) {
   // arrange
-  ON_CALL(l2cap_interface_, ReconfigCreditBasedConnsReq(_, _, _)).WillByDefault(Return(true));
+  ON_CALL(l2cap_interface_, L2CA_ReconfigCreditBasedConnsReq(_, _, _)).WillByDefault(Return(true));
   ConnectDeviceEattSupported(/* num_of_accepted_connections = */ 1);
 
   // act: reconfigure, then get available channels
