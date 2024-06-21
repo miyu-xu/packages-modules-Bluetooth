@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e760c543_fdc0726f",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T21:54:01Z",
+      "side": 1,
+      "message": "No, I don\u0027t feel strongly.\nAck !",
+      "parentUuid": "1ca36640_767237a9",
+      "range": {
+        "startLine": 477,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 31
+      },
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dfd32fd_03c873ad",
