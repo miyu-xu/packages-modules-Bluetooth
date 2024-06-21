@@ -44,6 +44,8 @@ bt_status_t do_in_main_thread_delayed(base::OnceCallback<void()>, std::chrono::m
   abort();
 }
 
+uint16_t L2CA_LeCreditDefault() { return UINT16_MAX; }
+
 namespace bluetooth {
 namespace os {
 bool GetSystemPropertyBool(const std::string& property, bool default_value) {

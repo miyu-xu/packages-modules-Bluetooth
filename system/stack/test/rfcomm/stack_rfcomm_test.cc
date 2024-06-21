@@ -28,13 +28,18 @@
 #include "stack/include/l2cdefs.h"
 #include "stack/include/port_api.h"
 #include "stack/include/rfcdefs.h"
+#include "stack/l2cap/l2c_int.h"
 #include "stack/test/common/mock_btm_layer.h"
-#include "stack/test/common/mock_l2cap_layer.h"
 #include "stack/test/common/stack_test_packet_utils.h"
 #include "stack/test/rfcomm/stack_rfcomm_test_utils.h"
+#include "stack_rfcomm_test_utils.h"
+#include "stack_test_packet_utils.h"
+#include "test/mock/mock_stack_l2cap_interface.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
+
+tL2C_CCB* l2cu_find_ccb_by_cid(tL2C_LCB* /* p_lcb */, uint16_t /* local_cid */) { return nullptr; }
 
 std::string DumpByteBufferToString(uint8_t* p_data, size_t len) {
   std::stringstream str;
@@ -61,16 +66,16 @@ void PrintTo(tL2CAP_CFG_INFO* value, ::std::ostream* os) {
 
 namespace {
 
-using testing::_;
-using testing::DoAll;
-using testing::NotNull;
-using testing::Pointee;
-using testing::Return;
-using testing::SaveArg;
-using testing::SaveArgPointee;
-using testing::StrEq;
-using testing::StrictMock;
-using testing::Test;
+using ::testing::_;
+using ::testing::DoAll;
+using ::testing::NotNull;
+using ::testing::Pointee;
+using ::testing::Return;
+using ::testing::SaveArg;
+using ::testing::SaveArgPointee;
+using ::testing::StrEq;
+using ::testing::StrictMock;
+using ::testing::Test;
 
 using bluetooth::AllocateWrappedIncomingL2capAclPacket;
 using bluetooth::AllocateWrappedOutgoingL2capAclPacket;
@@ -126,7 +131,7 @@ RawAddress GetTestAddress(int index) {
   return result;
 }
 
-class StackRfcommTest : public Test {
+class StackRfcommTest : public ::testing::Test {
 public:
   void StartServerPort(uint16_t uuid, uint8_t scn, uint16_t mtu,
                        tPORT_MGMT_CALLBACK* management_callback, tPORT_CALLBACK* event_callback,
@@ -143,10 +148,7 @@ public:
     log::verbose("Step 1");
     // Remote device connect to this channel, we shall accept
     static const uint8_t cmd_id = 0x07;
-    EXPECT_CALL(l2cap_interface_, ConnectResponse(peer_addr, cmd_id, lcid, L2CAP_CONN_OK, 0));
     tL2CAP_CFG_INFO cfg_req = {.mtu_present = true, .mtu = L2CAP_MTU_SIZE};
-    EXPECT_CALL(l2cap_interface_, ConfigRequest(lcid, PointerMemoryEqual(&cfg_req)))
-            .WillOnce(Return(true));
     l2cap_appl_info_.pL2CA_ConnectInd_Cb(peer_addr, lcid, BT_PSM_RFCOMM, cmd_id);
 
     log::verbose("Step 2");
@@ -157,8 +159,6 @@ public:
 
     log::verbose("Step 3");
     // Remote device also ask to configure MTU size
-    EXPECT_CALL(l2cap_interface_, ConfigResponse(lcid, PointerMemoryEqual(&cfg_req)))
-            .WillOnce(Return(true));
     l2cap_appl_info_.pL2CA_ConfigInd_Cb(lcid, &cfg_req);
 
     log::verbose("Step 4");
@@ -167,7 +167,7 @@ public:
             CreateQuickSabmPacket(RFCOMM_MX_DLCI, lcid, acl_handle));
     BT_HDR* ua_channel_0 = AllocateWrappedOutgoingL2capAclPacket(
             CreateQuickUaPacket(RFCOMM_MX_DLCI, lcid, acl_handle));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(ua_channel_0)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(ua_channel_0)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     // Packet should be freed by RFCOMM
     l2cap_appl_info_.pL2CA_DataInd_Cb(lcid, sabm_channel_0);
@@ -185,7 +185,7 @@ public:
     BT_HDR* uih_pn_rsp_to_peer = AllocateWrappedOutgoingL2capAclPacket(CreateQuickPnPacket(
             false, GetDlci(false, scn), false, mtu, RFCOMM_PN_CONV_LAYER_CBFC_R >> 4, 0,
             RFCOMM_K_MAX, lcid, acl_handle));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_pn_rsp_to_peer)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_pn_rsp_to_peer)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     // uih_pn_cmd_from_peer should be freed by this method
     l2cap_appl_info_.pL2CA_DataInd_Cb(lcid, uih_pn_cmd_from_peer);
@@ -211,7 +211,7 @@ public:
                 PortManagementCallback(PORT_SUCCESS, port_handle, port_callback_index));
     BT_HDR* ua_channel_dlci = AllocateWrappedOutgoingL2capAclPacket(
             CreateQuickUaPacket(GetDlci(false, scn), lcid, acl_handle));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(ua_channel_dlci)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(ua_channel_dlci)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     ASSERT_TRUE(security_callback);
     security_callback(peer_addr, BT_TRANSPORT_BR_EDR, p_port, tBTM_STATUS::BTM_SUCCESS);
@@ -224,11 +224,11 @@ public:
     BT_HDR* uih_msc_response_to_peer = AllocateWrappedOutgoingL2capAclPacket(CreateQuickMscPacket(
             false, GetDlci(false, scn), lcid, acl_handle, false, false, true, true, false, true));
     // We also have to do modem configuration ourself
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_msc_response_to_peer)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_msc_response_to_peer)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     BT_HDR* uih_msc_cmd_to_peer = AllocateWrappedOutgoingL2capAclPacket(CreateQuickMscPacket(
             false, GetDlci(false, scn), lcid, acl_handle, true, false, true, true, false, true));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_msc_cmd_to_peer)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_msc_cmd_to_peer)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     // uih_msc_cmd_from_peer should be freed by this method
     l2cap_appl_info_.pL2CA_DataInd_Cb(lcid, uih_msc_cmd_from_peer);
@@ -250,13 +250,8 @@ public:
     BT_HDR* uih_pn_channel_3 = AllocateWrappedOutgoingL2capAclPacket(
             CreateQuickPnPacket(true, GetDlci(false, scn), true, mtu, RFCOMM_PN_CONV_LAYER_TYPE_1,
                                 RFCOMM_PN_PRIORITY_0, RFCOMM_K, lcid, acl_handle));
-    if (is_first_connection) {
-      EXPECT_CALL(l2cap_interface_, ConnectRequest(BT_PSM_RFCOMM, peer_bd_addr))
-              .WillOnce(Return(lcid));
-    } else {
-      EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_pn_channel_3)))
-              .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
-    }
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_pn_channel_3)))
+            .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     ASSERT_EQ(RFCOMM_CreateConnectionWithSecurity(uuid, scn, false, mtu, peer_bd_addr,
                                                   client_handle, management_callback, 0),
               PORT_SUCCESS);
@@ -269,8 +264,6 @@ public:
     log::verbose("Step 1");
     // Send configuration request when L2CAP connect is succsseful
     tL2CAP_CFG_INFO cfg_req = {.mtu_present = true, .mtu = L2CAP_MTU_SIZE};
-    EXPECT_CALL(l2cap_interface_, ConfigRequest(lcid, PointerMemoryEqual(&cfg_req)))
-            .WillOnce(Return(true));
     l2cap_appl_info_.pL2CA_ConnectCfm_Cb(lcid, L2CAP_CONN_OK);
 
     log::verbose("Step 2");
@@ -282,12 +275,10 @@ public:
     log::verbose("Step 3");
     // Remote device also asks to configure MTU
     // Once configuration is done, we connect to multiplexer control channel 0
-    EXPECT_CALL(l2cap_interface_, ConfigResponse(lcid, PointerMemoryEqual(&cfg_req)))
-            .WillOnce(Return(true));
     // multiplexer control channel's DLCI is always 0
     BT_HDR* sabm_channel_0 = AllocateWrappedOutgoingL2capAclPacket(
             CreateQuickSabmPacket(RFCOMM_MX_DLCI, lcid, acl_handle));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(sabm_channel_0)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(sabm_channel_0)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     l2cap_appl_info_.pL2CA_ConfigInd_Cb(lcid, &cfg_req);
     osi_free(sabm_channel_0);
@@ -306,7 +297,7 @@ public:
       BT_HDR* uih_pn_channel_3 = AllocateWrappedOutgoingL2capAclPacket(CreateQuickPnPacket(
               true, GetDlci(false, scn), true, mtu, RFCOMM_PN_CONV_LAYER_CBFC_I >> 4,
               RFCOMM_PN_PRIORITY_0, RFCOMM_K_MAX, lcid, acl_handle));
-      EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_pn_channel_3)))
+      EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_pn_channel_3)))
               .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
       l2cap_appl_info_.pL2CA_DataInd_Cb(lcid, ua_channel_0);
       osi_free(uih_pn_channel_3);
@@ -330,7 +321,7 @@ public:
     // Once security procedure is done, we officially connect to target scn
     BT_HDR* sabm_channel_3 = AllocateWrappedOutgoingL2capAclPacket(
             CreateQuickSabmPacket(GetDlci(false, scn), lcid, acl_handle));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(sabm_channel_3)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(sabm_channel_3)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     ASSERT_TRUE(security_callback);
     security_callback(peer_addr, BT_TRANSPORT_BR_EDR, p_port, tBTM_STATUS::BTM_SUCCESS);
@@ -343,7 +334,7 @@ public:
                 PortManagementCallback(PORT_SUCCESS, port_handle, port_callback_index));
     BT_HDR* uih_msc_cmd = AllocateWrappedOutgoingL2capAclPacket(CreateQuickMscPacket(
             true, GetDlci(false, scn), lcid, acl_handle, true, false, true, true, false, true));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_msc_cmd)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_msc_cmd)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     BT_HDR* ua_channel_3 = AllocateWrappedIncomingL2capAclPacket(
             CreateQuickUaPacket(GetDlci(false, scn), lcid, acl_handle));
@@ -362,7 +353,7 @@ public:
             false, GetDlci(false, scn), lcid, acl_handle, true, false, true, true, false, true));
     BT_HDR* uih_msc_response_to_peer = AllocateWrappedOutgoingL2capAclPacket(CreateQuickMscPacket(
             true, GetDlci(false, scn), lcid, acl_handle, false, false, true, true, false, true));
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_msc_response_to_peer)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(uih_msc_response_to_peer)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     l2cap_appl_info_.pL2CA_DataInd_Cb(lcid, uih_msc_cmd_from_peer);
     osi_free(uih_msc_response_to_peer);
@@ -375,7 +366,7 @@ public:
     BT_HDR* data_packet = AllocateWrappedOutgoingL2capAclPacket(CreateQuickDataPacket(
             GetDlci(is_initiator, scn), cr, lcid, acl_handle, credits, message));
     uint16_t transmitted_length = 0;
-    EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(data_packet)))
+    EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(lcid, BtHdrEqual(data_packet)))
             .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     ASSERT_EQ(PORT_WriteData(port_handle, message.data(), message.size(), &transmitted_length),
               PORT_SUCCESS);
@@ -402,22 +393,22 @@ public:
 
 protected:
   void SetUp() override {
-    Test::SetUp();
     bluetooth::manager::SetMockSecurityInternalInterface(&btm_security_internal_interface_);
-    bluetooth::l2cap::SetMockInterface(&l2cap_interface_);
+    bluetooth::testing::stack::l2cap::set_interface(&l2cap_interface_);
     rfcomm_callback = &rfcomm_callback_;
-    EXPECT_CALL(l2cap_interface_, Register(BT_PSM_RFCOMM, _, _, _)).WillOnce(Return(BT_PSM_RFCOMM));
+    EXPECT_CALL(l2cap_interface_, L2CA_Register(BT_PSM_RFCOMM, _, _, _, _, _, _))
+            .WillOnce(Return(BT_PSM_RFCOMM));
     RFCOMM_Init();
   }
 
   void TearDown() override {
     rfcomm_callback = nullptr;
-    bluetooth::l2cap::SetMockInterface(nullptr);
+    bluetooth::testing::stack::l2cap::reset_interface();
     bluetooth::manager::SetMockSecurityInternalInterface(nullptr);
-    testing::Test::TearDown();
   }
+
   StrictMock<bluetooth::manager::MockBtmSecurityInternalInterface> btm_security_internal_interface_;
-  StrictMock<bluetooth::l2cap::MockL2capInterface> l2cap_interface_;
+  StrictMock<bluetooth::testing::stack::l2cap::Mock> l2cap_interface_;
   StrictMock<bluetooth::rfcomm::MockRfcommCallback> rfcomm_callback_;
   tL2CAP_APPL_INFO l2cap_appl_info_;
 };
@@ -648,9 +639,6 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   log::verbose("Step 2");
   // Try to connect to a client port
   uint16_t client_handle_1 = 0;
-  EXPECT_CALL(l2cap_interface_, ConnectRequest(BT_PSM_RFCOMM, test_address))
-          .Times(1)
-          .WillOnce(Return(old_lcid));
   status =
           RFCOMM_CreateConnectionWithSecurity(test_uuid, test_peer_scn, false, test_mtu,
                                               test_address, &client_handle_1, port_mgmt_cback_1, 0);
@@ -668,23 +656,22 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   log::verbose("Step 4");
   // Remote reject our connection request saying PSM not allowed
   // This should trigger RFCOMM to accept remote L2CAP connection at new_lcid
-  EXPECT_CALL(l2cap_interface_,
-              ConnectResponse(test_address, pending_cmd_id, new_lcid, L2CAP_CONN_OK, 0))
-          .WillOnce(Return(true));
   // Followed by configure request for MTU size
   tL2CAP_CFG_INFO our_cfg_req = {.mtu_present = true, .mtu = L2CAP_MTU_SIZE};
-  EXPECT_CALL(l2cap_interface_, ConfigRequest(new_lcid, PointerMemoryEqual(&our_cfg_req)))
-          .WillOnce(Return(true));
   l2cap_appl_info_.pL2CA_ConnectCfm_Cb(old_lcid, L2CAP_CONN_NO_PSM);
 
   log::verbose("Step 5");
   // Remote device also ask to configure MTU size as well
   tL2CAP_CFG_INFO peer_cfg_req = {.mtu_present = true, .mtu = test_mtu};
   // We responded by saying OK
+<<<<<<< HEAD
   tL2CAP_CFG_INFO our_cfg_rsp = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_OK,
                                  .mtu = peer_cfg_req.mtu};
   EXPECT_CALL(l2cap_interface_, ConfigResponse(new_lcid, PointerMemoryEqual(&our_cfg_rsp)))
           .WillOnce(Return(true));
+=======
+  tL2CAP_CFG_INFO our_cfg_rsp = {.result = L2CAP_CFG_OK, .mtu = peer_cfg_req.mtu};
+>>>>>>> 1bb02ec6ea9 (stack::l2cap Use l2cap interface)
   l2cap_appl_info_.pL2CA_ConfigInd_Cb(new_lcid, &peer_cfg_req);
 
   log::verbose("Step 6");
@@ -701,13 +688,13 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   // We accept
   BT_HDR* ua_channel_0 = AllocateWrappedOutgoingL2capAclPacket(
           CreateQuickUaPacket(RFCOMM_MX_DLCI, new_lcid, acl_handle));
-  EXPECT_CALL(l2cap_interface_, DataWrite(new_lcid, BtHdrEqual(ua_channel_0)))
+  EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(new_lcid, BtHdrEqual(ua_channel_0)))
           .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
   // And immediately try to configure test_peer_scn
   BT_HDR* uih_pn_cmd_to_peer = AllocateWrappedOutgoingL2capAclPacket(CreateQuickPnPacket(
           false, GetDlci(true, test_peer_scn), true, test_mtu, RFCOMM_PN_CONV_LAYER_CBFC_I >> 4, 0,
           RFCOMM_K_MAX, new_lcid, acl_handle));
-  EXPECT_CALL(l2cap_interface_, DataWrite(new_lcid, BtHdrEqual(uih_pn_cmd_to_peer)))
+  EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(new_lcid, BtHdrEqual(uih_pn_cmd_to_peer)))
           .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
   // Packet should be freed by this method
   l2cap_appl_info_.pL2CA_DataInd_Cb(new_lcid, sabm_channel_0);
@@ -723,7 +710,7 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   BT_HDR* uih_pn_rsp_to_peer = AllocateWrappedOutgoingL2capAclPacket(CreateQuickPnPacket(
           false, GetDlci(false, test_server_scn), false, test_mtu, RFCOMM_PN_CONV_LAYER_CBFC_R >> 4,
           0, RFCOMM_K_MAX, new_lcid, acl_handle));
-  EXPECT_CALL(l2cap_interface_, DataWrite(new_lcid, BtHdrEqual(uih_pn_rsp_to_peer)))
+  EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(new_lcid, BtHdrEqual(uih_pn_rsp_to_peer)))
           .Times(1)
           .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
   l2cap_appl_info_.pL2CA_DataInd_Cb(new_lcid, uih_pn_cmd_from_peer);
@@ -750,7 +737,7 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   ASSERT_TRUE(security_callback);
   BT_HDR* ua_server_scn = AllocateWrappedOutgoingL2capAclPacket(
           CreateQuickUaPacket(GetDlci(false, test_server_scn), new_lcid, acl_handle));
-  EXPECT_CALL(l2cap_interface_, DataWrite(new_lcid, BtHdrEqual(ua_server_scn)))
+  EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(new_lcid, BtHdrEqual(ua_server_scn)))
           .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
   // Callback should come from server port instead, client port will timeout
   // in 20 seconds
@@ -767,12 +754,12 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
           CreateQuickMscPacket(false, GetDlci(false, test_server_scn), new_lcid, acl_handle, false,
                                false, true, true, false, true));
   // MPX_CTRL Modem Status Response (MSC)
-  EXPECT_CALL(l2cap_interface_, DataWrite(new_lcid, BtHdrEqual(uih_msc_rsp_to_peer)))
+  EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(new_lcid, BtHdrEqual(uih_msc_rsp_to_peer)))
           .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
   BT_HDR* uih_msc_cmd_to_peer = AllocateWrappedOutgoingL2capAclPacket(
           CreateQuickMscPacket(false, GetDlci(false, test_server_scn), new_lcid, acl_handle, true,
                                false, true, true, false, true));
-  EXPECT_CALL(l2cap_interface_, DataWrite(new_lcid, BtHdrEqual(uih_msc_cmd_to_peer)))
+  EXPECT_CALL(l2cap_interface_, L2CA_DataWrite(new_lcid, BtHdrEqual(uih_msc_cmd_to_peer)))
           .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
   l2cap_appl_info_.pL2CA_DataInd_Cb(new_lcid, uih_msc_cmd_from_peer);
   osi_free(uih_msc_rsp_to_peer);
