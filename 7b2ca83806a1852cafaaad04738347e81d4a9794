@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3623846b_a1c82e61",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-21T22:35:09Z",
+      "side": 1,
+      "message": "I can\u0027t tell which things are from AOSP, and which things are our own exceptions.\n\nIs IndentWidth the only one?",
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c55ade55_3d65a9a5",
         "filename": "CPPLINT.cfg",
         "patchSetId": 4
