@@ -16,6 +16,24 @@
       "message": "I have been told that the design and feature was still in discussion.\nTherefor I can\u0027t give owner vote before this is settle.\n\n@girardier@google.com FYI",
       "revId": "f973002ac2398a01daf50d9d862b68e434695d2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ca84ff_e8283953",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3349112
+      },
+      "writtenOn": "2024-06-21T01:36:42Z",
+      "side": 1,
+      "message": "Sure. Thanks for the notice.",
+      "parentUuid": "f239a7b9_554b7898",
+      "revId": "f973002ac2398a01daf50d9d862b68e434695d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
