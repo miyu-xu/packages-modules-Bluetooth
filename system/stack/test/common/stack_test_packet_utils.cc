@@ -20,11 +20,11 @@
 
 #include <bluetooth/log.h>
 
-#include "hci/include/hci_layer.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
-#include "stack/include/l2c_api.h"
+#include "stack/include/l2cap_types.h"
 #include "stack/include/l2cdefs.h"
+#include "stack/l2cap/internal/l2c_api.h"
 
 namespace bluetooth {
 
