@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe9f054f_942efcef",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:49:51Z",
+      "side": 1,
+      "message": "Apologies. Now corrected.",
+      "parentUuid": "f5f95d8c_513bf1c8",
+      "range": {
+        "startLine": 133,
+        "startChar": 6,
+        "endLine": 135,
+        "endChar": 1
+      },
+      "revId": "5d6f428419382aefbd68157a8d8790e988a95b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b16aa49f_847e804e",
         "filename": "flags/hfp.aconfig",
         "patchSetId": 5
@@ -61,6 +85,30 @@
       "writtenOn": "2024-06-21T00:43:11Z",
       "side": 1,
       "message": "the planned release timeframe is 24Q3, this is not possible that late in the release process",
+      "range": {
+        "startLine": 141,
+        "startChar": 10,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "5d6f428419382aefbd68157a8d8790e988a95b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9181f665_c1071a5a",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-21T06:49:51Z",
+      "side": 1,
+      "message": "Apologies.",
+      "parentUuid": "b16aa49f_847e804e",
       "range": {
         "startLine": 141,
         "startChar": 10,
