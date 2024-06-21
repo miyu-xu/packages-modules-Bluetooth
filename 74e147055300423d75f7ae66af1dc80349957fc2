@@ -22,6 +22,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4aaba7_325c6e03",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2024-06-21T18:01:43Z",
+      "side": 1,
+      "message": "I added some comments to explain the logic and what was discussed in the privacy review.\n\nI also did search the various build characteristics for spurious \"tv\" matches. There presently are none. Given that you need both the characteristic and the flag to activate this, it can\u0027t be accidently activated. The RPA or build characteristic tests should detect if someone was trying to use this feature on a mobile form factor. Capitalization is always lowercase, and the TV manufacturers have an incentive to respect the lowercase capitalization.\n\nI did consider all of these things, but I decided that simpler code was better in this case. The alternative would be parsing a comma separated values list, which is more error prone. The regex would be something like `(^|,)\\w*[Tt][Vv]\\w*(,|$)`, which is pretty complicated to code for little benefit.",
+      "parentUuid": "1ebc4466_a40ee216",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
