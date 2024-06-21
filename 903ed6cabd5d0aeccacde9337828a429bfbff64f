@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c49b8d52_62502a62",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T17:19:24Z",
+      "side": 1,
+      "message": "Please no, never. Not within our own test\n\nInstead remove private from `mAudioManagerAudioDeviceCallback` and add the @VisibleForTesting\n\nAnd then call the method directly",
+      "range": {
+        "startLine": 1497,
+        "startChar": 0,
+        "endLine": 1523,
+        "endChar": 5
+      },
+      "revId": "903ed6cabd5d0aeccacde9337828a429bfbff64f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
