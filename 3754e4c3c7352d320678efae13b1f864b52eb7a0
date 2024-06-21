@@ -22,6 +22,30 @@
       },
       "revId": "3754e4c3c7352d320678efae13b1f864b52eb7a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cda486a_d0b32b85",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T17:08:37Z",
+      "side": 0,
+      "message": "They are removed because the default of calling a mock call is to return false | 0 | null.\n\nI only kept the one that are actually changing something",
+      "parentUuid": "d834c644_5f9d7d8f",
+      "range": {
+        "startLine": 219,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 65
+      },
+      "revId": "3754e4c3c7352d320678efae13b1f864b52eb7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
