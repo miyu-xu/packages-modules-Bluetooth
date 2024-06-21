@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e919a57c_c5b26278",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 3482313
+      },
+      "writtenOn": "2024-06-21T03:41:46Z",
+      "side": 1,
+      "message": "Yes, it will cause CtsStatsdAtomHostTestCases fail.\nhttps://partnerissuetracker.corp.google.com/issues/346909845\n\n\nThis rootcause for the case fail is when calling UiAutomation.adoptShellPermissionIdentity, it will  call AppOpsService.setCheckOpsDelegate and set mAccessCheckDelegate  not null.\n\nPermissions.replacePermissionsWith(Permissions.kt:79) -\u003e\nUiAutomation.adoptShellPermissionIdentity(UiAutomation.java:615) -\u003e\nAppOpsService.setCheckOpsDelegate\n\n\n\nBut when close-\u003erestorePermissions, it didn\u0027t reset mAccessCheckDelegate to null, this will lead to case fail. So, we think restorePermissions should call dropShellPermissionIdentity to reset mAccessCheckDelegate.\n\nPermissions.withPermissions(Permissions.kt:41) -\u003e \nclose -\u003e \nrestorePermissions(savedPermissions)",
+      "parentUuid": "8b546154_e1a7f4a9",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 81
+      },
+      "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4eec04fe_06e70732",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3920ff6_c5324a18",
+        "filename": "framework/tests/util/src/Permissions.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3482313
+      },
+      "writtenOn": "2024-06-21T03:41:46Z",
+      "side": 1,
+      "message": "About the usage of adoptShellPermissionIdentity and dropShellPermissionIdentity, I think whether we can refer to other cases, such as \npackages/modules/Bluetooth/service/tests/src/com/android/server/bluetooth/BluetoothServiceBinderTest.java\n\nIn the setup(), BluetoothServiceBinderTest call adoptShellPermissionIdentity for two permissions and in the tearDown() it call dropShellPermissionIdentity().\n\nI think it\u0027s same as this case, so I believe this won\u0027t break more.\n\nPlease help check, thanks.",
+      "parentUuid": "4eec04fe_06e70732",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 48
+      },
       "revId": "81fd0e659f8f2275e2a59c90d5801f0f4f5cfa9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
