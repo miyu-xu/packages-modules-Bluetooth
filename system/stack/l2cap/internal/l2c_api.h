@@ -96,12 +96,6 @@ typedef uint8_t tL2CAP_CHNL_DATA_RATE;
 #define SVC_TYPE_BEST_EFFORT 1
 #define SVC_TYPE_GUARANTEED 2
 
-/* Define a structure to hold the configuration parameters. Since the
- * parameters are optional, for each parameter there is a boolean to
- * use to signify its presence or absence.
- */
-constexpr uint16_t L2CAP_LE_CREDIT_THRESHOLD = 64;
-
 // This is initial amout of credits we send, and amount to which we increase
 // credits once they fall below threshold
 uint16_t L2CA_LeCreditDefault();
