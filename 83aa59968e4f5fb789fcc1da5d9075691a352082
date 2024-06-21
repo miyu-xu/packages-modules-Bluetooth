@@ -69,6 +69,30 @@
       },
       "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2cea8d_92cfe342",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-21T21:07:26Z",
+      "side": 1,
+      "message": "Wow, didn\u0027t know that existed. So basically you can make the tests agnostic of the underlying set of flags by saying \"run combinations of all these flags that I claim impact my source code,\" huh? And then what, do you change assert statements based on the flag value if you need? I feel like this can quickly cause the number of tests run to get a bit out of control if you\u0027re not careful. But, pretty powerful!\n\nFor this particular behavior, its a bit weird. We were dropping message handle bits. The message handle is a very internal value, and by and large the existing tests should \"just work\" with and without the flag (it turns out most devices don\u0027t pack the most significant bits 😮). My point to Andrew though was just to have the ability to prove that the code is doing what its supposed too, mainly not dropping bits. One could argue that that is testing an implementation detail though.\n\nI suppose we could also use test message handles that _do_ use the upper bits that were dropping too.",
+      "parentUuid": "24dbc4a4_7e24a378",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 251,
+        "endChar": 72
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
