@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e291c370_853c45ca",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-21T11:45:31Z",
+      "side": 1,
+      "message": "nit:\n\n```\n  if (!p_lcb) {\n    log::warn(\"No link to update connection parameter\");\n    return;\n  }\n```",
+      "range": {
+        "startLine": 331,
+        "startChar": 2,
+        "endLine": 331,
+        "endChar": 22
+      },
+      "revId": "06e636faa44281c11fbc58e656c56053af4fb986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
