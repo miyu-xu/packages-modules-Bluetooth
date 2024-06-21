@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8912c35a_28f45e07",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-21T22:32:46Z",
+      "side": 1,
+      "message": "remove?  GD has the most classes, and didn\u0027t have this special rule.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55ade55_3d65a9a5",
+        "filename": "CPPLINT.cfg",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-21T22:32:46Z",
+      "side": 1,
+      "message": "Can we remove this and the access modifier indentation?  I don\u0027t think there are enough of them to make it worth the special case.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 25
+      },
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
