@@ -16,6 +16,24 @@
       "message": "what if the source doesn\u0027t have PBP profile enabled? encryption bit won\u0027t be present then this might not work.\n\nalso what\u0027s motivation of moving this to PA?",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5250b19a_830b1cd9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-21T09:37:27Z",
+      "side": 1,
+      "message": "Motivation is that we want to notifySourceFound on PA because if someone start broadcast (on android) without audio then on the second phone you want to find it and connect to it, even if BIG is not created (new feature).\n\nThat needs a UI changes too because right now with that change (and with next one which terminate BIG) you will find a broadcast but on click it will show:\n```\nConnecting...\n```\nand after 30s:\n```\nAudio stream isn\u0027t available\nThis audio stream isn\u0027t playing anything right now\".\n```\nUI have to handle statuses differently and show:\n```\nConnected\n```\nwhen synced to PA but without BIG, and \n```\nListening now\n```\nwhen BIG connected (current behavior).\n\nIf event possible that PBP is disabled on source when PA is created?",
+      "parentUuid": "ac7432ba_f2f2a597",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
