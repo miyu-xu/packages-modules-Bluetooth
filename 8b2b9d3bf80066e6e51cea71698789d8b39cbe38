@@ -22,6 +22,30 @@
       },
       "revId": "8b2b9d3bf80066e6e51cea71698789d8b39cbe38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba74618c_fcaa169f",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T01:01:40Z",
+      "side": 1,
+      "message": "BTA_DmSetVisibility only return false when the mode is not one of bt_scan_mode_t.\n\nNothing was parsed here and the value cannot be wrong.\n\nI don\u0027t think we should do anything else.",
+      "parentUuid": "d5fc3b03_83cf4b77",
+      "range": {
+        "startLine": 587,
+        "startChar": 2,
+        "endLine": 587,
+        "endChar": 21
+      },
+      "revId": "8b2b9d3bf80066e6e51cea71698789d8b39cbe38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
