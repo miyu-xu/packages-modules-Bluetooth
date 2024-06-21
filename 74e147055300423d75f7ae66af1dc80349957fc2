@@ -70,6 +70,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb177af_5aab8c3d",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2024-06-21T19:10:03Z",
+      "side": 1,
+      "message": "Do we need this machinery at all? We could just have the flag, and CTS would catch anyone not rotating during sleep.",
+      "parentUuid": "7b2ff561_219bd502",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
