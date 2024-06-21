@@ -1989,6 +1989,11 @@ private:
           return;
         }
 
+        if (!ase->active) {
+          log::debug("Ignoring reconfiguration of non-active ASE");
+          return;
+        }
+
         if (leAudioDevice->HaveAnyUnconfiguredAses()) {
           /* More ASEs notification from this device has to come for this group
            */
@@ -2081,6 +2086,11 @@ private:
         /* This may be a notification from a re-configured ASE */
         ase->reconfigure = false;
         qos_config_update(rsp, ase->qos_preferences, ase->qos_config);
+
+        if (!ase->active) {
+          log::debug("Ignoring reconfiguration of non-active ASE");
+          return;
+        }
 
         if (leAudioDevice->HaveAnyUnconfiguredAses()) {
           /* Waiting for others to be reconfigured */
