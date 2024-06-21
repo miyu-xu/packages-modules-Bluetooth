@@ -23,7 +23,6 @@
 
 #include "bind_helpers.h"
 #include "hci/controller_interface_mock.h"
-#include "l2c_api.h"
 #include "mock_btif_storage.h"
 #include "mock_btm_api_layer.h"
 #include "mock_eatt.h"
