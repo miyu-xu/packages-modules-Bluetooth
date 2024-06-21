@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c93698_0b20d699",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 10948,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-21T19:36:04Z",
+      "side": 1,
+      "message": "left over here and the other places.\n\nYou can keep log::info here to print test steps if you like.",
+      "revId": "1933230b156bcc8c6921718f990fb17319084e86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
