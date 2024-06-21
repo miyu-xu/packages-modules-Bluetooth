@@ -94,6 +94,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0436ce_704cda58",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:25:24Z",
+      "side": 1,
+      "message": "That a good call.\n\nSince this is gate by a system properties, we are already using a form factor differentiation here.\n\nI believe we could remove all of this and just read the system properties\n\nAre you aware of a cts test that indeed does that ? Can you point it to me ?",
+      "parentUuid": "1bb177af_5aab8c3d",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
