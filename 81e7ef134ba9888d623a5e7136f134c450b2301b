@@ -136,6 +136,30 @@
       },
       "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993833ea_34ec019b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T02:12:29Z",
+      "side": 1,
+      "message": "Note (also for other reviewer):\nI am experimenting on https://r.android.com/3141817 to bypass the call to the framework altogether and avoid the flat 2 second timeout (as this is indeed a deadlock du to binder / threading issue)\n\nI still think strongly that we shouldn\u0027t go in the direction of this chain of change",
+      "parentUuid": "8142d5f6_167d72af",
+      "range": {
+        "startLine": 2980,
+        "startChar": 28,
+        "endLine": 2980,
+        "endChar": 36
+      },
+      "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
