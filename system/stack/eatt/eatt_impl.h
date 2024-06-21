@@ -24,7 +24,6 @@
 #include "eatt.h"
 #include "hci/controller_interface.h"
 #include "internal_include/stack_config.h"
-#include "l2c_api.h"
 #include "main/shim/entry.h"
 #include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
@@ -33,6 +32,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/btm_sec_api.h"
+#include "stack/include/l2cap_interface.h"
 #include "stack/include/l2cdefs.h"
 #include "stack/include/main_thread.h"
 
@@ -162,7 +162,8 @@ struct eatt_impl {
             .credits = L2CA_LeCreditDefault(),
     };
 
-    if (!L2CA_ConnectCreditBasedRsp(bda, identifier, lcids, L2CAP_CONN_OK, &local_coc_cfg)) {
+    if (!stack::l2cap::get_interface().L2CA_ConnectCreditBasedRsp(bda, identifier, lcids,
+                                                                  L2CAP_CONN_OK, &local_coc_cfg)) {
       log::warn("Unable to respond L2CAP le_coc credit indication peer:{}", bda);
       return false;
     }
@@ -223,7 +224,7 @@ struct eatt_impl {
       p_buf->offset = L2CAP_MIN_OFFSET;
       p_buf->len = mtu;
 
-      auto status = L2CA_DataWrite(cid, p_buf);
+      auto status = stack::l2cap::get_interface().L2CA_DataWrite(cid, p_buf);
       log::info("Data num: {} sent with status {}", i, static_cast<int>(status));
     }
   }
@@ -258,8 +259,9 @@ struct eatt_impl {
       if (key_size < min_key_size) {
         std::vector<uint16_t> empty;
         log::error("Insufficient key size ({}<{}) for device {}", key_size, min_key_size, bda);
-        if (!L2CA_ConnectCreditBasedRsp(bda, identifier, empty,
-                                        L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP_KEY_SIZE, nullptr)) {
+        if (!stack::l2cap::get_interface().L2CA_ConnectCreditBasedRsp(
+                    bda, identifier, empty, L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP_KEY_SIZE,
+                    nullptr)) {
           log::warn("Unable to respond L2CAP le_coc credit indication peer:{}", bda);
         }
         return;
@@ -303,7 +305,8 @@ struct eatt_impl {
         result = L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP;
       }
       log::error("ACL to device {} is unencrypted.", bda);
-      if (!L2CA_ConnectCreditBasedRsp(bda, identifier, empty, result, nullptr)) {
+      if (!stack::l2cap::get_interface().L2CA_ConnectCreditBasedRsp(bda, identifier, empty, result,
+                                                                    nullptr)) {
         log::warn("Unable to respond L2CAP le_coc credit indication peer:{}", bda);
       }
       return;
@@ -329,7 +332,7 @@ struct eatt_impl {
     log::info("EATT collision detected. If we are Central we will retry right away");
 
     eatt_dev->collision = false;
-    uint8_t role = L2CA_GetBleConnRole(eatt_dev->bda_);
+    uint8_t role = stack::l2cap::get_interface().L2CA_GetBleConnRole(eatt_dev->bda_);
     if (role == HCI_ROLE_CENTRAL) {
       log::info("Retrying EATT setup due to previous collision for device {}", eatt_dev->bda_);
       connect_eatt_wrap(eatt_dev);
@@ -551,7 +554,8 @@ struct eatt_impl {
 
     /* Warning! CIDs in Android are unique across the ACL connections */
     std::vector<uint16_t> connecting_cids =
-            L2CA_ConnectCreditBasedReq(psm_, eatt_dev->bda_, &local_coc_cfg);
+            stack::l2cap::get_interface().L2CA_ConnectCreditBasedReq(psm_, eatt_dev->bda_,
+                                                                     &local_coc_cfg);
 
     if (connecting_cids.size() == 0) {
       log::error("Unable to get cid");
@@ -779,7 +783,8 @@ struct eatt_impl {
     tL2CAP_LE_CFG_INFO cfg = {
             .result = L2CAP_LE_RESULT_CONN_OK, .mtu = new_mtu, .mps = eatt_dev->rx_mps_};
 
-    if (!L2CA_ReconfigCreditBasedConnsReq(eatt_dev->bda_, cids, &cfg)) {
+    if (!stack::l2cap::get_interface().L2CA_ReconfigCreditBasedConnsReq(eatt_dev->bda_, cids,
+                                                                        &cfg)) {
       log::error("Could not start reconfig cid: 0x{:x} or device {}", cid, bd_addr);
       return;
     }
@@ -818,7 +823,8 @@ struct eatt_impl {
     tL2CAP_LE_CFG_INFO cfg = {
             .result = L2CAP_LE_RESULT_CONN_OK, .mtu = new_mtu, .mps = eatt_dev->rx_mps_};
 
-    if (!L2CA_ReconfigCreditBasedConnsReq(eatt_dev->bda_, cids, &cfg)) {
+    if (!stack::l2cap::get_interface().L2CA_ReconfigCreditBasedConnsReq(eatt_dev->bda_, cids,
+                                                                        &cfg)) {
       log::error("Could not start reconfig for device {}", bd_addr);
       return;
     }
@@ -853,7 +859,7 @@ struct eatt_impl {
   }
 
   void disconnect_channel(uint16_t cid) {
-    if (!L2CA_DisconnectReq(cid)) {
+    if (!stack::l2cap::get_interface().L2CA_DisconnectReq(cid)) {
       log::warn("Unable to request L2CAP disconnect cid:{}", cid);
     }
   }
@@ -937,7 +943,7 @@ struct eatt_impl {
   void connect(const RawAddress& bd_addr) {
     eatt_device* eatt_dev = find_device_by_address(bd_addr);
 
-    uint8_t role = L2CA_GetBleConnRole(bd_addr);
+    uint8_t role = stack::l2cap::get_interface().L2CA_GetBleConnRole(bd_addr);
     if (role == HCI_ROLE_UNKNOWN) {
       log::error("Could not get device role{}", bd_addr);
       return;
