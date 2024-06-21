@@ -142,6 +142,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a88cf349_22df4b04",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-21T22:53:23Z",
+      "side": 1,
+      "message": "\u003e The next best thing is to enforce in CTS that this flag is false\n\nThe flag looks like an implementation detail, I don\u0027t think this is the best test.\n\nBy reading the compatibility doc:\n```\n[C-3-5] MUST implement a Resolvable Private Address (RPA) timeout no longer than 15 minutes and rotate the address at timeout to protect user privacy when device is actively using BLE for scanning or advertising. To prevent timing attacks, timeout intervals MUST also be randomized between 5 and 15 minutes.\n```\n\nThis doesn\u0027t offer room for form factor exception.\n\n\nI am sorry but I feel like this is a bit outside of my domain of expertise. I don\u0027t know how the CDD is applied / enforced. I am also not familiar with the RPA",
+      "parentUuid": "8c6117b9_7f767575",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
