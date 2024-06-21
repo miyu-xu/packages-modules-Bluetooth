@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4e3b766_da921c9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-21T13:41:32Z",
+      "side": 1,
+      "message": "I think the root CL that I\u0027m currently working on - start session before starting broadcast could have an impact on this CL so I suggest to wait for that change and then adopt this CL.",
+      "revId": "7d0ef194a1943219a80a13a6aafb4c46742593bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "856144aa_f842edf8",
