@@ -1065,9 +1065,6 @@ public class TransitionalScanHelper {
             return;
         }
 
-        UUID uuid = UUID.randomUUID();
-        Log.d(TAG, "registerScanner() - UUID=" + uuid);
-
         enforceImpersonatationPermissionIfNeeded(workSource);
 
         AppScanStats app = mScannerMap.getAppScanStatsByUid(Binder.getCallingUid());
@@ -1082,6 +1079,12 @@ public class TransitionalScanHelper {
             }
             return;
         }
+        registerScanner(callback, workSource);
+    }
+
+    public void registerScanner(IScannerCallback callback, WorkSource workSource) {
+        UUID uuid = UUID.randomUUID();
+        Log.d(TAG, "registerScanner() - UUID=" + uuid);
 
         mScannerMap.add(uuid, workSource, callback, null, mContext, this);
         mScanManager.registerScanner(uuid);
@@ -1094,6 +1097,10 @@ public class TransitionalScanHelper {
             return;
         }
 
+        unregisterScanner(scannerId);
+    }
+
+    public void unregisterScanner(int scannerId) {
         Log.d(TAG, "unregisterScanner() - scannerId=" + scannerId);
         mScannerMap.remove(scannerId);
         mScanManager.unregisterScanner(scannerId);
