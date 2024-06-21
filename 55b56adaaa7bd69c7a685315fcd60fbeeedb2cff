@@ -52,6 +52,24 @@
       "parentUuid": "5250b19a_830b1cd9",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75868f06_5675b70a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-21T12:39:52Z",
+      "side": 1,
+      "message": "The basic question here is if this implementation is \"Auracast™\".\n\nSecond thing is that solution for that issue isn\u0027t for me that simple like only this change.\n\nThe basic issues here are:\n1. Current assumption is that exposed broadcast are streaming.\n2. UI uses AudioShare to add sources which instructs Broadcast Delegator about synchronization request to PA and BIS.\n3. Informing UI about streaming vs only BASE (non streaming)\n4. Who should track source if external when only BASE (non streaming)\n5. Presentation of sources in UI layer\n\nI think questions may be more. Maybe we should just assume for now that only streaming broadcasts can be exposed to UI ? and create a Feature Request to allow \"queuing\" broadcast which are not playing at time of selecting.",
+      "parentUuid": "a5e9dc55_a0206be0",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
