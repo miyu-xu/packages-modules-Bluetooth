@@ -24,7 +24,7 @@
 
 #define LOG_TAG "bt_l2cap"
 
-#include "stack/include/l2c_api.h"
+#include "stack/l2cap/internal/l2c_api.h"
 
 #include <base/location.h>
 #include <base/strings/stringprintf.h>
@@ -44,7 +44,6 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/btm_client_interface.h"
-#include "stack/include/l2c_api.h"
 #include "stack/include/main_thread.h"
 #include "stack/l2cap/l2c_int.h"
 #include "types/raw_address.h"
@@ -76,6 +75,8 @@ uint16_t L2CA_LeCreditDefault() {
           "bluetooth.l2cap.le.credit_default.value", L2CAP_LE_CREDIT_MAX);
   return sL2CAP_LE_CREDIT_DEFAULT;
 }
+
+constexpr uint16_t L2CAP_LE_CREDIT_THRESHOLD = 64;
 
 uint16_t L2CA_LeCreditThreshold() {
   static const uint16_t sL2CAP_LE_CREDIT_THRESHOLD = bluetooth::os::GetSystemPropertyUint32Base(
