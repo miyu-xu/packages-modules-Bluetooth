@@ -22,6 +22,8 @@
  */
 #include "test/mock/mock_stack_l2cap_api.h"
 
+#include "stack/include/l2cap_interface.h"
+
 // Original included files, if any
 
 #include "test/common/mock_functions.h"

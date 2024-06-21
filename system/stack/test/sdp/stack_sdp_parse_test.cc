@@ -17,13 +17,13 @@
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <flag_macros.h>
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <stdlib.h>
 
 #include <cstdint>
 
 #include "gd/os/rand.h"
-#include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
@@ -34,7 +34,11 @@
 #include "test/common/mock_functions.h"
 #include "test/fake/fake_osi.h"
 #include "test/mock/mock_osi_allocator.h"
-#include "test/mock/mock_stack_l2cap_api.h"
+#include "test/mock/mock_stack_l2cap_interface.h"
+// #include "test/mock/mock_stack_l2cap_api.h"
+
+using ::testing::_;
+using ::testing::Invoke;
 
 constexpr uint32_t kBtDefaultBufferSize = static_cast<uint32_t>(BT_DEFAULT_BUFFER_SIZE);
 
@@ -54,6 +58,15 @@ protected:
   void SetUp() override {
     reset_mock_function_count_map();
     fake_osi_ = std::make_unique<test::fake::FakeOsi>();
+    bluetooth::testing::stack::l2cap::set_interface(&mock_l2cap_interface_);
+
+    ON_CALL(mock_l2cap_interface_, L2CA_ConnectReqWithSecurity(_, _, _))
+            .WillByDefault(Invoke([](uint16_t /* psm */, const RawAddress& /* p_bd_addr */,
+                                     uint16_t /* sec_level */) -> uint16_t {
+              return ++L2CA_ConnectReqWithSecurity_cid;
+            }));
+
+#if 0
     test::mock::stack_l2cap_api::L2CA_ConnectReqWithSecurity.body =
             [](uint16_t /* psm */, const RawAddress& /* p_bd_addr */, uint16_t /* sec_level */) {
               return ++L2CA_ConnectReqWithSecurity_cid;
@@ -67,16 +80,20 @@ protected:
             [](uint16_t psm, const tL2CAP_APPL_INFO& /* p_cb_info */, bool /* enable_snoop */,
                tL2CAP_ERTM_INFO* /* p_ertm_info */, uint16_t /* my_mtu */,
                uint16_t /* required_remote_mtu */, uint16_t /* sec_level */) { return psm; };
+#endif
   }
 
   void TearDown() override {
+#if 0
     test::mock::stack_l2cap_api::L2CA_RegisterWithSecurity = {};
     test::mock::stack_l2cap_api::L2CA_DisconnectReq = {};
     test::mock::stack_l2cap_api::L2CA_DataWrite = {};
     test::mock::stack_l2cap_api::L2CA_ConnectReqWithSecurity = {};
+#endif
     fake_osi_.reset();
   }
 
+  bluetooth::testing::stack::l2cap::Mock mock_l2cap_interface_;
   std::unique_ptr<test::fake::FakeOsi> fake_osi_;
 };
 
