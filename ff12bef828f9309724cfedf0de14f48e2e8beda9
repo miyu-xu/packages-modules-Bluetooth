@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cffe8a7_137a488d",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-21T01:30:53Z",
+      "side": 1,
+      "message": "Is this the read request callback? Do we need to add cb here?",
+      "revId": "ff12bef828f9309724cfedf0de14f48e2e8beda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
