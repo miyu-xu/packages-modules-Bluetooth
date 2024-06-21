@@ -22,6 +22,30 @@
       },
       "revId": "ac059702f994f4948f69ed6a11fb1238b2ad8c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec51179_b095b94d",
+        "filename": "system/gd/l2cap/le/internal/link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-21T19:53:59Z",
+      "side": 1,
+      "message": "I had an implementation in wrong place:\n\n```\n+\n+    if (!l2cble_should_update_conn_params(handle)) {\n+        // log::info(\"connection parameter update request rejected {}\", signal_id);\n+        le_acl_connection_interface_-\u003eEnqueueCommand(\n+                LeRemoteConnectionParameterRequestReplyBuilder::Create(\n+                    handle,\n+                    request_view.GetIntervalMin(),\n+                    request_view.GetIntervalMax(),\n+                    request_view.GetLatency(),\n+                    request_view.GetTimeout(),\n+                    0,\n+                    0),\n+                handler_-\u003eBindOnce([](CommandCompleteView /* status */) {}));\n+          return;\n+      }\n+\n```\n\nWhich was in LeAddressManagerCallback",
+      "parentUuid": "c8543433_8509b1ab",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 19
+      },
+      "revId": "ac059702f994f4948f69ed6a11fb1238b2ad8c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
