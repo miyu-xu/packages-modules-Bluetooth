@@ -16,8 +16,40 @@
 
 #pragma once
 
-// Entrypoints for the stack manager to initialize, shutdown
-// and dumpsys the l2cap module.
+/*******************************************************************************
+ *
+ * Function         l2c_init
+ *
+ * Description      This function is called once at startup to initialize
+ *                  all the L2CAP structures
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
 void l2c_init();
+
+/*******************************************************************************
+ *
+ * Function         l2c_free
+ *
+ * Description      This function is called once at shutdown to free and
+ *                  clean up all the L2CAP structures
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
 void l2c_free();
+
+/*******************************************************************************
+**
+** Function         L2CA_Dumpsys
+**
+** Description      This function provides dumpsys data during the dumpsys
+**                  procedure.
+**
+** Parameters:      fd: Descriptor used to write the L2CAP internals
+**
+** Returns          void
+**
+*******************************************************************************/
 void L2CA_Dumpsys(int fd);
