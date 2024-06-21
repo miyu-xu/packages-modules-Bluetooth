@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ca36640_767237a9",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-21T21:31:39Z",
+      "side": 1,
+      "message": "My two cents on this would be that all the transaction label functions are a function of the device and not a given transaction set right now. After all, label _are_ per-device by AVRCP rules too! This let\u0027s us abstract away the transaction label management implementation a bit, keeps us from accidentally using the wrong set for a device, and allows us to reliably log the device asking for a label. I would probably elect to leave it as it is as a result. There\u0027s other pressing things to worry about I suppose!\n\nBut, as always, if you feel strongly 😊",
+      "parentUuid": "c4a909a2_b4f062c5",
+      "range": {
+        "startLine": 477,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 31
+      },
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dfd32fd_03c873ad",
         "filename": "system/btif/src/btif_rc.cc",
         "patchSetId": 1
@@ -72,6 +96,30 @@
       "writtenOn": "2024-06-18T17:30:50Z",
       "side": 1,
       "message": "this is not needed anymore. the default log formatter for address is using the masked address",
+      "range": {
+        "startLine": 5409,
+        "startChar": 17,
+        "endLine": 5409,
+        "endChar": 41
+      },
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e9900a_a1627ff1",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5409,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-21T21:31:39Z",
+      "side": 1,
+      "message": "Nice! I\u0027ll remove all of these then.",
+      "parentUuid": "2dfd32fd_03c873ad",
       "range": {
         "startLine": 5409,
         "startChar": 17,
