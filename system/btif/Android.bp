@@ -697,6 +697,7 @@ cc_test {
         ":TestMockMainShimDumpsys",
         ":TestMockMainShimEntry",
         ":TestMockStack",
+        ":TestMockStackL2capInterface",
         ":TestMockStackRnr",
         ":TestMockStackSecurityClientInterface",
         ":TestMockUdrv",
