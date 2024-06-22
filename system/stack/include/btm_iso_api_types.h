@@ -175,6 +175,6 @@ struct iso_data_path_params {
   std::vector<uint8_t> codec_conf;
 };
 
-}  // namespace iso_manager
-}  // namespace hci
-}  // namespace bluetooth
+} // namespace iso_manager
+} // namespace hci
+} // namespace bluetooth

@@ -36,15 +36,14 @@ namespace bluetooth {
 namespace rnr {
 
 class RemoteNameRequest {
- public:
+public:
   tBTM_NAME_CMPL_CB* p_remname_cmpl_cb{nullptr};
   alarm_t* remote_name_timer{nullptr};
-  RawAddress remname_bda{}; /* Name of bd addr for active remote name request */
-  bool remname_active{
-      false}; /* State of a remote name request by external API */
+  RawAddress remname_bda{};   /* Name of bd addr for active remote name request */
+  bool remname_active{false}; /* State of a remote name request by external API */
   tBT_DEVICE_TYPE remname_dev_type{
-      BT_DEVICE_TYPE_UNKNOWN}; /* Whether it's LE or BREDR name request */
+          BT_DEVICE_TYPE_UNKNOWN}; /* Whether it's LE or BREDR name request */
 };
 
-}  // namespace rnr
-}  // namespace bluetooth
+} // namespace rnr
+} // namespace bluetooth
