@@ -150,7 +150,11 @@ BluetoothAudioCtrlAck HfpTransport::SuspendRequest() {
   }
   auto status = instance->DisconnectAudio(&addr);
   log::info("DisconnectAudio status = {} - {}", status, bt_status_text(status));
-  return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+  if (status == BT_STATUS_SUCCESS) {
+    return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+  } else {
+    return BluetoothAudioCtrlAck::FAILURE;
+  }
 }
 
 void HfpTransport::SetLatencyMode(LatencyMode latency_mode) {}
