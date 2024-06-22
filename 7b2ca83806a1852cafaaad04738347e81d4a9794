@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3375dd07_a9e5be60",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-22T00:10:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f633218e_b50d11c7",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3623846b_a1c82e61",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "`IndendWidth` is the only one yes.\n\nEvery other are defined accordingly to go/android-cppstyle and I put in the comment the default value before override (either defined by GoogleStyle or by it\u0027s parent, the LlvmStyle).\n\nI didn\u0027t put any personal code change even if I wanted to do some 😐",
       "parentUuid": "3623846b_a1c82e61",
+      "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e4f5a1_e8f956c6",
+        "filename": ".clang-format",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-22T00:10:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "88bec225_02f72c2c",
       "revId": "7b2ca83806a1852cafaaad04738347e81d4a9794",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
