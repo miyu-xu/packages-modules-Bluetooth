@@ -65,4 +65,4 @@ enum : uint64_t {
   A2DP_CODEC_ID_OPUS = 0x000100e0ff,
 };
 
-#endif  // A2DP_CONSTANTS_H
+#endif // A2DP_CONSTANTS_H

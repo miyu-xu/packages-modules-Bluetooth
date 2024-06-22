@@ -31,5 +31,5 @@ void set_ad_type_rsi_filter(bool enable);
 void set_empty_filter(bool enable);
 void set_target_announcements_filter(bool enable);
 
-}  // namespace shim
-}  // namespace bluetooth
+} // namespace shim
+} // namespace bluetooth
