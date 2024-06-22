@@ -29,8 +29,7 @@ using namespace bluetooth;
 
 static bluetooth::manager::MockBtmInterface* btm_interface = nullptr;
 
-void bluetooth::manager::SetMockBtmInterface(
-    MockBtmInterface* mock_btm_interface) {
+void bluetooth::manager::SetMockBtmInterface(MockBtmInterface* mock_btm_interface) {
   btm_interface = mock_btm_interface;
 }
 
@@ -43,16 +42,13 @@ bool BTM_IsEncrypted(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   return btm_interface->BTM_IsEncrypted(bd_addr, transport);
 }
 
-tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr,
-                              tBT_TRANSPORT transport,
+tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
                               tBTM_SEC_CALLBACK* p_callback, void* p_ref_data,
                               tBTM_BLE_SEC_ACT sec_act) {
-  return btm_interface->SetEncryption(bd_addr, transport, p_callback,
-                                      p_ref_data, sec_act);
+  return btm_interface->SetEncryption(bd_addr, transport, p_callback, p_ref_data, sec_act);
 }
 
-bool BTM_IsPhy2mSupported(const RawAddress& remote_bda,
-                          tBT_TRANSPORT transport) {
+bool BTM_IsPhy2mSupported(const RawAddress& remote_bda, tBT_TRANSPORT transport) {
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->IsPhy2mSupported(remote_bda, transport);
 }
@@ -83,14 +79,12 @@ void BTM_RequestPeerSCA(RawAddress const& bd_addr, tBT_TRANSPORT transport) {
   btm_interface->RequestPeerSCA(bd_addr, transport);
 }
 
-uint16_t BTM_GetHCIConnHandle(RawAddress const& bd_addr,
-                              tBT_TRANSPORT transport) {
+uint16_t BTM_GetHCIConnHandle(RawAddress const& bd_addr, tBT_TRANSPORT transport) {
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->GetHCIConnHandle(bd_addr, transport);
 }
 
-void acl_disconnect_from_handle(uint16_t handle, tHCI_STATUS reason,
-                                std::string comment) {
+void acl_disconnect_from_handle(uint16_t handle, tHCI_STATUS reason, std::string comment) {
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->AclDisconnectFromHandle(handle, reason);
 }
@@ -119,14 +113,12 @@ bool BTM_BleIsLinkKeyKnown(const RawAddress address) {
   return btm_interface->BTM_BleIsLinkKeyKnown(address);
 }
 
-bool BTM_IsAclConnectionUp(const RawAddress& remote_bda,
-                           tBT_TRANSPORT transport) {
+bool BTM_IsAclConnectionUp(const RawAddress& remote_bda, tBT_TRANSPORT transport) {
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->BTM_IsAclConnectionUp(remote_bda, transport);
 }
 
-std::optional<tBLE_BD_ADDR> BTM_BleGetIdentityAddress(
-    const RawAddress address) {
+std::optional<tBLE_BD_ADDR> BTM_BleGetIdentityAddress(const RawAddress address) {
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->BTM_BleGetIdentityAddress(address);
 }
