@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0f9951_b0a344a8",
+        "filename": "framework/tests/util/src/Permissions.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-23T00:35:27Z",
+      "side": 1,
+      "message": "My bad, this is kotlin, we need to remove the parenthesis after size.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "96556958_73530f54",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/util/src/Permissions.kt",
+              "range": {
+                "startLine": 67,
+                "startChar": 0,
+                "endLine": 68,
+                "endChar": 0
+              },
+              "replacement": "        } else if (permissions.size \u003d\u003d 0) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3a4838ce778e8074c85de30cb587f1f6ccec9ce3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
