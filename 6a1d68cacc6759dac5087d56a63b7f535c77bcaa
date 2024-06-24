@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995c2e63_2dddc1df",
+        "filename": "system/device/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2024-06-24T15:15:48Z",
+      "side": 1,
+      "message": "Maybe this was clarified elsewhere, but why is this necessary? Seems dangerous to enable this globally for downstream libs. Is there an alternative fix?",
+      "range": {
+        "startLine": 121,
+        "startChar": 27,
+        "endLine": 121,
+        "endChar": 35
+      },
+      "revId": "6a1d68cacc6759dac5087d56a63b7f535c77bcaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
