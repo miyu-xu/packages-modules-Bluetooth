@@ -15,6 +15,8 @@ flag {
     bug: "333634398"
 }
 
+<<<<<<< PATCH SET (3319c7 Removing flag fix_le_pairing_passkey_entry_bypass)
+=======
 flag {
   name: "bta_av_setconfig_rej_type_confusion"
   namespace: "bluetooth"
@@ -25,3 +27,4 @@ flag {
   }
 }
 
+>>>>>>> BASE      (c0734c Merge "Flag 24Q3: remove rnr_reset_state_at_cancel" into mai)
