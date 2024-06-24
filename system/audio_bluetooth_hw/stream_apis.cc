@@ -531,7 +531,8 @@ static ssize_t out_write(struct audio_stream_out* stream, const void* buffer,
   std::unique_lock<std::mutex> lock(out->mutex_);
   size_t totalWritten = 0;
 
-  if (out->bluetooth_output_->GetState() != BluetoothStreamState::STARTED) {
+  if (out->bluetooth_output_->GetState() != BluetoothStreamState::STARTED &&
+      out->bluetooth_output_->GetState() != BluetoothStreamState::SUSPENDING) {
     LOG(INFO) << __func__ << ": state=" << out->bluetooth_output_->GetState()
               << " first time bytes=" << bytes;
     lock.unlock();
