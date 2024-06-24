@@ -63,11 +63,25 @@ class RFCOMMService(RFCOMMServicer):
 
     class ServerPort:
 
-        def __init__(self, name, uuid, wait_dlc, channel):
+        def __init__(self, name, uuid, wait_dlc):
             self.name = name
             self.uuid = uuid
             self.wait_dlc = wait_dlc
-            self.channel_number = channel
+            self.accepted = False
+            self.saved_dlc = None
+
+        def accept(self):
+            logging.info("asdf in accept")
+            self.accepted = True
+            if self.saved_dlc is not None:
+                self.wait_dlc.set_result(self.saved_dlc)
+
+        def acceptor(self, dlc):
+            logging.info(f"asdf in acceptor, self.accepted = {self.accepted}")
+            if self.accepted:
+                self.wait_dlc.set_result(dlc)
+            else:
+                self.saved_dlc = dlc
 
     @utils.rpc
     async def StartServer(self, request: StartServerRequest, context: grpc.ServicerContext) -> StartServerResponse:
@@ -86,17 +100,20 @@ class RFCOMMService(RFCOMMServicer):
 
 
         wait_dlc = asyncio.get_running_loop().create_future()
-        open_channel = self.server.listen(acceptor=wait_dlc.set_result)
+        server_port = self.ServerPort(name=request.name, uuid=uuid, wait_dlc=wait_dlc)
+        open_channel = self.server.listen(acceptor=server_port.acceptor)
         handle = 0x00010001 + open_channel
         self.device.sdp_service_records[handle] = make_service_sdp_records(handle, open_channel, uuid)
-        self.server_ports[open_channel] = self.ServerPort(name=request.name, uuid=uuid, wait_dlc=wait_dlc, channel=open_channel)
+        self.server_ports[open_channel] = server_port
         return StartServerResponse(server=ServerId(id=open_channel))
+
 
     @utils.rpc
     async def AcceptConnection(self, request: AcceptConnectionRequest,
                                context: grpc.ServicerContext) -> AcceptConnectionResponse:
         logging.info(f"asdf AcceptConnection")
         assert self.server_ports[request.server.id] is not None
+        self.server_ports[request.server.id].accept()
         dlc = await self.server_ports[request.server.id].wait_dlc
         id = self.next_conn_id
         self.next_conn_id += 1
