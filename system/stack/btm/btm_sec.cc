@@ -2259,12 +2259,35 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
 
   /* Check if we were delaying bonding because name was not resolved */
   if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_GET_REM_NAME) {
+<<<<<<< PATCH SET (2936e0 Don't abort pairing due to unrelated name discovery)
+    if (p_bd_addr == nullptr || btm_sec_cb.pairing_bda != *p_bd_addr) {
+      log::warn("wrong BDA, retry with pairing BDA");
+      tBTM_STATUS btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
+              btm_sec_cb.pairing_bda, NULL, BT_TRANSPORT_BR_EDR);
+      if (btm_status != BTM_CMD_STARTED) {
+        log::warn(
+                "failed ({}) to restart remote name request for pairing, must be "
+                "already queued",
+                btm_status_text(btm_status));
+        if (!com::android::bluetooth::flags::pairing_name_discovery_addresss_mismatch()) {
+          NotifyBondingChange(*p_dev_rec, HCI_ERR_MEMORY_FULL);
+        }
+=======
     if (btm_sec_cb.pairing_bda == bd_addr) {
       log::verbose("continue bonding sm4: 0x{:04x}, status:0x{:x}", p_dev_rec->sm4, status);
       if (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_CANCEL_DD) {
         btm_sec_bond_cancel_complete();
         return;
+>>>>>>> BASE      (a431f8 Merge "Flag to set SCO state correctly on rfcomm disconct" i)
       }
+      return;
+    }
+
+    log::verbose("continue bonding sm4: 0x{:04x}, status:0x{:x}", p_dev_rec->sm4, status);
+    if (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_CANCEL_DD) {
+      btm_sec_bond_cancel_complete();
+      return;
+    }
 
       if (status != HCI_SUCCESS) {
         btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
@@ -2320,6 +2343,8 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
         log::debug("Wait for connection to begin pairing");
         return;
       }
+<<<<<<< PATCH SET (2936e0 Don't abort pairing due to unrelated name discovery)
+=======
     } else {
       log::warn("wrong BDA, retry with pairing BDA");
       if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
@@ -2329,6 +2354,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
       };
       return;
     }
+>>>>>>> BASE      (a431f8 Merge "Flag to set SCO state correctly on rfcomm disconct" i)
   }
 
   /* check if we were delaying link_key_callback because name was not resolved
