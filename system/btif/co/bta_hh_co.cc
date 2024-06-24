@@ -151,8 +151,10 @@ static void uhid_write_input_queue(btif_hh_uhid_t* p_uhid) {
   }
 
   struct uhid_event* p_ev = nullptr;
+  log::verbose("zyanwu: start key dequeueed");
   while ((p_ev = (struct uhid_event*)fixed_queue_try_dequeue(
               p_uhid->input_queue))) {
+    log::verbose("zyanwu: key dequeueed");
     uhid_write(p_uhid->fd, p_ev);
     osi_free(p_ev);
   }
@@ -166,10 +168,12 @@ static void uhid_queue_input(btif_hh_uhid_t* p_uhid, struct uhid_event* ev) {
   }
   memcpy(p_ev, ev, sizeof(*p_ev));
 
+  log::verbose("zyanwu: start key enqueueed");
   if (!fixed_queue_try_enqueue(p_uhid->input_queue, (void*)p_ev)) {
     osi_free(p_ev);
     log::error("uhid_event_queue is full, dropping event");
   }
+  log::verbose("zyanwu: key enqueueed");
 }
 
 /* Parse the events received from UHID driver*/
@@ -207,10 +211,13 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
       break;
     case UHID_OPEN:
       log::verbose("UHID_OPEN from uhid-dev\n");
-      p_uhid->ready_for_data = true;
+      log::verbose("zyanwu: hid_report_queuing: {}", com::android::bluetooth::flags::hid_report_queuing());
       if (com::android::bluetooth::flags::hid_report_queuing()) {
         // TODO: handle the ase when UHID is still not ready even after sending
         //       UHID_OPEN event, e.g. a custom delay.
+        log::error("zyanwu: delay 200ms to write uhid");
+        usleep(200000);
+        p_uhid->ready_for_data = true;
         uhid_write_input_queue(p_uhid);
       }
       break;
@@ -302,6 +309,7 @@ static int uhid_read_inbound_event(btif_hh_uhid_t* p_uhid) {
   uint32_t* context;
   switch (ev.type) {
     case BTA_HH_UHID_INBOUND_INPUT_EVT:
+      log::error("zyanwu: receive BTA_HH_UHID_INBOUND_INPUT_EVT");
       if (p_uhid->ready_for_data) {
         res = uhid_write(p_uhid->fd, &ev.uhid);
       } else {
@@ -655,6 +663,7 @@ int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
     return uhid_write(fd, &ev);
   }
 
+  log::error("zyanwu: send BTA_HH_UHID_INBOUND_INPUT_EVT");
   to_uhid.type = BTA_HH_UHID_INBOUND_INPUT_EVT;
   return to_uhid_thread(fd, &to_uhid) ? 0 : -1;
 }
