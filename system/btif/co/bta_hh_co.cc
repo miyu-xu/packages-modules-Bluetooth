@@ -151,8 +151,10 @@ static void uhid_write_input_queue(btif_hh_uhid_t* p_uhid) {
   }
 
   struct uhid_event* p_ev = nullptr;
+  log::verbose("zyanwu: start key dequeueed");
   while ((p_ev = (struct uhid_event*)fixed_queue_try_dequeue(
               p_uhid->input_queue))) {
+    log::verbose("zyanwu: key dequeueed");
     uhid_write(p_uhid->fd, p_ev);
     osi_free(p_ev);
   }
@@ -166,10 +168,12 @@ static void uhid_queue_input(btif_hh_uhid_t* p_uhid, struct uhid_event* ev) {
   }
   memcpy(p_ev, ev, sizeof(*p_ev));
 
+  log::verbose("zyanwu: start key enqueueed");
   if (!fixed_queue_try_enqueue(p_uhid->input_queue, (void*)p_ev)) {
     osi_free(p_ev);
     log::error("uhid_event_queue is full, dropping event");
   }
+  log::verbose("zyanwu: key enqueueed");
 }
 
 /* Parse the events received from UHID driver*/
@@ -208,9 +212,12 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
     case UHID_OPEN:
       log::verbose("UHID_OPEN from uhid-dev\n");
       p_uhid->ready_for_data = true;
+      log::verbose("zyanwu: hid_report_queuing: {}", com::android::bluetooth::flags::hid_report_queuing());
       if (com::android::bluetooth::flags::hid_report_queuing()) {
         // TODO: handle the ase when UHID is still not ready even after sending
         //       UHID_OPEN event, e.g. a custom delay.
+        log::error("zyanwu: delay 200ms to write uhid");
+        usleep(200000);
         uhid_write_input_queue(p_uhid);
       }
       break;
