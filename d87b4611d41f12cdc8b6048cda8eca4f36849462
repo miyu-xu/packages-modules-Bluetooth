@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bf59f2d_4a9a5f34",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T14:11:15Z",
+      "side": 1,
+      "message": "CL 3141719 puts this back",
+      "parentUuid": "67cb113b_575573f6",
+      "range": {
+        "startLine": 1102,
+        "startChar": 7,
+        "endLine": 1102,
+        "endChar": 35
+      },
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8c012b2_e05b61a0",
