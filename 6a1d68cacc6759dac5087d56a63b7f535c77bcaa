@@ -22,6 +22,30 @@
       },
       "revId": "6a1d68cacc6759dac5087d56a63b7f535c77bcaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73614088_becc486c",
+        "filename": "system/device/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1981530
+      },
+      "writtenOn": "2024-06-24T16:00:15Z",
+      "side": 1,
+      "message": "I kicked off an internal build with these disabled so we can dig into the build failures some more: ag/28012708",
+      "parentUuid": "995c2e63_2dddc1df",
+      "range": {
+        "startLine": 121,
+        "startChar": 27,
+        "endLine": 121,
+        "endChar": 35
+      },
+      "revId": "6a1d68cacc6759dac5087d56a63b7f535c77bcaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
