@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d14672_d21e33a3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T20:49:53Z",
+      "side": 1,
+      "message": "This is the default.  Either remove it here, or add it to the rest of the calls?",
+      "range": {
+        "startLine": 186,
+        "startChar": 67,
+        "endLine": 186,
+        "endChar": 76
+      },
+      "revId": "7529a76fe357e26470f986f38ba72a108d99177a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
