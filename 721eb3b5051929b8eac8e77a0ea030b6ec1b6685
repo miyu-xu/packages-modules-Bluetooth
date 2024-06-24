@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6197de0c_777aaeb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-24T08:07:02Z",
+      "side": 1,
+      "message": "LGTM since it\u0027s just following Android naming",
+      "revId": "721eb3b5051929b8eac8e77a0ea030b6ec1b6685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e06984f0_60c2df26",
@@ -85,6 +102,54 @@
       "side": 1,
       "message": "This follows the name of the static library built in `gd/Android.bp`.",
       "parentUuid": "e06984f0_60c2df26",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "721eb3b5051929b8eac8e77a0ea030b6ec1b6685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02552a17_fafa45fb",
+        "filename": "system/gd/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-24T08:07:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d8b07060_320af478",
+      "range": {
+        "startLine": 58,
+        "startChar": 31,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "721eb3b5051929b8eac8e77a0ea030b6ec1b6685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390ff8dc_ee44b72b",
+        "filename": "system/gd/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-24T08:07:02Z",
+      "side": 1,
+      "message": "Didn\u0027t notice the library in Android.bp. Thanks for clarifying!",
+      "parentUuid": "53cd4854_be48a031",
       "range": {
         "startLine": 58,
         "startChar": 28,
