@@ -70,6 +70,24 @@
       "parentUuid": "a5e9dc55_a0206be0",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a05a6e_838497a5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-24T23:08:22Z",
+      "side": 1,
+      "message": "Second to Grzegorz\u0027s point here. \n\nWe can\u0027t guarantee all broadcasters are following Auracast\u0027s spec, and we\u0027d also need to be backward compatible. \n\nFor the \u0027PA + no BIG\u0027 broadcaster, should we report those in such case? otherwise, what\u0027s the benefit of connecting to a broadcaster without audio data?",
+      "parentUuid": "75868f06_5675b70a",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
