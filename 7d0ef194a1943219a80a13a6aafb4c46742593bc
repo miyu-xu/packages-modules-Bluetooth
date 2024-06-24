@@ -33,6 +33,24 @@
       "message": "Why here is an assumption that pauseBroadacst should do transtitionFromBroadcastToUnicast ?",
       "revId": "7d0ef194a1943219a80a13a6aafb4c46742593bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e59d7c_9c9b2240",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-24T07:53:25Z",
+      "side": 1,
+      "message": "So far it works in that way, because in BROADCAST_STATE_PAUSED it was transited to unicast and only way to trigger BROADCAST_STATE_PAUSED was via pauseBroadcast.\n\nWith my changes, PAUSED can be triggered internally (in broadcaster.cc) so there is no need to transit to unicast and externally (via pauseBroadcast) which have to be transited to unicast.",
+      "parentUuid": "856144aa_f842edf8",
+      "revId": "7d0ef194a1943219a80a13a6aafb4c46742593bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
