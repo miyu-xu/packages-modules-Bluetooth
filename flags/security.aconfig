@@ -23,8 +23,15 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (749678 Removing flag fix_le_pairing_passkey_entry_bypass)
+    name: "fix_le_oob_pairing_bypass"
+    namespace: "bluetooth"
+    description: "Fix oob bypassing bug in SMP"
+    bug: "321271585"
+=======
     name: "fix_le_pairing_passkey_entry_bypass"
     namespace: "bluetooth"
     description: "Fix the passkey entry bypassing bug in SMP"
     bug: "321300737"
+>>>>>>> BASE      (883b57 Merge "Remove allow-multiple-definitions flag." into main)
 }
