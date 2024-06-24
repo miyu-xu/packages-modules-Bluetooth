@@ -15,13 +15,3 @@ flag {
     bug: "333634398"
 }
 
-flag {
-  name: "bta_av_setconfig_rej_type_confusion"
-  namespace: "bluetooth"
-  description: "Use stream control block for bta_av_setconfig_rej instead of a possibly incorrect union type"
-  bug: "341754333"
-  metadata {
-    purpose: PURPOSE_BUGFIX
-  }
-}
-
