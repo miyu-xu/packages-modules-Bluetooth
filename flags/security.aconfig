@@ -29,6 +29,8 @@ flag {
     bug: "314331379"
 }
 
+<<<<<<< PATCH SET (ae64c5 Removing flag fix_le_oob_pairing_bypass)
+=======
 flag {
     name: "fix_le_oob_pairing_bypass"
     namespace: "bluetooth"
@@ -42,3 +44,4 @@ flag {
     description: "Fix the passkey entry bypassing bug in SMP"
     bug: "321300737"
 }
+>>>>>>> BASE      (00c59f Merge "Remove close_rfcomm_instead_of_reset flag" into main)
