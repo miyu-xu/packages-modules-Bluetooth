@@ -16,6 +16,24 @@
       "message": "This logic is missing in GD implementation.\n\nIt is causing problems with service discovery for LE Audio capable devices.\n\nDuring service discovery we should reject update request from remote devices. With GD implementation, we don\u0027t.",
       "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11fe9a1f_ad321b8b",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T14:10:21Z",
+      "side": 0,
+      "message": "It has been restored.",
+      "parentUuid": "b42dbe90_66bb5adc",
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
