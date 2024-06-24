@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e06984f0_60c2df26",
+        "filename": "system/gd/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-24T07:54:40Z",
+      "side": 1,
+      "message": "The `libbluetooth_gd` below is using underscore. Why dash here?",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "721eb3b5051929b8eac8e77a0ea030b6ec1b6685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07682fc_e42203a2",
+        "filename": "system/gd/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-24T07:54:40Z",
+      "side": 1,
+      "message": "Could you tell more about the naming (e.g. what does \"x\" mean?), and what this library serves?\n\nIn Android.bp I found the `BluetoothDiscoverySources` filegroup containing these 3 same source files. How about following the naming?",
+      "range": {
+        "startLine": 58,
+        "startChar": 31,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "721eb3b5051929b8eac8e77a0ea030b6ec1b6685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
