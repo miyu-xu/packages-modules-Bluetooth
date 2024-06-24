@@ -16,6 +16,23 @@
       "message": "@mylesgw@google.com Addressed your feedback comments. Have a look. Thanks.",
       "revId": "123dd6b8dea5a8157e0483a1ef5a747f5e7cad75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8725d21_14a8b606",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T21:44:16Z",
+      "side": 1,
+      "message": "@abhishekgadewar@meta.com\n\nThere are two data structures that hold discovery results.  btm_inq_db_find searches through the last 40 devices of each type (classic or LE), and btm_inq_find_bdaddr searches through the devices discovered during the current inquiry session.  Your change makes it so devices will be reported more than once per inquiry session if they are forced out of the inquiry database by newer results.  Is that what you intended?\n\nI\u0027m thinking of increasing the size of the inquiry database and changing the session database to hold RSSI, so I\u0027m interested in your thoughts.",
+      "revId": "123dd6b8dea5a8157e0483a1ef5a747f5e7cad75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
