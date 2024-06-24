@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a973eaca_c63f5175",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T20:51:36Z",
+      "side": 1,
+      "message": "nit: remove asdf",
+      "range": {
+        "startLine": 98,
+        "startChar": 23,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d9690644_5c1159c7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/server/bumble_experimental/rfcomm.py",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "        logging.info(f\"StartServer {uuid}\")\n"
+            },
+            {
+              "path": "pandora/server/bumble_experimental/rfcomm.py",
+              "range": {
+                "startLine": 98,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": "        logging.info(f\"AcceptConnection\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "36a1a8f851bfc8abf266a3617cd47da050d3339d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
