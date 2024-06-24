@@ -46,6 +46,30 @@
       },
       "revId": "de9ee01825cdef8d8e8d73f5a55d547a1acf4374",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d14b38e_e21fcfbe",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T21:31:38Z",
+      "side": 1,
+      "message": "Are you planning on removing the extra lambda?  I\u0027ll +2",
+      "parentUuid": "ed7fb890_dc308f28",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 14
+      },
+      "revId": "de9ee01825cdef8d8e8d73f5a55d547a1acf4374",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
