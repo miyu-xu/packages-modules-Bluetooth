@@ -104,6 +104,24 @@
       "parentUuid": "f3ec4b13_2279252a",
       "revId": "b5db40c0e0f7bb1d2166258634afc6e942db463b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71bc0db_9c1dd42c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-24T23:02:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b33699de_c4585f74",
+      "revId": "b5db40c0e0f7bb1d2166258634afc6e942db463b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
