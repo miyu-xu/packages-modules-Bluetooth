@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76583934_4bc1368d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-24T20:53:25Z",
+      "side": 1,
+      "message": "Did you mean to switch the existing client tests to a new UUID?",
+      "range": {
+        "startLine": 352,
+        "startChar": 26,
+        "endLine": 352,
+        "endChar": 35
+      },
+      "revId": "6397151f9d5e28b60ff9a7eec4674551858a2a25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
