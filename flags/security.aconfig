@@ -29,9 +29,3 @@ flag {
     bug: "314331379"
 }
 
-flag {
-    name: "fix_le_oob_pairing_bypass"
-    namespace: "bluetooth"
-    description: "Fix oob bypassing bug in SMP"
-    bug: "321271585"
-}
