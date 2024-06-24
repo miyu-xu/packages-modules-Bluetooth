@@ -22,6 +22,30 @@
       },
       "revId": "84a4d99ac2b9a93d0d473ee976b1f7d8d3d77d6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1505e483_6b6366ff",
+        "filename": "flags/active_device_manager.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T14:00:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ca16917_9045c93c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "84a4d99ac2b9a93d0d473ee976b1f7d8d3d77d6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
