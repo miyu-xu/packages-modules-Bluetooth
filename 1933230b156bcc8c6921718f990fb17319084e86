@@ -16,6 +16,24 @@
       "message": "left over here and the other places.\n\nYou can keep log::info here to print test steps if you like.",
       "revId": "1933230b156bcc8c6921718f990fb17319084e86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ec3f9e0_25ea9b1a",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 10948,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-06-24T11:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85c93698_0b20d699",
+      "revId": "1933230b156bcc8c6921718f990fb17319084e86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
