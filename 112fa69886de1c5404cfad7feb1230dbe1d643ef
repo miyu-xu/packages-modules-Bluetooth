@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2a7961d_a4d81c60",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-24T18:49:21Z",
+      "side": 1,
+      "message": "nit / FYI: `times(1)` is the default when not specified, you can safely remove it here.\nI would like to say for homogeneity, but it looks like it is randomly added / removed in this file 😄.",
+      "range": {
+        "startLine": 1231,
+        "startChar": 49,
+        "endLine": 1231,
+        "endChar": 57
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "54269ff6_901715cd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1231,
+                "startChar": 0,
+                "endLine": 1233,
+                "endChar": 0
+              },
+              "replacement": "        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);\n        verify(mLeAudioService, timeout(TIMEOUT_MS)).removeActiveDevice(true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "112fa69886de1c5404cfad7feb1230dbe1d643ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1f0a710_03600c24",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1235,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-24T18:49:21Z",
+      "side": 1,
+      "message": "testDevices now contains an `a2dp` AND an `usb` device.\n\nand not only an usb devices.\n\nI am unsure this is exactly what you want to try.",
+      "range": {
+        "startLine": 1235,
+        "startChar": 82,
+        "endLine": 1235,
+        "endChar": 93
+      },
+      "revId": "112fa69886de1c5404cfad7feb1230dbe1d643ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420c475f_ec6fffd5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-24T18:49:21Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 1244,
+        "startChar": 84,
+        "endLine": 1244,
+        "endChar": 95
+      },
+      "revId": "112fa69886de1c5404cfad7feb1230dbe1d643ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
