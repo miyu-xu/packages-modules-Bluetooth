@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "531d10d2_aebcc641",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T13:54:59Z",
+      "side": 1,
+      "message": "I\u0027ve added a timeout, so we shouldn\u0027t block - I can\u0027t think of a better solution for now ;/",
+      "parentUuid": "25773753_cd0b6edf",
+      "range": {
+        "startLine": 105,
+        "startChar": 21,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99b6a21e_c404226a",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-21T22:55:49Z",
       "side": 1,
       "message": "A better name would be BTIF_AV_RECONFIGURE_REQ_EVT",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad12749_3cc3346b",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T13:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99b6a21e_c404226a",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0c312c9_077bb237",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1856,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T13:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "572c6f74_0a19542c",
+      "range": {
+        "startLine": 1856,
+        "startChar": 9,
+        "endLine": 1856,
+        "endChar": 39
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0601907d_50295174",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-06-21T22:55:49Z",
       "side": 1,
       "message": "info",
+      "range": {
+        "startLine": 2539,
+        "startChar": 13,
+        "endLine": 2539,
+        "endChar": 17
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e740939_85754122",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2539,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T13:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0601907d_50295174",
       "range": {
         "startLine": 2539,
         "startChar": 13,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7232486_87258654",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2674,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T13:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "620bb546_8c319582",
+      "range": {
+        "startLine": 2674,
+        "startChar": 21,
+        "endLine": 2674,
+        "endChar": 22
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d31c5b2d_c143b1ab",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-06-21T22:55:49Z",
       "side": 1,
       "message": "That case should never occur, because only one set_codec_config_preference request can be executed at a time (because of the future).",
+      "range": {
+        "startLine": 2677,
+        "startChar": 8,
+        "endLine": 2681,
+        "endChar": 9
+      },
+      "revId": "13c4ac6466d7a966ec519970ec784ecec128a471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d36983_9cd25a89",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2681,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-24T13:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d31c5b2d_c143b1ab",
       "range": {
         "startLine": 2677,
         "startChar": 8,
