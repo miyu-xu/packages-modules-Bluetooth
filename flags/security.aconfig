@@ -14,10 +14,3 @@ flag {
     description: "Key missing broadcast would be send as ordered broadcast"
     bug: "333634398"
 }
-
-flag {
-    name: "fix_le_pairing_passkey_entry_bypass"
-    namespace: "bluetooth"
-    description: "Fix the passkey entry bypassing bug in SMP"
-    bug: "321300737"
-}
