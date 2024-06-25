@@ -51,6 +51,24 @@
       "parentUuid": "8b7887de_095ec373",
       "revId": "31ac8e4ea4aaf268726b2d751070cc1cf67fd047",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f408a1_ab50a4cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-06-25T19:44:29Z",
+      "side": 1,
+      "message": "Per other leads, this is actually fine if the API is already launched. Filed https://b.corp.google.com/issues/349418402 to track the issue where the UnflaggedApi lint error has to be baselined.",
+      "parentUuid": "e114bba8_8e15eba0",
+      "revId": "31ac8e4ea4aaf268726b2d751070cc1cf67fd047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
