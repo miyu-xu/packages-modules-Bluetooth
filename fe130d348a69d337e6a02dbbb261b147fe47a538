@@ -22,6 +22,30 @@
       },
       "revId": "fe130d348a69d337e6a02dbbb261b147fe47a538",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a012a468_8b985789",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-25T17:17:55Z",
+      "side": 1,
+      "message": "Yes you are correct. The startup of rust should be at the end of this method, so it\u0027s closer to the non-flagged behavior (where initializeNative is called here and later enableNative is called from the AdapterNativeInterface to start up the native stack). On cleanup the rust module should be stopped before the rest of the cleanup is performed.",
+      "parentUuid": "18ba1a9b_a9d4605e",
+      "range": {
+        "startLine": 1279,
+        "startChar": 0,
+        "endLine": 1279,
+        "endChar": 54
+      },
+      "revId": "fe130d348a69d337e6a02dbbb261b147fe47a538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
