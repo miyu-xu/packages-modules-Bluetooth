@@ -16,6 +16,24 @@
       "message": "I don\u0027t understand what is the need here. Could you explain what are you trying to do ? It seems unrelated to Bluetooth.",
       "revId": "c9762f2be6bcdc1341b7b44cd1a7656bfde24b4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd012526_9408b877",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-25T14:43:10Z",
+      "side": 1,
+      "message": "we have added the test case to validate Virtual cable unplug command (Initiated by HID device and Initiated by HID Host) . Please refer test cases (hidVirtualUnplugFromHidHostTest and hidVirtualUnplugFromHidDeviceTest) from CL: aosp/3127614",
+      "parentUuid": "ad6d3a40_38908bcd",
+      "revId": "c9762f2be6bcdc1341b7b44cd1a7656bfde24b4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
