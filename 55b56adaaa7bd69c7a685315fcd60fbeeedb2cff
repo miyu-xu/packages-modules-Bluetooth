@@ -124,6 +124,24 @@
       "parentUuid": "f51cfd1b_a3f430d6",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5c3963_fa1027bd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-25T23:34:37Z",
+      "side": 1,
+      "message": "Thanks for sharing those. Here are my thoughts:\n\n1. \"So maybe the solution for that is notifySourceFound in onPeriodicAdvertisingReport when PA was available or in onBigInfoAdvertisingReport if PA was not available?\" Yea, having both could be better option.\n\n2. And for your 2nd point, maybe we should make this only apply for private broadcast? For audio sharing(shared with 2 pairs of local devices), we keep the current way.\n\nThen with those, UI might not need any change?",
+      "parentUuid": "c77712d7_b61c67b7",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
