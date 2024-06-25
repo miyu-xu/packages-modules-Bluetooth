@@ -16,6 +16,24 @@
       "message": "That change we can merge without any other changes. If you agree then I can rebase it to the main top.",
       "revId": "df4a3efa5755d181b19d6d52899b3eac147adbb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb00be4c_773dac11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-25T17:02:10Z",
+      "side": 1,
+      "message": "Or as it is in that order, IMHO first 3 changes could be merged even we have some uncertainty about the rest.",
+      "parentUuid": "be4be1fb_c822c4bc",
+      "revId": "df4a3efa5755d181b19d6d52899b3eac147adbb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
