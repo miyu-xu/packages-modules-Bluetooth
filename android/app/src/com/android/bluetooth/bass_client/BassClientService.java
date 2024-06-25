@@ -21,6 +21,7 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
+import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAudioHandoverPolicies;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
@@ -1920,6 +1921,39 @@ public class BassClientService extends ProfileService {
                     if (bisCounter == 0) {
                         cancelActiveSync(syncHandle);
                     }
+                }
+            }
+
+            if (leaudioBigDependsOnAudioState()) {
+                BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
+                if (srcDevice == null) {
+                    log("No device found.");
+                    return;
+                }
+                PeriodicAdvertisementResult result =
+                        getPeriodicAdvertisementResult(
+                                srcDevice, getBroadcastIdForSyncHandle(syncHandle));
+                if (result == null) {
+                    log("No PA record found");
+                    return;
+                }
+                BaseData baseData = getBase(syncHandle);
+                if (baseData == null) {
+                    log("No BaseData found");
+                    return;
+                }
+                PublicBroadcastData pbData = result.getPublicBroadcastData();
+                if (pbData == null) {
+                    log("No public broadcast data found, wait for BIG");
+                    return;
+                }
+                if (!result.isNotified()) {
+                    result.setNotified(true);
+                    BluetoothLeBroadcastMetadata metaData =
+                            getBroadcastMetadataFromBaseData(
+                                    baseData, srcDevice, syncHandle, pbData.isEncrypted());
+                    log("Notify broadcast source found");
+                    mCallbacks.notifySourceFound(metaData);
                 }
             }
         }
