@@ -4532,7 +4532,7 @@ public class BassClientServiceTest {
     }
 
     @Test
-    public void onBigInfoAdvertisingReport_updateRssi_notifySourceFound_once() {
+    public void notifySourceFound_once_updateRssi() {
         mSetFlagsRule.enableFlags(
                 Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE);
         mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS);
@@ -4623,7 +4623,9 @@ public class BassClientServiceTest {
                 .isEqualTo(TEST_BROADCAST_ID);
         assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
 
-        callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        if (!Flags.leaudioBigDependsOnAudioState()) {
+            callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        }
 
         // Notified
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
@@ -4637,7 +4639,9 @@ public class BassClientServiceTest {
         }
         Assert.assertEquals(TEST_RSSI, metaData.getValue().getRssi());
 
-        callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        if (!Flags.leaudioBigDependsOnAudioState()) {
+            callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        }
 
         // Not notified second time
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
@@ -4649,7 +4653,7 @@ public class BassClientServiceTest {
     }
 
     @Test
-    public void onBigInfoAdvertisingReport_notifySourceFound_alreadySynced_clearFlag() {
+    public void notifySourceFound_alreadySynced_clearFlag() {
         mSetFlagsRule.enableFlags(
                 Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE);
         mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS);
@@ -4725,9 +4729,12 @@ public class BassClientServiceTest {
                 new PeriodicAdvertisingReport(
                         TEST_SYNC_HANDLE, 0, 0, 0, ScanRecord.parseFromBytes(scanRecord));
         BassClientService.PACallback callback = mBassClientService.new PACallback();
-        // onBigInfoAdvertisingReport causes notification
         callback.onPeriodicAdvertisingReport(report);
-        callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        if (!Flags.leaudioBigDependsOnAudioState()) {
+            // onBigInfoAdvertisingReport causes notification
+            callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        }
+
         // Notified
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
         InOrder inOrder = inOrder(mCallback);
@@ -4748,9 +4755,12 @@ public class BassClientServiceTest {
         // Source synced
         onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
 
-        // onBigInfoAdvertisingReport causes notification
         callback.onPeriodicAdvertisingReport(report);
-        callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        if (!Flags.leaudioBigDependsOnAudioState()) {
+            // onBigInfoAdvertisingReport causes notification
+            callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        }
+
         // Notified
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
         try {
@@ -4762,9 +4772,11 @@ public class BassClientServiceTest {
         // Start searching again clears timeout, mCachedBroadcasts and notifiedFlags but keep syncs
         startSearchingForSources();
 
-        // onBigInfoAdvertisingReport should notified again
         callback.onPeriodicAdvertisingReport(report);
-        callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        if (!Flags.leaudioBigDependsOnAudioState()) {
+            // onBigInfoAdvertisingReport should notified again
+            callback.onBigInfoAdvertisingReport(TEST_SYNC_HANDLE, true);
+        }
         // Notified
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
         try {
