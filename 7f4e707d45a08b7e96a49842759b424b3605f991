@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c69636_67aa0ef6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-25T00:36:04Z",
+      "side": 1,
+      "message": "Is this CL also ready for review?\nIf yes, can we update the commit message.",
+      "revId": "7f4e707d45a08b7e96a49842759b424b3605f991",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
