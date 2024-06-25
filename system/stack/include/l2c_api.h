@@ -32,6 +32,7 @@
 
 #include "hcidefs.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/l2cdefs.h"
 #include "types/bt_transport.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
@@ -188,17 +189,20 @@ uint16_t L2CA_LeCreditDefault();
 uint16_t L2CA_LeCreditThreshold();
 
 // Max number of CIDs in the L2CAP CREDIT BASED CONNECTION REQUEST
-constexpr uint16_t L2CAP_CREDIT_BASED_MAX_CIDS = 5;
+constexpr uint8_t L2CAP_CREDIT_BASED_MAX_CIDS = 5;
 
 /* Define a structure to hold the configuration parameter for LE L2CAP
  * connection oriented channels.
  */
+const uint16_t kDefaultL2capMtu = 100;
+const uint16_t kDefaultL2capMps = 100;
+
 struct tL2CAP_LE_CFG_INFO {
-  uint16_t result; /* Only used in confirm messages */
-  uint16_t mtu = 100;
-  uint16_t mps = 100;
-  uint16_t credits = L2CA_LeCreditDefault();
-  uint8_t number_of_channels = L2CAP_CREDIT_BASED_MAX_CIDS;
+  uint16_t result{L2CAP_LE_RESULT_CONN_OK}; /* Only used in confirm messages */
+  uint16_t mtu{kDefaultL2capMtu};
+  uint16_t mps{kDefaultL2capMps};
+  uint16_t credits{L2CA_LeCreditDefault()};
+  uint8_t number_of_channels{L2CAP_CREDIT_BASED_MAX_CIDS};
 };
 
 /*********************************
