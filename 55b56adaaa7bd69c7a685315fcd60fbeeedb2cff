@@ -88,6 +88,24 @@
       "parentUuid": "75868f06_5675b70a",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f51cfd1b_a3f430d6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-25T06:02:44Z",
+      "side": 1,
+      "message": "Benefit is better UX with BIG creation/termination change.\nImagine such scenario:\n*1. You are listening something from YT (without premium) on buds and want to share audio with a friend.\n*2. You are going to settings (YT go down, so music is stopped) and start audio sharing, displaying QR code.\n*3a. My current version that BIG is created always but stopped if music is not playing: your friend has 10s to open settings, click \"Find and audio stream\" and connect to it\n*3b. Originally proposed version (b/273864658) that BIG is created on onAudioResume: Your friend has to scan QR code, but it cannot connect as his phone not find such broadcast. You have to start some other music in background or immediately after he scans the QR you have to go to YT and play music, probably UI timeout allow him to connect few moments later.\n\nI found that my change aosp/3042046 prevents from showing broadcasters without PA at all. Should we change it in such way that this is possible?\n\nSo maybe the solution for that is notifySourceFound in onPeriodicAdvertisingReport when PA was available or in onBigInfoAdvertisingReport if PA was not available?\n\nOf course that change isn\u0027t enough and at least UI has to add different handling of statuses which I described in my first answer. They have to make changes anyway for my next change because we want to show connected buds (in local audio sharing) even if audio is no playing (BIG terminated), currently such devices will disappear.",
+      "parentUuid": "95a05a6e_838497a5",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
