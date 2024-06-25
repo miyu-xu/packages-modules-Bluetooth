@@ -10,6 +10,14 @@ from google.protobuf import empty_pb2  # pytype: disable=pyi-error
 
 from pandora_experimental.hid_grpc_aio import HIDServicer
 
+from pandora_experimental.hid_pb2 import (
+    HidProtoModeEvent,
+    HidReportEvent,
+    PROTOCOL_REPORT_MODE,
+    PROTOCOL_BOOT_MODE,
+    PROTOCOL_UNSUPPORTED_MODE,
+)
+
 from bumble.core import (
     BT_BR_EDR_TRANSPORT,
     BT_L2CAP_PROTOCOL_ID,
@@ -482,20 +490,30 @@ def sdp_records():
 
 # -----------------------------------------------------------------------------
 def hogp_device(device):
-    global input_report_characteristic
     # Create an 'input report' characteristic to send keyboard reports to the host
-    input_report_characteristic = Characteristic(
+    input_report_kb_characteristic = Characteristic(
         GATT_REPORT_CHARACTERISTIC,
         Characteristic.Properties.READ | Characteristic.Properties.WRITE | Characteristic.Properties.NOTIFY,
         Characteristic.READABLE | Characteristic.WRITEABLE,
-        bytes([0, 0, 0, 0, 0, 0, 0, 0]),
+        bytes([0, 0, 0, 0, 0, 0, 0, 0, 0]),
         [Descriptor(
             GATT_REPORT_REFERENCE_DESCRIPTOR,
             Descriptor.READABLE,
             bytes([0x01, HID_INPUT_REPORT]),
         )],
     )
-
+    # Create an 'input report' characteristic to send mouse reports to the host
+    input_report_mouse_characteristic = Characteristic(
+        GATT_REPORT_CHARACTERISTIC,
+        Characteristic.Properties.READ | Characteristic.Properties.WRITE | Characteristic.Properties.NOTIFY,
+        Characteristic.READABLE | Characteristic.WRITEABLE,
+        bytes([0, 0, 0, 0]),
+        [Descriptor(
+            GATT_REPORT_REFERENCE_DESCRIPTOR,
+            Descriptor.READABLE,
+            bytes([0x02, HID_INPUT_REPORT]),
+        )],
+    )
     # Create an 'output report' characteristic to receive keyboard reports from the host
     output_report_characteristic = Characteristic(
         GATT_REPORT_CHARACTERISTIC,
@@ -551,7 +569,8 @@ def hogp_device(device):
                     Characteristic.READABLE,
                     HID_KEYBOARD_REPORT_MAP,
                 ),
-                input_report_characteristic,
+                input_report_kb_characteristic,
+                input_report_mouse_characteristic,
                 output_report_characteristic,
             ],
         ),
@@ -623,6 +642,12 @@ def on_set_report_cb(report_id: int, report_type: int, report_size: int, data: b
     logging.info("SET_REPORT report_id: " + str(report_id) + "report_type: " + str(report_type) + "report_size " +
                  str(report_size) + "data:" + str(data))
 
+    report = HidReportEvent()
+    report.report_type = report_type
+    report.report_id = report_id
+    report.report_data = str(data.hex())
+    hid_report_queue.put_nowait(report)
+
     if report_type == Message.ReportType.FEATURE_REPORT:
         retValue.status = hid_device.GetSetReturn.ERR_INVALID_PARAMETER
     elif report_type == Message.ReportType.INPUT_REPORT:
@@ -650,7 +675,15 @@ def on_get_protocol_cb():
 def on_set_protocol_cb(protocol: int):
     retValue = hid_device.GetSetStatus()
     # We do not support SET_PROTOCOL.
-    logging.info(f"SET_PROTOCOL report_id: {protocol}")
+    logging.info(f"SET_PROTOCOL mode: {protocol}")
+    mode = HidProtoModeEvent()
+    if protocol == PROTOCOL_REPORT_MODE:
+        mode.protocol_mode = PROTOCOL_REPORT_MODE
+    elif protocol == PROTOCOL_BOOT_MODE:
+        mode.protocol_mode = PROTOCOL_BOOT_MODE
+    else:
+        mode.protocol_mode = PROTOCOL_UNSUPPORTED_MODE
+    hid_protoMode_queue.put_nowait(mode)
     retValue.status = hid_device.GetSetReturn.ERR_UNSUPPORTED_REQUEST
     return retValue
 
@@ -658,6 +691,9 @@ def on_set_protocol_cb(protocol: int):
 def on_virtual_cable_unplug_cb():
     logging.info('Received Virtual Cable Unplug')
     asyncio.create_task(handle_virtual_cable_unplug())
+
+
+hid_protoMode_queue = None
 
 
 # This class implements the Hid Pandora interface.
@@ -669,6 +705,7 @@ class HIDService(HIDServicer):
         super().__init__()
         self.device = device
         self.device.sdp_service_records.update(sdp_records())
+        self.event_queue: Optional[asyncio.Queue[HidProtoModeEvent]] = None
         hogp_device(self.device)
         logging.info(f'Hid device register: ')
         global hid_device
@@ -724,3 +761,41 @@ class HIDService(HIDServicer):
         else:
             logging.error(f'Device does not exist')
         return empty_pb2.Empty()
+
+    async def OnSetProtocolMode(self, request: empty_pb2.Empty,
+                                context: grpc.ServicerContext) -> AsyncGenerator[HidProtoModeEvent, None]:
+        logging.info(f'OnSetProtocolMode')
+
+        if self.event_queue is not None:
+            raise RuntimeError('already streaming OnSetProtocolMode events')
+
+        self.event_queue = asyncio.Queue()
+        global hid_protoMode_queue
+        hid_protoMode_queue = self.event_queue
+
+        try:
+            while event := await hid_protoMode_queue.get():
+                yield event
+
+        finally:
+            self.event_queue = None
+            hid_protoMode_queue = None
+
+    async def OnSetReport(self, request: empty_pb2.Empty,
+                          context: grpc.ServicerContext) -> AsyncGenerator[HidReportEvent, None]:
+        logging.info(f'OnSetReport')
+
+        if self.event_queue is not None:
+            raise RuntimeError('already streaming OnSetReport events')
+
+        self.event_queue = asyncio.Queue()
+        global hid_report_queue
+        hid_report_queue = self.event_queue
+
+        try:
+            while event := await hid_report_queue.get():
+                yield event
+
+        finally:
+            self.event_queue = None
+            hid_report_queue = None
