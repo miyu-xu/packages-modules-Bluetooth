@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed114dd4_6df02bf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-25T02:04:24Z",
+      "side": 1,
+      "message": "Additionally removed an unused file `android/app/src/com/android/bluetooth/map/BluetoothMapSettingsDataHolder.java`.",
+      "revId": "cc8a8491aae8834356f607371bbb23dd618ffc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
