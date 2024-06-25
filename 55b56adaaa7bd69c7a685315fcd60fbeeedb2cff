@@ -106,6 +106,24 @@
       "parentUuid": "95a05a6e_838497a5",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c77712d7_b61c67b7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-25T07:41:06Z",
+      "side": 1,
+      "message": "In above comment if I wrote PA I mean public announcement, not periodic advertisement.",
+      "parentUuid": "f51cfd1b_a3f430d6",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
