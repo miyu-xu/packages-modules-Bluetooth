@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4be1fb_c822c4bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-25T16:59:39Z",
+      "side": 1,
+      "message": "That change we can merge without any other changes. If you agree then I can rebase it to the main top.",
+      "revId": "df4a3efa5755d181b19d6d52899b3eac147adbb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
