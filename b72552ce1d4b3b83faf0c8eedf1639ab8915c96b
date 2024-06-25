@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d4a7c4_154a9270",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-25T21:26:12Z",
+      "side": 1,
+      "message": "I noticed that when doing the format CL.\n\nI believe it can be cleanup safely",
+      "revId": "b72552ce1d4b3b83faf0c8eedf1639ab8915c96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
