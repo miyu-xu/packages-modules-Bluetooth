@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "49935fb4_0ad51ded",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-25T06:25:51Z",
+      "side": 1,
+      "message": "Yes it is. Thanks for the fix!",
+      "parentUuid": "e7c9beac_baa14ea0",
+      "revId": "5472fbd585a32ddeeb1580b0804c2c514c953302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d6396b98_ed2fb67a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
