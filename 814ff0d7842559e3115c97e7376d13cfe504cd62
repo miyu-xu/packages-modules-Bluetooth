@@ -16,6 +16,23 @@
       "message": "Is this log intended ?",
       "revId": "814ff0d7842559e3115c97e7376d13cfe504cd62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d4c8672_20d52c99",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-06-25T18:43:42Z",
+      "side": 1,
+      "message": "Did you leave this debug log on accident?",
+      "revId": "814ff0d7842559e3115c97e7376d13cfe504cd62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
