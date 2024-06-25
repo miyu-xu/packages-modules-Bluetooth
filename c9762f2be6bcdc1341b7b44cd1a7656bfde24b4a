@@ -34,6 +34,24 @@
       "parentUuid": "ad6d3a40_38908bcd",
       "revId": "c9762f2be6bcdc1341b7b44cd1a7656bfde24b4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d10b27_a16b396a",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-25T17:02:27Z",
+      "side": 1,
+      "message": "I see, I wasn\u0027t aware of the VirtualCable. Just found it in the HID specification",
+      "parentUuid": "cd012526_9408b877",
+      "revId": "c9762f2be6bcdc1341b7b44cd1a7656bfde24b4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

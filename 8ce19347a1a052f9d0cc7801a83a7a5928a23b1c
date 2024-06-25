@@ -1,0 +1,155 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c4959f_63e1676c",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 17
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-25T17:02:27Z",
+      "side": 1,
+      "message": "`hid` is not necessary here, please call it `VirtualCableUnplugHost`",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 15,
+        "endChar": 27
+      },
+      "revId": "8ce19347a1a052f9d0cc7801a83a7a5928a23b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af14d7f9_26825ce5",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-25T17:02:27Z",
+      "side": 1,
+      "message": "Can you mentionned the specification in a comment please ? For example\n`# HID Specification Part 3 Section 2`",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dd902777_c2925d5d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/server/bumble_experimental/hid.py",
+              "range": {
+                "startLine": 238,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "# Protocol Modes (HID Specification Part 3 Section 2)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8ce19347a1a052f9d0cc7801a83a7a5928a23b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c8a4b21_a34d039b",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-25T17:02:27Z",
+      "side": 1,
+      "message": "Is this really necessary ? The PDU is already logged by Bumble: https://github.com/google/bumble/blob/main/bumble/hid.py#L296",
+      "range": {
+        "startLine": 604,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 52
+      },
+      "revId": "8ce19347a1a052f9d0cc7801a83a7a5928a23b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d5bec8_b0ca7a1a",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-25T17:02:27Z",
+      "side": 1,
+      "message": "Do we need to return an error here is the device does not exist ?",
+      "range": {
+        "startLine": 720,
+        "startChar": 7,
+        "endLine": 721,
+        "endChar": 45
+      },
+      "revId": "8ce19347a1a052f9d0cc7801a83a7a5928a23b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fdb4c44_0a910f22",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-25T17:02:27Z",
+      "side": 1,
+      "message": "nit: logging.error",
+      "range": {
+        "startLine": 726,
+        "startChar": 16,
+        "endLine": 726,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2abdcaae_4608e0d9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/server/bumble_experimental/hid.py",
+              "range": {
+                "startLine": 726,
+                "startChar": 0,
+                "endLine": 727,
+                "endChar": 0
+              },
+              "replacement": "                logging.error(f\u0027Device not found or Device already unpaired.\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8ce19347a1a052f9d0cc7801a83a7a5928a23b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
