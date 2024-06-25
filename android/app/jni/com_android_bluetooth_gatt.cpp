@@ -25,6 +25,7 @@
 #include <shared_mutex>
 
 #include "com_android_bluetooth.h"
+#include "com_android_bluetooth_flags.h"
 #include "common/init_flags.h"
 #include "hardware/bt_gatt.h"
 #include "hardware/bt_gatt_types.h"
@@ -1271,6 +1272,10 @@ static void initializeNative(JNIEnv* env, jobject object) {
     return;
   }
 
+  if (com::android::bluetooth::flags::scan_manager_refactor()) {
+    btIf->start_rust_module();
+  }
+
   bt_status_t status = sGattIf->init(&sGattCallbacks);
   if (status != BT_STATUS_SUCCESS) {
     log::error("Failed to initialize Bluetooth GATT, status: {}",
@@ -1295,6 +1300,10 @@ static void cleanupNative(JNIEnv* env, jobject /* object */) {
   if (sGattIf != NULL) {
     sGattIf->cleanup();
     sGattIf = NULL;
+  }
+
+  if (com::android::bluetooth::flags::scan_manager_refactor()) {
+    btIf->stop_rust_module();
   }
 
   if (mCallbacksObj != NULL) {
