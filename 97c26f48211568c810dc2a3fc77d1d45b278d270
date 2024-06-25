@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2db49427_cf1c4206",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15018aea_6b53edc8",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "356d41d0_d2f94f47",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f93a604_172c29f9",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8112b885_2ce10b38",
@@ -82,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a0e27e3_1040f1c7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8abe415d_ac4b6ac4",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a6b4022_203ed323",
@@ -105,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "781fd5a7_d01fc1d0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a6b4022_203ed323",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adeb59ba_f76a14eb",
@@ -118,6 +202,30 @@
       "writtenOn": "2024-06-19T02:50:36Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Thread.sleep should never be used in tests or in production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nThread.sleep should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 20
+      },
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c6a5f8d_c14902f0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adeb59ba_f76a14eb",
       "range": {
         "startLine": 142,
         "startChar": 8,
@@ -163,6 +271,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa08528_57f578fe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cffc824_55c0e13f",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f140818_c77aa028",
@@ -180,6 +306,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be749561_7c19e8e6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f140818_c77aa028",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20f8cc3f_eab2c3aa",
@@ -193,6 +337,24 @@
       "writtenOn": "2024-06-19T02:50:36Z",
       "side": 1,
       "message": "How do we know that the connection attempt has concluded.",
+      "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5754385_7b29c2c8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20f8cc3f_eab2c3aa",
       "revId": "97c26f48211568c810dc2a3fc77d1d45b278d270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
