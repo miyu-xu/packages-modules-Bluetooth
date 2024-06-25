@@ -1402,6 +1402,9 @@ public class HeadsetService extends ProfileService {
         Log.i(TAG, "setActiveDevice: device=" + device + ", " + Utils.getUidPidString());
         if (device == null) {
             removeActiveDevice();
+            if (Flags.agProvideInBandRingtone()) {
+                updateInbandRinging(device, true);
+            }
             return true;
         }
         synchronized (mStateMachines) {
@@ -1516,6 +1519,9 @@ public class HeadsetService extends ProfileService {
                                     BluetoothProfileConnectionInfo.createHfpInfo());
                 }
                 broadcastActiveDevice(mActiveDevice);
+                if (Flags.agProvideInBandRingtone()) {
+                    updateInbandRinging(device, true);
+                }
             }
         }
         return true;
@@ -2213,7 +2219,9 @@ public class HeadsetService extends ProfileService {
             final int enabled;
             final boolean inbandRingingRuntimeDisable = mInbandRingingRuntimeDisable;
 
-            if (audioConnectableDevices.size() > 1 || isHeadsetClientConnected()) {
+            if (audioConnectableDevices.size() > 1
+                    || isHeadsetClientConnected()
+                    || (Flags.agProvideInBandRingtone() && mActiveDevice == null)) {
                 mInbandRingingRuntimeDisable = true;
                 enabled = 0;
             } else {
