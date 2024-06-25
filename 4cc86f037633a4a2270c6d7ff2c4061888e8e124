@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f207f9ce_3447e5f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-25T16:46:37Z",
+      "side": 1,
+      "message": "I\u0027m lacking the vision to see where this is going.",
+      "revId": "4cc86f037633a4a2270c6d7ff2c4061888e8e124",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1ce1663_3abf4615",
+        "filename": "system/stack/include/l2c_property.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-25T16:46:37Z",
+      "side": 1,
+      "message": "This looks like a new style.  Don\u0027t we normally use a single *?",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6a2aa997_f72e100d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2c_property.h",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": "/*\n * Function         L2CA_LeCreditDefault\n *\n * Description      Check system property to override the number of\n *                  default LE credits.  This is initial amount of credits\n *                  we send, and amount to which we increase credits once\n *                  they fall below threshold\n *\n * Parameters:      None\n *\n * Returns          The default number of LE credits.\n */\n"
+            },
+            {
+              "path": "system/stack/include/l2c_property.h",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "/*\n * Function         L2CA_LeCreditThreshold\n *\n * Description      Check system property to override the number of\n *                  LE threadhold credits. If credit count on remote fall\n *                  below this value, we send back credits to reach default\n *                  value.\n *\n * Parameters:      None\n *\n * Returns          The threshold number of LE credits.\n */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4cc86f037633a4a2270c6d7ff2c4061888e8e124",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38434232_115b4a03",
+        "filename": "system/stack/include/l2c_property.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-25T16:46:37Z",
+      "side": 1,
+      "message": "threshold",
+      "range": {
+        "startLine": 40,
+        "startChar": 24,
+        "endLine": 40,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "312ad445_2931ebe9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2c_property.h",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": " **                  LE threshold credits. If credit count on remote fall\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4cc86f037633a4a2270c6d7ff2c4061888e8e124",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
