@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb7c6487_14f366fd",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-25T15:23:37Z",
+      "side": 1,
+      "message": "Yes, it could be a case. you can imagine remote device moving ASEs to QoS Configured, then drop the CISes or not, and later it wants to be back in the streaming (e.g. using allowed context types mechanism).",
+      "parentUuid": "98f4a1b4_fa51e28d",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "819d6dad_5b8544cc",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2024-06-25T15:14:01Z",
       "side": 1,
       "message": "This comment is for #2413 ?",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6de79dc9_93f4ce46",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2406,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-25T15:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "819d6dad_5b8544cc",
       "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
