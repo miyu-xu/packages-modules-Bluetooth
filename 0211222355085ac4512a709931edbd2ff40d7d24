@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33ea618f_66a522ac",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T15:29:29Z",
+      "side": 1,
+      "message": "Nit: Now that we have a class as a qualifier, we should not need such a long identifier name. We can just name these enums `IDLE` and so on.\n```\nenum class tSECURITY_STATE: uint8_t { IDLE, AUTHENTICATING, ...};\n```",
+      "revId": "0211222355085ac4512a709931edbd2ff40d7d24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
