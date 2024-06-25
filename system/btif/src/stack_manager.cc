@@ -128,6 +128,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 static void event_shut_down_stack(ProfileStopCallback stopProfiles);
 static void event_clean_up_stack(std::promise<void> promise,
                                  ProfileStopCallback stopProfiles);
+static void event_start_up_rust_module();
 
 static void event_signal_stack_up(void* context);
 static void event_signal_stack_down(void* context);
@@ -187,6 +188,10 @@ static void clean_up_stack(ProfileStopCallback stopProfiles) {
   } else {
     log::error("cleanup could not be completed in time, abandon it");
   }
+}
+
+static void start_up_rust_module() {
+    management_thread.DoInThread(FROM_HERE, base::BindOnce(event_start_up_rust_module));
 }
 
 static bool get_stack_is_running() { return stack_is_running; }
@@ -324,7 +329,6 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
     return;
   }
 
-  module_start_up(get_local_module(RUST_MODULE));
   if (com::android::bluetooth::flags::channel_sounding_in_stack()) {
     bluetooth::ras::GetRasServer()->Initialize();
     bluetooth::ras::GetRasClient()->Initialize();
@@ -333,6 +337,12 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
   stack_is_running = true;
   log::info("finished");
   do_in_jni_thread(base::BindOnce(event_signal_stack_up, nullptr));
+}
+
+static void event_start_up_rust_module() {
+    log::info("is bringing up the Rust module");
+    module_start_up(get_local_module(RUST_MODULE));
+    log::info("finished");
 }
 
 // Synchronous function to shut down the stack
@@ -450,7 +460,7 @@ static void ensure_manager_initialized() {
 
 static const stack_manager_t interface = {init_stack, start_up_stack_async,
                                           shut_down_stack_async, clean_up_stack,
-                                          get_stack_is_running};
+                                          start_up_rust_module, get_stack_is_running};
 
 const stack_manager_t* stack_manager_get_interface() {
   ensure_manager_initialized();

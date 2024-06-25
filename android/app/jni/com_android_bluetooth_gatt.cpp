@@ -1271,6 +1271,8 @@ static void initializeNative(JNIEnv* env, jobject object) {
     return;
   }
 
+  btIf->start_rust_module();
+
   bt_status_t status = sGattIf->init(&sGattCallbacks);
   if (status != BT_STATUS_SUCCESS) {
     log::error("Failed to initialize Bluetooth GATT, status: {}",

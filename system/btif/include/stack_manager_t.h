@@ -32,6 +32,7 @@ typedef struct {
                                ProfileStartCallback, ProfileStopCallback);
   void (*shut_down_stack_async)(ProfileStopCallback);
   void (*clean_up_stack)(ProfileStopCallback);
+  void (*start_up_rust_module)();
 
   bool (*get_stack_is_running)(void);
 } stack_manager_t;
