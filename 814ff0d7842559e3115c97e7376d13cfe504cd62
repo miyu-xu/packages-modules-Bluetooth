@@ -33,6 +33,42 @@
       "message": "Did you leave this debug log on accident?",
       "revId": "814ff0d7842559e3115c97e7376d13cfe504cd62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cdd5594_75ac9475",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-25T23:36:11Z",
+      "side": 1,
+      "message": "Nice catch!",
+      "parentUuid": "943f73ff_b070ad82",
+      "revId": "814ff0d7842559e3115c97e7376d13cfe504cd62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3b76897_f342f7da",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-25T23:36:11Z",
+      "side": 1,
+      "message": "Nice catch!",
+      "parentUuid": "9d4c8672_20d52c99",
+      "revId": "814ff0d7842559e3115c97e7376d13cfe504cd62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
