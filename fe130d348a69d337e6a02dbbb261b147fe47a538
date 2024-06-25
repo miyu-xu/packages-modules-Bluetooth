@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18ba1a9b_a9d4605e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-25T17:13:26Z",
+      "side": 1,
+      "message": "I thought we needed the callback to initialize the rust module ?\nYou may want to move the start_rust_module after that no ?\n\n(this is from top of my head, so correct me if I am wrong !)",
+      "range": {
+        "startLine": 1279,
+        "startChar": 0,
+        "endLine": 1279,
+        "endChar": 54
+      },
+      "revId": "fe130d348a69d337e6a02dbbb261b147fe47a538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
