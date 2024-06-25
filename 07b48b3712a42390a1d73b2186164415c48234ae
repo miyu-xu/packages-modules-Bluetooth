@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87573805_6c0f6f8c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-25T00:11:22Z",
+      "side": 1,
+      "message": "verify that default preferred transport is BR/EDR",
+      "fixSuggestions": [
+        {
+          "fixId": "b3755ce1_b3c83f92",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+              "range": {
+                "startLine": 177,
+                "startChar": 0,
+                "endLine": 178,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mService.getPreferredTransport(mDevice))\n                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07b48b3712a42390a1d73b2186164415c48234ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
