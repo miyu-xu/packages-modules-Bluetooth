@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98f4a1b4_fa51e28d",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-25T15:14:01Z",
+      "side": 1,
+      "message": "This seems to be a bit weird. How can this happen ?\n\nIn line #159 there is a check if group is in STREAMING state or its target state is STREAMING, this part indicates that there could be a scenario when group target could be a STREAMING but all ASEs are QoS configured.",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819d6dad_5b8544cc",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2406,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-25T15:14:01Z",
+      "side": 1,
+      "message": "This comment is for #2413 ?",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
