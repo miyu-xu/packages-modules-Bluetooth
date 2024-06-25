@@ -1388,6 +1388,9 @@ public class HeadsetService extends ProfileService {
             mActiveDevice = null;
             mNativeInterface.setActiveDevice(null);
             broadcastActiveDevice(null);
+            if (Flags.agProvideInBandRingtone()) {
+                updateInbandRinging(null, true);
+            }
         }
     }
 
@@ -1465,6 +1468,9 @@ public class HeadsetService extends ProfileService {
                                     BluetoothProfileConnectionInfo.createHfpInfo());
                 }
                 broadcastActiveDevice(mActiveDevice);
+                if (Flags.agProvideInBandRingtone()) {
+                    updateInbandRinging(device, true);
+                }
             } else if (shouldPersistAudio()) {
                 /* If HFP is getting active for a phonecall and there is LeAudio device active,
                  * Lets inactive LeAudio device as soon as possible so there is no CISes connected
@@ -1516,6 +1522,9 @@ public class HeadsetService extends ProfileService {
                                     BluetoothProfileConnectionInfo.createHfpInfo());
                 }
                 broadcastActiveDevice(mActiveDevice);
+                if (Flags.agProvideInBandRingtone()) {
+                    updateInbandRinging(device, true);
+                }
             }
         }
         return true;
@@ -2213,7 +2222,9 @@ public class HeadsetService extends ProfileService {
             final int enabled;
             final boolean inbandRingingRuntimeDisable = mInbandRingingRuntimeDisable;
 
-            if (audioConnectableDevices.size() > 1 || isHeadsetClientConnected()) {
+            if (audioConnectableDevices.size() > 1
+                    || isHeadsetClientConnected()
+                    || (Flags.agProvideInBandRingtone() && mActiveDevice == null)) {
                 mInbandRingingRuntimeDisable = true;
                 enabled = 0;
             } else {
@@ -2228,6 +2239,8 @@ public class HeadsetService extends ProfileService {
                     "updateInbandRinging():"
                             + " Device="
                             + device
+                            + " ActiveDevice="
+                            + mActiveDevice
                             + " enabled="
                             + enabled
                             + " connected="
