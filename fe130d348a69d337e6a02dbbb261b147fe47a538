@@ -46,6 +46,30 @@
       },
       "revId": "fe130d348a69d337e6a02dbbb261b147fe47a538",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23febf8d_37f3c68e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-25T22:20:03Z",
+      "side": 1,
+      "message": "Thank you for calling this out. I\u0027ve corrected both `initializeNative` and `cleanupNative`. Thank you.",
+      "parentUuid": "a012a468_8b985789",
+      "range": {
+        "startLine": 1279,
+        "startChar": 0,
+        "endLine": 1279,
+        "endChar": 54
+      },
+      "revId": "fe130d348a69d337e6a02dbbb261b147fe47a538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
