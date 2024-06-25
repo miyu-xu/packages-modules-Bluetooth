@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "943f73ff_b070ad82",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-25T17:29:53Z",
+      "side": 1,
+      "message": "Is this log intended ?",
+      "revId": "814ff0d7842559e3115c97e7376d13cfe504cd62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
