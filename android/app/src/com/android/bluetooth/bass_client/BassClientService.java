@@ -21,6 +21,7 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
+import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAudioHandoverPolicies;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
@@ -2263,8 +2264,9 @@ public class BassClientService extends ProfileService {
             }
         }
 
-        if (broadcastId == BassConstants.INVALID_BROADCAST_ID || pbData == null) {
-            Log.w(TAG, "Invalid broadcast ID or public broadcast data");
+        if (broadcastId == BassConstants.INVALID_BROADCAST_ID
+                || (!leaudioBigDependsOnAudioState() && pbData == null)) {
+            Log.w(TAG, "Invalid broadcast ID");
             mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);
             handleSelectSourceRequest();
             return;
