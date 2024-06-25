@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244ad71c_195b7ca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-25T01:47:42Z",
+      "side": 1,
+      "message": "as current codec is only using codec frame block size 1, no impact on existing logic, so no additional flag required",
+      "revId": "fca6d946adb0c98048bbc5fdf8b5bf6f2da84580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
