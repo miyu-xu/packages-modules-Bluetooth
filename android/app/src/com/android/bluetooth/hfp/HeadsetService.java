@@ -2213,7 +2213,9 @@ public class HeadsetService extends ProfileService {
             final int enabled;
             final boolean inbandRingingRuntimeDisable = mInbandRingingRuntimeDisable;
 
-            if (audioConnectableDevices.size() > 1 || isHeadsetClientConnected()) {
+            if (audioConnectableDevices.size() > 1
+                    || isHeadsetClientConnected()
+                    || (Flags.agProvideInBandRingtone() && mActiveDevice == null)) {
                 mInbandRingingRuntimeDisable = true;
                 enabled = 0;
             } else {
