@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c02fdc9_c1dc7908",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T18:40:11Z",
+      "side": 1,
+      "message": "I\u0027d prefer using dev_class_text instead of devclass2uint, especially if these logs will be removed.\n```suggestion\n    log::info(\"CoD: sec_event.cfm_req.dev_class \u003d {}\",\n              dev_class_text(sec_event.cfm_req.dev_class));\n```",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 58
+      },
+      "revId": "637f8d0aca0d2f7e7ca18b82e7927780593988d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
