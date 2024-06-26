@@ -209,7 +209,6 @@ init_flags!(
     flags: {
         classic_discovery_only,
         dynamic_avrcp_version_enhancement = true,
-        gatt_robust_caching_server,
         hci_adapter: i32,
         hfp_dynamic_version = true,
         irk_rotation,
