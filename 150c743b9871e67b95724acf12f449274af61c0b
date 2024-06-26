@@ -16,6 +16,24 @@
       "message": "Do you think we should decouple this change from the chain? I mean without flagging.\nI think this is a good fix to remove this PBP check here.",
       "revId": "150c743b9871e67b95724acf12f449274af61c0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07a12901_3d3b07b4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-26T08:21:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be4e29d2_9a5710e5",
+      "revId": "150c743b9871e67b95724acf12f449274af61c0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
