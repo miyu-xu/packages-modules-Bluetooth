@@ -1470,10 +1470,6 @@ class CsisClientImpl : public CsisClient {
   }
 
   void CsisActiveDiscovery(std::shared_ptr<CsisGroup> csis_group) {
-    if (bluetooth::common::InitFlags::UseRsiFromCachedInquiryResults()) {
-      CheckForGroupInInqDb(csis_group);
-    }
-
     if ((csis_group->GetDiscoveryState() !=
          CsisDiscoveryState::CSIS_DISCOVERY_IDLE)) {
       log::error("Incorrect ase group: {}, state 0x{:02x}",
