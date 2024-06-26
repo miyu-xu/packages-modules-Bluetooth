@@ -208,7 +208,11 @@ init_flags!(
     name: InitFlags
     flags: {
         classic_discovery_only,
+<<<<<<< HEAD
         dynamic_avrcp_version_enhancement = true,
+=======
+        gatt_robust_caching_server,
+>>>>>>> b836a74e56 (InitFlags: Remove dynamic_avrcp_version_enhancement)
         hci_adapter: i32,
         use_unified_connection_manager,
     }
