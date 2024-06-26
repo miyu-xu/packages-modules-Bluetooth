@@ -138,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28f1dda2_0a1312f2",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-26T20:08:31Z",
+      "side": 1,
+      "message": "The above discussions remind me of that we\u0027ve similar debates while reviewing this API proposal. \nIn that meeting, after some discussions, we have come to the conclusion that we don\u0027t want to make this under broadcast assistant. Instead, we intended to keep this in VCS to allow such controls from volume control\u0027s prospective.\nIdeally the audio side needs to integrate this new APIs to their media framework, and then audio sharing(UI) will control this through Audio path.\n\nSo considering this is related to some unknown API use cases, and we\u0027re assuming some misuse case would happen. Maybe we should have further discussion around this, and decide what the right way to do as next.\n\nAlso this is not causing any issue with Broadcast or Unicast by current usage, I\u0027m abandoning this change for now, will update after we closed the discussion.",
+      "parentUuid": "48f443da_68ebb2fd",
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
