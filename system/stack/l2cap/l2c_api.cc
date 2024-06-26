@@ -76,29 +76,6 @@ uint16_t L2CA_RegisterWithSecurity(
   return ret;
 }
 
-uint16_t L2CA_LeCreditDefault() {
-  static const uint16_t sL2CAP_LE_CREDIT_DEFAULT =
-      bluetooth::os::GetSystemPropertyUint32Base(
-          "bluetooth.l2cap.le.credit_default.value", 0xffff);
-  return sL2CAP_LE_CREDIT_DEFAULT;
-}
-
-uint16_t L2CA_LeCreditThreshold() {
-  static const uint16_t sL2CAP_LE_CREDIT_THRESHOLD =
-      bluetooth::os::GetSystemPropertyUint32Base(
-          "bluetooth.l2cap.le.credit_threshold.value", 0x0040);
-  return sL2CAP_LE_CREDIT_THRESHOLD;
-}
-
-static bool check_l2cap_credit() {
-  log::assert_that(L2CA_LeCreditThreshold() < L2CA_LeCreditDefault(),
-                   "Threshold must be smaller than default credits");
-  return true;
-}
-
-// Replace static assert with startup assert depending of the config
-static const bool enforce_assert = check_l2cap_credit();
-
 /*******************************************************************************
  *
  * Function         L2CA_Register
