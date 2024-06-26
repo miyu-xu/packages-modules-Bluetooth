@@ -15,7 +15,7 @@ mod ffi {
         fn classic_discovery_only_is_enabled() -> bool;
         fn get_hci_adapter() -> i32;
         fn use_unified_connection_manager_is_enabled() -> bool;
-        fn get_att_mtu_default() -> i32;
+        fn encryption_in_busy_state_is_enabled() -> bool;
     }
 }
 
