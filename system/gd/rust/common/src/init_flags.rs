@@ -208,7 +208,6 @@ init_flags!(
     name: InitFlags
     flags: {
         classic_discovery_only,
-        gatt_robust_caching_server,
         hci_adapter: i32,
         hfp_dynamic_version = true,
         irk_rotation,
