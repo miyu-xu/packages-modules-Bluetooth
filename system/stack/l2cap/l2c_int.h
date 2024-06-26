@@ -785,6 +785,14 @@ void l2cu_process_fixed_chnl_resp(tL2C_LCB* p_lcb);
 bool l2cu_is_ccb_active(tL2C_CCB* p_ccb);
 uint16_t le_result_to_l2c_conn(uint16_t result);
 
+// This is initial amout of credits we send, and amount to which we increase
+// credits once they fall below threshold
+uint16_t l2cu_le_credit_default();
+
+// If credit count on remote fall below this value, we send back credits to
+// reach default value.
+uint16_t l2cu_le_credit_threshold();
+
 /* Functions provided for Broadcom Aware
  ***************************************
 */

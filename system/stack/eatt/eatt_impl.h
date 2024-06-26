@@ -152,12 +152,8 @@ struct eatt_impl {
     uint16_t max_mps =
         shim::GetController()->GetLeBufferSize().le_data_packet_length_;
 
-    tL2CAP_LE_CFG_INFO local_coc_cfg = {
-        .result = L2CAP_LE_RESULT_CONN_OK,
-        .mtu = eatt_dev->rx_mtu_,
-        .mps = eatt_dev->rx_mps_ < max_mps ? eatt_dev->rx_mps_ : max_mps,
-        .credits = L2CA_LeCreditDefault(),
-    };
+    tL2CAP_LE_CFG_INFO local_coc_cfg = L2CA_CreateLeCfgInfo(
+            eatt_dev->rx_mtu_, eatt_dev->rx_mps_ < max_mps ? eatt_dev->rx_mps_ : max_mps);
 
     if (!L2CA_ConnectCreditBasedRsp(bda, identifier, lcids, L2CAP_CONN_OK,
                                     &local_coc_cfg)) {
@@ -574,13 +570,8 @@ struct eatt_impl {
       eatt_dev->rx_mps_ =
           shim::GetController()->GetLeBufferSize().le_data_packet_length_;
 
-    tL2CAP_LE_CFG_INFO local_coc_cfg = {
-        .result = L2CAP_LE_RESULT_CONN_OK,
-        .mtu = eatt_dev->rx_mtu_,
-        .mps = eatt_dev->rx_mps_,
-        .credits = L2CA_LeCreditDefault(),
-        .number_of_channels = num_of_channels,
-    };
+    tL2CAP_LE_CFG_INFO local_coc_cfg =
+            L2CA_CreateLeCfgInfo(eatt_dev->rx_mtu_, eatt_dev->rx_mps_, num_of_channels);
 
     log::info("Connecting device {}, cnt count {}", eatt_dev->bda_,
               num_of_channels);
