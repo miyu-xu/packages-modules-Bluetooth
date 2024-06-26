@@ -101,17 +101,15 @@ constexpr bluetooth::le_audio::types::LeAudioContextType
 static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
     "persist.bluetooth.leaudio.notify.idle.during.call";
 const char* test_flags[] = {
-    "INIT_default_log_level_str=LOG_VERBOSE",
-    "INIT_leaudio_targeted_announcement_reconnection_mode=true",
-    "INIT_leaudio_broadcast_audio_handover_policies=false",
-    nullptr,
+        "INIT_default_log_level_str=LOG_VERBOSE",
+        "INIT_leaudio_broadcast_audio_handover_policies=false",
+        nullptr,
 };
 
 const char* test_flags_with_handover_mode[] = {
-    "INIT_default_log_level_str=LOG_VERBOSE",
-    "INIT_leaudio_targeted_announcement_reconnection_mode=true",
-    "INIT_leaudio_broadcast_audio_handover_policies=true",
-    nullptr,
+        "INIT_default_log_level_str=LOG_VERBOSE",
+        "INIT_leaudio_broadcast_audio_handover_policies=true",
+        nullptr,
 };
 
 void osi_property_set_bool(const char* key, bool value);
