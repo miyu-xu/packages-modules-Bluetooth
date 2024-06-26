@@ -82,8 +82,6 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
 
 static void gatt_cl_start_config_ccc(tGATT_PROFILE_CLCB* p_clcb);
 
-static bool gatt_sr_is_robust_caching_enabled();
-
 static bool read_sr_supported_feat_req(
     uint16_t conn_id, base::OnceCallback<void(const RawAddress&, uint8_t)> cb);
 static bool read_sr_sirk_req(
@@ -1004,19 +1002,6 @@ bool gatt_profile_get_eatt_support(const RawAddress& remote_bda) {
 
 /*******************************************************************************
  *
- * Function         gatt_sr_is_robust_caching_enabled
- *
- * Description      Check if Robust Caching is enabled on server side.
- *
- * Returns          true if enabled in gd flag, otherwise false
- *
- ******************************************************************************/
-static bool gatt_sr_is_robust_caching_enabled() {
-  return bluetooth::common::init_flags::gatt_robust_caching_server_is_enabled();
-}
-
-/*******************************************************************************
- *
  * Function         gatt_sr_is_cl_robust_caching_supported
  *
  * Description      Check if Robust Caching is supported for the connection
@@ -1025,8 +1010,6 @@ static bool gatt_sr_is_robust_caching_enabled() {
  *
  ******************************************************************************/
 static bool gatt_sr_is_cl_robust_caching_supported(tGATT_TCB& tcb) {
-  // if robust caching is not enabled, should always return false
-  if (!gatt_sr_is_robust_caching_enabled()) return false;
   return (tcb.cl_supp_feat & BLE_GATT_CL_SUP_FEAT_CACHING_BITMASK);
 }
 
@@ -1071,9 +1054,6 @@ bool gatt_sr_is_cl_change_aware(tGATT_TCB& tcb) {
 void gatt_sr_init_cl_status(tGATT_TCB& tcb) {
   tcb.cl_supp_feat = btif_storage_get_gatt_cl_supp_feat(tcb.peer_bda);
   // This is used to reset bit when robust caching is disabled
-  if (!gatt_sr_is_robust_caching_enabled()) {
-    tcb.cl_supp_feat &= ~BLE_GATT_CL_SUP_FEAT_CACHING_BITMASK;
-  }
 
   if (gatt_sr_is_cl_robust_caching_supported(tcb)) {
     Octet16 stored_hash = btif_storage_get_gatt_cl_db_hash(tcb.peer_bda);
@@ -1200,12 +1180,6 @@ static tGATT_STATUS gatt_sr_write_cl_supp_feat(uint16_t conn_id,
   bool curr_caching_state = gatt_sr_is_cl_robust_caching_supported(tcb);
 
   tcb.cl_supp_feat = tmp.front();
-  if (!gatt_sr_is_robust_caching_enabled()) {
-    // remove robust caching bit
-    tcb.cl_supp_feat &= ~BLE_GATT_CL_SUP_FEAT_CACHING_BITMASK;
-    log::info("reset robust caching bit, conn_id=0x{:x}, bda={}", conn_id,
-              tcb.peer_bda);
-  }
   // TODO(hylo): save data as byte array
   btif_storage_set_gatt_cl_supp_feat(tcb.peer_bda, tcb.cl_supp_feat);
 
