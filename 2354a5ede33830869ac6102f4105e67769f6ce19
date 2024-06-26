@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a07d55ed_5098e8e6",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-26T09:01:28Z",
+      "side": 1,
+      "message": "So what would be the TargetState of such grup QoS configured or Streaming ?",
+      "parentUuid": "fb7c6487_14f366fd",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "819d6dad_5b8544cc",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 3
