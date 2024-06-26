@@ -36,6 +36,14 @@
         </intent-filter>
       </service>
 
+        <activity android:name=".MediaPlayerActivity"
+                android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:mimeType="audio/*"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
   <uses-permission android:name="android.permission.INTERNET" />
