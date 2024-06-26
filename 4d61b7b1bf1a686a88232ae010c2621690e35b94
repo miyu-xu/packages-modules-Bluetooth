@@ -16,6 +16,24 @@
       "message": "Please provide a `Flag: EXEMPT \u003creason\u003e`. In this case, you can just put `Flag: TEST_ONLY`.",
       "revId": "4d61b7b1bf1a686a88232ae010c2621690e35b94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd7aa265_75886ca5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-06-26T18:10:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1860323_939c3c12",
+      "revId": "4d61b7b1bf1a686a88232ae010c2621690e35b94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
