@@ -181,14 +181,6 @@ constexpr uint16_t L2CAP_LE_MAX_MPS = 65533;
 constexpr uint16_t L2CAP_LE_CREDIT_MAX = 65535;
 constexpr uint16_t L2CAP_LE_CREDIT_THRESHOLD = 64;
 
-// This is initial amout of credits we send, and amount to which we increase
-// credits once they fall below threshold
-uint16_t L2CA_LeCreditDefault();
-
-// If credit count on remote fall below this value, we send back credits to
-// reach default value.
-uint16_t L2CA_LeCreditThreshold();
-
 // Max number of CIDs in the L2CAP CREDIT BASED CONNECTION REQUEST
 constexpr uint8_t L2CAP_CREDIT_BASED_MAX_CIDS = 5;
 
@@ -202,9 +194,13 @@ struct tL2CAP_LE_CFG_INFO {
   uint16_t result{L2CAP_LE_RESULT_CONN_OK}; /* Only used in confirm messages */
   uint16_t mtu{kDefaultL2capMtu};
   uint16_t mps{kDefaultL2capMps};
-  uint16_t credits{L2CA_LeCreditDefault()};
+  uint16_t credits{L2CAP_LE_CREDIT_MAX};
   uint8_t number_of_channels{L2CAP_CREDIT_BASED_MAX_CIDS};
 };
+
+tL2CAP_LE_CFG_INFO L2CA_CreateLeCfgInfo(uint16_t maximum_transfer_unit = kDefaultL2capMtu,
+                                        uint16_t maximum_packet_size = kDefaultL2capMps,
+                                        uint8_t number_of_channels = L2CAP_CREDIT_BASED_MAX_CIDS);
 
 /*********************************
  *  Callback Functions Prototypes

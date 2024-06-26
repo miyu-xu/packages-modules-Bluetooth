@@ -31,6 +31,7 @@
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
+#include "os/system_properties.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
@@ -3600,3 +3601,35 @@ uint16_t le_result_to_l2c_conn(uint16_t result) {
  *
  ******************************************************************************/
 void l2c_acl_flush(uint16_t handle) { btm_acl_flush(handle); }
+
+uint16_t l2cu_le_credit_default() {
+  static const uint16_t sL2CAP_LE_CREDIT_DEFAULT = bluetooth::os::GetSystemPropertyUint32Base(
+          "bluetooth.l2cap.le.credit_default.value", L2CAP_LE_CREDIT_MAX);
+  return sL2CAP_LE_CREDIT_DEFAULT;
+}
+
+uint16_t l2cu_le_credit_threshold() {
+  static const uint16_t sL2CAP_LE_CREDIT_THRESHOLD = bluetooth::os::GetSystemPropertyUint32Base(
+          "bluetooth.l2cap.le.credit_threshold.value", L2CAP_LE_CREDIT_THRESHOLD);
+  return sL2CAP_LE_CREDIT_THRESHOLD;
+}
+
+static bool check_l2cap_credit() {
+  log::assert_that(l2cu_le_credit_threshold() < l2cu_le_credit_default(),
+                   "Threshold must be smaller than default credits");
+  return true;
+}
+
+// Replace static assert with startup assert depending of the config
+static const bool enforce_assert = check_l2cap_credit();
+
+tL2CAP_LE_CFG_INFO L2CA_CreateLeCfgInfo(uint16_t maximum_transfer_unit,
+                                        uint16_t maximum_packet_size, uint8_t number_of_channels) {
+  return {
+          .result = L2CAP_LE_RESULT_CONN_OK, /* Only used in confirm messages */
+          .mtu = maximum_transfer_unit,
+          .mps = maximum_packet_size,
+          .credits = l2cu_le_credit_default(),
+          .number_of_channels = number_of_channels,
+  };
+}
