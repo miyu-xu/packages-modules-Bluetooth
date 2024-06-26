@@ -2102,13 +2102,7 @@ static int getRemotePbapPceVersionNative(JNIEnv* env, jobject /* obj */,
 
 static jboolean pbapPseDynamicVersionUpgradeIsEnabledNative(JNIEnv* /* env */,
                                                             jobject /* obj */) {
-  log::verbose("");
-
-  if (!sBluetoothInterface) return JNI_FALSE;
-
-  return sBluetoothInterface->pbap_pse_dynamic_version_upgrade_is_enabled()
-             ? JNI_TRUE
-             : JNI_FALSE;
+  return JNI_FALSE;
 }
 
 static jint getSocketL2capLocalChannelIdNative(JNIEnv* /* env */,
