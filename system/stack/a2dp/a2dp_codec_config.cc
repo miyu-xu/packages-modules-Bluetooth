@@ -1235,6 +1235,11 @@ bool A2DP_CodecEquals(const uint8_t* p_codec_info_a,
   tA2DP_CODEC_TYPE codec_type_a = A2DP_GetCodecType(p_codec_info_a);
   tA2DP_CODEC_TYPE codec_type_b = A2DP_GetCodecType(p_codec_info_b);
 
+  if (!std::any_of(p_codec_info_a, p_codec_info_a + AVDT_CODEC_SIZE,
+                   [](uint8_t i) { return i != 0; })) {
+    return false;
+  }
+
   if (codec_type_a != codec_type_b) return false;
 
   switch (codec_type_a) {
