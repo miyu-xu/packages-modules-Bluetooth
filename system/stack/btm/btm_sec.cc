@@ -1053,35 +1053,34 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr,
   }
 
   /* Enqueue security request if security is active */
-  if (bluetooth::common::init_flags::encryption_in_busy_state_is_enabled()) {
-    bool enqueue = false;
-    switch (p_dev_rec->sec_rec.sec_state) {
-      case tSECURITY_STATE::BTM_SEC_STATE_AUTHENTICATING:
-      case tSECURITY_STATE::BTM_SEC_STATE_DISCONNECTING_BOTH:
-        /* Applicable for both transports */
+  bool enqueue = false;
+  switch (p_dev_rec->sec_rec.sec_state) {
+    case tSECURITY_STATE::BTM_SEC_STATE_AUTHENTICATING:
+    case tSECURITY_STATE::BTM_SEC_STATE_DISCONNECTING_BOTH:
+      /* Applicable for both transports */
+      enqueue = true;
+      break;
+
+    case tSECURITY_STATE::BTM_SEC_STATE_ENCRYPTING:
+    case tSECURITY_STATE::BTM_SEC_STATE_DISCONNECTING:
+      if (transport == BT_TRANSPORT_BR_EDR) {
         enqueue = true;
-        break;
+      }
+      break;
 
-      case tSECURITY_STATE::BTM_SEC_STATE_ENCRYPTING:
-      case tSECURITY_STATE::BTM_SEC_STATE_DISCONNECTING:
-        if (transport == BT_TRANSPORT_BR_EDR) {
-          enqueue = true;
-        }
-        break;
+    case tSECURITY_STATE::BTM_SEC_STATE_LE_ENCRYPTING:
+    case tSECURITY_STATE::BTM_SEC_STATE_DISCONNECTING_BLE:
+      if (transport == BT_TRANSPORT_LE) {
+        enqueue = true;
+      }
+      break;
 
-      case tSECURITY_STATE::BTM_SEC_STATE_LE_ENCRYPTING:
-      case tSECURITY_STATE::BTM_SEC_STATE_DISCONNECTING_BLE:
-        if (transport == BT_TRANSPORT_LE) {
-          enqueue = true;
-        }
-        break;
-
-      default:
-        if (p_dev_rec->sec_rec.p_callback != nullptr) {
-          enqueue = true;
-        }
-        break;
-    }
+    default:
+      if (p_dev_rec->sec_rec.p_callback != nullptr) {
+        enqueue = true;
+      }
+      break;
+  }
 
     if (enqueue) {
       log::warn("Security Manager: Enqueue request in state:{}",
@@ -1090,16 +1089,6 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr,
                                     sec_act);
       return BTM_CMD_STARTED;
     }
-  } else {
-    if (p_dev_rec->sec_rec.p_callback ||
-        (p_dev_rec->sec_rec.sec_state != tSECURITY_STATE::BTM_SEC_STATE_IDLE)) {
-      log::warn("Security Manager: BTM_SetEncryption busy, enqueue request");
-      btm_sec_queue_encrypt_request(bd_addr, transport, p_callback, p_ref_data,
-                                    sec_act);
-      log::info("Queued start encryption");
-      return BTM_CMD_STARTED;
-    }
-  }
 
   p_dev_rec->sec_rec.p_callback = p_callback;
   p_dev_rec->sec_rec.p_ref_data = p_ref_data;
