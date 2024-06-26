@@ -16,6 +16,24 @@
       "message": "Do we need a flag here?",
       "revId": "b79cb9365c0f190ce4bacaaabee91001fe8fea65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24829b74_91682152",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-06-26T11:22:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "096f13c8_2156d7b8",
+      "revId": "b79cb9365c0f190ce4bacaaabee91001fe8fea65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
