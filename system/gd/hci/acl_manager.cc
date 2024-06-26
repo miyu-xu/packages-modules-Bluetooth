@@ -26,6 +26,7 @@
 #include <utility>
 #include <vector>
 
+#include "com_android_bluetooth_flags.h"
 #include "common/bidi_queue.h"
 #include "common/byte_array.h"
 #include "dumpsys_data_generated.h"
@@ -231,8 +232,12 @@ void AclManager::RegisterLeCallbacks(LeConnectionCallbacks* callbacks, os::Handl
 
 void AclManager::RegisterLeAcceptlistCallbacks(LeAcceptlistCallbacks* callbacks) {
   log::assert_that(callbacks != nullptr, "assert failed: callbacks != nullptr");
-  CallOn(pimpl_->le_impl_, &le_impl::handle_register_le_acceptlist_callbacks,
-         common::Unretained(callbacks));
+  if (com::android::bluetooth::flags::unified_connection_manager()) {
+    CallOn(pimpl_->le_impl_, &le_impl::handle_register_le_acceptlist_callbacks,
+           common::Unretained(callbacks));
+  } else {
+    log::debug("Not registering callbacks for the LeAcceptList");
+  }
 }
 
 void AclManager::UnregisterLeCallbacks(LeConnectionCallbacks* callbacks,
