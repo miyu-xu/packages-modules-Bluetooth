@@ -477,6 +477,7 @@ static void avdt_msg_bld_svccap_impl(uint8_t** p, tAVDT_MSG* p_msg,
                                      const bool not_get_all_cap) {
   AvdtpSepConfig cfg = *p_msg->svccap.p_cfg;
 
+#if !defined(EXCLUDE_NONSTANDARD_CODECS)
   if (com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
     if (A2DP_SourceCodecIndex(cfg.codec_info) ==
         BTAV_A2DP_CODEC_INDEX_SOURCE_AAC) {
@@ -491,6 +492,8 @@ static void avdt_msg_bld_svccap_impl(uint8_t** p, tAVDT_MSG* p_msg,
                                            cfg.codec_info);
     }
   }
+#endif
+
   if (not_get_all_cap) {
     // Include only the Basic Capability
     cfg.psc_mask &= AVDT_LEG_PSC;
