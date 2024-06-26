@@ -51,6 +51,24 @@
       "parentUuid": "856144aa_f842edf8",
       "revId": "7d0ef194a1943219a80a13a6aafb4c46742593bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6de3139_c14d97a0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-26T12:54:46Z",
+      "side": 1,
+      "message": "Changed to be sure that broadcast is paused before transition to unicast is executed.",
+      "parentUuid": "10e59d7c_9c9b2240",
+      "revId": "7d0ef194a1943219a80a13a6aafb4c46742593bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
