@@ -1321,8 +1321,7 @@ void GATT_Deregister(tGATT_IF gatt_if) {
     }
   }
 
-  if (bluetooth::common::init_flags::
-          use_unified_connection_manager_is_enabled()) {
+  if (com::android::bluetooth::flags::unified_connection_manager()) {
     bluetooth::connection::GetConnectionManager().remove_client(gatt_if);
   } else {
     connection_manager::on_app_deregistered(gatt_if);
@@ -1460,8 +1459,7 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
       ret = false;
     } else {
       log::debug("Adding to background connect to device:{}", bd_addr);
-      if (bluetooth::common::init_flags::
-              use_unified_connection_manager_is_enabled()) {
+      if (com::android::bluetooth::flags::unified_connection_manager()) {
         if (connection_type == BTM_BLE_BKG_CONNECT_ALLOW_LIST) {
           bluetooth::connection::GetConnectionManager()
               .add_background_connection(
@@ -1563,8 +1561,7 @@ bool GATT_CancelConnect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     }
   }
 
-  if (bluetooth::common::init_flags::
-          use_unified_connection_manager_is_enabled()) {
+  if (com::android::bluetooth::flags::unified_connection_manager()) {
     bluetooth::connection::GetConnectionManager()
         .stop_all_connections_to_device(
             bluetooth::connection::ResolveRawAddress(bd_addr));

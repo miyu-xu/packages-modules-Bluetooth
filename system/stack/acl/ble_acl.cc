@@ -17,11 +17,10 @@
 #define LOG_TAG "acl"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
-#include "common/init_flags.h"
-#include "os/log.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
@@ -49,8 +48,7 @@ static bool acl_ble_common_connection(
   }
 
   // Inform any applications that a connection has completed.
-  if (!bluetooth::common::init_flags::
-          use_unified_connection_manager_is_enabled()) {
+  if (!com::android::bluetooth::flags::unified_connection_manager()) {
     connection_manager::on_connection_complete(address_with_type.bda);
   }
 
@@ -112,8 +110,7 @@ void acl_ble_enhanced_connection_complete_from_shim(
     uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
     const RawAddress& local_rpa, const RawAddress& peer_rpa,
     tBLE_ADDR_TYPE peer_addr_type, bool can_read_discoverable_characteristics) {
-  if (!bluetooth::common::init_flags::
-          use_unified_connection_manager_is_enabled()) {
+  if (!com::android::bluetooth::flags::unified_connection_manager()) {
     connection_manager::on_connection_complete(address_with_type.bda);
   }
 
@@ -145,8 +142,7 @@ void acl_ble_connection_fail(const tBLE_BD_ADDR& address_with_type,
     tBLE_BD_ADDR resolved_address_with_type;
     maybe_resolve_received_address(address_with_type,
                                    &resolved_address_with_type);
-    if (!bluetooth::common::init_flags::
-            use_unified_connection_manager_is_enabled()) {
+    if (!com::android::bluetooth::flags::unified_connection_manager()) {
       connection_manager::on_connection_timed_out_from_shim(
           resolved_address_with_type.bda);
     }
