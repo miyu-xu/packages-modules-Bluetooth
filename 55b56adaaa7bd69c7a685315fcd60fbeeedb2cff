@@ -142,6 +142,24 @@
       "parentUuid": "c77712d7_b61c67b7",
       "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ac0fc8_0577bb4d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-26T13:53:07Z",
+      "side": 1,
+      "message": "1. Done.\n2. I do not get it, keep current way do you mean without terminating BIG? But this is done on the native where we do not have information about broadcast purpose.\n\nUI still need changes:\n1. \"Audio sharing\" screen should show local devices when music is paused. Status from buds will by sync to `Big\u0026Pa \u003e PA \u003e nothing` but when resumed we will rejoin sources. They should show them all the time if broadcast is inPlay or inPause state.\n2. \"Find and audio stream\" will show broadcasters without BIG so there should be change to show \"Connected\" when synced only to PA and \"Listening now\" when synced to BIG.",
+      "parentUuid": "5b5c3963_fa1027bd",
+      "revId": "55b56adaaa7bd69c7a685315fcd60fbeeedb2cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
