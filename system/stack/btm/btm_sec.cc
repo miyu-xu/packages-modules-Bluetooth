@@ -3565,14 +3565,12 @@ void btm_sec_encryption_change_evt(uint16_t handle, tHCI_STATUS status,
   } else {
     // This block added to ensure matching code flow with the bluffs_mitigation
     // flag off.  The entire block should be removed when the flag is.
-    if (status != HCI_SUCCESS || encr_enable == 0 ||
-        BTM_IsBleConnection(handle) ||
+    if (status != HCI_SUCCESS || encr_enable == 0 || BTM_IsBleConnection(handle) ||
         !bluetooth::shim::GetController()->IsSupported(
-            bluetooth::hci::OpCode::READ_ENCRYPTION_KEY_SIZE) ||
+                bluetooth::hci::OpCode::READ_ENCRYPTION_KEY_SIZE) ||
         // Skip encryption key size check when using set_min_encryption_key_size
-        (bluetooth::common::init_flags::set_min_encryption_is_enabled() &&
-         bluetooth::shim::GetController()->IsSupported(
-             bluetooth::hci::OpCode::SET_MIN_ENCRYPTION_KEY_SIZE))) {
+        (bluetooth::shim::GetController()->IsSupported(
+                bluetooth::hci::OpCode::SET_MIN_ENCRYPTION_KEY_SIZE))) {
       if (status == HCI_ERR_CONNECTION_TOUT) {
         smp_cancel_start_encryption_attempt();
         return;
