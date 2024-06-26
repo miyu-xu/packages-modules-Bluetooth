@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef152739_f5edb270",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-26T21:16:43Z",
+      "side": 1,
+      "message": "Should this be obfuscated?",
+      "range": {
+        "startLine": 1061,
+        "startChar": 27,
+        "endLine": 1061,
+        "endChar": 34
+      },
+      "revId": "eaab0bf1befc47fd6caf427e47402b58b19a0f84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
