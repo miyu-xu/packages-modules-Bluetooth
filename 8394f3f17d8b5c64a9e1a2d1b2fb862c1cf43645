@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8b5618_30d3ac4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-26T17:44:53Z",
+      "side": 1,
+      "message": "Please remove unnecessary formatting in AndroidManifest.xml",
+      "revId": "8394f3f17d8b5c64a9e1a2d1b2fb862c1cf43645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
