@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "491ea09a_702d9a15",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-26T18:09:12Z",
+      "side": 1,
+      "message": "if `p_dev_rec` is null ....",
+      "range": {
+        "startLine": 690,
+        "startChar": 6,
+        "endLine": 690,
+        "endChar": 23
+      },
+      "revId": "1658df4903c690bb547fc8390049544292931255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd4c783_8c7b7cee",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-26T18:09:12Z",
+      "side": 1,
+      "message": "we print it\u0027s `device_type`.\n\nI believe this can crash, according to the comment above for unknown devices",
+      "range": {
+        "startLine": 691,
+        "startChar": 60,
+        "endLine": 691,
+        "endChar": 84
+      },
+      "revId": "1658df4903c690bb547fc8390049544292931255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
