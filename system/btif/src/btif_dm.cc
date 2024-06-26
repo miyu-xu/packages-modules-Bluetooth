@@ -1804,8 +1804,12 @@ static void btif_on_service_discovery_results(
        * services than about just finishing pairing. Service discovery
        * should be scheduled when LE pairing finishes, by call to
        * btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_LE) */
+
+      //TOOD: add metric CLASSIC_SDP_FINISHED, complete_discovery = false
       return;
     }
+
+    //TOOD: add metric CLASSIC_SDP_FINISHED, complete_discovery = true
 
     /* Send the event to the BTIF */
     GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
@@ -1971,10 +1975,15 @@ void btif_on_gatt_results(RawAddress bd_addr, BD_NAME bd_name,
       /* Don't report services yet, they will be reported together once SDP
        * finishes. */
       log::info("will report services later, with SDP results {}", bd_addr);
+
+      //TOOD: add metric LE_SERVICE_DISCOVERY_FINISHED, complete_discovery = false
+
       return;
     }
   }
 
+  //TOOD: add metric LE_SERVICE_DISCOVERY_FINISHED, complete_discovery = true
+ 
   /* Send the event to the BTIF */
   GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
       BT_STATUS_SUCCESS, bd_addr, prop.size(), prop.data());
@@ -3021,6 +3030,8 @@ void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
   BTM_LogHistory(
       kBtmLogTag, remote_addr, "Service discovery",
       base::StringPrintf("transport:%s", bt_transport_text(transport).c_str()));
+
+  //TOOD: add metric SERVICE_DISCOVERY_STARTED, remote_bdaddr, transport
 
   BTA_DmDiscover(
       remote_addr,
