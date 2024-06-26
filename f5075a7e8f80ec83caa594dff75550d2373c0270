@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c060cf4_07aa97dc",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-26T22:11:26Z",
+      "side": 1,
+      "message": "This is the new style, to drop the prefix `log::` ?",
+      "revId": "f5075a7e8f80ec83caa594dff75550d2373c0270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
