@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bebef61_131de3c9",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-26T09:04:11Z",
+      "side": 1,
+      "message": "Since AttachToStream() is proceed here, it must be STREAMING, as verified in line 159.",
+      "parentUuid": "a07d55ed_5098e8e6",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "819d6dad_5b8544cc",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 3
