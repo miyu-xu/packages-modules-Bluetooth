@@ -32,10 +32,6 @@ class InitFlags final {
     init_flags::load(std::move(rusted_flags));
   }
 
-  inline static int GetAdapterIndex() {
-    return init_flags::get_hci_adapter();
-  }
-
   inline static void SetAllForTesting() {
     init_flags::set_all_for_testing();
   }

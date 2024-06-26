@@ -194,10 +194,6 @@ impl fmt::Display for ExplicitTagSettings {
     }
 }
 
-fn parse_hci_adapter(flags: &mut InitFlags, values: Vec<&str>) {
-    flags.hci_adapter = values[1].parse().unwrap_or(0);
-}
-
 /// Sets all bool flags to true
 /// Set all other flags and extra fields to their default type value
 pub fn set_all_for_testing() {
@@ -208,11 +204,8 @@ init_flags!(
     name: InitFlags
     flags: {
         classic_discovery_only,
-        hci_adapter: i32,
     }
-    extra_parsed_flags: {
-        "--hci" => parse_hci_adapter(_, _),
-    }
+    extra_parsed_flags: { }
 );
 
 lazy_static! {
@@ -267,12 +260,6 @@ mod tests {
             "INIT_gatt_robust_caching_server=not_true", // parse error
         ]);
         assert!(!gatt_robust_caching_server_is_enabled());
-    }
-    #[test]
-    fn int_flag() {
-        let _guard = ASYNC_LOCK.lock().unwrap();
-        test_load(vec!["--hci=2"]);
-        assert_eq!(get_hci_adapter(), 2);
     }
 
     init_flags_struct!(
