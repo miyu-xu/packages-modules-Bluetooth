@@ -147,7 +147,6 @@ cc_library_shared {
         "libstatslog_bt",
         "libstatslog_express",
         "libtextclassifier_hash_static",
-        "libudrv-uipc",
         "libutils",
         "server_configurable_flags",
     ],
