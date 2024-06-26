@@ -209,7 +209,6 @@ init_flags!(
     flags: {
         classic_discovery_only,
         hci_adapter: i32,
-        use_unified_connection_manager,
     }
     extra_parsed_flags: {
         "--hci" => parse_hci_adapter(_, _),
