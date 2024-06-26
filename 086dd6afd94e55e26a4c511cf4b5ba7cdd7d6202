@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5358630_630923cd",
+        "filename": "system/gd/hci/hci_layer_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T13:53:34Z",
+      "side": 1,
+      "message": "I think we still need to check the properties in these tests, if we\u0027re going to run the tests on platforms with the properties set.\n\n```suggestion\n\n  static std::chrono::milliseconds getHciTimeoutMs() {\n    static auto sHciTimeoutMs \u003d\n  std::chrono::milliseconds(bluetooth::os::GetSystemPropertyUint32Base(\n        \"bluetooth.hci.timeout_milliseconds\",\n  HciLayer::kHciTimeoutMs.count()));\n    return sHciTimeoutMs;\n  }\n\n  static std::chrono::milliseconds getHciTimeoutRestartMs() {\n    static auto sRestartHciTimeoutMs \u003d\n        std::chrono::milliseconds(bluetooth::os::GetSystemPropertyUint32Base(\n            \"bluetooth.hci.restart_timeout_milliseconds\",\n  HciLayer::kHciTimeoutRestartMs.count()));\n    return sRestartHciTimeoutMs;\n  }\n\n  hal::TestHciHal* hal_ \u003d nullptr;\n```",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 34
+      },
+      "revId": "086dd6afd94e55e26a4c511cf4b5ba7cdd7d6202",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e53dae62_60b0accd",
+        "filename": "system/gd/hci/hci_layer_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T13:53:34Z",
+      "side": 1,
+      "message": "And use it here.\n```suggestion\n  FakeTimerAdvance(getHciTimeoutMs().count());\n```",
+      "range": {
+        "startLine": 135,
+        "startChar": 19,
+        "endLine": 135,
+        "endChar": 50
+      },
+      "revId": "086dd6afd94e55e26a4c511cf4b5ba7cdd7d6202",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c203e3_276d23d6",
+        "filename": "system/gd/hci/hci_layer_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T13:53:34Z",
+      "side": 1,
+      "message": "and here:\n```suggestion\n        FakeTimerAdvance(getHciTimeoutRestartMs().count());\n```",
+      "range": {
+        "startLine": 157,
+        "startChar": 25,
+        "endLine": 157,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "95750853_6b152f97",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/hci_layer_unittest.cc",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "  FakeTimerAdvance(HciLayer::GetHciTimeoutMs().count());\n"
+            },
+            {
+              "path": "system/gd/hci/hci_layer_unittest.cc",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": "  FakeTimerAdvance(HciLayer::GetHciTimeoutMs().count());\n"
+            },
+            {
+              "path": "system/gd/hci/hci_layer_unittest.cc",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "        FakeTimerAdvance(HciLayer::GetHciTimeoutRestartMs().count());\n"
+            },
+            {
+              "path": "system/gd/hci/hci_layer_unittest.cc",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "  FakeTimerAdvance(HciLayer::GetHciTimeoutMs().count());\n"
+            },
+            {
+              "path": "system/gd/hci/hci_layer_unittest.cc",
+              "range": {
+                "startLine": 178,
+                "startChar": 0,
+                "endLine": 179,
+                "endChar": 0
+              },
+              "replacement": "        FakeTimerAdvance(HciLayer::GetHciTimeoutRestartMs().count());\n"
+            },
+            {
+              "path": "system/gd/hci/hci_layer_unittest.cc",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 193,
+                "endChar": 0
+              },
+              "replacement": "        FakeTimerAdvance(HciLayer::GetHciTimeoutRestartMs().count());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "086dd6afd94e55e26a4c511cf4b5ba7cdd7d6202",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
