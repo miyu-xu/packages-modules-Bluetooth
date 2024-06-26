@@ -32,7 +32,6 @@ mod ffi {
         fn sdp_skip_rnr_if_known_is_enabled() -> bool;
         fn set_min_encryption_is_enabled() -> bool;
         fn subrating_is_enabled() -> bool;
-        fn use_unified_connection_manager_is_enabled() -> bool;
         fn sdp_return_classic_services_when_le_discovery_fails_is_enabled() -> bool;
         fn use_rsi_from_cached_inqiry_results_is_enabled() -> bool;
         fn get_att_mtu_default() -> i32;

@@ -227,7 +227,6 @@ init_flags!(
         sdp_skip_rnr_if_known = true,
         set_min_encryption = true,
         subrating = true,
-        use_unified_connection_manager,
         sdp_return_classic_services_when_le_discovery_fails = true,
         use_rsi_from_cached_inqiry_results = false,
         att_mtu_default: i32 = 517,

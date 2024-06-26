@@ -2,7 +2,6 @@
 
 use std::{fmt::Debug, pin::Pin};
 
-use bt_common::init_flags;
 use cxx::UniquePtr;
 pub use inner::*;
 use log::warn;
@@ -143,10 +142,7 @@ impl InactiveLeAclManager for LeAclManagerImpl {
     ) -> Self::ActiveManager {
         let (tx, mut rx) = unbounded_channel();
 
-        // only register callbacks if the feature is enabled
-        if init_flags::use_unified_connection_manager_is_enabled() {
-            self.0.pin_mut().register_rust_callbacks(Box::new(LeAclManagerCallbackShim(tx)));
-        }
+        self.0.pin_mut().register_rust_callbacks(Box::new(LeAclManagerCallbackShim(tx)));
 
         spawn_local(async move {
             while let Some(f) = rx.recv().await {

@@ -1562,8 +1562,7 @@ bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
     gatt_disconnect(p_tcb);
   }
 
-  if (bluetooth::common::init_flags::
-          use_unified_connection_manager_is_enabled()) {
+  if (com::android::bluetooth::flags::unified_connection_manager()) {
     bluetooth::connection::GetConnectionManager().stop_direct_connection(
         gatt_if, bluetooth::connection::ResolveRawAddress(bda));
   } else {
@@ -1871,8 +1870,7 @@ char const* gatt_dbg_op_name(uint8_t op_code) {
 bool gatt_auto_connect_dev_remove(tGATT_IF gatt_if, const RawAddress& bd_addr) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, BT_TRANSPORT_LE);
   if (p_tcb) gatt_update_app_use_link_flag(gatt_if, p_tcb, false, false);
-  if (bluetooth::common::init_flags::
-          use_unified_connection_manager_is_enabled()) {
+  if (com::android::bluetooth::flags::unified_connection_manager()) {
     bluetooth::connection::GetConnectionManager().remove_background_connection(
         gatt_if, bluetooth::connection::ResolveRawAddress(bd_addr));
     // TODO(aryarahul): handle failure case
