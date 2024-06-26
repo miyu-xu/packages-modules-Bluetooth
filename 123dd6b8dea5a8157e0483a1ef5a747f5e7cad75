@@ -51,6 +51,24 @@
       "parentUuid": "d8725d21_14a8b606",
       "revId": "123dd6b8dea5a8157e0483a1ef5a747f5e7cad75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c272df2_48932ede",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T18:42:58Z",
+      "side": 1,
+      "message": "Thanks for getting back to me!  Do you have logs (or a sequence diagram from the logs you have collected) to help us write a test?",
+      "parentUuid": "065c39fc_4bd269a8",
+      "revId": "123dd6b8dea5a8157e0483a1ef5a747f5e7cad75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
