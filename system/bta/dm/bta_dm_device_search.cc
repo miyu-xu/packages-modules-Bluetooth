@@ -31,33 +31,21 @@
 
 #include "bta/dm/bta_dm_device_search_int.h"
 #include "bta/dm/bta_dm_disc_legacy.h"
-#include "bta/include/bta_gatt_api.h"
-#include "bta/include/bta_sdp_api.h"
-#include "btif/include/btif_config.h"
 #include "com_android_bluetooth_flags.h"
 #include "common/circular_buffer.h"
-#include "common/init_flags.h"
 #include "common/strings.h"
 #include "device/include/interop.h"
-#include "internal_include/bt_target.h"
 #include "main/shim/dumpsys.h"
 #include "os/logging/log_adapter.h"
-#include "osi/include/allocator.h"
-#include "stack/btm/btm_int_types.h"  // TimestampedStringCircularBuffer
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_name.h"
-#include "stack/include/bt_uuid16.h"
+#include "stack/include/btm_ble_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_inq.h"
 #include "stack/include/btm_log_history.h"
-#include "stack/include/btm_sec_api.h"  // BTM_IsRemoteNameKnown
-#include "stack/include/gap_api.h"      // GAP_BleReadPeerPrefConnParams
-#include "stack/include/hidh_api.h"
+#include "stack/include/btm_sec_api.h" // BTM_IsRemoteNameKnown
 #include "stack/include/main_thread.h"
-#include "stack/include/sdp_status.h"
-#include "stack/sdp/sdpint.h"  // is_sdp_pbap_pce_disabled
-#include "storage/config_keys.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -553,8 +541,7 @@ static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
     bta_dm_search_cb.name_discover_done = true;
   }
   // If we already have the name we can skip getting the name
-  if (BTM_IsRemoteNameKnown(remote_bd_addr, transport) &&
-      bluetooth::common::init_flags::sdp_skip_rnr_if_known_is_enabled()) {
+  if (BTM_IsRemoteNameKnown(remote_bd_addr, transport)) {
     log::debug(
         "Security record already known skipping read remote name peer:{}",
         remote_bd_addr);
