@@ -22,6 +22,30 @@
       },
       "revId": "637f8d0aca0d2f7e7ca18b82e7927780593988d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ce2d65_41473d97",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-26T20:42:33Z",
+      "side": 1,
+      "message": "Didn\u0027t know we have this helper, fixed.",
+      "parentUuid": "2c02fdc9_c1dc7908",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 58
+      },
+      "revId": "637f8d0aca0d2f7e7ca18b82e7927780593988d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
