@@ -63,6 +63,7 @@ android_test {
         ":mmi2grpc",
         "configs/pts_bot_tests_config.json",
         "configs/pts_bot_tests_config_auto.json",
+        "configs/pts_bot_tests_flags_config.json",
     ],
     test_suites: ["general-tests"],
     min_sdk_version: "Tiramisu",

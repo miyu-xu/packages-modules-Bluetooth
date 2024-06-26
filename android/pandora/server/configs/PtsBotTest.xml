@@ -53,6 +53,7 @@
         <!-- mmi2grpc is contained inside pts-bot folder -->
         <option name="mmi2grpc" value="pts-bot" />
         <option name="tests-config-file" value="pts_bot_tests_config.json" />
+        <option name="flags-config-file" value="pts_bot_tests_flags_config.json" />
         <option name="max-flaky-tests" value="0" />
         <option name="max-retries-per-test" value="0" />
         <option name="physical" value="false" />
