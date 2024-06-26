@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695ba3e7_9c32e0be",
+        "filename": "system/stack/rnr/remote_name_request.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T16:42:14Z",
+      "side": 1,
+      "message": "renaming in a separate patch?  It doesn\u0027t seem like it should be called BTM_Sec here.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 4
+      },
+      "revId": "c2811acc04e2bf1f19df70297c0d44310fc171c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
