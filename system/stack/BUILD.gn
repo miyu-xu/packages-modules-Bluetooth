@@ -225,6 +225,7 @@ source_set("stack") {
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
     "//bt/system/stack/mmc",
     "//bt/system/types",
+    "//bt/flags:bluetooth_flags_c_lib",
   ]
 
   configs += [
