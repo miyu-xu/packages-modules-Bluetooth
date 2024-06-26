@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "719b2d52_7dee55ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-06-26T06:10:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4b5b091_0f3324ea",
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8cb19cf_12cb28ca",
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9c67e3f_1526f087",
+        "filename": "system/gd/hci/fuzz/fuzz_hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-06-26T06:10:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8cb19cf_12cb28ca",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 0
+      },
       "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +179,30 @@
       "writtenOn": "2024-06-26T00:04:29Z",
       "side": 1,
       "message": "Can this be a local function, or a direct call to get the system property?",
+      "range": {
+        "startLine": 330,
+        "startChar": 78,
+        "endLine": 330,
+        "endChar": 95
+      },
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08bd1420_590d3ae2",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-06-26T06:10:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c55073e8_5ae1a0f5",
       "range": {
         "startLine": 330,
         "startChar": 78,
