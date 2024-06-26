@@ -209,7 +209,6 @@ init_flags!(
     flags: {
         classic_discovery_only,
         hci_adapter: i32,
-        sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
         set_min_encryption = true,
         subrating = true,
