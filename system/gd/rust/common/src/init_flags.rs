@@ -209,7 +209,6 @@ init_flags!(
     flags: {
         classic_discovery_only,
         hci_adapter: i32,
-        pbap_pse_dynamic_version_upgrade = false,
         redact_log = true,
         sco_codec_timeout_clear,
         sdp_serialization = true,
