@@ -46,6 +46,30 @@
       },
       "revId": "c2811acc04e2bf1f19df70297c0d44310fc171c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd46b6d7_4ee6b846",
+        "filename": "system/stack/rnr/remote_name_request.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T18:34:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7728696b_35a1d7f8",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 4
+      },
+      "revId": "c2811acc04e2bf1f19df70297c0d44310fc171c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
