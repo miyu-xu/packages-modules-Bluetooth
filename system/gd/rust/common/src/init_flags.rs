@@ -210,7 +210,6 @@ init_flags!(
         classic_discovery_only,
         gatt_robust_caching_server,
         hci_adapter: i32,
-        leaudio_targeted_announcement_reconnection_mode = true,
         pbap_pse_dynamic_version_upgrade = false,
         redact_log = true,
         sco_codec_timeout_clear,
