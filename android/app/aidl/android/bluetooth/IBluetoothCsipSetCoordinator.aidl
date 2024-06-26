@@ -30,33 +30,24 @@ import java.util.Map;
  * @hide
  */
 interface IBluetoothCsipSetCoordinator {
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
   boolean connect(in BluetoothDevice device, in AttributionSource attributionSource);
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
   boolean disconnect(in BluetoothDevice device, in AttributionSource attributionSource);
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   List<BluetoothDevice> getConnectedDevices(in AttributionSource attributionSource);
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   List<BluetoothDevice> getDevicesMatchingConnectionStates(in int[] states, in AttributionSource attributionSource);
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   int getConnectionState(in BluetoothDevice device, in AttributionSource attributionSource);
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
   boolean setConnectionPolicy(in BluetoothDevice device, int connectionPolicy, in AttributionSource attributionSource);
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
   int getConnectionPolicy(in BluetoothDevice device, in AttributionSource attributionSource);
 
   /**
     * Get the list of group identifiers for the given context {@var uuid}.
     * @return group identifiers as <code>List<Integer></code>
     */
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   List getAllGroupIds(in ParcelUuid uuid, in AttributionSource attributionSource);
 
   /**
     * Get all groups that {@var device} belongs to.
     * @return group identifiers and their context uuids as <code>Map<Integer, ParcelUuid></code>
     */
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   Map getGroupUuidMapByDevice(in BluetoothDevice device, in AttributionSource attributionSource);
 
   /**
@@ -64,21 +55,18 @@ interface IBluetoothCsipSetCoordinator {
    * {@link android.bluetooth.IBluetoothCsipSetCoordinator.CSIS_GROUP_SIZE_UNKNOWN} if unknown.
    * @return group size
    */
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   int getDesiredGroupSize(in int group_id, in AttributionSource attributionSource);
 
   /**
    * Lock group identified with {@var groupId}.
    * @return unique lock identifier required for unlocking
    */
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   ParcelUuid lockGroup(int groupId, in IBluetoothCsipSetCoordinatorLockCallback callback, in AttributionSource attributionSource);
 
   /**
    * Unlock group using {@var lockUuid} acquired through
    * {@link android.bluetooth.IBluetoothCsipSetCoordinator.lockGroup}.
    */
-  @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
   void unlockGroup(in ParcelUuid lockUuid, in AttributionSource attributionSource);
 
   const int CSIS_GROUP_ID_INVALID = -1;

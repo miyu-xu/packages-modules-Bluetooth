@@ -26,6 +26,5 @@ import android.content.AttributionSource;
  */
 interface IBluetoothMcpServiceManager
 {
-    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
     void setDeviceAuthorized(in BluetoothDevice device, boolean isAuthorized, in AttributionSource source);
 }
