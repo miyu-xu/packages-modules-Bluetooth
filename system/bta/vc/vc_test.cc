@@ -27,12 +27,19 @@
 #include "gatt/database_builder.h"
 #include "hardware/bt_gatt_types.h"
 #include "mock_csis_client.h"
+#include "osi/test/alarm_mock.h"
 #include "stack/include/bt_uuid16.h"
 #include "test/common/mock_functions.h"
 #include "types.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 void btif_storage_add_volume_control(const RawAddress& addr, bool auto_conn) {}
+
+struct alarm_t {
+  alarm_callback_t cb = nullptr;
+  void* data = nullptr;
+  bool on_main_loop = false;
+};
 
 namespace bluetooth {
 namespace vc {
@@ -307,6 +314,46 @@ class VolumeControlTest : public ::testing::Test {
                 cb(conn_id, GATT_SUCCESS, handle, value.size(), value.data(),
                    cb_data);
             }));
+    auto mock_alarm = AlarmMock::Get();
+    ON_CALL(*mock_alarm, AlarmNew(_))
+        .WillByDefault(Invoke([](const char* name) {
+          auto alarm = new alarm_t();
+          return alarm;
+        }));
+    ON_CALL(*mock_alarm, AlarmFree(_)).WillByDefault(Invoke([](alarm_t* alarm) {
+      if (alarm) {
+        free(alarm);
+      }
+    }));
+    ON_CALL(*mock_alarm, AlarmCancel(_))
+        .WillByDefault(Invoke([](alarm_t* alarm) {
+          if (alarm) {
+            alarm->cb = nullptr;
+            alarm->on_main_loop = false;
+          }
+        }));
+    ON_CALL(*mock_alarm, AlarmIsScheduled(_))
+        .WillByDefault(Invoke([](const alarm_t* alarm) {
+          if (alarm) {
+            return alarm->cb != nullptr;
+          }
+          return false;
+        }));
+    ON_CALL(*mock_alarm, AlarmSet(_, _, _, _))
+        .WillByDefault(Invoke([](alarm_t* alarm, uint64_t interval_ms,
+                                 alarm_callback_t cb, void* data) {
+          if (alarm) {
+            alarm->cb = cb;
+          }
+        }));
+    ON_CALL(*mock_alarm, AlarmSetOnMloop(_, _, _, _))
+        .WillByDefault(Invoke([](alarm_t* alarm, uint64_t interval_ms,
+                                 alarm_callback_t cb, void* data) {
+          if (alarm) {
+            alarm->on_main_loop = true;
+            alarm->cb = cb;
+          }
+        }));
   }
 
   void TearDown(void) override {
@@ -315,6 +362,7 @@ class VolumeControlTest : public ::testing::Test {
     gatt::SetMockBtaGattQueue(nullptr);
     gatt::SetMockBtaGattInterface(nullptr);
     bluetooth::manager::SetMockBtmInterface(nullptr);
+    AlarmMock::Reset();
   }
 
   void TestAppRegister(void) {
@@ -1253,14 +1301,13 @@ TEST_F(VolumeControlValueSetTest, test_volume_operation_failed) {
             if (cb)
               cb(conn_id, status, handle, value.size(), value.data(), cb_data);
           }));
-  ASSERT_EQ(0, get_func_call_count("alarm_set_on_mloop"));
-  ASSERT_EQ(0, get_func_call_count("alarm_cancel"));
 
+  EXPECT_CALL(*AlarmMock::Get(), AlarmSetOnMloop(_, _, _, _)).Times(1);
+  EXPECT_CALL(*AlarmMock::Get(), AlarmCancel(_)).Times(1);
   VolumeControl::Get()->SetVolume(test_address, 0x10);
-  Mock::VerifyAndClearExpectations(&gatt_queue);
 
-  ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
-  ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
+  Mock::VerifyAndClearExpectations(&gatt_queue);
+  Mock::VerifyAndClearExpectations(AlarmMock::Get());
 }
 
 TEST_F(VolumeControlValueSetTest,
@@ -1276,19 +1323,40 @@ TEST_F(VolumeControlValueSetTest,
             /* Do nothing */
           }));
 
-  ASSERT_EQ(0, get_func_call_count("alarm_set_on_mloop"));
-  ASSERT_EQ(0, get_func_call_count("alarm_cancel"));
+  EXPECT_CALL(*AlarmMock::Get(), AlarmSetOnMloop(_, _, _, _)).Times(0);
+
+  alarm_callback_t active_alarm_cb = nullptr;
+  EXPECT_CALL(*AlarmMock::Get(), AlarmSetOnMloop(_, _, _, _))
+      .WillOnce(Invoke([&](alarm_t* alarm, uint64_t interval_ms,
+                           alarm_callback_t cb, void* data) {
+        if (alarm) {
+          alarm->on_main_loop = true;
+          alarm->cb = cb;
+          active_alarm_cb = cb;
+        }
+      }));
+  ON_CALL(*AlarmMock::Get(), AlarmCancel(_))
+      .WillByDefault(Invoke([&](alarm_t* alarm) {
+        if (alarm) {
+          alarm->cb = nullptr;
+          alarm->on_main_loop = false;
+          active_alarm_cb = nullptr;
+        }
+      }));
 
   VolumeControl::Get()->SetVolume(test_address, 0x10);
-  Mock::VerifyAndClearExpectations(&gatt_queue);
 
+  Mock::VerifyAndClearExpectations(&gatt_queue);
+  Mock::VerifyAndClearExpectations(AlarmMock::Get());
+  ASSERT_NE(active_alarm_cb, nullptr);
+
+  EXPECT_CALL(*AlarmMock::Get(), AlarmCancel(_)).Times(1);
   EXPECT_CALL(*callbacks,
               OnConnectionState(ConnectionState::DISCONNECTED, test_address));
   GetDisconnectedEvent(test_address, conn_id);
-  Mock::VerifyAndClearExpectations(callbacks.get());
 
-  ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
-  ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
+  ASSERT_EQ(active_alarm_cb, nullptr);
+  Mock::VerifyAndClearExpectations(callbacks.get());
 }
 
 TEST_F(VolumeControlValueSetTest, test_set_volume) {
