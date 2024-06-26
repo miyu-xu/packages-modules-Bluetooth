@@ -210,7 +210,6 @@ init_flags!(
         classic_discovery_only,
         gatt_robust_caching_server,
         hci_adapter: i32,
-        hfp_dynamic_version = true,
         irk_rotation,
         leaudio_targeted_announcement_reconnection_mode = true,
         pbap_pse_dynamic_version_upgrade = false,
