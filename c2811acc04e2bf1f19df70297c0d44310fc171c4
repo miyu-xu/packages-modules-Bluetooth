@@ -22,6 +22,30 @@
       },
       "revId": "c2811acc04e2bf1f19df70297c0d44310fc171c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7728696b_35a1d7f8",
+        "filename": "system/stack/rnr/remote_name_request.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-26T17:02:54Z",
+      "side": 1,
+      "message": "I\u0027m leaving a history of continuity for future code searches on this(these) global symbol(s).\n\nAt some point once all the RNR global symbols have been aggregated here I will rename them.\n\nMy plan was to (eventually) insert them within a namespace also for global search continuity, also in a separate patch.\n\ne.g.\n```\nbluetooth::rnr::BTM_SecAddRmtNameNotifyCallback()\n```\n\nLet me know if you think maintaining naming continuity in this code search history is worth this or not, otherwise I\u0027m happy to rename them:\n\n```\n::RNR_AddRemoteNameCallback(...)\n```\n\nor\n\n```\nbluetooth::rnr::AddRemoteNameCallback(...)\n```\n\n\nbut I\u0027m concerned the discontinuity will evade future code spelunkers, especially done piecemeal versus in a single CL.",
+      "parentUuid": "695ba3e7_9c32e0be",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 4
+      },
+      "revId": "c2811acc04e2bf1f19df70297c0d44310fc171c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
