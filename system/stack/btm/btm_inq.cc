@@ -47,7 +47,6 @@
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
-#include "main/shim/shim.h"
 #include "neighbor_inquiry.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
@@ -527,15 +526,10 @@ uint16_t BTM_IsInquiryActive(void) {
  *
  ******************************************************************************/
 static void BTM_CancelLeScan() {
-  if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-    log::assert_that(get_btm_client_interface().local.BTM_IsDeviceUp(),
-                     "assert failed: BTM_IsDeviceUp()");
-    if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_GENERAL_INQUIRY) != 0)
-      btm_ble_stop_inquiry();
-  } else {
-    log::info(
-        "Unable to cancel le scan as `is_classic_discovery_only_enabled` is "
-        "true");
+  log::assert_that(get_btm_client_interface().local.BTM_IsDeviceUp(),
+                   "assert failed: BTM_IsDeviceUp()");
+  if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_GENERAL_INQUIRY) != 0) {
+    btm_ble_stop_inquiry();
   }
 }
 
@@ -606,14 +600,6 @@ void BTM_CancelInquiry(void) {
   }
 }
 
-static void btm_classic_inquiry_timeout(void* /* data */) {
-  // When the Inquiry Complete event is received, the classic inquiry
-  // will be marked as completed. Therefore, we only need to mark
-  // the BLE inquiry as completed here to stop processing BLE results
-  // as inquiry results.
-  btm_process_inq_complete(HCI_SUCCESS, BTM_BLE_GENERAL_INQUIRY);
-}
-
 /*******************************************************************************
  *
  * Function         BTM_StartLeScan
@@ -623,22 +609,16 @@ static void btm_classic_inquiry_timeout(void* /* data */) {
  *
  * Returns          tBTM_STATUS
  *                  BTM_CMD_STARTED if le scan successfully initiated
- *                  BTM_WRONG_MODE if controller does not support ble or the
- *                                 is_classic_discovery_only_enabled flag is set
+ *                  BTM_WRONG_MODE if controller does not support ble
  *
  ******************************************************************************/
 static tBTM_STATUS BTM_StartLeScan() {
-  if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-    if (shim::GetController()->SupportsBle()) {
-      btm_ble_start_inquiry(btm_cb.btm_inq_vars.inqparms.duration);
-      return BTM_CMD_STARTED;
-    } else {
-      log::warn("Trying to do LE scan on a non-LE adapter");
-      btm_cb.btm_inq_vars.inqparms.mode &= ~BTM_BLE_GENERAL_INQUIRY;
-    }
+  if (shim::GetController()->SupportsBle()) {
+    btm_ble_start_inquiry(btm_cb.btm_inq_vars.inqparms.duration);
+    return BTM_CMD_STARTED;
   } else {
-    log::info(
-        "init_flag: Skip le scan as classic inquiry only flag is set enabled");
+    log::warn("Trying to do LE scan on a non-LE adapter");
+    btm_cb.btm_inq_vars.inqparms.mode &= ~BTM_BLE_GENERAL_INQUIRY;
   }
   return BTM_WRONG_MODE;
 }
@@ -790,16 +770,6 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
                         bluetooth::hci::ErrorCodeText(status));
             }
           }));
-
-  // If we are only doing classic discovery, we should also set a timeout for
-  // the inquiry if a duration is set.
-  if (bluetooth::shim::is_classic_discovery_only_enabled() &&
-      btm_cb.btm_inq_vars.inqparms.duration != 0) {
-    /* start inquiry timer */
-    uint64_t duration_ms = btm_cb.btm_inq_vars.inqparms.duration * 1280;
-    alarm_set_on_mloop(btm_cb.btm_inq_vars.classic_inquiry_timer, duration_ms,
-                       btm_classic_inquiry_timeout, NULL);
-  }
 
   return BTM_CMD_STARTED;
 }

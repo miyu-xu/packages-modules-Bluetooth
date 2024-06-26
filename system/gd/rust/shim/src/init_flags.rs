@@ -11,8 +11,6 @@ mod ffi {
         fn set_all_for_testing();
 
         fn dump() -> Vec<InitFlagWithValue>;
-
-        fn classic_discovery_only_is_enabled() -> bool;
     }
 }
 
