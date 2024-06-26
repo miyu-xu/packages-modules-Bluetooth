@@ -56,14 +56,20 @@ public final class BluetoothManager {
 
     /** @hide */
     public BluetoothManager(Context context) {
+        if (com.android.bluetooth.Flags.overrideContextToSpecifyDeviceId()) {
+            // Pin the context DeviceId prevent the associated attribution source to be obsolete
+            // TODO: b/343739429 -- pass the context to BluetoothAdapter constructor instead
+            mContext = context.createDeviceContext(Context.DEVICE_ID_DEFAULT);
+        } else {
+            mContext = context;
+        }
         mAdapter = BluetoothAdapter.createAdapter(context.getAttributionSource());
-        mContext = context;
     }
 
     /**
-     * Get the BLUETOOTH Adapter for this device.
+     * Get the BluetoothAdapter for this device.
      *
-     * @return the BLUETOOTH Adapter
+     * @return the BluetoothAdapter
      */
     @RequiresNoPermission
     public BluetoothAdapter getAdapter() {
