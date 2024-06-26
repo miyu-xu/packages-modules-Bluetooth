@@ -16,6 +16,24 @@
       "message": "This is the new style, to drop the prefix `log::` ?",
       "revId": "f5075a7e8f80ec83caa594dff75550d2373c0270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35fa8dee_4a06dcd6",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-26T22:14:13Z",
+      "side": 1,
+      "message": "There is a discussion in the chat about addressing the log vs namespace inclusion",
+      "parentUuid": "3c060cf4_07aa97dc",
+      "revId": "f5075a7e8f80ec83caa594dff75550d2373c0270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
