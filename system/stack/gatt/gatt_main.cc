@@ -269,7 +269,7 @@ bool gatt_disconnect(tGATT_TCB* p_tcb) {
       }
       gatt_set_ch_state(p_tcb, GATT_CH_CLOSING);
     } else {
-      if (bluetooth::common::init_flags::use_unified_connection_manager_is_enabled()) {
+      if (com::android::bluetooth::flags::unified_connection_manager()) {
         // TODO(aryarahul): this might not be necessary now that the connection
         // manager handles GATT client closure correctly in GATT_Deregister
         bluetooth::connection::GetConnectionManager().stop_all_connections_to_device(
@@ -918,7 +918,7 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
   uint16_t conn_id;
 
   std::set<tGATT_IF> apps = {};
-  if (bluetooth::common::init_flags::use_unified_connection_manager_is_enabled()) {
+  if (com::android::bluetooth::flags::unified_connection_manager()) {
     // TODO(aryarahul): this should be done via callbacks passed into the
     // connection manager
     apps = {};
@@ -953,7 +953,7 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
   }
 
   /* Remove the direct connection */
-  if (!bluetooth::common::init_flags::use_unified_connection_manager_is_enabled()) {
+  if (!com::android::bluetooth::flags::unified_connection_manager()) {
     connection_manager::on_connection_complete(p_tcb->peer_bda);
   }
 
