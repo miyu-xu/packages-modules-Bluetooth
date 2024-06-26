@@ -53,8 +53,10 @@ class L2capInterface {
                                 tL2CAP_LE_CFG_INFO* p_cfg) = 0;
   virtual bool ReconfigCreditBasedConnsReq(const RawAddress& bd_addr, std::vector<uint16_t> &lcids,
                                 tL2CAP_LE_CFG_INFO* peer_cfg) = 0;
-  virtual uint16_t LeCreditDefault() = 0;
-  virtual uint16_t LeCreditThreshold() = 0;
+
+  virtual tL2CAP_LE_CFG_INFO L2CA_CreateLeCfgInfo(uint16_t maximum_transfer_unit,
+                                                  uint16_t maximum_packet_size,
+                                                  uint8_t number_of_channels) = 0;
   virtual ~L2capInterface() = default;
 };
 
@@ -90,6 +92,9 @@ class MockL2capInterface : public L2capInterface {
                bool(const RawAddress& p_bd_addr, std::vector<uint16_t> &lcids, tL2CAP_LE_CFG_INFO* peer_cfg));
   MOCK_METHOD(uint16_t, LeCreditDefault, ());
   MOCK_METHOD(uint16_t, LeCreditThreshold, ());
+  MOCK_METHOD(tL2CAP_LE_CFG_INFO, L2CA_CreateLeCfgInfo,
+              (uint16_t maximum_transfer_unit, uint16_t maximum_packet_size,
+               uint8_t number_of_channels));
 };
 
 /**

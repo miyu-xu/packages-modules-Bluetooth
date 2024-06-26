@@ -101,8 +101,8 @@ bool L2CA_ReconfigCreditBasedConnsReq(const RawAddress& bd_addr, std::vector<uin
                                       tL2CAP_LE_CFG_INFO* peer_cfg) {
   return l2cap_interface->ReconfigCreditBasedConnsReq(bd_addr, lcids, peer_cfg);
 }
-uint16_t L2CA_LeCreditDefault() { return l2cap_interface->LeCreditDefault(); }
-
-uint16_t L2CA_LeCreditThreshold() {
-  return l2cap_interface->LeCreditThreshold();
+tL2CAP_LE_CFG_INFO L2CA_CreateLeCfgInfo(uint16_t maximum_transfer_unit,
+                                        uint16_t maximum_packet_size, uint8_t number_of_channels) {
+  return l2cap_interface->L2CA_CreateLeCfgInfo(maximum_transfer_unit, maximum_packet_size,
+                                               number_of_channels);
 }
