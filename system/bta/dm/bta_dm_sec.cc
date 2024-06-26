@@ -39,6 +39,21 @@
 
 using namespace bluetooth;
 
+namespace {
+
+static uint32_t devclass2uint(const DEV_CLASS dev_class) {
+  uint32_t cod = 0;
+
+  if (dev_class != kDevClassEmpty) {
+    /* if COD is 0, irrespective of the device type set it to Unclassified
+     * device */
+    cod = (dev_class[2]) | (dev_class[1] << 8) | (dev_class[0] << 16);
+  }
+  return cod;
+}
+
+} // namespace
+
 static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data);
 static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
                                     tBTM_LE_EVT_DATA* p_data);
@@ -212,6 +227,8 @@ static void bta_dm_pinname_cback(const tBTM_REMOTE_DEV_NAME* p_data) {
     /* Retrieved saved device class and bd_addr */
     sec_event.cfm_req.bd_addr = bta_dm_sec_cb.pin_bd_addr;
     sec_event.cfm_req.dev_class = bta_dm_sec_cb.pin_dev_class;
+    log::info("CoD: sec_event.cfm_req.dev_class = 0x{:06x}",
+              devclass2uint(sec_event.cfm_req.dev_class));
 
     if (p_result && p_result->status == BTM_SUCCESS) {
       bd_name_copy(sec_event.cfm_req.bd_name, p_result->remote_bd_name);
@@ -416,6 +433,7 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
 
     case BTM_SP_CFM_REQ_EVT:
       pin_evt = BTA_DM_SP_CFM_REQ_EVT;
+      // no CoD ?
       bta_dm_sec_cb.just_works = sec_event.cfm_req.just_works =
           p_data->cfm_req.just_works;
       sec_event.cfm_req.loc_auth_req = p_data->cfm_req.loc_auth_req;
@@ -439,6 +457,8 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
            copy these values into key_notif from cfm_req */
         sec_event.key_notif.bd_addr = p_data->cfm_req.bd_addr;
         sec_event.key_notif.dev_class = p_data->cfm_req.dev_class;
+        log::info("CoD: sec_event.key_notif.dev_class = 0x{:06x}",
+                  devclass2uint(sec_event.key_notif.dev_class));
         bd_name_copy(sec_event.key_notif.bd_name, p_data->cfm_req.bd_name);
         /* Due to the switch case falling through below to BTM_SP_KEY_NOTIF_EVT,
            call remote name request using values from cfm_req */
@@ -449,8 +469,9 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
           bta_dm_sec_cb.loc_io_caps = sec_event.cfm_req.loc_io_caps;
           bta_dm_sec_cb.rmt_auth_req = sec_event.cfm_req.rmt_auth_req;
           bta_dm_sec_cb.loc_auth_req = sec_event.cfm_req.loc_auth_req;
-
           bta_dm_sec_cb.pin_dev_class = p_data->cfm_req.dev_class;
+          log::info("CoD: bta_dm_sec_cb.pin_dev_class = 0x{:06x}",
+                    devclass2uint(bta_dm_sec_cb.pin_dev_class));
           {
             const tBTM_STATUS btm_status =
                 get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
