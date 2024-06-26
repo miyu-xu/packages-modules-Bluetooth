@@ -209,7 +209,6 @@ init_flags!(
     flags: {
         classic_discovery_only,
         hci_adapter: i32,
-        subrating = true,
         sdp_return_classic_services_when_le_discovery_fails = true,
         use_rsi_from_cached_inqiry_results = false,
         att_mtu_default: i32 = 517,
