@@ -33,6 +33,24 @@
       "message": "@abhishekgadewar@meta.com\n\nThere are two data structures that hold discovery results.  btm_inq_db_find searches through the last 40 devices of each type (classic or LE), and btm_inq_find_bdaddr searches through the devices discovered during the current inquiry session.  Your change makes it so devices will be reported more than once per inquiry session if they are forced out of the inquiry database by newer results.  Is that what you intended?\n\nI\u0027m thinking of increasing the size of the inquiry database and changing the session database to hold RSSI, so I\u0027m interested in your thoughts.",
       "revId": "123dd6b8dea5a8157e0483a1ef5a747f5e7cad75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "065c39fc_4bd269a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2034140
+      },
+      "writtenOn": "2024-06-26T17:54:55Z",
+      "side": 1,
+      "message": "Yes, you are correct, that is the intention. \n\nFirst, we increased the size of the btm inquiry database from 80 to 99, reserving 66 slots for EDR and 33 for BLE. \nDespite this increase, we were still able to reproduce the issue where AirPods were not included in the inquiry results in the app.  To address this, we added the p_i null check (changes submitted) and then we were not able to reproduce even once.",
+      "parentUuid": "d8725d21_14a8b606",
+      "revId": "123dd6b8dea5a8157e0483a1ef5a747f5e7cad75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
