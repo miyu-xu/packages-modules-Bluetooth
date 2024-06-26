@@ -1,0 +1,126 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4b5b091_0f3324ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T00:04:29Z",
+      "side": 1,
+      "message": "If you don\u0027t make it an API, this change can be much smaller.  Users of the HCI layer should never have to know these numbers.\n\nCan you implement it within the HCI layer?",
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8cb19cf_12cb28ca",
+        "filename": "system/gd/hci/fuzz/fuzz_hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T00:04:29Z",
+      "side": 1,
+      "message": "No need here.",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "27cbeaa6_54e07575",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/fuzz/fuzz_hci_layer.cc",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 220,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15542eb4_3cbe9695",
+        "filename": "system/gd/hci/fuzz/fuzz_hci_layer.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T00:04:29Z",
+      "side": 1,
+      "message": "I don\u0027t think this needs to be an API.",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "85c0dc04_41a072c0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/fuzz/fuzz_hci_layer.h",
+              "range": {
+                "startLine": 148,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55073e8_5ae1a0f5",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T00:04:29Z",
+      "side": 1,
+      "message": "Can this be a local function, or a direct call to get the system property?",
+      "range": {
+        "startLine": 330,
+        "startChar": 78,
+        "endLine": 330,
+        "endChar": 95
+      },
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
