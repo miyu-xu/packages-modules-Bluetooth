@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5001bec1_4507b2d1",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-26T09:03:51Z",
+      "side": 1,
+      "message": "Ok, I\u0027ve checked it again... I\u0027ve mixed device vs group context for this...",
+      "parentUuid": "a07d55ed_5098e8e6",
+      "revId": "2354a5ede33830869ac6102f4105e67769f6ce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "819d6dad_5b8544cc",
