@@ -166,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ccd86c6_d4b446e2",
+        "filename": "system/gd/hci/fuzz/fuzz_hci_layer.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-26T13:36:31Z",
+      "side": 1,
+      "message": "Thanks for thinking about testability.",
+      "parentUuid": "715a7edb_488d31ea",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 69
+      },
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c55073e8_5ae1a0f5",
