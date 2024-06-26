@@ -203,7 +203,7 @@ pub fn set_all_for_testing() {
 init_flags!(
     name: InitFlags
     flags: {
-        classic_discovery_only,
+        unused_flag_to_make_this_not_complain,
     }
     extra_parsed_flags: { }
 );
