@@ -1782,16 +1782,7 @@ void btif_on_gatt_results(RawAddress bd_addr, BD_NAME bd_name,
     }
 
     if (lea_supported) {
-      if (bluetooth::common::init_flags::
-                  sdp_return_classic_services_when_le_discovery_fails_is_enabled()) {
-        log::info("Will return Classic SDP results, if done, to unblock bonding");
-      } else {
-        // LEA device w/o this flag
-        // TODO: we might want to remove bond or do some action on
-        // half-discovered device
-        log::warn("No GATT service found for the LE Audio device {}", bd_addr);
-        return;
-      }
+      log::info("Will return Classic SDP results, if done, to unblock bonding");
     } else {
       log::info("LE audio not supported, no need to report any UUIDs");
       return;
