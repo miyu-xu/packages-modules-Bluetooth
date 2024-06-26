@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81239c99_a56e1f77",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-26T18:55:38Z",
+      "side": 1,
+      "message": "I have kept it closer to the AdapterService, as there is no permission or additional check performed here",
+      "parentUuid": "440d7d1b_549663d0",
+      "range": {
+        "startLine": 425,
+        "startChar": 16,
+        "endLine": 425,
+        "endChar": 57
+      },
+      "revId": "c5cbdb7728ad50ee96e2f4a97ddeae88ff7a737c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7b87c03_2230d1fc",
@@ -65,6 +89,24 @@
           ]
         }
       ],
+      "revId": "c5cbdb7728ad50ee96e2f4a97ddeae88ff7a737c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "651f2cc7_9551a65e",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-26T18:55:38Z",
+      "side": 1,
+      "message": "It looks like there are a bunch of wrong stuff here.\n\nOpening a bug b349632763 to track all of that",
+      "parentUuid": "e7b87c03_2230d1fc",
       "revId": "c5cbdb7728ad50ee96e2f4a97ddeae88ff7a737c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
