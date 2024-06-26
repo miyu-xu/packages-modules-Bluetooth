@@ -1089,6 +1089,9 @@ public:
   void handle_register_le_acceptlist_callbacks(LeAcceptlistCallbacks* callbacks) {
     log::assert_that(le_acceptlist_callbacks_ == nullptr,
                      "assert failed: le_acceptlist_callbacks_ == nullptr");
+    if (!com::android::bluetooth::flags::unified_connection_manager()) {
+      return;
+    }
     le_acceptlist_callbacks_ = callbacks;
   }
 
@@ -1103,6 +1106,9 @@ public:
 
   void handle_unregister_le_acceptlist_callbacks(LeAcceptlistCallbacks* callbacks,
                                                  std::promise<void> promise) {
+    if (!com::android::bluetooth::flags::unified_connection_manager()) {
+      return;
+    }
     log::assert_that(le_acceptlist_callbacks_ == callbacks,
                      "Registered le callback entity is different then unregister request");
     le_acceptlist_callbacks_ = nullptr;
