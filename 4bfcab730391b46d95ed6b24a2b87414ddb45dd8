@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "715a7edb_488d31ea",
+        "filename": "system/gd/hci/fuzz/fuzz_hci_layer.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-06-26T06:08:45Z",
+      "side": 1,
+      "message": "My original idea is to make these functions more testable, but it\u0027s fine if we want it smaller.",
+      "parentUuid": "15542eb4_3cbe9695",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 69
+      },
+      "revId": "4bfcab730391b46d95ed6b24a2b87414ddb45dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c55073e8_5ae1a0f5",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 5
