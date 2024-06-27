@@ -23,9 +23,9 @@
 
 #include <map>
 #include <utility>
+#include <vector>
 
 #include "common/bind.h"
-#include "common/init_flags.h"
 #include "common/stop_watch.h"
 #include "hal/hci_hal.h"
 #include "hci/class_of_device.h"
@@ -173,7 +173,8 @@ struct HciLayer::impl {
   }
 
   template <typename TResponse>
-  void enqueue_command(unique_ptr<CommandBuilder> command, ContextualOnceCallback<void(TResponse)> on_response) {
+  void enqueue_command(unique_ptr<CommandBuilder> command,
+                       ContextualOnceCallback<void(TResponse)> on_response) {
     command_queue_.emplace_back(std::move(command), std::move(on_response));
     send_next_command();
   }
@@ -213,7 +214,8 @@ struct HciLayer::impl {
         "Unexpected {} event with OpCode {}",
         logging_id,
         OpCodeText(op_code));
-    if (waiting_command_ == OpCode::CONTROLLER_DEBUG_INFO && op_code != OpCode::CONTROLLER_DEBUG_INFO) {
+    if (waiting_command_ == OpCode::CONTROLLER_DEBUG_INFO &&
+        op_code != OpCode::CONTROLLER_DEBUG_INFO) {
       log::error("Discarding event that came after timeout {}", OpCodeText(op_code));
       common::StopWatch::DumpStopWatchLog();
       return;
@@ -294,7 +296,8 @@ struct HciLayer::impl {
     command_credits_ = 1;
     waiting_command_ = OpCode::NONE;
     // Ignore the response, since we don't know what might come back.
-    enqueue_command(ControllerDebugInfoBuilder::Create(), module_.GetHandler()->BindOnce([](CommandCompleteView) {}));
+    enqueue_command(ControllerDebugInfoBuilder::Create(),
+                    module_.GetHandler()->BindOnce([](CommandCompleteView) {}));
     // Don't time out for this one;
     if (hci_timeout_alarm_ != nullptr) {
       hci_timeout_alarm_->Cancel();
@@ -331,12 +334,14 @@ struct HciLayer::impl {
     power_telemetry::GetInstance().LogHciCmdDetail();
     command_queue_.front().command_view = std::make_unique<CommandView>(std::move(cmd_view));
     log_link_layer_connection_command(command_queue_.front().command_view);
-    log_classic_pairing_command_status(command_queue_.front().command_view, ErrorCode::STATUS_UNKNOWN);
+    log_classic_pairing_command_status(command_queue_.front().command_view,
+                                       ErrorCode::STATUS_UNKNOWN);
     waiting_command_ = op_code;
     command_credits_ = 0;  // Only allow one outstanding command
     if (hci_timeout_alarm_ != nullptr) {
       hci_timeout_alarm_->Schedule(
-          BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code), getHciTimeoutMs());
+              BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code),
+              getHciTimeoutMs());
     } else {
       log::warn("{} sent without an hci-timeout timer", OpCodeText(op_code));
     }
@@ -443,7 +448,8 @@ struct HciLayer::impl {
       std::unique_ptr<CommandView> no_waiting_command{nullptr};
       log_hci_event(no_waiting_command, event, module_.GetDependency<storage::StorageModule>());
     } else {
-      log_hci_event(command_queue_.front().command_view, event, module_.GetDependency<storage::StorageModule>());
+      log_hci_event(command_queue_.front().command_view, event,
+                    module_.GetDependency<storage::StorageModule>());
     }
     power_telemetry::GetInstance().LogHciEvtDetail();
     EventCode event_code = event.GetEventCode();
@@ -551,10 +557,11 @@ struct HciLayer::impl {
 
 // All functions here are running on the HAL thread
 struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
-  hal_callbacks(HciLayer& module) : module_(module) {}
+  explicit hal_callbacks(HciLayer& module) : module_(module) {}
 
   void hciEventReceived(hal::HciPacket event_bytes) override {
-    auto packet = packet::PacketView<packet::kLittleEndian>(std::make_shared<std::vector<uint8_t>>(event_bytes));
+    auto packet = packet::PacketView<packet::kLittleEndian>(
+            std::make_shared<std::vector<uint8_t>>(event_bytes));
     EventView event = EventView::Create(packet);
     module_.CallOn(module_.impl_, &impl::on_hci_event, std::move(event));
   }
@@ -599,8 +606,8 @@ common::BidiQueueEnd<IsoBuilder, IsoView>* HciLayer::GetIsoQueueEnd() {
   return impl_->iso_queue_.GetUpEnd();
 }
 
-void HciLayer::EnqueueCommand(
-    unique_ptr<CommandBuilder> command, ContextualOnceCallback<void(CommandCompleteView)> on_complete) {
+void HciLayer::EnqueueCommand(unique_ptr<CommandBuilder> command,
+                              ContextualOnceCallback<void(CommandCompleteView)> on_complete) {
   CallOn(
       impl_,
       &impl::enqueue_command<CommandCompleteView>,
@@ -610,8 +617,8 @@ void HciLayer::EnqueueCommand(
 
 void HciLayer::EnqueueCommand(
     unique_ptr<CommandBuilder> command, ContextualOnceCallback<void(CommandStatusView)> on_status) {
-  CallOn(
-      impl_, &impl::enqueue_command<CommandStatusView>, std::move(command), std::move(on_status));
+  CallOn(impl_, &impl::enqueue_command<CommandStatusView>, std::move(command),
+         std::move(on_status));
 }
 
 void HciLayer::RegisterEventHandler(EventCode event, ContextualCallback<void(EventView)> handler) {
@@ -622,7 +629,8 @@ void HciLayer::UnregisterEventHandler(EventCode event) {
   CallOn(impl_, &impl::unregister_event, event);
 }
 
-void HciLayer::RegisterLeEventHandler(SubeventCode event, ContextualCallback<void(LeMetaEventView)> handler) {
+void HciLayer::RegisterLeEventHandler(SubeventCode event,
+                                      ContextualCallback<void(LeMetaEventView)> handler) {
   CallOn(impl_, &impl::register_le_event, event, handler);
 }
 
@@ -703,8 +711,8 @@ void HciLayer::on_read_remote_version_complete(EventView event_view) {
       view.GetSubVersion());
 }
 
-void HciLayer::ReadRemoteVersion(
-    hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
+void HciLayer::ReadRemoteVersion(hci::ErrorCode hci_status, uint16_t handle, uint8_t version,
+                                 uint16_t manufacturer_name, uint16_t sub_version) {
   std::unique_lock<std::mutex> lock(callback_handlers_guard_);
   for (auto callback : read_remote_version_handlers_) {
     callback(hci_status, handle, version, manufacturer_name, sub_version);
@@ -745,11 +753,11 @@ void HciLayer::PutAclConnectionInterface() {
 }
 
 LeAclConnectionInterface* HciLayer::GetLeAclConnectionInterface(
-    ContextualCallback<void(LeMetaEventView)> event_handler,
-    ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
-    ContextualCallback<
-        void(hci::ErrorCode hci_status, uint16_t, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version)>
-        on_read_remote_version) {
+        ContextualCallback<void(LeMetaEventView)> event_handler,
+        ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
+        ContextualCallback<void(hci::ErrorCode hci_status, uint16_t, uint8_t version,
+                                uint16_t manufacturer_name, uint16_t sub_version)>
+                on_read_remote_version) {
   {
     std::unique_lock<std::mutex> lock(callback_handlers_guard_);
     disconnect_handlers_.push_back(on_disconnect);
@@ -779,35 +787,40 @@ void HciLayer::RegisterForScoConnectionRequests(
   on_sco_connection_request_ = on_sco_connection_request;
 }
 
-SecurityInterface* HciLayer::GetSecurityInterface(ContextualCallback<void(EventView)> event_handler) {
+SecurityInterface* HciLayer::GetSecurityInterface(
+        ContextualCallback<void(EventView)> event_handler) {
   for (const auto event : SecurityEvents) {
     RegisterEventHandler(event, event_handler);
   }
   return &security_interface;
 }
 
-LeSecurityInterface* HciLayer::GetLeSecurityInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
+LeSecurityInterface* HciLayer::GetLeSecurityInterface(
+        ContextualCallback<void(LeMetaEventView)> event_handler) {
   for (const auto subevent : LeSecurityEvents) {
     RegisterLeEventHandler(subevent, event_handler);
   }
   return &le_security_interface;
 }
 
-LeAdvertisingInterface* HciLayer::GetLeAdvertisingInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
+LeAdvertisingInterface* HciLayer::GetLeAdvertisingInterface(
+        ContextualCallback<void(LeMetaEventView)> event_handler) {
   for (const auto subevent : LeAdvertisingEvents) {
     RegisterLeEventHandler(subevent, event_handler);
   }
   return &le_advertising_interface;
 }
 
-LeScanningInterface* HciLayer::GetLeScanningInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
+LeScanningInterface* HciLayer::GetLeScanningInterface(
+        ContextualCallback<void(LeMetaEventView)> event_handler) {
   for (const auto subevent : LeScanningEvents) {
     RegisterLeEventHandler(subevent, event_handler);
   }
   return &le_scanning_interface;
 }
 
-LeIsoInterface* HciLayer::GetLeIsoInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
+LeIsoInterface* HciLayer::GetLeIsoInterface(
+        ContextualCallback<void(LeMetaEventView)> event_handler) {
   for (const auto subevent : LeIsoEvents) {
     RegisterLeEventHandler(subevent, event_handler);
   }
@@ -835,8 +848,10 @@ void HciLayer::Start() {
   hal_callbacks_ = new hal_callbacks(*this);
 
   Handler* handler = GetHandler();
-  impl_->acl_queue_.GetDownEnd()->RegisterDequeue(handler, BindOn(impl_, &impl::on_outbound_acl_ready));
-  impl_->sco_queue_.GetDownEnd()->RegisterDequeue(handler, BindOn(impl_, &impl::on_outbound_sco_ready));
+  impl_->acl_queue_.GetDownEnd()->RegisterDequeue(handler,
+                                                  BindOn(impl_, &impl::on_outbound_acl_ready));
+  impl_->sco_queue_.GetDownEnd()->RegisterDequeue(handler,
+                                                  BindOn(impl_, &impl::on_outbound_sco_ready));
   impl_->iso_queue_.GetDownEnd()->RegisterDequeue(
       handler, BindOn(impl_, &impl::on_outbound_iso_ready));
   StartWithNoHalDependencies(handler);
@@ -846,15 +861,16 @@ void HciLayer::Start() {
 
 // Initialize event handlers that don't depend on the HAL
 void HciLayer::StartWithNoHalDependencies(Handler* handler) {
-  RegisterEventHandler(EventCode::DISCONNECTION_COMPLETE, handler->BindOn(this, &HciLayer::on_disconnection_complete));
+  RegisterEventHandler(EventCode::DISCONNECTION_COMPLETE,
+                       handler->BindOn(this, &HciLayer::on_disconnection_complete));
   RegisterEventHandler(
       EventCode::READ_REMOTE_VERSION_INFORMATION_COMPLETE,
       handler->BindOn(this, &HciLayer::on_read_remote_version_complete));
   auto drop_packet = handler->BindOn(impl_, &impl::drop);
   RegisterEventHandler(EventCode::PAGE_SCAN_REPETITION_MODE_CHANGE, drop_packet);
   RegisterEventHandler(EventCode::MAX_SLOTS_CHANGE, drop_packet);
-  RegisterEventHandler(
-      EventCode::CONNECTION_REQUEST, handler->BindOn(this, &HciLayer::on_connection_request));
+  RegisterEventHandler(EventCode::CONNECTION_REQUEST,
+                       handler->BindOn(this, &HciLayer::on_connection_request));
 }
 
 void HciLayer::Stop() {
