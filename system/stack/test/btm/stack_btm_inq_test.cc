@@ -19,6 +19,7 @@
 #include <gtest/gtest.h>
 
 #include <future>
+#include <memory>
 
 #include "common/contextual_callback.h"
 #include "hci/address.h"
@@ -37,6 +38,7 @@
 
 extern tBTM_CB btm_cb;
 
+using bluetooth::common::BindOnce;
 using bluetooth::common::ContextualCallback;
 using bluetooth::common::ContextualOnceCallback;
 using bluetooth::hci::Address;
@@ -207,14 +209,21 @@ class BtmDeviceInquiryTest : public BtmInqTest {
 protected:
   void SetUp() override {
     BtmInqTest::SetUp();
-    main_thread_start_up();
     inquiry_callback_ptr = &callbacks_;
+    main_thread_start_up();
     bluetooth::hci::testing::mock_controller_ = &controller_;
     ON_CALL(controller_, SupportsBle()).WillByDefault(Return(true));
     bluetooth::hci::testing::mock_hci_layer_ = &hci_layer_;
 
-    // Start Inquiry
-    EXPECT_EQ(BTM_CMD_STARTED, BTM_StartInquiry(btm_inq_results_cb, btm_inq_cmpl_cb));
+    // silence warnings about log history
+    btm_cb.history_ = std::make_shared<TimestampedStringCircularBuffer>(10);
+
+    get_main()->Post(BindOnce([]() { btm_cb.btm_inq_vars.Init(); }));
+
+    // Start Inquiry (Synchronized with GetCommand)
+    get_main()->Post(BindOnce([]() {
+      EXPECT_EQ(BTM_CMD_STARTED, BTM_StartInquiry(btm_inq_results_cb, btm_inq_cmpl_cb));
+    }));
     auto view = hci_layer_.GetCommand(OpCode::INQUIRY);
     hci_layer_.IncomingEvent(
             InquiryStatusBuilder::Create(bluetooth::hci::ErrorCode::SUCCESS, kNumCommandPackets));
@@ -223,8 +232,7 @@ protected:
     std::promise<void> first_result_promise;
     auto first_result = first_result_promise.get_future();
     EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _))
-            .WillOnce([&first_result_promise]() { first_result_promise.set_value(); })
-            .RetiresOnSaturation();
+            .WillOnce([&first_result_promise]() { first_result_promise.set_value(); });
 
     InquiryResponse one_device(kAddress, bluetooth::hci::PageScanRepetitionMode::R0,
                                bluetooth::hci::ClassOfDevice(), 0x1234);
@@ -236,10 +244,22 @@ protected:
   void TearDown() override {
     BTM_CancelInquiry();
     inquiry_callback_ptr = nullptr;
+
+    // Synchronize with cleaning up.
+    std::promise<void> free_promise;
+    auto freed = free_promise.get_future();
+    get_main()->Post(BindOnce(
+            [](std::promise<void>* free_promise) {
+              btm_cb.btm_inq_vars.Free();
+              free_promise->set_value();
+            },
+            &free_promise));
+    EXPECT_EQ(std::future_status::ready, freed.wait_for(std::chrono::seconds(1)));
     main_thread_shut_down();
     BtmInqTest::TearDown();
   }
 
+  std::shared_ptr<TimestampedStringCircularBuffer> log_history_;
   NiceMock<bluetooth::hci::testing::MockControllerInterface> controller_;
   bluetooth::hci::HciLayerFake hci_layer_;
   ContextualCallback<void(EventView)> on_exteneded_inq_result_;
@@ -249,12 +269,14 @@ protected:
   MockBtmInquiryCallbacks callbacks_;
 };
 
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_setup_teardown) {}
+
 TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_result) {
   std::promise<void> one_result_promise;
   auto one_result = one_result_promise.get_future();
-  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _))
-          .WillOnce([&one_result_promise]() { one_result_promise.set_value(); })
-          .RetiresOnSaturation();
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).WillOnce([&one_result_promise]() {
+    one_result_promise.set_value();
+  });
 
   InquiryResponse one_device(kAddress2, bluetooth::hci::PageScanRepetitionMode::R0,
                              bluetooth::hci::ClassOfDevice(), 0x2345);
