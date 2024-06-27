@@ -22,6 +22,30 @@
       },
       "revId": "95ea56aecc0d040227bb2f700fbcef17196b9c54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abee66c3_e58cd5ee",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-27T06:03:58Z",
+      "side": 1,
+      "message": "Good suggestion. I had to make it a non-final due to the dependency on `mAdapterService` but I do agree it\u0027s better to have a single instance like this. Thank you!",
+      "parentUuid": "f4311404_68163050",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 70
+      },
+      "revId": "95ea56aecc0d040227bb2f700fbcef17196b9c54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
