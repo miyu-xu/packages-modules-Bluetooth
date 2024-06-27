@@ -53,6 +53,7 @@ class BtifConfigInterface {
   static bool RemoveProperty(const std::string& section,
                              const std::string& key);
   static void RemoveSection(const std::string& section);
+  static void RemoveSectionWithProperty(const std::string& property);
   static std::vector<std::string> GetPersistentDevices();
   static void ConvertEncryptOrDecryptKeyIfNeeded();
   static void Clear();
