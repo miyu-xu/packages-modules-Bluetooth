@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53013bd0_4804ab2c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-27T19:40:01Z",
+      "side": 1,
+      "message": "Checked logic in BTM_SetBleDataLength:\ntx_pdu_length never decreases, and tx_time is always BTM_BLE_DATA_TX_TIME_MAX when spec version \u003e\u003d 5.0.",
+      "range": {
+        "startLine": 359,
+        "startChar": 10,
+        "endLine": 360,
+        "endChar": 60
+      },
+      "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
