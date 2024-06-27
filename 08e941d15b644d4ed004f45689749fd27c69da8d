@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d2fa6ff_074a4554",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5914,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-27T21:39:04Z",
+      "side": 1,
+      "message": "This looks like a functional change. Can you please list a more accurate reason flag exemption (for example - minor timeout change)",
+      "range": {
+        "startLine": 5914,
+        "startChar": 65,
+        "endLine": 5914,
+        "endChar": 68
+      },
+      "revId": "08e941d15b644d4ed004f45689749fd27c69da8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
