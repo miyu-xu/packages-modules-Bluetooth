@@ -24,15 +24,10 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.RemoteException;
 import android.os.SystemClock;
-import android.os.UserHandle;
-import android.os.WorkSource;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.flags.Flags;
-import com.android.bluetooth.le_scan.AppScanStats;
-import com.android.bluetooth.le_scan.TransitionalScanHelper;
-import com.android.bluetooth.le_scan.TransitionalScanHelper.PendingIntentInfo;
 import com.android.internal.annotations.GuardedBy;
 
 import com.google.common.collect.EvictingQueue;
@@ -51,8 +46,10 @@ import java.util.function.Predicate;
 /**
  * Helper class that keeps track of registered GATT applications. This class manages application
  * callbacks and keeps track of GATT connections.
+ *
+ * @param <C> the type of the callback for map entries
  */
-public class ContextMap<C, T> {
+public class ContextMap<C> {
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "ContextMap";
 
     /** Connection class helps map connection IDs to device addresses. */
@@ -81,14 +78,8 @@ public class ContextMap<C, T> {
         /** The package name of the application */
         public String name;
 
-        /** Statistics for this app */
-        public AppScanStats appScanStats;
-
         /** Application callbacks */
         public C callback;
-
-        /** Context information */
-        public T info;
 
         /** Death recipient */
         private IBinder.DeathRecipient mDeathRecipient;
@@ -96,41 +87,14 @@ public class ContextMap<C, T> {
         /** Flag to signal that transport is congested */
         public Boolean isCongested = false;
 
-        /** Whether the calling app has location permission */
-        public boolean hasLocationPermission;
-
-        /** Whether the calling app has bluetooth privileged permission */
-        public boolean hasBluetoothPrivilegedPermission;
-
-        /** The user handle of the app that started the scan */
-        public UserHandle mUserHandle;
-
-        /** Whether the calling app has the network settings permission */
-        public boolean mHasNetworkSettingsPermission;
-
-        /** Whether the calling app has the network setup wizard permission */
-        public boolean mHasNetworkSetupWizardPermission;
-
-        /** Whether the calling app has the network setup wizard permission */
-        public boolean mHasScanWithoutLocationPermission;
-
-        /** Whether the calling app has disavowed the use of bluetooth for location */
-        public boolean mHasDisavowedLocation;
-
-        public boolean mEligibleForSanitizedExposureNotification;
-
-        public List<String> mAssociatedDevices;
-
         /** Internal callback info queue, waiting to be send on congestion clear */
         private List<CallbackInfo> mCongestionQueue = new ArrayList<CallbackInfo>();
 
         /** Creates a new app context. */
-        App(UUID uuid, C callback, T info, String name, AppScanStats appScanStats) {
+        protected App(UUID uuid, C callback, String name) {
             this.uuid = uuid;
             this.callback = callback;
-            this.info = info;
             this.name = name;
-            this.appScanStats = appScanStats;
         }
 
         /** Creates a new app context for advertiser. */
@@ -185,9 +149,6 @@ public class ContextMap<C, T> {
     @GuardedBy("mAppsLock")
     private List<App> mApps = new ArrayList<App>();
 
-    /** Internal map to keep track of logging information by app name */
-    private HashMap<Integer, AppScanStats> mAppScanStats = new HashMap<Integer, AppScanStats>();
-
     /** Internal map to keep track of logging information by advertise id */
     private final Map<Integer, AppAdvertiseStats> mAppAdvertiseStats =
             new HashMap<Integer, AppAdvertiseStats>();
@@ -203,37 +164,16 @@ public class ContextMap<C, T> {
     private final Object mConnectionsLock = new Object();
 
     /** Add an entry to the application context list. */
-    public App add(
-            UUID uuid,
-            WorkSource workSource,
-            C callback,
-            PendingIntentInfo piInfo,
-            Context context,
-            TransitionalScanHelper scanHelper) {
-        int appUid;
-        String appName = null;
-        if (piInfo != null) {
-            appUid = piInfo.callingUid;
-            appName = piInfo.callingPackage;
-        } else {
-            appUid = Binder.getCallingUid();
-            appName = context.getPackageManager().getNameForUid(appUid);
-        }
+    public App add(UUID uuid, C callback, Context context) {
+        int appUid = Binder.getCallingUid();
+        String appName = context.getPackageManager().getNameForUid(appUid);
         if (appName == null) {
             // Assign an app name if one isn't found
             appName = "Unknown App (UID: " + appUid + ")";
         }
         synchronized (mAppsLock) {
-            // TODO(b/327849650): AppScanStats appears to be only needed for the ScannerMap.
-            //                    Consider refactoring this.
-            AppScanStats appScanStats = mAppScanStats.get(appUid);
-            if (appScanStats == null) {
-                appScanStats = new AppScanStats(appName, workSource, this, context, scanHelper);
-                mAppScanStats.put(appUid, appScanStats);
-            }
-            App app = new App(uuid, callback, (T) piInfo, appName, appScanStats);
+            App app = new App(uuid, callback, appName);
             mApps.add(app);
-            appScanStats.isRegistered = true;
             return app;
         }
     }
@@ -252,7 +192,7 @@ public class ContextMap<C, T> {
                 if (!mAppAdvertiseStats.containsKey(id)) {
                     AppAdvertiseStats appAdvertiseStats =
                             BluetoothMethodProxy.getInstance()
-                                    .createAppAdvertiseStats(appUid, id, appName, this, service);
+                                    .createAppAdvertiseStats(id, appName, this, service);
                     mAppAdvertiseStats.put(id, appAdvertiseStats);
                 }
             }
@@ -265,6 +205,13 @@ public class ContextMap<C, T> {
         }
     }
 
+    protected App add(App app) {
+        synchronized (mAppsLock) {
+            mApps.add(app);
+        }
+        return app;
+    }
+
     /** Remove the context for a given UUID */
     public void remove(UUID uuid) {
         synchronized (mAppsLock) {
@@ -273,7 +220,6 @@ public class ContextMap<C, T> {
                 App entry = i.next();
                 if (entry.uuid.equals(uuid)) {
                     entry.unlinkToDeath();
-                    entry.appScanStats.isRegistered = false;
                     i.remove();
                     break;
                 }
@@ -291,7 +237,6 @@ public class ContextMap<C, T> {
                 if (entry.id == id) {
                     find = true;
                     entry.unlinkToDeath();
-                    entry.appScanStats.isRegistered = false;
                     i.remove();
                     break;
                 }
@@ -347,7 +292,7 @@ public class ContextMap<C, T> {
         }
     }
 
-    private App getAppByPredicate(Predicate<App> predicate) {
+    protected App getAppByPredicate(Predicate<App> predicate) {
         synchronized (mAppsLock) {
             // Intentionally using a for-loop over a stream for performance.
             for (App app : mApps) {
@@ -375,38 +320,6 @@ public class ContextMap<C, T> {
             Log.e(TAG, "Context not found for UUID " + uuid);
         }
         return app;
-    }
-
-    /** Get an application context by the calling Apps name. */
-    public App getByName(String name) {
-        App app = getAppByPredicate(entry -> entry.name.equals(name));
-        if (app == null) {
-            Log.e(TAG, "Context not found for name " + name);
-        }
-        return app;
-    }
-
-    /** Get an application context by the context info object. */
-    public App getByContextInfo(T contextInfo) {
-        App app = getAppByPredicate(entry -> entry.info != null && entry.info.equals(contextInfo));
-        if (app == null) {
-            Log.e(TAG, "Context not found for info " + contextInfo);
-        }
-        return app;
-    }
-
-    /** Get Logging info by ID */
-    public AppScanStats getAppScanStatsById(int id) {
-        App temp = getById(id);
-        if (temp != null) {
-            return temp.appScanStats;
-        }
-        return null;
-    }
-
-    /** Get Logging info by application UID */
-    public AppScanStats getAppScanStatsByUid(int uid) {
-        return mAppScanStats.get(uid);
     }
 
     /** Remove the context for a given application ID. */
@@ -450,9 +363,6 @@ public class ContextMap<C, T> {
             if (stats == null) {
                 return;
             }
-            int advertiseInstanceCount = mAppAdvertiseStats.size();
-            Log.d(TAG, "advertiseInstanceCount is " + advertiseInstanceCount);
-            AppAdvertiseStats.recordAdvertiseInstanceCount(advertiseInstanceCount);
             stats.recordAdvertiseStart(
                     parameters,
                     advertiseData,
@@ -460,8 +370,10 @@ public class ContextMap<C, T> {
                     periodicParameters,
                     periodicData,
                     duration,
-                    maxExtAdvEvents,
-                    advertiseInstanceCount);
+                    maxExtAdvEvents);
+            int advertiseInstanceCount = mAppAdvertiseStats.size();
+            Log.d(TAG, "advertiseInstanceCount is " + advertiseInstanceCount);
+            AppAdvertiseStats.recordAdvertiseInstanceCount(advertiseInstanceCount);
         }
     }
 
@@ -471,7 +383,7 @@ public class ContextMap<C, T> {
             if (stats == null) {
                 return;
             }
-            stats.recordAdvertiseStop(mAppAdvertiseStats.size());
+            stats.recordAdvertiseStop();
             mAppAdvertiseStats.remove(id);
             mLastAdvertises.add(stats);
         }
@@ -483,8 +395,7 @@ public class ContextMap<C, T> {
             if (stats == null) {
                 return;
             }
-            stats.enableAdvertisingSet(
-                    enable, duration, maxExtAdvEvents, mAppAdvertiseStats.size());
+            stats.enableAdvertisingSet(enable, duration, maxExtAdvEvents);
         }
     }
 
@@ -621,9 +532,6 @@ public class ContextMap<C, T> {
         synchronized (mAppsLock) {
             for (App entry : mApps) {
                 entry.unlinkToDeath();
-                if (entry.appScanStats != null) {
-                    entry.appScanStats.isRegistered = false;
-                }
             }
             mApps.clear();
         }
@@ -650,12 +558,7 @@ public class ContextMap<C, T> {
     }
 
     /** Logs debug information. */
-    protected void dump(StringBuilder sb) {
-        sb.append("  Entries: " + mAppScanStats.size() + "\n\n");
-        for (AppScanStats appScanStats : mAppScanStats.values()) {
-            appScanStats.dumpToString(sb);
-        }
-    }
+    protected void dump(StringBuilder sb) {}
 
     /** Logs advertiser debug information. */
     void dumpAdvertiser(StringBuilder sb) {

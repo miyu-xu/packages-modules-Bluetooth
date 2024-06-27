@@ -92,7 +92,7 @@ public class AppScanStatsTest {
         AppScanStats appScanStats =
                 new AppScanStats(name, source, map, mMockContext, mMockScanHelper);
 
-        assertThat(appScanStats.mContextMap).isEqualTo(map);
+        assertThat(appScanStats.mScannerMap).isEqualTo(map);
         assertThat(appScanStats.mScanHelper).isEqualTo(mMockScanHelper);
 
         assertThat(appScanStats.isScanning()).isEqualTo(false);

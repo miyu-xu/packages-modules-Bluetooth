@@ -36,6 +36,7 @@ import android.bluetooth.le.IPeriodicAdvertisingCallback;
 import android.bluetooth.le.IScannerCallback;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
+import android.bluetooth.le_scan.ScannerMap;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.res.Resources;
@@ -83,7 +84,7 @@ public class TransitionalScanHelperTest {
     private static final String REMOTE_DEVICE_ADDRESS = "00:00:00:00:00:00";
 
     private TransitionalScanHelper mScanHelper;
-    @Mock private TransitionalScanHelper.ScannerMap mScannerMap;
+    @Mock private ScannerMap mScannerMap;
 
     @Mock private ContextMap.App mApp;
 
@@ -314,7 +315,6 @@ public class TransitionalScanHelperTest {
 
         mApp.callback = callback;
         mApp.appScanStats = appScanStats;
-        scanClient.stats = appScanStats;
         Set<ScanClient> scanClientSet = Collections.singleton(scanClient);
 
         doReturn(address).when(mAdapterService).getIdentityAddress(anyString());

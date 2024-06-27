@@ -34,6 +34,7 @@ import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
+import android.bluetooth.le_scan.ScannerMap;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.res.Resources;
@@ -51,7 +52,6 @@ import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_scan.ScanManager;
 import com.android.bluetooth.le_scan.ScanObjectsFactory;
-import com.android.bluetooth.le_scan.TransitionalScanHelper;
 
 import org.junit.After;
 import org.junit.Before;
@@ -82,7 +82,7 @@ public class GattServiceTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private GattService.ClientMap mClientMap;
-    @Mock private TransitionalScanHelper.ScannerMap mScannerMap;
+    @Mock private ScannerMap mScannerMap;
 
     @Mock private ScanManager mScanManager;
     @Mock private Set<String> mReliableQueue;
