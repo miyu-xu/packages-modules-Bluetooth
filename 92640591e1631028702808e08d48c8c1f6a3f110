@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a05ae0a_c0121ccd",
+        "filename": "system/gd/common/init_flags_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:37:56Z",
+      "side": 1,
+      "message": "Delete file ?",
+      "revId": "92640591e1631028702808e08d48c8c1f6a3f110",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
