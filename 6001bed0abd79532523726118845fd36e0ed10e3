@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa39fa98_be85b974",
+        "filename": "framework/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1971115
+      },
+      "writtenOn": "2024-06-27T09:54:45Z",
+      "side": 1,
+      "message": "Just curious, why do you need the atLeastU check? Is the bluetooth module released separately? E.g. the BluetoothManager from aosp head could be used alongside the frameworks/base at android T?",
+      "parentUuid": "06bc0ac3_a5464afd",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 37
+      },
+      "revId": "6001bed0abd79532523726118845fd36e0ed10e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40a0827a_17935e6c",
         "filename": "framework/java/android/bluetooth/BluetoothManager.java",
         "patchSetId": 4
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "It is defined in framework.aconfig and was merged with https://r.android.com/3148842",
       "parentUuid": "40a0827a_17935e6c",
+      "range": {
+        "startLine": 61,
+        "startChar": 46,
+        "endLine": 61,
+        "endChar": 78
+      },
+      "revId": "6001bed0abd79532523726118845fd36e0ed10e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e69b0364_3006b256",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1971115
+      },
+      "writtenOn": "2024-06-27T09:54:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16875abb_93a7ad68",
       "range": {
         "startLine": 61,
         "startChar": 46,
