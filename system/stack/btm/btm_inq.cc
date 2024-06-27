@@ -35,8 +35,6 @@
 
 #include <mutex>
 
-#include "advertise_data_parser.h"
-#include "bt_name.h"
 #include "btif/include/btif_acl.h"
 #include "btif/include/btif_config.h"
 #include "common/time_util.h"
@@ -48,7 +46,6 @@
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/shim.h"
-#include "neighbor_inquiry.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
 #include "osi/include/stack_power_telemetry.h"
@@ -58,8 +55,10 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/acl_api_types.h"
+#include "stack/include/advertise_data_parser.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_lap.h"
+#include "stack/include/bt_name.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_ble_api.h"
@@ -289,7 +288,9 @@ tBTM_STATUS BTM_SetDiscoverability(uint16_t inq_mode) {
   inq_mode &= ~BTM_BLE_DISCOVERABLE_MASK;
 
   /*** Check mode parameter ***/
-  if (inq_mode > BTM_MAX_DISCOVERABLE) return (BTM_ILLEGAL_VALUE);
+  if (inq_mode > BTM_MAX_DISCOVERABLE) {
+    return BTM_ILLEGAL_VALUE;
+  }
 
   /* If the window and/or interval is '0', set to default values */
   log::verbose("mode {} [NonDisc-0, Lim-1, Gen-2]", inq_mode);
@@ -350,7 +351,7 @@ tBTM_STATUS BTM_SetDiscoverability(uint16_t inq_mode) {
     (void)BTM_SetDeviceClass(cod);
   }
 
-  return (BTM_SUCCESS);
+  return BTM_SUCCESS;
 }
 
 void BTM_EnableInterlacedInquiryScan() {
@@ -424,12 +425,13 @@ tBTM_STATUS BTM_SetInquiryMode(uint8_t mode) {
     /* mandatory mode */
   } else if (mode == BTM_INQ_RESULT_WITH_RSSI) {
     if (!bluetooth::shim::GetController()->SupportsRssiWithInquiryResults())
-      return (BTM_MODE_UNSUPPORTED);
+      return BTM_MODE_UNSUPPORTED;
   } else if (mode == BTM_INQ_RESULT_EXTENDED) {
     if (!bluetooth::shim::GetController()->SupportsExtendedInquiryResponse())
-      return (BTM_MODE_UNSUPPORTED);
-  } else
-    return (BTM_ILLEGAL_VALUE);
+      return BTM_MODE_UNSUPPORTED;
+  } else {
+    return BTM_ILLEGAL_VALUE;
+  }
 
   if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     return BTM_WRONG_MODE;
@@ -437,7 +439,7 @@ tBTM_STATUS BTM_SetInquiryMode(uint8_t mode) {
 
   btsnd_hcic_write_inquiry_mode(mode);
 
-  return (BTM_SUCCESS);
+  return BTM_SUCCESS;
 }
 
 /*******************************************************************************
@@ -469,7 +471,7 @@ tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
 
   /*** Check mode parameter ***/
   if (page_mode != BTM_NON_CONNECTABLE && page_mode != BTM_CONNECTABLE)
-    return (BTM_ILLEGAL_VALUE);
+    return BTM_ILLEGAL_VALUE;
 
   /*** Only check window and duration if mode is connectable ***/
   if (page_mode == BTM_CONNECTABLE) {
@@ -499,7 +501,7 @@ tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
   btsnd_hcic_write_scan_enable(scan_mode);
   btm_cb.btm_inq_vars.connectable_mode &= (~BTM_CONNECTABLE_MASK);
   btm_cb.btm_inq_vars.connectable_mode |= page_mode;
-  return (BTM_SUCCESS);
+  return BTM_SUCCESS;
 }
 
 /*******************************************************************************
@@ -516,7 +518,7 @@ tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
 uint16_t BTM_IsInquiryActive(void) {
   log::verbose("");
 
-  return (btm_cb.btm_inq_vars.inq_active);
+  return btm_cb.btm_inq_vars.inq_active;
 }
 
 /*******************************************************************************
@@ -553,18 +555,15 @@ void BTM_CancelInquiry(void) {
                    "assert failed: BTM_IsDeviceUp()");
 
   btm_cb.neighbor.inquiry_history_->Push({
-      .status = tBTM_INQUIRY_CMPL::CANCELED,
-      .num_resp = btm_cb.btm_inq_vars.inq_cmpl_info.num_resp,
-      .resp_type =
-          {
-              btm_cb.btm_inq_vars.inq_cmpl_info
-                  .resp_type[BTM_INQ_RESULT_STANDARD],
-              btm_cb.btm_inq_vars.inq_cmpl_info
-                  .resp_type[BTM_INQ_RESULT_WITH_RSSI],
-              btm_cb.btm_inq_vars.inq_cmpl_info
-                  .resp_type[BTM_INQ_RESULT_EXTENDED],
-          },
-      .start_time_ms = btm_cb.neighbor.classic_inquiry.start_time_ms,
+          .status = tBTM_INQUIRY_CMPL::CANCELED,
+          .num_resp = btm_cb.btm_inq_vars.inq_cmpl_info.num_resp,
+          .resp_type =
+                  {
+                          btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_STANDARD],
+                          btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_WITH_RSSI],
+                          btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_EXTENDED],
+                  },
+          .start_time_ms = btm_cb.neighbor.classic_inquiry.start_time_ms,
   });
 
   const auto duration_ms = timestamper_in_milliseconds.GetTimestamp() -
@@ -865,7 +864,7 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
 
   /* Make sure there is not already one in progress */
   if (!btm_cb.rnr.remname_active) {
-    return (BTM_WRONG_MODE);
+    return BTM_WRONG_MODE;
   }
 
   if (com::android::bluetooth::flags::rnr_store_device_type()) {
@@ -884,7 +883,7 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
       btm_process_remote_name(&btm_cb.rnr.remname_bda, nullptr, 0, HCI_ERR_UNSPECIFIED);
     }
   }
-  return (BTM_CMD_STARTED);
+  return BTM_CMD_STARTED;
 }
 
 /*******************************************************************************
@@ -923,11 +922,13 @@ tBTM_INQ_INFO* BTM_InqDbFirst(void) {
   std::lock_guard<std::mutex> lock(inq_db_lock_);
   tINQ_DB_ENT* p_ent = inq_db_;
   for (xx = 0; xx < BTM_INQ_DB_SIZE; xx++, p_ent++) {
-    if (p_ent->in_use) return (&p_ent->inq_info);
+    if (p_ent->in_use) {
+      return &p_ent->inq_info;
+    }
   }
 
   /* If here, no used entry found */
-  return ((tBTM_INQ_INFO*)NULL);
+  return nullptr;
 }
 
 /*******************************************************************************
@@ -952,13 +953,15 @@ tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur) {
     inx = (uint16_t)((p_ent - inq_db_) + 1);
 
     for (p_ent = &inq_db_[inx]; inx < BTM_INQ_DB_SIZE; inx++, p_ent++) {
-      if (p_ent->in_use) return (&p_ent->inq_info);
+      if (p_ent->in_use) {
+        return &p_ent->inq_info;
+      }
     }
 
     /* If here, more entries found */
-    return ((tBTM_INQ_INFO*)NULL);
+    return nullptr;
   } else
-    return (BTM_InqDbFirst());
+    return BTM_InqDbFirst();
 }
 
 /*******************************************************************************
@@ -977,11 +980,13 @@ tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur) {
  ******************************************************************************/
 tBTM_STATUS BTM_ClearInqDb(const RawAddress* p_bda) {
   /* If an inquiry or remote name is in progress return busy */
-  if (btm_cb.btm_inq_vars.inq_active != BTM_INQUIRY_INACTIVE) return (BTM_BUSY);
+  if (btm_cb.btm_inq_vars.inq_active != BTM_INQUIRY_INACTIVE) {
+    return BTM_BUSY;
+  }
 
   btm_clr_inq_db(p_bda);
 
-  return (BTM_SUCCESS);
+  return BTM_SUCCESS;
 }
 
 /*******************************************************************************
@@ -1035,9 +1040,8 @@ void btm_inq_db_reset(void) {
 
   /* If an inquiry or periodic inquiry is active, reset the mode to inactive */
   if (btm_cb.btm_inq_vars.inq_active != BTM_INQUIRY_INACTIVE) {
-    temp_inq_active =
-        btm_cb.btm_inq_vars.inq_active; /* Save so state can change BEFORE
-                                  callback is called */
+    /* Save so state can change BEFORE callback is called */
+    temp_inq_active = btm_cb.btm_inq_vars.inq_active;
     btm_cb.btm_inq_vars.inq_active = BTM_INQUIRY_INACTIVE;
 
     /* If not a periodic inquiry, the complete callback must be called to notify
@@ -1167,12 +1171,14 @@ bool btm_inq_find_bdaddr(const RawAddress& p_bda) {
   uint16_t xx;
 
   /* Don't bother searching, database doesn't exist or periodic mode */
-  if (!p_db) return (false);
+  if (!p_db) {
+    return false;
+  }
 
   for (xx = 0; xx < num_bd_entries_; xx++, p_db++) {
-    if (p_db->bd_addr == p_bda &&
-        p_db->inq_count == btm_cb.btm_inq_vars.inq_counter)
-      return (true);
+    if (p_db->bd_addr == p_bda && p_db->inq_count == btm_cb.btm_inq_vars.inq_counter) {
+      return true;
+    }
   }
 
   if (xx < max_bd_entries_) {
@@ -1182,7 +1188,7 @@ bool btm_inq_find_bdaddr(const RawAddress& p_bda) {
   }
 
   /* If here, New Entry */
-  return (false);
+  return false;
 }
 
 /*******************************************************************************
@@ -1201,12 +1207,13 @@ tINQ_DB_ENT* btm_inq_db_find(const RawAddress& p_bda) {
   tINQ_DB_ENT* p_ent = inq_db_;
 
   for (xx = 0; xx < BTM_INQ_DB_SIZE; xx++, p_ent++) {
-    if (p_ent->in_use && p_ent->inq_info.results.remote_bd_addr == p_bda)
-      return (p_ent);
+    if (p_ent->in_use && p_ent->inq_info.results.remote_bd_addr == p_bda) {
+      return p_ent;
+    }
   }
 
   /* If here, not found */
-  return (NULL);
+  return nullptr;
 }
 
 /*******************************************************************************
@@ -1225,8 +1232,11 @@ tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda, bool is_ble) {
   uint32_t ot = 0xFFFFFFFF;
   int8_t i_rssi = 0;
 
-  if (is_ble) yy = BTM_INQ_DB_SIZE / 2;
-  else yy = 0;
+  if (is_ble) {
+    yy = BTM_INQ_DB_SIZE / 2;
+  } else {
+    yy = 0;
+  }
 
   std::lock_guard<std::mutex> lock(inq_db_lock_);
   tINQ_DB_ENT* p_ent = &inq_db_[yy];
@@ -1238,7 +1248,7 @@ tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda, bool is_ble) {
       p_ent->inq_info.results.remote_bd_addr = p_bda;
       p_ent->in_use = true;
 
-      return (p_ent);
+      return p_ent;
     }
 
     if (is_inquery_by_rssi()) {
@@ -1260,7 +1270,7 @@ tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda, bool is_ble) {
   p_old->inq_info.results.remote_bd_addr = p_bda;
   p_old->in_use = true;
 
-  return (p_old);
+  return p_old;
 }
 
 /*******************************************************************************
@@ -1882,7 +1892,7 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda,
     return BTM_WRONG_MODE;
   }
   if (btm_cb.rnr.remname_active) {
-    return (BTM_BUSY);
+    return BTM_BUSY;
   } else {
     /* If the database entry exists for the device, use its clock offset */
     tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
@@ -2101,9 +2111,9 @@ bool BTM_HasEirService(const uint32_t* p_eir_uuid, uint16_t uuid16) {
 
   service_id = btm_convert_uuid_to_eir_service(uuid16);
   if (service_id < BTM_EIR_MAX_SERVICES)
-    return (BTM_EIR_HAS_SERVICE(p_eir_uuid, service_id));
+    return BTM_EIR_HAS_SERVICE(p_eir_uuid, service_id);
   else
-    return (false);
+    return false;
 }
 
 /*******************************************************************************
@@ -2367,7 +2377,7 @@ static uint16_t btm_convert_uuid_to_uuid16(const uint8_t* p_uuid,
       break;
   }
 
-  return (uuid16);
+  return uuid16;
 }
 
 /*******************************************************************************
