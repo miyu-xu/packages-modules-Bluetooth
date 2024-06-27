@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ee9c42_af505828",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1947,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T16:40:51Z",
+      "side": 1,
+      "message": "Will this possibly dump too many into the logs? considering some nearby sources doesn\u0027t have PBP, and we keep logging this for every PA report.\nJust changing this to comment would be better?",
+      "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
