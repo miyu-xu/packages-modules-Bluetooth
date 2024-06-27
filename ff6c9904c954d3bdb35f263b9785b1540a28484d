@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0d1cff_17a10a74",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-27T07:14:39Z",
+      "side": 1,
+      "message": "Let\u0027s discuss this more. Taking an internal member of a different class is not a clean approach.\n\nI\u0027d rather we fix the issues that cause us to have this be needed in this class when the flag is on.",
+      "range": {
+        "startLine": 192,
+        "startChar": 12,
+        "endLine": 192,
+        "endChar": 35
+      },
+      "revId": "ff6c9904c954d3bdb35f263b9785b1540a28484d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
