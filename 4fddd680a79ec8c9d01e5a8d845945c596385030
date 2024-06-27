@@ -34,6 +34,24 @@
       "parentUuid": "6ee0517f_83632fe8",
       "revId": "4fddd680a79ec8c9d01e5a8d845945c596385030",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf4945a_dcf14df7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-06-27T17:37:55Z",
+      "side": 1,
+      "message": "Yes, floss needs this flag to choose which adapter to run if there are multiple adapters on the system. I remember talking to David and Roopa about the options he listed in https://b.corp.google.com/issues/290844854#comment5 and agreed that none of those made sense for this flag. Are there other options to migrate this flag elsewhere if we can\u0027t keep it as an init flag?",
+      "parentUuid": "9a7ee5fb_c6133013",
+      "revId": "4fddd680a79ec8c9d01e5a8d845945c596385030",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
