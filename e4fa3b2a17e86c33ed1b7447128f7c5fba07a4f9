@@ -22,6 +22,30 @@
       },
       "revId": "e4fa3b2a17e86c33ed1b7447128f7c5fba07a4f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82f25c0e_30920162",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-27T17:03:42Z",
+      "side": 1,
+      "message": "That\u0027s a good point. I was testing with media that has no artist/album/subtitle, so didn\u0027t see them pop out and didn\u0027t think to include them.\n\nI\u0027ve seen other info though, like duration and coverart, that are updated when the track plays only, meaning this changes with next/previous so we can\u0027t use those. If artist/subtitle/album doesn\u0027t though I\u0027ll add them in the comparison.",
+      "parentUuid": "ce1a4465_9e0263f8",
+      "range": {
+        "startLine": 584,
+        "startChar": 12,
+        "endLine": 586,
+        "endChar": 13
+      },
+      "revId": "e4fa3b2a17e86c33ed1b7447128f7c5fba07a4f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
