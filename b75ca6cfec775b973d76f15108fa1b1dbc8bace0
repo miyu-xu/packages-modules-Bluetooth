@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a204945_6fdcfc2d",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T08:40:38Z",
+      "side": 1,
+      "message": "When does this happens ?\n\nThis patch look a bit like a hack, I am wondering if we can improve the condition.\nIf this happen only at the first codec negotiation and ota_codec_config_ has never been set yet, is there another variable that would already say so ?",
+      "range": {
+        "startLine": 372,
+        "startChar": 45,
+        "endLine": 372,
+        "endChar": 62
+      },
+      "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
