@@ -92,6 +92,30 @@
       },
       "revId": "71a64342a4e4fc9e30a9b719bc06ae3b899b2a2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e68e6367_4bf24162",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T06:50:11Z",
+      "side": 1,
+      "message": "Oh according to contextMap, this is only use inside the ScannerMap.\nThen you should be fine passing null here instead (please doubleCheck this hypothesis!)",
+      "parentUuid": "3ab971ab_c713c915",
+      "range": {
+        "startLine": 2106,
+        "startChar": 57,
+        "endLine": 2106,
+        "endChar": 82
+      },
+      "revId": "71a64342a4e4fc9e30a9b719bc06ae3b899b2a2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
