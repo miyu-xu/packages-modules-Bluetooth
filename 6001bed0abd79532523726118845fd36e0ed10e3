@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06bc0ac3_a5464afd",
+        "filename": "framework/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T08:43:26Z",
+      "side": 1,
+      "message": "I think so, I haven\u0027t investigated why / how to fix it, and it was building fine locally so that may be only on some coverage target.\n\nBut it is needed in order to call `isAtLeastU`",
+      "parentUuid": "d897fb7e_8955cfbe",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 37
+      },
+      "revId": "6001bed0abd79532523726118845fd36e0ed10e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40a0827a_17935e6c",
         "filename": "framework/java/android/bluetooth/BluetoothManager.java",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-27T06:42:36Z",
       "side": 1,
       "message": "where is this defined?",
+      "range": {
+        "startLine": 61,
+        "startChar": 46,
+        "endLine": 61,
+        "endChar": 78
+      },
+      "revId": "6001bed0abd79532523726118845fd36e0ed10e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16875abb_93a7ad68",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T08:43:26Z",
+      "side": 1,
+      "message": "It is defined in framework.aconfig and was merged with https://r.android.com/3148842",
+      "parentUuid": "40a0827a_17935e6c",
       "range": {
         "startLine": 61,
         "startChar": 46,
