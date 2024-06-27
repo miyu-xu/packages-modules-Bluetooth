@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <memory>
 #include <mutex>
 
 #include "btif/include/btif_acl.h"
@@ -41,6 +42,8 @@
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
 #include "hci/hci_interface.h"
+#include "hci/hci_packets.h"
+#include "hci/inquiry_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
@@ -190,6 +193,10 @@ using bluetooth::hci::Lap;
 /******************************************************************************/
 /*               L O C A L    D A T A    D E F I N I T I O N S                */
 /******************************************************************************/
+struct tBTM_INQUIRY_VAR_ST::tHCI_INTERFACE {
+  std::unique_ptr<hci::InquiryInterface> interface_;
+};
+
 static const LAP general_inq_lap = {0x9e, 0x8b, 0x33};
 static const LAP limited_inq_lap = {0x9e, 0x8b, 0x00};
 
@@ -603,7 +610,7 @@ void BTM_CancelInquiry(void) {
     btm_cb.btm_inq_vars.p_inq_cmpl_cb = NULL; /* Do not notify caller anymore */
 
     if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_GENERAL_INQUIRY) != 0) {
-      bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      btm_cb.btm_inq_vars.hci_->interface_->EnqueueCommand(
               InquiryCancelBuilder::Create(),
               get_main_thread()->BindOnce([](CommandCompleteView complete_view) {
                 check_complete<InquiryCancelCompleteView>(complete_view);
@@ -707,31 +714,6 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
     return BTM_BUSY;
   }
 
-  if (btm_cb.btm_inq_vars.registered_for_hci_events == false) {
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::INQUIRY_COMPLETE,
-        get_main()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::INQUIRY_RESULT,
-        get_main()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::INQUIRY_RESULT_WITH_RSSI,
-        get_main()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::EXTENDED_INQUIRY_RESULT,
-        get_main()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-
-    btm_cb.btm_inq_vars.registered_for_hci_events = true;
-  }
-
   /*** Make sure the device is ready ***/
   if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::error("adapter is not up");
@@ -739,6 +721,12 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
         .status = tBTM_INQUIRY_CMPL::NOT_STARTED,
     });
     return BTM_WRONG_MODE;
+  }
+
+  if (btm_cb.btm_inq_vars.hci_->interface_ == nullptr) {
+    auto hci = bluetooth::shim::GetHciLayer();
+    btm_cb.btm_inq_vars.hci_->interface_ = hci->GetInquiryInterface(
+            get_main_thread()->Bind([](EventView event) { on_incoming_hci_event(event); }));
   }
 
   BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Classic inquiry started",
@@ -784,8 +772,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   Lap lap;
   lap.lap_ = general_inq_lap[2];
 
-  // TODO: Register for the inquiry interface and use that
-  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+  btm_cb.btm_inq_vars.hci_->interface_->EnqueueCommand(
           InquiryBuilder::Create(lap, btm_cb.btm_inq_vars.inqparms.duration, 0),
           get_main_thread()->BindOnce([](CommandStatusView status_view) {
             log::assert_that(status_view.IsValid(),
@@ -2513,10 +2500,15 @@ void tBTM_INQUIRY_VAR_ST::Init() {
   per_max_delay = 0;
   state = BTM_INQ_INACTIVE_STATE;
   inq_active = 0;
-  registered_for_hci_events = false;
+  hci_ = new struct tHCI_INTERFACE {
+    .interface_ = nullptr
+  };
 }
 
-void tBTM_INQUIRY_VAR_ST::Free() { alarm_free(classic_inquiry_timer); }
+void tBTM_INQUIRY_VAR_ST::Free() {
+  delete (hci_);
+  alarm_free(classic_inquiry_timer);
+}
 
 namespace bluetooth {
 namespace legacy {

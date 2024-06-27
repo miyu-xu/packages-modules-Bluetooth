@@ -232,7 +232,8 @@ struct tBTM_INQUIRY_VAR_ST {
   uint8_t state;      /* Current state that the inquiry process is in */
   uint8_t inq_active; /* Bit Mask indicating type of inquiry is active */
 
-  bool registered_for_hci_events;
+  struct tHCI_INTERFACE; // Opaque type to avoid including hci_packets here.
+  struct tHCI_INTERFACE* hci_;
 
   void Init();
   void Free();
