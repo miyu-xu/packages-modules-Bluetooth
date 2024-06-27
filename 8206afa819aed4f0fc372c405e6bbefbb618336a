@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef946d60_730a3c7f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T22:49:10Z",
+      "side": 1,
+      "message": "Maybe we should only make this for external broadcast.\nLocal broadcast will just mix the system sounds into the stream, so this won\u0027t trigger handover, and we should not block it.\n\nrename?\nisAnyConnectedDeviceHasExternalBroadcastSource() {\n\n        for (BluetoothDevice device : getConnectedDevices()) {\n            // Check if any connected device has add some source\n            if (getAllSources(device).stream()\n                    .anyMatch(\n                            receiveState -\u003e\n                                    (!receiveState\n                                            .getSourceDevice()\n                                            .getAddress()\n                                            .equals(emptyBluetoothDevice))\n                            \u0026\u0026 !isLocalBroadcast(receiveState.getSourceAdvertisingSid())) {\n                return true;\n            }\n        }",
+      "revId": "8206afa819aed4f0fc372c405e6bbefbb618336a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b374953_041c6c17",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T22:49:10Z",
+      "side": 1,
+      "message": "will this work for disconnected case?\nshould we use and also need to check leAudioService null?\nif (mIsAllowedContextOfActiveGroupModified) {",
+      "revId": "8206afa819aed4f0fc372c405e6bbefbb618336a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
