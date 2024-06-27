@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce1a4465_9e0263f8",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-27T15:31:17Z",
+      "side": 1,
+      "message": "Your comments above suggest the _only_ piece of metadata we have available in the queue is the title. Out of curiosity, why is that?\n\nQueueItem objects contain a MediaDescription object, which should contain a title, subtitle (usually artist) and description (usually album). They also have an Icon/Bitmap too.\n\nMy only worry is that comparing on title alone will lead to very subtle edge cases where songs have the same title, but a different artist (etc.) and we don\u0027t update a queue when we should.",
+      "range": {
+        "startLine": 584,
+        "startChar": 12,
+        "endLine": 586,
+        "endChar": 13
+      },
+      "revId": "e4fa3b2a17e86c33ed1b7447128f7c5fba07a4f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
