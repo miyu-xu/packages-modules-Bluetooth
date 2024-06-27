@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4fe33a3_e355f5a5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-27T06:10:47Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary. With the flag on just make sure the internal instance is never used.",
+      "range": {
+        "startLine": 221,
+        "startChar": 12,
+        "endLine": 221,
+        "endChar": 35
+      },
+      "revId": "71a64342a4e4fc9e30a9b719bc06ae3b899b2a2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
