@@ -46,6 +46,30 @@
       },
       "revId": "eafb9d0d000cd82c1cfd963489df477527d62d8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb9717f3_fd333521",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T23:18:28Z",
+      "side": 1,
+      "message": "The aconfig library offer a rust crate that we can use to depend to flag from rust directly.\n\nIf there is only this one, I have no issue of that being done later.",
+      "parentUuid": "2b8d258d_f123f674",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 69
+      },
+      "revId": "eafb9d0d000cd82c1cfd963489df477527d62d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
