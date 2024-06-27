@@ -36,13 +36,11 @@
 #include <mutex>
 
 #include "btif/include/btif_acl.h"
-#include "btif/include/btif_config.h"
 #include "common/time_util.h"
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
 #include "hci/hci_interface.h"
 #include "internal_include/bt_target.h"
-#include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/shim.h"
@@ -52,16 +50,14 @@
 #include "packet/bit_inserter.h"
 #include "stack/btm/btm_eir.h"
 #include "stack/btm/btm_int_types.h"
-#include "stack/btm/btm_sec.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/btm/security_device_record.h"
 #include "stack/include/acl_api_types.h"
 #include "stack/include/advertise_data_parser.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_lap.h"
-#include "stack/include/bt_name.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
-#include "stack/include/btm_ble_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/hci_error_code.h"
@@ -119,9 +115,6 @@ uint16_t max_bd_entries_; /* Maximum number of entries that can be stored */
 
 extern tBTM_CB btm_cb;
 void btm_inq_db_set_inq_by_rssi(void);
-void btm_inq_remote_name_timer_timeout(void* data);
-tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda, tBTM_NAME_CMPL_CB* p_cb);
-bool btm_ble_cancel_remote_name(const RawAddress& remote_bda);
 tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode);
 tBTM_STATUS btm_ble_set_connectability(uint16_t combined_mode);
 
@@ -245,9 +238,6 @@ const uint16_t BTM_EIR_UUID_LKUP_TBL[BTM_EIR_MAX_SERVICES] = {
 static void btm_clr_inq_db(const RawAddress* p_bda);
 static void btm_init_inq_result_flt(void);
 void btm_clr_inq_result_flt(void);
-static void btm_inq_rmt_name_failed_cancelled(void);
-static tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout_ms,
-                                         tBTM_NAME_CMPL_CB* p_cb);
 
 static uint8_t btm_convert_uuid_to_eir_service(uint16_t uuid16);
 void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results);
@@ -780,88 +770,6 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb, tBTM_CMPL_CB* p_
   }
 #endif
 
-  return BTM_CMD_STARTED;
-}
-
-/*******************************************************************************
- *
- * Function         BTM_ReadRemoteDeviceName
- *
- * Description      This function initiates a remote device HCI command to the
- *                  controller and calls the callback when the process has
- *                  completed.
- *
- * Input Params:    remote_bda      - device address of name to retrieve
- *                  p_cb            - callback function called when
- *                                    BTM_CMD_STARTED is returned.
- *                                    A pointer to tBTM_REMOTE_DEV_NAME is
- *                                    passed to the callback.
- *
- * Returns
- *                  BTM_CMD_STARTED is returned if the request was successfully
- *                                  sent to HCI.
- *                  BTM_BUSY if already in progress
- *                  BTM_UNKNOWN_ADDR if device address is bad
- *                  BTM_NO_RESOURCES if could not allocate resources to start
- *                                   the command
- *                  BTM_WRONG_MODE if the device is not up.
- *
- ******************************************************************************/
-#define BTM_EXT_RMT_NAME_TIMEOUT_MS (40 * 1000) /* 40 seconds */
-tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda, tBTM_NAME_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport) {
-  log::verbose("bd addr {}", remote_bda);
-  /* Use LE transport when LE is the only available option */
-  if (transport == BT_TRANSPORT_LE) {
-    return btm_ble_read_remote_name(remote_bda, p_cb);
-  }
-  /* Use classic transport for BR/EDR and Dual Mode devices */
-  return btm_initiate_rem_name(remote_bda, BTM_EXT_RMT_NAME_TIMEOUT_MS, p_cb);
-}
-
-/*******************************************************************************
- *
- * Function         BTM_CancelRemoteDeviceName
- *
- * Description      This function initiates the cancel request for the specified
- *                  remote device.
- *
- * Input Params:    None
- *
- * Returns
- *                  BTM_CMD_STARTED is returned if the request was successfully
- *                                  sent to HCI.
- *                  BTM_NO_RESOURCES if could not allocate resources to start
- *                                   the command
- *                  BTM_WRONG_MODE if there is not an active remote name
- *                                 request.
- *
- ******************************************************************************/
-tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
-  log::verbose("");
-  bool is_le;
-
-  /* Make sure there is not already one in progress */
-  if (!btm_cb.rnr.remname_active) {
-    return BTM_WRONG_MODE;
-  }
-
-  if (com::android::bluetooth::flags::rnr_store_device_type()) {
-    is_le = (btm_cb.rnr.remname_dev_type == BT_DEVICE_TYPE_BLE);
-  } else {
-    is_le = get_btm_client_interface().ble.BTM_UseLeLink(btm_cb.rnr.remname_bda);
-  }
-
-  if (is_le) {
-    /* Cancel remote name request for LE device, and process remote name
-     * callback. */
-    btm_inq_rmt_name_failed_cancelled();
-  } else {
-    bluetooth::shim::ACL_CancelRemoteNameRequest(btm_cb.rnr.remname_bda);
-    if (com::android::bluetooth::flags::rnr_reset_state_at_cancel()) {
-      btm_process_remote_name(&btm_cb.rnr.remname_bda, nullptr, 0, HCI_ERR_UNSPECIFIED);
-    }
-  }
   return BTM_CMD_STARTED;
 }
 
@@ -1820,6 +1728,7 @@ static void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode) {
   BTIF_dm_report_inquiry_status_change(tBTM_INQUIRY_STATE::BTM_INQUIRY_CANCELLED);
   btm_process_inq_complete(status, mode);
 }
+<<<<<<< HEAD
 /*******************************************************************************
  *
  * Function         btm_initiate_rem_name
@@ -2001,6 +1910,8 @@ void btm_inq_rmt_name_failed_cancelled(void) {
 
   btm_sec_rmt_name_request_complete(NULL, NULL, HCI_ERR_UNSPECIFIED);
 }
+=======
+>>>>>>> 0a37e855eb (stack::rnr Consolidate RNR from inquiry module)
 
 /*******************************************************************************
  *
