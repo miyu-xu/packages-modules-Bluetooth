@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7bca03_32c7a527",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-27T01:34:25Z",
+      "side": 1,
+      "message": "Loop only runs in test mode.",
+      "parentUuid": "fb20d6df_cd57a608",
+      "range": {
+        "startLine": 328,
+        "startChar": 36,
+        "endLine": 328,
+        "endChar": 39
+      },
+      "revId": "8d3d007949442820bfa5b8b10c856decc14180c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf4d9439_69c8d5c1",
