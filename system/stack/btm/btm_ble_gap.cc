@@ -72,7 +72,6 @@ using namespace bluetooth;
 
 extern tBTM_CB btm_cb;
 
-void btm_inq_remote_name_timer_timeout(void* data);
 void btm_ble_adv_filter_init(void);
 
 #define BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS (30 * 1000)
@@ -294,7 +293,7 @@ enum : uint8_t {
   BTM_BLE_OBS_RESULT = 0x02,
 };
 
-static bool ble_evt_type_is_connectable(uint16_t evt_type) {
+bool ble_evt_type_is_connectable(uint16_t evt_type) {
   return evt_type & (1 << BLE_EVT_CONNECTABLE_BIT);
 }
 
@@ -1595,98 +1594,6 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
   BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le inquiry started");
 
   return BTM_CMD_STARTED;
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_read_remote_name_cmpl
- *
- * Description      This function is called when BLE remote name is received.
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda, uint16_t length,
-                                   char* p_name) {
-  tHCI_STATUS hci_status = HCI_SUCCESS;
-  BD_NAME bd_name;
-  bd_name_from_char_pointer(bd_name, p_name);
-
-  if ((!status) || (length == 0)) {
-    hci_status = HCI_ERR_HOST_TIMEOUT;
-  }
-
-  btm_process_remote_name(&bda, bd_name, length + 1, hci_status);
-  btm_sec_rmt_name_request_complete(&bda, (const uint8_t*)p_name, hci_status);
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_read_remote_name
- *
- * Description      This function read remote LE device name using GATT read
- *                  procedure.
- *
- * Parameters:       None.
- *
- * Returns          void
- *
- ******************************************************************************/
-tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda, tBTM_NAME_CMPL_CB* p_cb) {
-  if (!bluetooth::shim::GetController()->SupportsBle()) {
-    return BTM_ERR_PROCESSING;
-  }
-
-  tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
-  if (p_i && !ble_evt_type_is_connectable(p_i->inq_info.results.ble_evt_type)) {
-    log::verbose("name request to non-connectable device failed.");
-    return BTM_ERR_PROCESSING;
-  }
-
-  /* read remote device name using GATT procedure */
-  if (btm_cb.rnr.remname_active) {
-    log::warn("Unable to start GATT RNR procedure for peer:{} busy with peer:{}", remote_bda,
-              btm_cb.rnr.remname_bda);
-    return BTM_BUSY;
-  }
-
-  if (!GAP_BleReadPeerDevName(remote_bda, btm_ble_read_remote_name_cmpl)) {
-    return BTM_BUSY;
-  }
-
-  btm_cb.rnr.p_remname_cmpl_cb = p_cb;
-  btm_cb.rnr.remname_active = true;
-  btm_cb.rnr.remname_bda = remote_bda;
-  btm_cb.rnr.remname_dev_type = BT_DEVICE_TYPE_BLE;
-
-  alarm_set_on_mloop(btm_cb.rnr.remote_name_timer, BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS,
-                     btm_inq_remote_name_timer_timeout, NULL);
-
-  return BTM_CMD_STARTED;
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_cancel_remote_name
- *
- * Description      This function cancel read remote LE device name.
- *
- * Parameters:       None.
- *
- * Returns          void
- *
- ******************************************************************************/
-bool btm_ble_cancel_remote_name(const RawAddress& remote_bda) {
-  bool status;
-
-  status = GAP_BleCancelReadPeerDevName(remote_bda);
-
-  btm_cb.rnr.remname_active = false;
-  btm_cb.rnr.remname_bda = RawAddress::kEmpty;
-  btm_cb.rnr.remname_dev_type = BT_DEVICE_TYPE_UNKNOWN;
-  alarm_cancel(btm_cb.rnr.remote_name_timer);
-
-  return status;
 }
 
 /*******************************************************************************
