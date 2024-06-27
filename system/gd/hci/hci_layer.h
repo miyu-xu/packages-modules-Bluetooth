@@ -21,11 +21,11 @@
 #include <memory>
 #include <string>
 
-#include "address.h"
-#include "class_of_device.h"
 #include "common/bidi_queue.h"
 #include "common/contextual_callback.h"
 #include "hci/acl_connection_interface.h"
+#include "hci/address.h"
+#include "hci/class_of_device.h"
 #include "hci/distance_measurement_interface.h"
 #include "hci/hci_interface.h"
 #include "hci/hci_packets.h"
@@ -64,12 +64,14 @@ class HciLayer : public Module, public HciInterface {
 
   virtual common::BidiQueueEnd<IsoBuilder, IsoView>* GetIsoQueueEnd();
 
-  virtual void RegisterEventHandler(EventCode event_code, common::ContextualCallback<void(EventView)> event_handler);
+  virtual void RegisterEventHandler(EventCode event_code,
+                                    common::ContextualCallback<void(EventView)> event_handler);
 
   virtual void UnregisterEventHandler(EventCode event_code);
 
-  virtual void RegisterLeEventHandler(SubeventCode subevent_code,
-                                      common::ContextualCallback<void(LeMetaEventView)> event_handler);
+  virtual void RegisterLeEventHandler(
+          SubeventCode subevent_code,
+          common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   virtual void UnregisterLeEventHandler(SubeventCode subevent_code);
 
@@ -81,9 +83,11 @@ class HciLayer : public Module, public HciInterface {
   virtual void RegisterForDisconnects(
       common::ContextualCallback<void(uint16_t, hci::ErrorCode)> on_disconnect);
 
-  virtual SecurityInterface* GetSecurityInterface(common::ContextualCallback<void(EventView)> event_handler);
+  virtual SecurityInterface* GetSecurityInterface(
+          common::ContextualCallback<void(EventView)> event_handler);
 
-  virtual LeSecurityInterface* GetLeSecurityInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
+  virtual LeSecurityInterface* GetLeSecurityInterface(
+          common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   virtual AclConnectionInterface* GetAclConnectionInterface(
       common::ContextualCallback<void(EventView)> event_handler,
@@ -103,13 +107,15 @@ class HciLayer : public Module, public HciInterface {
   virtual LeAdvertisingInterface* GetLeAdvertisingInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
-  virtual LeScanningInterface* GetLeScanningInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
+  virtual LeScanningInterface* GetLeScanningInterface(
+          common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   virtual void RegisterForScoConnectionRequests(
       common::ContextualCallback<void(Address, ClassOfDevice, ConnectionRequestLinkType)>
           on_sco_connection_request);
 
-  virtual LeIsoInterface* GetLeIsoInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
+  virtual LeIsoInterface* GetLeIsoInterface(
+          common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   virtual DistanceMeasurementInterface* GetDistanceMeasurementInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler);
@@ -162,14 +168,14 @@ class HciLayer : public Module, public HciInterface {
       on_sco_connection_request_{};
 
   // Interfaces
-  CommandInterfaceImpl<AclCommandBuilder> acl_connection_manager_interface_{*this};
-  CommandInterfaceImpl<AclCommandBuilder> le_acl_connection_manager_interface_{*this};
-  CommandInterfaceImpl<SecurityCommandBuilder> security_interface{*this};
-  CommandInterfaceImpl<LeSecurityCommandBuilder> le_security_interface{*this};
-  CommandInterfaceImpl<LeAdvertisingCommandBuilder> le_advertising_interface{*this};
-  CommandInterfaceImpl<LeScanningCommandBuilder> le_scanning_interface{*this};
-  CommandInterfaceImpl<LeIsoCommandBuilder> le_iso_interface{*this};
-  CommandInterfaceImpl<DistanceMeasurementCommandBuilder> distance_measurement_interface{*this};
+  CommandInterfaceImpl<AclCommandBuilder> acl_connection_manager_interface_{this};
+  CommandInterfaceImpl<AclCommandBuilder> le_acl_connection_manager_interface_{this};
+  CommandInterfaceImpl<SecurityCommandBuilder> security_interface{this};
+  CommandInterfaceImpl<LeSecurityCommandBuilder> le_security_interface{this};
+  CommandInterfaceImpl<LeAdvertisingCommandBuilder> le_advertising_interface{this};
+  CommandInterfaceImpl<LeScanningCommandBuilder> le_scanning_interface{this};
+  CommandInterfaceImpl<LeIsoCommandBuilder> le_iso_interface{this};
+  CommandInterfaceImpl<DistanceMeasurementCommandBuilder> distance_measurement_interface{this};
 };
 }  // namespace hci
 }  // namespace bluetooth
