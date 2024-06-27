@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e29a835_a57e2373",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1720,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-27T16:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "731e9ae3_4a026671",
+      "range": {
+        "startLine": 1720,
+        "startChar": 12,
+        "endLine": 1720,
+        "endChar": 12
+      },
+      "revId": "444360e700018f901fe5cf9699949b9fcce4d5d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc8f99dd_7790aae3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-27T01:25:02Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: ISO C++ requires field designators to be specified in declaration order; field \u0027peer_addr\u0027 will be initialized after field \u0027peer_features\u0027 [-Werror,-Wreorder-init-list]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    ISO C++ requires field designators to be specified in declaration order; field \u0027peer_addr\u0027 will be initialized after field \u0027peer_features\u0027 [-Werror,-Wreorder-init-list]\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P76803309/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 2393,
+        "startChar": 33,
+        "endLine": 2393,
+        "endChar": 35
+      },
+      "revId": "444360e700018f901fe5cf9699949b9fcce4d5d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d7f84cd_51e2bb74",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2393,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-27T16:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc8f99dd_7790aae3",
       "range": {
         "startLine": 2393,
         "startChar": 33,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16aeaa13_621327b5",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2394,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-27T16:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5e4030e_6d6f5dd9",
+      "range": {
+        "startLine": 2394,
+        "startChar": 33,
+        "endLine": 2394,
+        "endChar": 35
+      },
+      "revId": "444360e700018f901fe5cf9699949b9fcce4d5d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9f6e728_a8016a95",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-06-27T01:25:02Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: ISO C++ requires field designators to be specified in declaration order; field \u0027status\u0027 will be initialized after field \u0027rc_handle\u0027 [-Werror,-Wreorder-init-list]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    ISO C++ requires field designators to be specified in declaration order; field \u0027status\u0027 will be initialized after field \u0027rc_handle\u0027 [-Werror,-Wreorder-init-list]\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P76803309/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 2584,
+        "startChar": 19,
+        "endLine": 2584,
+        "endChar": 33
+      },
+      "revId": "444360e700018f901fe5cf9699949b9fcce4d5d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd45cbf7_e37da1f3",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2584,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-27T16:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9f6e728_a8016a95",
       "range": {
         "startLine": 2584,
         "startChar": 19,
