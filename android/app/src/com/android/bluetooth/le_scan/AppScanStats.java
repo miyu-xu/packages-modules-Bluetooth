@@ -29,11 +29,8 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.flags.Flags;
-import com.android.bluetooth.gatt.ContextMap;
 import com.android.bluetooth.util.WorkSourceUtil;
 import com.android.internal.annotations.GuardedBy;
-import com.android.internal.annotations.VisibleForTesting;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,7 +38,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,8 +57,8 @@ public class AppScanStats {
 
     static final int LARGE_SCAN_TIME_GAP_MS = 24000;
 
-    // ContextMap here is needed to grab Apps and Connections
-    ContextMap mContextMap;
+    // ScannerMap here is needed to grab apps
+    ScannerMap mScannerMap;
 
     // TransitionalScanHelper is needed to add scan event protos to be dumped later
     final TransitionalScanHelper mScanHelper;
@@ -77,11 +73,7 @@ public class AppScanStats {
     @GuardedBy("sLock")
     static long sRadioStartTime = 0;
 
-    static WorkSourceUtil sRadioScanWorkSourceUtil;
-    static int sRadioScanType;
     static int sRadioScanMode;
-    static int sRadioScanWindowMs;
-    static int sRadioScanIntervalMs;
     static boolean sIsRadioStarted = false;
     static boolean sIsScreenOn = false;
 
@@ -91,7 +83,6 @@ public class AppScanStats {
         public long suspendStartTime;
         public boolean isSuspended;
         public long timestamp;
-        public long reportDelayMillis;
         public boolean isOpportunisticScan;
         public boolean isTimeout;
         public boolean isDowngraded;
@@ -108,7 +99,6 @@ public class AppScanStats {
 
         LastScan(
                 long timestamp,
-                long reportDelayMillis,
                 boolean isFilterScan,
                 boolean isCallbackScan,
                 int scannerId,
@@ -116,7 +106,6 @@ public class AppScanStats {
                 int scanCallbackType) {
             this.duration = 0;
             this.timestamp = timestamp;
-            this.reportDelayMillis = reportDelayMillis;
             this.isOpportunisticScan = false;
             this.isTimeout = false;
             this.isDowngraded = false;
@@ -161,16 +150,15 @@ public class AppScanStats {
     private long startTime = 0;
     private long stopTime = 0;
     private int results = 0;
-    public boolean isAppDead = false;
 
     public AppScanStats(
             String name,
             WorkSource source,
-            ContextMap map,
+            ScannerMap map,
             Context context,
             TransitionalScanHelper scanHelper) {
         appName = name;
-        mContextMap = map;
+        mScannerMap = map;
         mScanHelper = scanHelper;
         mBatteryStatsManager = context.getSystemService(BatteryStatsManager.class);
 
@@ -251,7 +239,6 @@ public class AppScanStats {
         LastScan scan =
                 new LastScan(
                         startTime,
-                        settings.getReportDelayMillis(),
                         isFilterScan,
                         isCallbackScan,
                         scannerId,
@@ -398,22 +385,6 @@ public class AppScanStats {
     private void recordScanAppCountMetricsStart(LastScan scan) {
         MetricsLogger logger = MetricsLogger.getInstance();
         logger.cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_TOTAL_ENABLE, 1);
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            logger.logAppScanStateChanged(
-                    mWorkSourceUtil.getUids(),
-                    mWorkSourceUtil.getTags(),
-                    true /* enabled */,
-                    scan.isFilterScan,
-                    scan.isCallbackScan,
-                    convertScanCallbackType(scan.scanCallbackType),
-                    convertScanType(scan),
-                    convertScanMode(scan.scanMode),
-                    scan.reportDelayMillis,
-                    0 /* app_scan_duration_ms */,
-                    mOngoingScans.size(),
-                    sIsScreenOn,
-                    isAppDead);
-        }
         if (scan.isAutoBatchScan) {
             logger.cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_AUTO_BATCH_ENABLE, 1);
         } else if (scan.isBatchScan) {
@@ -430,22 +401,6 @@ public class AppScanStats {
     private void recordScanAppCountMetricsStop(LastScan scan) {
         MetricsLogger logger = MetricsLogger.getInstance();
         logger.cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_TOTAL_DISABLE, 1);
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            logger.logAppScanStateChanged(
-                    mWorkSourceUtil.getUids(),
-                    mWorkSourceUtil.getTags(),
-                    false /* enabled */,
-                    scan.isFilterScan,
-                    scan.isCallbackScan,
-                    convertScanCallbackType(scan.scanCallbackType),
-                    convertScanType(scan),
-                    convertScanMode(scan.scanMode),
-                    scan.reportDelayMillis,
-                    scan.duration,
-                    mOngoingScans.size(),
-                    sIsScreenOn,
-                    isAppDead);
-        }
         if (scan.isAutoBatchScan) {
             logger.cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_AUTO_BATCH_DISABLE, 1);
         } else if (scan.isBatchScan) {
@@ -459,109 +414,17 @@ public class AppScanStats {
         }
     }
 
-    private int convertScanCallbackType(int type) {
-        switch (type) {
-            case ScanSettings.CALLBACK_TYPE_ALL_MATCHES:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__SCAN_CALLBACK_TYPE__TYPE_ALL_MATCHES;
-            case ScanSettings.CALLBACK_TYPE_FIRST_MATCH:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__SCAN_CALLBACK_TYPE__TYPE_FIRST_MATCH;
-            case ScanSettings.CALLBACK_TYPE_MATCH_LOST:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__SCAN_CALLBACK_TYPE__TYPE_MATCH_LOST;
-            case ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__SCAN_CALLBACK_TYPE__TYPE_ALL_MATCHES_AUTO_BATCH;
-            default:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__SCAN_CALLBACK_TYPE__TYPE_UNKNOWN;
-        }
-    }
-
-    private static int convertScanType(LastScan scan) {
-        if (scan == null) {
-            return BluetoothStatsLog.LE_APP_SCAN_STATE_CHANGED__LE_SCAN_TYPE__SCAN_TYPE_UNKNOWN;
-        }
-        if (scan.isAutoBatchScan) {
-            return BluetoothStatsLog.LE_APP_SCAN_STATE_CHANGED__LE_SCAN_TYPE__SCAN_TYPE_AUTO_BATCH;
-        } else if (scan.isBatchScan) {
-            return BluetoothStatsLog.LE_APP_SCAN_STATE_CHANGED__LE_SCAN_TYPE__SCAN_TYPE_BATCH;
-        } else {
-            return BluetoothStatsLog.LE_APP_SCAN_STATE_CHANGED__LE_SCAN_TYPE__SCAN_TYPE_REGULAR;
-        }
-    }
-
-    @VisibleForTesting
-    public static int convertScanMode(int mode) {
-        switch (mode) {
-            case ScanSettings.SCAN_MODE_OPPORTUNISTIC:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_OPPORTUNISTIC;
-            case ScanSettings.SCAN_MODE_LOW_POWER:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_LOW_POWER;
-            case ScanSettings.SCAN_MODE_BALANCED:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_BALANCED;
-            case ScanSettings.SCAN_MODE_LOW_LATENCY:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_LOW_LATENCY;
-            case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_AMBIENT_DISCOVERY;
-            case ScanSettings.SCAN_MODE_SCREEN_OFF:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_SCREEN_OFF;
-            case ScanSettings.SCAN_MODE_SCREEN_OFF_BALANCED:
-                return BluetoothStatsLog
-                        .LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_SCREEN_OFF_BALANCED;
-            default:
-                return BluetoothStatsLog.LE_APP_SCAN_STATE_CHANGED__LE_SCAN_MODE__SCAN_MODE_UNKNOWN;
-        }
-    }
-
-    synchronized void recordScanTimeoutCountMetrics(int scannerId, long scanTimeoutMillis) {
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            BluetoothStatsLog.write(
-                    BluetoothStatsLog.LE_SCAN_ABUSED,
-                    mWorkSourceUtil.getUids(),
-                    mWorkSourceUtil.getTags(),
-                    convertScanType(getScanFromScannerId(scannerId)),
-                    BluetoothStatsLog.LE_SCAN_ABUSED__LE_SCAN_ABUSE_REASON__REASON_SCAN_TIMEOUT,
-                    scanTimeoutMillis);
-        }
+    synchronized void recordScanTimeoutCountMetrics() {
         MetricsLogger.getInstance()
                 .cacheCount(BluetoothProtoEnums.LE_SCAN_ABUSE_COUNT_SCAN_TIMEOUT, 1);
     }
 
-    synchronized void recordHwFilterNotAvailableCountMetrics(
-            int scannerId, long numOfFilterSupported) {
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            BluetoothStatsLog.write(
-                    BluetoothStatsLog.LE_SCAN_ABUSED,
-                    mWorkSourceUtil.getUids(),
-                    mWorkSourceUtil.getTags(),
-                    convertScanType(getScanFromScannerId(scannerId)),
-                    BluetoothStatsLog.LE_SCAN_ABUSED__LE_SCAN_ABUSE_REASON__REASON_HW_FILTER_NA,
-                    numOfFilterSupported);
-        }
+    synchronized void recordHwFilterNotAvailableCountMetrics() {
         MetricsLogger.getInstance()
                 .cacheCount(BluetoothProtoEnums.LE_SCAN_ABUSE_COUNT_HW_FILTER_NOT_AVAILABLE, 1);
     }
 
-    synchronized void recordTrackingHwFilterNotAvailableCountMetrics(
-            int scannerId, long numOfTrackableAdv) {
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            BluetoothStatsLog.write(
-                    BluetoothStatsLog.LE_SCAN_ABUSED,
-                    mWorkSourceUtil.getUids(),
-                    mWorkSourceUtil.getTags(),
-                    convertScanType(getScanFromScannerId(scannerId)),
-                    BluetoothStatsLog
-                            .LE_SCAN_ABUSED__LE_SCAN_ABUSE_REASON__REASON_TRACKING_HW_FILTER_NA,
-                    numOfTrackableAdv);
-        }
+    synchronized void recordTrackingHwFilterNotAvailableCountMetrics() {
         MetricsLogger.getInstance()
                 .cacheCount(
                         BluetoothProtoEnums.LE_SCAN_ABUSE_COUNT_TRACKING_HW_FILTER_NOT_AVAILABLE,
@@ -574,18 +437,13 @@ public class AppScanStats {
         }
     }
 
-    static boolean recordScanRadioStart(
-            int scanMode, int scannerId, AppScanStats stats, int scanWindowMs, int scanIntervalMs) {
+    static boolean recordScanRadioStart(int scanMode) {
         synchronized (sLock) {
             if (sIsRadioStarted) {
                 return false;
             }
             sRadioStartTime = SystemClock.elapsedRealtime();
-            sRadioScanWorkSourceUtil = stats.mWorkSourceUtil;
-            sRadioScanType = convertScanType(stats.getScanFromScannerId(scannerId));
             sRadioScanMode = scanMode;
-            sRadioScanWindowMs = scanWindowMs;
-            sRadioScanIntervalMs = scanIntervalMs;
             sIsRadioStarted = true;
         }
         return true;
@@ -597,10 +455,8 @@ public class AppScanStats {
                 return false;
             }
             recordScanRadioDurationMetrics();
-            if (!Flags.bleScanAdvMetricsRedesign()) {
-                sRadioStartTime = 0;
-                sIsRadioStarted = false;
-            }
+            sRadioStartTime = 0;
+            sIsRadioStarted = false;
         }
         return true;
     }
@@ -616,19 +472,6 @@ public class AppScanStats {
         double scanWeight = getScanWeight(sRadioScanMode) * 0.01;
         long weightedDuration = (long) (radioScanDuration * scanWeight);
 
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            logger.logRadioScanStopped(
-                    sRadioScanWorkSourceUtil.getUids(),
-                    sRadioScanWorkSourceUtil.getTags(),
-                    sRadioScanType,
-                    convertScanMode(sRadioScanMode),
-                    sRadioScanIntervalMs,
-                    sRadioScanWindowMs,
-                    sIsScreenOn,
-                    radioScanDuration);
-            sRadioStartTime = 0;
-            sIsRadioStarted = false;
-        }
         if (weightedDuration > 0) {
             logger.cacheCount(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR, weightedDuration);
             if (sIsScreenOn) {
@@ -676,15 +519,6 @@ public class AppScanStats {
             if (!sIsRadioStarted) {
                 return;
             }
-            if (Flags.bleScanAdvMetricsRedesign()) {
-                BluetoothStatsLog.write(
-                        BluetoothStatsLog.LE_SCAN_RESULT_RECEIVED,
-                        sRadioScanWorkSourceUtil.getUids(),
-                        sRadioScanWorkSourceUtil.getTags(),
-                        1 /* num_results */,
-                        BluetoothStatsLog.LE_SCAN_RESULT_RECEIVED__LE_SCAN_TYPE__SCAN_TYPE_REGULAR,
-                        sIsScreenOn);
-            }
             MetricsLogger logger = MetricsLogger.getInstance();
             logger.cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_REGULAR, 1);
             if (sIsScreenOn) {
@@ -699,15 +533,6 @@ public class AppScanStats {
         boolean isScreenOn;
         synchronized (sLock) {
             isScreenOn = sIsScreenOn;
-        }
-        if (Flags.bleScanAdvMetricsRedesign()) {
-            BluetoothStatsLog.write(
-                    BluetoothStatsLog.LE_SCAN_RESULT_RECEIVED,
-                    sRadioScanWorkSourceUtil.getUids(),
-                    sRadioScanWorkSourceUtil.getTags(),
-                    numRecords,
-                    BluetoothStatsLog.LE_SCAN_RESULT_RECEIVED__LE_SCAN_TYPE__SCAN_TYPE_BATCH,
-                    sIsScreenOn);
         }
         MetricsLogger logger = MetricsLogger.getInstance();
         logger.cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE, 1);
@@ -1132,24 +957,10 @@ public class AppScanStats {
             }
         }
 
-        ContextMap.App appEntry = mContextMap.getByName(appName);
+        ScannerMap.ScannerApp appEntry = mScannerMap.getByName(appName);
         if (appEntry != null && isRegistered) {
             sb.append("\n  Application ID                     : " + appEntry.id);
             sb.append("\n  UUID                               : " + appEntry.uuid);
-
-            List<ContextMap.Connection> connections = mContextMap.getConnectionByApp(appEntry.id);
-
-            sb.append("\n  Connections: " + connections.size());
-
-            Iterator<ContextMap.Connection> ii = connections.iterator();
-            while (ii.hasNext()) {
-                ContextMap.Connection connection = ii.next();
-                long connectionTime = currTime - connection.startTime;
-                Date timestamp = new Date(currentTime - currTime + connection.startTime);
-                sb.append("\n    " + DATE_FORMAT.format(timestamp) + " - ");
-                sb.append((connectionTime) + "ms ");
-                sb.append(": " + connection.address + " (" + connection.connId + ")");
-            }
         }
         sb.append("\n\n");
     }

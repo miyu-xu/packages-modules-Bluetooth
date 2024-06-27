@@ -56,8 +56,8 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.flags.Flags;
-import com.android.bluetooth.gatt.ContextMap;
 import com.android.bluetooth.gatt.GattServiceConfig;
+import com.android.bluetooth.le_scan.ScannerMap.ScannerApp;
 import com.android.bluetooth.util.NumberUtils;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -96,11 +96,6 @@ public class TransitionalScanHelper {
     private static final int ADVT_STATE_ONLOST = 1;
 
     private static final int ET_LEGACY_MASK = 0x10;
-
-    /** List of our registered scanners. */
-    // TODO(b/327849650): Remove as this class adds no value. Using generics this ways is considered
-    //                    an anti-pattern.
-    public static class ScannerMap extends ContextMap<IScannerCallback, PendingIntentInfo> {}
 
     /** Keep the arguments passed in for the PendingIntent. */
     public static class PendingIntentInfo {
@@ -375,8 +370,7 @@ public class TransitionalScanHelper {
         byte[] legacyAdvData = Arrays.copyOfRange(advData, 0, 62);
 
         for (ScanClient client : mScanManager.getRegularScanQueue()) {
-            ContextMap<IScannerCallback, PendingIntentInfo>.App app =
-                    mScannerMap.getById(client.scannerId);
+            ScannerApp app = mScannerMap.getById(client.scannerId);
             if (app == null) {
                 Log.v(TAG, "App is null; skip.");
                 continue;
@@ -493,7 +487,6 @@ public class TransitionalScanHelper {
         }
     }
 
-    @SuppressWarnings("NonApiType")
     private void sendResultsByPendingIntent(
             PendingIntentInfo pii, ArrayList<ScanResult> results, int callbackType)
             throws PendingIntent.CanceledException {
@@ -525,14 +518,14 @@ public class TransitionalScanHelper {
                         + status);
 
         // First check the callback map
-        ContextMap<IScannerCallback, PendingIntentInfo>.App cbApp = mScannerMap.getByUuid(uuid);
+        ScannerApp cbApp = mScannerMap.getByUuid(uuid);
         if (cbApp != null) {
             if (status == 0) {
                 cbApp.id = scannerId;
                 // If app is callback based, setup a death recipient. App will initiate the start.
                 // Otherwise, if PendingIntent based, start the scan directly.
                 if (cbApp.callback != null) {
-                    cbApp.linkToDeath(new ScannerDeathRecipient(scannerId, cbApp.name));
+                    cbApp.linkToDeath(new ScannerDeathRecipient(scannerId, cbApp.mName));
                 } else {
                     continuePiStartScan(scannerId, cbApp);
                 }
@@ -590,7 +583,6 @@ public class TransitionalScanHelper {
             return;
         }
         client.appDied = true;
-        client.stats.isAppDead = true;
         stopScan(client.scannerId, mContext.getAttributionSource());
     }
 
@@ -700,8 +692,7 @@ public class TransitionalScanHelper {
         Set<ScanResult> results = parseBatchScanResults(numRecords, reportType, recordData);
         if (reportType == ScanManager.SCAN_RESULT_TYPE_TRUNCATED) {
             // We only support single client for truncated mode.
-            ContextMap<IScannerCallback, PendingIntentInfo>.App app =
-                    mScannerMap.getById(scannerId);
+            ScannerApp app = mScannerMap.getById(scannerId);
             if (app == null) {
                 return;
             }
@@ -752,11 +743,8 @@ public class TransitionalScanHelper {
         mScanManager.callbackDone(scannerId, status);
     }
 
-    @SuppressWarnings("NonApiType")
     private void sendBatchScanResults(
-            ContextMap<IScannerCallback, PendingIntentInfo>.App app,
-            ScanClient client,
-            ArrayList<ScanResult> results) {
+            ScannerApp app, ScanClient client, ArrayList<ScanResult> results) {
         try {
             if (app.callback != null) {
                 if (mScanManager.isAutoBatchScanClientEnabled(client)) {
@@ -787,7 +775,7 @@ public class TransitionalScanHelper {
     // Check and deliver scan results for different scan clients.
     private void deliverBatchScan(ScanClient client, Set<ScanResult> allResults)
             throws RemoteException {
-        ContextMap.App app = mScannerMap.getById(client.scannerId);
+        ScannerApp app = mScannerMap.getById(client.scannerId);
         if (app == null) {
             return;
         }
@@ -967,8 +955,7 @@ public class TransitionalScanHelper {
                         + " adv_state = "
                         + trackingInfo.getAdvState());
 
-        ContextMap<IScannerCallback, PendingIntentInfo>.App app =
-                mScannerMap.getById(trackingInfo.getClientIf());
+        ScannerApp app = mScannerMap.getById(trackingInfo.getClientIf());
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "app or callback is null");
             return;
@@ -1028,7 +1015,7 @@ public class TransitionalScanHelper {
     }
 
     public void onScanParamSetupCompleted(int status, int scannerId) throws RemoteException {
-        ContextMap.App app = mScannerMap.getById(scannerId);
+        ScannerApp app = mScannerMap.getById(scannerId);
         if (app == null || app.callback == null) {
             Log.e(TAG, "Advertise app or callback is null");
             return;
@@ -1038,7 +1025,7 @@ public class TransitionalScanHelper {
 
     // callback from ScanManager for dispatch of errors apps.
     public void onScanManagerErrorCallback(int scannerId, int errorCode) throws RemoteException {
-        ContextMap<IScannerCallback, PendingIntentInfo>.App app = mScannerMap.getById(scannerId);
+        ScannerApp app = mScannerMap.getById(scannerId);
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "App or callback is null");
             return;
@@ -1066,6 +1053,9 @@ public class TransitionalScanHelper {
             return;
         }
 
+        UUID uuid = UUID.randomUUID();
+        Log.d(TAG, "registerScanner() - UUID=" + uuid);
+
         enforceImpersonatationPermissionIfNeeded(workSource);
 
         AppScanStats app = mScannerMap.getAppScanStatsByUid(Binder.getCallingUid());
@@ -1080,13 +1070,6 @@ public class TransitionalScanHelper {
             }
             return;
         }
-        registerScannerInternal(callback, workSource);
-    }
-
-    /** Intended for internal use within the Bluetooth app. Bypass permission check */
-    public void registerScannerInternal(IScannerCallback callback, WorkSource workSource) {
-        UUID uuid = UUID.randomUUID();
-        Log.d(TAG, "registerScanner() - UUID=" + uuid);
 
         mScannerMap.add(uuid, workSource, callback, null, mContext, this);
         mScanManager.registerScanner(uuid);
@@ -1099,11 +1082,6 @@ public class TransitionalScanHelper {
             return;
         }
 
-        unregisterScannerInternal(scannerId);
-    }
-
-    /** Intended for internal use within the Bluetooth app. Bypass permission check */
-    public void unregisterScannerInternal(int scannerId) {
         Log.d(TAG, "unregisterScanner() - scannerId=" + scannerId);
         mScannerMap.remove(scannerId);
         mScanManager.unregisterScanner(scannerId);
@@ -1182,36 +1160,12 @@ public class TransitionalScanHelper {
                 Utils.checkCallerHasScanWithoutLocationPermission(mContext);
         scanClient.associatedDevices = getAssociatedDevices(callingPackage);
 
-        startScan(scannerId, settings, filters, scanClient);
-    }
-
-    /** Intended for internal use within the Bluetooth app. Bypass permission check */
-    public void startScanInternal(int scannerId, ScanSettings settings, List<ScanFilter> filters) {
-        final ScanClient scanClient = new ScanClient(scannerId, settings, filters);
-        scanClient.userHandle = Binder.getCallingUserHandle();
-        scanClient.eligibleForSanitizedExposureNotification = false;
-        scanClient.hasDisavowedLocation = false;
-        scanClient.isQApp = true;
-        scanClient.hasNetworkSettingsPermission =
-                Utils.checkCallerHasNetworkSettingsPermission(mContext);
-        scanClient.hasNetworkSetupWizardPermission =
-                Utils.checkCallerHasNetworkSetupWizardPermission(mContext);
-        scanClient.hasScanWithoutLocationPermission =
-                Utils.checkCallerHasScanWithoutLocationPermission(mContext);
-        scanClient.associatedDevices = Collections.emptyList();
-
-        startScan(scannerId, settings, filters, scanClient);
-    }
-
-    private void startScan(
-            int scannerId, ScanSettings settings, List<ScanFilter> filters, ScanClient scanClient) {
         AppScanStats app = mScannerMap.getAppScanStatsById(scannerId);
+        ScannerApp cbApp = mScannerMap.getById(scannerId);
         if (app != null) {
             scanClient.stats = app;
             boolean isFilteredScan = (filters != null) && !filters.isEmpty();
             boolean isCallbackScan = false;
-
-            ContextMap.App cbApp = mScannerMap.getById(scannerId);
             if (cbApp != null) {
                 isCallbackScan = cbApp.callback != null;
             }
@@ -1253,12 +1207,12 @@ public class TransitionalScanHelper {
                         + (" UID=" + callingUid));
 
         // Don't start scan if the Pi scan already in mScannerMap.
-        if (mScannerMap.getByContextInfo(piInfo) != null) {
+        if (mScannerMap.getByPendingIntentInfo(piInfo) != null) {
             Log.d(TAG, "Don't startScan(PI) since the same Pi scan already in mScannerMap.");
             return;
         }
 
-        ContextMap.App app = mScannerMap.add(uuid, null, null, piInfo, mContext, this);
+        ScannerApp app = mScannerMap.add(uuid, null, null, piInfo, mContext, this);
 
         app.mUserHandle = UserHandle.getUserHandleForUid(Binder.getCallingUid());
         mAppOps.checkPackage(Binder.getCallingUid(), callingPackage);
@@ -1300,14 +1254,14 @@ public class TransitionalScanHelper {
         }
     }
 
-    public void continuePiStartScan(
-            int scannerId, ContextMap<IScannerCallback, PendingIntentInfo>.App app) {
+    @VisibleForTesting
+    void continuePiStartScan(int scannerId, ScannerApp app) {
         final PendingIntentInfo piInfo = app.info;
         final ScanClient scanClient =
                 new ScanClient(scannerId, piInfo.settings, piInfo.filters, piInfo.callingUid);
         scanClient.hasLocationPermission = app.hasLocationPermission;
         scanClient.userHandle = app.mUserHandle;
-        scanClient.isQApp = checkCallerTargetSdk(mContext, app.name, Build.VERSION_CODES.Q);
+        scanClient.isQApp = checkCallerTargetSdk(mContext, app.mName, Build.VERSION_CODES.Q);
         scanClient.eligibleForSanitizedExposureNotification =
                 app.mEligibleForSanitizedExposureNotification;
         scanClient.hasNetworkSettingsPermission = app.mHasNetworkSettingsPermission;
@@ -1343,11 +1297,6 @@ public class TransitionalScanHelper {
                 mContext, attributionSource, "ScanHelper stopScan")) {
             return;
         }
-        stopScanInternal(scannerId);
-    }
-
-    /** Intended for internal use within the Bluetooth app. Bypass permission check */
-    public void stopScanInternal(int scannerId) {
         int scanQueueSize =
                 mScanManager.getBatchScanQueue().size() + mScanManager.getRegularScanQueue().size();
         Log.d(TAG, "stopScan() - queue size =" + scanQueueSize);
@@ -1368,7 +1317,7 @@ public class TransitionalScanHelper {
         }
         PendingIntentInfo pii = new PendingIntentInfo();
         pii.intent = intent;
-        ContextMap.App app = mScannerMap.getByContextInfo(pii);
+        ScannerApp app = mScannerMap.getByPendingIntentInfo(pii);
         Log.v(TAG, "stopScan(PendingIntent): app found = " + app);
         if (app != null) {
             intent.removeCancelListener(mScanIntentCancelListener);
@@ -1470,7 +1419,6 @@ public class TransitionalScanHelper {
                     handleDeadScanClient(client);
                 } else {
                     client.appDied = true;
-                    client.stats.isAppDead = true;
                     stopScan(client.scannerId, mContext.getAttributionSource());
                 }
             }

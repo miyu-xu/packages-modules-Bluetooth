@@ -36,6 +36,7 @@ import android.bluetooth.le.IPeriodicAdvertisingCallback;
 import android.bluetooth.le.IScannerCallback;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
+import android.bluetooth.le_scan.ScannerMap;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.res.Resources;
@@ -56,7 +57,6 @@ import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.flags.Flags;
-import com.android.bluetooth.gatt.ContextMap;
 import com.android.bluetooth.gatt.GattNativeInterface;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 
@@ -83,9 +83,9 @@ public class TransitionalScanHelperTest {
     private static final String REMOTE_DEVICE_ADDRESS = "00:00:00:00:00:00";
 
     private TransitionalScanHelper mScanHelper;
-    @Mock private TransitionalScanHelper.ScannerMap mScannerMap;
+    @Mock private ScannerMap mScannerMap;
 
-    @Mock private ContextMap.App mApp;
+    @Mock private ScannerMap.ScannerApp mApp;
 
     @Mock private TransitionalScanHelper.PendingIntentInfo mPiInfo;
     @Mock private PeriodicScanManager mPeriodicScanManager;
@@ -314,7 +314,6 @@ public class TransitionalScanHelperTest {
 
         mApp.callback = callback;
         mApp.appScanStats = appScanStats;
-        scanClient.stats = appScanStats;
         Set<ScanClient> scanClientSet = Collections.singleton(scanClient);
 
         doReturn(address).when(mAdapterService).getIdentityAddress(anyString());
@@ -431,7 +430,7 @@ public class TransitionalScanHelperTest {
                         .build();
         Set<ScanClient> scanClientSet = Collections.singleton(scanClient);
 
-        ContextMap.App app = mock(ContextMap.App.class);
+        ScannerMap.ScannerApp app = mock(ScannerMap.ScannerApp.App.class);
         IScannerCallback callback = mock(IScannerCallback.class);
 
         app.callback = callback;
