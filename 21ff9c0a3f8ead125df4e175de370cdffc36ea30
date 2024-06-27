@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4fec43e_921743b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-27T05:09:58Z",
+      "side": 1,
+      "message": "As talked with Omair, this CL now only removes the strings in res/values/strings.xml, not the translated ones.",
+      "revId": "21ff9c0a3f8ead125df4e175de370cdffc36ea30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
