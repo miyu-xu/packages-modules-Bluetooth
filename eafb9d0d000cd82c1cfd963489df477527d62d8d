@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3835594a_75c54167",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T03:00:18Z",
+      "side": 1,
+      "message": "New added flag check. Should we move that to a separate CL ?",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 69
+      },
+      "revId": "eafb9d0d000cd82c1cfd963489df477527d62d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
