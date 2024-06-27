@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f9b2f7a_a8baf91d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-27T22:08:12Z",
+      "side": 1,
+      "message": "This API doesn\u0027t need to be fuzzed.",
+      "revId": "98a5680eaaabccb521f15211ee69fa8e698ddaa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
