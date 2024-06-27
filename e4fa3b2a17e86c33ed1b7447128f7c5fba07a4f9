@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81ff0e1d_9b6f1e72",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T23:11:03Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it return false when the currentQueue and the newQueue are both null ? Or is it impossible ?\n\n```suggestion\n        if (newQueue \u003d\u003d null \u0026\u0026 currentQueue \u003d\u003d null) {\n            return false;\n        }\n        if (newQueue \u003d\u003d null || currentQueue \u003d\u003d null || currentQueue.size() !\u003d newQueue.size()) {\n            return true;\n        }\n```",
+      "range": {
+        "startLine": 576,
+        "startChar": 7,
+        "endLine": 581,
+        "endChar": 9
+      },
+      "revId": "e4fa3b2a17e86c33ed1b7447128f7c5fba07a4f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce1a4465_9e0263f8",
         "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
         "patchSetId": 1
