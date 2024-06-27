@@ -34,6 +34,24 @@
       "parentUuid": "aa8b31de_a09fad99",
       "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627eb8e4_0050b239",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T23:13:52Z",
+      "side": 1,
+      "message": "Sorry I should have specified that the guest turn off the Bluetooth prior to switching user when detailing the different steps.\n\nIf bluetooth is already off, switching user does not restart the Bluetooth and I believe the issue can happen.",
+      "parentUuid": "f6d82808_6bb833de",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
