@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e74cc4_f1a87267",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-27T22:19:46Z",
+      "side": 1,
+      "message": "Does this work, as well?",
+      "range": {
+        "startLine": 218,
+        "startChar": 27,
+        "endLine": 218,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5d5b4f30_010547a4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 218,
+                "startChar": 0,
+                "endLine": 219,
+                "endChar": 0
+              },
+              "replacement": "    p_ccb-\u003elocal_coc_cfg \u003d {p_cfg-\u003emtu, le_mps};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "92dff10b3af96d45039b9dde7a0d437751bf3197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80c16680_080c5a99",
+        "filename": "system/stack/include/l2c_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-27T22:19:46Z",
+      "side": 1,
+      "message": "I like what this does where it\u0027s used.  I think I\u0027d like it even better if tL2CAP_LE_CFG_INFO became a class with a constructor that took the two parameters.  I don\u0027t think this should become an API.\n\nWe could also change the API that uses this struct to only take the two interesting arguments.",
+      "range": {
+        "startLine": 201,
+        "startChar": 19,
+        "endLine": 201,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d9e91d25_cabc8943",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2c_api.h",
+              "range": {
+                "startLine": 201,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "92dff10b3af96d45039b9dde7a0d437751bf3197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
