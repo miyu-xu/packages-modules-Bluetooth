@@ -229,6 +229,7 @@ public class BluetoothMethodProxy {
      * Proxies {@link PeriodicAdvertisingManager#registerSync(ScanResult, int, int,
      * PeriodicAdvertisingCallback, Handler)}.
      */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     public void periodicAdvertisingManagerRegisterSync(
             PeriodicAdvertisingManager manager,
             ScanResult scanResult,
@@ -240,6 +241,7 @@ public class BluetoothMethodProxy {
     }
 
     /** Proxies {@link PeriodicAdvertisingManager#unregisterSync(PeriodicAdvertisingCallback)}. */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     public void periodicAdvertisingManagerUnregisterSync(
             PeriodicAdvertisingManager manager, PeriodicAdvertisingCallback callback) {
         manager.unregisterSync(callback);
