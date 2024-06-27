@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "686216b1_f25bec97",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:39:35Z",
+      "side": 1,
+      "message": "nit:\n\n\n```suggestion\n    if (!lea_supported) {\n      log::info(\"LE audio not supported, no need to report any UUIDs\");\n      return;\n    }\n    \n    log::info(\"Will return Classic SDP results, if done, to unblock bonding\");\n```",
+      "range": {
+        "startLine": 1876,
+        "startChar": 2,
+        "endLine": 1881,
+        "endChar": 5
+      },
+      "revId": "a6b6578daed936d6b2470c5df6b1bf39c33242ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
