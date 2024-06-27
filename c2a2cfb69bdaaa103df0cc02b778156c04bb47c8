@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c94ba254_ac4f1514",
+        "filename": "system/audio_hal_interface/aidl/hfp_client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-27T22:59:46Z",
+      "side": 1,
+      "message": "```suggestion\nreturn status \u003d\u003d BT_STATUS_SUCCESS ?\n    BluetoothAudioCtrlAck::SUCCESS_FINISHED :\n    BluetoothAudioCtrlAck::FAILURE;\n```",
+      "range": {
+        "startLine": 153,
+        "startChar": 3,
+        "endLine": 157,
+        "endChar": 3
+      },
+      "revId": "c2a2cfb69bdaaa103df0cc02b778156c04bb47c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
