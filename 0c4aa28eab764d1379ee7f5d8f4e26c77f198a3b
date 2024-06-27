@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f49a47_67ac5c71",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:41:38Z",
+      "side": 1,
+      "message": "We should strecth out and remove entirely this method and the code calling it",
+      "range": {
+        "startLine": 2103,
+        "startChar": 16,
+        "endLine": 2103,
+        "endChar": 59
+      },
+      "revId": "0c4aa28eab764d1379ee7f5d8f4e26c77f198a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d29274cc_0e4e749a",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:41:38Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 869,
+        "startChar": 12,
+        "endLine": 869,
+        "endChar": 55
+      },
+      "revId": "0c4aa28eab764d1379ee7f5d8f4e26c77f198a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
