@@ -115,7 +115,7 @@ public class AvrcpTargetService extends ProfileService {
 
             boolean metadata = !Objects.equals(mCurrentData.metadata, data.metadata);
             boolean state = !MediaPlayerWrapper.playstateEquals(mCurrentData.state, data.state);
-            boolean queue = !Objects.equals(mCurrentData.queue, data.queue);
+            boolean queue = isQueueUpdated(mCurrentData.queue, data.queue);
 
             Log.d(
                     TAG,
@@ -559,6 +559,33 @@ public class AvrcpTargetService extends ProfileService {
         }
 
         mNativeInterface.sendPlayerSettings(repeatMode, shuffleMode);
+    }
+
+    /**
+     * Compares the {@link Metadata} of the current and new queues
+     *
+     * <p>Whenever the current playing track changed in the now playing list, its metadata is
+     * updated. We should only send an update if the elements of the queue have been modified.
+     *
+     * <p>As of now, the only metadata that we can compare is the media title. The metadata ID
+     * corresponds to the position in the list and is not unique for each media. Other metadata will
+     * be updated when the playing track changes as we are only able to retrieve this information
+     * then.
+     */
+    private boolean isQueueUpdated(List<Metadata> currentQueue, List<Metadata> newQueue) {
+        if (newQueue == null) {
+            return false;
+        }
+        if (currentQueue == null || currentQueue.size() != newQueue.size()) {
+            return true;
+        }
+
+        for (int index = 0; index < currentQueue.size(); index++) {
+            if (!currentQueue.get(index).title.equals(newQueue.get(index).title)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Dump debugging information to the string builder */
