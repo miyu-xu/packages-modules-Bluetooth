@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa8b31de_a09fad99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T22:55:45Z",
+      "side": 1,
+      "message": "I think there is an additional scenario to take into consideration:\n\nActivate GuestMode \u0026 pair devices\nGo back to original owner but never toggle bluetooth\ngo to the same or a new guestMode\n\n-\u003e At this point the device will not be deleted so any new \"guest\" will be paired with the device from the previous \"guest\"",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
