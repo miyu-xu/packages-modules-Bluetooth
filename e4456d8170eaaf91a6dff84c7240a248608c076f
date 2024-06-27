@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f1d0604_b89246b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T16:53:49Z",
+      "side": 1,
+      "message": "We\u0027d need to update the commit message.\nAlso can we do some sanity tests with audio sharing handover cases? e.g. audio sharing -\u003e incoming call",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ebb2313_02c29f0c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2429,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T16:53:49Z",
+      "side": 1,
+      "message": "instead of adding the flag check there, maybe it would be more readable just \n\nif (leaudioBigDependsOnAudioState()) {\n new logic flow\n} else {\n old flow\n}",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba4785f4_fe93a61e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2978,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T16:53:49Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bec4338_9414ea01",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1374,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T16:53:49Z",
+      "side": 1,
+      "message": "remove MICHAL :p",
+      "fixSuggestions": [
+        {
+          "fixId": "6e06e56a_04eff778",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 1374,
+                "startChar": 0,
+                "endLine": 1375,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
