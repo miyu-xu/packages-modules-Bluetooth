@@ -22,6 +22,30 @@
       },
       "revId": "71a64342a4e4fc9e30a9b719bc06ae3b899b2a2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92196599_136d4c3d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-27T06:18:00Z",
+      "side": 1,
+      "message": "I _think_ it is? For example, for function `dumpRegisterId` in line 3511\n\n\u003e for (Integer appId : getTransitionalScanHelper().getScannerMap().getAllAppsIds()) {\n\nIf we don\u0027t assign it when the flag is on, this will return null / crash.\n\nI know the scan functions such as `registerScanner`, `startScan`, and etc will not be used with the flag on so most of the uses are fine but there is a few more functions which uses `getTransitionalScanHelper()` outside of a scanning context.",
+      "parentUuid": "b4fe33a3_e355f5a5",
+      "range": {
+        "startLine": 221,
+        "startChar": 12,
+        "endLine": 221,
+        "endChar": 35
+      },
+      "revId": "71a64342a4e4fc9e30a9b719bc06ae3b899b2a2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
