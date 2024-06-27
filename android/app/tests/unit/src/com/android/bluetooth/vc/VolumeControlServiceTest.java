@@ -365,8 +365,7 @@ public class VolumeControlServiceTest {
                 .getRemoteUuids(any(BluetoothDevice.class));
 
         // Send a connect request via binder
-        Assert.assertTrue(
-                "Connect expected to succeed", mServiceBinder.connect(mDevice, mAttributionSource));
+        Assert.assertTrue("Connect expected to succeed", mService.connect(mDevice));
 
         // Verify the connection state broadcast, and that we are in Connecting state
         verifyConnectionStateIntent(
@@ -376,9 +375,7 @@ public class VolumeControlServiceTest {
                 BluetoothProfile.STATE_DISCONNECTED);
 
         // Send a disconnect request via binder
-        Assert.assertTrue(
-                "Disconnect expected to succeed",
-                mServiceBinder.disconnect(mDevice, mAttributionSource));
+        Assert.assertTrue("Disconnect expected to succeed", mService.disconnect(mDevice));
 
         // Verify the connection state broadcast, and that we are in Connecting state
         verifyConnectionStateIntent(
