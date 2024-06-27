@@ -877,9 +877,22 @@ public class BassClientService extends ProfileService {
                 && (leAudioService.getActiveDevices().contains(device));
     }
 
-    private boolean isAnyDeviceFromActiveUnicastGroupReceivingBroadcast() {
-        return getActiveBroadcastSinks().stream()
-                .anyMatch(d -> isDevicePartOfActiveUnicastGroup(d));
+    private boolean hasAnyConnectedDeviceNonEmptyReceiveState() {
+        String emptyBluetoothDevice = "00:00:00:00:00:00";
+        for (BluetoothDevice device : getConnectedDevices()) {
+            // Check if any connected device has add some source
+            if (getAllSources(device).stream()
+                    .anyMatch(
+                            receiveState ->
+                                    (!receiveState
+                                            .getSourceDevice()
+                                            .getAddress()
+                                            .equals(emptyBluetoothDevice)))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void localNotifyReceiveStateChanged(BluetoothDevice sink) {
@@ -920,11 +933,11 @@ public class BassClientService extends ProfileService {
             if (leaudioAllowedContextMask()) {
                 /* Restore allowed context mask for active device */
                 if (mIsAllowedContextOfActiveGroupModified) {
-                    if (!isAnyDeviceFromActiveUnicastGroupReceivingBroadcast()) {
+                    if (!hasAnyConnectedDeviceNonEmptyReceiveState()) {
                         leAudioService.setActiveGroupAllowedContextMask(
                                 BluetoothLeAudio.CONTEXTS_ALL, BluetoothLeAudio.CONTEXTS_ALL);
+                        mIsAllowedContextOfActiveGroupModified = false;
                     }
-                    mIsAllowedContextOfActiveGroupModified = false;
                 }
             }
         }
@@ -1346,6 +1359,12 @@ public class BassClientService extends ProfileService {
             if (bondState == BluetoothDevice.BOND_NONE) {
                 log("Unbonded " + device + ". Removing state machine");
                 removeStateMachine(device);
+            }
+
+            if (!hasAnyConnectedDeviceNonEmptyReceiveState()) {
+                leAudioService.setActiveGroupAllowedContextMask(
+                        BluetoothLeAudio.CONTEXTS_ALL, BluetoothLeAudio.CONTEXTS_ALL);
+                mIsAllowedContextOfActiveGroupModified = false;
             }
         } else if (toState == BluetoothProfile.STATE_CONNECTED) {
             handleReconnectingAudioSharingModeDevice(device);
