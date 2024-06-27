@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efbb9dfd_c38e8ce9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T02:54:59Z",
+      "side": 1,
+      "message": "The feature is being activated by removing this flag",
+      "revId": "ca6475c12ed56ad765807e045a93711e3a23f92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
