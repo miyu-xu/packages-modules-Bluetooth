@@ -1380,6 +1380,21 @@ bool btif_storage_is_restricted_device(const RawAddress* remote_bd_addr) {
                              BTIF_STORAGE_KEY_RESTRICTED, &val);
 }
 
+/*******************************************************************************
+ *
+ * Function         btif_storage_prune_devices
+ *
+ * Description      Removes restricted mode devices in non-restricted mode
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void btif_storage_prune_devices() {
+  if (!GetInterfaceToProfiles()->config->isRestrictedMode()) {
+    btif_config_remove_device_with_key(BTIF_STORAGE_KEY_RESTRICTED);
+  }
+}
+
 // Get the name of a device from btif for interop database matching.
 bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr,
                                          char* name) {
