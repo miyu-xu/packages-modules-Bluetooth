@@ -34,6 +34,24 @@
       "parentUuid": "3c060cf4_07aa97dc",
       "revId": "f5075a7e8f80ec83caa594dff75550d2373c0270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5b4fd05_9039ea52",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-27T00:28:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "35fa8dee_4a06dcd6",
+      "revId": "f5075a7e8f80ec83caa594dff75550d2373c0270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
