@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4311404_68163050",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T03:12:10Z",
+      "side": 1,
+      "message": "isn\u0027t it simpler to do something like:\n\n```suggestion\n    private final TransitionalScanHelper mTransitionalScanHelper \u003d\n    Flags.scanManagerRefactor() ? mAdapterService.getScanController().mTransitionalScanHelper : new TransitionalScanHelper(this, this::isTestModeEnabled);\n```\n\nYou probably need to move it into the constructor to make it more readable than a ternary and to use the `mAdapterService` variable\n\nBecause with the non shared and the shared, you end up having two instances, one that is not used",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 70
+      },
+      "revId": "95ea56aecc0d040227bb2f700fbcef17196b9c54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
