@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c594c65_a18f8411",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:34:38Z",
+      "side": 1,
+      "message": "Nice",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 45
+      },
+      "revId": "ba37cb9f711dd67dd9610dd5278bb2fcf1866fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
