@@ -22,6 +22,30 @@
       },
       "revId": "624f00b463fd3d8d0b0c03a1b4aea3bd820ff102",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b62a60_166272b8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T06:36:05Z",
+      "side": 0,
+      "message": "No, almost none are on the same thread.\n\nThe value is only written from the main thread (constructor / cleanup) and every other usage (read) are on one of the 16 binder thread.\n\nThe first reason for removing the `volatile` is per homogeneity with all the binder from all the profiles. None of them have volatile, but they are all construct following the same pattern. If we need it we need everywhere. (like the fix for the service caching that was only on a2dp …)\n\nI don\u0027t believe we need the service to be `volatile`, if there is something that would eventually be `mAvailable` in `ProfileService`, but even that sound unlikely. (We have zero thread synchronisation between the binder and the main thread on this method call, so volatile doesn\u0027t really helps.\n\nFor example in the method \"connect\" if the getService return just before the service and the mAvailable is set to null, but the call to `service.connect` happen after, it will still reach the native.\n\nVolatile would have been usefull if we where doing thread synchronization and guaranteeing that the service is valide after the check have been done.\n\nI am happy to chat more about it if you have any insight",
+      "parentUuid": "d99c90d7_2650efb9",
+      "range": {
+        "startLine": 501,
+        "startChar": 16,
+        "endLine": 501,
+        "endChar": 24
+      },
+      "revId": "624f00b463fd3d8d0b0c03a1b4aea3bd820ff102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
