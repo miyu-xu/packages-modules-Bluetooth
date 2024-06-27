@@ -62,6 +62,7 @@ public class AdapterNativeInterface {
             AdapterService service,
             AdapterProperties adapterProperties,
             boolean startRestricted,
+            int userId,
             boolean isCommonCriteriaMode,
             int configCompareResult,
             String[] initFlags,
@@ -70,6 +71,7 @@ public class AdapterNativeInterface {
         mJniCallbacks = new JniCallbacks(service, adapterProperties);
         return initNative(
                 startRestricted,
+                userId,
                 isCommonCriteriaMode,
                 configCompareResult,
                 initFlags,
@@ -271,6 +273,7 @@ public class AdapterNativeInterface {
 
     private native boolean initNative(
             boolean startRestricted,
+            int userId,
             boolean isCommonCriteriaMode,
             int configCompareResult,
             String[] initFlags,

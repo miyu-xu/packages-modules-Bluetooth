@@ -54,8 +54,8 @@ extern struct is_common_criteria_mode is_common_criteria_mode;
 // Params:
 // Returns: bool
 struct is_restricted_mode {
-  std::function<bool()> body{[]() { return false; }};
-  bool operator()() { return body(); }
+  std::function<bool(int* id)> body{[](int* /* id */) { return false; }};
+  bool operator()(int* id) { return body(id); }
 };
 extern struct is_restricted_mode is_restricted_mode;
 // Name: dut_mode_configure

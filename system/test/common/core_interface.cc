@@ -46,7 +46,7 @@ static bluetooth::core::EventCallbacks eventCallbacks = {
 struct MockConfigInterface : public bluetooth::core::ConfigInterface {
   virtual bool isA2DPOffloadEnabled() { return false; }
   virtual bool isAndroidTVDevice() { return false; }
-  virtual bool isRestrictedMode() { return false; }
+  virtual bool isRestrictedMode(int* /* id */) { return false; }
 };
 
 static auto mockConfigInterface = MockConfigInterface{};

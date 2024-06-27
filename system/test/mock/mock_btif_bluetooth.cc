@@ -62,9 +62,9 @@ bool is_common_criteria_mode() {
   inc_func_call_count(__func__);
   return test::mock::btif_bluetooth::is_common_criteria_mode();
 }
-bool is_restricted_mode() {
+bool is_restricted_mode(int* id) {
   inc_func_call_count(__func__);
-  return test::mock::btif_bluetooth::is_restricted_mode();
+  return test::mock::btif_bluetooth::is_restricted_mode(id);
 }
 int dut_mode_configure(uint8_t enable) {
   inc_func_call_count(__func__);

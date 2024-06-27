@@ -147,6 +147,7 @@ tBT_TRANSPORT to_bt_transport(int val) {
 
 static bt_callbacks_t* bt_hal_cbacks = NULL;
 bool restricted_mode = false;
+bool user_id = 0;
 bool common_criteria_mode = false;
 const int CONFIG_COMPARE_ALL_PASS = 0b11;
 int common_criteria_config_compare_result = CONFIG_COMPARE_ALL_PASS;
@@ -205,7 +206,7 @@ extern void bta_gatt_client_dump(int fd);
 struct ConfigInterfaceImpl : bluetooth::core::ConfigInterface {
   ConfigInterfaceImpl() : bluetooth::core::ConfigInterface() {}
 
-  bool isRestrictedMode() override { return is_restricted_mode(); }
+  bool isRestrictedMode(int* id) override { return is_restricted_mode(id); }
 
   bool isA2DPOffloadEnabled() override {
     char value_sup[PROPERTY_VALUE_MAX] = {'\0'};
@@ -433,14 +434,14 @@ int GetAdapterIndex() { return global_hci_adapter; }
 int GetAdapterIndex() { return 0; }  // Unsupported outside of FLOSS
 #endif
 
-static int init(bt_callbacks_t* callbacks, bool start_restricted, bool is_common_criteria_mode,
-                int config_compare_result, const char** /* init_flags */, bool is_atv,
-                const char* user_data_directory) {
+static int init(bt_callbacks_t* callbacks, bool start_restricted, int id,
+                bool is_common_criteria_mode, int config_compare_result,
+                const char** /* init_flags */, bool is_atv, const char* user_data_directory) {
   (void)user_data_directory;
   log::info(
-          "start restricted = {} ; common criteria mode = {}, config compare "
+          "start restricted = {} user id = {}; common criteria mode = {}, config compare "
           "result = {}",
-          start_restricted, is_common_criteria_mode, config_compare_result);
+          start_restricted, user_id, is_common_criteria_mode, config_compare_result);
 
   if (interface_ready()) {
     return BT_STATUS_DONE;
@@ -449,6 +450,7 @@ static int init(bt_callbacks_t* callbacks, bool start_restricted, bool is_common
   set_hal_cbacks(callbacks);
 
   restricted_mode = start_restricted;
+  user_id = id;
 
   bluetooth::os::ParameterProvider::SetBtKeystoreInterface(
           bluetooth::bluetooth_keystore::getBluetoothKeystoreInterface());
@@ -510,7 +512,12 @@ static void start_rust_module(void) { stack_manager_get_interface()->start_up_ru
 
 static void stop_rust_module(void) { stack_manager_get_interface()->shut_down_rust_module_async(); }
 
-bool is_restricted_mode() { return restricted_mode; }
+bool is_restricted_mode(int* id) {
+  if (restricted_mode && id != nullptr) {
+    *id = user_id;
+  }
+  return restricted_mode;
+}
 
 static bool get_wbs_supported() { return hfp_hal_interface::get_wbs_supported(); }
 
@@ -693,7 +700,7 @@ static int cancel_bond(const RawAddress* bd_addr) {
 }
 
 static int remove_bond(const RawAddress* bd_addr) {
-  if (is_restricted_mode() && !btif_storage_is_restricted_device(bd_addr)) {
+  if (is_restricted_mode(nullptr) && !btif_storage_is_restricted_device(bd_addr)) {
     log::info("{} cannot be removed in restricted mode", *bd_addr);
     return BT_STATUS_SUCCESS;
   }

@@ -1257,8 +1257,8 @@ impl BluetoothInterface {
 
         let cb_ptr = LTCheckedPtrMut::from(&mut callbacks);
 
-        let (guest_mode, is_common_criteria_mode, config_compare_result, is_atv) =
-            (false, false, 0, false);
+        let (guest_mode, user_id, is_common_criteria_mode, config_compare_result, is_atv) =
+            (false, 0, false, 0, false);
 
         ccall!(self, set_adapter_index, hci_index);
         let init = ccall!(
@@ -1266,6 +1266,7 @@ impl BluetoothInterface {
             init,
             cb_ptr.into(),
             guest_mode,
+            user_id,
             is_common_criteria_mode,
             config_compare_result,
             flags,
