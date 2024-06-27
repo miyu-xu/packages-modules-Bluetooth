@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee0517f_83632fe8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:36:28Z",
+      "side": 1,
+      "message": "This flag is suspicious.\nI believe it is use at boot by floss to configure their adapter.",
+      "revId": "4fddd680a79ec8c9d01e5a8d845945c596385030",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
