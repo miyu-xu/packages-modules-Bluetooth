@@ -22,6 +22,30 @@
       },
       "revId": "ff6c9904c954d3bdb35f263b9785b1540a28484d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9662ad7_ae89d1f4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T08:31:42Z",
+      "side": 1,
+      "message": "I agree. If gatt have a dependency on scan, it should use proper api to call scan",
+      "parentUuid": "6e0d1cff_17a10a74",
+      "range": {
+        "startLine": 192,
+        "startChar": 12,
+        "endLine": 192,
+        "endChar": 35
+      },
+      "revId": "ff6c9904c954d3bdb35f263b9785b1540a28484d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
