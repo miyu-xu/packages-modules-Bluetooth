@@ -23,6 +23,7 @@
 #include "hci/address.h"
 #include "hci/hci_interface.h"
 #include "hci/hci_packets.h"
+#include "hci/inquiry_interface.h"
 
 // Unit test interfaces
 namespace bluetooth {
@@ -123,6 +124,9 @@ class MockHciLayer : public HciInterface {
       GetDistanceMeasurementInterface,
       (common::ContextualCallback<void(LeMetaEventView)> event_handler),
       (override));
+
+  MOCK_METHOD((std::unique_ptr<InquiryInterface>), GetInquiryInterface,
+              (common::ContextualCallback<void(EventView)> event_handler), (override));
 
   MOCK_METHOD(
       void,
