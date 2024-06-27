@@ -16,6 +16,24 @@
       "message": "The feature is being activated by removing this flag",
       "revId": "ca6475c12ed56ad765807e045a93711e3a23f92f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ffcb2a5_f8670822",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-27T14:51:43Z",
+      "side": 1,
+      "message": "Good point!",
+      "parentUuid": "efbb9dfd_c38e8ce9",
+      "revId": "ca6475c12ed56ad765807e045a93711e3a23f92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
