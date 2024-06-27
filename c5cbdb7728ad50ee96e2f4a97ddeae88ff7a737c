@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ba2c727_aee2abcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-27T01:21:40Z",
+      "side": 1,
+      "message": "It is yes.\n\nThe service is cached in a temporary variable, the check are perform on this and it return the variable.\n\nThis prevent race condition between the cleanup of the service and the different check happening (the first one is a null check, the next one are permissions check but it crash if the service become null meantime).\n\nThis CL is applying the exact same pattern to all the profiles services in order to prevent the crash for happening.\n\nSome services already had the fixes so I just updated the format and variable name for consistency. (cc a2dpService)\n\nFinally, the order of the method got synchronized between all services in order to have in this order: constructor / cleanup / getService (again, for consistency)",
+      "parentUuid": "5d3fca59_3deb67df",
+      "revId": "c5cbdb7728ad50ee96e2f4a97ddeae88ff7a737c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "440d7d1b_549663d0",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 1
