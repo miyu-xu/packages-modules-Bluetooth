@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55052d2_f15cd637",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-27T13:39:52Z",
+      "side": 0,
+      "message": "Here\u0027s the original location.",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 68
+      },
+      "revId": "86ecc01d8da0c4aa5cf4b9f745a612e6817b005e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
