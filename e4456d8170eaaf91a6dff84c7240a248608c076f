@@ -85,6 +85,23 @@
       ],
       "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6927ba0a_49de7786",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-27T16:56:31Z",
+      "side": 1,
+      "message": "any reason why we\u0027d need to remove this?",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
