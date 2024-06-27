@@ -34,6 +34,7 @@ import static com.android.modules.utils.build.SdkLevel.isAtLeastV;
 import android.Manifest;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.annotation.PermissionMethod;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.BroadcastOptions;
@@ -488,11 +489,15 @@ public final class Utils {
      * @param device the remote BluetoothDevice
      * @return {@code true} if there is a CDM association
      * @throws SecurityException if the package name does not match the uid or the association
-     *                           doesn't exist
+     *     doesn't exist
      */
-    @RequiresPermission("android.permission.MANAGE_COMPANION_DEVICES")
-    public static boolean enforceCdmAssociation(CompanionDeviceManager cdm, Context context,
-            String callingPackage, int callingUid, BluetoothDevice device) {
+    @PermissionMethod("android.permission.MANAGE_COMPANION_DEVICES")
+    public static boolean enforceCdmAssociation(
+            CompanionDeviceManager cdm,
+            Context context,
+            String callingPackage,
+            int callingUid,
+            BluetoothDevice device) {
         if (!isPackageNameAccurate(context, callingPackage, callingUid)) {
             throw new SecurityException("hasCdmAssociation: Package name " + callingPackage
                     + " is inaccurate for calling uid " + callingUid);
