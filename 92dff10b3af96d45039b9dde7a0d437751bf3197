@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4786580d_beb26f87",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-27T23:08:17Z",
+      "side": 1,
+      "message": "yes...this was a bug !",
+      "parentUuid": "62e74cc4_f1a87267",
+      "range": {
+        "startLine": 218,
+        "startChar": 27,
+        "endLine": 218,
+        "endChar": 49
+      },
+      "revId": "92dff10b3af96d45039b9dde7a0d437751bf3197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80c16680_080c5a99",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "92dff10b3af96d45039b9dde7a0d437751bf3197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edaa6a85_9b2c9447",
+        "filename": "system/stack/include/l2c_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-27T23:08:17Z",
+      "side": 1,
+      "message": "The problem if we start using constructors is that the way we initialize it changes accesses throughout the codebase.  \n\n`the two interesting arguments.` unfortunately there is one that sets the number of channels.",
+      "parentUuid": "80c16680_080c5a99",
+      "range": {
+        "startLine": 201,
+        "startChar": 19,
+        "endLine": 201,
+        "endChar": 39
+      },
       "revId": "92dff10b3af96d45039b9dde7a0d437751bf3197",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
