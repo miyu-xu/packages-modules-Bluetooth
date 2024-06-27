@@ -255,6 +255,93 @@ class RfcommTest {
         }
     }
 
+    @Test
+    fun connectTwoInsecureClients1() {
+        startServer("ServerPort1", TEST_UUID) { serverId1 ->
+            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
+                runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+                val socket1 = createSocket(mBumbleDevice, isSecure = false, TEST_UUID)
+                val socket2 = createSocket(mBumbleDevice, isSecure = false, SERIAL_PORT_UUID)
+
+                acceptSocket(serverId1)
+                Truth.assertThat(socket1.isConnected).isTrue()
+
+                acceptSocket(serverId2)
+                Truth.assertThat(socket2.isConnected).isTrue()
+            }
+        }
+    }
+
+    @Test
+    fun connectTwoInsecureClients2() {
+        startServer("ServerPort1", TEST_UUID) { serverId1 ->
+            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
+                runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+                val socket1 = createSocket(mBumbleDevice, isSecure = false, TEST_UUID)
+                acceptSocket(serverId1)
+                Truth.assertThat(socket1.isConnected).isTrue()
+
+                val socket2 = createSocket(mBumbleDevice, isSecure = false, SERIAL_PORT_UUID)
+                acceptSocket(serverId2)
+                Truth.assertThat(socket2.isConnected).isTrue()
+            }
+        }
+    }
+
+    @Test
+    fun connectTwoSecureClients1() {
+        startServer("ServerPort1", TEST_UUID) { serverId1 ->
+            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
+                runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+                val socket2 = createSocket(mBumbleDevice, isSecure = true, SERIAL_PORT_UUID)
+                val socket1 = createSocket(mBumbleDevice, isSecure = true, TEST_UUID)
+
+                acceptSocket(serverId1)
+                Truth.assertThat(socket1.isConnected).isTrue()
+
+                acceptSocket(serverId2)
+                Truth.assertThat(socket2.isConnected).isTrue()
+            }
+        }
+    }
+
+    @Test
+    fun connectTwoMixedClients1() {
+        startServer("ServerPort1", TEST_UUID) { serverId1 ->
+            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
+                runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+                val socket2 = createSocket(mBumbleDevice, isSecure = false, SERIAL_PORT_UUID)
+                acceptSocket(serverId2)
+                Truth.assertThat(socket2.isConnected).isTrue()
+
+                val socket1 = createSocket(mBumbleDevice, isSecure = true, TEST_UUID)
+                acceptSocket(serverId1)
+                Truth.assertThat(socket1.isConnected).isTrue()
+            }
+        }
+    }
+
+    @Test
+    fun connectTwoMixedClients2() {
+        startServer("ServerPort1", TEST_UUID) { serverId1 ->
+            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
+                runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+                val socket2 = createSocket(mBumbleDevice, isSecure = true, SERIAL_PORT_UUID)
+                acceptSocket(serverId2)
+                Truth.assertThat(socket2.isConnected).isTrue()
+
+                val socket1 = createSocket(mBumbleDevice, isSecure = false, TEST_UUID)
+                acceptSocket(serverId1)
+                Truth.assertThat(socket1.isConnected).isTrue()
+            }
+        }
+    }
+
     private fun createConnectAcceptSocket(
         isSecure: Boolean,
         server: ServerId,
