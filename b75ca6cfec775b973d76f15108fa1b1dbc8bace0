@@ -22,6 +22,30 @@
       },
       "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c6188ac_6b8cc7b9",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-28T09:48:49Z",
+      "side": 1,
+      "message": "I couldn\u0027t find any other variable that would state that. I think this solution is fine for what we aim here",
+      "parentUuid": "9a204945_6fdcfc2d",
+      "range": {
+        "startLine": 372,
+        "startChar": 45,
+        "endLine": 372,
+        "endChar": 62
+      },
+      "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
