@@ -25,6 +25,7 @@
 #define LOG_TAG "bluetooth"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <string.h>
 
 #include "gatt_int.h"
@@ -710,8 +711,18 @@ void gatt_process_notification(tGATT_TCB& tcb, uint16_t cid, uint8_t op_code,
     // notification/indication
     // Note: need to do the indication count and start timer first then do
     // callback
-    for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
-      if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) tcb.ind_count++;
+    if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+      for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
+        if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
+          tcb.ind_count++;
+        }
+      }
+    } else {
+      for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
+        if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
+          tcb.ind_count++;
+        }
+      }
     }
 
     /* start a timer for app confirmation */
@@ -730,11 +741,19 @@ void gatt_process_notification(tGATT_TCB& tcb, uint16_t cid, uint8_t op_code,
   gatt_cl_complete.att_value = value;
   gatt_cl_complete.cid = cid;
 
-  for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
-    if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
-      conn_id = GATT_CREATE_CONN_ID(tcb.tcb_idx, p_reg->gatt_if);
-      (*p_reg->app_cb.p_cmpl_cb)(conn_id, event, encrypt_status,
-                                 &gatt_cl_complete);
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
+      if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
+        conn_id = GATT_CREATE_CONN_ID(tcb.tcb_idx, p_reg->gatt_if);
+        (*p_reg->app_cb.p_cmpl_cb)(conn_id, event, encrypt_status, &gatt_cl_complete);
+      }
+    }
+  } else {
+    for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
+      if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
+        conn_id = GATT_CREATE_CONN_ID(tcb.tcb_idx, p_reg->gatt_if);
+        (*p_reg->app_cb.p_cmpl_cb)(conn_id, event, encrypt_status, &gatt_cl_complete);
+      }
     }
   }
 
@@ -770,11 +789,19 @@ void gatt_process_notification(tGATT_TCB& tcb, uint16_t cid, uint8_t op_code,
     gatt_cl_complete.att_value = value;
     gatt_cl_complete.cid = cid;
 
-    for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
-      if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
-        conn_id = GATT_CREATE_CONN_ID(tcb.tcb_idx, p_reg->gatt_if);
-        (*p_reg->app_cb.p_cmpl_cb)(conn_id, event, encrypt_status,
-                                   &gatt_cl_complete);
+    if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+      for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
+        if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
+          conn_id = GATT_CREATE_CONN_ID(tcb.tcb_idx, p_reg->gatt_if);
+          (*p_reg->app_cb.p_cmpl_cb)(conn_id, event, encrypt_status, &gatt_cl_complete);
+        }
+      }
+    } else {
+      for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
+        if (p_reg->in_use && p_reg->app_cb.p_cmpl_cb) {
+          conn_id = GATT_CREATE_CONN_ID(tcb.tcb_idx, p_reg->gatt_if);
+          (*p_reg->app_cb.p_cmpl_cb)(conn_id, event, encrypt_status, &gatt_cl_complete);
+        }
       }
     }
   }
