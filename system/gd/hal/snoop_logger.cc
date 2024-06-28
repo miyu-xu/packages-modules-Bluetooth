@@ -1200,6 +1200,20 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
   }
 #endif  // __ANDROID__
 
+  if (gmt_offset_us >= 0) {
+    timestamp_us  += static_cast<uint64_t>(gmt_offset_us);
+  } else {
+    /* when gmt_offset negative, adding offset to timestamp leads to
+     * integer overflow , we need to subtract positive offset to avoid overflow
+     */
+   uint64_t offset = static_cast<uint64_t>(-gmt_offset_us);
+if (offset > timestamp_us) {
+    LOG(WARNING) << "GMT offset subtraction underflow. Clamping timestamp to 0";
+    timestamp_us = 0;
+  } else {
+    timestamp_us -= offset;
+  }
+  }
   std::bitset<32> flags = 0;
   switch (type) {
     case PacketType::CMD:
@@ -1326,6 +1340,11 @@ void SnoopLogger::DumpSnoozLogToFile() {
 
 void SnoopLogger::Start() {
   std::lock_guard<std::recursive_mutex> lock(file_mutex_);
+  time_t t = time(NULL);
+  struct tm tm_cur;
+  localtime_r (&t, &tm_cur);
+  gmt_offset_us = (static_cast<int64_t>(tm_cur.tm_gmtoff) * kMicrosPerSecond);
+
   if (btsnoop_mode_ != kBtSnoopLogModeDisabled && btsnoop_mode_ != kBtSnoopLogModeKernel) {
     OpenNextSnoopLogFile();
 
