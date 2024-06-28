@@ -87,6 +87,24 @@
       "message": "The storage module used to always be up but I\u0027m not sure how the behavior is now, ensuring that the storage aspect is available to handle the purge at the appropriate time.",
       "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "532ed233_51721b1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-28T16:25:29Z",
+      "side": 1,
+      "message": "Primary goal of restricted mode handling in the stack is that the devices added by the guest should not get access to the system in the normal user mode.\n\nProblem specifically reported in b/346337854 is that guests lose their bonded device if BT restarts for any reason (including crashes).\n\nConcern raised in this comment essentially means that BT stack should be able to differentiate between different guest mode instances. Without the ability to distinguish between guest mode instances, it would be in contradiction to the issue reported in b/346337854.\n\nI would prefer to solve the reported problem than the concern raised in this comment. You can raise a separate bug for that if you wish so.",
+      "parentUuid": "6c017eb8_7afa9d17",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
