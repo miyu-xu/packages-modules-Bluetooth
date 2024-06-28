@@ -36,7 +36,6 @@ namespace stack_btm_inq {
 
 // Function state capture and return values, if needed
 struct BTM_CancelInquiry BTM_CancelInquiry;
-struct BTM_CancelRemoteDeviceName BTM_CancelRemoteDeviceName;
 struct BTM_ClearInqDb BTM_ClearInqDb;
 struct BTM_EnableInterlacedInquiryScan BTM_EnableInterlacedInquiryScan;
 struct BTM_EnableInterlacedPageScan BTM_EnableInterlacedPageScan;
@@ -47,7 +46,6 @@ struct BTM_InqDbFirst BTM_InqDbFirst;
 struct BTM_InqDbNext BTM_InqDbNext;
 struct BTM_InqDbRead BTM_InqDbRead;
 struct BTM_IsInquiryActive BTM_IsInquiryActive;
-struct BTM_ReadRemoteDeviceName BTM_ReadRemoteDeviceName;
 struct BTM_RemoveEirService BTM_RemoveEirService;
 struct BTM_SetConnectability BTM_SetConnectability;
 struct BTM_SetDiscoverability BTM_SetDiscoverability;
@@ -61,10 +59,7 @@ struct btm_inq_db_find btm_inq_db_find;
 struct btm_inq_db_new btm_inq_db_new;
 struct btm_inq_db_reset btm_inq_db_reset;
 struct btm_inq_find_bdaddr btm_inq_find_bdaddr;
-struct btm_inq_remote_name_timer_timeout btm_inq_remote_name_timer_timeout;
-struct btm_inq_rmt_name_failed_cancelled btm_inq_rmt_name_failed_cancelled;
 struct btm_process_inq_complete btm_process_inq_complete;
-struct btm_process_remote_name btm_process_remote_name;
 struct btm_set_eir_uuid btm_set_eir_uuid;
 struct btm_sort_inq_result btm_sort_inq_result;
 
@@ -77,7 +72,6 @@ namespace test {
 namespace mock {
 namespace stack_btm_inq {
 
-tBTM_STATUS BTM_CancelRemoteDeviceName::return_value = BTM_SUCCESS;
 tBTM_STATUS BTM_ClearInqDb::return_value = BTM_SUCCESS;
 uint8_t BTM_GetEirSupportedServices::return_value = 0;
 uint8_t BTM_GetEirUuidList::return_value = 0;
@@ -86,7 +80,6 @@ tBTM_INQ_INFO* BTM_InqDbFirst::return_value = nullptr;
 tBTM_INQ_INFO* BTM_InqDbNext::return_value = nullptr;
 tBTM_INQ_INFO* BTM_InqDbRead::return_value = nullptr;
 uint16_t BTM_IsInquiryActive::return_value = 0;
-tBTM_STATUS BTM_ReadRemoteDeviceName::return_value = BTM_SUCCESS;
 tBTM_STATUS BTM_SetConnectability::return_value = BTM_SUCCESS;
 tBTM_STATUS BTM_SetDiscoverability::return_value = BTM_SUCCESS;
 tBTM_STATUS BTM_SetInquiryMode::return_value = BTM_SUCCESS;
@@ -104,10 +97,6 @@ bool btm_inq_find_bdaddr::return_value = false;
 void BTM_CancelInquiry(void) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_inq::BTM_CancelInquiry();
-}
-tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
-  inc_func_call_count(__func__);
-  return test::mock::stack_btm_inq::BTM_CancelRemoteDeviceName();
 }
 tBTM_STATUS BTM_ClearInqDb(const RawAddress* p_bda) {
   inc_func_call_count(__func__);
@@ -152,12 +141,6 @@ tBTM_INQ_INFO* BTM_InqDbRead(const RawAddress& p_bda) {
 uint16_t BTM_IsInquiryActive(void) {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_inq::BTM_IsInquiryActive();
-}
-
-tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda, tBTM_NAME_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport) {
-  inc_func_call_count(__func__);
-  return test::mock::stack_btm_inq::BTM_ReadRemoteDeviceName(remote_bda, p_cb, transport);
 }
 void BTM_RemoveEirService(uint32_t* p_eir_uuid, uint16_t uuid16) {
   inc_func_call_count(__func__);
@@ -211,22 +194,9 @@ bool btm_inq_find_bdaddr(const RawAddress& p_bda) {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_inq::btm_inq_find_bdaddr(p_bda);
 }
-void btm_inq_remote_name_timer_timeout(void* data) {
-  inc_func_call_count(__func__);
-  test::mock::stack_btm_inq::btm_inq_remote_name_timer_timeout(data);
-}
-void btm_inq_rmt_name_failed_cancelled(void) {
-  inc_func_call_count(__func__);
-  test::mock::stack_btm_inq::btm_inq_rmt_name_failed_cancelled();
-}
 void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_inq::btm_process_inq_complete(status, mode);
-}
-void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn, uint16_t evt_len,
-                             tHCI_STATUS hci_status) {
-  inc_func_call_count(__func__);
-  test::mock::stack_btm_inq::btm_process_remote_name(bda, bdn, evt_len, hci_status);
 }
 void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results) {
   inc_func_call_count(__func__);
