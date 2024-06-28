@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0846e71_d4f85ff8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T18:46:02Z",
+      "side": 1,
+      "message": "nit / stretch / addition:\n\nI think we should look into activating parametrized flag test for gatt / scan java units tests.\n\nThere is an example of that in AdapterServiceTest (and I believe in A2dpServiceTest too). \n\nI believe this will help to directly spot flag toggle test errors like the one I am mentioning later in this CL. \n\n(of course, this does not belong in this change and should be done separatly).\n\n\nLet me know what you think @ofy@google.com @okamil@google.com",
+      "revId": "cc76f243da5491b9bc006576c34d55ad5a6100a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de7daa2_c78b1f05",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T18:46:02Z",
+      "side": 1,
+      "message": "```suggestion\n        if (Flags.scanManagerRefactor()) {\n            setGattService(null);\n        } else {\n            mTransitionalScanHelper.stop();\n        }\n```",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 9
+      },
+      "revId": "cc76f243da5491b9bc006576c34d55ad5a6100a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6885bb77_f5d1d335",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T18:46:02Z",
+      "side": 1,
+      "message": "This is already checked by the adapterService and this may break a test that is directly calling this `profileConnectionStateChanged_notifyScanManager`",
+      "range": {
+        "startLine": 370,
+        "startChar": 1,
+        "endLine": 373,
+        "endChar": 9
+      },
+      "revId": "cc76f243da5491b9bc006576c34d55ad5a6100a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
