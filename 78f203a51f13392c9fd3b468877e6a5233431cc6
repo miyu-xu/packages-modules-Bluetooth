@@ -105,6 +105,24 @@
       "parentUuid": "6c017eb8_7afa9d17",
       "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbbe0165_3c339c33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T17:21:23Z",
+      "side": 1,
+      "message": "From a privacy / security point of view, this patch is creating a regression by leaking the paired device to any other guest users.\n\nI believe that different guests users have different identifier in Android. Therefor it should already be possible to distinguish between the user.\n\nThis CL is introducing the bug I am describing. I think we need to address the issue.\n\n---\n\nUsing a proper storage within the user app data would automatically solve the issue and this should be the way forward, but I understand that the CL to do that require a bit (a lot) more work.\n\nA \"quick and dirty\" workaround would be to save the current user id in the database. Then when you purge you check if it is the same guest user or not.",
+      "parentUuid": "532ed233_51721b1c",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
