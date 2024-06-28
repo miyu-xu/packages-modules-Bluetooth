@@ -536,6 +536,57 @@ bool PORT_IsOpening(RawAddress* bd_addr) {
 
 /*******************************************************************************
  *
+ * Function         PORT_IsCollisionDetected
+ *
+ * Description      This function returns true if there is already an incoming
+ *                  RFCOMM connection in progress for this device
+ *
+ * Parameters:      true if any connection opening is found
+ *                  bd_addr    - bd_addr of the peer
+ *
+ ******************************************************************************/
+bool PORT_IsCollisionDetected(RawAddress bd_addr) {
+  for (auto& multiplexer_cb : rfc_cb.port.rfc_mcb) {
+    if (multiplexer_cb.bd_addr != RawAddress::kEmpty && multiplexer_cb.bd_addr != bd_addr) {
+      // there's no chance of a collision if the bd_addr is different
+      continue;
+    }
+    if (multiplexer_cb.is_initiator == false) {
+      // there's no chance of a collision if this side isn't a server
+      continue;
+    }
+    if ((multiplexer_cb.state > RFC_MX_STATE_IDLE) &&
+        (multiplexer_cb.state < RFC_MX_STATE_CONNECTED)) {
+      // this rfc_mcb is in the middle of opening
+      if (multiplexer_cb.bd_addr == bd_addr) {
+        log::info("Found an opening rfc_mcb with matching bd_addr, returning true");
+        return true;
+      } else {
+        // bd_addr isn't set already, we so currently don't know if it's a collision
+        // err on the side of caution and return true
+        log::info("Found an opening rfc_mcb with no bd_addr, returning true");
+        return true;
+      }
+    }
+    if (multiplexer_cb.state == RFC_MX_STATE_CONNECTED) {
+      const tPORT* p_port = get_port_from_mcb(&multiplexer_cb);
+      log::info("RFC_MX_STATE_CONNECTED, found_port={}, tRFC_PORT_STATE={}",
+                (p_port != nullptr) ? "T" : "F", (p_port != nullptr) ? p_port->rfc.state : 0);
+      if ((p_port == nullptr) || (p_port->rfc.state < RFC_STATE_OPENED)) {
+        // Port is not established yet
+        log::info(
+                "In RFC_MX_STATE_CONNECTED but port is not established yet, "
+                "returning true");
+        return true;
+      }
+
+  }
+  log::info("returning false");
+  return false;
+}
+
+/*******************************************************************************
+ *
  * Function         PORT_SetState
  *
  * Description      This function configures connection according to the
