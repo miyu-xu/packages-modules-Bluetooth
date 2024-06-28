@@ -22,6 +22,30 @@
       },
       "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0fd4801_31c33fa5",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-28T07:35:32Z",
+      "side": 1,
+      "message": "In BTM_SetBleDataLength suggested_tx_octects is used to ensure this procedure is not used to lower the value.\n\nI would expect that you will try to set data length at beginning of connection, just like GATT clients.\n\nCan you please ensure that you calling HCI directly here, and BTM_SetBleDataLength don\u0027t cause collisions ? i.e. you might set data length, and then call to BTM_SetBleDataLength could lower it. Or we can set it twice to same value, because you didn\u0027t udpate the suggested_tx_octects",
+      "parentUuid": "53013bd0_4804ab2c",
+      "range": {
+        "startLine": 359,
+        "startChar": 10,
+        "endLine": 360,
+        "endChar": 60
+      },
+      "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
