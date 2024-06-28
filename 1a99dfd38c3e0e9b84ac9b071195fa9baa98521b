@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac571407_5220f47c",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-28T16:55:53Z",
+      "side": 1,
+      "message": "We cannot make changes in the Framework.",
+      "revId": "1a99dfd38c3e0e9b84ac9b071195fa9baa98521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
