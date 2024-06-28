@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9c834d_5391484e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-28T14:48:37Z",
+      "side": 1,
+      "message": "I was thinking about it, agree - let\u0027s do it for external only then!",
+      "parentUuid": "ef946d60_730a3c7f",
+      "revId": "8206afa819aed4f0fc372c405e6bbefbb618336a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b374953_041c6c17",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "oh, we might need both check? similar to line 935",
       "parentUuid": "0b374953_041c6c17",
+      "revId": "8206afa819aed4f0fc372c405e6bbefbb618336a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd245a47_cf2a7072",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-28T14:48:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "19b697f4_6dbf9f0b",
       "revId": "8206afa819aed4f0fc372c405e6bbefbb618336a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
