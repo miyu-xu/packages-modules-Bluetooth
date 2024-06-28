@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bed622_e5a76941",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-28T17:03:02Z",
+      "side": 1,
+      "message": "You might consider using something like:\n`Objects.equals(currentQueue.get(index).title, newQueue.get(index).title)`\n\nJust in case the individual fields are null. I think, technically, they _can_ be. But our code is very careful at the moment to replace nulls with default values when converting from media framework data types to the Avrcp Metadata data type.\n\nSo, what you have I think is safe as the code is now, but `Objects.equals()` might save us from future blunders 😊",
+      "range": {
+        "startLine": 584,
+        "startChar": 15,
+        "endLine": 586,
+        "endChar": 90
+      },
+      "revId": "8dbfff6a88aa95d3a33a54fc9d6a53d9098c50cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
