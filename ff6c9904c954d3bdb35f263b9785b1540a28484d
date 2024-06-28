@@ -46,6 +46,30 @@
       },
       "revId": "ff6c9904c954d3bdb35f263b9785b1540a28484d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed9b2e6e_0cc7598c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-28T02:21:46Z",
+      "side": 1,
+      "message": "\u003e Taking an internal member of a different class is not a clean approach.\n\nGood point. I\u0027ve modified it to remove that.\n\nIf we were able do breaking changes, as in unflagged, then I believe `mTransitionalScanHelper` could now be completely removed from this class. I did a reset and minimized the changes in this CL. I went ahead and double checked: I believe the only remaining locations where it is being used is _only_ when the flag is off.",
+      "parentUuid": "b9662ad7_ae89d1f4",
+      "range": {
+        "startLine": 192,
+        "startChar": 12,
+        "endLine": 192,
+        "endChar": 35
+      },
+      "revId": "ff6c9904c954d3bdb35f263b9785b1540a28484d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
