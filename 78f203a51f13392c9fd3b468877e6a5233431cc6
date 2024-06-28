@@ -52,6 +52,41 @@
       "parentUuid": "f6d82808_6bb833de",
       "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c017eb8_7afa9d17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-28T02:00:13Z",
+      "side": 1,
+      "message": "If the guest pairs with `restricted`, guest turns off bt, then switches to user with bt off, the restricted is still there but with bluetooth off nothing can happen.  Then bt could be turned on with usermode, and `restrict` will be purged, but if switched back to guest then the `restrict` should still be there.\n\nIf the user turns on bluetooth in between all `restrict` would be purged.",
+      "parentUuid": "627eb8e4_0050b239",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c58c709_17cbd9ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-28T02:00:13Z",
+      "side": 1,
+      "message": "The storage module used to always be up but I\u0027m not sure how the behavior is now, ensuring that the storage aspect is available to handle the purge at the appropriate time.",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
