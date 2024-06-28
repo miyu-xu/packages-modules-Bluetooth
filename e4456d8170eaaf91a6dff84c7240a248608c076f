@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aa99d4f_a63d2559",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-28T14:10:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f1d0604_b89246b8",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77982af1_25d2782e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-28T14:10:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3561937_bb6d5389",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ebb2313_02c29f0c",
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2962e388_f96ec737",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2429,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-28T14:10:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ebb2313_02c29f0c",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba4785f4_fe93a61e",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-06-27T16:53:49Z",
       "side": 1,
       "message": "same here",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1af08e5a_4fb7832a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2978,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-28T14:10:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba4785f4_fe93a61e",
       "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "419b7ce8_7d98924f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1374,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-28T14:10:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bec4338_9414ea01",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6927ba0a_49de7786",
@@ -117,6 +207,24 @@
       "writtenOn": "2024-06-27T16:56:31Z",
       "side": 1,
       "message": "any reason why we\u0027d need to remove this?",
+      "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b09cd55_fd36681d",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-28T14:10:54Z",
+      "side": 1,
+      "message": "Because we want to get an audio hal callback, even if BIG is terminated. That code is called in DestroyAudioBroadcast as well.",
+      "parentUuid": "6927ba0a_49de7786",
       "revId": "e4456d8170eaaf91a6dff84c7240a248608c076f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
