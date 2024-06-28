@@ -140,8 +140,6 @@ TEST_F(BtaSecTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithoutName_RNRSuccess) {
                 BTM_SP_CFM_REQ_EVT, &data)));
   ASSERT_EQ(kNumVal, bta_dm_sec_cb.num_val);
   ASSERT_FALSE(callback_sent);
-
-  test::mock::stack_btm_inq::BTM_ReadRemoteDeviceName = {};
 }
 
 TEST_F(BtaSecTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithoutName_RNRFail) {
