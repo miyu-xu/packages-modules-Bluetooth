@@ -346,6 +346,8 @@ private:
   SnoopLoggerSocketInterface* socket_;
   SyscallWrapperImpl syscall_if;
   bool snoop_log_persists = false;
+using Microseconds = int64_t;
+Microseconds gmt_offset_us = 0;
 
   friend class SnoopLoggerTest;
 };
