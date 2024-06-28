@@ -137,10 +137,10 @@ public final class BluetoothHidHost implements BluetoothProfile {
     public static final int INPUT_OPERATION_SUCCESS = 5004;
 
     /** @hide */
-    public static final int PROTOCOL_REPORT_MODE = 0;
+    public static final int PROTOCOL_BOOT_MODE = 0;
 
     /** @hide */
-    public static final int PROTOCOL_BOOT_MODE = 1;
+    public static final int PROTOCOL_REPORT_MODE = 1;
 
     /** @hide */
     public static final int PROTOCOL_UNSUPPORTED_MODE = 255;

@@ -97,8 +97,8 @@ typedef uint16_t tBTA_HH_EVT;
 #define BTA_HH_INVALID_HANDLE 0xff
 
 /* type of protocol mode */
-#define BTA_HH_PROTO_RPT_MODE (0x00)
-#define BTA_HH_PROTO_BOOT_MODE (0x01)
+#define BTA_HH_PROTO_BOOT_MODE (0x00)
+#define BTA_HH_PROTO_RPT_MODE (0x01)
 #define BTA_HH_PROTO_UNKNOWN (0xff)
 typedef uint8_t tBTA_HH_PROTO_MODE;
 

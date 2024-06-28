@@ -759,10 +759,7 @@ void bta_hh_ctrl_dat_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       hs_data.rsp_data.p_rpt_data = pdata;
       break;
     case BTA_HH_GET_PROTO_EVT:
-      /* match up BTE/BTA report/boot mode def*/
-      hs_data.rsp_data.proto_mode = ((*data) == HID_PAR_PROTOCOL_REPORT)
-                                        ? BTA_HH_PROTO_RPT_MODE
-                                        : BTA_HH_PROTO_BOOT_MODE;
+      hs_data.rsp_data.proto_mode = *data;
       log::verbose("GET_PROTOCOL Mode = [{}]",
                    (hs_data.rsp_data.proto_mode == BTA_HH_PROTO_RPT_MODE)
                        ? "Report"
@@ -1023,16 +1020,6 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  * Returns          void
  *
  ******************************************************************************/
-static uint8_t convert_api_sndcmd_param(const tBTA_HH_CMD_DATA& api_sndcmd) {
-  uint8_t api_sndcmd_param = api_sndcmd.param;
-  if (api_sndcmd.t_type == HID_TRANS_SET_PROTOCOL) {
-    api_sndcmd_param = (api_sndcmd.param == BTA_HH_PROTO_RPT_MODE)
-                           ? HID_PAR_PROTOCOL_REPORT
-                           : HID_PAR_PROTOCOL_BOOT_MODE;
-  }
-  return api_sndcmd_param;
-}
-
 void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   uint16_t event =
       (p_data->api_sndcmd.t_type - HID_TRANS_GET_REPORT) + BTA_HH_GET_RPT_EVT;
@@ -1040,16 +1027,9 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE)
     bta_hh_le_write_dev_act(p_cb, p_data);
   else {
-    /* match up BTE/BTA report/boot mode def */
-    const uint8_t api_sndcmd_param =
-        convert_api_sndcmd_param(p_data->api_sndcmd);
-
-    tHID_STATUS status = HID_HostWriteDev(p_cb->hid_handle,
-                                          p_data->api_sndcmd.t_type,
-                                          api_sndcmd_param,
-                                          p_data->api_sndcmd.data,
-                                          p_data->api_sndcmd.rpt_id,
-                                          p_data->api_sndcmd.p_data);
+    tHID_STATUS status = HID_HostWriteDev(p_cb->hid_handle, p_data->api_sndcmd.t_type,
+                                          p_data->api_sndcmd.param, p_data->api_sndcmd.data,
+                                          p_data->api_sndcmd.rpt_id, p_data->api_sndcmd.p_data);
     if (status != HID_SUCCESS) {
       log::error("HID_HostWriteDev Error, status:{}", status);
 
@@ -1071,7 +1051,7 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
           },
         };
         (*bta_hh_cb.p_cback)(event, &cbdata);
-      } else if (api_sndcmd_param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {
+      } else if (p_data->api_sndcmd.param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {
         tBTA_HH cbdata = {
           .dev_status = {
             .status = BTA_HH_ERR,
@@ -1106,8 +1086,9 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
         case HID_TRANS_CONTROL:
           /* no handshake event will be generated */
           /* if VC_UNPLUG is issued, set flag */
-          if (api_sndcmd_param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG)
+          if (p_data->api_sndcmd.param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {
             p_cb->vp = true;
+          }
 
           break;
         /* currently not expected */
@@ -1122,9 +1103,9 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
         /* inform PM for mode change */
         bta_sys_busy(BTA_ID_HH, p_cb->app_id, p_cb->link_spec.addrt.bda);
         bta_sys_idle(BTA_ID_HH, p_cb->app_id, p_cb->link_spec.addrt.bda);
-      } else if (api_sndcmd_param == BTA_HH_CTRL_SUSPEND) {
+      } else if (p_data->api_sndcmd.param == BTA_HH_CTRL_SUSPEND) {
         bta_sys_sco_close(BTA_ID_HH, p_cb->app_id, p_cb->link_spec.addrt.bda);
-      } else if (api_sndcmd_param == BTA_HH_CTRL_EXIT_SUSPEND) {
+      } else if (p_data->api_sndcmd.param == BTA_HH_CTRL_EXIT_SUSPEND) {
         bta_sys_busy(BTA_ID_HH, p_cb->app_id, p_cb->link_spec.addrt.bda);
       }
     }

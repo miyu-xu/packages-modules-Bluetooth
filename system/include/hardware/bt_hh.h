@@ -79,8 +79,8 @@ typedef enum {
 
 /* Protocol modes */
 typedef enum {
-  BTHH_REPORT_MODE = 0x00,
-  BTHH_BOOT_MODE = 0x01,
+  BTHH_BOOT_MODE = 0x00,
+  BTHH_REPORT_MODE = 0x01,
   BTHH_UNSUPPORTED_MODE = 0xff
 } bthh_protocol_mode_t;
 

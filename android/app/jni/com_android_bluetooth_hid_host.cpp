@@ -383,10 +383,10 @@ static jboolean setProtocolModeNative(JNIEnv* env, jobject /* object */,
   bthh_protocol_mode_t mode;
   switch (protocolMode) {
     case 0:
-      mode = BTHH_REPORT_MODE;
+      mode = BTHH_BOOT_MODE;
       break;
     case 1:
-      mode = BTHH_BOOT_MODE;
+      mode = BTHH_REPORT_MODE;
       break;
     default:
       log::error("Unknown HID protocol mode");

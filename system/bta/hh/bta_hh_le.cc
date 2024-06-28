@@ -808,9 +808,6 @@ static bool bta_hh_le_set_protocol_mode(tBTA_HH_DEV_CB* p_cb,
       (*bta_hh_cb.p_cback)(BTA_HH_SET_PROTO_EVT, (tBTA_HH*)&cback_data);
   } else if (p_cb->mode != mode) {
     p_cb->mode = mode;
-    mode = (mode == BTA_HH_PROTO_BOOT_MODE) ? BTA_HH_LE_PROTO_BOOT_MODE
-                                            : BTA_HH_LE_PROTO_REPORT_MODE;
-
     BtaGattQueue::WriteCharacteristic(
         p_cb->conn_id, p_cb->hid_srvc.proto_mode_handle, {mode},
         GATT_WRITE_NO_RSP, write_proto_mode_cb, p_cb);
@@ -839,15 +836,7 @@ static void get_protocol_mode_cb(uint16_t conn_id, tGATT_STATUS status,
 
   if (status == GATT_SUCCESS && len) {
     hs_data.status = BTA_HH_OK;
-    /* match up BTE/BTA report/boot mode def*/
     hs_data.rsp_data.proto_mode = *(value);
-    /* LE repot mode is the opposite value of BR/EDR report mode, flip it here
-     */
-    if (hs_data.rsp_data.proto_mode == 0)
-      hs_data.rsp_data.proto_mode = BTA_HH_PROTO_BOOT_MODE;
-    else
-      hs_data.rsp_data.proto_mode = BTA_HH_PROTO_RPT_MODE;
-
     p_dev_cb->mode = hs_data.rsp_data.proto_mode;
   }
 
