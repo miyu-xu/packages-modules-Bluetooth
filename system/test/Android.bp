@@ -498,6 +498,13 @@ filegroup {
 }
 
 filegroup {
+    name: "TestMockStackRnr",
+    srcs: [
+        "mock/mock_stack_rnr.cc",
+    ],
+}
+
+filegroup {
     name: "TestMockMainBte",
     srcs: [
         "mock/mock_main_bte*.cc",
