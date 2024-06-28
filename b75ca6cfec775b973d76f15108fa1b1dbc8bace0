@@ -46,6 +46,30 @@
       },
       "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0d6477_4a61dfd0",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-28T15:04:06Z",
+      "side": 1,
+      "message": "I do have another option here : remove the log entirely 😄\nIf the codec info is invalid we will know by other means (snooplog / config rejection)",
+      "parentUuid": "0c6188ac_6b8cc7b9",
+      "range": {
+        "startLine": 372,
+        "startChar": 45,
+        "endLine": 372,
+        "endChar": 62
+      },
+      "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
