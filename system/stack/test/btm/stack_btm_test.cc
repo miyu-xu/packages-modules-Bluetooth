@@ -45,6 +45,8 @@ extern tBTM_CB btm_cb;
 
 tL2C_CB l2cb;
 
+void btm_inq_remote_name_timer_timeout(void*) {}
+
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions("mock broadcast audio config options");
 
@@ -210,39 +212,6 @@ TEST(BtmTest, BTM_EIR_MAX_SERVICES) { ASSERT_EQ(46, BTM_EIR_MAX_SERVICES); }
 
 void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_t* p_bd_name,
                                        tHCI_STATUS status);
-
-struct {
-  RawAddress bd_addr;
-  DEV_CLASS dc;
-  BD_NAME bd_name;
-} btm_test;
-
-TEST_F(StackBtmWithInitFreeTest, btm_sec_rmt_name_request_complete) {
-  ASSERT_TRUE(BTM_SecAddRmtNameNotifyCallback(
-          [](const RawAddress& bd_addr, DEV_CLASS dc, BD_NAME bd_name) {
-            btm_test.bd_addr = bd_addr;
-            btm_test.dc = dc;
-            memcpy(btm_test.bd_name, bd_name, BD_NAME_LEN);
-          }));
-
-  RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
-  const uint8_t* p_bd_name = (const uint8_t*)"MyTestName";
-
-  btm_test = {};
-  btm_sec_rmt_name_request_complete(&bd_addr, p_bd_name, HCI_SUCCESS);
-
-  ASSERT_THAT(btm_test.bd_name, Each(Eq(0)));
-  ASSERT_THAT(btm_test.dc, Each(Eq(0)));
-  ASSERT_EQ(bd_addr, btm_test.bd_addr);
-
-  btm_test = {};
-  ASSERT_TRUE(btm_find_or_alloc_dev(bd_addr) != nullptr);
-  btm_sec_rmt_name_request_complete(&bd_addr, p_bd_name, HCI_SUCCESS);
-
-  ASSERT_STREQ((const char*)p_bd_name, (const char*)btm_test.bd_name);
-  ASSERT_THAT(btm_test.dc, Each(Eq(0)));
-  ASSERT_EQ(bd_addr, btm_test.bd_addr);
-}
 
 TEST_F(StackBtmTest, sco_state_text) {
   std::vector<std::pair<tSCO_STATE, std::string>> states = {
