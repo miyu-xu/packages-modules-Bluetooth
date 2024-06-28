@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "271c98a4_93789fe2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T19:08:37Z",
+      "side": 1,
+      "message": "Most / all of my comment are nitpick, or raising concern that can be address later. Hence why I +2 in the same time",
+      "revId": "f03f2bf2a6e3ee02a5b4ac10497b81c6ce90f376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c57a599_c2af4f78",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScannerMap.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T19:08:37Z",
+      "side": 1,
+      "message": "```suggestion\n    private final Map\u003cInteger, AppScanStats\u003e mAppScanStatsMap \u003d new HashMap\u003c\u003e();\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 49
+      },
+      "revId": "f03f2bf2a6e3ee02a5b4ac10497b81c6ce90f376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02fe704_86840434",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScannerMap.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T19:08:37Z",
+      "side": 1,
+      "message": "```suggestion\n    private final ConcurrentLinkedQueue\u003cScannerApp\u003e mApps \u003d new ConcurrentLinkedQueue\u003c\u003e();\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 100
+      },
+      "revId": "f03f2bf2a6e3ee02a5b4ac10497b81c6ce90f376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f983b969_77942d2e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T19:08:37Z",
+      "side": 1,
+      "message": "nit for follow-up:\n\nI believe the app is the one that guarantee that when mCallback is null, then there is a mInfo.\n\nI would feel more comformtable seeing a method \"onResult in the ScannerApp that does all of that.\nNow that ScannerApp is it\u0027s own object, adding scan specific logic make ton of sens\n\nEven better, it could catch the exception and return a value to indicate success / failure ?\n\nSame for batchScanResult.",
+      "range": {
+        "startLine": 450,
+        "startChar": 0,
+        "endLine": 459,
+        "endChar": 17
+      },
+      "revId": "f03f2bf2a6e3ee02a5b4ac10497b81c6ce90f376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17f1bcc_7afab051",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T19:08:37Z",
+      "side": 1,
+      "message": "This check is not always performed.\n\nDo we need it and should we add it elsewhere ? or should we remove it ?",
+      "range": {
+        "startLine": 961,
+        "startChar": 26,
+        "endLine": 961,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6b9da29b_a07451a7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 961,
+                "startChar": 0,
+                "endLine": 962,
+                "endChar": 0
+              },
+              "replacement": "        if (app \u003d\u003d null) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 1031,
+                "startChar": 0,
+                "endLine": 1032,
+                "endChar": 0
+              },
+              "replacement": "        if (app \u003d\u003d null) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f03f2bf2a6e3ee02a5b4ac10497b81c6ce90f376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb0fcdc_3064c6da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScannerMapTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-28T19:08:37Z",
+      "side": 1,
+      "message": "I don\u0027t think this rule is needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 76
+      },
+      "revId": "f03f2bf2a6e3ee02a5b4ac10497b81c6ce90f376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
