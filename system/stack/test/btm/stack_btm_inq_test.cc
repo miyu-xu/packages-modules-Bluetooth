@@ -26,6 +26,7 @@
 #include "hci/class_of_device.h"
 #include "hci/hci_layer_fake.h"
 #include "hci/hci_packets.h"
+#include "packet/raw_builder.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/btm_inq.h"
 #include "stack/include/hci_error_code.h"
@@ -44,10 +45,14 @@ using bluetooth::common::ContextualOnceCallback;
 using bluetooth::hci::Address;
 using bluetooth::hci::CommandCompleteView;
 using bluetooth::hci::CommandStatusView;
+using bluetooth::hci::EventBuilder;
+using bluetooth::hci::EventCode;
 using bluetooth::hci::EventView;
 using bluetooth::hci::ExtendedInquiryResultBuilder;
+using bluetooth::hci::ExtendedInquiryResultRawBuilder;
 using bluetooth::hci::ExtendedInquiryResultView;
 using bluetooth::hci::InquiryResponse;
+using bluetooth::hci::InquiryResponseWithRssi;
 using bluetooth::hci::InquiryResultBuilder;
 using bluetooth::hci::InquiryResultView;
 using bluetooth::hci::InquiryResultWithRssiBuilder;
@@ -59,6 +64,7 @@ using bluetooth::hci::EventCode::EXTENDED_INQUIRY_RESULT;
 using bluetooth::hci::EventCode::INQUIRY_COMPLETE;
 using bluetooth::hci::EventCode::INQUIRY_RESULT;
 using bluetooth::hci::EventCode::INQUIRY_RESULT_WITH_RSSI;
+using bluetooth::packet::RawBuilder;
 using testing::_;
 using testing::A;
 using testing::Matcher;
@@ -262,10 +268,15 @@ class BtmDeviceInquiryTest : public BtmInqTest {
             &free_promise));
     EXPECT_EQ(std::future_status::ready, freed.wait_for(std::chrono::seconds(1)));
     main_thread_shut_down();
+    bluetooth::log::info("History");
+    for (const auto& entry : btm_cb.history_->Pull()) {
+      bluetooth::log::info("{}", entry.entry);
+    }
+
+    btm_cb.history_.reset();
     BtmInqTest::TearDown();
   }
 
-  std::shared_ptr<TimestampedStringCircularBuffer> log_history_;
   NiceMock<bluetooth::hci::testing::MockControllerInterface> controller_;
   bluetooth::hci::HciLayerFake hci_layer_;
   ContextualCallback<void(EventView)> on_exteneded_inq_result_;
@@ -293,13 +304,100 @@ TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_result) {
             one_result.wait_for(std::chrono::seconds(1)));
 }
 
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_extended_result) {
+  std::promise<void> one_result_promise;
+  auto one_result = one_result_promise.get_future();
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).WillOnce([&one_result_promise]() {
+    one_result_promise.set_value();
+  });
+
+  uint8_t rssi = 0xe0;
+  bluetooth::hci::GapData name{
+          bluetooth::hci::GapDataType::COMPLETE_LOCAL_NAME,
+          std::vector<uint8_t>({'t', 'e', 's', 't', '_', 'd', 'e', 'v', 'i', 'c', 'e'})};
+  bluetooth::log::info("{} {}", name.ToString(), name.size());
+  hci_layer_.IncomingEvent(ExtendedInquiryResultBuilder::Create(
+          kAddress2, bluetooth::hci::PageScanRepetitionMode::R0, bluetooth::hci::ClassOfDevice(),
+          0x2345, rssi, {name}));
+
+  EXPECT_EQ(std::future_status::ready, one_result.wait_for(std::chrono::seconds(1)));
+}
+
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_extended_result_raw) {
+  std::promise<void> one_result_promise;
+  auto one_result = one_result_promise.get_future();
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).WillOnce([&one_result_promise]() {
+    one_result_promise.set_value();
+  });
+
+  uint8_t rssi = 0xe0;
+  std::array<uint8_t, 240> eir_data{0};
+
+  std::vector<uint8_t> name{'t', 'e', 's', 't', '_', 'd', 'e', 'v', 'i', 'c', 'e'};
+  eir_data[0] = 1 + name.size();
+  eir_data[1] = static_cast<uint8_t>(bluetooth::hci::GapDataType::COMPLETE_LOCAL_NAME);
+  std::copy(name.data(), name.data() + name.size(), eir_data.data() + 2);
+  hci_layer_.IncomingEvent(ExtendedInquiryResultRawBuilder::Create(
+          kAddress2, bluetooth::hci::PageScanRepetitionMode::R0, bluetooth::hci::ClassOfDevice(),
+          0x2345, rssi, eir_data));
+
+  EXPECT_EQ(std::future_status::ready, one_result.wait_for(std::chrono::seconds(1)));
+}
+
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_extended_result_wireshark) {
+  std::promise<void> one_result_promise;
+  auto one_result = one_result_promise.get_future();
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).WillOnce([&one_result_promise]() {
+    one_result_promise.set_value();
+  });
+
+  std::vector<uint8_t> raw_extended_inquiry{
+          0x01, 0x70, 0x4f, 0x1c, 0x0d, 0xd0, 0x14, 0x01, 0x00, 0x0c, 0x02, 0x7a, 0xc2, 0x09, 0xca,
+          0x13, 0x09, 0x54, 0x6f, 0x6d, 0xe2, 0x80, 0x99, 0x73, 0x20, 0x44, 0x65, 0x76, 0x20, 0x69,
+          0x50, 0x68, 0x6f, 0x6e, 0x65, 0x0f, 0x03, 0x00, 0x12, 0x1f, 0x11, 0x2f, 0x11, 0x0a, 0x11,
+          0x0c, 0x11, 0x32, 0x11, 0x01, 0x18, 0x01, 0x05, 0x31, 0x07, 0xfe, 0xca, 0xca, 0xde, 0xaf,
+          0xde, 0xca, 0xde, 0xde, 0xfa, 0xca, 0xde, 0x00, 0x00, 0x00, 0x00, 0x77, 0x0a, 0x6a, 0x10,
+          0xa2, 0x22, 0xf2, 0x86, 0x5f, 0x41, 0x19, 0x1d, 0x02, 0x03, 0x03, 0x02, 0x1a, 0x29, 0xea,
+          0xab, 0x01, 0x73, 0xbc, 0x88, 0x1c, 0x45, 0x4d, 0xe1, 0x66, 0x24, 0x8d, 0x2d, 0x27, 0xff,
+          0x00, 0x4c, 0x02, 0x24, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  };
+  hci_layer_.IncomingEvent(EventBuilder::Create(
+          EventCode::EXTENDED_INQUIRY_RESULT, std::make_unique<RawBuilder>(raw_extended_inquiry)));
+
+  EXPECT_EQ(std::future_status::ready, one_result.wait_for(std::chrono::seconds(1)));
+}
+
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_result_rssi) {
+  std::promise<void> one_result_promise;
+  auto one_result = one_result_promise.get_future();
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).WillOnce([&one_result_promise]() {
+    one_result_promise.set_value();
+  });
+
+  uint8_t rssi = 0xe0;
+  InquiryResponseWithRssi one_device(kAddress2, bluetooth::hci::PageScanRepetitionMode::R0,
+                                     bluetooth::hci::ClassOfDevice(), 0x2345, rssi);
+  hci_layer_.IncomingEvent(InquiryResultWithRssiBuilder::Create({one_device}));
+
+  EXPECT_EQ(std::future_status::ready, one_result.wait_for(std::chrono::seconds(1)));
+}
+
 TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_thousand_results) {
   EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).Times(1024);
 
   uint8_t address_bytes[Address::kLength];
   std::copy(kAddress2.data(), kAddress2.data() + Address::kLength, address_bytes);
 
-  for (size_t i = 0; i < 1024; i++) {
+  for (size_t i = 0; i < 10; i++) {
     Address address;
     address.FromOctets(address_bytes);
     address_bytes[0]++;

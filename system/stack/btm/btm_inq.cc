@@ -2456,6 +2456,7 @@ static void on_inquiry_complete(EventView event) {
 static void on_incoming_hci_event(EventView event) {
   log::assert_that(event.IsValid(), "assert failed: event.IsValid()");
   auto event_code = event.GetEventCode();
+  log::info("{}", EventCodeText(event_code));
   switch (event_code) {
     case EventCode::INQUIRY_COMPLETE:
       on_inquiry_complete(event);
