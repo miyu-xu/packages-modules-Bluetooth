@@ -54,7 +54,7 @@ public class AdvertiseManagerTest {
 
     @Mock private GattService mService;
 
-    @Mock private GattService.AdvertiserMap mAdvertiserMap;
+    @Mock private AdvertiserMap mAdvertiserMap;
 
     @Mock private AdvertiseManagerNativeInterface mNativeInterface;
 
@@ -67,10 +67,11 @@ public class AdvertiseManagerTest {
 
     @Before
     public void setUp() throws Exception {
-
         TestUtils.setAdapterService(mAdapterService);
 
-        mAdvertiseManager = new AdvertiseManager(mService, mNativeInterface, mAdvertiserMap);
+        AdvertiseManagerNativeInterface.setInstance(mNativeInterface);
+        mAdvertiseManager = new AdvertiseManager(mService);
+        mAdvertiseManager.mAdvertiserMap = mAdvertiserMap;
 
         AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
         AdvertiseData advertiseData = new AdvertiseData.Builder().build();
@@ -100,6 +101,7 @@ public class AdvertiseManagerTest {
 
     @After
     public void tearDown() throws Exception {
+        AdvertiseManagerNativeInterface.setInstance(null);
         TestUtils.clearAdapterService(mAdapterService);
     }
 
