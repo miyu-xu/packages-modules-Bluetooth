@@ -45,8 +45,6 @@ import android.util.Log;
 
 import com.android.bluetooth.bass_client.BassClientPeriodicAdvertisingManager;
 import com.android.bluetooth.gatt.AppAdvertiseStats;
-import com.android.bluetooth.gatt.ContextMap;
-import com.android.bluetooth.gatt.GattService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.HeaderSet;
 
@@ -265,9 +263,8 @@ public class BluetoothMethodProxy {
     }
 
     /** Proxies {@link AppAdvertiseStats}. */
-    public AppAdvertiseStats createAppAdvertiseStats(
-            int appUid, int id, String name, ContextMap map, GattService service) {
-        return new AppAdvertiseStats(appUid, id, name, map, service);
+    public AppAdvertiseStats createAppAdvertiseStats(int appUid, int id, String name) {
+        return new AppAdvertiseStats(appUid, id, name);
     }
 
     /** Proxies {@link Thread#start()}. */
