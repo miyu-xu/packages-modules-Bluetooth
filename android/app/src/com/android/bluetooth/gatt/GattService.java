@@ -143,11 +143,6 @@ public class GattService extends ProfileService {
     /** This is only used when Flags.scanManagerRefactor() is true. */
     private static GattService sGattService;
 
-    /** List of our registered advertisers. */
-    static class AdvertiserMap extends ContextMap<IAdvertisingSetCallback> {}
-
-    private AdvertiserMap mAdvertiserMap = new AdvertiserMap();
-
     /** List of our registered clients. */
     static class ClientMap extends ContextMap<IBluetoothGattCallback> {}
 
@@ -215,8 +210,7 @@ public class GattService extends ProfileService {
         mNativeInterface.init(this);
         mAdapterService = AdapterService.getAdapterService();
         mAdvertiseManager =
-                new AdvertiseManager(
-                        this, AdvertiseManagerNativeInterface.getInstance(), mAdvertiserMap);
+                new AdvertiseManager(this, AdvertiseManagerNativeInterface.getInstance());
 
         if (!Flags.scanManagerRefactor()) {
             HandlerThread thread = new HandlerThread("BluetoothScanManager");
@@ -247,7 +241,7 @@ public class GattService extends ProfileService {
         }
 
         mTransitionalScanHelper.stop();
-        mAdvertiserMap.clear();
+        mAdvertiseManager.clear();
         mClientMap.clear();
         if (Flags.gattCleanupRestrictedHandles()) {
             mRestrictedHandles.clear();
@@ -3531,7 +3525,7 @@ public class GattService extends ProfileService {
         mTransitionalScanHelper.getScannerMap().dump(sb);
 
         sb.append("GATT Advertiser Map\n");
-        mAdvertiserMap.dumpAdvertiser(sb);
+        mAdvertiseManager.dump(sb);
 
         sb.append("GATT Client Map\n");
         mClientMap.dump(sb);

@@ -20,13 +20,8 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
 
-import android.bluetooth.le.AdvertiseData;
-import android.bluetooth.le.AdvertisingSetParameters;
-import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.content.pm.PackageManager;
-import android.os.Binder;
 
 import androidx.test.filters.SmallTest;
 import androidx.test.rule.ServiceTestRule;
@@ -53,13 +48,13 @@ import java.util.UUID;
 @RunWith(AndroidJUnit4.class)
 public class ContextMapTest {
     private static final String APP_NAME = "com.android.what.a.name";
+    private static final int ID = 123;
 
     @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private AdapterService mAdapterService;
-    @Mock private AppAdvertiseStats appAdvertiseStats;
     @Mock private GattService mMockGatt;
     @Mock private PackageManager mMockPackageManager;
 
@@ -85,92 +80,21 @@ public class ContextMapTest {
     @Test
     public void getByMethods() {
         ContextMap contextMap = new ContextMap<>();
+        UUID uuid = UUID.randomUUID();
+        ContextMap.App app = contextMap.add(uuid, null, mMockGatt);
+        app.id = ID;
 
-        int id = 12345;
-        contextMap.add(id, null, mMockGatt);
-
-        int appUid = Binder.getCallingUid();
-
-        ContextMap.App contextMapById = contextMap.getById(appUid);
+        ContextMap.App contextMapById = contextMap.getById(ID);
         assertThat(contextMapById.name).isEqualTo(APP_NAME);
-    }
-
-    @Test
-    public void advertisingSetAndData() {
-        ContextMap contextMap = new ContextMap<>();
-
-        int appUid = Binder.getCallingUid();
-        int id = 12345;
-        doReturn(appAdvertiseStats)
-                .when(mMapMethodProxy)
-                .createAppAdvertiseStats(appUid, id, APP_NAME, contextMap, mMockGatt);
-
-        contextMap.add(id, null, mMockGatt);
-
-        int duration = 60;
-        int maxExtAdvEvents = 100;
-        int instanceCount = 1;
-        contextMap.enableAdvertisingSet(id, true, duration, maxExtAdvEvents);
-        verify(appAdvertiseStats)
-                .enableAdvertisingSet(true, duration, maxExtAdvEvents, instanceCount);
-
-        AdvertiseData advertiseData = new AdvertiseData.Builder().build();
-        contextMap.setAdvertisingData(id, advertiseData);
-        verify(appAdvertiseStats).setAdvertisingData(advertiseData);
-
-        AdvertiseData scanResponse = new AdvertiseData.Builder().build();
-        contextMap.setScanResponseData(id, scanResponse);
-        verify(appAdvertiseStats).setScanResponseData(scanResponse);
-
-        AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
-        contextMap.setAdvertisingParameters(id, parameters);
-        verify(appAdvertiseStats).setAdvertisingParameters(parameters);
-
-        PeriodicAdvertisingParameters periodicParameters =
-                new PeriodicAdvertisingParameters.Builder().build();
-        contextMap.setPeriodicAdvertisingParameters(id, periodicParameters);
-        verify(appAdvertiseStats).setPeriodicAdvertisingParameters(periodicParameters);
-
-        AdvertiseData periodicData = new AdvertiseData.Builder().build();
-        contextMap.setPeriodicAdvertisingData(id, periodicData);
-        verify(appAdvertiseStats).setPeriodicAdvertisingData(periodicData);
-
-        contextMap.onPeriodicAdvertiseEnabled(id, true);
-        verify(appAdvertiseStats).onPeriodicAdvertiseEnabled(true);
-
-        AppAdvertiseStats toBeRemoved = contextMap.getAppAdvertiseStatsById(id);
-        assertThat(toBeRemoved).isNotNull();
-
-        contextMap.removeAppAdvertiseStats(id);
-
-        AppAdvertiseStats isRemoved = contextMap.getAppAdvertiseStatsById(id);
-        assertThat(isRemoved).isNull();
-    }
-
-    @Test
-    public void emptyStop_doesNotCrash() throws Exception {
-        ContextMap contextMap = new ContextMap<>();
-
-        int id = 12345;
-        contextMap.recordAdvertiseStop(id);
+        ContextMap.App contextMapByUuid = contextMap.getByUuid(uuid);
+        assertThat(contextMapByUuid.name).isEqualTo(APP_NAME);
     }
 
     @Test
     public void testDump_doesNotCrash() throws Exception {
         StringBuilder sb = new StringBuilder();
-
         ContextMap contextMap = new ContextMap<>();
-
-        int id = 12345;
-        contextMap.add(id, null, mMockGatt);
-
         contextMap.add(UUID.randomUUID(), null, mMockGatt);
-
-        contextMap.recordAdvertiseStop(id);
-
-        int idSecond = 54321;
-        contextMap.add(idSecond, null, mMockGatt);
-
-        contextMap.dumpAdvertiser(sb);
+        contextMap.dump(sb);
     }
 }
