@@ -61,11 +61,17 @@ int PacketField::GenBounds(std::ostream& s, Size start_offset, Size end_offset, 
     s << "size_t field_end = end_index - (" << end_offset << ") / 8;";
     // If the field has a known size, use the minimum for the end
     if (!size.empty()) {
-      s << "size_t field_sized_end = field_begin + (" << size << ") / 8;";
+      s << "size_t field_sized_end = field_begin;";
+      s << "if (" << size << " < 0) { field_begin = end_index; field_end = end_index;";
+      s << "} else { ";
+      s << "field_sized_end = field_end + (" << size << ") / 8;";
       s << "if (field_sized_end < field_end) { field_end = field_sized_end; }";
+      s << "}";
     }
   } else {
-    s << "size_t field_end = field_begin + (" << size << ") / 8;";
+    s << "size_t field_end = field_begin;";
+    s << "if (" << size << " < 0) { field_begin = end_index; field_end = end_index;";
+    s << "} else { field_end = field_end + (" << size << ") / 8; }";
     s << "if (field_end > end_index) { field_end = end_index; }";
   }
   s << "auto " << name_ << "_it = to_bound.Subrange(field_begin, field_end - field_begin); ";

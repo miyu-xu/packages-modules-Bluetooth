@@ -52,15 +52,16 @@ Size VectorField::GetSize() const {
 
   // size_field_ is of type SIZE
   if (size_field_->GetFieldType() == SizeField::kFieldType) {
-    std::string ret = "(static_cast<size_t>(Get" + util::UnderscoreToCamelCase(size_field_->GetName()) + "()) * 8)";
+    std::string ret = "(static_cast<ssize_t>(Get" +
+                      util::UnderscoreToCamelCase(size_field_->GetName()) + "()) * 8)";
     if (!size_modifier_.empty()) ret += "+ (" + size_modifier_.substr(1) + " * 8)";
     return ret;
   }
 
   // size_field_ is of type COUNT and elements have a fixed size
   if (!element_size_.empty() && !element_size_.has_dynamic()) {
-    return "(static_cast<size_t>(Get" + util::UnderscoreToCamelCase(size_field_->GetName()) + "()) * " +
-           std::to_string(element_size_.bits()) + ")";
+    return "(static_cast<ssize_t>(Get" + util::UnderscoreToCamelCase(size_field_->GetName()) +
+           "()) * " + std::to_string(element_size_.bits()) + ")";
   }
 
   return Size();
@@ -68,7 +69,8 @@ Size VectorField::GetSize() const {
 
 Size VectorField::GetBuilderSize() const {
   if (!element_size_.empty() && !element_size_.has_dynamic()) {
-    std::string ret = "(static_cast<size_t>(" + GetName() + "_.size()) * " + std::to_string(element_size_.bits()) + ")";
+    std::string ret = "(static_cast<ssize_t>(" + GetName() + "_.size()) * " +
+                      std::to_string(element_size_.bits()) + ")";
     return ret;
   } else if (element_field_->BuilderParameterMustBeMoved()) {
     std::string ret = "[this](){ size_t length = 0; for (const auto& elem : " + GetName() +
@@ -89,14 +91,15 @@ Size VectorField::GetStructSize() const {
 
   // size_field_ is of type SIZE
   if (size_field_->GetFieldType() == SizeField::kFieldType) {
-    std::string ret = "(static_cast<size_t>(to_fill->" + size_field_->GetName() + "_extracted_) * 8)";
+    std::string ret =
+            "(static_cast<ssize_t>(to_fill->" + size_field_->GetName() + "_extracted_) * 8)";
     if (!size_modifier_.empty()) ret += "- (" + size_modifier_.substr(1) + " * 8)";
     return ret;
   }
 
   // size_field_ is of type COUNT and elements have a fixed size
   if (!element_size_.empty() && !element_size_.has_dynamic()) {
-    return "(static_cast<size_t>(to_fill->" + size_field_->GetName() + "_extracted_) * " +
+    return "(static_cast<ssize_t>(to_fill->" + size_field_->GetName() + "_extracted_) * " +
            std::to_string(element_size_.bits()) + ")";
   }
 

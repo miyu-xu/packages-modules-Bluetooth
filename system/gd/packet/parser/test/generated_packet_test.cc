@@ -1821,8 +1821,9 @@ TEST(GeneratedPacketTest, testOneLengthTypeValueStructPaddedGeneration) {
   auto view = OneLengthTypeValueStructPaddedView::Create(SizedParentView::Create(packet_bytes_view));
   ASSERT_TRUE(view.IsValid());
   auto an_array = view.GetOneArray();
-  // TODO: Revisit LTV parsing.  Right now, the padding bytes are parsed
+  // TODO: Revisit LTV parsing.  Right now, the first padding bytes are parsed
   ASSERT_LE(ltv_vector.size(), an_array.size());
+  ASSERT_LE(an_array.size(), ltv_vector.size() + 1);
   for (size_t i = 0; i < ltv_vector.size(); i++) {
     ASSERT_EQ(ltv_vector[i].type_, an_array[i].type_);
     ASSERT_EQ(ltv_vector[i].value_, an_array[i].value_);
