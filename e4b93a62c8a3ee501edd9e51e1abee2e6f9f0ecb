@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba5a4313_fd11d6e8",
+        "filename": "system/audio_hal_interface/hidl/a2dp_encoding_hidl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-29T00:08:34Z",
+      "side": 1,
+      "message": "Can be removed",
+      "revId": "e4b93a62c8a3ee501edd9e51e1abee2e6f9f0ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
