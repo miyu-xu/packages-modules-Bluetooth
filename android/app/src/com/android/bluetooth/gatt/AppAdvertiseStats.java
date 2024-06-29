@@ -49,12 +49,6 @@ public class AppAdvertiseStats {
     static final String[] PHY_LE_STRINGS = {"LE_1M", "LE_2M", "LE_CODED"};
     static final int UUID_STRING_FILTER_LEN = 8;
 
-    // ContextMap here is needed to grab Apps and Connections
-    ContextMap mContextMap;
-
-    // GattService is needed to add scan event protos to be dumped later
-    GattService mGattService;
-
     static class AppAdvertiserData {
         public boolean includeDeviceName = false;
         public boolean includeTxPowerLevel = false;
@@ -88,7 +82,7 @@ public class AppAdvertiseStats {
     }
 
     private int mAppUid;
-    private String mAppName;
+    @VisibleForTesting String mAppName;
     private int mId;
     private boolean mAdvertisingEnabled = false;
     private boolean mPeriodicAdvertisingEnabled = false;
@@ -108,12 +102,10 @@ public class AppAdvertiseStats {
     public ArrayList<AppAdvertiserRecord> mAdvertiserRecords = new ArrayList<AppAdvertiserRecord>();
 
     @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
-    public AppAdvertiseStats(int appUid, int id, String name, ContextMap map, GattService service) {
+    public AppAdvertiseStats(int appUid, int id, String name) {
         this.mAppUid = appUid;
         this.mId = id;
         this.mAppName = name;
-        this.mContextMap = map;
-        this.mGattService = service;
     }
 
     void recordAdvertiseStart(

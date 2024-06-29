@@ -32,7 +32,6 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.gatt.GattService.AdvertiserMap;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.Collections;
@@ -48,26 +47,29 @@ public class AdvertiseManager {
 
     private final GattService mService;
     private final AdvertiseManagerNativeInterface mNativeInterface;
-    private final AdvertiserMap mAdvertiserMap;
+    @VisibleForTesting AdvertiserMap mAdvertiserMap;
     private Handler mHandler;
     Map<IBinder, AdvertiserInfo> mAdvertisers = Collections.synchronizedMap(new HashMap<>());
     static int sTempRegistrationId = -1;
 
     /** Constructor of {@link AdvertiseManager}. */
-    AdvertiseManager(
-            GattService service,
-            AdvertiseManagerNativeInterface nativeInterface,
-            AdvertiserMap advertiserMap) {
+    AdvertiseManager(GattService service, AdvertiseManagerNativeInterface nativeInterface) {
         Log.d(TAG, "advertise manager created");
         mService = service;
         mNativeInterface = nativeInterface;
-        mAdvertiserMap = advertiserMap;
+        mAdvertiserMap = new AdvertiserMap();
 
         // Start a HandlerThread that handles advertising operations
         mNativeInterface.init(this);
         HandlerThread thread = new HandlerThread("BluetoothAdvertiseManager");
         thread.start();
         mHandler = new Handler(thread.getLooper());
+    }
+
+    // TODO(okamil): We shouldn't need this, it should be safe to do in the cleanup method. But it
+    //               would be a logic change.
+    void clear() {
+        mAdvertiserMap.clear();
     }
 
     void cleanup() {
@@ -85,6 +87,10 @@ public class AdvertiseManager {
             }
             mHandler = null;
         }
+    }
+
+    void dump(StringBuilder sb) {
+        mAdvertiserMap.dump(sb);
     }
 
     static class AdvertiserInfo {
@@ -263,7 +269,7 @@ public class AdvertiseManager {
 
             Log.d(TAG, "startAdvertisingSet() - reg_id=" + cbId + ", callback: " + binder);
 
-            mAdvertiserMap.add(cbId, callback, mService);
+            mAdvertiserMap.addAppAdvertiseStats(cbId, mService);
             mAdvertiserMap.recordAdvertiseStart(
                     cbId,
                     parameters,
