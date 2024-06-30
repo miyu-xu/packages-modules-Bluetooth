@@ -38,6 +38,9 @@
 #include "test/mock/mock_stack_l2cap_ble.h"
 #include "test/rfcomm/stack_rfcomm_test_utils.h"
 
+bool l2c_is_result_internal(const tL2CAP_CONN& result) { return false; }
+bool l2c_is_result_le(const tL2CAP_CONN& result) { return false; }
+
 namespace bluetooth {
 namespace hal {
 class SnoopLogger;

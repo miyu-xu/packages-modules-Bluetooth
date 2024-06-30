@@ -25,6 +25,9 @@
 
 static bluetooth::l2cap::MockL2capInterface* l2cap_interface = nullptr;
 
+bool l2c_is_result_internal(const tL2CAP_CONN& result) { return false; }
+bool l2c_is_result_le(const tL2CAP_CONN& result) { return false; }
+
 void bluetooth::l2cap::SetMockInterface(MockL2capInterface* mock_l2cap_interface) {
   l2cap_interface = mock_l2cap_interface;
 }

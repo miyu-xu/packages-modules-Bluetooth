@@ -158,6 +158,9 @@ enum tL2CAP_CONN : uint16_t {
   L2CAP_CONN_INVALID_PARAMETERS = L2CAP_CONN_LE_MASK + L2CAP_LE_RESULT_INVALID_PARAMETERS,
 };
 
+bool l2c_is_result_internal(const tL2CAP_CONN& result);
+bool l2c_is_result_le(const tL2CAP_CONN& result);
+
 inline std::string l2cap_result_code_text(const tL2CAP_CONN& result) {
   switch (result) {
     CASE_RETURN_TEXT(L2CAP_CONN_OK);
