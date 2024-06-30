@@ -3596,3 +3596,12 @@ uint16_t le_result_to_l2c_conn(uint16_t result) {
  *
  ******************************************************************************/
 void l2c_acl_flush(uint16_t handle) { btm_acl_flush(handle); }
+
+// Encapsulation of subtypes of l2cap internal error codes outside of
+// bluetooth l2cap specification.
+bool l2c_is_result_internal(const tL2CAP_CONN& result) {
+  return static_cast<uint16_t>(result) & L2CAP_CONN_INTERNAL_MASK;
+}
+bool l2c_is_result_le(const tL2CAP_CONN& result) {
+  return static_cast<uint16_t>(result) & L2CAP_CONN_LE_MASK;
+}

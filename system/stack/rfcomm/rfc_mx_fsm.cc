@@ -559,7 +559,7 @@ void rfc_on_l2cap_error(uint16_t lcid, uint16_t result) {
     return;
   }
 
-  if (result & L2CAP_CONN_INTERNAL_MASK) {
+  if (l2c_is_result_internal(to_l2cap_result_code(result))) {
     /* if peer rejects our connect request but peer's connect request is pending
      */
     if (p_mcb->pending_lcid) {
