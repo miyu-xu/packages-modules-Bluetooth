@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88e4d5f1_9d813e8b",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-01T07:17:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71bed622_e5a76941",
+      "range": {
+        "startLine": 584,
+        "startChar": 15,
+        "endLine": 586,
+        "endChar": 90
+      },
+      "revId": "8dbfff6a88aa95d3a33a54fc9d6a53d9098c50cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d8f1076_41a011c4",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-28T17:38:11Z",
       "side": 1,
       "message": "In addition to sal comment, we can avoid the get(x) everytime (6 times now). by having temporary value:\n```\n        for (int index \u003d 0; index \u003c currentQueue.size(); index++) {\n            Metadata currentMetadata \u003d currentQueue.get(index);\n            Metadata newMetadata \u003d newQueue.get(index);\n            if (!currentMetadata.title.equals(newMetadata.title)\n                    || !currentMetadata.artist.equals(newMetadata.artist)\n                    || !currentMetadata.album.equals(newMetadata.album)) {\n                return true;\n            }\n        }\n```\n\nMaybe there are other solution with stream or else",
+      "range": {
+        "startLine": 583,
+        "startChar": 7,
+        "endLine": 590,
+        "endChar": 21
+      },
+      "revId": "8dbfff6a88aa95d3a33a54fc9d6a53d9098c50cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc8d27e_1e938e78",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-01T07:17:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d8f1076_41a011c4",
       "range": {
         "startLine": 583,
         "startChar": 7,
