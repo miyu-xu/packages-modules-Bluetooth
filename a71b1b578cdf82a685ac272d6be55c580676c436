@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad42fcd0_f26a9eb1",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-01T16:11:40Z",
+      "side": 1,
+      "message": "This seems to be only used for BR/EDR. Should we just check the classic link state?",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e3dd14a_85a72867",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-01T16:11:40Z",
+      "side": 1,
+      "message": "Nit: We can use security_state_text() here and all other places where security state is logged.",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "742a16e8_9d6bda49",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-01T16:11:40Z",
+      "side": 1,
+      "message": "To retain the original logic, we have to check the states of both the transports.",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bd0c2a0_8da75fcf",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-01T16:11:40Z",
+      "side": 1,
+      "message": "Should we make it LE specific since it is only being used for LE transport?",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
