@@ -54,6 +54,9 @@ tL2C_CCB* l2cu_get_next_channel_in_rr(tL2C_LCB* p_lcb);  // TODO Move
  */
 #define L2CAP_SEND_CMD_OFFSET 0
 
+#define L2CAP_CONN_INTERNAL_MASK 0xF000
+#define L2CAP_CONN_LE_MASK 0xFF00
+
 /*******************************************************************************
  *
  * Function         l2cu_allocate_lcb
