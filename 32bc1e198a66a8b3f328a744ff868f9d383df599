@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beeb034a_a74011eb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-01T16:52:59Z",
+      "side": 0,
+      "message": "Why was the assertion removed from the acceptSocket function?\n\nIs it expected behavior for a socket to be accepted even if it\u0027s not connected?",
+      "revId": "32bc1e198a66a8b3f328a744ff868f9d383df599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
