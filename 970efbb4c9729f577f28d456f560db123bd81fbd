@@ -1,0 +1,185 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b0d165c_438aa19f",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T18:28:10Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [VisibleForTests] This class should only be accessed from tests or within package private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[VisibleForTests] This class should only be accessed from tests or within package private scope\n\n        public AppAdvertiseStats createAppAdvertiseStats(int appUid, int id, String name) {\n               ~~~~~~~~~~~~~~~~~\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nDepending on your development environment, you may be able to use an `@VisibleForTesting` annotation to specify the intended visibility if the method had not been more widely visible for the tests.\n\nWhen using `androidx.annotations.VisibleForTesting`, the production visibility is assumed to be private unless specified with the `otherwise\u003d` parameter. `com.google.common.annotations.VisibleForTesting` and `com.android.internal.annotations.VisibleForTesting` work similarly with their own parameters called `productionVisibility` and `visibility`.\n\nIf instead you use `org.jetbrains.annotations.VisibleForTesting`, there is no such parameter, and the production visibility is instead assumed to be \"one step down\" from the testing visibility. For example, if the testing visibility is public, the production visibility is assumed to be package-private.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nFor common FAQs about the @VisibleForTesting warning, see go/ayeaye-android-lint#visiblefortesting-faqs\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 266,
+        "startChar": 12,
+        "endLine": 266,
+        "endChar": 87
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4756411_ce10b7d1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T18:28:10Z",
+      "side": 1,
+      "message": "I would have kept this final, and if you need to set it in test, I would have created a constructor only visible for test",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "089c9280_596c1f99",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "    private final AdvertiserMap mAdvertiserMap;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": "        this(service, nativeInterface, new AdvertiserMap());\n    }\n\n    @VisibleForTesting\n    AdvertiseManager(\n            GattService service,\n            AdvertiseManagerNativeInterface nativeInterface,\n            AdvertiserMap advertiserMap) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 60,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": "        mAdvertiserMap \u003d advertiserMap;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4de129_db3a8048",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T18:28:10Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [VisibleForTests] This method should only be accessed from tests or within private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[VisibleForTests] This method should only be accessed from tests or within private scope\n\n                    new AdvertiseManager(this, AdvertiseManagerNativeInterface.getInstance());\n                                                                               ~~~~~~~~~~~\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nDepending on your development environment, you may be able to use an `@VisibleForTesting` annotation to specify the intended visibility if the method had not been more widely visible for the tests.\n\nWhen using `androidx.annotations.VisibleForTesting`, the production visibility is assumed to be private unless specified with the `otherwise\u003d` parameter. `com.google.common.annotations.VisibleForTesting` and `com.android.internal.annotations.VisibleForTesting` work similarly with their own parameters called `productionVisibility` and `visibility`.\n\nIf instead you use `org.jetbrains.annotations.VisibleForTesting`, there is no such parameter, and the production visibility is instead assumed to be \"one step down\" from the testing visibility. For example, if the testing visibility is public, the production visibility is assumed to be package-private.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nFor common FAQs about the @VisibleForTesting warning, see go/ayeaye-android-lint#visiblefortesting-faqs\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 209,
+        "startChar": 76,
+        "endLine": 209,
+        "endChar": 90
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4afc058_bde04a49",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiserMapTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T18:28:10Z",
+      "side": 1,
+      "message": "2024 now ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b996ed5a_de4d7284",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiserMapTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T18:28:10Z",
+      "side": 1,
+      "message": "I don\u0027t think we need this rule",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 76
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "22989b8b_6cab875d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiserMapTest.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiserMapTest.java",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
