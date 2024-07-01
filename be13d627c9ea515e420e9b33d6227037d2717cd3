@@ -51,6 +51,24 @@
       "parentUuid": "867c0f8e_65bb4580",
       "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ced076d_fb7a02e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-01T20:30:26Z",
+      "side": 1,
+      "message": "I understand it addressed the original issue. But it also introduced new issue with private broadcast, and actually the issue is even worse, with this CL, I can\u0027t even hear the audio from external broadcast sometimes. Noticed you mentioned this as well in the group chat.\n\nI\u0027m afraid we might need to understand more about this before merging this change. I will also take a look further later today.",
+      "parentUuid": "5ffd970e_83926262",
+      "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
