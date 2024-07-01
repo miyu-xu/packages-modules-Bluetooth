@@ -56,6 +56,7 @@ import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.gatt.ContextMap;
 import com.android.bluetooth.gatt.GattNativeInterface;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 
@@ -82,9 +83,9 @@ public class TransitionalScanHelperTest {
     private static final String REMOTE_DEVICE_ADDRESS = "00:00:00:00:00:00";
 
     private TransitionalScanHelper mScanHelper;
-    @Mock private ScannerMap mScannerMap;
+    @Mock private TransitionalScanHelper.ScannerMap mScannerMap;
 
-    @Mock private ScannerMap.ScannerApp mApp;
+    @Mock private ContextMap.App mApp;
 
     @Mock private TransitionalScanHelper.PendingIntentInfo mPiInfo;
     @Mock private PeriodicScanManager mPeriodicScanManager;
@@ -166,7 +167,7 @@ public class TransitionalScanHelperTest {
         int scannerId = 1;
 
         mPiInfo.settings = new ScanSettings.Builder().build();
-        mApp.mInfo = mPiInfo;
+        mApp.info = mPiInfo;
 
         AppScanStats appScanStats = mock(AppScanStats.class);
         doReturn(appScanStats).when(mScannerMap).getAppScanStatsById(scannerId);
@@ -184,7 +185,7 @@ public class TransitionalScanHelperTest {
 
         mPiInfo.settings = new ScanSettings.Builder().build();
         mPiInfo.callingUid = 123;
-        mApp.mInfo = mPiInfo;
+        mApp.info = mPiInfo;
 
         AppScanStats appScanStats = mock(AppScanStats.class);
         doReturn(appScanStats).when(mScannerMap).getAppScanStatsById(scannerId);
@@ -235,7 +236,7 @@ public class TransitionalScanHelperTest {
                 };
         doReturn(scanClientSet).when(mScanManager).getBatchScanQueue();
         IScannerCallback callback = mock(IScannerCallback.class);
-        mApp.mCallback = callback;
+        mApp.callback = callback;
 
         mScanHelper.onBatchScanReportsInternal(
                 status, scannerId, reportType, numRecords, recordData);
@@ -270,7 +271,8 @@ public class TransitionalScanHelperTest {
         doReturn(appScanStats).when(mScannerMap).getAppScanStatsByUid(Binder.getCallingUid());
 
         mScanHelper.registerScanner(callback, workSource, mAttributionSource);
-        verify(mScannerMap).add(any(), eq(workSource), eq(callback), any(), eq(mScanHelper));
+        verify(mScannerMap)
+                .add(any(), eq(workSource), eq(callback), eq(null), any(), eq(mScanHelper));
         verify(mScanManager).registerScanner(any());
     }
 
@@ -310,8 +312,8 @@ public class TransitionalScanHelperTest {
         AppScanStats appScanStats = mock(AppScanStats.class);
         IScannerCallback callback = mock(IScannerCallback.class);
 
-        mApp.mCallback = callback;
-        mApp.mAppScanStats = appScanStats;
+        mApp.callback = callback;
+        mApp.appScanStats = appScanStats;
         scanClient.stats = appScanStats;
         Set<ScanClient> scanClientSet = Collections.singleton(scanClient);
 
@@ -429,11 +431,11 @@ public class TransitionalScanHelperTest {
                         .build();
         Set<ScanClient> scanClientSet = Collections.singleton(scanClient);
 
-        ScannerMap.ScannerApp app = mock(ScannerMap.ScannerApp.class);
+        ContextMap.App app = mock(ContextMap.App.class);
         IScannerCallback callback = mock(IScannerCallback.class);
 
-        app.mCallback = callback;
-        app.mInfo = mock(TransitionalScanHelper.PendingIntentInfo.class);
+        app.callback = callback;
+        app.info = mock(TransitionalScanHelper.PendingIntentInfo.class);
 
         doReturn(app).when(mScannerMap).getById(scannerId);
         doReturn(scanClientSet).when(mScanManager).getRegularScanQueue();
