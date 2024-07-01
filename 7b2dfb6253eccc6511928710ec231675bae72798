@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b568bf14_2aae5aca",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T17:37:56Z",
+      "side": 1,
+      "message": "There is a missing escaped quote here, or there is one too many on the duration line, depending if genre is required to be quoted or not\n\n```suggestion\n                + \"\\\" genre\u003d\\\"\"\n                + genre\n                + \"\\\" duration\u003d\"\n```\n\nOR \n\n```suggestion\n                + \"\\\" genre\u003d\"\n                + genre\n                + \" duration\u003d\"\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 32
+      },
+      "revId": "7b2dfb6253eccc6511928710ec231675bae72798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
