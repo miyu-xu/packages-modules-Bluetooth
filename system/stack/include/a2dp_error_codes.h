@@ -38,6 +38,8 @@ enum tA2DP_STATUS : uint8_t {
   /* Wrong codec info */
   A2DP_WRONG_CODEC = 0x0D,
 
+  A2DP_UNSUPPORTED_CONFIGURATION = 0x29,
+
   /* Media Codec Type is not valid */
   A2DP_BAD_CODEC_TYPE = 0xC1,
 

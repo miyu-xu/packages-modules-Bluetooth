@@ -183,7 +183,7 @@ protected:
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
   // Returns true on success, otherwise false.
-  bool setCodecUserConfig(const btav_a2dp_codec_config_t& codec_user_config,
+  tA2DP_STATUS setCodecUserConfig(const btav_a2dp_codec_config_t& codec_user_config,
                           const btav_a2dp_codec_config_t& codec_audio_config,
                           const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                           const uint8_t* p_peer_codec_info, bool is_capability,
@@ -371,7 +371,7 @@ public:
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
   // Returns true on success, otherwise false.
-  bool setCodecUserConfig(const btav_a2dp_codec_config_t& codec_user_config,
+  tA2DP_STATUS setCodecUserConfig(const btav_a2dp_codec_config_t& codec_user_config,
                           const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                           const uint8_t* p_peer_sink_capabilities, uint8_t* p_result_codec_config,
                           bool* p_restart_input, bool* p_restart_output, bool* p_config_updated);
@@ -409,11 +409,11 @@ public:
   // new codec is stored in |p_result_codec_config|.
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
-  // Returns true on success, otherwise false.
-  bool setCodecOtaConfig(const uint8_t* p_ota_codec_config,
-                         const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
-                         uint8_t* p_result_codec_config, bool* p_restart_input,
-                         bool* p_restart_output, bool* p_config_updated);
+  // Returns A2DP_SUCCESS on success, otherwise an error core.
+  tA2DP_STATUS setCodecOtaConfig(const uint8_t* p_ota_codec_config,
+                                 const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
+                                 uint8_t* p_result_codec_config, bool* p_restart_input,
+                                 bool* p_restart_output, bool* p_config_updated);
 
   // Sets the codec capabilities for a Sink peer.
   // |p_peer_codec_capabiltities| is the peer codec capabilities to set.
