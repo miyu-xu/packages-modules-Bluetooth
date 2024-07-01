@@ -69,6 +69,24 @@
       "parentUuid": "5ffd970e_83926262",
       "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9aef56a_9e07201a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-01T22:32:31Z",
+      "side": 1,
+      "message": "Indeed there was an issue here causing that device got inactive on autonomous release. Fixed with new patchet",
+      "parentUuid": "6ced076d_fb7a02e0",
+      "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
