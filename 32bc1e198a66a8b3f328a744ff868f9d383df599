@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd47f853_12f480e6",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-01T16:45:25Z",
+      "side": 1,
+      "message": "Isn\u0027t there a better way to compute the `server_port_id` ? Maybe not in this CL, but might be worth it to create a bug to track this.",
+      "revId": "32bc1e198a66a8b3f328a744ff868f9d383df599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc3f7dd_ee273594",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-01T16:45:25Z",
+      "side": 1,
+      "message": "What is this number ? If this is specific to RFCOMM, could be add a constant instead ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 17,
+        "endLine": 102,
+        "endChar": 27
+      },
+      "revId": "32bc1e198a66a8b3f328a744ff868f9d383df599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
