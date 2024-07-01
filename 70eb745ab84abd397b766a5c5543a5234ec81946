@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8960009e_9d3e3301",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T17:26:39Z",
+      "side": 1,
+      "message": "I am not certain we need this to be a complicated abstraction that can handle all that you plan to handle here.\nBut please, let me know if I am wrong",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "70eb745ab84abd397b766a5c5543a5234ec81946",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d25e79f_e22d2ddb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T17:26:39Z",
+      "side": 1,
+      "message": "I would expect overflow to crash on some hwasan target and therefor, if we are expecting this scenario, it may be better to handle it gracefully instead.\n\n@henrichataing@google.com, you recently fixed a case of crash due to overflow. Do you know if this apply here ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "70eb745ab84abd397b766a5c5543a5234ec81946",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82f4bc05_c1d37283",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T17:26:39Z",
+      "side": 1,
+      "message": "If this code need to be thread safe, that implies the stack is handling multiple incoming request in parallel ? I don\u0027t think the code is architectured with this in mind. If we encounter failure at this level, I believe we should investigate and fix the threading issue more than having some thread safe class.",
+      "range": {
+        "startLine": 12,
+        "startChar": 70,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "70eb745ab84abd397b766a5c5543a5234ec81946",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4fb2bc1_c4e0beec",
+        "filename": "system/common/sequential_id_generator.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T17:26:39Z",
+      "side": 1,
+      "message": "I am not sure we need to have a full class to handle this, you could have a static method anywhere you need it that can do that too\n(and without mutex)\n\n```\ntemplate \u003ctypename T\u003e\nT getUniqueID() {\n   static std::atomic\u003cT\u003e unique_count(1);\n\n   T new_val \u003d 0;\n   do {\n      T cur_val \u003d unique_count;\n      if (cur_val \u003d\u003d std::numeric_limits\u003cT\u003e::max()) {\n        new_val \u003d 1\n      } else {\n        new_val \u003d cur_val + 1;\n      }\n   } while(!std::atomic_compare_exchange_weak(\u0026unique_count, \u0026cur_val, new_val));\n\n   return new_val;\n}\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "70eb745ab84abd397b766a5c5543a5234ec81946",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
