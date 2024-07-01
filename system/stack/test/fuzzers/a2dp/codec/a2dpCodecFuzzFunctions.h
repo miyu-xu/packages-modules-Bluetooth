@@ -239,9 +239,9 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       uint8_t* p_result_codec_config =
           reinterpret_cast<uint8_t*>(&result_codec_config);
       bool p_restart_output, p_config_updated;
-      codecs->setCodecAudioConfig(
-          codec_audio_config, &p_peer_params, p_peer_sink_capabilities,
-          p_result_codec_config, &p_restart_output, &p_config_updated);
+      codecs->setCodecAudioConfig(codec_audio_config, &p_peer_params, p_peer_sink_capabilities,
+                                  p_result_codec_config, &p_restart_output, &p_config_updated,
+                                  false);
     },
 
     // setCodecOtaConfig
@@ -264,9 +264,8 @@ std::vector<std::function<void(FuzzedDataProvider*)>> a2dp_codec_operations = {
       uint8_t* p_result_codec_config =
           reinterpret_cast<uint8_t*>(&result_codec_config);
       bool p_restart_input, p_restart_output, p_config_updated;
-      codecs->setCodecOtaConfig(p_ota_codec_config, &p_peer_params,
-                                p_result_codec_config, &p_restart_input,
-                                &p_restart_output, &p_config_updated);
+      codecs->setCodecOtaConfig(p_ota_codec_config, &p_peer_params, p_result_codec_config,
+                                &p_restart_input, &p_restart_output, &p_config_updated, false);
     },
 
     // setPeerSinkCodecCapabilities

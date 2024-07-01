@@ -180,11 +180,10 @@ bool A2dpCodecs::setCodecConfig(const uint8_t* p_peer_codec_info,
   inc_func_call_count(__func__);
   return false;
 }
-bool A2dpCodecs::setCodecOtaConfig(
-    const uint8_t* p_ota_codec_config,
-    const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
-    uint8_t* p_result_codec_config, bool* p_restart_input,
-    bool* p_restart_output, bool* p_config_updated) {
+bool A2dpCodecs::setCodecOtaConfig(const uint8_t* p_ota_codec_config,
+                                   const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
+                                   uint8_t* p_result_codec_config, bool* p_restart_input,
+                                   bool* p_restart_output, bool* p_config_updated, false) {
   inc_func_call_count(__func__);
   return false;
 }

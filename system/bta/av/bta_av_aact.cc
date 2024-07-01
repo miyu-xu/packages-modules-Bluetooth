@@ -1086,7 +1086,6 @@ void bta_av_security_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
  *
  ******************************************************************************/
 void bta_av_setconfig_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
-  uint8_t num = p_data->ci_setconfig.num_seid + 1;
   uint8_t avdt_handle = p_data->ci_setconfig.avdt_handle;
   uint8_t* p_seid = p_data->ci_setconfig.p_seid;
   int i;
@@ -1119,50 +1118,16 @@ void bta_av_setconfig_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     p_scb->wait = BTA_AV_WAIT_ACP_CAPS_ON;
     if (p_data->ci_setconfig.recfg_needed)
       p_scb->role |= BTA_AV_ROLE_SUSPEND_OPT;
-    log::verbose("recfg_needed:{} role:0x{:x} num:{}",
-                 p_data->ci_setconfig.recfg_needed, p_scb->role, num);
-    /* callout module tells BTA the number of "good" SEPs and their SEIDs.
-     * getcap on these SEID */
-    p_scb->num_seps = num;
+    log::verbose("recfg_needed:{} role:0x{:x}", p_data->ci_setconfig.recfg_needed, p_scb->role);
 
     if (p_scb->cur_psc_mask & AVDT_PSC_DELAY_RPT)
       p_scb->SetAvdtpVersion(AVDT_VERSION_1_3);
 
-    if (A2DP_GetCodecType(p_scb->cfg.codec_info) == A2DP_MEDIA_CT_SBC ||
-        num > 1) {
-      /* if SBC is used by the SNK as INT, discover req is not sent in
-       * bta_av_config_ind.
-       * call disc_res now */
-      /* this is called in A2DP SRC path only, In case of SINK we don't need it
-       */
-      if (local_sep == AVDT_TSEP_SRC)
-        p_scb->p_cos->disc_res(p_scb->hndl, p_scb->PeerAddress(), num, num, 0,
-                               UUID_SERVCLASS_AUDIO_SOURCE);
-    } else {
-      /* we do not know the peer device and it is using non-SBC codec
-       * we need to know all the SEPs on SNK */
-      if (p_scb->uuid_int == 0) p_scb->uuid_int = p_scb->open_api.uuid;
-      bta_av_discover_req(p_scb, NULL);
-      return;
-    }
-
-    for (i = 1; i < num; i++) {
-      log::verbose("sep_info[{}] SEID: {}", i, p_seid[i - 1]);
-      /* initialize the sep_info[] to get capabilities */
-      p_scb->sep_info[i].in_use = false;
-      p_scb->sep_info[i].tsep = AVDT_TSEP_SNK;
-      p_scb->sep_info[i].media_type = p_scb->media_type;
-      p_scb->sep_info[i].seid = p_seid[i - 1];
-    }
-
-    /* only in case of local sep as SRC we need to look for other SEPs, In case
-     * of SINK we don't */
     if (btif_av_src_sink_coexist_enabled()) {
       if (local_sep == AVDT_TSEP_SRC) {
         /* Make sure UUID has been initialized... */
         /* if local sep is source, uuid_int should be source */
         p_scb->uuid_int = UUID_SERVCLASS_AUDIO_SOURCE;
-        bta_av_next_getcap(p_scb, p_data);
       } else {
         p_scb->uuid_int = UUID_SERVCLASS_AUDIO_SINK;
       }
@@ -1172,9 +1137,9 @@ void bta_av_setconfig_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
         if (p_scb->uuid_int == 0) {
           p_scb->uuid_int = p_scb->open_api.uuid;
         }
-        bta_av_next_getcap(p_scb, p_data);
       }
     }
+    bta_av_discover_req(p_scb, NULL);
   }
 }
 
