@@ -863,7 +863,6 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     }
 
     @VisibleForTesting
-    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     void autoConnect() {
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
             Log.e(TAG, "autoConnect: BT is not ON. Exiting autoConnect");
@@ -931,7 +930,6 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         }
     }
 
-    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     private void autoConnectHeadset(BluetoothDevice device) {
         final HeadsetService hsService = mFactory.getHeadsetService();
         if (hsService == null) {
@@ -951,7 +949,6 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         }
     }
 
-    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     private void autoConnectHidHost(BluetoothDevice device) {
         final HidHostService hidHostService = mFactory.getHidHostService();
         if (hidHostService == null) {
@@ -993,7 +990,6 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                android.Manifest.permission.MODIFY_PHONE_STATE,
             })
     private void processConnectOtherProfiles(BluetoothDevice device) {
         debugLog("processConnectOtherProfiles, device=" + device);
