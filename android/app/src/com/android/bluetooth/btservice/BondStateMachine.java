@@ -770,7 +770,6 @@ final class BondStateMachine extends StateMachine {
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                android.Manifest.permission.MODIFY_PHONE_STATE,
             })
     private void clearProfilePriority(BluetoothDevice device) {
         HidHostService hidService = HidHostService.getHidHostService();
