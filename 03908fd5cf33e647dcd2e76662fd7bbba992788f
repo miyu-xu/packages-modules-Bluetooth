@@ -46,6 +46,30 @@
       },
       "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7552cebe_032ad811",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-07-01T02:32:42Z",
+      "side": 1,
+      "message": "Sure, I will try to handle this with BTM_SetBleDataLength.\nBy the way, after syncing with the Tech Eng, it seems we may not need to change the data length for CS if we use RAS.\nI will do more tests on this.",
+      "parentUuid": "e0fd4801_31c33fa5",
+      "range": {
+        "startLine": 359,
+        "startChar": 10,
+        "endLine": 360,
+        "endChar": 60
+      },
+      "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
