@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21a26fa7_9eb285bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-01T17:40:59Z",
+      "side": 1,
+      "message": "I am surprise that disconnecting all devices doesn\u0027t suspend or stop the audio stream.\n\nShouldn\u0027t we have a full stop of the stream (and re-use the same codepath) in both suspend and disconnect ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 62
+      },
+      "revId": "c1c8978accdc05d088cff102cf7c4c52d876239c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
