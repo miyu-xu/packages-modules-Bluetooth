@@ -5764,7 +5764,6 @@ class LeAudioClientImpl : public LeAudioClient {
           handleAsymmetricPhyForUnicast(group);
           UpdateLocationsAndContextsAvailability(group);
           if (group->IsPendingConfiguration()) {
-            SuspendedForReconfiguration();
             auto remote_direction =
                 kLeAudioContextAllRemoteSource.test(configuration_context_type_)
                     ? bluetooth::le_audio::types::kLeAudioDirectionSource
@@ -5838,6 +5837,10 @@ class LeAudioClientImpl : public LeAudioClient {
         if (audio_receiver_state_ != AudioState::IDLE)
           audio_receiver_state_ = AudioState::RELEASING;
 
+        if (group && group->IsPendingConfiguration()) {
+          log::info("Releasing for reconfiguration, don't send anything on CISes");
+          SuspendedForReconfiguration();
+        }
         break;
       default:
         break;
