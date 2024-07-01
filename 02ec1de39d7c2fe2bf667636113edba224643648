@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ab6fc4_a61d0b40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-01T22:49:16Z",
+      "side": 1,
+      "message": "Thank you so much for the updated patch. Looks good now.",
+      "revId": "02ec1de39d7c2fe2bf667636113edba224643648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
