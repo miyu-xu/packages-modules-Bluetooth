@@ -70,6 +70,30 @@
       },
       "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77801eab_3e399e4b",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-01T11:30:30Z",
+      "side": 1,
+      "message": "Another solution, that saves the possibly necessary log ; ) Please check and let me know",
+      "parentUuid": "5d0d6477_4a61dfd0",
+      "range": {
+        "startLine": 372,
+        "startChar": 45,
+        "endLine": 372,
+        "endChar": 62
+      },
+      "revId": "b75ca6cfec775b973d76f15108fa1b1dbc8bace0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
