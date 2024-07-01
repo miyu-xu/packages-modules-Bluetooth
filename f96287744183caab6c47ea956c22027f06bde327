@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac6a8db1_fe24c249",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-01T23:03:19Z",
+      "side": 1,
+      "message": "if what we are going to remove an entry whose value is same as `call.mClccIndex`, then we can use something like this:\n\n```\nmyMap.entrySet().removeIf(entry -\u003e entry.getValue() \u003d\u003d valueToRemove);\n```",
+      "range": {
+        "startLine": 1134,
+        "startChar": 16,
+        "endLine": 1134,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d7dd33b3_fa6b884a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 1124,
+                "startChar": 0,
+                "endLine": 1125,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 1127,
+                "startChar": 0,
+                "endLine": 1136,
+                "endChar": 0
+              },
+              "replacement": "            mConferenceCallClccIndexMap.entrySet().removeIf(entry -\u003e entry.getValue() \u003d\u003d call.mClccIndex);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f96287744183caab6c47ea956c22027f06bde327",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
