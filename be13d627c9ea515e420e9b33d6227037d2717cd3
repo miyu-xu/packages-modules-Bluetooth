@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "867c0f8e_65bb4580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-01T17:10:15Z",
+      "side": 1,
+      "message": "Thank you Lukasz for the fix.\n\nI have quickly tried this with private broadcast handover cases.\nHowever, it doesn\u0027t seem working for those and lead to some behavior changes. Could you help to try with those?\n\nThe original issue:\n1. listen to external broadcast\n2. incoming call\n3. audio routed to speaker. without this CL, audio triggered unicast handover and routed to unicast, even with the original random disconnection.\n\n1. listen to external broadcast\n2. play local media\n3. audio routed to speaker. same as above.",
+      "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
