@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac670ab_86720f57",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-07-01T04:03:47Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "0de7daa2_c78b1f05",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 9
+      },
+      "revId": "cc76f243da5491b9bc006576c34d55ad5a6100a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6885bb77_f5d1d335",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-06-28T18:46:02Z",
       "side": 1,
       "message": "This is already checked by the adapterService and this may break a test that is directly calling this `profileConnectionStateChanged_notifyScanManager`",
+      "range": {
+        "startLine": 370,
+        "startChar": 1,
+        "endLine": 373,
+        "endChar": 9
+      },
+      "revId": "cc76f243da5491b9bc006576c34d55ad5a6100a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9016870_d1f746e5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-07-01T04:03:47Z",
+      "side": 1,
+      "message": "Good call out. Fixed, thank you.",
+      "parentUuid": "6885bb77_f5d1d335",
       "range": {
         "startLine": 370,
         "startChar": 1,
