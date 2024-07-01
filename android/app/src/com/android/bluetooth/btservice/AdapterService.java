@@ -18,6 +18,7 @@
 package com.android.bluetooth.btservice;
 
 import static android.Manifest.permission.BLUETOOTH_SCAN;
+import static android.Manifest.permission.MODIFY_PHONE_STATE;
 import static android.bluetooth.BluetoothAdapter.SCAN_MODE_CONNECTABLE;
 import static android.bluetooth.BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE;
 import static android.bluetooth.BluetoothAdapter.SCAN_MODE_NONE;
@@ -1866,7 +1867,6 @@ public class AdapterService extends Service {
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                android.Manifest.permission.MODIFY_PHONE_STATE,
             })
     private int connectEnabledProfiles(BluetoothDevice device) {
         if (mCsipSetCoordinatorService != null
@@ -2884,6 +2884,7 @@ public class AdapterService extends Service {
                     || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return false;
             }
+            service.enforceCallingOrSelfPermission(MODIFY_PHONE_STATE, null);
             Log.i(
                     TAG,
                     "removeActiveDevice: profiles="
@@ -2903,6 +2904,7 @@ public class AdapterService extends Service {
                 return false;
             }
 
+            service.enforceCallingOrSelfPermission(MODIFY_PHONE_STATE, null);
             enforceBluetoothPrivilegedPermission(service);
 
             Log.i(
@@ -2950,6 +2952,8 @@ public class AdapterService extends Service {
             if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
             }
+
+            service.enforceCallingOrSelfPermission(MODIFY_PHONE_STATE, null);
 
             enforceBluetoothPrivilegedPermission(service);
 
@@ -5090,7 +5094,6 @@ public class AdapterService extends Service {
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                android.Manifest.permission.MODIFY_PHONE_STATE,
             })
     public boolean setActiveDevice(BluetoothDevice device, @ActiveDeviceUse int profiles) {
         boolean setA2dp = false;
@@ -5284,7 +5287,6 @@ public class AdapterService extends Service {
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                android.Manifest.permission.MODIFY_PHONE_STATE,
             })
     public int connectAllEnabledProfiles(BluetoothDevice device) {
         if (!profileServicesRunning()) {
@@ -5310,7 +5312,6 @@ public class AdapterService extends Service {
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                android.Manifest.permission.MODIFY_PHONE_STATE,
             })
     void connectAllSupportedProfiles(BluetoothDevice device) {
         int numProfilesConnected = 0;
