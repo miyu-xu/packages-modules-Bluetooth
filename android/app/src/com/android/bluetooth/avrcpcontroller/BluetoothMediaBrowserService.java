@@ -18,6 +18,7 @@ package com.android.bluetooth.avrcpcontroller;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -115,6 +116,38 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
 
     private LocaleChangedReceiver mReceiver;
 
+    /** Default, parameter-less constructor for normal service starting by the OS */
+    public BluetoothMediaBrowserService() {
+        super();
+    }
+
+    /** Constructor used to inject a context and session object for testing */
+    @VisibleForTesting
+    public BluetoothMediaBrowserService(Context context, MediaSessionCompat session) {
+        super();
+        mSession = session;
+        attachBaseContext(context);
+        Log.i(TAG, "Instantiated Service (for testing)");
+    }
+
+    /**
+     * Get the component name for this service
+     *
+     * <p>Used to bind directly to this service in tests.
+     */
+    @VisibleForTesting
+    public static ComponentName getComponentName() {
+        BluetoothMediaBrowserService service = getInstance();
+        if (service == null) {
+            Log.w(TAG, "getComponentName(): service not available");
+            return null;
+        }
+
+        return new ComponentName(
+                service.getApplicationContext().getPackageName(),
+                BluetoothMediaBrowserService.class.getSimpleName());
+    }
+
     /**
      * Set the BluetoothMediaBrowserService instance
      *
@@ -146,7 +179,9 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
         super.onCreate();
 
         // Create and configure the MediaSessionCompat
-        mSession = new MediaSessionCompat(this, TAG);
+        if (mSession == null) {
+            mSession = new MediaSessionCompat(this, TAG);
+        }
         setSessionToken(mSession.getSessionToken());
         mSession.setFlags(
                 MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS
