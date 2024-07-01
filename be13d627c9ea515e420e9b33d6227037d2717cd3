@@ -33,6 +33,24 @@
       "message": "This is introducing new regressions in private broadcast, -1 in case it got merged accidentally.",
       "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ffd970e_83926262",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-01T18:00:39Z",
+      "side": 1,
+      "message": "This patch solves the problem described https://b.corp.google.com/issues/348654441#comment6  which is not really related to broadcast.\n\nI will take a look on your use case.",
+      "parentUuid": "867c0f8e_65bb4580",
+      "revId": "be13d627c9ea515e420e9b33d6227037d2717cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
