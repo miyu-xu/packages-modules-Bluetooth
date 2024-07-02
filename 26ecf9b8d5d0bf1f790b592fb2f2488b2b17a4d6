@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e77be38_79b204ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-02T21:29:02Z",
+      "side": 1,
+      "message": "Agreed with Yuyang here, it doesn\u0027t make sense to me to limit this from Java layer.\n\n@jpawlowski@google.com @rlukasz@google.com any concerns from your side?",
+      "revId": "26ecf9b8d5d0bf1f790b592fb2f2488b2b17a4d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
