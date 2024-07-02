@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "832d6ca2_5e0d2281",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-02T12:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da56cb17_a8aa0086",
+      "range": {
+        "startLine": 1129,
+        "startChar": 0,
+        "endLine": 1129,
+        "endChar": 60
+      },
+      "revId": "0666c0cb5b469d0c1a6713e4bea0b623fa61d775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a41fe843_7ad0a2de",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
         "patchSetId": 21
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-26T20:17:09Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: mTelephonyManager has private access in BluetoothInCallService\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    mTelephonyManager has private access in BluetoothInCallService\n            mBluetoothInCallService.mTelephonyManager \u003d mMockTelephonyManager;\n                                   ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P76757479/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 983,
+        "startChar": 0,
+        "endLine": 983,
+        "endChar": 74
+      },
+      "revId": "0666c0cb5b469d0c1a6713e4bea0b623fa61d775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd136c5e_a2ff34b4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-02T12:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a41fe843_7ad0a2de",
       "range": {
         "startLine": 983,
         "startChar": 0,
