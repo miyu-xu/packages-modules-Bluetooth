@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8f86e8_65668c71",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3661,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T21:23:11Z",
+      "side": 1,
+      "message": "Thids should have been removed too since it is in a `if (!flag)`",
+      "range": {
+        "startLine": 3661,
+        "startChar": 0,
+        "endLine": 3661,
+        "endChar": 26
+      },
+      "revId": "f285640eee08e0c0f9749c7cf86c89a3bab8eed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac552349_78ac96a8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3698,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T21:23:11Z",
+      "side": 1,
+      "message": "remove comment as this is linked to the flag",
+      "range": {
+        "startLine": 3698,
+        "startChar": 0,
+        "endLine": 3698,
+        "endChar": 80
+      },
+      "revId": "f285640eee08e0c0f9749c7cf86c89a3bab8eed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
