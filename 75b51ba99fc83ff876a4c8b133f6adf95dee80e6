@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b30777_88e9697c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-02T23:31:07Z",
+      "side": 1,
+      "message": "why do we want to set timer in streaming state? this will cause broadcast stop after streaming for 30mins.",
+      "revId": "75b51ba99fc83ff876a4c8b133f6adf95dee80e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
