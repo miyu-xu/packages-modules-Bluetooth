@@ -30,6 +30,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.gatt.ContextMap;
 import com.android.bluetooth.util.WorkSourceUtil;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,8 +61,8 @@ public class AppScanStats {
 
     static final int LARGE_SCAN_TIME_GAP_MS = 24000;
 
-    // ScannerMap here is needed to grab Apps
-    ScannerMap mScannerMap;
+    // ContextMap here is needed to grab Apps and Connections
+    ContextMap mContextMap;
 
     // TransitionalScanHelper is needed to add scan event protos to be dumped later
     final TransitionalScanHelper mScanHelper;
@@ -164,11 +166,11 @@ public class AppScanStats {
     public AppScanStats(
             String name,
             WorkSource source,
-            ScannerMap map,
+            ContextMap map,
             Context context,
             TransitionalScanHelper scanHelper) {
         appName = name;
-        mScannerMap = map;
+        mContextMap = map;
         mScanHelper = scanHelper;
         mBatteryStatsManager = context.getSystemService(BatteryStatsManager.class);
 
@@ -1130,10 +1132,24 @@ public class AppScanStats {
             }
         }
 
-        ScannerMap.ScannerApp appEntry = mScannerMap.getByName(appName);
+        ContextMap.App appEntry = mContextMap.getByName(appName);
         if (appEntry != null && isRegistered) {
-            sb.append("\n  Application ID                     : " + appEntry.mId);
-            sb.append("\n  UUID                               : " + appEntry.mUuid);
+            sb.append("\n  Application ID                     : " + appEntry.id);
+            sb.append("\n  UUID                               : " + appEntry.uuid);
+
+            List<ContextMap.Connection> connections = mContextMap.getConnectionByApp(appEntry.id);
+
+            sb.append("\n  Connections: " + connections.size());
+
+            Iterator<ContextMap.Connection> ii = connections.iterator();
+            while (ii.hasNext()) {
+                ContextMap.Connection connection = ii.next();
+                long connectionTime = currTime - connection.startTime;
+                Date timestamp = new Date(currentTime - currTime + connection.startTime);
+                sb.append("\n    " + DATE_FORMAT.format(timestamp) + " - ");
+                sb.append((connectionTime) + "ms ");
+                sb.append(": " + connection.address + " (" + connection.connId + ")");
+            }
         }
         sb.append("\n\n");
     }
