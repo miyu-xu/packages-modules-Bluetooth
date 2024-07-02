@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b502e6fe_75c4b086",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-02T22:41:14Z",
+      "side": 1,
+      "message": "Well I know, I added them.\n\nThe reason I am duplicating the values is that I don\u0027t want to give the idea that they represent something other than internal state keeping. The original developer decided to reuse the declarations of the legacy HAL for AIDL / HIDL but there was really no reason to do that.",
+      "parentUuid": "7fd90cc4_5e4a0c6e",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1ec7ab2_0077e234",
         "filename": "system/audio_hal_interface/aidl/a2dp_transport.h",
         "patchSetId": 1
@@ -107,6 +131,30 @@
           ]
         }
       ],
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe9fb0f_cd404a68",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-02T22:41:14Z",
+      "side": 1,
+      "message": "Again, I duplicate the defines.\nI don\u0027t want to use the definition from uipc here, and neither do I want to share it.",
+      "parentUuid": "6a91cdeb_0dffcf25",
+      "range": {
+        "startLine": 834,
+        "startChar": 26,
+        "endLine": 834,
+        "endChar": 55
+      },
       "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
