@@ -25,6 +25,7 @@
 #define LOG_TAG "bt_bta_gattc"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -59,15 +60,24 @@ static uint8_t ble_acceptlist_size() {
  *
  ******************************************************************************/
 tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if) {
-  uint8_t i = 0;
-  tBTA_GATTC_RCB* p_clrcb = &bta_gattc_cb.cl_rcb[0];
-
-  for (i = 0; i < BTA_GATTC_CL_MAX; i++, p_clrcb++) {
-    if (p_clrcb->in_use && p_clrcb->client_if == client_if) {
-      return p_clrcb;
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    auto it = bta_gattc_cb.cl_rcb_map.find(client_if);
+    if (it == bta_gattc_cb.cl_rcb_map.end()) {
+      return NULL;
+    } else {
+      return it->second.get();
     }
+  } else {
+    uint8_t i = 0;
+    tBTA_GATTC_RCB* p_clrcb = &bta_gattc_cb.cl_rcb[0];
+
+    for (i = 0; i < BTA_GATTC_CL_MAX; i++, p_clrcb++) {
+      if (p_clrcb->in_use && p_clrcb->client_if == client_if) {
+        return p_clrcb;
+      }
+    }
+    return NULL;
   }
-  return NULL;
 }
 /*******************************************************************************
  *
@@ -79,14 +89,18 @@ tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if) {
  *
  ******************************************************************************/
 uint8_t bta_gattc_num_reg_app(void) {
-  uint8_t i = 0, j = 0;
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    return (uint8_t)bta_gattc_cb.cl_rcb_map.size();
+  } else {
+    uint8_t i = 0, j = 0;
 
-  for (i = 0; i < BTA_GATTC_CL_MAX; i++) {
-    if (bta_gattc_cb.cl_rcb[i].in_use) {
-      j++;
+    for (i = 0; i < BTA_GATTC_CL_MAX; i++) {
+      if (bta_gattc_cb.cl_rcb[i].in_use) {
+        j++;
+      }
     }
+    return j;
   }
-  return j;
 }
 /*******************************************************************************
  *
@@ -825,16 +839,26 @@ void bta_gatt_client_dump(int fd) {
 
   stream << "  -- used: " << entry_count << "\n";
   entry_count = 0;
-  stream << " ->cl_rcb (BTA_GATTC_CL_MAX=" << BTA_GATTC_CL_MAX << ")\n";
-  for (int i = 0; i < BTA_GATTC_CL_MAX; i++) {
-    tBTA_GATTC_RCB* p_cl_rcb = &bta_gattc_cb.cl_rcb[i];
-    if (!p_cl_rcb->in_use) {
-      continue;
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    stream << " ->cl_rcb (dynamic)\n";
+    for (auto& [i, p_cl_rcb] : bta_gattc_cb.cl_rcb_map) {
+      entry_count++;
+      stream << "  client_if: " << +p_cl_rcb->client_if << "  app uuids: " << p_cl_rcb->app_uuid
+             << "  clcb_num: " << +p_cl_rcb->num_clcb;
+      stream << "\n";
     }
-    entry_count++;
-    stream << "  client_if: " << +p_cl_rcb->client_if << "  app uuids: " << p_cl_rcb->app_uuid
-           << "  clcb_num: " << +p_cl_rcb->num_clcb;
-    stream << "\n";
+  } else {
+    stream << " ->cl_rcb (BTA_GATTC_CL_MAX=" << BTA_GATTC_CL_MAX << ")\n";
+    for (int i = 0; i < BTA_GATTC_CL_MAX; i++) {
+      tBTA_GATTC_RCB* p_cl_rcb = &bta_gattc_cb.cl_rcb[i];
+      if (!p_cl_rcb->in_use) {
+        continue;
+      }
+      entry_count++;
+      stream << "  client_if: " << +p_cl_rcb->client_if << "  app uuids: " << p_cl_rcb->app_uuid
+             << "  clcb_num: " << +p_cl_rcb->num_clcb;
+      stream << "\n";
+    }
   }
 
   stream << "  -- used: " << entry_count << "\n";

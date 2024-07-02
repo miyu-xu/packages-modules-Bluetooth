@@ -138,13 +138,28 @@ void bta_gattc_disable() {
     return;
   }
 
-  for (i = 0; i < BTA_GATTC_CL_MAX; i++) {
-    if (!bta_gattc_cb.cl_rcb[i].in_use) {
-      continue;
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    if (!bta_gattc_cb.cl_rcb_map.empty()) {
+      bta_gattc_cb.state = BTA_GATTC_STATE_DISABLING;
     }
 
-    bta_gattc_cb.state = BTA_GATTC_STATE_DISABLING;
-    bta_gattc_deregister(&bta_gattc_cb.cl_rcb[i]);
+    // An entry can be erased during deregister, use a copied collection
+    std::vector<tBTA_GATTC_RCB*> rcbs;
+    for (auto& [i, p_rcb] : cl_rcb_map) {
+      rcbs.push_back(p_rcb.get());
+    }
+    for (auto& p_rcb : rcbs) {
+      bta_gattc_deregister(p_rcb);
+    }
+  } else {
+    for (i = 0; i < BTA_GATTC_CL_MAX; i++) {
+      if (!bta_gattc_cb.cl_rcb[i].in_use) {
+        continue;
+      }
+
+      bta_gattc_cb.state = BTA_GATTC_STATE_DISABLING;
+      bta_gattc_deregister(&bta_gattc_cb.cl_rcb[i]);
+    }
   }
 
   /* no registered apps, indicate disable completed */
@@ -177,29 +192,54 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback, BtaAppR
     log::debug("GATTC module not enabled, enabling it");
     bta_gattc_enable();
   }
-  /* todo need to check duplicate uuid */
-  for (uint8_t i = 0; i < BTA_GATTC_CL_MAX; i++) {
-    if (!bta_gattc_cb.cl_rcb[i].in_use) {
-      bta_gattc_cb.cl_rcb[i].client_if =
-              GATT_Register(app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_support);
-      if (bta_gattc_cb.cl_rcb[i].client_if == 0) {
-        log::error("Register with GATT stack failed with index {}, trying next index", i);
-        status = GATT_ERROR;
-      } else {
-        bta_gattc_cb.cl_rcb[i].in_use = true;
-        bta_gattc_cb.cl_rcb[i].p_cback = p_cback;
-        bta_gattc_cb.cl_rcb[i].app_uuid = app_uuid;
 
-        /* BTA use the same client interface as BTE GATT statck */
-        client_if = bta_gattc_cb.cl_rcb[i].client_if;
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    tGATT_IF client_if = GATT_Register(app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_support);
+    if (client_if == 0) {
+      log::error("Register with GATT stack failed");
+      status = GATT_ERROR;
+    } else {
+      bta_gattc_cb.cl_rcb_map.emplace(client_if, std::make_unique<tBTA_GATTC_RCB>());
+      tBTA_GATTC_RCB* p_rcb = bta_gattc_cb.cl_rcb_map[client_if].get();
+      p_rcb->in_use = true;
+      p_rcb->p_cback = p_cback;
+      p_rcb->app_uuid = app_uuid;
+      p_rcb->client_if = client_if;
+      log::debug(
+              "Registered GATT client interface {} with uuid={}, starting it on "
+              "main thread",
+              client_if, app_uuid.ToString());
 
-        log::debug("Registered GATT client interface {} with uuid={}, starting it on main thread",
-                   client_if, app_uuid.ToString());
+      do_in_main_thread(FROM_HERE, base::BindOnce(&bta_gattc_start_if, client_if));
 
-        do_in_main_thread(FROM_HERE, base::BindOnce(&bta_gattc_start_if, client_if));
+      status = GATT_SUCCESS;
+    }
+  } else {
+    for (uint8_t i = 0; i < BTA_GATTC_CL_MAX; i++) {
+      if (!bta_gattc_cb.cl_rcb[i].in_use) {
+        bta_gattc_cb.cl_rcb[i].client_if =
+                GATT_Register(app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_support);
+        if (bta_gattc_cb.cl_rcb[i].client_if == 0) {
+          log::error("Register with GATT stack failed with index {}, trying next index", i);
+          status = GATT_ERROR;
+        } else {
+          bta_gattc_cb.cl_rcb[i].in_use = true;
+          bta_gattc_cb.cl_rcb[i].p_cback = p_cback;
+          bta_gattc_cb.cl_rcb[i].app_uuid = app_uuid;
 
-        status = GATT_SUCCESS;
-        break;
+          /* BTA use the same client interface as BTE GATT statck */
+          client_if = bta_gattc_cb.cl_rcb[i].client_if;
+
+          log::debug(
+                  "Registered GATT client interface {} with uuid={}, starting it on "
+                  "main thread",
+                  client_if, app_uuid.ToString());
+
+          do_in_main_thread(FROM_HERE, base::BindOnce(&bta_gattc_start_if, client_if));
+
+          status = GATT_SUCCESS;
+          break;
+        }
       }
     }
   }
@@ -1328,7 +1368,13 @@ static void bta_gattc_deregister_cmpl(tBTA_GATTC_RCB* p_clreg) {
   memset(&cb_data, 0, sizeof(tBTA_GATTC));
 
   GATT_Deregister(p_clreg->client_if);
-  memset(p_clreg, 0, sizeof(tBTA_GATTC_RCB));
+  if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+    if (bta_gattc_cb.cl_rcb_map.erase(p_clreg->client_if) == 0) {
+      log::warn("deregistered unknown rcb");
+    }
+  } else {
+    memset(p_clreg, 0, sizeof(tBTA_GATTC_RCB));
+  }
 
   cb_data.reg_oper.client_if = client_if;
   cb_data.reg_oper.status = GATT_SUCCESS;
