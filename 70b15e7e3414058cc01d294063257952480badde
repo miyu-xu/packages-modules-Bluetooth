@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d21daee_297b3b90",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-02T16:09:14Z",
+      "side": 1,
+      "message": "name is ambiguous, `proto` could refer to bot `protocol` or `proto`. Also, Hid is unnecessary. You may consider naming it `ProtocolModeEvent` or something similar.",
+      "range": {
+        "startLine": 19,
+        "startChar": 63,
+        "endLine": 19,
+        "endChar": 80
+      },
+      "revId": "70b15e7e3414058cc01d294063257952480badde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "676f3659_34cda67a",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-02T16:09:14Z",
+      "side": 1,
+      "message": "`Hid` is unnecessary here",
+      "range": {
+        "startLine": 21,
+        "startChar": 57,
+        "endLine": 21,
+        "endChar": 60
+      },
+      "revId": "70b15e7e3414058cc01d294063257952480badde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
