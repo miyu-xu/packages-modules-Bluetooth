@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93541f00_b5484891",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:44:48Z",
+      "side": 1,
+      "message": "I don\u0027t like it, but I understand :/",
+      "parentUuid": "b502e6fe_75c4b086",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1ec7ab2_0077e234",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a153902e_bc1c022c",
+        "filename": "system/audio_hal_interface/aidl/a2dp_transport.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:44:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e1ec7ab2_0077e234",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e8cfb88_a266a245",
@@ -84,6 +132,30 @@
       "writtenOn": "2024-07-02T22:33:56Z",
       "side": 1,
       "message": "```suggestion\nenum tA2DP_CTRL_CMD {\n  A2DP_CTRL_CMD_NONE,\n  A2DP_CTRL_CMD_CHECK_READY,\n  A2DP_CTRL_CMD_START,\n  A2DP_CTRL_CMD_STOP,\n  A2DP_CTRL_CMD_SUSPEND,\n  A2DP_CTRL_GET_INPUT_AUDIO_CONFIG,\n  A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG,\n  A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG,\n  A2DP_CTRL_GET_PRESENTATION_POSITION,\n};\n```",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e028c06_bfbb8136",
+        "filename": "system/audio_hal_interface/hidl/a2dp_encoding_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:44:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8e8cfb88_a266a245",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -149,6 +221,30 @@
       "side": 1,
       "message": "Again, I duplicate the defines.\nI don\u0027t want to use the definition from uipc here, and neither do I want to share it.",
       "parentUuid": "6a91cdeb_0dffcf25",
+      "range": {
+        "startLine": 834,
+        "startChar": 26,
+        "endLine": 834,
+        "endChar": 55
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbf1cdfc_79787ab9",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:44:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4fe9fb0f_cd404a68",
       "range": {
         "startLine": 834,
         "startChar": 26,
