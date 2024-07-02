@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fd90cc4_5e4a0c6e",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:33:56Z",
+      "side": 1,
+      "message": "Already defined in 2 locations",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1ec7ab2_0077e234",
+        "filename": "system/audio_hal_interface/aidl/a2dp_transport.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:33:56Z",
+      "side": 1,
+      "message": "already defined in system/audio_hal_interface/hidl/a2dp_encoding_hidl.cc",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e8cfb88_a266a245",
+        "filename": "system/audio_hal_interface/hidl/a2dp_encoding_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:33:56Z",
+      "side": 1,
+      "message": "```suggestion\nenum tA2DP_CTRL_CMD {\n  A2DP_CTRL_CMD_NONE,\n  A2DP_CTRL_CMD_CHECK_READY,\n  A2DP_CTRL_CMD_START,\n  A2DP_CTRL_CMD_STOP,\n  A2DP_CTRL_CMD_SUSPEND,\n  A2DP_CTRL_GET_INPUT_AUDIO_CONFIG,\n  A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG,\n  A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG,\n  A2DP_CTRL_GET_PRESENTATION_POSITION,\n};\n```",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a91cdeb_0dffcf25",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T22:33:56Z",
+      "side": 1,
+      "message": "I believe that you have a define in `system/udrv/ulinux/uipc.cc`.\n\nis there a way to centralize ?",
+      "range": {
+        "startLine": 834,
+        "startChar": 26,
+        "endLine": 834,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5d84da04_fc845c03",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_a2dp_source.cc",
+              "range": {
+                "startLine": 834,
+                "startChar": 0,
+                "endLine": 836,
+                "endChar": 0
+              },
+              "replacement": "  uint8_t p_buf[MAX_PCM_FRAME_NUM_PER_TICK * 2 * MAX_PCM_FRAME_SIZE];\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0f5e4f0b394172b2445fb8a06c1c7b6371b2c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
