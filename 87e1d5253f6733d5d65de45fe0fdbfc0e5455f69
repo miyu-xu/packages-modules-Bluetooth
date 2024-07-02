@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be61f468_5ea44cb2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T18:04:36Z",
+      "side": 1,
+      "message": "Oh and moving it here removes another dependency that GattService has on advertising classes.",
+      "parentUuid": "f61ac746_70cd2741",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 70
+      },
+      "revId": "87e1d5253f6733d5d65de45fe0fdbfc0e5455f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d37b40d3_ea4f76e7",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
         "patchSetId": 7
