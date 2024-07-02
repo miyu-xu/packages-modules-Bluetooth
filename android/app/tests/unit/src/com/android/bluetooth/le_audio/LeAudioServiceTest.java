@@ -1013,9 +1013,7 @@ public class LeAudioServiceTest {
     }
 
     @Test
-    public void testAuthorizationInfoRemovedFromTbsMcsOnUnbondEventsWithSynchBlockFixFlag() {
-        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_API_SYNCHRONIZED_BLOCK_FIX);
-
+    public void testAuthorizationInfoRemovedFromTbsMcsOnUnbondEvents() {
         testAuthorizationInfoRemovedFromTbsMcsOnUnbondEvents();
     }
 
