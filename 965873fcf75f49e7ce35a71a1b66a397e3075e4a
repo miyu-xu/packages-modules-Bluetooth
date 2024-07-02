@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa828ef9_f46d7612",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2384,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T16:47:50Z",
+      "side": 1,
+      "message": "You alloc, assign and memcpy into `report`, then it is freed, but this is not used.",
+      "range": {
+        "startLine": 2368,
+        "startChar": 1,
+        "endLine": 2384,
+        "endChar": 3
+      },
+      "revId": "965873fcf75f49e7ce35a71a1b66a397e3075e4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
