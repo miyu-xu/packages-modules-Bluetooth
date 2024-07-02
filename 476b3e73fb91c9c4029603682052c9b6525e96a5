@@ -34,6 +34,24 @@
       "parentUuid": "54ee9c42_af505828",
       "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63603bfd_9d6bcf0a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1947,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-02T22:15:35Z",
+      "side": 1,
+      "message": "IMO we should even plan to improve line#1911 and line#1979. \nWe should only log when notified once or packet content changed.\n\nOtherwise, we\u0027re logging the same content repeatedly for every single packet, and I don\u0027t see much value of this.\n\nOr at least we should change those to verbose.",
+      "parentUuid": "963a092b_8f956dcb",
+      "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
