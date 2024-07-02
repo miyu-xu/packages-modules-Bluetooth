@@ -16,6 +16,24 @@
       "message": "Will this possibly dump too many into the logs? considering some nearby sources doesn\u0027t have PBP, and we keep logging this for every PA report.\nJust changing this to comment would be better?",
       "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "963a092b_8f956dcb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1947,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-02T08:18:44Z",
+      "side": 1,
+      "message": "I don\u0027t think so as there is many other periodic logs. These one gives us important information so I will left it. Some other periodic logs:\n```\n07-02 09:58:05.902  2424  2424 D BassClientService: onPeriodicAdvertisingReport 0\n07-02 09:58:05.902  2424  2424 D BassClientService: getBase returns com.android.bluetooth.bass_client.BaseData@ac0703e\n\n07-02 09:58:05.902  2424  2424 D BassClientService: onBIGInfoAdvertisingReport: syncHandle\u003d0, encrypted \u003dfalse\n07-02 09:58:05.902  2424  2424 D BassClientService: getBase returns com.android.bluetooth.bass_client.BaseData@ac0703e\n\n07-02 09:58:05.948  2424  2424 D BassClientService: onScanResult:ScanResult{device\u003dXX:XX:XX:XX:9A:20, scanRecord\u003dScanRecord [mAdvertiseFlags\u003d-1, mServiceUuids\u003dnull, mServiceSolicitationUuids\u003d[], mManufacturerSpecificData\u003d{}, mServiceData\u003d{00001852-0000-1000-8000-00805f9b34fb\u003d[-63, -34, -64], 00001856-0000-1000-8000-00805f9b34fb\u003d[2, 0]}, mTxPowerLevel\u003d-2147483648, mDeviceName\u003dApache NimBLE, mTransportDiscoveryData\u003dnull], rssi\u003d-73, timestampNanos\u003d174142683311, eventType\u003d0, primaryPhy\u003d1, secondaryPhy\u003d2, advertisingSid\u003d1, txPower\u003d127, periodicAdvertisingInterval\u003d171}\n07-02 09:58:05.948  2424  2424 D BassClientService: Broadcast Source Found:XX:XX:XX:XX:9A:20\n07-02 09:58:05.948  2424  2424 D BassClientService: Broadcast Source Found: Broadcast ID: 12639937\n```\nAnd these are only from BassClientService. There are more before them on other layers.",
+      "parentUuid": "54ee9c42_af505828",
+      "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
