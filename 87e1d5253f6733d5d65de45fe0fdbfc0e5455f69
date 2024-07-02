@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e63a574_c7c79b03",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T01:15:48Z",
+      "side": 1,
+      "message": "I would have tendency to prefer injection than a static dependency, and here you are doing the other way.\n\nIs there a reason to prefer this ?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 70
+      },
+      "revId": "87e1d5253f6733d5d65de45fe0fdbfc0e5455f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d37b40d3_ea4f76e7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-02T01:15:48Z",
+      "side": 1,
+      "message": "```suggestion\n        mAdvertiseManager \u003d new AdvertiseManager(mService, mAdvertiserMap);\n```",
+      "range": {
+        "startLine": 73,
+        "startChar": 28,
+        "endLine": 73,
+        "endChar": 59
+      },
+      "revId": "87e1d5253f6733d5d65de45fe0fdbfc0e5455f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
