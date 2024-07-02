@@ -34,6 +34,24 @@
       "parentUuid": "efbb9dfd_c38e8ce9",
       "revId": "ca6475c12ed56ad765807e045a93711e3a23f92f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce4da51_720422d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T02:17:55Z",
+      "side": 1,
+      "message": "This is still the case in the latest patchset.",
+      "parentUuid": "1ffcb2a5_f8670822",
+      "revId": "ca6475c12ed56ad765807e045a93711e3a23f92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
