@@ -69,6 +69,30 @@
       },
       "revId": "87e1d5253f6733d5d65de45fe0fdbfc0e5455f69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "441d3a5f_64947e1c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T01:27:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d37b40d3_ea4f76e7",
+      "range": {
+        "startLine": 73,
+        "startChar": 28,
+        "endLine": 73,
+        "endChar": 59
+      },
+      "revId": "87e1d5253f6733d5d65de45fe0fdbfc0e5455f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
