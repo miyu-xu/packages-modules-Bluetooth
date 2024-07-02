@@ -52,6 +52,24 @@
       "parentUuid": "963a092b_8f956dcb",
       "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "362874d9_d91c524f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1947,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-02T22:36:26Z",
+      "side": 1,
+      "message": "but it\u0027s okay to not block this chain of changes. we can plan some improvement following this.",
+      "parentUuid": "63603bfd_9d6bcf0a",
+      "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
