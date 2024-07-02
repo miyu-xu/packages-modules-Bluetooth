@@ -16,6 +16,23 @@
       "message": "As talked with Omair, this CL now only removes the strings in res/values/strings.xml, not the translated ones.",
       "revId": "21ff9c0a3f8ead125df4e175de370cdffc36ea30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9207fcf0_1335944a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-07-02T04:25:10Z",
+      "side": 1,
+      "message": "Gentle ping for owner review",
+      "revId": "21ff9c0a3f8ead125df4e175de370cdffc36ea30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
