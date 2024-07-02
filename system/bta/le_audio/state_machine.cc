@@ -1008,9 +1008,21 @@ public:
       leAudioDevice->cis_failed_to_be_established_retry_cnt_ = 0;
     }
 
-    if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
-      log::error("Unintended CIS establishement event came for group id: {}", group->group_id_);
-      StopStream(group);
+    if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING ||
+        ((!ases_pair.sink || ases_pair.sink->cis_state != CisState::CONNECTING) &&
+         (!ases_pair.source || ases_pair.source->cis_state != CisState::CONNECTING))) {
+      if ((!ases_pair.sink || ases_pair.sink->cis_state != CisState::DISCONNECTING) &&
+          (!ases_pair.source || ases_pair.source->cis_state != CisState::DISCONNECTING)) {
+        log::error("Unintended CIS establishment event came for group id: {}", group->group_id_);
+        StopStream(group);
+      } else {
+        /* We are in the process of CIS disconnection while the Established event came.
+         * The Disconnection Complete shall come right after.
+         * Just to make sure, issue CIS disconnection again.
+         */
+        log::debug("{} got CIS is in disconnecting state", leAudioDevice->address_);
+      }
+
       return;
     }
 
