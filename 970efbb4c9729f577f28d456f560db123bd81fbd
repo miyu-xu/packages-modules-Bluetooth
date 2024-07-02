@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca6a0277_7d0609de",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b0d165c_438aa19f",
+      "range": {
+        "startLine": 266,
+        "startChar": 12,
+        "endLine": 266,
+        "endChar": 87
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4756411_ce10b7d1",
@@ -85,6 +109,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a578c56_dfc7738e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4756411_ce10b7d1",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d4de129_db3a8048",
@@ -108,6 +156,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e6243ec_d94af444",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d4de129_db3a8048",
+      "range": {
+        "startLine": 209,
+        "startChar": 76,
+        "endLine": 209,
+        "endChar": 90
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4afc058_bde04a49",
@@ -121,6 +193,30 @@
       "writtenOn": "2024-07-01T18:28:10Z",
       "side": 1,
       "message": "2024 now ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0270342a_5a9b71da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiserMapTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4afc058_bde04a49",
       "range": {
         "startLine": 2,
         "startChar": 13,
@@ -178,6 +274,30 @@
           ]
         }
       ],
+      "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "332ee4ae_fd858162",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiserMapTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b996ed5a_de4d7284",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 76
+      },
       "revId": "970efbb4c9729f577f28d456f560db123bd81fbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
