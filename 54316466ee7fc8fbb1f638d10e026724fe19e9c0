@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45ee8ab3_868eb7b1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3401,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-02T02:12:57Z",
+      "side": 1,
+      "message": "```suggestion\n        return HidHostService.ANDROID_HEADTRACKER_UUID.getUuid().equals(uuid);\n```",
+      "range": {
+        "startLine": 3401,
+        "startChar": 30,
+        "endLine": 3401,
+        "endChar": 54
+      },
+      "revId": "54316466ee7fc8fbb1f638d10e026724fe19e9c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
