@@ -22,6 +22,30 @@
       },
       "revId": "d46d828d2b8b0bddd2ee45a162bf75abba4d4760",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "286ba594_4437328a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-07-03T07:40:17Z",
+      "side": 1,
+      "message": "Talked offline, needed due to lint check :)",
+      "parentUuid": "d8f47f56_b66b9fc3",
+      "range": {
+        "startLine": 1027,
+        "startChar": 4,
+        "endLine": 1027,
+        "endChar": 64
+      },
+      "revId": "d46d828d2b8b0bddd2ee45a162bf75abba4d4760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
