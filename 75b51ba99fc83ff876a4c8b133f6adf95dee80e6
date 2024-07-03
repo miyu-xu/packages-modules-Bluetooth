@@ -34,6 +34,24 @@
       "parentUuid": "c4b30777_88e9697c",
       "revId": "75b51ba99fc83ff876a4c8b133f6adf95dee80e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "640b0a3c_239b7f97",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-03T16:22:20Z",
+      "side": 1,
+      "message": "Okay, I see why we\u0027re having this.\nIt would be better to add some comments to explain the logics. this is nit though.",
+      "parentUuid": "20c8b8c9_f4cf998e",
+      "revId": "75b51ba99fc83ff876a4c8b133f6adf95dee80e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
