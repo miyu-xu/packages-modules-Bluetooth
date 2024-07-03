@@ -556,7 +556,7 @@ class HearingAidImpl : public HearingAid {
     // TODO(jpawlowski: for 16khz only 87 is required, optimize
     BTM_SetBleDataLength(address, 167);
 
-    if (BTM_SecIsSecurityPending(address)) {
+    if (BTM_SecIsLeSecurityPending(address)) {
       /* if security collision happened, wait for encryption done
        * (BTA_GATTC_ENC_CMPL_CB_EVT) */
       return;

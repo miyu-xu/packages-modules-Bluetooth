@@ -1964,7 +1964,7 @@ class CsisClientImpl : public CsisClient {
     device->conn_id = evt.conn_id;
 
     /* Verify bond */
-    if (BTM_SecIsSecurityPending(device->addr)) {
+    if (BTM_SecIsLeSecurityPending(device->addr)) {
       /* if security collision happened, wait for encryption done
        * (BTA_GATTC_ENC_CMPL_CB_EVT) */
       return;

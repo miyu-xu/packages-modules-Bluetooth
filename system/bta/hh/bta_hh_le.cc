@@ -1103,7 +1103,7 @@ static void bta_hh_clear_service_cache(tBTA_HH_DEV_CB* p_cb) {
 void bta_hh_start_security(tBTA_HH_DEV_CB* p_cb,
                            const tBTA_HH_DATA* /* p_buf */) {
   log::verbose("addr:{}", p_cb->link_spec.addrt.bda);
-  if (BTM_SecIsSecurityPending(p_cb->link_spec.addrt.bda)) {
+  if (BTM_SecIsLeSecurityPending(p_cb->link_spec.addrt.bda)) {
     /* if security collision happened, wait for encryption done */
     p_cb->security_pending = true;
     return;
