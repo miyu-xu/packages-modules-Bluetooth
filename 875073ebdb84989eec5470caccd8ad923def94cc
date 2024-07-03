@@ -16,6 +16,24 @@
       "message": "the audio framework also needs to be notified of sampling rate changes, at least if the SW encoding path is used. failing to do so will cause a mismatch of the audio HAL stream sampling rate and the encoder input sampling rate",
       "revId": "875073ebdb84989eec5470caccd8ad923def94cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43627696_6b8cf02d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-03T13:32:30Z",
+      "side": 1,
+      "message": "Thanks for input.\n\nIn the reported issue, the sample frequency changes, so we would have same issue.\nLet me see if I can handle it only for HW offloader path.",
+      "parentUuid": "231bbe74_1dfccf1e",
+      "revId": "875073ebdb84989eec5470caccd8ad923def94cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
