@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f6814a_bdb0d9f8",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-03T16:41:47Z",
+      "side": 1,
+      "message": "We can avoid nested try here:\n```suggestion\n        try:\n            hid_host_bd_addr \u003d str(hid_device.remote_device_bd_address)\n            connection \u003d await self.device.connect(hid_host_bd_addr, transport\u003dBT_BR_EDR_TRANSPORT)\n            await connection.authenticate()\n            await connection.encrypt()\n            await hid_device.connect_control_channel()\n            await hid_device.connect_interrupt_channel()\n        except AttributeError as e:\n            logging.error(f\u0027Device does not exist\u0027)\n            raise e\n        except (HCI_StatusError, ProtocolError) as e:\n            logging.error(f\"Connection failure error: {e}\")\n            raise e\n```",
+      "range": {
+        "startLine": 695,
+        "startChar": 8,
+        "endLine": 708,
+        "endChar": 19
+      },
+      "revId": "81c253369430b9b3da021f5f771303feaf8aecf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e696157_b122e0dc",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-03T16:41:47Z",
+      "side": 1,
+      "message": "```suggestion\n        except AttributeError as e:\n            logging.error(f\u0027Device does not exist\u0027)\n            raise e\n```",
+      "range": {
+        "startLine": 724,
+        "startChar": 8,
+        "endLine": 726,
+        "endChar": 17
+      },
+      "revId": "81c253369430b9b3da021f5f771303feaf8aecf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2cf83f1_ed089726",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-03T16:41:47Z",
+      "side": 1,
+      "message": "```suggestion\n        except AttributeError as e:\n            logging.exception(f\u0027Device does not exist\u0027)\n            raise e\n```",
+      "range": {
+        "startLine": 742,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "81c253369430b9b3da021f5f771303feaf8aecf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
