@@ -925,6 +925,7 @@ cc_test {
         "libosi",
         "libprotobuf-cpp-lite",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     target: {
         android: {
