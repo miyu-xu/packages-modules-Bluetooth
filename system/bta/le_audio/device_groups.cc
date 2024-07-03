@@ -193,9 +193,10 @@ void LeAudioDeviceGroup::Deactivate(void) {
   }
 }
 
-bool LeAudioDeviceGroup::Activate(LeAudioContextType context_type,
-                                  const BidirectionalPair<AudioContexts>& metadata_context_types,
-                                  BidirectionalPair<std::vector<uint8_t>> ccid_lists) {
+bool LeAudioDeviceGroup::Activate(
+    LeAudioContextType context_type,
+    const BidirectionalPair<AudioContexts>& metadata_context_types,
+    BidirectionalPair<std::vector<uint8_t>> ccid_lists) {
   bool is_activate = false;
   for (auto leAudioDevice : leAudioDevices_) {
     if (leAudioDevice.expired()) {
@@ -504,8 +505,8 @@ uint8_t LeAudioDeviceGroup::GetSCA(void) const {
   uint8_t sca = bluetooth::hci::iso_manager::kIsoSca0To20Ppm;
 
   for (const auto& leAudioDevice : leAudioDevices_) {
-    uint8_t dev_sca = get_btm_client_interface().peer.BTM_GetPeerSCA(leAudioDevice.lock()->address_,
-                                                                     BT_TRANSPORT_LE);
+    uint8_t dev_sca = get_btm_client_interface().peer.BTM_GetPeerSCA(
+        leAudioDevice.lock()->address_, BT_TRANSPORT_LE);
 
     /* If we could not read SCA from the peer device or sca is 0,
      * then there is no reason to continue.
@@ -1640,25 +1641,11 @@ LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) const {
   return GetCachedConfiguration(context_type);
 }
 
-LeAudioCodecConfiguration LeAudioDeviceGroup::GetAudioSessionCodecConfigForDirection(
-        LeAudioContextType context_type, uint8_t direction) const {
-  const set_configurations::AudioSetConfiguration* conf = nullptr;
-  bool is_valid = false;
-
-  /* Refresh the cache if there is no valid configuration */
-  if (context_to_configuration_cache_map.count(context_type) != 0) {
-    auto& valid_config_pair = context_to_configuration_cache_map.at(context_type);
-    is_valid = valid_config_pair.first;
-    conf = valid_config_pair.second.get();
-  }
-  if (!is_valid || (conf == nullptr)) {
-    UpdateAudioSetConfigurationCache(context_type);
-  }
-
-  auto audio_set_conf = GetCachedConfiguration(context_type);
-  if (!audio_set_conf) {
-    return {0, 0, 0, 0};
-  }
+LeAudioCodecConfiguration
+LeAudioDeviceGroup::GetAudioSessionCodecConfigForDirection(
+    LeAudioContextType context_type, uint8_t direction) const {
+  auto audio_set_conf = GetConfiguration(context_type);
+  if (!audio_set_conf) return {0, 0, 0, 0};
 
   auto group_config = utils::GetAudioSessionCodecConfigFromAudioSetConfiguration(
           *audio_set_conf.get(), direction);
