@@ -162,7 +162,7 @@ static uint32_t get_hf_features() {
    BTA_AG_FEAT_UNAT)
 #endif
 
-  return GET_SYSPROP(Hfp, hf_features, DEFAULT_BTIF_HF_FEATURES);
+  return android::sysprop::bluetooth::Hfp::hf_features().value_or(DEFAULT_BTIF_HF_FEATURES);
 }
 
 /*******************************************************************************
