@@ -218,16 +218,22 @@ public:
       const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
       const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config)
       const;
+  bool IsUsingPreferredAudioSetConfiguration(
+      const types::LeAudioContextType& context_type) const;
   void ResetPreferredAudioSetConfiguration(void) const;
   bool ReloadAudioLocations(void);
   bool ReloadAudioDirections(void);
   std::shared_ptr<const set_configurations::AudioSetConfiguration> GetActiveConfiguration(
           void) const;
   bool IsPendingConfiguration(void) const;
-  std::shared_ptr<const set_configurations::AudioSetConfiguration> GetConfiguration(
-          types::LeAudioContextType ctx_type) const;
-  std::shared_ptr<const set_configurations::AudioSetConfiguration> GetCachedConfiguration(
-          types::LeAudioContextType ctx_type) const;
+  std::shared_ptr<const set_configurations::AudioSetConfiguration>
+  GetConfiguration(types::LeAudioContextType ctx_type) const;
+  std::shared_ptr<const set_configurations::AudioSetConfiguration>
+  GetPreferredConfiguration(types::LeAudioContextType ctx_type) const;
+  std::shared_ptr<const set_configurations::AudioSetConfiguration>
+  GetCachedConfiguration(types::LeAudioContextType ctx_type) const;
+  std::shared_ptr<const set_configurations::AudioSetConfiguration>
+  GetCachedPreferredConfiguration(types::LeAudioContextType ctx_type) const;
   void InvalidateCachedConfigurations(void);
   void SetPendingConfiguration(void);
   void ClearPendingConfiguration(void);
