@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856c8596_6ea56699",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-03T21:31:32Z",
+      "side": 1,
+      "message": "Sorry another nit, can remove these lines since the next cases are doing the same thing",
+      "range": {
+        "startLine": 1064,
+        "startChar": 0,
+        "endLine": 1066,
+        "endChar": 0
+      },
+      "revId": "dc72aadb43fdad8274f7b5861721dd6161fd990f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
