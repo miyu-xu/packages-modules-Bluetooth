@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fdc525b_09a0aacc",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-03T11:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c48f442_b2aa550d",
+      "range": {
+        "startLine": 684,
+        "startChar": 4,
+        "endLine": 684,
+        "endChar": 25
+      },
+      "revId": "53bb2b41251eb6d9ea0c1c5b5a4ad0609ac6e86e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09cbcabb_98f985a3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-02T16:02:52Z",
       "side": 1,
       "message": "Here logging is a good first step but it will not prevent for the test to fail immediately if the connection fail. It will instead timeout.\n\nYou may etheir throw an error, gRPC will be able to handle it and send it into the gRPC call. Or you can populate your hid.proto interface to refine the reponse such as in https://github.com/google/bt-test-interfaces/blob/main/pandora/host.proto#L204\n\nhttps://github.com/google/bumble/blob/main/bumble/pandora/host.py#L176",
+      "range": {
+        "startLine": 695,
+        "startChar": 12,
+        "endLine": 695,
+        "endChar": 51
+      },
+      "revId": "53bb2b41251eb6d9ea0c1c5b5a4ad0609ac6e86e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df4bbc2c_d4283d2d",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-03T11:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09cbcabb_98f985a3",
       "range": {
         "startLine": 695,
         "startChar": 12,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "876ff457_9e69a8ff",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-03T11:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78d308fe_339e7ba4",
+      "revId": "53bb2b41251eb6d9ea0c1c5b5a4ad0609ac6e86e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "860186fa_8c4384c9",
@@ -77,6 +143,24 @@
       "writtenOn": "2024-07-02T16:02:52Z",
       "side": 1,
       "message": "Here I don\u0027t know what is the best between throwing an error or be specific, I\u0027ll let you choose.",
+      "revId": "53bb2b41251eb6d9ea0c1c5b5a4ad0609ac6e86e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a76918c_642a74b0",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-03T11:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "860186fa_8c4384c9",
       "revId": "53bb2b41251eb6d9ea0c1c5b5a4ad0609ac6e86e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
