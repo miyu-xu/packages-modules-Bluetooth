@@ -357,10 +357,10 @@ extern struct acl_get_connection_from_handle acl_get_connection_from_handle;
 // Params: const RawAddress& remote_bda, uint16_t* p_timeout
 // Returns: tBTM_STATUS
 struct BTM_GetLinkSuperTout {
-  std::function<tBTM_STATUS(const RawAddress& remote_bda, uint16_t* p_timeout)>
-      body{[](const RawAddress& /* remote_bda */, uint16_t* /* p_timeout */) {
-        return 0;
-      }};
+  std::function<tBTM_STATUS(const RawAddress& remote_bda, uint16_t* p_timeout)> body{
+          [](const RawAddress& /* remote_bda */, uint16_t* /* p_timeout */) {
+            return BTM_SUCCESS;
+          }};
   tBTM_STATUS operator()(const RawAddress& remote_bda, uint16_t* p_timeout) {
     return body(remote_bda, p_timeout);
   };
@@ -370,11 +370,10 @@ extern struct BTM_GetLinkSuperTout BTM_GetLinkSuperTout;
 // Params: const RawAddress& remote_bd_addr, tHCI_ROLE* p_role
 // Returns: tBTM_STATUS
 struct BTM_GetRole {
-  std::function<tBTM_STATUS(const RawAddress& remote_bd_addr,
-                            tHCI_ROLE* p_role)>
-      body{[](const RawAddress& /* remote_bd_addr */, tHCI_ROLE* /* p_role */) {
-        return 0;
-      }};
+  std::function<tBTM_STATUS(const RawAddress& remote_bd_addr, tHCI_ROLE* p_role)> body{
+          [](const RawAddress& /* remote_bd_addr */, tHCI_ROLE* /* p_role */) {
+            return BTM_SUCCESS;
+          }};
   tBTM_STATUS operator()(const RawAddress& remote_bd_addr, tHCI_ROLE* p_role) {
     return body(remote_bd_addr, p_role);
   };
@@ -384,10 +383,8 @@ extern struct BTM_GetRole BTM_GetRole;
 // Params: const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb
 // Returns: tBTM_STATUS
 struct BTM_ReadFailedContactCounter {
-  std::function<tBTM_STATUS(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb)>
-      body{[](const RawAddress& /* remote_bda */, tBTM_CMPL_CB* /* p_cb */) {
-        return 0;
-      }};
+  std::function<tBTM_STATUS(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb)> body{
+          [](const RawAddress& /* remote_bda */, tBTM_CMPL_CB* /* p_cb */) { return BTM_SUCCESS; }};
   tBTM_STATUS operator()(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb) {
     return body(remote_bda, p_cb);
   };
@@ -397,10 +394,8 @@ extern struct BTM_ReadFailedContactCounter BTM_ReadFailedContactCounter;
 // Params: const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb
 // Returns: tBTM_STATUS
 struct BTM_ReadRSSI {
-  std::function<tBTM_STATUS(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb)>
-      body{[](const RawAddress& /* remote_bda */, tBTM_CMPL_CB* /* p_cb */) {
-        return 0;
-      }};
+  std::function<tBTM_STATUS(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb)> body{
+          [](const RawAddress& /* remote_bda */, tBTM_CMPL_CB* /* p_cb */) { return BTM_SUCCESS; }};
   tBTM_STATUS operator()(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb) {
     return body(remote_bda, p_cb);
   };
@@ -410,10 +405,10 @@ extern struct BTM_ReadRSSI BTM_ReadRSSI;
 // Params: const RawAddress& remote_bda, tBT_TRANSPORT transport,
 // tBTM_CMPL_CB* p_cb Returns: tBTM_STATUS
 struct BTM_ReadTxPower {
-  std::function<tBTM_STATUS(const RawAddress& remote_bda,
-                            tBT_TRANSPORT transport, tBTM_CMPL_CB* p_cb)>
-      body{[](const RawAddress& /* remote_bda */, tBT_TRANSPORT /* transport */,
-              tBTM_CMPL_CB* /* p_cb */) { return BT_TRANSPORT_BR_EDR; }};
+  std::function<tBTM_STATUS(const RawAddress& remote_bda, tBT_TRANSPORT transport,
+                            tBTM_CMPL_CB* p_cb)>
+          body{[](const RawAddress& /* remote_bda */, tBT_TRANSPORT /* transport */,
+                  tBTM_CMPL_CB* /* p_cb */) { return BTM_SUCCESS; }};
   tBTM_STATUS operator()(const RawAddress& remote_bda, tBT_TRANSPORT transport,
                          tBTM_CMPL_CB* p_cb) {
     return body(remote_bda, transport, p_cb);
@@ -424,10 +419,8 @@ extern struct BTM_ReadTxPower BTM_ReadTxPower;
 // Params: const RawAddress& remote_bda, uint16_t timeout
 // Returns: tBTM_STATUS
 struct BTM_SetLinkSuperTout {
-  std::function<tBTM_STATUS(const RawAddress& remote_bda, uint16_t timeout)>
-      body{[](const RawAddress& /* remote_bda */, uint16_t /* timeout */) {
-        return 0;
-      }};
+  std::function<tBTM_STATUS(const RawAddress& remote_bda, uint16_t timeout)> body{
+          [](const RawAddress& /* remote_bda */, uint16_t /* timeout */) { return BTM_SUCCESS; }};
   tBTM_STATUS operator()(const RawAddress& remote_bda, uint16_t timeout) {
     return body(remote_bda, timeout);
   };
@@ -438,7 +431,7 @@ extern struct BTM_SetLinkSuperTout BTM_SetLinkSuperTout;
 // Returns: tBTM_STATUS
 struct BTM_SwitchRoleToCentral {
   std::function<tBTM_STATUS(const RawAddress& remote_bd_addr)> body{
-      [](const RawAddress& /* remote_bd_addr */) { return 0; }};
+          [](const RawAddress& /* remote_bd_addr */) { return BTM_SUCCESS; }};
   tBTM_STATUS operator()(const RawAddress& remote_bd_addr) {
     return body(remote_bd_addr);
   };
@@ -448,10 +441,10 @@ extern struct BTM_SwitchRoleToCentral BTM_SwitchRoleToCentral;
 // Params: const RawAddress& bd_addr, tBT_TRANSPORT transport
 // Returns: tBTM_STATUS
 struct btm_remove_acl {
-  std::function<tBTM_STATUS(const RawAddress& bd_addr, tBT_TRANSPORT transport)>
-      body{[](const RawAddress& /* bd_addr */, tBT_TRANSPORT /* transport */) {
-        return BT_TRANSPORT_BR_EDR;
-      }};
+  std::function<tBTM_STATUS(const RawAddress& bd_addr, tBT_TRANSPORT transport)> body{
+          [](const RawAddress& /* bd_addr */, tBT_TRANSPORT /* transport */) {
+            return BTM_SUCCESS;
+          }};
   tBTM_STATUS operator()(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
     return body(bd_addr, transport);
   };
