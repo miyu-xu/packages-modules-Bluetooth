@@ -92,16 +92,15 @@ public class DistanceMeasurementManager {
         Log.i(
                 TAG,
                 "startDistanceMeasurement device:"
-                        + params.getDevice().getAnonymizedAddress()
-                        + ", method: "
-                        + params.getMethodId());
+                        + BluetoothUtils.toAnonymizedAddress(params.getDevice().getAddress())
+                        + (" method: " + params.getMethodId()));
         String address = mAdapterService.getIdentityAddress(params.getDevice().getAddress());
         if (address == null) {
             address = params.getDevice().getAddress();
         }
         logd(
                 "Get identityAddress: "
-                        + params.getDevice().getAnonymizedAddress()
+                        + BluetoothUtils.toAnonymizedAddress(params.getDevice().getAddress())
                         + " => "
                         + BluetoothUtils.toAnonymizedAddress(address));
 
@@ -121,7 +120,8 @@ public class DistanceMeasurementManager {
                 startRssiTracker(tracker);
                 break;
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING:
-                if (!params.getDevice().isConnected()) {
+                if (mAdapterService.getConnectionState(params.getDevice())
+                        == BluetoothDevice.CONNECTION_STATE_DISCONNECTED) {
                     Log.e(TAG, "no le connection");
                     invokeStartFail(
                             callback,
@@ -169,18 +169,16 @@ public class DistanceMeasurementManager {
         Log.i(
                 TAG,
                 "stopDistanceMeasurement device:"
-                        + device.getAnonymizedAddress()
-                        + ", method: "
-                        + method
-                        + " timeout "
-                        + timeout);
+                        + BluetoothUtils.toAnonymizedAddress(device.getAddress())
+                        + (" method: " + method)
+                        + (" timeout " + timeout));
         String address = mAdapterService.getIdentityAddress(device.getAddress());
         if (address == null) {
             address = device.getAddress();
         }
         logd(
                 "Get identityAddress: "
-                        + device.getAnonymizedAddress()
+                        + BluetoothUtils.toAnonymizedAddress(device.getAddress())
                         + " => "
                         + BluetoothUtils.toAnonymizedAddress(address));
 
