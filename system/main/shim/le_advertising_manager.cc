@@ -63,15 +63,18 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
     log::info("in shim layer");
 
     bluetooth::shim::GetAdvertising()->RegisterAdvertiser(
-        bluetooth::shim::GetGdShimHandler()->BindOnce(
-            [](IdStatusCallback cb, uint8_t id, uint8_t status) {
-              do_in_main_thread(
-                  FROM_HERE,
-                  base::BindOnce([](IdStatusCallback cb, uint8_t id,
-                                    uint8_t status) { cb.Run(id, status); },
-                                 cb, id, status));
-            },
-            cb));
+            bluetooth::shim::GetGdShimHandler()->BindOnce(
+                    [](IdStatusCallback cb, uint8_t id,
+                       AdvertisingCallback::AdvertisingStatus status) {
+                      do_in_main_thread(FROM_HERE,
+                                        base::BindOnce(
+                                                [](IdStatusCallback cb, uint8_t id,
+                                                   AdvertisingCallback::AdvertisingStatus status) {
+                                                  cb.Run(id, static_cast<uint8_t>(status));
+                                                },
+                                                cb, id, status));
+                    },
+                    cb));
   }
 
   void Unregister(uint8_t advertiser_id) override {
