@@ -228,7 +228,7 @@ public:
   }
 
   static IBroadcastStateMachineCallbacks* callbacks_;
-  static BleAdvertiserInterface* advertiser_if_;
+  static ::BleAdvertiserInterface* advertiser_if_;
 
 private:
   std::optional<BigConfig> active_config_;

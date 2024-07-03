@@ -26,7 +26,7 @@
 
 #include "include/hardware/ble_advertiser.h"
 
-class MockBleAdvertisingManager : public BleAdvertiserInterface {
+class MockBleAdvertisingManager : public ::BleAdvertiserInterface {
 public:
   MockBleAdvertisingManager() = default;
   MockBleAdvertisingManager(const MockBleAdvertisingManager&) = delete;
