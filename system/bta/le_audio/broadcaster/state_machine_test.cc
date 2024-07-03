@@ -118,13 +118,13 @@ protected:
 
     ON_CALL(*mock_ble_advertising_manager_, StartAdvertisingSet)
             .WillByDefault([this](uint8_t client_id, int reg_id,
-                                  BleAdvertiserInterface::IdTxPowerStatusCallback register_cb,
+                                  ::BleAdvertiserInterface::IdTxPowerStatusCallback register_cb,
                                   AdvertiseParameters params, std::vector<uint8_t> advertise_data,
                                   std::vector<uint8_t> scan_response_data,
                                   PeriodicAdvertisingParameters periodic_params,
                                   std::vector<uint8_t> periodic_data, uint16_t duration,
                                   uint8_t maxExtAdvEvents,
-                                  BleAdvertiserInterface::IdStatusCallback timeout_cb) {
+                                  ::BleAdvertiserInterface::IdStatusCallback timeout_cb) {
               static uint8_t advertiser_id = 1;
               uint8_t tx_power = 32;
               uint8_t status = 0;
@@ -135,15 +135,15 @@ protected:
 
     ON_CALL(*mock_ble_advertising_manager_, Enable)
             .WillByDefault([this](uint8_t advertiser_id, bool enable,
-                                  BleAdvertiserInterface::StatusCallback cb, uint16_t duration,
+                                  ::BleAdvertiserInterface::StatusCallback cb, uint16_t duration,
                                   uint8_t maxExtAdvEvents,
-                                  BleAdvertiserInterface::StatusCallback timeout_cb) {
+                                  ::BleAdvertiserInterface::StatusCallback timeout_cb) {
               uint8_t status = 0;
               this->adv_callbacks_->OnAdvertisingEnabled(advertiser_id, enable, status);
             });
 
     ON_CALL(*mock_ble_advertising_manager_, GetOwnAddress)
-            .WillByDefault([](uint8_t inst_id, BleAdvertiserInterface::GetAddressCallback cb) {
+            .WillByDefault([](uint8_t inst_id, ::BleAdvertiserInterface::GetAddressCallback cb) {
               uint8_t address_type = 0x02;
               RawAddress address;
               const uint8_t addr[] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66};
@@ -153,14 +153,14 @@ protected:
 
     ON_CALL(*mock_ble_advertising_manager_, SetData)
             .WillByDefault([this](int advertiser_id, bool set_scan_rsp, std::vector<uint8_t> data,
-                                  BleAdvertiserInterface::StatusCallback cb) {
+                                  ::BleAdvertiserInterface::StatusCallback cb) {
               uint8_t status = 0;
               this->adv_callbacks_->OnAdvertisingDataSet(advertiser_id, status);
             });
 
     ON_CALL(*mock_ble_advertising_manager_, SetPeriodicAdvertisingData)
             .WillByDefault([this](int advertiser_id, std::vector<uint8_t> data,
-                                  BleAdvertiserInterface::StatusCallback cb) {
+                                  ::BleAdvertiserInterface::StatusCallback cb) {
               uint8_t status = 0;
               this->adv_callbacks_->OnPeriodicAdvertisingDataSet(advertiser_id, status);
             });
