@@ -3247,8 +3247,14 @@ public class LeAudioService extends ProfileService {
                             descriptor.mInputSelectableConfig,
                             descriptor.mOutputSelectableConfig);
 
+            boolean codecChanged = true;
             if (descriptor.mCodecStatus != null) {
                 Log.d(TAG, " Replacing codec status for group: " + groupId);
+                if (descriptor.mCodecStatus.getOutputCodecConfig().getCodecType()
+                        == status.getOutputCodecConfig().getCodecType()) {
+                    Log.d(TAG, "same codec: " + status.getOutputCodecConfig().getCodecType());
+                    codecChanged = false;
+                }
             } else {
                 Log.d(TAG, " New codec status for group: " + groupId);
             }
@@ -3256,7 +3262,7 @@ public class LeAudioService extends ProfileService {
             descriptor.mCodecStatus = status;
             mHandler.post(() -> notifyUnicastCodecConfigChanged(groupId, status));
 
-            if (descriptor.isActive()) {
+            if (descriptor.isActive() && codecChanged) {
                 // Audio framework needs to be notified so it get new codec config
                 notifyAudioFrameworkForCodecConfigUpdate(groupId, descriptor);
             }
