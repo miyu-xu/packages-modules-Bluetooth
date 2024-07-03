@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd6884b5_b7b5d936",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-03T11:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d21daee_297b3b90",
+      "range": {
+        "startLine": 19,
+        "startChar": 63,
+        "endLine": 19,
+        "endChar": 80
+      },
+      "revId": "70b15e7e3414058cc01d294063257952480badde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "676f3659_34cda67a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-02T16:09:14Z",
       "side": 1,
       "message": "`Hid` is unnecessary here",
+      "range": {
+        "startLine": 21,
+        "startChar": 57,
+        "endLine": 21,
+        "endChar": 60
+      },
+      "revId": "70b15e7e3414058cc01d294063257952480badde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "593f183b_8aabb5f0",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-03T11:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "676f3659_34cda67a",
       "range": {
         "startLine": 21,
         "startChar": 57,
