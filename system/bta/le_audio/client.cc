@@ -45,6 +45,7 @@
 #include "devices.h"
 #include "hci/controller_interface.h"
 #include "internal_include/stack_config.h"
+#include "le_audio/device_groups.h"
 #include "le_audio_health_status.h"
 #include "le_audio_set_configuration_provider.h"
 #include "le_audio_types.h"
@@ -959,9 +960,47 @@ public:
   }
 
   void SetCodecConfigPreference(
-          int group_id, bluetooth::le_audio::btle_audio_codec_config_t input_codec_config,
-          bluetooth::le_audio::btle_audio_codec_config_t output_codec_config) override {
-    // TODO Implement
+      int group_id,
+      bluetooth::le_audio::btle_audio_codec_config_t input_codec_config,
+      bluetooth::le_audio::btle_audio_codec_config_t output_codec_config)
+      override {
+    if (group_id != active_group_id_) {
+      log::warn("Selected group is not active.");
+    }
+
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      log::error("Unknown group id: %d", group_id);
+    }
+
+    if (group->SetPreferredAudioSetConfiguration(input_codec_config,
+                                                 output_codec_config)) {
+      log::info("group id: {}, setting preferred codec is successful.",
+                group_id);
+    } else {
+      log::warn("group id: {}, setting preferred codec is failed.", group_id);
+      return;
+    }
+
+    if (SetConfigurationAndStopStreamWhenNeeded(
+            group, group->GetConfigurationContextType())) {
+      log::debug(
+          "Group id {} do the reconfiguration based on preferred codec config",
+          group_id);
+    } else {
+      log::debug("Group id {} preferred codec config is not changed", group_id);
+    }
+  }
+
+  bool IsUsingPreferredCodecConfig(int group_id, int context_type) {
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (!group) {
+      log::error("Unknown group id: %d", group_id);
+    }
+
+    return group->IsUsingPreferredAudioSetConfiguration(
+        static_cast<LeAudioContextType>(context_type));
   }
 
   void SetCcidInformation(int ccid, int context_type) override {
@@ -1277,8 +1316,9 @@ public:
       StartAudioSession(group);
       active_group_id_ = group_id;
     } else {
-      /* In case there was an active group. Stop the stream, but before that, set
-       * the new group so the group change is correctly handled in OnStateMachineStatusReportCb
+      /* In case there was an active group. Stop the stream, but before that,
+       * set the new group so the group change is correctly handled in
+       * OnStateMachineStatusReportCb
        */
       active_group_id_ = group_id;
       GroupStop(previous_active_group);
@@ -2003,7 +2043,8 @@ public:
       BTM_BleSetPhy(address, PHY_LE_2M, PHY_LE_2M, 0);
     }
 
-    get_btm_client_interface().peer.BTM_RequestPeerSCA(leAudioDevice->address_, transport);
+    get_btm_client_interface().peer.BTM_RequestPeerSCA(leAudioDevice->address_,
+                                                       transport);
 
     if (leAudioDevice->GetConnectionState() == DeviceConnectState::CONNECTING_AUTOCONNECT) {
       leAudioDevice->SetConnectionState(DeviceConnectState::CONNECTED_AUTOCONNECT_GETTING_READY);
@@ -2097,7 +2138,8 @@ public:
       log::info("Configure MTU");
       /* Use here kBapMinimumAttMtu, because we know that GATT will request
        * default ATT MTU anyways. We also know that GATT will use this
-       * kBapMinimumAttMtu as an input for Data Length Update procedure in the controller.
+       * kBapMinimumAttMtu as an input for Data Length Update procedure in the
+       * controller.
        */
       BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, kBapMinimumAttMtu);
     }
@@ -3763,7 +3805,8 @@ public:
     if (!remote_contexts.sink.any() && !remote_contexts.source.any()) {
       log::warn("Requested context type not available on the remote side");
 
-      if (com::android::bluetooth::flags::leaudio_no_context_validate_streaming_request() &&
+      if (com::android::bluetooth::flags::
+              leaudio_no_context_validate_streaming_request() &&
           source_monitor_mode_) {
         callbacks_->OnUnicastMonitorModeStatus(
                 bluetooth::le_audio::types::kLeAudioDirectionSource,
@@ -4086,12 +4129,16 @@ public:
                                                     "s_state: " + ToString(audio_sender_state_));
   }
 
-  inline bool IsDirectionAvailableForCurrentConfiguration(const LeAudioDeviceGroup* group,
-                                                          uint8_t direction) const {
-    auto current_config = group->GetCachedConfiguration(configuration_context_type_);
-    if (current_config) {
-      return current_config->confs.get(direction).size() != 0;
-    }
+  inline bool IsDirectionAvailableForCurrentConfiguration(
+      const LeAudioDeviceGroup* group, uint8_t direction) const {
+    auto current_config =
+        group->IsUsingPreferredAudioSetConfiguration(
+            configuration_context_type_)
+            ? group->GetCachedPreferredConfiguration(
+                  configuration_context_type_)
+            : group->GetCachedConfiguration(configuration_context_type_);
+    if (current_config)
+      return (current_config->confs.get(direction).size() != 0);
     return false;
   }
 
@@ -5204,7 +5251,8 @@ public:
 
     if (it != lastNotifiedGroupStreamStatusMap_.end() &&
         it->second == GroupStreamStatus::STREAMING &&
-        group->GetSduInterval(bluetooth::le_audio::types::kLeAudioDirectionSource) == 0) {
+        group->GetSduInterval(
+            bluetooth::le_audio::types::kLeAudioDirectionSource) == 0) {
       SetAsymmetricBlePhy(group, true);
       return;
     }
@@ -5358,9 +5406,12 @@ public:
               notifyAudioLocalSink(UnicastMonitorModeStatus::STREAMING_SUSPENDED);
             }
 
-            auto remote_contexts = DirectionalRealignMetadataAudioContexts(group, remote_direction);
-            ApplyRemoteMetadataAudioContextPolicy(group, remote_contexts, remote_direction);
-            if (GroupStream(group->group_id_, configuration_context_type_, remote_contexts)) {
+            auto remote_contexts = DirectionalRealignMetadataAudioContexts(
+                group, remote_direction);
+            ApplyRemoteMetadataAudioContextPolicy(group, remote_contexts,
+                                                  remote_direction);
+            if (GroupStream(group->group_id_, configuration_context_type_,
+                            remote_contexts)) {
               /* If configuration succeed wait for new status. */
               return;
             }
@@ -5393,14 +5444,15 @@ public:
       case GroupStreamStatus::RELEASING:
       case GroupStreamStatus::SUSPENDING:
         if (active_group_id_ != bluetooth::groups::kGroupUnknown &&
-            (active_group_id_ == group->group_id_) && !group->IsPendingConfiguration() &&
+            (active_group_id_ == group->group_id_) &&
+            !group->IsPendingConfiguration() &&
             (audio_sender_state_ == AudioState::STARTED ||
              audio_receiver_state_ == AudioState::STARTED) &&
             group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
           /* If releasing state is happening but it was not initiated either by
-           * reconfiguration or Audio Framework actions either by the Active group change,
-           * it means that it is some internal state machine error. This is very unlikely and
-           * for now just Inactivate the group.
+           * reconfiguration or Audio Framework actions either by the Active
+           * group change, it means that it is some internal state machine
+           * error. This is very unlikely and for now just Inactivate the group.
            */
           log::error("Internal state machine error");
           group->PrintDebugState();
