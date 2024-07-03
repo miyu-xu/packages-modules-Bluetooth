@@ -31,7 +31,7 @@ namespace rust {
 // local callbacks in order to dispatch the Rust callbacks.
 class BleAdvertiserIntf : public AdvertisingCallbacks {
 public:
-  BleAdvertiserIntf(BleAdvertiserInterface* adv_intf) : adv_intf_(adv_intf) {}
+  BleAdvertiserIntf(::BleAdvertiserInterface* adv_intf) : adv_intf_(adv_intf) {}
   ~BleAdvertiserIntf() = default;
 
   // AdvertisingCallbacks overrides
@@ -79,7 +79,7 @@ private:
   void OnParametersCallback(uint8_t adv_id, uint8_t status, int8_t tx_power);
   void OnGetAddressCallback(uint8_t adv_id, uint8_t addr_type, RawAddress address);
 
-  BleAdvertiserInterface* adv_intf_;
+  ::BleAdvertiserInterface* adv_intf_;
 };
 
 std::unique_ptr<BleAdvertiserIntf> GetBleAdvertiserIntf(const unsigned char* gatt_intf);

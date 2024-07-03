@@ -26,7 +26,7 @@
 
 #include "include/hardware/ble_advertiser.h"
 
-class MockBleAdvertisingManager : public BleAdvertiserInterface {
+class MockBleAdvertisingManager : public ::BleAdvertiserInterface {
 public:
   MockBleAdvertisingManager() = default;
   MockBleAdvertisingManager(const MockBleAdvertisingManager&) = delete;
@@ -44,7 +44,8 @@ public:
                int timeout_s, StatusCallback timeout_cb),
               (override));
   MOCK_METHOD((void), StartAdvertisingSet,
-              (uint8_t client_id, int reg_id, IdTxPowerStatusCallback register_cb,
+              (uint8_t client_id, int reg_id,
+               ::BleAdvertiserInterface::IdTxPowerStatusCallback register_cb,
                AdvertiseParameters params, std::vector<uint8_t> advertise_data,
                std::vector<uint8_t> scan_response_data,
                PeriodicAdvertisingParameters periodic_params, std::vector<uint8_t> periodic_data,
