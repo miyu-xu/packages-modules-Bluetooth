@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c9d637b_96ef6649",
+        "filename": "sysprop/exported_include/android_bluetooth_sysprop.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-03T18:53:38Z",
+      "side": 1,
+      "message": "this whole file should be deleted next",
+      "revId": "3d28bf010bb986eed8b6aee0ee073ba6b91892eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
