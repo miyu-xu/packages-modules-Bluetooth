@@ -58,7 +58,4 @@ typedef struct {
  ******************************************************************************/
 extern tA2DP_CB a2dp_cb;
 
-/* Used only for conformance testing */
-void a2dp_set_avdt_sdp_ver(uint16_t avdt_sdp_ver);
-
 #endif /* A2DP_INT_H */

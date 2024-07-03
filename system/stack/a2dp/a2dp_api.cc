@@ -153,18 +153,6 @@ static void a2dp_sdp_cback(const RawAddress& /* bd_addr */, tSDP_STATUS status) 
   return;
 }
 
-/*******************************************************************************
- *
- * Function         a2dp_set_avdt_sdp_ver
- *
- * Description      This function allows the script wrapper to change the
- *                  avdt version of a2dp.
- *
- * Returns          None
- *
- ******************************************************************************/
-void a2dp_set_avdt_sdp_ver(uint16_t avdt_sdp_ver) { a2dp_cb.avdt_sdp_ver = avdt_sdp_ver; }
-
 /******************************************************************************
  *
  * Function         A2DP_AddRecord
