@@ -16,6 +16,24 @@
       "message": "right now, the in band ringtone is only updated when a device is connected or removed. If we want to update it with active device management, then we need to update it in setactivedevice as well. Please check b/346498545#comment8\n\nalso, would you like to add a unit test for this? thanks",
       "revId": "df695c812de0197876fd81f4814c6adf9ae40db6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0edf5033_7d2ab0dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-03T13:11:20Z",
+      "side": 1,
+      "message": "Done. Need to discuss on unit testcase",
+      "parentUuid": "f008e58f_9a10ece2",
+      "revId": "df695c812de0197876fd81f4814c6adf9ae40db6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
