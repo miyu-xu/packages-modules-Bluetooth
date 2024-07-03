@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "025cac32_34e4623c",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-03T00:09:53Z",
+      "side": 1,
+      "message": "server_port_id wasn\u0027t used - we\u0027re using the channel to track server ports now, so I deleted that line.",
+      "parentUuid": "fd47f853_12f480e6",
+      "revId": "32bc1e198a66a8b3f328a744ff868f9d383df599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efc3f7dd_ee273594",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-07-01T16:45:25Z",
       "side": 1,
       "message": "What is this number ? If this is specific to RFCOMM, could be add a constant instead ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 17,
+        "endLine": 102,
+        "endChar": 27
+      },
+      "revId": "32bc1e198a66a8b3f328a744ff868f9d383df599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5f3590_d92d5b2b",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-03T00:09:53Z",
+      "side": 1,
+      "message": "Service record handle values 0x00000001 to 0x0000FFFF are reserved according to the spec, so not RFCOMM specific.  I added FIRST_SERVICE_RECORD_HANDLE as a constant anyway, although I\u0027m not sure if that should be somewhere else.",
+      "parentUuid": "efc3f7dd_ee273594",
       "range": {
         "startLine": 102,
         "startChar": 17,
