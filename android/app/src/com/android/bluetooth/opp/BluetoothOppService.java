@@ -492,7 +492,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                                                 BluetoothStatsLog
                                                         .BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
                                                 9);
-                                        Log.e(TAG, "close tranport error");
+                                        Log.e(TAG, "close transport error");
                                     }
                                     if (mServerSocket != null) {
                                         acceptNewConnections();
