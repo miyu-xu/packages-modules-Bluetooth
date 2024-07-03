@@ -22,6 +22,30 @@
       },
       "revId": "0ade0e1deb2a0c249b86f9ac206fbfa0395798f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f35d5c_4a7a9a15",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1411874
+      },
+      "writtenOn": "2024-07-03T04:53:02Z",
+      "side": 1,
+      "message": "Bluetooth app has multiple other activities, in feature we may need to adopt edge to edge for other activities, so I added in Utils.",
+      "parentUuid": "b5b2beaa_e8a03f1b",
+      "range": {
+        "startLine": 1331,
+        "startChar": 0,
+        "endLine": 1346,
+        "endChar": 5
+      },
+      "revId": "0ade0e1deb2a0c249b86f9ac206fbfa0395798f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
