@@ -1296,7 +1296,7 @@ class BluetoothManagerService {
                 // TODO: b/339501753 - Properly stop Bluetooth without killing it
                 mAdapter.killBluetoothProcess();
 
-                binderDead.get(1, TimeUnit.SECONDS);
+                binderDead.get(2, TimeUnit.SECONDS);
             } catch (android.os.DeadObjectException e) {
                 // Reduce exception to info and skip waiting (Bluetooth is dead as wanted)
                 Log.i(TAG, "Bluetooth already dead 💀");
