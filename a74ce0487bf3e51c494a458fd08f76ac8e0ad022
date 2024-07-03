@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30cfbf01_33312f03",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-03T20:10:26Z",
+      "side": 1,
+      "message": "Nit: this comment doesn\u0027t seem to have a purpose now",
+      "range": {
+        "startLine": 1065,
+        "startChar": 8,
+        "endLine": 1065,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "583cee5b_007ba853",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 1065,
+                "startChar": 0,
+                "endLine": 1066,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a74ce0487bf3e51c494a458fd08f76ac8e0ad022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f528ec1_f3c83495",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-03T20:10:26Z",
+      "side": 1,
+      "message": "Should this be \u0026\u0026 or || here? I\u0027m not familiar with the logic here but it seems like the original behavior would enqueue if there was something ongoing on either transport",
+      "range": {
+        "startLine": 1089,
+        "startChar": 8,
+        "endLine": 1090,
+        "endChar": 66
+      },
+      "revId": "a74ce0487bf3e51c494a458fd08f76ac8e0ad022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
