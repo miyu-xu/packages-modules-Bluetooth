@@ -144,7 +144,7 @@ static bool is_active_device(const RawAddress& bd_addr) {
 }
 
 static tBTA_SERVICE_MASK get_BTIF_HF_SERVICES() {
-  return GET_SYSPROP(Hfp, hf_services,
+  return android::sysprop::bluetooth::Hfp::hf_services().value_or(
                      BTA_HSP_SERVICE_MASK | BTA_HFP_SERVICE_MASK);
 }
 
@@ -162,7 +162,7 @@ static uint32_t get_hf_features() {
    BTA_AG_FEAT_UNAT)
 #endif
 
-  return GET_SYSPROP(Hfp, hf_features, DEFAULT_BTIF_HF_FEATURES);
+  return android::sysprop::bluetooth::Hfp::hf_features().value_or(DEFAULT_BTIF_HF_FEATURES);
 }
 
 /*******************************************************************************
