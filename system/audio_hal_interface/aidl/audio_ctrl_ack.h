@@ -24,6 +24,8 @@ namespace bluetooth {
 namespace audio {
 namespace aidl {
 
+using ::aidl::android::hardware::bluetooth::audio::BluetoothAudioStatus;
+
 enum class BluetoothAudioCtrlAck : uint8_t {
   SUCCESS_FINISHED = 0,
   SUCCESS_RECONFIGURATION,
@@ -36,9 +38,8 @@ enum class BluetoothAudioCtrlAck : uint8_t {
 
 std::ostream& operator<<(std::ostream& os, const BluetoothAudioCtrlAck& ack);
 
-inline ::aidl::android::hardware::bluetooth::audio::BluetoothAudioStatus
-BluetoothAudioCtrlAckToHalStatus(const BluetoothAudioCtrlAck& ack) {
-  using ::aidl::android::hardware::bluetooth::audio::BluetoothAudioStatus;
+inline BluetoothAudioStatus BluetoothAudioCtrlAckToHalStatus(
+    const BluetoothAudioCtrlAck& ack) {
   switch (ack) {
     case BluetoothAudioCtrlAck::SUCCESS_FINISHED:
       return BluetoothAudioStatus::SUCCESS;
