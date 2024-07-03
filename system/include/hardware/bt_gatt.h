@@ -65,7 +65,7 @@ typedef struct {
   BleScannerInterface* scanner;
 
   /** Pointer to the advertiser interface methods.*/
-  BleAdvertiserInterface* advertiser;
+  ::BleAdvertiserInterface* advertiser;
 
   /** Pointer to the distance measurement interface methods.*/
   DistanceMeasurementInterface* distance_measurement_manager;
