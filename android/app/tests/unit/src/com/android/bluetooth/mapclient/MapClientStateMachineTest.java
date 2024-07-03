@@ -54,6 +54,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.ObexAppParameters;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -874,6 +875,47 @@ public class MapClientStateMachineTest {
         Assert.assertEquals(
                 new ObexTime(Instant.ofEpochMilli(messageMetadata.getTimestamp())).toString(),
                 dateTime);
+    }
+
+    /** Test MSG_GET_MESSAGE_LISTING does not grab MESSAGE_TYPE_EMAIL */
+    @Test
+    public void testMsgGetMessageListingEmailMessageType_emailMessageTypeisNotStored() {
+        setupSdpRecordReceipt();
+        clearInvocations(mMockMasClient);
+        byte expectedFilter = MessagesFilter.MESSAGE_TYPE_EMAIL;
+        Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
+        mMceStateMachine.sendMessage(msg);
+
+        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .sendBroadcastMultiplePermissions(
+                        mIntentArgument.capture(),
+                        any(String[].class),
+                        any(BroadcastOptions.class));
+        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+
+        msg =
+                Message.obtain(
+                        mHandler,
+                        MceStateMachine.MSG_GET_MESSAGE_LISTING,
+                        MceStateMachine.FOLDER_INBOX);
+        mMceStateMachine.sendMessage(msg);
+
+        ArgumentCaptor<RequestGetMessagesListing> requestCaptor =
+                ArgumentCaptor.forClass(RequestGetMessagesListing.class);
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        verify(mMockMasClient, atLeastOnce()).makeRequest(requestCaptor.capture());
+        List<RequestGetMessagesListing> requests = requestCaptor.getAllValues();
+
+        RequestGetMessagesListing messagesListing = null;
+        for (int i = 0; i < requests.size(); i++) {
+            if (requests.get(i) instanceof RequestGetMessagesListing) {
+                messagesListing = requests.get(i);
+            }
+        }
+
+        ObexAppParameters appParams = ObexAppParameters.fromHeaderSet((messagesListing).mHeaderSet);
+        byte filter = appParams.getByte(Request.OAP_TAGID_FILTER_MESSAGE_TYPE);
+        assertThat(filter).isEqualTo(expectedFilter);
     }
 
     @Test
