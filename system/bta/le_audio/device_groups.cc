@@ -919,7 +919,7 @@ bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx
 }
 
 bool LeAudioDeviceGroup::UpdatePreferredAudioSetConfigurationCache(
-    LeAudioContextType ctx_type) const {
+        LeAudioContextType ctx_type) const {
   // For now, we only update preferred configuration cache only when we are not
   // using codec extensibility.
   if (CodecManager::GetInstance()->IsUsingCodecExtensibility()) {
@@ -928,14 +928,12 @@ bool LeAudioDeviceGroup::UpdatePreferredAudioSetConfigurationCache(
 
   auto requirements = GetAudioSetConfigurationRequirements(ctx_type);
   auto new_conf = CodecManager::GetInstance()->GetCodecConfig(
-      requirements,
-      std::bind(&LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration,
-                this, std::placeholders::_1, std::placeholders::_2));
+          requirements, std::bind(&LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration,
+                                  this, std::placeholders::_1, std::placeholders::_2));
   auto update_config = true;
 
   if (context_to_preferred_configuration_cache_map.count(ctx_type) != 0) {
-    auto& [is_valid, existing_conf] =
-        context_to_preferred_configuration_cache_map.at(ctx_type);
+    auto& [is_valid, existing_conf] = context_to_preferred_configuration_cache_map.at(ctx_type);
     update_config = (new_conf.get() != existing_conf.get());
     /* Just mark it as still valid */
     if (!update_config && !is_valid) {
@@ -950,10 +948,9 @@ bool LeAudioDeviceGroup::UpdatePreferredAudioSetConfigurationCache(
     context_to_preferred_configuration_cache_map.erase(ctx_type);
     if (new_conf) {
       context_to_preferred_configuration_cache_map.insert(
-          std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
+              std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
     } else {
-      log::info("Invalid preferred config for context: {}",
-                types::ToHexString(ctx_type));
+      log::info("Invalid preferred config for context: {}", types::ToHexString(ctx_type));
     }
   }
 
@@ -961,20 +958,16 @@ bool LeAudioDeviceGroup::UpdatePreferredAudioSetConfigurationCache(
 }
 
 bool LeAudioDeviceGroup::SetPreferredAudioSetConfiguration(
-    const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
-    const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config)
-    const {
-  if (input_codec_config.codec_priority == -1 ||
-      output_codec_config.codec_priority == -1) {
+        const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
+        const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config) const {
+  if (input_codec_config.codec_priority == -1 || output_codec_config.codec_priority == -1) {
     log::info("Clear codec config");
     ResetPreferredAudioSetConfiguration();
     return true;
   }
 
-  preferred_config.sink =
-      std::make_unique<btle_audio_codec_config_t>(input_codec_config);
-  preferred_config.source =
-      std::make_unique<btle_audio_codec_config_t>(output_codec_config);
+  preferred_config.sink = std::make_unique<btle_audio_codec_config_t>(input_codec_config);
+  preferred_config.source = std::make_unique<btle_audio_codec_config_t>(output_codec_config);
 
   bool is_updated = false;
 
@@ -983,6 +976,20 @@ bool LeAudioDeviceGroup::SetPreferredAudioSetConfiguration(
   }
 
   return is_updated;
+}
+
+bool LeAudioDeviceGroup::IsUsingPreferredAudioSetConfiguration(
+        const LeAudioContextType& context_type) const {
+  if (!preferred_config.sink || !preferred_config.source) {
+    return false;
+  }
+
+  if (preferred_config.sink->codec_priority == -1 ||
+      preferred_config.source->codec_priority == -1) {
+    return false;
+  }
+
+  return GetPreferredConfiguration(context_type).get();
 }
 
 void LeAudioDeviceGroup::ResetPreferredAudioSetConfiguration(void) const {
@@ -1439,9 +1446,9 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
       log::debug("Requested channel count: {}, supp. channel counts: 0x{:x}",
                  requested_channel_count, channel_count_mask);
 
-      /* Return true if requested channel count is set in the supported channel
-       * counts. In the channel_count_mask, bit 0 is set when 1 channel is
-       * supported.
+      /* Return true if requested channel count is set in the supported
+       * channel counts. In the channel_count_mask, bit 0 is set when 1
+       * channel is supported.
        */
       return (1 << (requested_channel_count - 1)) & channel_count_mask;
     }
@@ -1692,14 +1699,29 @@ LeAudioDeviceGroup::GetCachedConfiguration(LeAudioContextType context_type) cons
 }
 
 std::shared_ptr<const set_configurations::AudioSetConfiguration>
+LeAudioDeviceGroup::GetCachedPreferredConfiguration(LeAudioContextType context_type) const {
+  if (context_to_preferred_configuration_cache_map.count(context_type) != 0) {
+    return context_to_preferred_configuration_cache_map.at(context_type).second;
+  }
+  return nullptr;
+}
+
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
 LeAudioDeviceGroup::GetActiveConfiguration(void) const {
-  return GetCachedConfiguration(configuration_context_type_);
+  return IsUsingPreferredAudioSetConfiguration(configuration_context_type_)
+                 ? GetCachedPreferredConfiguration(configuration_context_type_)
+                 : GetCachedConfiguration(configuration_context_type_);
 }
 
 std::shared_ptr<const set_configurations::AudioSetConfiguration>
 LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) const {
   if (context_type == LeAudioContextType::UNINITIALIZED) {
     return nullptr;
+  }
+
+  if (IsUsingPreferredAudioSetConfiguration(context_type)) {
+    log::debug("Using preferred codec config: {}", common::ToString(context_type));
+    return GetCachedPreferredConfiguration(context_type);
   }
 
   const set_configurations::AudioSetConfiguration* conf = nullptr;
@@ -1716,6 +1738,27 @@ LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) const {
   }
 
   return GetCachedConfiguration(context_type);
+}
+
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
+LeAudioDeviceGroup::GetPreferredConfiguration(LeAudioContextType context_type) const {
+  if (context_type == LeAudioContextType::UNINITIALIZED) {
+    return nullptr;
+  }
+
+  const set_configurations::AudioSetConfiguration* conf = nullptr;
+  bool is_valid = false;
+
+  if (context_to_preferred_configuration_cache_map.count(context_type) != 0) {
+    auto& valid_config_pair = context_to_preferred_configuration_cache_map.at(context_type);
+    is_valid = valid_config_pair.first;
+    conf = valid_config_pair.second.get();
+  }
+  if (!is_valid || conf == nullptr) {
+    UpdatePreferredAudioSetConfigurationCache(context_type);
+  }
+
+  return GetCachedPreferredConfiguration(context_type);
 }
 
 LeAudioCodecConfiguration LeAudioDeviceGroup::GetAudioSessionCodecConfigForDirection(
@@ -1802,7 +1845,8 @@ void LeAudioDeviceGroup::RemoveCisFromStreamIfNeeded(LeAudioDevice* leAudioDevic
   }
 
   log::info(
-          "Sink Number Of Devices: {}, Sink Number Of Channels: {}, Source Number "
+          "Sink Number Of Devices: {}, Sink Number Of Channels: {}, Source "
+          "Number "
           "Of Devices: {}, Source Number Of Channels: {}",
           stream_conf.stream_params.sink.num_of_devices,
           stream_conf.stream_params.sink.num_of_channels,
@@ -1916,10 +1960,10 @@ void LeAudioDeviceGroup::AddToAllowListNotConnectedGroupMembers(int gatt_if) {
               bluetooth::common::ToString(GetState()), address);
 
     /* When adding set members to allow list, let use direct connect first.
-     * When it fails (i.e. device is not advertising), it will go to background
-     * connect. We are doing that because for background connect, stack is using
-     * slow scan parameters for connection which might delay connecting
-     * available members.
+     * When it fails (i.e. device is not advertising), it will go to
+     * background connect. We are doing that because for background connect,
+     * stack is using slow scan parameters for connection which might delay
+     * connecting available members.
      */
     BTA_GATTC_CancelOpen(gatt_if, address, false);
     BTA_GATTC_Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, false);
@@ -1974,13 +2018,12 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
 
 const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration(
-    const CodecManager::UnicastConfigurationRequirements& requirements,
-    const set_configurations::AudioSetConfigurations* confs) const {
+        const CodecManager::UnicastConfigurationRequirements& requirements,
+        const set_configurations::AudioSetConfigurations* confs) const {
   log::assert_that(confs != nullptr, "confs should not be null");
 
   log::debug("context type: {},  number of connected devices: {}",
-             bluetooth::common::ToString(requirements.audio_context_type),
-             NumOfConnected());
+             bluetooth::common::ToString(requirements.audio_context_type), NumOfConnected());
 
   for (const auto& conf : *confs) {
     log::assert_that(conf != nullptr, "confs should not be null");
@@ -1998,20 +2041,18 @@ LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration(
 }
 
 bool LeAudioDeviceGroup::IsMatchedWithPreferredConfiguration(
-    const set_configurations::AudioSetConfiguration* audio_set_conf) const {
+        const set_configurations::AudioSetConfiguration* audio_set_conf) const {
   types::BidirectionalPair<bool> preferred_codec_matcher = {false, false};
 
-  for (auto direction :
-       {types::kLeAudioDirectionSink, types::kLeAudioDirectionSource}) {
+  for (auto direction : {types::kLeAudioDirectionSink, types::kLeAudioDirectionSource}) {
     const auto& confs = audio_set_conf->confs.get(direction);
     if (confs.empty()) {
       preferred_codec_matcher.get(direction) = true;
     } else if (confs.size() && preferred_config.get(direction)) {
       bluetooth::le_audio::btle_audio_codec_config_t btle_audio_codec_config;
-      utils::fillStreamParamsToBtLeAudioCodecConfig(confs,
-                                                    btle_audio_codec_config);
+      utils::fillStreamParamsToBtLeAudioCodecConfig(confs, btle_audio_codec_config);
       preferred_codec_matcher.get(direction) =
-          btle_audio_codec_config == *(preferred_config.get(direction));
+              btle_audio_codec_config == *(preferred_config.get(direction));
     }
   }
 
