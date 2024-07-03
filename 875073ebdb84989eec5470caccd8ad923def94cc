@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231bbe74_1dfccf1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2024-07-03T12:21:52Z",
+      "side": 1,
+      "message": "the audio framework also needs to be notified of sampling rate changes, at least if the SW encoding path is used. failing to do so will cause a mismatch of the audio HAL stream sampling rate and the encoder input sampling rate",
+      "revId": "875073ebdb84989eec5470caccd8ad923def94cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
