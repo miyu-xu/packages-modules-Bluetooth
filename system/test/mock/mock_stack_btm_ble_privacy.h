@@ -78,7 +78,7 @@ extern struct btm_ble_read_resolving_list_entry_complete
 // Returns: tBTM_STATUS
 struct btm_ble_remove_resolving_list_entry {
   std::function<tBTM_STATUS(tBTM_SEC_DEV_REC* p_dev_rec)> body{
-      [](tBTM_SEC_DEV_REC* /* p_dev_rec */) { return 0; }};
+          [](tBTM_SEC_DEV_REC* /* p_dev_rec */) { return BTM_SUCCESS; }};
   tBTM_STATUS operator()(tBTM_SEC_DEV_REC* p_dev_rec) {
     return body(p_dev_rec);
   };
