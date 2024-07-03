@@ -734,15 +734,14 @@ class MceStateMachine extends StateMachine {
                     // Get the 50 most recent messages from the last week
                     Calendar calendar = Calendar.getInstance();
                     calendar.add(Calendar.DATE, -7);
-                    byte messageType;
+                    // bit mask - messageType discludes email
+                    byte messageType = MessagesFilter.MESSAGE_TYPE_EMAIL;
                     if (Utils.isPtsTestMode()) {
                         messageType =
                                 (byte)
                                         SystemProperties.getInt(
                                                 FETCH_MESSAGE_TYPE,
-                                                MessagesFilter.MESSAGE_TYPE_ALL);
-                    } else {
-                        messageType = MessagesFilter.MESSAGE_TYPE_ALL;
+                                                MessagesFilter.MESSAGE_TYPE_EMAIL);
                     }
 
                     mMasClient.makeRequest(

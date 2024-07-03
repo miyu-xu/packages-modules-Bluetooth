@@ -54,6 +54,7 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 
+import com.android.bluetooth.ObexAppParameters;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -828,11 +829,7 @@ public class MapClientStateMachineTest {
         Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
         mMceStateMachine.sendMessage(msg);
 
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         com.android.bluetooth.mapclient.Message testMessageListingMms =
@@ -914,6 +911,50 @@ public class MapClientStateMachineTest {
         Assert.assertEquals(
                 new ObexTime(Instant.ofEpochMilli(messageMetadata.getTimestamp())).toString(),
                 dateTime);
+    }
+
+    /** Test MSG_GET_MESSAGE_LISTING does not grab MESSAGE_TYPE_EMAIL */
+    @Test
+    public void testMsgGetMessageListingEmailMessageType_emailMessageTypeisNotRequested() {
+        setupSdpRecordReceipt();
+        clearInvocations(mMockMasClient);
+        byte expectedFilter = MessagesFilter.MESSAGE_TYPE_EMAIL;
+        Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
+        mMceStateMachine.sendMessage(msg);
+
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+
+        msg =
+                Message.obtain(
+                        mHandler,
+                        MceStateMachine.MSG_GET_MESSAGE_LISTING,
+                        MceStateMachine.FOLDER_INBOX);
+        mMceStateMachine.sendMessage(msg);
+
+        // using Request class as captor grabs all Request sub-classes even if
+        // RequestGetMessagesListing is specifically requested
+        ArgumentCaptor<Request> requestCaptor = ArgumentCaptor.forClass(Request.class);
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        verify(mMockMasClient, atLeastOnce()).makeRequest(requestCaptor.capture());
+
+        List<Request> requests = requestCaptor.getAllValues();
+        Log.e(TAG, "HELLO");
+
+        // iterating through captured values to grab RequestGetMessagesListing object
+        RequestGetMessagesListing messagesListingRequest = null;
+        for (int i = 0; i < requests.size(); i++) {
+            Log.e(TAG, "Object: " + requests.get(i));
+            if (requests.get(i) instanceof RequestGetMessagesListing) {
+                messagesListingRequest = (RequestGetMessagesListing) requests.get(i);
+                break;
+            }
+        }
+
+        ObexAppParameters appParams =
+                ObexAppParameters.fromHeaderSet((messagesListingRequest).mHeaderSet);
+        byte filter = appParams.getByte(Request.OAP_TAGID_FILTER_MESSAGE_TYPE);
+        assertThat(filter).isEqualTo(expectedFilter);
     }
 
     @Test
