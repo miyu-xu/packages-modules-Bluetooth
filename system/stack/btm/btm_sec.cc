@@ -1118,7 +1118,7 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr,
   return rc;
 }
 
-bool BTM_SecIsSecurityPending(const RawAddress& bd_addr) {
+bool BTM_SecIsLeSecurityPending(const RawAddress& bd_addr) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   return p_dev_rec && (p_dev_rec->sec_rec.is_security_state_encrypting() ||
                        p_dev_rec->sec_rec.le_link == tSECURITY_STATE::AUTHENTICATING);

@@ -75,7 +75,7 @@ void BTM_BleSetPhy(const RawAddress& bd_addr, uint8_t tx_phys, uint8_t rx_phys,
   btm_interface->BleSetPhy(bd_addr, tx_phys, rx_phys, phy_options);
 }
 
-bool BTM_SecIsSecurityPending(const RawAddress& bd_addr) {
+bool BTM_SecIsLeSecurityPending(const RawAddress& bd_addr) {
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->SecIsSecurityPending(bd_addr);
 }
