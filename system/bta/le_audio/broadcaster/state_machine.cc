@@ -248,9 +248,9 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
   }
 
   static IBroadcastStateMachineCallbacks* callbacks_;
-  static BleAdvertiserInterface* advertiser_if_;
+  static ::BleAdvertiserInterface* advertiser_if_;
 
- private:
+private:
   std::optional<BigConfig> active_config_;
   BroadcastStateMachineConfig sm_config_;
   bool suspending_;
@@ -609,7 +609,7 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
 
 IBroadcastStateMachineCallbacks* BroadcastStateMachineImpl::callbacks_ =
     nullptr;
-BleAdvertiserInterface* BroadcastStateMachineImpl::advertiser_if_ = nullptr;
+::BleAdvertiserInterface* BroadcastStateMachineImpl::advertiser_if_ = nullptr;
 } /* namespace */
 
 std::unique_ptr<BroadcastStateMachine> BroadcastStateMachine::CreateInstance(

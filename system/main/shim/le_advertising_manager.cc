@@ -49,9 +49,9 @@ namespace {
 constexpr char kBtmLogTag[] = "ADV";
 }
 
-class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
+class BleAdvertiserInterfaceImpl : public ::BleAdvertiserInterface,
                                    public bluetooth::hci::AdvertisingCallback {
- public:
+public:
   ~BleAdvertiserInterfaceImpl() override{};
 
   void Init() {
@@ -437,7 +437,6 @@ BleAdvertiserInterface* bluetooth::shim::get_ble_advertiser_instance() {
 };
 
 void bluetooth::shim::init_advertising_manager() {
-  static_cast<BleAdvertiserInterfaceImpl*>(
-      bluetooth::shim::get_ble_advertiser_instance())
-      ->Init();
+  static_cast<::BleAdvertiserInterfaceImpl*>(bluetooth::shim::get_ble_advertiser_instance())
+          ->Init();
 }
