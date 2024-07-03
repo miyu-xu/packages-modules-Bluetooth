@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16eb92cb_cc3b27a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004333
+      },
+      "writtenOn": "2024-07-03T20:43:54Z",
+      "side": 1,
+      "message": "Reverting b/c of DF blocking bug: b/350899760",
+      "revId": "f56f7d9dbde733e8d0bc9350abd8cd327075b0a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
