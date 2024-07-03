@@ -70,6 +70,24 @@
       "parentUuid": "63603bfd_9d6bcf0a",
       "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "875ff736_ea28945a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1947,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-03T06:58:53Z",
+      "side": 1,
+      "message": "Totally agree with you and because of that I do not want to change it here, we should decide what and how to change it to have full debug information without flooding but that should be a separate commit.",
+      "parentUuid": "362874d9_d91c524f",
+      "revId": "476b3e73fb91c9c4029603682052c9b6525e96a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
