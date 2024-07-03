@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcb83e4d_fc677460",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-03T16:24:37Z",
+      "side": 1,
+      "message": "yes... forgot to add sink case",
+      "parentUuid": "7273f4eb_03999666",
+      "range": {
+        "startLine": 87,
+        "startChar": 57,
+        "endLine": 87,
+        "endChar": 87
+      },
+      "revId": "4d537477218418b13694a6ed44ef114ceca1b76c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba876cf4_43aafb4b",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e66a7a5_948b0b3f",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-03T16:24:37Z",
+      "side": 1,
+      "message": "I confused it as well here, fixed",
+      "parentUuid": "ba876cf4_43aafb4b",
+      "range": {
+        "startLine": 597,
+        "startChar": 89,
+        "endLine": 597,
+        "endChar": 93
+      },
+      "revId": "4d537477218418b13694a6ed44ef114ceca1b76c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c25333e0_413956a5",
@@ -60,6 +108,24 @@
       "writtenOn": "2024-07-01T16:02:31Z",
       "side": 1,
       "message": "Can you do a no logical change first to reverse the conditions ?\nSomething like this:\n\n```\nif (p_scb-\u003ein_use) {\n  log::verbose(\"calling avdt_scb_rej_in_use()\");\n  avdt_scb_rej_in_use(p_scb, p_data);\n  return;\n}\n\n// Accept configuration\n```\n\nSecond comment: `avdt_scb_rej_in_use` rejects the codec with the error code `AVDT_ERR_IN_USE`. I don\u0027t see a better error code to use to be honest, but we should be aware it is not standard.",
+      "revId": "4d537477218418b13694a6ed44ef114ceca1b76c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a408fd8_53bd6e06",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-03T16:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c25333e0_413956a5",
       "revId": "4d537477218418b13694a6ed44ef114ceca1b76c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
