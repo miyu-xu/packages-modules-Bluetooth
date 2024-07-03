@@ -31,9 +31,9 @@ namespace a2dp {
 
 /// Copied after the definition from the Bluetooth Audio interface:
 /// hardware/interfaces/bluetooth/audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
-enum BluetoothAudioStatus {
-  UNKNOWN = 0,
-  SUCCESS = 1,
+enum class BluetoothAudioStatus {
+  SUCCESS = 0,
+  UNKNOWN = 1,
   UNSUPPORTED_CODEC_CONFIGURATION = 2,
   FAILURE = 3,
   // Not defined in BluetoothAudioStatus, but used internally for
