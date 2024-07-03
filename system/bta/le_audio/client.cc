@@ -47,6 +47,7 @@
 #include "gatt_api.h"
 #include "hci/controller_interface.h"
 #include "internal_include/stack_config.h"
+#include "le_audio/device_groups.h"
 #include "le_audio_health_status.h"
 #include "le_audio_set_configuration_provider.h"
 #include "le_audio_types.h"
@@ -986,7 +987,38 @@ public:
   void SetCodecConfigPreference(
           int group_id, bluetooth::le_audio::btle_audio_codec_config_t input_codec_config,
           bluetooth::le_audio::btle_audio_codec_config_t output_codec_config) override {
-    // TODO Implement
+    if (group_id != active_group_id_) {
+      log::warn("Selected group is not active.");
+    }
+
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      log::error("Unknown group id: %d", group_id);
+    }
+
+    if (group->SetPreferredAudioSetConfiguration(input_codec_config, output_codec_config)) {
+      log::info("group id: {}, setting preferred codec is successful.", group_id);
+    } else {
+      log::warn("group id: {}, setting preferred codec is failed.", group_id);
+      return;
+    }
+
+    if (SetConfigurationAndStopStreamWhenNeeded(group, group->GetConfigurationContextType())) {
+      log::debug("Group id {} do the reconfiguration based on preferred codec config", group_id);
+    } else {
+      log::debug("Group id {} preferred codec config is not changed", group_id);
+    }
+  }
+
+  bool IsUsingPreferredCodecConfig(int group_id, int context_type) {
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (!group) {
+      log::error("Unknown group id: %d", group_id);
+    }
+
+    return group->IsUsingPreferredAudioSetConfiguration(
+            static_cast<LeAudioContextType>(context_type));
   }
 
   void SetCcidInformation(int ccid, int context_type) override {
@@ -1311,8 +1343,9 @@ public:
       StartAudioSession(group);
       active_group_id_ = group_id;
     } else {
-      /* In case there was an active group. Stop the stream, but before that, set
-       * the new group so the group change is correctly handled in OnStateMachineStatusReportCb
+      /* In case there was an active group. Stop the stream, but before that,
+       * set the new group so the group change is correctly handled in
+       * OnStateMachineStatusReportCb
        */
       active_group_id_ = group_id;
       GroupStop(previous_active_group);
@@ -2131,7 +2164,8 @@ public:
       log::info("Configure MTU");
       /* Use here kBapMinimumAttMtu, because we know that GATT will request
        * default ATT MTU anyways. We also know that GATT will use this
-       * kBapMinimumAttMtu as an input for Data Length Update procedure in the controller.
+       * kBapMinimumAttMtu as an input for Data Length Update procedure in the
+       * controller.
        */
       BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, kBapMinimumAttMtu);
     }
@@ -4115,7 +4149,10 @@ public:
 
   inline bool IsDirectionAvailableForCurrentConfiguration(const LeAudioDeviceGroup* group,
                                                           uint8_t direction) const {
-    auto current_config = group->GetCachedConfiguration(configuration_context_type_);
+    auto current_config =
+            group->IsUsingPreferredAudioSetConfiguration(configuration_context_type_)
+                    ? group->GetCachedPreferredConfiguration(configuration_context_type_)
+                    : group->GetCachedConfiguration(configuration_context_type_);
     if (current_config) {
       return current_config->confs.get(direction).size() != 0;
     }
@@ -5468,9 +5505,9 @@ public:
              audio_receiver_state_ == AudioState::STARTED) &&
             group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
           /* If releasing state is happening but it was not initiated either by
-           * reconfiguration or Audio Framework actions either by the Active group change,
-           * it means that it is some internal state machine error. This is very unlikely and
-           * for now just Inactivate the group.
+           * reconfiguration or Audio Framework actions either by the Active
+           * group change, it means that it is some internal state machine
+           * error. This is very unlikely and for now just Inactivate the group.
            */
           log::error("Internal state machine error");
           group->PrintDebugState();
