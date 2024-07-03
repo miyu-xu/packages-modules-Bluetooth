@@ -24,8 +24,8 @@
 namespace bluetooth {
 namespace shim {
 
-BleAdvertiserInterface* get_ble_advertiser_instance();
+::BleAdvertiserInterface* get_ble_advertiser_instance();
 void init_advertising_manager();
 
 }  // namespace shim
-}  // namespace bluetooth
+} // namespace bluetooth
