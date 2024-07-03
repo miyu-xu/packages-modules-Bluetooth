@@ -990,6 +990,14 @@ bool LeAudioDeviceGroup::SetPreferredAudioSetConfiguration(
   return is_updated;
 }
 
+bool LeAudioDeviceGroup::IsUsingPreferredAudioSetConfiguration(void) const {
+  if (!preferred_config.sink || !preferred_config.source) {
+    return false;
+  }
+  return preferred_config.sink->codec_priority != -1 &&
+         preferred_config.source->codec_priority != -1;
+}
+
 void LeAudioDeviceGroup::ResetPreferredAudioSetConfiguration(
     const AudioContexts& contexts) const {
   if (contexts == types::kLeAudioContextAllTypes) {
@@ -1473,9 +1481,9 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
       log::debug("Requested channel count: {}, supp. channel counts: 0x{:x}",
                  requested_channel_count, channel_count_mask);
 
-      /* Return true if requested channel count is set in the supported channel
-       * counts. In the channel_count_mask, bit 0 is set when 1 channel is
-       * supported.
+      /* Return true if requested channel count is set in the supported
+       * channel counts. In the channel_count_mask, bit 0 is set when 1
+       * channel is supported.
        */
       return ((1 << (requested_channel_count - 1)) & channel_count_mask);
     }
@@ -1742,8 +1750,19 @@ LeAudioDeviceGroup::GetCachedConfiguration(
 }
 
 std::shared_ptr<const set_configurations::AudioSetConfiguration>
+LeAudioDeviceGroup::GetCachedPreferredConfiguration(
+    LeAudioContextType context_type) const {
+  if (context_to_preferred_configuration_cache_map.count(context_type) != 0) {
+    return context_to_preferred_configuration_cache_map.at(context_type).second;
+  }
+  return nullptr;
+}
+
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
 LeAudioDeviceGroup::GetActiveConfiguration(void) const {
-  return GetCachedConfiguration(configuration_context_type_);
+  return IsUsingPreferredAudioSetConfiguration()
+             ? GetCachedPreferredConfiguration(configuration_context_type_)
+             : GetCachedConfiguration(configuration_context_type_);
 }
 
 std::shared_ptr<const set_configurations::AudioSetConfiguration>
@@ -1754,6 +1773,17 @@ LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) const {
 
   const set_configurations::AudioSetConfiguration* conf = nullptr;
   bool is_valid = false;
+
+  log::debug("Using preferred codec config: {}",
+             IsUsingPreferredAudioSetConfiguration());
+  if (IsUsingPreferredAudioSetConfiguration()) {
+    const auto& preferred_conf = GetPreferredConfiguration(context_type).get();
+    if (preferred_conf) {
+      return GetCachedPreferredConfiguration(context_type);
+    } else {
+      ResetPreferredAudioSetConfiguration(types::kLeAudioContextAllTypes);
+    }
+  }
 
   /* Refresh the cache if there is no valid configuration */
   if (context_to_configuration_cache_map.count(context_type) != 0) {
@@ -1767,6 +1797,29 @@ LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) const {
   }
 
   return GetCachedConfiguration(context_type);
+}
+
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
+LeAudioDeviceGroup::GetPreferredConfiguration(
+    LeAudioContextType context_type) const {
+  if (context_type == LeAudioContextType::UNINITIALIZED) {
+    return nullptr;
+  }
+
+  const set_configurations::AudioSetConfiguration* conf = nullptr;
+  bool is_valid = false;
+
+  if (context_to_preferred_configuration_cache_map.count(context_type) != 0) {
+    auto& valid_config_pair =
+        context_to_preferred_configuration_cache_map.at(context_type);
+    is_valid = valid_config_pair.first;
+    conf = valid_config_pair.second.get();
+  }
+  if (!is_valid || conf == nullptr) {
+    UpdatePreferredAudioSetConfigurationCache(context_type);
+  }
+
+  return GetCachedPreferredConfiguration(context_type);
 }
 
 LeAudioCodecConfiguration
@@ -1853,7 +1906,8 @@ void LeAudioDeviceGroup::RemoveCisFromStreamIfNeeded(
   }
 
   log::info(
-      "Sink Number Of Devices: {}, Sink Number Of Channels: {}, Source Number "
+      "Sink Number Of Devices: {}, Sink Number Of Channels: {}, Source "
+      "Number "
       "Of Devices: {}, Source Number Of Channels: {}",
       stream_conf.stream_params.sink.num_of_devices,
       stream_conf.stream_params.sink.num_of_channels,
@@ -1968,10 +2022,10 @@ void LeAudioDeviceGroup::AddToAllowListNotConnectedGroupMembers(int gatt_if) {
               bluetooth::common::ToString(GetState()), address);
 
     /* When adding set members to allow list, let use direct connect first.
-     * When it fails (i.e. device is not advertising), it will go to background
-     * connect. We are doing that because for background connect, stack is using
-     * slow scan parameters for connection which might delay connecting
-     * available members.
+     * When it fails (i.e. device is not advertising), it will go to
+     * background connect. We are doing that because for background connect,
+     * stack is using slow scan parameters for connection which might delay
+     * connecting available members.
      */
     BTA_GATTC_CancelOpen(gatt_if, address, false);
     BTA_GATTC_Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, false);
