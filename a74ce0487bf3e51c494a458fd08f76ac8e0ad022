@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39e973d2_3fff6574",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-03T21:10:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30cfbf01_33312f03",
+      "range": {
+        "startLine": 1065,
+        "startChar": 8,
+        "endLine": 1065,
+        "endChar": 44
+      },
+      "revId": "a74ce0487bf3e51c494a458fd08f76ac8e0ad022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f528ec1_f3c83495",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-07-03T20:10:26Z",
       "side": 1,
       "message": "Should this be \u0026\u0026 or || here? I\u0027m not familiar with the logic here but it seems like the original behavior would enqueue if there was something ongoing on either transport",
+      "range": {
+        "startLine": 1089,
+        "startChar": 8,
+        "endLine": 1090,
+        "endChar": 66
+      },
+      "revId": "a74ce0487bf3e51c494a458fd08f76ac8e0ad022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c51785f4_cef75c5a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-03T21:10:53Z",
+      "side": 1,
+      "message": "It should be none, this code is dead, added parent patch that deletes that.",
+      "parentUuid": "2f528ec1_f3c83495",
       "range": {
         "startLine": 1089,
         "startChar": 8,
