@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c31480_5777caf1",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-03T16:20:48Z",
+      "side": 1,
+      "message": "Should it be is_security_state_le_encrypting() instead?",
+      "revId": "b3c146b1f1397e21366687909005864cf8241dbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
