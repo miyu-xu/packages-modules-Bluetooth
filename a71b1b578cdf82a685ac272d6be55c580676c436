@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1619a59_82010a96",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-03T14:01:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad42fcd0_f26a9eb1",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e3dd14a_85a72867",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f46445_dea90d5c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-03T14:01:02Z",
+      "side": 1,
+      "message": "no need to use security_state_text, we have string_formatter defined, so it will be pretty-printed by default.\n\nRemoved unnecessary calls to security_state_text through btm_sec.cc\n\nExample output:\n```\nle_link\u003dtSECURITY_STATE::IDLE(0x0) classic_link\u003dtSECURITY_STATE::GETTING_NAME(0x3)\n```",
+      "parentUuid": "1e3dd14a_85a72867",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "742a16e8_9d6bda49",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-07-01T16:11:40Z",
       "side": 1,
       "message": "To retain the original logic, we have to check the states of both the transports.",
+      "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f94f07f_89a145cd",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-03T14:01:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "742a16e8_9d6bda49",
       "revId": "a71b1b578cdf82a685ac272d6be55c580676c436",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
