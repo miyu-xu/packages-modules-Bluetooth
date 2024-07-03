@@ -35,6 +35,7 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.le_scan.TransitionalScanHelper;
 
 import org.junit.After;
 import org.junit.Before;
@@ -61,6 +62,7 @@ public class ContextMapTest {
     @Mock private AdapterService mAdapterService;
     @Mock private AppAdvertiseStats appAdvertiseStats;
     @Mock private GattService mMockGatt;
+    @Mock private TransitionalScanHelper mMockScanHelper;
     @Mock private PackageManager mMockPackageManager;
 
     @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
@@ -89,10 +91,15 @@ public class ContextMapTest {
         int id = 12345;
         contextMap.add(id, null, mMockGatt);
 
+        contextMap.add(UUID.randomUUID(), null, null, null, mMockGatt, mMockScanHelper);
+
         int appUid = Binder.getCallingUid();
 
         ContextMap.App contextMapById = contextMap.getById(appUid);
         assertThat(contextMapById.name).isEqualTo(APP_NAME);
+
+        ContextMap.App contextMapByName = contextMap.getByName(APP_NAME);
+        assertThat(contextMapByName.name).isEqualTo(APP_NAME);
     }
 
     @Test
@@ -164,12 +171,14 @@ public class ContextMapTest {
         int id = 12345;
         contextMap.add(id, null, mMockGatt);
 
-        contextMap.add(UUID.randomUUID(), null, mMockGatt);
+        contextMap.add(UUID.randomUUID(), null, null, null, mMockGatt, mMockScanHelper);
 
         contextMap.recordAdvertiseStop(id);
 
         int idSecond = 54321;
         contextMap.add(idSecond, null, mMockGatt);
+
+        contextMap.dump(sb);
 
         contextMap.dumpAdvertiser(sb);
     }
