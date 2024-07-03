@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "614241da_d08261a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-03T16:45:39Z",
+      "side": 1,
+      "message": "You can also do directly `atest BumbleBluetoothTest:android.bluetooth.HidHostTest`. It will avoid to choose between `BumbleBluetoothTests` and `BumbleBluetoothTestsPhy`.\n\nAlso if you want to reduce the test timeout you use the flag `--test-timeout\u003d30` which will set the timeout for 30s for example.",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 26
+      },
+      "revId": "2e03126bcfd8679718e466f7aa389ae1b04a1514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49150555_92ad66a3",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-03T16:45:39Z",
+      "side": 1,
+      "message": "Is it normal to have two end collection ?",
+      "range": {
+        "startLine": 208,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "2e03126bcfd8679718e466f7aa389ae1b04a1514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
