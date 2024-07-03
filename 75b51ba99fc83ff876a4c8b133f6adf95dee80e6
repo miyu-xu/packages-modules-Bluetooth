@@ -16,6 +16,24 @@
       "message": "why do we want to set timer in streaming state? this will cause broadcast stop after streaming for 30mins.",
       "revId": "75b51ba99fc83ff876a4c8b133f6adf95dee80e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c8b8c9_f4cf998e",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-03T06:54:19Z",
+      "side": 1,
+      "message": "Inside `setBroadcastTimers` there is check:\n```\nif (audio_state_ \u003d\u003d AudioState::SUSPENDED) {\n```\nNevertheless, when broadcast is started timers will be set if there was no `onAudioResume`. It has to be right that because we want to destroy BIG and disable broadcast at all if there is no sound.\n\nIn next round:\n```\n* broadcstStarted \u003e onAudioResume \u003e\n* onAudioPaused \u003e BIG destroyed \u003e\n* onAudioResume \u003e BIG created \u003e BroadcastStateMachine::State::STREAMING\n```\nthey will not start because of that check inside",
+      "parentUuid": "c4b30777_88e9697c",
+      "revId": "75b51ba99fc83ff876a4c8b133f6adf95dee80e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
