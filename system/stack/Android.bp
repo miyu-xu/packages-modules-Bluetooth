@@ -1191,6 +1191,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockBta",
+        ":TestMockBtif",
         ":TestMockDevice",
         ":TestMockStackA2dp",
         ":TestMockStackAcl",
@@ -1229,6 +1230,7 @@ cc_test {
         "libosi",
         "libprotobuf-cpp-lite",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     target: {
         android: {

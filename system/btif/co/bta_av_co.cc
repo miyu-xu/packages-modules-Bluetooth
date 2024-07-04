@@ -1343,11 +1343,17 @@ tA2DP_STATUS BtaAvCo::SetCodecOtaConfig(BtaAvCoPeer* p_peer, const uint8_t* p_ot
     return AVDTP_UNSUPPORTED_CONFIGURATION;
   }
 
+  bool mandatory_codec_priority = false;
+  A2dpType local_a2dp_type = t_local_sep == AVDT_TSEP_SRC ? A2dpType::kSource : A2dpType::kSink;
+  if (btif_av_peer_prefers_mandatory_codec(p_peer->addr, local_a2dp_type)) {
+    mandatory_codec_priority = true;
+  }
+
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
-  auto status = p_peer->GetCodecs()->setCodecOtaConfig(p_ota_codec_config, &peer_params,
-                                                       result_codec_config, &restart_input,
-                                                       &restart_output, &config_updated);
+  auto status = p_peer->GetCodecs()->setCodecOtaConfig(
+          p_ota_codec_config, &peer_params, result_codec_config, &restart_input, &restart_output,
+          &config_updated, mandatory_codec_priority);
   if (status != A2DP_SUCCESS) {
     log::error("peer {} : cannot set OTA config, status: 0x{:x}", p_peer->addr, status);
     return status;

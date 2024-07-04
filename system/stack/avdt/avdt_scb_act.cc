@@ -32,6 +32,7 @@
 #include "a2dp_codec_api.h"
 #include "avdt_api.h"
 #include "avdt_int.h"
+#include "btif/include/btif_av.h"
 #include "internal_include/bt_target.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -59,6 +60,37 @@ const uint8_t avdt_scb_cback_evt[] = {
         AVDT_SECURITY_CFM_EVT, /* API_SECURITY_REQ_EVT */
         0                      /* API_ABORT_REQ_EVT (no event) */
 };
+
+/*******************************************************************************
+ *
+ * Function         avdt_scb_prioritize_mandatory_codec
+ *
+ * Description      This function checks if the mandatory codec should be prioritized
+ *                  despite the remote device codec config choice.
+ *
+ * Returns          bool.
+ *
+ ******************************************************************************/
+static bool avdt_scb_prioritize_mandatory_codec(RawAddress peer_addr, uint8_t local_tsep,
+                                                uint8_t* codec_info) {
+  if (!com::android::bluetooth::flags::avdt_prioritize_mandatory_codec()) {
+    return false;
+  }
+  btav_a2dp_codec_index_t codec_index;
+  A2dpType local_a2dp_type = (local_tsep == AVDT_TSEP_SRC) ? A2dpType::kSource : A2dpType::kSink;
+  bool is_mandatory_codec_preferred =
+          btif_av_peer_prefers_mandatory_codec(peer_addr, local_a2dp_type);
+  if (local_a2dp_type == A2dpType::kSource) {
+    codec_index = A2DP_SourceCodecIndex(codec_info);
+  } else {
+    codec_index = A2DP_SinkCodecIndex(codec_info);
+  }
+  log::verbose("local tsep: {}, codec: {}, is_mandatory_codec_preferred {}",
+               (local_tsep == AVDT_TSEP_SRC) ? "source" : "sink", A2DP_CodecIndexStr(codec_index),
+               is_mandatory_codec_preferred);
+  return is_mandatory_codec_preferred && (codec_index != BTAV_A2DP_CODEC_INDEX_SOURCE_SBC &&
+                                          codec_index != BTAV_A2DP_CODEC_INDEX_SINK_SBC);
+}
 
 /*******************************************************************************
  *
@@ -552,7 +584,9 @@ void avdt_scb_hdl_setconfig_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
   log::verbose("p_scb->in_use={} p_avdt_scb={} scb_index={}", p_scb->in_use, fmt::ptr(p_scb),
                p_scb->stream_config.scb_index);
 
-  if (p_scb->in_use) {
+  if (p_scb->in_use ||
+      avdt_scb_prioritize_mandatory_codec(p_scb->p_ccb->peer_addr, p_scb->stream_config.tsep,
+                                          p_data->msg.config_cmd.p_cfg->codec_info)) {
     log::error("configuration rejected because SEP is already in use");
     avdt_scb_rej_in_use(p_scb, p_data);
     return;
