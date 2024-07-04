@@ -1123,7 +1123,8 @@ void bta_av_setconfig_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     if (p_scb->cur_psc_mask & AVDT_PSC_DELAY_RPT)
       p_scb->SetAvdtpVersion(AVDT_VERSION_1_3);
 
-    if (A2DP_GetCodecType(p_scb->cfg.codec_info) != A2DP_MEDIA_CT_SBC) {
+    if (!com::android::bluetooth::flags::avdt_discover_seps_as_acceptor() &&
+        A2DP_GetCodecType(p_scb->cfg.codec_info) != A2DP_MEDIA_CT_SBC) {
       /* we do not know the peer device and it is using non-SBC codec
        * we need to know all the SEPs on SNK */
       if (p_scb->uuid_int == 0) p_scb->uuid_int = p_scb->open_api.uuid;
@@ -1142,7 +1143,7 @@ void bta_av_setconfig_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       } else {
         p_scb->uuid_int = UUID_SERVCLASS_AUDIO_SINK;
       }
-    } else {
+    } else if (!com::android::bluetooth::flags::avdt_discover_seps_as_acceptor()) {
       if (local_sep == AVDT_TSEP_SRC) {
         /* Make sure UUID has been initialized... */
         if (p_scb->uuid_int == 0) {
@@ -1150,6 +1151,12 @@ void bta_av_setconfig_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
         }
         bta_av_next_getcap(p_scb, p_data);
       }
+    }
+    if (com::android::bluetooth::flags::avdt_discover_seps_as_acceptor()) {
+      if (p_scb->uuid_int == 0) {
+        p_scb->uuid_int = p_scb->open_api.uuid;
+      }
+      bta_av_discover_req(p_scb, NULL);
     }
   }
 }
