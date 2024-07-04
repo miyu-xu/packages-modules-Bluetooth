@@ -16,6 +16,58 @@
       "message": "It is related aosp/2967328.",
       "revId": "2cf9522cb8b6c2f3f7800e7927b2627cde3ebb3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ef8495_5d48312a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-04T11:23:38Z",
+      "side": 1,
+      "message": "Thanks, minor comment.",
+      "revId": "2cf9522cb8b6c2f3f7800e7927b2627cde3ebb3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d8c26e_e32792f7",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-04T11:23:38Z",
+      "side": 1,
+      "message": "Thanks.can we just put the transport to the log over here.",
+      "fixSuggestions": [
+        {
+          "fixId": "53cfe71b_94078049",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_api.cc",
+              "range": {
+                "startLine": 1429,
+                "startChar": 0,
+                "endLine": 1431,
+                "endChar": 0
+              },
+              "replacement": "    log::debug(\"Starting direct connect gatt_if\u003d{} address\u003d{} transport\u003d{}\",\n               gatt_if, bd_addr, bt_transport_text(transport));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2cf9522cb8b6c2f3f7800e7927b2627cde3ebb3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
