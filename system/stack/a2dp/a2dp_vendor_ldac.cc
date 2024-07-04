@@ -234,6 +234,11 @@ static void A2DP_BuildMediaPayloadHeaderLdac(uint8_t* p_dst, bool frag, bool sta
   *p_dst |= (A2DP_LDAC_HDR_NUM_MSK & num);
 }
 
+tA2DP_STATUS A2DP_CheckLdacConfiguration(const uint8_t* p_codec_info) {
+  tA2DP_LDAC_CIE cfg_cie;
+  return A2DP_ParseInfoLdac(&cfg_cie, p_codec_info, false);
+}
+
 bool A2DP_IsCodecValidLdac(const uint8_t* p_codec_info) {
   tA2DP_LDAC_CIE cfg_cie;
 

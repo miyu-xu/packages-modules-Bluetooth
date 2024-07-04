@@ -1051,6 +1051,50 @@ tA2DP_CODEC_TYPE A2DP_GetCodecType(const uint8_t* p_codec_info) {
   return (tA2DP_CODEC_TYPE)(p_codec_info[AVDT_CODEC_TYPE_INDEX]);
 }
 
+tA2DP_CODEC_ID A2DP_GetCodecId(const uint8_t* p_codec_info) {
+  switch (codec_type) {
+    case A2DP_MEDIA_CT_SBC: return A2DP_CODEC_ID_SBC;
+    case A2DP_MEDIA_CT_AAC: return A2DP_CODEC_ID_AAC;
+    case A2DP_MEDIA_CT_NON_A2DP: {
+      uint32_t vendor_id = A2DP_VendorCodecGetVendorId(p_codec_info);
+      uint16_t codec_id = A2DP_VendorCodecGetCodecId(p_codec_info);
+      return static_cast<tA2DP_CODEC_ID>(
+        (codec_id << 24) |
+        (vendor_id << 8) |
+        0xff);
+    }
+  }
+}
+
+tA2DP_STATUS A2DP_CheckConfiguration(const uint8_t* p_codec_info) {
+  tA2DP_CODEC_TYPE codec_type = A2DP_GetCodecType(p_codec_info);
+
+  switch (A2DP_GetCodecId(p_codec_info)) {
+    case CodecId::SBC:
+      return A2DP_CheckSbcConfiguration(p_codec_info);
+#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+    case CodecId::AAC:
+      return A2DP_CheckAacConfiguration(p_codec_info);
+    case CodecId::APTX:
+      return A2DP_CheckAptxConfiguration(p_codec_info);
+    case CodecId::APTX_HD:
+      return A2DP_CheckAptxHdConfiguration(p_codec_info);
+    case CodecId::LDAC:
+      return A2DP_CheckLdacConfiguration(p_codec_info);
+    case CodecId::OPUS:
+      return A2DP_CheckOpusConfiguration(p_codec_info);
+#endif // EXCLUDE_NONSTANDARD_CODECS
+    default:
+      break;
+  }
+
+  // TODO(henrichataing):
+  // For unknown codec types, and in the case codec extensibility is supported,
+  // the configuration is validated by the AIDL HAL.
+  // (see provider::parse_a2dp_configuration).
+  return tA2DP_STATUS::A2DP_NS_CODEC_TYPE;
+}
+
 bool A2DP_IsSourceCodecValid(const uint8_t* p_codec_info) {
   tA2DP_CODEC_TYPE codec_type = A2DP_GetCodecType(p_codec_info);
 

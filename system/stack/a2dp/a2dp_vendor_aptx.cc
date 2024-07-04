@@ -177,6 +177,11 @@ static tA2DP_STATUS A2DP_ParseInfoAptx(tA2DP_APTX_CIE* p_ie, const uint8_t* p_co
   return A2DP_SUCCESS;
 }
 
+tA2DP_STATUS A2DP_CheckAptxConfiguration(const uint8_t* p_codec_info) {
+  tA2DP_APTX_CIE cfg_cie;
+  return A2DP_ParseInfoAptx(&cfg_cie, p_codec_info, false);
+}
+
 bool A2DP_IsCodecValidAptx(const uint8_t* p_codec_info) {
   tA2DP_APTX_CIE cfg_cie;
 

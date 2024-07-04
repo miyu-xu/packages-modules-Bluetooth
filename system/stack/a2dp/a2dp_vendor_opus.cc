@@ -269,6 +269,11 @@ static void A2DP_BuildMediaPayloadHeaderOpus(uint8_t* p_dst, bool frag, bool sta
   *p_dst |= (A2DP_OPUS_HDR_NUM_MSK & num);
 }
 
+tA2DP_STATUS A2DP_CheckOpusConfiguration(const uint8_t* p_codec_info) {
+  tA2DP_OPUS_CIE cfg_cie;
+  return A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, false);
+}
+
 bool A2DP_IsCodecValidOpus(const uint8_t* p_codec_info) {
   tA2DP_OPUS_CIE cfg_cie;
 
