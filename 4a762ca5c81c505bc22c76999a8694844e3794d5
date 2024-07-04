@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "106d1ad8_30b54d18",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-04T15:12:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ecd62aa_d0407373",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 179
+      },
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6771562d_5c28ed06",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-07-04T00:30:53Z",
       "side": 1,
       "message": "a sample test will be updated for reference",
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad42cfdd_3e0a23df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-04T15:12:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6771562d_5c28ed06",
       "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -78,6 +120,30 @@
           ]
         }
       ],
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4fbd3d0_fa6a423d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-04T15:12:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efcf597d_51a9636e",
+      "range": {
+        "startLine": 1405,
+        "startChar": 12,
+        "endLine": 1407,
+        "endChar": 13
+      },
       "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -129,6 +195,30 @@
           ]
         }
       ],
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cbdb4ed_0781e9c8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-04T15:12:14Z",
+      "side": 1,
+      "message": "We tested multiple scenarios (LE + Classic headset) this fix covers them. We tried to add same fix under every other broadcastActiveDevice(mActiveDevice); but found that switching active device during ongoing ring (Incomming call) if we switch from Classic to LE then, the LE device plays both Ring+Inband. Updated our fix.",
+      "parentUuid": "f4753210_cf0c1b8b",
+      "range": {
+        "startLine": 1522,
+        "startChar": 16,
+        "endLine": 1524,
+        "endChar": 17
+      },
       "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
