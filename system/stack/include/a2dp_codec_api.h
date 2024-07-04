@@ -409,11 +409,14 @@ public:
   // new codec is stored in |p_result_codec_config|.
   // If there is any change in the codec configuration, flag |p_config_updated|
   // is set to true.
+  // |mandatory_codec_priority| indicate that the mandatory codec should have
+  // it's priority changed to max.
   // Returns true on success, otherwise false.
   bool setCodecOtaConfig(const uint8_t* p_ota_codec_config,
                          const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                          uint8_t* p_result_codec_config, bool* p_restart_input,
-                         bool* p_restart_output, bool* p_config_updated);
+                         bool* p_restart_output, bool* p_config_updated,
+                         bool mandatory_codec_priority);
 
   // Sets the codec capabilities for a Sink peer.
   // |p_peer_codec_capabiltities| is the peer codec capabilities to set.

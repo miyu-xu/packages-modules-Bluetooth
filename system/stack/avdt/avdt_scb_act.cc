@@ -26,11 +26,13 @@
 #define LOG_TAG "bluetooth-a2dp"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <string.h>
 
 #include "a2dp_codec_api.h"
 #include "avdt_api.h"
 #include "avdt_int.h"
+#include "btif/include/btif_av.h"
 #include "internal_include/bt_target.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -58,6 +60,37 @@ const uint8_t avdt_scb_cback_evt[] = {
         AVDT_SECURITY_CFM_EVT, /* API_SECURITY_REQ_EVT */
         0                      /* API_ABORT_REQ_EVT (no event) */
 };
+
+/*******************************************************************************
+ *
+ * Function         avdt_scb_prioritize_mandatory_codec
+ *
+ * Description      This function checks if the mandatory codec should be prioritized
+ *                  despite the remote device codec config choice.
+ *
+ * Returns          bool.
+ *
+ ******************************************************************************/
+static bool avdt_scb_prioritize_mandatory_codec(RawAddress peer_addr, uint8_t local_tsep,
+                                                uint8_t* codec_info) {
+  if (!com::android::bluetooth::flags::avdt_prioritize_mandatory_codec()) {
+    return false;
+  }
+  btav_a2dp_codec_index_t codec_index;
+  A2dpType local_a2dp_type = (local_tsep == AVDT_TSEP_SRC) ? A2dpType::kSource : A2dpType::kSink;
+  bool is_mandatory_codec_preferred =
+          btif_av_peer_prefers_mandatory_codec(peer_addr, local_a2dp_type);
+  if (local_a2dp_type == A2dpType::kSource) {
+    codec_index = A2DP_SourceCodecIndex(codec_info);
+  } else {
+    codec_index = A2DP_SinkCodecIndex(codec_info);
+  }
+  log::verbose("local tsep: {}, codec: {}, is_mandatory_codec_preferred {}",
+               (local_tsep == AVDT_TSEP_SRC) ? "source" : "sink", A2DP_CodecIndexStr(codec_index),
+               is_mandatory_codec_preferred);
+  return is_mandatory_codec_preferred && (codec_index != BTAV_A2DP_CODEC_INDEX_SOURCE_SBC &&
+                                          codec_index != BTAV_A2DP_CODEC_INDEX_SINK_SBC);
+}
 
 /*******************************************************************************
  *
@@ -551,43 +584,46 @@ void avdt_scb_hdl_setconfig_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
   log::verbose("p_scb->in_use={} p_avdt_scb={} scb_index={}", p_scb->in_use, fmt::ptr(p_scb),
                p_scb->stream_config.scb_index);
 
-  if (!p_scb->in_use) {
-    log::verbose("codec: {}", A2DP_CodecInfoString(p_scb->stream_config.cfg.codec_info));
-    log::verbose("codec: {}", A2DP_CodecInfoString(p_data->msg.config_cmd.p_cfg->codec_info));
-    AvdtpSepConfig* p_cfg = p_data->msg.config_cmd.p_cfg;
-    if (A2DP_GetCodecType(p_scb->stream_config.cfg.codec_info) ==
-        A2DP_GetCodecType(p_cfg->codec_info)) {
-      /* copy info to scb */
-      AvdtpCcb* p_ccb = avdt_ccb_by_idx(p_data->msg.config_cmd.hdr.ccb_idx);
-      if (p_scb->p_ccb != p_ccb) {
-        log::error(
-                "mismatch in AVDTP SCB/CCB state: (p_scb->p_ccb={} != p_ccb={}): "
-                "p_scb={} scb_handle={} ccb_idx={}",
-                fmt::ptr(p_scb->p_ccb), fmt::ptr(p_ccb), fmt::ptr(p_scb), p_scb->ScbHandle(),
-                p_data->msg.config_cmd.hdr.ccb_idx);
-        avdt_scb_rej_not_in_use(p_scb, p_data);
-        return;
-      }
-      /* set sep as in use */
-      p_scb->in_use = true;
-
-      p_scb->peer_seid = p_data->msg.config_cmd.int_seid;
-      p_scb->req_cfg = *p_cfg;
-      /* call app callback */
-      /* handle of scb- which is same as sep handle of bta_av_cb.p_scb*/
-      (*p_scb->stream_config.p_avdt_ctrl_cback)(
-              avdt_scb_to_hdl(p_scb), p_scb->p_ccb ? p_scb->p_ccb->peer_addr : RawAddress::kEmpty,
-              AVDT_CONFIG_IND_EVT, (tAVDT_CTRL*)&p_data->msg.config_cmd,
-              p_scb->stream_config.scb_index);
-    } else {
-      p_data->msg.hdr.err_code = AVDT_ERR_UNSUP_CFG;
-      p_data->msg.hdr.err_param = 0;
-      avdt_msg_send_rej(avdt_ccb_by_idx(p_data->msg.hdr.ccb_idx), p_data->msg.hdr.sig_id,
-                        &p_data->msg);
-    }
-  } else {
+  if (p_scb->in_use ||
+      avdt_scb_prioritize_mandatory_codec(p_scb->p_ccb->peer_addr, p_scb->stream_config.tsep,
+                                          p_data->msg.config_cmd.p_cfg->codec_info)) {
     log::verbose("calling avdt_scb_rej_in_use()");
     avdt_scb_rej_in_use(p_scb, p_data);
+    return;
+  }
+
+  log::verbose("codec: {}", A2DP_CodecInfoString(p_scb->stream_config.cfg.codec_info));
+  log::verbose("codec: {}", A2DP_CodecInfoString(p_data->msg.config_cmd.p_cfg->codec_info));
+  AvdtpSepConfig* p_cfg = p_data->msg.config_cmd.p_cfg;
+  if (A2DP_GetCodecType(p_scb->stream_config.cfg.codec_info) ==
+      A2DP_GetCodecType(p_cfg->codec_info)) {
+    /* copy info to scb */
+    AvdtpCcb* p_ccb = avdt_ccb_by_idx(p_data->msg.config_cmd.hdr.ccb_idx);
+    if (p_scb->p_ccb != p_ccb) {
+      log::error(
+              "mismatch in AVDTP SCB/CCB state: (p_scb->p_ccb={} != p_ccb={}): "
+              "p_scb={} scb_handle={} ccb_idx={}",
+              fmt::ptr(p_scb->p_ccb), fmt::ptr(p_ccb), fmt::ptr(p_scb), p_scb->ScbHandle(),
+              p_data->msg.config_cmd.hdr.ccb_idx);
+      avdt_scb_rej_not_in_use(p_scb, p_data);
+      return;
+    }
+    /* set sep as in use */
+    p_scb->in_use = true;
+
+    p_scb->peer_seid = p_data->msg.config_cmd.int_seid;
+    p_scb->req_cfg = *p_cfg;
+    /* call app callback */
+    /* handle of scb- which is same as sep handle of bta_av_cb.p_scb*/
+    (*p_scb->stream_config.p_avdt_ctrl_cback)(
+            avdt_scb_to_hdl(p_scb), p_scb->p_ccb ? p_scb->p_ccb->peer_addr : RawAddress::kEmpty,
+            AVDT_CONFIG_IND_EVT, (tAVDT_CTRL*)&p_data->msg.config_cmd,
+            p_scb->stream_config.scb_index);
+  } else {
+    p_data->msg.hdr.err_code = AVDT_ERR_UNSUP_CFG;
+    p_data->msg.hdr.err_param = 0;
+    avdt_msg_send_rej(avdt_ccb_by_idx(p_data->msg.hdr.ccb_idx), p_data->msg.hdr.sig_id,
+                      &p_data->msg);
   }
 }
 

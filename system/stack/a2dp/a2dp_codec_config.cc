@@ -885,7 +885,8 @@ bool A2dpCodecs::setCodecAudioConfig(const btav_a2dp_codec_config_t& codec_audio
 bool A2dpCodecs::setCodecOtaConfig(const uint8_t* p_ota_codec_config,
                                    const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                                    uint8_t* p_result_codec_config, bool* p_restart_input,
-                                   bool* p_restart_output, bool* p_config_updated) {
+                                   bool* p_restart_output, bool* p_config_updated,
+                                   bool mandatory_codec_priority) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
   btav_a2dp_codec_index_t codec_type;
   btav_a2dp_codec_config_t codec_user_config;
@@ -952,6 +953,14 @@ bool A2dpCodecs::setCodecOtaConfig(const uint8_t* p_ota_codec_config,
 
   if (*p_restart_input || *p_restart_output) {
     *p_config_updated = true;
+  }
+
+  if ((codec_type == BTAV_A2DP_CODEC_INDEX_SOURCE_SBC ||
+       codec_type == BTAV_A2DP_CODEC_INDEX_SINK_SBC) &&
+      mandatory_codec_priority) {
+    log::verbose("updating {} priority to {}", current_codec_config_->name(),
+                 BTAV_A2DP_CODEC_PRIORITY_HIGHEST);
+    current_codec_config_->setCodecPriority(BTAV_A2DP_CODEC_PRIORITY_HIGHEST);
   }
 
   return true;
