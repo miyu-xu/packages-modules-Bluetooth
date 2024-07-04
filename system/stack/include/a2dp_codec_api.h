@@ -14,18 +14,11 @@
  * limitations under the License.
  */
 
-//
-// A2DP Codecs API
-//
+#pragma once
 
-#ifndef A2DP_CODEC_API_H
-#define A2DP_CODEC_API_H
-
-#include <hardware/bt_av.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <string.h>
-
+#include <cstddef>
+#include <cstdint>
+#include <cstring>
 #include <list>
 #include <map>
 #include <mutex>
@@ -34,6 +27,7 @@
 
 #include "a2dp_api.h"
 #include "avdt_api.h"
+#include "hardware/bt_av.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 
@@ -562,6 +556,15 @@ typedef struct {
 // |p_codec_info| contains information about the codec capabilities.
 tA2DP_CODEC_TYPE A2DP_GetCodecType(const uint8_t* p_codec_info);
 
+// Returns the codec unique identifier.
+tA2DP_CODEC_ID A2DP_GetCodecId(const uint8_t* p_codec_info);
+
+// Validates the configuration proposed in `p_codec_info`.
+// Return the status tA2DP_STATUS::SUCCESS if the configuration is valid,
+// or an appropriate error code if the configuration is invalid.
+// See [A2DP1.3] 5.1.3 Error Codes for the list of error codes.
+tA2DP_STATUS A2DP_CheckConfiguration(const uint8_t* p_codec_info);
+
 // Checks whether the codec capabilities contain a valid A2DP Source codec.
 // NOTE: only codecs that are implemented are considered valid.
 // Returns true if |p_codec_info| contains information about a valid codec,
@@ -745,5 +748,3 @@ std::string A2DP_CodecInfoString(const uint8_t* p_codec_info);
 DEFINE_ENUM_FLAG_OPERATORS(btav_a2dp_codec_sample_rate_t);
 DEFINE_ENUM_FLAG_OPERATORS(btav_a2dp_codec_bits_per_sample_t);
 DEFINE_ENUM_FLAG_OPERATORS(btav_a2dp_codec_channel_mode_t);
-
-#endif  // A2DP_CODEC_API_H

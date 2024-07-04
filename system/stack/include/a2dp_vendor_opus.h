@@ -70,6 +70,9 @@ private:
                                bool* p_config_updated);
 };
 
+// Validates the configuration proposed in `p_codec_info`.
+tA2DP_STATUS A2DP_CheckOpusConfiguration(const uint8_t* p_codec_info);
+
 // Checks whether the codec capabilities contain a valid A2DP Opus Source
 // codec.
 // NOTE: only codecs that are implemented are considered valid.

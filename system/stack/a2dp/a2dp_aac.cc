@@ -253,6 +253,11 @@ static tA2DP_STATUS A2DP_ParseInfoAac(tA2DP_AAC_CIE* p_ie, const uint8_t* p_code
   return A2DP_SUCCESS;
 }
 
+tA2DP_STATUS A2DP_CheckAacConfiguration(const uint8_t* p_codec_info) {
+  tA2DP_AAC_CIE cfg_cie;
+  return A2DP_ParseInfoAac(&cfg_cie, p_codec_info, false);
+}
+
 bool A2DP_IsCodecValidAac(const uint8_t* p_codec_info) {
   tA2DP_AAC_CIE cfg_cie;
 
