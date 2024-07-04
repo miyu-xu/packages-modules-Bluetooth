@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ecd62aa_d0407373",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-04T00:30:53Z",
+      "side": 1,
+      "message": "Change inband ringtone based with active device\n\nPreviously when there is no LE Audio, if there is 1 connected HFP device, it will always be active. But with LE Audio, it might be connected but not active. \nIn such case, phone should notify the remote that in band ringtone will not be played. It should use out band ringtone.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 179
+      },
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6771562d_5c28ed06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-04T00:30:53Z",
+      "side": 1,
+      "message": "a sample test will be updated for reference",
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efcf597d_51a9636e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-04T00:30:53Z",
+      "side": 1,
+      "message": "we should change it inside `removeActiveDevice` because `removeActiveDevice` may only change active device",
+      "range": {
+        "startLine": 1405,
+        "startChar": 12,
+        "endLine": 1407,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b694d96d_795c5dba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1406,
+                "startChar": 0,
+                "endLine": 1407,
+                "endChar": 0
+              },
+              "replacement": "                updateInbandRinging(null, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4753210_cf0c1b8b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-04T00:30:53Z",
+      "side": 1,
+      "message": "this is only one if branch, it cannot cover other branches",
+      "range": {
+        "startLine": 1522,
+        "startChar": 16,
+        "endLine": 1524,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e446025e_b12aa8c3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1520,
+                "startChar": 0,
+                "endLine": 1520,
+                "endChar": 0
+              },
+              "replacement": "                                if (Flags.agProvideInBandRingtone()) {\n                                    updateInbandRinging(device, true);\n                                }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1522,
+                "startChar": 0,
+                "endLine": 1525,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4a762ca5c81c505bc22c76999a8694844e3794d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
