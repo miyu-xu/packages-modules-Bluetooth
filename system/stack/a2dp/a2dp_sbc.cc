@@ -266,6 +266,12 @@ static void A2DP_BuildMediaPayloadHeaderSbc(uint8_t* p_dst, bool frag, bool star
 
 const char* A2DP_CodecNameSbc(const uint8_t* /* p_codec_info */) { return "SBC"; }
 
+// Validates the configuration proposed in `p_codec_info`.
+tA2DP_STATUS A2DP_CheckSbcConfiguration(const uint8_t* p_codec_info) {
+  tA2DP_SBC_CIE cfg_cie;
+  return A2DP_ParseInfoSbc(&cfg_cie, p_codec_info, false);
+}
+
 bool A2DP_IsCodecValidSbc(const uint8_t* p_codec_info) {
   tA2DP_SBC_CIE cfg_cie;
 
