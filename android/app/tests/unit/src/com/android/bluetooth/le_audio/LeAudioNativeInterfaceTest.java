@@ -133,11 +133,13 @@ public class LeAudioNativeInterfaceTest {
     @Test
     public void onAudioGroupCurrentCodecConf() {
         int groupId = 1;
+        boolean isSwPathUsed = true;
         BluetoothLeAudioCodecConfig inputConfig = new BluetoothLeAudioCodecConfig.Builder().build();
         BluetoothLeAudioCodecConfig outputConfig =
                 new BluetoothLeAudioCodecConfig.Builder().build();
 
-        mNativeInterface.onAudioGroupCurrentCodecConf(groupId, inputConfig, outputConfig);
+        mNativeInterface.onAudioGroupCurrentCodecConf(
+                groupId, isSwPathUsed, inputConfig, outputConfig);
 
         ArgumentCaptor<LeAudioStackEvent> event = ArgumentCaptor.forClass(LeAudioStackEvent.class);
         verify(mMockService).messageFromNative(event.capture());

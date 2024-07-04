@@ -363,6 +363,8 @@ public class LeAudioStackEvent {
 
     private static String eventTypeValueBool1ToString(int type, boolean value) {
         switch (type) {
+            case EVENT_TYPE_AUDIO_GROUP_CURRENT_CODEC_CONFIG_CHANGED:
+                return "{isSwPathUsed: " + value + " }";
             case EVENT_TYPE_BROADCAST_CREATED:
                 return "{success:" + value + "}";
             default:

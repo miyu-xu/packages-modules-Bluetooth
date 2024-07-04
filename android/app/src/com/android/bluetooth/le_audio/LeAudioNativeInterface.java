@@ -182,6 +182,7 @@ public class LeAudioNativeInterface {
     @VisibleForTesting
     void onAudioGroupCurrentCodecConf(
             int groupId,
+            boolean isSwPathUsed,
             BluetoothLeAudioCodecConfig inputCodecConfig,
             BluetoothLeAudioCodecConfig outputCodecConfig) {
         LeAudioStackEvent event =
@@ -189,6 +190,7 @@ public class LeAudioNativeInterface {
                         LeAudioStackEvent.EVENT_TYPE_AUDIO_GROUP_CURRENT_CODEC_CONFIG_CHANGED);
 
         event.valueInt1 = groupId;
+        event.valueBool1 = isSwPathUsed;
         event.valueCodec1 = inputCodecConfig;
         event.valueCodec2 = outputCodecConfig;
 

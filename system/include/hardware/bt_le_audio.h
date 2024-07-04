@@ -337,9 +337,9 @@ class LeAudioClientCallbacks {
       std::vector<btle_audio_codec_config_t> local_output_capa_codec_conf) = 0;
   /* Callback with current group codec configurations. Should change when PACs
    * changes */
-  virtual void OnAudioGroupCurrentCodecConf(
-      int group_id, btle_audio_codec_config_t input_codec_conf,
-      btle_audio_codec_config_t output_codec_conf) = 0;
+  virtual void OnAudioGroupCurrentCodecConf(int group_id, bool is_sw_path_used,
+                                            btle_audio_codec_config_t input_codec_conf,
+                                            btle_audio_codec_config_t output_codec_conf) = 0;
   /* Callback with selectable group codec configurations. Should change when
    * context changes */
   virtual void OnAudioGroupSelectableCodecConf(

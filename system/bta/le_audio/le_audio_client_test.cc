@@ -290,7 +290,7 @@ class MockAudioHalClientCallbacks
        std::vector<btle_audio_codec_config_t> local_output_capa_codec_conf),
       (override));
   MOCK_METHOD((void), OnAudioGroupCurrentCodecConf,
-              (int group_id, btle_audio_codec_config_t input_codec_conf,
+              (int group_id, bool is_sw_path_used, btle_audio_codec_config_t input_codec_conf,
                btle_audio_codec_config_t output_codec_conf),
               (override));
   MOCK_METHOD(
@@ -4791,9 +4791,8 @@ TEST_F(UnicastTest, GroupSetActiveNonConnectedGroup) {
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
               OnAudioGroupSelectableCodecConf(group_id, _, _))
       .Times(0);
-  EXPECT_CALL(mock_audio_hal_client_callbacks_,
-              OnAudioGroupCurrentCodecConf(group_id, _, _))
-      .Times(0);
+  EXPECT_CALL(mock_audio_hal_client_callbacks_, OnAudioGroupCurrentCodecConf(group_id, _, _, _))
+          .Times(0);
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(0);
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(0);
 
@@ -4849,8 +4848,8 @@ TEST_F_WITH_FLAGS(UnicastTest, GroupSetActive_CurrentCodecSentOfActive,
       .octets_per_frame = 120};
 
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
-              OnAudioGroupCurrentCodecConf(group_id, empty_conf, output_config))
-      .Times(1);
+              OnAudioGroupCurrentCodecConf(group_id, _, empty_conf, output_config))
+          .Times(1);
 
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
@@ -5109,9 +5108,8 @@ TEST_F(UnicastTest, TestUpdateConfigurationCallbackWhileStreaming) {
   SyncOnMainLoop();
 
   EXPECT_CALL(mock_state_machine_, StartStream(_, _, _, _)).Times(1);
-  EXPECT_CALL(mock_audio_hal_client_callbacks_,
-              OnAudioGroupCurrentCodecConf(group_id, _, _))
-      .Times(1);
+  EXPECT_CALL(mock_audio_hal_client_callbacks_, OnAudioGroupCurrentCodecConf(group_id, _, _, _))
+          .Times(1);
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
   SyncOnMainLoop();
@@ -5121,9 +5119,8 @@ TEST_F(UnicastTest, TestUpdateConfigurationCallbackWhileStreaming) {
 
   // When metadata update happen, there should be no configuration change
   // callback sent
-  EXPECT_CALL(mock_audio_hal_client_callbacks_,
-              OnAudioGroupCurrentCodecConf(group_id, _, _))
-      .Times(0);
+  EXPECT_CALL(mock_audio_hal_client_callbacks_, OnAudioGroupCurrentCodecConf(group_id, _, _, _))
+          .Times(0);
 
   EXPECT_CALL(mock_state_machine_, StartStream(_, _, _, _)).Times(1);
   UpdateLocalSourceMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
@@ -5312,8 +5309,8 @@ TEST_F(UnicastTest, InactiveDeviceOnInternalStateMachineError) {
       .octets_per_frame = 120};
 
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
-              OnAudioGroupCurrentCodecConf(group_id, empty_conf, output_config))
-      .Times(1);
+              OnAudioGroupCurrentCodecConf(group_id, _, empty_conf, output_config))
+          .Times(1);
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
@@ -6516,8 +6513,8 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
       .octets_per_frame = 40};
 
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
-              OnAudioGroupCurrentCodecConf(group_id, call_config, call_config))
-      .Times(1);
+              OnAudioGroupCurrentCodecConf(group_id, _, call_config, call_config))
+          .Times(1);
 
   StartStreaming(AUDIO_USAGE_VOICE_COMMUNICATION, AUDIO_CONTENT_TYPE_SPEECH,
                  group_id);

@@ -3284,7 +3284,10 @@ class LeAudioClientImpl : public LeAudioClient {
     bluetooth::le_audio::utils::fillStreamParamsToBtLeAudioCodecConfig(
         audio_set_conf->confs.sink, output_config);
 
-    callbacks_->OnAudioGroupCurrentCodecConf(group->group_id_, input_config,
+    bool is_sw_path_used = (CodecManager::GetInstance()->GetCodecLocation() ==
+                            bluetooth::le_audio::types::CodecLocation::HOST);
+
+    callbacks_->OnAudioGroupCurrentCodecConf(group->group_id_, is_sw_path_used, input_config,
                                              output_config);
   }
 
