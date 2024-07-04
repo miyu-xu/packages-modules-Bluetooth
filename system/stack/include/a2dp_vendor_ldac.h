@@ -67,6 +67,9 @@ private:
   bool useRtpHeaderMarkerBit() const override;
 };
 
+// Validates the configuration proposed in `p_codec_info`.
+tA2DP_STATUS A2DP_CheckLdacConfiguration(const uint8_t* p_codec_info);
+
 // Checks whether the codec capabilities contain a valid A2DP LDAC Source
 // codec.
 // NOTE: only codecs that are implemented are considered valid.
