@@ -18,25 +18,12 @@
 
 #include "a2dp_vendor_ldac.h"
 
-bool A2DP_IsVendorSourceCodecValidLdac(const uint8_t* p_codec_info) {
-  return false;
-}
-
-bool A2DP_IsVendorSinkCodecValidLdac(const uint8_t* p_codec_info) {
-  return false;
-}
-
-bool A2DP_IsVendorPeerSourceCodecValidLdac(const uint8_t* p_codec_info) {
-  return false;
-}
-
-bool A2DP_IsVendorPeerSinkCodecValidLdac(const uint8_t* p_codec_info) {
-  return false;
-}
+bool A2DP_IsCodecValidLdac(const uint8_t* p_codec_info) { return false; }
 
 bool A2DP_IsVendorSinkCodecSupportedLdac(const uint8_t* p_codec_info) {
   return false;
 }
+
 bool A2DP_IsPeerSourceCodecSupportedLdac(const uint8_t* p_codec_info) {
   return false;
 }

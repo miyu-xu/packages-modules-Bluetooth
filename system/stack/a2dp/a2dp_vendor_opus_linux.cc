@@ -19,25 +19,12 @@
 #include "a2dp_vendor.h"
 #include "a2dp_vendor_opus.h"
 
-bool A2DP_IsVendorSourceCodecValidOpus(const uint8_t* p_codec_info) {
-  return false;
-}
-
-bool A2DP_IsVendorSinkCodecValidOpus(const uint8_t* p_codec_info) {
-  return false;
-}
-
-bool A2DP_IsVendorPeerSourceCodecValidOpus(const uint8_t* p_codec_info) {
-  return false;
-}
-
-bool A2DP_IsVendorPeerSinkCodecValidOpus(const uint8_t* p_codec_info) {
-  return false;
-}
+bool A2DP_IsCodecValidOpus(const uint8_t* p_codec_info) { return false; }
 
 bool A2DP_IsVendorSinkCodecSupportedOpus(const uint8_t* p_codec_info) {
   return false;
 }
+
 bool A2DP_IsPeerSourceCodecSupportedOpus(const uint8_t* p_codec_info) {
   return false;
 }

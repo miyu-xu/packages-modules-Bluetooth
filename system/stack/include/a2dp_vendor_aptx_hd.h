@@ -51,7 +51,7 @@ class A2dpCodecConfigAptxHd : public A2dpCodecConfig {
 // NOTE: only codecs that are implemented are considered valid.
 // Returns true if |p_codec_info| contains information about a valid aptX-HD
 // codec, otherwise false.
-bool A2DP_IsVendorSourceCodecValidAptxHd(const uint8_t* p_codec_info);
+bool A2DP_IsCodecValidAptxHd(const uint8_t* p_codec_info);
 
 // Checks whether the codec capabilities contain a valid peer A2DP aptX-HD Sink
 // codec.

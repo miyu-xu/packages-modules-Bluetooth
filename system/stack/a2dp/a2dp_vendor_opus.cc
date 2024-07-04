@@ -270,31 +270,7 @@ static void A2DP_BuildMediaPayloadHeaderOpus(uint8_t* p_dst, bool frag,
   *p_dst |= (A2DP_OPUS_HDR_NUM_MSK & num);
 }
 
-bool A2DP_IsVendorSourceCodecValidOpus(const uint8_t* p_codec_info) {
-  tA2DP_OPUS_CIE cfg_cie;
-
-  /* Use a liberal check when parsing the codec info */
-  return (A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, false) == A2DP_SUCCESS) ||
-         (A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, true) == A2DP_SUCCESS);
-}
-
-bool A2DP_IsVendorSinkCodecValidOpus(const uint8_t* p_codec_info) {
-  tA2DP_OPUS_CIE cfg_cie;
-
-  /* Use a liberal check when parsing the codec info */
-  return (A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, false) == A2DP_SUCCESS) ||
-         (A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, true) == A2DP_SUCCESS);
-}
-
-bool A2DP_IsVendorPeerSourceCodecValidOpus(const uint8_t* p_codec_info) {
-  tA2DP_OPUS_CIE cfg_cie;
-
-  /* Use a liberal check when parsing the codec info */
-  return (A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, false) == A2DP_SUCCESS) ||
-         (A2DP_ParseInfoOpus(&cfg_cie, p_codec_info, true) == A2DP_SUCCESS);
-}
-
-bool A2DP_IsVendorPeerSinkCodecValidOpus(const uint8_t* p_codec_info) {
+bool A2DP_IsCodecValidOpus(const uint8_t* p_codec_info) {
   tA2DP_OPUS_CIE cfg_cie;
 
   /* Use a liberal check when parsing the codec info */
@@ -624,14 +600,18 @@ std::string A2DP_VendorCodecInfoStringOpus(const uint8_t* p_codec_info) {
 
 const tA2DP_ENCODER_INTERFACE* A2DP_VendorGetEncoderInterfaceOpus(
     const uint8_t* p_codec_info) {
-  if (!A2DP_IsVendorSourceCodecValidOpus(p_codec_info)) return NULL;
+  if (!A2DP_IsCodecValidOpus(p_codec_info)) {
+    return NULL;
+  }
 
   return &a2dp_encoder_interface_opus;
 }
 
 const tA2DP_DECODER_INTERFACE* A2DP_VendorGetDecoderInterfaceOpus(
     const uint8_t* p_codec_info) {
-  if (!A2DP_IsVendorSinkCodecValidOpus(p_codec_info)) return NULL;
+  if (!A2DP_IsCodecValidOpus(p_codec_info)) {
+    return NULL;
+  }
 
   return &a2dp_decoder_interface_opus;
 }
