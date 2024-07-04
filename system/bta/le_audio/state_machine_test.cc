@@ -4391,10 +4391,9 @@ TEST_F(StateMachineTest, testAseAutonomousRelease) {
   InjectInitialIdleNotification(group);
 
   // Validate initial GroupStreamStatus
-  EXPECT_CALL(
-      mock_callbacks_,
-      StatusReportCb(leaudio_group_id,
-                     bluetooth::le_audio::GroupStreamStatus::STREAMING));
+  EXPECT_CALL(mock_callbacks_,
+              StatusReportCb(leaudio_group_id, bluetooth::le_audio::GroupStreamStatus::STREAMING))
+          .Times(1);
 
   // Start the configuration and stream Media content
   ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
@@ -4402,7 +4401,12 @@ TEST_F(StateMachineTest, testAseAutonomousRelease) {
       {.sink = types::AudioContexts(context_type),
        .source = types::AudioContexts(context_type)}));
 
+  testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
+
   // Validate new GroupStreamStatus
+  EXPECT_CALL(mock_callbacks_,
+              StatusReportCb(leaudio_group_id, bluetooth::le_audio::GroupStreamStatus::STREAMING))
+          .Times(1);
   EXPECT_CALL(mock_callbacks_,
               StatusReportCb(leaudio_group_id,
                              bluetooth::le_audio::GroupStreamStatus::IDLE))
@@ -4464,10 +4468,9 @@ TEST_F(StateMachineTest, testAseAutonomousRelease2Devices) {
   InjectInitialIdleNotification(group);
 
   // Validate initial GroupStreamStatus
-  EXPECT_CALL(
-      mock_callbacks_,
-      StatusReportCb(leaudio_group_id,
-                     bluetooth::le_audio::GroupStreamStatus::STREAMING));
+  EXPECT_CALL(mock_callbacks_,
+              StatusReportCb(leaudio_group_id, bluetooth::le_audio::GroupStreamStatus::STREAMING))
+          .Times(1);
 
   // Start the configuration and stream Media content
   ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
@@ -4475,7 +4478,15 @@ TEST_F(StateMachineTest, testAseAutonomousRelease2Devices) {
       {.sink = types::AudioContexts(context_type),
        .source = types::AudioContexts(context_type)}));
 
-  // Check streaming will continue
+  testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
+
+  /* Check streaming will continue. Streaming status should be send up so the user
+   * can update e.g. CIS count
+   */
+  EXPECT_CALL(mock_callbacks_,
+              StatusReportCb(leaudio_group_id, bluetooth::le_audio::GroupStreamStatus::STREAMING))
+          .Times(1);
+
   EXPECT_CALL(mock_callbacks_,
               StatusReportCb(leaudio_group_id,
                              bluetooth::le_audio::GroupStreamStatus::IDLE))
@@ -4496,6 +4507,7 @@ TEST_F(StateMachineTest, testAseAutonomousRelease2Devices) {
                                &codec_configured_state_params);
     InjectAseStateNotification(&ase, device, group, ascs::kAseStateIdle,
                                &codec_configured_state_params);
+    testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
   }
 }
 
