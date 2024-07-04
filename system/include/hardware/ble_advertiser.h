@@ -23,9 +23,6 @@
 
 #include <vector>
 
-#include "bt_common_types.h"
-#include "bt_gatt_types.h"
-
 constexpr uint8_t kAdvertiserClientIdJni = 0xff;
 constexpr uint8_t kAdvertiserClientIdLeAudio = 0x1;
 
@@ -101,22 +98,23 @@ class BleAdvertiserInterface {
                              ParametersCallback cb) = 0;
 
   /* Setup the data */
-  virtual void SetData(int advertiser_id, bool set_scan_rsp,
-                       std::vector<uint8_t> data, StatusCallback cb) = 0;
+  virtual void SetData(int advertiser_id, bool set_scan_rsp, std::vector<uint8_t> data,
+                       ::BleAdvertiserInterface::StatusCallback cb) = 0;
 
   /* Enable the advertising instance */
-  virtual void Enable(uint8_t advertiser_id, bool enable, StatusCallback cb,
-                      uint16_t duration, uint8_t maxExtAdvEvents,
-                      StatusCallback timeout_cb) = 0;
+  virtual void Enable(uint8_t advertiser_id, bool enable,
+                      ::BleAdvertiserInterface::StatusCallback cb, uint16_t duration,
+                      uint8_t maxExtAdvEvents,
+                      ::BleAdvertiserInterface::StatusCallback timeout_cb) = 0;
 
   /*  Unregisters an advertiser */
   virtual void Unregister(uint8_t advertiser_id) = 0;
 
-  virtual void StartAdvertising(uint8_t advertiser_id, StatusCallback cb,
-                                AdvertiseParameters params,
-                                std::vector<uint8_t> advertise_data,
-                                std::vector<uint8_t> scan_response_data,
-                                int timeout_s, StatusCallback timeout_cb) = 0;
+  // NOTE: Unused
+  virtual void StartAdvertising(uint8_t advertiser_id, ::BleAdvertiserInterface::StatusCallback cb,
+                                AdvertiseParameters params, std::vector<uint8_t> advertise_data,
+                                std::vector<uint8_t> scan_response_data, int timeout_s,
+                                ::BleAdvertiserInterface::StatusCallback timeout_cb) = 0;
 
   /** Start the advertising set. This include registering, setting all
    * parameters and data, and enabling it. |register_cb| is called when the set
@@ -132,16 +130,14 @@ class BleAdvertiserInterface {
       std::vector<uint8_t> periodic_data, uint16_t duration,
       uint8_t maxExtAdvEvents, IdStatusCallback timeout_cb) = 0;
 
-  virtual void SetPeriodicAdvertisingParameters(
-      int advertiser_id, PeriodicAdvertisingParameters parameters,
-      StatusCallback cb) = 0;
+  virtual void SetPeriodicAdvertisingParameters(int advertiser_id,
+                                                PeriodicAdvertisingParameters parameters,
+                                                StatusCallback cb) = 0;
 
-  virtual void SetPeriodicAdvertisingData(int advertiser_id,
-                                          std::vector<uint8_t> data,
+  virtual void SetPeriodicAdvertisingData(int advertiser_id, std::vector<uint8_t> data,
                                           StatusCallback cb) = 0;
 
-  virtual void SetPeriodicAdvertisingEnable(int advertiser_id, bool enable,
-                                            bool include_adi,
+  virtual void SetPeriodicAdvertisingEnable(int advertiser_id, bool enable, bool include_adi,
                                             StatusCallback cb) = 0;
   virtual void RegisterCallbacks(AdvertisingCallbacks* callbacks) = 0;
   virtual void RegisterCallbacksNative(AdvertisingCallbacks* callbacks,

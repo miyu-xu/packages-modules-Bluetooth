@@ -15,13 +15,13 @@
  */
 #pragma once
 
+#include <base/functional/callback.h>
 #include <bluetooth/log.h>
+#include <hci/hci_packets.h>
 
 #include <memory>
 #include <vector>
 
-#include "common/callback.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 
 namespace bluetooth {
@@ -135,15 +135,13 @@ class LeAdvertisingManager : public bluetooth::Module {
       uint8_t max_extended_advertising_events,
       os::Handler* handler);
 
-  void StartAdvertising(
-      AdvertiserId advertiser_id,
-      const AdvertisingConfig config,
-      uint16_t duration,
-      base::OnceCallback<void(uint8_t /* status */)> status_callback,
-      base::OnceCallback<void(uint8_t /* status */)> timeout_callback,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
-      os::Handler* handler);
+  void StartAdvertising(AdvertiserId advertiser_id, const AdvertisingConfig config,
+                        uint16_t duration,
+                        base::OnceCallback<void(uint8_t /* advertising_status */)> status_callback,
+                        base::OnceCallback<void(uint8_t /* status */)> timeout_callback,
+                        common::Callback<void(Address, AddressType)> scan_callback,
+                        common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+                        os::Handler* handler);
 
   void GetOwnAddress(uint8_t advertiser_id);
 

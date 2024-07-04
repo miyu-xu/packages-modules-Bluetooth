@@ -40,7 +40,6 @@ using bluetooth::hci::AddressType;
 using bluetooth::hci::AdvertiserAddressType;
 using bluetooth::hci::ErrorCode;
 using bluetooth::hci::GapData;
-using bluetooth::hci::OwnAddressType;
 using bluetooth::shim::parse_gap_data;
 using std::vector;
 using namespace bluetooth;
@@ -106,7 +105,7 @@ public:
   }
 
   void SetData(int advertiser_id, bool set_scan_rsp, vector<uint8_t> data,
-               StatusCallback /* cb */) override {
+               ::BleAdvertiserInterface::StatusCallback /* cb */) override {
     log::info("in shim layer");
     std::vector<GapData> advertising_data = {};
     parse_gap_data(data, advertising_data);
@@ -114,31 +113,21 @@ public:
                                                advertising_data);
   }
 
-  void Enable(uint8_t advertiser_id, bool enable, StatusCallback /* cb */,
+  void Enable(uint8_t advertiser_id, bool enable, ::BleAdvertiserInterface::StatusCallback /* cb */,
               uint16_t duration, uint8_t maxExtAdvEvents,
-              StatusCallback /* timeout_cb */) override {
+              ::BleAdvertiserInterface::StatusCallback /* timeout_cb */) override {
     log::info("in shim layer");
     bluetooth::shim::GetAdvertising()->EnableAdvertiser(
         advertiser_id, enable, duration, maxExtAdvEvents);
   }
 
   // nobody use this function
-  void StartAdvertising(uint8_t advertiser_id, StatusCallback cb,
-                        AdvertiseParameters params,
-                        std::vector<uint8_t> advertise_data,
-                        std::vector<uint8_t> scan_response_data, int timeout_s,
-                        StatusCallback timeout_cb) override {
-    log::info("in shim layer");
-
-    bluetooth::hci::AdvertisingConfig config{};
-    parse_parameter(config, params);
-
-    parse_gap_data(advertise_data, config.advertisement);
-    parse_gap_data(scan_response_data, config.scan_response);
-
-    bluetooth::shim::GetAdvertising()->StartAdvertising(
-        advertiser_id, config, timeout_s * 100, cb, timeout_cb, scan_callback,
-        set_terminated_callback, bluetooth::shim::GetGdShimHandler());
+  void StartAdvertising(uint8_t /* advertiser_id */,
+                        ::BleAdvertiserInterface::StatusCallback /* cb */,
+                        AdvertiseParameters /* params */, std::vector<uint8_t> /* advertise_data */,
+                        std::vector<uint8_t> /* scan_response_data */, int /* timeout_s */,
+                        ::BleAdvertiserInterface::StatusCallback /* timeout_cb */) override {
+    log::error("NOBODY USED THIS FUNCTION");
   }
 
   void StartAdvertisingSet(uint8_t client_id, int reg_id,
@@ -179,8 +168,8 @@ public:
   }
 
   void SetPeriodicAdvertisingParameters(
-      int advertiser_id, PeriodicAdvertisingParameters periodic_params,
-      StatusCallback /* cb */) override {
+          int advertiser_id, PeriodicAdvertisingParameters periodic_params,
+          ::BleAdvertiserInterface::StatusCallback /* cb */) override {
     log::info("in shim layer");
     bluetooth::hci::PeriodicAdvertisingParameters parameters;
     parameters.max_interval = periodic_params.max_interval;
@@ -191,7 +180,7 @@ public:
   }
 
   void SetPeriodicAdvertisingData(int advertiser_id, std::vector<uint8_t> data,
-                                  StatusCallback /* cb */) override {
+                                  ::BleAdvertiserInterface::StatusCallback /* cb */) override {
     log::info("in shim layer");
     std::vector<GapData> advertising_data = {};
     parse_gap_data(data, advertising_data);
@@ -199,9 +188,8 @@ public:
                                                        advertising_data);
   }
 
-  void SetPeriodicAdvertisingEnable(int advertiser_id, bool enable,
-                                    bool include_adi,
-                                    StatusCallback /* cb */) override {
+  void SetPeriodicAdvertisingEnable(int advertiser_id, bool enable, bool include_adi,
+                                    ::BleAdvertiserInterface::StatusCallback /* cb */) override {
     log::info("in shim layer");
     bluetooth::shim::GetAdvertising()->EnablePeriodicAdvertising(
         advertiser_id, enable, include_adi);
