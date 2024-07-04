@@ -516,6 +516,7 @@ cc_test {
         "liblog",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_log",
         "libbt-platform-protos-lite",

@@ -625,6 +625,7 @@ cc_fuzz {
         "fuzzers/bnep_fuzzer.cc",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_hci_pdl",
         "libbluetooth_l2cap_pdl",
