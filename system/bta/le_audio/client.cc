@@ -910,6 +910,11 @@ class LeAudioClientImpl : public LeAudioClient {
     bool result = groupStateMachine_->StartStream(
         group, configuration_context_type, remote_contexts, ccids);
 
+    if (result && group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+      /* Notify Java about new configuration before stream starts.*/
+      SendAudioGroupCurrentCodecConfigChanged(group);
+    }
+
     return result;
   }
 
@@ -4684,6 +4689,7 @@ class LeAudioClientImpl : public LeAudioClient {
     /* Need to reconfigure stream */
     group->SetPendingConfiguration();
     groupStateMachine_->StopStream(group);
+    SendAudioGroupCurrentCodecConfigChanged(group);
     return true;
   }
 
@@ -5703,22 +5709,12 @@ class LeAudioClientImpl : public LeAudioClient {
                       weak_factory_.GetWeakPtr(), std::placeholders::_1,
                       std::placeholders::_2));
 
-        /* When at least one direction is started we can assume new
-         * configuration here */
-        bool new_configuration = false;
         if (audio_sender_state_ == AudioState::READY_TO_START) {
           StartSendingAudio(group_id);
-          new_configuration = true;
         }
 
         if (audio_receiver_state_ == AudioState::READY_TO_START) {
           StartReceivingAudio(group_id);
-          new_configuration = true;
-        }
-
-        if (new_configuration) {
-          /* Notify Java about new configuration */
-          SendAudioGroupCurrentCodecConfigChanged(group);
         }
         break;
       }
