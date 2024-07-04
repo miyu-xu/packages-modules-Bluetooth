@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0d162e_b91e6f5c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3362,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2024-07-04T16:47:00Z",
+      "side": 1,
+      "message": "for a2dp, it is possible that a codec change triggers a change from offload path to SW path and vice versa. How do we know that we are not in this situation? when we receive a codec change?",
+      "range": {
+        "startLine": 3362,
+        "startChar": 0,
+        "endLine": 3362,
+        "endChar": 48
+      },
+      "revId": "2b7fa9c77c858a861bb2be89a13b2cb2da9f250b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
