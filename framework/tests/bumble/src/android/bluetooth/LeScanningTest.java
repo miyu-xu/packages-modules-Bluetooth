@@ -68,9 +68,11 @@ public class LeScanningTest {
     private static final String TAG = "LeScanningTest";
     private static final int TIMEOUT_SCANNING_MS = 2000;
     private static final String TEST_UUID_STRING = "00001805-0000-1000-8000-00805f9b34fb";
+    private static final String TEST_UUID_STRING2 = "00001800-0000-1000-8000-00805f9b34fb";
     private static final String TEST_ADDRESS_RANDOM_STATIC = "F0:43:A8:23:10:11";
     private static final String ACTION_DYNAMIC_RECEIVER_SCAN_RESULT =
             "android.bluetooth.test.ACTION_DYNAMIC_RECEIVER_SCAN_RESULT";
+    private static final byte[] TEST_SERVICE_DATA = {(byte) 0xAA, (byte) 0xBB, (byte) 0xCC};
 
     @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
@@ -295,7 +297,7 @@ public class LeScanningTest {
                 AdvertiseRequest.newBuilder()
                         .setConnectable(false)
                         .setOwnAddressType(OwnAddressType.PUBLIC);
-        advertiseWithBumble(requestBuilder);
+        advertiseWithBumble(requestBuilder, true);
 
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
@@ -324,7 +326,7 @@ public class LeScanningTest {
                         .setConnectable(false)
                         .setOwnAddressType(OwnAddressType.PUBLIC)
                         .setScanResponseData(scanResponse);
-        advertiseWithBumble(requestBuilder);
+        advertiseWithBumble(requestBuilder, true);
 
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
@@ -340,7 +342,46 @@ public class LeScanningTest {
                 .isEqualTo(payload);
     }
 
+    @Test
+    public void startBleScan_withServiceData() {
+        advertiseWithBumbleWithServiceData();
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .setServiceData(ParcelUuid.fromString(TEST_UUID_STRING), TEST_SERVICE_DATA)
+                        .build();
+
+        List<ScanResult> results =
+                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES, false);
+
+        assertThat(results).isNotNull();
+        assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
+                .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startBleScan_withServiceData_uuidDoesntMatch() {
+        advertiseWithBumbleWithServiceData();
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .setServiceData(ParcelUuid.fromString(TEST_UUID_STRING2), TEST_SERVICE_DATA)
+                        .build();
+
+        List<ScanResult> results =
+                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES, false);
+
+        assertThat(results).isNull();
+    }
+
     private List<ScanResult> startScanning(ScanFilter scanFilter, int callbackType) {
+        return startScanning(scanFilter, callbackType, true);
+    }
+
+    private List<ScanResult> startScanning(
+            ScanFilter scanFilter, int callbackType, boolean isLegacy) {
         CompletableFuture<List<ScanResult>> future = new CompletableFuture<>();
         List<ScanResult> scanResults = new ArrayList<>();
 
@@ -348,6 +389,7 @@ public class LeScanningTest {
                 new ScanSettings.Builder()
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                         .setCallbackType(callbackType)
+                        .setLegacy(isLegacy)
                         .build();
 
         ScanCallback scanCallback =
@@ -366,14 +408,9 @@ public class LeScanningTest {
                                         + ", service uuids: "
                                         + result.getScanRecord().getServiceUuids());
 
-                        if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
-                            if (scanResults.size() < 2) {
-                                scanResults.add(result);
-                            } else {
-                                future.complete(scanResults);
-                            }
-                        } else {
-                            scanResults.add(result);
+                        scanResults.add(result);
+                        if (callbackType != ScanSettings.CALLBACK_TYPE_ALL_MATCHES
+                                || scanResults.size() > 1) {
                             future.complete(scanResults);
                         }
                     }
@@ -395,6 +432,19 @@ public class LeScanningTest {
         return result;
     }
 
+    private void advertiseWithBumbleWithServiceData() {
+        AdvertiseRequest.Builder requestBuilder =
+                AdvertiseRequest.newBuilder().setOwnAddressType(OwnAddressType.PUBLIC);
+
+        HostProto.DataTypes.Builder dataTypeBuilder = HostProto.DataTypes.newBuilder();
+        dataTypeBuilder.addCompleteServiceClassUuids128(TEST_UUID_STRING);
+        dataTypeBuilder.putServiceDataUuid128(
+                TEST_UUID_STRING, ByteString.copyFrom(TEST_SERVICE_DATA));
+        requestBuilder.setData(dataTypeBuilder.build());
+
+        advertiseWithBumble(requestBuilder, false);
+    }
+
     private void advertiseWithBumble(String serviceUuid, OwnAddressType addressType) {
         AdvertiseRequest.Builder requestBuilder =
                 AdvertiseRequest.newBuilder().setOwnAddressType(addressType);
@@ -405,12 +455,11 @@ public class LeScanningTest {
             requestBuilder.setData(dataTypeBuilder.build());
         }
 
-        advertiseWithBumble(requestBuilder);
+        advertiseWithBumble(requestBuilder, true);
     }
 
-    private void advertiseWithBumble(AdvertiseRequest.Builder requestBuilder) {
-        // Bumble currently only supports legacy advertising.
-        requestBuilder.setLegacy(true);
+    private void advertiseWithBumble(AdvertiseRequest.Builder requestBuilder, boolean isLegacy) {
+        requestBuilder.setLegacy(isLegacy);
         // Collect and ignore responses.
         StreamObserverSpliterator<AdvertiseResponse> responseObserver =
                 new StreamObserverSpliterator<>();
