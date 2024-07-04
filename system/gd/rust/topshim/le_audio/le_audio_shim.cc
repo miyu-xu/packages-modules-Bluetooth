@@ -328,10 +328,9 @@ class DBusLeAudioClientCallbacks : public le_audio::LeAudioClientCallbacks {
         output_selectable_codec_conf);
   }
 
-  void OnAudioGroupCurrentCodecConf(
-      int group_id,
-      le_audio::btle_audio_codec_config_t input_codec_conf,
-      le_audio::btle_audio_codec_config_t output_codec_conf) {
+  void OnAudioGroupCurrentCodecConf(int group_id, bool is_sw_path_used,
+                                    le_audio::btle_audio_codec_config_t input_codec_conf,
+                                    le_audio::btle_audio_codec_config_t output_codec_conf) {
     log::info(
         "group_id={}, input_codec_conf={}, output_codec_conf={}",
         group_id,

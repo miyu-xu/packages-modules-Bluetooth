@@ -2140,6 +2140,7 @@ public class LeAudioServiceTest {
 
     private void injectGroupCurrentCodecConfigChanged(
             int groupId,
+            boolean isSwPathUsed,
             BluetoothLeAudioCodecConfig inputCodecConfig,
             BluetoothLeAudioCodecConfig outputCodecConfig) {
         int eventType = LeAudioStackEvent.EVENT_TYPE_AUDIO_GROUP_CURRENT_CODEC_CONFIG_CHANGED;
@@ -2147,6 +2148,7 @@ public class LeAudioServiceTest {
         // Add device to group
         LeAudioStackEvent groupCodecConfigChangedEvent = new LeAudioStackEvent(eventType);
         groupCodecConfigChangedEvent.valueInt1 = groupId;
+        groupCodecConfigChangedEvent.valueBool1 = isSwPathUsed;
         groupCodecConfigChangedEvent.valueCodec1 = inputCodecConfig;
         groupCodecConfigChangedEvent.valueCodec2 = outputCodecConfig;
         mService.messageFromNative(groupCodecConfigChangedEvent);
@@ -2212,7 +2214,7 @@ public class LeAudioServiceTest {
         injectGroupSelectableCodecConfigChanged(
                 testGroupId, INPUT_SELECTABLE_CONFIG, OUTPUT_SELECTABLE_CONFIG);
         // Inject configurationand check that AF is NOT notified.
-        injectGroupCurrentCodecConfigChanged(testGroupId, LC3_16KHZ_CONFIG, LC3_48KHZ_CONFIG);
+        injectGroupCurrentCodecConfigChanged(testGroupId, true, LC3_16KHZ_CONFIG, LC3_48KHZ_CONFIG);
 
         TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
         assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();
@@ -2233,7 +2235,8 @@ public class LeAudioServiceTest {
                         INPUT_SELECTABLE_CONFIG,
                         OUTPUT_SELECTABLE_CONFIG);
 
-        injectGroupCurrentCodecConfigChanged(testGroupId, LC3_16KHZ_CONFIG, LC3_16KHZ_CONFIG);
+        injectGroupCurrentCodecConfigChanged(
+                testGroupId, false, LC3_16KHZ_CONFIG, LC3_16KHZ_CONFIG);
 
         TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
         assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();
@@ -2292,7 +2295,7 @@ public class LeAudioServiceTest {
         injectGroupSelectableCodecConfigChanged(
                 testGroupId, INPUT_SELECTABLE_CONFIG, OUTPUT_SELECTABLE_CONFIG);
 
-        injectGroupCurrentCodecConfigChanged(testGroupId, LC3_16KHZ_CONFIG, LC3_48KHZ_CONFIG);
+        injectGroupCurrentCodecConfigChanged(testGroupId, true, LC3_16KHZ_CONFIG, LC3_48KHZ_CONFIG);
 
         injectAudioConfChanged(
                 testGroupId,
@@ -2321,7 +2324,7 @@ public class LeAudioServiceTest {
                         INPUT_SELECTABLE_CONFIG,
                         OUTPUT_SELECTABLE_CONFIG);
 
-        injectGroupCurrentCodecConfigChanged(testGroupId, LC3_16KHZ_CONFIG, LC3_16KHZ_CONFIG);
+        injectGroupCurrentCodecConfigChanged(testGroupId, true, LC3_16KHZ_CONFIG, LC3_16KHZ_CONFIG);
 
         TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
         assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();
@@ -2330,6 +2333,118 @@ public class LeAudioServiceTest {
                 .handleBluetoothActiveDeviceChanged(
                         any(), any(), any(BluetoothProfileConnectionInfo.class));
 
+        mService.mLeAudioCallbacks.unregister(leAudioCallbacks);
+
+        onGroupCodecConfChangedCallbackCalled = false;
+        reset(mAudioManager);
+    }
+
+    /** Test native interface group status message handling */
+    @Test
+    public void testMessageFromNativeGroupCodecConfigChangedActiveDevice_IsSwPathUsed() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_CODEC_CONFIG_CALLBACK_ORDER_FIX);
+        onGroupCodecConfChangedCallbackCalled = false;
+
+        injectLocalCodecConfigCapaChanged(INPUT_CAPABILITIES_CONFIG, OUTPUT_CAPABILITIES_CONFIG);
+
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        testCodecStatus =
+                new BluetoothLeAudioCodecStatus(
+                        LC3_16KHZ_CONFIG,
+                        LC3_48KHZ_CONFIG,
+                        INPUT_CAPABILITIES_CONFIG,
+                        OUTPUT_CAPABILITIES_CONFIG,
+                        INPUT_SELECTABLE_CONFIG,
+                        OUTPUT_SELECTABLE_CONFIG);
+
+        IBluetoothLeAudioCallback leAudioCallbacks =
+                new IBluetoothLeAudioCallback.Stub() {
+                    @Override
+                    public void onCodecConfigChanged(int gid, BluetoothLeAudioCodecStatus status) {
+                        onGroupCodecConfChangedCallbackCalled = true;
+                        assertThat(status.equals(testCodecStatus)).isTrue();
+                    }
+
+                    @Override
+                    public void onGroupStatusChanged(int gid, int gStatus) {}
+
+                    @Override
+                    public void onGroupNodeAdded(BluetoothDevice device, int gid) {}
+
+                    @Override
+                    public void onGroupNodeRemoved(BluetoothDevice device, int gid) {}
+
+                    @Override
+                    public void onGroupStreamStatusChanged(int groupId, int groupStreamStatus) {}
+                };
+
+        mService.mLeAudioCallbacks.register(leAudioCallbacks);
+
+        injectGroupSelectableCodecConfigChanged(
+                testGroupId, INPUT_SELECTABLE_CONFIG, OUTPUT_SELECTABLE_CONFIG);
+
+        // Now inject configuration with HW PATH and check that AF is notified.
+        injectGroupCurrentCodecConfigChanged(testGroupId, true, LC3_16KHZ_CONFIG, LC3_48KHZ_CONFIG);
+
+        injectAudioConfChanged(
+                testGroupId,
+                BluetoothLeAudio.CONTEXT_TYPE_MEDIA | BluetoothLeAudio.CONTEXT_TYPE_CONVERSATIONAL,
+                3);
+
+        injectGroupStatusChange(testGroupId, LeAudioStackEvent.GROUP_STATUS_ACTIVE);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();
+
+        verify(mAudioManager, times(2))
+                .handleBluetoothActiveDeviceChanged(
+                        any(), any(), any(BluetoothProfileConnectionInfo.class));
+
+        onGroupCodecConfChangedCallbackCalled = false;
+        reset(mAudioManager);
+
+        // Now inject configuration with SW PATH and check that AF is notified.
+        testCodecStatus =
+                new BluetoothLeAudioCodecStatus(
+                        LC3_16KHZ_CONFIG,
+                        LC3_16KHZ_CONFIG,
+                        INPUT_CAPABILITIES_CONFIG,
+                        OUTPUT_CAPABILITIES_CONFIG,
+                        INPUT_SELECTABLE_CONFIG,
+                        OUTPUT_SELECTABLE_CONFIG);
+
+        injectGroupCurrentCodecConfigChanged(testGroupId, true, LC3_16KHZ_CONFIG, LC3_16KHZ_CONFIG);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();
+
+        verify(mAudioManager, times(1))
+                .handleBluetoothActiveDeviceChanged(
+                        any(), any(), any(BluetoothProfileConnectionInfo.class));
+
+        onGroupCodecConfChangedCallbackCalled = false;
+        reset(mAudioManager);
+
+        // Now inject configuration with HW PATH and check that AF is not notified.
+        testCodecStatus =
+                new BluetoothLeAudioCodecStatus(
+                        LC3_48KHZ_CONFIG,
+                        LC3_48KHZ_CONFIG,
+                        INPUT_CAPABILITIES_CONFIG,
+                        OUTPUT_CAPABILITIES_CONFIG,
+                        INPUT_SELECTABLE_CONFIG,
+                        OUTPUT_SELECTABLE_CONFIG);
+        injectGroupCurrentCodecConfigChanged(
+                testGroupId, false, LC3_48KHZ_CONFIG, LC3_48KHZ_CONFIG);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();
+
+        verify(mAudioManager, times(0))
+                .handleBluetoothActiveDeviceChanged(
+                        any(), any(), any(BluetoothProfileConnectionInfo.class));
         mService.mLeAudioCallbacks.unregister(leAudioCallbacks);
 
         onGroupCodecConfChangedCallbackCalled = false;
@@ -2380,7 +2495,7 @@ public class LeAudioServiceTest {
 
         injectGroupSelectableCodecConfigChanged(
                 testGroupId, INPUT_EMPTY_CONFIG, OUTPUT_SELECTABLE_CONFIG);
-        injectGroupCurrentCodecConfigChanged(testGroupId, EMPTY_CONFIG, LC3_48KHZ_CONFIG);
+        injectGroupCurrentCodecConfigChanged(testGroupId, true, EMPTY_CONFIG, LC3_48KHZ_CONFIG);
 
         TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
         assertThat(onGroupCodecConfChangedCallbackCalled).isTrue();

@@ -92,11 +92,11 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
              local_output_capa_codec_conf));
   }
 
-  void OnAudioGroupCurrentCodecConf(
-      int group_id, btle_audio_codec_config_t input_codec_conf,
-      btle_audio_codec_config_t output_codec_conf) override {
+  void OnAudioGroupCurrentCodecConf(int group_id, bool is_sw_path_used,
+                                    btle_audio_codec_config_t input_codec_conf,
+                                    btle_audio_codec_config_t output_codec_conf) override {
     do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnAudioGroupCurrentCodecConf,
-                          Unretained(callbacks), group_id, input_codec_conf,
+                          Unretained(callbacks), group_id, is_sw_path_used, input_codec_conf,
                           output_codec_conf));
   }
 

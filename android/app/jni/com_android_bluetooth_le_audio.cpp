@@ -273,9 +273,9 @@ class LeAudioClientCallbacksImpl : public LeAudioClientCallbacks {
         localInputCapCodecConfigArray, localOutputCapCodecConfigArray);
   }
 
-  void OnAudioGroupCurrentCodecConf(
-      int group_id, btle_audio_codec_config_t input_codec_conf,
-      btle_audio_codec_config_t output_codec_conf) override {
+  void OnAudioGroupCurrentCodecConf(int group_id, bool is_sw_path_used,
+                                    btle_audio_codec_config_t input_codec_conf,
+                                    btle_audio_codec_config_t output_codec_conf) override {
     log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
@@ -287,9 +287,9 @@ class LeAudioClientCallbacksImpl : public LeAudioClientCallbacks {
     jobject outputCodecConfigObj =
         prepareCodecConfigObj(sCallbackEnv.get(), output_codec_conf);
 
-    sCallbackEnv->CallVoidMethod(
-        mCallbacksObj, method_onAudioGroupCurrentCodecConf, (jint)group_id,
-        inputCodecConfigObj, outputCodecConfigObj);
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onAudioGroupCurrentCodecConf, (jint)group_id,
+                                 (jboolean)is_sw_path_used, inputCodecConfigObj,
+                                 outputCodecConfigObj);
   }
 
   void OnAudioGroupSelectableCodecConf(
@@ -1620,32 +1620,30 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
   }
 
   const JNIJavaMethod javaMethods[] = {
-      {"onGroupStatus", "(II)V", &method_onGroupStatus},
-      {"onGroupNodeStatus", "([BII)V", &method_onGroupNodeStatus},
-      {"onAudioConf", "(IIIII)V", &method_onAudioConf},
-      {"onSinkAudioLocationAvailable", "([BI)V",
-       &method_onSinkAudioLocationAvailable},
-      {"onInitialized", "()V", &method_onInitialized},
-      {"onConnectionStateChanged", "(I[B)V", &method_onConnectionStateChanged},
-      {"onAudioLocalCodecCapabilities",
-       "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
-       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
-       &method_onAudioLocalCodecCapabilities},
-      {"onAudioGroupCurrentCodecConf",
-       "(ILandroid/bluetooth/BluetoothLeAudioCodecConfig;"
-       "Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
-       &method_onAudioGroupCurrentCodecConf},
-      {"onAudioGroupSelectableCodecConf",
-       "(I[Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
-       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
-       &method_onAudioGroupSelectableCodecConf},
-      {"onHealthBasedRecommendationAction", "([BI)V",
-       &method_onHealthBasedRecommendationAction},
-      {"onHealthBasedGroupRecommendationAction", "(II)V",
-       &method_onHealthBasedGroupRecommendationAction},
-      {"onUnicastMonitorModeStatus", "(II)V",
-       &method_onUnicastMonitorModeStatus},
-      {"onGroupStreamStatus", "(II)V", &method_onGroupStreamStatus},
+          {"onGroupStatus", "(II)V", &method_onGroupStatus},
+          {"onGroupNodeStatus", "([BII)V", &method_onGroupNodeStatus},
+          {"onAudioConf", "(IIIII)V", &method_onAudioConf},
+          {"onSinkAudioLocationAvailable", "([BI)V", &method_onSinkAudioLocationAvailable},
+          {"onInitialized", "()V", &method_onInitialized},
+          {"onConnectionStateChanged", "(I[B)V", &method_onConnectionStateChanged},
+          {"onAudioLocalCodecCapabilities",
+           "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
+           "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+           &method_onAudioLocalCodecCapabilities},
+          {"onAudioGroupCurrentCodecConf",
+           "(IZLandroid/bluetooth/BluetoothLeAudioCodecConfig;"
+           "Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+           &method_onAudioGroupCurrentCodecConf},
+          {"onAudioGroupSelectableCodecConf",
+           "(I[Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
+           "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+           &method_onAudioGroupSelectableCodecConf},
+          {"onHealthBasedRecommendationAction", "([BI)V",
+           &method_onHealthBasedRecommendationAction},
+          {"onHealthBasedGroupRecommendationAction", "(II)V",
+           &method_onHealthBasedGroupRecommendationAction},
+          {"onUnicastMonitorModeStatus", "(II)V", &method_onUnicastMonitorModeStatus},
+          {"onGroupStreamStatus", "(II)V", &method_onGroupStreamStatus},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/le_audio/LeAudioNativeInterface",
                    javaMethods);

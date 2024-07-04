@@ -3340,6 +3340,7 @@ public class LeAudioService extends ProfileService {
                             descriptor.mInputSelectableConfig,
                             descriptor.mOutputSelectableConfig);
 
+            boolean isSwPathUsed = stackEvent.valueBool1;
             boolean outputCodecOrFreqChanged =
                     isOutputCodecOfSampleFrequencyChanged(descriptor.mCodecStatus, status);
             boolean inputCodecOrFreqChanged =
@@ -3349,12 +3350,16 @@ public class LeAudioService extends ProfileService {
                     TAG,
                     ("Codec update for group:" + groupId)
                             + (", outputCodecOrFreqChanged: " + outputCodecOrFreqChanged)
+                            + (", isSwPathUsed: " + isSwPathUsed)
+                            + (", outputCodecOrFreqChanged: " + outputCodecOrFreqChanged)
                             + (", inputCodecOrFreqChanged: " + inputCodecOrFreqChanged));
 
             descriptor.mCodecStatus = status;
             mHandler.post(() -> notifyUnicastCodecConfigChanged(groupId, status));
 
-            if (descriptor.isActive() && (outputCodecOrFreqChanged || inputCodecOrFreqChanged)) {
+            if (descriptor.isActive()
+                    && isSwPathUsed
+                    && (outputCodecOrFreqChanged || inputCodecOrFreqChanged)) {
                 // Audio framework needs to be notified so it get new codec config
                 notifyAudioFrameworkForCodecConfigUpdate(
                         groupId, descriptor, outputCodecOrFreqChanged, inputCodecOrFreqChanged);
