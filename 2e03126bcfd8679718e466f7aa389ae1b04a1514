@@ -45,6 +45,30 @@
       },
       "revId": "2e03126bcfd8679718e466f7aa389ae1b04a1514",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1780daba_590744e2",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-04T02:29:12Z",
+      "side": 1,
+      "message": "Yes .this is nested collection. I will address it in another CL(aosp/3117157). Mark it as resolved now\n\n     ```\n         0x01,  # Collection (Application)\n             0x00,  # . Collection (Physical)\n             0xC0,  # . End Collection\n         0xC0,  # End Collection\n     ```",
+      "parentUuid": "49150555_92ad66a3",
+      "range": {
+        "startLine": 208,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "2e03126bcfd8679718e466f7aa389ae1b04a1514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
