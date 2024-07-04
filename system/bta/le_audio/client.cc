@@ -882,6 +882,8 @@ class LeAudioClientImpl : public LeAudioClient {
       ccid_contexts.source.unset(LeAudioContextType::CONVERSATIONAL);
     }
 
+    bool group_is_streaming = group->IsStreaming();
+
     BidirectionalPair<std::vector<uint8_t>> ccids = {
         .sink = ContentControlIdKeeper::GetInstance()->GetAllCcids(
             ccid_contexts.sink),
@@ -890,8 +892,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (group->IsPendingConfiguration()) {
       return groupStateMachine_->ConfigureStream(
           group, configuration_context_type_, remote_contexts, ccids);
-    } else if (group->GetState() !=
-               AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+    } else if (!group_is_streaming) {
       stream_setup_start_timestamp_ =
           bluetooth::common::time_get_os_boottime_us();
     }
@@ -899,9 +900,8 @@ class LeAudioClientImpl : public LeAudioClient {
     /* If assistant have some connected delegators that needs to be informed
      * when there would be request to stream unicast.
      */
-    if (com::android::bluetooth::flags::
-            leaudio_broadcast_audio_handover_policies() &&
-        !sink_monitor_mode_ && source_monitor_mode_ && !group->IsStreaming()) {
+    if (com::android::bluetooth::flags::leaudio_broadcast_audio_handover_policies() &&
+        !sink_monitor_mode_ && source_monitor_mode_ && !group_is_streaming) {
       callbacks_->OnUnicastMonitorModeStatus(
           bluetooth::le_audio::types::kLeAudioDirectionSource,
           UnicastMonitorModeStatus::STREAMING_REQUESTED);
@@ -909,6 +909,13 @@ class LeAudioClientImpl : public LeAudioClient {
 
     bool result = groupStateMachine_->StartStream(
         group, configuration_context_type, remote_contexts, ccids);
+
+    if (result && !group_is_streaming) {
+      /* Notify Java about new configuration when start stream has been accepted and
+       * it is not metadata update
+       */
+      SendAudioGroupCurrentCodecConfigChanged(group);
+    }
 
     return result;
   }
@@ -4684,6 +4691,7 @@ class LeAudioClientImpl : public LeAudioClient {
     /* Need to reconfigure stream */
     group->SetPendingConfiguration();
     groupStateMachine_->StopStream(group);
+    SendAudioGroupCurrentCodecConfigChanged(group);
     return true;
   }
 
@@ -5703,22 +5711,12 @@ class LeAudioClientImpl : public LeAudioClient {
                       weak_factory_.GetWeakPtr(), std::placeholders::_1,
                       std::placeholders::_2));
 
-        /* When at least one direction is started we can assume new
-         * configuration here */
-        bool new_configuration = false;
         if (audio_sender_state_ == AudioState::READY_TO_START) {
           StartSendingAudio(group_id);
-          new_configuration = true;
         }
 
         if (audio_receiver_state_ == AudioState::READY_TO_START) {
           StartReceivingAudio(group_id);
-          new_configuration = true;
-        }
-
-        if (new_configuration) {
-          /* Notify Java about new configuration */
-          SendAudioGroupCurrentCodecConfigChanged(group);
         }
         break;
       }
