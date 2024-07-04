@@ -229,12 +229,7 @@ void BTA_DmBleUpdateConnectionParams(const RawAddress& bd_addr,
  *
  ******************************************************************************/
 void BTA_DmBleConfigLocalPrivacy(bool privacy_enable) {
-  if (com::android::bluetooth::flags::synchronous_bta_sec()) {
-    bta_dm_ble_config_local_privacy(privacy_enable);
-  } else {
-    do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_ble_config_local_privacy,
-                                                privacy_enable));
-  }
+  bta_dm_ble_config_local_privacy(privacy_enable);
 }
 
 /*******************************************************************************
