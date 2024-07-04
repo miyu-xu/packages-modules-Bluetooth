@@ -20,6 +20,7 @@
 
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 #include <string>
@@ -205,7 +206,11 @@ typedef enum : uint8_t {
  * A record exists for each device authenticated with this device
  */
 struct tBTM_SEC_REC {
+  /* Delete when split_sec_state flag is removed */
   tSECURITY_STATE sec_state; /* Operating state                    */
+
+  tSECURITY_STATE classic_link; /* Operating state of Classic link */
+  tSECURITY_STATE le_link;      /* Operating state of LE link */
 
   tHCI_STATUS sec_status; /* Status in encryption change event  */
   uint16_t sec_flags;     /* Current device security state      */
@@ -279,37 +284,27 @@ public:
   void set_le_link_16_digit_key_authenticated() { sec_flags |= BTM_SEC_16_DIGIT_PIN_AUTHED; }
   void reset_le_link_16_digit_key_authenticated() { sec_flags &= ~BTM_SEC_16_DIGIT_PIN_AUTHED; }
 
-  bool is_security_state_idle() const { return sec_state == tSECURITY_STATE::IDLE; }
-  bool is_security_state_authenticating() const {
-    return sec_state == tSECURITY_STATE::AUTHENTICATING;
-  }
   bool is_security_state_bredr_encrypting() const {
-    return sec_state == tSECURITY_STATE::ENCRYPTING;
+    if (!com::android::bluetooth::flags::split_sec_state()) {
+      return sec_state == tSECURITY_STATE::ENCRYPTING;
+    }
+    return classic_link == tSECURITY_STATE::ENCRYPTING;
   }
   bool is_security_state_le_encrypting() const {
-    return sec_state == tSECURITY_STATE::LE_ENCRYPTING;
+    if (!com::android::bluetooth::flags::split_sec_state()) {
+      return sec_state == tSECURITY_STATE::LE_ENCRYPTING;
+    }
+    return le_link == tSECURITY_STATE::ENCRYPTING;
   }
   bool is_security_state_encrypting() const {
     return is_security_state_bredr_encrypting() || is_security_state_le_encrypting();
   }
-  bool is_security_state_getting_name() const { return sec_state == tSECURITY_STATE::GETTING_NAME; }
-  bool is_security_state_authorizing() const { return sec_state == tSECURITY_STATE::AUTHORIZING; }
-  bool is_security_state_switching_role() const {
-    return sec_state == tSECURITY_STATE::SWITCHING_ROLE;
+  bool is_security_state_getting_name() const {
+    if (!com::android::bluetooth::flags::split_sec_state()) {
+      return sec_state == tSECURITY_STATE::GETTING_NAME;
+    }
+    return classic_link == tSECURITY_STATE::GETTING_NAME;
   }
-  bool is_security_state_disconnecting() const {
-    return sec_state == tSECURITY_STATE::DISCONNECTING;
-  }
-  bool is_security_state_wait_for_encryption() const {
-    return sec_state == tSECURITY_STATE::DELAY_FOR_ENC;
-  }
-  bool is_security_state_ble_disconnecting() const {
-    return sec_state == tSECURITY_STATE::DISCONNECTING_BLE;
-  }
-  bool is_security_state_br_edr_and_ble() const {
-    return sec_state == tSECURITY_STATE::DISCONNECTING_BOTH;
-  }
-
   bool is_bond_type_unknown() const { return bond_type == BOND_TYPE_UNKNOWN; }
   bool is_bond_type_persistent() const { return bond_type == BOND_TYPE_PERSISTENT; }
   bool is_bond_type_temporary() const { return bond_type == BOND_TYPE_TEMPORARY; }
