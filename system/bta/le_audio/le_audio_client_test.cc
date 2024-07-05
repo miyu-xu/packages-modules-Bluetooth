@@ -1306,64 +1306,20 @@ class UnicastTestNoInit : public Test {
         });
 
     ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
-        .WillByDefault([this](LeAudioDeviceGroup* group,
-                              LeAudioDevice* leAudioDevice) {
-          if (!group) return;
-          auto* stream_conf = &group->stream_conf;
-          if (!stream_conf->stream_params.sink.stream_locations.empty() ||
-              !stream_conf->stream_params.source.stream_locations.empty()) {
-            stream_conf->stream_params.sink.stream_locations.erase(
-                std::remove_if(
-                    stream_conf->stream_params.sink.stream_locations.begin(),
-                    stream_conf->stream_params.sink.stream_locations.end(),
-                    [leAudioDevice, &stream_conf](auto& pair) {
-                      auto ases =
-                          leAudioDevice->GetAsesByCisConnHdl(pair.first);
-                      if (ases.sink) {
-                        stream_conf->stream_params.sink.num_of_devices--;
-                        stream_conf->stream_params.sink.num_of_channels -=
-                            ases.sink->channel_count;
+            .WillByDefault([this](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+              if (!group) {
+                return;
+              }
 
-                        log::info(
-                            ", Source Number Of Devices: {}"
-                            ", Source Number Of Channels: {}",
-                            stream_conf->stream_params.source.num_of_devices,
-                            stream_conf->stream_params.source.num_of_channels);
-                      }
-                      return ases.sink;
-                    }),
-                stream_conf->stream_params.sink.stream_locations.end());
+              for (auto& ase : leAudioDevice->ases_) {
+                group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase.cis_conn_hdl);
+              }
 
-            stream_conf->stream_params.source.stream_locations.erase(
-                std::remove_if(
-                    stream_conf->stream_params.source.stream_locations.begin(),
-                    stream_conf->stream_params.source.stream_locations.end(),
-                    [leAudioDevice, &stream_conf](auto& pair) {
-                      auto ases =
-                          leAudioDevice->GetAsesByCisConnHdl(pair.first);
-                      if (ases.source) {
-                        stream_conf->stream_params.source.num_of_devices--;
-                        stream_conf->stream_params.source.num_of_channels -=
-                            ases.source->channel_count;
-
-                        log::info(
-                            ", Source Number Of Devices: {}, Source Number Of "
-                            "Channels: {}",
-                            stream_conf->stream_params.source.num_of_devices,
-                            stream_conf->stream_params.source.num_of_channels);
-                      }
-                      return ases.source;
-                    }),
-                stream_conf->stream_params.source.stream_locations.end());
-          }
-
-          group->cig.UnassignCis(leAudioDevice);
-
-          if (group->IsEmpty()) {
-            group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
-            InjectCigRemoved(group->group_id_);
-          }
-        });
+              if (group->IsEmpty()) {
+                group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
+                InjectCigRemoved(group->group_id_);
+              }
+            });
 
     ON_CALL(mock_state_machine_, ProcessHciNotifCisDisconnected(_, _, _))
         .WillByDefault([](LeAudioDeviceGroup* group,
