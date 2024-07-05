@@ -620,7 +620,7 @@ static tBTM_STATUS BTM_StartLeScan() {
 #else
   if (shim::GetController()->SupportsBle()) {
     btm_ble_start_inquiry(btm_cb.btm_inq_vars.inqparms.duration);
-    return BTM_CMD_STARTED;
+    return tBTM_STATUS::BTM_CMD_STARTED;
   }
   log::warn("Trying to do LE scan on a non-LE adapter");
   btm_cb.btm_inq_vars.inqparms.mode &= ~BTM_BLE_GENERAL_INQUIRY;
@@ -657,7 +657,7 @@ static tBTM_STATUS BTM_StartLeScan() {
  *                                NULL, the application is not notified when
  *                                completed.
  * Returns          tBTM_STATUS
- *                  BTM_CMD_STARTED if successfully initiated
+ *                  tBTM_STATUS::BTM_CMD_STARTED if successfully initiated
  *                  tBTM_STATUS::BTM_BUSY if already in progress
  *                  BTM_ILLEGAL_VALUE if parameter(s) are out of range
  *                  BTM_NO_RESOURCES if could not allocate resources to start
@@ -771,7 +771,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb, tBTM_CMPL_CB* p_
   }
 #endif
 
-  return BTM_CMD_STARTED;
+  return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
 /*******************************************************************************
@@ -1729,6 +1729,190 @@ static void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode) {
   BTIF_dm_report_inquiry_status_change(tBTM_INQUIRY_STATE::BTM_INQUIRY_CANCELLED);
   btm_process_inq_complete(status, mode);
 }
+<<<<<<< HEAD
+=======
+/*******************************************************************************
+ *
+ * Function         btm_initiate_rem_name
+ *
+ * Description      This function looks initiates a remote name request.  It is
+ *                  called either by GAP or by the API call
+ *                  BTM_ReadRemoteDeviceName.
+ *
+ * Input Params:    remote_bda: Remote address to execute RNR
+ *                  timeout_ms: Internal timeout to await response
+ * *                p_cb:       Callback function called when
+ *                              tBTM_STATUS::BTM_CMD_STARTED is returned.
+ *                              A pointer to tBTM_REMOTE_DEV_NAME is
+ *                              passed to the callback.
+ *
+ * Returns
+ *                  tBTM_STATUS::BTM_CMD_STARTED is returned if the request was sent to HCI.
+ *                    and the callback will be called.
+ *                  tBTM_STATUS::BTM_BUSY if already in progress
+ *                  BTM_NO_RESOURCES if could not allocate resources to start
+ *                                   the command
+ *                  BTM_WRONG_MODE if the device is not up.
+ *
+ ******************************************************************************/
+static uint16_t get_clock_offset_from_storage(const RawAddress& remote_bda) {
+  int clock_offset_in_cfg = 0;
+  return btif_get_device_clockoffset(remote_bda, &clock_offset_in_cfg)
+                 ? static_cast<uint16_t>(clock_offset_in_cfg)
+                 : 0;
+}
+
+tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout_ms,
+                                  tBTM_NAME_CMPL_CB* p_cb) {
+  /*** Make sure the device is ready ***/
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
+    return BTM_WRONG_MODE;
+  }
+  if (btm_cb.rnr.remname_active) {
+    return tBTM_STATUS::BTM_BUSY;
+  }
+
+  uint16_t clock_offset = get_clock_offset_from_storage(remote_bda);
+  uint8_t page_scan_rep_mode = HCI_PAGE_SCAN_REP_MODE_R1;
+  uint8_t page_scan_mode = HCI_MANDATARY_PAGE_SCAN_MODE;
+
+  /* If the database entry exists for the device, use its clock offset */
+  tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
+  if (p_i && (p_i->inq_info.results.inq_result_type & BT_DEVICE_TYPE_BREDR)) {
+    tBTM_INQ_INFO* p_cur = &p_i->inq_info;
+    clock_offset = p_cur->results.clock_offset | BTM_CLOCK_OFFSET_VALID;
+    if (0 == (p_cur->results.clock_offset & BTM_CLOCK_OFFSET_VALID)) {
+      clock_offset = get_clock_offset_from_storage(remote_bda);
+    }
+    page_scan_rep_mode = p_cur->results.page_scan_rep_mode;
+    if (com::android::bluetooth::flags::rnr_validate_page_scan_repetition_mode() &&
+        page_scan_rep_mode >= HCI_PAGE_SCAN_REP_MODE_RESERVED_START) {
+      log::info(
+              "Invalid page scan repetition mode {} from remote_bda:{}, "
+              "fallback to R1",
+              page_scan_rep_mode, remote_bda);
+      page_scan_rep_mode = HCI_PAGE_SCAN_REP_MODE_R1;
+    }
+    page_scan_mode = p_cur->results.page_scan_mode;
+  }
+
+  bluetooth::shim::ACL_RemoteNameRequest(remote_bda, page_scan_rep_mode, page_scan_mode,
+                                         clock_offset);
+
+  btm_cb.rnr.p_remname_cmpl_cb = p_cb;
+  btm_cb.rnr.remname_bda = remote_bda;
+  btm_cb.rnr.remname_dev_type = BT_DEVICE_TYPE_BREDR;
+  btm_cb.rnr.remname_active = true;
+
+  alarm_set_on_mloop(btm_cb.rnr.remote_name_timer, timeout_ms, btm_inq_remote_name_timer_timeout,
+                     NULL);
+
+  return tBTM_STATUS::BTM_CMD_STARTED;
+}
+
+/*******************************************************************************
+ *
+ * Function         btm_process_remote_name
+ *
+ * Description      This function is called when a remote name is received from
+ *                  the device. If remote names are cached, it updates the
+ *                  inquiry database.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn, uint16_t /* evt_len */,
+                             tHCI_STATUS hci_status) {
+  tBTM_REMOTE_DEV_NAME rem_name = {
+          .status = tBTM_STATUS::BTM_BAD_VALUE_RET,
+          .bd_addr = bda ? *bda : RawAddress::kEmpty,
+          .remote_bd_name = {},
+          .hci_status = hci_status,
+  };
+
+  bool on_le_link;
+  if (com::android::bluetooth::flags::rnr_store_device_type()) {
+    on_le_link = (btm_cb.rnr.remname_dev_type == BT_DEVICE_TYPE_BLE);
+  } else {
+    on_le_link = get_btm_client_interface().ble.BTM_UseLeLink(btm_cb.rnr.remname_bda);
+  }
+
+  /* If the inquire BDA and remote DBA are the same, then stop the timer and set
+   * the active to false */
+  if (btm_cb.rnr.remname_active) {
+    if (rem_name.bd_addr == RawAddress::kEmpty || rem_name.bd_addr == btm_cb.rnr.remname_bda) {
+      log::info("RNR received expected name bd_addr:{} hci_status:{} le_link:{}",
+                rem_name.bd_addr.ToRedactedStringForLogging(), hci_status_code_text(hci_status),
+                on_le_link);
+
+      if (on_le_link && hci_status == HCI_ERR_UNSPECIFIED) {
+        btm_ble_cancel_remote_name(btm_cb.rnr.remname_bda);
+      }
+      alarm_cancel(btm_cb.rnr.remote_name_timer);
+      /* Clean up and return the status if the command was not successful */
+      /* Note: If part of the inquiry, the name is not stored, and the    */
+      /*       inquiry complete callback is called.                       */
+
+      if (hci_status == HCI_SUCCESS) {
+        /* Copy the name from the data stream into the return structure */
+        /* Note that even if it is not being returned, it is used as a  */
+        /*      temporary buffer.                                       */
+        rem_name.status = tBTM_STATUS::BTM_SUCCESS;
+        if (bdn) {
+          bd_name_copy(rem_name.remote_bd_name, bdn);
+        } else {
+          log::warn("Received null name from remote device bd_addr:{}",
+                    rem_name.bd_addr.ToRedactedStringForLogging());
+        }
+      }
+      /* Reset the remote BDA and call callback if possible */
+      btm_cb.rnr.remname_active = false;
+      btm_cb.rnr.remname_bda = RawAddress::kEmpty;
+      btm_cb.rnr.remname_dev_type = BT_DEVICE_TYPE_UNKNOWN;
+
+      tBTM_NAME_CMPL_CB* p_cb = btm_cb.rnr.p_remname_cmpl_cb;
+      btm_cb.rnr.p_remname_cmpl_cb = nullptr;
+      if (p_cb) {
+        (p_cb)(&rem_name);
+      }
+    } else {
+      log::warn("RNR received UNKNOWN name bd_addr:{} hci_status:{} le_link:{}",
+                rem_name.bd_addr.ToRedactedStringForLogging(), hci_status_code_text(hci_status),
+                on_le_link);
+    }
+  } else {
+    log::info(
+            "RNR received UNEXPECTED name bd_addr:{} inq_addr:{} hci_status:{} "
+            "le_link:{} rnr_active:{}",
+            rem_name.bd_addr.ToRedactedStringForLogging(),
+            btm_cb.rnr.remname_bda.ToRedactedStringForLogging(), hci_status_code_text(hci_status),
+            on_le_link, btm_cb.rnr.remname_active);
+  }
+}
+
+void btm_inq_remote_name_timer_timeout(void* /* data */) { btm_inq_rmt_name_failed_cancelled(); }
+
+/*******************************************************************************
+ *
+ * Function         btm_inq_rmt_name_failed_cancelled
+ *
+ * Description      This function is if timeout expires or request is cancelled
+ *                  while getting remote name.  This is done for devices that
+ *                  incorrectly do not report operation failure
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void btm_inq_rmt_name_failed_cancelled(void) {
+  log::error("remname_active={}", btm_cb.rnr.remname_active);
+
+  if (btm_cb.rnr.remname_active) {
+    btm_process_remote_name(&btm_cb.rnr.remname_bda, NULL, 0, HCI_ERR_UNSPECIFIED);
+  }
+
+  btm_sec_rmt_name_request_complete(NULL, NULL, HCI_ERR_UNSPECIFIED);
+}
+>>>>>>> 18fa7251ff (stack::btm [4/24] Class enum-ify tBTM_STATUS::BTM_CMD_STARTED)
 
 /*******************************************************************************
  *
