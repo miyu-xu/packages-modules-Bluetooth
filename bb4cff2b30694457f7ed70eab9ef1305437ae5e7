@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b4d67c8_50c85012",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-05T21:50:26Z",
+      "side": 1,
+      "message": "`ReentrantLock` is no longer used but still imported.  \nThis is generating upload error when trying to modify this file\n\nThis can be prevented in the future by using `repo upload` when uploading the change to gerrit and by applying the recommandation of the linter",
+      "range": {
+        "startLine": 108,
+        "startChar": 34,
+        "endLine": 108,
+        "endChar": 47
+      },
+      "revId": "bb4cff2b30694457f7ed70eab9ef1305437ae5e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
