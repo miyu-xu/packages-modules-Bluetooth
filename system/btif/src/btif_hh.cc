@@ -1139,8 +1139,16 @@ static void btif_hh_remove_pending_connection(const tAclLinkSpec& link_spec) {
  * Returns          void
  *
  ******************************************************************************/
-bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec) {
-  BTHH_LOG_LINK(link_spec);
+bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec_in) {
+  BTHH_LOG_LINK(link_spec_in);
+
+  tAclLinkSpec link_spec = link_spec_in;
+  if (com::android::bluetooth::flags::allow_switching_hid_and_hogp() &&
+        link_spec.transport == BT_TRANSPORT_AUTO) {
+      log::warn("Resolving link spec {} transport to BREDR/LE",
+            link_spec.ToRedactedStringForLogging());
+      btif_hh_transport_select(link_spec);
+  }
 
   btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev != nullptr) {
