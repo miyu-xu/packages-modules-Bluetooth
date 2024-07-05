@@ -280,7 +280,7 @@ TEST_F(BtaDmTest, bta_dm_encrypt_cback) {
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
   bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_NO_RESOURCES);
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
-  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_BUSY);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, tBTM_STATUS::BTM_BUSY);
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
   bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_ILLEGAL_VALUE);
 
@@ -295,9 +295,9 @@ TEST_F(BtaDmTest, bta_dm_encrypt_cback) {
   auto params_BTM_NO_RESOURCES = BTA_DM_ENCRYPT_CBACK_queue.front();
   BTA_DM_ENCRYPT_CBACK_queue.pop();
   ASSERT_EQ(BTA_NO_RESOURCES, params_BTM_NO_RESOURCES.result);
-  auto params_BTM_BUSY = BTA_DM_ENCRYPT_CBACK_queue.front();
+  auto params_tBTM_STATUS::BTM_BUSY = BTA_DM_ENCRYPT_CBACK_queue.front();
   BTA_DM_ENCRYPT_CBACK_queue.pop();
-  ASSERT_EQ(BTA_BUSY, params_BTM_BUSY.result);
+  ASSERT_EQ(BTA_BUSY, params_tBTM_STATUS::BTM_BUSY.result);
   auto params_BTM_ILLEGAL_VALUE = BTA_DM_ENCRYPT_CBACK_queue.front();
   BTA_DM_ENCRYPT_CBACK_queue.pop();
   ASSERT_EQ(BTA_FAILURE, params_BTM_ILLEGAL_VALUE.result);
