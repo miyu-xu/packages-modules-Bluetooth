@@ -3063,11 +3063,11 @@ static void get_address_callback(tBT_TRANSPORT transport, bool is_valid, const O
 
 // Step Three: CallBack from Step Two, advertise and get address
 static void start_advertising_callback(uint8_t id, tBT_TRANSPORT transport, bool is_valid,
-                                       const Octet16& c, const Octet16& r, tBTM_STATUS status) {
-  if (status != 0) {
-    log::info("OOB get advertiser ID failed with status {}", status);
-    GetInterfaceToProfiles()->events->invoke_oob_data_request_cb(transport, false, c, r,
-                                                                 RawAddress{}, 0x00);
+                                       const Octet16& c, const Octet16& r, uint8_t advertising_status) {
+  if (advertising_status != 0) {
+    log::info("OOB get advertiser ID failed with status {}", advertising_status);
+    GetInterfaceToProfiles()->events->invoke_oob_data_request_cb(
+        transport, false, c, r, RawAddress{}, 0x00);
     SMP_ClearLocScOobData();
     waiting_on_oob_advertiser_start = false;
     oob_advertiser_id_ = {};
@@ -3089,11 +3089,11 @@ static void timeout_cb(uint8_t id, tBTM_STATUS status) {
 
 // Step Two: CallBack from Step One, advertise and get address
 static void id_status_callback(tBT_TRANSPORT transport, bool is_valid, const Octet16& c,
-                               const Octet16& r, uint8_t id, tBTM_STATUS status) {
-  if (status != 0) {
-    log::info("OOB get advertiser ID failed with status {}", status);
-    GetInterfaceToProfiles()->events->invoke_oob_data_request_cb(transport, false, c, r,
-                                                                 RawAddress{}, 0x00);
+                               const Octet16& r, uint8_t id, uint8_t advertising_status) {
+  if (advertising_status != 0) {
+    log::info("OOB get advertiser ID failed with status {}", advertising_status);
+    GetInterfaceToProfiles()->events->invoke_oob_data_request_cb(
+        transport, false, c, r, RawAddress{}, 0x00);
     SMP_ClearLocScOobData();
     waiting_on_oob_advertiser_start = false;
     oob_advertiser_id_ = {};
