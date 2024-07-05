@@ -105,7 +105,8 @@ TEST_F(StackBtmPowerModeConnected, BTM_SetPowerMode__ActiveToSniff) {
   tBTM_PM_PWR_MD mode = {
           .mode = BTM_PM_MD_SNIFF,
   };
-  ASSERT_EQ("BTM_CMD_STARTED", btm_status_text(::BTM_SetPowerMode(pm_id_, kRawAddress, &mode)));
+  ASSERT_EQ("tBTM_STATUS::BTM_CMD_STARTED",
+            btm_status_text(::BTM_SetPowerMode(pm_id_, kRawAddress, &mode)));
   ASSERT_EQ(1, get_func_call_count("btsnd_hcic_sniff_mode"));
 
   // Respond with successful command status for mode command
@@ -156,7 +157,8 @@ TEST_F(StackBtmPowerModeConnected, BTM_SetPowerMode__ActiveToSniffTwice) {
   tBTM_PM_PWR_MD mode = {
           .mode = BTM_PM_MD_SNIFF,
   };
-  ASSERT_EQ("BTM_CMD_STARTED", btm_status_text(::BTM_SetPowerMode(pm_id_, kRawAddress, &mode)));
+  ASSERT_EQ("tBTM_STATUS::BTM_CMD_STARTED",
+            btm_status_text(::BTM_SetPowerMode(pm_id_, kRawAddress, &mode)));
   ASSERT_EQ(1, get_func_call_count("btsnd_hcic_sniff_mode"));
 
   // Respond with successful command status for mode command
