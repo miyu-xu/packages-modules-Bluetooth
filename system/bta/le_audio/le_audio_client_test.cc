@@ -1395,7 +1395,7 @@ class UnicastTestNoInit : public Test {
                 stream_conf->stream_params.source.stream_locations.end());
           }
 
-          group->cig.UnassignCis(leAudioDevice);
+          group->cig.UnassignCis(leAudioDevice, event->cis_conn_hdl);
         });
 
     ON_CALL(mock_state_machine_, StopStream(_))
@@ -1461,9 +1461,9 @@ class UnicastTestNoInit : public Test {
                   stream_conf->stream_params.source.stream_locations.end());
             }
 
-            group->cig.UnassignCis(device);
-
             for (auto& ase : device->ases_) {
+              group->cig.UnassignCis(device, ase.cis_conn_hdl);
+
               ase.cis_state = types::CisState::IDLE;
               ase.data_path_state = types::DataPathState::IDLE;
               ase.active = false;

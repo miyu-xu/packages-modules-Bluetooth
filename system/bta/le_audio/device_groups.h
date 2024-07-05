@@ -65,7 +65,7 @@ class LeAudioDeviceGroup {
     void GenerateCisIds(types::LeAudioContextType context_type);
     bool AssignCisIds(LeAudioDevice* leAudioDevice);
     void AssignCisConnHandles(const std::vector<uint16_t>& conn_handles);
-    void UnassignCis(LeAudioDevice* leAudioDevice);
+    void UnassignCis(LeAudioDevice* leAudioDevice, uint16_t conn_handle);
 
     std::vector<struct types::cis> cises;
 

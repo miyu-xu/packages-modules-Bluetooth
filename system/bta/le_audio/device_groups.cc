@@ -1336,15 +1336,15 @@ void LeAudioDeviceGroup::AssignCisConnHandlesToAses(void) {
   }
 }
 
-void LeAudioDeviceGroup::CigConfiguration::UnassignCis(
-    LeAudioDevice* leAudioDevice) {
+void LeAudioDeviceGroup::CigConfiguration::UnassignCis(LeAudioDevice* leAudioDevice,
+                                                       uint16_t conn_handle) {
   log::assert_that(leAudioDevice, "Invalid device");
 
-  log::info("Group {}, group_id {}, device: {}", fmt::ptr(group_),
-            group_->group_id_, leAudioDevice->address_);
+  log::info("Group {}, group_id {}, device: {}, conn_handle: {:#x}", fmt::ptr(group_),
+            group_->group_id_, leAudioDevice->address_, conn_handle);
 
   for (struct bluetooth::le_audio::types::cis& cis_entry : cises) {
-    if (cis_entry.addr == leAudioDevice->address_) {
+    if (cis_entry.conn_handle == conn_handle && cis_entry.addr == leAudioDevice->address_) {
       cis_entry.addr = RawAddress::kEmpty;
     }
   }
@@ -1753,7 +1753,10 @@ void LeAudioDeviceGroup::RemoveCisFromStreamIfNeeded(
     LeAudioDevice* leAudioDevice, uint16_t cis_conn_hdl) {
   log::info("CIS Connection Handle: {}", cis_conn_hdl);
 
-  if (!IsCisPartOfCurrentStream(cis_conn_hdl)) return;
+  if (!IsCisPartOfCurrentStream(cis_conn_hdl)) {
+    cig.UnassignCis(leAudioDevice, cis_conn_hdl);
+    return;
+  }
 
   /* Cache the old values for comparison */
   auto old_sink_channels = stream_conf.stream_params.sink.num_of_channels;
@@ -1812,7 +1815,7 @@ void LeAudioDeviceGroup::RemoveCisFromStreamIfNeeded(
         bluetooth::le_audio::types::kLeAudioDirectionSource);
   }
 
-  cig.UnassignCis(leAudioDevice);
+  cig.UnassignCis(leAudioDevice, cis_conn_hdl);
 }
 
 bool LeAudioDeviceGroup::IsPendingConfiguration(void) const {
