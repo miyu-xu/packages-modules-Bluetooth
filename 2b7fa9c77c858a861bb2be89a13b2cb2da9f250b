@@ -22,6 +22,30 @@
       },
       "revId": "2b7fa9c77c858a861bb2be89a13b2cb2da9f250b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85e3fe6d_c17a177b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3362,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-05T10:02:01Z",
+      "side": 1,
+      "message": "for the moment we do not have a way to change sw and hw path on fly.\nBut maybe for this reason we should skip this CL, as we will need it eventually.",
+      "parentUuid": "8a0d162e_b91e6f5c",
+      "range": {
+        "startLine": 3362,
+        "startChar": 0,
+        "endLine": 3362,
+        "endChar": 48
+      },
+      "revId": "2b7fa9c77c858a861bb2be89a13b2cb2da9f250b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
