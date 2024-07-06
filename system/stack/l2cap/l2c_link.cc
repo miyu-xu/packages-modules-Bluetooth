@@ -192,7 +192,10 @@ void l2c_link_sec_comp(RawAddress p_bda, tBT_TRANSPORT transport, void* p_ref_da
   /* Save the parameters */
   tL2C_CONN_INFO ci = {
           .bd_addr = p_bda,
-          .hci_status = static_cast<tHCI_STATUS>(btm_status),
+          .security =
+                  {
+                          .btm_status = btm_status,
+                  },
   };
 
   /* If we don't have one, this is an error */
