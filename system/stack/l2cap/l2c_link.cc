@@ -32,7 +32,6 @@
 
 #include "device/include/device_iot_config.h"
 #include "internal_include/bt_target.h"
-#include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/acl_api.h"
@@ -68,7 +67,7 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle, const RawAddres
   /* Save the parameters */
   tL2C_CONN_INFO ci = {
           .bd_addr = p_bda,
-          .status = status,
+          .hci_status = status,
   };
 
   /* See if we have a link control block for the remote device */
@@ -104,7 +103,7 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle, const RawAddres
   /* Save the handle */
   l2cu_set_lcb_handle(*p_lcb, handle);
 
-  if (ci.status == HCI_SUCCESS) {
+  if (ci.hci_status == HCI_SUCCESS) {
     /* Connected OK. Change state to connected */
     p_lcb->link_state = LST_CONNECTED;
 
@@ -132,7 +131,7 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle, const RawAddres
   }
   /* Max number of acl connections.                          */
   /* If there's an lcb disconnecting set this one to holding */
-  else if ((ci.status == HCI_ERR_MAX_NUM_OF_CONNECTIONS) && l2cu_lcb_disconnecting()) {
+  else if ((ci.hci_status == HCI_ERR_MAX_NUM_OF_CONNECTIONS) && l2cu_lcb_disconnecting()) {
     log::warn("Delaying connection as reached max number of links:{}",
               HCI_ERR_MAX_NUM_OF_CONNECTIONS);
     p_lcb->link_state = LST_CONNECT_HOLDING;
@@ -159,7 +158,7 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle, const RawAddres
       l2cu_release_lcb(p_lcb);
     } else /* there are any CCBs remaining */
     {
-      if (ci.status == HCI_ERR_CONNECTION_EXISTS) {
+      if (ci.hci_status == HCI_ERR_CONNECTION_EXISTS) {
         /* we are in collision situation, wait for connecttion request from
          * controller */
         p_lcb->link_state = LST_CONNECTING;
@@ -196,7 +195,7 @@ void l2c_link_sec_comp(RawAddress p_bda, tBT_TRANSPORT transport, void* p_ref_da
   /* Save the parameters */
   tL2C_CONN_INFO ci = {
           .bd_addr = p_bda,
-          .status = static_cast<tHCI_STATUS>(btm_status),
+          .hci_status = static_cast<tHCI_STATUS>(btm_status),
   };
 
   p_lcb = l2cu_find_lcb_by_bd_addr(p_bda, transport);
@@ -531,7 +530,7 @@ void l2c_info_resp_timer_timeout(void* data) {
     if ((p_lcb->link_state != LST_DISCONNECTED) && (p_lcb->link_state != LST_DISCONNECTING)) {
       /* Notify active channels that peer info is finished */
       if (p_lcb->ccb_queue.p_first_ccb) {
-        ci.status = HCI_SUCCESS;
+        ci.hci_status = HCI_SUCCESS;
         ci.bd_addr = p_lcb->remote_bd_addr;
 
         for (p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb; p_ccb = p_ccb->p_next_ccb) {

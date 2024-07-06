@@ -346,7 +346,7 @@ static void process_l2cap_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
 
           p_lcb->w4_info_rsp = false;
           tL2C_CONN_INFO ci;
-          ci.status = HCI_SUCCESS;
+          ci.hci_status = HCI_SUCCESS;
           ci.bd_addr = p_lcb->remote_bd_addr;
 
           /* For all channels, send the event through their FSMs */
@@ -803,7 +803,7 @@ static void process_l2cap_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
         {
           tL2C_CONN_INFO ci = {
                   .bd_addr = p_lcb->remote_bd_addr,
-                  .status = HCI_SUCCESS,
+                  .hci_status = HCI_SUCCESS,
           };
           for (tL2C_CCB* p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb; p_ccb = p_ccb->p_next_ccb) {
             l2c_csm_execute(p_ccb, L2CEVT_L2CAP_INFO_RSP, &ci);
