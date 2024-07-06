@@ -647,6 +647,9 @@ struct tL2C_CONN_INFO {
   uint16_t remote_cid;         /* Remote CID */
   std::vector<uint16_t> lcids; /* Used when credit based is used*/
   uint16_t peer_mtu;           /* Peer MTU */
+  struct {
+    tBTM_STATUS btm_status{};
+  } security;
 };
 
 struct tL2C_AVDT_CHANNEL_INFO {

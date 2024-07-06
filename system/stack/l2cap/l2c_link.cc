@@ -201,13 +201,17 @@ void l2c_link_sec_comp(RawAddress p_bda, tBT_TRANSPORT transport, void* p_ref_da
   /* Save the parameters */
   tL2C_CONN_INFO ci = {
           .bd_addr = p_bda,
-          .hci_status = static_cast<tHCI_STATUS>(btm_status),
+          .hci_status{},
           .psm{},
           .l2cap_result{},
           .l2cap_status{},
           .remote_cid{},
           .lcids{},
           .peer_mtu{},
+          .security =
+                  {
+                          .btm_status = btm_status,
+                  },
   };
 
   p_lcb = l2cu_find_lcb_by_bd_addr(p_bda, transport);
