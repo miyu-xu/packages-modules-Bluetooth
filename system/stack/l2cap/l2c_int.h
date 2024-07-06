@@ -283,7 +283,7 @@ struct tL2C_CCB {
   uint16_t ble_sdu_length;           /* Length of unassembled sdu length*/
   tL2C_CCB* p_next_ccb;              /* Next CCB in the chain */
   tL2C_CCB* p_prev_ccb;              /* Previous CCB in the chain */
-  tL2C_LCB* p_lcb;                   /* Link this CCB is assigned to */
+  tL2C_LCB* p_lcb{};                 /* Link this CCB is assigned to */
 
   uint16_t local_cid;  /* Local CID */
   uint16_t remote_cid; /* Remote CID */

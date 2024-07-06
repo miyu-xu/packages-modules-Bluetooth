@@ -935,7 +935,6 @@ void l2c_link_process_ble_num_bufs(uint16_t num_lm_ble_bufs) {
  ******************************************************************************/
 void l2c_ble_link_adjust_allocation(void) {
   uint16_t qq, yy, qq_remainder;
-  tL2C_LCB* p_lcb;
   uint16_t hi_quota, low_quota;
   uint16_t num_lowpri_links = 0;
   uint16_t num_hipri_links = 0;
@@ -950,6 +949,7 @@ void l2c_ble_link_adjust_allocation(void) {
   }
 
   /* First, count the links */
+  tL2C_LCB* p_lcb{};
   for (yy = 0, p_lcb = &l2cb.lcb_pool[0]; yy < MAX_L2CAP_LINKS; yy++, p_lcb++) {
     if (p_lcb->in_use && p_lcb->transport == BT_TRANSPORT_LE) {
       if (p_lcb->acl_priority == L2CAP_PRIORITY_HIGH) {
