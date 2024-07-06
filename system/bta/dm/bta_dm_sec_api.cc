@@ -211,7 +211,17 @@ void BTA_DmBleConfirmReply(const RawAddress& bd_addr, bool accept) {
  *
  ******************************************************************************/
 void BTA_DmBleSecurityGrant(const RawAddress& bd_addr, tBTA_DM_BLE_SEC_GRANT res) {
-  BTM_SecurityGrant(bd_addr, res);
+  // Properly port enum from one interface to another
+  const tBTM_STATUS btm_status = [](const tBTA_DM_BLE_SEC_GRANT res) -> tBTM_STATUS {
+    switch (res) {
+      case tBTA_DM_BLE_SEC_GRANT::BTA_DM_SEC_GRANTED:
+        return BTM_SUCCESS;
+      case tBTA_DM_BLE_SEC_GRANT::BTA_DM_SEC_PAIR_NOT_SPT:
+        return static_cast<tBTM_STATUS>(HCI_ERR_MAX_ERR + 10 + SMP_PAIR_NOT_SUPPORT);
+    }
+  }(res);
+
+  BTM_SecurityGrant(bd_addr, btm_status);
 }
 
 /*******************************************************************************
