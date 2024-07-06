@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f839d056_1b6cc895",
+        "filename": "flags/a2dp.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-06T02:47:50Z",
+      "side": 1,
+      "message": "Jump a line ?",
+      "range": {
+        "startLine": 108,
+        "startChar": 1,
+        "endLine": 109,
+        "endChar": 6
+      },
+      "revId": "c92875d1a04cf528625b1ee5ba60a835bcde2331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
