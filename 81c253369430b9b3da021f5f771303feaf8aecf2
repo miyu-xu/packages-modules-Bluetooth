@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52e1f16_0692a56a",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-08T12:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f6814a_bdb0d9f8",
+      "range": {
+        "startLine": 695,
+        "startChar": 8,
+        "endLine": 708,
+        "endChar": 19
+      },
+      "revId": "81c253369430b9b3da021f5f771303feaf8aecf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e696157_b122e0dc",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25558150_b1c777eb",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-08T12:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e696157_b122e0dc",
+      "range": {
+        "startLine": 724,
+        "startChar": 8,
+        "endLine": 726,
+        "endChar": 17
+      },
+      "revId": "81c253369430b9b3da021f5f771303feaf8aecf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2cf83f1_ed089726",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-07-03T16:41:47Z",
       "side": 1,
       "message": "```suggestion\n        except AttributeError as e:\n            logging.exception(f\u0027Device does not exist\u0027)\n            raise e\n```",
+      "range": {
+        "startLine": 742,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 17
+      },
+      "revId": "81c253369430b9b3da021f5f771303feaf8aecf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4096d448_3ce3d4c8",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-08T12:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2cf83f1_ed089726",
       "range": {
         "startLine": 742,
         "startChar": 8,
