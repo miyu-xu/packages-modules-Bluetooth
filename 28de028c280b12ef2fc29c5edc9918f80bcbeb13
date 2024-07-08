@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03060876_44de56da",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-08T04:05:50Z",
+      "side": 0,
+      "message": "I think it\u0027s still possible for a non-headtracker rogue HoGP service to have a non-reducible 128-bit UUID.\nIf we only simply remove this check, we will assume the UUID is zero (because of failure to convert) and this goes unchecked.\n\nMaybe we should change the `bta_hh_get_uuid16` to return a boolean in addition to the converted uuid?",
+      "range": {
+        "startLine": 673,
+        "startChar": 2,
+        "endLine": 677,
+        "endChar": 3
+      },
+      "revId": "28de028c280b12ef2fc29c5edc9918f80bcbeb13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
