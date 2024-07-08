@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55a521a3_42686014",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-07-08T16:29:26Z",
+      "side": 1,
+      "message": "I also want to confirm the behavior that if we run `btclient -c \u0027get-address\u0027 when the adapter is disabled, it will just return with error message?",
+      "revId": "4c65ad75ae3bc9be69cb2fbf5abe3cf7a0169394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f52c40c_3152847d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
