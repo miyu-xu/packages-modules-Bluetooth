@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a586213d_516147ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-08T21:10:32Z",
+      "side": 1,
+      "message": "Keeping both `sec_state` and transport based security states alive leaves the door open for someone to make a mistake.\n\nHow about we initially replace `sec_state` with `le_link` and `bredr_link` without making logical changes? We will have to replace all direct access to the `sec_state` with helper functions like this:\n```\n  bool is_security_state_bredr_authenticating() const {\n    return le_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING || bredr_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING;\n  }\n```\n\nIn a second cl, we can then make logical changes guarded by the flag.\n```\n  bool is_security_state_bredr_authenticating() const {\n    if (!com::android::bluetooth::flags::split_sec_state()) {\n      return le_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING || bredr_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING;\n    }\n    return bredr_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING;\n  }\n```\nI know this is too much rework but I think this would keep changes simpler to review and avoid potential mistakes.\nI would have been honestly fine with your initial approach without the flagging.",
+      "revId": "72250be4e3b7e7b994eb4c7a273117b19d184c34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
