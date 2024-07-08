@@ -16,11 +16,11 @@
 
 package com.android.bluetooth.gatt;
 
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
 
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
-import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
@@ -337,7 +337,7 @@ public class GattService extends ProfileService {
         if (!isHidCharUuid(characteristicUuid)) {
             return;
         }
-        enforceBluetoothPrivilegedPermission(this);
+        this.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
     }
 
     // Suppressed because we are conditionally enforcing
@@ -346,7 +346,7 @@ public class GattService extends ProfileService {
         if (!isHandleRestricted(connId, handle)) {
             return;
         }
-        enforceBluetoothPrivilegedPermission(this);
+        this.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
     }
 
     private boolean isHandleRestricted(int connId, int handle) {
@@ -1194,7 +1194,7 @@ public class GattService extends ProfileService {
                             "GattService getSupportedDistanceMeasurementMethods")) {
                 return Collections.emptyList();
             }
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return Arrays.asList(service.getSupportedDistanceMeasurementMethods());
         }
 
@@ -1212,7 +1212,7 @@ public class GattService extends ProfileService {
                             service, attributionSource, "GattService startDistanceMeasurement")) {
                 return;
             }
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.startDistanceMeasurement(uuid.getUuid(), distanceMeasurementParams, callback);
         }
 
@@ -1232,7 +1232,7 @@ public class GattService extends ProfileService {
                     service, attributionSource, "GattService stopDistanceMeasurement")) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
             }
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.stopDistanceMeasurement(uuid.getUuid(), device, method);
         }
 
@@ -1249,7 +1249,7 @@ public class GattService extends ProfileService {
                             "GattService getChannelSoundingMaxSupportedSecurityLevel")) {
                 return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
             }
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice);
         }
 
@@ -1268,7 +1268,7 @@ public class GattService extends ProfileService {
                             "GattService getLocalChannelSoundingMaxSupportedSecurityLevel")) {
                 return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
             }
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getLocalChannelSoundingMaxSupportedSecurityLevel();
         }
     }
@@ -1930,7 +1930,7 @@ public class GattService extends ProfileService {
         }
         if (parameters.getOwnAddressType() != AdvertisingSetParameters.ADDRESS_TYPE_DEFAULT
                 || serverIf != 0) {
-            Utils.enforceBluetoothPrivilegedPermission(this);
+            this.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
         }
         mAdvertiseManager.startAdvertisingSet(
                 parameters,
@@ -1963,7 +1963,7 @@ public class GattService extends ProfileService {
                 this, attributionSource, "GattService getOwnAddress")) {
             return;
         }
-        enforceBluetoothPrivilegedPermission(this);
+        this.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
         mAdvertiseManager.getOwnAddress(advertiserId);
     }
 
