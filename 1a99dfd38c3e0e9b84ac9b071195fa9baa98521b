@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c331afde_7a695d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-08T03:52:00Z",
+      "side": 1,
+      "message": "unlike Himanshu, I don\u0027t know what can and cannot be done in the framework layer. However, the changes below the jni layer looks good to me.",
+      "revId": "1a99dfd38c3e0e9b84ac9b071195fa9baa98521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac571407_5220f47c",
