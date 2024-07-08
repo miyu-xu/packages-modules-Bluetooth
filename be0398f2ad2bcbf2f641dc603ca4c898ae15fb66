@@ -1,0 +1,79 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948e9a2f_36be6516",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-08T22:22:30Z",
+      "side": 1,
+      "message": "nit: Remove implicit byte cast",
+      "fixSuggestions": [
+        {
+          "fixId": "d94d311e_14279085",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "    private static final byte[] TEST_SERVICE_DATA \u003d {0xAA, 0xBB, 0xCC};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "be0398f2ad2bcbf2f641dc603ca4c898ae15fb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1441b51_869f4190",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-08T22:22:30Z",
+      "side": 1,
+      "message": "Are these random uuid or known ones ?",
+      "revId": "be0398f2ad2bcbf2f641dc603ca4c898ae15fb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "957aad1b_d777d605",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-08T22:22:30Z",
+      "side": 1,
+      "message": "nit: Is this overload really necessary ?",
+      "range": {
+        "startLine": 380,
+        "startChar": 4,
+        "endLine": 383,
+        "endChar": 0
+      },
+      "revId": "be0398f2ad2bcbf2f641dc603ca4c898ae15fb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
