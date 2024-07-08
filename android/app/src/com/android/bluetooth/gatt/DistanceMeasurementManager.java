@@ -95,15 +95,13 @@ public class DistanceMeasurementManager {
                         + params.getDevice().getAnonymizedAddress()
                         + ", method: "
                         + params.getMethodId());
-        String address = mAdapterService.getIdentityAddress(params.getDevice().getAddress());
+        String address = params.getDevice().getAddress();
         if (address == null) {
-            address = params.getDevice().getAddress();
+            Log.e(TAG, "null address in DistanceMeasurementParams");
+            invokeStartFail(
+                    callback, params.getDevice(), BluetoothStatusCodes.ERROR_NO_LE_CONNECTION);
+            return;
         }
-        logd(
-                "Get identityAddress: "
-                        + params.getDevice().getAnonymizedAddress()
-                        + " => "
-                        + BluetoothUtils.toAnonymizedAddress(address));
 
         int interval = getIntervalValue(params.getFrequency(), params.getMethodId());
         if (interval == -1) {
@@ -174,15 +172,11 @@ public class DistanceMeasurementManager {
                         + method
                         + " timeout "
                         + timeout);
-        String address = mAdapterService.getIdentityAddress(device.getAddress());
+        String address = device.getAddress();
         if (address == null) {
-            address = device.getAddress();
+            Log.e(TAG, "stopDistanceMeasurement: null address in DistanceMeasurementParams");
+            return BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL;
         }
-        logd(
-                "Get identityAddress: "
-                        + device.getAnonymizedAddress()
-                        + " => "
-                        + BluetoothUtils.toAnonymizedAddress(address));
 
         switch (method) {
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_AUTO:
