@@ -16,6 +16,24 @@
       "message": "Hi @tzupengwang@google.com\n\nI confused that the module I modify is btif_rc and stack/avct, but the build error is Heastset module, so is necessary to rebsase cl before trigger Pre-Submit？\n\nby the way, How can I run the test module HeadsetClientServiceTest and HeadsetClientStateMachineTest locally, when I run \u0027atest HeadsetClientServiceTest\u0027, it will show me the following contents, and when I choose selection 2, therer is no other errors: \"Multiple tests found: 0: BluetoothInstrumentationTests 1: GoogleBluetoothInstrumentationTests 2: All 3: Quit Please enter numbers of test to use. If none of the aboveoptions matched, keep searching for other possible tests\"",
       "revId": "5e5a97fff970cbd5b29b509eee87f24995f53c88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88054185_7e8e8c67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1988982
+      },
+      "writtenOn": "2024-07-08T03:14:14Z",
+      "side": 1,
+      "message": "mmm packages/modules/Bluetooth sucess",
+      "parentUuid": "b87e864a_199238f8",
+      "revId": "5e5a97fff970cbd5b29b509eee87f24995f53c88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
