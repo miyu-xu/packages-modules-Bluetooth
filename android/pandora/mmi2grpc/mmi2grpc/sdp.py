@@ -44,6 +44,7 @@ UUID_TO_SERVICE_NAME = {
     0x1855: "TMAS",
     # Custom UUIDs
     0xc26cf572_3369_4cf2_b5cc_d2cd130f5b2c: "Android Auto Compatibility",
+    0xe73e0001_ef1b_4e74_8291_2e4f3164f3b5: "Android Information service",
 }
 
 
@@ -136,6 +137,7 @@ class SDPProxy(ProfileProxy):
         expected_services = [
             "Generic Attribute service",
             "Generic Access",
+            "Android Information service",
             "AudioSource",
             "A/V_RemoteControlTarget",
             "A/V_RemoteControl",
@@ -154,6 +156,7 @@ class SDPProxy(ProfileProxy):
         ]
         optional_services = [
             "Generic Attribute service",
+            "Android Information service",
             "A/V_RemoteControlController",
             "Android Auto Compatibility",
             "TMAS",
