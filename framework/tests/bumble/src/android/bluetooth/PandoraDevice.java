@@ -133,6 +133,11 @@ public final class PandoraDevice extends ExternalResource {
         return SecurityGrpc.newStub(mChannel);
     }
 
+    /** Get Pandora Security blocking service */
+    public SecurityGrpc.SecurityBlockingStub securityBlocking() {
+        return SecurityGrpc.newBlockingStub(mChannel);
+    }
+
     /** Get Pandora GATT service */
     public GATTGrpc.GATTStub gatt() {
         return GATTGrpc.newStub(mChannel);
