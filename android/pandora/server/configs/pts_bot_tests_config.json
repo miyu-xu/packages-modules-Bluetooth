@@ -3128,5 +3128,7 @@
     "SUM ICS": {},
     "VCP": {}
   },
-  "flags": {}
+  "flags": {
+    "browsing_refactor": ["AVRCP/TG/MCN/CB/BV-08-C"]
+  }
 }
