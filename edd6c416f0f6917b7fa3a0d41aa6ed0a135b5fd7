@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81dc658b_1938eab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-07-08T08:34:32Z",
+      "side": 1,
+      "message": "@asapperstein@google.com I\u0027m not sure whether we can merge this now since the next release (i.e. 24Q4) won\u0027t allow any API change. Shouldn\u0027t we defer this change to 25Q2 window (i.e. after 25Q1 is cut).",
+      "revId": "edd6c416f0f6917b7fa3a0d41aa6ed0a135b5fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
