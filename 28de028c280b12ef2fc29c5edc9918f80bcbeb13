@@ -22,6 +22,30 @@
       },
       "revId": "28de028c280b12ef2fc29c5edc9918f80bcbeb13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9532815_32439f47",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-08T16:56:52Z",
+      "side": 0,
+      "message": "All of the usages of bta_hh_get_uuid16() further check if the UUID is known or not. This prevents the misuse.\nZero UUID already indicates the unknown UUID.",
+      "parentUuid": "03060876_44de56da",
+      "range": {
+        "startLine": 673,
+        "startChar": 2,
+        "endLine": 677,
+        "endChar": 3
+      },
+      "revId": "28de028c280b12ef2fc29c5edc9918f80bcbeb13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
