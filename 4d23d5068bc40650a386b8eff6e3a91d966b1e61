@@ -40,6 +40,47 @@
       ],
       "revId": "4d23d5068bc40650a386b8eff6e3a91d966b1e61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209d4ee8_0cf27fce",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-08T20:30:51Z",
+      "side": 1,
+      "message": "also, need to add `mSetFlagsRule.enableFlags(Flags.XXX);` to enable the flag for the test",
+      "range": {
+        "startLine": 501,
+        "startChar": 8,
+        "endLine": 501,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "95c477c0_04423962",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+              "range": {
+                "startLine": 502,
+                "startChar": 0,
+                "endLine": 502,
+                "endChar": 0
+              },
+              "replacement": "         setAptxVoiceSystemProperties(true, true);\n         mHeadsetService.mIsInbandRingingEnabled \u003d true;\n         assertThat(mHeadsetService.isInbandRingingEnabled()).isTrue();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d23d5068bc40650a386b8eff6e3a91d966b1e61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
