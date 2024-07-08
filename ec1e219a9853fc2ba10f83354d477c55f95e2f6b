@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "129c526b_c128d20e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-07-08T16:35:34Z",
+      "side": 1,
+      "message": "Is this to match some new BLE Audio spec change? It sounds like yes so I would probably recommend just linking to it here.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a7e77e60_fdbd21e5",
@@ -37,6 +60,23 @@
         "endLine": 590,
         "endChar": 36
       },
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a988fa0c_4f195611",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-07-08T16:35:34Z",
+      "side": 1,
+      "message": "Does this need to be behind a target SDK check?\n\nI\u0027m worried that for developers who were expecting the old set of values, you\u0027re now going to return something different and break existing users. Typically that\u0027s the sort of thing we do behind a targetSdk check so as to not break existing users.",
       "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
