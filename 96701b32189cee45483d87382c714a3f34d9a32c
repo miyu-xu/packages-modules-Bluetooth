@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e6e253_1e2cd77b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-08T19:09:24Z",
+      "side": 1,
+      "message": "I am not sure if pts-bot handles flags? Should we make it optional here?",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 35
+      },
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
