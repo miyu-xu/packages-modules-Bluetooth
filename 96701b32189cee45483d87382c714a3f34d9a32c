@@ -22,6 +22,29 @@
       },
       "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57327daa_46e45375",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-08T19:11:11Z",
+      "side": 1,
+      "message": "Consider a better naming for the variable.",
+      "range": {
+        "startLine": 514,
+        "startChar": 24,
+        "endLine": 514,
+        "endChar": 38
+      },
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
