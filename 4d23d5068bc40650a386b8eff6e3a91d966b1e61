@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b91fbb_90c74338",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2241,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-08T20:26:59Z",
+      "side": 1,
+      "message": "nit: add a log about mActiveDevice, it would be easier to know which condition let it change in band ringtone",
+      "range": {
+        "startLine": 2240,
+        "startChar": 30,
+        "endLine": 2241,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7001a050_682f5fde",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2242,
+                "startChar": 0,
+                "endLine": 2242,
+                "endChar": 0
+              },
+              "replacement": " \" ActiveDevice\u003d\" + mActiveDevice\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d23d5068bc40650a386b8eff6e3a91d966b1e61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
