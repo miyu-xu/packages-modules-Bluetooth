@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f52c40c_3152847d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-07-08T16:27:13Z",
+      "side": 1,
+      "message": "This is tangentially related, but I noticed the commands `adapter discoverable`, `adapter connectable`, `adapter set-name` don\u0027t check for `adapter_ready` before running, so the command will panic. \n\nLet\u0027s add that check here so if we run `btclient -c \u0027adapter connectable on\u0027` when the adapter is disabled, it will exit gracefully",
+      "revId": "4c65ad75ae3bc9be69cb2fbf5abe3cf7a0169394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
