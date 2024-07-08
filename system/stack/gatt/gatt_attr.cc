@@ -24,6 +24,7 @@
  ******************************************************************************/
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <deque>
 #include <map>
@@ -34,6 +35,7 @@
 #include "gatt_api.h"
 #include "gatt_int.h"
 #include "internal_include/bt_target.h"
+#include "os/system_properties.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_sec_api.h"
@@ -56,6 +58,9 @@ using namespace bluetooth;
 using gatt_sr_supported_feat_cb = base::OnceCallback<void(const RawAddress&, uint8_t)>;
 using gatt_sirk_cb = base::OnceCallback<void(tGATT_STATUS status, const RawAddress&,
                                              uint8_t sirk_type, Octet16& sirk)>;
+
+static const std::string kPropertyAndroidAPILevel = "ro.build.version.sdk";
+static const uint32_t kPropertyAndroidAPILevelDefault = 0;
 
 typedef struct {
   uint16_t op_uuid;
@@ -96,6 +101,19 @@ static tGATT_CBACK gatt_profile_cback = {
         .p_cmpl_cb = gatt_cl_op_cmpl_cback,
         .p_disc_res_cb = gatt_disc_res_cback,
         .p_disc_cmpl_cb = gatt_disc_cmpl_cback,
+        .p_req_cb = gatt_request_cback,
+        .p_enc_cmpl_cb = nullptr,
+        .p_congestion_cb = nullptr,
+        .p_phy_update_cb = nullptr,
+        .p_conn_update_cb = nullptr,
+        .p_subrate_chg_cb = nullptr,
+};
+
+static tGATT_CBACK custom_profile_cback = {
+        .p_conn_cb = nullptr,
+        .p_cmpl_cb = nullptr,
+        .p_disc_res_cb = nullptr,
+        .p_disc_cmpl_cb = nullptr,
         .p_req_cb = gatt_request_cback,
         .p_enc_cmpl_cb = nullptr,
         .p_congestion_cb = nullptr,
@@ -262,6 +280,18 @@ tGATT_STATUS read_attr_value(uint16_t conn_id, uint16_t handle, tGATT_VALUE* p_v
   if (handle == gatt_cb.handle_of_h_r) {
     /* GATT_UUID_GATT_SRV_CHGD */
     return GATT_READ_NOT_PERMIT;
+  }
+
+  if (com::android::bluetooth::flags::android_os_identifier() &&
+      handle == gatt_cb.handle_of_aosp_ver) {
+    if (is_long) {
+      return GATT_NOT_LONG;
+    }
+
+    UINT32_TO_STREAM(p, os::GetSystemPropertyUint32(kPropertyAndroidAPILevel,
+                                                    kPropertyAndroidAPILevelDefault));
+    p_value->len = 4;
+    return GATT_SUCCESS;
   }
 
   return GATT_NOT_FOUND;
@@ -467,6 +497,38 @@ void gatt_profile_db_init(void) {
   gatt_cb.gatt_cl_supported_feat_mask |= BLE_GATT_CL_SUP_FEAT_CACHING_BITMASK;
 
   log::verbose("gatt_if={} EATT supported", gatt_cb.gatt_if);
+
+  // Add Android OS identifier if API level is defined.
+  if (com::android::bluetooth::flags::android_os_identifier() &&
+      os::GetSystemPropertyUint32(kPropertyAndroidAPILevel, kPropertyAndroidAPILevelDefault)) {
+    tmp.fill(0xc5);  // any number is fine here
+    gatt_cb.custom_if =
+            GATT_Register(Uuid::From128BitBE(tmp), "CustomDb", &custom_profile_cback, false);
+    GATT_StartIf(gatt_cb.custom_if);
+
+    uint8_t custom_uuid[] = {0xb5, 0xf3, 0x64, 0x31, 0x4f, 0x2e, 0x91, 0x82,
+                             0x74, 0x4e, 0x1b, 0xef, 0x01, 0x00, 0x3e, 0xe7};
+    uint8_t aosp_ver_uuid[] = {0xb5, 0xf3, 0x64, 0x31, 0x4f, 0x2e, 0x91, 0x82,
+                               0x74, 0x4e, 0x1b, 0xef, 0x02, 0x00, 0x3e, 0xe7};
+
+    btgatt_db_element_t custom_service[] = {
+            {
+                    .uuid = Uuid::From128BitLE(custom_uuid),
+                    .type = BTGATT_DB_PRIMARY_SERVICE,
+            },
+            {
+                    .uuid = Uuid::From128BitLE(aosp_ver_uuid),  // Custom Char UUID
+                    .type = BTGATT_DB_CHARACTERISTIC,
+                    .properties = GATT_CHAR_PROP_BIT_READ,
+                    .permissions = GATT_PERM_READ_IF_ENCRYPTED_OR_DISCOVERABLE,  // GATT_PERM_READ,
+            }};
+    if (GATTS_AddService(gatt_cb.custom_if, custom_service,
+                         sizeof(custom_service) / sizeof(btgatt_db_element_t)) !=
+        GATT_SERVICE_STARTED) {
+      log::warn("Unable to add Custom server service custom_if:{}", gatt_cb.custom_if);
+    }
+    gatt_cb.handle_of_aosp_ver = custom_service[1].attribute_handle;
+  }
 }
 
 /*******************************************************************************
