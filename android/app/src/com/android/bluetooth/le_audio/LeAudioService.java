@@ -18,9 +18,9 @@
 package com.android.bluetooth.le_audio;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
-import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
@@ -5092,7 +5092,7 @@ public class LeAudioService extends ProfileService {
                 return BluetoothLeAudio.AUDIO_LOCATION_INVALID;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getAudioLocation(device);
         }
 
@@ -5105,7 +5105,7 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.isInbandRingtoneEnabled(groupId);
         }
 
@@ -5120,7 +5120,7 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.setConnectionPolicy(device, connectionPolicy);
         }
 
@@ -5134,7 +5134,7 @@ public class LeAudioService extends ProfileService {
                 return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getConnectionPolicy(device);
         }
 
@@ -5149,7 +5149,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.setCcidInformation(userUuid, ccid, contextType);
         }
 
@@ -5176,7 +5176,7 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.groupAddNode(groupId, device);
         }
 
@@ -5189,7 +5189,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.setInCall(inCall);
         }
 
@@ -5203,7 +5203,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.setInactiveForHfpHandover(hfpHandoverDevice);
         }
 
@@ -5218,7 +5218,7 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.groupRemoveNode(groupId, device);
         }
 
@@ -5231,7 +5231,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.setVolume(volume);
         }
 
@@ -5245,7 +5245,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             synchronized (service.mLeAudioCallbacks) {
                 service.mLeAudioCallbacks.register(callback);
             }
@@ -5265,7 +5265,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             synchronized (service.mLeAudioCallbacks) {
                 service.mLeAudioCallbacks.unregister(callback);
             }
@@ -5282,7 +5282,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             synchronized (service.mBroadcastCallbacks) {
                 service.mBroadcastCallbacks.register(callback);
             }
@@ -5299,7 +5299,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             synchronized (service.mBroadcastCallbacks) {
                 service.mBroadcastCallbacks.unregister(callback);
             }
@@ -5313,7 +5313,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.createBroadcast(broadcastSettings);
         }
 
@@ -5324,7 +5324,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.stopBroadcast(broadcastId);
         }
 
@@ -5338,7 +5338,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.updateBroadcast(broadcastId, broadcastSettings);
         }
 
@@ -5349,7 +5349,7 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.isPlaying(broadcastId);
         }
 
@@ -5361,7 +5361,7 @@ public class LeAudioService extends ProfileService {
                 return Collections.emptyList();
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getAllBroadcastMetadata();
         }
 
@@ -5372,7 +5372,7 @@ public class LeAudioService extends ProfileService {
                 return 0;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getMaximumNumberOfBroadcasts();
         }
 
@@ -5383,7 +5383,7 @@ public class LeAudioService extends ProfileService {
                 return 0;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getMaximumStreamsPerBroadcast();
         }
 
@@ -5394,7 +5394,7 @@ public class LeAudioService extends ProfileService {
                 return 0;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getMaximumSubgroupsPerBroadcast();
         }
 
@@ -5405,7 +5405,7 @@ public class LeAudioService extends ProfileService {
                 return null;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getCodecStatus(groupId);
         }
 
@@ -5420,7 +5420,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.setCodecConfigPreference(groupId, inputCodecConfig, outputCodecConfig);
         }
 
@@ -5431,7 +5431,7 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
 
-            enforceBluetoothPrivilegedPermission(service);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.isBroadcastActive();
         }
     }
