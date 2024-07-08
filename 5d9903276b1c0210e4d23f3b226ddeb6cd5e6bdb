@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e77a442_3e4d63f2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-08T17:31:51Z",
+      "side": 1,
+      "message": "If the device was active, we call again setActive.\n\nIs this expected to call twice with the same device ?",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 98
+      },
+      "revId": "5d9903276b1c0210e4d23f3b226ddeb6cd5e6bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
