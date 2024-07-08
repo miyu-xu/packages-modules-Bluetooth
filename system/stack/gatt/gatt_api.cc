@@ -24,6 +24,7 @@
 #define LOG_TAG "gatt_api"
 
 #include "stack/include/gatt_api.h"
+#include "stack/include/ais_api.h"
 
 #include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
@@ -319,7 +320,8 @@ tGATT_STATUS GATTS_AddService(tGATT_IF gatt_if, btgatt_db_element_t* service, in
   if (elem.type == GATT_UUID_PRI_SERVICE && gatt_cb.over_br_enabled) {
     Uuid* p_uuid = gatts_get_service_uuid(elem.p_db);
     if (*p_uuid != Uuid::From16Bit(UUID_SERVCLASS_GMCS_SERVER) &&
-        *p_uuid != Uuid::From16Bit(UUID_SERVCLASS_GTBS_SERVER)) {
+        *p_uuid != Uuid::From16Bit(UUID_SERVCLASS_GTBS_SERVER) &&
+        *p_uuid != ANDROID_INFORMATION_SERVICE_UUID) {
       elem.sdp_handle = gatt_add_sdp_record(*p_uuid, elem.s_hdl, elem.e_hdl);
     } else {
       elem.sdp_handle = 0;
