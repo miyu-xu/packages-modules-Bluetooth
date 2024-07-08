@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6232c61_b80a73bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2024-07-08T19:36:17Z",
+      "side": 1,
+      "message": "I think this can be abandoned now that CL:3108464 has merged.",
+      "parentUuid": "017490e4_e30dfeec",
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f7a0e8b_458fdec9",
         "filename": "system/types/bluetooth/uuid.cc",
         "patchSetId": 4
