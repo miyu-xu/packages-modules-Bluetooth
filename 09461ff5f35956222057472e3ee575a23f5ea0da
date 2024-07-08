@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06165d59_6bd6fadf",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-08T20:20:24Z",
+      "side": 1,
+      "message": "nit: maybe better name: update_active_device_in_band_ringtone because the AG always provide in band ringtone when 1 HFP device connected",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 38
+      },
+      "revId": "09461ff5f35956222057472e3ee575a23f5ea0da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3922610_519495bd",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-08T20:20:24Z",
+      "side": 1,
+      "message": "nit: update similarly",
+      "range": {
+        "startLine": 132,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 110
+      },
+      "revId": "09461ff5f35956222057472e3ee575a23f5ea0da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
