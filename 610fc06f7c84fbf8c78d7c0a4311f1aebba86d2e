@@ -16,6 +16,24 @@
       "message": "Consider adding the fuzzer annotations in the corresponding bp fuzz_config (vector, service_privilege, users, etc). Example is keystoreGetWifiHidl_fuzzer definition in https://cs.android.com/android/platform/superproject/main/+/main:system/security/keystore/tests/fuzzer/Android.bp;l\u003d50?q\u003dfuzzer%20users%20vector%20file:bp\u0026ss\u003dandroid.",
       "revId": "610fc06f7c84fbf8c78d7c0a4311f1aebba86d2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36b39f2_45ed4538",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958513
+      },
+      "writtenOn": "2024-07-09T21:03:24Z",
+      "side": 1,
+      "message": "Fuzzer annotations have been added to the fuzzers.textpb file (cl/648776128). Should they be added to the fuzz_config here as well?",
+      "parentUuid": "5dda984d_6ec85ba3",
+      "revId": "610fc06f7c84fbf8c78d7c0a4311f1aebba86d2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
