@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d88e12_6cfb0a87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-09T16:46:42Z",
+      "side": 1,
+      "message": "I think you need a line for the flag\n\n```\nFlag: com.android.bluetooth.flags.rfcomm_always_disc_initiator_in_disc_wait_ua\n```",
+      "revId": "bf2f5cf2e705f79aa41984874df0f6051457a15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a2dcd0b7_ef432d34",

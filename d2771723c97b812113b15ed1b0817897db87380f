@@ -16,6 +16,24 @@
       "message": "add rfcomm DRI for visibility",
       "revId": "d2771723c97b812113b15ed1b0817897db87380f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b6a8a26_31e75a56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-09T16:46:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1489be42_1062aa4a",
+      "revId": "d2771723c97b812113b15ed1b0817897db87380f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
