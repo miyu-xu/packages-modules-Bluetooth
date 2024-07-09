@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f5fc9a8_5b3a91b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-09T05:42:46Z",
+      "side": 1,
+      "message": "Yes it does\n```\nnipperkin-rev4 ~ # btclient -c get-address\nbtclient:error: Command failed: Default adapter 0 is not enabled. Enable the adapter before using this command.\nError: \"failed process command\"\n```",
+      "parentUuid": "55a521a3_42686014",
+      "revId": "4c65ad75ae3bc9be69cb2fbf5abe3cf7a0169394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f52c40c_3152847d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-07-08T16:27:13Z",
       "side": 1,
       "message": "This is tangentially related, but I noticed the commands `adapter discoverable`, `adapter connectable`, `adapter set-name` don\u0027t check for `adapter_ready` before running, so the command will panic. \n\nLet\u0027s add that check here so if we run `btclient -c \u0027adapter connectable on\u0027` when the adapter is disabled, it will exit gracefully",
+      "revId": "4c65ad75ae3bc9be69cb2fbf5abe3cf7a0169394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0163d6b8_3e4f204f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-09T05:42:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f52c40c_3152847d",
       "revId": "4c65ad75ae3bc9be69cb2fbf5abe3cf7a0169394",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
