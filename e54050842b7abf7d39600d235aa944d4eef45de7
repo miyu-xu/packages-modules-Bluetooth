@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0258441a_b2bb090e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-09T15:54:58Z",
+      "side": 1,
+      "message": "This should be 0. We don\u0027t want to be waking up unnecessarily.",
+      "fixSuggestions": [
+        {
+          "fixId": "8f71246c_00efecdb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "#define BTA_HH_UHID_POLL_PERIOD2_MS 0\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
