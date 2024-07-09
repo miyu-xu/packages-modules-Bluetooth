@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f74b728a_53c96713",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-09T22:08:55Z",
+      "side": 1,
+      "message": "I\u0027m not too familiar with AVRCP specs, but does this `scope` check change the behavior, or is it part of the \"strengthening\" of our code?\n\nIn the original code in `notifyChanged`, `service.notifyChildrenChanged` is called as long as `node.getScope() !\u003d BROWSE_SCOPE_NOW_PLAYING`.\n\nNow, an extra check against `BROWSE_SCOPE_VFS` and `BROWSE_SCOPE_PLAYER_LIST` is being added.",
+      "range": {
+        "startLine": 351,
+        "startChar": 8,
+        "endLine": 351,
+        "endChar": 17
+      },
+      "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5aff79a_961cf321",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-09T22:08:55Z",
+      "side": 1,
+      "message": "`\u0026\u0026` instead of `||`, otherwise this always evaluates to `true`?",
+      "range": {
+        "startLine": 352,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
