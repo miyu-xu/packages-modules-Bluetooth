@@ -70,6 +70,24 @@
       "parentUuid": "761c2b72_d4a464b9",
       "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a7a70e_c787052b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-09T22:07:54Z",
+      "side": 1,
+      "message": "After 2nd look, this test is already using a testLooper, therefor we only need to call dispatchAll wherever you want to call `waitForLooperToFinishScheduledTask`",
+      "parentUuid": "0c2335fe_daf80ed6",
+      "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
