@@ -16,6 +16,24 @@
       "message": "Rather than introduce synchronicity in the Cleanup methods, which could introduce other issues down the line, can you add a \u0027Init\u0027 flag to mimic the behavior that previously existed (sBluetoothA2dpInterface !\u003d nullptr).",
       "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a6fb2b_2b13e365",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-09T20:36:48Z",
+      "side": 1,
+      "message": "Another option is to invoke the cleanup steps in BtifAvSink::Init, and remove the cleanup call entirely from the JNI interface",
+      "parentUuid": "7bc41a06_ef5b9047",
+      "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
