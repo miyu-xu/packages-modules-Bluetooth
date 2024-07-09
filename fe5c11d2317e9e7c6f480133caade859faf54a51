@@ -84,6 +84,30 @@
       },
       "revId": "fe5c11d2317e9e7c6f480133caade859faf54a51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87514b73_1fdd93b8",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-07-09T13:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f77af90_759cc020",
+      "range": {
+        "startLine": 857,
+        "startChar": 14,
+        "endLine": 857,
+        "endChar": 18
+      },
+      "revId": "fe5c11d2317e9e7c6f480133caade859faf54a51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
