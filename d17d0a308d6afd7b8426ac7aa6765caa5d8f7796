@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb6810e9_09940de6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-09T17:37:36Z",
+      "side": 1,
+      "message": "Enforcing the specialization of the return value as a tBTM_STATUS",
+      "revId": "d17d0a308d6afd7b8426ac7aa6765caa5d8f7796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
