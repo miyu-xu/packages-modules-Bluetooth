@@ -79,6 +79,24 @@
       "message": "Does this need to be behind a target SDK check?\n\nI\u0027m worried that for developers who were expecting the old set of values, you\u0027re now going to return something different and break existing users. Typically that\u0027s the sort of thing we do behind a targetSdk check so as to not break existing users.",
       "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa5b3aa_aac2a6d7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-09T06:40:23Z",
+      "side": 1,
+      "message": "Ok, I got this. Which SDK version should I use?",
+      "parentUuid": "a988fa0c_4f195611",
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
