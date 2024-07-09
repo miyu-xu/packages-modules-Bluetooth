@@ -22,6 +22,30 @@
       },
       "revId": "5d9903276b1c0210e4d23f3b226ddeb6cd5e6bdb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c1aa8de_0619edb5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-09T11:24:05Z",
+      "side": 1,
+      "message": "It will return early: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/a2dp/A2dpService.java;drc\u003dca2cee834e242c84396efe5b2d41bd2d4b6b7ae5;l\u003d567",
+      "parentUuid": "8e77a442_3e4d63f2",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 98
+      },
+      "revId": "5d9903276b1c0210e4d23f3b226ddeb6cd5e6bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
