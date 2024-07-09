@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d80276_d67a8c17",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-09T12:25:47Z",
+      "side": 1,
+      "message": "Hi @zyanwu@google.com could you try moving this to be just after the usleep?",
+      "range": {
+        "startLine": 214,
+        "startChar": 6,
+        "endLine": 214,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4a290a59_b01699d8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 214,
+                "startChar": 0,
+                "endLine": 215,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 221,
+                "startChar": 0,
+                "endLine": 221,
+                "endChar": 0
+              },
+              "replacement": "        p_uhid-\u003eready_for_data \u003d true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ba1c66238abed8ea315afcfeee0dca7d72df0abe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
