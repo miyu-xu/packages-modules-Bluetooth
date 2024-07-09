@@ -34,6 +34,24 @@
       "parentUuid": "083386c3_847f183f",
       "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "761c2b72_d4a464b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-09T17:18:45Z",
+      "side": 1,
+      "message": "`waitForLooperToFinishScheduledTask` is a **very bad** abstraction that only wait for already scheduled task.  \nIf the scheduled task post a new task, it will not be waited for. (since it is posted to be executed after the call for `waitForLooperToFinishScheduledTask` returns.\n\nThe only solution so fare I know for this problem is to inject a testLooper and to make sure it is run entirely.\n\nLike for example in [HeadsetServiceAndStateMachineTest](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java;l\u003d350;drc\u003de31fbc81facc701f335ddb7f0bb106652bafbca8).\n\nThis solution sometimes requires making a small modification in the constructor to be able to inject it.\n\nI have started doing the migration for the most flaky test and this is very working great (A2dpServiceTest AdapterServiceTest).\nThe lazy way of using it is by calling dispatchAll, that will return when there is no message, the other way is to explicitly [list the message](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java;l\u003d539;drc\u003d8b2b9d3bf80066e6e51cea71698789d8b39cbe38) to be sent if you want to have a more strict control of what is happening.\n\nIt is also possible to trigger timeout by [modifying the looper time](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java;l\u003d629;drc\u003d8b2b9d3bf80066e6e51cea71698789d8b39cbe38)",
+      "parentUuid": "c5b511c5_67ee5251",
+      "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
