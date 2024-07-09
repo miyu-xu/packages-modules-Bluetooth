@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01281992_8df7c57b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-09T17:36:37Z",
+      "side": 1,
+      "message": "The callback already has the proper type eliminating the need to convert to the underlying uint8_t.\n\n```\n/* BLE adv payload filtering param setup complete callback */\nusing tBTM_BLE_PF_PARAM_CB \u003d\n        base::Callback\u003cvoid(uint8_t /* avbl_space */, tBTM_BLE_SCAN_COND_OP /* action */,\n                            tBTM_STATUS /* btm_status */)\u003e;\n```",
+      "revId": "507308f3986c9124b2b49984158b65d4cdeac5d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
