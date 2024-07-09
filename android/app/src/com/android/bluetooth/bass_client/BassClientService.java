@@ -902,6 +902,36 @@ public class BassClientService extends ProfileService {
         return false;
     }
 
+    private boolean isAnyConnectedDeviceSwitchingSource() {
+        for (BluetoothDevice device : getConnectedDevices()) {
+            synchronized (mStateMachines) {
+                BassClientStateMachine sm = getOrCreateStateMachine(device);
+                if (sm != null && sm.hasPendingSwitchingSourceOperation()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void checkAndSetGroupAllowedContextMask(BluetoothDevice sink) {
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService == null) {
+            return;
+        }
+
+        if (leaudioAllowedContextMask()) {
+            /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
+            if (!mIsAllowedContextOfActiveGroupModified && isDevicePartOfActiveUnicastGroup(sink)) {
+                leAudioService.setActiveGroupAllowedContextMask(
+                        BluetoothLeAudio.CONTEXTS_ALL
+                                & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
+                        BluetoothLeAudio.CONTEXTS_ALL);
+                mIsAllowedContextOfActiveGroupModified = true;
+            }
+        }
+    }
+
     private void checkAndResetGroupAllowedContextMask() {
         LeAudioService leAudioService = mServiceFactory.getLeAudioService();
         if (leAudioService == null) {
@@ -911,7 +941,8 @@ public class BassClientService extends ProfileService {
         if (leaudioAllowedContextMask()) {
             /* Restore allowed context mask for Unicast */
             if (mIsAllowedContextOfActiveGroupModified
-                    && !hasAnyConnectedDeviceExternalBroadcastSource()) {
+                    && !hasAnyConnectedDeviceExternalBroadcastSource()
+                    && !isAnyConnectedDeviceSwitchingSource()) {
                 leAudioService.setActiveGroupAllowedContextMask(
                         BluetoothLeAudio.CONTEXTS_ALL, BluetoothLeAudio.CONTEXTS_ALL);
                 mIsAllowedContextOfActiveGroupModified = false;
@@ -935,17 +966,7 @@ public class BassClientService extends ProfileService {
                 leAudioService.activeBroadcastAssistantNotification(true);
             }
 
-            if (leaudioAllowedContextMask()) {
-                /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
-                if (!mIsAllowedContextOfActiveGroupModified
-                        && isDevicePartOfActiveUnicastGroup(sink)) {
-                    leAudioService.setActiveGroupAllowedContextMask(
-                            BluetoothLeAudio.CONTEXTS_ALL
-                                    & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
-                            BluetoothLeAudio.CONTEXTS_ALL);
-                    mIsAllowedContextOfActiveGroupModified = true;
-                }
-            }
+            checkAndSetGroupAllowedContextMask(sink);
         } else {
             /* Assistant become inactive */
             if (mIsAssistantActive && mPausedBroadcastSinks.isEmpty()) {
@@ -2608,6 +2629,10 @@ public class BassClientService extends ProfileService {
                         device, BassClientStateMachine.ADD_BCAST_SOURCE, sourceMetadata);
             }
 
+            if (!isLocalBroadcast(sourceMetadata)) {
+                checkAndSetGroupAllowedContextMask(device);
+            }
+
             sEventLogger.logd(
                     TAG,
                     "Add Broadcast Source: "
@@ -3552,6 +3577,8 @@ public class BassClientService extends ProfileService {
 
         void notifySourceAddFailed(
                 BluetoothDevice sink, BluetoothLeBroadcastMetadata source, int reason) {
+            sService.checkAndResetGroupAllowedContextMask();
+
             sEventLogger.loge(
                     TAG,
                     "notifySourceAddFailed: sink: "
