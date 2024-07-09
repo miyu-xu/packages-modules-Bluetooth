@@ -46,6 +46,30 @@
       },
       "revId": "5d9903276b1c0210e4d23f3b226ddeb6cd5e6bdb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "495fbce8_855761b4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-09T17:22:21Z",
+      "side": 1,
+      "message": "Seems like this case is handled by a2dpService, and I understand that since external API can call it.\n\nBut I feel weird that our internal code make this call twice.\n\nResolving as this is not an issue but more an optimization of the logic",
+      "parentUuid": "3c1aa8de_0619edb5",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 98
+      },
+      "revId": "5d9903276b1c0210e4d23f3b226ddeb6cd5e6bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
