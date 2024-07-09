@@ -16,6 +16,24 @@
       "message": "I still think it\u0027s better to design `bta_hh_get_uuid16` to force the caller to check for the mismatched UUID e.g. via boolean or std::optional, rather than trusting that the caller would do that later. \nCurrently those places might be guarded but it\u0027s easy to make a modification in the future that would in some way bypass it.",
       "revId": "53a58e3bee0d37a12d1986390decd1bfaaf5715c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e023f137_85d26a37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-09T23:26:53Z",
+      "side": 1,
+      "message": "0 UUID already indicates invalid UUID. There is no real improvement in this function returning a boolean. Callers can choose to ignore the output of the function returning boolean as well.",
+      "parentUuid": "e6e046e4_1f6638a5",
+      "revId": "53a58e3bee0d37a12d1986390decd1bfaaf5715c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
