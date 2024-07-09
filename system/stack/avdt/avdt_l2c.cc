@@ -105,8 +105,8 @@ static void avdt_sec_check_complete_term(const RawAddress* bd_addr, tBT_TRANSPOR
  * Returns          void
  *
  ******************************************************************************/
-static void avdt_sec_check_complete_orig(const RawAddress* bd_addr, tBT_TRANSPORT transport,
-                                         void* /* p_ref_data */, uint8_t res) {
+static void avdt_sec_check_complete_orig(const RawAddress* bd_addr, tBT_TRANSPORT trasnport,
+                                         void* /* p_ref_data */, tBTM_STATUS res) {
   AvdtpCcb* p_ccb = NULL;
   AvdtpTransportChannel* p_tbl;
 
