@@ -188,7 +188,7 @@ public class BluetoothInCallService extends InCallService {
         @Override
         public void onReceive(Context context, Intent intent) {
             synchronized (LOCK) {
-                if (intent.getAction() != BluetoothAdapter.ACTION_STATE_CHANGED) {
+                if (!Objects.equals(intent.getAction(), BluetoothAdapter.ACTION_STATE_CHANGED)) {
                     Log.w(TAG, "BluetoothAdapterReceiver: Intent action " + intent.getAction());
                     return;
                 }
@@ -203,7 +203,6 @@ public class BluetoothInCallService extends InCallService {
             }
         }
     }
-    ;
 
     /** Receives events for global state changes of the bluetooth adapter. */
     // TODO: The code is moved from Telecom stack. Since we're running in the BT process itself,
