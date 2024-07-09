@@ -52,6 +52,24 @@
       "parentUuid": "7bc41a06_ef5b9047",
       "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "579acc1e_7d565d6f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-09T23:02:17Z",
+      "side": 1,
+      "message": "tracing back the call to initNative, it is invoked once when entering the TURNING_ON state, but we should not use this info to remove the call, it is too circumstancial",
+      "parentUuid": "227cba29_0496da12",
+      "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
