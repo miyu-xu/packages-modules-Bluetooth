@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cc22ff5_99ae8470",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-07-09T13:17:59Z",
+      "side": 1,
+      "message": "Note we could further deduplicate this code by removing the `if (is_source_)` check and just having one copy of this identical logic.",
+      "range": {
+        "startLine": 1088,
+        "startChar": 0,
+        "endLine": 1097,
+        "endChar": 7
+      },
+      "revId": "3a53903643c8ffcbb0ac307693382eb39622fe91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
