@@ -96,7 +96,7 @@ import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
-/** Broacast Assistant Scan Service */
+/** Broadcast Assistant Scan Service */
 public class BassClientService extends ProfileService {
     private static final String TAG = BassClientService.class.getSimpleName();
     private static final int MAX_BASS_CLIENT_STATE_MACHINES = 10;
@@ -1039,7 +1039,7 @@ public class BassClientService extends ProfileService {
                 Log.e(
                         TAG,
                         "Couldn't find broadcast metadata for device: "
-                                + sink.getAnonymizedAddress()
+                                + sink
                                 + ", and sourceId:"
                                 + sourceId);
             }
@@ -1532,7 +1532,7 @@ public class BassClientService extends ProfileService {
         }
         synchronized (mStateMachines) {
             for (BluetoothDevice device : bondedDevices) {
-                final ParcelUuid[] featureUuids = device.getUuids();
+                final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
                 if (!Utils.arrayContains(featureUuids, BluetoothUuid.BASS)) {
                     continue;
                 }

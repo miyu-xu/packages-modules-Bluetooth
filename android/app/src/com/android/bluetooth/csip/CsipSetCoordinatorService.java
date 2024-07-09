@@ -261,7 +261,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return false;
         }
-        ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
+        final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
         if (!Utils.arrayContains(featureUuids, BluetoothUuid.COORDINATED_SET)) {
             Log.e(TAG, "Cannot connect to " + device + " : Remote does not have CSIS UUID");
             return false;
@@ -357,7 +357,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
         synchronized (mStateMachines) {
             for (BluetoothDevice device : bondedDevices) {
-                final ParcelUuid[] featureUuids = device.getUuids();
+                final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
                 if (!Utils.arrayContains(featureUuids, BluetoothUuid.COORDINATED_SET)) {
                     continue;
                 }

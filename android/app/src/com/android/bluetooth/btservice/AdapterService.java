@@ -978,6 +978,14 @@ public class AdapterService extends Service {
                 remoteDeviceInfoBytes);
     }
 
+    public boolean sdpSearch(BluetoothDevice device, ParcelUuid uuid) {
+        if (mSdpManager == null) {
+            return false;
+        }
+        mSdpManager.sdpSearch(device, uuid);
+        return true;
+    }
+
     @RequiresPermission(
             allOf = {
                 android.Manifest.permission.BLUETOOTH_CONNECT,
@@ -1667,8 +1675,8 @@ public class AdapterService extends Service {
     @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     boolean isProfileSupported(BluetoothDevice device, int profile) {
-        ParcelUuid[] remoteDeviceUuids = getRemoteUuids(device);
-        ParcelUuid[] localDeviceUuids = mAdapterProperties.getUuids();
+        final ParcelUuid[] remoteDeviceUuids = getRemoteUuids(device);
+        final ParcelUuid[] localDeviceUuids = mAdapterProperties.getUuids();
         if (remoteDeviceUuids == null || remoteDeviceUuids.length == 0) {
             Log.e(
                     TAG,
@@ -2232,12 +2240,9 @@ public class AdapterService extends Service {
     }
 
     /**
-     * Get an metadata of given device and key
+     * Set metadata value for the given device and key
      *
-     * @param device Bluetooth device
-     * @param key Metadata key
-     * @param value Metadata value
-     * @return if metadata is set successfully
+     * @return true if metadata is set successfully
      */
     public boolean setMetadata(BluetoothDevice device, int key, byte[] value) {
         if (value == null || value.length > BluetoothDevice.METADATA_MAX_LENGTH) {
@@ -2247,10 +2252,8 @@ public class AdapterService extends Service {
     }
 
     /**
-     * Get an metadata of given device and key
+     * Get metadata of given device and key
      *
-     * @param device Bluetooth device
-     * @param key Metadata key
      * @return value of given device and key combination
      */
     public byte[] getMetadata(BluetoothDevice device, int key) {
@@ -3064,8 +3067,7 @@ public class AdapterService extends Service {
                 return 0;
             }
 
-            DeviceProperties deviceProp = service.mRemoteDevices.getDeviceProperties(device);
-            return deviceProp != null ? deviceProp.getBluetoothClass() : 0;
+            return service.getRemoteClass(device);
         }
 
         @Override
@@ -3078,7 +3080,7 @@ public class AdapterService extends Service {
                 return Collections.emptyList();
             }
 
-            ParcelUuid[] parcels = service.getRemoteUuids(device);
+            final ParcelUuid[] parcels = service.getRemoteUuids(device);
             if (parcels == null) {
                 return null;
             }
@@ -3273,8 +3275,7 @@ public class AdapterService extends Service {
                 return BluetoothDevice.ACCESS_UNKNOWN;
             }
 
-            return service.getDeviceAccessFromPrefs(
-                    device, PHONEBOOK_ACCESS_PERMISSION_PREFERENCE_FILE);
+            return service.getPhonebookAccessPermission(device);
         }
 
         @Override
@@ -3305,8 +3306,7 @@ public class AdapterService extends Service {
                 return BluetoothDevice.ACCESS_UNKNOWN;
             }
 
-            return service.getDeviceAccessFromPrefs(
-                    device, MESSAGE_ACCESS_PERMISSION_PREFERENCE_FILE);
+            return service.getMessageAccessPermission(device);
         }
 
         @Override
@@ -3336,7 +3336,7 @@ public class AdapterService extends Service {
                 return BluetoothDevice.ACCESS_UNKNOWN;
             }
 
-            return service.getDeviceAccessFromPrefs(device, SIM_ACCESS_PERMISSION_PREFERENCE_FILE);
+            return service.getSimAccessPermission(device);
         }
 
         @Override
@@ -3445,12 +3445,7 @@ public class AdapterService extends Service {
                             service, source, "AdapterService sdpSearch")) {
                 return false;
             }
-
-            if (service.mSdpManager == null) {
-                return false;
-            }
-            service.mSdpManager.sdpSearch(device, uuid);
-            return true;
+            return service.sdpSearch(device, uuid);
         }
 
         @Override
@@ -3786,11 +3781,7 @@ public class AdapterService extends Service {
             }
 
             enforceBluetoothPrivilegedPermission(service);
-
-            if (value.length > BluetoothDevice.METADATA_MAX_LENGTH) {
-                return false;
-            }
-            return service.mDatabaseManager.setCustomMeta(device, key, value);
+            return service.setMetadata(device, key, value);
         }
 
         @Override
@@ -4943,14 +4934,10 @@ public class AdapterService extends Service {
      */
     @VisibleForTesting
     public int getBondState(BluetoothDevice device) {
-        DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
-        if (deviceProp == null) {
-            return BluetoothDevice.BOND_NONE;
-        }
-        return deviceProp.getBondState();
+        return mRemoteDevices.getBondState(device);
     }
 
-    int getConnectionState(BluetoothDevice device) {
+    public int getConnectionState(BluetoothDevice device) {
         final String address = device.getAddress();
         if (Flags.apiGetConnectionStateUsingIdentityAddress()) {
             int connectionState = mNativeInterface.getConnectionState(getBytesFromAddress(address));
@@ -5501,7 +5488,7 @@ public class AdapterService extends Service {
                                 == BluetoothProfile.STATE_CONNECTED
                         || mCsipSetCoordinatorService.getConnectionState(device)
                                 == BluetoothProfile.STATE_CONNECTING)) {
-            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting Coordinater Set Profile");
+            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting Coordinator Set Profile");
             mCsipSetCoordinatorService.disconnect(device);
         }
         if (mLeAudioService != null
@@ -5540,14 +5527,11 @@ public class AdapterService extends Service {
      * @return remote device name
      */
     public String getRemoteName(BluetoothDevice device) {
-        if (mRemoteDevices == null) {
-            return null;
-        }
-        DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
-        if (deviceProp == null) {
-            return null;
-        }
-        return deviceProp.getName();
+        return mRemoteDevices.getName(device);
+    }
+
+    public int getRemoteClass(BluetoothDevice device) {
+        return mRemoteDevices.getBluetoothClass(device);
     }
 
     /**
@@ -5557,11 +5541,7 @@ public class AdapterService extends Service {
      * @return the uuids of the remote device
      */
     public ParcelUuid[] getRemoteUuids(BluetoothDevice device) {
-        DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
-        if (deviceProp == null) {
-            return null;
-        }
-        return deviceProp.getUuids();
+        return mRemoteDevices.getUuids(device);
     }
 
     public Set<IBluetoothConnectionCallback> getBluetoothConnectionCallbacks() {
@@ -5654,6 +5634,18 @@ public class AdapterService extends Service {
         } finally {
             Binder.restoreCallingIdentity(token);
         }
+    }
+
+    public int getPhonebookAccessPermission(BluetoothDevice device) {
+        return getDeviceAccessFromPrefs(device, PHONEBOOK_ACCESS_PERMISSION_PREFERENCE_FILE);
+    }
+
+    public int getMessageAccessPermission(BluetoothDevice device) {
+        return getDeviceAccessFromPrefs(device, MESSAGE_ACCESS_PERMISSION_PREFERENCE_FILE);
+    }
+
+    public int getSimAccessPermission(BluetoothDevice device) {
+        return getDeviceAccessFromPrefs(device, SIM_ACCESS_PERMISSION_PREFERENCE_FILE);
     }
 
     int getDeviceAccessFromPrefs(BluetoothDevice device, String prefFile) {
@@ -6902,10 +6894,7 @@ public class AdapterService extends Service {
      * @return int device type
      */
     public int getRemoteType(BluetoothDevice device) {
-        DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
-        return deviceProp != null
-                ? deviceProp.getDeviceType()
-                : BluetoothDevice.DEVICE_TYPE_UNKNOWN;
+        return mRemoteDevices.getType(device);
     }
 
     /**
