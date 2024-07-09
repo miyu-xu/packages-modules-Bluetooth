@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b11a0ed_28c25144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T20:04:54Z",
+      "side": 1,
+      "message": "THe pre-submit test does pass on a separate invocation. Will re-try the pre-submit after completion.",
+      "revId": "89958502b28351ee7375445a759b30098270bef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ddb89a7_a7e09337",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-07-09T18:55:10Z",
       "side": 1,
       "message": "Unrelated question (but a bit related):\n\nif we are already in the main_thread, why do we post those too ? @henrichataing@google.com ?",
+      "range": {
+        "startLine": 1523,
+        "startChar": 1,
+        "endLine": 1526,
+        "endChar": 72
+      },
+      "revId": "89958502b28351ee7375445a759b30098270bef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "649bf624_8bda3df6",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T20:04:54Z",
+      "side": 1,
+      "message": "I believe initNative \u0026 init calls are on the jni thread and the cleanup is on the main thread.",
+      "parentUuid": "1ddb89a7_a7e09337",
       "range": {
         "startLine": 1523,
         "startChar": 1,
