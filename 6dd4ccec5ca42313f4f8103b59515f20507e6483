@@ -16,6 +16,24 @@
       "message": "I don\u0027t think this test brings much value ...",
       "revId": "6dd4ccec5ca42313f4f8103b59515f20507e6483",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adae362b_e2816b6c",
+        "filename": "system/stack/test/btm_iso_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-09T16:47:25Z",
+      "side": 1,
+      "message": "Well, we do have death tests checking that we assert in some cases, so it makes sense IMO to check that we handle the other calls gracefully in a stopped state if that is expected. Test just verifies these expectations. Alternatively we could expect the caller to NOT call in the stopped state at all and explicitly assert, but I guess that\u0027s not what we want.",
+      "parentUuid": "d43719d6_28470ccb",
+      "revId": "6dd4ccec5ca42313f4f8103b59515f20507e6483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
