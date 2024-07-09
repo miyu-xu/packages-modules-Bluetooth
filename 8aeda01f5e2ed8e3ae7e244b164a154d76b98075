@@ -16,6 +16,24 @@
       "message": "Too many checks and too hard to follow 😞\n\nI would prefer that you wrap the entire block unchanged and do the check only once, at the cost of more code duplication.",
       "revId": "8aeda01f5e2ed8e3ae7e244b164a154d76b98075",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "949b01c3_4c33f105",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-09T13:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8d21f97_f8520b88",
+      "revId": "8aeda01f5e2ed8e3ae7e244b164a154d76b98075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
