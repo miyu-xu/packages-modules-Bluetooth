@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2680189d_96e371e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-09T01:09:15Z",
+      "side": 1,
+      "message": "I don\u0027t like this... but I understand it address the immediat issue",
+      "revId": "a42fdcd2e0188e08caaeb321f481c8efb753f703",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
