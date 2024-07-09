@@ -307,13 +307,14 @@ public class MetricsLogger {
     public byte[] getRemoteDeviceInfoProto(BluetoothDevice device) {
         ProtoOutputStream proto = new ProtoOutputStream();
 
+        AdapterService adapterService = AdapterService.getAdapterService();
         // write Allowlisted Device Name Hash
         writeFieldIfNotNull(
                 proto,
                 ProtoOutputStream.FIELD_TYPE_STRING,
                 ProtoOutputStream.FIELD_COUNT_SINGLE,
                 BluetoothRemoteDeviceInformation.ALLOWLISTED_DEVICE_NAME_HASH_FIELD_NUMBER,
-                getAllowlistedDeviceNameHash(device.getName()));
+                getAllowlistedDeviceNameHash(adapterService.getRemoteName(device)));
 
         // write COD
         writeFieldIfNotNull(
@@ -321,9 +322,7 @@ public class MetricsLogger {
                 ProtoOutputStream.FIELD_TYPE_INT32,
                 ProtoOutputStream.FIELD_COUNT_SINGLE,
                 BluetoothRemoteDeviceInformation.CLASS_OF_DEVICE_FIELD_NUMBER,
-                device.getBluetoothClass() != null
-                        ? device.getBluetoothClass().getClassOfDevice()
-                        : null);
+                adapterService.getRemoteClass(device));
 
         // write OUI
         writeFieldIfNotNull(
