@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c48e35a_18981556",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-09T00:23:17Z",
+      "side": 1,
+      "message": "because I saw test coverage report is 0%, and to test the part that guarded by the flag, we need SetFlagsRule to enable the feature flag for this test, [example](https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java;l\u003d841?q\u003dsetflagsrule%20headsetservicetest\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main)\n\nWould you like to add that and check whether this test is still passing? Thanks!",
+      "range": {
+        "startLine": 982,
+        "startChar": 16,
+        "endLine": 982,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3cb3fb96_ef811867",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "import com.google.android.libraries.phenotype.testing.PhenotypeFlagRule;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 59,
+                "endChar": 0
+              },
+              "replacement": "import com.google.android.libraries.phenotype.testing.PhenotypeFlagRule;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "    @Rule public final PhenotypeFlagRule phenotypeFlagRule \u003d new PhenotypeRule();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 983,
+                "startChar": 0,
+                "endLine": 983,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothInCallService.enableConferenceLastCallIndex \u003d true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e69e11908dd2229fcfcaaca7e333d8a1c640851f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
