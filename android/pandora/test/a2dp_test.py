@@ -20,8 +20,10 @@ import math
 import numpy as np
 import os
 
-from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
-from bumble import avdtp
+from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, pandora
+from avatar.pandora_server import AndroidPandoraServer
+from bumble import l2cap
+from bumble.avctp import AVCTP_PSM
 from bumble.a2dp import (
     A2DP_SBC_CODEC_TYPE,
     SBC_DUAL_CHANNEL_MODE,
@@ -54,6 +56,7 @@ from pandora.security_pb2 import LEVEL2
 from threading import Thread
 from typing import Optional
 
+AVRCP_CONNECT_A2DP_DELAYED = 'persist.device_config.aconfig_flags.bluetooth.com.android.bluetooth.flags.avrcp_connect_a2dp_delayed'
 
 async def initiate_pairing(device, address) -> Connection:
     """Connect and pair a remote device."""
@@ -251,6 +254,45 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         await self.dut.a2dp.Suspend(source=dut_ref1_source)
         assert_equal(self.ref1.a2dp_sink.stream.state, AVDTP_OPEN_STATE)
 
+    @avatar.asynchronous
+    async def test_ad2p_autoconnect_when_only_avctp_connected(self) -> None:
+        if not isinstance(self.ref1, BumblePandoraDevice):
+            raise signals.TestSkip('')
+
+        # Enable AVRCP connect A2DP delayed feature
+        for server in self.devices._servers:
+            if isinstance(server, AndroidPandoraServer):
+                self.dut_adb = server.device.adb
+                self.dut_adb.shell(['setprop', AVRCP_CONNECT_A2DP_DELAYED, 'true'])  # type: ignore
+                break
+
+        # Make classic connection
+        ref_dut, dut_ref = await pandora.connect(initiator=self.ref1, acceptor=self.dut)
+
+        await asyncio.gather(
+            self.ref1.aio.security.Secure(connection=ref_dut, classic=LEVEL2),
+            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+        )
+
+        # Retrieve Bumble connection object from Pandora connection token
+        connection = pandora.get_raw_connection(device=self.ref1, connection=ref_dut)
+
+        # 1. Open AVCTP L2CAP channel
+        avctp = await connection.create_l2cap_channel(spec=l2cap.ClassicChannelSpec(AVCTP_PSM))
+        self.ref1.log.info(f'AVCTP: {avctp}')
+
+        # 2. Wait for AVDTP L2CAP channel
+        avdtp_future = asyncio.get_running_loop().create_future()
+
+        def on_avdtp_connection(server):
+            nonlocal avdtp_future
+            self.ref1.a2dp_sink = server.add_sink(codec_capabilities())
+            self.ref1.log.info(f'Sink: {self.ref1.a2dp_sink}')
+            avdtp_future.set_result(None)
+
+        # Create a listener to wait for AVDTP connections
+        self.ref1.a2dp.on('connection', on_avdtp_connection)
+        await asyncio.wait_for(avdtp_future, timeout=10.0)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
