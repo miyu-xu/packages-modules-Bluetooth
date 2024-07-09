@@ -629,7 +629,7 @@ public:
   ~BtifAvSink();
 
   bt_status_t Init(btav_sink_callbacks_t* callbacks, int max_connected_audio_devices);
-  void Cleanup();
+  void Cleanup(std::promise<void> cleanup_promise);
 
   btav_sink_callbacks_t* Callbacks() { return callbacks_; }
   bool Enabled() const { return enabled_; }
@@ -1509,9 +1509,10 @@ bt_status_t BtifAvSink::Init(btav_sink_callbacks_t* callbacks, int max_connected
   return BT_STATUS_SUCCESS;
 }
 
-void BtifAvSink::Cleanup() {
+void BtifAvSink::Cleanup(std::promise<void> cleanup_promise) {
   log::info("");
   if (!enabled_) {
+    cleanup_promise.set_value();
     return;
   }
   enabled_ = false;
@@ -1528,6 +1529,8 @@ void BtifAvSink::Cleanup() {
   CleanupAllPeers();
 
   callbacks_ = nullptr;
+  log::verbose("Cleanup is done");
+  cleanup_promise.set_value();
 }
 
 BtifAvPeer* BtifAvSink::FindPeer(const RawAddress& peer_address) {
@@ -3693,8 +3696,13 @@ void btif_av_source_cleanup(void) {
 
 void btif_av_sink_cleanup(void) {
   log::info("");
-  do_in_main_thread(FROM_HERE,
-                    base::BindOnce(&BtifAvSink::Cleanup, base::Unretained(&btif_av_sink)));
+  std::promise<void> peer_ready_promise;
+  std::future<void> peer_ready_future = peer_ready_promise.get_future();
+  do_in_main_thread(FROM_HERE, base::BindOnce(&BtifAvSink::Cleanup, base::Unretained(&btif_av_sink),
+                                              std::move(peer_ready_promise)));
+  log::verbose("Waiting for cleanup to finish");
+  peer_ready_future.wait();
+  log::verbose("btif_av_sink_cleanup done");
 }
 
 RawAddress btif_av_source_active_peer(void) { return btif_av_source.ActivePeer(); }
