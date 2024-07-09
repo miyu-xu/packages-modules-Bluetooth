@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c70729a_2b855f00",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-09T05:30:45Z",
+      "side": 1,
+      "message": "nit: we can put the flag here to reduce duplicate code",
+      "range": {
+        "startLine": 857,
+        "startChar": 14,
+        "endLine": 857,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5b7b9c45_870062af",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 852,
+                "startChar": 0,
+                "endLine": 861,
+                "endChar": 0
+              },
+              "replacement": "          /* If last SCO instance then finish shutting down */\n          if (!bta_ag_other_scb_open(p_scb)) {\n            p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 862,
+                "startChar": 0,
+                "endLine": 862,
+                "endChar": 0
+              },
+              "replacement": "            /* just go back to listening */\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 863,
+                "startChar": 0,
+                "endLine": 866,
+                "endChar": 0
+              },
+              "replacement": "            p_sco-\u003estate \u003d BTA_AG_SCO_LISTEN_ST;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fe5c11d2317e9e7c6f480133caade859faf54a51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
