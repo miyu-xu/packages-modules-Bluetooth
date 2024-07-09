@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c2faae1_27fcd4f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-09T23:05:04Z",
+      "side": 1,
+      "message": "Added a doc to the bug capturing history and context of why top-byte of handle was being ignored, and ramifications of both changing and status quo.",
+      "parentUuid": "e91502ca_39c667b3",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99eadd48_cfd1be35",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
         "patchSetId": 1
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "\u003e  So basically you can make the tests agnostic of the underlying set of flags by saying \"run combinations of all these flags that I claim impact my source code,\" huh?\n\nCorrect\n\n\u003e And then what, do you change assert statements based on the flag value if you need?\n\nThis is a possibility, but if there is a big behavior change, it is better to write a test with flag off and one with flag on, and annotate them with @EnableFlags or @DisableFlag. This will work smartly with the parametric test and skip the test when appropriate\n\n\u003e  I feel like this can quickly cause the number of tests run to get a bit out of control\n\nYes, that why you need to manually enable it.\n\n\n\u003e  One could argue that that is testing an implementation detail though.\n\nSo let\u0027s put a parametric over all the test so we are sure that it works everytime. \nTo me, that sound like a good usage.\n\nThe example I put are exactly that, in one I am changing a detail on how the bluetooth is killed, on the other Henri is changing an internal detail of the threading model, without consequence on the tests.",
       "parentUuid": "fc2cea8d_92cfe342",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 251,
+        "endChar": 72
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d606257c_453cb150",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-09T23:05:04Z",
+      "side": 1,
+      "message": "Thanks, William and Sal. I added parametric tests using William\u0027s suggestion and examples, although I used `progressionOf` instead of `allCombinationsOf`.",
+      "parentUuid": "66365519_cff2fccd",
       "range": {
         "startLine": 251,
         "startChar": 7,
