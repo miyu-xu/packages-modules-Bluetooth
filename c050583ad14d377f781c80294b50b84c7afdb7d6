@@ -52,6 +52,24 @@
       "parentUuid": "c5b511c5_67ee5251",
       "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c2335fe_daf80ed6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-09T17:46:21Z",
+      "side": 1,
+      "message": "Hmm but it happens even of very simple tests like this one where is only one sheduled task:\n```\n    @Test\n    public void onlyHeadsetConnected_setHeadsetActive() {\n        headsetConnected(mHeadsetDevice, false);\n        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());\n        verify(mHeadsetService).setActiveDevice(mHeadsetDevice);\n    }\n```\n\nIMHO waiting for task end is more elegant than adding timeout to verify but in this situation it brings more flakiness...",
+      "parentUuid": "761c2b72_d4a464b9",
+      "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
