@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc0761a3_d8f22331",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-09T01:48:05Z",
+      "side": 1,
+      "message": "Doesn\u0027t compile like that in Java - \n\npackages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/LeScanni\nngTest.java:75: error: incompatible types: possible lossy conversion from int to\n byte\n    private static final byte[] TEST_SERVICE_DATA \u003d {0xAA, 0xBB, 0xCC};",
+      "parentUuid": "948e9a2f_36be6516",
+      "revId": "be0398f2ad2bcbf2f641dc603ca4c898ae15fb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1441b51_869f4190",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b1bd12_d240e61a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-09T01:48:05Z",
+      "side": 1,
+      "message": "Added comment, not random but close to TEST_UUID_STRING with extra bits set/unset.",
+      "parentUuid": "f1441b51_869f4190",
+      "revId": "be0398f2ad2bcbf2f641dc603ca4c898ae15fb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "957aad1b_d777d605",
@@ -66,6 +102,30 @@
       "writtenOn": "2024-07-08T22:22:30Z",
       "side": 1,
       "message": "nit: Is this overload really necessary ?",
+      "range": {
+        "startLine": 380,
+        "startChar": 4,
+        "endLine": 383,
+        "endChar": 0
+      },
+      "revId": "be0398f2ad2bcbf2f641dc603ca4c898ae15fb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04fe56a8_e24e24eb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-09T01:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "957aad1b_d777d605",
       "range": {
         "startLine": 380,
         "startChar": 4,
