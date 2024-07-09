@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "083386c3_847f183f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-09T17:09:02Z",
+      "side": 1,
+      "message": "@wescande@google.com Thank you for quick review!\nI notice weird thing with that change on my local test, when i run it using:\natest ActiveDeviceManagerTest --rerun-until-failure\n\nIt fails on different tests at the first waitForLooperToFinishScheduledTask after 50-200 runs. I do not know why because waitForLooperToFinishScheduledTask should behave correctly even if there is no pending task but here it looks like it does not notice that it finished... \n\nFail examples:\n```\n[44/57] com.android.bluetooth.btservice.ActiveDeviceManagerTest#hearingAidConnectedWhenBroadcasting_notSetHearingAidActive: FAILED (05m0.040s)\nSTACKTRACE:\norg.junit.runners.model.TestTimedOutException: test timed out after 300000 milliseconds\n        at java.lang.Object.wait(Native Method)\n        at java.lang.Object.wait(Object.java:405)\n        at java.lang.Object.wait(Object.java:543)\n        at com.android.bluetooth.TestUtils$SyncRunnable.waitForComplete(TestUtils.java:451)\n        at com.android.bluetooth.TestUtils.runOnLooperSync(TestUtils.java:296)\n        at com.android.bluetooth.TestUtils.waitForLooperToFinishScheduledTask(TestUtils.java:206)\n        at com.android.bluetooth.btservice.ActiveDeviceManagerTest.hearingAidConnectedWhenBroadcasting_notSetHearingAidActive(ActiveDeviceManagerTest.java:1337)\n        \n[56/57] com.android.bluetooth.btservice.ActiveDeviceManagerTest#leAudioSetConnectedThenActiveOneDisconnected_hasFallback: FAILED (05m0.069s)\nSTACKTRACE:\norg.junit.runners.model.TestTimedOutException: test timed out after 300000 milliseconds\n        at java.lang.Object.wait(Native Method)\n        at java.lang.Object.wait(Object.java:405)\n        at java.lang.Object.wait(Object.java:543)\n        at com.android.bluetooth.TestUtils$SyncRunnable.waitForComplete(TestUtils.java:451)\n        at com.android.bluetooth.TestUtils.runOnLooperSync(TestUtils.java:296)\n        at com.android.bluetooth.TestUtils.waitForLooperToFinishScheduledTask(TestUtils.java:206)\n        at com.android.bluetooth.btservice.ActiveDeviceManagerTest.leAudioSetConnectedThenActiveOneDisconnected_hasFallback(ActiveDeviceManagerTest.java:935)\n        \n[17/57] com.android.bluetooth.btservice.ActiveDeviceManagerTest#a2dpAndLeAudioConnectedThenLeAudioDisconnected_fallbackToA2dp: FAILED (05m0.015s)\nSTACKTRACE:\norg.junit.runners.model.TestTimedOutException: test timed out after 300000 milliseconds\n        at java.lang.Object.wait(Native Method)\n        at java.lang.Object.wait(Object.java:405)\n        at java.lang.Object.wait(Object.java:543)\n        at com.android.bluetooth.TestUtils$SyncRunnable.waitForComplete(TestUtils.java:451)\n        at com.android.bluetooth.TestUtils.runOnLooperSync(TestUtils.java:296)\n        at com.android.bluetooth.TestUtils.waitForLooperToFinishScheduledTask(TestUtils.java:206)\n        at com.android.bluetooth.btservice.ActiveDeviceManagerTest.a2dpAndLeAudioConnectedThenLeAudioDisconnected_fallbackToA2dp(ActiveDeviceManagerTest.java:987)\n```",
+      "revId": "c050583ad14d377f781c80294b50b84c7afdb7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
