@@ -122,6 +122,8 @@ cc_library_static {
         "avrc/avrc_pars_tg.cc",
         "avrc/avrc_sdp.cc",
         "avrc/avrc_utils.cc",
+        "avrc/avrcp_sdp_records.cc",
+        "avrc/avrcp_sdp_service.cc",
         "bnep/bnep_api.cc",
         "bnep/bnep_main.cc",
         "bnep/bnep_utils.cc",
