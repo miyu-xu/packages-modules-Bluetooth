@@ -54,6 +54,7 @@ uint64_t time_get_os_boottime_ms() { return 0; }
 namespace {
 
 tL2CAP_APPL_INFO appl_info;
+testing::StrictMock<bluetooth::rfcomm::MockRfcommCallback> rfcomm_callback_;
 bluetooth::rfcomm::MockRfcommCallback* rfcomm_callback = nullptr;
 tBTM_SEC_CALLBACK* security_callback = nullptr;
 
@@ -105,9 +106,13 @@ public:
 
 }  // namespace
 
-static int Cleanup(uint16_t* server_handle) { return RFCOMM_RemoveServer(*server_handle); }
+static int Cleanup(uint16_t* server_handle) {
+  rfcomm_callback = nullptr;
+  return RFCOMM_RemoveServer(*server_handle);
+}
 
 static int ServerInit(FuzzedDataProvider* fdp, uint16_t* server_handle) {
+  rfcomm_callback = &rfcomm_callback_;
   RFCOMM_Init();
 
   auto mtu = fdp->ConsumeIntegral<uint16_t>();
@@ -153,6 +158,7 @@ static void FuzzAsServer(FuzzedDataProvider* fdp) {
 }
 
 static int ClientInit(FuzzedDataProvider* fdp, uint16_t* client_handle) {
+  rfcomm_callback = &rfcomm_callback_;
   RFCOMM_Init();
 
   auto mtu = fdp->ConsumeIntegral<uint16_t>();
