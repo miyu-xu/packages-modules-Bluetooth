@@ -226,7 +226,7 @@ tBTM_STATUS BTM_SecBondCancel(const RawAddress& bd_addr);
  * Description      This function is called to obtain link key type for the
  *                  device.
  *                  it returns tBTM_STATUS::BTM_SUCCESS if link key is available, or
- *                  BTM_UNKNOWN_ADDR if Security Manager does not know about
+ *                  tBTM_STATUS::BTM_UNKNOWN_ADDR if Security Manager does not know about
  *                  the device or device record does not contain link key info
  *
  * Returns          BTM_LKEY_TYPE_IGNORE if link key is unknown, link type
@@ -257,10 +257,10 @@ tBTM_LINK_KEY_TYPE BTM_SecGetDeviceLinkKeyType(const RawAddress& bd_addr);
  *
  * Returns          tBTM_STATUS::BTM_SUCCESS   - already encrypted
  *                  BTM_PENDING   - command will be returned in the callback
- *                  BTM_WRONG_MODE- connection not up.
+ *                  tBTM_STATUS::BTM_WRONG_MODE- connection not up.
  *                  tBTM_STATUS::BTM_BUSY      - security procedures are currently active
- *                  BTM_ERR_KEY_MISSING  - link key is missing.
- *                  BTM_MODE_UNSUPPORTED - if security manager not linked in.
+ *                  tBTM_STATUS::BTM_ERR_KEY_MISSING  - link key is missing.
+ *                  tBTM_STATUS::BTM_MODE_UNSUPPORTED - if security manager not linked in.
  *
  ******************************************************************************/
 tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
@@ -395,7 +395,7 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(const RawAddress& bd_addr,
  *required procedures are completed p_ref_data    - Pointer to any reference
  *data needed by the the callback function.
  *
- * Returns          BTM_CMD_STARTED
+ * Returns          tBTM_STATUS::BTM_CMD_STARTED
  *
  ******************************************************************************/
 tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr, bool is_originator,
