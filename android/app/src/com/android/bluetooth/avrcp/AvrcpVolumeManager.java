@@ -30,6 +30,7 @@ import android.util.Log;
 
 import com.android.bluetooth.BluetoothEventLogger;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.HashMap;
@@ -187,7 +188,9 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
             Object value = entry.getValue();
             BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(key);
 
-            if (value instanceof Integer && d.getBondState() == BluetoothDevice.BOND_BONDED) {
+            if (value instanceof Integer
+                    && AdapterService.getAdapterService().getBondState(d)
+                            == BluetoothDevice.BOND_BONDED) {
                 mVolumeMap.put(d, (Integer) value);
             } else {
                 d("Removing " + key + " from the volume map");
@@ -202,7 +205,8 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
      * writes the map in the {@link SharedPreferences}.
      */
     synchronized void storeVolumeForDevice(@NonNull BluetoothDevice device, int storeVolume) {
-        if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+        if (AdapterService.getAdapterService().getBondState(device)
+                != BluetoothDevice.BOND_BONDED) {
             return;
         }
         SharedPreferences.Editor pref = getVolumeMap().edit();
@@ -233,7 +237,8 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
      * {@link SharedPreferences}.
      */
     synchronized void removeStoredVolumeForDevice(@NonNull BluetoothDevice device) {
-        if (device.getBondState() != BluetoothDevice.BOND_NONE) {
+        if (AdapterService.getAdapterService().getBondState(device)
+                != BluetoothDevice.BOND_BONDED) {
             return;
         }
         SharedPreferences.Editor pref = getVolumeMap().edit();
@@ -430,7 +435,7 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
             BluetoothDevice d =
                     BluetoothAdapter.getDefaultAdapter().getRemoteDevice(entry.getKey());
 
-            String deviceName = d.getName();
+            String deviceName = AdapterService.getAdapterService().getRemoteName(d);
             if (deviceName == null) {
                 deviceName = "";
             } else if (deviceName.length() > 14) {
