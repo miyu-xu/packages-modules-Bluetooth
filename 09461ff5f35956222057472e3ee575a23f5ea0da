@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf23279b_e8cf01fa",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-09T12:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06165d59_6bd6fadf",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 38
+      },
+      "revId": "09461ff5f35956222057472e3ee575a23f5ea0da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3922610_519495bd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-08T20:20:24Z",
       "side": 1,
       "message": "nit: update similarly",
+      "range": {
+        "startLine": 132,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 110
+      },
+      "revId": "09461ff5f35956222057472e3ee575a23f5ea0da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a3a75d_b003d434",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-07-09T12:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3922610_519495bd",
       "range": {
         "startLine": 132,
         "startChar": 18,
