@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8afc7c0c_4e92fc34",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-09T13:34:19Z",
+      "side": 0,
+      "message": "Yep, you\u0027re right - fixed ; )",
+      "parentUuid": "9017d244_38d60d3d",
+      "range": {
+        "startLine": 1045,
+        "startChar": 37,
+        "endLine": 1045,
+        "endChar": 45
+      },
+      "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff8456c8_7528f47c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-09T01:25:35Z",
       "side": 0,
       "message": "You might need to remove `p_scb-\u003enum_seps` / set it to 1 / something else ?",
+      "range": {
+        "startLine": 1081,
+        "startChar": 11,
+        "endLine": 1081,
+        "endChar": 19
+      },
+      "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe5a1269_00bad2ca",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-09T13:34:19Z",
+      "side": 0,
+      "message": "right, I\u0027ll set it to one, as it was. The next CLs will cause it to be overwritten when the discovery finishes, so I think we can remove it in the next CL",
+      "parentUuid": "ff8456c8_7528f47c",
       "range": {
         "startLine": 1081,
         "startChar": 11,
