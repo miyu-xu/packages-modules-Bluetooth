@@ -97,6 +97,24 @@
       "parentUuid": "a988fa0c_4f195611",
       "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36f010aa_42198354",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-07-09T18:32:21Z",
+      "side": 1,
+      "message": "Check out go/android-api-guidelines#behavior which goes into how to use the compat framework.",
+      "parentUuid": "5fa5b3aa_aac2a6d7",
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
