@@ -46,6 +46,30 @@
       },
       "revId": "3a53903643c8ffcbb0ac307693382eb39622fe91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e4c015_203a1b84",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-09T16:47:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d16449aa_6f71c4f9",
+      "range": {
+        "startLine": 1088,
+        "startChar": 0,
+        "endLine": 1097,
+        "endChar": 7
+      },
+      "revId": "3a53903643c8ffcbb0ac307693382eb39622fe91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
