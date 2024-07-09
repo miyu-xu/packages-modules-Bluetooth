@@ -394,7 +394,7 @@ public:
                    const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
                    const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
                    std::vector<btav_a2dp_codec_info_t>* supported_codecs);
-  void Cleanup();
+  void Cleanup(std::promise<void> cleanup_promise);
 
   btav_source_callbacks_t* Callbacks() { return callbacks_; }
   bool Enabled() const { return enabled_; }
@@ -1215,9 +1215,10 @@ bt_status_t BtifAvSource::Init(btav_source_callbacks_t* callbacks, int max_conne
   return BT_STATUS_SUCCESS;
 }
 
-void BtifAvSource::Cleanup() {
+void BtifAvSource::Cleanup(std::promise<void> cleanup_promise) {
   log::info("");
   if (!enabled_) {
+    cleanup_promise.set_value();
     return;
   }
   enabled_ = false;
@@ -1232,8 +1233,9 @@ void BtifAvSource::Cleanup() {
 
   btif_disable_service(BTA_A2DP_SOURCE_SERVICE_ID);
   CleanupAllPeers();
-
+  cleanup_promise.set_value();
   callbacks_ = nullptr;
+  log::verbose("BtifAvSource::Cleanup is done");
 }
 
 BtifAvPeer* BtifAvSource::FindPeer(const RawAddress& peer_address) {
@@ -3690,8 +3692,14 @@ bt_status_t btif_av_source_set_codec_config_preference(
 
 void btif_av_source_cleanup(void) {
   log::info("");
+  std::promise<void> peer_ready_promise;
+  std::future<void> peer_ready_future = peer_ready_promise.get_future();
   do_in_main_thread(FROM_HERE,
-                    base::BindOnce(&BtifAvSource::Cleanup, base::Unretained(&btif_av_source)));
+                    base::BindOnce(&BtifAvSource::Cleanup, base::Unretained(&btif_av_source),
+                                   std::move(peer_ready_promise)));
+  log::verbose("Waiting for cleanup to finish");
+  peer_ready_future.wait();
+  log::verbose("btif_av_source_cleanup done");
 }
 
 void btif_av_sink_cleanup(void) {
