@@ -902,6 +902,22 @@ public class BassClientService extends ProfileService {
         return false;
     }
 
+    private void checkAndSetGroupAllowedContextMask(BluetoothDevice sink) {
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService == null) {
+            return;
+        }
+
+        /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
+        if (!mIsAllowedContextOfActiveGroupModified && isDevicePartOfActiveUnicastGroup(sink)) {
+            log("Block sound effect stream while adding source");
+            leAudioService.setActiveGroupAllowedContextMask(
+                    BluetoothLeAudio.CONTEXTS_ALL & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
+                    BluetoothLeAudio.CONTEXTS_ALL);
+            mIsAllowedContextOfActiveGroupModified = true;
+        }
+    }
+
     private void checkAndResetGroupAllowedContextMask() {
         LeAudioService leAudioService = mServiceFactory.getLeAudioService();
         if (leAudioService == null) {
@@ -936,15 +952,7 @@ public class BassClientService extends ProfileService {
             }
 
             if (leaudioAllowedContextMask()) {
-                /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
-                if (!mIsAllowedContextOfActiveGroupModified
-                        && isDevicePartOfActiveUnicastGroup(sink)) {
-                    leAudioService.setActiveGroupAllowedContextMask(
-                            BluetoothLeAudio.CONTEXTS_ALL
-                                    & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
-                            BluetoothLeAudio.CONTEXTS_ALL);
-                    mIsAllowedContextOfActiveGroupModified = true;
-                }
+                checkAndSetGroupAllowedContextMask(sink);
             }
         } else {
             /* Assistant become inactive */
@@ -2606,6 +2614,10 @@ public class BassClientService extends ProfileService {
             if (isGroupOp) {
                 enqueueSourceGroupOp(
                         device, BassClientStateMachine.ADD_BCAST_SOURCE, sourceMetadata);
+            }
+
+            if (leaudioAllowedContextMask() && !isLocalBroadcast(sourceMetadata)) {
+                checkAndSetGroupAllowedContextMask(device);
             }
 
             sEventLogger.logd(
