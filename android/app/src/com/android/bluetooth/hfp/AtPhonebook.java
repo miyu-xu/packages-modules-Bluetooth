@@ -36,6 +36,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.util.DevicePolicyUtils;
 import com.android.bluetooth.util.GsmAlphabet;
 import com.android.internal.annotations.VisibleForTesting;
@@ -659,30 +660,33 @@ public class AtPhonebook {
     @VisibleForTesting
     int checkAccessPermission(BluetoothDevice remoteDevice) {
         Log.d(TAG, "checkAccessPermission");
-        int permission = remoteDevice.getPhonebookAccessPermission();
+        int permission =
+                AdapterService.getAdapterService().getPhonebookAccessPermission(remoteDevice);
 
-        if (permission == BluetoothDevice.ACCESS_UNKNOWN) {
-            Log.d(TAG, "checkAccessPermission - ACTION_CONNECTION_ACCESS_REQUEST");
-            Intent intent = new Intent(BluetoothDevice.ACTION_CONNECTION_ACCESS_REQUEST);
-            intent.setPackage(mPairingPackage);
-            intent.putExtra(
-                    BluetoothDevice.EXTRA_ACCESS_REQUEST_TYPE,
-                    BluetoothDevice.REQUEST_TYPE_PHONEBOOK_ACCESS);
-            intent.putExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice);
-            // Leave EXTRA_PACKAGE_NAME and EXTRA_CLASS_NAME field empty.
-            // BluetoothHandsfree's broadcast receiver is anonymous, cannot be targeted.
-            mContext.sendOrderedBroadcast(
-                    intent,
-                    BLUETOOTH_CONNECT,
-                    Utils.getTempBroadcastOptions().toBundle(),
-                    null,
-                    null,
-                    Activity.RESULT_OK,
-                    null,
-                    null);
+        if (permission != BluetoothDevice.ACCESS_UNKNOWN) {
+            return permission;
         }
 
-        return permission;
+        Log.d(TAG, "checkAccessPermission - ACTION_CONNECTION_ACCESS_REQUEST");
+        Intent intent = new Intent(BluetoothDevice.ACTION_CONNECTION_ACCESS_REQUEST);
+        intent.setPackage(mPairingPackage);
+        intent.putExtra(
+                BluetoothDevice.EXTRA_ACCESS_REQUEST_TYPE,
+                BluetoothDevice.REQUEST_TYPE_PHONEBOOK_ACCESS);
+        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice);
+        // Leave EXTRA_PACKAGE_NAME and EXTRA_CLASS_NAME field empty.
+        // BluetoothHandsfree's broadcast receiver is anonymous, cannot be targeted.
+        mContext.sendOrderedBroadcast(
+                intent,
+                BLUETOOTH_CONNECT,
+                Utils.getTempBroadcastOptions().toBundle(),
+                null,
+                null,
+                Activity.RESULT_OK,
+                null,
+                null);
+
+        return BluetoothDevice.ACCESS_UNKNOWN;
     }
 
     @VisibleForTesting

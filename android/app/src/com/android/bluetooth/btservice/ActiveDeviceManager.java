@@ -1235,9 +1235,9 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
      */
     private boolean isWatch(BluetoothDevice device) {
         // Check CoD
-        BluetoothClass deviceClass = device.getBluetoothClass();
-        if (deviceClass != null
-                && deviceClass.getDeviceClass() == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
+        BluetoothClass deviceClass =
+                new BluetoothClass(mAdapterService.getRemoteDevices().getBluetoothClass(device));
+        if (deviceClass.getDeviceClass() == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
             return true;
         }
 
