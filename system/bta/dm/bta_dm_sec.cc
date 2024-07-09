@@ -80,7 +80,7 @@ void bta_dm_ble_sirk_sec_cb_register(tBTA_DM_SEC_CBACK* p_cback) {
 void bta_dm_ble_sirk_confirm_device_reply(const RawAddress& bd_addr, bool accept) {
   log::debug("addr:{}", bd_addr);
   get_btm_client_interface().security.BTM_BleSirkConfirmDeviceReply(
-          bd_addr, accept ? tBTM_STATUS::BTM_SUCCESS : BTM_NOT_AUTHORIZED);
+          bd_addr, accept ? tBTM_STATUS::BTM_SUCCESS : tBTM_STATUS::BTM_NOT_AUTHORIZED);
 }
 
 void bta_dm_consolidate(const RawAddress& identity_addr, const RawAddress& rpa) {
@@ -125,7 +125,7 @@ void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type, tBT_TRANSP
   tBTM_STATUS status = get_btm_client_interface().security.BTM_SecBond(bd_addr, addr_type,
                                                                        transport, device_type);
 
-  if (bta_dm_sec_cb.p_sec_cback && (status != BTM_CMD_STARTED)) {
+  if (bta_dm_sec_cb.p_sec_cback && (status != tBTM_STATUS::BTM_CMD_STARTED)) {
     memset(&sec_event, 0, sizeof(tBTA_DM_SEC));
     sec_event.auth_cmpl.bd_addr = bd_addr;
     bd_name_from_char_pointer(sec_event.auth_cmpl.bd_name,
@@ -156,7 +156,7 @@ void bta_dm_bond_cancel(const RawAddress& bd_addr) {
   status = get_btm_client_interface().security.BTM_SecBondCancel(bd_addr);
 
   if (bta_dm_sec_cb.p_sec_cback &&
-      (status != BTM_CMD_STARTED && status != tBTM_STATUS::BTM_SUCCESS)) {
+      (status != tBTM_STATUS::BTM_CMD_STARTED && status != tBTM_STATUS::BTM_SUCCESS)) {
     sec_event.bond_cancel_cmpl.result = BTA_FAILURE;
 
     bta_dm_sec_cb.p_sec_cback(BTA_DM_BOND_CANCEL_CMPL_EVT, &sec_event);
@@ -169,21 +169,23 @@ void bta_dm_pin_reply(std::unique_ptr<tBTA_DM_API_PIN_REPLY> msg) {
     get_btm_client_interface().security.BTM_PINCodeReply(msg->bd_addr, tBTM_STATUS::BTM_SUCCESS,
                                                          msg->pin_len, msg->p_pin);
   } else {
-    get_btm_client_interface().security.BTM_PINCodeReply(msg->bd_addr, BTM_NOT_AUTHORIZED, 0, NULL);
+    get_btm_client_interface().security.BTM_PINCodeReply(msg->bd_addr,
+                                                         tBTM_STATUS::BTM_NOT_AUTHORIZED, 0, NULL);
   }
 }
 
 /** Send the user confirm request reply in response to a request from BTM */
 void bta_dm_confirm(const RawAddress& bd_addr, bool accept) {
   get_btm_client_interface().security.BTM_SecConfirmReqReply(
-          accept ? tBTM_STATUS::BTM_SUCCESS : BTM_NOT_AUTHORIZED, BT_TRANSPORT_BR_EDR, bd_addr);
+          accept ? tBTM_STATUS::BTM_SUCCESS : tBTM_STATUS::BTM_NOT_AUTHORIZED, BT_TRANSPORT_BR_EDR,
+          bd_addr);
 }
 
 /** respond to the OOB data request for the remote device from BTM */
 void bta_dm_ci_rmt_oob_act(std::unique_ptr<tBTA_DM_CI_RMT_OOB> msg) {
   get_btm_client_interface().security.BTM_RemoteOobDataReply(
-          msg->accept ? tBTM_STATUS::BTM_SUCCESS : BTM_NOT_AUTHORIZED, msg->bd_addr, msg->c,
-          msg->r);
+          msg->accept ? tBTM_STATUS::BTM_SUCCESS : tBTM_STATUS::BTM_NOT_AUTHORIZED, msg->bd_addr,
+          msg->c, msg->r);
 }
 
 /*******************************************************************************
@@ -254,7 +256,7 @@ static void bta_dm_pinname_cback(const tBTM_REMOTE_DEV_NAME* p_data) {
 static tBTM_STATUS bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_class,
                                     const BD_NAME bd_name, bool min_16_digit) {
   if (!bta_dm_sec_cb.p_sec_cback) {
-    return BTM_NOT_AUTHORIZED;
+    return tBTM_STATUS::BTM_NOT_AUTHORIZED;
   }
 
   /* If the device name is not known, save bdaddr and devclass and initiate a
@@ -263,9 +265,10 @@ static tBTM_STATUS bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_cla
     bta_dm_sec_cb.pin_evt = BTA_DM_PIN_REQ_EVT;
     bta_dm_sec_cb.pin_bd_addr = bd_addr;
     bta_dm_sec_cb.pin_dev_class = dev_class;
-    if ((get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
-                bd_addr, bta_dm_pinname_cback, BT_TRANSPORT_BR_EDR)) == BTM_CMD_STARTED) {
-      return BTM_CMD_STARTED;
+    if ((get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(bd_addr, bta_dm_pinname_cback,
+                                                                  BT_TRANSPORT_BR_EDR)) ==
+        tBTM_STATUS::BTM_CMD_STARTED) {
+      return tBTM_STATUS::BTM_CMD_STARTED;
     }
 
     log::warn("Failed to start Remote Name Request, addr:{}", bd_addr);
@@ -280,7 +283,7 @@ static tBTM_STATUS bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_cla
   bd_name_copy(sec_event.pin_req.bd_name, bd_name);
 
   bta_dm_sec_cb.p_sec_cback(BTA_DM_PIN_REQ_EVT, &sec_event);
-  return BTM_CMD_STARTED;
+  return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
 /*******************************************************************************
@@ -329,7 +332,7 @@ static tBTM_STATUS bta_dm_new_link_key_cback(const RawAddress& bd_addr, DEV_CLAS
     bta_dm_reset_sec_dev_pending(p_auth_cmpl->bd_addr);
   }
 
-  return BTM_CMD_STARTED;
+  return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
 /*******************************************************************************
@@ -388,13 +391,13 @@ static void bta_dm_authentication_complete_cback(const RawAddress& bd_addr,
  *
  ******************************************************************************/
 static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data) {
-  tBTM_STATUS status = BTM_CMD_STARTED;
+  tBTM_STATUS status = tBTM_STATUS::BTM_CMD_STARTED;
   tBTA_DM_SEC sec_event = {};
   tBTA_DM_SEC_EVT pin_evt = BTA_DM_SP_KEY_NOTIF_EVT;
 
   log::verbose("event:{}", sp_evt_to_text(event));
   if (!bta_dm_sec_cb.p_sec_cback) {
-    return BTM_NOT_AUTHORIZED;
+    return tBTM_STATUS::BTM_NOT_AUTHORIZED;
   }
 
   bool sp_rmt_result = false;
@@ -454,7 +457,7 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data) 
             const tBTM_STATUS btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
                     p_data->cfm_req.bd_addr, bta_dm_pinname_cback, BT_TRANSPORT_BR_EDR);
             switch (btm_status) {
-              case BTM_CMD_STARTED:
+              case tBTM_STATUS::BTM_CMD_STARTED:
                 return btm_status;
               default:
                 // NOTE: This will issue callback on this failure path
@@ -474,8 +477,8 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data) 
           bta_dm_sec_cb.pin_dev_class = p_data->key_notif.dev_class;
           if ((get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
                       p_data->key_notif.bd_addr, bta_dm_pinname_cback, BT_TRANSPORT_BR_EDR)) ==
-              BTM_CMD_STARTED) {
-            return BTM_CMD_STARTED;
+              tBTM_STATUS::BTM_CMD_STARTED) {
+            return tBTM_STATUS::BTM_CMD_STARTED;
           }
           log::warn("Failed to start Remote Name Request, addr:{}", p_data->key_notif.bd_addr);
         } else {
@@ -508,7 +511,7 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data) 
     }
 
     default:
-      status = BTM_NOT_AUTHORIZED;
+      status = tBTM_STATUS::BTM_NOT_AUTHORIZED;
       break;
   }
   log::verbose("dm status:{}", status);
@@ -659,7 +662,7 @@ static tBTM_STATUS bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda
   log::debug("addr:{},event:{}", bda, ble_evt_to_text(event));
 
   if (!bta_dm_sec_cb.p_sec_cback) {
-    return BTM_NOT_AUTHORIZED;
+    return tBTM_STATUS::BTM_NOT_AUTHORIZED;
   }
 
   memset(&sec_event, 0, sizeof(tBTA_DM_SEC));
@@ -773,7 +776,7 @@ static tBTM_STATUS bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda
       break;
 
     default:
-      status = BTM_NOT_AUTHORIZED;
+      status = tBTM_STATUS::BTM_NOT_AUTHORIZED;
       break;
   }
   return status;
@@ -805,10 +808,10 @@ void bta_dm_encrypt_cback(RawAddress bd_addr, tBT_TRANSPORT transport, void* /* 
   switch (result) {
     case tBTM_STATUS::BTM_SUCCESS:
       break;
-    case BTM_WRONG_MODE:
+    case tBTM_STATUS::BTM_WRONG_MODE:
       bta_status = BTA_WRONG_MODE;
       break;
-    case BTM_NO_RESOURCES:
+    case tBTM_STATUS::BTM_NO_RESOURCES:
       bta_status = BTA_NO_RESOURCES;
       break;
     case tBTM_STATUS::BTM_BUSY:
@@ -846,8 +849,9 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
     return;
   }
 
-  if (get_btm_client_interface().security.BTM_SetEncryption(
-              bd_addr, transport, bta_dm_encrypt_cback, NULL, sec_act) == BTM_CMD_STARTED) {
+  if (get_btm_client_interface().security.BTM_SetEncryption(bd_addr, transport,
+                                                            bta_dm_encrypt_cback, NULL, sec_act) ==
+      tBTM_STATUS::BTM_CMD_STARTED) {
     device->p_encrypt_cback = p_callback;
     log::debug("Started encryption peer:{} transport:{}", bd_addr, bt_transport_text(transport));
   } else {
@@ -906,7 +910,7 @@ static tBTM_STATUS bta_dm_sirk_verifiction_cback(const RawAddress& bd_addr) {
   if (bta_dm_sec_cb.p_sec_sirk_cback) {
     log::debug("callback called");
     bta_dm_sec_cb.p_sec_sirk_cback(BTA_DM_SIRK_VERIFICATION_REQ_EVT, &sec_event);
-    return BTM_CMD_STARTED;
+    return tBTM_STATUS::BTM_CMD_STARTED;
   }
 
   log::debug("no callback registered");
@@ -964,14 +968,15 @@ void bta_dm_add_ble_device(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
  ******************************************************************************/
 void bta_dm_ble_passkey_reply(const RawAddress& bd_addr, bool accept, uint32_t passkey) {
   get_btm_client_interface().security.BTM_BlePasskeyReply(
-          bd_addr, accept ? tBTM_STATUS::BTM_SUCCESS : BTM_NOT_AUTHORIZED, passkey);
+          bd_addr, accept ? tBTM_STATUS::BTM_SUCCESS : tBTM_STATUS::BTM_NOT_AUTHORIZED, passkey);
 }
 
 /** This is response to SM numeric comparison request submitted to application.
  */
 void bta_dm_ble_confirm_reply(const RawAddress& bd_addr, bool accept) {
   get_btm_client_interface().security.BTM_SecConfirmReqReply(
-          accept ? tBTM_STATUS::BTM_SUCCESS : BTM_NOT_AUTHORIZED, BT_TRANSPORT_LE, bd_addr);
+          accept ? tBTM_STATUS::BTM_SUCCESS : tBTM_STATUS::BTM_NOT_AUTHORIZED, BT_TRANSPORT_LE,
+          bd_addr);
 }
 
 /** This function set the local device LE privacy settings. */

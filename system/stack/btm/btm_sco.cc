@@ -608,7 +608,7 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle, enh_esco_params
                   "SCO connection cannot support any packet types for "
                   "acl_handle:0x{:04x}",
                   acl_handle);
-          return BTM_WRONG_MODE;
+          return tBTM_STATUS::BTM_WRONG_MODE;
         }
         log::debug(
                 "Both local and remote controllers support SCO secure connections "
@@ -669,7 +669,7 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle, enh_esco_params
     }
   }
 
-  return BTM_CMD_STARTED;
+  return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
 /*******************************************************************************
@@ -683,11 +683,11 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle, enh_esco_params
  *                  NOTE:  If BTM_IGNORE_SCO_PKT_TYPE is passed in the pkt_types
  *                      parameter the default packet types is used.
  *
- * Returns          BTM_UNKNOWN_ADDR if the ACL connection is not up
+ * Returns          tBTM_STATUS::BTM_UNKNOWN_ADDR if the ACL connection is not up
  *                  tBTM_STATUS::BTM_BUSY         if another SCO being set up to
  *                                   the same BD address
- *                  BTM_NO_RESOURCES if the max SCO limit has been reached
- *                  BTM_CMD_STARTED  if the connection establishment is started.
+ *                  tBTM_STATUS::BTM_NO_RESOURCES if the max SCO limit has been reached
+ *                  tBTM_STATUS::BTM_CMD_STARTED  if the connection establishment is started.
  *                                   In this case, "*p_sco_inx" is filled in
  *                                   with the sco index used for the connection.
  *
@@ -701,7 +701,7 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig, uint16_t p
   *p_sco_inx = BTM_INVALID_SCO_INDEX;
 
   if (BTM_MAX_SCO_LINKS == 0) {
-    return BTM_NO_RESOURCES;
+    return tBTM_STATUS::BTM_NO_RESOURCES;
   }
 
   /* If originating, ensure that there is an ACL connection to the BD Address */
@@ -709,13 +709,13 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig, uint16_t p
   if (is_orig) {
     if (!remote_bda) {
       log::error("remote_bda is null");
-      return BTM_ILLEGAL_VALUE;
+      return tBTM_STATUS::BTM_ILLEGAL_VALUE;
     }
     acl_handle =
             get_btm_client_interface().peer.BTM_GetHCIConnHandle(*remote_bda, BT_TRANSPORT_BR_EDR);
     if (acl_handle == HCI_INVALID_HANDLE) {
       log::error("cannot find ACL handle for remote device {}", *remote_bda);
-      return BTM_UNKNOWN_ADDR;
+      return tBTM_STATUS::BTM_UNKNOWN_ADDR;
     }
   }
 
@@ -798,9 +798,9 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig, uint16_t p
         if (is_orig) {
           log::debug("Initiating (e)SCO link for ACL handle:0x{:04x}", acl_handle);
 
-          if ((btm_send_connect_request(acl_handle, p_setup)) != BTM_CMD_STARTED) {
+          if ((btm_send_connect_request(acl_handle, p_setup)) != tBTM_STATUS::BTM_CMD_STARTED) {
             log::error("failed to send connect request for {}", *remote_bda);
-            return BTM_NO_RESOURCES;
+            return tBTM_STATUS::BTM_NO_RESOURCES;
           }
 
           p->state = SCO_ST_CONNECTING;
@@ -816,13 +816,13 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig, uint16_t p
         BTM_LogHistory(kBtmLogTag, *remote_bda, "Connecting",
                        base::StringPrintf("local initiated acl:0x%04x", acl_handle));
       }
-      return BTM_CMD_STARTED;
+      return tBTM_STATUS::BTM_CMD_STARTED;
     }
   }
 
   /* If here, all SCO blocks in use */
   log::error("all SCO control blocks are in use");
-  return BTM_NO_RESOURCES;
+  return tBTM_STATUS::BTM_NO_RESOURCES;
 }
 
 /*******************************************************************************
@@ -846,7 +846,7 @@ void btm_sco_chk_pend_unpark(tHCI_STATUS hci_status, uint16_t hci_handle) {
               "{} unparked, sending connection request, acl_handle={}, "
               "hci_status={}",
               p->esco.data.bd_addr, unsigned(acl_handle), unsigned(hci_status));
-      if (btm_send_connect_request(acl_handle, &p->esco.setup) == BTM_CMD_STARTED) {
+      if (btm_send_connect_request(acl_handle, &p->esco.setup) == tBTM_STATUS::BTM_CMD_STARTED) {
         p->state = SCO_ST_CONNECTING;
       } else {
         log::error("failed to send connection request for {}", p->esco.data.bd_addr);
@@ -880,7 +880,7 @@ void btm_sco_chk_pend_rolechange(uint16_t hci_handle) {
       log::verbose("btm_sco_chk_pend_rolechange -> (e)SCO Link for ACL handle 0x{:04x}",
                    acl_handle);
 
-      if ((btm_send_connect_request(acl_handle, &p->esco.setup)) == BTM_CMD_STARTED) {
+      if ((btm_send_connect_request(acl_handle, &p->esco.setup)) == tBTM_STATUS::BTM_CMD_STARTED) {
         p->state = SCO_ST_CONNECTING;
       }
     }
@@ -1144,12 +1144,12 @@ tBTM_STATUS BTM_RemoveSco(uint16_t sco_inx) {
   log::verbose("");
 
   if (BTM_MAX_SCO_LINKS == 0) {
-    return BTM_NO_RESOURCES;
+    return tBTM_STATUS::BTM_NO_RESOURCES;
   }
 
   /* Validity check */
   if ((sco_inx >= BTM_MAX_SCO_LINKS) || (p->state == SCO_ST_UNUSED)) {
-    return BTM_UNKNOWN_ADDR;
+    return tBTM_STATUS::BTM_UNKNOWN_ADDR;
   }
 
   /* If no HCI handle, simply drop the connection and return */
@@ -1163,7 +1163,7 @@ tBTM_STATUS BTM_RemoveSco(uint16_t sco_inx) {
   if (BTM_ReadPowerMode(p->esco.data.bd_addr, &state) && (state == BTM_PM_ST_PENDING)) {
     log::verbose("BTM_PM_ST_PENDING for ACL mapped with SCO Link 0x{:04x}", p->hci_handle);
     p->state = SCO_ST_PEND_MODECHANGE;
-    return BTM_CMD_STARTED;
+    return tBTM_STATUS::BTM_CMD_STARTED;
   }
 
   tSCO_STATE old_state = p->state;
@@ -1175,7 +1175,7 @@ tBTM_STATUS BTM_RemoveSco(uint16_t sco_inx) {
   BTM_LogHistory(kBtmLogTag, p->esco.data.bd_addr, "Disconnecting",
                  base::StringPrintf("local initiated handle:0x%04x previous_state:%s", p->Handle(),
                                     sco_state_text(old_state).c_str()));
-  return BTM_CMD_STARTED;
+  return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
 void BTM_RemoveScoByBdaddr(const RawAddress& bda) {
@@ -1397,26 +1397,26 @@ tBTM_STATUS BTM_SetEScoMode(enh_esco_params_t* p_parms) {
  *                  events.
  *
  * Returns          tBTM_STATUS::BTM_SUCCESS if the successful.
- *                  BTM_ILLEGAL_VALUE if there is an illegal sco_inx
- *                  BTM_MODE_UNSUPPORTED if controller version is not BT1.2 or
+ *                  tBTM_STATUS::BTM_ILLEGAL_VALUE if there is an illegal sco_inx
+ *                  tBTM_STATUS::BTM_MODE_UNSUPPORTED if controller version is not BT1.2 or
  *                          later or does not support eSCO.
  *
  ******************************************************************************/
 tBTM_STATUS BTM_RegForEScoEvts(uint16_t sco_inx, tBTM_ESCO_CBACK* p_esco_cback) {
   if (BTM_MAX_SCO_LINKS == 0) {
-    return BTM_MODE_UNSUPPORTED;
+    return tBTM_STATUS::BTM_MODE_UNSUPPORTED;
   }
 
   if (!btm_cb.sco_cb.esco_supported) {
     btm_cb.sco_cb.sco_db[sco_inx].esco.p_esco_cback = NULL;
-    return BTM_MODE_UNSUPPORTED;
+    return tBTM_STATUS::BTM_MODE_UNSUPPORTED;
   }
 
   if (sco_inx < BTM_MAX_SCO_LINKS && btm_cb.sco_cb.sco_db[sco_inx].state != SCO_ST_UNUSED) {
     btm_cb.sco_cb.sco_db[sco_inx].esco.p_esco_cback = p_esco_cback;
     return tBTM_STATUS::BTM_SUCCESS;
   }
-  return BTM_ILLEGAL_VALUE;
+  return tBTM_STATUS::BTM_ILLEGAL_VALUE;
 }
 
 /*******************************************************************************
@@ -1433,16 +1433,16 @@ tBTM_STATUS BTM_RegForEScoEvts(uint16_t sco_inx, tBTM_ESCO_CBACK* p_esco_cback) 
  *                  Note: If called over a SCO link (including 1.1 controller),
  *                        a change packet type request is sent out instead.
  *
- * Returns          BTM_CMD_STARTED if command is successfully initiated.
- *                  BTM_NO_RESOURCES - not enough resources to initiate command.
- *                  BTM_WRONG_MODE if no connection with a peer device or bad
+ * Returns          tBTM_STATUS::BTM_CMD_STARTED if command is successfully initiated.
+ *                  tBTM_STATUS::BTM_NO_RESOURCES - not enough resources to initiate command.
+ *                  tBTM_STATUS::BTM_WRONG_MODE if no connection with a peer device or bad
  *                                 sco_inx.
  *
  ******************************************************************************/
 static tBTM_STATUS BTM_ChangeEScoLinkParms(uint16_t sco_inx, tBTM_CHG_ESCO_PARAMS* p_parms) {
   /* Make sure sco handle is valid and on an active link */
   if (sco_inx >= BTM_MAX_SCO_LINKS || btm_cb.sco_cb.sco_db[sco_inx].state != SCO_ST_CONNECTED) {
-    return BTM_WRONG_MODE;
+    return tBTM_STATUS::BTM_WRONG_MODE;
   }
 
   tSCO_CONN* p_sco = &btm_cb.sco_cb.sco_db[sco_inx];
@@ -1501,7 +1501,7 @@ static tBTM_STATUS BTM_ChangeEScoLinkParms(uint16_t sco_inx, tBTM_CHG_ESCO_PARAM
                  p_parms->retransmission_effort, temp_packet_types);
   }
 
-  return BTM_CMD_STARTED;
+  return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
 /*******************************************************************************
