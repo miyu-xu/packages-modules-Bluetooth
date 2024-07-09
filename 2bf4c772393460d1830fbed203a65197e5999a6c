@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9017d244_38d60d3d",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-09T01:25:35Z",
+      "side": 0,
+      "message": "You should propagate the cleanup to the event definition, and the function `bta_av_ci_setconfig` by extension.",
+      "range": {
+        "startLine": 1045,
+        "startChar": 37,
+        "endLine": 1045,
+        "endChar": 45
+      },
+      "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff8456c8_7528f47c",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-09T01:25:35Z",
+      "side": 0,
+      "message": "You might need to remove `p_scb-\u003enum_seps` / set it to 1 / something else ?",
+      "range": {
+        "startLine": 1081,
+        "startChar": 11,
+        "endLine": 1081,
+        "endChar": 19
+      },
+      "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
