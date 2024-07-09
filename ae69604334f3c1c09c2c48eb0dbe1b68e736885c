@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "380836f9_0823265a",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2727,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T22:40:10Z",
+      "side": 1,
+      "message": "Restored the abstraction method `bta_ar_dereg_avrc`.",
+      "parentUuid": "d5471bc3_67f36d75",
+      "range": {
+        "startLine": 2727,
+        "startChar": 6,
+        "endLine": 2727,
+        "endChar": 14
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "714f4a6b_a271e637",
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "The de-registration in `bta_av_act` also de-registers only if the control block is present. I don\u0027t have the historical context on why it\u0027s being invoked there either. This is to keep the removal consistent and have easier for other reviewers to review the changes. Maybe we can have other improvement bug to refactor the removal as part of a separate change.",
       "parentUuid": "9eaa014e_16f40509",
+      "range": {
+        "startLine": 191,
+        "startChar": 6,
+        "endLine": 192,
+        "endChar": 72
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b2fa348_2910a43c",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T22:40:10Z",
+      "side": 1,
+      "message": "Restored the abstraction method `bta_ar_dereg_avrc`.",
+      "parentUuid": "96d80c38_bfe38473",
       "range": {
         "startLine": 191,
         "startChar": 6,
@@ -392,6 +440,30 @@
       "side": 1,
       "message": "Sounds like records need reference counts.",
       "parentUuid": "b1006240_4e69fdfe",
+      "range": {
+        "startLine": 73,
+        "startChar": 30,
+        "endLine": 73,
+        "endChar": 42
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c07ad0aa_ee6b74a2",
+        "filename": "system/profile/avrcp/avrc_sdp_records.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T22:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b34aeb11_1adc54d9",
       "range": {
         "startLine": 73,
         "startChar": 30,
@@ -592,6 +664,30 @@
       "side": 1,
       "message": "The other option is to have it renamed as `(Enable/Disable)TargetCoverArt. The sdp service abstracts out the clients without the need for knowing the details on what method needs to be invoked and only has to pass the right parameter. \n\nIn future, controller can allow Enable/Disable cover art dynamically by updating the bits. The method can also assert that it is not supported and crash down the stack. \n\nFor e.g. a `FleetService` can have only `TurnOn(vehicle_type)` instead of `TurnOnCar` \u0026 `TurnOnTruck`\n\nBut if you think we are never going to have enable/disable cover art for controller, then I can make it Target explicit.",
       "parentUuid": "1d822e10_7c08643b",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 13
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe0ab062_408e929d",
+        "filename": "system/profile/avrcp/avrc_sdp_service.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T22:40:10Z",
+      "side": 1,
+      "message": "Resolving it as it\u0027s a no-op.",
+      "parentUuid": "044c136f_7b2148d8",
       "range": {
         "startLine": 53,
         "startChar": 5,
