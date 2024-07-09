@@ -34,6 +34,24 @@
       "parentUuid": "7bc41a06_ef5b9047",
       "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227cba29_0496da12",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-09T20:39:23Z",
+      "side": 1,
+      "message": "It would still suffer from the race condition with that check when the interface wasn\u0027t null (or equivalent flag check) i.e. if the interface wasn\u0027t null the cleanup \u0026 init will still be invoked in parallel.\n\nRight now, I don\u0027t know the scope of the initNative usage i.e. does it get called only during stack bootup time or can be called dynamically. If it\u0027s the former (i.e. only during bootup time), then we wouldn\u0027t need the cleanup call. But if it can be called dynamically then we definitely need to invoke cleanup sequentially.",
+      "parentUuid": "7bc41a06_ef5b9047",
+      "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
