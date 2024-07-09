@@ -16,6 +16,24 @@
       "message": "According to go/bt-flags-status this flag is in 24Q3.\nWe are not yet removing 24Q3 flags and are waiting for the code to be released to public.",
       "revId": "144e0548c8863ae2be89d09ec17037dbb3bc3819",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9e14c1_112d88dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-09T17:34:59Z",
+      "side": 1,
+      "message": "Ah, I was wondering what was going on with that.\n\nThe tool said it was time to remove, and a teammate was told by Thomas that they can remove their flag which is for a 24Q3 feature. I figured now was the time.\n\nI\u0027ll sit on this a little while longer then I suppose 😊",
+      "parentUuid": "4f5fd205_80828512",
+      "revId": "144e0548c8863ae2be89d09ec17037dbb3bc3819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
