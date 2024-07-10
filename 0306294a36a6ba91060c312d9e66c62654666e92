@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d40dbcd_38450910",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T16:50:12Z",
+      "side": 1,
+      "message": "FYI:\nSince you are not marking this flag as a bugfix, you will be required to fill a feature request with go/android-fr in order to fill the form to release the flag to trunkfood.\n\nI believe that you are not modifying any existing feature but only fixing a detail of implementation and therefor this could be considered as a bugfix from the release point of view",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 41
+      },
+      "revId": "0306294a36a6ba91060c312d9e66c62654666e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
