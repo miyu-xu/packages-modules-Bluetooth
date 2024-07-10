@@ -58,6 +58,9 @@ constexpr uint8_t kScanResponseBit = 3;
 constexpr uint8_t kLegacyBit = 4;
 constexpr uint8_t kDataStatusBits = 5;
 
+constexpr uint8_t k1mPhyMask = 1;
+constexpr uint8_t kCodedPhyMask = 1 << 2;
+
 // system properties
 const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.radio.le_rx_path_loss_comp_db";
 
@@ -452,15 +455,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
   void configure_scan() {
     std::vector<PhyScanParameters> parameter_vector;
-    for (int i = 0; i < 7; i++) {
-      if ((phy_ & 1 << i) != 0) {
-        PhyScanParameters phy_scan_parameters;
-        phy_scan_parameters.le_scan_window_ = window_ms_;
-        phy_scan_parameters.le_scan_interval_ = interval_ms_;
-        phy_scan_parameters.le_scan_type_ = le_scan_type_;
-        parameter_vector.push_back(phy_scan_parameters);
-      }
-    }
+    PhyScanParameters phy_scan_parameters;
     uint8_t phys_in_use = phy_;
 
     // The Host shall not issue set scan parameter command when scanning is enabled
@@ -474,12 +469,25 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
     switch (api_type_) {
       case ScanApiType::EXTENDED:
+        phy_scan_parameters.le_scan_window_ = window_ms_;
+        phy_scan_parameters.le_scan_interval_ = interval_ms_;
+        phy_scan_parameters.le_scan_type_ = le_scan_type_;
+        if ((phy_ & k1mPhyMask) != 0) {
+          parameter_vector.push_back(phy_scan_parameters);
+        }
+        if ((phy_ & kCodedPhyMask) != 0) {
+          parameter_vector.push_back(phy_scan_parameters);
+        }
         le_scanning_interface_->EnqueueCommand(
                 LeSetExtendedScanParametersBuilder::Create(own_address_type_, filter_policy_,
                                                            phys_in_use, parameter_vector),
                 module_handler_->BindOnceOn(this, &impl::on_set_scan_parameter_complete));
         break;
       case ScanApiType::ANDROID_HCI:
+        if (phys_in_use == kCodedPhyMask) {
+          log::warn("Coded phy not supported");
+          return;
+        }
         le_scanning_interface_->EnqueueCommand(
                 LeExtendedScanParamsBuilder::Create(le_scan_type_, interval_ms_, window_ms_,
                                                     own_address_type_, filter_policy_),
@@ -487,6 +495,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
         break;
       case ScanApiType::LEGACY:
+        if (phys_in_use == kCodedPhyMask) {
+          log::warn("Coded phy not supported");
+          return;
+        }
         le_scanning_interface_->EnqueueCommand(
 
                 LeSetScanParametersBuilder::Create(le_scan_type_, interval_ms_, window_ms_,
@@ -648,9 +660,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     le_scan_type_ = scan_type;
     interval_ms_ = scan_interval;
     window_ms_ = scan_window;
-    if (com::android::bluetooth::flags::phy_to_native()) {
-      phy_ = scan_phy;
-    }
+    phy_ = scan_phy;
     scanning_callbacks_->OnSetScannerParameterComplete(scanner_id, ScanningCallback::SUCCESS);
   }
 
