@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa465a3_558db5c7",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:03:06Z",
+      "side": 1,
+      "message": "yew",
+      "range": {
+        "startLine": 302,
+        "startChar": 15,
+        "endLine": 302,
+        "endChar": 73
+      },
+      "revId": "3504e79ba425fc27207f118c0abd2977410e41c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e9cf51_8bfbd07b",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:03:06Z",
+      "side": 1,
+      "message": "OOB_COD_SIZE",
+      "range": {
+        "startLine": 1276,
+        "startChar": 60,
+        "endLine": 1276,
+        "endChar": 93
+      },
+      "revId": "3504e79ba425fc27207f118c0abd2977410e41c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "effa13c3_f52bb73f",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:03:06Z",
+      "side": 1,
+      "message": "OOB_TK_SIZE",
+      "range": {
+        "startLine": 1292,
+        "startChar": 49,
+        "endLine": 1292,
+        "endChar": 72
+      },
+      "revId": "3504e79ba425fc27207f118c0abd2977410e41c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b8699c_492045c5",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:03:06Z",
+      "side": 1,
+      "message": "OOB_LE_APPEARANCE_SIZE",
+      "range": {
+        "startLine": 1308,
+        "startChar": 48,
+        "endLine": 1308,
+        "endChar": 80
+      },
+      "revId": "3504e79ba425fc27207f118c0abd2977410e41c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
