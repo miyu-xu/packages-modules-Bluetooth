@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "589389a7_345defd2",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:44:41Z",
+      "side": 1,
+      "message": "Please give a short description of the test steps and expectations",
+      "revId": "037e6c3631523f4c9b25e250113a0b3a0fab7c3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad09555_b3635a49",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:44:41Z",
+      "side": 1,
+      "message": "Already tested in A2dpTest.setup_class",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 261,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "21386203_b3ef958b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 259,
+                "startChar": 0,
+                "endLine": 262,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "037e6c3631523f4c9b25e250113a0b3a0fab7c3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10dd08c0_758bfb21",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:44:41Z",
+      "side": 1,
+      "message": "```\n # Connect and pair RD1.\n ref1_dut, dut_ref1 \u003d await asyncio.gather(\n     initiate_pairing(self.ref1, self.dut.address),\n     accept_pairing(self.dut, self.ref1.address),\n)\n```",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 9
+      },
+      "revId": "037e6c3631523f4c9b25e250113a0b3a0fab7c3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
