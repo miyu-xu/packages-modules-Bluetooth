@@ -50,8 +50,12 @@ public:
   void GetFolderItems([[maybe_unused]] uint16_t player_id, [[maybe_unused]] std::string media_id,
                       [[maybe_unused]] FolderItemsCallback folder_cb) override {}
 
+  void GetAddressedPlayer(GetAddressedPlayerCallback cb) override { cb.Run(currentPlayer_); }
+
   void SetBrowsedPlayer([[maybe_unused]] uint16_t player_id,
                         [[maybe_unused]] SetBrowsedPlayerCallback browse_cb) override {}
+
+  void SetAddressedPlayer(SetAddressedPlayerCallback cb) override { cb.Run(currentPlayer_); }
 
   void RegisterUpdateCallback(MediaCallbacks* callback) override { mediaCb_ = callback; }
 
