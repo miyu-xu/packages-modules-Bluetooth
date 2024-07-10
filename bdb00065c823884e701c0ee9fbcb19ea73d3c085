@@ -93,6 +93,30 @@
       },
       "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ba4d34_521ba099",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-10T23:53:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1cc03d_a6953a52",
+      "range": {
+        "startLine": 352,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
