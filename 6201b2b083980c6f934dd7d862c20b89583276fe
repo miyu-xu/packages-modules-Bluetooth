@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d3d07d_e7fe3b53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-10T18:49:34Z",
+      "side": 1,
+      "message": "Splitting the use of AVRC_GetProfileVersion() from aosp/3109057 based on Henri\u0027s request",
+      "revId": "6201b2b083980c6f934dd7d862c20b89583276fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
