@@ -107,6 +107,7 @@ public class ScanManager {
     private static final int MAX_IS_UID_FOREGROUND_MAP_SIZE = 500;
 
     private int mLastConfiguredScanSetting = Integer.MIN_VALUE;
+    private int mLastConfiguredScanPhy = 0;
     // Scan parameters for batch scan.
     private BatchScanParams mBatchScanParams;
 
@@ -1039,14 +1040,16 @@ public class ScanManager {
 
             if (curScanSetting != Integer.MIN_VALUE
                     && curScanSetting != ScanSettings.SCAN_MODE_OPPORTUNISTIC) {
-                if (curScanSetting != mLastConfiguredScanSetting) {
+                // Note that this can't be 0 as there is a non-opportunistic client.
+                int scanPhyMask = getScanPhyMask(mRegularScanClients);
+                if (curScanSetting != mLastConfiguredScanSetting
+                        || mLastConfiguredScanPhy != scanPhyMask) {
                     int scanWindowMs = getScanWindowMillis(client.settings);
                     int scanIntervalMs = getScanIntervalMillis(client.settings);
 
                     // convert scanWindow and scanInterval from ms to LE scan units(0.625ms)
                     int scanWindow = Utils.millsToUnit(scanWindowMs);
                     int scanInterval = Utils.millsToUnit(scanIntervalMs);
-                    int scanPhyMask = getScanPhyMask(client.settings);
                     mNativeInterface.gattClientScan(false);
                     if (!AppScanStats.recordScanRadioStop()) {
                         Log.w(TAG, "There is no scan radio to stop");
@@ -1083,9 +1086,11 @@ public class ScanManager {
                         Log.w(TAG, "Scan radio already started");
                     }
                     mLastConfiguredScanSetting = curScanSetting;
+                    mLastConfiguredScanPhy = scanPhyMask;
                 }
             } else {
                 mLastConfiguredScanSetting = curScanSetting;
+                mLastConfiguredScanPhy = 0;
                 Log.d(TAG, "configureRegularScanParams() - queue empty, scan stopped");
             }
         }
@@ -1796,30 +1801,36 @@ public class ScanManager {
             }
         }
 
-        private int getScanPhy(ScanSettings settings) {
-            if (settings == null) {
-                return BluetoothDevice.PHY_LE_1M;
+        private int getScanPhyMask(Set<ScanClient> cList) {
+            if (!Flags.phyToNative()) {
+                return BluetoothDevice.PHY_LE_1M_MASK;
             }
-            return settings.getPhy();
-        }
-
-        private int getScanPhyMask(ScanSettings settings) {
-            int phy = getScanPhy(settings);
-
-            switch (phy) {
-                case BluetoothDevice.PHY_LE_1M:
-                    return BluetoothDevice.PHY_LE_1M_MASK;
-                case BluetoothDevice.PHY_LE_CODED:
-                    return BluetoothDevice.PHY_LE_CODED_MASK;
-                case ScanSettings.PHY_LE_ALL_SUPPORTED:
-                    if (mAdapterService.isLeCodedPhySupported()) {
-                        return BluetoothDevice.PHY_LE_1M_MASK | BluetoothDevice.PHY_LE_CODED_MASK;
-                    } else {
-                        return BluetoothDevice.PHY_LE_1M_MASK;
-                    }
-                default:
-                    return BluetoothDevice.PHY_LE_1M_MASK;
+            int phy = 0;
+            for (ScanClient client : cList) {
+                if (client.settings.getScanMode() == ScanSettings.SCAN_MODE_OPPORTUNISTIC) {
+                    // Don't include opportunistic clients in calculating phy mask.
+                    continue;
+                }
+                int cPhy = client.settings.getPhy();
+                switch (cPhy) {
+                    case ScanSettings.PHY_LE_ALL_SUPPORTED:
+                        if (mAdapterService.isLeCodedPhySupported()) {
+                            return BluetoothDevice.PHY_LE_1M_MASK
+                                    | BluetoothDevice.PHY_LE_CODED_MASK;
+                        } else {
+                            phy |= BluetoothDevice.PHY_LE_1M_MASK;
+                        }
+                        break;
+                    case BluetoothDevice.PHY_LE_CODED:
+                        phy |= BluetoothDevice.PHY_LE_CODED_MASK;
+                        break;
+                    case BluetoothDevice.PHY_LE_1M:
+                    default:
+                        phy |= BluetoothDevice.PHY_LE_1M_MASK;
+                        break;
+                }
             }
+            return phy;
         }
 
         private int getOnFoundOnLostTimeoutMillis(ScanSettings settings, boolean onFound) {
