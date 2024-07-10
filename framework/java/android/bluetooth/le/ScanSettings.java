@@ -438,6 +438,11 @@ public final class ScanSettings implements Parcelable {
          *     BluetoothDevice#PHY_LE_CODED} or {@link ScanSettings#PHY_LE_ALL_SUPPORTED}
          */
         public Builder setPhy(int phy) {
+            if (phy != PHY_LE_ALL_SUPPORTED
+                    && phy != BluetoothDevice.PHY_LE_1M
+                    && phy != BluetoothDevice.PHY_LE_CODED) {
+                throw new IllegalArgumentException("invalid phy " + phy);
+            }
             mPhy = phy;
             return this;
         }
