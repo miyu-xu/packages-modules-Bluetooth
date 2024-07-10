@@ -70,6 +70,30 @@
       },
       "revId": "50b1b728e37cb7959f7010e044b3a68f5835751c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4f8cdb_3f4f5d76",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-10T21:05:27Z",
+      "side": 1,
+      "message": "I think I may be able to sync on main loop; so only modifications occur there.  I will investigate that approach.",
+      "parentUuid": "4c86b059_ce2f8432",
+      "range": {
+        "startLine": 1442,
+        "startChar": 42,
+        "endLine": 1442,
+        "endChar": 70
+      },
+      "revId": "50b1b728e37cb7959f7010e044b3a68f5835751c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
