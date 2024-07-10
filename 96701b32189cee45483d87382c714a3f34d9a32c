@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb7b56fe_eb6bd50c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:21:21Z",
+      "side": 1,
+      "message": "This service should be treated as a separate service from GATT service, like GAP service. See `packages/modules/Bluetooth/system/stack/gap/gap_ble.cc` for example.",
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79e6e253_1e2cd77b",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
         "patchSetId": 15
@@ -50,6 +67,58 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b99ed843_82b3f8ef",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:21:21Z",
+      "side": 1,
+      "message": "Name it something appropriate like \"Android Information Service\"",
+      "fixSuggestions": [
+        {
+          "fixId": "294770c9_4e745670",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 506,
+                "startChar": 0,
+                "endLine": 507,
+                "endChar": 0
+              },
+              "replacement": "            GATT_Register(Uuid::From128BitBE(tmp), \"Android Information Service\", \u0026custom_profile_cback, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "640b2cbe_d365b18a",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:21:21Z",
+      "side": 1,
+      "message": "Declare UUIDs in a public header file\n```\n#define ANDROID_INFORMATION_SERVICE_UUID_STRING \"12345678-9abc-def0-1234-56789abcdef0\"\n\nextern const bluetooth::Uuid ANDROID_INFORMATION_SERVICE_UUID;\n```\n\nInitialize the UUID in .cc file\n```\nconst Uuid ANDROID_INFORMATION_SERVICE_UUID \u003d\n        Uuid::FromString(ANDROID_INFORMATION_SERVICE_UUID_STRING);\n```",
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57327daa_46e45375",
         "filename": "system/stack/gatt/gatt_attr.cc",
         "patchSetId": 15
@@ -61,6 +130,30 @@
       "writtenOn": "2024-07-08T19:11:11Z",
       "side": 1,
       "message": "Consider a better naming for the variable.",
+      "range": {
+        "startLine": 514,
+        "startChar": 24,
+        "endLine": 514,
+        "endChar": 38
+      },
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb5c793_0dc34d30",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:21:21Z",
+      "side": 1,
+      "message": "\"android_information_service\"?",
+      "parentUuid": "57327daa_46e45375",
       "range": {
         "startLine": 514,
         "startChar": 24,
