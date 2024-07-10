@@ -70,6 +70,24 @@
       "parentUuid": "90af231b_a4cdfb0c",
       "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fe1070_2202b673",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4853,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T20:40:32Z",
+      "side": 1,
+      "message": "I meant AdapterService#isEnabled right ? we are already in the right place to invoke it. The implementation is already the same\n\n```\n    public boolean isEnabled() {\n        return getState() \u003d\u003d BluetoothAdapter.STATE_ON;\n    }\n```",
+      "parentUuid": "707f7278_d538ff8a",
+      "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
