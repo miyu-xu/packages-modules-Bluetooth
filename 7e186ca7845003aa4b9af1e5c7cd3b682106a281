@@ -22,6 +22,30 @@
       },
       "revId": "7e186ca7845003aa4b9af1e5c7cd3b682106a281",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ac8dc5_192a459f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2011,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T19:25:57Z",
+      "side": 1,
+      "message": "`source` as a name for `AttributionSource` is already heavily used in the code.\n\nSince this variable is only supposed to be used within the binder scope, I believe it is not very ambiguous.",
+      "parentUuid": "f0813a4e_01b8c827",
+      "range": {
+        "startLine": 2011,
+        "startChar": 89,
+        "endLine": 2011,
+        "endChar": 95
+      },
+      "revId": "7e186ca7845003aa4b9af1e5c7cd3b682106a281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
