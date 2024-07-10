@@ -34,6 +34,24 @@
       "parentUuid": "16575009_991ce441",
       "revId": "a359bbb682128df8793c95d64b0fc791f88f7dca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6537b33b_8aee1199",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-10T17:35:52Z",
+      "side": 1,
+      "message": "I need a CL where the file is moved unchanged and another one with the test modifications.",
+      "parentUuid": "31840bdf_c64e09a7",
+      "revId": "a359bbb682128df8793c95d64b0fc791f88f7dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
