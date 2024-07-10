@@ -628,7 +628,8 @@ public:
         max_connected_peers_(kDefaultMaxConnectedAudioDevices) {}
   ~BtifAvSink();
 
-  bt_status_t Init(btav_sink_callbacks_t* callbacks, int max_connected_audio_devices);
+  void Init(btav_sink_callbacks_t* callbacks, int max_connected_audio_devices,
+            std::promise<bt_status_t> peer_ready_promise);
   void Cleanup();
 
   btav_sink_callbacks_t* Callbacks() { return callbacks_; }
@@ -1483,10 +1484,13 @@ void BtifAvSource::AddPeer(BtifAvPeer* peer) {
 }
 BtifAvSink::~BtifAvSink() { CleanupAllPeers(); }
 
-bt_status_t BtifAvSink::Init(btav_sink_callbacks_t* callbacks, int max_connected_audio_devices) {
+void BtifAvSink::Init(btav_sink_callbacks_t* callbacks, int max_connected_audio_devices,
+                      std::promise<bt_status_t> peer_ready_promise) {
+  Cleanup();
   log::info("(max_connected_audio_devices={})", max_connected_audio_devices);
   if (enabled_) {
-    return BT_STATUS_SUCCESS;
+    peer_ready_promise.set_value(BT_STATUS_SUCCESS);
+    return;
   }
 
   CleanupAllPeers();
@@ -1502,11 +1506,12 @@ bt_status_t BtifAvSink::Init(btav_sink_callbacks_t* callbacks, int max_connected
   }
 
   if (!btif_a2dp_sink_init()) {
-    return BT_STATUS_FAIL;
+    peer_ready_promise.set_value(BT_STATUS_FAIL);
+    return;
   }
   enabled_ = true;
   btif_enable_service(BTA_A2DP_SINK_SERVICE_ID);
-  return BT_STATUS_SUCCESS;
+  peer_ready_promise.set_value(BT_STATUS_SUCCESS);
 }
 
 void BtifAvSink::Cleanup() {
@@ -1528,6 +1533,7 @@ void BtifAvSink::Cleanup() {
   CleanupAllPeers();
 
   callbacks_ = nullptr;
+  log::verbose("Cleanup is done");
 }
 
 BtifAvPeer* BtifAvSink::FindPeer(const RawAddress& peer_address) {
@@ -3456,7 +3462,15 @@ bt_status_t btif_av_source_init(btav_source_callbacks_t* callbacks, int max_conn
 // Initializes the AV interface for sink mode
 bt_status_t btif_av_sink_init(btav_sink_callbacks_t* callbacks, int max_connected_audio_devices) {
   log::info("");
-  return btif_av_sink.Init(callbacks, max_connected_audio_devices);
+  std::promise<bt_status_t> peer_ready_promise;
+  std::future<bt_status_t> peer_ready_future = peer_ready_promise.get_future();
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&BtifAvSink::Init, base::Unretained(&btif_av_sink), callbacks,
+                                   max_connected_audio_devices, std::move(peer_ready_promise)));
+  log::verbose("Waiting for init to finish");
+  peer_ready_future.wait();
+  log::verbose("Init is done");
+  return peer_ready_future.get();
 }
 
 // Updates the final focus state reported by components calling this module
