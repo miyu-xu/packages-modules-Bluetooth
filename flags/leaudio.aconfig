@@ -344,3 +344,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "le_ase_read_multiple_variable"
+    namespace: "bluetooth"
+    description: "Use GATT read multiple variable length characteristic values"
+    bug: "352085435"
+}
