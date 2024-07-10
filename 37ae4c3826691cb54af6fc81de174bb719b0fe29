@@ -46,6 +46,30 @@
       },
       "revId": "37ae4c3826691cb54af6fc81de174bb719b0fe29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c84da7_e9831603",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T18:17:45Z",
+      "side": 1,
+      "message": "I think we should follow ag/27164277 because\n\nThey are using the `-export` of the library that contains the API flags\nThey are linking statically to have the flag container inside their apex\nThey are checking an sdk version to not make the check on flag on devices that doesn\u0027t have flag infrastructure support.",
+      "parentUuid": "ee6d7575_32530239",
+      "range": {
+        "startLine": 1350,
+        "startChar": 32,
+        "endLine": 1350,
+        "endChar": 71
+      },
+      "revId": "37ae4c3826691cb54af6fc81de174bb719b0fe29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
