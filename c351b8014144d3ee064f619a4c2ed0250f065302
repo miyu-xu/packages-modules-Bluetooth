@@ -16,6 +16,24 @@
       "message": "`\u0026\u0026 getState() !\u003d BluetoothAdapter.STATE_BLE_ON`",
       "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1e6faa_66968e46",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4853,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T19:56:26Z",
+      "side": 1,
+      "message": "Are we allowed to createBond during BLE_ON state ?\nThat sounds not wanted because of \nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothDevice.java;l\u003d1915;drc\u003d880ce2aa1aa49e5af6039e7f8bbc889d51926c8d\n\nthe check to isEnabled is a check to bluetooth being ON.\n\nAny other call to createBond while bluetooth is not ON is either a race or a direct call on the binder that is not supported and not wanted",
+      "parentUuid": "4f11802d_df919caa",
+      "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
