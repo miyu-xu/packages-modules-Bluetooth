@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe8a2c9c_e3a9079d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T10:46:15Z",
+      "side": 1,
+      "message": "We already check it inside BtaGattQueue, so no need to do it here.\nif EATT is not supported, BtaGattQueue would make regular reads",
+      "parentUuid": "2dbad6c3_ccd2ed57",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbfe43c3_e6ada992",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-07-10T08:15:54Z",
       "side": 1,
       "message": "would be nice to have debug log here saying conn_id, status and number of handles + total len",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b8227fd_7291de2e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4980,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T10:46:15Z",
+      "side": 1,
+      "message": "I would rather not spam logs if unnecessary. \n\nWe log in every error/warning case.\n\nIf read is successful, we log ASE values in parser.",
+      "parentUuid": "040fda1c_e80e9cab",
       "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -87,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44c58e76_701c500c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4985,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T10:46:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1de562dc_b71e140f",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a7261ac_0b714c71",
@@ -122,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a51442_118bad20",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4986,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T10:46:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a7261ac_0b714c71",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c93bf41_2eaa485d",
@@ -135,6 +207,24 @@
       "writtenOn": "2024-07-10T08:15:54Z",
       "side": 1,
       "message": "should we try to read it again ?\n\nLog could contain device information and dump of which handles where not read.",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "907534bf_3464a035",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4998,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T10:46:15Z",
+      "side": 1,
+      "message": "ASE values are short, even if you have 6 ASEs they should fit with minimum MTU.\nI don\u0027t think we will ever hit that.",
+      "parentUuid": "8c93bf41_2eaa485d",
       "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
