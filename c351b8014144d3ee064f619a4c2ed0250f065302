@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f11802d_df919caa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4853,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:18:03Z",
+      "side": 1,
+      "message": "`\u0026\u0026 getState() !\u003d BluetoothAdapter.STATE_BLE_ON`",
+      "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
