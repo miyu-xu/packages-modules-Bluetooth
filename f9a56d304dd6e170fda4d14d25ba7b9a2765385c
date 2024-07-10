@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b145848_a26626e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7948ee4d_c27b9aea",
+      "range": {
+        "startLine": 9,
+        "startChar": 42,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db2ee798_d0fcf4e0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-09T17:22:53Z",
       "side": 1,
       "message": "or sampling rate did change",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "206b7006_acdfccf7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2ee798_d0fcf4e0",
       "range": {
         "startLine": 11,
         "startChar": 6,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b0c60d_89080a7a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3051,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Thanks for catching this!",
+      "parentUuid": "60858e84_47643d10",
+      "range": {
+        "startLine": 3051,
+        "startChar": 20,
+        "endLine": 3051,
+        "endChar": 41
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b773adee_91824c35",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-07-09T17:22:53Z",
       "side": 1,
       "message": "Can be simplified as:\nif ((previous \u003d\u003d null) !\u003d (next \u003d\u003d null))\n\n\nwe must also return if both are null because they must be non null for the rest of the method.\n\ndo we return false in this case?",
+      "range": {
+        "startLine": 3059,
+        "startChar": 8,
+        "endLine": 3059,
+        "endChar": 85
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7e11f5_f128dd76",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3059,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b773adee_91824c35",
       "range": {
         "startLine": 3059,
         "startChar": 8,
@@ -157,6 +253,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "707a56ad_aac0ac28",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3064,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b10658e0_6602892d",
+      "range": {
+        "startLine": 3064,
+        "startChar": 0,
+        "endLine": 3064,
+        "endChar": 94
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8771c906_89bbee77",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3064,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c50c5706_12bfdbf2",
+      "range": {
+        "startLine": 3064,
+        "startChar": 13,
+        "endLine": 3064,
+        "endChar": 21
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "745b1536_699fd388",
@@ -170,6 +314,30 @@
       "writtenOn": "2024-07-09T17:22:53Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Error Prone: [OperatorPrecedence] Use grouping parenthesis to make the operator precedence explicit\n\nAnalyzer Description: Warnings generated by errorprone.\nOwner: farivar@google.com\n\n    [OperatorPrecedence] Use grouping parenthesis to make the operator precedence explicit\n                            \u0026\u0026 (next.getOutputCodecConfig() !\u003d null)) {\n                            ^\n        (see https://errorprone.info/bugpattern/OperatorPrecedence)\n      Did you mean \u0027|| ((previous.getOutputCodecConfig() \u003d\u003d null)\u0027?\n\nUse `m RUN_ERROR_PRONE\u003dtrue MyModule` to reproduce locally.\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P77261661/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 3066,
+        "startChar": 0,
+        "endLine": 3066,
+        "endChar": 67
+      },
+      "revId": "f9a56d304dd6e170fda4d14d25ba7b9a2765385c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8ec5e2_37a18c97",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3066,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T09:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "745b1536_699fd388",
       "range": {
         "startLine": 3066,
         "startChar": 0,
