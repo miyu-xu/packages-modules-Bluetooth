@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecba460d_4cc4b7a9",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T23:29:33Z",
+      "side": 1,
+      "message": "1. This information should be attached to the peer targeted by the reconfiguration request; \n2. The naming should be `btif_av_reconfig_req_t` for the type and `reconfig_req_` for the field to be consistent with existing conventions. \n2. you should make it `std::optional\u003cbtif_av_reconfig_req_t\u003e` this will let you resolve the promise should the peer be dropped.",
+      "range": {
+        "startLine": 646,
+        "startChar": 2,
+        "endLine": 646,
+        "endChar": 29
+      },
+      "revId": "a5b21cde04f67bd006d77ae16334ea2b71701316",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5638f3d9_8cd99e3e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3936,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T23:29:33Z",
+      "side": 1,
+      "message": "Reconfiguring the stream could well take over 1 second;",
+      "range": {
+        "startLine": 3936,
+        "startChar": 32,
+        "endLine": 3936,
+        "endChar": 56
+      },
+      "revId": "a5b21cde04f67bd006d77ae16334ea2b71701316",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
