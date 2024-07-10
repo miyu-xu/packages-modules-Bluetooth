@@ -40,6 +40,30 @@
       ],
       "revId": "6c34739e6a4eead1b57004130c6a5e611b832075",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6428b0ac_f19bce45",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T21:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17ce0660_5d374313",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "6c34739e6a4eead1b57004130c6a5e611b832075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
