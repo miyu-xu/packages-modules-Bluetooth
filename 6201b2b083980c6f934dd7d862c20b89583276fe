@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c34577ec_a9f9f177",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-10T22:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27cc8273_3c31bae1",
+      "revId": "6201b2b083980c6f934dd7d862c20b89583276fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "961fc466_353faa3d",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-07-10T20:36:19Z",
       "side": 1,
       "message": "You can discard the defines for AVRCP_VERSION_PROPERTY down to AVRCP_DEFAULT_VERSION.",
+      "revId": "6201b2b083980c6f934dd7d862c20b89583276fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2abba56e_70256016",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-10T22:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "961fc466_353faa3d",
       "revId": "6201b2b083980c6f934dd7d862c20b89583276fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
