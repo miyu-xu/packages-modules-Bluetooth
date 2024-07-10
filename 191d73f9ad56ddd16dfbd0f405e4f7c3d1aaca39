@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "509f4ec8_20d9f256",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:28:32Z",
+      "side": 1,
+      "message": "… so we can remove the comparaison\n\n```suggestion\n                int state \u003d\n                        intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);\n                Log.d(TAG, \"Bluetooth Adapter state: \" + state);\n                if (state \u003d\u003d BluetoothAdapter.STATE_ON) {\n                    queryPhoneState();\n                } else if (state \u003d\u003d BluetoothAdapter.STATE_TURNING_OFF) {\n                    clear();\n                }\n```\n\non a side note, I disagree with initial change as getAction will always have a value when we registered an intent based on its action name",
+      "range": {
+        "startLine": 191,
+        "startChar": 16,
+        "endLine": 202,
+        "endChar": 17
+      },
+      "revId": "191d73f9ad56ddd16dfbd0f405e4f7c3d1aaca39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2226d94a_9f4334b9",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:28:32Z",
+      "side": 1,
+      "message": "the only intent possible is ACTION_STATE_CHANGED …",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 92
+      },
+      "revId": "191d73f9ad56ddd16dfbd0f405e4f7c3d1aaca39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
