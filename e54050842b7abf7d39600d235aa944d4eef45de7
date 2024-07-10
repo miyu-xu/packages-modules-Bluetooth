@@ -69,6 +69,41 @@
       "parentUuid": "0258441a_b2bb090e",
       "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7755c055_c1c97e65",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2024-07-10T08:37:28Z",
+      "side": 1,
+      "message": "what is the fd? is this fd valid before uhid_open is invoked? \n\nJust want to make sure even key events can be properly queued.",
+      "fixSuggestions": [
+        {
+          "fixId": "63af082c_ff20d92e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 574,
+                "startChar": 0,
+                "endLine": 575,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Cannot write to uhid thread: invalid fd {}\", fd);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
