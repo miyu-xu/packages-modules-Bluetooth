@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0813a4e_01b8c827",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2011,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T18:46:06Z",
+      "side": 1,
+      "message": "please keep attributionSource for variable name; \nsource is so ambiguous in bluetooth context",
+      "range": {
+        "startLine": 2011,
+        "startChar": 89,
+        "endLine": 2011,
+        "endChar": 95
+      },
+      "revId": "7e186ca7845003aa4b9af1e5c7cd3b682106a281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
