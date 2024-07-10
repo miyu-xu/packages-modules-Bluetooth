@@ -94,6 +94,30 @@
       },
       "revId": "37ae4c3826691cb54af6fc81de174bb719b0fe29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11efe85c_efbfe673",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T19:30:23Z",
+      "side": 1,
+      "message": "There is no -export library in AOSP, I\u0027m getting some build errors here.\n\nWill submit the -export version to internal branch, and then have the non-export in AOSP.",
+      "parentUuid": "1048ccdf_3ddd2af9",
+      "range": {
+        "startLine": 1350,
+        "startChar": 32,
+        "endLine": 1350,
+        "endChar": 71
+      },
+      "revId": "37ae4c3826691cb54af6fc81de174bb719b0fe29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
