@@ -22,6 +22,30 @@
       },
       "revId": "28313812a22108930ef5bdaa0761d8ddd2fd5c7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f7ddf64_bf50feed",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T21:40:55Z",
+      "side": 1,
+      "message": "cpplint recommend to not use long and instead replace it with int32 / int64 /...\n\nBut since the prctl actually takes an unsigned long, I believe we should keep the long and silence the cpplint error here",
+      "parentUuid": "ea8ba250_a6702d21",
+      "range": {
+        "startLine": 864,
+        "startChar": 62,
+        "endLine": 864,
+        "endChar": 68
+      },
+      "revId": "28313812a22108930ef5bdaa0761d8ddd2fd5c7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
