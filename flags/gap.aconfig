@@ -219,3 +219,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "gatt_fix_bredr_connect"
+    namespace: "bluetooth"
+    description: "Fix GATT over BR/EDR"
+    bug: "352255216"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
