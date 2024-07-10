@@ -16,6 +16,24 @@
       "message": "Could you please make two distincts CLs ?\nOne for the tests modifications and one for the new folder creation.",
       "revId": "a359bbb682128df8793c95d64b0fc791f88f7dca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31840bdf_c64e09a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-10T17:21:48Z",
+      "side": 1,
+      "message": "folder creation CL aosp/3139075 already merged",
+      "parentUuid": "16575009_991ce441",
+      "revId": "a359bbb682128df8793c95d64b0fc791f88f7dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
