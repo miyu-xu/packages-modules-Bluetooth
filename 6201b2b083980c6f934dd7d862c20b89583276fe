@@ -16,6 +16,23 @@
       "message": "Splitting the use of AVRC_GetProfileVersion() from aosp/3109057 based on Henri\u0027s request",
       "revId": "6201b2b083980c6f934dd7d862c20b89583276fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961fc466_353faa3d",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T20:36:19Z",
+      "side": 1,
+      "message": "You can discard the defines for AVRCP_VERSION_PROPERTY down to AVRCP_DEFAULT_VERSION.",
+      "revId": "6201b2b083980c6f934dd7d862c20b89583276fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
