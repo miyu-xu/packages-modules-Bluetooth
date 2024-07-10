@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7881d4d6_4ec7166a",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-10T23:47:21Z",
+      "side": 1,
+      "message": "AVRCP has four scopes:\n- VFS (\"file system\" but pretty much everything under a given player)\n- Player (really also the filesystem, but this is just the top level of a device, which lists all the players that exist. Its added to our tree)\n- Now Playing (the now playing list, not part of our tree)\n- Search (the most recent search results, not in the tree, nor do we support this)\n\nThis function used to just be `notifyChanged(BrowseTree.BrowseNode node)`, where we could take any node. We would then say \"if the scope is now playing, actually treat this as a queue, else its part of our tree so notify on it\"\n\nNow, I split the queue off into its own function (it reads better, and its safer because its explicit) and made the rest of the functionality for our tree this function, `onBrowseNodeChanged()`.\n\nThus, we don\u0027t need the now playing scoped nodes as they go elsewhere. We also don\u0027t need the search scope nodes, because we don\u0027t support those at all. They would _also_ deserve their own function though and wouldn\u0027t go here.\n\nWhats left is just the Player list and VFS, which together make up the entirety of our browse tree for a device.\n\nSo, short answer, this is strengthening and clarity by being explicit about what we were already receiving and handling.",
+      "parentUuid": "f74b728a_53c96713",
+      "range": {
+        "startLine": 351,
+        "startChar": 8,
+        "endLine": 351,
+        "endChar": 17
+      },
+      "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5aff79a_961cf321",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-09T22:08:55Z",
       "side": 1,
       "message": "`\u0026\u0026` instead of `||`, otherwise this always evaluates to `true`?",
+      "range": {
+        "startLine": 352,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c1cc03d_a6953a52",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-10T23:47:21Z",
+      "side": 1,
+      "message": "Ah! Here I go, trying to make our code safer and less error prone, but I was so good at using it, that I didn\u0027t have the errorprone pattern and didn\u0027t catch this 😊\n\nGood catch.",
+      "parentUuid": "a5aff79a_961cf321",
       "range": {
         "startLine": 352,
         "startChar": 16,
