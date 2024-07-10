@@ -16,6 +16,24 @@
       "message": "Just a FYI:\n\nTo my knowledge this is an unflag changed since `gatt_reconnect_on_bt_on_fix` is already release in nextfood as part of 24q3.\n\nBut there is another issue. 24q3 is frozen and in cherry-pick only, so people are gonna assume that if this is related to gatt_reconnect_on_bt_on_fix that this is in 24q3 while it is not.\n\n\nYou should either add a different flag, or sync with @girardier@google.com to ask for a respin on 24q3",
       "revId": "210dc68e1c651be67f082c363b02d9ad9c27867d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b90a1cbd_31e04a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-07-10T16:47:27Z",
+      "side": 1,
+      "message": "Indeed, we likely need to pick it in 24Q3. @klhyun@google.com when do you think this fix will be validated? Is there any way to create a corresponding regression test as well?",
+      "parentUuid": "4279fad8_153ca4cc",
+      "revId": "210dc68e1c651be67f082c363b02d9ad9c27867d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
