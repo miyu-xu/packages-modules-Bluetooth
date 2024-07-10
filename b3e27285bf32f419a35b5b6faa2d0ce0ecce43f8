@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e57685b0_8d967d42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-07-10T21:46:09Z",
+      "side": 1,
+      "message": "LGTM with the caveat of the merge conflict",
+      "revId": "b3e27285bf32f419a35b5b6faa2d0ce0ecce43f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
