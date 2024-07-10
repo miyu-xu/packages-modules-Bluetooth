@@ -125,6 +125,93 @@
       },
       "revId": "2088fcdabf79621a535f050a38384861c426e27d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6adf6248_ba3f7db6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T01:11:50Z",
+      "side": 1,
+      "message": "```\n@RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)\n```",
+      "range": {
+        "startLine": 770,
+        "startChar": 4,
+        "endLine": 773,
+        "endChar": 14
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a67abf_2855b9a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T01:11:50Z",
+      "side": 1,
+      "message": "```\n@RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)\n```",
+      "range": {
+        "startLine": 990,
+        "startChar": 4,
+        "endLine": 994,
+        "endChar": 0
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f18f9c26_c08ffc40",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T01:11:50Z",
+      "side": 1,
+      "message": "nit: enforceModifyPhoneStatePermission",
+      "range": {
+        "startLine": 392,
+        "startChar": 19,
+        "endLine": 392,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cae6f5e8_170ab047",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 392,
+                "startChar": 0,
+                "endLine": 393,
+                "endChar": 0
+              },
+              "replacement": "    private void enforceModifyPermission() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
