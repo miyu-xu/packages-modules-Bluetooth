@@ -52,6 +52,24 @@
       "parentUuid": "df1e6faa_66968e46",
       "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "707f7278_d538ff8a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4853,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T20:34:37Z",
+      "side": 1,
+      "message": "I would prefer not because `isEnabled` is in the framework and it is an API for other application. Here we are already inside the bluetooth application and within our own boundary.\n\nisEnabled call getState after caching it to prevent having too much binder call, and compare it with STATE_ON.",
+      "parentUuid": "90af231b_a4cdfb0c",
+      "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
