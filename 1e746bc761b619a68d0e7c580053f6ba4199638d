@@ -1,0 +1,69 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f5e23f_6a5c35d5",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:56:30Z",
+      "side": 1,
+      "message": "Sleep is not allowed in Android. We may have to find some other way to deal with it.\nWe can use alarm (`packages/modules/Bluetooth/system/osi/src/alarm.cc`) here. \nWe can also unleash early if the uhid starts some procedure like HID Set Feature request.",
+      "fixSuggestions": [
+        {
+          "fixId": "9b055422_6c5d1005",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "#include \"osi/include/alarm.h\"\n"
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": "#define UHID_OPEN_DELAY_MS 200\n"
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 218,
+                "startChar": 0,
+                "endLine": 220,
+                "endChar": 0
+              },
+              "replacement": "        log::error(\"zyanwu: delay {}ms to write uhid\", UHID_OPEN_DELAY_MS);\n        alarm_set_on_next_waking_cpu(UHID_OPEN_DELAY_MS,\n                                     uhid_write_input_queue, p_uhid);\n"
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 221,
+                "startChar": 0,
+                "endLine": 222,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1e746bc761b619a68d0e7c580053f6ba4199638d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
