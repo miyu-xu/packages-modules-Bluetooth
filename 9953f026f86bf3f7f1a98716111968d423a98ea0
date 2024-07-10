@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40759862_51d9d295",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T07:59:21Z",
+      "side": 1,
+      "message": "As per BT Spec Version 5.4 | Vol 3, Part G , `4.2 FEATURE SUPPORT AND PROCEDURE MAPPING` Table 1, This check works only for READ_MULTI_VARIABLE_LEN is used.\n\nRegular READ_MULTI is always optional and might not succeed. \n\nI believe, GATT user should take decision on which method use instead of doing it here.",
+      "fixSuggestions": [
+        {
+          "fixId": "e05f2ca2_898d4cd0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 253,
+                "startChar": 0,
+                "endLine": 254,
+                "endChar": 0
+              },
+              "replacement": "    if (op.variable_len \u0026\u0026 gatt_profile_get_eatt_support_by_conn_id(conn_id)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9953f026f86bf3f7f1a98716111968d423a98ea0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
