@@ -1,0 +1,125 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbfe43c3_e6ada992",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T08:15:54Z",
+      "side": 1,
+      "message": "Is this intentional?",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "040fda1c_e80e9cab",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4980,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T08:15:54Z",
+      "side": 1,
+      "message": "would be nice to have debug log here saying conn_id, status and number of handles + total len",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de562dc_b71e140f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4985,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T08:15:54Z",
+      "side": 1,
+      "message": "nit: else not needed here",
+      "fixSuggestions": [
+        {
+          "fixId": "a751e744_46e4dac3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 4985,
+                "startChar": 0,
+                "endLine": 4986,
+                "endChar": 0
+              },
+              "replacement": "    } else {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7261ac_0b714c71",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4986,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T08:15:54Z",
+      "side": 1,
+      "message": "conn_id or better an address would be nice to have here for debugging purposes, unless there will be log::info with device information at the begging of this function.",
+      "fixSuggestions": [
+        {
+          "fixId": "19c65edd_07371e3d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 4986,
+                "startChar": 0,
+                "endLine": 4987,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Failed to read multiple attributes, conn_id: 0x{:04x}, status: 0x{:02x}\",\n                    conn_id, +status);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c93bf41_2eaa485d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 4998,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T08:15:54Z",
+      "side": 1,
+      "message": "should we try to read it again ?\n\nLog could contain device information and dump of which handles where not read.",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
