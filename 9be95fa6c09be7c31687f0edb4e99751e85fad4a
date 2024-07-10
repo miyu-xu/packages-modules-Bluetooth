@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e58ccf0e_8dcfff42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2024-07-10T08:17:17Z",
+      "side": 1,
+      "message": "Have tested the CL with Pixel 8 and Google TV remote. Function well. With delayed time workaround, cached keys can work.",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
