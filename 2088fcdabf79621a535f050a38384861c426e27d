@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24325118_434d73f7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1870,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9517fcef_0b9a3e54",
+      "range": {
+        "startLine": 1867,
+        "startChar": 2,
+        "endLine": 1870,
+        "endChar": 14
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60245917_bf559e64",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-07-10T01:07:03Z",
       "side": 1,
       "message": "Previously only enforced the permission if one of the selected profiles was headset or headset client",
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3545a2_aad42c14",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2887,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "The API require the permissions unconditionaly of which profile is being used:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d2147;drc\u003dcd5ef3ec7ebca06cc03fad23279bb8eee50043ed\n\nAny caller of the API should already have the permission. If they don\u0027t they are abusing a flaw of the stack.\n\nCurrently this permission is enforce far in the headsetService, when reaching phoneStateChanged or clccresponse.\n\nI believe this change is necessary and keep the code healthy.\nIf we want to keep previous behavior, we should add a conditional on the permission and document what is conditional and what is not.",
+      "parentUuid": "60245917_bf559e64",
       "revId": "2088fcdabf79621a535f050a38384861c426e27d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "892a789e_671f6626",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2957,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b81351b_02c2bdd5",
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e7a0edf_541ad596",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-07-10T01:07:03Z",
       "side": 1,
       "message": "`@RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)`",
+      "range": {
+        "startLine": 5094,
+        "startChar": 0,
+        "endLine": 5097,
+        "endChar": 14
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77defa81_1ef90e4c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5097,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e7a0edf_541ad596",
       "range": {
         "startLine": 5094,
         "startChar": 0,
@@ -104,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "142ce2d9_7854d398",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5290,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d45092a_321b267d",
+      "range": {
+        "startLine": 5287,
+        "startChar": 0,
+        "endLine": 5290,
+        "endChar": 14
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87523baf_27024e93",
@@ -117,6 +225,30 @@
       "writtenOn": "2024-07-10T01:07:03Z",
       "side": 1,
       "message": "`@RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)`",
+      "range": {
+        "startLine": 5312,
+        "startChar": 0,
+        "endLine": 5315,
+        "endChar": 14
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3014068d_c89c0edb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5315,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87523baf_27024e93",
       "range": {
         "startLine": 5312,
         "startChar": 0,
@@ -150,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60676871_3e29f0d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6adf6248_ba3f7db6",
+      "range": {
+        "startLine": 770,
+        "startChar": 4,
+        "endLine": 773,
+        "endChar": 14
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68a67abf_2855b9a5",
@@ -163,6 +319,30 @@
       "writtenOn": "2024-07-10T01:11:50Z",
       "side": 1,
       "message": "```\n@RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)\n```",
+      "range": {
+        "startLine": 990,
+        "startChar": 4,
+        "endLine": 994,
+        "endChar": 0
+      },
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe9baae6_d7405d32",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68a67abf_2855b9a5",
       "range": {
         "startLine": 990,
         "startChar": 4,
@@ -210,6 +390,30 @@
           ]
         }
       ],
+      "revId": "2088fcdabf79621a535f050a38384861c426e27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bba6fc70_3aee0857",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T01:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f18f9c26_c08ffc40",
+      "range": {
+        "startLine": 392,
+        "startChar": 19,
+        "endLine": 392,
+        "endChar": 42
+      },
       "revId": "2088fcdabf79621a535f050a38384861c426e27d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
