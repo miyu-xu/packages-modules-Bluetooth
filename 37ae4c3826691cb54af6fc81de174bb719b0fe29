@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38edc9a0_33084410",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T16:45:52Z",
+      "side": 1,
+      "message": "I expect this API to only be available starting the next sdk level. And therefor it should require a check on the version or else it will crash when the apex is used on T / U.\n\nsomething like:\n```\nif (Flags.keyMissingAsOrderedBroadcast() \u0026\u0026 isAtLeastW()) {\n```\n\nBut I don\u0027t see a isAtLeastW...\nI saw some other codebase that are using:\n`android_get_device_api_level() \u003e\u003d 36;`\n\nThat maybe solved by using the corresponding API flag:\n`ORDERED_BROADCAST_MULTIPLE_PERMISSIONS`",
+      "range": {
+        "startLine": 1350,
+        "startChar": 32,
+        "endLine": 1350,
+        "endChar": 71
+      },
+      "revId": "37ae4c3826691cb54af6fc81de174bb719b0fe29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
