@@ -485,6 +485,11 @@ public class AvrcpTargetService extends ProfileService {
         mMediaPlayerList.getPlayerRoot(playerId, cb);
     }
 
+    /** See {@link MediaPlayerList#setAddressedPlayer}. */
+    int setAddressedPlayer(int playerId) {
+        return mMediaPlayerList.setAddressedPlayer(playerId);
+    }
+
     /** See {@link MediaPlayerList#getFolderItems}. */
     void getFolderItems(int playerId, String mediaId, MediaPlayerList.GetFolderItemsCallback cb) {
         mMediaPlayerList.getFolderItems(playerId, mediaId, cb);
@@ -499,8 +504,20 @@ public class AvrcpTargetService extends ProfileService {
 
     /** Informs {@link AudioManager} of an incoming key event from a remote device. */
     void sendMediaKeyEvent(int key, boolean pushed) {
+        MediaPlayerWrapper activePlayer = mMediaPlayerList.getActivePlayer();
+        MediaPlayerWrapper addressedPlayer = mMediaPlayerList.getAddressedPlayer();
+
+        // A/V controls should be sent to the addressed player.
+        // We don't have a way to set a media player as the active session so we
+        // keep the active device playing until we receive a PLAY event for the
+        // addressed player. Other events will still be broadcasted to active player.
+        if (KeyEvent.KEYCODE_MEDIA_PLAY == AvrcpPassthrough.toKeyCode(key)
+                && activePlayer != addressedPlayer) {
+            addressedPlayer.playCurrent();
+            return;
+        }
+
         BluetoothDevice activeDevice = getA2dpActiveDevice();
-        MediaPlayerWrapper player = mMediaPlayerList.getActivePlayer();
         mMediaKeyEventLogger.logd(
                 TAG,
                 "sendMediaKeyEvent:"
@@ -511,7 +528,7 @@ public class AvrcpTargetService extends ProfileService {
                         + " pushed="
                         + pushed
                         + " to "
-                        + (player == null ? null : player.getPackageName()));
+                        + (activePlayer == null ? null : activePlayer.getPackageName()));
         int action = pushed ? KeyEvent.ACTION_DOWN : KeyEvent.ACTION_UP;
         KeyEvent event = new KeyEvent(action, AvrcpPassthrough.toKeyCode(key));
         mAudioManager.dispatchMediaKeyEvent(event);
