@@ -104,6 +104,24 @@
       ],
       "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e01c7796_7117ae41",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-10T09:24:13Z",
+      "side": 1,
+      "message": "This is the fd to communicate with the thread that posts to uhid. The fd might be valid even before uhid_open is invoked. We only queue the input events though. Here\u0027s all possible events:\n\ninput_evt: Peripheral notify input event. queued\ndscp_evt: To open uhid. Immediately executed otherwise uhid_open won\u0027t be called.\nclose_evt: To close uhid, immediately executed.\nget_report_evt: Reply to get report. Receiving get report from uhid means uhid_open was previously called.\nset_report_evt: similar to get_report_evt.",
+      "parentUuid": "7755c055_c1c97e65",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
