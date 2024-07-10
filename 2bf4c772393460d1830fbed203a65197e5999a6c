@@ -93,6 +93,29 @@
       },
       "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a31c0e_85a1b2b5",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T19:13:58Z",
+      "side": 0,
+      "message": "If the codec is SBC and we are SRC, shouldn\u0027t we keep this and replace num by 1 ?",
+      "range": {
+        "startLine": 1094,
+        "startChar": 0,
+        "endLine": 1096,
+        "endChar": 0
+      },
+      "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
