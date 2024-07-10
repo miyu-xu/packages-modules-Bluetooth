@@ -44,7 +44,7 @@ static void a2dp_sink_connection_state_callback(const RawAddress& bd_addr,
   }
 
   CallbackEnv sCallbackEnv(__func__);
-  if (!sCallbackEnv.valid()) {
+  if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
     return;
   }
 
@@ -69,7 +69,7 @@ static void a2dp_sink_audio_state_callback(const RawAddress& bd_addr, btav_audio
   }
 
   CallbackEnv sCallbackEnv(__func__);
-  if (!sCallbackEnv.valid()) {
+  if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
     return;
   }
 
@@ -94,7 +94,7 @@ static void a2dp_sink_audio_config_callback(const RawAddress& bd_addr, uint32_t 
   }
 
   CallbackEnv sCallbackEnv(__func__);
-  if (!sCallbackEnv.valid()) {
+  if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
     return;
   }
 
