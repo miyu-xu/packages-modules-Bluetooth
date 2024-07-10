@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a126805_83d07af7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2024-07-10T12:07:54Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "00effc0b529e649b3e6edf1de5c4aaff004499cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
