@@ -108,10 +108,12 @@ pub enum Message {
     TriggerUpdateConnectableMode,
     DelayedAdapterActions(DelayedActions),
 
-    // Follows IBluetooth's on_device_(dis)connected and bond_state callbacks
-    // but doesn't require depending on Bluetooth.
-    OnDeviceConnectionStateChanged(BluetoothDevice, BtAclState, BtBondState, BtTransport),
-    OnDeviceDisconnected(BluetoothDevice),
+    // Follows IBluetooth's on_device_(dis)connected callback but doesn't require depending on
+    // Bluetooth.
+    OnAclConnected(BluetoothDevice, BtTransport),
+    OnAclDisconnected(BluetoothDevice),
+    ProfilesConnected(BluetoothDevice, BtTransport),
+    ProfilesDisconnected(BluetoothDevice),
 
     // Suspend related
     SuspendCallbackRegistered(u32),
@@ -399,6 +401,15 @@ impl Stack {
                         .unwrap()
                         .handle_action(BatteryServiceActions::Disconnect(device));
                 }
+
+                Message::ProfilesConnected(device, transport) => {
+                    battery_service
+                        .lock()
+                        .unwrap()
+                        .handle_action(BatteryServiceActions::Setup(device, transport));
+                }
+
+                Message::ProfilesDisconnected(_device) => {}
 
                 Message::SuspendCallbackRegistered(id) => {
                     suspend.lock().unwrap().callback_registered(id);

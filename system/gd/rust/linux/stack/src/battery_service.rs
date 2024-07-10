@@ -13,7 +13,7 @@ use crate::{uuid, APIMessage, BluetoothAPI};
 use bt_topshim::btif::{BtAclState, BtBondState, BtTransport, DisplayAddress, RawAddress, Uuid};
 use bt_topshim::profiles::gatt::{GattStatus, LePhy};
 use log::debug;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::convert::TryInto;
 use std::iter;
 use std::sync::{Arc, Mutex};
@@ -40,6 +40,8 @@ pub struct BatteryService {
     /// Found handles for battery levels. Required for faster
     /// refreshes than initiating another search.
     handles: HashMap<RawAddress, i32>,
+    /// Devices that BAS is allowed to initialize.
+    allowed_devices: HashSet<RawAddress>,
 }
 
 /// Enum for GATT callbacks to relay messages to the main processing thread. Newly supported
@@ -55,6 +57,8 @@ pub enum BatteryServiceActions {
     OnCharacteristicRead(RawAddress, GattStatus, i32, Vec<u8>),
     /// Params: addr, handle, value
     OnNotify(RawAddress, i32, Vec<u8>),
+    /// Params: remote_device, transport
+    Setup(BluetoothDevice, BtTransport),
     /// Params: remote_device, transport
     Connect(BluetoothDevice, BtAclState, BtBondState, BtTransport),
     /// Params: remote_device
@@ -106,6 +110,7 @@ impl BatteryService {
         let client_id = None;
         let battery_sets = HashMap::new();
         let handles = HashMap::new();
+        let allowed_devices = HashSet::new();
         let battery_provider_id = battery_provider_manager
             .lock()
             .unwrap()
@@ -120,6 +125,7 @@ impl BatteryService {
             client_id,
             battery_sets,
             handles,
+            allowed_devices,
         }
     }
 
@@ -222,6 +228,14 @@ impl BatteryService {
                 });
             }
 
+            BatteryServiceActions::Setup(device, transport) => {
+                if transport != BtTransport::Le {
+                    return;
+                }
+                self.allowed_devices.insert(device.address);
+                self.init_device(device.address, transport);
+            }
+        
             BatteryServiceActions::Connect(device, acl_state, bond_state, transport) => {
                 if transport != BtTransport::Le
                     || acl_state != BtAclState::Connected
@@ -229,7 +243,6 @@ impl BatteryService {
                 {
                     return;
                 }
-
                 self.init_device(device.address, transport);
             }
 
@@ -259,6 +272,9 @@ impl BatteryService {
     }
 
     fn init_device(&self, remote_address: RawAddress, transport: BtTransport) {
+        if !self.allowed_devices.contains(&remote_address) {
+            return;
+        }
         let client_id = match self.client_id {
             Some(id) => id,
             None => return,
@@ -285,6 +301,7 @@ impl BatteryService {
         }
         self.battery_sets.remove(&remote_address);
         self.handles.remove(&remote_address);
+        self.allowed_devices.remove(&remote_address);
         match self.client_id {
             Some(client_id) => {
                 self.gatt.lock().unwrap().client_disconnect(client_id, remote_address);
