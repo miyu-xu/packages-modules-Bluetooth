@@ -500,10 +500,10 @@ TEST_F(AvrcpDeviceTest, addressPlayerChangedBeforeInterim) {
 
   test_device->RegisterInterfaces(&interface, &a2dp_interface, nullptr, nullptr);
 
-  MediaInterface::MediaListCallback interim_cb;
-  MediaInterface::MediaListCallback changed_cb;
+  MediaInterface::GetAddressedPlayerCallback interim_cb;
+  MediaInterface::GetAddressedPlayerCallback changed_cb;
 
-  EXPECT_CALL(interface, GetMediaPlayerList(_))
+  EXPECT_CALL(interface, GetAddressedPlayer(_))
           .Times(2)
           .WillOnce(SaveArg<0>(&interim_cb))
           .WillOnce(SaveArg<0>(&changed_cb));
