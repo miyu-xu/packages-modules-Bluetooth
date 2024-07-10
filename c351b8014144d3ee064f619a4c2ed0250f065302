@@ -88,6 +88,24 @@
       "parentUuid": "707f7278_d538ff8a",
       "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3db119_fa247673",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4853,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-10T20:55:32Z",
+      "side": 1,
+      "message": "oh my bad I was thinking as BluetoothAdapter.isEnabled.\n\n\nYes, that sound good, done",
+      "parentUuid": "d1fe1070_2202b673",
+      "revId": "c351b8014144d3ee064f619a4c2ed0250f065302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
