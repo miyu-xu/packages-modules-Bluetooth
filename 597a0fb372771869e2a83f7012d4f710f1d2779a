@@ -140,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d64547ab_ccb58cd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-10T19:25:10Z",
+      "side": 1,
+      "message": "the issue is that the sync caller is on main thread but async caller is on gd thread.\n\nThis fix is low risk.\n\nOtherwise the main thread needs a promise/future and posted on gd thread.",
+      "parentUuid": "20451eb0_cb0e8936",
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bad5ce1_d6574079",
