@@ -112,6 +112,8 @@ pub enum Message {
     // but doesn't require depending on Bluetooth.
     OnDeviceConnectionStateChanged(BluetoothDevice, BtAclState, BtBondState, BtTransport),
     OnDeviceDisconnected(BluetoothDevice),
+    ProfilesConnected(BluetoothDevice, BtTransport),
+    ProfilesDisconnected(BluetoothDevice),
 
     // Suspend related
     SuspendCallbackRegistered(u32),
@@ -399,6 +401,15 @@ impl Stack {
                         .unwrap()
                         .handle_action(BatteryServiceActions::Disconnect(device));
                 }
+
+                Message::ProfilesConnected(device, transport) => {
+                    battery_service
+                        .lock()
+                        .unwrap()
+                        .handle_action(BatteryServiceActions::Setup(device, transport));
+                }
+
+                Message::ProfilesDisconnected(_device) => {}
 
                 Message::SuspendCallbackRegistered(id) => {
                     suspend.lock().unwrap().callback_registered(id);

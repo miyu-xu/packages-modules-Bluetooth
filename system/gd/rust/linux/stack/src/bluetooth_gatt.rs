@@ -150,6 +150,7 @@ impl ContextMap {
     }
 
     fn add_connection(&mut self, client_id: i32, conn_id: i32, address: &RawAddress) {
+        log::error!("melhuishj: add_connection for {:?} with conn_id {}", address, conn_id);
         if self.get_conn_id_from_address(client_id, address).is_some() {
             return;
         }
@@ -158,6 +159,7 @@ impl ContextMap {
     }
 
     fn remove_connection(&mut self, _client_id: i32, conn_id: i32) {
+        log::error!("melhuishj: remove_connection for {:?}", conn_id);
         self.connections.retain(|conn| conn.conn_id != conn_id);
     }
 
@@ -2427,6 +2429,7 @@ impl IBluetoothGatt for BluetoothGatt {
         opportunistic: bool,
         phy: LePhy,
     ) {
+        log::error!("melhuishj: connect for {:?} from client_id {}", addr.clone(), client_id);
         self.gatt.as_ref().unwrap().lock().unwrap().client.connect(
             client_id,
             &addr,
@@ -2981,9 +2984,12 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         match client {
             Some(c) => {
                 let cbid = c.cbid;
-                if let Some(cb) = self.context_map.get_callback_from_callback_id(cbid) {
-                    cb.on_client_registered(status, client_id);
-                }
+                self.context_map.get_callback_from_callback_id(cbid).and_then(
+                    |cb: &mut GattClientCallback| {
+                        cb.on_client_registered(status, client_id);
+                        Some(())
+                    },
+                );
             }
             None => {
                 warn!("Warning: Client not registered for UUID {}", DisplayUuid(&app_uuid));
