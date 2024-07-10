@@ -51,6 +51,24 @@
       ],
       "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5325f4b7_f26aefee",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-10T08:35:06Z",
+      "side": 1,
+      "message": "ack. Set negative value to poll indefinitely.",
+      "parentUuid": "0258441a_b2bb090e",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
