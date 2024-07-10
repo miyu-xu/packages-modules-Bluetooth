@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2dbad6c3_ccd2ed57",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-10T08:20:26Z",
+      "side": 1,
+      "message": "I believe here we should check if EATT is supported by remote device",
+      "revId": "c734f878ab7c9d96002adc7ba4ee0fb7ec2071f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbfe43c3_e6ada992",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 19
