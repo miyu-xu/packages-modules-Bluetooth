@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8709680_790e0a07",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T23:55:33Z",
+      "side": 1,
+      "message": "Should move this to the flag off branch to simplify the code",
+      "range": {
+        "startLine": 1077,
+        "startChar": 6,
+        "endLine": 1077,
+        "endChar": 26
+      },
+      "revId": "9dc49f30c87eb4a34cd6b2d01b095b5f8854594a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96cb89ab_198f4621",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-10T23:55:33Z",
+      "side": 1,
+      "message": "Why not keep the same as before ?\n \n```\n        if (p_scb-\u003euuid_int \u003d\u003d 0) {\n          p_scb-\u003euuid_int \u003d p_scb-\u003eopen_api.uuid;\n        }\n```",
+      "range": {
+        "startLine": 1086,
+        "startChar": 0,
+        "endLine": 1092,
+        "endChar": 9
+      },
+      "revId": "9dc49f30c87eb4a34cd6b2d01b095b5f8854594a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
