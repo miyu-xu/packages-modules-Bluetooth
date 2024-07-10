@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f410367a_ea225782",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-10T22:12:18Z",
+      "side": 1,
+      "message": "We can concatenate the list directly:\n\n```suggestion\nfrom pairing import _test_class_list as _test_pairing_list\nimport sdp_test\n\n_TEST_CLASSES_LIST \u003d [\n    avatar.cases.host_test.HostTest,\n    avatar.cases.le_host_test.LeHostTest,\n    avatar.cases.security_test.SecurityTest,\n    avatar.cases.le_security_test.LeSecurityTest,\n    a2dp_test.A2dpTest,\n    sdp_test.SdpTest,\n    gatt_test.GattTest,\n    asha_test.AshaTest,\n    hfpclient_test.HfpClientTest,\n] + _test_pairing_list\n```",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 61
+      },
+      "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86163567_220a7b48",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-10T22:12:18Z",
+      "side": 1,
+      "message": "We can then let `_TEST_CLASSES_LIST` here",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2c78bbd_53ca442a",
+        "filename": "android/pandora/test/pairing/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-10T22:12:18Z",
+      "side": 1,
+      "message": "We can remove this function",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3ff2f5a3_b767672e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/pairing/__init__.py",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
