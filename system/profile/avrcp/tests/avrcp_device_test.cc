@@ -500,10 +500,10 @@ TEST_F(AvrcpDeviceTest, addressPlayerChangedBeforeInterim) {
 
   test_device->RegisterInterfaces(&interface, &a2dp_interface, nullptr, nullptr);
 
-  MediaInterface::MediaListCallback interim_cb;
-  MediaInterface::MediaListCallback changed_cb;
+  MediaInterface::GetAddressedPlayerCallback interim_cb;
+  MediaInterface::GetAddressedPlayerCallback changed_cb;
 
-  EXPECT_CALL(interface, GetMediaPlayerList(_))
+  EXPECT_CALL(interface, GetAddressedPlayer(_))
           .Times(2)
           .WillOnce(SaveArg<0>(&interim_cb))
           .WillOnce(SaveArg<0>(&changed_cb));
@@ -536,11 +536,11 @@ TEST_F(AvrcpDeviceTest, addressPlayerChangedBeforeInterim) {
   // Send the data needed for the interim response
   MediaPlayerInfo info = {0, "Test Player", true};
   std::vector<MediaPlayerInfo> list = {info};
-  interim_cb.Run(0, list);
+  interim_cb.Run(0);
 
   // Send addressed player update, should succeed
   test_device->HandleAddressedPlayerUpdate();
-  changed_cb.Run(0, list);
+  changed_cb.Run(0);
 }
 
 TEST_F(AvrcpDeviceTest, nowPlayingTest) {
