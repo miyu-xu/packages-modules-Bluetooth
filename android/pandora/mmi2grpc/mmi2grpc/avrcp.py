@@ -135,9 +135,8 @@ class AVRCPProxy(ProfileProxy):
         Do the following media players exist on the IUT?
 
         Media Player:
-        Bluetooth Player
-
-
+        com.android.pandora
+        Media Player: Android Open Source Music Player
         Note: Some media players may not be listed above.
 
         """
@@ -570,8 +569,8 @@ class AVRCPProxy(ProfileProxy):
         """
         Are the following items found in the current folder?
 
-        Folder:
-        com.android.pandora
+        Folder: @empty@
+        Folder: NowPlayingId
 
 
         Note: Some media elements and folders may not be
