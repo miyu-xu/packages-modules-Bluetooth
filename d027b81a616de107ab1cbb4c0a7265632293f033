@@ -70,6 +70,24 @@
       "parentUuid": "227cba29_0496da12",
       "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2628bc4d_6bc351dc",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-10T01:36:34Z",
+      "side": 1,
+      "message": "cleanupNative() also invoked `btif_av_sink_cleanup`. That made cleanupNative a blocking call. Instead made Init run on the main thread and invoke cleanup as part of init call.",
+      "parentUuid": "579acc1e_7d565d6f",
+      "revId": "d027b81a616de107ab1cbb4c0a7265632293f033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

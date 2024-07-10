@@ -63,6 +63,30 @@
       },
       "revId": "89958502b28351ee7375445a759b30098270bef7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ade839_81b5324a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-10T01:36:34Z",
+      "side": 1,
+      "message": "This can be potentially removed in future refactor.",
+      "parentUuid": "649bf624_8bda3df6",
+      "range": {
+        "startLine": 1523,
+        "startChar": 1,
+        "endLine": 1526,
+        "endChar": 72
+      },
+      "revId": "89958502b28351ee7375445a759b30098270bef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
