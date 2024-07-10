@@ -485,6 +485,11 @@ public class AvrcpTargetService extends ProfileService {
         mMediaPlayerList.getPlayerRoot(playerId, cb);
     }
 
+    /** See {@link MediaPlayerList#setAddressedPlayer}. */
+    int setAddressedPlayer(int playerId) {
+        return mMediaPlayerList.setAddressedPlayer(playerId);
+    }
+
     /** See {@link MediaPlayerList#getFolderItems}. */
     void getFolderItems(int playerId, String mediaId, MediaPlayerList.GetFolderItemsCallback cb) {
         mMediaPlayerList.getFolderItems(playerId, mediaId, cb);

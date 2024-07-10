@@ -102,6 +102,7 @@ public class MediaPlayerList {
             Collections.synchronizedMap(new HashMap<Integer, MediaBrowserWrapper>());
     private int mActivePlayerId = NO_ACTIVE_PLAYER;
     private int mBrowsingPlayerId = NO_ACTIVE_PLAYER;
+    private int mAddressedPlayerId = NO_ACTIVE_PLAYER;
 
     private MediaUpdateCallback mCallback;
     private boolean mAudioPlaybackIsActive = false;
@@ -347,7 +348,8 @@ public class MediaPlayerList {
 
     /** Returns the {@link #MediaPlayerWrapper} with ID matching {@link #mActivePlayerId}. */
     public MediaPlayerWrapper getActivePlayer() {
-        return mMediaPlayers.get(mActivePlayerId);
+        return mMediaPlayers.get(
+                mAddressedPlayerId == NO_ACTIVE_PLAYER ? mActivePlayerId : mAddressedPlayerId);
     }
 
     /** This is used to send passthrough command to media session */
@@ -396,6 +398,14 @@ public class MediaPlayerList {
             }
             cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", mBrowsablePlayers.size());
         }
+    }
+
+    /** Sets which player the AV/C commands should be addressed to. */
+    public int setAddressedPlayer(int playerId) {
+        if (mMediaPlayerIds.containsValue(playerId)) {
+            mAddressedPlayerId = playerId;
+        }
+        return mAddressedPlayerId;
     }
 
     /** Returns a list valid browsable players. */

@@ -257,7 +257,7 @@ public:
   // SET ADDRESSED PLAYER
   virtual void HandleSetAddressedPlayer(uint8_t label,
                                         std::shared_ptr<SetAddressedPlayerRequest> request,
-                                        uint16_t curr_player, std::vector<MediaPlayerInfo> players);
+                                        uint16_t curr_player);
 
   // LIST PLAYER APPLICATION SETTING ATTRIBUTES
   virtual void ListPlayerApplicationSettingAttributesResponse(

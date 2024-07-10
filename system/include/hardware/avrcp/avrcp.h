@@ -133,6 +133,9 @@ public:
           base::Callback<void(bool success, std::string root_id, uint32_t num_items)>;
   virtual void SetBrowsedPlayer(uint16_t player_id, SetBrowsedPlayerCallback browse_cb) = 0;
 
+  using SetAddressedPlayerCallback = base::Callback<void(uint16_t)>;
+  virtual void SetAddressedPlayer(uint16_t player_id, SetAddressedPlayerCallback new_player) = 0;
+
   virtual void PlayItem(uint16_t player_id, bool now_playing, std::string media_id) = 0;
 
   virtual void SetActiveDevice(const RawAddress& address) = 0;
