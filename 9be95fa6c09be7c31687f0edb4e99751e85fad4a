@@ -16,6 +16,148 @@
       "message": "Have tested the CL with Pixel 8 and Google TV remote. Function well. With delayed time workaround, cached keys can work.",
       "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa54814e_c36351f2",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:41:04Z",
+      "side": 1,
+      "message": "Can we name it something like \"unleash\" to indicate that this function lets loose the write queue.",
+      "fixSuggestions": [
+        {
+          "fixId": "8bb81d98_edf5fbf9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 148,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "static void uhid_unleash_input_queue(btif_hh_uhid_t* p_uhid) {\n"
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 214,
+                "startChar": 0,
+                "endLine": 215,
+                "endChar": 0
+              },
+              "replacement": "        uhid_unleash_input_queue(p_uhid);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a698d322_ed7372e3",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:41:04Z",
+      "side": 1,
+      "message": "It should return if it was already set otherwise set it and proceed",
+      "fixSuggestions": [
+        {
+          "fixId": "ec24ad0f_a4452318",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 149,
+                "startChar": 0,
+                "endLine": 150,
+                "endChar": 0
+              },
+              "replacement": "  if (p_uhid-\u003eready_for_data) {\n"
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 153,
+                "startChar": 0,
+                "endLine": 153,
+                "endChar": 0
+              },
+              "replacement": "  p_uhid-\u003eready_for_data \u003d true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77d1ab58_efb88e28",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:41:04Z",
+      "side": 1,
+      "message": "It is preferred to not treat pointers as boolean. It should be compared against nullptr",
+      "fixSuggestions": [
+        {
+          "fixId": "1beed768_346110c2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 154,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": "  while ((p_ev \u003d (struct uhid_event*)fixed_queue_try_dequeue(p_uhid-\u003einput_queue)) !\u003d nullptr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3df255a_b103b700",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-10T23:41:04Z",
+      "side": 1,
+      "message": "This should be absorbed in uhid_write_input_queue()",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
