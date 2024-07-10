@@ -108,6 +108,9 @@ constexpr uint8_t BLE_EVT_DIRECTED_BIT = 2;
 constexpr uint8_t BLE_EVT_SCAN_RESPONSE_BIT = 3;
 constexpr uint8_t BLE_EVT_LEGACY_BIT = 4;
 
+constexpr uint8_t k1mPhyMask = 1;
+constexpr uint8_t kCodedPhyMask = 1 << 2;
+
 class AdvertisingCache {
 public:
   /* Set the data to |data| for device |addr_type, addr| */
@@ -586,10 +589,9 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
               (btm_cb.ble_ctr_cb.inq_var.scan_type == BTM_BLE_SCAN_MODE_NONE)
                       ? BTM_BLE_SCAN_MODE_ACTI
                       : btm_cb.ble_ctr_cb.inq_var.scan_type;
-      btm_send_hci_set_scan_params(btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval,
-                                   (uint8_t)scan_phy, (uint16_t)scan_window,
-                                   btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type,
-                                   BTM_BLE_DEFAULT_SFP);
+      btm_send_hci_set_scan_params(
+              btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval, (uint16_t)scan_window,
+              (uint8_t)scan_phy, btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, BTM_BLE_DEFAULT_SFP);
 
       btm_ble_start_scan();
     }
@@ -1485,18 +1487,24 @@ static void btm_send_hci_scan_enable(uint8_t enable, uint8_t filter_duplicates) 
 void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int, uint16_t scan_win,
                                   uint8_t scan_phy, tBLE_ADDR_TYPE addr_type_own,
                                   uint8_t scan_filter_policy) {
+  if (!com::android::bluetooth::flags::phy_to_native()) {
+    scan_phy = BTM_BLE_DEFAULT_PHYS;
+  }
   if (bluetooth::shim::GetController()->SupportsBleExtendedAdvertising()) {
+    std::vector<scanning_phy_cfg> phy_cfgs;
     scanning_phy_cfg phy_cfg;
     phy_cfg.scan_type = scan_type;
     phy_cfg.scan_int = scan_int;
     phy_cfg.scan_win = scan_win;
-
-    if (com::android::bluetooth::flags::phy_to_native()) {
-      btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy, scan_phy,
-                                              &phy_cfg);
-    } else {
-      btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy, 1, &phy_cfg);
+    if ((scan_phy & k1mPhyMask) != 0) {
+      phy_cfgs.push_back(phy_cfg);
     }
+    if ((scan_phy & kCodedPhyMask) != 0) {
+      phy_cfgs.push_back(phy_cfg);
+    }
+
+    btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy, scan_phy,
+                                            phy_cfgs.data());
   } else {
     btsnd_hcic_ble_set_scan_params(scan_type, scan_int, scan_win, addr_type_own,
                                    scan_filter_policy);
