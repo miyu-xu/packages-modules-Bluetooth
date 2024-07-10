@@ -16,6 +16,24 @@
       "message": "The intent is related to devices connection status and need to be protected by BLUETOOTH_CONNECT.\n\nBLUETOOTH_PRIVILEGED is not enough",
       "revId": "6690f7e2654691818bec29a3937913c00d4afd2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0dbde61_5cfe1ce1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-10T08:27:38Z",
+      "side": 1,
+      "message": "Proper new API was added, and it\u0027s now requiring both permissions.",
+      "parentUuid": "b12d2d95_2aa6e5b9",
+      "revId": "6690f7e2654691818bec29a3937913c00d4afd2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
