@@ -227,6 +227,17 @@ public:
                                 player_id, bound_cb));
   }
 
+  void SetAddressedPlayer(uint16_t player_id, SetAddressedPlayerCallback addressed_cb) override {
+    auto cb_lambda = [](SetAddressedPlayerCallback cb, uint16_t new_player) {
+      do_in_main_thread(base::BindOnce(cb, new_player));
+    };
+
+    auto bound_cb = base::Bind(cb_lambda, addressed_cb);
+
+    do_in_jni_thread(base::Bind(&MediaInterface::SetAddressedPlayer, base::Unretained(wrapped_),
+                                player_id, bound_cb));
+  }
+
   void PlayItem(uint16_t player_id, bool now_playing, std::string media_id) override {
     do_in_jni_thread(base::Bind(&MediaInterface::PlayItem, base::Unretained(wrapped_), player_id,
                                 now_playing, media_id));
