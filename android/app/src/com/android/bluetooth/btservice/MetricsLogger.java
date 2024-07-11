@@ -333,7 +333,26 @@ public class MetricsLogger {
                 BluetoothRemoteDeviceInformation.OUI_FIELD_NUMBER,
                 getOui(device));
 
+        // write deviceTypeMetaData
+        writeFieldIfNotNull(
+                proto,
+                ProtoOutputStream.FIELD_TYPE_STRING,
+                ProtoOutputStream.FIELD_COUNT_SINGLE,
+                BluetoothRemoteDeviceInformation.DEVICE_TYPE_METADATA_FIELD_NUMBER,
+                getDeviceTypeMetaData(device));
+
         return proto.getBytes();
+    }
+
+    private String getDeviceTypeMetaData(BluetoothDevice device) {
+        byte[] deviceTypeMetaDataBytes = device.getMetadata(BluetoothDevice.METADATA_DEVICE_TYPE);
+
+        String deviceTypeMetaData =
+                (deviceTypeMetaDataBytes != null)
+                        ? new String(deviceTypeMetaDataBytes, StandardCharsets.UTF_8)
+                        : ""; // Check if StandardCharsets.UTF_8 is required
+
+        return deviceTypeMetaData.equals("HearingAid") ? "" : deviceTypeMetaData;
     }
 
     private int getOui(BluetoothDevice device) {
