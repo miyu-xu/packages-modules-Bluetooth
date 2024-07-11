@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d2fc03_1bc4676a",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-11T20:49:30Z",
+      "side": 1,
+      "message": "Nit: up to you if you want to do something with these TODOs as the person references is long gone.",
+      "range": {
+        "startLine": 537,
+        "startChar": 5,
+        "endLine": 537,
+        "endChar": 19
+      },
+      "revId": "3c2df10994a1256b45e2835060e5c78e2e885810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
