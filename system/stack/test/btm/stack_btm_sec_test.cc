@@ -288,3 +288,94 @@ TEST_F(StackBtmSecWithInitFreeTest, btm_sec_rmt_name_request_complete) {
   }
   ASSERT_EQ(8U, history.size());
 }
+
+TEST_F(StackBtmSecWithInitFreeTest,
+       btm_sec_temp_bond_auth_authenticated_temporary) {
+  bluetooth::common::InitFlags::SetAllForTesting();
+
+  RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+  const uint16_t classic_handle = 0x1234;
+  const uint16_t ble_handle = 0x9876;
+  bool rval = false;
+
+  tBTM_SEC_DEV_REC* device_record = btm_sec_allocate_dev_rec();
+  device_record->bd_addr = bd_addr;
+  device_record->hci_handle = classic_handle;
+  device_record->ble_hci_handle = ble_handle;
+
+  device_record->sec_rec.sec_flags |= BTM_SEC_AUTHENTICATED;
+  device_record->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
+  device_record->sec_rec.bond_type = BOND_TYPE_TEMPORARY;
+
+  btm_sec_cb.security_mode = BTM_SEC_MODE_SERVICE;
+  btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
+
+  uint16_t sec_req = BTM_SEC_IN_AUTHENTICATE;
+  tBTM_STATUS status = BTM_UNDEFINED;
+
+  status = btm_sec_mx_access_request(bd_addr, false, sec_req, NULL, NULL);
+
+  ASSERT_EQ(status, BTM_FAILED_ON_SECURITY);
+}
+
+TEST_F(StackBtmSecWithInitFreeTest,
+       btm_sec_temp_bond_auth_non_authenticated_temporary) {
+  bluetooth::common::InitFlags::SetAllForTesting();
+
+  RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+  const uint16_t classic_handle = 0x1234;
+  const uint16_t ble_handle = 0x9876;
+  bool rval = false;
+
+  tBTM_SEC_DEV_REC* device_record = btm_sec_allocate_dev_rec();
+  device_record->bd_addr = bd_addr;
+  device_record->hci_handle = classic_handle;
+  device_record->ble_hci_handle = ble_handle;
+
+  device_record->sec_rec.sec_flags &= ~BTM_SEC_AUTHENTICATED;
+  device_record->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
+  device_record->sec_rec.bond_type = BOND_TYPE_TEMPORARY;
+
+  btm_sec_cb.security_mode = BTM_SEC_MODE_SERVICE;
+  btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
+
+  uint16_t sec_req = BTM_SEC_IN_AUTHENTICATE;
+  tBTM_STATUS status = BTM_UNDEFINED;
+
+  status = btm_sec_mx_access_request(bd_addr, false, sec_req, NULL, NULL);
+
+  // We're testing the temp bonding security behavior here, so all we care about
+  // is that it doesn't fail on security.
+  ASSERT_NE(status, BTM_FAILED_ON_SECURITY);
+}
+
+TEST_F(StackBtmSecWithInitFreeTest,
+       btm_sec_temp_bond_auth_authenticated_persistent) {
+  bluetooth::common::InitFlags::SetAllForTesting();
+
+  RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+  const uint16_t classic_handle = 0x1234;
+  const uint16_t ble_handle = 0x9876;
+  bool rval = false;
+
+  tBTM_SEC_DEV_REC* device_record = btm_sec_allocate_dev_rec();
+  device_record->bd_addr = bd_addr;
+  device_record->hci_handle = classic_handle;
+  device_record->ble_hci_handle = ble_handle;
+
+  device_record->sec_rec.sec_flags |= BTM_SEC_AUTHENTICATED;
+  device_record->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
+  device_record->sec_rec.bond_type = BOND_TYPE_PERSISTENT;
+
+  btm_sec_cb.security_mode = BTM_SEC_MODE_SERVICE;
+  btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
+
+  uint16_t sec_req = BTM_SEC_IN_AUTHENTICATE;
+  tBTM_STATUS status = BTM_UNDEFINED;
+
+  status = btm_sec_mx_access_request(bd_addr, false, sec_req, NULL, NULL);
+
+  // We're testing the temp bonding security behavior here, so all we care about
+  // is that it doesn't fail on security.
+  ASSERT_NE(status, BTM_FAILED_ON_SECURITY);
+}
