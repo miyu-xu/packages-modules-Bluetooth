@@ -312,4 +312,8 @@ message BluetoothRemoteDeviceInformation {
 
   // The first three bytes of MAC address
   optional int32 oui = 3;
+
+  // Device type metadata
+  // Device types logged are - Watch, Untethered Headset, Stylus, Speaker, Headset, Carkit and Default
+  optional string device_type_metadata = 4;
 }
