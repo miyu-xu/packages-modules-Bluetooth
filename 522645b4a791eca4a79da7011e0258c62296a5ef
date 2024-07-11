@@ -22,6 +22,30 @@
       },
       "revId": "522645b4a791eca4a79da7011e0258c62296a5ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f139daa_ec810c23",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp_sink.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T20:44:03Z",
+      "side": 1,
+      "message": "I prefer to leave it as it was prior to my edits",
+      "parentUuid": "47cf2378_011fef54",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "522645b4a791eca4a79da7011e0258c62296a5ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
