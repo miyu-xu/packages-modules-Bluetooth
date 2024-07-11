@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "971ea060_fef8efa3",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-11T08:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8709680_790e0a07",
+      "range": {
+        "startLine": 1077,
+        "startChar": 6,
+        "endLine": 1077,
+        "endChar": 26
+      },
+      "revId": "9dc49f30c87eb4a34cd6b2d01b095b5f8854594a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96cb89ab_198f4621",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-10T23:55:33Z",
       "side": 1,
       "message": "Why not keep the same as before ?\n \n```\n        if (p_scb-\u003euuid_int \u003d\u003d 0) {\n          p_scb-\u003euuid_int \u003d p_scb-\u003eopen_api.uuid;\n        }\n```",
+      "range": {
+        "startLine": 1086,
+        "startChar": 0,
+        "endLine": 1092,
+        "endChar": 9
+      },
+      "revId": "9dc49f30c87eb4a34cd6b2d01b095b5f8854594a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d25ef7_5990d2f4",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-11T08:32:02Z",
+      "side": 1,
+      "message": "I think the case for btif_av_src_sink_coexist_enabled should be based on \"local_sep\" rather then p_scb-\u003eopen_api.uuid, shouldn\u0027t it?",
+      "parentUuid": "96cb89ab_198f4621",
       "range": {
         "startLine": 1086,
         "startChar": 0,
