@@ -891,7 +891,7 @@ uint16_t btif_dm_get_connection_state_sync(const RawAddress& bd_addr) {
   std::future future = promise.get_future();
 
   auto status = do_in_main_thread(
-          FROM_HERE, base::BindOnce(
+          base::BindOnce(
                              [](const RawAddress bd_addr, std::promise<uint16_t> promise) {
                                // Experiment to try with maybe resolved address
                                uint16_t state = btif_dm_get_resolved_connection_state({
@@ -1753,7 +1753,7 @@ void btif_on_gatt_results(RawAddress bd_addr, BD_NAME bd_name,
         /* LE Audio profile should relax parameters when it connects. If
          * profile is not enabled, relax parameters after timeout. */
         log::debug("Scheduling conn params unlock for {}", bd_addr);
-        do_in_main_thread_delayed(FROM_HERE,
+        do_in_main_thread_delayed(
                                   base::BindOnce(
                                           [](RawAddress bd_addr) {
                                             L2CA_LockBleConnParamsForProfileConnection(bd_addr,

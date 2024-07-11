@@ -179,7 +179,7 @@ bool SourceImpl::OnResumeReq(bool start_media_task) {
     return false;
   }
   bt_status_t status = do_in_main_thread(
-          FROM_HERE, base::BindOnce(&LeAudioSourceAudioHalClient::Callbacks::OnAudioResume,
+          base::BindOnce(&LeAudioSourceAudioHalClient::Callbacks::OnAudioResume,
                                     audioSourceCallbacks_->weak_factory_.GetWeakPtr()));
   if (status == BT_STATUS_SUCCESS) {
     return true;
@@ -285,7 +285,7 @@ bool SourceImpl::OnSuspendReq() {
   }
 
   bt_status_t status = do_in_main_thread(
-          FROM_HERE, base::BindOnce(&LeAudioSourceAudioHalClient::Callbacks::OnAudioSuspend,
+          base::BindOnce(&LeAudioSourceAudioHalClient::Callbacks::OnAudioSuspend,
                                     audioSourceCallbacks_->weak_factory_.GetWeakPtr()));
   if (status == BT_STATUS_SUCCESS) {
     return true;
@@ -307,7 +307,7 @@ bool SourceImpl::OnMetadataUpdateReq(const source_metadata_v7_t& source_metadata
           source_metadata.tracks, source_metadata.tracks + source_metadata.track_count);
 
   bt_status_t status = do_in_main_thread(
-          FROM_HERE, base::BindOnce(&LeAudioSourceAudioHalClient::Callbacks::OnAudioMetadataUpdate,
+          base::BindOnce(&LeAudioSourceAudioHalClient::Callbacks::OnAudioMetadataUpdate,
                                     audioSourceCallbacks_->weak_factory_.GetWeakPtr(),
                                     std::move(metadata), dsa_mode));
   if (status == BT_STATUS_SUCCESS) {

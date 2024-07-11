@@ -65,7 +65,7 @@ public:
     bluetooth::shim::GetAdvertising()->RegisterAdvertiser(
             bluetooth::shim::GetGdShimHandler()->BindOnce(
                     [](IdStatusCallback cb, uint8_t id, uint8_t status) {
-                      do_in_main_thread(FROM_HERE,
+                      do_in_main_thread(
                                         base::BindOnce([](IdStatusCallback cb, uint8_t id,
                                                           uint8_t status) { cb.Run(id, status); },
                                                        cb, id, status));
@@ -219,7 +219,7 @@ public:
     uint8_t client_id = is_native_advertiser(reg_id);
     if (client_id != kAdvertiserClientIdJni) {
       // Invoke callback for native client
-      do_in_main_thread(FROM_HERE,
+      do_in_main_thread(
                         base::Bind(&AdvertisingCallbacks::OnAdvertisingSetStarted,
                                    base::Unretained(native_adv_callbacks_map_[client_id]), reg_id,
                                    advertiser_id, tx_power, status));
@@ -235,7 +235,7 @@ public:
     uint8_t client_id = is_native_advertiser(reg_id);
     if (client_id != kAdvertiserClientIdJni) {
       // Invoke callback for native client
-      do_in_main_thread(FROM_HERE,
+      do_in_main_thread(
                         base::Bind(&AdvertisingCallbacks::OnAdvertisingEnabled,
                                    base::Unretained(native_adv_callbacks_map_[client_id]),
                                    advertiser_id, enable, status));
@@ -252,7 +252,7 @@ public:
       uint8_t client_id = is_native_advertiser(reg_id);
       if (client_id != kAdvertiserClientIdJni) {
         // Invoke callback for native client
-        do_in_main_thread(FROM_HERE,
+        do_in_main_thread(
                           base::Bind(&AdvertisingCallbacks::OnAdvertisingDataSet,
                                      base::Unretained(native_adv_callbacks_map_[client_id]),
                                      advertiser_id, status));
@@ -289,7 +289,7 @@ public:
       uint8_t client_id = is_native_advertiser(reg_id);
       if (client_id != kAdvertiserClientIdJni) {
         // Invoke callback for native client
-        do_in_main_thread(FROM_HERE,
+        do_in_main_thread(
                           base::Bind(&AdvertisingCallbacks::OnPeriodicAdvertisingDataSet,
                                      base::Unretained(native_adv_callbacks_map_[client_id]),
                                      advertiser_id, status));

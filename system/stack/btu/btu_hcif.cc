@@ -652,7 +652,7 @@ static void btu_hcif_command_complete_evt_with_cb_on_task(BT_HDR* event, void* c
 }
 
 static void btu_hcif_command_complete_evt_with_cb(BT_HDR* response, void* context) {
-  do_in_main_thread(FROM_HERE, base::BindOnce(btu_hcif_command_complete_evt_with_cb_on_task,
+  do_in_main_thread(base::BindOnce(btu_hcif_command_complete_evt_with_cb_on_task,
                                               response, context));
 }
 
@@ -685,7 +685,7 @@ static void btu_hcif_command_status_evt_with_cb(uint8_t status, BT_HDR* command,
     return;
   }
 
-  do_in_main_thread(FROM_HERE, base::BindOnce(btu_hcif_command_status_evt_with_cb_on_task, status,
+  do_in_main_thread(base::BindOnce(btu_hcif_command_status_evt_with_cb_on_task, status,
                                               command, context));
 }
 
@@ -989,7 +989,7 @@ static void btu_hcif_command_complete_evt_on_task(BT_HDR* event) {
 }
 
 static void btu_hcif_command_complete_evt(BT_HDR* response, void* /* context */) {
-  do_in_main_thread(FROM_HERE, base::BindOnce(btu_hcif_command_complete_evt_on_task, response));
+  do_in_main_thread(base::BindOnce(btu_hcif_command_complete_evt_on_task, response));
 }
 
 /*******************************************************************************
@@ -1122,7 +1122,7 @@ static void btu_hcif_command_status_evt_on_task(uint8_t status, BT_HDR* event) {
 }
 
 static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command, void* /* context */) {
-  do_in_main_thread(FROM_HERE,
+  do_in_main_thread(
                     base::BindOnce(btu_hcif_command_status_evt_on_task, status, command));
 }
 

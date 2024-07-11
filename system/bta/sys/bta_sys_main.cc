@@ -145,7 +145,7 @@ bool bta_sys_is_register(uint8_t id) { return bta_sys_cb.is_reg[id]; }
  *
  ******************************************************************************/
 void bta_sys_sendmsg(void* p_msg) {
-  if (do_in_main_thread(FROM_HERE,
+  if (do_in_main_thread(
                         base::BindOnce(&bta_sys_event, static_cast<BT_HDR_RIGID*>(p_msg))) !=
       BT_STATUS_SUCCESS) {
     log::error("do_in_main_thread failed");
@@ -153,7 +153,7 @@ void bta_sys_sendmsg(void* p_msg) {
 }
 
 void bta_sys_sendmsg_delayed(void* p_msg, std::chrono::microseconds delay) {
-  if (do_in_main_thread_delayed(FROM_HERE,
+  if (do_in_main_thread_delayed(
                                 base::Bind(&bta_sys_event, static_cast<BT_HDR_RIGID*>(p_msg)),
                                 delay) != BT_STATUS_SUCCESS) {
     log::error("do_in_main_thread_delayed failed");

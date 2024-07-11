@@ -196,7 +196,7 @@ void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr, uint8_t page
                                                           : hci::ClockOffsetValid::INVALID),
           GetGdShimHandler()->BindOnce([](hci::ErrorCode status) {
             if (status != hci::ErrorCode::SUCCESS) {
-              do_in_main_thread(FROM_HERE, base::BindOnce(
+              do_in_main_thread(base::BindOnce(
                                                    [](hci::ErrorCode status) {
                                                      // NOTE: we intentionally don't supply the
                                                      // address, to match the legacy behavior.
@@ -216,7 +216,7 @@ void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr, uint8_t page
           GetGdShimHandler()->BindOnce(
                   [](RawAddress addr, uint64_t features) {
                     static_assert(sizeof(features) == 8);
-                    do_in_main_thread(FROM_HERE,
+                    do_in_main_thread(
                                       base::BindOnce(btm_sec_rmt_host_support_feat_evt, addr,
                                                      static_cast<uint8_t>(features & 0xff)));
                   },
@@ -224,7 +224,6 @@ void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr, uint8_t page
           GetGdShimHandler()->BindOnce(
                   [](RawAddress addr, hci::ErrorCode status, std::array<uint8_t, 248> name) {
                     do_in_main_thread(
-                            FROM_HERE,
                             base::BindOnce(
                                     [](RawAddress addr, hci::ErrorCode status,
                                        std::array<uint8_t, 248> name) {

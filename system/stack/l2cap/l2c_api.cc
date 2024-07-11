@@ -558,7 +558,7 @@ uint16_t L2CA_ConnectLECocReq(uint16_t psm, const RawAddress& p_bd_addr, tL2CAP_
       log::verbose("LE Link is up");
       // post this asynchronously to avoid out-of-order callback invocation
       // should this operation fail
-      do_in_main_thread(FROM_HERE, base::BindOnce(&l2c_csm_execute, base::Unretained(p_ccb),
+      do_in_main_thread(base::BindOnce(&l2c_csm_execute, base::Unretained(p_ccb),
                                                   L2CEVT_L2CA_CONNECT_REQ, nullptr));
     }
   }

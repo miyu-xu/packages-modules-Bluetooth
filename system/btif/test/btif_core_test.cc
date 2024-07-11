@@ -764,8 +764,8 @@ TEST_F(BtifCoreWithControllerTest, debug_dump_unconfigured) {
   auto reading_promise = std::make_unique<std::promise<void>>();
   auto reading_done = reading_promise->get_future();
 
-  do_in_main_thread(FROM_HERE, BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
-  do_in_main_thread(FROM_HERE, BindOnce(
+  do_in_main_thread(BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
+  do_in_main_thread(BindOnce(
                                        [](std::unique_ptr<std::promise<void>> done_promise) {
                                          char line_buf[1024] = "";
                                          int bytes_read = read(read_fd, line_buf, 1024);
@@ -824,7 +824,7 @@ protected:
             .RetiresOnSaturation();
     EXPECT_CALL(hci_, RegisterVendorSpecificEventHandler(VseSubeventCode::BQR_EVENT, _))
             .WillOnce(SaveArg<1>(&this->vse_callback_));
-    do_in_main_thread(FROM_HERE,
+    do_in_main_thread(
                       BindOnce([]() { bluetooth::bqr::EnableBtQualityReport(get_main()); }));
     ASSERT_EQ(std::future_status::ready, configuration_done.wait_for(std::chrono::seconds(1)));
   }
@@ -838,7 +838,7 @@ protected:
                 EnqueueCommand(_, Matcher<ContextualOnceCallback<void(CommandCompleteView)>>(_)))
             .WillOnce(Invoke(set_promise))
             .RetiresOnSaturation();
-    do_in_main_thread(FROM_HERE,
+    do_in_main_thread(
                       BindOnce([]() { bluetooth::bqr::EnableBtQualityReport(nullptr); }));
     ASSERT_EQ(std::future_status::ready, disable_future.wait_for(std::chrono::seconds(1)));
 
@@ -901,8 +901,8 @@ TEST_F(BtifCoreVseWithSocketTest, debug_dump_empty) {
   auto reading_promise = std::make_unique<std::promise<void>>();
   auto reading_done = reading_promise->get_future();
 
-  do_in_main_thread(FROM_HERE, BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
-  do_in_main_thread(FROM_HERE, BindOnce(
+  do_in_main_thread(BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
+  do_in_main_thread(BindOnce(
                                        [](std::unique_ptr<std::promise<void>> done_promise) {
                                          char line_buf[1024] = "";
                                          int bytes_read = read(read_fd, line_buf, 1024);
@@ -932,11 +932,11 @@ TEST_F(BtifCoreVseWithSocketTest, send_lmp_ll_msg) {
   auto reading_done = reading_promise->get_future();
 
   static int write_fd = write_fd_;
-  do_in_main_thread(FROM_HERE,
+  do_in_main_thread(
                     BindOnce([]() { bluetooth::bqr::testing::set_lmp_trace_log_fd(write_fd); }));
   vse_callback_(view);
 
-  do_in_main_thread(FROM_HERE, BindOnce(
+  do_in_main_thread(BindOnce(
                                        [](std::unique_ptr<std::promise<void>> done_promise) {
                                          char line_buf[1024] = "";
                                          std::string line;
@@ -966,8 +966,8 @@ TEST_F(BtifCoreVseWithSocketTest, debug_dump_a2dp_choppy_no_payload) {
   auto reading_promise = std::make_unique<std::promise<void>>();
   auto reading_done = reading_promise->get_future();
 
-  do_in_main_thread(FROM_HERE, BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
-  do_in_main_thread(FROM_HERE, BindOnce(
+  do_in_main_thread(BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
+  do_in_main_thread(BindOnce(
                                        [](std::unique_ptr<std::promise<void>> done_promise) {
                                          char line_buf[1024] = "";
                                          std::string line;
@@ -1000,8 +1000,8 @@ TEST_F(BtifCoreVseWithSocketTest, debug_dump_a2dp_choppy) {
   auto reading_promise = std::make_unique<std::promise<void>>();
   auto reading_done = reading_promise->get_future();
 
-  do_in_main_thread(FROM_HERE, BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
-  do_in_main_thread(FROM_HERE, BindOnce(
+  do_in_main_thread(BindOnce([]() { bluetooth::bqr::DebugDump(write_fd); }));
+  do_in_main_thread(BindOnce(
                                        [](std::unique_ptr<std::promise<void>> done_promise) {
                                          char line_buf[1024] = "";
                                          std::string line;
