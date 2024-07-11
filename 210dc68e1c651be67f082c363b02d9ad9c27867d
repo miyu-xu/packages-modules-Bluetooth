@@ -34,6 +34,24 @@
       "parentUuid": "4279fad8_153ca4cc",
       "revId": "210dc68e1c651be67f082c363b02d9ad9c27867d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c61908b1_1684b8a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-11T06:14:01Z",
+      "side": 1,
+      "message": "A regression test would be nice, but clearly this is broken for BREDR devices with the flag on by the original change aosp/2967328 as it tries to do an LE connection instead.",
+      "parentUuid": "b90a1cbd_31e04a54",
+      "revId": "210dc68e1c651be67f082c363b02d9ad9c27867d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
