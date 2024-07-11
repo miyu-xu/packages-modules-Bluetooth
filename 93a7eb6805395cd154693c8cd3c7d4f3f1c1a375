@@ -136,6 +136,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24a90537_f85414f5",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1491,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-11T21:14:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc5c2988_08e8371e",
+      "revId": "93a7eb6805395cd154693c8cd3c7d4f3f1c1a375",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ad9c0d4_40b8429f",
@@ -197,6 +215,30 @@
       "side": 1,
       "message": "It might be problematic to schedule SetActivePeer asynchronously during Init though, it\u0027s worth checking that it works correctly",
       "parentUuid": "023fdb38_db34df01",
+      "range": {
+        "startLine": 1527,
+        "startChar": 0,
+        "endLine": 1530,
+        "endChar": 72
+      },
+      "revId": "93a7eb6805395cd154693c8cd3c7d4f3f1c1a375",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e26853cb_671f9572",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-11T21:14:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c5f2dc7_75481238",
       "range": {
         "startLine": 1527,
         "startChar": 0,
