@@ -818,9 +818,53 @@ public:
     return false;
   }
 
+  bool isPresetIndexValid(std::variant<RawAddress, int> addr_or_group_id,
+                          uint8_t preset_index) {
+    int group_id;
+
+    auto csis_api = CsisClient::Get();
+    if (csis_api == nullptr) return false;
+
+    if (std::holds_alternative<RawAddress>(addr_or_group_id)) {
+      auto addr = std::get<RawAddress>(addr_or_group_id);
+      auto device = std::find_if(devices_.begin(), devices_.end(),
+                                 HasDevice::MatchAddress(addr));
+      auto preset_info = device->GetPresetInfo(preset_index);
+
+      if (!preset_info->available) log::error("Preset not available!");
+      return preset_info->available;
+    } else if (std::holds_alternative<int>(addr_or_group_id)) {
+      group_id = std::get<int>(addr_or_group_id);
+
+      auto addresses = csis_api->GetDeviceList(group_id);
+      if (addresses.empty()) return false;
+      for (auto& addr : addresses) {
+        auto device = std::find_if(devices_.begin(), devices_.end(),
+                                   HasDevice::MatchAddress(addr));
+        if (device != devices_.end()) {
+           break;
+        }
+
+        for (auto const& preset : device->has_presets) {
+          if (preset.GetIndex() == preset_index) {
+            auto isAvailable = preset.IsAvailable();
+            if (!isAvailable) log::error("Preset not available!");
+            return isAvailable;
+          }
+        }
+      }
+    }
+
+    return false;
+  }
+
   void SelectActivePreset(std::variant<RawAddress, int> addr_or_group_id,
                           uint8_t preset_index) override {
     log::debug("");
+
+    if (!isPresetIndexValid(addr_or_group_id, preset_index)) {
+      return;
+    }
 
     auto opcode = shouldRequestSyncedOp(addr_or_group_id, PresetCtpOpcode::SET_ACTIVE_PRESET_SYNC)
                           ? PresetCtpOpcode::SET_ACTIVE_PRESET_SYNC
