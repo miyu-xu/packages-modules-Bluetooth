@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "199f19ce_a2b1b806",
+        "filename": "system/main/shim/shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T19:31:38Z",
+      "side": 1,
+      "message": "You are keeping the location in the caller here",
+      "range": {
+        "startLine": 34,
+        "startChar": 60,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "41f40f3da53594c80798614ee0003ac27ac0cb55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e45cdf6_0060b77e",
+        "filename": "system/stack/btu/main_thread.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T19:31:38Z",
+      "side": 1,
+      "message": "Aren\u0027t we loosing the information of where in the code this was called ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "41f40f3da53594c80798614ee0003ac27ac0cb55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
