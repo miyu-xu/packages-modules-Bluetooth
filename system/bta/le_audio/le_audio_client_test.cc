@@ -1766,9 +1766,10 @@ protected:
   void ConnectCsisDevice(const RawAddress& addr, uint16_t conn_id, uint32_t sink_audio_allocation,
                          uint32_t source_audio_allocation, uint8_t group_size, int group_id,
                          uint8_t rank, bool connect_through_csis = false, bool new_device = true) {
-    SetSampleDatabaseEarbudsValid(conn_id, addr, sink_audio_allocation, source_audio_allocation,
-                                  default_channel_cnt, default_channel_cnt,
-                                  0x0004, /* source sample freq 16khz */
+    SetSampleDatabaseEarbudsValid(conn_id, addr, sink_audio_allocation,
+                                  source_audio_allocation, default_channel_cnt,
+                                  default_channel_cnt,
+                                  0x0034, /* source sample freq 16khz */
                                   true,   /*add_csis*/
                                   true,   /*add_cas*/
                                   true,   /*add_pacs*/
@@ -6072,11 +6073,11 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
 
   /* Make sure configurations are non empty */
   btle_audio_codec_config_t call_config = {.codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
-                                           .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+                                           .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_32000HZ,
                                            .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
                                            .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
                                            .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
-                                           .octets_per_frame = 40};
+                                           .octets_per_frame = 80};
 
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
               OnAudioGroupCurrentCodecConf(group_id, call_config, call_config))
@@ -6210,6 +6211,237 @@ TEST_F(UnicastTest, TwoEarbudsSetPreferenceFailBeforeMedia) {
   int expected_stop_stream_times_while_media = 0;
   int expected_configure_stream_times_while_media = 0;
   TestSetCodecPreference(&preferred_codec_config_before_media, nullptr,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(UnicastTest, TwoEarbudsSetPreferenceSuccessDuringMediaWithReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_24000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 60};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = false;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = false;
+  bool is_using_set_while_media_codec_during_media = true;
+  // should reconfig and use preferred codec
+  int expected_stop_stream_times_while_media = 1;
+  int expected_configure_stream_times_while_media = 1;
+  TestSetCodecPreference(nullptr, &preferred_codec_config_during_media,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(UnicastTest, TwoEarbudsSetPreferenceSuccessDuringMediaWithoutReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 120};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = false;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = false;
+  bool is_using_set_while_media_codec_during_media = true;
+  // use preferred codec but not reconfig as same codec with originl
+  int expected_stop_stream_times_while_media = 0;
+  int expected_configure_stream_times_while_media = 0;
+  TestSetCodecPreference(nullptr, &preferred_codec_config_during_media,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(UnicastTest, TwoEarbudsSetPreferenceFailDuringMediaWithoutReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 70};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = false;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = false;
+  bool is_using_set_while_media_codec_during_media = false;
+  // use original codec and should not reconfig
+  int expected_stop_stream_times_while_media = 0;
+  int expected_configure_stream_times_while_media = 0;
+  TestSetCodecPreference(nullptr, &preferred_codec_config_during_media,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(
+    UnicastTest,
+    TwoEarbudsSetPreferenceSucessBeforeMediaClearPreferenceDuringMediaWithReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_before_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_priority = -1};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = true;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = true;
+  bool is_using_set_while_media_codec_during_media = false;
+  // should reconfig to legacy codec
+  int expected_stop_stream_times_while_media = 1;
+  int expected_configure_stream_times_while_media = 1;
+  TestSetCodecPreference(&preferred_codec_config_before_media,
+                         &preferred_codec_config_during_media,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(
+    UnicastTest,
+    TwoEarbudsSetPreferenceSucessBeforeMediaSetPreferenceSuccessDuringMediaWithReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_before_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_24000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 60};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = true;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = true;
+  bool is_using_set_while_media_codec_during_media = true;
+  // should reconfig to new preferred codec
+  int expected_stop_stream_times_while_media = 1;
+  int expected_configure_stream_times_while_media = 1;
+  TestSetCodecPreference(&preferred_codec_config_before_media,
+                         &preferred_codec_config_during_media,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(
+    UnicastTest,
+    TwoEarbudsSetPreferenceSucessBeforeMediaSetPreferenceSuccessDuringMediaWithoutReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_before_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = true;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = true;
+  bool is_using_set_while_media_codec_during_media = true;
+  // should not reconfig as same as before preferred codec
+  int expected_stop_stream_times_while_media = 0;
+  int expected_configure_stream_times_while_media = 0;
+  TestSetCodecPreference(&preferred_codec_config_before_media,
+                         &preferred_codec_config_during_media,
+                         LeAudioContextType::MEDIA, group_id, set_before_media,
+                         set_while_media,
+                         is_using_set_before_media_codec_during_media,
+                         is_using_set_while_media_codec_during_media,
+                         expected_stop_stream_times_while_media,
+                         expected_configure_stream_times_while_media);
+}
+
+TEST_F(
+    UnicastTest,
+    TwoEarbudsSetPreferenceSucessBeforeMediaSetPreferenceFailDuringMediaWithReconfig) {
+  btle_audio_codec_config_t preferred_codec_config_before_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+  btle_audio_codec_config_t preferred_codec_config_during_media = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 70};
+
+  int group_id = 2;
+  TestSetupRemoteDevices(group_id);
+
+  bool set_before_media = true;
+  bool set_while_media = true;
+  bool is_using_set_before_media_codec_during_media = true;
+  bool is_using_set_while_media_codec_during_media = false;
+  // should reconfig to legacy codec
+  int expected_stop_stream_times_while_media = 1;
+  int expected_configure_stream_times_while_media = 1;
+  TestSetCodecPreference(&preferred_codec_config_before_media,
+                         &preferred_codec_config_during_media,
                          LeAudioContextType::MEDIA, group_id, set_before_media,
                          set_while_media,
                          is_using_set_before_media_codec_during_media,
