@@ -238,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f57d54_1bfcfa2e",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T09:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a528b3b8_cd3991cf",
+      "range": {
+        "startLine": 153,
+        "startChar": 64,
+        "endLine": 153,
+        "endChar": 68
+      },
+      "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aec6cad_983ea89a",
