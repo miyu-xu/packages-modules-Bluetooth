@@ -2187,11 +2187,92 @@ TEST_F(HasClientTest, test_select_group_preset_invalid_group) {
   ON_CALL(mock_csis_client_module_, GetDeviceList(unlucky_group))
           .WillByDefault(Return(std::vector<RawAddress>()));
 
-  EXPECT_CALL(*callbacks, OnActivePresetSelectError(std::variant<RawAddress, int>(unlucky_group),
-                                                    ErrorCode::OPERATION_NOT_POSSIBLE))
-          .Times(1);
+  /* No devices means no available presets - do not expect write to be executed,
+   * and no events arriving.
+   */
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).Times(0);
+  EXPECT_CALL(*callbacks, OnActivePresetSelectError(std::variant<RawAddress, int>(unlucky_group), _))
+          .Times(0);
 
   HasClient::Get()->SelectActivePreset(unlucky_group, 6);
+}
+
+TEST_F(HasClientTest, test_select_preset_not_available) {
+  const RawAddress test_address = GetTestAddress(1);
+  uint16_t test_conn_id = GetTestConnId(test_address);
+
+  std::set<HasPreset, HasPreset::ComparatorDesc> presets = {{
+          HasPreset(1, HasPreset::kPropertyAvailable, "Universal"),
+          HasPreset(2, HasPreset::kPropertyWritable, "Preset2"),
+  }};
+
+  SetSampleDatabaseHasPresetsNtf(test_address,
+                                 bluetooth::has::kFeatureBitHearingAidTypeBanded |
+                                 bluetooth::has::kFeatureBitWritablePresets |
+                                 bluetooth::has::kFeatureBitDynamicPresets,
+                                 presets);
+
+  uint8_t active_preset_index = 0;
+  std::vector<PresetInfo> preset_details;
+
+  EXPECT_CALL(*callbacks, OnConnectionState(ConnectionState::CONNECTED, test_address));
+  EXPECT_CALL(*callbacks, OnPresetInfo(std::variant<RawAddress, int>(test_address),
+                                       PresetInfoReason::ALL_PRESET_INFO, _))
+          .Times(1)
+          .WillOnce(SaveArg<2>(&preset_details));
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).WillOnce(SaveArg<1>(&active_preset_index));
+  TestConnect(test_address);
+
+  ASSERT_TRUE(preset_details.size() > 1);
+  ASSERT_EQ(preset_details.front().preset_index, active_preset_index);
+
+  EXPECT_CALL(*callbacks, OnActivePresetSelectError(std::variant<RawAddress, int>(test_address), _))
+          .Times(0);
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).Times(0);
+
+  /* Check if preset without `isAvailable` flag can be selected - write to CP should not be
+   * exectuted, and no events should come in
+   */
+  HasClient::Get()->SelectActivePreset(test_address, preset_details[1].preset_index);
+}
+
+TEST_F(HasClientTest, test_select_group_preset_not_available) {
+  const RawAddress test_address = GetTestAddress(1);
+  uint16_t test_conn_id = GetTestConnId(test_address);
+
+  std::set<HasPreset, HasPreset::ComparatorDesc> presets = {{
+          HasPreset(1, HasPreset::kPropertyAvailable, "Universal"),
+          HasPreset(2, HasPreset::kPropertyWritable, "Preset2"),
+  }};
+
+  SetSampleDatabaseHasPresetsNtf(test_address,
+                                 bluetooth::has::kFeatureBitHearingAidTypeBanded |
+                                 bluetooth::has::kFeatureBitWritablePresets |
+                                 bluetooth::has::kFeatureBitDynamicPresets,
+                                 presets);
+
+  uint8_t active_preset_index = 0;
+  std::vector<PresetInfo> preset_details;
+
+  EXPECT_CALL(*callbacks, OnConnectionState(ConnectionState::CONNECTED, test_address));
+  EXPECT_CALL(*callbacks, OnPresetInfo(std::variant<RawAddress, int>(test_address),
+                                       PresetInfoReason::ALL_PRESET_INFO, _))
+          .Times(1)
+          .WillOnce(SaveArg<2>(&preset_details));
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).WillOnce(SaveArg<1>(&active_preset_index));
+  TestConnect(test_address);
+
+  ASSERT_TRUE(preset_details.size() > 1);
+  ASSERT_EQ(preset_details.front().preset_index, active_preset_index);
+
+  EXPECT_CALL(*callbacks, OnActivePresetSelectError(std::variant<RawAddress, int>(test_address), _))
+          .Times(0);
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).Times(0);
+
+  /* Check if preset without `isAvailable` flag can be selected - write to CP should not be
+   * exectuted, and no events should come in
+   */
+  HasClient::Get()->SelectActivePreset(test_address, preset_details[1].preset_index);
 }
 
 TEST_F(HasClientTest, test_select_group_preset_valid_no_preset_sync_supported) {
@@ -2329,11 +2410,15 @@ TEST_F(HasClientTest, test_select_preset_invalid) {
           test_conn_id, test_address, false, *presets.find(deleted_index), 0 /* prev_index */,
           ::bluetooth::le_audio::has::PresetCtpChangeId::PRESET_DELETED, true /* is_last */);
 
-  EXPECT_CALL(*callbacks, OnActivePresetSelectError(std::variant<RawAddress, int>(test_address),
-                                                    ErrorCode::INVALID_PRESET_INDEX))
-          .Times(1);
+  EXPECT_CALL(*callbacks, OnActivePresetSelectError(std::variant<RawAddress, int>(test_address), _))
+          .Times(0);
 
-  /* Check if preset was actually deleted - try setting it as an active one */
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).Times(0);
+
+  /* Check if preset was actually deleted - try setting it as an active one.
+   * Because there is no more available preset of that index, write shall not be executed,
+   * and no event shall arrive.
+   */
   HasClient::Get()->SelectActivePreset(test_address, preset_details[1].preset_index);
 }
 
@@ -2611,8 +2696,12 @@ TEST_F(HasClientTest, test_select_has_no_presets) {
   TestConnect(test_address);
 
   /* Test this not so useful service */
+  /* If preset doesn't exist, it has no isAvailable flag set - write on CP will not happen.
+   * Make sure preset wasn't selected.
+   */
+  EXPECT_CALL(*callbacks, OnActivePresetSelected(_, _)).Times(0);
   EXPECT_CALL(*callbacks, OnActivePresetSelectError(_, ErrorCode::OPERATION_NOT_SUPPORTED))
-          .Times(3);
+          .Times(2);
 
   HasClient::Get()->SelectActivePreset(test_address, 0x01);
   HasClient::Get()->NextActivePreset(test_address);
