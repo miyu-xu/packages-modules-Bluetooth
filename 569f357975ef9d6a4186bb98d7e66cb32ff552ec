@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "077adc70_888267a0",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T13:48:53Z",
+      "side": 1,
+      "message": "what exactly do you propose ?\n\nWe need memory to be stored in place, like in array.\nvector doesn\u0027t keep memory in place, it allocates buffers on side.",
+      "parentUuid": "5f6488d8_2cd2cc79",
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "721b99f2_a45d5b8c",
         "filename": "system/bta/gatt/bta_gattc_queue.cc",
         "patchSetId": 7
@@ -158,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5f5642e_2a58e3e6",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T13:48:53Z",
+      "side": 1,
+      "message": "The guarantee here is same as in remainder of this queue.\nIt would be nice to update it all to use std::unique_ptr.",
+      "parentUuid": "721b99f2_a45d5b8c",
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e97e4af_352fdbc4",
@@ -189,6 +225,24 @@
           ]
         }
       ],
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ef7e804_90bcaa6b",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T13:48:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e97e4af_352fdbc4",
       "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -230,6 +284,30 @@
           ]
         }
       ],
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5420f69_80941bb1",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T13:48:53Z",
+      "side": 1,
+      "message": "It makes no difference, it\u0027s same .",
+      "parentUuid": "b20bbcd7_2b9255dc",
+      "range": {
+        "startLine": 276,
+        "startChar": 43,
+        "endLine": 276,
+        "endChar": 59
+      },
       "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
