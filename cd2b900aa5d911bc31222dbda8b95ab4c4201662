@@ -16,6 +16,24 @@
       "message": "pass to classic connection area to take a look",
       "revId": "cd2b900aa5d911bc31222dbda8b95ab4c4201662",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "047ea5b1_3a1fea8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1047255
+      },
+      "writtenOn": "2024-07-11T19:47:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "71503087_d20b4ff3",
+      "revId": "cd2b900aa5d911bc31222dbda8b95ab4c4201662",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
