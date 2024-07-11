@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a450abcd_9a149b8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T18:05:35Z",
+      "side": 1,
+      "message": "This is not true, this change is not test only.\n\nBut since HAP has not been launched yet and is a manual opt-in in the setting, I believe we can use the overall feature to flag it.\n\n@girardier@google.com do you agree with this ?",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc930ae0_645f327f",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T18:05:35Z",
+      "side": 1,
+      "message": "Please use `repo upload` to upload the CL to gerrit, in order for the preupload hook to run.\n\nIt will notably run clang-format on your changes",
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb22a9a_3f1d1f0b",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T18:05:35Z",
+      "side": 1,
+      "message": "Should we add the device in the log ?",
+      "range": {
+        "startLine": 834,
+        "startChar": 47,
+        "endLine": 834,
+        "endChar": 68
+      },
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c4dd30_5033e64c",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T18:05:35Z",
+      "side": 1,
+      "message": "`int group_id` to not have a forward non initialize declaration",
+      "range": {
+        "startLine": 837,
+        "startChar": 6,
+        "endLine": 837,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "39511fb8_0d140f53",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 823,
+                "startChar": 0,
+                "endLine": 825,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 837,
+                "startChar": 0,
+                "endLine": 838,
+                "endChar": 0
+              },
+              "replacement": "      int group_id \u003d std::get\u003cint\u003e(addr_or_group_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
