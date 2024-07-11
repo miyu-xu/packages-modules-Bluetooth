@@ -116,6 +116,30 @@
       },
       "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70fb3f38_0547e696",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-11T08:31:52Z",
+      "side": 0,
+      "message": "ok, now I kept the code mostly unchanged for this CL. Next CL aim to remove it completely.",
+      "parentUuid": "03a31c0e_85a1b2b5",
+      "range": {
+        "startLine": 1094,
+        "startChar": 0,
+        "endLine": 1096,
+        "endChar": 0
+      },
+      "revId": "2bf4c772393460d1830fbed203a65197e5999a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
