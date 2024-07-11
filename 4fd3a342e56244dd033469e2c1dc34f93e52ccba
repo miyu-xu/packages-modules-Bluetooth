@@ -22,6 +22,30 @@
       },
       "revId": "4fd3a342e56244dd033469e2c1dc34f93e52ccba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "236ea5da_81472aef",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-11T07:13:26Z",
+      "side": 1,
+      "message": "Done. sent it as a separate CL",
+      "parentUuid": "90ba4fe0_052edcfd",
+      "range": {
+        "startLine": 468,
+        "startChar": 0,
+        "endLine": 486,
+        "endChar": 80
+      },
+      "revId": "4fd3a342e56244dd033469e2c1dc34f93e52ccba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
