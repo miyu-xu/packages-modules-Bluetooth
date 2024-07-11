@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1735f7_0340692d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-11T20:23:18Z",
+      "side": 1,
+      "message": "All of the checks were already added by https://r.android.com/2410780",
+      "revId": "14e8371bcf05d441e169063809f5dcb3302fe142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
