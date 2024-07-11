@@ -52,6 +52,24 @@
       "parentUuid": "b90a1cbd_31e04a54",
       "revId": "210dc68e1c651be67f082c363b02d9ad9c27867d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed57d86d_aae83012",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-11T06:33:10Z",
+      "side": 1,
+      "message": "I\u0027ll add a regression test as follow-ups. Let\u0027s merge the CL first.",
+      "parentUuid": "c61908b1_1684b8a9",
+      "revId": "210dc68e1c651be67f082c363b02d9ad9c27867d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
