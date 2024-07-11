@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3df5c2ab_720a85ba",
+        "filename": "system/bta/include/bta_hh_co.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-11T06:48:31Z",
+      "side": 1,
+      "message": "I want to treat the events to be passed to uhid as uhid_inbound, and events passed from uhid as uhid_outbound.\nI also renamed the functions, but I didn\u0027t change the existing enum name to use OUTBOUND.\nI don\u0027t think naming it like co_input_evt gives such distinction. Unless you have a different consideration?",
+      "parentUuid": "e24a60d3_e393a6ca",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0258441a_b2bb090e",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 7
@@ -154,6 +172,24 @@
       "writtenOn": "2024-07-11T00:08:18Z",
       "side": 1,
       "message": "Nit: we can just initialize it here, then we don\u0027t need to memset `ev`.",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b55b95_1cdd90cf",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-11T06:48:31Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "2be7997e_c92ea333",
       "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
