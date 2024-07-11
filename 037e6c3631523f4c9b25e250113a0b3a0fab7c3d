@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b77a2e1_87b59c5f",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-11T07:49:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "589389a7_345defd2",
+      "revId": "037e6c3631523f4c9b25e250113a0b3a0fab7c3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cad09555_b3635a49",
@@ -59,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8d222f_b49f3e64",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-11T07:49:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cad09555_b3635a49",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 261,
+        "endChar": 0
+      },
+      "revId": "037e6c3631523f4c9b25e250113a0b3a0fab7c3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10dd08c0_758bfb21",
@@ -72,6 +114,30 @@
       "writtenOn": "2024-07-10T18:44:41Z",
       "side": 1,
       "message": "```\n # Connect and pair RD1.\n ref1_dut, dut_ref1 \u003d await asyncio.gather(\n     initiate_pairing(self.ref1, self.dut.address),\n     accept_pairing(self.dut, self.ref1.address),\n)\n```",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 9
+      },
+      "revId": "037e6c3631523f4c9b25e250113a0b3a0fab7c3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06b6bb28_baf720ec",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-11T07:49:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10dd08c0_758bfb21",
       "range": {
         "startLine": 270,
         "startChar": 0,
