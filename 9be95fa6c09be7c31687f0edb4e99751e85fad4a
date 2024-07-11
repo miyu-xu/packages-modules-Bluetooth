@@ -65,6 +65,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "221cd3b4_43c50373",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-11T07:04:56Z",
+      "side": 1,
+      "message": "maybe flush sounds better?",
+      "parentUuid": "aa54814e_c36351f2",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a698d322_ed7372e3",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 3
@@ -145,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5e61fef_baeca7f1",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-11T07:04:56Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "77d1ab58_efb88e28",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b3df255a_b103b700",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 3
@@ -156,6 +192,24 @@
       "writtenOn": "2024-07-10T23:41:04Z",
       "side": 1,
       "message": "This should be absorbed in uhid_write_input_queue()",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736ffe36_657fe76f",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-11T07:04:56Z",
+      "side": 1,
+      "message": "why? \nI prefer not to move it now because\n(1) uhid_write_input_queue should just write the input queue, not manage the state. But maybe we can just rename to uhid_set_ready_then_flush_input_queue or something.\n(2) moving it inside write_input_queue means moving it inside hid_report_queuing flag, so we need to make a copy here for those running without the flag.",
+      "parentUuid": "b3df255a_b103b700",
       "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
