@@ -22,6 +22,30 @@
       },
       "revId": "3c2df10994a1256b45e2835060e5c78e2e885810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "874f16e4_e8fe8619",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T21:10:12Z",
+      "side": 1,
+      "message": "That require more investigation and I don\u0027t want to dig into that.\n\nI just removed the space to please cpplint and add the owner on the other comment below.\n\nI agree that this is an useless todo for the long time as nobody is assigned on...",
+      "parentUuid": "f8d2fc03_1bc4676a",
+      "range": {
+        "startLine": 537,
+        "startChar": 5,
+        "endLine": 537,
+        "endChar": 19
+      },
+      "revId": "3c2df10994a1256b45e2835060e5c78e2e885810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
