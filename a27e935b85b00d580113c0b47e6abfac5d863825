@@ -16,6 +16,24 @@
       "message": "why is need to enable that flag?",
       "revId": "a27e935b85b00d580113c0b47e6abfac5d863825",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1990bee8_2a0d5560",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-11T15:59:49Z",
+      "side": 1,
+      "message": "With this flag disabled, we might fall in the logic path of adding inactive source.\nConsidering we\u0027re going to release this flag very soon, I\u0027d prefer to enable the flag here and focus on the new logic path instead of fixing for the older path which is to be deprecated soon.",
+      "parentUuid": "84f7f4ca_7ed10601",
+      "revId": "a27e935b85b00d580113c0b47e6abfac5d863825",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
