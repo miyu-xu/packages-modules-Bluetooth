@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47ddf38b_62265ee1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1060724
+      },
+      "writtenOn": "2024-07-11T00:01:47Z",
+      "side": 1,
+      "message": "CarMediaService in AAOS",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "d0981ed786456448ad9ba3622e2dfd3f361dd7a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d413306_608a9cbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060724
+      },
+      "writtenOn": "2024-07-11T00:01:47Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "d0981ed786456448ad9ba3622e2dfd3f361dd7a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
