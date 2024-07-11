@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e24a60d3_e393a6ca",
+        "filename": "system/bta/include/bta_hh_co.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-11T00:08:18Z",
+      "side": 1,
+      "message": "Nit: Both UHID events and INBOUND events are coming from outside. Can we just name these something like BTA_HH_CO_INPUT_EVT?",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0258441a_b2bb090e",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 7
@@ -120,6 +137,23 @@
       "side": 1,
       "message": "This is the fd to communicate with the thread that posts to uhid. The fd might be valid even before uhid_open is invoked. We only queue the input events though. Here\u0027s all possible events:\n\ninput_evt: Peripheral notify input event. queued\ndscp_evt: To open uhid. Immediately executed otherwise uhid_open won\u0027t be called.\nclose_evt: To close uhid, immediately executed.\nget_report_evt: Reply to get report. Receiving get report from uhid means uhid_open was previously called.\nset_report_evt: similar to get_report_evt.",
       "parentUuid": "7755c055_c1c97e65",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2be7997e_c92ea333",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-11T00:08:18Z",
+      "side": 1,
+      "message": "Nit: we can just initialize it here, then we don\u0027t need to memset `ev`.",
       "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
