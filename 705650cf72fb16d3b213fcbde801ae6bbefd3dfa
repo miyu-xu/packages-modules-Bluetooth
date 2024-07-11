@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "885453d9_2515acef",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T07:20:24Z",
+      "side": 1,
+      "message": "See the spec for ATT_READ_MULTIPLE_VARIABLE_RSP -  it says length of LTV is smaller than ATT_MTU-1 .",
+      "parentUuid": "0adbd546_1c27d8ef",
+      "range": {
+        "startLine": 125,
+        "startChar": 22,
+        "endLine": 125,
+        "endChar": 39
+      },
+      "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae098d61_686922b1",
@@ -103,6 +127,24 @@
           ]
         }
       ],
+      "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe377dbe_44ce8b91",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T07:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae098d61_686922b1",
       "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -150,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47ec3666_edbd1506",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T07:20:24Z",
+      "side": 1,
+      "message": "whole value must be limited to maximum GATT_MAX_ATTR_LEN-1",
+      "parentUuid": "4001bedd_e5b3fcb7",
+      "range": {
+        "startLine": 153,
+        "startChar": 64,
+        "endLine": 153,
+        "endChar": 68
+      },
+      "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2aec6cad_983ea89a",
         "filename": "system/bta/gatt/bta_gattc_queue.cc",
         "patchSetId": 5
@@ -179,6 +245,24 @@
           ]
         }
       ],
+      "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a318896_7f064666",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-11T07:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aec6cad_983ea89a",
       "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
