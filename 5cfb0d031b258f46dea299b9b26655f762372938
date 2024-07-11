@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "949d9a8d_9e3423ea",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-11T03:43:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f410367a_ea225782",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 61
+      },
+      "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86163567_220a7b48",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-10T22:12:18Z",
       "side": 1,
       "message": "We can then let `_TEST_CLASSES_LIST` here",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e3d509_1a11b46c",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-11T03:43:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86163567_220a7b48",
       "range": {
         "startLine": 65,
         "startChar": 27,
@@ -84,6 +132,30 @@
           ]
         }
       ],
+      "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7249bef7_0902a810",
+        "filename": "android/pandora/test/pairing/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-11T03:43:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2c78bbd_53ca442a",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 27
+      },
       "revId": "5cfb0d031b258f46dea299b9b26655f762372938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
