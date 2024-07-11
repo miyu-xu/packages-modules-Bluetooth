@@ -982,6 +982,35 @@ public:
   void SetInCall(bool in_call) override {
     log::debug("in_call: {}", in_call);
     in_call_ = in_call;
+
+    if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
+      return;
+    }
+
+    LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+    if (!group || !group->IsStreaming()) {
+      return;
+    }
+
+    bool reconfigure = false;
+
+    if (in_call_) {
+      if (configuration_context_type_ != LeAudioContextType::CONVERSATIONAL) {
+        log::info("Call is comming, speed up reconfiguration for a call");
+        reconfigure = true;
+      }
+    } else {
+      if (configuration_context_type_ == LeAudioContextType::CONVERSATIONAL) {
+        log::info("Call is ended, speed up reconfiguration for media");
+        reconfigure = true;
+      }
+    }
+
+    if (reconfigure) {
+      group->SetPendingConfiguration();
+      groupStateMachine_->StopStream(group);
+      stream_setup_start_timestamp_ = bluetooth::common::time_get_os_boottime_us();
+    }
   }
 
   bool IsInCall() override { return in_call_; }
