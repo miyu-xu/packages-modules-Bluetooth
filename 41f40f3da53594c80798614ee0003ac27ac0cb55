@@ -93,6 +93,30 @@
       },
       "revId": "41f40f3da53594c80798614ee0003ac27ac0cb55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db73bd4_526a20ff",
+        "filename": "system/stack/btu/main_thread.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T20:14:14Z",
+      "side": 1,
+      "message": "I am confused... Isn\u0027t it used in the log line 42 to have a trace in case of failure ?",
+      "parentUuid": "6320a3b4_5f6bd1f3",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "41f40f3da53594c80798614ee0003ac27ac0cb55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
