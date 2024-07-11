@@ -1,0 +1,237 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68eb1f01_3e499c25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T12:44:05Z",
+      "side": 1,
+      "message": "The important comment is about handling ACL disconnection.\n\nOther you can consider as minor.",
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6488d8_2cd2cc79",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T12:44:05Z",
+      "side": 1,
+      "message": "Still would consider less memory consuming solution.",
+      "fixSuggestions": [
+        {
+          "fixId": "7e1dd7e6_a88bcce0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 127,
+                "startChar": 0,
+                "endLine": 129,
+                "endChar": 0
+              },
+              "replacement": "  std::vector\u003cuint8_t\u003e values;\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "  if (status \u003d\u003d GATT_SUCCESS) {\n    data-\u003evalues.insert(data-\u003evalues.end(), len \u0026 0x00ff);\n    data-\u003evalues.insert(data-\u003evalues.end(), (len \u0026 0xff00) \u003e\u003e 8);\n    data-\u003evalues.insert(data-\u003evalues.end(), value, value + len);\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 180,
+                "startChar": 0,
+                "endLine": 182,
+                "endChar": 0
+              },
+              "replacement": "  std::vector\u003cuint8_t\u003e value_copy \u003d data-\u003evalues;\n  uint16_t value_len \u003d data-\u003evalues.size();\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 271,
+                "startChar": 0,
+                "endLine": 273,
+                "endChar": 0
+              },
+              "replacement": "      data-\u003evalues.clear();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721b99f2_a45d5b8c",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T12:44:05Z",
+      "side": 1,
+      "message": "will it be properly free when ACL disconnects during the operation?",
+      "fixSuggestions": [
+        {
+          "fixId": "eb5b3612_c880ec11",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": "  osi_free(tmp);\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "  osi_free(tmp);\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "  osi_free(tmp);\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": "  osi_free(tmp);\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 184,
+                "startChar": 0,
+                "endLine": 185,
+                "endChar": 0
+              },
+              "replacement": "  osi_free(data);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e97e4af_352fdbc4",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T12:44:05Z",
+      "side": 1,
+      "message": "nit: as a verbose logging I suggest to list here number of handles which are going to be read.",
+      "fixSuggestions": [
+        {
+          "fixId": "4ec1e939_4a4c0e2f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 265,
+                "startChar": 0,
+                "endLine": 266,
+                "endChar": 0
+              },
+              "replacement": "      log::verbose(\"EATT not supported, simulating read multi. conn_id: 0x{:x}, num_handles: {}\",\n                   conn_id, op.handles.num_attr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20bbcd7_2b9255dc",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T12:44:05Z",
+      "side": 1,
+      "message": "nit. data-\u003ehandles.handles[data-\u003eread_index];",
+      "range": {
+        "startLine": 276,
+        "startChar": 43,
+        "endLine": 276,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4590d384_bcc60725",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 276,
+                "startChar": 0,
+                "endLine": 277,
+                "endChar": 0
+              },
+              "replacement": "      uint16_t handle \u003d data-\u003ehandles.handles[data-\u003eread_index];\n"
+            }
+          ]
+        }
+      ],
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
