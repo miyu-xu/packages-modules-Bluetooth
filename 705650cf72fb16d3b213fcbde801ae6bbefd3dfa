@@ -216,6 +216,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a528b3b8_cd3991cf",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T08:33:55Z",
+      "side": 1,
+      "message": "Actually as per spec it is ATT_MTU -1.\n\nIn Android stack we indeed use as ATT_MTU the GATT_MAX_ATTR_LEN for ATT channel (0x0004) - because ReadMulti was not used.\n\nBut I can imagine that e.g. we can configure one EATT channel on higher MTU than GATT_MAX_ATTR_LEN and use for read multi operations in the future.",
+      "parentUuid": "47ec3666_edbd1506",
+      "range": {
+        "startLine": 153,
+        "startChar": 64,
+        "endLine": 153,
+        "endChar": 68
+      },
+      "revId": "705650cf72fb16d3b213fcbde801ae6bbefd3dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2aec6cad_983ea89a",
         "filename": "system/bta/gatt/bta_gattc_queue.cc",
         "patchSetId": 5
