@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d412159_a6daccf3",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T14:34:03Z",
+      "side": 1,
+      "message": "you are right, this is important in the case of ACL disconnection actually, as this data will be free down in the stack.",
+      "parentUuid": "077adc70_888267a0",
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "721b99f2_a45d5b8c",
@@ -190,6 +208,24 @@
       "side": 1,
       "message": "The guarantee here is same as in remainder of this queue.\nIt would be nice to update it all to use std::unique_ptr.",
       "parentUuid": "721b99f2_a45d5b8c",
+      "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af07cc1_f4198e93",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-11T14:34:03Z",
+      "side": 1,
+      "message": "right.",
+      "parentUuid": "d5f5642e_2a58e3e6",
       "revId": "569f357975ef9d6a4186bb98d7e66cb32ff552ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
