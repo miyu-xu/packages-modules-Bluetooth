@@ -83,6 +83,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d6b2ede_11d56c19",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-11T15:40:38Z",
+      "side": 1,
+      "message": "Yeah, that sounds better",
+      "parentUuid": "221cd3b4_43c50373",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a698d322_ed7372e3",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 3
@@ -210,6 +228,24 @@
       "side": 1,
       "message": "why? \nI prefer not to move it now because\n(1) uhid_write_input_queue should just write the input queue, not manage the state. But maybe we can just rename to uhid_set_ready_then_flush_input_queue or something.\n(2) moving it inside write_input_queue means moving it inside hid_report_queuing flag, so we need to make a copy here for those running without the flag.",
       "parentUuid": "b3df255a_b103b700",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d01c3a6a_af7d3742",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-11T15:40:38Z",
+      "side": 1,
+      "message": "This function is only called after setting the flag. Then it immediately checks if the flag is set or not.\n\nSetting the flag in uhid_write_input_queue() reduces its footprint. Then this flag would have just two references. One where it is being set and one where it is being checked.\n\n\nWe can split this function into two separate functions like this.\n```\nvoid uhid_set_ready() {\n  if (!ready) {\n    ready \u003d true;\n    uhid_queue_flush();\n  }\n}\n```",
+      "parentUuid": "736ffe36_657fe76f",
       "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
