@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8e33697_1a59e117",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T23:53:21Z",
+      "side": 1,
+      "message": "This require aosp/3169496 to be able to be merged",
+      "revId": "8b63c5cdcb553a372323e7a59ab40a9cfb0d68ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
