@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10eded69_cbb27765",
+        "filename": "system/main/shim/shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T20:18:24Z",
+      "side": 1,
+      "message": "Ack, ok for follow-up, it a bit similar but applied elsewhere. Make sens to split",
+      "parentUuid": "273ef86c_7ff7a138",
+      "range": {
+        "startLine": 34,
+        "startChar": 60,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "41f40f3da53594c80798614ee0003ac27ac0cb55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e45cdf6_0060b77e",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Yes but printing the information here is not very useful; this error log relates an internal error of the message loop thread, tying that to a specific call site does not help.",
       "parentUuid": "0db73bd4_526a20ff",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "41f40f3da53594c80798614ee0003ac27ac0cb55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90549744_33185974",
+        "filename": "system/stack/btu/main_thread.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-11T20:18:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "29f09e96_c67886b7",
       "range": {
         "startLine": 40,
         "startChar": 12,
