@@ -137,6 +137,16 @@ typedef struct {
   alarm_t* tle;         /* Command timeout timer */
 } tAVRC_CONN_INT_CB;
 
+#define MAX_AVRC_SDP_ATTR_LEN 16
+
+typedef struct {
+  tAVRC_FIND_CBACK cb;
+  tAVRC_SDP_DB_PARAMS db;
+  uint16_t uuid;
+  RawAddress addr;
+  uint16_t attrs[MAX_AVRC_SDP_ATTR_LEN];
+}tAVRC_SDP_REQ;
+
 typedef struct {
   tAVRC_CONN_CB ccb[AVCT_NUM_CONN];         /* Connection control block from AVRC_Open API */
   tAVRC_CONN_INT_CB ccb_int[AVCT_NUM_CONN]; /* Internal connection control block  */
@@ -145,6 +155,9 @@ typedef struct {
   tAVRC_FIND_CBACK find_cback; /* sdp discovery callback */
   tSDP_DISCOVERY_DB* p_db;     /* pointer to discovery database */
   uint16_t service_uuid;       /* service UUID to search */
+  //save sdp callback when confilt
+  std::vector<tAVRC_SDP_REQ> sdp_req_qu;
+  mutable std::mutex mutex;
 } tAVRC_CB;
 
 /******************************************************************************
