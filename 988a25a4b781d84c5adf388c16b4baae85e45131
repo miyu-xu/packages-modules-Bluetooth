@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265f9971_d1554667",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-12T22:46:32Z",
+      "side": 1,
+      "message": "I thought we decided we weren\u0027t doing this style of attribution, yet.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "988a25a4b781d84c5adf388c16b4baae85e45131",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
