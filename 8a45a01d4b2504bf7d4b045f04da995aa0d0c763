@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cabdcc5d_dfbcd79e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1490,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T18:37:48Z",
+      "side": 1,
+      "message": "nit: log before Cleanup()",
+      "revId": "8a45a01d4b2504bf7d4b045f04da995aa0d0c763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
