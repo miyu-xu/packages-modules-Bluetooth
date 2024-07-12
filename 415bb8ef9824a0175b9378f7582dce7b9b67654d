@@ -140,6 +140,30 @@
       },
       "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8377154c_ffcb5923",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T20:21:00Z",
+      "side": 1,
+      "message": "Comment lost its original position",
+      "parentUuid": "4788ab30_3aff2f8e",
+      "range": {
+        "startLine": 241,
+        "startChar": 35,
+        "endLine": 241,
+        "endChar": 46
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
