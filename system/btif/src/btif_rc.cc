@@ -516,6 +516,21 @@ void fill_avrc_attr_entry(tAVRC_ATTR_ENTRY* attr_vals, int num_attrs,
 void rc_cleanup_sent_cmd(void* p_data) { log::verbose(""); }
 
 void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
+  if (btif_av_is_connected_addr(p_dev->rc_addr, A2dpType::kSink)) {
+    if (btif_av_peer_is_source(p_dev->rc_addr)) {
+      p_dev->rc_features = p_dev->peer_tg_features;
+      if ((p_dev->peer_tg_features & BTA_AV_FEAT_METADATA) &&
+          (p_dev->peer_tg_features & BTA_AV_FEAT_VENDOR)) {
+        getcapabilities_cmd(AVRC_CAP_COMPANY_ID, p_dev);
+      }
+    }
+  } else {
+    log::debug("%s: %s is not connected, pending, add by lgf", __func__,
+                 ADDRESS_TO_LOGGABLE_CSTR(p_dev->rc_addr));
+    p_dev->launch_cmd_pending |=
+        (RC_PENDING_ACT_GET_CAP | RC_PENDING_ACT_REG_VOL);
+  }
+
   if (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCTG) &&
       (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCCT) ||
        !(p_dev->peer_tg_features & BTA_AV_FEAT_ADV_CTRL))) {
@@ -545,19 +560,6 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
      * update.
      */
     p_dev->rc_features_processed = true;
-  }
-
-  if (btif_av_is_connected_addr(p_dev->rc_addr, A2dpType::kSink)) {
-    if (btif_av_peer_is_source(p_dev->rc_addr)) {
-      p_dev->rc_features = p_dev->peer_tg_features;
-      if ((p_dev->peer_tg_features & BTA_AV_FEAT_METADATA) &&
-          (p_dev->peer_tg_features & BTA_AV_FEAT_VENDOR)) {
-        getcapabilities_cmd(AVRC_CAP_COMPANY_ID, p_dev);
-      }
-    }
-  } else {
-    log::verbose("{} is not connected, pending", p_dev->rc_addr);
-    p_dev->launch_cmd_pending |= (RC_PENDING_ACT_GET_CAP | RC_PENDING_ACT_REG_VOL);
   }
 
   /* Add browsing feature capability */
@@ -651,8 +653,8 @@ void btif_rc_check_pending_cmd(const RawAddress& peer_address) {
     if ((p_dev->launch_cmd_pending & RC_PENDING_ACT_REPORT_CONN) &&
         btif_av_peer_is_source(p_dev->rc_addr)) {
       if (bt_rc_ctrl_callbacks != NULL) {
-        do_in_jni_thread(base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb, true, false,
-                                        p_dev->rc_addr));
+        do_in_jni_thread(base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb,
+                          p_dev->rc_connected, p_dev->br_connected, p_dev->rc_addr));
       }
     }
   }
@@ -1164,12 +1166,6 @@ void btif_rc_handler(tBTA_AV_EVT event, tBTA_AV* p_data) {
       }
       log::verbose("peer_ct_features:0x{:x}, peer_tg_features=0x{:x}",
                    p_data->rc_feat.peer_ct_features, p_data->rc_feat.peer_tg_features);
-      if (btif_av_src_sink_coexist_enabled() &&
-          (p_dev->peer_ct_features == p_data->rc_feat.peer_ct_features) &&
-          (p_dev->peer_tg_features == p_data->rc_feat.peer_tg_features)) {
-        log::error("do SDP twice, no need callback rc_feature to framework again");
-        break;
-      }
 
       p_dev->peer_ct_features = p_data->rc_feat.peer_ct_features;
       p_dev->peer_tg_features = p_data->rc_feat.peer_tg_features;
@@ -1761,11 +1757,37 @@ static void btif_rc_ctrl_upstreams_rsp_cmd(uint8_t event, tAVRC_COMMAND* pavrc_c
   log::verbose("pdu: {}: handle: 0x{:x}", dump_rc_pdu(pavrc_cmd->pdu), p_dev->rc_handle);
   switch (event) {
     case AVRC_PDU_SET_ABSOLUTE_VOLUME:
+      /* already connected sink dev, ignore legacy set abs cmd.
+       * iphone may be register and set abs before a2dp connected,
+       * if peer sink is streaming, the abs volume will changeed */
+      if (btif_av_src_sink_coexist_enabled() && btif_av_src_is_connected()) {
+        log::debug("already connected sink dev, ignore set abs");
+        return;
+      }
+      if (btif_av_src_sink_coexist_enabled() &&
+          (p_dev->launch_cmd_pending & RC_PENDING_ACT_REPORT_CONN)) {
+          do_in_jni_thread(base::Bind(bt_rc_ctrl_callbacks->connection_state_cb, true,
+                                      false, p_dev->rc_addr));
+          p_dev->launch_cmd_pending &= ~RC_PENDING_ACT_REPORT_CONN;
+      }
       do_in_jni_thread(base::BindOnce(bt_rc_ctrl_callbacks->setabsvol_cmd_cb, p_dev->rc_addr,
                                       pavrc_cmd->volume.volume, label));
       break;
     case AVRC_PDU_REGISTER_NOTIFICATION:
+      /* already connected sink dev, ignore legacy set abs cmd.
+       * iphone may be register and set abs before a2dp connected,
+       * if peer sink is streaming, the abs volume will changeed */
+      if (btif_av_src_sink_coexist_enabled() && btif_av_src_is_connected()) {
+        log::debug("%s, already connected sink dev, ignore register abs", __func__);
+        return;
+      }
       if (pavrc_cmd->reg_notif.event_id == AVRC_EVT_VOLUME_CHANGE) {
+        if (btif_av_src_sink_coexist_enabled() &&
+          (p_dev->launch_cmd_pending & RC_PENDING_ACT_REPORT_CONN)) {
+            do_in_jni_thread(base::Bind(bt_rc_ctrl_callbacks->connection_state_cb, true,
+                                        false, p_dev->rc_addr));
+            p_dev->launch_cmd_pending &= ~RC_PENDING_ACT_REPORT_CONN;
+        }
         do_in_jni_thread(base::BindOnce(bt_rc_ctrl_callbacks->registernotification_absvol_cb,
                                         p_dev->rc_addr, label));
       }
