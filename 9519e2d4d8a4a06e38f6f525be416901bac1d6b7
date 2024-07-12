@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "404455d1_bf269897",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-12T07:43:34Z",
+      "side": 1,
+      "message": "It was really just placeholder, I wasn\u0027t sure what to set it to, was meant to change it when the patch is fully working. Changed to #feature now, but of course I can just remove it if needed.",
+      "parentUuid": "7f7fcd58_7fbc0c12",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc930ae0_645f327f",
         "filename": "system/bta/has/has_client.cc",
         "patchSetId": 2
