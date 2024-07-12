@@ -65,6 +65,8 @@ struct btif_av_sink_execute_service btif_av_sink_execute_service;
 struct btif_av_source_active_peer btif_av_source_active_peer;
 struct btif_av_source_execute_service btif_av_source_execute_service;
 struct btif_av_src_sink_coexist_enabled btif_av_src_sink_coexist_enabled;
+struct btif_av_both_enable btif_av_both_enable;
+struct btif_av_src_is_connected btif_av_src_is_connected;
 struct btif_av_stream_ready btif_av_stream_ready;
 struct btif_av_stream_start btif_av_stream_start;
 struct btif_av_stream_start_offload btif_av_stream_start_offload;
@@ -106,6 +108,8 @@ bt_status_t btif_av_sink_execute_service::return_value = BT_STATUS_SUCCESS;
 RawAddress btif_av_source_active_peer::return_value;
 bt_status_t btif_av_source_execute_service::return_value = BT_STATUS_SUCCESS;
 bool btif_av_src_sink_coexist_enabled::return_value = false;
+bool btif_av_both_enable::return_value = false;
+bool btif_av_src_is_connected::return_value = false;
 bool btif_av_stream_ready::return_value = false;
 bool btif_av_stream_started_ready::return_value = false;
 const char* dump_av_sm_event_name::return_value = nullptr;
@@ -232,6 +236,14 @@ bt_status_t btif_av_source_execute_service(bool enable) {
 bool btif_av_src_sink_coexist_enabled(void) {
   inc_func_call_count(__func__);
   return test::mock::btif_av::btif_av_src_sink_coexist_enabled();
+}
+bool btif_av_both_enable(void) {
+  inc_func_call_count(__func__);
+  return test::mock::btif_av::btif_av_both_enable();
+}
+bool btif_av_src_is_connected(void) {
+  inc_func_call_count(__func__);
+  return test::mock::btif_av::btif_av_src_is_connected();
 }
 bool btif_av_stream_ready(const A2dpType local_a2dp_type) {
   inc_func_call_count(__func__);
