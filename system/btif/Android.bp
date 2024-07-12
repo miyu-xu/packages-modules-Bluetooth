@@ -278,6 +278,8 @@ cc_test {
     srcs: [
         ":OsiCompatSources",
         ":TestCommonMockFunctions",
+        ":TestMockBtcore",
+        ":TestMockBtif",
         ":TestFakeOsi",
         "test/btif_dm_test.cc",
         "test/btif_storage_test.cc",

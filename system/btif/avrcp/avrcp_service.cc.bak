@@ -391,9 +391,8 @@ void AvrcpService::Init(MediaInterface* media_interface, VolumeInterface* volume
         avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL, "AV Remote Control", NULL,
                                    AVRCP_SUPF_TG_CT, ct_sdp_record_handle, false,
                                    avrcp_interface_.GetAvrcpControlVersion(), 0);
-
-       }bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
     }
+    bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
   }
 
   media_interface_ = new MediaInterfaceWrapper(media_interface);
