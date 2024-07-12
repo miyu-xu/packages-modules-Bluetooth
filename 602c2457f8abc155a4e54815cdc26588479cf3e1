@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a213c0f7_b8e7e341",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-12T21:02:30Z",
+      "side": 0,
+      "message": "I thought BTM_SUCCESS \u003d\u003d 0.  It looks like this reverses the check.",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 27
+      },
+      "revId": "602c2457f8abc155a4e54815cdc26588479cf3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
