@@ -141,4 +141,7 @@
 /* CSIS SIRK characteristic */
 #define GATT_UUID_CSIS_SIRK 0x2B84
 
+/* Android Information Service characteristic */
+#define GATT_UUID_AIS_API_LEVEL_STRING "e73e0002-ef1b-4e74-8291-2e4f3164f3b5"
+
 #endif
