@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169f2fac_961f93cb",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T15:44:51Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [VisibleForTests] This method should only be accessed from tests or within private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[VisibleForTests] This method should only be accessed from tests or within private scope\n\n                        \u0026\u0026 AdapterService.getAdapterService().getBondState(d)\n                                                              ~~~~~~~~~~~~\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nDepending on your development environment, you may be able to use an `@VisibleForTesting` annotation to specify the intended visibility if the method had not been more widely visible for the tests.\n\nWhen using `androidx.annotations.VisibleForTesting`, the production visibility is assumed to be private unless specified with the `otherwise\u003d` parameter. `com.google.common.annotations.VisibleForTesting` and `com.android.internal.annotations.VisibleForTesting` work similarly with their own parameters called `productionVisibility` and `visibility`.\n\nIf instead you use `org.jetbrains.annotations.VisibleForTesting`, there is no such parameter, and the production visibility is instead assumed to be \"one step down\" from the testing visibility. For example, if the testing visibility is public, the production visibility is assumed to be package-private.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nFor common FAQs about the @VisibleForTesting warning, see go/ayeaye-android-lint#visiblefortesting-faqs\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 192,
+        "startChar": 59,
+        "endLine": 192,
+        "endChar": 73
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31be6877_0c92a04d",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T15:44:51Z",
+      "side": 1,
+      "message": "Should you add a private final AdapterService mAdapterService ?",
+      "range": {
+        "startLine": 208,
+        "startChar": 12,
+        "endLine": 208,
+        "endChar": 46
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "101dfd81_7c0a6d58",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T15:44:51Z",
+      "side": 1,
+      "message": "This is a different fix, should be done in a separate CL",
+      "range": {
+        "startLine": 241,
+        "startChar": 35,
+        "endLine": 241,
+        "endChar": 46
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
