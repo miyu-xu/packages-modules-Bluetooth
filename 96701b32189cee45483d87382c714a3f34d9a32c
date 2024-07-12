@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de4344fa_a5f4745d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-12T02:06:30Z",
+      "side": 1,
+      "message": "OK. I will create a new folder for the service and separate it.",
+      "parentUuid": "cb7b56fe_eb6bd50c",
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79e6e253_1e2cd77b",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
         "patchSetId": 15
@@ -100,6 +118,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88659efb_761072ea",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-12T02:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b99ed843_82b3f8ef",
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "640b2cbe_d365b18a",
@@ -113,6 +149,24 @@
       "writtenOn": "2024-07-10T23:21:21Z",
       "side": 1,
       "message": "Declare UUIDs in a public header file\n```\n#define ANDROID_INFORMATION_SERVICE_UUID_STRING \"12345678-9abc-def0-1234-56789abcdef0\"\n\nextern const bluetooth::Uuid ANDROID_INFORMATION_SERVICE_UUID;\n```\n\nInitialize the UUID in .cc file\n```\nconst Uuid ANDROID_INFORMATION_SERVICE_UUID \u003d\n        Uuid::FromString(ANDROID_INFORMATION_SERVICE_UUID_STRING);\n```",
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "165a9f13_eb9b23c6",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-12T02:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "640b2cbe_d365b18a",
       "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +208,30 @@
       "side": 1,
       "message": "\"android_information_service\"?",
       "parentUuid": "57327daa_46e45375",
+      "range": {
+        "startLine": 514,
+        "startChar": 24,
+        "endLine": 514,
+        "endChar": 38
+      },
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bcfde70_a4673f5e",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-12T02:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fb5c793_0dc34d30",
       "range": {
         "startLine": 514,
         "startChar": 24,
