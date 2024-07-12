@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b76d4f6a_ef69034b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-12T18:55:54Z",
+      "side": 1,
+      "message": "Updated the custom service as android information service.",
+      "parentUuid": "de4344fa_a5f4745d",
+      "revId": "96701b32189cee45483d87382c714a3f34d9a32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79e6e253_1e2cd77b",
