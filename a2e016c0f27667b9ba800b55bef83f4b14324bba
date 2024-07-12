@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ffaba46_4dc85b6b",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-12T08:57:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71d8c935_98f7e356",
+      "range": {
+        "startLine": 269,
+        "startChar": 16,
+        "endLine": 269,
+        "endChar": 28
+      },
+      "revId": "a2e016c0f27667b9ba800b55bef83f4b14324bba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "502e1014_98d80fec",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-11T17:13:04Z",
       "side": 1,
       "message": "You should setup the handler before opening the AVCTP channel; to avoid having the default handler capture the connection.",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 60
+      },
+      "revId": "a2e016c0f27667b9ba800b55bef83f4b14324bba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df5821f5_49601480",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-12T08:57:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502e1014_98d80fec",
       "range": {
         "startLine": 289,
         "startChar": 0,
