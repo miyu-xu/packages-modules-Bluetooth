@@ -83,6 +83,9 @@ static const uint8_t avrc_ctrl_event_map[] = {
 #define AVRC_MSG_MASK_IS_VENDOR_CMD 0x01
 #define AVRC_MSG_MASK_IS_CONTINUATION_RSP 0x02
 
+extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
+extern bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
+
 /******************************************************************************
  *
  * Function         avrcp_absolute_volume_is_enabled
@@ -1062,6 +1065,19 @@ uint16_t AVRC_GetProfileVersion() {
 uint16_t AVRC_Open(uint8_t* p_handle, tAVRC_CONN_CB* p_ccb, const RawAddress& peer_addr) {
   uint16_t status;
   tAVCT_CC cc;
+
+  log::debug("%s role: %d, control:0x%x ", __func__, p_ccb->conn, p_ccb->control);
+  /*if DUT is CT, the connection role should be non-passive, which means avrcp connection shall be outgoing;
+       if DUT is TG, the connection role should be passive, which means avrcp connection shall be incoming */
+  if (btif_av_peer_is_connected_sink(peer_addr)) {
+    p_ccb->control |= AVCT_PASSIVE;
+  } else if (btif_av_peer_is_connected_source(peer_addr)) {
+    p_ccb->control = p_ccb->control & (~AVCT_PASSIVE);
+  } else {
+    log::debug("%s A2dp not connected yet! ", __func__);
+  }
+
+
 
   cc.p_ctrl_cback = avrc_ctrl_cback;         /* Control callback */
   cc.p_msg_cback = avrc_msg_cback;           /* Message callback */
