@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "213bff51_d1cdf29d",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T20:21:25Z",
+      "side": 1,
+      "message": "This is a different fix, should be done in a separate CL",
+      "fixSuggestions": [
+        {
+          "fixId": "af8355c2_1db8b193",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 243,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "08b3901b4deca75aacd732e19f29dc8935ac6698",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
