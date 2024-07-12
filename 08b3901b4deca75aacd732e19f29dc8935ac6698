@@ -34,6 +34,24 @@
       ],
       "revId": "08b3901b4deca75aacd732e19f29dc8935ac6698",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "947c33e4_c8a60372",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T20:30:54Z",
+      "side": 1,
+      "message": "This is not a fix, it is simply wrong from me.\n\nRemoving.",
+      "parentUuid": "213bff51_d1cdf29d",
+      "revId": "08b3901b4deca75aacd732e19f29dc8935ac6698",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
