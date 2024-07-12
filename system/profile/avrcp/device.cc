@@ -22,6 +22,7 @@
 
 #include "abstract_message_loop.h"
 #include "avrcp_common.h"
+#include "btif/include/btif_av.h"
 #include "internal_include/stack_config.h"
 #include "packet/avrcp/avrcp_reject_packet.h"
 #include "packet/avrcp/general_reject_packet.h"
@@ -38,6 +39,7 @@
 extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
 extern bool btif_av_both_enable(void);
 extern bool btif_av_src_sink_coexist_enabled(void);
+extern bool btif_av_is_connected_addr(const RawAddress& peer_address, const A2dpType local_a2dp_type);
 
 template <>
 struct fmt::formatter<bluetooth::avrcp::PlayState> : enum_formatter<bluetooth::avrcp::PlayState> {};
@@ -383,6 +385,14 @@ void Device::HandleGetCapabilities(uint8_t label,
         response->AddEvent(Event::ADDRESSED_PLAYER_CHANGED);
         response->AddEvent(Event::UIDS_CHANGED);
         response->AddEvent(Event::NOW_PLAYING_CONTENT_CHANGED);
+      }
+
+      /* if a2dp is not connected, the avrcp msg would be handled by new and
+      legacy avrcp, so here just add legacy avk supportd events */
+      if(btif_av_src_sink_coexist_enabled() && btif_av_both_enable() &&
+          !btif_av_is_connected_addr(address_, A2dpType::kSource)) {
+        if (avrcp_absolute_volume_is_enabled())
+          response->AddEvent(Event::VOLUME_CHANGED);
       }
 
       send_message(label, false, std::move(response));

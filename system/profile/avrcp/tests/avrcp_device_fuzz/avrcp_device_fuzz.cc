@@ -21,8 +21,6 @@
 #include "packet_test_helper.h"
 #include "pass_through_packet.h"
 
-bool btif_av_src_sink_coexist_enabled(void) { return true; }
-
 namespace bluetooth {
 namespace avrcp {
 
