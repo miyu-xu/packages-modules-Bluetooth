@@ -1,0 +1,637 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb55bdaa_c0b13d6d",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "This should be added after the GAP service.",
+      "fixSuggestions": [
+        {
+          "fixId": "349c1dc3_d320e6ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/stack_manager.cc",
+              "range": {
+                "startLine": 301,
+                "startChar": 0,
+                "endLine": 302,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/stack_manager.cc",
+              "range": {
+                "startLine": 304,
+                "startChar": 0,
+                "endLine": 304,
+                "endChar": 0
+              },
+              "replacement": "  AIS_Init();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5c6180_7fc6d548",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "We don\u0027t need to make it so complicated. All we need is to save a single ATT handle.",
+      "fixSuggestions": [
+        {
+          "fixId": "16c7c54a_c6f9e117",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "uint16_t gatt_attr_handle;\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 66,
+                "startChar": 0,
+                "endLine": 67,
+                "endChar": 0
+              },
+              "replacement": "  if (com::android::bluetooth::flags::android_os_identifier() \u0026\u0026 handle \u003d\u003d gatt_attr_handle) {\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "    gatt_attr_handle \u003d android_information_service[1].attribute_handle;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d61f80_02920bc7",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "This should be file static",
+      "fixSuggestions": [
+        {
+          "fixId": "1478eb51_834d3735",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "static std::array\u003ctAIS_ATTR, AIS_MAX_CHAR_NUM\u003e gatt_attr;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33537bac_e41c56ae",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "This should not be a global if it is not being used outside a single function.",
+      "fixSuggestions": [
+        {
+          "fixId": "ec109277_c555f3fd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 128,
+                "startChar": 0,
+                "endLine": 128,
+                "endChar": 0
+              },
+              "replacement": "  tGATT_IF gatt_if;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee82d9e_5a570136",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "Nit: Since we have just one characteristic, we can absorb this function and proc_read() into ais_request_cback()",
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420e0d91_5963d19b",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "Nit: Preferred way to use the flags is\n\nif (!flag) return;",
+      "fixSuggestions": [
+        {
+          "fixId": "a1731907_a5924fd3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 66,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "  if (!com::android::bluetooth::flags::android_os_identifier()) {\n    return GATT_NOT_FOUND;\n  }\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "  if (handle !\u003d gatt_attr[0].handle) {\n    return GATT_NOT_FOUND;\n  }\n\n  if (is_long) {\n    return GATT_NOT_LONG;\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 78,
+                "endChar": 0
+              },
+              "replacement": "  UINT32_TO_STREAM(p, os::GetSystemPropertyUint32(kPropertyAndroidAPILevel,\n                                                  kPropertyAndroidAPILevelDefault));\n  p_value-\u003elen \u003d 4;\n  return GATT_SUCCESS;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ff0258c_681c4ab1",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "We can just read this property once during initialization.",
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5a667d_f4aa90fc",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "\u003d {};",
+      "range": {
+        "startLine": 97,
+        "startChar": 1,
+        "endLine": 98,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "21ebd163_379535dd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": "  tGATTS_RSP rsp_msg \u003d {};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c43afd3_d24fbf5b",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "Is there a descriptor in this service? If not, then it should just be\n\nif (type !\u003d GATTS_REQ_TYPE_READ_CHARACTERISTIC) {\n  log::warn();\n  return;\n}\n\n// process",
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a4a638_c646fe0d",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "this should be a warning instead",
+      "fixSuggestions": [
+        {
+          "fixId": "54c2bfcb_a861033b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Unknown/unexpected LE AIS ATT request: 0x{:02x}\", type);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f0b5a8d_9ae7e315",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "spelling mistake",
+      "fixSuggestions": [
+        {
+          "fixId": "253477aa_79e2ffff",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Unable to send GATT server response conn_id:{}\", conn_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c62dcaf_be152af8",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "Preferred approach is\nif (!flag) return;",
+      "fixSuggestions": [
+        {
+          "fixId": "5fa337c1_89df4086",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 129,
+                "startChar": 0,
+                "endLine": 134,
+                "endChar": 0
+              },
+              "replacement": "  if (!com::android::bluetooth::flags::android_os_identifier()) {\n    return;\n  }\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "  if (!os::GetSystemPropertyUint32(kPropertyAndroidAPILevel, kPropertyAndroidAPILevelDefault)) {\n    return;\n  }\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "  std::array\u003cuint8_t, Uuid::kNumBytes128\u003e tmp;\n  tmp.fill(0xc5);  // any number is fine here\n  Uuid app_uuid \u003d Uuid::From128BitBE(tmp);\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 139,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "  gatt_if \u003d GATT_Register(app_uuid, \"Ais\", \u0026ais_cback, false);\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "  GATT_StartIf(gatt_if);\n\n  const Uuid ANDROID_INFORMATION_SERVICE_UUID \u003d\n          Uuid::FromString(ANDROID_INFORMATION_SERVICE_UUID_STRING);\n  const Uuid GATT_UUID_AIS_API_LEVEL \u003d Uuid::FromString(GATT_UUID_AIS_API_LEVEL_STRING);\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "  btgatt_db_element_t android_information_service[] \u003d {\n          {\n                  .uuid \u003d ANDROID_INFORMATION_SERVICE_UUID,\n                  .type \u003d BTGATT_DB_PRIMARY_SERVICE,\n          },\n          {\n                  .uuid \u003d GATT_UUID_AIS_API_LEVEL,\n                  .type \u003d BTGATT_DB_CHARACTERISTIC,\n                  .properties \u003d GATT_CHAR_PROP_BIT_READ,\n                  .permissions \u003d GATT_PERM_READ_IF_ENCRYPTED_OR_DISCOVERABLE,\n          }};\n  if (GATTS_AddService(gatt_if, android_information_service,\n                       sizeof(android_information_service) / sizeof(btgatt_db_element_t)) !\u003d\n      GATT_SERVICE_STARTED) {\n    log::warn(\"Unable to add Android Information Server gatt_if:{}\", gatt_if);\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 162,
+                "endChar": 0
+              },
+              "replacement": "\n  gatt_attr[0].handle \u003d android_information_service[1].attribute_handle;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa06f7e8_967a3231",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "These should be global so it can be referred to from outside this module as well if needed.",
+      "range": {
+        "startLine": 139,
+        "startChar": 1,
+        "endLine": 141,
+        "endChar": 90
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8cbea6d5_58fc8cb6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "const Uuid ANDROID_INFORMATION_SERVICE_UUID \u003d\n        Uuid::FromString(ANDROID_INFORMATION_SERVICE_UUID_STRING);\nconst Uuid GATT_UUID_AIS_API_LEVEL \u003d Uuid::FromString(GATT_UUID_AIS_API_LEVEL_STRING);\n\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 139,
+                "startChar": 0,
+                "endLine": 143,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183339db_c09f2530",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "Nit: This should be an error",
+      "fixSuggestions": [
+        {
+          "fixId": "2e6e167f_ab8b4a8d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Unable to add Android Information Server gatt_if:{}\", gatt_if);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d044948_fcf45fae",
+        "filename": "system/stack/include/gattdefs.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-12T23:55:48Z",
+      "side": 1,
+      "message": "We can keep it in the ais_api.h file.",
+      "fixSuggestions": [
+        {
+          "fixId": "71e6bb18_8d172488",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/gattdefs.h",
+              "range": {
+                "startLine": 144,
+                "startChar": 0,
+                "endLine": 147,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "10d9d4a14044a59c4e841df7d64a0be1ee552c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
