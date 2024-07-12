@@ -74,6 +74,7 @@ const uint8_t kRcHandle = 123;
 void btif_av_clear_remote_suspend_flag(const A2dpType local_a2dp_type) {}
 bool btif_av_is_connected(const A2dpType local_a2dp_type) { return true; }
 bool btif_av_is_sink_enabled(void) { return true; }
+bool btif_av_src_is_connected(void) { return true; }
 RawAddress btif_av_sink_active_peer(void) { return RawAddress(); }
 RawAddress btif_av_source_active_peer(void) { return RawAddress(); }
 bool btif_av_stream_started_ready(const A2dpType local_a2dp_type) { return false; }

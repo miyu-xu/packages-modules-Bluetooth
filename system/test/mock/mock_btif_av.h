@@ -386,6 +386,26 @@ struct btif_av_src_sink_coexist_enabled {
 };
 extern struct btif_av_src_sink_coexist_enabled btif_av_src_sink_coexist_enabled;
 
+// Name: btif_av_both_enable
+// Params: void
+// Return: bool
+struct btif_av_both_enable {
+  static bool return_value;
+  std::function<bool(void)> body{[](void) { return return_value; }};
+  bool operator()(void) { return body(); }
+};
+extern struct btif_av_both_enable btif_av_both_enable;
+
+// Name: btif_av_src_is_connected
+// Params: void
+// Return: bool
+struct btif_av_src_is_connected {
+  static bool return_value;
+  std::function<bool(void)> body{[](void) { return return_value; }};
+  bool operator()(void) { return body(); }
+};
+extern struct btif_av_src_is_connected btif_av_src_is_connected;
+
 // Name: btif_av_stream_ready
 // Params: const A2dpType local_a2dp_type
 // Return: bool
