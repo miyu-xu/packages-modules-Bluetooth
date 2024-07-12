@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf60d5e5_936ad037",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-12T23:26:19Z",
+      "side": 1,
+      "message": "Should we also be excluding IMs for similar reasons?\n\nThis would entail adding a `byte MESSAGE_TYPE_IM \u003d 0x10` to `MessagesFilter`, and `IM` to `Bmessage.Type`, and a new `IM` case in the switch that likewise falls through to default case.",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a192a1_fc8623d3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-12T23:26:19Z",
+      "side": 1,
+      "message": "Do we remember why this is needed to verify we\u0027re in the connected state, given the `assertThat` that immediately follows?",
+      "range": {
+        "startLine": 889,
+        "startChar": 8,
+        "endLine": 889,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9180780a_eacd343f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 889,
+                "startChar": 0,
+                "endLine": 894,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d52124_baac4e7f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-12T23:26:19Z",
+      "side": 1,
+      "message": "Is capturing the Intent needed here? Is it being used as part of this test?",
+      "range": {
+        "startLine": 891,
+        "startChar": 24,
+        "endLine": 891,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a8ecf641_22bd054a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 890,
+                "startChar": 0,
+                "endLine": 894,
+                "endChar": 0
+              },
+              "replacement": "                .sendBroadcastMultiplePermissions(any(), any(String[].class), any());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf77a38a_8efabf82",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-12T23:26:19Z",
+      "side": 1,
+      "message": "nit: plural `requests` to reflect that this object could contain more than one request",
+      "range": {
+        "startLine": 907,
+        "startChar": 40,
+        "endLine": 907,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "67e74bf2_30e44d1d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 907,
+                "startChar": 0,
+                "endLine": 908,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cRequestGetMessagesListing\u003e requests \u003d requestCaptor.getAllValues();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 910,
+                "startChar": 0,
+                "endLine": 913,
+                "endChar": 0
+              },
+              "replacement": "        for (int i \u003d 0; i \u003c requests.size(); i++) {\n            if (requests.get(i) instanceof RequestGetMessagesListing) {\n                messagesListing \u003d requests.get(i);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "181e24ab_90679704",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-12T23:26:19Z",
+      "side": 1,
+      "message": "nit: maybe add a comment here explaining why we\u0027re using `captor.getAllValues` instead of `captor.getValue`, i.e., the fact that even though we asked for a captor for `RequestGetMessagesListing` specifically, the captor was capturing *all* sub-classes of `Request`.",
+      "range": {
+        "startLine": 907,
+        "startChar": 8,
+        "endLine": 907,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "201c234b_be39a79d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 907,
+                "startChar": 0,
+                "endLine": 907,
+                "endChar": 0
+              },
+              "replacement": "        // We use getAllValues() instead of getValue() because the\n        // RequestGetMessagesListing is not the only request that is made.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827eb29e_84b5e649",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-12T23:26:19Z",
+      "side": 1,
+      "message": "nit: maybe include `request` in the variable name, to reflect that this is the `Request`, not the actual messages listing. That is, `RequestGetMessagesListing#getList` gives the actual messages listing.",
+      "range": {
+        "startLine": 909,
+        "startChar": 34,
+        "endLine": 909,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "72d4de6f_375b00fe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 909,
+                "startChar": 0,
+                "endLine": 910,
+                "endChar": 0
+              },
+              "replacement": "        RequestGetMessagesListing messagesListingRequest \u003d null;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 912,
+                "startChar": 0,
+                "endLine": 913,
+                "endChar": 0
+              },
+              "replacement": "                messagesListingRequest \u003d request.get(i);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 916,
+                "startChar": 0,
+                "endLine": 917,
+                "endChar": 0
+              },
+              "replacement": "        ObexAppParameters appParams \u003d ObexAppParameters.fromHeaderSet((messagesListingRequest).mHeaderSet);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
