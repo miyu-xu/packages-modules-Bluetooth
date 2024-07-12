@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04184c7c_3e87e7b6",
+        "filename": "system/test/mock/mock_stack_security_client_interface.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-12T20:58:35Z",
+      "side": 1,
+      "message": "nit: Remove?  It\u0027s the same as line 27",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6cc47d53_b1ac5727",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/test/mock/mock_stack_security_client_interface.cc",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "dd4677ca57a432d76106f543ae9640db35e287be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
