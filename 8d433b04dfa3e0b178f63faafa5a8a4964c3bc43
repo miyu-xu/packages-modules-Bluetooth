@@ -69,6 +69,24 @@
       "parentUuid": "86793c41_dcc82022",
       "revId": "8d433b04dfa3e0b178f63faafa5a8a4964c3bc43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "233f66ad_d3bd7656",
+        "filename": "system/profile/avrcp/avrcp_sdp_records.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-12T15:57:41Z",
+      "side": 1,
+      "message": "Thanks for the catch. verified the callers do pass the `cover_art_psm` first \u0026 request_id as second argument.",
+      "parentUuid": "f4ed3a31_abee37da",
+      "revId": "8d433b04dfa3e0b178f63faafa5a8a4964c3bc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
