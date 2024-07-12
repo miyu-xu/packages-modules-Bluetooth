@@ -63,6 +63,8 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":TestCommonMockFunctions",
+        ":TestMockStackAvrc",
         "tests/avrcp_connection_handler_test.cc",
         "tests/avrcp_device_test.cc",
     ],
@@ -106,6 +108,9 @@ cc_fuzz {
         "fluoride_defaults",
     ],
     srcs: [
+        ":TestCommonMockFunctions",
+        ":TestMockBtif",
+        ":TestMockStackAvrc",
         "tests/avrcp_device_fuzz/avrcp_device_fuzz.cc",
     ],
     include_dirs: [
