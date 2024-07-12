@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e063c121_c318e09b",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T19:40:38Z",
+      "side": 1,
+      "message": "Done Patchset 5 was about that 😊",
+      "parentUuid": "169f2fac_961f93cb",
+      "range": {
+        "startLine": 192,
+        "startChar": 59,
+        "endLine": 192,
+        "endChar": 73
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31be6877_0c92a04d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7082b4e6_4cba7bbb",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T19:40:38Z",
+      "side": 1,
+      "message": "Done Patchset 5 was about that 😊",
+      "parentUuid": "31be6877_0c92a04d",
+      "range": {
+        "startLine": 208,
+        "startChar": 12,
+        "endLine": 208,
+        "endChar": 46
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "101dfd81_7c0a6d58",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-07-12T15:44:51Z",
       "side": 1,
       "message": "This is a different fix, should be done in a separate CL",
+      "range": {
+        "startLine": 241,
+        "startChar": 35,
+        "endLine": 241,
+        "endChar": 46
+      },
+      "revId": "415bb8ef9824a0175b9378f7582dce7b9b67654d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4788ab30_3aff2f8e",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T19:40:38Z",
+      "side": 1,
+      "message": "I don\u0027t understand, this is what this CL is about, to not call the framework.\ndevice is a framework class (BluetoothDevice) by calling the adapterService I prevent calling the framework\n\nWhat exactly do you want to be done in a separate CL ?",
+      "parentUuid": "101dfd81_7c0a6d58",
       "range": {
         "startLine": 241,
         "startChar": 35,
