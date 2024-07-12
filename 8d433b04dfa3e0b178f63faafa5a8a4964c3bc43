@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78767bc7_34d37dcf",
+        "filename": "system/profile/avrcp/avrcp_sdp_records.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T15:43:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aa577b13_b00689cd",
+      "revId": "8d433b04dfa3e0b178f63faafa5a8a4964c3bc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86793c41_dcc82022",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-07-12T13:51:32Z",
       "side": 1,
       "message": "...but this override has `request_id` as the first argument, and `cover_art_psm` as the second argument.  That\u0027s swapping the argument order from the parent class, and it\u0027s also the opposite order from what the implementation in the .cc does.\n\nWe should swap the order of these arguments here, and double check we didn\u0027t have any calling code that was sending arguments in the wrong order.",
+      "revId": "8d433b04dfa3e0b178f63faafa5a8a4964c3bc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4ed3a31_abee37da",
+        "filename": "system/profile/avrcp/avrcp_sdp_records.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-12T15:43:17Z",
+      "side": 1,
+      "message": "Thanks for picking that 😊\nhttps://r.android.com/3168508 addresses this comment",
+      "parentUuid": "86793c41_dcc82022",
       "revId": "8d433b04dfa3e0b178f63faafa5a8a4964c3bc43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
