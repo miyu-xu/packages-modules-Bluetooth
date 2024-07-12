@@ -356,6 +356,7 @@ void AvrcpService::Init(MediaInterface* media_interface, VolumeInterface* volume
   profile_version = avrcp_interface_.GetAvrcpVersion();
 
   uint16_t supported_features = GetSupportedFeatures(profile_version);
+
   if (com::android::bluetooth::flags::avrcp_sdp_records()) {
     const std::shared_ptr<AvrcpSdpService>& avrcp_sdp_service = AvrcpSdpService::Get();
     AvrcpSdpRecord target_add_record_request = {UUID_SERVCLASS_AV_REM_CTRL_TARGET,
@@ -383,12 +384,17 @@ void AvrcpService::Init(MediaInterface* media_interface, VolumeInterface* volume
                                supported_features, sdp_record_handle, true, profile_version, 0);
     bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
 
-    ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
+	/* add CT record in bta_av_api_register when src sink coexist enable */
+    if (!btif_av_src_sink_coexist_enabled() || (btif_av_src_sink_coexist_enabled() &&
+			!btif_av_is_sink_enabled())) {
+	  ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-    avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL, "AV Remote Control", NULL,
-                               AVRCP_SUPF_TG_CT, ct_sdp_record_handle, false,
-                               avrcp_interface_.GetAvrcpControlVersion(), 0);
-    bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+	  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL, "AV Remote Control", NULL,
+								   AVRCP_SUPF_TG_CT, ct_sdp_record_handle, false,
+								   avrcp_interface_.GetAvrcpControlVersion(), 0);
+								   
+	  bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+    }
   }
 
   media_interface_ = new MediaInterfaceWrapper(media_interface);
