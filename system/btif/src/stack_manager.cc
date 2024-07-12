@@ -64,6 +64,7 @@
 #include "internal_include/stack_config.h"
 #include "rust/src/core/ffi/module.h"
 #include "stack/btm/btm_ble_int.h"
+#include "stack/include/ais_api.h"
 #include "stack/include/smp_api.h"
 
 #ifndef BT_STACK_CLEANUP_WAIT_MS
@@ -297,6 +298,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
   SMP_Init(get_btm_client_interface().security.BTM_GetSecurityMode());
   get_btm_client_interface().lifecycle.btm_ble_init();
 
+  AIS_Init();
   RFCOMM_Init();
   GAP_Init();
 
