@@ -273,4 +273,19 @@ uint16_t AVCT_GetPeerMtu(uint8_t handle);
  ******************************************************************************/
 uint16_t AVCT_MsgReq(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_msg);
 
+/******************************************************************************
+ *
+ * Function         AVCT_GetAddrByHandle
+ *
+ * Description      Gets the address associated with an AVCT handle.
+ *
+ *                  Input Parameters:
+ *                      p_handle:  AVCT handle
+ *                      peer_addr: peer_addr the current handle.
+ *
+ * Returns          void
+ *
+ *****************************************************************************/
+void AVCT_GetAddrByHandle(uint8_t p_handle, RawAddress& peer_addr);
+
 #endif /* AVCT_API_H */
