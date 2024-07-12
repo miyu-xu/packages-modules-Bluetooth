@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c972b71_3791fe7f",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T21:01:22Z",
+      "side": 1,
+      "message": "Does the preset has to be available for every devices or only for one to be considered valid ?\n\nsaid otherwise: Should we save temporarily the variable and return at the end of the loop ?",
+      "range": {
+        "startLine": 843,
+        "startChar": 0,
+        "endLine": 843,
+        "endChar": 36
+      },
+      "revId": "25c423cd058f369544712cda6c97ce0ae2ecfc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

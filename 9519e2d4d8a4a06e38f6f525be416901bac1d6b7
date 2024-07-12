@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc5c277e_b34ec9fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T21:01:22Z",
+      "side": 1,
+      "message": "I believe you want to put `Flag: Exempt, feature not launched yet` because `#feature` make me think that this whole change is a feature and thus need a flag",
+      "parentUuid": "404455d1_bf269897",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc930ae0_645f327f",
         "filename": "system/bta/has/has_client.cc",
         "patchSetId": 2
@@ -85,6 +109,24 @@
       "writtenOn": "2024-07-11T18:05:35Z",
       "side": 1,
       "message": "Please use `repo upload` to upload the CL to gerrit, in order for the preupload hook to run.\n\nIt will notably run clang-format on your changes",
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7fa5bfe_d42409d7",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T21:01:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fc930ae0_645f327f",
       "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -102,6 +144,30 @@
       "writtenOn": "2024-07-11T18:05:35Z",
       "side": 1,
       "message": "Should we add the device in the log ?",
+      "range": {
+        "startLine": 834,
+        "startChar": 47,
+        "endLine": 834,
+        "endChar": 68
+      },
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a89c1d_1783acd6",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-12T21:01:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9cb22a9a_3f1d1f0b",
       "range": {
         "startLine": 834,
         "startChar": 47,
