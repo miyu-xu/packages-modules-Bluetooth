@@ -607,6 +607,11 @@ BT_HDR* BtaAvCo::GetNextSourceDataPacket(const uint8_t* p_codec_info, uint32_t* 
 
   log::verbose("codec: {}", A2DP_CodecName(p_codec_info));
 
+  if (active_peer_ == nullptr) {
+    // Don't send data when active peer is null
+    return nullptr;
+  }
+
   p_buf = btif_a2dp_source_audio_readbuf();
   if (p_buf == nullptr) {
     return nullptr;
