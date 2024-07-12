@@ -191,50 +191,50 @@ static tA2DP_STATUS A2DP_ParseInfoSbc(tA2DP_SBC_CIE* p_ie, const uint8_t* p_code
   p_ie->min_bitpool = *p_codec_info++;
   p_ie->max_bitpool = *p_codec_info++;
   if (p_ie->min_bitpool < A2DP_SBC_IE_MIN_BITPOOL || p_ie->min_bitpool > A2DP_SBC_IE_MAX_BITPOOL) {
-    return A2DP_BAD_MIN_BITPOOL;
+    return A2DP_INVALID_MINIMUM_BITPOOL_VALUE;
   }
 
   if (p_ie->max_bitpool < A2DP_SBC_IE_MIN_BITPOOL || p_ie->max_bitpool > A2DP_SBC_IE_MAX_BITPOOL ||
       p_ie->max_bitpool < p_ie->min_bitpool) {
-    return A2DP_BAD_MAX_BITPOOL;
+    return A2DP_INVALID_MAXIMUM_BITPOOL_VALUE;
   }
 
   if (is_capability) {
     // NOTE: The checks here are very liberal. We should be using more
     // pedantic checks specific to the SRC or SNK as specified in the spec.
     if (A2DP_BitsSet(p_ie->samp_freq) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_SAMP_FREQ;
+      return A2DP_INVALID_SAMPLING_FREQUENCY;
     }
     if (A2DP_BitsSet(p_ie->ch_mode) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_CH_MODE;
+      return A2DP_INVALID_CHANNEL_MODE;
     }
     if (A2DP_BitsSet(p_ie->block_len) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_BLOCK_LEN;
+      return A2DP_INVALID_BLOCK_LENGTH;
     }
     if (A2DP_BitsSet(p_ie->num_subbands) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_SUBBANDS;
+      return A2DP_INVALID_SUBBANDS;
     }
     if (A2DP_BitsSet(p_ie->alloc_method) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_ALLOC_METHOD;
+      return A2DP_INVALID_ALLOCATION_METHOD;
     }
 
     return A2DP_SUCCESS;
   }
 
   if (A2DP_BitsSet(p_ie->samp_freq) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_SAMP_FREQ;
+    return A2DP_INVALID_SAMPLING_FREQUENCY;
   }
   if (A2DP_BitsSet(p_ie->ch_mode) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_CH_MODE;
+    return A2DP_INVALID_CHANNEL_MODE;
   }
   if (A2DP_BitsSet(p_ie->block_len) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_BLOCK_LEN;
+    return A2DP_INVALID_BLOCK_LENGTH;
   }
   if (A2DP_BitsSet(p_ie->num_subbands) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_SUBBANDS;
+    return A2DP_INVALID_SUBBANDS;
   }
   if (A2DP_BitsSet(p_ie->alloc_method) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_ALLOC_METHOD;
+    return A2DP_INVALID_ALLOCATION_METHOD;
   }
 
   return A2DP_SUCCESS;
@@ -357,37 +357,37 @@ static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilitySbc(const tA2DP_SBC_CIE* p_ca
 
   /* sampling frequency */
   if ((cfg_cie.samp_freq & p_cap->samp_freq) == 0) {
-    return A2DP_NS_SAMP_FREQ;
+    return A2DP_NOT_SUPPORTED_SAMPLING_FREQUENCY;
   }
 
   /* channel mode */
   if ((cfg_cie.ch_mode & p_cap->ch_mode) == 0) {
-    return A2DP_NS_CH_MODE;
+    return A2DP_NOT_SUPPORTED_CHANNEL_MODE;
   }
 
   /* block length */
   if ((cfg_cie.block_len & p_cap->block_len) == 0) {
-    return A2DP_BAD_BLOCK_LEN;
+    return A2DP_INVALID_BLOCK_LENGTH;
   }
 
   /* subbands */
   if ((cfg_cie.num_subbands & p_cap->num_subbands) == 0) {
-    return A2DP_NS_SUBBANDS;
+    return A2DP_NOT_SUPPORTED_SUBBANDS;
   }
 
   /* allocation method */
   if ((cfg_cie.alloc_method & p_cap->alloc_method) == 0) {
-    return A2DP_NS_ALLOC_METHOD;
+    return A2DP_NOT_SUPPORTED_ALLOCATION_METHOD;
   }
 
   /* min bitpool */
   if (cfg_cie.min_bitpool > p_cap->max_bitpool) {
-    return A2DP_NS_MIN_BITPOOL;
+    return A2DP_NOT_SUPPORTED_MINIMUM_BITPOOL_VALUE;
   }
 
   /* max bitpool */
   if (cfg_cie.max_bitpool < p_cap->min_bitpool) {
-    return A2DP_NS_MAX_BITPOOL;
+    return A2DP_NOT_SUPPORTED_MAXIMUM_BITPOOL_VALUE;
   }
 
   return A2DP_SUCCESS;

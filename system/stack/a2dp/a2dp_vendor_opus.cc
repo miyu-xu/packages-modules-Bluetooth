@@ -221,11 +221,11 @@ static tA2DP_STATUS A2DP_ParseInfoOpus(tA2DP_OPUS_CIE* p_ie, const uint8_t* p_co
     // pedantic checks specific to the SRC or SNK as specified in the spec.
     if (A2DP_BitsSet(p_ie->sampleRate) == A2DP_SET_ZERO_BIT) {
       log::error("invalid sample rate 0x{:X}", p_ie->sampleRate);
-      return A2DP_BAD_SAMP_FREQ;
+      return A2DP_INVALID_SAMPLING_FREQUENCY;
     }
     if (A2DP_BitsSet(p_ie->channelMode) == A2DP_SET_ZERO_BIT) {
       log::error("invalid channel mode");
-      return A2DP_BAD_CH_MODE;
+      return A2DP_INVALID_CHANNEL_MODE;
     }
 
     return A2DP_SUCCESS;
@@ -233,11 +233,11 @@ static tA2DP_STATUS A2DP_ParseInfoOpus(tA2DP_OPUS_CIE* p_ie, const uint8_t* p_co
 
   if (A2DP_BitsSet(p_ie->sampleRate) != A2DP_SET_ONE_BIT) {
     log::error("invalid sampling frequency 0x{:X}", p_ie->sampleRate);
-    return A2DP_BAD_SAMP_FREQ;
+    return A2DP_INVALID_SAMPLING_FREQUENCY;
   }
   if (A2DP_BitsSet(p_ie->channelMode) != A2DP_SET_ONE_BIT) {
     log::error("invalid channel mode.");
-    return A2DP_BAD_CH_MODE;
+    return A2DP_INVALID_CHANNEL_MODE;
   }
 
   return A2DP_SUCCESS;
@@ -313,17 +313,17 @@ static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilityOpus(const tA2DP_OPUS_CIE* p_
 
   /* sampling frequency */
   if ((cfg_cie.sampleRate & p_cap->sampleRate) == 0) {
-    return A2DP_NS_SAMP_FREQ;
+    return A2DP_NOT_SUPPORTED_SAMPLING_FREQUENCY;
   }
 
   /* channel mode */
   if ((cfg_cie.channelMode & p_cap->channelMode) == 0) {
-    return A2DP_NS_CH_MODE;
+    return A2DP_NOT_SUPPORTED_CHANNEL_MODE;
   }
 
   /* frameSize */
   if ((cfg_cie.future1 & p_cap->future1) == 0) {
-    return A2DP_NS_FRAMESIZE;
+    return A2DP_INVALID_CODEC_PARAMETER;
   }
 
   return A2DP_SUCCESS;

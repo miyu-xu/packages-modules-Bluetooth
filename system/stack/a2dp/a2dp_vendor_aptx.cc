@@ -158,20 +158,20 @@ static tA2DP_STATUS A2DP_ParseInfoAptx(tA2DP_APTX_CIE* p_ie, const uint8_t* p_co
     // NOTE: The checks here are very liberal. We should be using more
     // pedantic checks specific to the SRC or SNK as specified in the spec.
     if (A2DP_BitsSet(p_ie->sampleRate) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_SAMP_FREQ;
+      return A2DP_INVALID_SAMPLING_FREQUENCY;
     }
     if (A2DP_BitsSet(p_ie->channelMode) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_CH_MODE;
+      return A2DP_INVALID_CHANNEL_MODE;
     }
 
     return A2DP_SUCCESS;
   }
 
   if (A2DP_BitsSet(p_ie->sampleRate) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_SAMP_FREQ;
+    return A2DP_INVALID_SAMPLING_FREQUENCY;
   }
   if (A2DP_BitsSet(p_ie->channelMode) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_CH_MODE;
+    return A2DP_INVALID_CHANNEL_MODE;
   }
 
   return A2DP_SUCCESS;
@@ -214,12 +214,12 @@ UNUSED_ATTR static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilityAptx(const tA2DP_
 
   /* sampling frequency */
   if ((cfg_cie.sampleRate & p_cap->sampleRate) == 0) {
-    return A2DP_NS_SAMP_FREQ;
+    return A2DP_NOT_SUPPORTED_SAMPLING_FREQUENCY;
   }
 
   /* channel mode */
   if ((cfg_cie.channelMode & p_cap->channelMode) == 0) {
-    return A2DP_NS_CH_MODE;
+    return A2DP_NOT_SUPPORTED_CHANNEL_MODE;
   }
 
   return A2DP_SUCCESS;

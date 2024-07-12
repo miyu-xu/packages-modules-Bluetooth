@@ -228,26 +228,26 @@ static tA2DP_STATUS A2DP_ParseInfoAac(tA2DP_AAC_CIE* p_ie, const uint8_t* p_code
     // NOTE: The checks here are very liberal. We should be using more
     // pedantic checks specific to the SRC or SNK as specified in the spec.
     if (A2DP_BitsSet(p_ie->objectType) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_OBJ_TYPE;
+      return A2DP_INVALID_OBJECT_TYPE;
     }
     if (A2DP_BitsSet(p_ie->sampleRate) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_SAMP_FREQ;
+      return A2DP_INVALID_SAMPLING_FREQUENCY;
     }
     if (A2DP_BitsSet(p_ie->channelMode) == A2DP_SET_ZERO_BIT) {
-      return A2DP_BAD_CH_MODE;
+      return A2DP_INVALID_CHANNEL_MODE;
     }
 
     return A2DP_SUCCESS;
   }
 
   if (A2DP_BitsSet(p_ie->objectType) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_OBJ_TYPE;
+    return A2DP_INVALID_OBJECT_TYPE;
   }
   if (A2DP_BitsSet(p_ie->sampleRate) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_SAMP_FREQ;
+    return A2DP_INVALID_SAMPLING_FREQUENCY;
   }
   if (A2DP_BitsSet(p_ie->channelMode) != A2DP_SET_ONE_BIT) {
-    return A2DP_BAD_CH_MODE;
+    return A2DP_INVALID_CHANNEL_MODE;
   }
 
   return A2DP_SUCCESS;
@@ -298,17 +298,17 @@ static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilityAac(const tA2DP_AAC_CIE* p_ca
 
   /* Object Type */
   if ((cfg_cie.objectType & p_cap->objectType) == 0) {
-    return A2DP_BAD_OBJ_TYPE;
+    return A2DP_INVALID_OBJECT_TYPE;
   }
 
   /* Sample Rate */
   if ((cfg_cie.sampleRate & p_cap->sampleRate) == 0) {
-    return A2DP_BAD_SAMP_FREQ;
+    return A2DP_INVALID_SAMPLING_FREQUENCY;
   }
 
   /* Channel Mode */
   if ((cfg_cie.channelMode & p_cap->channelMode) == 0) {
-    return A2DP_NS_CH_MODE;
+    return A2DP_NOT_SUPPORTED_CHANNEL_MODE;
   }
 
   return A2DP_SUCCESS;
