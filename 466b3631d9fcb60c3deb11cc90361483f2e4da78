@@ -16,6 +16,46 @@
       "message": "I still need to fix some tests. But the core logic shouldn\u0027t change.",
       "revId": "466b3631d9fcb60c3deb11cc90361483f2e4da78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e545049_d347cc20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-12T18:22:35Z",
+      "side": 1,
+      "message": "From a high level, this looks okay. It looks like you basically route all the codecs to the peer device object, and the get_codec_config_for_peer grabs the configuration for a given device at track initialization time. We only initialize the track when the active peer changes in A2DP Sink at least. So, this should make it so codec configuration for multiple devices won\u0027t have an impact on the active device, and switching to a device that\u0027s already had config done will gracefully just pull what\u0027s there.\n\nI\u0027ll leave it to Henri and/or William to critique the c++ specifics, or anything I\u0027ve missed.",
+      "revId": "466b3631d9fcb60c3deb11cc90361483f2e4da78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df8e4f51_38e3a74f",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-12T18:22:35Z",
+      "side": 1,
+      "message": "I can\u0027t believe we\u0027re using a byte array effectively to represent the codec info, instead of a class or struct!\n\nProbably not something that this CL needs to worry about as it looks like a heavier lift, but, just wow.",
+      "range": {
+        "startLine": 96,
+        "startChar": 48,
+        "endLine": 96,
+        "endChar": 64
+      },
+      "revId": "466b3631d9fcb60c3deb11cc90361483f2e4da78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
