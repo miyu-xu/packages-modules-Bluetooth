@@ -16,6 +16,24 @@
       "message": "nit: log before Cleanup",
       "revId": "a432cc0409205ec77afa89042e5b2e4fbbafa1bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "124c8725_3488411d",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-12T18:51:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f93d85c_6e0cad3b",
+      "revId": "a432cc0409205ec77afa89042e5b2e4fbbafa1bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
