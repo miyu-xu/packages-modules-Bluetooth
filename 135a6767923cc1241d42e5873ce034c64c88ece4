@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571545f8_cc1d1da2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-13T01:29:32Z",
+      "side": 1,
+      "message": "Do you plan to add any negative tests as well?",
+      "revId": "135a6767923cc1241d42e5873ce034c64c88ece4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
