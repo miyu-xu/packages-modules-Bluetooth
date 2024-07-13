@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "579d93c1_a625768d",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-13T03:07:36Z",
+      "side": 1,
+      "message": "These should be global",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 90
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "617d2b4a_82a5309a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "static const Uuid ANDROID_INFORMATION_SERVICE_UUID \u003d\n        Uuid::FromString(ANDROID_INFORMATION_SERVICE_UUID_STRING);\nstatic const Uuid GATT_UUID_AIS_API_LEVEL \u003d Uuid::FromString(GATT_UUID_AIS_API_LEVEL_STRING);\n\n"
+            },
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 115,
+                "startChar": 0,
+                "endLine": 119,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4a84fcba83eb5f02d217d9ddbfb082ada98263b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
