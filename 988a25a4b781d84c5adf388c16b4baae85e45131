@@ -22,6 +22,30 @@
       },
       "revId": "988a25a4b781d84c5adf388c16b4baae85e45131",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e465265_e33bb027",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-13T01:16:05Z",
+      "side": 1,
+      "message": "This is a warning for existing tests but *required* for new tests.\n\n`net_test_stack_rnr`",
+      "parentUuid": "265f9971_d1554667",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "988a25a4b781d84c5adf388c16b4baae85e45131",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
