@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f440609_06764791",
+        "filename": "system/stack/a2dp/a2dp_aac.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-13T00:29:02Z",
+      "side": 1,
+      "message": "nit: should the log indicate which one failed ? (in case it\u0027s coming from a slighlty modified code, you will not be able to know which log it is since the line is not reliable)\n\n(same later in this file and in all other codecs files)",
+      "range": {
+        "startLine": 1296,
+        "startChar": 0,
+        "endLine": 1304,
+        "endChar": 63
+      },
+      "revId": "ac521a2a7457a76b216711f7f6733265d9011f92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
