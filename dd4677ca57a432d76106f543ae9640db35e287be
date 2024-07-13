@@ -40,6 +40,30 @@
       ],
       "revId": "dd4677ca57a432d76106f543ae9640db35e287be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6783b96f_38f6d5c6",
+        "filename": "system/test/mock/mock_stack_security_client_interface.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-13T01:16:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04184c7c_3e87e7b6",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "dd4677ca57a432d76106f543ae9640db35e287be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
