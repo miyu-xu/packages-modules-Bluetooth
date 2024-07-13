@@ -1,0 +1,321 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f751760d_ce675ac8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Unused",
+      "fixSuggestions": [
+        {
+          "fixId": "da25affb_bd203c11",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface.java",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9424839_316b0019",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "```\nif (device \u003d\u003d null) {\n    Log.e(TAG, \"bqrDeliver failed: device is null\");\n    return;\n}\n```",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd138a09_5461f09c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Potential logical change if remoteClass is BluetoothClass.ERROR",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe7488c6_ef964918",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Missing check of `\u003d\u003d BluetoothClass.ERROR` ?",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b870058_48e297cd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Could introduce a logical change since `BluetoothClass.ERROR` converts to null in the framework, and 0 here",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b195ce97_fac8d852",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Fix should be in a separate CL",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 311,
+        "endChar": 0
+      },
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbb5dc45_2de7974f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "```\nparams.getDevice()\n```\nThe default stringifier will apply anonymization",
+      "range": {
+        "startLine": 95,
+        "startChar": 25,
+        "endLine": 95,
+        "endChar": 93
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "aee38aa9_8d971477",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "                        + params.getDevice()\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "                        + params.getDevice()\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "                        + device\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 181,
+                "startChar": 0,
+                "endLine": 182,
+                "endChar": 0
+              },
+              "replacement": "                        + device\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1799f97f_e3ecdc72",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Same comment as LeAudioService.java",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e12e781_c07c4efe",
+        "filename": "android/app/src/com/android/bluetooth/hfp/AtPhonebook.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "The previous code structure makes more sense to me, because the return is common (it is not a case of dedicated error handling)\n\n```\nif (permission \u003d\u003d BluetoothDevice.ACCESS_UNKNOWN) { .. }\n\nreturn permission;\n```",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "969f6635_8bb0a7d6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2545,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "What about this check from the framework : \n```\nif (classInt \u003d\u003d BluetoothClass.ERROR) return null;\n```",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f789370f_1f34ccc9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "nit: logical change to be done in a separate CL",
+      "range": {
+        "startLine": 841,
+        "startChar": 20,
+        "endLine": 841,
+        "endChar": 28
+      },
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfee610_326661d4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "Not really a fan of inlining isConnected here.\nCould you add an helper to AdapterService to hide this check ?\n(did a quick check, nobody is doing this check manually)",
+      "range": {
+        "startLine": 1552,
+        "startChar": 16,
+        "endLine": 1553,
+        "endChar": 75
+      },
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc4299c8_fb7c1578",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-13T01:16:42Z",
+      "side": 1,
+      "message": "The changes to this file are not related to the commit topic",
+      "range": {
+        "startLine": 119,
+        "startChar": 36,
+        "endLine": 119,
+        "endChar": 55
+      },
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
