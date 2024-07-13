@@ -50,6 +50,30 @@
       ],
       "revId": "4a84fcba83eb5f02d217d9ddbfb082ada98263b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c252dca2_d6551a01",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-13T07:09:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "579d93c1_a625768d",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 90
+      },
+      "revId": "4a84fcba83eb5f02d217d9ddbfb082ada98263b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
