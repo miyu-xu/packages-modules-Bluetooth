@@ -412,7 +412,6 @@ public class AdapterServiceTest {
 
         if (!Flags.scanManagerRefactor()) {
             TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_REGISTERED);
-
             TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
         }
 
@@ -425,6 +424,7 @@ public class AdapterServiceTest {
 
     static void onToBleOn(
             TestLooper looper,
+            ProfileService gattService,
             MockAdapterService adapter,
             Context ctx,
             IBluetoothCallback callback,
@@ -435,11 +435,21 @@ public class AdapterServiceTest {
         verifyStateChange(callback, STATE_ON, STATE_TURNING_OFF);
 
         if (!onlyGatt) {
-            // Stop PBAP and PAN services
-            assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(4);
+            if (Flags.scanManagerRefactor()) {
+                // Stop GATT, PBAP, and PAN services
+                assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(6);
+            } else {
+                // Stop PBAP and PAN services
+                assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(4);
+            }
 
             for (ProfileService service : services) {
                 adapter.onProfileServiceStateChanged(service, STATE_OFF);
+                TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
+            }
+
+            if (Flags.scanManagerRefactor()) {
+                adapter.onProfileServiceStateChanged(gattService, STATE_OFF);
                 TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
             }
         }
@@ -486,8 +496,13 @@ public class AdapterServiceTest {
         verifyStateChange(callback, STATE_BLE_ON, STATE_TURNING_ON);
 
         if (!onlyGatt) {
-            // Start Mock PBAP and PAN services
-            assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(2);
+            if (Flags.scanManagerRefactor()) {
+                // Start Mock GATT, PBAP, and PAN services
+                assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(3);
+            } else {
+                // Start Mock PBAP and PAN services
+                assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(2);
+            }
 
             for (ProfileService service : services) {
                 adapter.addProfile(service);
@@ -497,6 +512,12 @@ public class AdapterServiceTest {
             // ON transition during the callback
             for (ProfileService service : services) {
                 adapter.onProfileServiceStateChanged(service, STATE_ON);
+                TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
+            }
+            if (Flags.scanManagerRefactor()) {
+                adapter.addProfile(gattService);
+                TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_REGISTERED);
+                adapter.onProfileServiceStateChanged(gattService, STATE_ON);
                 TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
             }
         }
@@ -511,6 +532,7 @@ public class AdapterServiceTest {
     void doDisable(boolean onlyGatt) {
         doDisable(
                 mLooper,
+                mMockGattService,
                 mAdapterService,
                 mMockContext,
                 onlyGatt,
@@ -520,6 +542,7 @@ public class AdapterServiceTest {
 
     private static void doDisable(
             TestLooper looper,
+            ProfileService gattService,
             MockAdapterService adapter,
             Context ctx,
             boolean onlyGatt,
@@ -533,14 +556,16 @@ public class AdapterServiceTest {
 
         assertThat(adapter.getState()).isEqualTo(STATE_ON);
 
-        onToBleOn(looper, adapter, ctx, callback, onlyGatt, services);
+        onToBleOn(looper, gattService, adapter, ctx, callback, onlyGatt, services);
 
         adapter.stopBle();
         TestUtils.syncHandler(looper, AdapterState.BLE_TURN_OFF);
         verifyStateChange(callback, STATE_BLE_ON, STATE_BLE_TURNING_OFF);
 
-        TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
-        TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_UNREGISTERED);
+        if (!Flags.scanManagerRefactor()) {
+            TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
+            TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_UNREGISTERED);
+        }
 
         verify(nativeInterface).disable();
         adapter.stateChangeCallback(AbstractionLayer.BT_STATE_OFF);
@@ -589,6 +614,7 @@ public class AdapterServiceTest {
      * started and stopped.
      */
     @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
     public void testEnableDisableOnlyGatt() {
         Context mockContext = mock(Context.class);
         Resources mockResources = mock(Resources.class);
@@ -611,6 +637,7 @@ public class AdapterServiceTest {
 
     /** Test: Don't start GATT Check whether the AdapterService quits gracefully */
     @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
     public void testGattStartTimeout() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
 
@@ -646,11 +673,13 @@ public class AdapterServiceTest {
 
     /** Test: Don't stop GATT Check whether the AdapterService quits gracefully */
     @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
     public void testGattStopTimeout() {
         doEnable(false);
 
         onToBleOn(
                 mLooper,
+                mMockGattService,
                 mAdapterService,
                 mMockContext,
                 mIBluetoothCallback,
@@ -813,6 +842,7 @@ public class AdapterServiceTest {
 
     /** Test: Don't start a classic profile Check whether the AdapterService quits gracefully */
     @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
     public void testProfileStartTimeout() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
 
@@ -855,6 +885,7 @@ public class AdapterServiceTest {
 
     /** Test: Don't stop a classic profile Check whether the AdapterService quits gracefully */
     @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
     public void testProfileStopTimeout() {
         doEnable(false);
 
@@ -907,6 +938,7 @@ public class AdapterServiceTest {
 
         onToBleOn(
                 mLooper,
+                mMockGattService,
                 mAdapterService,
                 mMockContext,
                 mIBluetoothCallback,
@@ -917,8 +949,10 @@ public class AdapterServiceTest {
         syncHandler(AdapterState.BLE_TURN_OFF);
         verifyStateChange(STATE_BLE_ON, STATE_BLE_TURNING_OFF, CONTEXT_SWITCH_MS);
 
-        syncHandler(MESSAGE_PROFILE_SERVICE_STATE_CHANGED); // stop GATT
-        syncHandler(MESSAGE_PROFILE_SERVICE_UNREGISTERED);
+        if (!Flags.scanManagerRefactor()) {
+            syncHandler(MESSAGE_PROFILE_SERVICE_STATE_CHANGED); // stop GATT
+            syncHandler(MESSAGE_PROFILE_SERVICE_UNREGISTERED);
+        }
 
         verify(mNativeInterface).disable();
 
