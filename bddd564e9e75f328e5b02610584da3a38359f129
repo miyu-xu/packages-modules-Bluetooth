@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b870a3b_508322d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-15T06:52:22Z",
+      "side": 1,
+      "message": "out/soong/.intermediates/packages/modules/Bluetooth/system/osi/libosi/android_x86_64_silvermont_static_apex33/obj/packages/modules/Bluetooth/system/osi/src/compat.o packages/modules/Bluetooth/system/osi/src/compat.cc\npackages/modules/Bluetooth/system/osi/src/compat.cc:62:20: error: function-like macro \u0027__GLIBC_PREREQ\u0027 is not defined\n   62 | #if __GLIBC__ \u0026\u0026 !(__GLIBC_PREREQ(2, 38))\n      |                    ^\n1 error generated.",
+      "revId": "bddd564e9e75f328e5b02610584da3a38359f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
