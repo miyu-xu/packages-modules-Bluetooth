@@ -150,6 +150,7 @@ public:
                                 GATT_WRITE_OP_CB cccd_write_cb);
   bool VerifyReady(uint16_t handle);
   bool IsReady() { return device_ready; }
+  bool IsActive() const;
 
 private:
   /*
