@@ -46,11 +46,14 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -679,6 +682,66 @@ public class CsipSetCoordinatorServiceTest {
         TestUtils.waitForIntent(TIMEOUT_MS, mIntentQueue.get(mTestDevice));
 
         mService.dump(new StringBuilder());
+    }
+
+    /** Test that native callback generates proper intent after group connected. */
+    @Test
+    public void testStackEventActiveMembersChangedEvent() {
+        int group_id = 0x01;
+        int group_size = 0x02;
+        long uuidLsb = BluetoothUuid.CAP.getUuid().getLeastSignificantBits();
+        long uuidMsb = BluetoothUuid.CAP.getUuid().getMostSignificantBits();
+
+        // Make sure to use real methods when needed below
+        doCallRealMethod()
+                .when(mCsipSetCoordinatorNativeInterface)
+                .onDeviceAvailable(
+                        any(byte[].class), anyInt(), anyInt(), anyInt(), anyLong(), anyLong());
+        doCallRealMethod()
+                .when(mCsipSetCoordinatorNativeInterface)
+                .onConnectionStateChanged(any(byte[].class), anyInt());
+        doCallRealMethod()
+                .when(mCsipSetCoordinatorNativeInterface)
+                .onSetMemberAvailable(any(byte[].class), anyInt());
+        doCallRealMethod()
+                .when(mCsipSetCoordinatorNativeInterface)
+                .onActiveMembersListChanged(anyInt(), anyList());
+
+        mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
+                getByteAddress(mTestDevice), group_id, group_size, 0x02, uuidLsb, uuidMsb);
+
+        mCsipSetCoordinatorNativeInterface.onConnectionStateChanged(
+                getByteAddress(mTestDevice), BluetoothProfile.STATE_CONNECTED);
+
+        // Comes from state machine
+        mService.connectionStateChanged(
+                mTestDevice, BluetoothProfile.STATE_CONNECTING, BluetoothProfile.STATE_CONNECTED);
+
+        InOrder inOrder = inOrder(mLeAudioService, mCsipSetCoordinatorNativeInterface);
+
+        // Device shall be initially inactive
+        Assert.assertFalse(mService.isActive(mTestDevice, group_id));
+
+        List<byte[]> addresses = new ArrayList<>(
+                Collections.singletonList(getByteAddress(mTestDevice)));
+
+        mCsipSetCoordinatorNativeInterface.onActiveMembersListChanged(group_id, addresses);
+
+        // Device shall be active
+        Assert.assertTrue(mService.isActive(mTestDevice, group_id));
+
+        // LeAudioService shall be notified
+        inOrder.verify(mLeAudioService, times(1)).csipActiveMembersChanged(group_id);
+
+        addresses.clear();
+
+        mCsipSetCoordinatorNativeInterface.onActiveMembersListChanged(group_id, addresses);
+
+        // Device shall be inactive
+        Assert.assertFalse(mService.isActive(mTestDevice, group_id));
+
+        // LeAudioService shall be notified again
+        inOrder.verify(mLeAudioService, times(1)).csipActiveMembersChanged(group_id);
     }
 
     /** Helper function to test ConnectionStateIntent() method */
