@@ -22,6 +22,30 @@
       },
       "revId": "1a1eeb392697bf73c995c8c6150fc5abc922b468",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bbfc3f9_4026c26f",
+        "filename": "system/stack/test/rfcomm/stack_rfcomm_port_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-15T21:56:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b853f830_b7cb470b",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "1a1eeb392697bf73c995c8c6150fc5abc922b468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
