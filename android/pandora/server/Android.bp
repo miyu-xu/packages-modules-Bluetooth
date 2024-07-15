@@ -68,6 +68,19 @@ android_test {
     min_sdk_version: "Tiramisu",
 }
 
+test_module_config {
+    name: "pts-bot-browsing-refactor",
+    base: "pts-bot",
+    include_filters: ["AVRCP/TG/MPS/BV-03-I"],
+    options: [
+        {
+            name: "feature-flags:flag-value",
+            value: "bluetooth/com.android.bluetooth.flags.browsing_refactor=true",
+        },
+    ],
+    test_suites: ["general-tests"],
+}
+
 android_test {
     name: "pts-bot-mts",
     test_config: "configs/PtsBotTestMts.xml",
