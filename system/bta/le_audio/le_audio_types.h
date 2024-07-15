@@ -100,6 +100,35 @@ static const bluetooth::Uuid kTelephonyMediaAudioProfileRoleCharacteristicUuid =
 }  // namespace uuid
 
 namespace codec_spec_conf {
+constexpr uint8_t SampleingFreqCapability2Config(uint16_t cap) {
+  // check if the value is valid
+  if (!cap || (cap & (cap - 1))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf + 1;
+}
+
+constexpr uint8_t FrameDurationCapability2Config(uint16_t cap) {
+  if (!cap || (cap & (cap - 1))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf;
+}
+
 /* LTV Types */
 constexpr uint8_t kLeAudioLtvTypeSamplingFreq = 0x01;
 constexpr uint8_t kLeAudioLtvTypeFrameDuration = 0x02;
