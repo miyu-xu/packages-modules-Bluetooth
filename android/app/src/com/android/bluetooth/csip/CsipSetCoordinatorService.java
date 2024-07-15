@@ -105,6 +105,7 @@ public class CsipSetCoordinatorService extends ProfileService {
             new HashMap<>();
     private final Map<Integer, Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback>> mLocks =
             new ConcurrentHashMap<>();
+    private final Map<Integer, Set<BluetoothDevice>> mGroupActiveDevices = new HashMap<>();
 
     private LeAudioService mLeAudioService;
 
@@ -197,6 +198,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         mGroupIdToGroupSize.clear();
         mGroupIdToConnectedDevices.clear();
         mGroupIdToUuidMap.clear();
+        mGroupActiveDevices.clear();
 
         mLocks.clear();
     }
@@ -625,6 +627,18 @@ public class CsipSetCoordinatorService extends ProfileService {
     public int getDesiredGroupSize(int groupId) {
         return mGroupIdToGroupSize.getOrDefault(
                 groupId, IBluetoothCsipSetCoordinator.CSIS_GROUP_SIZE_UNKNOWN);
+    }
+
+    /**
+     * Return the active state
+     *
+     * @param device group member
+     * @return true if active, false otherwise
+     */
+    public boolean isActive(BluetoothDevice device, int groupId) {
+        Set<BluetoothDevice> activeDevices = mGroupActiveDevices.get(groupId);
+
+        return activeDevices != null && activeDevices.contains(device);
     }
 
     private void handleDeviceAvailable(
