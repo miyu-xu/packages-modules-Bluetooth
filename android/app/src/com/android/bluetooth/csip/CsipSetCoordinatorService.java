@@ -100,6 +100,7 @@ public class CsipSetCoordinatorService extends ProfileService {
             new HashMap<>();
     private final Map<Integer, Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback>> mLocks =
             new ConcurrentHashMap<>();
+    private final Map<Integer, Set<BluetoothDevice>> mGroupActiveDevices = new HashMap<>();
 
     public CsipSetCoordinatorService(Context ctx) {
         super(ctx);
@@ -206,6 +207,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         mGroupIdToGroupSize.clear();
         mGroupIdToConnectedDevices.clear();
         mGroupIdToUuidMap.clear();
+        mGroupActiveDevices.clear();
 
         mLocks.clear();
 
@@ -645,6 +647,18 @@ public class CsipSetCoordinatorService extends ProfileService {
                 groupId, IBluetoothCsipSetCoordinator.CSIS_GROUP_SIZE_UNKNOWN);
     }
 
+    /**
+     * Return the active state
+     *
+     * @param device group member
+     * @return true if active, false otherwise
+     */
+    public boolean isActive(BluetoothDevice device, int groupId) {
+        Set<BluetoothDevice> activeDevices = mGroupActiveDevices.get(groupId);
+
+        return activeDevices != null && activeDevices.contains(device);
+    }
+
     private void handleDeviceAvailable(
             BluetoothDevice device, int groupId, int rank, UUID uuid, int groupSize) {
         mGroupIdToGroupSize.put(groupId, groupSize);
@@ -794,6 +808,23 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
     }
 
+    void notifyActiveMembersChanged(int groupId) {
+       if (mLeAudioService == null) {
+            mLeAudioService = mServiceFactory.getLeAudioService();
+        }
+
+        if (mLeAudioService != null) {
+            if (!mGroupActiveDevices.containsKey(groupId)) {
+                Log.w(TAG, "No active devices for groupId=" + groupId);
+                return;
+            }
+
+            mLeAudioService.csipActiveMembersChanged(groupId);
+        } else {
+            Log.w(TAG, "notifyActiveMembersChanged: LE Audio Service is null");
+        }
+    }
+
     void notifySetMemberAvailable(BluetoothDevice device, int groupId) {
         Log.d(TAG, "notifySetMemberAvailable: " + device + ", " + groupId);
 
@@ -809,6 +840,21 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         /* Notify registered parties */
         handleSetMemberAvailable(device, groupId);
+    }
+
+    void handleActiveMembersChanged(int groupId, List<BluetoothDevice> devices) {
+        synchronized (mGroupActiveDevices) {
+            if (!mGroupActiveDevices.containsKey(groupId)) {
+                mGroupActiveDevices.put(groupId, new HashSet<>(devices));
+            } else {
+                Set<BluetoothDevice> activeDevices = mGroupActiveDevices.get(groupId);
+
+                activeDevices.clear();
+                activeDevices.addAll(devices);
+            }
+
+            notifyActiveMembersChanged(groupId);
+        }
     }
 
     void messageFromNative(CsipSetCoordinatorStackEvent stackEvent) {
@@ -847,6 +893,9 @@ public class CsipSetCoordinatorService extends ProfileService {
             int lock_status = stackEvent.valueInt2;
             boolean lock_state = stackEvent.valueBool1;
             handleGroupLockChanged(groupId, lock_status, lock_state);
+        } else if (stackEvent.type
+                == CsipSetCoordinatorStackEvent.EVENT_TYPE_ACTIVE_MEMBERS_CHANGED) {
+            handleActiveMembersChanged(groupId, stackEvent.valueDevices);
         }
 
         if (intent != null) {

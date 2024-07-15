@@ -4647,6 +4647,29 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    public void csipActiveMembersChanged(int groupId) {
+        Log.d(TAG, "csipActiveMembersChanged groupId: " + groupId);
+
+        int currentlyActiveGroupId = getActiveGroupId();
+        if (groupId != currentlyActiveGroupId) {
+            Log.d(TAG, "Ignored. Group is inactive");
+            return;
+        }
+
+        VolumeControlService volumeControlService = getVolumeControlService();
+        if (volumeControlService != null) {
+            int groupVolume = volumeControlService.getGroupVolume(currentlyActiveGroupId);
+            Boolean groupMuted = volumeControlService.getGroupMute(currentlyActiveGroupId);
+
+            volumeControlService.setGroupVolume(currentlyActiveGroupId, groupVolume);
+            if (groupMuted) {
+                volumeControlService.muteGroup(currentlyActiveGroupId);
+            } else {
+                volumeControlService.unmuteGroup(currentlyActiveGroupId);
+            }
+        }
+    }
+
     TbsService getTbsService() {
         if (mTbsService != null) {
             return mTbsService;
