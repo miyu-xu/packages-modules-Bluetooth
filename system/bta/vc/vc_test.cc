@@ -27,6 +27,7 @@
 #include "bta/test/common/bta_gatt_queue_mock.h"
 #include "bta/test/common/btm_api_mock.h"
 #include "bta/test/common/mock_csis_client.h"
+#include "bta/test/common/mock_le_audio_client.h"
 #include "bta/vc/types.h"
 #include "gatt/database_builder.h"
 #include "hardware/bt_gatt_types.h"
@@ -441,6 +442,7 @@ protected:
 
     bluetooth::manager::SetMockBtmInterface(&btm_interface);
     MockCsisClient::SetMockInstanceForTesting(&mock_csis_client_module_);
+    MockLeAudioClient::SetMockInstanceForTesting(&mock_le_audio_client_module_);
     gatt::SetMockBtaGattInterface(&gatt_interface);
     gatt::SetMockBtaGattQueue(&gatt_queue);
     reset_mock_function_count_map();
@@ -747,6 +749,7 @@ protected:
   NiceMock<MockVolumeControlCallbacks> callbacks;
   NiceMock<bluetooth::manager::MockBtmInterface> btm_interface;
   MockCsisClient mock_csis_client_module_;
+  MockLeAudioClient mock_le_audio_client_module_;
   NiceMock<gatt::MockBtaGattInterface> gatt_interface;
   NiceMock<gatt::MockBtaGattQueue> gatt_queue;
 
@@ -2310,6 +2313,13 @@ protected:
 
     ON_CALL(mock_csis_client_module_, GetGroupId(_, _)).WillByDefault(Return(group_id));
 
+    ON_CALL(mock_le_audio_client_module_,Get())
+            .WillByDefault(Return(&mock_le_audio_client_module_));
+
+    ON_CALL(mock_le_audio_client_module_, IsLeAudioClientRunning()).WillByDefault(Return(true));
+
+    ON_CALL(mock_le_audio_client_module_, IsDeviceActive(_)).WillByDefault(Return(true));
+
     SetSampleDatabase(conn_id_1);
     SetSampleDatabase(conn_id_2);
 
@@ -2373,6 +2383,43 @@ TEST_F(VolumeControlCsis, test_set_volume) {
   GetNotificationEvent(conn_id_2, test_address_2, 0x0021, value2);
 }
 
+TEST_F(VolumeControlCsis, test_set_volume_device_inactive) {
+  TestConnect(test_address_1);
+  GetConnectedEvent(test_address_1, conn_id_1);
+  GetSearchCompleteEvent(conn_id_1);
+  TestConnect(test_address_2);
+  GetConnectedEvent(test_address_2, conn_id_2);
+  GetSearchCompleteEvent(conn_id_2);
+
+  /* Set device as inactive */
+  ON_CALL(mock_le_audio_client_module_, IsDeviceActive(test_address_1))
+          .WillByDefault(Return(false));
+
+  /* Set value for the group */
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id_1, 0x0024, _, GATT_WRITE, _, _)).Times(0);
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id_2, 0x0024, _, GATT_WRITE, _, _)).Times(1);
+
+  VolumeControl::Get()->SetVolume(group_id, 10);
+
+  /* Now inject notification and make sure callback is sent up to Java layer */
+  EXPECT_CALL(callbacks, OnGroupVolumeStateChanged(group_id, 0x03, true, false));
+
+  std::vector<uint8_t> value({0x03, 0x01, 0x02});
+  GetNotificationEvent(conn_id_2, test_address_2, 0x0021, value);
+
+  /* Verify exactly one operation with this exact value is queued for each
+   * device */
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id_1, 0x0024, _, GATT_WRITE, _, _)).Times(0);
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id_2, 0x0024, _, GATT_WRITE, _, _)).Times(1);
+  VolumeControl::Get()->SetVolume(test_address_1, 20);
+  VolumeControl::Get()->SetVolume(test_address_2, 20);
+  VolumeControl::Get()->SetVolume(test_address_1, 20);
+  VolumeControl::Get()->SetVolume(test_address_2, 20);
+
+  std::vector<uint8_t> value2({20, 0x00, 0x03});
+  GetNotificationEvent(conn_id_2, test_address_2, 0x0021, value2);
+}
+
 TEST_F(VolumeControlCsis, test_set_volume_device_not_ready) {
   /* Make sure we did not get responds to the initial reads,
    * so that the device was not marked as ready yet.
@@ -2406,6 +2453,50 @@ TEST_F(VolumeControlCsis, autonomus_test_set_volume) {
 
   std::vector<uint8_t> value({0x03, 0x00, 0x02});
   GetNotificationEvent(conn_id_1, test_address_1, 0x0021, value);
+  GetNotificationEvent(conn_id_2, test_address_2, 0x0021, value);
+}
+
+TEST_F(VolumeControlCsis, test_autonomus_volume_changed_from_inactive_device) {
+  TestConnect(test_address_1);
+  GetConnectedEvent(test_address_1, conn_id_1);
+  GetSearchCompleteEvent(conn_id_1);
+  TestConnect(test_address_2);
+  GetConnectedEvent(test_address_2, conn_id_2);
+  GetSearchCompleteEvent(conn_id_2);
+
+  /* Set one device as inactive */
+  ON_CALL(mock_le_audio_client_module_, IsDeviceActive(test_address_1))
+          .WillByDefault(Return(false));
+
+  /* Now inject notification and make sure callback is *not* sent up to Java layer */
+  EXPECT_CALL(callbacks, OnGroupVolumeStateChanged(group_id, 0x03, false, true)).Times(0);
+
+  /* Verify there's Control Point operation triggered */
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id_2, 0x0024, _, GATT_WRITE, _, _)).Times(0);
+
+  std::vector<uint8_t> value({0x03, 0x00, 0x02});
+  GetNotificationEvent(conn_id_1, test_address_1, 0x0021, value);
+}
+
+TEST_F(VolumeControlCsis, test_autonomus_volume_changed_from_active_device) {
+  TestConnect(test_address_1);
+  GetConnectedEvent(test_address_1, conn_id_1);
+  GetSearchCompleteEvent(conn_id_1);
+  TestConnect(test_address_2);
+  GetConnectedEvent(test_address_2, conn_id_2);
+  GetSearchCompleteEvent(conn_id_2);
+
+  /* Set one device as inactive */
+  ON_CALL(mock_le_audio_client_module_, IsDeviceActive(test_address_1))
+          .WillByDefault(Return(false));
+
+  /* Now inject notification and make sure callback is *not* sent up to Java layer */
+  EXPECT_CALL(callbacks, OnGroupVolumeStateChanged(group_id, 0x03, false, true)).Times(1);
+
+  /* Verify there's Control Point operation not triggered */
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id_1, 0x0024, _, GATT_WRITE, _, _)).Times(0);
+
+  std::vector<uint8_t> value({0x03, 0x00, 0x02});
   GetNotificationEvent(conn_id_2, test_address_2, 0x0021, value);
 }
 

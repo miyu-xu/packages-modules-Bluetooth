@@ -29,6 +29,8 @@
 
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_gatt_queue.h"
+#include "bta/include/bta_le_audio_api.h"
+#include "bta/le_audio/le_audio_types.h"
 #include "bta/vc/devices.h"
 #include "btm_ble_api_types.h"
 #include "btm_sec_api_types.h"
@@ -493,6 +495,14 @@ bool VolumeControlDevice::VerifyReady(uint16_t handle) {
   log::debug("{}, handles_pending size={}", address, handles_pending.size());
 
   return device_ready;
+}
+
+bool VolumeControlDevice::IsActive() const {
+    if (LeAudioClient::IsLeAudioClientRunning()) {
+      return LeAudioClient::Get()->IsDeviceActive(address);
+    }
+
+    return true;
 }
 
 void VolumeControlDevice::GetExtAudioOutVolumeOffset(uint8_t ext_output_id, GATT_READ_OP_CB cb,
