@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc5cf037_85880aa2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-15T20:00:40Z",
+      "side": 1,
+      "message": "LGTM! That doc will be useful in the future, I\u0027m sure! Thank you!",
+      "parentUuid": "9c2faae1_27fcd4f2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99eadd48_cfd1be35",
