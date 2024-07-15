@@ -99,6 +99,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0d7611_589dfbba",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-15T07:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d6b2ede_11d56c19",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a698d322_ed7372e3",
@@ -140,6 +158,24 @@
           ]
         }
       ],
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab24db2_be4b80a7",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-15T07:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a698d322_ed7372e3",
       "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -197,6 +233,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54305cee_071e4912",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-15T07:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5e61fef_baeca7f1",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3df255a_b103b700",
@@ -246,6 +300,24 @@
       "side": 1,
       "message": "This function is only called after setting the flag. Then it immediately checks if the flag is set or not.\n\nSetting the flag in uhid_write_input_queue() reduces its footprint. Then this flag would have just two references. One where it is being set and one where it is being checked.\n\n\nWe can split this function into two separate functions like this.\n```\nvoid uhid_set_ready() {\n  if (!ready) {\n    ready \u003d true;\n    uhid_queue_flush();\n  }\n}\n```",
       "parentUuid": "736ffe36_657fe76f",
+      "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84f79799_484292ce",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-15T07:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d01c3a6a_af7d3742",
       "revId": "9be95fa6c09be7c31687f0edb4e99751e85fad4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
