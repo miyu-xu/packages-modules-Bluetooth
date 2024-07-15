@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "befc4703_c1d22139",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-15T19:09:38Z",
+      "side": 1,
+      "message": "Ah, thanks for the explanation, makes sense",
+      "parentUuid": "7881d4d6_4ec7166a",
+      "range": {
+        "startLine": 351,
+        "startChar": 8,
+        "endLine": 351,
+        "endChar": 17
+      },
+      "revId": "bdb00065c823884e701c0ee9fbcb19ea73d3c085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5aff79a_961cf321",

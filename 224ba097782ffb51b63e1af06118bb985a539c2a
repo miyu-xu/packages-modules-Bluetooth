@@ -1,0 +1,168 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c9db1ce_9ce2adc4",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-15T19:09:38Z",
+      "side": 1,
+      "message": "nit: `else if` here? Or maybe even\n```\nif (scope !\u003d AvrcpControllerService.BROWSE_SCOPE_NOW_PLAYING) {\n    ...\n} else if (isActive()) {\n    ...\n}\n```",
+      "range": {
+        "startLine": 387,
+        "startChar": 8,
+        "endLine": 389,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2c474771_bb9e7bfe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 387,
+                "startChar": 0,
+                "endLine": 390,
+                "endChar": 0
+              },
+              "replacement": "        } else if (isActive()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "224ba097782ffb51b63e1af06118bb985a539c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a5370dc_84792e6e",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-15T19:09:38Z",
+      "side": 1,
+      "message": "`notifyBrowseNodeChanged` instead, or are we guaranteed to never be in the `BROWSE_SCOPE_NOW_PLAYING` here?",
+      "range": {
+        "startLine": 464,
+        "startChar": 16,
+        "endLine": 464,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "86355479_aa1babff",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 464,
+                "startChar": 0,
+                "endLine": 465,
+                "endChar": 0
+              },
+              "replacement": "                notifyBrowseNodeChanged(mService.sBrowseTree.mRootNode);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "224ba097782ffb51b63e1af06118bb985a539c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ea7b487_2bb8a85b",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-15T19:09:38Z",
+      "side": 1,
+      "message": "`notifyBrowseNodeChanged` instead, or are we guaranteed to never be in the `BROWSE_SCOPE_NOW_PLAYING` here?",
+      "range": {
+        "startLine": 834,
+        "startChar": 12,
+        "endLine": 834,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7a911e9f_5b8e86af",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 834,
+                "startChar": 0,
+                "endLine": 835,
+                "endChar": 0
+              },
+              "replacement": "            notifyBrowseNodeChanged(mBrowseTree.mRootNode);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "224ba097782ffb51b63e1af06118bb985a539c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05ff06c9_a1b8a97e",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-15T19:09:38Z",
+      "side": 1,
+      "message": "`notifyBrowseNodeChanged` instead, or are we guaranteed to never be in the `BROWSE_SCOPE_NOW_PLAYING` here?",
+      "range": {
+        "startLine": 1170,
+        "startChar": 16,
+        "endLine": 1170,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8adb8658_8b05c150",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 1170,
+                "startChar": 0,
+                "endLine": 1171,
+                "endChar": 0
+              },
+              "replacement": "                notifyBrowseNodeChanged(mService.sBrowseTree.mRootNode);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "224ba097782ffb51b63e1af06118bb985a539c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
