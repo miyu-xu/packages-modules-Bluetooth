@@ -135,8 +135,8 @@ class CsisClientImpl : public CsisClient {
                                                   sizeof(uint8_t) /* rank */ + Octet16().size();
 
 public:
-  CsisClientImpl(bluetooth::csis::CsisClientCallbacks* callbacks, Closure initCb)
-      : gatt_if_(0), callbacks_(callbacks) {
+  CsisClientImpl(bluetooth::csis::CsisClientCallbacks* callbacks, Closure initCb) : gatt_if_(0) {
+    AddCallbacks(callbacks, initCb);
     BTA_GATTC_AppRegister(
             "csis",
             [](tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
@@ -144,21 +144,23 @@ public:
                 instance->GattcCallback(event, p_data);
               }
             },
-            base::Bind(
-                    [](Closure initCb, uint8_t client_id, uint8_t status) {
-                      if (status != GATT_SUCCESS) {
-                        log::error(
-                                "Can't start Coordinated Set Service client profile - no "
-                                "gatt clients left!");
-                        return;
-                      }
-                      instance->gatt_if_ = client_id;
-                      initCb.Run();
+            base::Bind([](uint8_t client_id, uint8_t status) {
+              if (status != GATT_SUCCESS) {
+                log::error(
+                        "Can't start Coordinated Set Service client profile - no "
+                        "gatt clients left!");
+                return;
+              }
+              instance->gatt_if_ = client_id;
 
-                      DeviceGroups::Initialize(device_group_callbacks);
-                      instance->dev_groups_ = DeviceGroups::Get();
-                    },
-                    initCb),
+              while (!instance->init_cbs_.empty()) {
+                instance->init_cbs_.back().Run();
+                instance->init_cbs_.pop_back();
+              }
+
+              DeviceGroups::Initialize(device_group_callbacks);
+              instance->dev_groups_ = DeviceGroups::Get();
+            }),
             true);
 
     BTA_DmSirkSecCbRegister([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
@@ -273,8 +275,10 @@ public:
       rank = csis_instance->GetRank();
     }
 
-    callbacks_->OnDeviceAvailable(device->addr, csis_group->GetGroupId(),
+    for (auto callback : callbacks_) {
+      callback->OnDeviceAvailable(device->addr, csis_group->GetGroupId(),
                                   csis_group->GetDesiredSize(), rank, uuid);
+    }
   }
 
   void BondingFailed(const RawAddress& addr) {
@@ -300,7 +304,9 @@ public:
     if (device == nullptr) {
       if (!BTM_IsBonded(address, BT_TRANSPORT_LE)) {
         log::error("Connecting  {} when not bonded", address);
-        callbacks_->OnConnectionState(address, ConnectionState::DISCONNECTED);
+        for (auto callback : callbacks_) {
+          callback->OnConnectionState(address, ConnectionState::DISCONNECTED);
+        }
         return;
       }
       devices_.emplace_back(std::make_shared<CsisDevice>(address, true));
@@ -317,7 +323,9 @@ public:
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
       log::warn("Device not connected to profile {}", addr);
-      callbacks_->OnConnectionState(addr, ConnectionState::DISCONNECTED);
+      for (auto callback : callbacks_) {
+        callback->OnConnectionState(addr, ConnectionState::DISCONNECTED);
+      }
       return;
     }
 
@@ -327,7 +335,9 @@ public:
     } else {
       BTA_GATTC_CancelOpen(gatt_if_, addr, false);
       DoDisconnectCleanUp(device);
-      callbacks_->OnConnectionState(addr, ConnectionState::DISCONNECTED);
+      for (auto callback : callbacks_) {
+        callback->OnConnectionState(addr, ConnectionState::DISCONNECTED);
+      }
     }
   }
 
@@ -493,7 +503,9 @@ public:
   }
 
   void NotifyGroupStatus(int group_id, bool lock, CsisGroupLockStatus status, CsisLockCb cb) {
-    callbacks_->OnGroupLockChanged(group_id, lock, status);
+    for (auto callback : callbacks_) {
+      callback->OnGroupLockChanged(group_id, lock, status);
+    }
     if (cb) {
       std::move(cb).Run(group_id, lock, status);
     }
@@ -736,13 +748,30 @@ public:
           rank = group_rank_map.at(group_id);
         }
 
-        callbacks_->OnDeviceAvailable(device->addr, group_id, csis_group->GetDesiredSize(), rank,
+        for (auto callback : callbacks_) {
+          callback->OnDeviceAvailable(device->addr, group_id, csis_group->GetDesiredSize(), rank,
                                       csis_group->GetUuid());
+        }
       }
     }
 
     /* For bonded devices, CSIP can be always opportunistic service */
     StartOpportunisticConnect(addr);
+  }
+
+  void AddCallbacks(bluetooth::csis::CsisClientCallbacks* callbacks, Closure initCb) {
+    if (std::find(callbacks_.begin(), callbacks_.end(), callbacks) != callbacks_.end()) {
+      log::info("Callbacks already added!");
+      return;
+    }
+
+    callbacks_.push_back(std::move(callbacks));
+
+    if (gatt_if_ != 0) {
+      initCb.Run();
+    } else {
+      init_cbs_.push_back(initCb);
+    }
   }
 
   void CleanUp() {
@@ -932,8 +961,10 @@ private:
         continue;
       }
 
-      callbacks_->OnDeviceAvailable(device->addr, group_id, csis_group->GetDesiredSize(),
+      for (auto callback : callbacks_) {
+        callback->OnDeviceAvailable(device->addr, group_id, csis_group->GetDesiredSize(),
                                     csis_instance->GetRank(), csis_instance->GetUuid());
+      }
       notify_connected = true;
 
       if (group_id_to_discover == bluetooth::groups::kGroupUnknown) {
@@ -942,7 +973,9 @@ private:
     }
 
     if (notify_connected) {
-      callbacks_->OnConnectionState(device->addr, ConnectionState::CONNECTED);
+      for (auto callback : callbacks_) {
+        callback->OnConnectionState(device->addr, ConnectionState::CONNECTED);
+      }
 
       log::debug("group_id {}", group_id_to_discover);
       if (group_id_to_discover != bluetooth::groups::kGroupUnknown) {
@@ -1353,7 +1386,9 @@ private:
      * truly is member of group.
      */
     device.get()->SetExpectedGroupIdMember(group_id);
-    callbacks_->OnSetMemberAvailable(address, device.get()->GetExpectedGroupIdMember());
+    for (auto callback : callbacks_) {
+      callback->OnSetMemberAvailable(address, device.get()->GetExpectedGroupIdMember());
+    }
   }
 
   void OnActiveScanResult(const tBTA_DM_INQ_RES* result) {
@@ -1475,7 +1510,9 @@ private:
 
       log::info("Device {} from inquiry cache match to group id {}", address,
                 csis_group->GetGroupId());
-      callbacks_->OnSetMemberAvailable(address, csis_group->GetGroupId());
+      for (auto callback : callbacks_) {
+        callback->OnSetMemberAvailable(address, csis_group->GetGroupId());
+      }
       break;
     }
   }
@@ -1938,7 +1975,9 @@ private:
     if (evt.status != GATT_SUCCESS) {
       log::error("Failed to connect to server device {}", evt.remote_bda);
       if (device->connecting_actively) {
-        callbacks_->OnConnectionState(evt.remote_bda, ConnectionState::DISCONNECTED);
+        for (auto callback : callbacks_) {
+          callback->OnConnectionState(evt.remote_bda, ConnectionState::DISCONNECTED);
+        }
       }
       DoDisconnectCleanUp(device);
       StartOpportunisticConnect(evt.remote_bda);
@@ -1984,7 +2023,9 @@ private:
 
     log::debug("device={}", device->addr);
 
-    callbacks_->OnConnectionState(evt.remote_bda, ConnectionState::DISCONNECTED);
+    for (auto callback : callbacks_) {
+      callback->OnConnectionState(evt.remote_bda, ConnectionState::DISCONNECTED);
+    }
 
     // Unlock others only if device was locked by us but has disconnected
     // unexpectedly.
@@ -2319,9 +2360,10 @@ private:
   }
 
   uint8_t gatt_if_;
-  bluetooth::csis::CsisClientCallbacks* callbacks_;
+  std::list<bluetooth::csis::CsisClientCallbacks*> callbacks_;
   std::list<std::shared_ptr<CsisDevice>> devices_;
   std::list<std::shared_ptr<CsisGroup>> csis_groups_;
+  std::vector<Closure> init_cbs_;
   DeviceGroups* dev_groups_;
   int discovering_group_ = bluetooth::groups::kGroupUnknown;
 
@@ -2369,13 +2411,12 @@ DeviceGroupsCallbacksImpl deviceGroupsCallbacksImpl;
 
 void CsisClient::Initialize(bluetooth::csis::CsisClientCallbacks* callbacks, Closure initCb) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
-  if (instance) {
-    log::info("Already initialized!");
-    return;
+  if (instance == nullptr) {
+    device_group_callbacks = &deviceGroupsCallbacksImpl;
+    instance = new CsisClientImpl(callbacks, initCb);
+  } else {
+    instance->AddCallbacks(callbacks, initCb);
   }
-
-  device_group_callbacks = &deviceGroupsCallbacksImpl;
-  instance = new CsisClientImpl(callbacks, initCb);
 }
 
 bool CsisClient::IsCsisClientRunning() { return instance; }
