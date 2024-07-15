@@ -27,8 +27,10 @@
 #include <utility>
 #include <vector>
 
+#include "bta/include/bta_csis_api.h"
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_gatt_queue.h"
+#include "bta/le_audio/le_audio_types.h"
 #include "bta/vc/devices.h"
 #include "btm_ble_api_types.h"
 #include "btm_sec_api_types.h"
@@ -43,6 +45,7 @@
 #include "types/bt_transport.h"
 #include "vc/types.h"
 
+using bluetooth::csis::CsisClient;
 using bluetooth::vc::internal::VolumeControlDevice;
 
 void VolumeControlDevice::DeregisterNotifications(tGATT_IF gatt_if) {
@@ -493,6 +496,26 @@ bool VolumeControlDevice::VerifyReady(uint16_t handle) {
   log::debug("{}, handles_pending size={}", address, handles_pending.size());
 
   return device_ready;
+}
+
+bool VolumeControlDevice::IsActive(std::optional<int> group_id_optional) const {
+    auto csis_api = CsisClient::Get();
+
+    if (csis_api != nullptr) {
+      int group_id;
+
+      if (group_id_optional.has_value()) {
+        group_id = group_id_optional.value();
+      } else {
+        group_id = csis_api->GetGroupId(address, bluetooth::le_audio::uuid::kCapServiceUuid);
+      }
+
+      if (group_id != bluetooth::groups::kGroupUnknown) {
+        return csis_api->IsMemberActive(group_id, address);
+      }
+    }
+
+    return true;
 }
 
 void VolumeControlDevice::GetExtAudioOutVolumeOffset(uint8_t ext_output_id, GATT_READ_OP_CB cb,

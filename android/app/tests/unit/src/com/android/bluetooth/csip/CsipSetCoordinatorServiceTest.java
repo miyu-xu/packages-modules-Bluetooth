@@ -79,6 +79,8 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.hamcrest.MockitoHamcrest;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -431,6 +433,45 @@ public class CsipSetCoordinatorServiceTest {
         mService.connect(mDevice);
 
         mService.dump(new StringBuilder());
+    }
+
+    /** Test that native callback generates proper intent after group connected. */
+    @Test
+    public void testStackEventActiveMembersChangedEvent() {
+        int group_id = 0x01;
+        int group_size = 0x02;
+        long uuidLsb = BluetoothUuid.CAP.getUuid().getLeastSignificantBits();
+        long uuidMsb = BluetoothUuid.CAP.getUuid().getMostSignificantBits();
+
+        mNativeCallback.onDeviceAvailable(
+                getByteAddress(mDevice), group_id, group_size, 0x02, uuidLsb, uuidMsb);
+        mService.connectionStateChanged(mDevice, STATE_CONNECTING, STATE_CONNECTED);
+
+        InOrder inOrder = inOrder(mLeAudioService, mNativeInterface);
+
+        // Device shall be initially inactive
+        assertThat(mService.isActive(mDevice, group_id)).isFalse();
+
+        List<byte[]> addresses = new ArrayList<>(
+                Collections.singletonList(getByteAddress(mDevice)));
+
+        mNativeCallback.onActiveMembersListChanged(group_id, addresses);
+
+        // Device shall be active
+        assertThat(mService.isActive(mDevice, group_id)).isTrue();
+
+        // LeAudioService shall be notified
+        inOrder.verify(mLeAudioService).csipActiveMembersChanged(group_id);
+
+        addresses.clear();
+
+        mNativeCallback.onActiveMembersListChanged(group_id, addresses);
+
+        // Device shall be inactive
+        assertThat(mService.isActive(mDevice, group_id)).isFalse();
+
+        // LeAudioService shall be notified again
+        inOrder.verify(mLeAudioService).csipActiveMembersChanged(group_id);
     }
 
     private void verifyConnectionStateIntent(int newState, int prevState) {
