@@ -124,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "449ae1cd_ae5d59a8",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-15T07:55:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5325f4b7_f26aefee",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7755c055_c1c97e65",
@@ -208,6 +226,24 @@
       "side": 1,
       "message": "ok",
       "parentUuid": "2be7997e_c92ea333",
+      "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "196b9920_78faefa9",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-15T07:55:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9b55b95_1cdd90cf",
       "revId": "e54050842b7abf7d39600d235aa944d4eef45de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
