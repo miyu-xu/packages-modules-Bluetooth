@@ -22,6 +22,30 @@
       },
       "revId": "742b31f8d36caa188775437e52d7cb992a1af511",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6fd05ec_505f34d4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/AtPhonebook.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-15T22:17:12Z",
+      "side": 1,
+      "message": "I understand, but I just want to keep at least one log in this method, whatever the if called",
+      "parentUuid": "6bad28cf_8e86374a",
+      "range": {
+        "startLine": 688,
+        "startChar": 9,
+        "endLine": 690,
+        "endChar": 9
+      },
+      "revId": "742b31f8d36caa188775437e52d7cb992a1af511",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
