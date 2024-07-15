@@ -16,6 +16,46 @@
       "message": "Hi, PTAL, thanks!",
       "revId": "508744bdefef1453374ca2b47a5f795370ab4498",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd49cbda_4af130bf",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-15T21:26:34Z",
+      "side": 1,
+      "message": "I am very sad I missed this profile in aosp/3146978 :(",
+      "revId": "508744bdefef1453374ca2b47a5f795370ab4498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533b7294_24104521",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-15T21:26:34Z",
+      "side": 1,
+      "message": "Can you apply this suggestion in order for the check to be the exact same as all other services ?\n\nThis only rename `hidService` in `service` and remove the null check (already done in `checkServiceAvailable`\n\n\n```suggestion\n         @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)\n        private LeAudioService getService(AttributionSource source) {\n            // Cache mService because it can change while getService is called\n            HidDeviceService service \u003d mService;\n\n            if (Utils.isInstrumentationTestMode()) {\n                return service;\n            }\n\n            if (!Utils.checkServiceAvailable(service, TAG)\n                    || !Utils.checkCallerIsSystemOrActiveOrManagedUser(service, TAG)\n                    || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {\n                return null;\n            }\n            return service;\n        }\n```",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 0
+      },
+      "revId": "508744bdefef1453374ca2b47a5f795370ab4498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
