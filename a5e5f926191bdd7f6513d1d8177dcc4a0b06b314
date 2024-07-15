@@ -22,6 +22,30 @@
       },
       "revId": "a5e5f926191bdd7f6513d1d8177dcc4a0b06b314",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d9883a_3ce7b50c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3064,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-15T21:11:06Z",
+      "side": 0,
+      "message": "No-op change, the check has moved to RemoteDevices that is holding the data (instead of \"offloading the change\" in AdapterService)",
+      "parentUuid": "4340c622_a9261d55",
+      "range": {
+        "startLine": 3063,
+        "startChar": 12,
+        "endLine": 3064,
+        "endChar": 75
+      },
+      "revId": "a5e5f926191bdd7f6513d1d8177dcc4a0b06b314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
