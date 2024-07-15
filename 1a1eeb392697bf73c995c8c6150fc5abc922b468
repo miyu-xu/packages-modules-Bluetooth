@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b853f830_b7cb470b",
+        "filename": "system/stack/test/rfcomm/stack_rfcomm_port_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-15T20:56:53Z",
+      "side": 1,
+      "message": "nit: check with different_bd_addr, but leave the connection with test_bd_addr?\n```suggestion\n  rfc_cb.port.rfc_mcb[0].bd_addr \u003d test_bd_addr;\n  // no collisions will happen if the bd_addr don\u0027t match, regardless of state\n  for (int state_int \u003d RFC_MX_STATE_IDLE; state_int \u003c\u003d RFC_MX_STATE_DISC_WAIT_UA; state_int++) {\n    rfc_cb.port.rfc_mcb[0].state \u003d tRFC_MX_STATE(state_int);\n    ASSERT_FALSE(PORT_IsCollisionDetected(different_bd_addr));\n  }\n\n```",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "1a1eeb392697bf73c995c8c6150fc5abc922b468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
