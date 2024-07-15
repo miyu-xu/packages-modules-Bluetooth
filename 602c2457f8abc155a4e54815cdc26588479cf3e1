@@ -46,6 +46,30 @@
       },
       "revId": "602c2457f8abc155a4e54815cdc26588479cf3e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd8be71_8ae4c868",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-15T23:15:49Z",
+      "side": 0,
+      "message": "It looks like a failed copy/paste from older code when this was introduced.  Thanks for fixing it.",
+      "parentUuid": "cea60779_fa3f9a05",
+      "range": {
+        "startLine": 793,
+        "startChar": 16,
+        "endLine": 793,
+        "endChar": 27
+      },
+      "revId": "602c2457f8abc155a4e54815cdc26588479cf3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
