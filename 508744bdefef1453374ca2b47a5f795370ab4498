@@ -35,6 +35,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db3cae17_7b0ab97f",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-15T21:27:40Z",
+      "side": 1,
+      "message": "This should be deleted, the getService already check for instrumentationMode",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 9
+      },
+      "revId": "508744bdefef1453374ca2b47a5f795370ab4498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "533b7294_24104521",
