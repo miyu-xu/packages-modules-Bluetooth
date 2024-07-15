@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bad28cf_8e86374a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/AtPhonebook.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "No need to log all code paths",
+      "range": {
+        "startLine": 688,
+        "startChar": 9,
+        "endLine": 690,
+        "endChar": 9
+      },
+      "revId": "742b31f8d36caa188775437e52d7cb992a1af511",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

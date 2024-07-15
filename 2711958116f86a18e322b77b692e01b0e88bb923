@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d8e3758_27acfb85",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "488b39d1_0d2752cc",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd138a09_5461f09c",
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "The class is only reported for metric purposes",
       "parentUuid": "fd138a09_5461f09c",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b942a0c4_219bde6c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fa06fb64_b5ed20e4",
       "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -159,6 +195,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7715e1bf_31ed9fbc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "97c87bba_32ff1b15",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b870058_48e297cd",
@@ -190,6 +244,24 @@
       "side": 1,
       "message": "The class is only use for metric purposes",
       "parentUuid": "0b870058_48e297cd",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3811007_72f9e775",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6bd3014e_595e41f1",
       "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -231,6 +303,30 @@
       "side": 1,
       "message": "Since we are reading `mAdapterService` now instead of calling the framework, we need mAdapterService to be initialized. This is related to this CL.\n\nBut ideally, this class should NOT be in a singleton",
       "parentUuid": "b195ce97_fac8d852",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 311,
+        "endChar": 0
+      },
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63c60549_470a40a6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8a30b195_fb4b3cd1",
       "range": {
         "startLine": 308,
         "startChar": 8,
@@ -406,6 +502,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21b56f3_eecc80ac",
+        "filename": "android/app/src/com/android/bluetooth/hfp/AtPhonebook.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "24e9f97d_567c1d43",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "969f6635_8bb0a7d6",
@@ -437,6 +551,24 @@
       "side": 1,
       "message": "we only care if it\u0027s WEARABLE_WRIST_WATCH and this doesn\u0027t match error",
       "parentUuid": "969f6635_8bb0a7d6",
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a5989ec_95a82899",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2545,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "692926f2_aae9f2cc",
       "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -572,6 +704,30 @@
       "side": 1,
       "message": "If the metriclogger is not initialized the testOuiFromBluetoothDevice return null therefor we need to initialized.",
       "parentUuid": "dc4299c8_fb7c1578",
+      "range": {
+        "startLine": 119,
+        "startChar": 36,
+        "endLine": 119,
+        "endChar": 55
+      },
+      "revId": "2711958116f86a18e322b77b692e01b0e88bb923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8504f4d8_9c72db7d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-15T22:12:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "245cc60c_ebcb3848",
       "range": {
         "startLine": 119,
         "startChar": 36,
