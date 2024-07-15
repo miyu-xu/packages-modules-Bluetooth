@@ -428,6 +428,11 @@ public:
     bluetooth::log::debug("{}, is volume change: {}, is mute change: {}", device->address,
                           is_volume_change, is_mute_change);
 
+    if (!device->IsActive()) {
+      bluetooth::log::debug("Ignored autonomous change from inactive device.");
+      return;
+    }
+
     if (!is_volume_change && !is_mute_change) {
       bluetooth::log::warn("Autonomous change but volume and mute did not changed.");
       return;
@@ -453,7 +458,7 @@ public:
     auto devices = csis_api->GetDeviceList(group_id);
     for (auto it = devices.begin(); it != devices.end();) {
       auto dev = volume_control_devices_.FindByAddress(*it);
-      if (!dev || !dev->IsConnected() || (dev->address == device->address)) {
+      if (!dev || !dev->IsConnected() || !dev->IsActive() || (dev->address == device->address)) {
         it = devices.erase(it);
       } else {
         it++;
@@ -947,6 +952,10 @@ public:
       return false;
     }
 
+    if (!dev->IsActive()) {
+      return false;
+    }
+
     // Check if the mute status differs on the remote
     if (dev->mute != mute) {
       return true;
@@ -965,6 +974,10 @@ public:
 
   bool IsSetAbsoluteVolumeRequired(VolumeControlDevice* dev, uint8_t volume) {
     if (!dev->IsReady()) {
+      return false;
+    }
+
+    if (!dev->IsActive()) {
       return false;
     }
 
@@ -1131,10 +1144,11 @@ public:
       VolumeControlDevice* dev =
               volume_control_devices_.FindByAddress(std::get<RawAddress>(addr_or_group_id));
       if (dev != nullptr) {
-        bluetooth::log::debug("Address: {}: isReady: {}", dev->address, dev->IsReady());
+        bluetooth::log::debug("Address: {}: isReady: {} isDeviceActive: {}", dev->address,
+                              dev->IsReady(), dev->IsActive());
         std::vector<RawAddress> devices = {dev->address};
         if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
-          if (dev->IsReady() && (dev->mute != mute)) {
+          if (dev->IsReady() && dev->IsActive() && (dev->mute != mute)) {
             PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown, false, opcode,
                                           arg);
           }
@@ -1170,6 +1184,7 @@ public:
 
       bool muteNotChanged = false;
       bool deviceNotReady = false;
+      bool deviceNotActive = false;
 
       for (auto it = devices.begin(); it != devices.end();) {
         auto dev = volume_control_devices_.FindByAddress(*it);
@@ -1179,10 +1194,11 @@ public:
         }
 
         if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
-          if (!dev->IsReady() || (dev->mute == mute)) {
+          if (!dev->IsReady() || !dev->IsActive() || (dev->mute == mute)) {
             it = devices.erase(it);
             muteNotChanged = muteNotChanged ? muteNotChanged : (dev->mute == mute);
             deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
+            deviceNotActive = deviceNotActive ? deviceNotActive : !dev->IsActive();
             continue;
           }
         } else {
@@ -1190,6 +1206,7 @@ public:
             it = devices.erase(it);
             muteNotChanged = muteNotChanged ? muteNotChanged : (dev->mute == mute);
             deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
+            deviceNotActive = deviceNotActive ? deviceNotActive : !dev->IsActive();
             continue;
           }
         }
@@ -1199,8 +1216,8 @@ public:
       if (devices.empty()) {
         bluetooth::log::debug(
                 "No need to update mute for group id: {} . muteNotChanged: {}, "
-                "deviceNotReady: {}",
-                group_id, muteNotChanged, deviceNotReady);
+                "deviceNotReady: {}, deviceNotActive: {}",
+                group_id, muteNotChanged, deviceNotReady, deviceNotActive);
         return;
       }
 
@@ -1229,10 +1246,11 @@ public:
       VolumeControlDevice* dev =
               volume_control_devices_.FindByAddress(std::get<RawAddress>(addr_or_group_id));
       if (dev != nullptr) {
-        bluetooth::log::debug("Address: {}: isReady: {}", dev->address, dev->IsReady());
+        bluetooth::log::debug("Address: {}: isReady: {} isDeviceActive: {}", dev->address,
+                              dev->IsReady(), dev->IsActive());
         std::vector<RawAddress> devices = {dev->address};
         if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
-          if (dev->IsReady() && (dev->volume != volume)) {
+          if (dev->IsReady() && dev->IsActive() && (dev->volume != volume)) {
             RemoveNotStartedPendingOperations(
                     devices, bluetooth::groups::kGroupUnknown,
                     {kControlPointOpcodeVolumeDown, kControlPointOpcodeVolumeUp,
@@ -1276,6 +1294,7 @@ public:
 
       bool volumeNotChanged = false;
       bool deviceNotReady = false;
+      bool deviceNotActive = false;
 
       for (auto it = devices.begin(); it != devices.end();) {
         auto dev = volume_control_devices_.FindByAddress(*it);
@@ -1285,10 +1304,11 @@ public:
         }
 
         if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
-          if (!dev->IsReady() || (dev->volume == volume)) {
+          if (!dev->IsReady() || !dev->IsActive() || (dev->volume == volume)) {
             it = devices.erase(it);
             volumeNotChanged = volumeNotChanged ? volumeNotChanged : (dev->volume == volume);
             deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
+            deviceNotActive = deviceNotActive ? deviceNotActive : !dev->IsActive();
             continue;
           }
         } else {
@@ -1296,6 +1316,7 @@ public:
             it = devices.erase(it);
             volumeNotChanged = volumeNotChanged ? volumeNotChanged : (dev->volume == volume);
             deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
+            deviceNotActive = deviceNotActive ? deviceNotActive : !dev->IsActive();
             continue;
           }
         }
@@ -1306,8 +1327,8 @@ public:
       if (devices.empty()) {
         bluetooth::log::debug(
                 "No need to update volume for group id: {} . volumeNotChanged: {}, "
-                "deviceNotReady: {}",
-                group_id, volumeNotChanged, deviceNotReady);
+                "deviceNotReady: {}, deviceNotActive: {}",
+                group_id, volumeNotChanged, deviceNotReady, deviceNotActive);
         return;
       }
 
