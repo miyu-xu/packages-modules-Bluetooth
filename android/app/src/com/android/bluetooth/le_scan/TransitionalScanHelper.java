@@ -459,12 +459,7 @@ public class TransitionalScanHelper {
                 }
             } catch (RemoteException | PendingIntent.CanceledException e) {
                 Log.e(TAG, "Exception: " + e);
-                if (Flags.leScanFixRemoteException()) {
-                    handleDeadScanClient(client);
-                } else {
-                    mScannerMap.remove(client.scannerId);
-                    mScanManager.stopScan(client.scannerId);
-                }
+                handleDeadScanClient(client);
             }
         }
     }
@@ -765,12 +760,7 @@ public class TransitionalScanHelper {
             }
         } catch (RemoteException | PendingIntent.CanceledException e) {
             Log.e(TAG, "Exception: " + e);
-            if (Flags.leScanFixRemoteException()) {
-                handleDeadScanClient(client);
-            } else {
-                mScannerMap.remove(client.scannerId);
-                mScanManager.stopScan(client.scannerId);
-            }
+            handleDeadScanClient(client);
         }
     }
 
@@ -1456,13 +1446,7 @@ public class TransitionalScanHelper {
 
             ScanClient client = getScanClient(mScannerId);
             if (client != null) {
-                if (Flags.leScanFixRemoteException()) {
-                    handleDeadScanClient(client);
-                } else {
-                    client.appDied = true;
-                    client.stats.isAppDead = true;
-                    stopScan(client.scannerId, mContext.getAttributionSource());
-                }
+                handleDeadScanClient(client);
             }
         }
 

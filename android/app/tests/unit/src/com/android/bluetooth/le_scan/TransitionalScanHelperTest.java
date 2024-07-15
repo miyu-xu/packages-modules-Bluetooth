@@ -284,7 +284,6 @@ public class TransitionalScanHelperTest {
 
     @Test
     public void onScanResult_remoteException_clientDied() throws Exception {
-        mSetFlagsRule.enableFlags(Flags.FLAG_LE_SCAN_FIX_REMOTE_EXCEPTION);
         int scannerId = 1;
 
         int eventType = 0;
