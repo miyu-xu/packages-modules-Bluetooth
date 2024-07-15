@@ -317,15 +317,20 @@ public class HidDeviceService extends ProfileService {
 
         @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
         private HidDeviceService getService(AttributionSource source) {
+            // Cache mService because it can change while getService is called
+            HidDeviceService hidService = mService;
+
             if (Utils.isInstrumentationTestMode()) {
-                return mService;
+                return hidService;
             }
-            if (!Utils.checkServiceAvailable(mService, TAG)
-                    || !Utils.checkCallerIsSystemOrActiveOrManagedUser(mService, TAG)
-                    || !Utils.checkConnectPermissionForDataDelivery(mService, source, TAG)) {
+
+            if (hidService == null
+                    || !Utils.checkServiceAvailable(hidService, TAG)
+                    || !Utils.checkCallerIsSystemOrActiveOrManagedUser(hidService, TAG)
+                    || !Utils.checkConnectPermissionForDataDelivery(hidService, source, TAG)) {
                 return null;
             }
-            return mService;
+            return hidService;
         }
 
         @Override
