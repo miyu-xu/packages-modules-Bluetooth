@@ -646,6 +646,50 @@ TEST_F(CsisClientTest, test_initialize_twice) {
   CsisClient::CleanUp();
 }
 
+TEST_F(CsisClientTest, test_initialize_multiple_listeners) {
+  std::unique_ptr<MockCsisCallbacks> my_callbacks = std::make_unique<MockCsisCallbacks>();
+
+  CsisClient::Initialize(callbacks.get(), base::DoNothing());
+  CsisClient* csis_p = CsisClient::Get();
+  CsisClient::Initialize(my_callbacks.get(), base::DoNothing());
+  ASSERT_EQ(csis_p, CsisClient::Get());
+  CsisClient::CleanUp();
+}
+
+TEST_F(CsisClientTest, test_callback_registered_twice) {
+  /* 1st CsisClient::Initialize() call via TestAppRegister */
+  TestAppRegister();
+
+  /* 2nd CsisClient::Initialize() call */
+  CsisClient::Initialize(callbacks.get(), base::DoNothing());
+
+  TestConnect(test_address);
+  InjectConnectedEvent(test_address, 1);
+  EXPECT_CALL(*callbacks, OnConnectionState(test_address, ConnectionState::DISCONNECTED)).Times(1);
+  InjectDisconnectedEvent(test_address, 1);
+
+  TestAppUnregister();
+}
+
+TEST_F(CsisClientTest, test_callback_multiple_listeners) {
+  std::unique_ptr<MockCsisCallbacks> my_callbacks = std::make_unique<MockCsisCallbacks>();
+
+  /* 1st CsisClient::Initialize() call via TestAppRegister */
+  TestAppRegister();
+
+  /* 2nd CsisClient::Initialize() call */
+  CsisClient::Initialize(my_callbacks.get(), base::DoNothing());
+
+  TestConnect(test_address);
+  InjectConnectedEvent(test_address, 1);
+  EXPECT_CALL(*callbacks, OnConnectionState(test_address, ConnectionState::DISCONNECTED)).Times(1);
+  EXPECT_CALL(*my_callbacks, OnConnectionState(test_address, ConnectionState::DISCONNECTED))
+          .Times(1);
+  InjectDisconnectedEvent(test_address, 1);
+
+  TestAppUnregister();
+}
+
 TEST_F(CsisClientTest, test_cleanup_initialized) {
   CsisClient::Initialize(callbacks.get(), base::DoNothing());
   CsisClient::CleanUp();
