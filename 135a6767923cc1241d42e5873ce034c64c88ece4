@@ -16,6 +16,24 @@
       "message": "Do you plan to add any negative tests as well?",
       "revId": "135a6767923cc1241d42e5873ce034c64c88ece4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889966fb_c5a83401",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-07-15T23:15:53Z",
+      "side": 1,
+      "message": "The function I\u0027m actually interested in probing is access_secure_service_from_temp_bont: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_sec.cc;drc\u003d41f40f3da53594c80798614ee0003ac27ac0cb55;l\u003d374\nand this should cover its negative behavior; if the connection is locally initiated or the security record doesn\u0027t have the right information in it (both scenarios these tests cover), it will return false and the parent will not fail on security.  This is the purpose of btm_sec_temp_bond_auth_non_authenticated_temporary and btm_sec_temp_bond_auth_authenticated_persistent.",
+      "parentUuid": "571545f8_cc1d1da2",
+      "revId": "135a6767923cc1241d42e5873ce034c64c88ece4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
