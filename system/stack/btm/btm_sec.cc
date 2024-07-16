@@ -2168,7 +2168,8 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
 
     bd_name_copy(p_dev_rec->sec_bd_name, p_bd_name);
     p_dev_rec->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
-    log::verbose("setting BTM_SEC_NAME_KNOWN sec_flags:0x{:x}", p_dev_rec->sec_rec.sec_flags);
+    log::verbose("setting BTM_SEC_NAME_KNOWN sec_flags:0x{:x}",
+                 p_dev_rec->sec_rec.sec_flags);
   } else {
     log::warn(
             "Remote read request failed for known device pairing_state:{} "

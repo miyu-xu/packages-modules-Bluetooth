@@ -50,6 +50,7 @@
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/stack.h"
+#include "metrics/bluetooth_event.h"
 #include "os/handler.h"
 #include "osi/include/allocator.h"
 #include "stack/acl/acl.h"
@@ -1513,7 +1514,9 @@ void shim::legacy::Acl::OnConnectFail(hci::Address address, hci::ErrorCode reaso
   const RawAddress bd_addr = ToRawAddress(address);
   TRY_POSTING_ON_MAIN(acl_interface_.connection.classic.on_failed, bd_addr,
                       ToLegacyHciErrorCode(reason), locally_initiated);
-  log::warn("Connection failed classic remote:{} reason:{}", address, hci::ErrorCodeText(reason));
+  log::warn("Connection failed classic remote:{} reason:{}", address,
+            hci::ErrorCodeText(reason));
+  bluetooth::metrics::LogAclCompletionEvent(address, reason, locally_initiated);
   BTM_LogHistory(kBtmLogTag, ToRawAddress(address), "Connection failed",
                  base::StringPrintf("classic reason:%s", hci::ErrorCodeText(reason).c_str()));
 }
