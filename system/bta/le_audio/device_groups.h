@@ -406,7 +406,8 @@ private:
                      const types::BidirectionalPair<std::vector<uint8_t>>& ccid_lists);
   bool IsAudioSetConfigurationSupported(
           const CodecManager::UnicastConfigurationRequirements& requirements,
-          const set_configurations::AudioSetConfiguration* audio_set_configuration) const;
+          const set_configurations::AudioSetConfiguration* audio_set_configuration,
+          int desired_size) const;
   uint32_t GetTransportLatencyUs(uint8_t direction) const;
   bool IsCisPartOfCurrentStream(uint16_t cis_conn_hdl) const;
 
