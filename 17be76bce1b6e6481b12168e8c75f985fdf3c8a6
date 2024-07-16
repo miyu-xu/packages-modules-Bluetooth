@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6393a0c5_952eac28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-16T18:36:41Z",
+      "side": 1,
+      "message": "Hi Myles, fix two warnings when uploading the previous CL.",
+      "revId": "17be76bce1b6e6481b12168e8c75f985fdf3c8a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
