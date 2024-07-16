@@ -22,6 +22,30 @@
       },
       "revId": "818855e187197565baeacc88a8aecaccc9990f50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7126910_8013510f",
+        "filename": "system/gd/os/logging/log_redaction.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T20:14:12Z",
+      "side": 1,
+      "message": "I think that should be done as a follow-on CL, since it touches a lot of logging files.",
+      "parentUuid": "fe22949f_0855a281",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 46
+      },
+      "revId": "818855e187197565baeacc88a8aecaccc9990f50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
