@@ -19,6 +19,8 @@ package com.android.bluetooth.csip;
 
 import android.bluetooth.BluetoothDevice;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /** CSIP Set Coordinator role stack event */
@@ -29,6 +31,7 @@ public class CsipSetCoordinatorStackEvent {
     public static final int EVENT_TYPE_DEVICE_AVAILABLE = 2;
     public static final int EVENT_TYPE_SET_MEMBER_AVAILABLE = 3;
     public static final int EVENT_TYPE_GROUP_LOCK_CHANGED = 4;
+    public static final int EVENT_TYPE_ACTIVE_MEMBERS_CHANGED = 5;
 
     // Do not modify without updating the HAL bt_csis.h files.
     // Match up with enum class ConnectionState of bt_csis.h.
@@ -51,11 +54,13 @@ public class CsipSetCoordinatorStackEvent {
     public int valueInt2 = 0;
     public int valueInt3 = 0;
     public UUID valueUuid1;
+    public ArrayList<BluetoothDevice> valueDevices;
 
     public boolean valueBool1 = false;
 
     CsipSetCoordinatorStackEvent(int type) {
         this.type = type;
+        this.valueDevices = new ArrayList<>();
     }
 
     @Override
@@ -69,6 +74,7 @@ public class CsipSetCoordinatorStackEvent {
         result.append(", ").append(eventTypeValueInt3ToString(type, valueInt3));
         result.append(", ").append(eventTypeValueBool1ToString(type, valueBool1));
         result.append(", ").append(eventTypeValueUuid1ToString(type, valueUuid1));
+        result.append(", ").append(eventTypeValueDevicesToString(type, valueDevices));
         result.append("}");
         return result.toString();
     }
@@ -85,6 +91,8 @@ public class CsipSetCoordinatorStackEvent {
                 return "EVENT_TYPE_SET_MEMBER_AVAILABLE";
             case EVENT_TYPE_GROUP_LOCK_CHANGED:
                 return "EVENT_TYPE_GROUP_LOCK_CHANGED";
+            case EVENT_TYPE_ACTIVE_MEMBERS_CHANGED:
+                return "EVENT_TYPE_ACTIVE_MEMBERS_CHANGED";
             default:
                 return "EVENT_TYPE_UNKNOWN:" + type;
         }
@@ -154,6 +162,25 @@ public class CsipSetCoordinatorStackEvent {
             default:
                 return "<unused>";
         }
+    }
+
+    private static String eventTypeValueDevicesToString(int evType,
+                                                        List<BluetoothDevice> value) {
+        StringBuilder result = new StringBuilder();
+
+        switch (evType) {
+            case EVENT_TYPE_ACTIVE_MEMBERS_CHANGED:
+                result.append("devices:{");
+                for (BluetoothDevice device : value) {
+                    result.append(device).append(", ");
+                }
+                result.append("}");
+                break;
+            default:
+                result.append("<unused>");
+        }
+
+        return result.toString();
     }
 
     private static String csipLockStatusToString(int state) {
