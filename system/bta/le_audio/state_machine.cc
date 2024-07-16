@@ -168,14 +168,19 @@ public:
 
   bool AttachToStream(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice,
                       BidirectionalPair<std::vector<uint8_t>> ccids) override {
+    if (!leAudioDevice->HaveActiveAse() && (group->DesiredSize() <= group->NumOfOngoing())) {
+      log::info("The maximum number of active devices has been reached.");
+      return false;
+    }
+
     log::info("group id: {} device: {}", group->group_id_, leAudioDevice->address_);
 
     /* This function is used to attach the device to the stream.
      * Limitation here is that device should be previously in the streaming
      * group and just got reconnected.
      */
-    if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING ||
-        group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+    if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING ||
+        group->IsInTransitionTo(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
       log::error("Group {} is not streaming or is in transition, state: {}, target state: {}",
                  group->group_id_, ToString(group->GetState()), ToString(group->GetTargetState()));
       return false;
@@ -209,6 +214,11 @@ public:
       return false;
     }
 
+    if (!leAudioDevice->HaveActiveAse()) {
+      log::warn("{} not configured (has no active ASE)", leAudioDevice->address_);
+      return false;
+    }
+
     return PrepareAndSendCodecConfigure(group, leAudioDevice);
   }
 
@@ -239,6 +249,11 @@ public:
 
         /* We are going to reconfigure whole group. Clear Cises.*/
         ReleaseCisIds(group);
+
+        /* Invalidate configuration to make sure it is chosen properly when new
+         * member connects
+         */
+        group->InvalidateCachedConfigurations();
 
         /* If configuration is needed */
         [[fallthrough]];
@@ -850,13 +865,30 @@ public:
                                 kLogCigRemoveOp);
   }
 
+  void NotifyDeviceDetachedFromStream(LeAudioDevice* leAudioDevice) {
+    if (leAudioDevice->HaveActiveAse()) {
+      log::debug("{} still has active ASE", leAudioDevice->address_);
+      return;
+    }
+
+    if (leAudioDevice->HaveAnyCisConnected()) {
+      log::debug("{} still has CIS connected", leAudioDevice->address_);
+      return;
+    }
+
+    state_machine_callbacks_->OnDeviceDetachedFromStream(leAudioDevice);
+  }
+
   void ProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
     FreeLinkQualityReports(leAudioDevice);
     if (!group) {
       log::error("group is null for device: {} group_id: {}", leAudioDevice->address_,
                  leAudioDevice->group_id_);
       /* mark ASEs as not used. */
-      leAudioDevice->DeactivateAllAses();
+      if (leAudioDevice->HaveActiveAse()) {
+        leAudioDevice->DeactivateAllAses();
+        NotifyDeviceDetachedFromStream(leAudioDevice);
+      }
       return;
     }
 
@@ -870,7 +902,10 @@ public:
     }
 
     /* mark ASEs as not used. */
-    leAudioDevice->DeactivateAllAses();
+    if (leAudioDevice->HaveActiveAse()) {
+      leAudioDevice->DeactivateAllAses();
+      NotifyDeviceDetachedFromStream(leAudioDevice);
+    }
 
     /* Update the current group audio context availability which could change
      * due to disconnected group member.
@@ -1234,6 +1269,8 @@ public:
 
     switch (target_state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING: {
+        NotifyDeviceDetachedFromStream(leAudioDevice);
+
         /* Something wrong happen when streaming or when creating stream.
          * If there is other device connected and streaming, just leave it as it
          * is, otherwise stop the stream.
@@ -1872,7 +1909,10 @@ private:
         break;
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING: {
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
-        ase->active = false;
+        if (ase->active) {
+          ase->active = false;
+          NotifyDeviceDetachedFromStream(leAudioDevice);
+        }
         ase->configured_for_context_type =
                 bluetooth::le_audio::types::LeAudioContextType::UNINITIALIZED;
 
@@ -2292,7 +2332,10 @@ private:
         break;
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING:
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
-        ase->active = false;
+        if (ase->active) {
+          ase->active = false;
+          NotifyDeviceDetachedFromStream(leAudioDevice);
+        }
 
         if (!leAudioDevice->HaveAllActiveAsesSameState(
                     AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED)) {
@@ -2313,6 +2356,14 @@ private:
 
         /* Last node is in releasing state*/
         group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
+
+        if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+            group->GetSubstituteDevice(leAudioDevice) != nullptr) {
+          log::debug("Group {} is doing replacement procedure", group->group_id_);
+          group->PrintDebugState();
+          return;
+        }
+
         /* Remote device has cache and keep staying in configured state after
          * release. Therefore, we assume this is a target state requested by
          * remote device.
@@ -3196,7 +3247,10 @@ private:
                     AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING)) {
           group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING);
           group->ClearStreamingMetadataContexts();
-          if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+          if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+              group->GetSubstituteDevice(leAudioDevice) != nullptr) {
+            log::debug("Group {} is doing replacement procedure", group->group_id_);
+          } else if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
             log::info("Group {} is doing autonomous release", group->group_id_);
             SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
             state_machine_callbacks_->StatusReportCb(group->group_id_,
