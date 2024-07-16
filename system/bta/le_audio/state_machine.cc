@@ -148,6 +148,11 @@ public:
 
   bool AttachToStream(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice,
                       BidirectionalPair<std::vector<uint8_t>> ccids) override {
+    if (!leAudioDevice->HaveActiveAse() && (group->DesiredSize() <= group->NumOfOngoing())) {
+      log::info("The maximum number of active devices has been reached.");
+      return false;
+    }
+
     log::info("group id: {} device: {}", group->group_id_, leAudioDevice->address_);
 
     /* This function is used to attach the device to the stream.
@@ -186,6 +191,11 @@ public:
     if (!group->Configure(group->GetConfigurationContextType(), group->GetMetadataContexts(),
                           ccids)) {
       log::error("failed to set ASE configuration");
+      return false;
+    }
+
+    if (!leAudioDevice->HaveActiveAse()) {
+      log::warn("{} not configured (has no active ASE)", leAudioDevice->address_);
       return false;
     }
 
@@ -753,13 +763,30 @@ public:
                                 kLogCigRemoveOp);
   }
 
+  void NotifyDeviceDetachedFromStream(LeAudioDevice* leAudioDevice) {
+    if (leAudioDevice->HaveActiveAse()) {
+      log::debug("{} still has active ASE", leAudioDevice->address_);
+      return;
+    }
+
+    if (leAudioDevice->HaveAnyCisConnected()) {
+      log::debug("{} still has CIS connected", leAudioDevice->address_);
+      return;
+    }
+
+    state_machine_callbacks_->OnDeviceDetachedFromStream(leAudioDevice);
+  }
+
   void ProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
     FreeLinkQualityReports(leAudioDevice);
     if (!group) {
       log::error("group is null for device: {} group_id: {}", leAudioDevice->address_,
                  leAudioDevice->group_id_);
       /* mark ASEs as not used. */
-      leAudioDevice->DeactivateAllAses();
+      if (leAudioDevice->HaveActiveAse()) {
+        leAudioDevice->DeactivateAllAses();
+        NotifyDeviceDetachedFromStream(leAudioDevice);
+      }
       return;
     }
 
@@ -769,7 +796,10 @@ public:
     }
 
     /* mark ASEs as not used. */
-    leAudioDevice->DeactivateAllAses();
+    if (leAudioDevice->HaveActiveAse()) {
+      leAudioDevice->DeactivateAllAses();
+      NotifyDeviceDetachedFromStream(leAudioDevice);
+    }
 
     /* Update the current group audio context availability which could change
      * due to disconnected group member.
@@ -1128,6 +1158,8 @@ public:
 
     switch (target_state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING: {
+        NotifyDeviceDetachedFromStream(leAudioDevice);
+
         /* Something wrong happen when streaming or when creating stream.
          * If there is other device connected and streaming, just leave it as it
          * is, otherwise stop the stream.
@@ -1754,7 +1786,10 @@ private:
         break;
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING: {
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
-        ase->active = false;
+        if (ase->active) {
+          ase->active = false;
+          NotifyDeviceDetachedFromStream(leAudioDevice);
+        }
         ase->configured_for_context_type =
                 bluetooth::le_audio::types::LeAudioContextType::UNINITIALIZED;
 
@@ -2157,7 +2192,10 @@ private:
         break;
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING:
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
-        ase->active = false;
+        if (ase->active) {
+          ase->active = false;
+          NotifyDeviceDetachedFromStream(leAudioDevice);
+        }
 
         if (!leAudioDevice->HaveAllActiveAsesSameState(
                     AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED)) {
