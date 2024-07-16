@@ -33,6 +33,24 @@
       "message": "This looks like a workaround for a crash in an HCI timeout situation (which causes a crash) I\u0027d rather not add logic for this.",
       "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eac5af0_9aa26e18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-16T19:07:37Z",
+      "side": 1,
+      "message": "Yes, it is a workaround. But it is to avoid crashes due to vendor specific commands which are not expecting command status. This CL does not add logic. It just adds another command status `COMMAND_DISALLOWED` in addition to UNKNOWN_HCI_COMMAND. I have to rewrite the code to add a flag. From the previous CL which added the logic, it creates an empty Command Complete such that it will be interpreted by the command-complete-handler as invalid.",
+      "parentUuid": "9fbee1cb_b08ed14a",
+      "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
