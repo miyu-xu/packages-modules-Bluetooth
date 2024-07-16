@@ -25,6 +25,7 @@ import com.android.bluetooth.Utils;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.util.List;
 import java.util.UUID;
 
 /** CSIP Set Coordinator role native interface */
@@ -194,6 +195,25 @@ public class CsipSetCoordinatorNativeInterface {
         event.valueInt2 = status;
         event.valueBool1 = locked;
         Log.d(TAG, "onGroupLockChanged: " + event);
+        sendMessageToService(event);
+    }
+
+    /**
+     * Active members list changed callback.
+     *
+     * @param groupId group identifier
+     * @param addresses list of active member addresses
+     */
+    @VisibleForTesting
+    public void onActiveMembersListChanged(int groupId, List<byte[]> addresses) {
+        CsipSetCoordinatorStackEvent event = new CsipSetCoordinatorStackEvent(
+                CsipSetCoordinatorStackEvent.EVENT_TYPE_ACTIVE_MEMBERS_CHANGED);
+        event.valueInt1 = groupId;
+        for (byte[] address : addresses) {
+            event.valueDevices.add(getDevice(address));
+        }
+
+        Log.d(TAG, "onActiveMembersListChanged: " + event);
         sendMessageToService(event);
     }
 

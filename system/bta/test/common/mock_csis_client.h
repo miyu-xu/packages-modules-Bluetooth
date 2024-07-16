@@ -31,6 +31,10 @@ public:
               (override));
   MOCK_METHOD((std::vector<RawAddress>), GetDeviceList, (int group_id), (override));
   MOCK_METHOD((int), GetDesiredSize, (int group_id), (const override));
+  MOCK_METHOD((bool), IsMemberActive, (int group_id, const RawAddress& addr), (const override));
+  MOCK_METHOD((void), SetDesiredActiveSize, (int group_id, int desired_active_size), (override));
+  MOCK_METHOD((int), GetDesiredActiveSize, (int group_id), (const override));
+  MOCK_METHOD((bool), IsGroupDynamic, (int group_id), (const override));
 
   /* Called from static methods */
   MOCK_METHOD((void), Initialize,

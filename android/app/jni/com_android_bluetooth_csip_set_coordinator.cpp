@@ -46,6 +46,13 @@ static jmethodID method_onConnectionStateChanged;
 static jmethodID method_onDeviceAvailable;
 static jmethodID method_onSetMemberAvailable;
 static jmethodID method_onGroupLockChanged;
+static jmethodID method_onActiveMembersListChanged;
+
+static struct {
+  jclass clazz;
+  jmethodID constructor;
+  jmethodID add;
+} java_util_ArrayList;
 
 static CsisClientInterface* sCsisClientInterface = nullptr;
 static std::shared_timed_mutex interface_mutex;
@@ -157,6 +164,47 @@ public:
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onGroupLockChanged, (jint)group_id,
                                  (jboolean)locked, (jint)status);
   }
+
+  jobject prepareRawAddressListObject(JNIEnv* env, const std::vector<RawAddress>& addrs) {
+    jobject array = env->NewObject(java_util_ArrayList.clazz, java_util_ArrayList.constructor);
+    if (!array) {
+      log::error("Failed to create array for addresses");
+      return nullptr;
+    }
+
+    for (const auto& addr : addrs) {
+      ScopedLocalRef<jbyteArray> addrArray(env, env->NewByteArray(sizeof(RawAddress)));
+      if (!addrArray.get()) {
+        log::error("Failed to new jbyteArray for address");
+        return nullptr;
+      }
+
+      env->SetByteArrayRegion(addrArray.get(), 0, sizeof(RawAddress), (jbyte*)&addr);
+
+      env->CallBooleanMethod(array, java_util_ArrayList.add, addrArray.get());
+    }
+    return array;
+  }
+
+  void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) override {
+    log::info("group_id: {}", group_id);
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jobject> address_list_obj(
+            sCallbackEnv.get(), prepareRawAddressListObject(sCallbackEnv.get(), addrs));
+    if (!address_list_obj.get()) {
+      log::error("Failed to create new active addrs list");
+      return;
+    }
+
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onActiveMembersListChanged, (jint)group_id,
+                                 address_list_obj.get());
+  }
 };
 
 static CsisClientCallbacksImpl sCsisClientCallbacks;
@@ -168,6 +216,12 @@ static void initNative(JNIEnv* env, jobject object) {
   const bt_interface_t* btInf = getBluetoothInterface();
   if (btInf == nullptr) {
     log::error("Bluetooth module is not loaded");
+    return;
+  }
+
+  java_util_ArrayList.clazz = (jclass)env->NewGlobalRef(env->FindClass("java/util/ArrayList"));
+  if (java_util_ArrayList.clazz == nullptr) {
+    log::error("Failed to allocate Global Ref for ArrayList class");
     return;
   }
 
@@ -207,6 +261,9 @@ static void cleanupNative(JNIEnv* env, jobject /* object */) {
     log::error("Bluetooth module is not loaded");
     return;
   }
+
+  env->DeleteGlobalRef(java_util_ArrayList.clazz);
+  java_util_ArrayList.clazz = nullptr;
 
   if (sCsisClientInterface != nullptr) {
     sCsisClientInterface->Cleanup();
@@ -288,9 +345,17 @@ int register_com_android_bluetooth_csip_set_coordinator(JNIEnv* env) {
           {"onDeviceAvailable", "([BIIIJJ)V", &method_onDeviceAvailable},
           {"onSetMemberAvailable", "([BI)V", &method_onSetMemberAvailable},
           {"onGroupLockChanged", "(IZI)V", &method_onGroupLockChanged},
+          {"onActiveMembersListChanged", "(ILjava/util/List;)V",
+           &method_onActiveMembersListChanged},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/csip/CsipSetCoordinatorNativeInterface",
                    javaMethods);
+
+  const JNIJavaMethod javaArrayListMethods[] = {
+          {"<init>", "()V", &java_util_ArrayList.constructor},
+          {"add", "(Ljava/lang/Object;)Z", &java_util_ArrayList.add},
+  };
+  GET_JAVA_METHODS(env, "java/util/ArrayList", javaArrayListMethods);
 
   return 0;
 }

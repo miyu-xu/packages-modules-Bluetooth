@@ -46,6 +46,10 @@ public:
   virtual void LockGroup(int group_id, bool lock, CsisLockCb cb) = 0;
   virtual std::vector<RawAddress> GetDeviceList(int group_id) = 0;
   virtual int GetDesiredSize(int group_id) const = 0;
+  virtual bool IsMemberActive(int group_id, const RawAddress& addr) const = 0;
+  virtual void SetDesiredActiveSize(int group_id, int desired_active_size) = 0;
+  virtual int GetDesiredActiveSize(int group_id) const = 0;
+  virtual bool IsGroupDynamic(int group_id) const = 0;
 };
 }  // namespace csis
 }  // namespace bluetooth
