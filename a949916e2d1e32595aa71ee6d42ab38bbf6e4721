@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "090268de_7e30c4ea",
+        "filename": "system/stack/test/sdp/stack_sdp_utils_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-16T23:32:48Z",
+      "side": 1,
+      "message": "noice",
+      "range": {
+        "startLine": 292,
+        "startChar": 79,
+        "endLine": 292,
+        "endChar": 82
+      },
+      "revId": "a949916e2d1e32595aa71ee6d42ab38bbf6e4721",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
