@@ -69,6 +69,24 @@
       "parentUuid": "8eac5af0_9aa26e18",
       "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61f187ab_7f0c4161",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-16T19:41:23Z",
+      "side": 1,
+      "message": "Or do you mean prefer putting everything in one line as in patch 5 of the CL? https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3109579/5",
+      "parentUuid": "7d62890c_9b86096e",
+      "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
