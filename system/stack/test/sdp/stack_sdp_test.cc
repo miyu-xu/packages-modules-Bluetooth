@@ -43,6 +43,18 @@ static RawAddress addr2 = RawAddress({0xB1, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6});
 static RawAddress addr3 = RawAddress({0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6});
 static RawAddress addr4 = RawAddress({0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6});
 static RawAddress addr5 = RawAddress({0xE1, 0xE2, 0xE3, 0xE4, 0xE5, 0xE6});
+static RawAddress addr6 = RawAddress({0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6});
+static RawAddress addr7 = RawAddress({0xA2, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+static RawAddress addr8 = RawAddress({0xB2, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6});
+static RawAddress addr9 = RawAddress({0xC2, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6});
+static RawAddress addr10 = RawAddress({0xD2, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6});
+static RawAddress addr11 = RawAddress({0xE2, 0xE2, 0xE3, 0xE4, 0xE5, 0xE6});
+static RawAddress addr12 = RawAddress({0xF2, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6});
+static RawAddress addr13 = RawAddress({0xA3, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+static RawAddress addr14 = RawAddress({0xB3, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6});
+static RawAddress addr15 = RawAddress({0xC3, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6});
+static RawAddress addr16 = RawAddress({0xD3, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6});
+static RawAddress addr17 = RawAddress({0xE3, 0xE2, 0xE3, 0xE4, 0xE5, 0xE6});
 static tSDP_DISCOVERY_DB* sdp_db = nullptr;
 
 class StackSdpWithMocksTest : public ::testing::Test {
@@ -412,7 +424,19 @@ TEST_F(StackSdpInitTest, sdpu_dump_all_ccb) {
   ASSERT_NE(nullptr, sdp_conn_originate(addr2));
   ASSERT_NE(nullptr, sdp_conn_originate(addr3));
   ASSERT_NE(nullptr, sdp_conn_originate(addr4));
-  ASSERT_EQ(nullptr, sdp_conn_originate(addr5));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr5));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr6));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr7));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr8));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr9));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr10));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr11));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr12));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr13));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr14));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr15));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr16));
+  ASSERT_EQ(nullptr, sdp_conn_originate(addr17));
 
   sdpu_dump_all_ccb();
 }
@@ -424,6 +448,19 @@ TEST_F(StackSdpInitTest, SDP_Dumpsys_ccb) {
   ASSERT_NE(nullptr, sdp_conn_originate(addr2));
   ASSERT_NE(nullptr, sdp_conn_originate(addr3));
   ASSERT_NE(nullptr, sdp_conn_originate(addr4));
-  ASSERT_EQ(nullptr, sdp_conn_originate(addr5));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr5));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr6));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr7));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr8));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr9));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr10));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr11));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr12));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr13));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr14));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr15));
+  ASSERT_NE(nullptr, sdp_conn_originate(addr16));
+  ASSERT_EQ(nullptr, sdp_conn_originate(addr17));
+
   SDP_Dumpsys(1);
 }
