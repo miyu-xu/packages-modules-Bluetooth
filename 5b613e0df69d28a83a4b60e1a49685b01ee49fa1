@@ -16,6 +16,24 @@
       "message": "Hello, not sure if I need to do anything else, seems like presumbit checks passed 😊",
       "revId": "5b613e0df69d28a83a4b60e1a49685b01ee49fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02df23a3_d775d504",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-16T08:29:03Z",
+      "side": 1,
+      "message": "I forwarded it for dr no review. once it passes, you can merge it.",
+      "parentUuid": "4443855c_f5fb2d83",
+      "revId": "5b613e0df69d28a83a4b60e1a49685b01ee49fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
