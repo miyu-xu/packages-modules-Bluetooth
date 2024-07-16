@@ -36,6 +36,7 @@
 #include <vector>
 
 #include "acl_api.h"
+#include "bta_csis_api.h"
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
 #include "btif/include/btif_storage.h"
@@ -299,6 +300,58 @@ bool LeAudioDevice::IsAudioSetConfigurationSupported(
   return true;
 }
 
+bool LeAudioDevice::IsLeft(uint8_t direction) const {
+  const auto locations = GetAudioLocations(direction);
+  return locations.has_value() &&
+        (locations->to_ulong() == codec_spec_conf::kLeAudioLocationMonoAudio ||
+         (locations->to_ulong() & codec_spec_conf::kLeAudioLocationAnyLeft) > 0);
+}
+
+bool LeAudioDevice::IsRight(uint8_t direction) const {
+  const auto locations = GetAudioLocations(direction);
+  return locations.has_value() &&
+        (locations->to_ulong() == codec_spec_conf::kLeAudioLocationMonoAudio ||
+         (locations->to_ulong() & codec_spec_conf::kLeAudioLocationAnyRight) > 0);
+}
+
+bool LeAudioDevice::IsDirectionSupported(int direction) const {
+  bool is_direction_supported = true;
+
+  if ((direction & types::kLeAudioDirectionSink) > 0) {
+    is_direction_supported &= GetAseCount(types::kLeAudioDirectionSink) > 0 && !snk_pacs_.empty();
+  }
+
+  if ((direction & types::kLeAudioDirectionSource) > 0) {
+    is_direction_supported &= GetAseCount(types::kLeAudioDirectionSource) > 0 && !src_pacs_.empty();
+  }
+
+  return is_direction_supported;
+}
+
+bool LeAudioDevice::IsCsisDynamicSetMember() const {
+  if (bluetooth::csis::CsisClient::IsCsisClientRunning()) {
+    return bluetooth::csis::CsisClient::Get()->IsGroupDynamic(group_id_);
+  }
+
+  return false;
+}
+
+bool LeAudioDevice::IsAvailableForStream(void) const {
+  bool is_available_for_stream = IsConnected();
+
+  if (IsCsisDynamicSetMember()) {
+    if ((is_csis_dynamic_set_member_active_ == std::nullopt) &&
+        bluetooth::csis::CsisClient::IsCsisClientRunning()) {
+      is_csis_dynamic_set_member_active_ = std::make_optional(
+              bluetooth::csis::CsisClient::Get()->IsMemberActive(group_id_, address_));
+    }
+
+    is_available_for_stream &= is_csis_dynamic_set_member_active_.value_or(false);
+  }
+
+  return is_available_for_stream;
+}
+
 bool LeAudioDevice::ConfigureAses(const types::AudioSetConfiguration* audio_set_conf,
                                   uint8_t num_of_devices, uint8_t direction,
                                   LeAudioContextType context_type,
@@ -379,8 +432,8 @@ bool LeAudioDevice::ConfigureAses(const types::AudioSetConfiguration* audio_set_
 
   // Before we activate the ASEs, make sure we have the right configuration
   // Check for matching PACs only if we know that the LTV format is being used.
-  uint8_t max_required_ase_per_dev =
-          ase_configs.size() / num_of_devices + (ase_configs.size() % num_of_devices);
+  uint8_t max_required_ase_per_dev = static_cast<uint8_t>(
+          std::ceil(static_cast<float>(ase_configs.size()) / static_cast<float>(num_of_devices)));
   int needed_ase = std::min((int)(max_required_ase_per_dev), (int)(ase_configs.size()));
   log::debug("{}, {} {} ASE(s) required for this configuration.", address_, needed_ase,
              direction_str);
@@ -451,6 +504,9 @@ bool LeAudioDevice::ConfigureAses(const types::AudioSetConfiguration* audio_set_
       ase->qos_config.max_transport_latency = ase_cfg.qos.max_transport_latency;
 
       SetMetadataToAse(ase, ase_cfg.metadata, metadata_context_types, ccid_lists);
+    } else {
+      /* Update the group_audio_locations_memo only, is the ASE is in streaming state already */
+      group_audio_locations_memo |= ase->codec_config.GetAudioChannelAllocation();
     }
 
     log::debug(
@@ -467,7 +523,7 @@ bool LeAudioDevice::ConfigureAses(const types::AudioSetConfiguration* audio_set_
   }
 
   *number_of_already_active_group_ase = active_ases;
-  return true;
+  return HaveActiveAse();
 }
 
 /* LeAudioDevice Class methods implementation */
@@ -480,7 +536,7 @@ void LeAudioDevice::SetConnectionState(DeviceConnectState state) {
   connection_state_ = state;
 }
 
-DeviceConnectState LeAudioDevice::GetConnectionState(void) { return connection_state_; }
+DeviceConnectState LeAudioDevice::GetConnectionState(void) const { return connection_state_; }
 
 void LeAudioDevice::ClearPACs(void) {
   snk_pacs_.clear();
@@ -591,7 +647,7 @@ struct ase* LeAudioDevice::GetAseByValHandle(uint16_t val_hdl) {
   return (iter == ases_.end()) ? nullptr : &(*iter);
 }
 
-int LeAudioDevice::GetAseCount(uint8_t direction) {
+int LeAudioDevice::GetAseCount(uint8_t direction) const {
   return std::count_if(ases_.begin(), ases_.end(),
                        [direction](const auto& a) { return a.direction == direction; });
 }
@@ -754,7 +810,7 @@ BidirectionalPair<struct ase*> LeAudioDevice::GetAsesByCisId(uint8_t cis_id) {
   return ases;
 }
 
-bool LeAudioDevice::HaveActiveAse(void) {
+bool LeAudioDevice::HaveActiveAse(void) const {
   auto iter = std::find_if(ases_.begin(), ases_.end(), [](const auto& ase) { return ase.active; });
 
   return iter != ases_.end();
@@ -902,7 +958,7 @@ bool LeAudioDevice::HaveAllActiveAsesCisEst(void) const {
   return iter == ases_.end() && has_active_ase;
 }
 
-bool LeAudioDevice::HaveAnyCisConnected(void) {
+bool LeAudioDevice::HaveAnyCisConnected(void) const {
   /* Pending and Disconnecting is considered as connected in this function */
   for (auto const ase : ases_) {
     if (ase.cis_state == CisState::CONNECTED || ase.cis_state == CisState::CONNECTING ||
@@ -1080,10 +1136,10 @@ void LeAudioDevice::Dump(std::stringstream& stream) {
   stream << "      ● Device address: " << address_.ToRedactedStringForLogging() << ", "
          << connection_state_
          << ", conn_id: " << (conn_id_ == GATT_INVALID_CONN_ID ? "-1" : std::to_string(conn_id_))
-         << ", acl_handle: " << std::to_string(acl_handle) << ", snk_location: " << snk_location
-         << ", src_location: " << src_location << ", mtu: " << std::to_string(mtu_) << ", "
-         << (encrypted_ ? "Encrypted" : "Unecrypted")
-         << "\n\t  Sink avail. contexts: " << common::ToString(avail_contexts_.sink)
+         << ", acl_handle: " << std::to_string(acl_handle)
+         << ", is_available_for_stream: " << IsAvailableForStream()
+         << ", snk_location: " << snk_location << ", src_location: " << src_location << ",mtu: " << std::to_string(mtu_) << ", "
+         << (encrypted_ ? "Encrypted" : "Unecrypted") << "\n\t  Sink avail. contexts: " << common::ToString(avail_contexts_.sink)
          << "\n\t  Source avail. contexts: " << common::ToString(avail_contexts_.source) << "\n";
 
   if (gmap_client_ != nullptr) {
@@ -1138,6 +1194,20 @@ void LeAudioDevice::SetAvailableContexts(BidirectionalPair<AudioContexts> contex
   avail_contexts_.source = contexts.source;
 }
 
+AudioLocations LeAudioDevice::GetAudioChannelAllocation(int direction) {
+  log::assert_that(direction <= (types::kLeAudioDirectionBoth), "Invalid direction used.");
+  AudioLocations result;
+  auto ase = GetFirstActiveAse();
+  while (ase) {
+    if ((direction & ase->direction) > 0) {
+        result |= ase->codec_config.GetAudioChannelAllocation();
+    }
+    ase = GetNextActiveAse(ase);
+  }
+
+  return result;
+}
+
 void LeAudioDevice::SetMetadataToAse(struct types::ase* ase,
                                      const types::LeAudioLtvMap& base_metadata,
                                      const AudioContexts& metadata_context_types,
@@ -1168,7 +1238,9 @@ bool LeAudioDevice::ActivateConfiguredAses(
   log::info("Configuring device {}", address_);
   for (auto& ase : ases_) {
     if (ase.state == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED &&
-        ase.configured_for_context_type == context_type) {
+        ase.configured_for_context_type == context_type &&
+        (GetAvailableContexts(ase.direction).test(context_type) ||
+         GetAvailableContexts(ase.direction).test(LeAudioContextType::UNSPECIFIED))) {
       log::info(
               "conn_id: {}, ase id {}, cis id {}, cis_handle 0x{:04x} is "
               "activated.",
