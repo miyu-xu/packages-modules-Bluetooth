@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a4749a_5abda320",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T18:32:50Z",
+      "side": 1,
+      "message": "Should this be checked first?  If the search is already completed and we get an extra, but without the service, do we care?",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dd097f41_fd945dca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 220,
+                "startChar": 0,
+                "endLine": 221,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 230,
+                "startChar": 0,
+                "endLine": 231,
+                "endChar": 0
+              },
+              "replacement": "    if (tracker-\u003eservice_ \u003d\u003d nullptr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a851441bac500983cac0c9124dbbe7a476197641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
