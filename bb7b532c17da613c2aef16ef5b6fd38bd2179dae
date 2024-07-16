@@ -123,6 +123,24 @@
       "parentUuid": "c977c15a_2e500f0c",
       "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4937a260_b7014ce5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T23:43:42Z",
+      "side": 1,
+      "message": "I would prefer a fix that ignores failures when we\u0027re already failing.",
+      "parentUuid": "b719fc23_7cc9c910",
+      "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
