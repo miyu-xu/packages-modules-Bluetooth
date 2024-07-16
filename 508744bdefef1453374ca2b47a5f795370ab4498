@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e749b24b_d425f6ba",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-16T07:41:00Z",
+      "side": 1,
+      "message": "This is still accessed by the BluetoothHidDeviceBinderTest to test for nullness on cleanup.\nSo I removed that check because I found the other tests are not checking nullness either.",
+      "parentUuid": "db3cae17_7b0ab97f",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 9
+      },
+      "revId": "508744bdefef1453374ca2b47a5f795370ab4498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "533b7294_24104521",
         "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2024-07-15T21:26:34Z",
       "side": 1,
       "message": "Can you apply this suggestion in order for the check to be the exact same as all other services ?\n\nThis only rename `hidService` in `service` and remove the null check (already done in `checkServiceAvailable`\n\n\n```suggestion\n         @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)\n        private LeAudioService getService(AttributionSource source) {\n            // Cache mService because it can change while getService is called\n            HidDeviceService service \u003d mService;\n\n            if (Utils.isInstrumentationTestMode()) {\n                return service;\n            }\n\n            if (!Utils.checkServiceAvailable(service, TAG)\n                    || !Utils.checkCallerIsSystemOrActiveOrManagedUser(service, TAG)\n                    || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {\n                return null;\n            }\n            return service;\n        }\n```",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 0
+      },
+      "revId": "508744bdefef1453374ca2b47a5f795370ab4498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7616f2a6_5b834c69",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-16T07:41:00Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "533b7294_24104521",
       "range": {
         "startLine": 318,
         "startChar": 0,
