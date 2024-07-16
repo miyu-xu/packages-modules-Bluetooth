@@ -153,8 +153,10 @@ public:
   bool IsAnyDeviceConnected(void) const;
   int Size(void) const;
   int DesiredSize(void) const;
+  bool IsGroupDynamic(void) const;
   int NumOfConnected() const;
   int NumOfAvailableForDirection(int direction) const;
+  int NumOfOngoing() const;
   bool Activate(types::LeAudioContextType context_type,
                 const types::BidirectionalPair<types::AudioContexts>& metadata_context_types,
                 types::BidirectionalPair<std::vector<uint8_t>> ccid_lists);
@@ -163,13 +165,10 @@ public:
   void ClearSourcesFromConfiguration(void);
   void Cleanup(void);
   LeAudioDevice* GetFirstDevice(void) const;
-  LeAudioDevice* GetFirstDeviceWithAvailableContext(types::LeAudioContextType context_type) const;
-  types::LeAudioConfigurationStrategy GetGroupSinkStrategy(void) const;
+  types::LeAudioConfigurationStrategy GetGroupSinkStrategy() const;
   inline void InvalidateGroupStrategy(void) { strategy_ = std::nullopt; }
   int GetAseCount(uint8_t direction) const;
   LeAudioDevice* GetNextDevice(LeAudioDevice* leAudioDevice) const;
-  LeAudioDevice* GetNextDeviceWithAvailableContext(LeAudioDevice* leAudioDevice,
-                                                   types::LeAudioContextType context_type) const;
   LeAudioDevice* GetFirstActiveDevice(void) const;
   LeAudioDevice* GetNextActiveDevice(LeAudioDevice* leAudioDevice) const;
   LeAudioDevice* GetFirstActiveDeviceByCisAndDataPathState(
@@ -193,6 +192,7 @@ public:
                  const types::BidirectionalPair<types::AudioContexts>& metadata_context_types,
                  types::BidirectionalPair<std::vector<uint8_t>> ccid_lists = {.sink = {},
                                                                               .source = {}});
+  LeAudioDevice* GetSubstituteDevice(LeAudioDevice* leAudioDevice);
   uint32_t GetSduInterval(uint8_t direction) const;
   uint8_t GetSCA(void) const;
   uint8_t GetPacking(void) const;
