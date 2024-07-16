@@ -140,6 +140,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1b3713_1847e234",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-16T15:57:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c1f1bed6_037d8c9e",
+      "range": {
+        "startLine": 506,
+        "startChar": 20,
+        "endLine": 506,
+        "endChar": 84
+      },
+      "revId": "d0981ed786456448ad9ba3622e2dfd3f361dd7a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a3600ea_e320619e",
@@ -205,6 +229,30 @@
       "side": 1,
       "message": "Since we don\u0027t do anything with non-GAIN states right now, I figured it didn\u0027t matter. We really only care that the service isn\u0027t available when we know we meant to use it, which would only be when we get a GAIN. I figured this saved us a conditional check. But, I don\u0027t feel that strongly. We\u0027ll get the currently below error no matter where the state check goes.",
       "parentUuid": "7a3600ea_e320619e",
+      "range": {
+        "startLine": 422,
+        "startChar": 8,
+        "endLine": 424,
+        "endChar": 9
+      },
+      "revId": "d0981ed786456448ad9ba3622e2dfd3f361dd7a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "567bcc00_47db9798",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-16T15:57:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "30c9c9b6_2fcc77c5",
       "range": {
         "startLine": 422,
         "startChar": 8,
