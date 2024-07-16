@@ -51,6 +51,24 @@
       ],
       "revId": "a7a43e97ae7c964ab65100a44d9e9056218b4957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "112aeaee_14874e1d",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-16T23:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20689004_21b30692",
+      "revId": "a7a43e97ae7c964ab65100a44d9e9056218b4957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
