@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36a35337_2b527cc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-16T22:45:41Z",
+      "side": 1,
+      "message": "These are Advertising::status not tBTM_STATUS\u0027s",
+      "revId": "07dad0f9136ab03d9d69bf4706e7a9608cf94db1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
