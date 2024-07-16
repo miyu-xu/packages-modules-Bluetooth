@@ -72,6 +72,14 @@ static BtCsisGroupLockStatus to_rust_btcsis_group_lock_status(csis::CsisGroupLoc
   return BtCsisGroupLockStatus{};
 }
 
+static ::rust::vec<RawAddress> to_rust_btcsis_raw_address_vec(std::vector<RawAddress> addrs) {
+  ::rust::vec<RawAddress> raddrs;
+  for (auto addr : addrs) {
+    raddrs.push_back(addr);
+  }
+  return raddrs;
+}
+
 static void connection_state_cb(const RawAddress& addr, csis::ConnectionState state) {
   csis_connection_state_callback(addr, to_rust_btcsis_connection_state(state));
 }
@@ -87,6 +95,11 @@ static void set_member_available_cb(const RawAddress& addr, int group_id) {
 
 static void group_lock_changed_cb(int group_id, bool locked, csis::CsisGroupLockStatus status) {
   csis_group_lock_changed_callback(group_id, locked, to_rust_btcsis_group_lock_status(status));
+}
+
+static void group_active_members_list_changed_cb(int group_id,
+                                                 const std::vector<RawAddress>& addrs) {
+  csis_group_active_members_list_changed_callback(group_id, to_rust_btcsis_raw_address_vec(addrs));
 }
 }  // namespace internal
 
@@ -117,6 +130,11 @@ public:
 
   void OnGroupLockChanged(int group_id, bool locked, csis::CsisGroupLockStatus status) {
     topshim::rust::internal::group_lock_changed_cb(group_id, locked, status);
+  }
+
+  virtual void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) {
+    log::info("group_id={}", group_id);
+    topshim::rust::internal::group_active_members_list_changed_cb(group_id, addrs);
   }
 };
 
