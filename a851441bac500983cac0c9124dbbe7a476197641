@@ -60,6 +60,30 @@
       ],
       "revId": "a851441bac500983cac0c9124dbbe7a476197641",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0f3deea_988f3110",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T18:33:13Z",
+      "side": 1,
+      "message": "Ignore the AI-suggested fix :)",
+      "parentUuid": "35a4749a_5abda320",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 13
+      },
+      "revId": "a851441bac500983cac0c9124dbbe7a476197641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
