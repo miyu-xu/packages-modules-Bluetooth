@@ -324,6 +324,20 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface, public LeAudio
                            source_context_types));
   }
 
+  void SetDesiredActiveSize(int group_id, int desired_active_size) {
+    if (!initialized || !LeAudioClient::IsLeAudioClientRunning()) {
+      log::verbose(
+              "call ignored, due to already started cleanup procedure or service "
+              "being not read");
+      return;
+    }
+
+    log::info("group_id: {}, desired_active_size: {}", group_id, desired_active_size);
+
+    do_in_main_thread(Bind(&LeAudioClient::SetDesiredActiveSize, Unretained(LeAudioClient::Get()),
+                           group_id, desired_active_size));
+  }
+
 private:
   LeAudioClientCallbacks* callbacks;
 };

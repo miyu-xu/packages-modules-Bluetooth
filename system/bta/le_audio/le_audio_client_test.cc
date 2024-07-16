@@ -286,7 +286,7 @@ public:
                LeAudioSinkAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes),
               (override));
   MOCK_METHOD((void), Stop, (), (override));
-  MOCK_METHOD((size_t), SendData, (uint8_t* data, uint16_t size), (override));
+  MOCK_METHOD((size_t), SendData, (uint8_t * data, uint16_t size), (override));
   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
@@ -793,6 +793,22 @@ protected:
             }));
   }
 
+  void OnCallProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group,
+                                            LeAudioDevice* leAudioDevice) {
+    if (!group) {
+      return;
+    }
+
+    for (auto& ase : leAudioDevice->ases_) {
+      group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase.cis_conn_hdl);
+    }
+
+    if (group->IsEmpty()) {
+      group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
+      InjectCigRemoved(group->group_id_);
+    }
+  }
+
   void SetUpMockGroups() {
     MockCsisClient::SetMockInstanceForTesting(&mock_csis_client_module_);
     MockDeviceGroups::SetMockInstanceForTesting(&mock_groups_module_);
@@ -1269,18 +1285,7 @@ protected:
 
     ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
             .WillByDefault([this](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
-              if (!group) {
-                return;
-              }
-
-              for (auto& ase : leAudioDevice->ases_) {
-                group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase.cis_conn_hdl);
-              }
-
-              if (group->IsEmpty()) {
-                group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
-                InjectCigRemoved(group->group_id_);
-              }
+              this->OnCallProcessHciNotifAclDisconnected(group, leAudioDevice);
             });
 
     ON_CALL(mock_state_machine_, ProcessHciNotifCisDisconnected(_, _, _))
@@ -2697,6 +2702,11 @@ protected:
               ASSERT_NE(handle, GATT_INVALID_CONN_ID);
               InjectDisconnectedEvent(handle, GATT_CONN_TERMINATE_LOCAL_HOST);
             });
+    ON_CALL(mock_csis_client_module_, GetDesiredActiveSize(_))
+            .WillByDefault(Invoke([this](int group_id) {
+              return (int)(mock_csis_client_module_.GetDesiredSize(group_id));
+            }));
+    ON_CALL(mock_csis_client_module_, IsMemberActive(_, _)).WillByDefault(Return(true));
 
     std::vector<::bluetooth::le_audio::btle_audio_codec_config_t> framework_encode_preference;
     BtaAppRegisterCallback app_register_callback;
@@ -9533,10 +9543,10 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnected) {
   // disconnection
   int num_of_connected = 0;
   ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
-          .WillByDefault(
-                  [&num_of_connected](LeAudioDeviceGroup* group, LeAudioDevice* /*leAudioDevice*/) {
-                    num_of_connected = group->NumOfConnected();
-                  });
+          .WillByDefault([&](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+            OnCallProcessHciNotifAclDisconnected(group, leAudioDevice);
+            num_of_connected = group->NumOfConnected();
+          });
 
   auto conn_id = device->conn_id_;
   InjectDisconnectedEvent(device->conn_id_, GATT_CONN_TERMINATE_PEER_USER);
@@ -11697,6 +11707,221 @@ TEST_F(UnicastTest, GroupStreamStatusResendAfterRemove) {
           .Times(1);
   state_machine_callbacks_->StatusReportCb(group_id, GroupStreamStatus::IDLE);
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+}
+
+TEST_F(UnicastTest, testDynamicCoordinatedSet_SwapDeviceOnDisconnection) {
+  /**
+   * Verify if disconnected Dynamic Set Member can be substituted with another set member available
+   * for stream.
+   *
+   * Scenario:
+   * 1. Have a coordinated set with multiple members, all available for stream.
+   * 2. Start streaming. Verify that two devices: one left and one right is actively streaming.
+   * 3. Disconnect one of the active devices.
+   * 4. Verify another device capable for stream is attached.
+   */
+  uint8_t group_size = 4;
+  int group_id = 2;
+
+  // Report working CSIS
+  ON_CALL(mock_csis_client_module_, IsCsisClientRunning()).WillByDefault(Return(true));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+          .WillByDefault(Invoke([&](int /*group_id*/) { return group_size; }));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredActiveSize(group_id)).WillByDefault(Return(2));
+
+  ON_CALL(mock_csis_client_module_, IsGroupDynamic(group_id)).WillByDefault(Return(true));
+
+  ConnectCsisDevice(GetTestAddress(1), 1 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 1 /* rank */);
+
+  ConnectCsisDevice(GetTestAddress(2), 2 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 2 /* rank */,
+                    true /* connect_through_csis */);
+
+  ConnectCsisDevice(GetTestAddress(3), 3 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 3 /* rank */,
+                    true /* connect_through_csis */);
+
+  ConnectCsisDevice(GetTestAddress(4), 4 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 4 /* rank */,
+                    true /* connect_through_csis */);
+
+  // Audio sessions are started only when device gets active
+  EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
+  EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
+  LeAudioClient::Get()->GroupSetActive(group_id);
+  SyncOnMainLoop();
+
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  auto group = streaming_groups.at(group_id);
+
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+  Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+  SyncOnMainLoop();
+  ASSERT_EQ(4, group->NumOfConnected());
+
+  // Expect two iso channels to be fed with data
+  uint8_t cis_count_out = 2;
+  uint8_t cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+  // Disconnect one device and expect the group to keep on streaming
+  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(0);
+  auto device = group->GetFirstDevice();
+
+  // Simulate available context type being cleared
+  InjectAvailableContextTypes(device->address_, device->conn_id_, AudioContexts(), AudioContexts());
+
+  for (auto& ase : device->ases_) {
+    InjectCisDisconnected(group_id, ase.cis_conn_hdl);
+  }
+
+  /* Disconnect ACL and do not reconnect. */
+  ON_CALL(mock_gatt_interface_, Open(_, device->address_, BTM_BLE_DIRECT_CONNECTION, _))
+          .WillByDefault(Return());
+  EXPECT_CALL(mock_gatt_interface_, Open(_, device->address_, BTM_BLE_DIRECT_CONNECTION, false))
+          .Times(1);
+
+  // Record NumOfConnected when groupStateMachine_ gets notified about the
+  // disconnection
+  int num_of_connected = 0;
+  ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
+          .WillByDefault([&](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+            log::info("ProcessHciNotifAclDisconnected");
+            OnCallProcessHciNotifAclDisconnected(group, leAudioDevice);
+            num_of_connected = group->NumOfConnected();
+          });
+
+  auto conn_id = device->conn_id_;
+  InjectDisconnectedEvent(device->conn_id_, GATT_CONN_TERMINATE_PEER_USER);
+  SyncOnMainLoop();
+
+  Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+
+  do_in_main_thread(base::BindOnce(
+          [](LeAudioDevice* leAudioDevice,
+             bluetooth::le_audio::LeAudioGroupStateMachine::Callbacks* state_machine_callbacks) {
+            state_machine_callbacks->OnDeviceDetachedFromStream(leAudioDevice);
+          },
+          device, base::Unretained(this->state_machine_callbacks_)));
+  SyncOnMainLoop();
+  // Make sure the state machine knows about the disconnected device
+  ASSERT_EQ(3, num_of_connected);
+
+  // Expect two channel ISO Data to be sent
+  cis_count_out = 2;
+  cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+}
+
+TEST_F(UnicastTest, testDynamicCoordinatedSet_SwapDeviceOnAudioResume) {
+  /**
+   * Verify if Dynamic Set Member once becoming unavailable can be substituted with another set
+   * member available for stream.
+   *
+   * Scenario:
+   * 1. Have a coordinated set with multiple members, all available for stream.
+   * 2. Start streaming. Verify that two devices: one left and one right is actively streaming.
+   * 3. One of the active devices becomes unavailable.
+   *    The PACS Available Contexts are zero, but ASE is not released.
+   * 4. Verify the group is still streaming. Other device is not attached at the moment.
+   * 5. Stop stream.
+   * 6. Start stream.
+   * 7. Verify another device capable for stream is attached.
+   */
+  uint8_t group_size = 4;
+  int group_id = 2;
+
+  // Report working CSIS
+  ON_CALL(mock_csis_client_module_, IsCsisClientRunning()).WillByDefault(Return(true));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+          .WillByDefault(Invoke([&](int /*group_id*/) { return group_size; }));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredActiveSize(group_id)).WillByDefault(Return(2));
+
+  ON_CALL(mock_csis_client_module_, IsGroupDynamic(group_id)).WillByDefault(Return(true));
+
+  ConnectCsisDevice(GetTestAddress(1), 1 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 1 /* rank */);
+
+  ConnectCsisDevice(GetTestAddress(2), 2 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 2 /* rank */,
+                    true /* connect_through_csis */);
+
+  ConnectCsisDevice(GetTestAddress(3), 3 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 3 /* rank */,
+                    true /* connect_through_csis */);
+
+  ConnectCsisDevice(GetTestAddress(4), 4 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 4 /* rank */,
+                    true /* connect_through_csis */);
+
+  // Audio sessions are started only when device gets active
+  EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
+  EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
+  LeAudioClient::Get()->GroupSetActive(group_id);
+  SyncOnMainLoop();
+
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  auto group = streaming_groups.at(group_id);
+
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+  Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+  SyncOnMainLoop();
+  ASSERT_EQ(4, group->NumOfConnected());
+
+  // Expect two iso channels to be fed with data
+  uint8_t cis_count_out = 2;
+  uint8_t cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+  for (auto leAudioDevice = group->GetFirstDevice(); leAudioDevice != nullptr;
+       leAudioDevice = group->GetNextDevice(leAudioDevice)) {
+    if (leAudioDevice->conn_id_ == 1 || leAudioDevice->conn_id_ == 3) {
+      ASSERT_TRUE(leAudioDevice->HaveAnyCisConnected() && leAudioDevice->HaveAllActiveAsesCisEst());
+    } else {
+      ASSERT_FALSE(leAudioDevice->HaveAnyCisConnected());
+    }
+  }
+
+  // Clear the available contexts and expect the group to keep on streaming
+  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(0);
+  auto device = group->GetFirstDevice();
+  InjectAvailableContextTypes(device->address_, device->conn_id_, AudioContexts(), AudioContexts());
+  SyncOnMainLoop();
+
+  Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+
+  // Stop
+  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(1);
+  StopStreaming(group_id, true);
+  // simulate suspend timeout passed, alarm executing
+  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  Mock::VerifyAndClearExpectations(&mock_state_machine_);
+
+  // Start
+  EXPECT_CALL(mock_state_machine_, StartStream(_, _, _, _)).Times(1);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  Mock::VerifyAndClearExpectations(&mock_state_machine_);
+
+  // Expect two channel ISO Data to be sent
+  cis_count_out = 2;
+  cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+  for (auto leAudioDevice = group->GetFirstDevice(); leAudioDevice != nullptr;
+       leAudioDevice = group->GetNextDevice(leAudioDevice)) {
+    if (leAudioDevice->conn_id_ == 2 || leAudioDevice->conn_id_ == 3) {
+      ASSERT_TRUE(leAudioDevice->HaveAnyCisConnected() && leAudioDevice->HaveAllActiveAsesCisEst());
+    } else {
+      ASSERT_FALSE(leAudioDevice->HaveAnyCisConnected());
+    }
+  }
 }
 
 TEST_F(UnicastTestHandoverMode, SetSinkMonitorModeWhileUnicastIsActive) {
