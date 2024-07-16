@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc892075_ca05fb98",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T21:34:17Z",
+      "side": 1,
+      "message": "Thanks for the good explanation of the problem and the fix!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 51
+      },
+      "revId": "ab8a3a4ff171349df8cf500073d715aef6c12733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3995386d_bb92600a",
+        "filename": "system/bta/gatt/bta_gattc_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T21:34:17Z",
+      "side": 1,
+      "message": "This looks too complex.  Should we add an event to keep this separate?  Do we expect OP_CMPL_EVT for other op_codes here?",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 391,
+        "endChar": 5
+      },
+      "revId": "ab8a3a4ff171349df8cf500073d715aef6c12733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
