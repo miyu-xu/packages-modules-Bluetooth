@@ -29,6 +29,7 @@
 #include "common/strings.h"
 #include "hardware/bt_av.h"
 #include "hci/hci_packets.h"
+#include "metrics/bluetooth_event.h"
 #include "metrics/metrics_state.h"
 #include "os/log.h"
 
@@ -48,6 +49,10 @@ struct formatter<android::bluetooth::DeviceInfoSrcEnum>
 template <>
 struct formatter<android::bluetooth::AddressTypeEnum>
     : enum_formatter<android::bluetooth::AddressTypeEnum> {};
+template <>
+struct formatter<android::bluetooth::EventType> : enum_formatter<android::bluetooth::EventType> {};
+template <>
+struct formatter<android::bluetooth::State> : enum_formatter<android::bluetooth::State> {};
 }  // namespace fmt
 
 namespace bluetooth {
@@ -444,6 +449,18 @@ void LogMetricBluetoothLEConnection(os::LEConnectionSessionOptions session_optio
             session_options.remote_address,
             common::ToHexString(session_options.acl_connection_state),
             common::ToHexString(session_options.origin_type));
+  }
+}
+
+void LogMetricBluetoothEvent(const Address& address, android::bluetooth::EventType event_type,
+                             android::bluetooth::State state) {
+  int metric_id = 0;
+  if (!address.IsEmpty()) {
+    metric_id = MetricIdManager::GetInstance().AllocateId(address);
+  }
+  int ret = stats_write(BLUETOOTH_EVENT_REPORTED, event_type, state, metric_id, 0, 0);
+  if (ret < 0) {
+    log::warn("Failed BluetoothEvent - Address {}, Event_type {}, State {}", address, event_type, state);
   }
 }
 
