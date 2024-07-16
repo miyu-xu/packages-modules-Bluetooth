@@ -248,5 +248,15 @@ constexpr uint16_t kTmapRoleLen = 2;
 bool ParseTmapRole(std::bitset<16>& role, uint16_t len, const uint8_t* value);
 
 }  // namespace tmap
+
+namespace cas {
+
+constexpr uint16_t kAcceptorPropLen = 1;
+constexpr uint8_t kAcceptorPropBitMemberActive = 0;
+
+bool ParseAcceptorProp(std::bitset<8>& role, uint16_t len, const uint8_t* value);
+
+}  // namespace cas
+
 }  // namespace client_parser
 }  // namespace bluetooth::le_audio

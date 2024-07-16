@@ -66,6 +66,10 @@ namespace uuid {
  */
 static const bluetooth::Uuid kCapServiceUuid =
         bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE);
+static const bluetooth::Uuid kCapExServiceUuid =
+        bluetooth::Uuid::From16Bit(UUID_EXTENDED_COMMON_AUDIO_SERVICE);
+static const bluetooth::Uuid kAcceptorPropertiesCharacteristicUuid =
+        bluetooth::Uuid::From16Bit(UUID_ACCEPTOR_PROPERTIES_CHARACTERISTIC);
 
 /* Assigned numbers for attributes */
 static const bluetooth::Uuid kPublishedAudioCapabilityServiceUuid =

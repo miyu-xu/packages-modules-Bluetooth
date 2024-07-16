@@ -72,6 +72,7 @@ static jmethodID method_onHealthBasedRecommendationAction;
 static jmethodID method_onHealthBasedGroupRecommendationAction;
 static jmethodID method_onUnicastMonitorModeStatus;
 static jmethodID method_onGroupStreamStatus;
+static jmethodID method_onActiveMembersListChanged;
 
 static struct {
   jclass clazz;
@@ -394,6 +395,68 @@ public:
 
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onGroupStreamStatus, (jint)group_id,
                                  (jint)group_stream_status);
+  }
+
+  jobject createRawAddressList(JNIEnv* env, const std::vector<RawAddress>& addrs) {
+    jclass arrayListClass = (jclass)env->FindClass("java/util/ArrayList");
+    if (!arrayListClass) {
+      log::error("Failed to find class java/util/ArrayList");
+      return nullptr;
+    }
+    ScopedLocalRef<jclass> scopedArrayListClass(env, arrayListClass);
+
+    jmethodID arrayListConstructor = env->GetMethodID(arrayListClass, "<init>", "()V");
+    if (!arrayListConstructor) {
+      log::error("Failed to find ArrayList constructor");
+      return nullptr;
+    }
+
+    jmethodID arrayListAdd = env->GetMethodID(arrayListClass, "add", "(Ljava/lang/Object;)Z");
+    if (!arrayListAdd) {
+        log::error("Failed to find ArrayList 'add' method");
+        return nullptr;
+    }
+
+    jobject arrayList = env->NewObject(arrayListClass, arrayListConstructor);
+    if (!arrayList) {
+        log::error("Failed to create ArrayList instance");
+        return nullptr;
+    }
+    ScopedLocalRef<jobject> scopedArrayList(env, arrayList);
+
+    for (const auto& addr : addrs) {
+      ScopedLocalRef<jbyteArray> addrArray(env, env->NewByteArray(sizeof(RawAddress)));
+      if (!addrArray.get()) {
+        log::error("Failed to allocate jbyteArray for address");
+        return nullptr;
+      }
+
+      env->SetByteArrayRegion(addrArray.get(), 0, sizeof(RawAddress), (jbyte*)&addr);
+
+      env->CallBooleanMethod(arrayList, arrayListAdd, addrArray.get());
+    }
+
+    return scopedArrayList.release();
+  }
+
+  void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) override {
+    log::info("group_id: {}", group_id);
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jobject> addressListRef(
+            sCallbackEnv.get(), createRawAddressList(sCallbackEnv.get(), addrs));
+    if (!addressListRef.get()) {
+      log::error("Failed to create new active addrs list");
+      return;
+    }
+
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onActiveMembersListChanged, (jint)group_id,
+                                 addressListRef.get());
   }
 };
 
@@ -1601,6 +1664,8 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
            &method_onHealthBasedGroupRecommendationAction},
           {"onUnicastMonitorModeStatus", "(II)V", &method_onUnicastMonitorModeStatus},
           {"onGroupStreamStatus", "(II)V", &method_onGroupStreamStatus},
+          {"onActiveMembersListChanged", "(ILjava/util/List;)V",
+           &method_onActiveMembersListChanged},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/le_audio/LeAudioNativeInterface", javaMethods);
 

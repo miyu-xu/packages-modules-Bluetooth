@@ -2031,12 +2031,40 @@ public class LeAudioService extends ProfileService {
             return true;
         }
 
-        if (allLeAudioDevicesConnected()) {
+        if (allLeAudioDevicesConnected() && allLeAudioGroupMembersConnected()) {
             Log.d(TAG, "isScannerNeeded: all devices connected, scanner not needed");
             return false;
         }
 
         Log.d(TAG, "isScannerNeeded: true");
+        return true;
+    }
+
+    boolean allLeAudioGroupMembersConnected() {
+        if (mCsipSetCoordinatorService == null) {
+            Log.d(TAG, "allLeAudioGroupMembersConnected: CSIP is none");
+            return true;
+        }
+        mGroupReadLock.lock();
+        try {
+            for (Map.Entry<Integer, LeAudioGroupDescriptor> entry :
+                    mGroupDescriptorsView.entrySet()) {
+                Integer groupId = entry.getValue().mGroupId;
+
+                List<BluetoothDevice> groupDevices = getGroupDevices(groupId);
+
+                Integer desiredSize = mCsipSetCoordinatorService.getDesiredGroupSize(groupId);
+                Integer groupSize = groupDevices.size();
+
+                Log.d(TAG, "allLeAudioGroupMembersConnected (desiredSize=" + desiredSize + ", groupSize=" + groupSize + ")");
+
+                if (!desiredSize.equals(groupSize)) {
+                    return false;
+                }
+            }
+        } finally {
+            mGroupReadLock.unlock();
+        }
         return true;
     }
 
@@ -3065,6 +3093,32 @@ public class LeAudioService extends ProfileService {
             handleSourceStreamStatusChange(status);
         } else {
             Log.e(TAG, "handleUnicastStreamStatusChange: invalid direction: " + direction);
+        }
+    }
+
+    private void handleGroupActiveMembersChanged(int groupId, List<BluetoothDevice> devices) {
+        Log.d(TAG, "handleGroupActiveMembersChanged groupId: " + groupId);
+
+        int currentlyActiveGroupId = getActiveGroupId();
+        if (groupId != currentlyActiveGroupId) {
+            Log.d(TAG, "Ignored. Group is inactive");
+            return;
+        }
+
+        /* Suppress 'devices' unused warning */
+        Objects.requireNonNull(devices);
+
+        VolumeControlService volumeControlService = getVolumeControlService();
+        if (volumeControlService != null) {
+            int groupVolume = volumeControlService.getGroupVolume(currentlyActiveGroupId);
+            Boolean groupMuted = volumeControlService.getGroupMute(currentlyActiveGroupId);
+
+            volumeControlService.setGroupVolume(currentlyActiveGroupId, groupVolume);
+            if (groupMuted) {
+                volumeControlService.muteGroup(currentlyActiveGroupId);
+            } else {
+                volumeControlService.unmuteGroup(currentlyActiveGroupId);
+            }
         }
     }
 
@@ -4109,6 +4163,8 @@ public class LeAudioService extends ProfileService {
                     () ->
                             notifyGroupStreamStatusChanged(
                                     stackEvent.valueInt1, stackEvent.valueInt2));
+        } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED) {
+            handleGroupActiveMembersChanged(stackEvent.valueInt1, stackEvent.valueDevices);
         }
     }
 

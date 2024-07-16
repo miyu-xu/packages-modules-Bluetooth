@@ -32,6 +32,7 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.Arrays;
+import java.util.List;
 
 /** LeAudio Native Interface to/from JNI. */
 public class LeAudioNativeInterface {
@@ -255,6 +256,24 @@ public class LeAudioNativeInterface {
         event.valueInt2 = groupStreamStatus;
 
         Log.d(TAG, "onGroupStreamStatus: " + event);
+        sendMessageToService(event);
+    }
+
+    /**
+     * Active members list changed callback.
+     *
+     * @param groupId group identifier
+     * @param addresses list of active member addresses
+     */
+    @VisibleForTesting
+    public void onActiveMembersListChanged(int groupId, List<byte[]> addresses) {
+        LeAudioStackEvent event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED);
+        event.valueInt1 = groupId;
+        for (byte[] address : addresses) {
+            event.valueDevices.add(getDevice(address));
+        }
+
+        Log.d(TAG, "onActiveMembersListChanged: " + event);
         sendMessageToService(event);
     }
 
