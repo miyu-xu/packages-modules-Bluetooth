@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbeae3cf_e7eb9af4",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T00:33:48Z",
+      "side": 1,
+      "message": "I don\u0027t want to change the interface in this CL.  I think it can be a follow-on CL.",
+      "parentUuid": "79f49a47_67ac5c71",
+      "range": {
+        "startLine": 2103,
+        "startChar": 16,
+        "endLine": 2103,
+        "endChar": 59
+      },
+      "revId": "0c4aa28eab764d1379ee7f5d8f4e26c77f198a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d29274cc_0e4e749a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-27T01:41:38Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 869,
+        "startChar": 12,
+        "endLine": 869,
+        "endChar": 55
+      },
+      "revId": "0c4aa28eab764d1379ee7f5d8f4e26c77f198a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f44151dc_aef102dc",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T00:33:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d29274cc_0e4e749a",
       "range": {
         "startLine": 869,
         "startChar": 12,
