@@ -28,6 +28,7 @@
 #include "bta_dm_api_mock.h"
 #include "bta_gatt_api_mock.h"
 #include "bta_gatt_queue_mock.h"
+#include "bta_le_audio_api.h"
 #include "bta_le_audio_uuids.h"
 #include "btif/include/btif_profile_storage.h"
 #include "btm_api_mock.h"
@@ -43,6 +44,10 @@ bool gatt_cl_read_sirk_req(const RawAddress& /*peer_bda*/,
                                                    uint8_t sirk_type, Octet16& sirk)>
                            /*cb*/) {
   return true;
+}
+
+bool LeAudioClient::IsDcsEnabled() {
+  return false;
 }
 
 namespace bluetooth {

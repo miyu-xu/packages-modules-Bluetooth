@@ -686,7 +686,8 @@ public:
     log::info("address: {} group uuid {} group_id: {}", address, uuid, group_id);
 
     /* We are interested in the groups which are in the context of CAP */
-    if (uuid != bluetooth::le_audio::uuid::kCapServiceUuid) {
+    if (uuid != bluetooth::le_audio::uuid::kCapServiceUuid &&
+        uuid != bluetooth::le_audio::uuid::kCapExServiceUuid) {
       return;
     }
 
@@ -853,6 +854,20 @@ public:
                               group->audio_locations_.sink, group->audio_locations_.source,
                               group->GetAvailableContexts().value());
     }
+  }
+
+  void ReportActiveDevices(LeAudioDeviceGroup* group) {
+      std::vector<RawAddress> active_device_addrs = {};
+
+      LeAudioDevice* leAudioDevice = group->GetFirstDevice();
+      while (leAudioDevice) {
+        if (leAudioDevice->IsMemberActive()) {
+          active_device_addrs.push_back(leAudioDevice->address_);
+        }
+        leAudioDevice = group->GetNextDevice(leAudioDevice);
+      };
+
+      callbacks_->OnActiveMembersListChanged(group->group_id_, active_device_addrs);
   }
 
   void SuspendedForReconfiguration() {
@@ -1694,6 +1709,12 @@ public:
       return;
     }
 
+    if (!group->NumOfAvailableForDirection(bluetooth::le_audio::types::kLeAudioDirectionBoth)) {
+      log::error("None of the members is available for stream", static_cast<int>(group_id));
+      callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
+      return;
+    }
+
     if (active_group_id_ != bluetooth::groups::kGroupUnknown) {
       if (active_group_id_ == group_id) {
         log::info("Group is already active: {}", static_cast<int>(active_group_id_));
@@ -1934,6 +1955,25 @@ public:
     }
 
     return all_group_device_addrs;
+  }
+
+  bool IsDeviceActive(const RawAddress& addr) override {
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(addr);
+    if (leAudioDevice != nullptr) {
+      return leAudioDevice->IsMemberActive();
+    }
+    return false;
+  }
+
+  void SetDesiredGroupSize(int group_id, int size) override {
+    if (!IsDcsEnabled()) {
+      return;
+    }
+
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (group != nullptr) {
+      group->desired_group_size_ = size;
+    }
   }
 
   /* Restore paired device from storage to recreate groups */
@@ -2427,12 +2467,9 @@ public:
       UpdateLocationsAndContextsAvailability(
               group, current_group_contexts != group->GetAvailableContexts());
 
-      if (!group->IsStreaming()) {
-        return;
+      if (group->IsStreaming()) {
+        AttachToStreamingGroupIfNeeded(leAudioDevice);
       }
-
-      AttachToStreamingGroupIfNeeded(leAudioDevice);
-
     } else if (hdl == leAudioDevice->audio_supp_cont_hdls_.val_hdl) {
       BidirectionalPair<AudioContexts> supp_audio_contexts;
       if (bluetooth::le_audio::client_parser::pacs::ParseSupportedAudioContexts(supp_audio_contexts,
@@ -2457,6 +2494,52 @@ public:
                hdl == leAudioDevice->gmap_client_->getUGTFeatureHandle()) {
       leAudioDevice->gmap_client_->parseAndSaveUGTFeature(len, value);
       btif_storage_leaudio_update_gmap_bin(leAudioDevice->address_);
+    } else if (hdl == leAudioDevice->cas_prop_hdls_.val_hdl &&
+               LeAudioClient::IsDcsEnabled()) {
+      auto was_available = leAudioDevice->IsAvailableForStream();
+
+      AudioContexts current_group_contexts;
+
+      if (group) {
+        current_group_contexts = group->GetAvailableContexts();
+      }
+
+      bluetooth::le_audio::client_parser::cas::ParseAcceptorProp(leAudioDevice->cas_prop_, len,
+                                                                 value);
+
+      if (!group) {
+        return;
+      }
+
+      ReportActiveDevices(group);
+
+      /* unavailable or no change in device availability */
+      if (!leAudioDevice->IsAvailableForStream() ||
+          (leAudioDevice->IsAvailableForStream() && was_available)) {
+        return;
+      }
+
+      if (group->IsInTransition()) {
+        /* Group is in transition.
+         * if group is going to stream, schedule attaching the device to the
+         * group.
+         */
+
+        if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+          AttachToStreamingGroupIfNeeded(leAudioDevice);
+        }
+        return;
+      }
+
+      /* Whenever context type change, notify user about that.
+       * Note: GetAvailableContexts() add streaming context as well
+       */
+      UpdateLocationsAndContextsAvailability(
+              group, current_group_contexts != group->GetAvailableContexts());
+
+      if (group->IsStreaming()) {
+        AttachToStreamingGroupIfNeeded(leAudioDevice);
+      }
     } else {
       log::error("Unknown attribute read: 0x{:x}", hdl);
     }
@@ -3180,6 +3263,7 @@ public:
 
     const gatt::Service* pac_svc = nullptr;
     const gatt::Service* ase_svc = nullptr;
+    const gatt::Service* cas_svc = nullptr;
     const gatt::Service* tmas_svc = nullptr;
     const gatt::Service* gmap_svc = nullptr;
 
@@ -3201,9 +3285,18 @@ public:
         if (tmp.is_primary) {
           csis_primary_handles.push_back(tmp.handle);
         }
-      } else if (tmp.uuid == bluetooth::le_audio::uuid::kCapServiceUuid) {
-        log::info("Found CAP service, handle: 0x{:04x}, device: {}", tmp.handle,
-                  leAudioDevice->address_);
+      } else if (tmp.uuid == bluetooth::le_audio::uuid::kCapServiceUuid ||
+                 (LeAudioClient::IsDcsEnabled() &&
+                  tmp.uuid == bluetooth::le_audio::uuid::kCapExServiceUuid)) {
+        log::info("Found {}Common Audio Service service, handle: 0x{:04x}, device: {}",
+                  tmp.uuid == bluetooth::le_audio::uuid::kCapExServiceUuid ? "Extended " : "",
+                  tmp.handle, leAudioDevice->address_);
+
+        if (cas_svc != nullptr && cas_svc->uuid == bluetooth::le_audio::uuid::kCapExServiceUuid) {
+          continue;
+        }
+
+        cas_csis_included_handle = 0x0000;
 
         /* Try to find context for CSIS instances */
         for (auto& included_srvc : tmp.included_services) {
@@ -3216,6 +3309,7 @@ public:
             break;
           }
         }
+        cas_svc = &tmp;
       } else if (tmp.uuid == bluetooth::le_audio::uuid::kTelephonyMediaAudioServiceUuid) {
         log::info("Found Telephony and Media Audio service, handle: 0x{:04x}, device: {}",
                   tmp.handle, leAudioDevice->address_);
@@ -3492,6 +3586,37 @@ public:
       }
     }
 
+    if (cas_svc && cas_svc->uuid == bluetooth::le_audio::uuid::kCapExServiceUuid) {
+      for (const gatt::Characteristic& charac : cas_svc->characteristics) {
+        if (charac.uuid == bluetooth::le_audio::uuid::kAcceptorPropertiesCharacteristicUuid) {
+          leAudioDevice->cas_prop_hdls_.val_hdl = charac.value_handle;
+          leAudioDevice->cas_prop_hdls_.ccc_hdl = find_ccc_handle(charac);
+          if (leAudioDevice->cas_prop_hdls_.ccc_hdl == 0) {
+            disconnectInvalidDevice(leAudioDevice, ", Acceptor Properties char doesn't have ccc",
+                                    LeAudioHealthDeviceStatType::INVALID_DB);
+            return;
+          }
+
+          if (!subscribe_for_notification(conn_id, leAudioDevice->address_,
+                                          leAudioDevice->cas_prop_hdls_)) {
+            disconnectInvalidDevice(leAudioDevice, ", could not subscribe Acceptor Properties char",
+                                    LeAudioHealthDeviceStatType::INVALID_DB);
+            return;
+          }
+
+          /* Obtain initial state of Acceptor Properties value */
+          BtaGattQueue::ReadCharacteristic(conn_id, leAudioDevice->cas_prop_hdls_.val_hdl,
+                                           OnGattReadRspStatic, NULL);
+
+          log::info(
+                "Found Acceptor Properties characteristic, handle: 0x{:04x}, ccc "
+                "handle: 0x{:04x}, addr: {}",
+                charac.value_handle, leAudioDevice->cas_prop_hdls_.ccc_hdl,
+                leAudioDevice->address_);
+        }
+      }
+    }
+
     leAudioDevice->known_service_handles_ = true;
     leAudioDevice->notify_connected_after_read_ = true;
     if (leAudioHealthStatus_) {
@@ -3575,6 +3700,8 @@ public:
   }
 
   void AttachToStreamingGroupIfNeeded(LeAudioDevice* leAudioDevice) {
+    log::verbose("{}", leAudioDevice->address_);
+
     if (leAudioDevice->group_id_ != active_group_id_) {
       log::info("group  {} is not streaming. Nothing to do", leAudioDevice->group_id_);
       return;
@@ -3603,6 +3730,11 @@ public:
       return;
     }
 
+    if (!leAudioDevice->IsAvailableForStream()) {
+      log::info("{} is unavailable for stream", leAudioDevice->address_);
+      return;
+    }
+
     /* Restore configuration */
     auto* stream_conf = &group->stream_conf;
 
@@ -3613,6 +3745,19 @@ public:
 
     if (!stream_conf->conf) {
       log::info("Configuration not yet set. Nothing to do now");
+      return;
+    }
+
+    auto device_audio_locations = leAudioDevice->GetAudioLocations();
+    if (!device_audio_locations.has_value()) {
+      log::debug("Device has no location to use - nothing to do");
+      return;
+    }
+
+    auto group_audio_allocation = group->GetAudioChannelAllocation();
+    auto unused_locations = group_audio_allocation ^ device_audio_locations.value();
+    if (unused_locations == 0) {
+      log::info("Audio location already in use");
       return;
     }
 
@@ -3650,7 +3795,7 @@ public:
     if (!groupStateMachine_->AttachToStream(group, leAudioDevice, std::move(ccids))) {
       log::warn("Could not add device {} to the group {} streaming.", leAudioDevice->address_,
                 group->group_id_);
-      scheduleAttachDeviceToTheStream(leAudioDevice->address_);
+      scheduleAttachDeviceToTheStream(leAudioDevice);
     } else {
       speed_start_setup(group->group_id_, configuration_context_type_, 1);
     }
@@ -3662,13 +3807,15 @@ public:
       log::info("Device {} not available anymore", addr);
       return;
     }
+    leAudioDevice->attach_scheduled_ = false;
     AttachToStreamingGroupIfNeeded(leAudioDevice);
   }
 
-  void scheduleAttachDeviceToTheStream(const RawAddress& addr) {
-    log::info("Device {} is scheduled for streaming", addr);
+  void scheduleAttachDeviceToTheStream(LeAudioDevice* leAudioDevice) {
+    log::info("Device {} is scheduled for streaming", leAudioDevice->address_);
+    leAudioDevice->attach_scheduled_ = true;
     do_in_main_thread_delayed(base::BindOnce(&LeAudioClientImpl::restartAttachToTheStream,
-                                             weak_factory_.GetWeakPtr(), addr),
+                                             weak_factory_.GetWeakPtr(), leAudioDevice->address_),
                               std::chrono::milliseconds(kDeviceAttachDelayMs));
   }
 
@@ -6352,9 +6499,10 @@ public:
          * stop the stream in a proper way. For a phone call, GTBS shall be used. For now we assume
          * this device has does not want to be used for streaming and mark it as Inactive.
          */
-        log::warn("Group {} is doing autonomous release, make it inactive", group_id);
         if (group) {
           group->PrintDebugState();
+          UpdateLocationsAndContextsAvailability(group, true);
+          log::warn("Group {} is doing autonomous release, make it inactive", group_id);
           groupSetAndNotifyInactive();
         }
         audio_sender_state_ = AudioState::IDLE;
@@ -6410,6 +6558,20 @@ public:
       return;
     }
     group->UpdateCisConfiguration(direction);
+  }
+
+  void OnDeviceDetachedFromStream(LeAudioDevice* leAudioDevice) {
+    log::debug("{}", leAudioDevice->address_);
+    LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+    if (!group) {
+      log::error("Invalid group_id: {}", leAudioDevice->group_id_);
+      return;
+    }
+
+    LeAudioDevice* substituteDevice = group->GetSubstituteDevice(leAudioDevice);
+    if (substituteDevice != nullptr) {
+      AttachToStreamingGroupIfNeeded(substituteDevice);
+    }
   }
 
 private:
@@ -6764,6 +6926,12 @@ public:
       instance->OnUpdatedCisConfiguration(group_id, direction);
     }
   }
+
+  void OnDeviceDetachedFromStream(LeAudioDevice* leAudioDevice) override {
+    if (instance) {
+      instance->OnDeviceDetachedFromStream(leAudioDevice);
+    }
+  }
 };
 
 CallbacksImpl stateMachineCallbacksImpl;
@@ -6845,7 +7013,6 @@ public:
 
 class DeviceGroupsCallbacksImpl;
 DeviceGroupsCallbacksImpl deviceGroupsCallbacksImpl;
-
 }  // namespace
 
 void LeAudioClient::AddFromStorage(
@@ -6916,6 +7083,15 @@ bool LeAudioClient::IsLeAudioClientInStreaming(void) {
     return false;
   }
   return instance->IsInStreaming();
+}
+
+bool LeAudioClient::IsDcsEnabled(void) {
+  bool flag = com::android::bluetooth::flags::leaudio_unicast_dynamic_coordinated_sets();
+  bool system_prop = osi_property_get_bool("bluetooth.leaudio.dcs.enabled", true);
+
+  bool result = flag && system_prop;
+  log::info("IsDcsEnabled={}, flag={}, system_prop={}", result, flag, system_prop);
+  return result;
 }
 
 LeAudioClient* LeAudioClient::Get() {

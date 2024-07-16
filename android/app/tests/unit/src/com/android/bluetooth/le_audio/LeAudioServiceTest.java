@@ -3152,6 +3152,58 @@ public class LeAudioServiceTest {
         mService.messageFromNative(groupStatusChangedEvent);
     }
 
+    /** Test the group volume is applied to all group active members */
+    @Test
+    public void testUpdateGroupVolumeOnActiveMembersListChange() {
+        int testGroupId = 1;
+        /* AUDIO_DIRECTION_OUTPUT_BIT = 0x01 */
+        int direction = 1;
+        int snkAudioLocation = 3;
+        int srcAudioLocation = 4;
+        int availableContexts = 5 + BluetoothLeAudio.CONTEXT_TYPE_RINGTONE;
+
+        // Not connected device
+        assertThat(mService.setActiveDevice(mSingleDevice)).isFalse();
+
+        // Connected device
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        // Active members changed - group is inactive yet
+        LeAudioStackEvent groupActiveMembersChangedEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED);
+        groupActiveMembersChangedEvent.valueDevices.add(mSingleDevice);
+        groupActiveMembersChangedEvent.valueInt1 = testGroupId;
+        mService.messageFromNative(groupActiveMembersChangedEvent);
+
+        InOrder inOrder = inOrder(mVolumeControlService);
+
+        inOrder.verify(mVolumeControlService, times(0)).setGroupVolume(anyInt(), anyInt());
+
+        // Add location support
+        LeAudioStackEvent audioConfChangedEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_AUDIO_CONF_CHANGED);
+        audioConfChangedEvent.device = mSingleDevice;
+        audioConfChangedEvent.valueInt1 = direction;
+        audioConfChangedEvent.valueInt2 = testGroupId;
+        audioConfChangedEvent.valueInt3 = snkAudioLocation;
+        audioConfChangedEvent.valueInt4 = srcAudioLocation;
+        audioConfChangedEvent.valueInt5 = availableContexts;
+        mService.messageFromNative(audioConfChangedEvent);
+
+        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+        verify(mNativeInterface).groupSetActive(testGroupId);
+
+        // Set group and device as active.
+        injectGroupStatusChange(testGroupId, LeAudioStackEvent.GROUP_STATUS_ACTIVE);
+
+        // Active members changed - group is active at the time
+        mService.messageFromNative(groupActiveMembersChangedEvent);
+
+        // Verify the Volume is applied
+        inOrder.verify(mVolumeControlService, times(1)).setGroupVolume(anyInt(), anyInt());
+    }
+
     @Test
     public void registerUnregisterCallback() {
         IBluetoothLeAudioCallback callback = Mockito.mock(IBluetoothLeAudioCallback.class);

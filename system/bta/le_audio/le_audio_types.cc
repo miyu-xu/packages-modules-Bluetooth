@@ -707,6 +707,19 @@ AudioLocations get_bidirectional(BidirectionalPair<AudioLocations> bidir) {
   return bidir.sink | bidir.source;
 }
 
+template <>
+std::optional<types::AudioLocations> get_bidirectional(
+        BidirectionalPair<std::optional<types::AudioLocations>> bidir) {
+  if (bidir.sink && bidir.source) {
+    return bidir.sink.value() | bidir.source.value();
+  } else if (bidir.sink) {
+    return bidir.sink;
+  } else if (bidir.source) {
+    return bidir.source;
+  }
+  return std::nullopt;
+}
+
 std::ostream& operator<<(std::ostream& os,
                          const le_audio::types::IsoDataPathConfiguration& config) {
   os << "IsoDataPathCfg{codecId: " << config.codecId << ", isTransparent: " << config.isTransparent

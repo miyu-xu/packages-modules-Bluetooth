@@ -386,6 +386,9 @@ public:
 
   /* Callback with group stream status update */
   virtual void OnGroupStreamStatus(int group_id, GroupStreamStatus group_stream_status) = 0;
+
+  /* Callback for active members list changed in the group */
+  virtual void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) = 0;
 };
 
 class LeAudioClientInterface {

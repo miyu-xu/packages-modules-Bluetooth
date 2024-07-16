@@ -703,5 +703,22 @@ bool ParseTmapRole(std::bitset<16>& role, uint16_t len, const uint8_t* value) {
 }
 }  // namespace tmap
 
+namespace cas {
+
+bool ParseAcceptorProp(std::bitset<8>& prop, uint16_t len, const uint8_t* value) {
+  if (len != kAcceptorPropLen) {
+    log::error(", Wrong len of Acceptor Properties, characteristic ({}!={})",
+               len, kAcceptorPropLen);
+    return false;
+  }
+
+  STREAM_TO_UINT8(prop, value);
+
+  log::info(", Acceptor Properties:\n\t: {}", prop.to_string());
+
+  return true;
+}
+}  // namespace cas
+
 }  // namespace client_parser
 }  // namespace bluetooth::le_audio

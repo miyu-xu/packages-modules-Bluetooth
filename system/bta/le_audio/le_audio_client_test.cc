@@ -264,6 +264,8 @@ public:
               (int group_id, LeAudioHealthBasedAction action), (override));
   MOCK_METHOD((void), OnUnicastMonitorModeStatus,
               (uint8_t direction, UnicastMonitorModeStatus status));
+  MOCK_METHOD((void), OnActiveMembersListChanged,
+              (int group_id, const std::vector<RawAddress>& addrs), (override));
 };
 
 class MockLeAudioSinkHalClient : public LeAudioSinkAudioHalClient {
@@ -274,7 +276,7 @@ public:
                LeAudioSinkAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes),
               (override));
   MOCK_METHOD((void), Stop, (), (override));
-  MOCK_METHOD((size_t), SendData, (uint8_t* data, uint16_t size), (override));
+  MOCK_METHOD((size_t), SendData, (uint8_t * data, uint16_t size), (override));
   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
@@ -583,6 +585,17 @@ protected:
     }
   }
 
+  void InjectAcceptorProperties(const RawAddress& test_address, uint16_t conn_id, uint8_t value,
+                                bool sync_on_mainloop = true) {
+    std::vector<uint8_t> vec = { value };
+
+    /* 0x0043 is cap->acceptor_prop_char + 1 */
+    InjectNotificationEvent(test_address, conn_id, 0x0043, vec);
+    if (sync_on_mainloop) {
+      SyncOnMainLoop();
+    }
+  }
+
   void SetUpMockGatt() {
     // default action for GetCharacteristic function call
     ON_CALL(mock_gatt_interface_, GetCharacteristic(_, _))
@@ -785,6 +798,22 @@ protected:
                       },
                       &peer_devices, conn_id, handles, cb, cb_data));
             }));
+  }
+
+  void OnCallProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group,
+                                            LeAudioDevice* leAudioDevice) {
+    if (!group) {
+      return;
+    }
+
+    for (auto& ase : leAudioDevice->ases_) {
+      group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase.cis_conn_hdl);
+    }
+
+    if (group->IsEmpty()) {
+      group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
+      InjectCigRemoved(group->group_id_);
+    }
   }
 
   void SetUpMockGroups() {
@@ -1332,18 +1361,7 @@ protected:
 
     ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
             .WillByDefault([this](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
-              if (!group) {
-                return;
-              }
-
-              for (auto& ase : leAudioDevice->ases_) {
-                group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase.cis_conn_hdl);
-              }
-
-              if (group->IsEmpty()) {
-                group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
-                InjectCigRemoved(group->group_id_);
-              }
+              this->OnCallProcessHciNotifAclDisconnected(group, leAudioDevice);
             });
 
     ON_CALL(mock_state_machine_, ProcessHciNotifCisDisconnected(_, _, _))
@@ -1638,6 +1656,9 @@ protected:
       uint16_t start = 0;
       uint16_t end = 0;
       uint16_t csis_include = 0;
+      uint16_t acceptor_prop_char = 0;
+
+      uint8_t acceptor_prop = 0;
 
       MOCK_METHOD((std::pair<GattStatus, std::vector<uint8_t>>), OnGetCharacteristicValue,
                   (uint16_t handle), (override));
@@ -1819,7 +1840,8 @@ protected:
 
   void ConnectCsisDevice(const RawAddress& addr, uint16_t conn_id, uint32_t sink_audio_allocation,
                          uint32_t source_audio_allocation, uint8_t group_size, int group_id,
-                         uint8_t rank, bool connect_through_csis = false, bool new_device = true) {
+                         uint8_t rank, bool connect_through_csis = false, bool new_device = true,
+                         bool is_cas_ex = false) {
     SetSampleDatabaseEarbudsValid(conn_id, addr, sink_audio_allocation, source_audio_allocation,
                                   default_channel_cnt, default_channel_cnt,
                                   0x0034, /* source sample freq 16/24k/32hz */
@@ -1827,7 +1849,10 @@ protected:
                                   true,   /*add_cas*/
                                   true,   /*add_pacs*/
                                   true,   /*add_ascs*/
-                                  group_size, rank);
+                                  group_size, rank,
+                                  GATT_SUCCESS, /*gatt_status*/
+                                  is_cas_ex,
+                                  0x01 /*cas_ext_acceptor_prop*/);
     EXPECT_CALL(mock_audio_hal_client_callbacks_,
                 OnConnectionState(ConnectionState::CONNECTED, addr))
             .Times(1);
@@ -2102,7 +2127,18 @@ protected:
 
     if (cas->start) {
       bool is_primary = true;
-      bob.AddService(cas->start, cas->end, bluetooth::le_audio::uuid::kCapServiceUuid, is_primary);
+      if (cas->acceptor_prop_char) {
+        bob.AddService(cas->start, cas->end, bluetooth::le_audio::uuid::kCapExServiceUuid,
+                       is_primary);
+        bob.AddCharacteristic(cas->acceptor_prop_char, cas->acceptor_prop_char + 1,
+                              bluetooth::le_audio::uuid::kAcceptorPropertiesCharacteristicUuid,
+                              GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
+        bob.AddDescriptor(cas->acceptor_prop_char + 2,
+                          Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
+      } else {
+        bob.AddService(cas->start, cas->end, bluetooth::le_audio::uuid::kCapServiceUuid,
+                       is_primary);
+      }
       // Include CSIS service inside
       if (cas->csis_include) {
         bob.AddIncludedService(cas->csis_include, bluetooth::csis::kCsisServiceUuid, csis->start,
@@ -2243,6 +2279,8 @@ protected:
     uint8_t rank = 1;
     GattStatus gatt_status = GATT_SUCCESS;
     uint8_t max_supported_codec_frames_per_sdu = 1;
+    bool is_cas_ex = false;
+    uint8_t cas_ext_acceptor_prop = 0;
   };
 
   void SetSampleDatabaseEarbudsValid(
@@ -2250,7 +2288,8 @@ protected:
           uint32_t source_audio_allocation, uint8_t sink_channel_cnt = 0x03,
           uint8_t source_channel_cnt = 0x03, uint16_t sample_freq_mask = 0x0004,
           bool add_csis = true, bool add_cas = true, bool add_pacs = true, int add_ascs_cnt = 1,
-          uint8_t set_size = 2, uint8_t rank = 1, GattStatus gatt_status = GATT_SUCCESS) {
+          uint8_t set_size = 2, uint8_t rank = 1, GattStatus gatt_status = GATT_SUCCESS,
+          bool is_cas_ex = false, uint8_t cas_ext_acceptor_prop = 0) {
     SetSampleDatabaseEarbudsValid(SampleDatabaseParameters{
             .conn_id = conn_id,
             .addr = addr,
@@ -2267,6 +2306,8 @@ protected:
             .rank = rank,
             .gatt_status = gatt_status,
             .max_supported_codec_frames_per_sdu = 1,
+            .is_cas_ex = is_cas_ex,
+            .cas_ext_acceptor_prop = cas_ext_acceptor_prop,
     });
   }
 
@@ -2286,6 +2327,8 @@ protected:
     auto rank = params.rank;
     auto gatt_status = params.gatt_status;
     auto max_supported_codec_frames_per_sdu = params.max_supported_codec_frames_per_sdu;
+    auto is_cas_ex = params.is_cas_ex;
+    auto cas_ext_acceptor_prop = params.cas_ext_acceptor_prop;
 
     auto csis = std::make_unique<NiceMock<MockDeviceWrapper::csis_mock>>();
     if (add_csis) {
@@ -2310,6 +2353,10 @@ protected:
       cas->start = 0x0040;
       if (add_csis) {
         cas->csis_include = 0x0041;
+      }
+      if (is_cas_ex) {
+        cas->acceptor_prop_char = 0x0042;
+        cas->acceptor_prop = cas_ext_acceptor_prop;
       }
       cas->end = 0x0050;
       // other params
@@ -2369,6 +2416,72 @@ protected:
 
     set_sample_database(conn_id, addr, std::move(csis), std::move(cas), std::move(ascs),
                         std::move(pacs));
+
+    if (add_ascs_cnt > 0) {
+      // Set ascs default read values
+      ON_CALL(*peer_devices.at(conn_id)->ascs, OnGetCharacteristicValue(_))
+              .WillByDefault([this, conn_id, gatt_status](uint16_t handle) {
+                auto& ascs = peer_devices.at(conn_id)->ascs;
+                std::vector<uint8_t> value;
+                bool is_ase_sink_request = false;
+                bool is_ase_src_request = false;
+                uint8_t idx;
+
+                if (handle == ascs->ctp_ccc && ccc_stored_byte_val_.has_value()) {
+                  value = {*ccc_stored_byte_val_, 00};
+                  return std::make_pair(gatt_read_ctp_ccc_status_, value);
+                }
+
+                if (gatt_status == GATT_SUCCESS) {
+                  if (handle == ascs->ctp_ccc) {
+                    value = UINT16_TO_VEC_UINT8(ascs->ctp_ccc_val);
+                  } else {
+                    for (idx = 0; idx < max_num_of_ases; idx++) {
+                      if (handle == ascs->sink_ase_ccc[idx] + 1) {
+                        value = UINT16_TO_VEC_UINT8(ascs->sink_ase_ccc_val[idx]);
+                        break;
+                      }
+                      if (handle == ascs->source_ase_char[idx] + 1) {
+                        value = UINT16_TO_VEC_UINT8(ascs->source_ase_ccc_val[idx]);
+                        break;
+                      }
+                    }
+                  }
+
+                  for (idx = 0; idx < max_num_of_ases; idx++) {
+                    if (handle == ascs->sink_ase_char[idx] + 1) {
+                      is_ase_sink_request = true;
+                      break;
+                    }
+                    if (handle == ascs->source_ase_char[idx] + 1) {
+                      is_ase_src_request = true;
+                      break;
+                    }
+                  }
+
+                  if (is_ase_sink_request) {
+                    value = {
+                            // ASE ID
+                            static_cast<uint8_t>(idx + 1),
+                            // State
+                            static_cast<uint8_t>(bluetooth::le_audio::types::AseState::
+                                                         BTA_LE_AUDIO_ASE_STATE_IDLE),
+                            // No Additional ASE params for IDLE state
+                    };
+                  } else if (is_ase_src_request) {
+                    value = {
+                            // ASE ID
+                            static_cast<uint8_t>(idx + 6),
+                            // State
+                            static_cast<uint8_t>(bluetooth::le_audio::types::AseState::
+                                                         BTA_LE_AUDIO_ASE_STATE_IDLE),
+                            // No Additional ASE params for IDLE state
+                    };
+                  }
+                }
+                return std::make_pair(gatt_status, value);
+              });
+    }
 
     if (add_pacs) {
       uint8_t sample_freq[2];
@@ -2544,66 +2657,15 @@ protected:
               });
     }
 
-    if (add_ascs_cnt > 0) {
-      // Set ascs default read values
-      ON_CALL(*peer_devices.at(conn_id)->ascs, OnGetCharacteristicValue(_))
-              .WillByDefault([this, conn_id, gatt_status](uint16_t handle) {
-                auto& ascs = peer_devices.at(conn_id)->ascs;
+    if (add_cas && is_cas_ex) {
+      // Set acceptor properties default read values
+      ON_CALL(*peer_devices.at(conn_id)->cas, OnGetCharacteristicValue(_))
+              .WillByDefault([=, this](uint16_t handle) {
+                auto& cas = peer_devices.at(conn_id)->cas;
                 std::vector<uint8_t> value;
-                bool is_ase_sink_request = false;
-                bool is_ase_src_request = false;
-                uint8_t idx;
-
-                if (handle == ascs->ctp_ccc && ccc_stored_byte_val_.has_value()) {
-                  value = {*ccc_stored_byte_val_, 00};
-                  return std::make_pair(gatt_read_ctp_ccc_status_, value);
-                }
-
                 if (gatt_status == GATT_SUCCESS) {
-                  if (handle == ascs->ctp_ccc) {
-                    value = UINT16_TO_VEC_UINT8(ascs->ctp_ccc_val);
-                  } else {
-                    for (idx = 0; idx < max_num_of_ases; idx++) {
-                      if (handle == ascs->sink_ase_ccc[idx] + 1) {
-                        value = UINT16_TO_VEC_UINT8(ascs->sink_ase_ccc_val[idx]);
-                        break;
-                      }
-                      if (handle == ascs->source_ase_char[idx] + 1) {
-                        value = UINT16_TO_VEC_UINT8(ascs->source_ase_ccc_val[idx]);
-                        break;
-                      }
-                    }
-                  }
-
-                  for (idx = 0; idx < max_num_of_ases; idx++) {
-                    if (handle == ascs->sink_ase_char[idx] + 1) {
-                      is_ase_sink_request = true;
-                      break;
-                    }
-                    if (handle == ascs->source_ase_char[idx] + 1) {
-                      is_ase_src_request = true;
-                      break;
-                    }
-                  }
-
-                  if (is_ase_sink_request) {
-                    value = {
-                            // ASE ID
-                            static_cast<uint8_t>(idx + 1),
-                            // State
-                            static_cast<uint8_t>(bluetooth::le_audio::types::AseState::
-                                                         BTA_LE_AUDIO_ASE_STATE_IDLE),
-                            // No Additional ASE params for IDLE state
-                    };
-                  } else if (is_ase_src_request) {
-                    value = {
-                            // ASE ID
-                            static_cast<uint8_t>(idx + 6),
-                            // State
-                            static_cast<uint8_t>(bluetooth::le_audio::types::AseState::
-                                                         BTA_LE_AUDIO_ASE_STATE_IDLE),
-                            // No Additional ASE params for IDLE state
-                    };
+                  if (handle == cas->acceptor_prop_char + 1) {
+                    value = { cas->acceptor_prop };
                   }
                 }
                 return std::make_pair(gatt_status, value);
@@ -10388,10 +10450,10 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnected) {
   // disconnection
   int num_of_connected = 0;
   ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
-          .WillByDefault(
-                  [&num_of_connected](LeAudioDeviceGroup* group, LeAudioDevice* /*leAudioDevice*/) {
-                    num_of_connected = group->NumOfConnected();
-                  });
+          .WillByDefault([&](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+            OnCallProcessHciNotifAclDisconnected(group, leAudioDevice);
+            num_of_connected = group->NumOfConnected();
+          });
 
   auto conn_id = device->conn_id_;
   InjectDisconnectedEvent(device->conn_id_, GATT_CONN_TERMINATE_PEER_USER);
@@ -12894,6 +12956,219 @@ TEST_F(UnicastTest, GroupStreamStatusResendAfterRemove) {
           .Times(1);
   state_machine_callbacks_->StatusReportCb(group_id, GroupStreamStatus::IDLE);
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+}
+
+TEST_F(UnicastTest, testDcs_SwapDeviceOnDisconnection) {
+  com::android::bluetooth::flags::provider_->leaudio_unicast_dynamic_coordinated_sets(true);
+  /**
+   * Verify if disconnected Dynamic Set Member can be substituted with another set member available
+   * for stream.
+   *
+   * Scenario:
+   * 1. Have a coordinated set with multiple members, all available for stream.
+   * 2. Start streaming. Verify that two devices: one left and one right is actively streaming.
+   * 3. Disconnect one of the active devices.
+   * 4. Verify another device capable for stream is attached.
+   */
+  uint8_t group_size = 4;
+  int group_id = 2;
+
+  // Report working CSIS
+  ON_CALL(mock_csis_client_module_, IsCsisClientRunning()).WillByDefault(Return(true));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+          .WillByDefault(Invoke([&](int /*group_id*/) { return group_size; }));
+
+  ConnectCsisDevice(GetTestAddress(1), 1 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 1 /* rank */,
+                    false /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  ConnectCsisDevice(GetTestAddress(2), 2 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 2 /* rank */,
+                    true /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  ConnectCsisDevice(GetTestAddress(3), 3 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 3 /* rank */,
+                    true /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  ConnectCsisDevice(GetTestAddress(4), 4 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 4 /* rank */,
+                    true /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  // Audio sessions are started only when device gets active
+  EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
+  EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
+  LeAudioClient::Get()->GroupSetActive(group_id);
+  LeAudioClient::Get()->SetDesiredGroupSize(group_id, 2);
+  SyncOnMainLoop();
+
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  auto group = streaming_groups.at(group_id);
+
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+  Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+  SyncOnMainLoop();
+  ASSERT_EQ(4, group->NumOfConnected());
+
+  // Expect two iso channels to be fed with data
+  uint8_t cis_count_out = 2;
+  uint8_t cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+  // Disconnect one device and expect the group to keep on streaming
+  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(0);
+  auto device = group->GetFirstDevice();
+
+  // Simulate member active bit being cleared
+  InjectAcceptorProperties(device->address_, device->conn_id_, 0);
+
+  for (auto& ase : device->ases_) {
+    InjectCisDisconnected(group_id, ase.cis_conn_hdl);
+  }
+
+  /* Disconnect ACL and do not reconnect. */
+  ON_CALL(mock_gatt_interface_, Open(_, device->address_, BTM_BLE_DIRECT_CONNECTION, _))
+          .WillByDefault(Return());
+  EXPECT_CALL(mock_gatt_interface_, Open(_, device->address_, BTM_BLE_DIRECT_CONNECTION, false))
+          .Times(1);
+
+  // Record NumOfConnected when groupStateMachine_ gets notified about the
+  // disconnection
+  int num_of_connected = 0;
+  ON_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
+          .WillByDefault([&](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+            log::info("ProcessHciNotifAclDisconnected");
+            OnCallProcessHciNotifAclDisconnected(group, leAudioDevice);
+            num_of_connected = group->NumOfConnected();
+          });
+
+  auto conn_id = device->conn_id_;
+  InjectDisconnectedEvent(device->conn_id_, GATT_CONN_TERMINATE_PEER_USER);
+  SyncOnMainLoop();
+
+  Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+
+  do_in_main_thread(base::BindOnce(
+          [](LeAudioDevice* leAudioDevice,
+             bluetooth::le_audio::LeAudioGroupStateMachine::Callbacks* state_machine_callbacks) {
+            state_machine_callbacks->OnDeviceDetachedFromStream(leAudioDevice);
+          },
+          device, base::Unretained(this->state_machine_callbacks_)));
+  SyncOnMainLoop();
+  // Make sure the state machine knows about the disconnected device
+  ASSERT_EQ(3, num_of_connected);
+
+  // Expect two channel ISO Data to be sent
+  cis_count_out = 2;
+  cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+}
+
+TEST_F(UnicastTest, testDcs_SwapDeviceOnAudioResume) {
+  com::android::bluetooth::flags::provider_->leaudio_unicast_dynamic_coordinated_sets(true);
+  /**
+   * Verify if Dynamic Set Member once becoming unavailable can be substituted with another set
+   * member available for stream.
+   *
+   * Scenario:
+   * 1. Have a coordinated set with multiple members, all available for stream.
+   * 2. Start streaming. Verify that two devices: one left and one right is actively streaming.
+   * 3. One of the active devices becomes unavailable.
+   *    The PACS Available Contexts are zero, but ASE is not released.
+   * 4. Verify the group is still streaming. Other device is not attached at the moment.
+   * 5. Stop stream.
+   * 6. Start stream.
+   * 7. Verify another device capable for stream is attached.
+   */
+  uint8_t group_size = 4;
+  int group_id = 2;
+
+  // Report working CSIS
+  ON_CALL(mock_csis_client_module_, IsCsisClientRunning()).WillByDefault(Return(true));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+          .WillByDefault(Invoke([&](int /*group_id*/) { return group_size; }));
+
+  ConnectCsisDevice(GetTestAddress(1), 1 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 1 /* rank */,
+                    false /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  ConnectCsisDevice(GetTestAddress(2), 2 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontLeft,
+                    codec_spec_conf::kLeAudioLocationFrontLeft, group_size, group_id, 2 /* rank */,
+                    true /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  ConnectCsisDevice(GetTestAddress(3), 3 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 3 /* rank */,
+                    true /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  ConnectCsisDevice(GetTestAddress(4), 4 /* conn_id */, codec_spec_conf::kLeAudioLocationFrontRight,
+                    codec_spec_conf::kLeAudioLocationFrontRight, group_size, group_id, 4 /* rank */,
+                    true /* connect_through_csis */, true /*new_device*/, true /*is_cas_ex*/);
+
+  // Audio sessions are started only when device gets active
+  EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
+  EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
+  LeAudioClient::Get()->GroupSetActive(group_id);
+  LeAudioClient::Get()->SetDesiredGroupSize(group_id, 2);
+  SyncOnMainLoop();
+
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  auto group = streaming_groups.at(group_id);
+
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+  Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+  SyncOnMainLoop();
+  ASSERT_EQ(4, group->NumOfConnected());
+
+  // Expect two iso channels to be fed with data
+  uint8_t cis_count_out = 2;
+  uint8_t cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+  for (auto leAudioDevice = group->GetFirstDevice(); leAudioDevice != nullptr;
+       leAudioDevice = group->GetNextDevice(leAudioDevice)) {
+    if (leAudioDevice->conn_id_ == 1 || leAudioDevice->conn_id_ == 3) {
+      ASSERT_TRUE(leAudioDevice->HaveAnyCisConnected() && leAudioDevice->HaveAllActiveAsesCisEst());
+    } else {
+      ASSERT_FALSE(leAudioDevice->HaveAnyCisConnected());
+    }
+  }
+
+  // Clear the Member Active Bit and expect the group to keep on streaming
+  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(0);
+  auto device = group->GetFirstDevice();
+  InjectAcceptorProperties(device->address_, device->conn_id_, 0);
+  SyncOnMainLoop();
+
+  Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
+  Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+
+  // Stop
+  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(1);
+  StopStreaming(group_id, true);
+  // simulate suspend timeout passed, alarm executing
+  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  Mock::VerifyAndClearExpectations(&mock_state_machine_);
+
+  // Start
+  EXPECT_CALL(mock_state_machine_, StartStream(_, _, _, _)).Times(1);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  Mock::VerifyAndClearExpectations(&mock_state_machine_);
+
+  // Expect two channel ISO Data to be sent
+  cis_count_out = 2;
+  cis_count_in = 0;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+  for (auto leAudioDevice = group->GetFirstDevice(); leAudioDevice != nullptr;
+       leAudioDevice = group->GetNextDevice(leAudioDevice)) {
+    if (leAudioDevice->conn_id_ == 2 || leAudioDevice->conn_id_ == 3) {
+      ASSERT_TRUE(leAudioDevice->HaveAnyCisConnected() && leAudioDevice->HaveAllActiveAsesCisEst());
+    } else {
+      ASSERT_FALSE(leAudioDevice->HaveAnyCisConnected());
+    }
+  }
 }
 
 TEST_F(UnicastTestHandoverMode, SetSinkMonitorModeWhileUnicastIsActive) {
