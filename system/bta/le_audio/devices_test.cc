@@ -527,6 +527,11 @@ protected:
             .WillByDefault(Invoke([this](int /*group_id*/) {
               return desired_group_size_ > 0 ? desired_group_size_ : (int)(addresses_.size());
             }));
+    ON_CALL(mock_csis_client_module_, GetDesiredActiveSize(_))
+            .WillByDefault(Invoke([this](int group_id) {
+              return (int)(mock_csis_client_module_.GetDesiredSize(group_id));
+            }));
+    ON_CALL(mock_csis_client_module_, IsMemberActive(_, _)).WillByDefault(Return(true));
     SetUpMockCodecManager(codec_location);
   }
 
@@ -997,6 +1002,8 @@ protected:
             continue;
           }
 
+          int desired_size = group_->DesiredSize();
+
           /* Make sure the strategy is the expected one */
           auto ase_config_strategy = bluetooth::le_audio::utils::GetStrategyForAseConfig(
                   ase_confs.get(direction), data_size);
@@ -1416,7 +1423,7 @@ protected:
   std::vector<RawAddress> addresses_;
   LeAudioDeviceGroup* group_ = nullptr;
   bluetooth::manager::MockBtmInterface btm_interface_;
-  MockCsisClient mock_csis_client_module_;
+  NiceMock<MockCsisClient> mock_csis_client_module_;
   NiceMock<bluetooth::hci::testing::MockControllerInterface> controller_interface_;
 
   bluetooth::le_audio::CodecManager* codec_manager_;

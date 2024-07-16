@@ -231,6 +231,7 @@ LeAudioSinkAudioHalClient::Callbacks* audioSourceReceiver;
 CigCallbacks* stateMachineHciCallbacks;
 LeAudioGroupStateMachine::Callbacks* stateMachineCallbacks;
 DeviceGroupsCallbacks* device_group_callbacks;
+bluetooth::csis::CsisClientCallbacks* csis_client_callbacks;
 LeAudioIsoDataCallback* iso_data_callback;
 
 class StreamSpeedTracker {
@@ -441,6 +442,7 @@ public:
             true);
 
     DeviceGroups::Get()->Initialize(device_group_callbacks);
+    bluetooth::csis::CsisClient::Initialize(csis_client_callbacks, base::DoNothing());
   }
 
   /* Helper function for update source local and in_call context metadata (if in call) */
@@ -767,6 +769,51 @@ public:
     }
 
     group_remove_node(group, address);
+  }
+
+  void OnActiveMembersListChangedCb(int group_id, const std::vector<RawAddress>& addresses) {
+    log::info("group: {}", group_id);
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (group == nullptr) {
+      return;
+    }
+
+    for (LeAudioDevice* leAudioDevice = group->GetFirstDevice(); leAudioDevice != nullptr;
+         leAudioDevice = group->GetNextDevice(leAudioDevice)) {
+      bool is_available_old = leAudioDevice->IsAvailableForStream();
+
+      leAudioDevice->is_csis_dynamic_set_member_active_ =
+              std::find(addresses.begin(), addresses.end(), leAudioDevice->address_) !=
+              addresses.end();
+
+
+      /* no change in device availability */
+      if (is_available_old == leAudioDevice->IsAvailableForStream()) {
+        continue;
+      }
+
+      if (group->IsInTransition()) {
+        /* Group is in transition.
+         * if group is going to stream, schedule attaching the device to the
+         * group.
+         */
+
+        if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+          AttachToStreamingGroupIfNeeded(leAudioDevice);
+        }
+        return;
+      }
+
+      if (!group->IsStreaming()) {
+        /* Group is not streaming. Device does not have to be attach to the
+         * stream, and we can update context availability for the group
+         */
+        UpdateLocationsAndContextsAvailability(group);
+        return;
+      }
+
+      AttachToStreamingGroupIfNeeded(leAudioDevice);
+    }
   }
 
   /* This callback happens if kLeAudioDeviceSetStateTimeoutMs timeout happens
@@ -1524,6 +1571,19 @@ public:
     group->SetAllowedContextMask(allowed_contexts);
   }
 
+  void SetDesiredActiveSize(int group_id, int desired_active_size) override {
+    log::debug("group_id: {}, desired_active_size: {}", group_id, desired_active_size);
+    if (group_id == bluetooth::groups::kGroupUnknown) {
+      log::warn("Unknown group_id");
+      return;
+    }
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (!group) {
+      log::warn("group_id {} does not exist", group_id);
+      return;
+    }
+  }
+
   void StartAudioSession(LeAudioDeviceGroup* group) {
     /* This function is called when group is not yet set to active.
      * This is why we don't have to check if session is started already.
@@ -1690,6 +1750,12 @@ public:
 
     if (group->NumOfConnected() == 0) {
       log::error("Group: {} is not connected anymore", static_cast<int>(group_id));
+      callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
+      return;
+    }
+
+    if (!group->NumOfAvailableForDirection(bluetooth::le_audio::types::kLeAudioDirectionBoth)) {
+      log::error("None of the members is available for stream", static_cast<int>(group_id));
       callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
       return;
     }
@@ -3600,6 +3666,11 @@ public:
               "{} does not have required context type. Group Context type: {}, device available {}",
               leAudioDevice->address_, common::ToString(group_metadata_contexts),
               common::ToString(device_available_contexts));
+      return;
+    }
+
+    if (!leAudioDevice->IsAvailableForStream()) {
+      log::info("{} is unavailable for stream", leAudioDevice->address_);
       return;
     }
 
@@ -6412,6 +6483,20 @@ public:
     group->UpdateCisConfiguration(direction);
   }
 
+  void OnDeviceDetachedFromStream(LeAudioDevice* leAudioDevice) {
+    log::debug("{}", leAudioDevice->address_);
+    LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+    if (!group) {
+      log::error("Invalid group_id: {}", leAudioDevice->group_id_);
+      return;
+    }
+
+    LeAudioDevice* substituteDevice = group->GetSubstituteDevice(leAudioDevice);
+    if (substituteDevice != nullptr) {
+      AttachToStreamingGroupIfNeeded(substituteDevice);
+    }
+  }
+
 private:
   tGATT_IF gatt_if_;
   bluetooth::le_audio::LeAudioClientCallbacks* callbacks_;
@@ -6764,6 +6849,12 @@ public:
       instance->OnUpdatedCisConfiguration(group_id, direction);
     }
   }
+
+  void OnDeviceDetachedFromStream(LeAudioDevice* leAudioDevice) override {
+    if (instance) {
+      instance->OnDeviceDetachedFromStream(leAudioDevice);
+    }
+  }
 };
 
 CallbacksImpl stateMachineCallbacksImpl;
@@ -6845,6 +6936,36 @@ public:
 
 class DeviceGroupsCallbacksImpl;
 DeviceGroupsCallbacksImpl deviceGroupsCallbacksImpl;
+
+class CsisClientCallbacksImpl : public bluetooth::csis::CsisClientCallbacks {
+public:
+  void OnConnectionState(const RawAddress& /*addr*/,
+                         bluetooth::csis::ConnectionState /*state*/) override {
+    /* to implement if needed */
+  }
+
+  void OnDeviceAvailable(const RawAddress& /*addr*/, int /*group_id*/, int /*group_size*/,
+                         int /*rank*/, const bluetooth::Uuid& /*uuid*/) override {
+    /* to implement if needed */
+  }
+
+  void OnSetMemberAvailable(const RawAddress& /*addr*/, int /*group_id*/) override {
+    /* to implement if needed */
+  }
+
+  void OnGroupLockChanged(int /*group_id*/, bool /*locked*/,
+                          bluetooth::csis::CsisGroupLockStatus /*status*/) override {
+    /* to implement if needed */
+  }
+
+  void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addresses) override {
+    if (instance) {
+      instance->OnActiveMembersListChangedCb(group_id, addresses);
+    }
+  }
+};
+
+CsisClientCallbacksImpl csisClientCallbacksImpl;
 
 }  // namespace
 
@@ -6951,6 +7072,7 @@ void LeAudioClient::Initialize(
   stateMachineHciCallbacks = &stateMachineHciCallbacksImpl;
   stateMachineCallbacks = &stateMachineCallbacksImpl;
   device_group_callbacks = &deviceGroupsCallbacksImpl;
+  csis_client_callbacks = &csisClientCallbacksImpl;
   instance = new LeAudioClientImpl(callbacks_, stateMachineCallbacks, initCb);
 
   IsoManager::GetInstance()->RegisterCigCallbacks(stateMachineHciCallbacks);
