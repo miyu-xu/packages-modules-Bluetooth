@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0369bab_c11cbc0c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "Will add in a future CL",
+      "parentUuid": "cf60d5e5_936ad037",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77a192a1_fc8623d3",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1918aa_e927ec59",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "Will try waitForLooperToBeIdle",
+      "parentUuid": "77a192a1_fc8623d3",
+      "range": {
+        "startLine": 889,
+        "startChar": 8,
+        "endLine": 889,
+        "endChar": 14
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11d52124_baac4e7f",
@@ -102,6 +150,54 @@
           ]
         }
       ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d599223d_8040a60b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "n/a since changed to waitForLooperToBeIdle",
+      "parentUuid": "11d52124_baac4e7f",
+      "range": {
+        "startLine": 891,
+        "startChar": 24,
+        "endLine": 891,
+        "endChar": 49
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a777918_13f40b0a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "n/a since replaced with waitForLooperToBeIdle",
+      "parentUuid": "11d52124_baac4e7f",
+      "range": {
+        "startLine": 891,
+        "startChar": 24,
+        "endLine": 891,
+        "endChar": 49
+      },
       "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -198,6 +294,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11da4f8d_d143350d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "181e24ab_90679704",
+      "range": {
+        "startLine": 907,
+        "startChar": 8,
+        "endLine": 907,
+        "endChar": 39
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a17cb7e_8ce9d0ba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "181e24ab_90679704",
+      "range": {
+        "startLine": 907,
+        "startChar": 8,
+        "endLine": 907,
+        "endChar": 39
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "827eb29e_84b5e649",
@@ -255,6 +399,54 @@
           ]
         }
       ],
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e54d5bae_03f50a65",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "827eb29e_84b5e649",
+      "range": {
+        "startLine": 909,
+        "startChar": 34,
+        "endLine": 909,
+        "endChar": 49
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "424c0d89_945d9a0d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-16T21:28:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "827eb29e_84b5e649",
+      "range": {
+        "startLine": 909,
+        "startChar": 34,
+        "endLine": 909,
+        "endChar": 49
+      },
       "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
