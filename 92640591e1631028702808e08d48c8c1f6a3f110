@@ -16,6 +16,24 @@
       "message": "Delete file ?",
       "revId": "92640591e1631028702808e08d48c8c1f6a3f110",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32f08813_1f7c5daa",
+        "filename": "system/gd/common/init_flags_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T18:45:46Z",
+      "side": 1,
+      "message": "When I remove all the init_flags remnants.  I don\u0027t want to touch Android.bp files very often.",
+      "parentUuid": "1a05ae0a_c0121ccd",
+      "revId": "92640591e1631028702808e08d48c8c1f6a3f110",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
