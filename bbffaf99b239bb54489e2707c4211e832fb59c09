@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dacfc91_7fd61f09",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-16T09:49:50Z",
+      "side": 1,
+      "message": "Declared a constant for the maximum number of cl_rcb",
+      "parentUuid": "201d89da_057d74f9",
+      "range": {
+        "startLine": 1271,
+        "startChar": 22,
+        "endLine": 1271,
+        "endChar": 25
+      },
+      "revId": "bbffaf99b239bb54489e2707c4211e832fb59c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5be89aa_b903b441",
@@ -83,6 +107,24 @@
           ]
         }
       ],
+      "revId": "bbffaf99b239bb54489e2707c4211e832fb59c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c804c16c_fb521407",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-16T09:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5be89aa_b903b441",
       "revId": "bbffaf99b239bb54489e2707c4211e832fb59c09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
