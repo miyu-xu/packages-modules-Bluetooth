@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "201d89da_057d74f9",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-16T06:35:33Z",
+      "side": 1,
+      "message": "Where is this magic number coming from?",
+      "range": {
+        "startLine": 1271,
+        "startChar": 22,
+        "endLine": 1271,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3693b6a9_45f63feb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_api.cc",
+              "range": {
+                "startLine": 1271,
+                "startChar": 0,
+                "endLine": 1272,
+                "endChar": 0
+              },
+              "replacement": "  for (int i \u003d 0; i \u003c 100; i++) {  // 100 is the max number of gatt_if\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bbffaf99b239bb54489e2707c4211e832fb59c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5be89aa_b903b441",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-16T06:35:33Z",
+      "side": 1,
+      "message": "This isn\u0027t used by the unflagged code, so this doesn\u0027t need to be flagged.",
+      "fixSuggestions": [
+        {
+          "fixId": "8193b067_e02461d7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_main.cc",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": "  gatt_cb.next_gatt_if \u003d 1;\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_main.cc",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 118,
+                "endChar": 0
+              },
+              "replacement": "    gatt_cb.next_gatt_if \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bbffaf99b239bb54489e2707c4211e832fb59c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
