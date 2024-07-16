@@ -966,7 +966,7 @@ static bool select_audio_channel_mode(const btav_a2dp_codec_config_t* p_codec_au
   return false;
 }
 
-bool A2dpCodecConfigSbcBase::setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
+tA2DP_STATUS A2dpCodecConfigSbcBase::setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
                                             uint8_t* p_result_codec_config) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
   tA2DP_SBC_CIE peer_info_cie;

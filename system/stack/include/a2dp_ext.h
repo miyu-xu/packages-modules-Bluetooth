@@ -33,7 +33,7 @@ public:
 
   bool init() override { return false; }
   bool useRtpHeaderMarkerBit() const override { return false; }
-  bool setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
+  tA2DP_STATUS setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
                       uint8_t* p_result_codec_config) override;
   bool setPeerCodecCapabilities(const uint8_t* p_peer_codec_capabilities) override;
 
