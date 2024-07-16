@@ -115,6 +115,8 @@ public:
               (int group_id, bool locked, bluetooth::csis::CsisGroupLockStatus status), (override));
   MOCK_METHOD((void), OnGattCsisWriteLockRsp,
               (uint16_t conn_id, tGATT_STATUS status, uint16_t handle, void* data));
+  MOCK_METHOD((void), OnActiveMembersListChanged,
+              (int group_id, const std::vector<RawAddress>& addrs));
 };
 
 class CsisClientTest : public ::testing::Test {
@@ -189,12 +191,19 @@ private:
   }
 
   void set_sample_database(uint16_t conn_id, bool csis, bool csis_broken, uint8_t rank,
-                           uint8_t sirk_msb = 1) {
+                           std::unique_ptr<uint8_t[]> dynamic_set_prop, uint8_t sirk_msb = 1) {
     gatt::DatabaseBuilder builder;
     builder.AddService(0x0001, 0x0003, Uuid::From16Bit(0x1800), true);
     builder.AddCharacteristic(0x0002, 0x0003, Uuid::From16Bit(0x2a00), GATT_CHAR_PROP_BIT_READ);
     if (csis) {
-      builder.AddService(0x0010, 0x0030, kCsisServiceUuid, true);
+      uint8_t service_end_handle;
+      if (dynamic_set_prop == nullptr) {
+        service_end_handle = 0x0030;
+      } else {
+        service_end_handle = 0x0033;
+      }
+
+      builder.AddService(0x0010, service_end_handle, kCsisServiceUuid, true);
       builder.AddCharacteristic(0x0020, 0x0021, kCsisSirkUuid,
                                 GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
 
@@ -207,6 +216,11 @@ private:
               GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY | GATT_CHAR_PROP_BIT_WRITE);
       builder.AddDescriptor(0x0028, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
       builder.AddCharacteristic(0x0029, 0x0030, kCsisRankUuid, GATT_CHAR_PROP_BIT_READ);
+      if (dynamic_set_prop != nullptr) {
+        builder.AddCharacteristic(0x0031, 0x0032, kCsisPropsUuid,
+                                  GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
+        builder.AddDescriptor(0x0033, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
+      }
     }
     if (csis_broken) {
       builder.AddCharacteristic(0x0020, 0x0021, kCsisSirkUuid,
@@ -220,9 +234,16 @@ private:
     builder.AddDescriptor(0x0093, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
     services_map[conn_id] = builder.Build().Services();
 
+    std::vector<uint8_t> dynamic_set_prop_value;
+    if (dynamic_set_prop != nullptr) {
+      dynamic_set_prop_value.resize(1);
+      dynamic_set_prop_value[0] = dynamic_set_prop.get()[0];
+    }
+
     ON_CALL(gatt_queue, ReadCharacteristic(conn_id, _, _, _))
-            .WillByDefault(Invoke([rank, sirk_msb](uint16_t conn_id, uint16_t handle,
-                                                   GATT_READ_OP_CB cb, void* cb_data) -> void {
+            .WillByDefault(Invoke([rank, sirk_msb, dynamic_set_prop_value](
+                                          uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb,
+                                          void* cb_data) -> void {
               std::vector<uint8_t> value;
 
               switch (handle) {
@@ -243,6 +264,9 @@ private:
                 case 0x0030:
                   value.resize(1);
                   value.assign(1, rank);
+                  break;
+                case 0x0032:
+                  value = dynamic_set_prop_value;
                   break;
                 default:
                   FAIL();
@@ -596,14 +620,15 @@ protected:
   void SetSampleCapIncludedDatabaseCsis(uint16_t conn_id, uint8_t rank, uint8_t sirk_msb = 1) {
     set_sample_cap_included_database(conn_id, true, false, rank, sirk_msb);
   }
-  void SetSampleDatabaseCsis(uint16_t conn_id, uint8_t rank, uint8_t sirk_msb = 1) {
-    set_sample_database(conn_id, true, false, rank, sirk_msb);
+  void SetSampleDatabaseCsis(uint16_t conn_id, uint8_t rank, uint8_t sirk_msb = 1,
+                             std::unique_ptr<uint8_t[]> dynamic_set_prop = nullptr) {
+    set_sample_database(conn_id, true, false, rank, std::move(dynamic_set_prop), sirk_msb);
   }
   void SetSampleDatabaseNoCsis(uint16_t conn_id, uint8_t rank) {
-    set_sample_database(conn_id, false, false, rank);
+    set_sample_database(conn_id, false, false, rank, nullptr);
   }
   void SetSampleDatabaseCsisBroken(uint16_t conn_id, uint rank) {
-    set_sample_database(conn_id, false, true, rank);
+    set_sample_database(conn_id, false, true, rank, nullptr);
   }
   void SetSampleDatabaseDoubleCsis(uint16_t conn_id, uint8_t rank_1, uint8_t rank_2) {
     set_sample_database_double_csis(conn_id, rank_1, rank_2, false);
@@ -1417,6 +1442,76 @@ TEST_F(CsisClientTest, test_database_out_of_sync) {
           1, true, base::BindOnce([](int group_id, bool locked, CsisGroupLockStatus status) {
             csis_lock_callback_mock->CsisGroupLockCb(group_id, locked, status);
           }));
+  TestAppUnregister();
+}
+
+TEST_F(CsisClientTest, test_is_member_active) {
+  const int num_devices = 10;
+  const std::set<RawAddress> active_members_expected = {GetTestAddress(1), GetTestAddress(9),
+                                                        GetTestAddress(5)};
+  int group_id = -1;
+
+  TestAppRegister();
+
+  for (int conn_id = 1; conn_id <= num_devices; conn_id++) {
+    const RawAddress test_address = GetTestAddress(conn_id);
+    const auto active_expected = active_members_expected.count(test_address) > 0;
+    auto dynamic_set_prop = std::make_unique<uint8_t[]>(1);
+    const uint8_t rank = conn_id;
+
+    dynamic_set_prop[0] = active_expected ? 0x01 : 0x00;
+
+    SetSampleDatabaseCsis(conn_id, rank, 1, std::move(dynamic_set_prop));
+    TestConnect(test_address);
+    InjectConnectedEvent(test_address, conn_id);
+    GetSearchCompleteEvent(conn_id);
+
+    if (conn_id == 1) {
+      group_id = CsisClient::Get()->GetGroupId(GetTestAddress(1));
+      ASSERT_TRUE(group_id > 0);
+    }
+
+    ASSERT_EQ(active_expected, CsisClient::Get()->IsMemberActive(group_id, test_address));
+  }
+
+  TestAppUnregister();
+}
+
+TEST_F(CsisClientTest, test_active_members_list_changed_callback) {
+  const int num_devices = 10;
+  const std::set<RawAddress> active_members_expected = {GetTestAddress(1), GetTestAddress(9),
+                                                        GetTestAddress(5)};
+
+  TestAppRegister();
+
+  for (int conn_id = 1; conn_id <= num_devices; conn_id++) {
+    const RawAddress test_address = GetTestAddress(conn_id);
+    const auto active_expected = active_members_expected.count(test_address) > 0;
+    auto dynamic_set_prop = std::make_unique<uint8_t[]>(1);
+    const uint8_t rank = conn_id;
+
+    dynamic_set_prop[0] = active_expected ? 0x01 : 0x00;
+
+    if (active_expected) {
+      std::vector<RawAddress> members_list_expected;
+      for (const auto& member : active_members_expected) {
+        if (member <= GetTestAddress(conn_id)) {
+          members_list_expected.push_back(member);
+        }
+      }
+
+      EXPECT_CALL(*callbacks, OnActiveMembersListChanged(_, members_list_expected));
+    } else {
+      EXPECT_CALL(*callbacks, OnActiveMembersListChanged(_, _)).Times(0);
+    }
+
+    SetSampleDatabaseCsis(conn_id, rank, 1, std::move(dynamic_set_prop));
+    TestConnect(test_address);
+    InjectConnectedEvent(test_address, conn_id);
+    GetSearchCompleteEvent(conn_id);
+    Mock::VerifyAndClearExpectations(callbacks.get());
+  }
+
   TestAppUnregister();
 }
 

@@ -63,6 +63,7 @@ using bluetooth::csis::CsisInstance;
 using bluetooth::csis::CsisLockCb;
 using bluetooth::csis::CsisLockState;
 using bluetooth::csis::kCsisLockUuid;
+using bluetooth::csis::kCsisPropsUuid;
 using bluetooth::csis::kCsisRankUuid;
 using bluetooth::csis::kCsisServiceUuid;
 using bluetooth::csis::kCsisSirkUuid;
@@ -477,6 +478,26 @@ public:
     return result;
   }
 
+  bool IsMemberActive(int group_id, const RawAddress& addr) const override {
+    auto csis_group = FindCsisGroup(group_id);
+
+    if (!csis_group || csis_group->IsEmpty()) {
+      return false;
+    }
+
+    for (auto csis_device = csis_group->GetFirstDevice(); csis_device != nullptr;
+         csis_device = csis_group->GetNextDevice(csis_device)) {
+      if (csis_device->addr != addr) {
+        continue;
+      }
+
+      const auto csis_instance = csis_device->GetCsisInstanceByGroupId(group_id);
+      return csis_instance && csis_instance->IsMemberActive();
+    }
+
+    return false;
+  }
+
   void LockGroup(int group_id, bool lock, CsisLockCb cb) override {
     if (lock) {
       log::debug("Locking group: {}", group_id);
@@ -568,6 +589,30 @@ public:
     }
 
     return csis_group->GetDesiredSize();
+  }
+
+  void SetDesiredActiveSize(int group_id, int desired_active_size) override {
+    auto csis_group = FindCsisGroup(group_id);
+    if (!csis_group) {
+      log::info("Unknown group {}", group_id);
+      return;
+    }
+
+    if (desired_active_size != csis_group->GetDesiredActiveSize()) {
+      csis_group->SetDesiredActiveSize(desired_active_size);
+    }
+
+    return;
+  }
+
+  virtual int GetDesiredActiveSize(int group_id) const override {
+    auto csis_group = FindCsisGroup(group_id);
+    if (!csis_group) {
+      log::info("Unknown group {}", group_id);
+      return -1;
+    }
+
+    return csis_group->GetDesiredActiveSize();
   }
 
   bool SerializeSets(const RawAddress& addr, std::vector<uint8_t>& out) const {
@@ -871,6 +916,37 @@ private:
     log::debug("{}", device->addr);
 
     if (device->is_gatt_service_valid) {
+      RegisterNotifications(device);
+
+      for (const auto& csis_group : csis_groups_) {
+        if (!csis_group->IsDeviceInTheGroup(device)) {
+          continue;
+        }
+
+        int group_id = csis_group->GetGroupId();
+        auto csis_inst = device->GetCsisInstanceByGroupId(group_id);
+        log::debug("group id {}", group_id);
+
+        if (!csis_inst) {
+          log::info("csis_inst does not exist for group {}", group_id);
+          continue;
+        }
+
+        /* Read the properties after connection */
+        if (csis_inst->svc_data.props_handle.val_hdl != GAP_INVALID_HANDLE) {
+          BtaGattQueue::ReadCharacteristic(
+                  device->conn_id, csis_inst->svc_data.props_handle.val_hdl,
+                  [](uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
+                     uint8_t* value, void* user_data) {
+                    if (instance) {
+                      instance->OnCsisPropsValueUpdate(conn_id, status, handle, len, value,
+                                                       (bool)user_data);
+                    }
+                  },
+                  (void*)false);
+        }
+      }
+
       NotifyCsisDeviceValidAndStoreIfNeeded(device);
     } else {
       BTA_GATTC_ServiceSearchRequest(device->conn_id, kCsisServiceUuid);
@@ -992,6 +1068,8 @@ private:
       OnCsisLockNotifications(device, csis_instance, len, value);
     } else if (handle == csis_instance->svc_data.size_handle.val_hdl) {
       OnCsisSizeValueUpdate(conn_id, GATT_SUCCESS, handle, len, value);
+    } else if (handle == csis_instance->svc_data.props_handle.val_hdl) {
+      OnCsisPropsValueUpdate(conn_id, GATT_SUCCESS, handle, len, value);
     } else {
       log::warn("unknown notification handle 0x{:04x} for conn_id= 0x{:04x}", handle, conn_id);
     }
@@ -1200,6 +1278,78 @@ private:
     }
 
     csis_group->SortByCsisRank();
+
+    if (notify_valid_services) {
+      NotifyCsisDeviceValidAndStoreIfNeeded(device);
+    }
+  }
+
+  void ActiveMemberListChanged(std::shared_ptr<CsisGroup> csis_group) {
+    std::vector<RawAddress> addresses = {};
+    int group_id = csis_group->GetGroupId();
+    auto device = csis_group->GetFirstDevice();
+
+    for (; device != nullptr; device = csis_group->GetNextDevice(device)) {
+      const auto& csis_instance = device->GetCsisInstanceByGroupId(group_id);
+      if (csis_instance != nullptr && csis_instance->IsMemberActive()) {
+        addresses.push_back(device->addr);
+
+        log::debug("{} group_id: {}", device->addr, group_id);
+      }
+    }
+
+    for (const auto& callback : callbacks_) {
+      callback->OnActiveMembersListChanged(group_id, addresses);
+    }
+  }
+
+  void OnCsisPropsValueUpdate(uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
+                              const uint8_t* value, bool notify_valid_services = false) {
+    auto device = FindDeviceByConnId(conn_id);
+    if (device == nullptr) {
+      log::warn("Skipping unknown device, conn_id=0x{:04x}", conn_id);
+      return;
+    }
+
+    log::debug("{}, status: 0x{:02x}", device->addr, status);
+
+    if (status != GATT_SUCCESS) {
+      if (status == GATT_DATABASE_OUT_OF_SYNC) {
+        log::info("Database out of sync for {}", device->addr);
+        ClearDeviceInformationAndStartSearch(device);
+      } else {
+        log::error("Could not read characteristic at handle=0x{:04x}", handle);
+        BTA_GATTC_Close(device->conn_id);
+      }
+      return;
+    }
+
+    if (len != 1) {
+      log::error("Invalid props value length={} at handle= 0x{:04x}", len, handle);
+      BTA_GATTC_Close(device->conn_id);
+      return;
+    }
+
+    auto csis_instance = device->GetCsisInstanceByOwningHandle(handle);
+    if (csis_instance == nullptr) {
+      log::error("Unknown csis instance handle 0x{:04x}", handle);
+      BTA_GATTC_Close(device->conn_id);
+      return;
+    }
+    auto csis_group = FindCsisGroup(csis_instance->GetGroupId());
+    if (!csis_group) {
+      log::error("Unknown group id yet");
+      return;
+    }
+
+    log::info("{}, props=0x{:02x}", device->addr, value[0]);
+
+    const auto was_member_active = csis_instance->IsMemberActive();
+    csis_instance->SetDynamicSetProperties(value[0]);
+
+    if (was_member_active != csis_instance->IsMemberActive()) {
+      ActiveMemberListChanged(csis_group);
+    }
 
     if (notify_valid_services) {
       NotifyCsisDeviceValidAndStoreIfNeeded(device);
@@ -1678,6 +1828,23 @@ private:
                               csis_inst->svc_data.sirk_handle.val_hdl);
       DisableGattNotification(device->conn_id, device->addr,
                               csis_inst->svc_data.size_handle.val_hdl);
+      if (csis_inst->svc_data.props_handle.val_hdl != GAP_INVALID_HANDLE) {
+        DisableGattNotification(device->conn_id, device->addr,
+                                csis_inst->svc_data.props_handle.val_hdl);
+      }
+    });
+  }
+
+  void RegisterNotifications(std::shared_ptr<CsisDevice> device) {
+    device->ForEachCsisInstance([&](const std::shared_ptr<CsisInstance>& csis_inst) {
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.lock_handle.val_hdl);
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.sirk_handle.val_hdl);
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.size_handle.val_hdl);
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.props_handle.val_hdl);
     });
   }
 
@@ -1757,6 +1924,24 @@ private:
         log::debug("Size UUID found handle: 0x{:04x}, ccc handle: 0x{:04x}, device: {}",
                    csis_inst->svc_data.size_handle.val_hdl, csis_inst->svc_data.size_handle.ccc_hdl,
                    device->addr);
+      } else if (charac.uuid == kCsisPropsUuid) {
+        /* Find the mandatory CCC descriptor */
+        uint16_t ccc_handle = FindCccHandle(device->conn_id, charac.value_handle);
+        if (ccc_handle == GAP_INVALID_HANDLE) {
+          log::error("no Dynamic Set Properties CCC descriptor found!");
+          device->RemoveCsisInstance(group_id);
+          return false;
+        }
+        csis_inst->svc_data.props_handle.val_hdl = charac.value_handle;
+        csis_inst->svc_data.props_handle.ccc_hdl = ccc_handle;
+
+        SubscribeForNotifications(device->conn_id, device->addr, charac.value_handle, ccc_handle);
+
+        log::debug(
+                "Properties UUID found handle: 0x{:04x}, ccc handle: 0x{:04x}, "
+                "device: {}",
+                csis_inst->svc_data.props_handle.val_hdl, csis_inst->svc_data.props_handle.ccc_hdl,
+                device->addr);
       }
     }
 
@@ -1774,6 +1959,7 @@ private:
     bool notify_after_lock_read = false;
     bool notify_after_rank_read = false;
     bool notify_after_size_read = false;
+    bool notify_after_props_read = false;
 
     /* Find which read will be the last one*/
     if (is_last_instance) {
@@ -1783,8 +1969,10 @@ private:
         notify_after_size_read = true;
       } else if (csis_inst->svc_data.lock_handle.val_hdl != GAP_INVALID_HANDLE) {
         notify_after_lock_read = true;
-      } else {
+      } else if (csis_inst->svc_data.sirk_handle.val_hdl != GAP_INVALID_HANDLE) {
         notify_after_sirk_read = true;
+      } else {
+        notify_after_props_read = true;
       }
     }
 
@@ -1838,6 +2026,20 @@ private:
                 }
               },
               (void*)notify_after_rank_read);
+    }
+
+    /* Read Properties */
+    if (csis_inst->svc_data.props_handle.val_hdl != GAP_INVALID_HANDLE) {
+      BtaGattQueue::ReadCharacteristic(
+              device->conn_id, csis_inst->svc_data.props_handle.val_hdl,
+              [](uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
+                 uint8_t* value, void* user_data) {
+                if (instance) {
+                  instance->OnCsisPropsValueUpdate(conn_id, status, handle, len, value,
+                                                   (bool)user_data);
+                }
+              },
+              (void*)notify_after_props_read);
     }
 
     return true;
@@ -2163,15 +2365,8 @@ private:
 
   void SubscribeForNotifications(uint16_t conn_id, const RawAddress& address, uint16_t value_handle,
                                  uint16_t ccc_handle) {
-    if (value_handle != GAP_INVALID_HANDLE) {
-      tGATT_STATUS register_status =
-              BTA_GATTC_RegisterForNotifications(gatt_if_, address, value_handle);
-      log::debug("BTA_GATTC_RegisterForNotifications, status=0x{:02x}, value=0x{:x}, ccc=0x{:04x}",
-                 register_status, value_handle, ccc_handle);
-
-      if (register_status != GATT_SUCCESS) {
-        return;
-      }
+    if (!EnableGattNotification(conn_id, address, value_handle)) {
+      return;
     }
 
     std::vector<uint8_t> value(2);
@@ -2186,6 +2381,19 @@ private:
               }
             },
             nullptr);
+  }
+
+  bool EnableGattNotification(uint16_t conn_id, const RawAddress& address, uint16_t value_handle) {
+    if (value_handle != GAP_INVALID_HANDLE) {
+      tGATT_STATUS register_status =
+              BTA_GATTC_RegisterForNotifications(gatt_if_, address, value_handle);
+      log::debug("BTA_GATTC_RegisterForNotifications, status=0x{:02x}, value=0x{:x}",
+                 register_status, value_handle);
+
+      return register_status == GATT_SUCCESS;
+    }
+
+    return false;
   }
 
   void DisableGattNotification(uint16_t conn_id, const RawAddress& address, uint16_t value_handle) {
