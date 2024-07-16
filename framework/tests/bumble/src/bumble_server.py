@@ -18,7 +18,18 @@ import logging
 import json
 
 from bumble import pandora as bumble_server
+from bumble.a2dp import make_audio_sink_service_sdp_records, make_audio_source_service_sdp_records
+from bumble.avrcp import make_target_service_sdp_records, make_controller_service_sdp_records
 from bumble.pandora import PandoraDevice, Config, serve
+from bumble.hfp import (
+    make_hf_sdp_records,
+    HfConfiguration,
+    HfFeature,
+    HfIndicator,
+    AudioCodec as HfAudioCodec,
+    ProfileVersion as HfProfileVersion,
+)
+from bumble.sdp import ServiceAttribute
 
 from bumble_experimental.asha import AshaService
 from bumble_experimental.dck import DckService
@@ -32,6 +43,8 @@ from pandora_experimental.rfcomm_grpc_aio import add_RFCOMMServicer_to_server
 
 from typing import Dict, Any
 
+from typing import Any, Dict, List
+
 BUMBLE_SERVER_GRPC_PORT = 7999
 ROOTCANAL_PORT_CUTTLEFISH = 7300
 
@@ -43,7 +56,8 @@ def main(grpc_port: int, rootcanal_port: int, transport: str, config: str) -> No
 
     bumble_config = retrieve_config(config)
     bumble_config.setdefault('transport', transport)
-    device = PandoraDevice(bumble_config)
+    sdp_service_records = _sdp_service_records()
+    device = PandoraDevice(bumble_config, sdp_service_records=sdp_service_records)
 
     server_config = Config()
     server_config.load_from_dict(bumble_config.get('server', {}))
@@ -77,6 +91,46 @@ def register_experimental_services():
         lambda bumble, _, server: add_GATTServicer_to_server(GATTService(bumble.device), server))
     bumble_server.register_servicer_hook(
         lambda bumble, _, server: add_RFCOMMServicer_to_server(RFCOMMService(bumble.device), server))
+
+
+def _sdp_service_records() -> Dict[int, List[ServiceAttribute]]:
+    rfcomm_channel = 1
+    hf_configuration = HfConfiguration(
+        supported_hf_features=[
+            HfFeature.THREE_WAY_CALLING,
+            HfFeature.EC_NR,
+            HfFeature.VOICE_RECOGNITION_ACTIVATION,
+            HfFeature.ENHANCED_CALL_STATUS,
+            HfFeature.CODEC_NEGOTIATION,
+            HfFeature.ESCO_S4_SETTINGS_SUPPORTED,
+        ],
+        supported_hf_indicators=[
+            HfIndicator.BATTERY_LEVEL,
+        ],
+        supported_audio_codecs=[
+            HfAudioCodec.CVSD,
+            HfAudioCodec.MSBC,
+        ],
+    )
+    sdp_records = {
+        0x00010001:
+            make_hf_sdp_records(  # HandsFree
+                0x00010001,
+                rfcomm_channel,
+                hf_configuration,
+                version=HfProfileVersion.V1_5,
+            ),
+        0x00010002:
+            make_audio_source_service_sdp_records(0x00010002),  # A2DP Source
+        0x00010003:
+            make_audio_sink_service_sdp_records(0x00010003),  # A2DP Sink
+        0x00010004:
+            make_controller_service_sdp_records(0x00010004),  # AVRCP Controller
+        0x00010005:
+            make_target_service_sdp_records(0x00010005),  # AVRCP Target
+    }
+
+    return sdp_records
 
 
 def retrieve_config(config: str) -> Dict[str, Any]:
