@@ -622,6 +622,7 @@ cc_test {
         "test/common/bta_gatt_queue_mock.cc",
         "test/common/btm_api_mock.cc",
         "test/common/mock_csis_client.cc",
+        "test/common/mock_le_audio_client.cc",
         "vc/device.cc",
         "vc/devices_test.cc",
         "vc/vc.cc",
@@ -1316,6 +1317,7 @@ cc_test {
         "test/common/btif_storage_mock.cc",
         "test/common/btm_api_mock.cc",
         "test/common/mock_csis_client.cc",
+        "test/common/mock_le_audio_client.cc",
     ],
     shared_libs: [
         "libbase",

@@ -45,6 +45,8 @@
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
 #include "bta_groups.h"
+#include "bta_le_audio_api.h"
+#include "bta_le_audio_uuids.h"
 #include "bta_sec_api.h"
 #include "btif/include/btif_storage.h"
 #include "btm_ble_api_types.h"
@@ -94,6 +96,11 @@ using bluetooth::groups::DeviceGroupsCallbacks;
 using namespace bluetooth;
 
 namespace {
+static const bluetooth::Uuid kCasServiceUuid =
+        bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE);
+static const bluetooth::Uuid kCasExServiceUuid =
+        bluetooth::Uuid::From16Bit(UUID_EXTENDED_COMMON_AUDIO_SERVICE);
+
 class CsisClientImpl;
 CsisClientImpl* instance;
 std::mutex instance_mutex;
@@ -2016,6 +2023,24 @@ private:
     DoDisconnectCleanUp(device);
   }
 
+  const gatt::Service* FindCommonAudioService(const std::list<gatt::Service>* services) {
+    const gatt::Service* cas = nullptr;
+
+    for (const auto& svrc : *services) {
+      if (svrc.uuid == kCasExServiceUuid && LeAudioClient::IsDcsEnabled()) {
+        /* If the Enhanced Common Audio Service instance is found, return immediately */
+        return &svrc;
+      }
+
+      if (svrc.uuid == kCasServiceUuid) {
+        /* Remember the Common Audio Service instance as a fallback */
+        cas = &svrc;
+      }
+    }
+
+    return cas;
+  }
+
   void OnGattServiceSearchComplete(const tBTA_GATTC_SEARCH_CMPL& evt) {
     auto device = FindDeviceByConnId(evt.conn_id);
 
@@ -2061,9 +2086,22 @@ private:
         return;
       }
 
+      const gatt::Service* cas = FindCommonAudioService(all_services);
+
       for (auto& svrc : *all_services) {
-        if (svrc.uuid == kCsisServiceUuid) {
+        auto context_uuid = svrc.uuid;
+
+        if (context_uuid == kCsisServiceUuid) {
           continue;
+        }
+
+        if (context_uuid == kCasServiceUuid || context_uuid == kCasExServiceUuid) {
+          if (&svrc != cas) {
+            continue;
+          }
+
+          /* Keep as Common Audio Service context */
+          context_uuid = kCasServiceUuid;
         }
 
         /* Try to find context for CSIS instances */
@@ -2076,7 +2114,7 @@ private:
             if (iter != all_csis_start_handles.end()) {
               all_csis_start_handles.erase(iter);
             }
-            instance->OnCsisServiceFound(device, csis_svrc, svrc.uuid,
+            instance->OnCsisServiceFound(device, csis_svrc, context_uuid,
                                          all_csis_start_handles.empty());
           }
         }

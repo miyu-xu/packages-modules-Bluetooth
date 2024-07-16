@@ -18,3 +18,9 @@
 
 /* Common Audio Service */
 #define UUID_COMMON_AUDIO_SERVICE 0x1853
+
+/* Extended Common Audio Service */
+#define UUID_EXTENDED_COMMON_AUDIO_SERVICE 0xCA50
+
+/* Extended Common Audio Service: Acceptor Properties Characteristic */
+#define UUID_ACCEPTOR_PROPERTIES_CHARACTERISTIC 0xCA51

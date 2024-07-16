@@ -78,6 +78,9 @@ public:
   virtual bool isDuplexPreferenceLeAudio(const RawAddress& address) = 0;
   virtual std::vector<RawAddress> GetGroupDevices(const int group_id) = 0;
 
+  virtual bool IsDeviceActive(const RawAddress& addr) = 0;
+  virtual void SetDesiredGroupSize(int group_id, int size) = 0;
+
   static bool RegisterIsoDataConsumer(LeAudioIsoDataCallback callback);
 
   static void AddFromStorage(const RawAddress& addr, bool autoconnect,
@@ -95,4 +98,5 @@ public:
   static bool GetAsesForStorage(const RawAddress& addr, std::vector<uint8_t>& out);
   static bool IsLeAudioClientRunning();
   static bool IsLeAudioClientInStreaming();
+  static bool IsDcsEnabled();
 };

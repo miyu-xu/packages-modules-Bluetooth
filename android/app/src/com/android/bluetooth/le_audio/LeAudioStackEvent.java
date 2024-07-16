@@ -21,6 +21,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudioCodecConfig;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +44,7 @@ public class LeAudioStackEvent {
     public static final int EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION = 11;
     public static final int EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS = 12;
     public static final int EVENT_TYPE_GROUP_STREAM_STATUS_CHANGED = 13;
+    public static final int EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED = 14;
     // -------- DO NOT PUT ANY NEW UNICAST EVENTS BELOW THIS LINE-------------
     public static final int EVENT_TYPE_UNICAST_MAX = 14;
 
@@ -111,9 +113,11 @@ public class LeAudioStackEvent {
     public List<BluetoothLeAudioCodecConfig> valueCodecList1;
     public List<BluetoothLeAudioCodecConfig> valueCodecList2;
     public BluetoothLeBroadcastMetadata broadcastMetadata;
+    public ArrayList<BluetoothDevice> valueDevices;
 
     LeAudioStackEvent(int type) {
         this.type = type;
+        this.valueDevices = new ArrayList<>();
     }
 
     @Override
@@ -123,7 +127,10 @@ public class LeAudioStackEvent {
         result.append("LeAudioStackEvent {type:").append(eventTypeToString(type));
         result.append(", device:").append(device);
 
-        if (type != EVENT_TYPE_AUDIO_LOCAL_CODEC_CONFIG_CAPA_CHANGED) {
+        if (type == EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED) {
+            result.append(", value1:").append(eventTypeValue1ToString(type, valueInt1));
+            result.append(", devices:").append(eventTypeValueDevicesToString(type, valueDevices));
+        } else if (type != EVENT_TYPE_AUDIO_LOCAL_CODEC_CONFIG_CAPA_CHANGED) {
             result.append(", value1:").append(eventTypeValue1ToString(type, valueInt1));
             result.append(", value2:").append(eventTypeValue2ToString(type, valueInt2));
             result.append(", value3:").append(eventTypeValue3ToString(type, valueInt3));
@@ -153,6 +160,7 @@ public class LeAudioStackEvent {
             result.append(", broadcastMetadata:")
                     .append(eventTypeValueBroadcastMetadataToString(broadcastMetadata));
         }
+
         result.append("}");
         return result.toString();
     }
@@ -197,6 +205,8 @@ public class LeAudioStackEvent {
                 return "EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS";
             case EVENT_TYPE_GROUP_STREAM_STATUS_CHANGED:
                 return "EVENT_TYPE_GROUP_STREAM_STATUS_CHANGED";
+            case EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED:
+                return "EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED";
             default:
                 return "EVENT_TYPE_UNKNOWN:" + type;
         }
@@ -458,6 +468,23 @@ public class LeAudioStackEvent {
     private static String eventTypeValueBroadcastMetadataToString(
             BluetoothLeBroadcastMetadata meta) {
         return meta.toString();
+    }
+
+    private static String eventTypeValueDevicesToString(int evType,
+                                                        List<BluetoothDevice> value) {
+        StringBuilder result = new StringBuilder();
+
+        switch (evType) {
+            case EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED:
+                for (BluetoothDevice device : value) {
+                    result.append(device).append(", ");
+                }
+                break;
+            default:
+                result.append("<unused>");
+        }
+
+        return result.toString();
     }
 
     protected static String encodeHexString(byte[] pduData) {

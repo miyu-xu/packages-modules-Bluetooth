@@ -3068,6 +3068,32 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    private void handleGroupActiveMembersChanged(int groupId, List<BluetoothDevice> devices) {
+        Log.d(TAG, "handleGroupActiveMembersChanged groupId: " + groupId);
+
+        int currentlyActiveGroupId = getActiveGroupId();
+        if (groupId != currentlyActiveGroupId) {
+            Log.d(TAG, "Ignored. Group is inactive");
+            return;
+        }
+
+        /* Suppress 'devices' unused warning */
+        Objects.requireNonNull(devices);
+
+        VolumeControlService volumeControlService = getVolumeControlService();
+        if (volumeControlService != null) {
+            int groupVolume = volumeControlService.getGroupVolume(currentlyActiveGroupId);
+            Boolean groupMuted = volumeControlService.getGroupMute(currentlyActiveGroupId);
+
+            volumeControlService.setGroupVolume(currentlyActiveGroupId, groupVolume);
+            if (groupMuted) {
+                volumeControlService.muteGroup(currentlyActiveGroupId);
+            } else {
+                volumeControlService.unmuteGroup(currentlyActiveGroupId);
+            }
+        }
+    }
+
     private boolean isGroupReceivingBroadcast(int groupId) {
         BassClientService bassClientService = getBassClientService();
         if (bassClientService == null) {
@@ -4109,6 +4135,8 @@ public class LeAudioService extends ProfileService {
                     () ->
                             notifyGroupStreamStatusChanged(
                                     stackEvent.valueInt1, stackEvent.valueInt2));
+        } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_GROUP_ACTIVE_MEMBERS_CHANGED) {
+            handleGroupActiveMembersChanged(stackEvent.valueInt1, stackEvent.valueDevices);
         }
     }
 
