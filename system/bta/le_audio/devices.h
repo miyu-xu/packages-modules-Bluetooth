@@ -18,6 +18,7 @@
 #pragma once
 
 #include <memory>
+#include <optional>
 #include <utility>  // for std::pair
 #include <vector>
 
@@ -114,6 +115,8 @@ public:
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
+  mutable std::optional<bool> is_csis_dynamic_set_member_active_;
+
   LeAudioDevice(const RawAddress& address, DeviceConnectState state,
                 int group_id = bluetooth::groups::kGroupUnknown)
       : address_(address),
@@ -134,6 +137,7 @@ public:
         acl_asymmetric_(false),
         acl_phy_update_done_(false),
         link_quality_timer(nullptr),
+        is_csis_dynamic_set_member_active_(std::nullopt),
         dsa_({{DsaMode::DISABLED},
               types::DataPathState::IDLE,
               LE_AUDIO_INVALID_CIS_HANDLE,
@@ -141,12 +145,12 @@ public:
   ~LeAudioDevice(void);
 
   void SetConnectionState(DeviceConnectState state);
-  DeviceConnectState GetConnectionState(void);
+  DeviceConnectState GetConnectionState(void) const;
   void ClearPACs(void);
   void RegisterPACs(std::vector<struct types::acs_ac_record>* apr_db,
                     std::vector<struct types::acs_ac_record>* apr);
   struct types::ase* GetAseByValHandle(uint16_t val_hdl);
-  int GetAseCount(uint8_t direction);
+  int GetAseCount(uint8_t direction) const;
   struct types::ase* GetFirstActiveAse(void);
   struct types::ase* GetFirstActiveAseByDirection(uint8_t direction);
   struct types::ase* GetNextActiveAseWithSameDirection(struct types::ase* base_ase);
@@ -159,7 +163,7 @@ public:
   struct types::ase* GetAseToMatchBidirectionCis(struct types::ase* ase);
   types::BidirectionalPair<struct types::ase*> GetAsesByCisConnHdl(uint16_t conn_hdl);
   types::BidirectionalPair<struct types::ase*> GetAsesByCisId(uint8_t cis_id);
-  bool HaveActiveAse(void);
+  bool HaveActiveAse(void) const;
   bool HaveAllActiveAsesSameState(types::AseState state);
   bool HaveAllActiveAsesSameDataPathState(types::DataPathState state) const;
   bool HaveAnyUnconfiguredAses(void);
@@ -172,12 +176,22 @@ public:
   }
   bool IsReadyToSuspendStream(void);
   bool HaveAllActiveAsesCisEst(void) const;
-  bool HaveAnyCisConnected(void);
+  bool HaveAnyCisConnected(void) const;
   uint8_t GetSupportedAudioChannelCounts(uint8_t direction) const;
   uint8_t GetPhyBitmask(void) const;
   uint8_t GetPreferredPhyBitmask(uint8_t preferred_phy) const;
   bool IsAudioSetConfigurationSupported(
           const set_configurations::AudioSetConfiguration* audio_set_conf) const;
+  bool IsLeft(uint8_t direction) const;
+  bool IsRight(uint8_t direction) const;
+  bool IsDirectionSupported(int direction) const;
+  bool IsCsisDynamicSetMember(void) const;
+  bool IsAvailableForStream(void) const;
+  bool IsOngoing(void) const { return HaveActiveAse() || HaveAnyCisConnected(); }
+  bool IsConnected(void) const {
+    return conn_id_ != GATT_INVALID_CONN_ID &&
+           GetConnectionState() == DeviceConnectState::CONNECTED;
+  }
   bool ConfigureAses(const set_configurations::AudioSetConfiguration* audio_set_conf,
                      uint8_t group_size, uint8_t direction, types::LeAudioContextType context_type,
                      uint8_t* number_of_already_active_group_ase,
@@ -202,7 +216,6 @@ public:
   inline types::AudioContexts GetAvailableContexts(
           int direction = types::kLeAudioDirectionBoth) const {
     log::assert_that(direction <= (types::kLeAudioDirectionBoth), "Invalid direction used.");
-
     if (direction < types::kLeAudioDirectionBoth) {
       return avail_contexts_.get(direction);
     } else {
@@ -210,6 +223,13 @@ public:
     }
   }
   void SetAvailableContexts(types::BidirectionalPair<types::AudioContexts> cont_val);
+
+  inline types::AudioLocations GetAudioLocations(uint8_t direction) const {
+    return (direction == types::kLeAudioDirectionSink) ? snk_audio_locations_
+                                                       : src_audio_locations_;
+  }
+
+  types::AudioLocations GetAudioChannelAllocation(uint8_t direction);
 
   void DeactivateAllAses(void);
   bool ActivateConfiguredAses(
