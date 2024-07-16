@@ -87,6 +87,24 @@
       "parentUuid": "7d62890c_9b86096e",
       "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c977c15a_2e500f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T23:34:01Z",
+      "side": 1,
+      "message": "From the bug, I don\u0027t see any cases where it would have avoided a crash to ignore the COMMAND_DISALLOWED.  It looks like we were already in the middle of an HCI timeout.",
+      "parentUuid": "61f187ab_7f0c4161",
+      "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
