@@ -1380,7 +1380,7 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
  */
 bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
         const CodecManager::UnicastConfigurationRequirements& requirements,
-        const set_configurations::AudioSetConfiguration* audio_set_conf) const {
+        const set_configurations::AudioSetConfiguration* audio_set_conf, int desired_size) const {
   /* TODO For now: set ase if matching with first pac.
    * 1) We assume as well that devices will match requirements in order
    *    e.g. 1 Device - 1 Requirement, 2 Device - 2 Requirement etc.
@@ -1404,7 +1404,7 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
     // but use UNSPECIFIED which is always supported (but can be unavailable)
     auto device_cnt = NumOfAvailableForDirection(direction);
     if (device_cnt == 0) {
-      device_cnt = DesiredSize();
+      device_cnt = desired_size;
       if (device_cnt == 0) {
         log::error("Device count is 0");
         continue;
@@ -1500,7 +1500,7 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
    * when all devices in the group are connected.
    */
   bool dual_bidirection_swb_supported_ = CodecManager::GetInstance()->IsDualBiDirSwbSupported();
-  if (DesiredSize() > 1 &&
+  if (desired_size > 1 &&
       CodecManager::GetInstance()->CheckCodecConfigIsBiDirSwb(*audio_set_conf)) {
     if (!dual_bidirection_swb_supported_) {
       return false;
@@ -1879,13 +1879,16 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
         const set_configurations::AudioSetConfigurations* confs) const {
   log::assert_that(confs != nullptr, "confs should not be null");
 
-  log::debug("context type: {},  number of connected devices: {}",
-             bluetooth::common::ToString(requirements.audio_context_type), NumOfConnected());
+  int desired_size = DesiredSize();
+
+  log::debug("context type: {},  number of connected devices: {}, desired_size: {}",
+             bluetooth::common::ToString(requirements.audio_context_type), NumOfConnected(),
+             desired_size);
 
   /* Filter out device set for each end every scenario */
   for (const auto& conf : *confs) {
     log::assert_that(conf != nullptr, "confs should not be null");
-    if (IsAudioSetConfigurationSupported(requirements, conf)) {
+    if (IsAudioSetConfigurationSupported(requirements, conf, desired_size)) {
       log::debug("found: {}", conf->name);
       return conf;
     }
