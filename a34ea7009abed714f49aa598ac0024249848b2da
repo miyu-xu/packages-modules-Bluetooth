@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b6def70_cd0ae499",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-16T16:53:26Z",
+      "side": 1,
+      "message": "Yes vs OK ?\n\nAre we supposed to do something here ? or does it works because we are already in the expected state?",
+      "range": {
+        "startLine": 255,
+        "startChar": 16,
+        "endLine": 255,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fcb29d24_bef43c33",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+              "range": {
+                "startLine": 255,
+                "startChar": 0,
+                "endLine": 256,
+                "endChar": 0
+              },
+              "replacement": "        return \"OK\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e9df0c_8c28702c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-16T16:53:26Z",
+      "side": 1,
+      "message": "Should we do a check for them ?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 18
+      },
+      "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
