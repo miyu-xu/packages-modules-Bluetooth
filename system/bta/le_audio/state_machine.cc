@@ -168,14 +168,19 @@ public:
 
   bool AttachToStream(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice,
                       BidirectionalPair<std::vector<uint8_t>> ccids) override {
+    if (!leAudioDevice->HaveActiveAse() && (group->DesiredSize() <= group->NumOfOngoing())) {
+      log::info("The maximum number of active devices has been reached.");
+      return false;
+    }
+
     log::info("group id: {} device: {}", group->group_id_, leAudioDevice->address_);
 
     /* This function is used to attach the device to the stream.
      * Limitation here is that device should be previously in the streaming
      * group and just got reconnected.
      */
-    if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING ||
-        group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+    if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING ||
+        group->IsInTransitionTo(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
       log::error("Group {} is not streaming or is in transition, state: {}, target state: {}",
                  group->group_id_, ToString(group->GetState()), ToString(group->GetTargetState()));
       return false;
@@ -209,7 +214,18 @@ public:
       return false;
     }
 
-    return PrepareAndSendCodecConfigure(group, leAudioDevice);
+    if (!leAudioDevice->HaveActiveAse()) {
+      log::warn("{} not configured (has no active ASE)", leAudioDevice->address_);
+      return false;
+    }
+
+    /* If this one fails, the ASE's need to be deactivated to retry later on. */
+    if (!PrepareAndSendCodecConfigure(group, leAudioDevice)) {
+      leAudioDevice->DeactivateAllAses();
+      return false;
+    }
+
+    return true;
   }
 
   bool StartStream(LeAudioDeviceGroup* group, LeAudioContextType context_type,
@@ -239,6 +255,11 @@ public:
 
         /* We are going to reconfigure whole group. Clear Cises.*/
         ReleaseCisIds(group);
+
+        /* Invalidate configuration to make sure it is chosen properly when new
+         * member connects
+         */
+        group->InvalidateCachedConfigurations();
 
         /* If configuration is needed */
         [[fallthrough]];
@@ -770,8 +791,9 @@ public:
       }
     }
 
+    group->RemoveCisFromStreamIfNeeded(leAudioDevice, conn_hdl);
+
     if (do_disconnect) {
-      group->RemoveCisFromStreamIfNeeded(leAudioDevice, conn_hdl);
       IsoManager::GetInstance()->DisconnectCis(conn_hdl, HCI_ERR_PEER_USER);
 
       log_history_->AddLogHistory(kLogStateMachineTag, group->group_id_, leAudioDevice->address_,
@@ -850,13 +872,30 @@ public:
                                 kLogCigRemoveOp);
   }
 
+  void deviceDetachedFromStream(LeAudioDevice* leAudioDevice) {
+    if (leAudioDevice->HaveActiveAse()) {
+      log::debug("{} still has active ASE", leAudioDevice->address_);
+      return;
+    }
+
+    if (leAudioDevice->HaveAnyCisConnected()) {
+      log::debug("{} still has CIS connected", leAudioDevice->address_);
+      return;
+    }
+
+    state_machine_callbacks_->OnDeviceDetachedFromStream(leAudioDevice);
+  }
+
   void ProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
     FreeLinkQualityReports(leAudioDevice);
     if (!group) {
       log::error("group is null for device: {} group_id: {}", leAudioDevice->address_,
                  leAudioDevice->group_id_);
       /* mark ASEs as not used. */
-      leAudioDevice->DeactivateAllAses();
+      if (leAudioDevice->HaveActiveAse()) {
+        leAudioDevice->DeactivateAllAses();
+        deviceDetachedFromStream(leAudioDevice);
+      }
       return;
     }
 
@@ -870,7 +909,10 @@ public:
     }
 
     /* mark ASEs as not used. */
-    leAudioDevice->DeactivateAllAses();
+    if (leAudioDevice->HaveActiveAse()) {
+      leAudioDevice->DeactivateAllAses();
+      deviceDetachedFromStream(leAudioDevice);
+    }
 
     /* Update the current group audio context availability which could change
      * due to disconnected group member.
@@ -880,11 +922,14 @@ public:
     group->InvalidateCachedConfigurations();
     group->InvalidateGroupStrategy();
 
+    LeAudioDevice* attaching_device = getOtherDeviceTryingToAttachTheStream(group, leAudioDevice);
+
     /* If group is in Idle and not transitioning, update the current group
      * audio context availability which could change due to disconnected group
      * member.
      */
-    if ((group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) && !group->IsInTransition()) {
+    if ((group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) &&
+        !group->IsInTransition() && attaching_device == nullptr) {
       log::info("group: {} is in IDLE", group->group_id_);
 
       /* When OnLeAudioDeviceSetStateTimeout happens, group will transition
@@ -1234,6 +1279,8 @@ public:
 
     switch (target_state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING: {
+        deviceDetachedFromStream(leAudioDevice);
+
         /* Something wrong happen when streaming or when creating stream.
          * If there is other device connected and streaming, just leave it as it
          * is, otherwise stop the stream.
@@ -1252,7 +1299,8 @@ public:
          * that device to continue
          */
 
-        LeAudioDevice* attaching_device = getDeviceTryingToAttachTheStream(group);
+        LeAudioDevice* attaching_device =
+                getOtherDeviceTryingToAttachTheStream(group, leAudioDevice);
         if (attaching_device != nullptr) {
           /* There is a device willitng to stream. Let's wait for it to start
            * streaming */
@@ -1268,14 +1316,38 @@ public:
           return;
         }
 
+        LeAudioDevice* substitute_device = group->GetSubstituteDevice(leAudioDevice);
+        if (substitute_device != nullptr) {
+          /* There is a substitute device available to stream. Let's wait for it to start
+           * streaming */
+          auto active_ase = substitute_device->GetFirstActiveAse();
+          if (active_ase != nullptr) {
+            group->SetState(active_ase->state);
+          } else {
+            group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+          }
+
+          log::info(
+                  "{} found that could potentially substitute device "
+                  "disconnected from the group_id: {}",
+                  substitute_device->address_, group->group_id_);
+          return;
+        }
+
         log::info("Lost all members from the group {}", group->group_id_);
         group->cig.cises.clear();
         RemoveCigForGroup(group);
 
+        auto report_state = GroupStreamStatus::IDLE;
+        if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+            group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+            report_state = GroupStreamStatus::RELEASING_AUTONOMOUS;
+        }
         group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
         group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+
         /* If there is no more ase to stream. Notify it is in IDLE. */
-        state_machine_callbacks_->StatusReportCb(group->group_id_, GroupStreamStatus::IDLE);
+        state_machine_callbacks_->StatusReportCb(group->group_id_, report_state);
         return;
       }
 
@@ -1839,23 +1911,39 @@ private:
     ase->state = state;
   }
 
-  LeAudioDevice* getDeviceTryingToAttachTheStream(LeAudioDeviceGroup* group) {
+  LeAudioDevice* getOtherDeviceTryingToAttachTheStream(LeAudioDeviceGroup* group,
+                                                       LeAudioDevice* leAudioDevice) {
     /* Device which is attaching the stream is just an active device not in
      * STREAMING state and NOT in  the RELEASING state.
      * The precondition is, that TargetState is Streaming
      */
 
-    log::debug("group_id: {}, targetState: {}", group->group_id_,
-               ToString(group->GetTargetState()));
+    log::debug("group_id: {}, leAudioDevice: {}, targetState: {}", group->group_id_,
+               leAudioDevice->address_, ToString(group->GetTargetState()));
 
     if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
       return nullptr;
     }
 
-    for (auto dev = group->GetFirstActiveDevice(); dev != nullptr;
-         dev = group->GetNextActiveDevice(dev)) {
-      if (!dev->HaveAllActiveAsesSameState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) &&
-          !dev->HaveAnyReleasingAse()) {
+    for (auto dev = group->GetFirstDevice(); dev != nullptr; dev = group->GetNextDevice(dev)) {
+      log::debug("{}, IsAvailableForStream: {}, attach_scheduled_: {}, HaveActiveAse(): {}, "
+              "HaveAllActiveAsesSameState(): {}, HaveAnyReleasingAse(): {}",
+              dev->address_, dev->IsAvailableForStream(), dev->attach_scheduled_,
+              dev->HaveActiveAse(),
+              dev->HaveAllActiveAsesSameState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING),
+              dev->HaveAnyReleasingAse());
+
+      /* skip leAudioDevice and any other device that is not available for stream */
+      if (dev == leAudioDevice || !dev->IsAvailableForStream()) {
+        continue;
+      }
+
+      /* return device that is scheduled to be attached
+       * or that is active but not yet streaming nor releasing */
+      if (dev->attach_scheduled_ ||
+          (dev->HaveActiveAse() &&
+           !dev->HaveAllActiveAsesSameState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) &&
+           !dev->HaveAnyReleasingAse())) {
         log::debug("Attaching device {} to group_id: {}", dev->address_, group->group_id_);
         return dev;
       }
@@ -1872,7 +1960,10 @@ private:
         break;
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING: {
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
-        ase->active = false;
+        if (ase->active) {
+          ase->active = false;
+          deviceDetachedFromStream(leAudioDevice);
+        }
         ase->configured_for_context_type =
                 bluetooth::le_audio::types::LeAudioContextType::UNINITIALIZED;
 
@@ -1895,7 +1986,7 @@ private:
         /* If all CISes are disconnected, notify upper layer about IDLE state,
          * otherwise wait for */
         if (!group->HaveAllCisesDisconnected() ||
-            getDeviceTryingToAttachTheStream(group) != nullptr) {
+            getOtherDeviceTryingToAttachTheStream(group, leAudioDevice) != nullptr) {
           log::warn("Not all CISes removed before going to IDLE for group {}, waiting...",
                     group->group_id_);
           group->PrintDebugState();
@@ -2292,7 +2383,10 @@ private:
         break;
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING:
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
-        ase->active = false;
+        if (ase->active) {
+          ase->active = false;
+          deviceDetachedFromStream(leAudioDevice);
+        }
 
         if (!leAudioDevice->HaveAllActiveAsesSameState(
                     AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED)) {
@@ -2313,6 +2407,14 @@ private:
 
         /* Last node is in releasing state*/
         group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
+
+        if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+            group->GetSubstituteDevice(leAudioDevice) != nullptr) {
+          log::debug("Group {} is doing replacement procedure", group->group_id_);
+          group->PrintDebugState();
+          return;
+        }
+
         /* Remote device has cache and keep staying in configured state after
          * release. Therefore, we assume this is a target state requested by
          * remote device.
@@ -3149,7 +3251,7 @@ private:
 
         if (remove_cig && group->cig.GetState() == CigState::CREATED &&
             group->HaveAllCisesDisconnected() &&
-            getDeviceTryingToAttachTheStream(group) == nullptr) {
+            getOtherDeviceTryingToAttachTheStream(group, leAudioDevice) == nullptr) {
           RemoveCigForGroup(group);
         }
 
@@ -3196,7 +3298,10 @@ private:
                     AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING)) {
           group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING);
           group->ClearStreamingMetadataContexts();
-          if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+          if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+              group->GetSubstituteDevice(leAudioDevice) != nullptr) {
+            log::debug("Dynamic group {} is doing replacement procedure", group->group_id_);
+          } else if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
             log::info("Group {} is doing autonomous release", group->group_id_);
             SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
             state_machine_callbacks_->StatusReportCb(group->group_id_,

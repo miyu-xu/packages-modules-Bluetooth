@@ -130,6 +130,11 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface, public LeAudio
                           group_id, group_stream_status));
   }
 
+  void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) override {
+      do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnActiveMembersListChanged,
+                            Unretained(callbacks), group_id, addrs));
+  }
+
   void Initialize(LeAudioClientCallbacks* callbacks,
                   const std::vector<btle_audio_codec_config_t>& offloading_preference) override {
     this->callbacks = callbacks;
