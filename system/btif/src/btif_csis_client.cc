@@ -145,6 +145,11 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
                           group_id, locked, status));
   }
 
+  void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) override {
+    do_in_jni_thread(Bind(&CsisClientCallbacks::OnActiveMembersListChanged, Unretained(callbacks_),
+                          group_id, addrs));
+  }
+
 private:
   CsisClientCallbacks* callbacks_;
 };

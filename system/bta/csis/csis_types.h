@@ -46,6 +46,9 @@ static const bluetooth::Uuid kCsisSirkUuid = bluetooth::Uuid::From16Bit(0x2B84);
 static const bluetooth::Uuid kCsisSizeUuid = bluetooth::Uuid::From16Bit(0x2B85);
 static const bluetooth::Uuid kCsisLockUuid = bluetooth::Uuid::From16Bit(0x2B86);
 static const bluetooth::Uuid kCsisRankUuid = bluetooth::Uuid::From16Bit(0x2B87);
+static const bluetooth::Uuid kCsisPropsUuid =
+        Uuid::From128BitLE(Uuid::UUID128Bit{{0x33, 0xC2, 0x00, 0xA9, 0x4F, 0xFE, 0x43, 0x40, 0x85,
+                                             0xB2, 0xA3, 0x77, 0xB1, 0x5A, 0x7D, 0x43}});
 
 static constexpr uint8_t kCsisErrorCodeLockDenied = 0x80;
 static constexpr uint8_t kCsisErrorCodeReleaseNotAllowed = 0x81;
@@ -56,6 +59,9 @@ static constexpr uint8_t kCsisErrorCodeLockAlreadyGranted = 0x85;
 
 static constexpr uint8_t kCsisSirkTypeEncrypted = 0x00;
 static constexpr uint8_t kCsisSirkCharLen = 17;
+
+/* CSIS Dynamic Set Properties: Custom Property bits */
+static constexpr uint8_t kCsisCustomPropsBitMemberActive = 1 << 0;
 
 struct hdl_pair {
   hdl_pair() {}
@@ -144,6 +150,7 @@ public:
     struct hdl_pair lock_handle;
     uint16_t rank_handle;
     struct hdl_pair size_handle;
+    struct hdl_pair props_handle;
   } svc_data = {
           GAP_INVALID_HANDLE,
           GAP_INVALID_HANDLE,
@@ -151,13 +158,15 @@ public:
           {GAP_INVALID_HANDLE, GAP_INVALID_HANDLE},
           GAP_INVALID_HANDLE,
           {GAP_INVALID_HANDLE, GAP_INVALID_HANDLE},
+          {GAP_INVALID_HANDLE, GAP_INVALID_HANDLE},
   };
 
   CsisInstance(uint16_t start_handle, uint16_t end_handle, const bluetooth::Uuid& uuid)
       : coordinated_service(uuid),
         group_id_(bluetooth::groups::kGroupUnknown),
         rank_(kUnknownRank),
-        lock_state_(CsisLockState::CSIS_STATE_UNSET) {
+        lock_state_(CsisLockState::CSIS_STATE_UNSET),
+        custom_props_(0) {
     svc_data.start_handle = start_handle;
     svc_data.end_handle = end_handle;
   }
@@ -172,6 +181,23 @@ public:
   void SetRank(uint8_t rank) {
     log::debug("current rank: {}, new rank: {}", static_cast<int>(rank_), static_cast<int>(rank));
     rank_ = rank;
+  }
+
+  void SetDynamicSetProperties(uint8_t custom_props) {
+    log::debug("{} -> {}", static_cast<int>(custom_props_), static_cast<int>(custom_props));
+    custom_props_ = custom_props;
+  }
+
+  bool IsDynamicSetMember(void) const {
+    return svc_data.props_handle.val_hdl != GAP_INVALID_HANDLE;
+  }
+
+  bool IsMemberActive(void) const {
+    if (!IsDynamicSetMember()) {
+      return true;
+    } else {
+      return (custom_props_ & kCsisCustomPropsBitMemberActive) > 0;
+    }
   }
 
   void SetGroupId(int group_id) {
@@ -192,6 +218,7 @@ private:
   int group_id_;
   uint8_t rank_;
   CsisLockState lock_state_;
+  uint8_t custom_props_;
 };
 
 /*
@@ -311,6 +338,7 @@ public:
   CsisGroup(int group_id, const bluetooth::Uuid& uuid)
       : group_id_(group_id),
         size_(kDefaultCsisSetSize),
+        desired_active_size_(0),
         uuid_(uuid),
         member_discovery_state_(CsisDiscoveryState::CSIS_DISCOVERY_IDLE),
         lock_state_(CsisLockState::CSIS_STATE_UNSET),
@@ -347,6 +375,20 @@ public:
   int GetGroupId(void) const { return group_id_; }
   int GetDesiredSize(void) const { return size_; }
   void SetDesiredSize(int size) { size_ = size; }
+  int GetDesiredActiveSize(void) const {
+    return (desired_active_size_ > 0) ? desired_active_size_ : GetDesiredSize();
+  }
+  void SetDesiredActiveSize(int desired_active_size) { desired_active_size_ = desired_active_size; }
+  bool IsGroupDynamic(void) {
+    for (auto dev = GetFirstDevice(); dev != nullptr; dev = GetNextDevice(dev)) {
+      const auto inst = dev->GetCsisInstanceByGroupId(group_id_);
+      if (inst && inst->IsDynamicSetMember()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
   bool IsGroupComplete(void) const { return size_ == (int)devices_.size(); }
   bool IsEmpty(void) const { return devices_.empty(); }
 
@@ -525,6 +567,7 @@ private:
   Octet16 sirk_ = {0};
   bool sirk_available_ = false;
   int size_;
+  int desired_active_size_;
   bluetooth::Uuid uuid_;
 
   std::vector<std::shared_ptr<CsisDevice>> devices_;
