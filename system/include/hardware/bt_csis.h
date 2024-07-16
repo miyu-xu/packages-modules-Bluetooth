@@ -64,6 +64,9 @@ public:
 
   /* Callback for lock changed in the group */
   virtual void OnGroupLockChanged(int group_id, bool locked, CsisGroupLockStatus status) = 0;
+
+  /* Callback for active members list changed in the group */
+  virtual void OnActiveMembersListChanged(int group_id, const std::vector<RawAddress>& addrs) = 0;
 };
 
 class CsisClientInterface {
