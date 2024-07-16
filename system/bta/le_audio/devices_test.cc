@@ -526,6 +526,11 @@ protected:
     ON_CALL(mock_csis_client_module_, GetDesiredSize(_)).WillByDefault(Invoke([this](int group_id) {
       return desired_group_size_ > 0 ? desired_group_size_ : (int)(addresses_.size());
     }));
+    ON_CALL(mock_csis_client_module_, GetDesiredActiveSize(_))
+            .WillByDefault(Invoke([this](int group_id) {
+              return (int)(mock_csis_client_module_.GetDesiredSize(group_id));
+            }));
+    ON_CALL(mock_csis_client_module_, IsMemberActive(_, _)).WillByDefault(Return(true));
     SetUpMockCodecManager(codec_location);
   }
 
@@ -975,10 +980,13 @@ protected:
             continue;
           }
 
+          int desired_size = group_->DesiredSize();
+
           /* Make sure the strategy is the expected one */
-          if (direction == kLeAudioDirectionSink && group_->GetGroupSinkStrategy() != strategy) {
+          if (direction == kLeAudioDirectionSink &&
+              group_->GetGroupSinkStrategy(desired_size) != strategy) {
             log::debug("Sink strategy mismatch group!=cfg.entry ({}!={})",
-                       static_cast<int>(group_->GetGroupSinkStrategy()),
+                       static_cast<int>(group_->GetGroupSinkStrategy(desired_size)),
                        static_cast<int>(strategy));
             interesting_configuration = false;
           }
