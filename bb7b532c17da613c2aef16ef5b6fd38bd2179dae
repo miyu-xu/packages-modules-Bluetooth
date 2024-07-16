@@ -16,6 +16,23 @@
       "message": "Hi Myles, this is similar to b/206866877 and aosp/1897164. Please review this change.",
       "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fbee1cb_b08ed14a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-16T18:52:15Z",
+      "side": 1,
+      "message": "This looks like a workaround for a crash in an HCI timeout situation (which causes a crash) I\u0027d rather not add logic for this.",
+      "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
