@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -23,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.ParcelUuid;
+import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -38,6 +38,10 @@ import org.junit.runner.RunWith;
 
 import pandora.HostProto.ConnectRequest;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /** Test cases for {@link ServiceDiscoveryManager}. */
 @RunWith(AndroidJUnit4.class)
 public class SdpClientTest {
@@ -47,7 +51,7 @@ public class SdpClientTest {
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
 
-    private SettableFuture<ParcelUuid[]> mFutureIntent;
+    private SettableFuture<List<ParcelUuid>> mFutureIntent;
 
     @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
@@ -61,7 +65,8 @@ public class SdpClientTest {
                         ParcelUuid[] parcelUuids =
                                 intent.getParcelableArrayExtra(
                                         BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
-                        mFutureIntent.set(parcelUuids);
+                        List<ParcelUuid> uuidList = Arrays.asList(parcelUuids);
+                        mFutureIntent.set(uuidList);
                     }
                 }
             };
@@ -89,8 +94,29 @@ public class SdpClientTest {
         // Execute service discovery procedure
         assertThat(device.fetchUuidsWithSdp()).isTrue();
 
-        ParcelUuid[] arr = mFutureIntent.get();
-        assertThat(arr).asList().contains(BluetoothUuid.HFP);
+        List<ParcelUuid> supportedUuids =
+                Arrays.asList(
+                        BluetoothUuid.HFP,
+                        BluetoothUuid.A2DP_SOURCE,
+                        BluetoothUuid.A2DP_SINK,
+                        BluetoothUuid.AVRCP);
+
+        List<ParcelUuid> receivedUuids = mFutureIntent.get();
+        Log.d(TAG, "Discovered UUIDs: " + receivedUuids);
+
+        boolean allSupportedUuidsPresent =
+                supportedUuids.stream().allMatch(receivedUuids::contains);
+
+        if (!allSupportedUuidsPresent) {
+            List<ParcelUuid> missingUuids =
+                    supportedUuids.stream()
+                            .filter(uuid -> !receivedUuids.contains(uuid))
+                            .collect(Collectors.toList());
+
+            Log.e(TAG, "Missing UUIDs: " + missingUuids);
+
+            assertThat(allSupportedUuidsPresent).isTrue();
+        }
 
         mContext.unregisterReceiver(mConnectionStateReceiver);
     }
