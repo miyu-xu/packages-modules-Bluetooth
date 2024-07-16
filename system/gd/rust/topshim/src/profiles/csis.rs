@@ -66,6 +66,10 @@ pub mod ffi {
             locked: bool,
             status: BtCsisGroupLockStatus,
         );
+        fn csis_group_active_members_list_changed_callback(
+            group_id: i32,
+            addrs: Vec<RawAddress>,
+        );
     }
 }
 
@@ -78,6 +82,7 @@ pub enum CsisClientCallbacks {
     DeviceAvailable(RawAddress, i32, i32, i32, Uuid),
     SetMemberAvailable(RawAddress, i32),
     GroupLockChanged(i32, bool, BtCsisGroupLockStatus),
+    ActiveMembersListChanged(i32, Vec<RawAddress>),
 }
 
 pub struct CsisClientCallbacksDispatcher {
@@ -101,6 +106,10 @@ cb_variant!(CsisClientCb,
 cb_variant!(CsisClientCb,
             csis_group_lock_changed_callback -> CsisClientCallbacks::GroupLockChanged,
             i32, bool, BtCsisGroupLockStatus);
+
+cb_variant!(CsisClientCb,
+            csis_group_active_members_list_changed_callback -> CsisClientCallbacks::ActiveMembersListChanged,
+            i32, Vec<RawAddress>);
 
 pub struct CsisClient {
     internal: cxx::UniquePtr<ffi::CsisClientIntf>,
