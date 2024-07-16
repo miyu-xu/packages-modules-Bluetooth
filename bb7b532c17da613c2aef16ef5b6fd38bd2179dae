@@ -51,6 +51,24 @@
       "parentUuid": "9fbee1cb_b08ed14a",
       "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d62890c_9b86096e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-16T19:10:54Z",
+      "side": 1,
+      "message": "Previuos CL is aosp/1897164 and Sonny and you have discussed the logic part.",
+      "parentUuid": "8eac5af0_9aa26e18",
+      "revId": "bb7b532c17da613c2aef16ef5b6fd38bd2179dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
