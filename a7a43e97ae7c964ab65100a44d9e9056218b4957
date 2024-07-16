@@ -16,6 +16,41 @@
       "message": "After our discussion I found that all of the cases where we call this have a log.  But, the formatting of the logs are not uniform so I figured to add this as a verbose log just to make things easier.  Do tell if you don\u0027t think it\u0027s worth having a duplicate log",
       "revId": "a7a43e97ae7c964ab65100a44d9e9056218b4957",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20689004_21b30692",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-16T23:32:19Z",
+      "side": 1,
+      "message": "The logging infrastructure should pull in the proper method negating the need for this macro\n```\n{}\", address, \n```",
+      "fixSuggestions": [
+        {
+          "fixId": "c57d8b97_ccb38c72",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_logging.cc",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"bd_addr: %s, port: %d, role: %d, state: %d\", address, port, role, state);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a7a43e97ae7c964ab65100a44d9e9056218b4957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
