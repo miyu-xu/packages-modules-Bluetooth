@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "055294e6_d32d8a78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-16T15:51:52Z",
+      "side": 1,
+      "message": "I made it a bit more specific 😊",
+      "parentUuid": "47ddf38b_62265ee1",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "d0981ed786456448ad9ba3622e2dfd3f361dd7a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2d413306_608a9cbf",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
