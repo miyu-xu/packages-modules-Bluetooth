@@ -16,6 +16,24 @@
       "message": "You can do: `atest avatar:A2dpTest#test_ad2p_autoconnect_when_only_avrcp_connected` to satisfy the linter",
       "revId": "78fcd3729679e86e0d1f583179087045b0cf6075",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a19b17f_c0ee166c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-16T07:19:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31bacdcf_fc5f7d71",
+      "revId": "78fcd3729679e86e0d1f583179087045b0cf6075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
