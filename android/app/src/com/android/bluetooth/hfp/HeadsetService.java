@@ -845,7 +845,6 @@ public class HeadsetService extends ProfileService {
             Log.w(TAG, "getHeadsetService(): service is not available");
             return null;
         }
-        logD("getHeadsetService(): returning " + sHeadsetService);
         return sHeadsetService;
     }
 
@@ -1343,7 +1342,7 @@ public class HeadsetService extends ProfileService {
         synchronized (mStateMachines) {
             final HeadsetStateMachine stateMachine = mStateMachines.get(device);
             if (stateMachine == null) {
-                Log.e(TAG, "getHfpCallAudioPolicy(), " + device + " does not have a state machine");
+                Log.w(TAG, "getHfpCallAudioPolicy(), " + device + " does not have a state machine");
                 return null;
             }
             return stateMachine.getHfpCallAudioPolicy();
