@@ -3875,7 +3875,7 @@ public class AdapterService extends Service {
                 return;
             }
 
-            service.enforceCallingOrSelfPermission(android.Manifest.permission.DUMP, null);
+            service.enforceCallingOrSelfPermission(DUMP, null);
 
             service.dump(fd, writer, args);
             writer.close();

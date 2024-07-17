@@ -176,7 +176,7 @@ public class A2dpSinkService extends ProfileService {
         }
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
     boolean isA2dpPlaying(BluetoothDevice device) {
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
@@ -206,7 +206,7 @@ public class A2dpSinkService extends ProfileService {
             mService = null;
         }
 
-        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+        @RequiresPermission(BLUETOOTH_CONNECT)
         private A2dpSinkService getService(AttributionSource source) {
             // Cache mService because it can change while getService is called
             A2dpSinkService service = mService;

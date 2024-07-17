@@ -1048,7 +1048,7 @@ public class TransitionalScanHelper {
      * GATT Service functions - Shared CLIENT/SERVER
      *************************************************************************/
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void registerScanner(
             IScannerCallback callback, WorkSource workSource, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
@@ -1082,7 +1082,7 @@ public class TransitionalScanHelper {
         mScanManager.registerScanner(uuid);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void unregisterScanner(int scannerId, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
                 mContext, attributionSource, "ScanHelper unregisterScanner")) {
@@ -1125,7 +1125,7 @@ public class TransitionalScanHelper {
         return macAddresses;
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void startScan(
             int scannerId,
             ScanSettings settings,
@@ -1211,7 +1211,7 @@ public class TransitionalScanHelper {
         mScanManager.startScan(scanClient);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void registerPiAndStartScan(
             PendingIntent pendingIntent,
             ScanSettings settings,
@@ -1317,7 +1317,7 @@ public class TransitionalScanHelper {
         mScanManager.startScan(scanClient);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void flushPendingBatchResults(int scannerId, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
                 mContext, attributionSource, "ScanHelper flushPendingBatchResults")) {
@@ -1331,7 +1331,7 @@ public class TransitionalScanHelper {
         mScanManager.flushBatchScanResults(new ScanClient(scannerId));
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void stopScan(int scannerId, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
                 mContext, attributionSource, "ScanHelper stopScan")) {
@@ -1354,7 +1354,7 @@ public class TransitionalScanHelper {
         mScanManager.stopScan(scannerId);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void stopScan(PendingIntent intent, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
                 mContext, attributionSource, "ScanHelper stopScan")) {
@@ -1381,7 +1381,7 @@ public class TransitionalScanHelper {
     /**************************************************************************
      * PERIODIC SCANNING
      *************************************************************************/
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void registerSync(
             ScanResult scanResult,
             int skip,
@@ -1395,7 +1395,7 @@ public class TransitionalScanHelper {
         mPeriodicScanManager.startSync(scanResult, skip, timeout, callback);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void unregisterSync(
             IPeriodicAdvertisingCallback callback, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
@@ -1405,7 +1405,7 @@ public class TransitionalScanHelper {
         mPeriodicScanManager.stopSync(callback);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void transferSync(
             BluetoothDevice bda,
             int serviceData,
@@ -1418,7 +1418,7 @@ public class TransitionalScanHelper {
         mPeriodicScanManager.transferSync(bda, serviceData, syncHandle);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public void transferSetInfo(
             BluetoothDevice bda,
             int serviceData,
@@ -1432,7 +1432,7 @@ public class TransitionalScanHelper {
         mPeriodicScanManager.transferSetInfo(bda, serviceData, advHandle, callback);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(BLUETOOTH_CONNECT)
     public int numHwTrackFiltersAvailable(AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 mContext, attributionSource, "ScanHelper numHwTrackFiltersAvailable")) {
@@ -1558,10 +1558,10 @@ public class TransitionalScanHelper {
     // Enforce caller has UPDATE_DEVICE_STATS permission, which allows the caller to blame other
     // apps for Bluetooth usage. A {@link SecurityException} will be thrown if the caller app does
     // not have UPDATE_DEVICE_STATS permission.
-    @RequiresPermission(android.Manifest.permission.UPDATE_DEVICE_STATS)
+    @RequiresPermission(UPDATE_DEVICE_STATS)
     private void enforceImpersonatationPermission() {
         mContext.enforceCallingOrSelfPermission(
-                android.Manifest.permission.UPDATE_DEVICE_STATS,
+                UPDATE_DEVICE_STATS,
                 "Need UPDATE_DEVICE_STATS permission");
     }
 

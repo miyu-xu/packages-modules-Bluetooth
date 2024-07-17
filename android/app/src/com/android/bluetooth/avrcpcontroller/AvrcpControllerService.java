@@ -380,7 +380,7 @@ public class AvrcpControllerService extends ProfileService {
             mService = null;
         }
 
-        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+        @RequiresPermission(BLUETOOTH_CONNECT)
         private AvrcpControllerService getService(AttributionSource source) {
             // Cache mService because it can change while getService is called
             AvrcpControllerService service = mService;
