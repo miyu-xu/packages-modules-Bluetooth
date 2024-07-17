@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43445234_e93cae04",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T21:38:13Z",
+      "side": 1,
+      "message": "Do we want to add HAP tests for auto as well ? cc: @salsavage@google.com",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380b6258_8f13c493",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T21:38:13Z",
+      "side": 1,
+      "message": "This method is Android specific. The Pandora interfaces aims to be device agnostic and stick to the Bluetooth specification since they are used on different devices. You can know more about the philosophy behind this here: https://developers.google.com/pandora/guides/bt-test-interfaces/overview?hl\u003dfr\n\nFrom a pts point of view, we should not have any \"setActive\" paradigm since this is Android specific. I believe doing a pairing shall be enough.",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d47b0e4_4a0afa9f",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T21:38:13Z",
+      "side": 1,
+      "message": "This is a getter method but it returns Empty. I guess we should return the preset informations.",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 74
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "724fa2c4_fd8bc02d",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T21:38:13Z",
+      "side": 1,
+      "message": "We should return the presets informations since this is a getter method.",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c32a4a58_5e4fd4a6",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T21:38:13Z",
+      "side": 1,
+      "message": "Is there any more informations that might be necessary here ? Such as the reason why it could fail ? e.g: https://github.com/google/bt-test-interfaces/blob/main/pandora/security.proto#L232",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
