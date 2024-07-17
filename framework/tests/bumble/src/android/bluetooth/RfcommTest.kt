@@ -178,6 +178,12 @@ class RfcommTest {
     }
 
     @Test
+    fun testBond() {
+        val host = Host(mContext)
+        host.createAndValidatePairing(mBumble)
+    }
+
+    @Test
     fun clientSendDataOverInsecureSocket() {
         startServer { serverId ->
             runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
