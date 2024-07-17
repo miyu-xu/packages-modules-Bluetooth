@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8bfbbe6_aac936f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-17T14:51:39Z",
+      "side": 1,
+      "message": "I thought recent cpplint lore allowed non-const references ? I know they were considered difficult to read at one point but that determination was relaxed.",
+      "revId": "f5a6e2fc8067c10047c63802e7bbd82f8c7cf5d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
