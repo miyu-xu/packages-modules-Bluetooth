@@ -16,6 +16,24 @@
       "message": "Hi, I Believe this is a bit too soon, let\u0027s revisit this in ~3 months",
       "revId": "d006254fd476835cb861721511684b8df968cfec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fb8b02c_1eb86c22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T03:44:02Z",
+      "side": 1,
+      "message": "I see. Let\u0027s revisit in the next release.",
+      "parentUuid": "1b597cc4_58b57d0b",
+      "revId": "d006254fd476835cb861721511684b8df968cfec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
