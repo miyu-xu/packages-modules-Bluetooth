@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf45038_7aeaf583",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-17T22:30:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "28b9ce85_07053c30",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 30
+      },
+      "revId": "12f4113c84f77eba6d12283aef0f7df2b32b00d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4062897_e34e4dcd",
