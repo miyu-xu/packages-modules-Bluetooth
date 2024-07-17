@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f0ae86_5cb671bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T22:34:11Z",
+      "side": 1,
+      "message": "Hi Kyunglyul, Init flags are not supported.  Is this something that can be removed, or are you planning on converting it to a trunk-stable flag?",
+      "revId": "185a8dbedc6fce77a06bf304725309085a353afa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
