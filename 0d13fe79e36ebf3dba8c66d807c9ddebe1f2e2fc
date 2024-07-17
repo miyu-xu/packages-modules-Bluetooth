@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "390cbf4c_6961fb45",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T21:48:59Z",
+      "side": 1,
+      "message": "Use Closeable interface instead please: https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html\n\n```suggestion\n    override fun close() {\n        // Deinit the CoroutineScope\n        scope.cancel()\n    }\n```",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "380b6258_8f13c493",
         "filename": "pandora/interfaces/pandora_experimental/hap.proto",
         "patchSetId": 7
