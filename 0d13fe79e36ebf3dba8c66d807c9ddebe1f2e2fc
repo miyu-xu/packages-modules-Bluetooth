@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59b084a9_6926b651",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T22:07:49Z",
+      "side": 1,
+      "message": "nit: Move this to `_helpers.py`",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265ecb64_ef36c4fe",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T22:07:49Z",
+      "side": 1,
+      "message": "Is that Android specific or Bluetooth stack related ?",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43445234_e93cae04",
         "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
         "patchSetId": 7
