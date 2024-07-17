@@ -256,8 +256,8 @@ import java.util.UUID;
                 serviceDataMask = new byte[serviceData.length];
                 Arrays.fill(serviceDataMask, (byte) 0xFF);
             }
-            serviceData = concatenate(serviceDataUuid, serviceData);
-            serviceDataMask = concatenate(serviceDataUuid, serviceDataMask);
+            serviceData = concatenate(serviceDataUuid, serviceData, false);
+            serviceDataMask = concatenate(serviceDataUuid, serviceDataMask, true);
             if (serviceData != null && serviceDataMask != null) {
                 addServiceData(serviceData, serviceDataMask);
             }
@@ -293,7 +293,7 @@ import java.util.UUID;
         }
     }
 
-    private byte[] concatenate(ParcelUuid serviceDataUuid, byte[] serviceData) {
+    private byte[] concatenate(ParcelUuid serviceDataUuid, byte[] serviceData, boolean isMask) {
         byte[] uuid = BluetoothUuid.uuidToBytes(serviceDataUuid);
 
         int dataLen = uuid.length + (serviceData == null ? 0 : serviceData.length);
@@ -302,7 +302,13 @@ import java.util.UUID;
             return null;
         }
         byte[] concatenated = new byte[dataLen];
-        System.arraycopy(uuid, 0, concatenated, 0, uuid.length);
+        if (isMask) {
+            // For the UUID portion of the mask fill it with 0xFF to indicate that all bits of the
+            // UUID need to match the service data filter.
+            Arrays.fill(concatenated, 0, uuid.length, (byte) 0xFF);
+        } else {
+            System.arraycopy(uuid, 0, concatenated, 0, uuid.length);
+        }
         if (serviceData != null) {
             System.arraycopy(serviceData, 0, concatenated, uuid.length, serviceData.length);
         }
