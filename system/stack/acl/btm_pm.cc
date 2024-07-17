@@ -909,8 +909,8 @@ uint32_t BTM_PM_ReadBleScanDutyCycle(void) {
   if (!btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     return 0;
   }
-  uint32_t scan_window = btm_cb.ble_ctr_cb.inq_var.scan_window;
-  uint32_t scan_interval = btm_cb.ble_ctr_cb.inq_var.scan_interval;
+  uint32_t scan_window = btm_cb.ble_ctr_cb.inq_var.scan_window_1m;
+  uint32_t scan_interval = btm_cb.ble_ctr_cb.inq_var.scan_interval_1m;
   log::debug("LE scan_window:{} scan interval:{}", scan_window, scan_interval);
   return (scan_window * 100) / scan_interval;
 }

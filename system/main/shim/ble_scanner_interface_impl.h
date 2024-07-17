@@ -72,8 +72,9 @@ public:
   void MsftAdvMonitorRemove(uint8_t monitor_handle, MsftAdvMonitorRemoveCallback cb) override;
   void MsftAdvMonitorEnable(bool enable, MsftAdvMonitorEnableCallback cb) override;
 #endif
-  void SetScanParameters(int scanner_id, uint8_t scan_type, int scan_interval, int scan_window,
-                         int scan_phy, Callback cb) override;
+  void SetScanParameters(uint8_t scan_type, int scanner_id_1m, int scan_interval_1m,
+                         int scan_window_1m, int scanner_id_coded, int scan_interval_coded,
+                         int scan_window_coded, int scan_phy, Callback cb) override;
   void BatchscanConfigStorage(int client_if, int batch_scan_full_max, int batch_scan_trunc_max,
                               int batch_scan_notify_threshold, Callback cb) override;
   void BatchscanEnable(int scan_mode, int scan_interval, int scan_window, int addr_type,

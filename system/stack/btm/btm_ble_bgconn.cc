@@ -73,12 +73,18 @@ static std::unordered_map<RawAddress, BackgroundConnection, BgConnHash> backgrou
  * Description      This function updates the filter policy of scanner
  ******************************************************************************/
 void btm_update_scanner_filter_policy(tBTM_BLE_SFP scan_policy) {
-  uint32_t scan_interval = !btm_cb.ble_ctr_cb.inq_var.scan_interval
-                                   ? BTM_BLE_GAP_DISC_SCAN_INT
-                                   : btm_cb.ble_ctr_cb.inq_var.scan_interval;
-  uint32_t scan_window = !btm_cb.ble_ctr_cb.inq_var.scan_window
-                                 ? BTM_BLE_GAP_DISC_SCAN_WIN
-                                 : btm_cb.ble_ctr_cb.inq_var.scan_window;
+  uint32_t scan_interval_1m = !btm_cb.ble_ctr_cb.inq_var.scan_interval_1m
+                                      ? BTM_BLE_GAP_DISC_SCAN_INT
+                                      : btm_cb.ble_ctr_cb.inq_var.scan_interval_1m;
+  uint32_t scan_window_1m = !btm_cb.ble_ctr_cb.inq_var.scan_window_1m
+                                    ? BTM_BLE_GAP_DISC_SCAN_WIN
+                                    : btm_cb.ble_ctr_cb.inq_var.scan_window_1m;
+  uint32_t scan_interval_coded = !btm_cb.ble_ctr_cb.inq_var.scan_interval_coded
+                                         ? BTM_BLE_GAP_DISC_SCAN_INT
+                                         : btm_cb.ble_ctr_cb.inq_var.scan_interval_coded;
+  uint32_t scan_window_coded = !btm_cb.ble_ctr_cb.inq_var.scan_window_coded
+                                       ? BTM_BLE_GAP_DISC_SCAN_WIN
+                                       : btm_cb.ble_ctr_cb.inq_var.scan_window_coded;
   uint8_t scan_phy = !btm_cb.ble_ctr_cb.inq_var.scan_phy ? BTM_BLE_DEFAULT_PHYS
                                                          : btm_cb.ble_ctr_cb.inq_var.scan_phy;
 
@@ -90,8 +96,9 @@ void btm_update_scanner_filter_policy(tBTM_BLE_SFP scan_policy) {
                   ? BTM_BLE_SCAN_MODE_ACTI
                   : btm_cb.ble_ctr_cb.inq_var.scan_type;
 
-  btm_send_hci_set_scan_params(btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval,
-                               (uint16_t)scan_window, (uint8_t)scan_phy,
+  btm_send_hci_set_scan_params(btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval_1m,
+                               (uint16_t)scan_window_1m, (uint16_t)scan_interval_coded,
+                               (uint16_t)scan_window_coded, (uint8_t)scan_phy,
                                btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, scan_policy);
 }
 

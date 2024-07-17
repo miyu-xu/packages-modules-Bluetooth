@@ -108,6 +108,9 @@ constexpr uint8_t BLE_EVT_DIRECTED_BIT = 2;
 constexpr uint8_t BLE_EVT_SCAN_RESPONSE_BIT = 3;
 constexpr uint8_t BLE_EVT_LEGACY_BIT = 4;
 
+constexpr uint8_t k1mPhyMask = 1;
+constexpr uint8_t kCodedPhyMask = 1 << 2;
+
 class AdvertisingCache {
 public:
   /* Set the data to |data| for device |addr_type, addr| */
@@ -519,12 +522,18 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
                            tBTM_CMPL_CB* p_cmpl_cb, bool low_latency_scan) {
   tBTM_STATUS status = BTM_WRONG_MODE;
 
-  uint16_t scan_interval = !btm_cb.ble_ctr_cb.inq_var.scan_interval
-                                   ? BTM_BLE_GAP_DISC_SCAN_INT
-                                   : btm_cb.ble_ctr_cb.inq_var.scan_interval;
-  uint16_t scan_window = !btm_cb.ble_ctr_cb.inq_var.scan_window
-                                 ? BTM_BLE_GAP_DISC_SCAN_WIN
-                                 : btm_cb.ble_ctr_cb.inq_var.scan_window;
+  uint16_t scan_interval_1m = !btm_cb.ble_ctr_cb.inq_var.scan_interval_1m
+                                      ? BTM_BLE_GAP_DISC_SCAN_INT
+                                      : btm_cb.ble_ctr_cb.inq_var.scan_interval_1m;
+  uint16_t scan_window_1m = !btm_cb.ble_ctr_cb.inq_var.scan_window_1m
+                                    ? BTM_BLE_GAP_DISC_SCAN_WIN
+                                    : btm_cb.ble_ctr_cb.inq_var.scan_window_1m;
+  uint16_t scan_interval_coded = !btm_cb.ble_ctr_cb.inq_var.scan_interval_coded
+                                         ? BTM_BLE_GAP_DISC_SCAN_INT
+                                         : btm_cb.ble_ctr_cb.inq_var.scan_interval_coded;
+  uint16_t scan_window_coded = !btm_cb.ble_ctr_cb.inq_var.scan_window_coded
+                                       ? BTM_BLE_GAP_DISC_SCAN_WIN
+                                       : btm_cb.ble_ctr_cb.inq_var.scan_window_coded;
 
   uint8_t scan_phy = !btm_cb.ble_ctr_cb.inq_var.scan_phy ? BTM_BLE_DEFAULT_PHYS
                                                          : btm_cb.ble_ctr_cb.inq_var.scan_phy;
@@ -533,11 +542,12 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
   uint16_t ll_scan_interval, ll_scan_window;
   std::tie(ll_scan_interval, ll_scan_window) = get_low_latency_scan_params();
   if (low_latency_scan) {
-    std::tie(scan_interval, scan_window) = std::tie(ll_scan_interval, ll_scan_window);
+    std::tie(scan_interval_1m, scan_window_1m) = std::tie(ll_scan_interval, ll_scan_window);
+    std::tie(scan_interval_coded, scan_window_coded) = std::tie(ll_scan_interval, ll_scan_window);
   }
 
-  log::verbose("scan_type:{}, {}, {}", btm_cb.ble_ctr_cb.inq_var.scan_type, scan_interval,
-               scan_window);
+  log::verbose("scan_type:{}, {}, {}", btm_cb.ble_ctr_cb.inq_var.scan_type, scan_interval_1m,
+               scan_window_1m);
 
   if (!bluetooth::shim::GetController()->SupportsBle()) {
     return BTM_ILLEGAL_VALUE;
@@ -564,8 +574,9 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
        * 1. if the scan we wish to start is not low latency
        * 2. current ongoing scanning is low latency
        */
-      bool is_ongoing_low_latency = btm_cb.ble_ctr_cb.inq_var.scan_interval == ll_scan_interval &&
-                                    btm_cb.ble_ctr_cb.inq_var.scan_window == ll_scan_window;
+      bool is_ongoing_low_latency =
+              btm_cb.ble_ctr_cb.inq_var.scan_interval_1m == ll_scan_interval &&
+              btm_cb.ble_ctr_cb.inq_var.scan_window_1m == ll_scan_window;
       if (!low_latency_scan || is_ongoing_low_latency) {
         log::warn("Observer was already active, is_low_latency: {}", is_ongoing_low_latency);
         return BTM_CMD_STARTED;
@@ -586,10 +597,10 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
               (btm_cb.ble_ctr_cb.inq_var.scan_type == BTM_BLE_SCAN_MODE_NONE)
                       ? BTM_BLE_SCAN_MODE_ACTI
                       : btm_cb.ble_ctr_cb.inq_var.scan_type;
-      btm_send_hci_set_scan_params(btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval,
-                                   (uint8_t)scan_phy, (uint16_t)scan_window,
-                                   btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type,
-                                   BTM_BLE_DEFAULT_SFP);
+      btm_send_hci_set_scan_params(
+              btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval_1m,
+              (uint16_t)scan_window_1m, (uint16_t)scan_interval_coded, (uint16_t)scan_window_coded,
+              (uint8_t)scan_phy, btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, BTM_BLE_DEFAULT_SFP);
 
       btm_ble_start_scan();
     }
@@ -1482,23 +1493,31 @@ static void btm_send_hci_scan_enable(uint8_t enable, uint8_t filter_duplicates) 
   }
 }
 
-void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int, uint16_t scan_win,
+void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int_1m, uint16_t scan_win_1m,
+                                  uint16_t scan_int_coded, uint16_t scan_win_coded,
                                   uint8_t scan_phy, tBLE_ADDR_TYPE addr_type_own,
                                   uint8_t scan_filter_policy) {
   if (bluetooth::shim::GetController()->SupportsBleExtendedAdvertising()) {
-    scanning_phy_cfg phy_cfg;
-    phy_cfg.scan_type = scan_type;
-    phy_cfg.scan_int = scan_int;
-    phy_cfg.scan_win = scan_win;
-
-    if (com::android::bluetooth::flags::phy_to_native()) {
-      btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy, scan_phy,
-                                              &phy_cfg);
-    } else {
-      btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy, 1, &phy_cfg);
+    std::vector<scanning_phy_cfg> phy_cfgs;
+    if ((scan_phy & k1mPhyMask) != 0) {
+      scanning_phy_cfg phy_cfg;
+      phy_cfg.scan_type = scan_type;
+      phy_cfg.scan_int = scan_int_1m;
+      phy_cfg.scan_win = scan_win_1m;
+      phy_cfgs.push_back(phy_cfg);
     }
+    if ((scan_phy & kCodedPhyMask) != 0) {
+      scanning_phy_cfg phy_cfg;
+      phy_cfg.scan_type = scan_type;
+      phy_cfg.scan_int = scan_int_coded;
+      phy_cfg.scan_win = scan_win_coded;
+      phy_cfgs.push_back(phy_cfg);
+    }
+
+    btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy, scan_phy,
+                                            phy_cfgs.data());
   } else {
-    btsnd_hcic_ble_set_scan_params(scan_type, scan_int, scan_win, addr_type_own,
+    btsnd_hcic_ble_set_scan_params(scan_type, scan_int_1m, scan_win_1m, addr_type_own,
                                    scan_filter_policy);
   }
 }
@@ -1561,17 +1580,19 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
 
   if (!btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     cache.ClearAll();
-    btm_send_hci_set_scan_params(BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window, scan_phy,
+    btm_send_hci_set_scan_params(BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window, scan_interval,
+                                 scan_window, scan_phy,
                                  btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, SP_ADV_ALL);
     btm_cb.ble_ctr_cb.inq_var.scan_type = BTM_BLE_SCAN_MODE_ACTI;
     btm_ble_start_scan();
-  } else if ((btm_cb.ble_ctr_cb.inq_var.scan_interval != scan_interval) ||
-             (btm_cb.ble_ctr_cb.inq_var.scan_window != scan_window)) {
+  } else if ((btm_cb.ble_ctr_cb.inq_var.scan_interval_1m != scan_interval) ||
+             (btm_cb.ble_ctr_cb.inq_var.scan_window_1m != scan_window)) {
     log::verbose("restart LE scan with low latency scan params");
-    btm_cb.ble_ctr_cb.inq_var.scan_interval = scan_interval;
-    btm_cb.ble_ctr_cb.inq_var.scan_window = scan_window;
+    btm_cb.ble_ctr_cb.inq_var.scan_interval_1m = scan_interval;
+    btm_cb.ble_ctr_cb.inq_var.scan_window_1m = scan_window;
     btm_send_hci_scan_enable(BTM_BLE_SCAN_DISABLE, BTM_BLE_DUPLICATE_ENABLE);
-    btm_send_hci_set_scan_params(BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window, scan_phy,
+    btm_send_hci_set_scan_params(BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window, scan_interval,
+                                 scan_window, scan_phy,
                                  btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, SP_ADV_ALL);
     btm_send_hci_scan_enable(BTM_BLE_SCAN_ENABLE, BTM_BLE_DUPLICATE_DISABLE);
   }
@@ -2413,8 +2434,8 @@ void btm_ble_stop_inquiry(void) {
   /* If no more scan activity, stop LE scan now */
   if (!btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     btm_ble_stop_scan();
-  } else if (get_low_latency_scan_params() != std::pair(btm_cb.ble_ctr_cb.inq_var.scan_interval,
-                                                        btm_cb.ble_ctr_cb.inq_var.scan_window)) {
+  } else if (get_low_latency_scan_params() != std::pair(btm_cb.ble_ctr_cb.inq_var.scan_interval_1m,
+                                                        btm_cb.ble_ctr_cb.inq_var.scan_window_1m)) {
     log::verbose("setting default params for ongoing observe");
     btm_ble_stop_scan();
     btm_ble_start_scan();

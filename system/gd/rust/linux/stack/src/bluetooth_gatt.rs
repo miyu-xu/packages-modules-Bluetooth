@@ -1405,10 +1405,13 @@ impl GattAsyncIntf {
             enabled_active_scan_param.or(enabled_scan_param)
         {
             self.gatt.as_ref().unwrap().lock().unwrap().scanner.set_scan_parameters(
-                scanner_id,
                 scan_type,
+                scanner_id,
                 scan_interval,
                 scan_window,
+                0,
+                0,
+                0,
                 1,
             );
         }

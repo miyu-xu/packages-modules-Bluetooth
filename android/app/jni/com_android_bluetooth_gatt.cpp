@@ -1591,15 +1591,17 @@ void set_scan_params_cmpl_cb(int client_if, uint8_t status) {
                                client_if);
 }
 
-static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */, jint client_if,
-                                        jint scan_interval_unit, jint scan_window_unit,
-                                        jint scan_phy) {
+static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */, jint client_if_1m,
+                                        jint scan_interval_unit_1m, jint scan_window_unit_1m,
+                                        jint client_if_coded, jint scan_interval_unit_coded,
+                                        jint scan_window_unit_coded, jint scan_phy) {
   if (!sScanner) {
     return;
   }
-  sScanner->SetScanParameters(client_if, /* use active scan */ 0x01, scan_interval_unit,
-                              scan_window_unit, scan_phy,
-                              base::Bind(&set_scan_params_cmpl_cb, client_if));
+  sScanner->SetScanParameters(/* use active scan */ 0x01, client_if_1m, scan_interval_unit_1m,
+                              scan_window_unit_1m, client_if_coded, scan_interval_unit_coded,
+                              scan_window_unit_coded, scan_phy,
+                              base::Bind(&set_scan_params_cmpl_cb, client_if_1m));
 }
 
 void scan_filter_param_cb(uint8_t client_if, uint8_t avbl_space, uint8_t action, uint8_t status) {

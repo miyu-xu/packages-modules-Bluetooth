@@ -83,8 +83,10 @@ typedef struct {
 typedef struct {
   uint16_t discoverable_mode;
   uint16_t connectable_mode;
-  uint16_t scan_window;
-  uint16_t scan_interval;
+  uint16_t scan_window_1m;
+  uint16_t scan_interval_1m;
+  uint16_t scan_window_coded;
+  uint16_t scan_interval_coded;
   uint8_t scan_type; /* current scan type: active or passive */
   uint8_t scan_phy;
 
