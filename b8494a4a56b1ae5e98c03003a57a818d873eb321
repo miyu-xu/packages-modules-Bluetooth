@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86143efd_534be59f",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-17T23:07:33Z",
+      "side": 0,
+      "message": "So we hit this every time ?!?",
+      "revId": "b8494a4a56b1ae5e98c03003a57a818d873eb321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
