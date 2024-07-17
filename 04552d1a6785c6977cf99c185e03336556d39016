@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ed4177_a1697731",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-17T22:59:32Z",
+      "side": 1,
+      "message": "The highlighted changes deviate from the intent of this CL and have been restored.",
+      "parentUuid": "9e66dee8_06d0e111",
+      "range": {
+        "startLine": 952,
+        "startChar": 0,
+        "endLine": 953,
+        "endChar": 80
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4af578d7_9549fe4d",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "No.  This is what you get and what we run in production !\n\nAgain, I probably should have not touched this either.",
       "parentUuid": "4af578d7_9549fe4d",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 20
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29f5dbc6_1346c646",
+        "filename": "system/stack/l2cap/l2c_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-17T22:59:32Z",
+      "side": 1,
+      "message": "Backed out and restored",
+      "parentUuid": "b53a274a_d7e1515d",
       "range": {
         "startLine": 283,
         "startChar": 0,
