@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad971eb3_2e7ecb92",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T22:03:59Z",
+      "side": 1,
+      "message": "What do you think about using a callbackFlow instead ?\nhttps://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/callback-flow.html\n\n\n```suggestion\nprivate val mPresetChanged \u003d callbackFlow {\n        val callback \u003d\n            object : BluetoothHapClient.Callback {\n                override fun onPresetSelected(\n                    device: BluetoothDevice,\n                    presetIndex: Int,\n                    reason: Int\n                ) {\n                    Log.i(TAG, \"$device preset info changed\")\n                }\n\n                override fun onPresetSelectionFailed(device: BluetoothDevice, reason: Int) {\n                    trySend(false)\n                }\n\n                override fun onPresetSelectionForGroupFailed(hapGroupId: Int, reason: Int) {\n                    trySend(false)\n                }\n\n                override fun onPresetInfoChanged(\n                    device: BluetoothDevice,\n                    presetInfoList: List\u003cBluetoothHapPresetInfo\u003e,\n                    reason: Int\n                ) {\n                    Log.i(TAG, \"$device preset info changed\")\n                    trySend(true)\n                }\n\n                override fun onSetPresetNameFailed(device: BluetoothDevice, reason: Int) {\n                    trySend(false)\n                }\n\n                override fun onSetPresetNameForGroupFailed(hapGroupId: Int, reason: Int) {\n                    trySend(false)\n                }\n            }\n\n        bluetoothHapClient.registerCallback(Executors.newSingleThreadExecutor(), callback)\n\n        awaitClose { bluetoothHapClient.unregisterCallback(callback) }\n    }\n```",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "390cbf4c_6961fb45",
         "filename": "android/pandora/server/src/Hap.kt",
         "patchSetId": 7
@@ -36,6 +59,52 @@
         "startChar": 4,
         "endLine": 97,
         "endChar": 5
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "606b8287_ac946410",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T22:03:59Z",
+      "side": 1,
+      "message": "With the callback flow this will be deleted",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 5
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46aa3703_013d7d02",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-17T22:03:59Z",
+      "side": 1,
+      "message": "With the callbackFlow this will look like:\n\n```suggestion\nval presetChangedReceived \u003d mPresetChanged.first()\n```",
+      "range": {
+        "startLine": 278,
+        "startChar": 40,
+        "endLine": 278,
+        "endChar": 60
       },
       "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
