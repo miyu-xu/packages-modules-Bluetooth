@@ -165,3 +165,56 @@ cc_library_headers {
     ],
     min_sdk_version: "30",
 }
+
+//    195600  2008-01-01 00:00   lib64/libz-host.so
+// unzip -l $(find $(gettop)/out -name bluetooth_host_libs.zip)
+cc_genrule {
+    name: "bluetooth_host_libs",
+    compile_multilib: "first",
+    host_supported: true,
+    device_supported: false,
+    tools: ["soong_zip"],
+    srcs: [":libz"],
+    out: ["bluetooth_host_libs.zip"],
+    cmd: "mkdir lib64 && cp $(in) lib64 && " +
+        "$(location soong_zip) -d -o $(out) -C . -D lib64",
+}
+
+cc_genrule {
+    name: "bluetooth_host_libS",
+    compile_multilib: "first",
+    host_supported: true,
+    // device_supported: false, <-- cause null content
+    tools: ["soong_zip"],
+    srcs: [":libz"],
+    out: ["bluetooth_host_libS.zip"],
+    cmd: "mkdir lib64 && cp $(in) lib64 && " +
+        "$(location soong_zip) -d -o $(out) -C . -D lib64",
+}
+
+//    117432  2008-01-01 00:00   target/libz.so
+// unzip -l $(find $(gettop)/out -name bluetooth_target_libs.zip)
+cc_genrule {
+    name: "bluetooth_target_libs",
+    compile_multilib: "first",
+    tools: ["soong_zip"],
+    srcs: [":libz"],
+    out: ["bluetooth_target_libs.zip"],
+    cmd: "mkdir target && cp $(in) target && " +
+        "$(location soong_zip) -d -o $(out) -C . -D target",
+}
+
+cc_genrule {
+    name: "mygen",
+    srcs: [
+        // ":bluetooth_host_libs",
+        ":bluetooth_target_libs",
+    ],
+    tools: [
+        "soong_zip",
+    ],
+    out: ["mygen.zip"],
+    cmd: "unzip -oq $(location :bluetooth_target_libs) && " +
+        // "unzip -oq $(location :bluetooth_host_libs) && " +
+        "$(location soong_zip) -o $(out) -C . -D lib64 -C . -D target",
+}
