@@ -16,6 +16,7 @@
 package com.android.bluetooth.a2dpsink;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothA2dpSink;

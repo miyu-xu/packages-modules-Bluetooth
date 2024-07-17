@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private void requestBtPermissions() {
         String[] requiredPermissions =
                 new String[] {
-                    BLUETOOTH_ADVERTISE,
-                    BLUETOOTH_CONNECT,
+                    BLUETOOTH_ADVERTISE, BLUETOOTH_CONNECT,
                 };
         List<String> permissionsToRequest = new ArrayList<>();
         for (String permission : requiredPermissions) {

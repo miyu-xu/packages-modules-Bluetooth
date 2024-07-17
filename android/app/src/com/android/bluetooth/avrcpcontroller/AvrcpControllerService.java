@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.avrcpcontroller;
 
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.RequiresPermission;

@@ -16,7 +16,10 @@
 
 package com.android.bluetooth.le_scan;
 
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
+import static android.Manifest.permission.BLUETOOTH_SCAN;
+import static android.Manifest.permission.UPDATE_DEVICE_STATS;
 
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 

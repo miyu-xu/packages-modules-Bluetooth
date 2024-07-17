@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.hfpclient;
 
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.content.pm.PackageManager.FEATURE_WATCH;
 
 import android.annotation.RequiresPermission;
