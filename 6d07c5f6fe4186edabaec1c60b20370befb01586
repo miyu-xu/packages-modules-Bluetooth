@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bd331e_cbd48b7c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-17T03:28:05Z",
+      "side": 1,
+      "message": "We should fix the ErrorProne warning below. Try changing this to `List\u003cRequest\u003e` and see if that works.",
+      "range": {
+        "startLine": 941,
+        "startChar": 8,
+        "endLine": 941,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2bfb337b_c30fec5f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 941,
+                "startChar": 0,
+                "endLine": 942,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cRequest\u003e requests \u003d requestCaptor.getAllValues();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6d07c5f6fe4186edabaec1c60b20370befb01586",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
