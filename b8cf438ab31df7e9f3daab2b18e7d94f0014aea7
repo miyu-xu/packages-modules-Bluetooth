@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74500efd_06453bde",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:43:44Z",
+      "side": 1,
+      "message": "Does this need to be flagged as well ?\n(or moved under the flag check above)",
+      "range": {
+        "startLine": 710,
+        "startChar": 47,
+        "endLine": 710,
+        "endChar": 72
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0196ac87_97258015",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:43:44Z",
+      "side": 1,
+      "message": "Why are you changing the logic for the encoder ?\nI expect this code path to be used only when source.",
+      "range": {
+        "startLine": 780,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 5
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336ddf67_7dab728f",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:43:44Z",
+      "side": 1,
+      "message": "Same, the function name suggests this path is used by source seps only.",
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64618775_88d2a57f",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:43:44Z",
+      "side": 1,
+      "message": "This behavior change is not flagged",
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c329e6_bcc2aca0",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:43:44Z",
+      "side": 1,
+      "message": "Function should follow the naming of the current file.",
+      "fixSuggestions": [
+        {
+          "fixId": "8139f6b4_a3fee11d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_av_co.cc",
+              "range": {
+                "startLine": 1634,
+                "startChar": 0,
+                "endLine": 1635,
+                "endChar": 0
+              },
+              "replacement": "uint8_t* bta_av_co_get_codec_config_for_peer(const RawAddress\u0026 peer_address) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4046cc9c_8412b68e",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:43:44Z",
+      "side": 1,
+      "message": "Please move the flag check to the implementation of a2dp_sink_device_update_event.",
+      "range": {
+        "startLine": 423,
+        "startChar": 10,
+        "endLine": 423,
+        "endChar": 65
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
