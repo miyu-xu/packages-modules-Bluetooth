@@ -951,6 +951,15 @@ public:
                                         " STATUS=" + loghex(event->status));
 
     if (event->status != HCI_SUCCESS) {
+      log::warn("{}: failed to create CIS 0x{:04x}, status: {} (0x{:02x})", leAudioDevice->address_,
+                event->cis_conn_hdl, ErrorCodeText((ErrorCode)event->status), event->status);
+
+      if (event->status == /* Operation Cancelled by Host */ 0x44) {
+        log::info("{} CIS creation aborted by us, waiting for disconnection complete",
+                  leAudioDevice->address_);
+        return;
+      }
+
       if (ases_pair.sink) {
         ases_pair.sink->cis_state = CisState::ASSIGNED;
       }
