@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1073c717_898dd6b6",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T08:22:43Z",
+      "side": 1,
+      "message": "It\u0027s related to L166-169, if it\u0027s empty we can go to DISABLED state directly.",
+      "parentUuid": "f1877958_b0664670",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 43
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "479b9043_afee9da8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-16T16:36:04Z",
       "side": 1,
       "message": "Can we store the keys instead?  I would rather not use .get().",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 148,
+        "endChar": 17
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ccabbca_cb67f617",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T08:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "479b9043_afee9da8",
       "range": {
         "startLine": 148,
         "startChar": 16,
@@ -82,6 +130,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a48994_19b1015e",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T08:22:43Z",
+      "side": 1,
+      "message": "It should be handled inside the GATT_Register.",
+      "parentUuid": "7922d146_dab44f53",
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f2bbf79_510fc28f",
@@ -95,6 +161,30 @@
       "writtenOn": "2024-07-16T16:36:04Z",
       "side": 1,
       "message": "prefer not to use get().  You could fill the fields before emplace.",
+      "range": {
+        "startLine": 203,
+        "startChar": 65,
+        "endLine": 203,
+        "endChar": 70
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "955f231f_b7a5e883",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T08:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f2bbf79_510fc28f",
       "range": {
         "startLine": 203,
         "startChar": 65,
@@ -146,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d517b2d6_9c4be2ca",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T08:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53c395b1_b41158ac",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 60
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94c80f7c_4e15c15c",
@@ -182,6 +296,30 @@
       "writtenOn": "2024-07-16T16:36:04Z",
       "side": 1,
       "message": "Would it be helpful to have any other information here to debug?  Maybe the uuid?",
+      "range": {
+        "startLine": 1407,
+        "startChar": 38,
+        "endLine": 1407,
+        "endChar": 41
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f38ebe7d_6e9c46b1",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-17T08:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec5d6b1d_b9997d84",
       "range": {
         "startLine": 1407,
         "startChar": 38,
