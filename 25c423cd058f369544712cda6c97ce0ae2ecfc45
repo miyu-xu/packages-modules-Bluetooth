@@ -22,6 +22,30 @@
       },
       "revId": "25c423cd058f369544712cda6c97ce0ae2ecfc45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61682a1e_450a0a62",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-17T10:46:03Z",
+      "side": 1,
+      "message": "I changed it so it reflects part of the spec:\n\nThe HARC shall execute this procedure with both HAs that are part of a Binaural Hearing Aid Set if the\nIndependent Presets flag is set to 0b0, and the HARC shall use the same parameter values during both\nexecutions.\n\nThanks for noticing that, good catch 😊",
+      "parentUuid": "2c972b71_3791fe7f",
+      "range": {
+        "startLine": 843,
+        "startChar": 0,
+        "endLine": 843,
+        "endChar": 36
+      },
+      "revId": "25c423cd058f369544712cda6c97ce0ae2ecfc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
