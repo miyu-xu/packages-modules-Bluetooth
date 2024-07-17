@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "563184cd_83968d31",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-17T15:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecba460d_4cc4b7a9",
+      "range": {
+        "startLine": 646,
+        "startChar": 2,
+        "endLine": 646,
+        "endChar": 29
+      },
+      "revId": "a5b21cde04f67bd006d77ae16334ea2b71701316",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5638f3d9_8cd99e3e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-10T23:29:33Z",
       "side": 1,
       "message": "Reconfiguring the stream could well take over 1 second;",
+      "range": {
+        "startLine": 3936,
+        "startChar": 32,
+        "endLine": 3936,
+        "endChar": 56
+      },
+      "revId": "a5b21cde04f67bd006d77ae16334ea2b71701316",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ba0b20a_9b3ca08a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3936,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-17T15:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5638f3d9_8cd99e3e",
       "range": {
         "startLine": 3936,
         "startChar": 32,
