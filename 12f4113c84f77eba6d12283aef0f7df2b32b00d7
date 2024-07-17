@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b0f92c_838f3fe9",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T21:29:34Z",
+      "side": 1,
+      "message": "I prefer keeping the flag check separate.\nIt is not a logical change",
+      "parentUuid": "a488a5ab_eb529ad3",
+      "range": {
+        "startLine": 1747,
+        "startChar": 0,
+        "endLine": 1754,
+        "endChar": 51
+      },
+      "revId": "12f4113c84f77eba6d12283aef0f7df2b32b00d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0275d8c7_d112e927",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-17T21:08:48Z",
       "side": 1,
       "message": "This was only done in some failing condition case, now you do it everytime",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 30
+      },
+      "revId": "12f4113c84f77eba6d12283aef0f7df2b32b00d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28b9ce85_07053c30",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T21:29:34Z",
+      "side": 1,
+      "message": "The category is only used in case of failure, setting it here is not a logical change",
+      "parentUuid": "0275d8c7_d112e927",
       "range": {
         "startLine": 478,
         "startChar": 0,
