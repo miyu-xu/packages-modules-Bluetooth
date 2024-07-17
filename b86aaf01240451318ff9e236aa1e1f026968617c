@@ -16,6 +16,24 @@
       "message": "Can you please provide a bug report or integration test that shows how this is broken?\n\nWhile the mask does look incorrect here, I\u0027m not sure it makes a difference. There is still a check that is done using ScanFilter#matches, and that looks for the service data associated with the filter\u0027s service data UUID.\n\nFor instance, please see r.android.com/3160701 where the added integration tests pass without changes in ScanFilterQueue.\n\nThank you!",
       "revId": "b86aaf01240451318ff9e236aa1e1f026968617c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d10bc119_13954933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-07-17T17:35:57Z",
+      "side": 1,
+      "message": "You are correct that the incorrect advertisement won\u0027t pass framework filter match.\nThe change is just to make thing correct in Bluetooth layer. Eg.hci. Do you think we can still proceed with the change even no impact on application?",
+      "parentUuid": "5332a88e_2d4ac157",
+      "revId": "b86aaf01240451318ff9e236aa1e1f026968617c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
