@@ -16,6 +16,24 @@
       "message": "Hi Jakub, could you please have a look? As we\u0027re planning to target Java 21 by default soon, it may be good to change usage of JDK 17 to JDK 21. I\u0027m not really sure how to test this change, if there is something for me to try, please let me know.",
       "revId": "ce55825cdbb49776838c6c689503cdc71d94b2e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25a5157e_3770217c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-17T22:34:24Z",
+      "side": 1,
+      "message": "tested locally, this seems to work fine !",
+      "parentUuid": "b8faa332_fa5677d7",
+      "revId": "ce55825cdbb49776838c6c689503cdc71d94b2e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
