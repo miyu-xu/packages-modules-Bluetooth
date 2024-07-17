@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493ce444_17db1a19",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-17T16:11:56Z",
+      "side": 1,
+      "message": "We should cancel the alarm if it is active",
+      "fixSuggestions": [
+        {
+          "fixId": "1919869c_9954d66e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 459,
+                "startChar": 0,
+                "endLine": 459,
+                "endChar": 0
+              },
+              "replacement": "    if (alarm_is_scheduled(p_uhid-\u003eready_timer)) {\n      alarm_cancel(p_uhid-\u003eready_timer);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d20e43230db6c91e06940914feb1ae3b2741bc30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6aea16b_d809c8c6",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-17T16:11:56Z",
+      "side": 1,
+      "message": "This is not HOGP specific, so \"hid\" may be a better name.",
+      "fixSuggestions": [
+        {
+          "fixId": "d9b40d4e_d1401ee5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/sysprops/sysprops_module.cc",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "          \"bluetooth.hid.wait_ms_after_uhid_open\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d20e43230db6c91e06940914feb1ae3b2741bc30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
