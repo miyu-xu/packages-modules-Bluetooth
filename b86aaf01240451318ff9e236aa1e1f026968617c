@@ -34,6 +34,24 @@
       "parentUuid": "5332a88e_2d4ac157",
       "revId": "b86aaf01240451318ff9e236aa1e1f026968617c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b795b71d_65a07021",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-17T17:43:27Z",
+      "side": 1,
+      "message": "Yes, I think we can proceed. I\u0027m not very familiar with the underlying layers, but I imagine this could affect offloading efficiency so it\u0027s best to fix it.\n\nI have a commit in progress that does it slightly differently, I\u0027ll add you to that when ready. Hope that\u0027s OK. Thank you.",
+      "parentUuid": "d10bc119_13954933",
+      "revId": "b86aaf01240451318ff9e236aa1e1f026968617c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
