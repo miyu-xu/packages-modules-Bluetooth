@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6085763_c465bad9",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T22:28:18Z",
+      "side": 1,
+      "message": "nit: Move the declaration into the loop?\n```suggestion\n  for (yy \u003d 0, tL2C_LCB* p_lcb \u003d \u0026l2cb.lcb_pool[0]; yy \u003c MAX_L2CAP_LINKS; yy++, p_lcb++) {\n```\n\nThe other suggestion would be to assign it to nullptr.  The braces initialization made me think of struct initialization.",
+      "range": {
+        "startLine": 952,
+        "startChar": 0,
+        "endLine": 953,
+        "endChar": 80
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af578d7_9549fe4d",
+        "filename": "system/stack/l2cap/l2c_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T22:28:18Z",
+      "side": 1,
+      "message": "none of the other pointers are initialized.  Is there an initialization function somewhere?",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 20
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76512ca4_c3438d0b",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T22:28:18Z",
+      "side": 1,
+      "message": "same thing here.",
+      "range": {
+        "startLine": 590,
+        "startChar": 0,
+        "endLine": 591,
+        "endChar": 80
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e867d1_3f17a43d",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2572,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T22:28:18Z",
+      "side": 1,
+      "message": "same thing here.",
+      "range": {
+        "startLine": 2572,
+        "startChar": 1,
+        "endLine": 2572,
+        "endChar": 22
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
