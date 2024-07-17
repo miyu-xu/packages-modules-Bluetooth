@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24d5e57a_53d04fb8",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-17T21:35:48Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n  if (api_level !\u003d kPropertyAndroidAPILevelDefault) {\n```",
+      "range": {
+        "startLine": 111,
+        "startChar": 6,
+        "endLine": 111,
+        "endChar": 15
+      },
+      "revId": "fe526b8c9171c83bc37d51f6d259666f01fa3f6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
