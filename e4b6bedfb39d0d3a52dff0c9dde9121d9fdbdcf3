@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef61a50_5e23f67c",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-17T22:09:48Z",
+      "side": 1,
+      "message": "You are adding a feature, please remove this as you will be required to fill a go/android-fr",
+      "range": {
+        "startLine": 238,
+        "startChar": 3,
+        "endLine": 240,
+        "endChar": 5
+      },
+      "revId": "e4b6bedfb39d0d3a52dff0c9dde9121d9fdbdcf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
