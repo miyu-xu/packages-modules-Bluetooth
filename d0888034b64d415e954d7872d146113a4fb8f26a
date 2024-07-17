@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b46328a_97f72515",
+        "filename": "system/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1311067
+      },
+      "writtenOn": "2024-07-17T07:36:27Z",
+      "side": 1,
+      "message": "lib in the zip is device-side, not hostside.",
+      "range": {
+        "startLine": 257,
+        "startChar": 30,
+        "endLine": 257,
+        "endChar": 50
+      },
+      "revId": "d0888034b64d415e954d7872d146113a4fb8f26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
