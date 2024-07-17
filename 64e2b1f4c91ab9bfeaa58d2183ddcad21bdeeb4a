@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a90a170d_03588295",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-17T21:27:39Z",
+      "side": 1,
+      "message": "This is not a valid bug number... and i am shocked that the build didn\u0027t failed ! \n\n@zhidou@google.com are you aware of this ?\n\n\n```suggestion\n    bug: \"351860033\"\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 10,
+        "endLine": 237,
+        "endChar": 31
+      },
+      "revId": "64e2b1f4c91ab9bfeaa58d2183ddcad21bdeeb4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
