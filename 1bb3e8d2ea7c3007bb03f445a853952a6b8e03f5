@@ -16,6 +16,24 @@
       "message": "Would it be possible to briefly explain what this is doing at a high level in the patch description?",
       "revId": "1bb3e8d2ea7c3007bb03f445a853952a6b8e03f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c167d72_a36731dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-17T23:59:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d176dd45_ecc2e2bb",
+      "revId": "1bb3e8d2ea7c3007bb03f445a853952a6b8e03f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
