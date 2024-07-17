@@ -158,6 +158,30 @@
       ],
       "revId": "12f4113c84f77eba6d12283aef0f7df2b32b00d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2d1fb7_209ee6fc",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-17T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4062897_e34e4dcd",
+      "range": {
+        "startLine": 489,
+        "startChar": 4,
+        "endLine": 491,
+        "endChar": 6
+      },
+      "revId": "12f4113c84f77eba6d12283aef0f7df2b32b00d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
