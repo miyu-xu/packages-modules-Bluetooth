@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d125fe8_b1996f14",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T23:00:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9e66dee8_06d0e111",
+      "range": {
+        "startLine": 952,
+        "startChar": 0,
+        "endLine": 953,
+        "endChar": 80
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4af578d7_9549fe4d",
@@ -132,6 +156,30 @@
       "writtenOn": "2024-07-17T22:59:32Z",
       "side": 1,
       "message": "Backed out and restored",
+      "parentUuid": "b53a274a_d7e1515d",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 20
+      },
+      "revId": "04552d1a6785c6977cf99c185e03336556d39016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6933cb7b_be159dba",
+        "filename": "system/stack/l2cap/l2c_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-17T23:00:40Z",
+      "side": 1,
+      "message": "Acknowledged",
       "parentUuid": "b53a274a_d7e1515d",
       "range": {
         "startLine": 283,
