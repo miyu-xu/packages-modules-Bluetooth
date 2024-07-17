@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11ac587b_ef4b1f46",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-17T11:35:13Z",
+      "side": 1,
+      "message": "Fix applied. I think for PTS it doesn\u0027t make much difference what is returned here, but \"OK\" is consistent. And after encryption completes successfully, services are discovered automatically and verified. If they are okay, BT stack subscribes valid ones itself. So we do need manually write to CCCD, and doing so messes with the test - manual writes collide with automatic ones, and PTS gets confused which write comes from which MMI. In the end, everything is subscribed and PTS detects it okay.",
+      "parentUuid": "0b6def70_cd0ae499",
+      "range": {
+        "startLine": 255,
+        "startChar": 16,
+        "endLine": 255,
+        "endChar": 19
+      },
+      "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5e9df0c_8c28702c",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-07-16T16:53:26Z",
       "side": 1,
       "message": "Should we do a check for them ?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 18
+      },
+      "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c09008_629ee16c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-17T11:35:13Z",
+      "side": 1,
+      "message": "I will add check for this, haven\u0027t marked it as TODO for when I was adding verification and missed it 😊",
+      "parentUuid": "f5e9df0c_8c28702c",
       "range": {
         "startLine": 274,
         "startChar": 0,
