@@ -84,6 +84,30 @@
       },
       "revId": "a851441bac500983cac0c9124dbbe7a476197641",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66149106_270923bf",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-07-17T02:05:04Z",
+      "side": 1,
+      "message": "Good catch, thanks!",
+      "parentUuid": "c0f3deea_988f3110",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 13
+      },
+      "revId": "a851441bac500983cac0c9124dbbe7a476197641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
