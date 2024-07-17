@@ -40,6 +40,30 @@
       ],
       "revId": "9f9f3b05319c3aefa7fc8ac3933330cac2c32d92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b71d16_59ec651a",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-17T22:52:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44bf980a_13277fe6",
+      "range": {
+        "startLine": 437,
+        "startChar": 9,
+        "endLine": 437,
+        "endChar": 11
+      },
+      "revId": "9f9f3b05319c3aefa7fc8ac3933330cac2c32d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
