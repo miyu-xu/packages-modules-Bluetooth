@@ -1209,8 +1209,10 @@ cc_test {
     shared_libs: [
         "libcrypto",
         "libcutils",
+        "server_configurable_flags",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
