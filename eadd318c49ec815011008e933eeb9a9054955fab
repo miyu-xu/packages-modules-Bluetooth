@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b146b75_1f59789f",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-17T21:01:38Z",
+      "side": 1,
+      "message": "This is behavior changes",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 0
+      },
+      "revId": "eadd318c49ec815011008e933eeb9a9054955fab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
