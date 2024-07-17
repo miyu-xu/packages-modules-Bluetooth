@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d176dd45_ecc2e2bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-07-17T21:30:57Z",
+      "side": 1,
+      "message": "Would it be possible to briefly explain what this is doing at a high level in the patch description?",
+      "revId": "1bb3e8d2ea7c3007bb03f445a853952a6b8e03f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
