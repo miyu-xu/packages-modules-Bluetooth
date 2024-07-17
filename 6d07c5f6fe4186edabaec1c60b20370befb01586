@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25364fad_aaa88f62",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-17T14:14:33Z",
+      "side": 1,
+      "message": "nit: to better reflect the behavior the test is actually checking, consider renaming `NotRequested` instead of `NotStored`.",
+      "range": {
+        "startLine": 918,
+        "startChar": 78,
+        "endLine": 918,
+        "endChar": 84
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a621cde8_046de4af",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 918,
+                "startChar": 0,
+                "endLine": 919,
+                "endChar": 0
+              },
+              "replacement": "    public void testMsgGetMessageListingEmailMessageType_emailMessageTypeNotRequested() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6d07c5f6fe4186edabaec1c60b20370befb01586",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4bd331e_cbd48b7c",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
         "patchSetId": 4
