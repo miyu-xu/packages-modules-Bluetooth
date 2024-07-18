@@ -16,6 +16,24 @@
       "message": "Any way we can build a regression test for this?",
       "revId": "eb6ab983b52bf79c5c8e5201f96418afa600d9ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da9a23b2_db4df7f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-18T05:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b25bc3f_4f442a2a",
+      "revId": "eb6ab983b52bf79c5c8e5201f96418afa600d9ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
