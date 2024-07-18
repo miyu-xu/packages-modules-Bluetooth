@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4d804ef_b69fa31a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-18T22:46:14Z",
+      "side": 1,
+      "message": "I think excluding IMs would still be within the spirit/scope of this CL, which was to exclude message types that we do not support.",
+      "parentUuid": "b0369bab_c11cbc0c",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "70f0374a8561784d197acf8e456b43c3946c91ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77a192a1_fc8623d3",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
         "patchSetId": 2

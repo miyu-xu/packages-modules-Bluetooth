@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c40d448_636dbfaf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-18T22:46:14Z",
+      "side": 1,
+      "message": "There\u0027s always the temptation to see something else and want to fix it \"while you\u0027re at it\" 😊\n\nIn this case, it would be best to file a separate bug to go through all the MapClientStateMachine tests and see where we can update all existing `verify(*, timeout(*))` patterns to the `TestUtils.waitForLooperToBeIdle` pattern, which would be worthwhile to do since it\u0027ll make tests more robust, and also keep the scope of this CL limited to just message filtering.",
+      "range": {
+        "startLine": 832,
+        "startChar": 8,
+        "endLine": 832,
+        "endChar": 83
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e2b143f3_21c476c4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 832,
+                "startChar": 0,
+                "endLine": 833,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))\n                .sendBroadcastMultiplePermissions(\n                        mIntentArgument.capture(),\n                        any(String[].class),\n                        any(BroadcastOptions.class));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "119753117e28ba790ccdf0d5351db1539ed598d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bd7d5ad_5995fcce",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-18T22:46:14Z",
+      "side": 1,
+      "message": "nit: are the parenthesis enclosing `messagesListingRequest` needed?",
+      "range": {
+        "startLine": 952,
+        "startChar": 48,
+        "endLine": 952,
+        "endChar": 72
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "899ae85e_e0463bec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 952,
+                "startChar": 0,
+                "endLine": 953,
+                "endChar": 0
+              },
+              "replacement": "                ObexAppParameters.fromHeaderSet(messagesListingRequest.mHeaderSet);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "119753117e28ba790ccdf0d5351db1539ed598d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
