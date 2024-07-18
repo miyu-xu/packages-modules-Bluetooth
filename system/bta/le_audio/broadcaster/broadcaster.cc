@@ -791,6 +791,8 @@ public:
   }
 
   void GetBroadcastMetadata(uint32_t broadcast_id) override {
+    log::info("broadcast_id = {}", broadcast_id);
+
     if (broadcasts_.count(broadcast_id) == 0) {
       log::error("No such broadcast_id={}", broadcast_id);
       return;
@@ -805,6 +807,7 @@ public:
   }
 
   void GetAllBroadcastStates(void) override {
+    log::info("");
     for (auto const& kv_it : broadcasts_) {
       callbacks_->OnBroadcastStateChanged(
               kv_it.second->GetBroadcastId(),
@@ -951,6 +954,8 @@ private:
   }
 
   void setBroadcastTimers() {
+    log::info("");
+
     if (audio_state_ == AudioState::SUSPENDED) {
       log::info(" Started");
       alarm_set_on_mloop(
@@ -1046,32 +1051,38 @@ private:
             if (instance->broadcasts_.count(broadcast_id) != 0) {
               const auto& broadcast = instance->broadcasts_.at(broadcast_id);
               const auto& broadcast_config = broadcast->GetBroadcastConfig();
-
+              log::info(" step 1");
               // Reconfigure encoder instances for the new stream requirements
               audio_receiver_.CheckAndReconfigureEncoders(broadcast_config);
-
+              log::info(" step 2");
               broadcast->SetMuted(false);
               auto is_started = instance->le_audio_source_hal_client_->Start(
                       broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
               if (!com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
+                log::info(" step 3: is started {}", is_started);
                 if (!is_started) {
                   /* Audio Source setup failed - stop the broadcast */
                   instance->StopAudioBroadcast(broadcast_id);
                   return;
                 }
               } else {
+                log::info(" step 4");
                 instance->UpdateAudioActiveStateInPublicAnnouncement();
               }
             }
             if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
+              log::info(" step 5");
               instance->setBroadcastTimers();
+              log::info(" step 6");
             }
           }
           break;
       };
 
+      log::info(" step 7");
       instance->callbacks_->OnBroadcastStateChanged(
               broadcast_id, static_cast<bluetooth::le_audio::BroadcastState>(state));
+      log::info(" step 8");
     }
 
     void OnOwnAddressResponse(uint32_t broadcast_id, uint8_t addr_type, RawAddress addr) override {

@@ -32,6 +32,7 @@
 #include "bta/le_audio/content_control_id_keeper.h"
 #include "bta/le_audio/le_audio_types.h"
 #include "bta/le_audio/mock_codec_manager.h"
+#include "gd/os/system_properties.h"
 #include "hci/controller_interface_mock.h"
 #include "stack/include/btm_iso_api.h"
 #include "test/common/mock_functions.h"
@@ -88,7 +89,9 @@ namespace server_configurable_flags {
 std::string GetServerConfigurableFlag(const std::string& experiment_category_name,
                                       const std::string& experiment_flag_name,
                                       const std::string& default_value) {
-  return "";
+  std::string prop_name =
+          "persist.device_config." + experiment_category_name + "." + experiment_flag_name;
+  return bluetooth::os::GetSystemProperty(prop_name).value_or(default_value);
 }
 }  // namespace server_configurable_flags
 
@@ -96,6 +99,9 @@ std::atomic<int> num_async_tasks;
 bluetooth::common::MessageLoopThread message_loop_thread("test message loop");
 bluetooth::common::MessageLoopThread* get_main_thread() { return &message_loop_thread; }
 void invoke_switch_buffer_size_cb(bool is_low_latency_buffer_size) {}
+
+static std::string kFlagPrefix(
+        "persist.device_config.aconfig_flags.bluetooth.com.android.bluetooth.flags.");
 
 bt_status_t do_in_main_thread(base::OnceClosure task) {
   // Wrap the task with task counter so we could later know if there are
@@ -183,12 +189,15 @@ bool is_audio_hal_acquired;
 void (*iso_active_callback)(bool);
 
 std::unique_ptr<LeAudioSourceAudioHalClient> LeAudioSourceAudioHalClient::AcquireBroadcast() {
+  log::info(": is_audio_hal_acquired {}", is_audio_hal_acquired);
   if (mock_audio_source_) {
+    log::info("true");
     std::unique_ptr<LeAudioSourceAudioHalClient> ptr(
             (LeAudioSourceAudioHalClient*)mock_audio_source_);
     is_audio_hal_acquired = true;
     return std::move(ptr);
   }
+  log::info("false");
   return nullptr;
 }
 
@@ -344,10 +353,12 @@ protected:
   }
 
   void ConfigAudioHalClientMock() {
+    log::info("");
     is_audio_hal_acquired = false;
     mock_audio_source_ = new MockAudioHalClientEndpoint();
     ON_CALL(*mock_audio_source_, Start).WillByDefault(Return(true));
     ON_CALL(*mock_audio_source_, OnDestroyed).WillByDefault([]() {
+      log::info("");
       mock_audio_source_ = nullptr;
       is_audio_hal_acquired = false;
     });
@@ -383,7 +394,6 @@ protected:
     bluetooth::hci::testing::mock_controller_ = nullptr;
     delete mock_audio_source_;
     iso_active_callback = nullptr;
-    delete mock_audio_source_;
     iso_manager_->Stop();
     if (codec_manager_) {
       codec_manager_->Stop();
@@ -403,6 +413,7 @@ protected:
                                 std::vector<uint8_t> quality_array = default_subgroup_qualities,
                                 bool is_queued = false) {
     uint32_t broadcast_id = LeAudioBroadcaster::kInstanceIdUndefined;
+    log::info("broadcast_id {}, is_queued {} ", broadcast_id, is_queued);
     if (!is_queued) {
       EXPECT_CALL(mock_broadcaster_callbacks_, OnBroadcastCreated(_, true))
               .WillOnce(SaveArg<0>(&broadcast_id));
@@ -414,10 +425,12 @@ protected:
       metadata_array.push_back(metadata);
     }
 
+    log::info("Create start");
     // Add multiple subgroup settings with the same content
     LeAudioBroadcaster::Get()->CreateAudioBroadcast(true, test_broadcast_name, code,
                                                     default_public_metadata, quality_array,
                                                     metadata_array);
+    log::info("Create end ");
 
     return broadcast_id;
   }
@@ -463,26 +476,37 @@ protected:
 };
 
 TEST_F(BroadcasterTest, Initialize) {
+  log::info("Initialize start");
   ASSERT_NE(LeAudioBroadcaster::Get(), nullptr);
   ASSERT_TRUE(LeAudioBroadcaster::IsLeAudioBroadcasterRunning());
+  log::info("Initialize end");
 }
 
 TEST_F(BroadcasterTest, CleanupWithBroadcastInstance) {
+  log::info("CleanupWithBroadcastInstance start");
   auto broadcast_id = InstantiateBroadcast();
   ASSERT_NE(broadcast_id, LeAudioBroadcaster::kInstanceIdUndefined);
   EXPECT_CALL(*mock_codec_manager_, UpdateActiveBroadcastAudioHalClient(mock_audio_source_, false))
           .WillOnce(Return(false));
+  log::info("CleanupWithBroadcastInstance end");
 }
 
 TEST_F(BroadcasterTest, GetStreamingPhy) {
+  log::info("GetStreamingPhy start");
   LeAudioBroadcaster::Get()->SetStreamingPhy(1);
+  log::info("AAAABB");
   ASSERT_EQ(LeAudioBroadcaster::Get()->GetStreamingPhy(), 1);
+  log::info("AAAABBCC");
   LeAudioBroadcaster::Get()->SetStreamingPhy(2);
+  log::info("AAAABBCCDD");
   ASSERT_EQ(LeAudioBroadcaster::Get()->GetStreamingPhy(), 2);
+  log::info("GetStreamingPhy end");
 }
 
 TEST_F(BroadcasterTest, CreateAudioBroadcast) {
+  log::info("CreateAudioBroadcast start");
   auto broadcast_id = InstantiateBroadcast();
+  log::info("ABC");
   ASSERT_NE(broadcast_id, LeAudioBroadcaster::kInstanceIdUndefined);
   ASSERT_EQ(broadcast_id, MockBroadcastStateMachine::GetLastInstance()->GetBroadcastId());
 
@@ -491,6 +515,7 @@ TEST_F(BroadcasterTest, CreateAudioBroadcast) {
   for (auto& subgroup : instance_config.announcement.subgroup_configs) {
     ASSERT_EQ(types::LeAudioLtvMap(subgroup.metadata).RawPacket(), default_metadata);
   }
+  log::info("ABC END");
   // Note: There shall be a separate test to verify audio parameters
 }
 
@@ -518,6 +543,7 @@ TEST_F(BroadcasterTest, CreateAudioBroadcastInvalidBroadcastCode) {
 
 TEST_F(BroadcasterTest, CreateAudioBroadcastMultiGroups) {
   // Test with two subgroups
+  log::info("CreateAudioBroadcastMultiGroups");
   auto broadcast_id = InstantiateBroadcast(
           default_metadata, default_code,
           {bluetooth::le_audio::QUALITY_STANDARD, bluetooth::le_audio::QUALITY_STANDARD});
@@ -530,9 +556,11 @@ TEST_F(BroadcasterTest, CreateAudioBroadcastMultiGroups) {
   for (auto& subgroup : instance_config.announcement.subgroup_configs) {
     ASSERT_EQ(types::LeAudioLtvMap(subgroup.metadata).RawPacket(), default_metadata);
   }
+  log::info("CreateAudioBroadcast end");
 }
 
 TEST_F(BroadcasterTest, SuspendAudioBroadcast) {
+  log::info("SuspendAudioBroadcast start");
   EXPECT_CALL(*mock_codec_manager_, UpdateActiveBroadcastAudioHalClient(mock_audio_source_, true))
           .Times(1);
   auto broadcast_id = InstantiateBroadcast();
@@ -548,9 +576,11 @@ TEST_F(BroadcasterTest, SuspendAudioBroadcast) {
           .Times(0);
   LeAudioBroadcaster::Get()->SuspendAudioBroadcast(broadcast_id);
   Mock::VerifyAndClearExpectations(mock_codec_manager_);
+  log::info("SuspendAudioBroadcast end");
 }
 
 TEST_F(BroadcasterTest, StartAudioBroadcast) {
+  log::info("StartAudioBroadcast start");
   EXPECT_CALL(*mock_codec_manager_, UpdateActiveBroadcastAudioHalClient(mock_audio_source_, true))
           .Times(1);
   auto broadcast_id = InstantiateBroadcast();
@@ -589,9 +619,11 @@ TEST_F(BroadcasterTest, StartAudioBroadcast) {
   audio_receiver->OnAudioDataReady(sample_data);
 
   Mock::VerifyAndClearExpectations(mock_codec_manager_);
+  log::info("StartAudioBroadcast end");
 }
 
 TEST_F(BroadcasterTest, StartAudioBroadcastMedia) {
+  log::info("StartAudioBroadcastMedia start");
   EXPECT_CALL(*mock_codec_manager_, UpdateActiveBroadcastAudioHalClient(mock_audio_source_, true))
           .Times(1);
   auto broadcast_id =
@@ -632,9 +664,11 @@ TEST_F(BroadcasterTest, StartAudioBroadcastMedia) {
   std::vector<uint8_t> sample_data(1920, 0);
   audio_receiver->OnAudioDataReady(sample_data);
   Mock::VerifyAndClearExpectations(mock_codec_manager_);
+  log::info("StartAudioBroadcastMedia end");
 }
 
 TEST_F(BroadcasterTest, StopAudioBroadcast) {
+  log::info("StopAudioBroadcast start");
   EXPECT_CALL(*mock_codec_manager_, UpdateActiveBroadcastAudioHalClient(mock_audio_source_, true))
           .Times(1);
   auto broadcast_id = InstantiateBroadcast();
@@ -667,9 +701,11 @@ TEST_F(BroadcasterTest, StopAudioBroadcast) {
   }
   InjectBigTerminateComplete(big_cfg.big_id, 0x16);
   Mock::VerifyAndClearExpectations(mock_codec_manager_);
+  log::info("StopAudioBroadcast end");
 }
 
 TEST_F(BroadcasterTest, DestroyAudioBroadcast) {
+  log::info("DestroyAudioBroadcast start");
   EXPECT_CALL(*mock_codec_manager_, UpdateActiveBroadcastAudioHalClient(mock_audio_source_, true))
           .Times(1);
 
@@ -707,9 +743,11 @@ TEST_F(BroadcasterTest, DestroyAudioBroadcast) {
   Mock::VerifyAndClearExpectations(&mock_broadcaster_callbacks_);
   // Verify the expectations before the CleanUp, which may call Stop()
   Mock::VerifyAndClearExpectations(mock_audio_source_);
+  log::info("DestroyAudioBroadcast end");
 }
 
 TEST_F(BroadcasterTest, GetBroadcastAllStates) {
+  log::info("GetBroadcastAllStates start");
   auto broadcast_id = InstantiateBroadcast();
   auto broadcast_id2 = InstantiateBroadcast();
   ASSERT_NE(broadcast_id, LeAudioBroadcaster::kInstanceIdUndefined);
@@ -724,9 +762,11 @@ TEST_F(BroadcasterTest, GetBroadcastAllStates) {
   EXPECT_CALL(mock_broadcaster_callbacks_, OnBroadcastStateChanged(broadcast_id2, _)).Times(1);
 
   LeAudioBroadcaster::Get()->GetAllBroadcastStates();
+  log::info("GetBroadcastAllStates end");
 }
 
 TEST_F(BroadcasterTest, UpdateMetadata) {
+  log::info("UpdateMetadata start");
   auto broadcast_id = InstantiateBroadcast();
   std::vector<uint8_t> ccid_list;
   std::vector<uint8_t> expected_public_meta;
@@ -768,6 +808,7 @@ TEST_F(BroadcasterTest, UpdateMetadata) {
   } else {
     ASSERT_EQ(expected_public_meta, public_metadata);
   }
+  log::info("UpdateMetadata end");
 }
 
 static BasicAudioAnnouncementData prepareAnnouncement(
@@ -1165,9 +1206,9 @@ TEST_F(BroadcasterTest, VendorCodecConfig) {
                       subgroup.bis_configs.at(1).vendor_codec_specific_params->size()));
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, AudioActiveState,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, AudioActiveState) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   std::vector<uint8_t> updated_public_meta;
   PublicBroadcastAnnouncementData pb_announcement;
 
@@ -1245,9 +1286,9 @@ TEST_F_WITH_FLAGS(BroadcasterTest, AudioActiveState,
   ASSERT_EQ(updated_public_meta, public_metadata_audio_false);
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundFromTheBeginning,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundFromTheBeginning) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   // Timers created
   ASSERT_TRUE(big_terminate_timer_ != nullptr);
   ASSERT_TRUE(broadcast_stop_timer_ != nullptr);
@@ -1287,9 +1328,9 @@ TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundFrom
   broadcast_stop_timer_->cb(broadcast_stop_timer_->data);
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundAfterSuspend,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundAfterSuspend) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   // Timers created
   ASSERT_TRUE(big_terminate_timer_ != nullptr);
   ASSERT_TRUE(broadcast_stop_timer_ != nullptr);
@@ -1357,9 +1398,9 @@ TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundAfte
   broadcast_stop_timer_->cb(broadcast_stop_timer_->data);
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, BigCreationTerminationDependsOnAudioResumeSuspend,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, BigCreationTerminationDependsOnAudioResumeSuspend) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   // Timers created
   ASSERT_TRUE(big_terminate_timer_ != nullptr);
   ASSERT_TRUE(broadcast_stop_timer_ != nullptr);

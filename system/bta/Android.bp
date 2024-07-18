@@ -877,9 +877,11 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/test/common",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/test/fake",
     ],
     srcs: [
         ":TestCommonMockFunctions",
+        ":TestFakeComAndroidBluetoothFlags",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockMainShim",
         ":TestMockMainShimEntry",
@@ -932,8 +934,9 @@ cc_test {
         "libaconfig_storage_read_api_cc",
         "libbase",
         "libcrypto",
+        "libcutils",
         "libhidlbase",
-        "liblog", // __android_log_print
+        "liblog",
         "server_configurable_flags",
     ],
     static_libs: [
@@ -948,6 +951,7 @@ cc_test {
         "libbt_shim_ffi",
         "libchrome",
         "libevent",
+        "libflagtest",
         "libflatbuffers-cpp",
         "libgmock",
         "libgtest",
@@ -976,9 +980,11 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/include",
         "packages/modules/Bluetooth/system/bta/test/common",
         "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/test/fake",
     ],
     srcs: [
         ":TestCommonMockFunctions",
+        ":TestFakeComAndroidBluetoothFlags",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockMainShim",
         ":TestMockMainShimEntry",
@@ -1019,6 +1025,7 @@ cc_test {
         "libaconfig_storage_read_api_cc",
         "libbase",
         "libcrypto",
+        "libcutils",
         "libhidlbase",
         "liblog",
         "server_configurable_flags",
@@ -1096,6 +1103,7 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/le_audio",
         "packages/modules/Bluetooth/system/stack/btm",
         "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/test/fake",
     ],
     srcs: [
         ":TestCommonMockFunctions",
@@ -1114,6 +1122,7 @@ cc_test {
     shared_libs: [
         "libbase",
         "libcrypto",
+        "libcutils",
         "liblog",
         "server_configurable_flags",
     ],
@@ -1168,6 +1177,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
+        ":TestFakeComAndroidBluetoothFlags",
         ":TestFakeOsi",
         ":TestMockMainShim",
         ":TestMockMainShimEntry",
@@ -1187,6 +1197,7 @@ cc_test {
         "libbase",
         "libbinder_ndk",
         "libcrypto",
+        "libcutils",
         "libfmq",
         "libhidlbase",
         "liblog",
