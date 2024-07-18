@@ -23,6 +23,7 @@ pub mod uuid;
 use bluetooth_qa::{BluetoothQA, IBluetoothQA};
 use log::debug;
 use num_derive::{FromPrimitive, ToPrimitive};
+use std::collections::HashSet;
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::channel;
 use tokio::sync::mpsc::{Receiver, Sender};
@@ -45,6 +46,7 @@ use crate::bluetooth_media::{BluetoothMedia, MediaActions};
 use crate::dis::{DeviceInformation, ServiceCallbacks};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
 use crate::suspend::Suspend;
+use crate::uuid::Profile;
 use bt_topshim::{
     btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, RawAddress},
     profiles::{
@@ -168,6 +170,12 @@ pub enum Message {
     // UHid callbacks
     UHidHfpOutputCallback(RawAddress, u8, u8),
     UHidTelephonyUseCallback(RawAddress, bool),
+
+    // GATT Callbacks
+    GattClientDisconnected(RawAddress),
+
+    // Inter-profile communication
+    QueryForConnectedProfiles(BluetoothDevice),
 }
 
 pub enum BluetoothAPI {
@@ -543,6 +551,21 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .dispatch_uhid_telephony_use_callback(addr, state);
+                }
+
+                Message::GattClientDisconnected(address) => {
+                    bluetooth.lock().unwrap().disconnect_if_no_profiles(address);
+                }
+
+                Message::QueryForConnectedProfiles(device) => {
+                    let mut connected_profiles: HashSet<Profile> = HashSet::new();
+                    connected_profiles.extend(
+                        &bluetooth_media.lock().unwrap().get_connected_profiles(device.clone()),
+                    );
+                    bluetooth
+                        .lock()
+                        .unwrap()
+                        .maybe_disconnect_query_results(device, connected_profiles);
                 }
             }
         }
