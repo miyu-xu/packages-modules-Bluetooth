@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bedebbcd_292a8dd0",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-18T20:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74500efd_06453bde",
+      "range": {
+        "startLine": 710,
+        "startChar": 47,
+        "endLine": 710,
+        "endChar": 72
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0196ac87_97258015",
@@ -105,6 +129,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d4d641_5296e48f",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-18T20:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64618775_88d2a57f",
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9c329e6_bcc2aca0",
@@ -140,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c42ae66_71d8780d",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-18T20:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9c329e6_bcc2aca0",
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4046cc9c_8412b68e",
@@ -153,6 +213,30 @@
       "writtenOn": "2024-07-17T23:43:44Z",
       "side": 1,
       "message": "Please move the flag check to the implementation of a2dp_sink_device_update_event.",
+      "range": {
+        "startLine": 423,
+        "startChar": 10,
+        "endLine": 423,
+        "endChar": 65
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a473a548_3cbcc443",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-18T20:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4046cc9c_8412b68e",
       "range": {
         "startLine": 423,
         "startChar": 10,
