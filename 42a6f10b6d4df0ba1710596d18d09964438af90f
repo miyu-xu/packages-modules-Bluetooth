@@ -22,6 +22,30 @@
       },
       "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17fed5b_9e767dc5",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-18T21:09:08Z",
+      "side": 1,
+      "message": "I used it for profile connection.  \n\nIt is slightly difference from `Headset \u003d 1`, this one is only used internally, so similiar to `HAP_CLIENT`",
+      "parentUuid": "047ce3e3_f76be0eb",
+      "range": {
+        "startLine": 240,
+        "startChar": 1,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
