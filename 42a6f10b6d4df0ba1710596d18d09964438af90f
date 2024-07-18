@@ -70,6 +70,30 @@
       },
       "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c4548d7_e57013cc",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-18T21:16:33Z",
+      "side": 1,
+      "message": "Acknowledged\n\nAll that will be delete at some point, I thought we already removed the logic using it, apparently not yet ^^",
+      "parentUuid": "fad7e5f0_cd772348",
+      "range": {
+        "startLine": 240,
+        "startChar": 1,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
