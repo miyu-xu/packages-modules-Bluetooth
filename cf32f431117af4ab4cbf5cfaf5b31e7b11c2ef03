@@ -16,6 +16,24 @@
       "message": "nit: if the number of is getting bigger please do a list.",
       "revId": "cf32f431117af4ab4cbf5cfaf5b31e7b11c2ef03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dce0057b_6b554846",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/a2dp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-07-18T18:10:05Z",
+      "side": 1,
+      "message": "There shouldn\u0027t be other tests depending on that",
+      "parentUuid": "662cfb2f_8a0e1195",
+      "revId": "cf32f431117af4ab4cbf5cfaf5b31e7b11c2ef03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
