@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdbe1aa4_96b7b956",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-18T13:38:29Z",
+      "side": 1,
+      "message": "looks good, minor formatting comment.",
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4431ccd_4a085f04",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-18T13:38:29Z",
+      "side": 1,
+      "message": "please double check formatting with `repo upload`",
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ecb6dde_ff291e26",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-18T13:38:29Z",
+      "side": 1,
+      "message": "please double check formatting with `repo upload`",
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
