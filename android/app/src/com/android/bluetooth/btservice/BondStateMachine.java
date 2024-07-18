@@ -379,25 +379,23 @@ final class BondStateMachine extends StateMachine {
 
     private boolean removeBond(BluetoothDevice dev, boolean transition) {
         DeviceProperties devProp = mRemoteDevices.getDeviceProperties(dev);
-        if (devProp != null && devProp.getBondState() == BluetoothDevice.BOND_BONDED) {
-            byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
-            if (!mAdapterService.getNative().removeBond(addr)) {
-                Log.e(TAG, "Unexpected error while removing bond:");
-            } else {
-                if (transition) {
-                    transitionTo(mPendingCommandState);
-                }
-                return true;
-            }
+        if (devProp == null) {
+            Log.w(TAG, "Cannot remove " + dev + " since properties are empty");
+            return false;
         }
 
-        Log.w(
-                TAG,
-                dev.getAddressForLogging()
-                        + " cannot be removed since "
-                        + ((devProp == null)
-                                ? "properties are empty"
-                                : "bond state is " + devProp.getBondState()));
+        if (devProp.getBondState() == BluetoothDevice.BOND_BONDED) {
+            byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
+            if (!mAdapterService.getNative().removeBond(addr)) {
+                Log.e(TAG, "Unexpected error while removing native bond for " + dev);
+            }
+            if (transition) {
+                transitionTo(mPendingCommandState);
+            }
+            return true;
+        }
+
+        Log.w(TAG, "Cannot remove " + dev + " bond state is" + devProp.getBondState());
         return false;
     }
 
