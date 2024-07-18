@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08cf126c_d18a260b",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-18T05:00:55Z",
+      "side": 1,
+      "message": "When we receive set/get report (UHID_FEATURE and UHID_SET_REPORT in the code) from the uhid driver, it implies the input driver is ready to process events, so we can mark uhid ready and flush the input queue.",
+      "parentUuid": "8c362e6b_51c96c2a",
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04fb5efb_2bbf9dd4",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 2
@@ -77,6 +95,24 @@
           ]
         }
       ],
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14fa1b21_cb81016c",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-18T05:00:55Z",
+      "side": 1,
+      "message": "idem",
+      "parentUuid": "04fb5efb_2bbf9dd4",
       "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
