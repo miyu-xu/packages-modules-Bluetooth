@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c362e6b_51c96c2a",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2024-07-18T04:54:47Z",
+      "side": 1,
+      "message": "just curious, why cancel the alarm duing UHID_FEATURE?",
+      "fixSuggestions": [
+        {
+          "fixId": "fe04d06c_0ec53dc9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 303,
+                "startChar": 0,
+                "endLine": 309,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04fb5efb_2bbf9dd4",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2024-07-18T04:54:47Z",
+      "side": 1,
+      "message": "just curious, why cancel the alarm duing UHID_REPORT?",
+      "fixSuggestions": [
+        {
+          "fixId": "d445b89d_62140876",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 303,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": "      // If the UHID thread is waiting for the UHID_START event, cancel the\n      // timer and set the UHID as ready.\n"
+            },
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 323,
+                "startChar": 0,
+                "endLine": 323,
+                "endChar": 0
+              },
+              "replacement": "      // If the UHID thread is waiting for the UHID_START event, cancel the\n      // timer and set the UHID as ready.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
