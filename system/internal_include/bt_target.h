@@ -477,9 +477,11 @@
 #define SDP_MAX_PROTOCOL_PARAMS 2
 #endif
 
-/* The maximum number of simultaneous client and server connections. */
+/* The maximum number of simultaneous client and server connections, including
+ * the pending connections that would potentially reuse an already existing
+ * connection. */
 #ifndef SDP_MAX_CONNECTIONS
-#define SDP_MAX_CONNECTIONS 4
+#define SDP_MAX_CONNECTIONS 6
 #endif
 
 /* The MTU size for the L2CAP configuration. */
