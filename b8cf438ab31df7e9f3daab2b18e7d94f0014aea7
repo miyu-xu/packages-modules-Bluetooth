@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70235c24_05183426",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-07-18T20:03:33Z",
+      "side": 1,
+      "message": "This is in order to deprecate the cached codec. The codec config should be retrieved based on the peer\u0027s codec config. This ensures codec config \u0026 attributes are based on the peer\u0027s config and not based on the source\u0027s \"global\" codec config.\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/include/bta_av_co.h;l\u003d69;drc\u003d5fda970b9b4a3ffee7f282ed7e332c96989962e3\n\nFor sink use-case, the global codec config was overridden by the non-active peer codec config.",
+      "parentUuid": "0196ac87_97258015",
+      "range": {
+        "startLine": 780,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 5
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "336ddf67_7dab728f",
         "filename": "system/btif/co/bta_av_co.cc",
         "patchSetId": 3
