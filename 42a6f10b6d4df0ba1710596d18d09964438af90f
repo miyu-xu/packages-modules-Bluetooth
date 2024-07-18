@@ -46,6 +46,30 @@
       },
       "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fad7e5f0_cd772348",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-18T21:13:06Z",
+      "side": 1,
+      "message": "actually, `LE_CALL_CONTROL` is more similar, as `HAP_CLIENT ` is not hidden",
+      "parentUuid": "e17fed5b_9e767dc5",
+      "range": {
+        "startLine": 240,
+        "startChar": 1,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
