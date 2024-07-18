@@ -16,6 +16,29 @@
       "message": "Wait for internal patch to be merged",
       "revId": "e791aeb6dfd25ec2157556c3d82868c2e7cd98bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc382c9_77885227",
+        "filename": "system/test/fake/fake_com_android_bluetooth_flags.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-18T13:28:09Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"addresss\" -- should it be \"address\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"addresss\" -- should it be \"address\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 929,
+        "startChar": 38,
+        "endLine": 929,
+        "endChar": 46
+      },
+      "revId": "e791aeb6dfd25ec2157556c3d82868c2e7cd98bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
