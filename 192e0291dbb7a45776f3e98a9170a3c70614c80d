@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd4d0dc_d9aa45ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-18T17:56:55Z",
+      "side": 0,
+      "message": "this part is necessary, please check what\u0027s the order and modify this part with \n```\n\nif(flag.xxx){}\nelse {}\n```\n\nbut not remove all of them",
+      "range": {
+        "startLine": 1175,
+        "startChar": 34,
+        "endLine": 1175,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cb137781_fb2e6473",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+              "range": {
+                "startLine": 1029,
+                "startChar": 0,
+                "endLine": 1030,
+                "endChar": 0
+              },
+              "replacement": "        verify(mAudioManager).setLeAudioSuspended(true); // this part is necessary\n"
+            }
+          ]
+        }
+      ],
+      "revId": "192e0291dbb7a45776f3e98a9170a3c70614c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
