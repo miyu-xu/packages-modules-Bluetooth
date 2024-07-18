@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec5fde5_b0a51029",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-18T06:25:36Z",
+      "side": 1,
+      "message": "based on b/318460024#comment19, seems like the parent call is still there, not creating a new call.",
+      "range": {
+        "startLine": 1094,
+        "startChar": 37,
+        "endLine": 1094,
+        "endChar": 53
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "13cdb0fb_631949c0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1094,
+                "startChar": 0,
+                "endLine": 1097,
+                "endChar": 0
+              },
+              "replacement": "         BluetoothCall activeCall_1 \u003d createActiveCall(UUID.randomUUID());\n         calls.add(activeCall_1);\n         mBluetoothInCallService.onCallAdded(activeCall_1);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e16fed3cca9d5d020e7fa290307c52d88ca6212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
