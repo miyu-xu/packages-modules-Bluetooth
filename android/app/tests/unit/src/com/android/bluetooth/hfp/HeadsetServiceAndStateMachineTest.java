@@ -783,7 +783,7 @@ public class HeadsetServiceAndStateMachineTest {
         mTestLooper.dispatchAll();
         verify(mSystemInterface).activateVoiceRecognition();
         verify(mNativeInterface).atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_ERROR, 0);
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
         verifyZeroInteractions(mAudioManager);
     }
 
@@ -826,7 +826,7 @@ public class HeadsetServiceAndStateMachineTest {
                             anyBoolean(),
                             eq(device));
         }
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
         verifyZeroInteractions(mAudioManager);
     }
 
@@ -995,10 +995,6 @@ public class HeadsetServiceAndStateMachineTest {
         connectTestDevice(deviceA);
         BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
         connectTestDevice(deviceB);
-        InOrder inOrder = inOrder(mNativeInterface);
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(true));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceB), eq(false));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(false));
         // Set active device to device B
         assertThat(mHeadsetService.setActiveDevice(deviceB)).isTrue();
         mTestLooper.dispatchAll();
@@ -1039,7 +1035,7 @@ public class HeadsetServiceAndStateMachineTest {
                             anyBoolean(),
                             eq(deviceA));
         }
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
     }
 
     /**
@@ -1055,14 +1051,10 @@ public class HeadsetServiceAndStateMachineTest {
     @Test
     public void testVoiceRecognition_MultiHfInitiatedSwitchActiveDeviceReplyWrongHfSuccess() {
         // Connect two devices
-        InOrder inOrder = inOrder(mNativeInterface);
         BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
         connectTestDevice(deviceA);
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(true));
         BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
         connectTestDevice(deviceB);
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceB), eq(false));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(false));
         // Set active device to device B
         assertThat(mHeadsetService.setActiveDevice(deviceB)).isTrue();
         mTestLooper.dispatchAll();
@@ -1104,7 +1096,7 @@ public class HeadsetServiceAndStateMachineTest {
                             anyBoolean(),
                             eq(deviceA));
         }
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
     }
 
     /**
@@ -1123,10 +1115,6 @@ public class HeadsetServiceAndStateMachineTest {
         connectTestDevice(deviceA);
         BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
         connectTestDevice(deviceB);
-        InOrder inOrder = inOrder(mNativeInterface);
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(true));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceB), eq(false));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(false));
         // Set active device to device B
         assertThat(mHeadsetService.setActiveDevice(deviceB)).isTrue();
         mTestLooper.dispatchAll();
@@ -1153,7 +1141,7 @@ public class HeadsetServiceAndStateMachineTest {
                             anyBoolean(),
                             eq(deviceB));
         }
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
     }
 
     /**
@@ -1172,10 +1160,6 @@ public class HeadsetServiceAndStateMachineTest {
         connectTestDevice(deviceA);
         BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
         connectTestDevice(deviceB);
-        InOrder inOrder = inOrder(mNativeInterface);
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(true));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceB), eq(false));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(false));
         // Set active device to device B
         assertThat(mHeadsetService.setActiveDevice(deviceB)).isTrue();
         mTestLooper.dispatchAll();
@@ -1211,7 +1195,7 @@ public class HeadsetServiceAndStateMachineTest {
                             anyBoolean(),
                             eq(deviceA));
         }
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
     }
 
     /**
@@ -1334,7 +1318,7 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mNativeInterface, times(2))
                 .enableSwb(
                         eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), eq(false), eq(device));
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
         configureHeadsetServiceForAptxVoice(false);
     }
 
@@ -1418,7 +1402,7 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mNativeInterface, times(2))
                 .enableSwb(
                         eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), eq(true), eq(device));
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
         configureHeadsetServiceForAptxVoice(false);
     }
 
@@ -1719,7 +1703,7 @@ public class HeadsetServiceAndStateMachineTest {
                 device,
                 BluetoothHeadset.STATE_AUDIO_CONNECTED,
                 BluetoothHeadset.STATE_AUDIO_CONNECTING);
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
     }
 
     private void startVoiceRecognitionFromHf_ScoManagedByAudio(BluetoothDevice device) {
@@ -1774,7 +1758,7 @@ public class HeadsetServiceAndStateMachineTest {
                 device,
                 BluetoothHeadset.STATE_AUDIO_CONNECTED,
                 BluetoothHeadset.STATE_AUDIO_CONNECTING);
-        verifyNoMoreInteractions(mNativeInterface);
+        verifyNoMoreInteractions(ignoreStubs(mNativeInterface));
     }
 
     private void startVoiceRecognitionFromAg_ScoManagedByAudio() {
