@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0d38b1b_2a34b015",
+        "filename": "system/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1311067
+      },
+      "writtenOn": "2024-07-18T01:26:35Z",
+      "side": 1,
+      "message": "```\nerror: packages/modules/Bluetooth/system/Android.bp:226:1: dependency \"bluetooth_host_libs\" \nof \"archive_bluetooth_cert_tests\" missing variant:\n  os:android,image:,arch:x86_64_silvermont,sdk:\navailable variants:\n  os:linux_glibc,arch:x86_64\n  os:linux_glibc,arch:x86\n  os:windows,arch:x86\n  os:windows,arch:x86_64\nfatal errors encountered\n09:22:24 soong bootstrap failed with: exit status 1\n\n```",
+      "range": {
+        "startLine": 206,
+        "startChar": 22,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "122b2f7fb40e8a5a7996fbbaa36b58e7b412575e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
