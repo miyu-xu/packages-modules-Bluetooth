@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e4e457_0a0ec78e",
+        "filename": "flags/a2dp.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-18T20:57:42Z",
+      "side": 1,
+      "message": "This bug is not valid, did you mean 345709100 ?",
+      "range": {
+        "startLine": 93,
+        "startChar": 10,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "39a14d9b1669b427bcb0551dfe0ba1be602c5512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
