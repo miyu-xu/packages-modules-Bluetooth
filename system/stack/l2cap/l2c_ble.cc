@@ -1068,6 +1068,7 @@ void l2cble_update_data_length(tL2C_LCB* p_lcb) {
     tx_mtu = BTM_BLE_DATA_SIZE_MAX;
   }
 
+  log::warn("data len chosen: {}", tx_mtu );
   /* update TX data length if changed */
   if (p_lcb->tx_data_len != tx_mtu) {
     BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu);
@@ -1110,6 +1111,8 @@ void l2cble_process_data_length_change_event(uint16_t handle, uint16_t tx_data_l
               "tx_data_len:{}",
               p_lcb->remote_bd_addr, tx_data_len);
     }
+    //Update data length as needed to get the max data len
+    l2cble_update_data_length(p_lcb);
   } else {
     log::warn(
             "Received illegal data length change event for device:{} "
