@@ -39,6 +39,30 @@
       },
       "revId": "e791aeb6dfd25ec2157556c3d82868c2e7cd98bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7dec705_f29c5556",
+        "filename": "system/test/fake/fake_com_android_bluetooth_flags.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-18T13:29:38Z",
+      "side": 1,
+      "message": "Do you want to to change the flag name? \n\nThis file implements flag_provider_interface and the interface is auto generated from the .aconfig files.",
+      "parentUuid": "cdc382c9_77885227",
+      "range": {
+        "startLine": 929,
+        "startChar": 38,
+        "endLine": 929,
+        "endChar": 46
+      },
+      "revId": "e791aeb6dfd25ec2157556c3d82868c2e7cd98bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
