@@ -18,6 +18,7 @@
 #include "state_machine.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <log/log.h>
@@ -30,6 +31,7 @@
 #include "btm_api_mock.h"
 #include "client_parser.h"
 #include "fake_osi.h"
+#include "gd/os/system_properties.h"
 #include "hci/controller_interface_mock.h"
 #include "internal_include/stack_config.h"
 #include "le_audio/le_audio_types.h"
@@ -59,6 +61,9 @@ using ::testing::Test;
 extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
 
 void osi_property_set_bool(const char* key, bool value);
+
+static std::string kFlagPrefix(
+        "persist.device_config.aconfig_flags.bluetooth.com.android.bluetooth.flags.");
 
 constexpr uint8_t media_ccid = 0xC0;
 constexpr auto media_context = LeAudioContextType::MEDIA;
@@ -101,6 +106,17 @@ stack_config_t mock_stack_config{
         .get_all = get_all,
 };
 const stack_config_t* stack_config_get_interface(void) { return &mock_stack_config; }
+
+namespace server_configurable_flags {
+std::string GetServerConfigurableFlag(const std::string& experiment_category_name,
+                                      const std::string& experiment_flag_name,
+                                      const std::string& default_value) {
+  std::string prop_name =
+          "persist.device_config." + experiment_category_name + "." + experiment_flag_name;
+  log::info(" {}", prop_name);
+  return bluetooth::os::GetSystemProperty(prop_name).value_or(default_value);
+}
+}  // namespace server_configurable_flags
 
 namespace bluetooth::le_audio {
 namespace internal {
@@ -267,6 +283,13 @@ protected:
     LeAudioGroupStateMachine::Initialize(&mock_callbacks_);
 
     ContentControlIdKeeper::GetInstance()->Start();
+
+    // Set required flags
+    os::SetSystemProperty(kFlagPrefix + "run_ble_audio_ticks_in_worker_thread",
+                          std::string("false"));
+    os::SetSystemProperty(kFlagPrefix + "leaudio_dynamic_spatial_audio", std::string("false"));
+    os::SetSystemProperty(kFlagPrefix + "leaudio_start_stream_race_fix", std::string("true"));
+    os::SetSystemProperty(kFlagPrefix + "leaudio_hal_client_asrc", std::string("false"));
 
     ON_CALL(mock_callbacks_, StatusReportCb(_, _))
             .WillByDefault(Invoke([](int group_id, bluetooth::le_audio::GroupStreamStatus status) {
