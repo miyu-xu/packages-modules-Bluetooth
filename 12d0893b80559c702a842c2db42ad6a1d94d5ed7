@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9094874c_cccbeb1c",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-18T17:48:40Z",
+      "side": 1,
+      "message": "Makes sense.",
+      "parentUuid": "bfd7baa1_e8f5dea9",
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04fb5efb_2bbf9dd4",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 2
