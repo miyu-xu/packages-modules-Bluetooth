@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac70e109_7c117f38",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-18T21:51:39Z",
+      "side": 0,
+      "message": "another one that might go in header cleanup?",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "9bd5935ac88b0c95352e2547fa4a787e1ad9032d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

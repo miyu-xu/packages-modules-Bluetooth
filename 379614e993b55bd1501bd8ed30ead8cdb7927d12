@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc3815f5_89e9518d",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-18T21:51:39Z",
+      "side": 1,
+      "message": "can you either remove or update this?",
+      "range": {
+        "startLine": 1496,
+        "startChar": 0,
+        "endLine": 1506,
+        "endChar": 80
+      },
+      "revId": "379614e993b55bd1501bd8ed30ead8cdb7927d12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
