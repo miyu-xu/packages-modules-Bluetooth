@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27274d4c_d01c59b2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "This seems to be fully covered by `profiles_requested`. Let\u0027s remove this.",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 385,
+        "endChar": 23
+      },
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6649e3f6_12e5c43a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "This is doubly added at the end of the function.",
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1081f879_0490dfdd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "How about this so we keep only one line of `add_connected_profile_to_device` at the end of the function.\n\n```suggestion\n            Profile::LeAudio | Profile::VolumeControl | Profile::CoordinatedSet \u003d\u003e {\n                // Only need to call LEA connect once\n                if !self.is_profile_connected(device.clone(), Profile::LeAudio)?\n                    \u0026\u0026 !self.is_profile_connected(device.clone(), Profile::VolumeControl)?\n                    \u0026\u0026 !self.is_profile_connected(device.clone(), Profile::CoordinatedSet)?\n                {\n                    let txl \u003d self.tx.clone();\n                    topstack::get_runtime().spawn(async move {\n                        let _ \u003d txl\n                        .send(Message::Media(MediaActions::ConnectLeaGroupByMemberAddress(addr)))\n                            .await;\n                    });\n                }\n            }\n```",
+      "range": {
+        "startLine": 878,
+        "startChar": 0,
+        "endLine": 892,
+        "endChar": 13
+      },
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "296621d4_94f345b9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "Same above",
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a0bb09_2ddb3d81",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "Please document this phrase. BTW what do you think about \"is_initiator\"?",
+      "range": {
+        "startLine": 1210,
+        "startChar": 11,
+        "endLine": 1210,
+        "endChar": 29
+      },
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78374c87_6b07f2b3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "Better leave a comment here that this actually means we\u0027ve requested the connection to profiles, not saying they are really connected.",
+      "range": {
+        "startLine": 1232,
+        "startChar": 11,
+        "endLine": 1232,
+        "endChar": 29
+      },
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2abf295_d8f4a490",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2117,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "Let\u0027s only call this when `has_uuids` (line #2129) to save some checks.\n\nBesides this line I don\u0027t see a need to change the other lines in this function, please revert.",
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0903ec_dfd98f43",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-18T13:57:26Z",
+      "side": 1,
+      "message": "IIUC this means we always connect to BAS regardless of the SDP/GATT discovery result if we are the connection initiator. Is that intentional? How about to move this into `connect_profiles_by_uuid()`?",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 88
+      },
+      "revId": "bc6b73a60b6dc0b8d8f394f7a918b193c4cedad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
