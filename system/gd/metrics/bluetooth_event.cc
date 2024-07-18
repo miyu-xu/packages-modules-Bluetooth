@@ -31,6 +31,21 @@ State MapErrorCodeToState(ErrorCode reason) {
   switch (reason) {
     case ErrorCode::SUCCESS:
       return State::SUCCESS;
+    // Timeout related errors
+    case ErrorCode::PAGE_TIMEOUT:
+    case ErrorCode::CONNECTION_TIMEOUT:
+    case ErrorCode::CONNECTION_ACCEPT_TIMEOUT:
+    case ErrorCode::TRANSACTION_RESPONSE_TIMEOUT:
+      return State::TIMEOUT;
+    // Connection exists (should mark it as success?)
+    case ErrorCode::CONNECTION_ALREADY_EXISTS:
+      return State::ALREADY_CONNECTED;
+    case ErrorCode::REPEATED_ATTEMPTS:
+      return State::REPEATED_ATTEMPTS;
+    case ErrorCode::PIN_OR_KEY_MISSING:
+      return State::KEY_MISSING;
+    case ErrorCode::PAIRING_NOT_ALLOWED:
+      return State::PAIRING_NOT_ALLOWED;
     default:
       return State::STATE_UNKNOWN;
   }
