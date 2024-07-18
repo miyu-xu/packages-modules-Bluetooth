@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad458883_c4aac716",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-18T03:38:06Z",
+      "side": 1,
+      "message": "`alarm_free` calls `alarm_cancel` internally. From the doc:\nIf the alarm is pending, it will be cancelled first.",
+      "parentUuid": "493ce444_17db1a19",
+      "revId": "d20e43230db6c91e06940914feb1ae3b2741bc30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6aea16b_d809c8c6",
         "filename": "system/gd/sysprops/sysprops_module.cc",
         "patchSetId": 1
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "d20e43230db6c91e06940914feb1ae3b2741bc30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfadd4bf_9a574792",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-18T03:38:06Z",
+      "side": 1,
+      "message": "Agree, thanks.",
+      "parentUuid": "d6aea16b_d809c8c6",
       "revId": "d20e43230db6c91e06940914feb1ae3b2741bc30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
