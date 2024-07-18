@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94a26f5b_7ee0f266",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2024-07-18T05:09:23Z",
+      "side": 1,
+      "message": "I am worried about this assumption. The readiness of the UHID doesn\u0027t rely on the kernel driver is ready but the other side InputReader and EventHub is ready or not.\n\nSo is it possible even though we get these events, InputReady (Android Input Subsystem) is still not ready?",
+      "parentUuid": "08cf126c_d18a260b",
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04fb5efb_2bbf9dd4",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 2
