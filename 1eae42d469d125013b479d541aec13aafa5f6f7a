@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "837430b6_478768f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-18T15:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b06e5f_63b0c77e",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6aa3c5cf_819d20ad",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-07-18T13:39:24Z",
       "side": 1,
       "message": "missing `Flag: Exempt, \u003creason\u003e`",
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeae2f34_2876cc57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-18T15:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aa3c5cf_819d20ad",
       "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4296fc8b_950ab65c",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-18T15:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4431ccd_4a085f04",
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ecb6dde_ff291e26",
@@ -88,6 +148,24 @@
       "writtenOn": "2024-07-18T13:38:29Z",
       "side": 1,
       "message": "please double check formatting with `repo upload`",
+      "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3efdf24e_3a1e980b",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-18T15:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ecb6dde_ff291e26",
       "revId": "1eae42d469d125013b479d541aec13aafa5f6f7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
