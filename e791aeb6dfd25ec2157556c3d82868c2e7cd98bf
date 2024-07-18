@@ -63,6 +63,30 @@
       },
       "revId": "e791aeb6dfd25ec2157556c3d82868c2e7cd98bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3865c2a_ab96bb01",
+        "filename": "system/test/fake/fake_com_android_bluetooth_flags.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-18T14:35:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c7dec705_f29c5556",
+      "range": {
+        "startLine": 929,
+        "startChar": 38,
+        "endLine": 929,
+        "endChar": 46
+      },
+      "revId": "e791aeb6dfd25ec2157556c3d82868c2e7cd98bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
