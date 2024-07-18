@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10b3734_3b781cc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-18T12:32:23Z",
+      "side": 1,
+      "message": "looks like new flags has been added..fixing.",
+      "revId": "6cf3ea08ebf4f3e8b1e3ac3dc24f0746a057a088",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
