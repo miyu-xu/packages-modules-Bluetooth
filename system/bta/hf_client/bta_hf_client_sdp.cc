@@ -166,7 +166,7 @@ bool bta_hf_client_add_record(const char* p_service_name, uint8_t scn,
 
   /* Support swb */
   if (features & BTA_HF_CLIENT_FEAT_SWB)
-    features |= BTA_HF_CLIENT_FEAT_SWB_SUPPORT;
+    sdp_features |= BTA_HF_CLIENT_FEAT_SWB_SUPPORT;
 
   UINT16_TO_BE_FIELD(buf, sdp_features);
   result &= get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
