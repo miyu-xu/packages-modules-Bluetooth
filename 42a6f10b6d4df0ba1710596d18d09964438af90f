@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "047ce3e3_f76be0eb",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-18T20:51:32Z",
+      "side": 1,
+      "message": "Do we need this ?\nAre you adding API to get the profile the same way we can get BluetoothHeadset ?\n\n(I plan to remove almost all of these variable as there doesn\u0027t represent anything for most of them)",
+      "range": {
+        "startLine": 240,
+        "startChar": 1,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "42a6f10b6d4df0ba1710596d18d09964438af90f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
