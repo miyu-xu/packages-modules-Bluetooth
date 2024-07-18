@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c13f4ff_2695cbe8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1486,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-18T13:26:34Z",
+      "side": 1,
+      "message": "nice - some time back I was wondering where to move this setting :)",
+      "revId": "024f328c9f5b694b4947c0140b3c216bc1821f92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
