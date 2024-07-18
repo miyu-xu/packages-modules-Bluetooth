@@ -383,6 +383,7 @@ struct BluetoothDeviceContext {
     /// If supported UUIDs weren't available in EIR, wait for services to be
     /// resolved to connect.
     pub wait_to_connect: bool,
+    pub has_connected_profiles: bool,
 }
 
 impl BluetoothDeviceContext {
@@ -404,6 +405,7 @@ impl BluetoothDeviceContext {
             properties: HashMap::new(),
             services_resolved: false,
             wait_to_connect: false,
+            has_connected_profiles: false,
         };
         device.update_properties(&properties);
         device
@@ -1345,6 +1347,19 @@ impl Bluetooth {
         self.intf.lock().unwrap().pairing_is_busy()
             || self.active_pairing_address.is_some()
             || self.pending_create_bond.is_some()
+    }
+
+    /// Disconnect the device if no profiles have been connected.
+    pub fn disconnect_if_no_profiles(&mut self, device_address: RawAddress) {
+        match self.remote_devices.get(&device_address) {
+            Some(context) => {
+                if context.has_connected_profiles {
+                    return;
+                }
+                self.disconnect_all_enabled_profiles(context.info.clone());
+            }
+            None => return,
+        }
     }
 }
 
@@ -2829,6 +2844,8 @@ impl IBluetooth for Bluetooth {
         if !has_enabled_uuids || !has_supported_profile {
             self.resume_discovery();
         }
+
+        self.remote_devices.entry(addr).and_modify(|context| context.has_connected_profiles = true);
 
         BtStatus::Success
     }
