@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "312e7c5b_4fa37dd6",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-18T21:40:42Z",
+      "side": 0,
+      "message": "Doesn\u0027t this go in your header cleanup CL?",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "38066dbf_4549aa12",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b8f61dab9de7c512010c61bcd4e337851a794160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e07870f_4d28acca",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-18T21:40:42Z",
+      "side": 0,
+      "message": "same as other comment",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 25
+      },
+      "revId": "b8f61dab9de7c512010c61bcd4e337851a794160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
