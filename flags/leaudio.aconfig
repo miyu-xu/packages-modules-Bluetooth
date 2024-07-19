@@ -356,18 +356,11 @@ flag {
 }
 
 flag {
-    name: "leaudio_speed_up_reconfiguration_between_call"
+    name: "leaudio_broadcast_volume_control_primary_group_only"
     namespace: "bluetooth"
-    description: "Fix reconfiguration time between call and media"
-    bug: "352686917"
+    description: "Only control broadcast primary group volume"
+    bug: "354201794"
     metadata {
         purpose: PURPOSE_BUGFIX
     }
-}
-
-flag {
-    name: "leaudio_gmap_client"
-    namespace: "bluetooth"
-    description: "enable Gaming Audio Profile"
-    bug: "353978074"
 }
