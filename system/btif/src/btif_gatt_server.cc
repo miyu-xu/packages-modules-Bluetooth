@@ -272,35 +272,43 @@ static bt_status_t btif_gatts_unregister_app(int server_if) {
   return do_in_jni_thread(Bind(&BTA_GATTS_AppDeregister, server_if));
 }
 
+static tBT_TRANSPORT btif_gatt_determine_transport(tBT_TRANSPORT transport,
+                                                   tBT_DEVICE_TYPE device_type) {
+  // Determine transport
+  tBT_TRANSPORT new_transport = transport;
+  switch (transport) {
+    case BT_TRANSPORT_AUTO:
+      switch (device_type) {
+        case BT_DEVICE_TYPE_BREDR:
+          new_transport = BT_TRANSPORT_BR_EDR;
+          break;
+
+        case BT_DEVICE_TYPE_BLE:
+          new_transport = BT_TRANSPORT_LE;
+          break;
+
+        case BT_DEVICE_TYPE_DUMO:
+          new_transport = BT_TRANSPORT_BR_EDR;
+          break;
+      }
+      break;
+
+    case BT_TRANSPORT_BR_EDR:
+    case BT_TRANSPORT_LE:
+      break;
+  }
+  return new_transport;
+}
+
 static void btif_gatts_open_impl(int server_if, const RawAddress& address, bool is_direct,
-                                 int transport_param) {
+                                 tBT_TRANSPORT transport) {
   // Ensure device is in inquiry database
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
   int device_type = 0;
-  tBT_TRANSPORT transport = BT_TRANSPORT_LE;
 
   if (btif_get_address_type(address, &addr_type) && btif_get_device_type(address, &device_type) &&
       device_type != BT_DEVICE_TYPE_BREDR) {
     BTA_DmAddBleDevice(address, addr_type, device_type);
-  }
-
-  // Determine transport
-  if (transport_param != BT_TRANSPORT_AUTO) {
-    transport = transport_param;
-  } else {
-    switch (device_type) {
-      case BT_DEVICE_TYPE_BREDR:
-        transport = BT_TRANSPORT_BR_EDR;
-        break;
-
-      case BT_DEVICE_TYPE_BLE:
-        transport = BT_TRANSPORT_LE;
-        break;
-
-      case BT_DEVICE_TYPE_DUMO:
-        transport = BT_TRANSPORT_BR_EDR;
-        break;
-    }
   }
 
   // Connect!
@@ -311,22 +319,15 @@ static void btif_gatts_open_impl(int server_if, const RawAddress& address, bool 
 // ble_gatt_server_use_address_type_in_connection is enabled.
 static void btif_gatts_open_impl_use_address_type(int server_if, const RawAddress& address,
                                                   tBLE_ADDR_TYPE addr_type, bool is_direct,
-                                                  int transport_param) {
+                                                  tBT_TRANSPORT transport) {
   int device_type = BT_DEVICE_TYPE_UNKNOWN;
   if (btif_get_address_type(address, &addr_type) && btif_get_device_type(address, &device_type) &&
       device_type != BT_DEVICE_TYPE_BREDR) {
     BTA_DmAddBleDevice(address, addr_type, device_type);
   }
 
-  if (transport_param != BT_TRANSPORT_AUTO) {
-    log::info("addr_type:{}, transport_param:{}", addr_type, transport_param);
-    BTA_GATTS_Open(server_if, address, addr_type, is_direct, transport_param);
-    return;
-  }
-
-  tBT_TRANSPORT transport =
-          (device_type == BT_DEVICE_TYPE_BREDR) ? BT_TRANSPORT_BR_EDR : BT_TRANSPORT_LE;
-  log::info("addr_type:{}, transport:{}", addr_type, transport);
+  transport = btif_gatt_determine_transport(transport, device_type);
+  log::info("addr_type:{}, transport:{}", addr_type, bt_transport_text(transport));
   BTA_GATTS_Open(server_if, address, addr_type, is_direct, transport);
 }
 
@@ -336,9 +337,10 @@ static bt_status_t btif_gatts_open(int server_if, const RawAddress& bd_addr, uin
 
   if (com::android::bluetooth::flags::ble_gatt_server_use_address_type_in_connection()) {
     return do_in_jni_thread(Bind(&btif_gatts_open_impl_use_address_type, server_if, bd_addr,
-                                 addr_type, is_direct, transport));
+                                 addr_type, is_direct, to_bt_transport(transport)));
   } else {
-    return do_in_jni_thread(Bind(&btif_gatts_open_impl, server_if, bd_addr, is_direct, transport));
+    return do_in_jni_thread(
+            Bind(&btif_gatts_open_impl, server_if, bd_addr, is_direct, to_bt_transport(transport)));
   }
 }
 

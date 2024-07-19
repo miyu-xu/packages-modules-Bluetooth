@@ -278,10 +278,9 @@ static bt_status_t btif_gattc_unregister_app(int client_if) {
 }
 
 void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr_type,
-                          bool is_direct, int transport_p, bool opportunistic,
+                          bool is_direct, tBT_TRANSPORT transport, bool opportunistic,
                           int initiating_phys) {
   int device_type = BT_DEVICE_TYPE_UNKNOWN;
-  tBT_TRANSPORT transport = (tBT_TRANSPORT)BT_TRANSPORT_LE;
 
   if (addr_type == BLE_ADDR_RANDOM) {
     device_type = BT_DEVICE_TYPE_BLE;
@@ -312,9 +311,7 @@ void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr
   }
 
   // Determine transport
-  if (transport_p != BT_TRANSPORT_AUTO) {
-    transport = transport_p;
-  } else {
+  if (transport == BT_TRANSPORT_AUTO) {
     switch (device_type) {
       case BT_DEVICE_TYPE_BREDR:
         transport = BT_TRANSPORT_BR_EDR;
@@ -338,8 +335,8 @@ void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr
   }
 
   // Connect!
-  log::info("Transport={}, device type={}, address type ={}, phy={}", transport, device_type,
-            addr_type, initiating_phys);
+  log::info("Transport={}, device type={}, address type ={}, phy={}", bt_transport_text(transport),
+            DeviceTypeText(device_type), addr_type, initiating_phys);
   tBTM_BLE_CONN_TYPE type = is_direct ? BTM_BLE_DIRECT_CONNECTION : BTM_BLE_BKG_CONNECT_ALLOW_LIST;
   BTA_GATTC_Open(client_if, address, addr_type, type, transport, opportunistic, initiating_phys);
 }
@@ -350,7 +347,7 @@ static bt_status_t btif_gattc_open(int client_if, const RawAddress& bd_addr, uin
   CHECK_BTGATT_INIT();
   // Closure will own this value and free it.
   return do_in_jni_thread(Bind(&btif_gattc_open_impl, client_if, bd_addr, addr_type, is_direct,
-                               transport, opportunistic, initiating_phys));
+                               to_bt_transport(transport), opportunistic, initiating_phys));
 }
 
 void btif_gattc_close_impl(int client_if, RawAddress address, int conn_id) {
