@@ -18,8 +18,18 @@ import logging
 import json
 
 from bumble import pandora as bumble_server
-from bumble.a2dp import make_audio_sink_service_sdp_records, make_audio_source_service_sdp_records
-from bumble.avrcp import make_target_service_sdp_records, make_controller_service_sdp_records
+from bumble.a2dp import (A2DP_SBC_CODEC_TYPE, SBC_DUAL_CHANNEL_MODE, SBC_JOINT_STEREO_CHANNEL_MODE,
+                         SBC_LOUDNESS_ALLOCATION_METHOD, SBC_MONO_CHANNEL_MODE, SBC_SNR_ALLOCATION_METHOD,
+                         SBC_STEREO_CHANNEL_MODE, SbcMediaCodecInformation, make_audio_sink_service_sdp_records,
+                         make_audio_source_service_sdp_records)
+from bumble.avdtp import (
+    Listener as AvdtpListener,
+    AVDTP_AUDIO_MEDIA_TYPE,
+    MediaCodecCapabilities,
+)
+from bumble.avrcp import (make_target_service_sdp_records, make_controller_service_sdp_records, Protocol as
+                          AvrcpProtocol)
+from bumble.device import Device
 from bumble.pandora import PandoraDevice, Config, serve
 from bumble.hfp import (
     make_hf_sdp_records,
@@ -57,7 +67,7 @@ def main(grpc_port: int, rootcanal_port: int, transport: str, config: str) -> No
     bumble_config = retrieve_config(config)
     bumble_config.setdefault('transport', transport)
     sdp_service_records = _sdp_service_records()
-    device = PandoraDevice(bumble_config, sdp_service_records=sdp_service_records)
+    device = PandoraDevice(bumble_config, sdp_service_records=sdp_service_records, enable_profiles=enable_profiles)
 
     server_config = Config()
     server_config.load_from_dict(bumble_config.get('server', {}))
@@ -82,7 +92,53 @@ def args_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def register_experimental_services():
+def enable_profiles(bumble_device: Device) -> None:
+    enable_a2dp(bumble_device)
+    enable_avrcp(bumble_device)
+
+
+def codec_capabilities() -> MediaCodecCapabilities:
+    """Codec capabilities for the Bumble sink devices."""
+
+    return MediaCodecCapabilities(
+        media_type=AVDTP_AUDIO_MEDIA_TYPE,
+        media_codec_type=A2DP_SBC_CODEC_TYPE,
+        media_codec_information=SbcMediaCodecInformation.from_lists(
+            sampling_frequencies=[48000, 44100, 32000, 16000],
+            channel_modes=[
+                SBC_MONO_CHANNEL_MODE,
+                SBC_DUAL_CHANNEL_MODE,
+                SBC_STEREO_CHANNEL_MODE,
+                SBC_JOINT_STEREO_CHANNEL_MODE,
+            ],
+            block_lengths=[4, 8, 12, 16],
+            subbands=[4, 8],
+            allocation_methods=[
+                SBC_LOUDNESS_ALLOCATION_METHOD,
+                SBC_SNR_ALLOCATION_METHOD,
+            ],
+            minimum_bitpool_value=2,
+            maximum_bitpool_value=53,
+        ),
+    )
+
+
+def enable_a2dp(bumble_device: Device) -> None:
+    # TODO CHECK IF WE NEED TO STORE THE VARIABLE
+    a2dp = AvdtpListener.for_device(bumble_device)
+
+    def on_avdtp_connection(server) -> None:  # type: ignore
+        a2dp_sink = server.add_sink(codec_capabilities())  # type: ignore
+
+    a2dp.on('connection', on_avdtp_connection)  # type: ignore
+
+
+def enable_avrcp(bumble_device: Device) -> None:
+    avrcp_protocol = AvrcpProtocol(delegate=None)
+    avrcp = avrcp_protocol.listen(bumble_device)
+
+
+def register_experimental_services() -> None:
     bumble_server.register_servicer_hook(
         lambda bumble, _, server: add_AshaServicer_to_server(AshaService(bumble.device), server))
     bumble_server.register_servicer_hook(
