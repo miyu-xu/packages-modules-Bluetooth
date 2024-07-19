@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e05d485_70702618",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-07-19T20:56:46Z",
+      "side": 1,
+      "message": "I was trying to keep it general, but it\u0027s unlikely we\u0027re going to actually expand this and it would be confusing until then.",
+      "parentUuid": "eebb46a5_3ae23387",
+      "revId": "d7cc33993bc3883f4b7aa0e2a60e62c8dd8cc644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94e5e42c_8a4af7ba",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2024-07-19T20:14:21Z",
       "side": 1,
       "message": "Nit: can we update the comment to say if no HID or AUDIO profiles have been connected?",
+      "revId": "d7cc33993bc3883f4b7aa0e2a60e62c8dd8cc644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5cfc34e_a221753b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-07-19T20:56:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e5e42c_8a4af7ba",
       "revId": "d7cc33993bc3883f4b7aa0e2a60e62c8dd8cc644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2024-07-19T20:14:21Z",
       "side": 1,
       "message": "Why do we need to send a message to do this? Can\u0027t we just query bluetooth_media directly?",
+      "revId": "d7cc33993bc3883f4b7aa0e2a60e62c8dd8cc644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb1b845b_e5c83040",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1360,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-07-19T20:56:46Z",
+      "side": 1,
+      "message": "I didn\u0027t even realize we had BluetoothMedia since we send messages for connecting.",
+      "parentUuid": "b639808a_08fd099f",
       "revId": "d7cc33993bc3883f4b7aa0e2a60e62c8dd8cc644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
