@@ -16,6 +16,115 @@
       "message": "This is along the lines of what we talked about",
       "revId": "4be51c71fab6aea2ff13a83f3cc0875630ff5bc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4252b80_6f3ceac2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T20:02:30Z",
+      "side": 1,
+      "message": "I like where this is going :)",
+      "revId": "4be51c71fab6aea2ff13a83f3cc0875630ff5bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8f5847_049a616d",
+        "filename": "system/bta/dm/bta_dm_device_search.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T20:02:30Z",
+      "side": 1,
+      "message": "I think it would be smart to use the length here.  With classic, you\u0027re guaranteed to have a certain length.  Maybe use std::copy to copy from p_name to remote_bd_name?",
+      "range": {
+        "startLine": 292,
+        "startChar": 83,
+        "endLine": 292,
+        "endChar": 95
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e9e3a090_8f423328",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_device_search.cc",
+              "range": {
+                "startLine": 292,
+                "startChar": 0,
+                "endLine": 293,
+                "endChar": 0
+              },
+              "replacement": "static void bta_dm_ble_cmpl_cb(bool /* status */, const RawAddress\u0026 addr, uint16_t length,\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_device_search.cc",
+              "range": {
+                "startLine": 301,
+                "startChar": 0,
+                "endLine": 302,
+                "endChar": 0
+              },
+              "replacement": "  std::copy(p_name, p_name + length, name.remote_bd_name);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4be51c71fab6aea2ff13a83f3cc0875630ff5bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f47683d_e9c08b9b",
+        "filename": "system/bta/dm/bta_dm_device_search.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T20:02:30Z",
+      "side": 1,
+      "message": "nit: BT_TRANSPORT_BREDR ?",
+      "range": {
+        "startLine": 333,
+        "startChar": 62,
+        "endLine": 333,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0789cad6_39ff320d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_device_search.cc",
+              "range": {
+                "startLine": 333,
+                "startChar": 0,
+                "endLine": 334,
+                "endChar": 0
+              },
+              "replacement": "          bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, BT_TRANSPORT_BREDR);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4be51c71fab6aea2ff13a83f3cc0875630ff5bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
