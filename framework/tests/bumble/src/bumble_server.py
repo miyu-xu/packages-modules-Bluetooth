@@ -18,8 +18,18 @@ import logging
 import json
 
 from bumble import pandora as bumble_server
-from bumble.a2dp import make_audio_sink_service_sdp_records, make_audio_source_service_sdp_records
-from bumble.avrcp import make_target_service_sdp_records, make_controller_service_sdp_records
+from bumble.a2dp import (A2DP_SBC_CODEC_TYPE, SBC_DUAL_CHANNEL_MODE, SBC_JOINT_STEREO_CHANNEL_MODE,
+                         SBC_LOUDNESS_ALLOCATION_METHOD, SBC_MONO_CHANNEL_MODE, SBC_SNR_ALLOCATION_METHOD,
+                         SBC_STEREO_CHANNEL_MODE, SbcMediaCodecInformation, make_audio_sink_service_sdp_records,
+                         make_audio_source_service_sdp_records)
+from bumble.avdtp import (
+    Listener as AvdtpListener,
+    AVDTP_AUDIO_MEDIA_TYPE,
+    MediaCodecCapabilities,
+)
+from bumble.avrcp import (make_target_service_sdp_records, make_controller_service_sdp_records, Protocol as
+                          AvrcpProtocol)
+from bumble.device import Device
 from bumble.pandora import PandoraDevice, Config, serve
 from bumble.hfp import (
     make_hf_sdp_records,
@@ -35,11 +45,13 @@ from bumble_experimental.asha import AshaService
 from bumble_experimental.dck import DckService
 from bumble_experimental.gatt import GATTService
 from bumble_experimental.rfcomm import RFCOMMService
+from bumble_experimental.avrcp import AvrcpService
 
 from pandora_experimental.asha_grpc_aio import add_AshaServicer_to_server
 from pandora_experimental.dck_grpc_aio import add_DckServicer_to_server
 from pandora_experimental.gatt_grpc_aio import add_GATTServicer_to_server
 from pandora_experimental.rfcomm_grpc_aio import add_RFCOMMServicer_to_server
+from pandora_experimental.avrcp_grpc_aio import add_AVRCPServicer_to_server
 
 from typing import Dict, Any
 
@@ -82,7 +94,9 @@ def args_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def register_experimental_services():
+def register_experimental_services() -> None:
+    bumble_server.register_servicer_hook(
+        lambda bumble, _, server: add_AVRCPServicer_to_server(AvrcpService(bumble.device), server))
     bumble_server.register_servicer_hook(
         lambda bumble, _, server: add_AshaServicer_to_server(AshaService(bumble.device), server))
     bumble_server.register_servicer_hook(
