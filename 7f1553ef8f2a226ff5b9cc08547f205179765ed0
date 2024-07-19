@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1cbf8a95_3cfeb1b7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T14:51:27Z",
+      "side": 1,
+      "message": "Can we default-initialize multi_read here?\n```suggestion\n    tBTA_GATTC_MULTI multi_read{};\n```",
+      "range": {
+        "startLine": 358,
+        "startChar": 21,
+        "endLine": 358,
+        "endChar": 31
+      },
+      "revId": "7f1553ef8f2a226ff5b9cc08547f205179765ed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04175dd0_bc9642cf",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 32
@@ -42,6 +65,29 @@
         "startChar": 6,
         "endLine": 377,
         "endChar": 61
+      },
+      "revId": "7f1553ef8f2a226ff5b9cc08547f205179765ed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a748666_7a6ec408",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T14:51:27Z",
+      "side": 1,
+      "message": "Why does this only get cleared here?  It seems like it should get cleared every time after use (or not at all)  line 390?",
+      "range": {
+        "startLine": 381,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 14
       },
       "revId": "7f1553ef8f2a226ff5b9cc08547f205179765ed0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
