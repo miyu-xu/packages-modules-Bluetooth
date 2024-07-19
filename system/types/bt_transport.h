@@ -16,14 +16,24 @@
 
 #pragma once
 
-#include <string>
+enum tBT_TRANSPORT : uint8_t {
+  BT_TRANSPORT_AUTO = 0,
+  BT_TRANSPORT_BR_EDR = 1,
+  BT_TRANSPORT_LE = 2,
+};
 
-#define BT_TRANSPORT_AUTO 0
-#define BT_TRANSPORT_BR_EDR 1
-#define BT_TRANSPORT_LE 2
-typedef uint8_t tBT_TRANSPORT;
+inline tBT_TRANSPORT to_bt_transport(int val) {
+  if (val == 1) {
+    return BT_TRANSPORT_BR_EDR;
+  } else if (val == 2) {
+    return BT_TRANSPORT_LE;
+  }
+  return BT_TRANSPORT_AUTO;
+}
 
 #if __has_include(<bluetooth/log.h>)
+#include <string>
+
 #include "macros.h"
 
 inline std::string bt_transport_text(const tBT_TRANSPORT& transport) {
@@ -34,4 +44,10 @@ inline std::string bt_transport_text(const tBT_TRANSPORT& transport) {
   }
   RETURN_UNKNOWN_TYPE_STRING(tBT_TRANSPORT, transport);
 }
+
+namespace fmt {
+template <>
+struct formatter<tBT_TRANSPORT> : enum_formatter<tBT_TRANSPORT> {};
+}  // namespace fmt
+
 #endif
