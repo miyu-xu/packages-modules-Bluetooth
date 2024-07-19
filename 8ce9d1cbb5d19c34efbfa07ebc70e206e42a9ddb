@@ -40,6 +40,47 @@
       ],
       "revId": "8ce9d1cbb5d19c34efbfa07ebc70e206e42a9ddb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffaffe49_d0636c0a",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T22:51:42Z",
+      "side": 1,
+      "message": "pending_removals ?",
+      "range": {
+        "startLine": 246,
+        "startChar": 36,
+        "endLine": 246,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d46fc253_8f1a739c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_int.h",
+              "range": {
+                "startLine": 246,
+                "startChar": 0,
+                "endLine": 247,
+                "endChar": 0
+              },
+              "replacement": "  std::list\u003ctBTA_DM_REMOVE_PENDNIG\u003e pending_removals;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8ce9d1cbb5d19c34efbfa07ebc70e206e42a9ddb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
