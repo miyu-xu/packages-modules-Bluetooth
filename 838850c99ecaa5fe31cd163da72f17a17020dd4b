@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a4d831_0dd8c984",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T20:12:28Z",
+      "side": 1,
+      "message": "Is there a prettier way to do this?  Maybe put it in the enum instead?\n\nMaybe use BTA_DM_AUTH_FAIL_BASE?",
+      "range": {
+        "startLine": 219,
+        "startChar": 14,
+        "endLine": 219,
+        "endChar": 83
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "92d9685d_6e8a7357",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_sec_api.cc",
+              "range": {
+                "startLine": 219,
+                "startChar": 0,
+                "endLine": 220,
+                "endChar": 0
+              },
+              "replacement": "        return static_cast\u003ctBTM_STATUS\u003e(BTA_DM_AUTH_FAIL_BASE + SMP_PAIR_NOT_SUPPORT);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "838850c99ecaa5fe31cd163da72f17a17020dd4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
