@@ -40,6 +40,30 @@
       ],
       "revId": "9aba44a5d796fcb2fc92ba4379cf3e1dc15a913d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1f32db_590bd10c",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-19T15:17:26Z",
+      "side": 1,
+      "message": "That was my first revision, but then I had second thoughts about the integrity of the C macros handling C++ casting, really just parents, and rather than ensure the macros integrity I used a less risky more conventional structure.",
+      "parentUuid": "4c2aa250_2e6f7c24",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 721,
+        "endChar": 39
+      },
+      "revId": "9aba44a5d796fcb2fc92ba4379cf3e1dc15a913d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
