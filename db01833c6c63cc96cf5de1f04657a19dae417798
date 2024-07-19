@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73e61a27_cca80fb6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-19T00:31:11Z",
+      "side": 1,
+      "message": "Call `mAdapterService.getMetadata(device, BluetoothDevice.METADATA_DEVICE_TYPE)` instead of making a re-entry call from framework",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 59
+      },
+      "revId": "db01833c6c63cc96cf5de1f04657a19dae417798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c0969e_81701d5c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-19T00:31:11Z",
+      "side": 1,
+      "message": "```suggestion\n        if (deviceTypeMetaDataBytes \u003d\u003d null) {\n            return BluetoothProtoEnums.NOT_AVAILABLE;\n        }\n        String deviceTypeMetaData \u003d new String(deviceTypeMetaDataBytes, StandardCharsets.UTF_8);\n```",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "db01833c6c63cc96cf5de1f04657a19dae417798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
