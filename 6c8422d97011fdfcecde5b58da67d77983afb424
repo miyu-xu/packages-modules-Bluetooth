@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6593f049_cfcc5141",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-19T17:46:58Z",
+      "side": 1,
+      "message": "We cannot add flag anymore:\nSee b/354218074",
+      "revId": "6c8422d97011fdfcecde5b58da67d77983afb424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
