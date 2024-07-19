@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5146ebb_b30fa63f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-07-19T21:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f497be5_f3eedff9",
+      "revId": "9b6a2ebe7a7afce291edddf019490a38fe631112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60e590cc_6848aeea",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-07-19T21:13:31Z",
       "side": 1,
       "message": "nit:\n```\nlet mut connected_profiles \u003d self.bluetooth_media.lock().unwrap().get_connected_profiles(\u0026device);\n```\nThen remove lines 1365-1366",
+      "revId": "9b6a2ebe7a7afce291edddf019490a38fe631112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ba5930_de7b1ab4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-07-19T21:26:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60e590cc_6848aeea",
       "revId": "9b6a2ebe7a7afce291edddf019490a38fe631112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
