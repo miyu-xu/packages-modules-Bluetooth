@@ -52,6 +52,24 @@
       "parentUuid": "548f37f7_3e3f2e51",
       "revId": "d1214e66e2020d9f8da635bc3beca94e7d99bb58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ea6e92_b28d6f93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-19T17:52:39Z",
+      "side": 1,
+      "message": "In this case, should we better revert ag/28381422 instead to unblock adding new flag?",
+      "parentUuid": "b8078400_3832e4d5",
+      "revId": "d1214e66e2020d9f8da635bc3beca94e7d99bb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
