@@ -1535,6 +1535,7 @@ bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
         log::info("Removing {} from direct list", bda);
         p_reg->direct_connect_request.erase(bda);
       }
+      gatt_cancel_connect(bda, static_cast<tBT_TRANSPORT>(BT_TRANSPORT_LE));
       return true;
     }
 
