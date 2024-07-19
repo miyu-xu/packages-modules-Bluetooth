@@ -27,6 +27,7 @@
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
+#include <list>
 #include <string>
 #include <vector>
 
@@ -48,7 +49,7 @@
 enum class tBTA_DM_CONN_STATE : uint8_t {
   BTA_DM_NOT_CONNECTED = 0,
   BTA_DM_CONNECTED = 1,
-  BTA_DM_UNPAIRING = 2,
+  BTA_DM_UNPAIRING = 2,  // TODO: Remove when flag wait_for_disconnect_before_unbond is shipped
 };
 
 inline std::string bta_conn_state_text(tBTA_DM_CONN_STATE state) {
@@ -94,6 +95,13 @@ inline std::string device_info_text(tBTA_DM_DEV_INFO info) {
 #define BTA_DM_PM_NEW_REQ 2
 #define BTA_DM_PM_EXECUTE 3
 typedef uint8_t tBTA_DM_PM_REQ;
+
+struct tBTA_DM_REMOVE_PENDNIG {
+  RawAddress pseudo_addr;
+  RawAddress identity_addr;
+  bool le_connected;
+  bool bredr_connected;
+};
 
 struct tBTA_DM_PEER_DEVICE {
   RawAddress peer_bdaddr;
@@ -219,6 +227,8 @@ typedef struct {
   tBTA_CUSTOM_UUID bta_custom_uuid[BTA_EIR_SERVER_NUM_CUSTOM_UUID];
 #endif
   alarm_t* switch_delay_timer;
+
+  std::list<tBTA_DM_REMOVE_PENDNIG> pending_remove;
 } tBTA_DM_CB;
 
 /* DI control block */
