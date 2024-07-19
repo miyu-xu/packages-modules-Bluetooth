@@ -592,7 +592,8 @@ int get_remote_services(RawAddress* remote_addr, int transport) {
     return BT_STATUS_NOT_READY;
   }
 
-  do_in_main_thread(base::BindOnce(btif_dm_get_remote_services, *remote_addr, transport));
+  do_in_main_thread(
+          base::BindOnce(btif_dm_get_remote_services, *remote_addr, to_bt_transport(transport)));
   return BT_STATUS_SUCCESS;
 }
 
@@ -622,7 +623,7 @@ static int create_bond(const RawAddress* bd_addr, int transport) {
     return BT_STATUS_BUSY;
   }
 
-  do_in_main_thread(base::BindOnce(btif_dm_create_bond, *bd_addr, transport));
+  do_in_main_thread(base::BindOnce(btif_dm_create_bond, *bd_addr, to_bt_transport(transport)));
   return BT_STATUS_SUCCESS;
 }
 
@@ -647,8 +648,8 @@ static int create_bond_out_of_band(const RawAddress* bd_addr, int transport,
     return BT_STATUS_BUSY;
   }
 
-  do_in_main_thread(base::BindOnce(btif_dm_create_bond_out_of_band, *bd_addr, transport, *p192_data,
-                                   *p256_data));
+  do_in_main_thread(base::BindOnce(btif_dm_create_bond_out_of_band, *bd_addr,
+                                   to_bt_transport(transport), *p192_data, *p256_data));
   return BT_STATUS_SUCCESS;
 }
 
