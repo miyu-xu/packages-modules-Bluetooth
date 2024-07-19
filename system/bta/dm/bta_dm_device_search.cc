@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "bt_bta_sd"
-
 #include "bta/dm/bta_dm_device_search.h"
 
 #include <base/functional/bind.h>
@@ -34,7 +32,9 @@
 #include "common/circular_buffer.h"
 #include "common/strings.h"
 #include "device/include/interop.h"
+#include "hci/controller_interface.h"
 #include "main/shim/dumpsys.h"
+#include "main/shim/entry.h"
 #include "os/logging/log_adapter.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/bt_dev_class.h"
@@ -43,8 +43,10 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_inq.h"
 #include "stack/include/btm_log_history.h"
+#include "stack/include/gap_api.h"
 #include "stack/include/main_thread.h"
 #include "stack/rnr/remote_name_request.h"
+#include "types/bt_transport.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -287,15 +289,47 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
  * Returns          true if started to get remote name
  *
  ******************************************************************************/
-static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
-  tBTM_STATUS btm_status;
+static void bta_dm_ble_cmpl_cb(bool /* status */, const RawAddress& addr, uint16_t /* length */,
+                               char* p_name) {
+  // TODO figure out bool status
+  tBTM_REMOTE_DEV_NAME name = {
+          .status = BTM_SUCCESS,  // tBTM_STATUS
+          .bd_addr = addr,
+          .remote_bd_name = {},
+          .hci_status = HCI_SUCCESS,
+  };
+  bd_name_from_char_pointer(name.remote_bd_name, p_name);
 
+  bta_dm_remname_cback(&name);
+}
+
+constexpr uint8_t BLE_EVT_CONNECTABLE_BIT = 0;
+static bool ble_evt_type_is_connectable(uint16_t evt_type) {
+  return evt_type & (1 << BLE_EVT_CONNECTABLE_BIT);
+}
+
+static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   log::verbose("");
 
   bta_dm_search_cb.peer_bdaddr = bd_addr;
   bta_dm_search_cb.peer_name[0] = 0;
 
-  btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
+  if (transport == BT_TRANSPORT_LE) {
+    if (!bluetooth::shim::GetController()->SupportsBle()) {
+      return false;
+    }
+
+    tINQ_DB_ENT* p_i = btm_inq_db_find(bd_addr);
+    if (p_i && !ble_evt_type_is_connectable(p_i->inq_info.results.ble_evt_type)) {
+      log::verbose("name request to non-connectable device failed.");
+      return false;
+    }
+
+    return GAP_BleReadPeerDevName(bd_addr, bta_dm_ble_cmpl_cb);
+  }
+
+  // classic
+  tBTM_STATUS btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
           bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, transport);
 
   if (btm_status == BTM_CMD_STARTED) {
