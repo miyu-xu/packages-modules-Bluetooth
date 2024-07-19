@@ -70,6 +70,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49aa5027_9a0bdf2d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T15:01:46Z",
+      "side": 1,
+      "message": "I missed the brace on line 384.  Sorry about that.",
+      "parentUuid": "fcfb1f82_92b4ea77",
+      "range": {
+        "startLine": 377,
+        "startChar": 6,
+        "endLine": 377,
+        "endChar": 61
+      },
+      "revId": "7f1553ef8f2a226ff5b9cc08547f205179765ed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a748666_7a6ec408",
@@ -83,6 +107,30 @@
       "writtenOn": "2024-07-19T14:51:27Z",
       "side": 1,
       "message": "Why does this only get cleared here?  It seems like it should get cleared every time after use (or not at all)  line 390?",
+      "range": {
+        "startLine": 381,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 14
+      },
+      "revId": "7f1553ef8f2a226ff5b9cc08547f205179765ed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f8a581_908b58a6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T15:01:46Z",
+      "side": 1,
+      "message": "Never mind.  I see that 390 is outside the loop.",
+      "parentUuid": "9a748666_7a6ec408",
       "range": {
         "startLine": 381,
         "startChar": 8,
