@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a511042_beafad43",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-19T15:11:28Z",
+      "side": 0,
+      "message": "Yes it does. that change is a follow on CL, but you are correct, it could have been updated here too.\n\nI found this API was not checking return codes and neglected to double check the rest of the compiler warnings.",
+      "parentUuid": "312e7c5b_4fa37dd6",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 25
+      },
+      "revId": "b8f61dab9de7c512010c61bcd4e337851a794160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e07870f_4d28acca",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-07-18T21:40:42Z",
       "side": 0,
       "message": "same as other comment",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 25
+      },
+      "revId": "b8f61dab9de7c512010c61bcd4e337851a794160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2f09c8_7b472647",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-19T15:11:28Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "9e07870f_4d28acca",
       "range": {
         "startLine": 69,
         "startChar": 12,
