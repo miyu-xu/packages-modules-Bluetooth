@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef7bd7b_97338147",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-19T17:40:21Z",
+      "side": 1,
+      "message": "This is very unlikely to cause any build failure, the initial CL is simply adding a new flag in the aconfig declaration",
+      "revId": "d1214e66e2020d9f8da635bc3beca94e7d99bb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
