@@ -52,6 +52,24 @@
       "parentUuid": "0759e9ed_e9d3773c",
       "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9441ef14_df4a2793",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-07-19T23:48:14Z",
+      "side": 1,
+      "message": "The dependency mechanism doesn\u0027t work for this case. I\u0027ve tried the depdency solution and it doesn\u0027t work, as I explained in the previous comment.",
+      "parentUuid": "f98b1822_637feb03",
+      "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
