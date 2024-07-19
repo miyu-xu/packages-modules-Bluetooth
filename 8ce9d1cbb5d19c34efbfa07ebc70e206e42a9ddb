@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f9f469e_16465140",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T22:31:44Z",
+      "side": 1,
+      "message": "move to the previous CL.",
+      "range": {
+        "startLine": 113,
+        "startChar": 52,
+        "endLine": 113,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "839651ba_fc39e13e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_int.h",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "  tBTA_DM_CONN_STATE conn_state \u003d tBTA_DM_CONN_STATE::BTA_DM_CONNECTED;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8ce9d1cbb5d19c34efbfa07ebc70e206e42a9ddb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
