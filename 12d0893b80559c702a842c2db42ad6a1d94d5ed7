@@ -108,6 +108,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af7aff91_5b03807a",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-19T11:02:52Z",
+      "side": 1,
+      "message": "Done, thanks for the discussion!",
+      "parentUuid": "9094874c_cccbeb1c",
+      "revId": "12d0893b80559c702a842c2db42ad6a1d94d5ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04fb5efb_2bbf9dd4",
