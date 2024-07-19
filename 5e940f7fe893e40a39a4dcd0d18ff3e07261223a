@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85103e32_edecd5f0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-19T20:42:23Z",
+      "side": 1,
+      "message": "It seems like the wrong test was \"reverted\", i.e., `testDownloadExistingMms_messageStoredAsSeen`",
+      "range": {
+        "startLine": 489,
+        "startChar": 16,
+        "endLine": 489,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c9a5cc05_0d151b77",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 489,
+                "startChar": 0,
+                "endLine": 490,
+                "endChar": 0
+              },
+              "replacement": "    public void testSendSMSMessageToPhone() {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 829,
+                "startChar": 0,
+                "endLine": 829,
+                "endChar": 0
+              },
+              "replacement": "\n    /** Test seen status set in database on initial download */\n    @Test\n    public void testDownloadExistingSms_messageStoredAsSeen() {\n        setupSdpRecordReceipt();\n        Message msg \u003d Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);\n\n        com.android.bluetooth.mapclient.Message testMessageListingMms \u003d\n                createNewMessage(\"SMS_GSM\", mTestMessageSmsHandle);\n        ArrayList\u003ccom.android.bluetooth.mapclient.Message\u003e messageListMms \u003d new ArrayList\u003c\u003e();\n        messageListMms.add(testMessageListingMms);\n\n        when(mMockRequestGetMessage.getMessage()).thenReturn(mTestIncomingMmsBmessage);\n        when(mMockRequestGetMessage.getHandle()).thenReturn(mTestMessageMmsHandle);\n        when(mMockRequestGetMessagesListing.getList()).thenReturn(messageListMms);\n\n        msg \u003d\n                Message.obtain(\n                        mHandler,\n                        MceStateMachine.MSG_GET_MESSAGE_LISTING,\n                        MceStateMachine.FOLDER_INBOX);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        verify(mMockMasClient, times(1)).makeRequest(any(RequestGetMessagesListing.class));\n\n        msg \u003d\n                Message.obtain(\n                        mHandler,\n                        MceStateMachine.MSG_MAS_REQUEST_COMPLETED,\n                        mMockRequestGetMessagesListing);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        verify(mMockMasClient, times(1)).makeRequest(any(RequestGetMessage.class));\n\n        msg \u003d\n                Message.obtain(\n                        mHandler,\n                        MceStateMachine.MSG_MAS_REQUEST_COMPLETED,\n                        mMockRequestGetMessage);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        verify(mMockDatabase, times(1)).storeMessage(any(), any(), any(), eq(MESSAGE_SEEN));\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5e940f7fe893e40a39a4dcd0d18ff3e07261223a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de07e141_8159d183",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-07-19T20:42:23Z",
+      "side": 1,
+      "message": "It seems like the wrong test was reverted, i.e., `testSendSMSMessageToEmail`",
+      "range": {
+        "startLine": 832,
+        "startChar": 16,
+        "endLine": 832,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8d7a5b55_ff73172d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 489,
+                "startChar": 0,
+                "endLine": 490,
+                "endChar": 0
+              },
+              "replacement": "    public void testSendSMSMessageToEmail_messageSent() {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+              "range": {
+                "startLine": 829,
+                "startChar": 0,
+                "endLine": 829,
+                "endChar": 0
+              },
+              "replacement": "\n    /** Test seen status set in database on initial download */\n    @Test\n    public void testDownloadExistingSms_messageStoredAsSeen() {\n        setupSdpRecordReceipt();\n        Message msg \u003d Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);\n\n        com.android.bluetooth.mapclient.Message testMessageListingMms \u003d\n                createNewMessage(\"SMS_GSM\", mTestMessageSmsHandle);\n        ArrayList\u003ccom.android.bluetooth.mapclient.Message\u003e messageListMms \u003d new ArrayList\u003c\u003e();\n        messageListMms.add(testMessageListingMms);\n\n        when(mMockRequestGetMessage.getMessage()).thenReturn(mTestIncomingMmsBmessage);\n        when(mMockRequestGetMessage.getHandle()).thenReturn(mTestMessageMmsHandle);\n        when(mMockRequestGetMessagesListing.getList()).thenReturn(messageListMms);\n\n        msg \u003d\n                Message.obtain(\n                        mHandler,\n                        MceStateMachine.MSG_GET_MESSAGE_LISTING,\n                        MceStateMachine.FOLDER_INBOX);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        verify(mMockMasClient, times(1)).makeRequest(any(RequestGetMessagesListing.class));\n\n        msg \u003d\n                Message.obtain(\n                        mHandler,\n                        MceStateMachine.MSG_MAS_REQUEST_COMPLETED,\n                        mMockRequestGetMessagesListing);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        verify(mMockMasClient, times(1)).makeRequest(any(RequestGetMessage.class));\n\n        msg \u003d\n                Message.obtain(\n                        mHandler,\n                        MceStateMachine.MSG_MAS_REQUEST_COMPLETED,\n                        mMockRequestGetMessage);\n        mMceStateMachine.sendMessage(msg);\n\n        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n        verify(mMockDatabase, times(1)).storeMessage(any(), any(), any(), eq(MESSAGE_SEEN));\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5e940f7fe893e40a39a4dcd0d18ff3e07261223a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
