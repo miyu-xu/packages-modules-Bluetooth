@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f497be5_f3eedff9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-07-19T21:13:31Z",
+      "side": 1,
+      "message": "nit:\n```\n        let context \u003d match self.remote_devices.get(\u0026device_address) {\n            Some(context) \u003d\u003e context.clone(),\n            None \u003d\u003e return,\n        };\n        let device \u003d context.info.clone();\n```\nThen reuse these below so we don\u0027t need to get and unwrap context twice",
+      "revId": "9b6a2ebe7a7afce291edddf019490a38fe631112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e590cc_6848aeea",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-07-19T21:13:31Z",
+      "side": 1,
+      "message": "nit:\n```\nlet mut connected_profiles \u003d self.bluetooth_media.lock().unwrap().get_connected_profiles(\u0026device);\n```\nThen remove lines 1365-1366",
+      "revId": "9b6a2ebe7a7afce291edddf019490a38fe631112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
