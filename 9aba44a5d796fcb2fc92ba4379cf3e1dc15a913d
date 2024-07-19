@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c2aa250_2e6f7c24",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-19T14:15:44Z",
+      "side": 1,
+      "message": "nit: Why not cast in the call?",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 721,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "aad15656_6f0c9194",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_utils.cc",
+              "range": {
+                "startLine": 720,
+                "startChar": 0,
+                "endLine": 722,
+                "endChar": 0
+              },
+              "replacement": "  UINT16_TO_BE_STREAM(p_rsp, static_cast\u003cuint16_t\u003e(error_code));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9aba44a5d796fcb2fc92ba4379cf3e1dc15a913d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
