@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "bt_bta_sd"
-
 #include "bta/dm/bta_dm_device_search.h"
 
 #include <base/functional/bind.h>
@@ -25,7 +23,9 @@
 #include <stddef.h>
 
 #include <cstdint>
+#include <memory>
 #include <string>
+#include <utility>
 #include <variant>
 #include <vector>
 
@@ -34,7 +34,9 @@
 #include "common/circular_buffer.h"
 #include "common/strings.h"
 #include "device/include/interop.h"
+#include "hci/controller_interface.h"
 #include "main/shim/dumpsys.h"
+#include "main/shim/entry.h"
 #include "os/logging/log_adapter.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/bt_dev_class.h"
@@ -44,8 +46,11 @@
 #include "stack/include/btm_inq.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_status.h"
+#include "stack/include/gap_api.h"
 #include "stack/include/main_thread.h"
 #include "stack/include/rnr_interface.h"
+#include "stack/rnr/remote_name_request.h"
+#include "types/bt_transport.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -144,10 +149,9 @@ static void bta_dm_search_cancel() {
     BTM_CancelInquiry();
     bta_dm_search_cancel_notify();
     bta_dm_search_cmpl();
-  }
-  /* If no Service Search going on then issue cancel remote name in case it is
-     active */
-  else if (!bta_dm_search_cb.name_discover_done) {
+  } else if (!bta_dm_search_cb.name_discover_done) {
+    /* If no Service Search going on then issue cancel remote name in case it is
+       active */
     if (get_stack_rnr_interface().BTM_CancelRemoteDeviceName() != tBTM_STATUS::BTM_CMD_STARTED) {
       log::warn("Unable to cancel RNR");
     }
@@ -281,6 +285,47 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
 
 /*******************************************************************************
  *
+ * Function         bta_dm_ble_cmpl_cb
+ *
+ * Description      Callback when ble gatt attribute request completes
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void bta_dm_ble_cmpl_cb(bool /* status */, const RawAddress& addr, uint16_t length,
+                               char* p_name) {
+  // TODO figure out bool status
+  tBTM_REMOTE_DEV_NAME name = {
+          .bd_addr = addr,
+          .remote_bd_name = {},
+          .btm_status = tBTM_STATUS::BTM_SUCCESS,  // tBTM_STATUS
+          .hci_status = HCI_SUCCESS,
+  };
+  if (length > BD_NAME_LEN) {
+    length = BD_NAME_LEN;
+  }
+  strlcpy(reinterpret_cast<char*>(name.remote_bd_name), reinterpret_cast<const char*>(p_name),
+          length);
+
+  bta_dm_remname_cback(&name);
+}
+
+/*******************************************************************************
+ *
+ * Function         ble_evt_type_is_connectable
+ *
+ * Description      Checks if the connectible bit is set in the le event
+ *
+ * Returns          truee if connectable, false otherwise
+ *
+ ******************************************************************************/
+constexpr uint8_t BLE_EVT_CONNECTABLE_BIT = 0;
+static bool ble_evt_type_is_connectable(uint16_t evt_type) {
+  return evt_type & (1 << BLE_EVT_CONNECTABLE_BIT);
+}
+
+/*******************************************************************************
+ *
  * Function         bta_dm_read_remote_device_name
  *
  * Description      Initiate to get remote device name
@@ -289,29 +334,44 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
  *
  ******************************************************************************/
 static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
-  tBTM_STATUS btm_status;
-
   log::verbose("");
 
+  // Save the serialized RNR search and clear the current name reques
+  // This restriction should be removed
   bta_dm_search_cb.peer_bdaddr = bd_addr;
   bta_dm_search_cb.peer_name[0] = 0;
 
-  btm_status = get_stack_rnr_interface().BTM_ReadRemoteDeviceName(bta_dm_search_cb.peer_bdaddr,
-                                                                  bta_dm_remname_cback, transport);
+  if (transport == BT_TRANSPORT_LE) {
+    if (!bluetooth::shim::GetController()->SupportsBle()) {
+      return false;
+    }
 
-  if (btm_status == tBTM_STATUS::BTM_CMD_STARTED) {
-    log::verbose("BTM_ReadRemoteDeviceName is started");
+    tINQ_DB_ENT* p_i = btm_inq_db_find(bd_addr);
+    if (p_i && !ble_evt_type_is_connectable(p_i->inq_info.results.ble_evt_type)) {
+      log::verbose("name request to non-connectable device failed.");
+      return false;
+    }
 
-    return true;
-  } else if (btm_status == tBTM_STATUS::BTM_BUSY) {
-    log::verbose("BTM_ReadRemoteDeviceName is busy");
-
-    return true;
-  } else {
-    log::warn("BTM_ReadRemoteDeviceName returns 0x{:02X}", btm_status);
-
-    return false;
+    return GAP_BleReadPeerDevName(bd_addr, bta_dm_ble_cmpl_cb);
   }
+
+  tBTM_STATUS btm_status = get_stack_rnr_interface().BTM_ReadRemoteDeviceName(
+          bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, transport);
+  switch (btm_status) {
+    case tBTM_STATUS::BTM_CMD_STARTED:
+      log::verbose("Remote name request started to peer:{}", bd_addr);
+      return true;
+
+    case tBTM_STATUS::BTM_BUSY:
+      log::warn("Remote name request is busy to peer:{}", bd_addr);
+      return true;
+
+    default:
+      break;
+  }
+
+  log::warn("Unable to start rnr to peer:{} btm_status:{}", bd_addr, btm_status_text(btm_status));
+  return false;
 }
 
 /*******************************************************************************
