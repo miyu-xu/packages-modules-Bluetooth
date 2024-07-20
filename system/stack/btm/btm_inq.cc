@@ -1876,13 +1876,12 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout
       page_scan_rep_mode = HCI_PAGE_SCAN_REP_MODE_R1;
     }
     page_scan_mode = p_cur->results.page_scan_mode;
-    bluetooth::shim::ACL_RemoteNameRequest(remote_bda, page_scan_rep_mode, page_scan_mode,
-                                           clock_offset);
   } else {
     get_clock_offset_from_storage(remote_bda, clock_offset);
-    bluetooth::shim::ACL_RemoteNameRequest(remote_bda, page_scan_rep_mode, page_scan_mode,
-                                           clock_offset);
   }
+
+  bluetooth::shim::ACL_RemoteNameRequest(remote_bda, page_scan_rep_mode, page_scan_mode,
+                                         clock_offset);
 
   btm_cb.rnr.p_remname_cmpl_cb = p_cb;
   btm_cb.rnr.remname_bda = remote_bda;
