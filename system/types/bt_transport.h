@@ -16,14 +16,25 @@
 
 #pragma once
 
-#include <string>
+#include <cstdint>
 
 #define BT_TRANSPORT_AUTO 0
 #define BT_TRANSPORT_BR_EDR 1
 #define BT_TRANSPORT_LE 2
 typedef uint8_t tBT_TRANSPORT;
 
+inline tBT_TRANSPORT to_bt_transport(int val) {
+  if (val == 1) {
+    return BT_TRANSPORT_BR_EDR;
+  } else if (val == 2) {
+    return BT_TRANSPORT_LE;
+  }
+  return BT_TRANSPORT_AUTO;
+}
+
 #if __has_include(<bluetooth/log.h>)
+#include <string>
+
 #include "macros.h"
 
 inline std::string bt_transport_text(const tBT_TRANSPORT& transport) {
