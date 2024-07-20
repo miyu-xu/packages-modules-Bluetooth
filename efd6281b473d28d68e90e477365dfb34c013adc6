@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7224fb2_ce781e02",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2703,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-20T13:55:49Z",
+      "side": 1,
+      "message": "unrelated cleanup (I\u0027m fine with it, but it should be a different CL)",
+      "range": {
+        "startLine": 2703,
+        "startChar": 12,
+        "endLine": 2703,
+        "endChar": 14
+      },
+      "revId": "efd6281b473d28d68e90e477365dfb34c013adc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac6c7e48_edd66f10",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-20T13:55:49Z",
+      "side": 1,
+      "message": "same thing",
+      "revId": "efd6281b473d28d68e90e477365dfb34c013adc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
