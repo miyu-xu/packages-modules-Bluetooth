@@ -88,6 +88,30 @@
       },
       "revId": "838850c99ecaa5fe31cd163da72f17a17020dd4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6819b97_5a14b96f",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-20T00:40:22Z",
+      "side": 1,
+      "message": "TDLR; this really is a boolean data, either security was `granted` or not, and that should replace this enum.\n\nUnderneath a couple of levels it just checks if non-zero anyway for `granted`",
+      "parentUuid": "762ccf0e_ab3c1bdc",
+      "range": {
+        "startLine": 219,
+        "startChar": 14,
+        "endLine": 219,
+        "endChar": 83
+      },
+      "revId": "838850c99ecaa5fe31cd163da72f17a17020dd4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
