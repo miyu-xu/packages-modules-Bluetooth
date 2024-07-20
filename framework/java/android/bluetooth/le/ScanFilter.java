@@ -222,6 +222,11 @@ public final class ScanFilter implements Parcelable {
                 }
 
                 @Override
+                @RequiresPermission(
+                        allOf = {
+                            android.Manifest.permission.BLUETOOTH_SCAN,
+                            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                        })
                 public ScanFilter createFromParcel(Parcel in) {
                     Builder builder = new Builder();
                     if (in.readInt() == 1) {

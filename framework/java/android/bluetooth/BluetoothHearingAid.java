@@ -93,11 +93,6 @@ public final class BluetoothHearingAid implements BluetoothProfile {
          *
          * @hide
          */
-        @RequiresPermission(
-                allOf = {
-                    android.Manifest.permission.BLUETOOTH_SCAN,
-                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                })
         @SystemApi
         @DeviceMode
         public int getDeviceMode() {
@@ -115,11 +110,6 @@ public final class BluetoothHearingAid implements BluetoothProfile {
          *
          * @hide
          */
-        @RequiresPermission(
-                allOf = {
-                    android.Manifest.permission.BLUETOOTH_SCAN,
-                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                })
         @SystemApi
         @DeviceSide
         public int getDeviceSide() {
@@ -134,11 +124,6 @@ public final class BluetoothHearingAid implements BluetoothProfile {
          * @return {@code true} when CSIP is supported, {@code false} otherwise
          * @hide
          */
-        @RequiresPermission(
-                allOf = {
-                    android.Manifest.permission.BLUETOOTH_SCAN,
-                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                })
         @SystemApi
         public boolean isCsipSupported() {
             if (VDBG) Log.v(TAG, "isCsipSupported()");
@@ -150,11 +135,6 @@ public final class BluetoothHearingAid implements BluetoothProfile {
          *
          * @hide
          */
-        @RequiresPermission(
-                allOf = {
-                    android.Manifest.permission.BLUETOOTH_SCAN,
-                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                })
         @SystemApi
         public int getTruncatedHiSyncId() {
             if (VDBG) Log.v(TAG, "getTruncatedHiSyncId: " + mTruncatedHiSyncId);
@@ -170,11 +150,6 @@ public final class BluetoothHearingAid implements BluetoothProfile {
          * @return {@code true} if the devices are a likely pair, {@code false} otherwise
          * @hide
          */
-        @RequiresPermission(
-                allOf = {
-                    android.Manifest.permission.BLUETOOTH_SCAN,
-                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-                })
         @SystemApi
         public boolean isInPairWith(@Nullable AdvertisementServiceData data) {
             if (VDBG) Log.v(TAG, "isInPairWith()");

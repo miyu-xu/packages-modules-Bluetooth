@@ -18,10 +18,14 @@ package {
 
 java_defaults {
     name: "service-bluetooth-buildflags",
+    plugins: [
+        "error_prone_android_framework",
+    ],
     errorprone: {
         enabled: true,
         javacflags: [
             "-Xep:AlreadyChecked:ERROR",
+            // "-Xep:AndroidFrameworkRequiresPermission:ERROR",
             "-Xep:BadImport:ERROR",
             "-Xep:CatchFail:ERROR",
             "-Xep:CheckReturnValue:ERROR",

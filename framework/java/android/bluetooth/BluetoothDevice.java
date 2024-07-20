@@ -1478,7 +1478,6 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public void prepareToEnterProcess(@NonNull AttributionSource attributionSource) {
         setAttributionSource(attributionSource);
     }
@@ -1613,7 +1612,6 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @SystemApi
     @NonNull
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public String getAnonymizedAddress() {
         return BluetoothUtils.toAnonymizedAddress(mAddress);
     }
@@ -1784,7 +1782,12 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public @SetAliasReturnValues int setAlias(@Nullable String alias) {
         if (alias != null && alias.isEmpty()) {
             throw new IllegalArgumentException("alias cannot be the empty string");
@@ -1961,7 +1964,11 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     public boolean cancelBondProcess() {
         if (DBG) log("cancelBondProcess()");
         final IBluetooth service = getService();
@@ -2045,9 +2052,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                     Pair<IBluetooth, Pair<AttributionSource, BluetoothDevice>>, Integer>
             sBluetoothBondQuery =
                     new IpcDataCache.QueryHandler<>() {
-                        @RequiresLegacyBluetoothPermission
-                        @RequiresBluetoothConnectPermission
-                        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+                        @SuppressLint("AndroidFrameworkRequiresPermission")
                         @Override
                         public Integer apply(
                                 Pair<IBluetooth, Pair<AttributionSource, BluetoothDevice>>
@@ -2093,6 +2098,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @SuppressLint("AndroidFrameworkRequiresPermission") // IpcDataCache prevent lint enforcement
     public int getBondState() {
         if (DBG) log("getBondState(" + toStringForLogging() + ")");
         final IBluetooth service = getService();
@@ -2434,6 +2440,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    // BLUETOOTH_PRIVILEGED required only when calling fetchUuidsWithSdp with a different transport
+    @SuppressLint("AndroidFrameworkRequiresPermission")
     public boolean fetchUuidsWithSdp() {
         return fetchUuidsWithSdp(TRANSPORT_AUTO);
     }
@@ -2460,7 +2468,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             allOf = {
                 android.Manifest.permission.BLUETOOTH_CONNECT,
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-            })
+            },
+            conditional = true)
     public boolean fetchUuidsWithSdp(@Transport int transport) {
         if (DBG) log("fetchUuidsWithSdp()");
         final IBluetooth service = getService();

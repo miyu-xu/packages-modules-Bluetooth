@@ -519,6 +519,11 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
 
     /** @hide */
     @Override
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     public void onServiceConnected(IBinder service) {
         mService = IBluetoothHapClient.Stub.asInterface(service);
         // re-register the service-to-app callback

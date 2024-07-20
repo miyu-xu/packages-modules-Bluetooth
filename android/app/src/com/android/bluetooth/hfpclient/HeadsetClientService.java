@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.hfpclient;
 
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.content.pm.PackageManager.FEATURE_WATCH;
 
 import android.annotation.RequiresPermission;
@@ -334,6 +335,8 @@ public class HeadsetClientService extends ProfileService {
                 return Collections.emptyList();
             }
 
+            service.enforceCallingPermission(BLUETOOTH_PRIVILEGED, null);
+
             return service.getConnectedDevices();
         }
 
@@ -345,6 +348,8 @@ public class HeadsetClientService extends ProfileService {
                 return Collections.emptyList();
             }
 
+            service.enforceCallingPermission(BLUETOOTH_PRIVILEGED, null);
+
             return service.getDevicesMatchingConnectionStates(states);
         }
 
@@ -354,6 +359,8 @@ public class HeadsetClientService extends ProfileService {
             if (service == null) {
                 return BluetoothProfile.STATE_DISCONNECTED;
             }
+
+            service.enforceCallingPermission(BLUETOOTH_PRIVILEGED, null);
 
             return service.getConnectionState(device);
         }
@@ -366,6 +373,8 @@ public class HeadsetClientService extends ProfileService {
                 return false;
             }
 
+            service.enforceCallingPermission(BLUETOOTH_PRIVILEGED, null);
+
             return service.setConnectionPolicy(device, connectionPolicy);
         }
 
@@ -375,6 +384,8 @@ public class HeadsetClientService extends ProfileService {
             if (service == null) {
                 return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
             }
+
+            service.enforceCallingPermission(BLUETOOTH_PRIVILEGED, null);
 
             return service.getConnectionPolicy(device);
         }
@@ -527,24 +538,6 @@ public class HeadsetClientService extends ProfileService {
         }
 
         @Override
-        public List<BluetoothHeadsetClientCall> getCurrentCalls(
-                BluetoothDevice device, AttributionSource source) {
-            HeadsetClientService service = getService(source);
-            List<BluetoothHeadsetClientCall> currentCalls = new ArrayList<>();
-            if (service == null) {
-                return currentCalls;
-            }
-
-            List<HfpClientCall> calls = service.getCurrentCalls(device);
-            if (calls != null) {
-                for (HfpClientCall call : calls) {
-                    currentCalls.add(toLegacyCall(call));
-                }
-            }
-            return currentCalls;
-        }
-
-        @Override
         public boolean sendDTMF(BluetoothDevice device, byte code, AttributionSource source) {
             HeadsetClientService service = getService(source);
             if (service == null) {
@@ -570,6 +563,8 @@ public class HeadsetClientService extends ProfileService {
             if (service == null) {
                 return null;
             }
+
+            service.enforceCallingPermission(BLUETOOTH_PRIVILEGED, null);
 
             return service.getCurrentAgEvents(device);
         }
