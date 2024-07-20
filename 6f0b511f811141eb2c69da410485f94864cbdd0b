@@ -70,6 +70,24 @@
       "parentUuid": "f98b1822_637feb03",
       "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b64895e0_d8779d25",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-20T00:33:09Z",
+      "side": 1,
+      "message": "Well that\u0027s unfortunate, as that is part of the contract for module and stack creation.",
+      "parentUuid": "9441ef14_df4a2793",
+      "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
