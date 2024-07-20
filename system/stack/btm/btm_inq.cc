@@ -35,8 +35,6 @@
 
 #include <mutex>
 
-#include "advertise_data_parser.h"
-#include "bt_name.h"
 #include "btif/include/btif_acl.h"
 #include "btif/include/btif_config.h"
 #include "common/time_util.h"
@@ -48,7 +46,6 @@
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/shim.h"
-#include "neighbor_inquiry.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
 #include "osi/include/stack_power_telemetry.h"
@@ -58,8 +55,10 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/acl_api_types.h"
+#include "stack/include/advertise_data_parser.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_lap.h"
+#include "stack/include/bt_name.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_ble_api.h"
@@ -1837,6 +1836,13 @@ static void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode) {
  *                  BTM_WRONG_MODE if the device is not up.
  *
  ******************************************************************************/
+static uint16_t get_clock_offset_from_storage(const RawAddress& remote_bda) {
+  int clock_offset_in_cfg = 0;
+  return btif_get_device_clockoffset(remote_bda, &clock_offset_in_cfg)
+                 ? static_cast<uint16_t>(clock_offset_in_cfg)
+                 : 0;
+}
+
 tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout_ms,
                                   tBTM_NAME_CMPL_CB* p_cb) {
   /*** Make sure the device is ready ***/
@@ -1852,11 +1858,8 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout
   if (p_i && (p_i->inq_info.results.inq_result_type & BT_DEVICE_TYPE_BREDR)) {
     tBTM_INQ_INFO* p_cur = &p_i->inq_info;
     uint16_t clock_offset = p_cur->results.clock_offset | BTM_CLOCK_OFFSET_VALID;
-    int clock_offset_in_cfg = 0;
     if (0 == (p_cur->results.clock_offset & BTM_CLOCK_OFFSET_VALID)) {
-      if (btif_get_device_clockoffset(remote_bda, &clock_offset_in_cfg)) {
-        clock_offset = clock_offset_in_cfg;
-      }
+      clock_offset = get_clock_offset_from_storage(remote_bda);
     }
     uint8_t page_scan_rep_mode = p_cur->results.page_scan_rep_mode;
     if (com::android::bluetooth::flags::rnr_validate_page_scan_repetition_mode() &&
@@ -1870,11 +1873,7 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout
     bluetooth::shim::ACL_RemoteNameRequest(remote_bda, page_scan_rep_mode,
                                            p_cur->results.page_scan_mode, clock_offset);
   } else {
-    uint16_t clock_offset = 0;
-    int clock_offset_in_cfg = 0;
-    if (btif_get_device_clockoffset(remote_bda, &clock_offset_in_cfg)) {
-      clock_offset = clock_offset_in_cfg;
-    }
+    uint16_t clock_offset = get_clock_offset_from_storage(remote_bda);
     bluetooth::shim::ACL_RemoteNameRequest(remote_bda, HCI_PAGE_SCAN_REP_MODE_R1,
                                            HCI_MANDATARY_PAGE_SCAN_MODE, clock_offset);
   }
