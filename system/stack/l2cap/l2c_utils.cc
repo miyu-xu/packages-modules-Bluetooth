@@ -99,6 +99,7 @@ tL2C_LCB* l2cu_allocate_lcb(const RawAddress& p_bd_addr, bool is_bonding, tBT_TR
       if (transport == BT_TRANSPORT_LE) {
         l2cb.num_ble_links_active++;
         l2c_ble_link_adjust_allocation();
+        p_lcb->set_is_datalen_set_by_privileged_client(false);
       } else {
         l2cb.num_used_lcbs++;
         l2c_link_adjust_allocation();
@@ -212,6 +213,7 @@ void l2cu_release_lcb(tL2C_LCB* p_lcb) {
     }
 
     l2c_ble_link_adjust_allocation();
+    p_lcb->set_is_datalen_set_by_privileged_client(false);
   } else {
     if (l2cb.num_used_lcbs >= 1) {
       l2cb.num_used_lcbs--;
