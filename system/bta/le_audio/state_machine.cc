@@ -1590,9 +1590,9 @@ private:
       /* First in ase pair is Sink, second Source */
       auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(ase->cis_conn_hdl);
 
-      /* Already in pending state - bi-directional CIS or seconde CIS to same
-       * device */
-      if (ase->cis_state == CisState::CONNECTING || ase->cis_state == CisState::CONNECTED) {
+      /* Already in pending state - bi-directional CIS */
+      if (ase->cis_state == CisState::CONNECTING || ase->cis_state == CisState::CONNECTED ||
+          ase->cis_state == CisState::DISCONNECTING) {
         continue;
       }
 
@@ -1615,7 +1615,9 @@ private:
             kLogStateMachineTag, leAudioDevice->group_id_, RawAddress::kEmpty,
             kLogCisCreateOp + "#CIS: " + std::to_string(conn_pairs.size()), extra_stream.str());
 
-    IsoManager::GetInstance()->EstablishCis({.conn_pairs = std::move(conn_pairs)});
+    if (!conn_pairs.empty()) {
+      IsoManager::GetInstance()->EstablishCis({.conn_pairs = std::move(conn_pairs)});
+    }
 
     return true;
   }
@@ -1642,7 +1644,8 @@ private:
         auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(ase->cis_conn_hdl);
 
         /* Already in pending state - bi-directional CIS */
-        if (ase->cis_state == CisState::CONNECTING) {
+        if (ase->cis_state == CisState::CONNECTING || ase->cis_state == CisState::CONNECTED ||
+            ase->cis_state == CisState::DISCONNECTING) {
           continue;
         }
 
@@ -1661,7 +1664,9 @@ private:
       } while ((ase = leAudioDevice->GetNextActiveAse(ase)));
     } while ((leAudioDevice = group->GetNextActiveDevice(leAudioDevice)));
 
-    IsoManager::GetInstance()->EstablishCis({.conn_pairs = std::move(conn_pairs)});
+    if (!conn_pairs.empty()) {
+      IsoManager::GetInstance()->EstablishCis({.conn_pairs = std::move(conn_pairs)});
+    }
 
     return true;
   }
