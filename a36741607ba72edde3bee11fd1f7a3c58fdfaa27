@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af825ca_6f9c35c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-22T21:20:22Z",
+      "side": 1,
+      "message": "This is removing `leaudio_speed_up_reconfiguration_between_call`",
+      "revId": "a36741607ba72edde3bee11fd1f7a3c58fdfaa27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
