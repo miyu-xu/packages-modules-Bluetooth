@@ -16,6 +16,24 @@
       "message": "Looking more into why this flag was introduced in b/274967984, it seems like on Floss,\"If I try to use both discovery and GD LE scanning at once, I get synchronization issues when calling set scan params with command disallowed because scanning is active but the LE scanning manager doesn\u0027t know\". Has this since been modified so it\u0027s synced?",
       "revId": "9ac2936217ac277e303723c68b4ff05d910cb22c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ae376d_fdc15be1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-22T19:15:24Z",
+      "side": 1,
+      "message": "Do you have a way to repro?  I am not familiar with this issue.",
+      "parentUuid": "7743c6f2_38cbb0ab",
+      "revId": "9ac2936217ac277e303723c68b4ff05d910cb22c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
