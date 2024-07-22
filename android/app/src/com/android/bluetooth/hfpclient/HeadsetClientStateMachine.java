@@ -15,8 +15,8 @@
  */
 
 /**
- * Bluetooth Headset Client StateMachine (Disconnected) | ^ ^ CONNECT | | | DISCONNECTED V | |
- * (Connecting) | | | CONNECTED | | DISCONNECT V | (Connected) | ^ CONNECT_AUDIO | |
+ * Bluetooth Headset Client StateMachine (Disconnected) | ^ ^ CONNECT | | | DISCONNECTED V | ^
+ * (Connecting) (Disconnecting) | ^ CONNECTED | | DISCONNECT V | (Connected) | ^ CONNECT_AUDIO | |
  * DISCONNECT_AUDIO V | (AudioOn)
  */
 package com.android.bluetooth.hfpclient;
@@ -110,12 +110,14 @@ public class HeadsetClientStateMachine extends StateMachine {
     @VisibleForTesting static final int QUERY_OPERATOR_NAME = 51;
     @VisibleForTesting static final int SUBSCRIBER_INFO = 52;
     @VisibleForTesting static final int CONNECTING_TIMEOUT = 53;
+    @VisibleForTesting static final int DISCONNECTING_TIMEOUT = 54;
 
     // special action to handle terminating specific call from multiparty call
     static final int TERMINATE_SPECIFIC_CALL = 53;
 
     // Timeouts.
     @VisibleForTesting static final int CONNECTING_TIMEOUT_MS = 10000; // 10s
+    @VisibleForTesting static final int DISCONNECTING_TIMEOUT_MS = 10000; // 10s
     private static final int ROUTING_DELAY_MS = 250;
 
     @VisibleForTesting static final int MAX_HFP_SCO_VOICE_CALL_VOLUME = 15; // HFP 1.5 spec.
@@ -131,6 +133,7 @@ public class HeadsetClientStateMachine extends StateMachine {
     private final Disconnected mDisconnected;
     private final Connecting mConnecting;
     private final Connected mConnected;
+    private final Disconnecting mDisconnecting;
     private final AudioOn mAudioOn;
     private State mPrevState;
 
@@ -320,6 +323,8 @@ public class HeadsetClientStateMachine extends StateMachine {
                 return "SUBSCRIBER_INFO";
             case CONNECTING_TIMEOUT:
                 return "CONNECTING_TIMEOUT";
+            case DISCONNECTING_TIMEOUT:
+                return "DISCONNECTING_TIMEOUT";
             default:
                 return "UNKNOWN(" + what + ")";
         }
@@ -939,11 +944,13 @@ public class HeadsetClientStateMachine extends StateMachine {
         mConnecting = new Connecting();
         mConnected = new Connected();
         mAudioOn = new AudioOn();
+        mDisconnecting = new Disconnecting();
 
         addState(mDisconnected);
         addState(mConnecting);
         addState(mConnected);
         addState(mAudioOn, mConnected);
+        addState(mDisconnecting);
 
         setInitialState(mDisconnected);
     }
@@ -1049,7 +1056,11 @@ public class HeadsetClientStateMachine extends StateMachine {
     class Disconnected extends State {
         @Override
         public void enter() {
-            debug("Enter Disconnected: " + getCurrentMessage().what);
+            debug(
+                    "Enter Disconnected: from state="
+                            + mPrevState
+                            + ", message="
+                            + getCurrentMessage().what);
 
             // cleanup
             mIndicatorNetworkState = HeadsetClientHalConstants.NETWORK_STATE_NOT_AVAILABLE;
@@ -1081,12 +1092,14 @@ public class HeadsetClientStateMachine extends StateMachine {
                         mCurrentDevice,
                         BluetoothProfile.STATE_DISCONNECTED,
                         BluetoothProfile.STATE_CONNECTING);
-            } else if (mPrevState == mConnected || mPrevState == mAudioOn) {
+            } else if (mPrevState == mDisconnecting) {
                 broadcastConnectionState(
                         mCurrentDevice,
                         BluetoothProfile.STATE_DISCONNECTED,
-                        BluetoothProfile.STATE_CONNECTED);
-            } else if (mPrevState != null) { // null is the default state before Disconnected
+                        BluetoothProfile.STATE_CONNECTING);
+
+            } else if (mPrevState != null) {
+                // null is the default state before Disconnected
                 error(
                         "Disconnected: Illegal state transition from "
                                 + mPrevState.getName()
@@ -1455,9 +1468,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                     if (!mCurrentDevice.equals(dev)) {
                         break;
                     }
-                    if (!mNativeInterface.disconnect(dev)) {
-                        error("disconnectNative failed for " + dev);
-                    }
+                    transitionTo(mDisconnecting);
                     break;
 
                 case CONNECT_AUDIO:
@@ -1862,7 +1873,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                     debug("Connected disconnects.");
                     // AG disconnects
                     if (mCurrentDevice.equals(device)) {
-                        transitionTo(mDisconnected);
+                        transitionTo(mDisconnecting);
                     } else {
                         error("Disconnected from unknown device: " + device);
                     }
@@ -1966,6 +1977,102 @@ public class HeadsetClientStateMachine extends StateMachine {
         }
     }
 
+    class Disconnecting extends State {
+        @Override
+        public void enter() {
+            debug(
+                    "Disconnecting: enter disconnecting from state="
+                            + mPrevState
+                            + ", message="
+                            + getCurrentMessage().what);
+            sendMessageDelayed(DISCONNECTING_TIMEOUT, DISCONNECTING_TIMEOUT_MS);
+            if (mPrevState == mConnected || mPrevState == mAudioOn) {
+                broadcastConnectionState(
+                        mCurrentDevice,
+                        BluetoothProfile.STATE_DISCONNECTING,
+                        BluetoothProfile.STATE_CONNECTED);
+            } else {
+                String prevStateName = mPrevState == null ? "null" : mPrevState.getName();
+                error(
+                        "Disconnecting: Illegal state transition from "
+                                + prevStateName
+                                + " to Disconnecting");
+            }
+            Message message = obtainMessage(HeadsetClientStateMachine.DISCONNECT);
+            BluetoothDevice dev = (BluetoothDevice) message.obj;
+            if (!mNativeInterface.disconnect(dev)) {
+                error("disconnectNative failed for " + dev);
+            }
+        }
+
+        @Override
+        public synchronized boolean processMessage(Message message) {
+            debug("Disconnecting: Process message: " + message.what);
+
+            switch (message.what) {
+                    // Defering messages as state machine objects are meant to be reused and after
+                    // disconnect is complete we want honor other message requests
+                case CONNECT:
+                case CONNECT_AUDIO:
+                case DISCONNECT:
+                case DISCONNECT_AUDIO:
+                    deferMessage(message);
+                    break;
+
+                case DISCONNECTING_TIMEOUT:
+                    // We timed out trying to disconnect, force transition to disconnected.
+                    warn("Disconnecting: Disconnection timeout for " + mCurrentDevice);
+                    transitionTo(mDisconnected);
+                    break;
+
+                case StackEvent.STACK_EVENT:
+                    StackEvent event = (StackEvent) message.obj;
+                    debug("Disconnecting: event type: " + event.type);
+
+                    switch (event.type) {
+                        case StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED:
+                            debug(
+                                    "Disconnecting: Connection state changed: "
+                                            + event.device
+                                            + ": "
+                                            + event.valueInt);
+                            processConnectionEvent(event.valueInt, event.device);
+                            break;
+                        default:
+                            error("Unknown stack event: " + event.type);
+                            break;
+                    }
+                    // fall through
+                default:
+                    warn("Disconnecting: Message not handled " + message);
+                    return NOT_HANDLED;
+            }
+            return HANDLED;
+        }
+
+        private void processConnectionEvent(int state, BluetoothDevice device) {
+            switch (state) {
+                case HeadsetClientHalConstants.CONNECTION_STATE_DISCONNECTED:
+                    if (mCurrentDevice.equals(device)) {
+                        transitionTo(mDisconnected);
+                    } else {
+                        error("Disconnected from unknown device: " + device);
+                    }
+                    break;
+                default:
+                    error("Connection State Device: " + device + " bad state: " + state);
+                    break;
+            }
+        }
+
+        @Override
+        public void exit() {
+            debug("Exit Disconnecting: " + getCurrentMessage().what);
+            removeMessages(DISCONNECTING_TIMEOUT);
+            mPrevState = this;
+        }
+    }
+
     class AudioOn extends State {
         @Override
         public void enter() {
@@ -2048,7 +2155,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                     if (mCurrentDevice.equals(device)) {
                         processAudioEvent(
                                 HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED, device);
-                        transitionTo(mDisconnected);
+                        transitionTo(mDisconnecting);
                     } else {
                         error("Disconnected from unknown device: " + device);
                     }
