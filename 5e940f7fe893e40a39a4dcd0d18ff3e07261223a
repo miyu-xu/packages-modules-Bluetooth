@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56d1b634_afa2dfad",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-22T17:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85103e32_edecd5f0",
+      "range": {
+        "startLine": 489,
+        "startChar": 16,
+        "endLine": 489,
+        "endChar": 41
+      },
+      "revId": "5e940f7fe893e40a39a4dcd0d18ff3e07261223a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de07e141_8159d183",
@@ -99,6 +123,30 @@
           ]
         }
       ],
+      "revId": "5e940f7fe893e40a39a4dcd0d18ff3e07261223a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d441d45f_933ddbf2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-22T17:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de07e141_8159d183",
+      "range": {
+        "startLine": 832,
+        "startChar": 16,
+        "endLine": 832,
+        "endChar": 59
+      },
       "revId": "5e940f7fe893e40a39a4dcd0d18ff3e07261223a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
