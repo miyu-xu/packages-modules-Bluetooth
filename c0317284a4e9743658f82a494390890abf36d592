@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9329c8_ac93e305",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-22T22:10:49Z",
+      "side": 1,
+      "message": "I think instead of doing this GATT profile specific check here, we can pass in a list of 3 profiles when the flag is on (including the GATT profile service). Above check of assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(3); can also be replaced in that case with checking it matches the size of the input list.",
+      "range": {
+        "startLine": 517,
+        "startChar": 16,
+        "endLine": 517,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7c9df1a3_eca3e862",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 501,
+                "startChar": 0,
+                "endLine": 502,
+                "endChar": 0
+              },
+              "replacement": "                assertThat(adapter.mSetProfileServiceStateCounter).isEqualTo(6);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 517,
+                "startChar": 0,
+                "endLine": 523,
+                "endChar": 0
+              },
+              "replacement": "            adapter.addProfile(gattService);\n            TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_REGISTERED);\n            adapter.onProfileServiceStateChanged(gattService, STATE_ON);\n            TestUtils.syncHandler(looper, MESSAGE_PROFILE_SERVICE_STATE_CHANGED);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c0317284a4e9743658f82a494390890abf36d592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ed3310_446ec884",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-22T22:10:49Z",
+      "side": 1,
+      "message": "Should we have something for scancontroller here when the flag is on?",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8eb1eed2_4b272494",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 637,
+                "startChar": 0,
+                "endLine": 637,
+                "endChar": 0
+              },
+              "replacement": "\n    /**\n     * Test: Turn Bluetooth on/off with only Scan supported. Check whether the AdapterService gets\n     * started and stopped.\n     */\n    @Test\n    @EnableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)\n    public void testEnableDisableOnlyScan() {\n        Context mockContext \u003d mock(Context.class);\n        Resources mockResources \u003d mock(Resources.class);\n\n        when(mockContext.getApplicationInfo()).thenReturn(mMockApplicationInfo);\n        when(mockContext.getContentResolver()).thenReturn(mMockContentResolver);\n        when(mockContext.getApplicationContext()).thenReturn(mockContext);\n        when(mockContext.getResources()).thenReturn(mockResources);\n        when(mockContext.getUserId()).thenReturn(Process.BLUETOOTH_UID);\n        when(mockContext.getPackageManager()).thenReturn(mMockPackageManager);\n\n        // Config is set to PBAP, PAN and GATT by default. Turn off PAN and PBAP.\n        Config.setProfileEnabled(BluetoothProfile.PAN, false);\n        Config.setProfileEnabled(BluetoothProfile.PBAP, false);\n\n        Config.init(mockContext);\n        doEnable(true);\n        doDisable(true);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c0317284a4e9743658f82a494390890abf36d592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
