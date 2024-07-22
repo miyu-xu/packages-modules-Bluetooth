@@ -1777,6 +1777,7 @@ class BluetoothManagerService {
                     Log.e(TAG, "MESSAGE_TIMEOUT_BIND");
                     // TODO(b/286082382): Timeout should be more than a log. We should at least call
                     // context.unbindService, eventually log a metric with it
+                    recoverBluetoothServiceFromError(true);
                     break;
 
                 case MESSAGE_USER_SWITCHED:
