@@ -379,7 +379,7 @@ public class HeadsetClientStateMachineTest {
                 BluetoothProfile.STATE_CONNECTING,
                 intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
 
-        // Check we are in connecting state now.
+        // Check that we are in connecting state now.
         Assert.assertThat(
                 mHeadsetClientStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(HeadsetClientStateMachine.Connecting.class));
@@ -393,14 +393,11 @@ public class HeadsetClientStateMachineTest {
                         intentArgument2.capture(),
                         any(String[].class),
                         any(BroadcastOptions.class));
+        // Check that we are in disconnected state now
         Assert.assertEquals(
                 BluetoothProfile.STATE_DISCONNECTED,
                 intentArgument2.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
 
-        // Check we are in connecting state now.
-        Assert.assertThat(
-                mHeadsetClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnected.class));
         verify(mHeadsetService).updateInbandRinging(eq(mTestDevice), eq(false));
     }
 
@@ -1721,6 +1718,12 @@ public class HeadsetClientStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         Assert.assertThat(
                 mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
+        mHeadsetClientStateMachine.sendMessage(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnected.class));
         verify(mHeadsetService).updateInbandRinging(eq(mTestDevice), eq(false));
     }
@@ -1774,6 +1777,88 @@ public class HeadsetClientStateMachineTest {
         Assert.assertTrue(mHeadsetClientStateMachine.mAudioSWB);
     }
 
+    @Test
+    public void testTransition_Disconnecting_ToDisconnected() {
+        initToDisconnectingState();
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.CONNECTION_STATE_DISCONNECTED;
+        event.device = mTestDevice;
+        sendMessageAndVerifyTransition(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event),
+                HeadsetClientStateMachine.Disconnected.class);
+        verify(mHeadsetService).updateInbandRinging(eq(mTestDevice), eq(false));
+    }
+
+    @Test
+    public void testTransition_DisconnectingTimeout_ToDisconnected() {
+        initToDisconnectingState();
+        Message msg =
+                mHeadsetClientStateMachine.obtainMessage(
+                        HeadsetClientStateMachine.DISCONNECTING_TIMEOUT);
+        sendMessageAndVerifyTransition(msg, HeadsetClientStateMachine.Disconnected.class);
+        verify(mHeadsetService).updateInbandRinging(eq(mTestDevice), eq(false));
+    }
+
+    @Test
+    public void testReceiveConnectMsgInDisconnectingState_DeferMesssage() {
+        // case CONNECT:
+        initToDisconnectingState();
+        Message msg = mHeadsetClientStateMachine.obtainMessage(HeadsetClientStateMachine.CONNECT);
+        mHeadsetClientStateMachine.sendMessage(msg);
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
+    }
+
+    @Test
+    public void testReceiveConnectAudioMsgInDisconnectingState_DeferMesssage() {
+        // case CONNECT_AUDIO:
+        initToDisconnectingState();
+        Message msg =
+                mHeadsetClientStateMachine.obtainMessage(HeadsetClientStateMachine.CONNECT_AUDIO);
+        mHeadsetClientStateMachine.sendMessage(msg);
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
+    }
+
+    @Test
+    public void testReceiveDisconnectMsgInDisconnectingState_DeferMesssage() {
+        // case DISCONNECT:
+        initToDisconnectingState();
+        Message msg =
+                mHeadsetClientStateMachine.obtainMessage(HeadsetClientStateMachine.DISCONNECT);
+        mHeadsetClientStateMachine.sendMessage(msg);
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
+    }
+
+    @Test
+    public void testReceiveDisconnectAudioMsgInDisconnectingState_DeferMesssage() {
+        // case DISCONNECT_AUDIO:
+        initToDisconnectingState();
+        Message msg =
+                mHeadsetClientStateMachine.obtainMessage(
+                        HeadsetClientStateMachine.DISCONNECT_AUDIO);
+        mHeadsetClientStateMachine.sendMessage(msg);
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
+    }
+
+    @Test
+    public void testDefaultCaseDisconnectingState_ReceiveUnknownMsg_NotHandledNoTransition() {
+        initToDisconnectingState();
+        Message msg =
+                msg = mHeadsetClientStateMachine.obtainMessage(HeadsetClientStateMachine.NO_ACTION);
+        ;
+        mHeadsetClientStateMachine.sendMessage(msg);
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
+    }
+
     /**
      * Allow/disallow connection to any device
      *
@@ -1818,6 +1903,19 @@ public class HeadsetClientStateMachineTest {
         Assert.assertThat(
                 mHeadsetClientStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(HeadsetClientStateMachine.AudioOn.class));
+    }
+
+    private void initToDisconnectingState() {
+        initToConnectedState();
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.CONNECTION_STATE_DISCONNECTED;
+        event.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        Assert.assertThat(
+                mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(HeadsetClientStateMachine.Disconnecting.class));
     }
 
     private <T> void sendMessageAndVerifyTransition(Message msg, Class<T> type) {
