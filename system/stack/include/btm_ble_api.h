@@ -309,10 +309,15 @@ tBTM_STATUS BTM_BleGetEnergyInfo(tBTM_BLE_ENERGY_INFO_CBACK* p_ener_cback);
  *
  * Description      Set the maximum BLE transmission packet size
  *
+ * Parameters       bd_addr - BD address of the device
+ *                  tx_pdu_length - Required data length
+ *                  prev_client - privileged client
+ *
  * Returns          BTM_SUCCESS if success; otherwise failed.
  *
  ******************************************************************************/
-tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length);
+tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length,
+                                 bool prev_client);
 
 /*******************************************************************************
  *
