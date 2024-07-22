@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab7ffac_24992bb6",
+        "filename": "system/types/bt_transport.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-22T15:04:51Z",
+      "side": 1,
+      "message": "nit: use a switch?\n\nWhat should the default be?  I feel like there should be a warning/error when we change a non-zero value to \"BT_TRANSPORT_AUTO\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3e7970a4_ce97b7e7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/types/bt_transport.h",
+              "range": {
+                "startLine": 27,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "  switch (val) {\n    case 1:\n      return BT_TRANSPORT_BR_EDR;\n    case 2:\n      return BT_TRANSPORT_LE;\n    default:\n      return BT_TRANSPORT_AUTO;\n"
+            },
+            {
+              "path": "system/types/bt_transport.h",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1e3ea336688bd46d0ea93de12edeeb5d7a2fccf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
