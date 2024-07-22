@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cb7c420_fa74d13b",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-22T18:05:44Z",
+      "side": 1,
+      "message": "This could be problematic if two or more clients are connecting.",
+      "range": {
+        "startLine": 1538,
+        "startChar": 6,
+        "endLine": 1538,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a483002a_64263a12",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_utils.cc",
+              "range": {
+                "startLine": 1539,
+                "startChar": 0,
+                "endLine": 1539,
+                "endChar": 0
+              },
+              "replacement": "      gatt_cancel_connect(bda, static_cast\u003ctBT_TRANSPORT\u003e(BT_TRANSPORT_BR_EDR));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6195529abfe227922713134a3882883f3197daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
