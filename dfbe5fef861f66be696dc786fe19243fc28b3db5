@@ -40,6 +40,30 @@
       ],
       "revId": "dfbe5fef861f66be696dc786fe19243fc28b3db5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "180df17a_70dd735c",
+        "filename": "system/stack/rnr/remote_name_request.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-22T19:30:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab91698e_517e6035",
+      "range": {
+        "startLine": 283,
+        "startChar": 5,
+        "endLine": 283,
+        "endChar": 38
+      },
+      "revId": "dfbe5fef861f66be696dc786fe19243fc28b3db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
