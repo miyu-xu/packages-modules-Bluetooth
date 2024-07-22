@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab91698e_517e6035",
+        "filename": "system/stack/rnr/remote_name_request.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-22T17:22:47Z",
+      "side": 1,
+      "message": "Do we need this one, as well?",
+      "range": {
+        "startLine": 283,
+        "startChar": 5,
+        "endLine": 283,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "26b2c5cc_13f41333",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rnr/remote_name_request.cc",
+              "range": {
+                "startLine": 283,
+                "startChar": 0,
+                "endLine": 284,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "dfbe5fef861f66be696dc786fe19243fc28b3db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
