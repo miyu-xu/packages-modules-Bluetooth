@@ -572,7 +572,7 @@ protected:
             .WillByDefault(Invoke(
                     [](const bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements&
                                requirements,
-                       bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier verifier) {
+                       bluetooth::le_audio::CodecManager::UnicastConfigurationProvider provider) {
                       auto configs = *bluetooth::le_audio::AudioSetConfigurationProvider::Get()
                                               ->GetConfigurations(requirements.audio_context_type);
                       // Note: This dual bidir SWB exclusion logic has to match the
@@ -590,7 +590,7 @@ protected:
                                 configs.end());
                       }
 
-                      auto cfg = verifier(requirements, &configs);
+                      auto cfg = provider(requirements, &configs);
                       if (cfg == nullptr) {
                         return std::unique_ptr<
                                 bluetooth::le_audio::set_configurations::AudioSetConfiguration>(
@@ -1652,8 +1652,8 @@ TEST_F(StateMachineTest, testConfigureCodecSingleFb2) {
   ON_CALL(*mock_codec_manager_, GetCodecConfig)
           .WillByDefault(Invoke([&](const bluetooth::le_audio::CodecManager::
                                             UnicastConfigurationRequirements& requirements,
-                                    bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier
-                                            verifier) {
+                                    bluetooth::le_audio::CodecManager::UnicastConfigurationProvider
+                                            provider) {
             auto configs =
                     *bluetooth::le_audio::AudioSetConfigurationProvider::Get()->GetConfigurations(
                             requirements.audio_context_type);
@@ -1671,7 +1671,7 @@ TEST_F(StateMachineTest, testConfigureCodecSingleFb2) {
                             configs.end());
             }
 
-            auto cfg = verifier(requirements, &configs);
+            auto cfg = provider(requirements, &configs);
             if (cfg == nullptr) {
               return std::unique_ptr<
                       bluetooth::le_audio::set_configurations::AudioSetConfiguration>(nullptr);
