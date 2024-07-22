@@ -318,6 +318,10 @@ public:
   /* Data length extension */
   void set_suggested_tx_octect(uint16_t octets) { suggested_tx_octets = octets; }
 
+  bool is_datalen_set_by_prev_client() const { return is_datalen_set_by_prevclient; }
+
+  void set_is_datalen_set_by_prev_client(bool value) { is_datalen_set_by_prevclient = value; }
+
   uint16_t get_suggested_tx_octets() const { return suggested_tx_octets; }
   bool IsLocallyInitiated() const { return is_originator; }
 
@@ -356,6 +360,7 @@ public:
 
   uint16_t suggested_tx_octets; /* Recently suggested tx octets for data length
                                    extension */
+  bool is_datalen_set_by_prevclient;
   uint16_t clock_offset;        /* Latest known clock offset          */
 
   // whether the peer device can read GAP characteristics only visible in
