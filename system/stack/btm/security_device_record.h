@@ -316,6 +316,10 @@ public:
   /* Data length extension */
   void set_suggested_tx_octect(uint16_t octets) { suggested_tx_octets = octets; }
 
+  bool is_datalen_set_by_priv_client() const { return is_datalen_set_by_privclient; }
+
+  void set_is_datalen_set_by_priv_client(bool value) { is_datalen_set_by_privclient = value; }
+
   uint16_t get_suggested_tx_octets() const { return suggested_tx_octets; }
   bool IsLocallyInitiated() const { return is_originator; }
 
@@ -352,9 +356,10 @@ public:
   uint16_t hci_handle;     /* Handle to BR/EDR ACL connection when exists */
   uint16_t ble_hci_handle; /* use in DUMO connection */
 
-  uint16_t suggested_tx_octets; /* Recently suggested tx octets for data length extension */
-  uint16_t clock_offset;        /* Latest known clock offset */
-
+  uint16_t suggested_tx_octets; /* Recently suggested tx octets for data length
+                                   extension */
+  uint16_t clock_offset;        /* Latest known clock offset          */
+  bool is_datalen_set_by_privclient;
   // whether the peer device can read GAP characteristics only visible in
   // "discoverable" mode
   bool can_read_discoverable{true};
