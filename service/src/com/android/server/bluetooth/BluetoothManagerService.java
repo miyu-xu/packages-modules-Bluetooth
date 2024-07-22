@@ -402,6 +402,10 @@ class BluetoothManagerService {
         }
 
         if (currentState == STATE_ON) {
+            // Manually trigger a transition to TURNING_OFF to prevent race in fast mode change
+            mState.set(STATE_TURNING_OFF);
+            bluetoothStateChangeHandler(STATE_ON, STATE_TURNING_OFF);
+
             mAdapterLock.readLock().lock();
             try {
                 if (mAdapter != null) {
