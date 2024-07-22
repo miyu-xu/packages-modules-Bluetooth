@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f31f2f29_56e08ece",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2703,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-22T20:40:53Z",
+      "side": 1,
+      "message": "Ack, I am gonna restore the previous code and keep it untouched",
+      "parentUuid": "9ac9923b_582057c0",
+      "range": {
+        "startLine": 2703,
+        "startChar": 12,
+        "endLine": 2703,
+        "endChar": 14
+      },
+      "revId": "efd6281b473d28d68e90e477365dfb34c013adc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac6c7e48_edd66f10",
         "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
         "patchSetId": 2
