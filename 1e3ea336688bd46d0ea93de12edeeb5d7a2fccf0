@@ -74,6 +74,30 @@
       },
       "revId": "1e3ea336688bd46d0ea93de12edeeb5d7a2fccf0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129d0772_e9c0d000",
+        "filename": "system/types/bt_transport.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-22T15:15:06Z",
+      "side": 1,
+      "message": "I can pull this utility out of the core tBT_TRANSPORT object and put it in btif/bluetooth instead, then I would include your suggestions.",
+      "parentUuid": "0ad4ed59_a396d4ff",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "1e3ea336688bd46d0ea93de12edeeb5d7a2fccf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
