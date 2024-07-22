@@ -19,6 +19,8 @@
 
 #include <bluetooth/log.h>
 
+#include "common/init_flags.h"
+
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
 

@@ -27,6 +27,7 @@
 #include <bluetooth/log.h>
 #include <string.h>
 
+#include "common/init_flags.h"
 #include "hal/snoop_logger.h"
 #include "hcimsgs.h"  // HCID_GET_
 #include "internal_include/bt_target.h"
