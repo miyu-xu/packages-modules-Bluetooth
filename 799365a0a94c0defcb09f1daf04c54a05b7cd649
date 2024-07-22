@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd626e91_96a257f8",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-22T23:18:54Z",
+      "side": 1,
+      "message": "Perhaps in the next CL, but BOY is this mark confusing. We picked this wording to match the spec, but I don\u0027t like the spec right now 😊\n\nThe code reads like the filter means \"anything in this filter will be requested\" when in reality its \"anything in this filter will be excluded.\"\n\nIt would be nice to update the code to be this way, despite the language in the specification.\n\nSo, for example,\n- `messageType` -\u003e `excludedMessageTypes`\n- `FETCH_MESSAGE_TYPE` -\u003e `EXCLUDED_MESSAGE_TYPES`\n- `Builder#setMessageType()` -\u003e `Builder#setExcludedMessageTypes()`\n(I think thats it)\n\nOr, we could make the builder use \"included\" message types and invert that mask as an implementation detail.",
+      "range": {
+        "startLine": 737,
+        "startChar": 20,
+        "endLine": 737,
+        "endChar": 81
+      },
+      "revId": "799365a0a94c0defcb09f1daf04c54a05b7cd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d39eb307_6af0dfe9",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-07-22T23:18:54Z",
+      "side": 1,
+      "message": "You can use the above `messageType` for the default, since that\u0027s what we want after all. Use the code\u0027s default `messageType` if we can\u0027t properly read the PTS mode system property.",
+      "range": {
+        "startLine": 745,
+        "startChar": 48,
+        "endLine": 746,
+        "endChar": 88
+      },
+      "revId": "799365a0a94c0defcb09f1daf04c54a05b7cd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
