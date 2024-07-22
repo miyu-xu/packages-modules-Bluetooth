@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffd63df0_8867b10e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-22T15:28:52Z",
+      "side": 1,
+      "message": "Relying on the native HID host to use AUTO transport in the state change event to detect device removal is not a good approach.\nWe should be using the virtual unplug event instead.",
+      "revId": "47ac053180188a13ab3250c18cc9f058ca9dd19f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
