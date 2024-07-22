@@ -553,7 +553,7 @@ public final class BluetoothLeAdvertiser {
         }
 
         if (maxExtendedAdvertisingEvents != 0
-                && !mBluetoothAdapter.isLePeriodicAdvertisingSupported()) {
+                && !mBluetoothAdapter.isLeExtendedAdvertisingSupported()) {
             throw new IllegalArgumentException(
                     "Can't use maxExtendedAdvertisingEvents with controller that don't support "
                             + "LE Extended Advertising");
