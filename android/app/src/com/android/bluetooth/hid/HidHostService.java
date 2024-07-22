@@ -244,11 +244,7 @@ public class HidHostService extends ProfileService {
      * @return address type
      */
     private int getAddressType(BluetoothDevice device) {
-        if (Flags.getAddressTypeApi()) {
-            return device.getAddressType();
-        }
-
-        return BluetoothDevice.ADDRESS_TYPE_PUBLIC;
+        return device.getAddressType();
     }
 
     /**

@@ -35,3 +35,29 @@ RequiresPermission: android.bluetooth.BluetoothAdapter#getAddress():
     Method 'getAddress' documentation mentions permissions without declaring @RequiresPermission
 RequiresPermission: android.bluetooth.BluetoothDevice#setAlias(String):
     Method 'setAlias' documentation mentions permissions already declared by @RequiresPermission
+
+
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_AAC:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_AAC
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_APTX:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_APTX_HD:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX_HD
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_INVALID:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_LC3:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_LDAC:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_LDAC
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_OPUS:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_OPUS
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#SOURCE_CODEC_TYPE_SBC:
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig#getCodecType():
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: method android.bluetooth.BluetoothCodecConfig.getCodecType()
+UnflaggedApi: android.bluetooth.BluetoothCodecConfig.Builder#setCodecType(int):
+    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: method android.bluetooth.BluetoothCodecConfig.Builder.setCodecType(int)
+UnflaggedApi: android.bluetooth.BluetoothDevice#ADDRESS_TYPE_ANONYMOUS:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.ADDRESS_TYPE_ANONYMOUS
+UnflaggedApi: android.bluetooth.BluetoothDevice#getAddressType():
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothDevice.getAddressType()
