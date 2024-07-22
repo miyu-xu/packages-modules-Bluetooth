@@ -50,6 +50,30 @@
       ],
       "revId": "1e3ea336688bd46d0ea93de12edeeb5d7a2fccf0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ad4ed59_a396d4ff",
+        "filename": "system/types/bt_transport.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-22T15:12:45Z",
+      "side": 1,
+      "message": "I don\u0027t think it should be a switch.\n\nThe input is a primitive data type, which I tend not to like to use for switches.\n\n```\n I feel like there should be a warning/error when we change a non-zero value to \"BT_TRANSPORT_AUTO\".\n ```\n \n1. This is an API decision to be decided with more context, and this is a naive simple utility function.\n2. Anything `3-INT_MAX` is an API failure not checking inputs before passing to utility function.",
+      "parentUuid": "5ab7ffac_24992bb6",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "1e3ea336688bd46d0ea93de12edeeb5d7a2fccf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
