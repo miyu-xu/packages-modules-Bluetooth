@@ -621,6 +621,8 @@ static void on_l2cap_connect(tBTA_JV* p_data, uint32_t id) {
     } else {
       on_srv_l2cap_psm_connect_l(psm_open, sock);
     }
+    //Update data length to get better throughput on CoC
+    BTM_SetBleDataLength(le_open->rem_bda, BTM_BLE_DATA_SIZE_MAX);
   } else {
     log::error("Unable to open socket after receiving connection socket_id:{}", sock->id);
     btsock_l2cap_free_l(sock);
