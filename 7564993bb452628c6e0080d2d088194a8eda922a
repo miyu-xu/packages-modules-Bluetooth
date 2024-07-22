@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fda4362_98124c0a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4354,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-22T18:38:40Z",
+      "side": 1,
+      "message": "nit: maybe add group id would help for debuging?",
+      "range": {
+        "startLine": 4354,
+        "startChar": 78,
+        "endLine": 4354,
+        "endChar": 83
+      },
+      "revId": "7564993bb452628c6e0080d2d088194a8eda922a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
