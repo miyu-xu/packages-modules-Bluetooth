@@ -1359,6 +1359,9 @@ public class HidHostService extends ProfileService {
                         "updateConnectionState: requested with AUTO transport"
                                 + (" device=" + device)
                                 + (" newState=" + newState));
+                inputDevice.setState(BluetoothDevice.TRANSPORT_BREDR, newState);
+                inputDevice.setState(BluetoothDevice.TRANSPORT_LE, newState);
+                setTransport(device, BluetoothDevice.TRANSPORT_AUTO);
                 return;
             }
 
