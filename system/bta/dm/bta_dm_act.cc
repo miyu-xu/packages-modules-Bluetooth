@@ -1584,7 +1584,7 @@ void bta_dm_ble_set_data_length(const RawAddress& bd_addr) {
   uint16_t max_len =
           bluetooth::shim::GetController()->GetLeMaximumDataLength().supported_max_tx_octets_;
 
-  if (get_btm_client_interface().ble.BTM_SetBleDataLength(bd_addr, max_len) !=
+  if (get_btm_client_interface().ble.BTM_SetBleDataLength(bd_addr, max_len, false) !=
       tBTM_STATUS::BTM_SUCCESS) {
     log::info("Unable to set ble data length:{}", max_len);
   }
