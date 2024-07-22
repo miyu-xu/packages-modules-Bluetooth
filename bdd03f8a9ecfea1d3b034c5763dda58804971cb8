@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a9e4c0_f5dbb618",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-22T15:31:12Z",
+      "side": 1,
+      "message": "`BT_STATUS_NOMEM`\n\n```\n  rfc_slot_t* slot \u003d alloc_rfc_slot(NULL, service_name, *service_uuid, channel, flags, true);\n  if (!slot) {\n    log::error(\"unable to allocate RFCOMM slot\");\n    return BT_STATUS_NOMEM;\n  }\n```\n\nLooks like the rfc slots are cleaned up lazily or leaked",
+      "revId": "bdd03f8a9ecfea1d3b034c5763dda58804971cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
