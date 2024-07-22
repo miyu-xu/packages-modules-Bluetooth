@@ -1452,7 +1452,7 @@ protected:
     ON_CALL(*mock_codec_manager_, GetCodecConfig)
             .WillByDefault(Invoke([](const CodecManager::UnicastConfigurationRequirements&
                                              requirements,
-                                     CodecManager::UnicastConfigurationVerifier verifier) {
+                                     CodecManager::UnicastConfigurationProvider provider) {
               auto filtered = *le_audio::AudioSetConfigurationProvider::Get()->GetConfigurations(
                       requirements.audio_context_type);
               // Filter out the dual bidir SWB configurations
@@ -1467,7 +1467,7 @@ protected:
                                               }),
                                filtered.end());
               }
-              auto cptr = verifier(requirements, &filtered);
+              auto cptr = provider(requirements, &filtered);
               return cptr ? std::make_unique<set_configurations::AudioSetConfiguration>(*cptr)
                           : nullptr;
             }));
@@ -10502,13 +10502,13 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
     }
   });
 
-  // Add a frame block PAC passing verifier
+  // Add a frame block PAC passing provider
   bool is_fb2_passed_as_requirement = false;
   ON_CALL(*mock_codec_manager_, GetCodecConfig)
           .WillByDefault(Invoke(
                   [&](const bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements&
                               requirements,
-                      bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier verifier) {
+                      bluetooth::le_audio::CodecManager::UnicastConfigurationProvider provider) {
                     auto filtered = *bluetooth::le_audio::AudioSetConfigurationProvider::Get()
                                              ->GetConfigurations(requirements.audio_context_type);
                     // Filter out the dual bidir SWB configurations
@@ -10525,7 +10525,7 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
                                              }),
                               filtered.end());
                     }
-                    auto cfg = verifier(requirements, &filtered);
+                    auto cfg = provider(requirements, &filtered);
                     if (cfg == nullptr) {
                       return std::unique_ptr<set_configurations::AudioSetConfiguration>(nullptr);
                     }
