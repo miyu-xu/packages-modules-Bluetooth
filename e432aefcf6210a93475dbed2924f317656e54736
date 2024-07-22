@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19650ce8_07363483",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-22T22:49:22Z",
+      "side": 1,
+      "message": "I can\u0027t accept this patch as there are a few workflow that rely on the TIMEOUT not doing anything, for example, some watch take more time than the allowed binding time to start, they rely on it not changing and then start fine. Preventing this will make them fail everytime.\n\nThere are a bunch of change that has been done to make the bind operation way more reliable. These changes are expect to ship for 24Q4",
+      "revId": "e432aefcf6210a93475dbed2924f317656e54736",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
