@@ -41,6 +41,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2cdefs.h"
 #include "types/raw_address.h"
+#include "stack/include/btm_client_interface.h"
 
 // TODO(b/369381361) Enfore -Wmissing-prototypes
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
@@ -625,6 +626,13 @@ static void on_l2cap_connect(tBTA_JV* p_data, uint32_t id) {
     } else {
       on_srv_l2cap_psm_connect_l(psm_open, sock);
     }
+    //Update data length to get better throughput on CoC
+    //if (com::android::bluetooth::flags::set_max_data_length_for_lecoc()) {
+      if (get_btm_client_interface().ble.BTM_SetBleDataLength(
+             le_open->rem_bda, BTM_BLE_DATA_SIZE_MAX, false) != tBTM_STATUS::BTM_SUCCESS) {
+           log::info("Unable to set ble data length:{}", BTM_BLE_DATA_SIZE_MAX);
+      }
+    //}
   } else {
     log::error("Unable to open socket after receiving connection socket_id:{}", sock->id);
     btsock_l2cap_free_l(sock);
