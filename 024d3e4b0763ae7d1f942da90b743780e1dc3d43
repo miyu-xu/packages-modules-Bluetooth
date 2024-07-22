@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e8c8ce1_c8e33927",
+        "filename": "flags/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-22T21:00:01Z",
+      "side": 0,
+      "message": "remove xoogler?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "024d3e4b0763ae7d1f942da90b743780e1dc3d43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
