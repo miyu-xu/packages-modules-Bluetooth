@@ -16,6 +16,24 @@
       "message": "This access needs to be locked with btifavsource_peers_lock_; the function btif_av_source_set_codec_config_preference is called from the java thread directly, races can occur.",
       "revId": "5add436f23c5da497c0cf24950125f7ed57674c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3062b28d_fa3a87a4",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3791,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-22T09:11:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eecc9549_93b62717",
+      "revId": "5add436f23c5da497c0cf24950125f7ed57674c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
