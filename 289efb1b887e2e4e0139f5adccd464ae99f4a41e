@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f5ffc5_07e5efc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-22T19:59:25Z",
+      "side": 1,
+      "message": "Hi, Thanks for the removal but I believe this is a bit too early as we are waiting for 24q3 to reach the public first",
+      "revId": "289efb1b887e2e4e0139f5adccd464ae99f4a41e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
