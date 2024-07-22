@@ -582,7 +582,8 @@ bool BTM_ReadConnectedTransportAddress(RawAddress* remote_bda, tBT_TRANSPORT tra
   return false;
 }
 
-tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length) {
+tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length,
+           bool prev_client) {
   if (!bluetooth::shim::GetController()->SupportsBleDataPacketLengthExtension()) {
     log::info("Local controller does not support le packet extension");
     return tBTM_STATUS::BTM_ILLEGAL_VALUE;
@@ -602,8 +603,17 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_leng
     tx_pdu_length = BTM_BLE_DATA_SIZE_MIN;
   }
 
-  if (p_dev_rec->get_suggested_tx_octets() >= tx_pdu_length) {
-    log::info("Suggested TX octet already set to controller {} >= {}",
+  if (p_dev_rec->is_datalen_set_by_prev_client() && !prev_client) {
+    log::info("Data length set by prev client can't be overridden");
+    return tBTM_STATUS::BTM_SUCCESS;
+  }
+
+  /* privileged client can override to have lesser Data length & this can happen
+   * multiple times from privileged clients.
+   *
+   */
+  if (p_dev_rec->get_suggested_tx_octets() >= tx_pdu_length && !prev_client) {
+    log::info("Suggested TX octect already set to controller {} >= {}",
               p_dev_rec->get_suggested_tx_octets(), tx_pdu_length);
     return tBTM_STATUS::BTM_SUCCESS;
   }
@@ -637,6 +647,9 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_leng
 
   btsnd_hcic_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
   p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
+  if (prev_client) {
+    p_dev_rec->set_is_datalen_set_by_prev_client(true);
+  }
 
   return tBTM_STATUS::BTM_SUCCESS;
 }
