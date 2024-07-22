@@ -16,6 +16,24 @@
       "message": "please also add unit test for this.",
       "revId": "9f323f5b248f438adae710f47a64331045f7279c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8bc6ba_4398eb0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-22T20:44:49Z",
+      "side": 1,
+      "message": "There is a pts test that is validating this scenario.\nI don\u0027t think it\u0027s necessary to duplicate it with a unit test",
+      "parentUuid": "81b81807_db4017c9",
+      "revId": "9f323f5b248f438adae710f47a64331045f7279c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
