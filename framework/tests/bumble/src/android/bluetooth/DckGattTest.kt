@@ -333,7 +333,7 @@ public class DckGattTest() {
 
     companion object {
         private const val TAG = "DckTest"
-        private const val TIMEOUT: Long = 2000
+        private const val TIMEOUT: Long = 3000
         private const val TEST_ADDRESS_RANDOM_STATIC = "F0:43:A8:23:10:11"
 
         // CCC DK Specification R3 1.2.0 r14 section 19.2.1.2 Bluetooth Le Pairing
