@@ -3868,6 +3868,7 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason, std::string comme
             ~(BTM_SEC_LE_AUTHENTICATED | BTM_SEC_LE_ENCRYPTED | BTM_SEC_ROLE_SWITCHED);
     p_dev_rec->sec_rec.enc_key_size = 0;
     p_dev_rec->suggested_tx_octets = 0;
+    p_dev_rec->set_is_datalen_set_by_prev_client(false);
 
     if ((p_dev_rec->sec_rec.sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) == 0) {
       p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LE_LINK_KEY_AUTHED | BTM_SEC_LE_AUTHENTICATED);

@@ -181,7 +181,8 @@ struct btm_client_interface_t default_btm_client_interface = {
                   return tBTM_STATUS::BTM_SUCCESS;
                 },
                 .BTM_SetBleDataLength = [](const RawAddress& /* bd_addr */,
-                                           uint16_t /* tx_pdu_length */) -> tBTM_STATUS {
+                                           uint16_t /* tx_pdu_length */,
+					   bool /* prev_client */) -> tBTM_STATUS {
                   return tBTM_STATUS::BTM_SUCCESS;
                 },
                 .BTM_BleReadControllerFeatures =
