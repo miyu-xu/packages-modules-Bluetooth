@@ -22,6 +22,30 @@
       },
       "revId": "024d3e4b0763ae7d1f942da90b743780e1dc3d43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "975e2f06_e59ba922",
+        "filename": "flags/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-22T21:17:33Z",
+      "side": 0,
+      "message": "That is not the goal of this CL.\nI did aosp/3182927 to remove xoogler.\n\nHere I want to offer the possibility to override the current owner.",
+      "parentUuid": "0e8c8ce1_c8e33927",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "024d3e4b0763ae7d1f942da90b743780e1dc3d43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
