@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccfa5c14_48fe85d0",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T22:31:34Z",
+      "side": 1,
+      "message": "```\nhttps://engdoc.corp.google.com/eng/doc/devguide/cpp/styleguide.md?cl\u003dhead#Inputs_and_Outputs\n```\n\n```\nPrefer to return by value or, failing that, return by reference. Avoid returning a raw pointer unless it can be null\n``",
+      "parentUuid": "0a6d9f13_078b4b09",
+      "range": {
+        "startLine": 1840,
+        "startChar": 0,
+        "endLine": 1845,
+        "endChar": 1
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a6d80db_3c0fd06a",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 1
