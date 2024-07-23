@@ -51,14 +51,14 @@ typedef struct {
  * Define structure for Security Service Record.
  * A record exists for each service registered with the Security Manager
  */
-#define BTM_SEC_OUT_FLAGS (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT)
-#define BTM_SEC_IN_FLAGS (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)
+#define BTM_SEC_OUT_FLAGS (BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_ENCRYPT)
+#define BTM_SEC_IN_FLAGS (BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_ENCRYPT)
 
 #define BTM_SEC_OUT_LEVEL4_FLAGS \
-  (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_MITM | BTM_SEC_MODE4_LEVEL4)
+  (BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_MITM | BTM_SEC_MODE4_LEVEL4)
 
 #define BTM_SEC_IN_LEVEL4_FLAGS \
-  (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_MITM | BTM_SEC_MODE4_LEVEL4)
+  (BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_MITM | BTM_SEC_MODE4_LEVEL4)
 typedef struct {
   uint32_t mx_proto_id;     /* Service runs over this multiplexer protocol */
   uint32_t orig_mx_chan_id; /* Channel on the multiplexer protocol    */

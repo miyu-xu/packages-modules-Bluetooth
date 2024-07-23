@@ -189,7 +189,7 @@ void NotifyBondingCanceled(tBTM_STATUS /* btm_status */) {
  *
  ******************************************************************************/
 static bool btm_dev_authenticated(const tBTM_SEC_DEV_REC* p_dev_rec) {
-  return p_dev_rec->sec_rec.sec_flags & BTM_SEC_AUTHENTICATED;
+  return p_dev_rec->sec_rec.sec_flags & BTM_SEC_IN_AUTHORIZED;
 }
 
 /*******************************************************************************
@@ -373,7 +373,7 @@ static void btm_sec_update_session_key_size(uint16_t hci_handle, uint8_t key_siz
  ******************************************************************************/
 static bool access_secure_service_from_temp_bond(const tBTM_SEC_DEV_REC* p_dev_rec,
                                                  bool locally_initiated, uint16_t security_req) {
-  return !locally_initiated && (security_req & BTM_SEC_IN_AUTHENTICATE) &&
+  return !locally_initiated && (security_req & BTM_SEC_IN_AUTHORIZE) &&
          p_dev_rec->sec_rec.is_bond_type_temporary();
 }
 
@@ -678,7 +678,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr, tBLE_ADDR_TYPE 
 
   /* Finished if connection is active and already paired */
   if (((p_dev_rec->hci_handle != HCI_INVALID_HANDLE) && transport == BT_TRANSPORT_BR_EDR &&
-       (p_dev_rec->sec_rec.sec_flags & BTM_SEC_AUTHENTICATED)) ||
+       (p_dev_rec->sec_rec.sec_flags & BTM_SEC_IN_AUTHORIZED)) ||
       ((p_dev_rec->ble_hci_handle != HCI_INVALID_HANDLE) && transport == BT_TRANSPORT_LE &&
        (p_dev_rec->sec_rec.sec_flags & BTM_SEC_LE_AUTHENTICATED))) {
     log::warn("BTM_SecBond -> Already Paired");
@@ -695,7 +695,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr, tBLE_ADDR_TYPE 
 
   btm_sec_cb.pairing_flags = BTM_PAIR_FLAGS_WE_STARTED_DD;
 
-  p_dev_rec->sec_rec.security_required = BTM_SEC_OUT_AUTHENTICATE;
+  p_dev_rec->sec_rec.security_required = BTM_SEC_OUT_AUTHORIZE;
   p_dev_rec->is_originator = true;
 
   BTM_LogHistory(kBtmLogTag, bd_addr, "Bonding initiated", bt_transport_text(transport));
@@ -716,7 +716,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr, tBLE_ADDR_TYPE 
   }
 
   p_dev_rec->sec_rec.sec_flags &=
-          ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED |
+          ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED |
             BTM_SEC_ROLE_SWITCHED | BTM_SEC_LINK_KEY_AUTHED);
 
   log::verbose("after update sec_flags=0x{:x}", p_dev_rec->sec_rec.sec_flags);
@@ -1037,7 +1037,7 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr, tBT_TRANSPORT transport
 
   p_dev_rec->sec_rec.p_callback = p_callback;
   p_dev_rec->sec_rec.p_ref_data = p_ref_data;
-  p_dev_rec->sec_rec.security_required |= (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT);
+  p_dev_rec->sec_rec.security_required |= (BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_ENCRYPT);
   p_dev_rec->is_originator = false;
 
   log::debug(
@@ -1414,7 +1414,7 @@ static void btm_sec_check_upgrade(tBTM_SEC_DEV_REC* p_dev_rec, bool is_originato
 
     /* Clear the link key known to go through authentication/pairing again */
     p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED);
-    p_dev_rec->sec_rec.sec_flags &= ~BTM_SEC_AUTHENTICATED;
+    p_dev_rec->sec_rec.sec_flags &= ~BTM_SEC_IN_AUTHORIZED;
     log::verbose("sec_flags:0x{:x}", p_dev_rec->sec_rec.sec_flags);
   }
 }
@@ -1470,19 +1470,19 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(const RawAddress& bd_addr,
        * or SM4 with no possibility of link key upgrade */
       if (is_originator) {
         if (((security_required & BTM_SEC_OUT_FLAGS) == 0) ||
-            (((security_required & BTM_SEC_OUT_FLAGS) == BTM_SEC_OUT_AUTHENTICATE) &&
+            (((security_required & BTM_SEC_OUT_FLAGS) == BTM_SEC_OUT_AUTHORIZE) &&
              btm_dev_authenticated(p_dev_rec)) ||
             (((security_required & BTM_SEC_OUT_FLAGS) ==
-              (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT)) &&
+              (BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_ENCRYPT)) &&
              btm_dev_encrypted(p_dev_rec))) {
           rc = BTM_SUCCESS;
         }
       } else {
         if (((security_required & BTM_SEC_IN_FLAGS) == 0) ||
-            (((security_required & BTM_SEC_IN_FLAGS) == BTM_SEC_IN_AUTHENTICATE) &&
+            (((security_required & BTM_SEC_IN_FLAGS) == BTM_SEC_IN_AUTHORIZE) &&
              btm_dev_authenticated(p_dev_rec)) ||
             (((security_required & BTM_SEC_IN_FLAGS) ==
-              (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)) &&
+              (BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_ENCRYPT)) &&
              btm_dev_encrypted(p_dev_rec))) {
           // Check for 16 digits (or MITM)
           if (((security_required & BTM_SEC_IN_MIN_16_DIGIT_PIN) == 0) ||
@@ -1555,11 +1555,11 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(const RawAddress& bd_addr,
     log::verbose(
             "(SM4 to SM4) btm_sec_l2cap_access_req rspd. authenticated: x{:x}, "
             "enc: x{:x}",
-            p_dev_rec->sec_rec.sec_flags & BTM_SEC_AUTHENTICATED,
+            p_dev_rec->sec_rec.sec_flags & BTM_SEC_IN_AUTHORIZED,
             p_dev_rec->sec_rec.sec_flags & BTM_SEC_ENCRYPTED);
     /* SM4, but we do not know for sure which level of security we need.
      * as long as we have a link key, it's OK */
-    if ((0 == (p_dev_rec->sec_rec.sec_flags & BTM_SEC_AUTHENTICATED)) ||
+    if ((0 == (p_dev_rec->sec_rec.sec_flags & BTM_SEC_IN_AUTHORIZED)) ||
         (0 == (p_dev_rec->sec_rec.sec_flags & BTM_SEC_ENCRYPTED))) {
       rc = BTM_DELAY_CHECK;
       /*
@@ -1587,7 +1587,7 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(const RawAddress& bd_addr,
         p_dev_rec->sm4 |= BTM_SM4_UPGRADE;
       }
       p_dev_rec->sec_rec.sec_flags &=
-              ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED | BTM_SEC_AUTHENTICATED);
+              ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED | BTM_SEC_IN_AUTHORIZED);
       log::verbose("sec_flags:0x{:x}", p_dev_rec->sec_rec.sec_flags);
     } else {
       /* If we already have a link key to the connected peer, is it secure
@@ -1711,19 +1711,19 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr, bool is_origina
        * or SM4 with no possibility of link key upgrade */
       if (is_originator) {
         if (((security_required & BTM_SEC_OUT_FLAGS) == 0) ||
-            (((security_required & BTM_SEC_OUT_FLAGS) == BTM_SEC_OUT_AUTHENTICATE) &&
+            (((security_required & BTM_SEC_OUT_FLAGS) == BTM_SEC_OUT_AUTHORIZE) &&
              btm_dev_authenticated(p_dev_rec)) ||
             (((security_required & BTM_SEC_OUT_FLAGS) ==
-              (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT)) &&
+              (BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_ENCRYPT)) &&
              btm_dev_encrypted(p_dev_rec))) {
           rc = BTM_SUCCESS;
         }
       } else {
         if (((security_required & BTM_SEC_IN_FLAGS) == 0) ||
-            (((security_required & BTM_SEC_IN_FLAGS) == BTM_SEC_IN_AUTHENTICATE) &&
+            (((security_required & BTM_SEC_IN_FLAGS) == BTM_SEC_IN_AUTHORIZE) &&
              btm_dev_authenticated(p_dev_rec)) ||
             (((security_required & BTM_SEC_IN_FLAGS) ==
-              (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)) &&
+              (BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_ENCRYPT)) &&
              btm_dev_encrypted(p_dev_rec))) {
           // Check for 16 digits (or MITM)
           if (((security_required & BTM_SEC_IN_MIN_16_DIGIT_PIN) == 0) ||
@@ -1781,10 +1781,10 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr, bool is_origina
     }
   }
 
-  if (security_required & BTM_SEC_OUT_AUTHENTICATE) {
+  if (security_required & BTM_SEC_OUT_AUTHORIZE) {
     security_required |= BTM_SEC_OUT_MITM;
   }
-  if (security_required & BTM_SEC_IN_AUTHENTICATE) {
+  if (security_required & BTM_SEC_IN_AUTHORIZE) {
     security_required |= BTM_SEC_IN_MITM;
   }
 
@@ -1802,7 +1802,7 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr, bool is_origina
         }
 
         p_dev_rec->sec_rec.sec_flags &=
-                ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED | BTM_SEC_AUTHENTICATED);
+                ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED | BTM_SEC_IN_AUTHORIZED);
         log::verbose("sec_flags:0x{:x}", p_dev_rec->sec_rec.sec_flags);
       } else {
         log::debug("Already have link key; checking if link key is sufficient");
@@ -2310,9 +2310,9 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
 
   /* If this is a bonding procedure can disconnect the link now */
   if ((btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) &&
-      (p_dev_rec->sec_rec.sec_flags & BTM_SEC_AUTHENTICATED)) {
+      (p_dev_rec->sec_rec.sec_flags & BTM_SEC_IN_AUTHORIZED)) {
     log::warn("btm_sec_rmt_name_request_complete (none/ce)");
-    p_dev_rec->sec_rec.security_required &= ~(BTM_SEC_OUT_AUTHENTICATE);
+    p_dev_rec->sec_rec.security_required &= ~(BTM_SEC_OUT_AUTHORIZE);
     l2cu_start_post_bond_timer(p_dev_rec->hci_handle);
     return;
   }
@@ -2497,7 +2497,7 @@ void btm_io_capabilities_req(RawAddress p) {
     /* local device initiated the pairing non-bonding -> use
      * required_security_flags_for_pairing */
     if (!(btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) &&
-        (p_dev_rec->sec_rec.required_security_flags_for_pairing & BTM_SEC_OUT_AUTHENTICATE)) {
+        (p_dev_rec->sec_rec.required_security_flags_for_pairing & BTM_SEC_OUT_AUTHORIZE)) {
       if (btm_sec_cb.security_mode == BTM_SEC_MODE_SC) {
         /* SC only mode device requires MITM protection */
         evt_data.auth_req = BTM_AUTH_SP_YES;
@@ -2771,7 +2771,7 @@ void btm_simple_pair_complete(const RawAddress bd_addr, uint8_t status) {
                p_dev_rec->sec_rec.classic_link);
 
   if (status == HCI_SUCCESS) {
-    p_dev_rec->sec_rec.sec_flags |= BTM_SEC_AUTHENTICATED;
+    p_dev_rec->sec_rec.sec_flags |= BTM_SEC_IN_AUTHORIZED;
   } else if (status == HCI_ERR_PAIRING_NOT_ALLOWED) {
     /* The test spec wants the peer device to get this failure code. */
     btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_DISCONNECT);
@@ -2986,7 +2986,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
   */
   if (p_dev_rec && (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) &&
       !(btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_DISC_WHEN_DONE)) {
-    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHORIZE;
 
     l2cu_start_post_bond_timer(p_dev_rec->hci_handle);
   }
@@ -3006,12 +3006,12 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
      * encrypted link, so device is correct.
      */
     if ((status == HCI_ERR_COMMAND_DISALLOWED) &&
-        ((p_dev_rec->sec_rec.sec_flags & (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED)) ==
-         (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED))) {
+        ((p_dev_rec->sec_rec.sec_flags & (BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED)) ==
+         (BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED))) {
       status = HCI_SUCCESS;
     }
     if (status == HCI_SUCCESS) {
-      p_dev_rec->sec_rec.sec_flags |= BTM_SEC_AUTHENTICATED;
+      p_dev_rec->sec_rec.sec_flags |= BTM_SEC_IN_AUTHORIZED;
     }
   }
 
@@ -3042,7 +3042,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
   /* If this is a bonding procedure can disconnect the link now */
   if (are_bonding) {
-    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHORIZE;
 
     if (status != HCI_SUCCESS) {
       if ((status != HCI_ERR_PEER_USER) && (status != HCI_ERR_CONN_CAUSE_LOCAL_HOST)) {
@@ -3149,7 +3149,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
   if (status == HCI_SUCCESS) {
     if (encr_enable) {
       if (p_dev_rec->hci_handle == handle) {  // classic
-        p_dev_rec->sec_rec.sec_flags |= (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED);
+        p_dev_rec->sec_rec.sec_flags |= (BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED);
         if (p_dev_rec->sec_rec.pin_code_length >= 16 ||
             p_dev_rec->sec_rec.link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
             p_dev_rec->sec_rec.link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256) {
@@ -3533,7 +3533,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
   if (status != HCI_SUCCESS) {
     /* If connection failed because of during pairing, need to tell user */
     if (is_pairing_device) {
-      p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+      p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHORIZE;
       p_dev_rec->sec_rec.sec_flags &=
               ~((BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED) << bit_shift);
       log::verbose("security_required:{:x}", p_dev_rec->sec_rec.security_required);
@@ -3556,7 +3556,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
               (status == HCI_ERR_PAIRING_WITH_UNIT_KEY_NOT_SUPPORTED) ||
               (status == HCI_ERR_ENCRY_MODE_NOT_ACCEPTABLE) ||
               (status == HCI_ERR_REPEATED_ATTEMPTS))) {
-      p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+      p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHORIZE;
       p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LE_LINK_KEY_KNOWN << bit_shift);
 
 #ifdef BRCM_NOT_4_BTE
@@ -3604,7 +3604,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
       btm_send_link_key_notif(p_dev_rec);
     }
 
-    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHORIZE;
 
     /* remember flag before it is initialized */
     const bool is_pair_flags_we_started_dd =
@@ -3640,10 +3640,10 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
   /* authorization complete could have come after the connection is dropped */
   /* and that would set wrong flag that link has been authorized already    */
   p_dev_rec->sec_rec.sec_flags &=
-          ~((BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED | BTM_SEC_ROLE_SWITCHED) << bit_shift);
+          ~((BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED | BTM_SEC_ROLE_SWITCHED) << bit_shift);
 
   if (enc_mode != HCI_ENCRYPT_MODE_DISABLED) {
-    p_dev_rec->sec_rec.sec_flags |= ((BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED) << bit_shift);
+    p_dev_rec->sec_rec.sec_flags |= ((BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED) << bit_shift);
   }
 
   if (p_dev_rec->sec_rec.pin_code_length >= 16 ||
@@ -3770,7 +3770,7 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason, std::string comme
     }
   } else {
     p_dev_rec->hci_handle = HCI_INVALID_HANDLE;
-    p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED |
+    p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_IN_AUTHORIZED | BTM_SEC_ENCRYPTED |
                                       BTM_SEC_ROLE_SWITCHED | BTM_SEC_16_DIGIT_PIN_AUTHED);
 
     // Remove temporary key.
@@ -4363,15 +4363,15 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
     bool start_auth = false;
 
     // Check link status of BR/EDR
-    if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_AUTHENTICATED)) {
+    if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_IN_AUTHORIZED)) {
       if (p_dev_rec->IsLocallyInitiated()) {
         if (p_dev_rec->sec_rec.security_required &
-            (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT)) {
+            (BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_ENCRYPT)) {
           log::debug("Outgoing authentication/encryption Required");
           start_auth = true;
         }
       } else {
-        if (p_dev_rec->sec_rec.security_required & (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)) {
+        if (p_dev_rec->sec_rec.security_required & (BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_ENCRYPT)) {
           log::debug("Incoming authentication/encryption Required");
           start_auth = true;
         }
@@ -4382,7 +4382,7 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
       /*
        * We rely on BTM_SEC_16_DIGIT_PIN_AUTHED being set if MITM is in use,
        * as 16 DIGIT is only needed if MITM is not used. Unfortunately, the
-       * BTM_SEC_AUTHENTICATED is used for both MITM and non-MITM
+       * BTM_SEC_IN_AUTHORIZED is used for both MITM and non-MITM
        * authenticated connections, hence we cannot distinguish here.
        */
       if (!p_dev_rec->IsLocallyInitiated()) {
@@ -4412,7 +4412,7 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
            (!p_dev_rec->IsLocallyInitiated() &&
             (p_dev_rec->sec_rec.security_required & BTM_SEC_IN_MIN_16_DIGIT_PIN)))) {
         p_dev_rec->sec_rec.sec_flags &=
-                ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED | BTM_SEC_AUTHENTICATED);
+                ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LINK_KEY_AUTHED | BTM_SEC_IN_AUTHORIZED);
       }
 
       btm_sec_wait_and_start_authentication(p_dev_rec);
@@ -4453,7 +4453,7 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
   }
 
   /* All required  security procedures already established */
-  p_dev_rec->sec_rec.security_required &= ~(BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_IN_AUTHENTICATE |
+  p_dev_rec->sec_rec.security_required &= ~(BTM_SEC_OUT_AUTHORIZE | BTM_SEC_IN_AUTHORIZE |
                                             BTM_SEC_OUT_ENCRYPT | BTM_SEC_IN_ENCRYPT);
 
   log::verbose("Security Manager: access granted");
