@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d3046a2_3fc74c5c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-23T18:52:28Z",
+      "side": 1,
+      "message": "We should ensure that GATT service is started first before the other profile services. To do this, please update Config.java by moving the GATT profile to the top of the PROFILE_SERVICES_AND_FLAGS array (with an appropriate comment):\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/Config.java;l\u003d91;drc\u003dab191a8212855c0c408e120bf4e643925a3ce41a\n\nYou do not need to flag guard this, since the profile config for GATT is already ignored when the scan manager refactor flag is off.\n\nThat change should actually end up with the creation and start of GATT before the other profiles, since the state changes here are on done on a single thread.\n\nYou will still need the change here to set the internal mGattService member early.",
+      "range": {
+        "startLine": 1546,
+        "startChar": 9,
+        "endLine": 1546,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "309cf6ca_c4f9d95e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 453,
+                "startChar": 0,
+                "endLine": 453,
+                "endChar": 0
+              },
+              "replacement": "        if (state !\u003d BluetoothAdapter.STATE_ON \u0026\u0026 state !\u003d BluetoothAdapter.STATE_OFF) {\n            throw new IllegalArgumentException(BluetoothAdapter.nameForState(state));\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "72e4c47d1eaa7d5a6f76893e079095e6d2f9e7d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea66db95_33a56061",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 1
