@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c90648f0_9cbeb769",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T05:46:36Z",
+      "side": 1,
+      "message": "Despite new change, I still think this is not the correct way to do it.\n\nI uploaded aosp/3189024 for an example of flag override in test.",
+      "revId": "f776fed5dfb9be508f4bdf2988246567b9212a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
