@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563c38b8_96eed830",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T17:37:18Z",
+      "side": 1,
+      "message": "Why do we need to reset flag here ?",
+      "range": {
+        "startLine": 605,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 61
+      },
+      "revId": "63076f7a9ad8799d3f2454ba068f7e9962c12037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
