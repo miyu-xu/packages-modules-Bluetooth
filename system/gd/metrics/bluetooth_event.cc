@@ -67,8 +67,12 @@ void LogAclCompletionEvent(const hci::Address& address, ErrorCode reason,
   }
 }
 
-void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS status) {
+void LogRemoteNameRequestCompletion(const RawAddress& raw_address) {
+  hci::Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::REMOTE_NAME_REQUEST, State::SUCCESS);
+}
 
+void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS status) {
   hci::Address address = bluetooth::ToGdAddress(raw_address);
 
   switch (status) {
