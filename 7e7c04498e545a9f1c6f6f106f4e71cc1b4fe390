@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ad9aa0_eb8a6fdc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-23T18:49:51Z",
+      "side": 1,
+      "message": "Could you be more specific than `1` and `2` in test name. Specifically if order is important.",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 34
+      },
+      "revId": "7e7c04498e545a9f1c6f6f106f4e71cc1b4fe390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
