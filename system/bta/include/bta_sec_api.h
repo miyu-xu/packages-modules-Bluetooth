@@ -37,8 +37,8 @@
 #include "types/raw_address.h"
 
 /* Security Setting Mask */
-#define BTA_SEC_AUTHENTICATE \
-  (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_OUT_AUTHENTICATE)             /* Authentication required. */
+#define BTA_SEC_AUTHORIZE \
+  (BTM_SEC_IN_AUTHORIZE | BTM_SEC_OUT_AUTHORIZE)             /* Authentication required. */
 #define BTA_SEC_ENCRYPT (BTM_SEC_IN_ENCRYPT | BTM_SEC_OUT_ENCRYPT) /* Encryption required. */
 
 typedef uint16_t tBTA_SEC;
