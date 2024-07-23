@@ -52,6 +52,24 @@
       "parentUuid": "a7276df2_f2f4dc0e",
       "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6de4c64_5a070f03",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-23T13:11:28Z",
+      "side": 1,
+      "message": "Thinking twice, I\u0027d like to withdraw the `OnDeviceFound` idea. The API comes from the device discovery API and IIUC it only reports the LE devices that are bond-able.\n\n\u003e Probably either that doesn\u0027t happen or it does that wrong then. I saw some properties there that isn\u0027t propagated to the UI as well (notably the UUIDs).\n\nGotcha. I\u0027ll upload a new patch set later.",
+      "parentUuid": "77e498d1_d29a881a",
+      "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
