@@ -16,6 +16,24 @@
       "message": "so mode \"test\" will give use `reset_flags()` method ?",
       "revId": "f4368bc2bbcd46a947917bba9ffae1e5020df7fd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f22925b_24498855",
+        "filename": "flags/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T17:34:19Z",
+      "side": 1,
+      "message": "Yes, and setter method.\n\nSee build/make/tools/aconfig/aconfig/templates/cpp_source_file.template that contain the template use for generating the library",
+      "parentUuid": "e66f92cb_44ee6f11",
+      "revId": "f4368bc2bbcd46a947917bba9ffae1e5020df7fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
