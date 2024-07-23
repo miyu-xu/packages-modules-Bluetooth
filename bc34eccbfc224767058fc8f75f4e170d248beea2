@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "294e944e_9a06b66b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-23T22:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b044d2a6_64cac47a",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 41
+      },
+      "revId": "bc34eccbfc224767058fc8f75f4e170d248beea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2856ab5a_dc179e82",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-07-23T22:25:18Z",
       "side": 1,
       "message": "Can you use a more typed time interface ?\n```suggestion\n        private val TIMEOUT \u003d Duration.ofSeconds(10)\n```",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "bc34eccbfc224767058fc8f75f4e170d248beea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e612d3fd_b23eebc5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-23T22:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2856ab5a_dc179e82",
       "range": {
         "startLine": 130,
         "startChar": 0,
