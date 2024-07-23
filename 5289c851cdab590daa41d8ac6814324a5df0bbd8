@@ -34,6 +34,24 @@
       ],
       "revId": "5289c851cdab590daa41d8ac6814324a5df0bbd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db135343_78d0dbd8",
+        "filename": "system/gd/hci/inquiry_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-23T20:40:14Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "1ef59ab7_2681dbfb",
+      "revId": "5289c851cdab590daa41d8ac6814324a5df0bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
