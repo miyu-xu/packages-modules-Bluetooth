@@ -40,6 +40,30 @@
       ],
       "revId": "d6195529abfe227922713134a3882883f3197daa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48438f95_ed281d04",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T05:56:49Z",
+      "side": 1,
+      "message": "hmm, you might be right, however this is other problem.\nWith this CL we will match behavior when flag `com::android::bluetooth::flags::gatt_reconnect_on_bt_on_fix()` is disabled.",
+      "parentUuid": "1cb7c420_fa74d13b",
+      "range": {
+        "startLine": 1538,
+        "startChar": 6,
+        "endLine": 1538,
+        "endChar": 25
+      },
+      "revId": "d6195529abfe227922713134a3882883f3197daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
