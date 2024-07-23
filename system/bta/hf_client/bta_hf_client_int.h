@@ -26,7 +26,6 @@
 #include "osi/include/alarm.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_api_types.h"
-#include "stack/include/sdp_status.h"
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/raw_address.h"
 
@@ -123,7 +122,7 @@ typedef struct {
 /* data type for BTA_HF_CLIENT_DISC_RESULT_EVT */
 typedef struct {
   BT_HDR_RIGID hdr;
-  tSDP_STATUS status;
+  uint16_t status;
 } tBTA_HF_CLIENT_DISC_RESULT;
 
 /* data type for RFCOMM events */
