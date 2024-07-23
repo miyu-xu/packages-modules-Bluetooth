@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "017d5d01_64c8dc41",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T20:20:49Z",
+      "side": 1,
+      "message": "There is no `tL2C_SEC_COMP_NEG` as this is an enum not a struct",
+      "parentUuid": "28fa7617_24c27568",
+      "range": {
+        "startLine": 535,
+        "startChar": 12,
+        "endLine": 535,
+        "endChar": 26
+      },
+      "revId": "7f8942957ffbb6019a9108369e65ee1cb4589065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29a6ae17_f0949615",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-23T17:04:24Z",
       "side": 1,
       "message": "Can we just have a different event that we pass?  The rest of the tL2C_CONN_INFO isn\u0027t used when the event type is L2CEVT_SEC_COMP_NEG.\n\nstruct tL2C_SEC_COMP_NEG {\n  tBTM_STATUS status;\n};",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 645,
+        "endChar": 13
+      },
+      "revId": "7f8942957ffbb6019a9108369e65ee1cb4589065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88f3113_eff9b83e",
+        "filename": "system/stack/l2cap/l2c_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T20:20:49Z",
+      "side": 1,
+      "message": "Yes, but I don\u0027t want to change the logic.",
+      "parentUuid": "29a6ae17_f0949615",
       "range": {
         "startLine": 643,
         "startChar": 0,
