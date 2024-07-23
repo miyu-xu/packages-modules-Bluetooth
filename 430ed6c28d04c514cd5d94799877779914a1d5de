@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a093dd8_27f9a19a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T21:05:19Z",
+      "side": 1,
+      "message": "Moving the comment from internal:\n\nTo\n\u003e Making a sysprop persist is usually for system property that have an associated settings that can be toggle by the user and must be kept between reboot. If there is no associated UI and this is just a build time property, I don\u0027t think it is necessary to have persist.\n\nThe answer was:\n\u003e Making this sysprob persist is what we decided since the aconfig flag cannot be accessed in `/vendor\u0027 partition. We work around that by depending on the sysprop and accessing it through sysprop as API\n\nBut to my knowledge, being `persist` or not has no impact on the access authorization from the vendor partition. You can use the sysprop from vendor without having to change it to persist",
+      "range": {
+        "startLine": 92,
+        "startChar": 52,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "430ed6c28d04c514cd5d94799877779914a1d5de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
