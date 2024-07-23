@@ -462,6 +462,7 @@ cc_test {
         ":TestFakeOsi",
         ":TestMockBtaSys",
         ":TestMockBtif",
+        ":TestMockStackAcl",
         ":TestMockStackBtm",
         ":TestMockStackGap",
         ":TestMockStackL2cap",
