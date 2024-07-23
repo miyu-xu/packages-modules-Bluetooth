@@ -32,6 +32,7 @@
 #include "bta/le_audio/content_control_id_keeper.h"
 #include "bta/le_audio/le_audio_types.h"
 #include "bta/le_audio/mock_codec_manager.h"
+#include "gd/os/system_properties.h"
 #include "hci/controller_interface_mock.h"
 #include "stack/include/btm_iso_api.h"
 #include "test/common/mock_functions.h"
@@ -88,7 +89,9 @@ namespace server_configurable_flags {
 std::string GetServerConfigurableFlag(const std::string& experiment_category_name,
                                       const std::string& experiment_flag_name,
                                       const std::string& default_value) {
-  return "";
+  std::string prop_name =
+          "persist.device_config." + experiment_category_name + "." + experiment_flag_name;
+  return bluetooth::os::GetSystemProperty(prop_name).value_or(default_value);
 }
 }  // namespace server_configurable_flags
 
@@ -96,6 +99,9 @@ std::atomic<int> num_async_tasks;
 bluetooth::common::MessageLoopThread message_loop_thread("test message loop");
 bluetooth::common::MessageLoopThread* get_main_thread() { return &message_loop_thread; }
 void invoke_switch_buffer_size_cb(bool is_low_latency_buffer_size) {}
+
+static std::string kFlagPrefix(
+        "persist.device_config.aconfig_flags.bluetooth.com.android.bluetooth.flags.");
 
 bt_status_t do_in_main_thread(base::OnceClosure task) {
   // Wrap the task with task counter so we could later know if there are
@@ -179,15 +185,14 @@ BroadcastConfiguration GetBroadcastConfig(
 
 class MockAudioHalClientEndpoint;
 MockAudioHalClientEndpoint* mock_audio_source_;
+std::unique_ptr<LeAudioSourceAudioHalClient> owned_mock_audio_source_;
 bool is_audio_hal_acquired;
 void (*iso_active_callback)(bool);
 
 std::unique_ptr<LeAudioSourceAudioHalClient> LeAudioSourceAudioHalClient::AcquireBroadcast() {
-  if (mock_audio_source_) {
-    std::unique_ptr<LeAudioSourceAudioHalClient> ptr(
-            (LeAudioSourceAudioHalClient*)mock_audio_source_);
+  if (!is_audio_hal_acquired) {
     is_audio_hal_acquired = true;
-    return std::move(ptr);
+    return std::move(owned_mock_audio_source_);
   }
   return nullptr;
 }
@@ -345,8 +350,12 @@ protected:
 
   void ConfigAudioHalClientMock() {
     is_audio_hal_acquired = false;
-    mock_audio_source_ = new MockAudioHalClientEndpoint();
-    ON_CALL(*mock_audio_source_, Start).WillByDefault(Return(true));
+    owned_mock_audio_source_.reset(new testing::NiceMock<MockAudioHalClientEndpoint>());
+    mock_audio_source_ = (MockAudioHalClientEndpoint*)owned_mock_audio_source_.get();
+    ON_CALL(*mock_audio_source_, Start(_, _, _))
+            .WillByDefault([](const LeAudioCodecConfiguration& codec_configuration,
+                              LeAudioSourceAudioHalClient::Callbacks* audioReceiver,
+                              DsaModes dsa_modes) { return true; });
     ON_CALL(*mock_audio_source_, OnDestroyed).WillByDefault([]() {
       mock_audio_source_ = nullptr;
       is_audio_hal_acquired = false;
@@ -381,9 +390,12 @@ protected:
     ContentControlIdKeeper::GetInstance()->Stop();
 
     bluetooth::hci::testing::mock_controller_ = nullptr;
-    delete mock_audio_source_;
+    if (is_audio_hal_acquired) {
+      owned_mock_audio_source_.reset();
+      mock_audio_source_ = nullptr;
+      is_audio_hal_acquired = false;
+    }
     iso_active_callback = nullptr;
-    delete mock_audio_source_;
     iso_manager_->Stop();
     if (codec_manager_) {
       codec_manager_->Stop();
@@ -1165,9 +1177,9 @@ TEST_F(BroadcasterTest, VendorCodecConfig) {
                       subgroup.bis_configs.at(1).vendor_codec_specific_params->size()));
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, AudioActiveState,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, AudioActiveState) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   std::vector<uint8_t> updated_public_meta;
   PublicBroadcastAnnouncementData pb_announcement;
 
@@ -1245,9 +1257,9 @@ TEST_F_WITH_FLAGS(BroadcasterTest, AudioActiveState,
   ASSERT_EQ(updated_public_meta, public_metadata_audio_false);
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundFromTheBeginning,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundFromTheBeginning) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   // Timers created
   ASSERT_TRUE(big_terminate_timer_ != nullptr);
   ASSERT_TRUE(broadcast_stop_timer_ != nullptr);
@@ -1287,9 +1299,9 @@ TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundFrom
   broadcast_stop_timer_->cb(broadcast_stop_timer_->data);
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundAfterSuspend,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundAfterSuspend) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   // Timers created
   ASSERT_TRUE(big_terminate_timer_ != nullptr);
   ASSERT_TRUE(broadcast_stop_timer_ != nullptr);
@@ -1357,9 +1369,9 @@ TEST_F_WITH_FLAGS(BroadcasterTest, BigTerminationAndBroadcastStopWhenNoSoundAfte
   broadcast_stop_timer_->cb(broadcast_stop_timer_->data);
 }
 
-TEST_F_WITH_FLAGS(BroadcasterTest, BigCreationTerminationDependsOnAudioResumeSuspend,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
-                                                      leaudio_big_depends_on_audio_state))) {
+TEST_F(BroadcasterTest, BigCreationTerminationDependsOnAudioResumeSuspend) {
+  os::SetSystemProperty(kFlagPrefix + "leaudio_big_depends_on_audio_state", std::string("true"));
+
   // Timers created
   ASSERT_TRUE(big_terminate_timer_ != nullptr);
   ASSERT_TRUE(broadcast_stop_timer_ != nullptr);
