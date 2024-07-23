@@ -73,11 +73,11 @@ enum : uint16_t {
   /* Nothing required */
   BTM_SEC_NONE = 0x0000,
   /* Inbound call requires authentication */
-  BTM_SEC_IN_AUTHENTICATE = 0x0002,
+  BTM_SEC_IN_AUTHORIZE = 0x0002,
   /* Inbound call requires encryption */
   BTM_SEC_IN_ENCRYPT = 0x0004,
   /* Outbound call requires authentication */
-  BTM_SEC_OUT_AUTHENTICATE = 0x0010,
+  BTM_SEC_OUT_AUTHORIZE = 0x0010,
   /* Outbound call requires encryption */
   BTM_SEC_OUT_ENCRYPT = 0x0020,
   /* Secure Connections Only Mode */

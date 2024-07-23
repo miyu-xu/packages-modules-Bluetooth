@@ -176,7 +176,7 @@ tBNEP_RESULT BNEP_Connect(const RawAddress& p_rem_bda, const Uuid& src_uuid, con
     p_bcb->con_state = BNEP_STATE_CONN_START;
 
     cid = L2CA_ConnectReqWithSecurity(BT_PSM_BNEP, p_bcb->rem_bda,
-                                      BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
+                                      BTA_SEC_AUTHORIZE | BTA_SEC_ENCRYPT);
     if (cid != 0) {
       p_bcb->l2cap_cid = cid;
 
