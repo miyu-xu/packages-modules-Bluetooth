@@ -1,5 +1,6 @@
 /*
  * Copyright 2024 The Android Open Source Project
+=======
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +18,10 @@
 
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 
+#include "main/shim/helpers.h"
 #include "os/metrics.h"
+#include "stack/include/btm_status.h"
+#include "types/raw_address.h"
 
 namespace bluetooth {
 namespace metrics {
@@ -46,6 +50,8 @@ State MapErrorCodeToState(ErrorCode reason) {
       return State::KEY_MISSING;
     case ErrorCode::PAIRING_NOT_ALLOWED:
       return State::PAIRING_NOT_ALLOWED;
+    case ErrorCode::CONNECTION_REJECTED_LIMITED_RESOURCES:
+      return State::RESOURCES_EXCEEDED;
     default:
       return State::STATE_UNKNOWN;
   }
@@ -58,5 +64,29 @@ void LogAclCompletionEvent(const hci::Address& address, ErrorCode reason,
                                                               : EventType::ACL_CONNECTION_RESPONDER,
                                          MapErrorCodeToState(reason));
 }
+
+void LogRemoteNameRequestCompletion(const RawAddress& raw_address) {
+  hci::Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::REMOTE_NAME_REQUEST, State::SUCCESS);
+}
+
+void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS status) {
+  hci::Address address = bluetooth::ToGdAddress(raw_address);
+
+  switch (status) {
+    case BTM_SUCCESS:
+      bluetooth::os::LogMetricBluetoothEvent(address, EventType::ACL_CONNECTION_INITIATOR,
+                                             State::ALREADY_CONNECTED);
+      break;
+    case BTM_NO_RESOURCES:
+      bluetooth::os::LogMetricBluetoothEvent(
+              address, EventType::ACL_CONNECTION_INITIATOR,
+              MapErrorCodeToState(ErrorCode::CONNECTION_REJECTED_LIMITED_RESOURCES));
+      break;
+    default:
+      break;
+  }
+}
+
 }  // namespace metrics
 }  // namespace bluetooth
