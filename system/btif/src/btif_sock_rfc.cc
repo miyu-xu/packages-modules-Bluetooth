@@ -195,7 +195,7 @@ static rfc_slot_t* alloc_rfc_slot(const RawAddress* addr, const char* name, cons
     security |= server ? BTM_SEC_IN_ENCRYPT : BTM_SEC_OUT_ENCRYPT;
   }
   if (flags & BTSOCK_FLAG_AUTH) {
-    security |= server ? BTM_SEC_IN_AUTHENTICATE : BTM_SEC_OUT_AUTHENTICATE;
+    security |= server ? BTM_SEC_IN_AUTHORIZE : BTM_SEC_OUT_AUTHORIZE;
   }
   if (flags & BTSOCK_FLAG_AUTH_MITM) {
     security |= server ? BTM_SEC_IN_MITM : BTM_SEC_OUT_MITM;
