@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d538da35_cf324114",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 6444,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T17:39:57Z",
+      "side": 1,
+      "message": "Nit:\n\nYou can add a todo that reference the flag\n\n\n```suggestion\n  // TODO(b/352686917): Remove the test when removing flag\n```\n\nThis populate go/todo for easy tracking in addition",
+      "range": {
+        "startLine": 6444,
+        "startChar": 0,
+        "endLine": 6444,
+        "endChar": 62
+      },
+      "revId": "d23cb7c5a65e2d2e4093eae034d533388918c447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
