@@ -2169,7 +2169,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
             "name:{} classic_link:{}",
             tBTM_SEC_CB::btm_pair_state_descr(btm_sec_cb.pairing_state),
             reinterpret_cast<char const*>(p_bd_name), p_dev_rec->sec_rec.classic_link);
-
+    bluetooth::metrics::LogRemoteNameRequestCompletion(bd_addr);
     bd_name_copy(p_dev_rec->sec_bd_name, p_bd_name);
     p_dev_rec->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
     log::verbose("setting BTM_SEC_NAME_KNOWN sec_flags:0x{:x}", p_dev_rec->sec_rec.sec_flags);
