@@ -16,6 +16,24 @@
       "message": "\"libcutils\", to shared_libs in both Android.bp files, where you made modifications, should fix the linker issue.",
       "revId": "135974ee26afed6eafd47a81c270a79880832aef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7649c73_00a581aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T16:04:20Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "84d54098_16184777",
+      "revId": "135974ee26afed6eafd47a81c270a79880832aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
