@@ -262,23 +262,23 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     /* clear out the old setting, just in case it exists */
     {
       p_srec->security_flags &=
-              ~(BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_MITM);
+              ~(BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_MITM);
     }
 
     /* Parameter validation.  Originator should not set requirements for
      * incoming connections */
-    sec_level &= ~(BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_MITM |
+    sec_level &= ~(BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_MITM |
                    BTM_SEC_IN_MIN_16_DIGIT_PIN);
 
     if (security_mode == BTM_SEC_MODE_SP || security_mode == BTM_SEC_MODE_SC) {
-      if (sec_level & BTM_SEC_OUT_AUTHENTICATE) {
+      if (sec_level & BTM_SEC_OUT_AUTHORIZE) {
         sec_level |= BTM_SEC_OUT_MITM;
       }
     }
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
     if (sec_level & BTM_SEC_OUT_ENCRYPT) {
-      sec_level |= BTM_SEC_OUT_AUTHENTICATE;
+      sec_level |= BTM_SEC_OUT_AUTHORIZE;
     }
 
     /* outgoing connections usually set the security level right before
@@ -290,23 +290,23 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     strlcpy((char*)p_srec->term_service_name, p_name, BT_MAX_SERVICE_NAME_LEN + 1);
     /* clear out the old setting, just in case it exists */
     {
-      p_srec->security_flags &= ~(BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_MITM |
+      p_srec->security_flags &= ~(BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_AUTHORIZE | BTM_SEC_IN_MITM |
                                   BTM_SEC_IN_MIN_16_DIGIT_PIN);
     }
 
     /* Parameter validation.  Acceptor should not set requirements for outgoing
      * connections */
-    sec_level &= ~(BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_MITM);
+    sec_level &= ~(BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_AUTHORIZE | BTM_SEC_OUT_MITM);
 
     if (security_mode == BTM_SEC_MODE_SP || security_mode == BTM_SEC_MODE_SC) {
-      if (sec_level & BTM_SEC_IN_AUTHENTICATE) {
+      if (sec_level & BTM_SEC_IN_AUTHORIZE) {
         sec_level |= BTM_SEC_IN_MITM;
       }
     }
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
     if (sec_level & BTM_SEC_IN_ENCRYPT) {
-      sec_level |= BTM_SEC_IN_AUTHENTICATE;
+      sec_level |= BTM_SEC_IN_AUTHORIZE;
     }
   }
 
