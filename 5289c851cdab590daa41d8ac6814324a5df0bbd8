@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ef59ab7_2681dbfb",
+        "filename": "system/gd/hci/inquiry_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T20:10:22Z",
+      "side": 1,
+      "message": "2024",
+      "fixSuggestions": [
+        {
+          "fixId": "1a366a7c_c5ceac3f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/inquiry_interface.h",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright 2024 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5289c851cdab590daa41d8ac6814324a5df0bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
