@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b044d2a6_64cac47a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T22:25:18Z",
+      "side": 1,
+      "message": "assertTrue on removeBond ?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b2ca0144_8bb5c3a5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "                assertThat(remoteDevice.removeBond()).isTrue()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bc34eccbfc224767058fc8f75f4e170d248beea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2856ab5a_dc179e82",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T22:25:18Z",
+      "side": 1,
+      "message": "Can you use a more typed time interface ?\n```suggestion\n        private val TIMEOUT \u003d Duration.ofSeconds(10)\n```",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "bc34eccbfc224767058fc8f75f4e170d248beea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
