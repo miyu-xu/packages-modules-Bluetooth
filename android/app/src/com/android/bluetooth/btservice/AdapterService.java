@@ -1551,6 +1551,9 @@ public class AdapterService extends Service {
                 addProfile(profileService);
                 profileService.start();
                 profileService.setAvailable(true);
+                if (profileId == BluetoothProfile.GATT && Flags.scanManagerRefactor()) {
+                    mGattService = GattService.getGattService();
+                }
                 onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_ON);
             } else {
                 Log.e(
@@ -1997,9 +2000,6 @@ public class AdapterService extends Service {
         mLeAudioService = LeAudioService.getLeAudioService();
         mBassClientService = BassClientService.getBassClientService();
         mBatteryService = BatteryService.getBatteryService();
-        if (Flags.scanManagerRefactor()) {
-            mGattService = GattService.getGattService();
-        }
     }
 
     @BluetoothAdapter.RfcommListenerResult
