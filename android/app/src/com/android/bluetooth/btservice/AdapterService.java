@@ -3849,17 +3849,16 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public void stopBle(AttributionSource source) {
+        public void bleOnToOff(AttributionSource source) {
             AdapterService service = getService();
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "stopBle")
-                    || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "bleOnToOff")) {
                 return;
             }
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
 
-            service.stopBle();
+            service.bleOnToOff();
         }
 
         @Override
@@ -5784,7 +5783,7 @@ public class AdapterService extends Service {
     }
 
     @VisibleForTesting
-    void stopBle() {
+    void bleOnToOff() {
         mAdapterStateMachine.sendMessage(AdapterState.BLE_TURN_OFF);
     }
 

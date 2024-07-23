@@ -540,7 +540,7 @@ public class AdapterServiceTest {
 
         onToBleOn(looper, adapter, ctx, callback, onlyGatt, services);
 
-        adapter.stopBle();
+        adapter.bleOnToOff();
         TestUtils.syncHandler(looper, AdapterState.BLE_TURN_OFF);
         verifyStateChange(callback, STATE_BLE_ON, STATE_BLE_TURNING_OFF);
 
@@ -667,7 +667,7 @@ public class AdapterServiceTest {
                 false,
                 listOfMockServices());
 
-        mAdapterService.stopBle();
+        mAdapterService.bleOnToOff();
         syncHandler(AdapterState.BLE_TURN_OFF);
         verifyStateChange(STATE_BLE_ON, STATE_BLE_TURNING_OFF, CONTEXT_SWITCH_MS);
         assertThat(mAdapterService.getBluetoothGatt()).isNull();
@@ -732,7 +732,7 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getBluetoothScan()).isNotNull();
         assertThat(mAdapterService.getBluetoothGatt()).isNull();
 
-        mAdapterService.stopBle();
+        mAdapterService.bleOnToOff();
         syncHandler(AdapterState.BLE_TURN_OFF);
         verifyStateChange(callback, STATE_BLE_ON, STATE_BLE_TURNING_OFF);
 
@@ -925,7 +925,7 @@ public class AdapterServiceTest {
                 false,
                 listOfMockServices());
 
-        // Do not call stopBle().  The Adapter should turn itself off.
+        // Do not call bleOnToOff().  The Adapter should turn itself off.
         syncHandler(AdapterState.BLE_TURN_OFF);
         verifyStateChange(STATE_BLE_ON, STATE_BLE_TURNING_OFF, CONTEXT_SWITCH_MS);
 
