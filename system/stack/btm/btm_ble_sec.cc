@@ -729,7 +729,7 @@ tBTM_STATUS btm_ble_start_sec_check(const RawAddress& bd_addr, uint16_t psm, boo
     if ((p_serv_rec->security_flags & BTM_SEC_IN_ENCRYPT) && !is_encrypted) {
       log::error("BTM_NOT_ENCRYPTED. service security_flags=0x{:x}", p_serv_rec->security_flags);
       return BTM_NOT_ENCRYPTED;
-    } else if ((p_serv_rec->security_flags & BTM_SEC_IN_AUTHENTICATE) &&
+    } else if ((p_serv_rec->security_flags & BTM_SEC_IN_AUTHORIZE) &&
                !(is_link_key_authed || is_authenticated)) {
       log::error("BTM_NOT_AUTHENTICATED. service security_flags=0x{:x}",
                  p_serv_rec->security_flags);

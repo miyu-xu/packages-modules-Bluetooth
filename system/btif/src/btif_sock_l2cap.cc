@@ -307,7 +307,7 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
     security |= is_server ? BTM_SEC_IN_ENCRYPT : BTM_SEC_OUT_ENCRYPT;
   }
   if (flags & BTSOCK_FLAG_AUTH) {
-    security |= is_server ? BTM_SEC_IN_AUTHENTICATE : BTM_SEC_OUT_AUTHENTICATE;
+    security |= is_server ? BTM_SEC_IN_AUTHORIZE : BTM_SEC_OUT_AUTHORIZE;
   }
   if (flags & BTSOCK_FLAG_AUTH_MITM) {
     security |= is_server ? BTM_SEC_IN_MITM : BTM_SEC_OUT_MITM;

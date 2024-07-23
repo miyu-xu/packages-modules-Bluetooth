@@ -284,7 +284,7 @@ static void hidd_l2cif_config_cfm(uint16_t cid, uint16_t initiator, tL2CAP_CFG_I
     if (p_hcon->conn_flags & HID_CONN_FLAGS_IS_ORIG) {
       p_hcon->disc_reason = HID_L2CAP_CONN_FAIL;
       if ((p_hcon->intr_cid = L2CA_ConnectReqWithSecurity(
-                   HID_PSM_INTERRUPT, hd_cb.device.addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT)) ==
+                   HID_PSM_INTERRUPT, hd_cb.device.addr, BTA_SEC_AUTHORIZE | BTA_SEC_ENCRYPT)) ==
           0) {
         hidd_conn_disconnect();
         p_hcon->conn_state = HID_CONN_STATE_UNUSED;
@@ -565,7 +565,7 @@ tHID_STATUS hidd_conn_reg(void) {
   hd_cb.l2cap_intr_cfg.mtu = HID_DEV_MTU_SIZE;
 
   if (!L2CA_RegisterWithSecurity(HID_PSM_CONTROL, dev_reg_info, false /* enable_snoop */, nullptr,
-                                 HID_DEV_MTU_SIZE, 0, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT)) {
+                                 HID_DEV_MTU_SIZE, 0, BTA_SEC_AUTHORIZE | BTA_SEC_ENCRYPT)) {
     log::error("HID Control (device) registration failed");
     log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::HIDD_ERR_L2CAP_FAILED_CONTROL,
                         1);
@@ -573,7 +573,7 @@ tHID_STATUS hidd_conn_reg(void) {
   }
 
   if (!L2CA_RegisterWithSecurity(HID_PSM_INTERRUPT, dev_reg_info, false /* enable_snoop */, nullptr,
-                                 HID_DEV_MTU_SIZE, 0, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT)) {
+                                 HID_DEV_MTU_SIZE, 0, BTA_SEC_AUTHORIZE | BTA_SEC_ENCRYPT)) {
     L2CA_Deregister(HID_PSM_CONTROL);
     log::error("HID Interrupt (device) registration failed");
     log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::HIDD_ERR_L2CAP_FAILED_INTERRUPT,
@@ -635,7 +635,7 @@ tHID_STATUS hidd_conn_initiate(void) {
 
   /* Check if L2CAP started the connection process */
   if ((p_dev->conn.ctrl_cid = L2CA_ConnectReqWithSecurity(
-               HID_PSM_CONTROL, p_dev->addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT)) == 0) {
+               HID_PSM_CONTROL, p_dev->addr, BTA_SEC_AUTHORIZE | BTA_SEC_ENCRYPT)) == 0) {
     log::warn("could not start L2CAP connection");
     hd_cb.callback(hd_cb.device.addr, HID_DHOST_EVT_CLOSE, HID_ERR_L2CAP_FAILED, NULL);
     log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::HIDD_ERR_L2CAP_FAILED_INITIATE,

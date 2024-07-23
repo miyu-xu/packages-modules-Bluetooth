@@ -63,7 +63,7 @@ void AVCT_Register() {
 
   /* register PSM with L2CAP */
   if (!L2CA_RegisterWithSecurity(AVCT_PSM, avct_l2c_appl, true /* enable_snoop */, nullptr,
-                                 kAvrcMtu, 0, BTA_SEC_AUTHENTICATE)) {
+                                 kAvrcMtu, 0, BTA_SEC_AUTHORIZE)) {
     log::error("Unable to register with L2CAP AVCT profile psm:AVCT_PSM[0x0017]");
   }
 
@@ -72,7 +72,7 @@ void AVCT_Register() {
   ertm_info.preferred_mode = L2CAP_FCR_ERTM_MODE;
 
   if (!L2CA_RegisterWithSecurity(AVCT_BR_PSM, avct_l2c_br_appl, true /*enable_snoop*/, &ertm_info,
-                                 kAvrcBrMtu, AVCT_MIN_BROWSE_MTU, BTA_SEC_AUTHENTICATE)) {
+                                 kAvrcBrMtu, AVCT_MIN_BROWSE_MTU, BTA_SEC_AUTHORIZE)) {
     log::error(
             "Unable to register with L2CAP AVCT_BR profile "
             "psm:AVCT_BR_PSM[0x001b]");

@@ -46,7 +46,7 @@ std::string nap_service_name;  /* Service name for NAP role */
 
 #ifndef PAN_SECURITY
 #define PAN_SECURITY \
-  (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_IN_ENCRYPT | BTM_SEC_OUT_ENCRYPT)
+  (BTM_SEC_IN_AUTHORIZE | BTM_SEC_OUT_AUTHORIZE | BTM_SEC_IN_ENCRYPT | BTM_SEC_OUT_ENCRYPT)
 #endif
 
 /*******************************************************************************
