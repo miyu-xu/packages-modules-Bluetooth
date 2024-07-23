@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bb8c826_f2494061",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T22:56:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "126ff45c_0ee51e03",
+      "range": {
+        "startLine": 1840,
+        "startChar": 0,
+        "endLine": 1845,
+        "endChar": 1
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a6d80db_3c0fd06a",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6da96487_532964f5",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T22:56:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a6d80db_3c0fd06a",
+      "range": {
+        "startLine": 1863,
+        "startChar": 6,
+        "endLine": 1863,
+        "endChar": 62
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90bb527e_98ec4f5d",
@@ -108,6 +156,30 @@
       "writtenOn": "2024-07-23T22:13:54Z",
       "side": 1,
       "message": "```suggestion\n    uint16_t clock_offset \u003d get_clock_offset_from_storage(remote_bda);\n```",
+      "range": {
+        "startLine": 1877,
+        "startChar": 0,
+        "endLine": 1878,
+        "endChar": 60
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d794ce76_eb8d7d7e",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T22:56:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90bb527e_98ec4f5d",
       "range": {
         "startLine": 1877,
         "startChar": 0,
