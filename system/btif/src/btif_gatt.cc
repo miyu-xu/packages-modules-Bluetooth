@@ -33,7 +33,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "bta_gatt_api.h"
+#include "bta/include/bta_gatt_api.h"
+#include "btif/include/btif_common.h"
+#include "com_android_bluetooth_flags.h"
 #include "main/shim/distance_measurement_manager.h"
 #include "main/shim/le_advertising_manager.h"
 
@@ -64,8 +66,12 @@ static bt_status_t btif_gatt_init(const btgatt_callbacks_t* callbacks) {
  *
  ******************************************************************************/
 static void btif_gatt_cleanup(void) {
-  if (bt_gatt_callbacks) {
-    bt_gatt_callbacks = NULL;
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce([]() { bt_gatt_callbacks = NULL; }));
+  } else {
+    if (bt_gatt_callbacks) {
+      bt_gatt_callbacks = NULL;
+    }
   }
 
   BTA_GATTC_Disable();
