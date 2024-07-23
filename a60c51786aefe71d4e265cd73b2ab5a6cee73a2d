@@ -16,6 +16,47 @@
       "message": "LGTM",
       "revId": "a60c51786aefe71d4e265cd73b2ab5a6cee73a2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca2eb33_654ed56b",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-23T09:31:18Z",
+      "side": 1,
+      "message": "Virtual Unplug event will not be generated for LE transport. refer bug: b/354869685",
+      "range": {
+        "startLine": 520,
+        "startChar": 17,
+        "endLine": 520,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a1d1b41b_f7116833",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 523,
+                "startChar": 0,
+                "endLine": 526,
+                "endChar": 0
+              },
+              "replacement": "            if (getTransport(device) \u003d\u003d BluetoothDevice.TRANSPORT_LE) {\n                updateConnectionState(\n                        device, getTransport(device), BluetoothProfile.STATE_DISCONNECTED);\n                mInputDevices.remove(device);\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a60c51786aefe71d4e265cd73b2ab5a6cee73a2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
