@@ -22,6 +22,30 @@
       },
       "revId": "06c184de19a83bc4047d71d32710f7d4cb45cfee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7138761_c3a660e4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-23T23:07:27Z",
+      "side": 1,
+      "message": "That\u0027s really nice",
+      "parentUuid": "de90e0a7_22a0dc1c",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "06c184de19a83bc4047d71d32710f7d4cb45cfee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
