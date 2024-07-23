@@ -46,6 +46,30 @@
       },
       "revId": "7e7c04498e545a9f1c6f6f106f4e71cc1b4fe390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e196e123_a196f571",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-23T22:50:47Z",
+      "side": 1,
+      "message": "Order of operations, this is what I meant by \"order is important\". For example test name such as:\n\n```\nconnectTwoInsecureClientsSimultaneously\nconnectTwoInsecureClientsSequentially\n```",
+      "parentUuid": "baf79da4_db352805",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 34
+      },
+      "revId": "7e7c04498e545a9f1c6f6f106f4e71cc1b4fe390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
