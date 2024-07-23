@@ -441,6 +441,7 @@ cc_test {
         ":TestMockBtaRfcMetrics",
         ":TestMockBtaSys",
         ":TestMockBtif",
+        ":TestMockStackAcl",
         ":TestMockStackBtm",
         ":TestMockStackGap",
         ":TestMockStackL2cap",
