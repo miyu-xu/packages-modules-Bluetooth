@@ -70,6 +70,30 @@
       },
       "revId": "de9ee01825cdef8d8e8d73f5a55d547a1acf4374",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "802d441a_6ecfc545",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-23T20:31:21Z",
+      "side": 1,
+      "message": "Waiting for good test to verify.",
+      "parentUuid": "3d14b38e_e21fcfbe",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 14
+      },
+      "revId": "de9ee01825cdef8d8e8d73f5a55d547a1acf4374",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
