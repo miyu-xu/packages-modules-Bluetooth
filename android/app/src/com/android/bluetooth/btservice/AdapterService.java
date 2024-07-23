@@ -3835,17 +3835,16 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public void startBrEdr(AttributionSource source) {
+        public void bleOnToOn(AttributionSource source) {
             AdapterService service = getService();
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "startBrEdr")
-                    || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "bleOnToOn")) {
                 return;
             }
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
 
-            service.startBrEdr();
+            service.bleOnToOn();
         }
 
         @Override
@@ -5778,7 +5777,7 @@ public class AdapterService extends Service {
     }
 
     @VisibleForTesting
-    void startBrEdr() {
+    void bleOnToOn() {
         mAdapterStateMachine.sendMessage(AdapterState.USER_TURN_ON);
     }
 
