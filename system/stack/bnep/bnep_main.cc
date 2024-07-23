@@ -90,7 +90,7 @@ tBNEP_RESULT bnep_register_with_l2cap(void) {
   /* Now, register with L2CAP */
   if (!L2CA_RegisterWithSecurity(BT_PSM_BNEP, bnep_cb.reg_info, false /* enable_snoop */, nullptr,
                                  BNEP_MTU_SIZE, BNEP_MTU_SIZE,
-                                 BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT)) {
+                                 BTA_SEC_AUTHORIZE | BTA_SEC_ENCRYPT)) {
     log::error("BNEP - Registration failed");
     return BNEP_SECURITY_FAIL;
   }
