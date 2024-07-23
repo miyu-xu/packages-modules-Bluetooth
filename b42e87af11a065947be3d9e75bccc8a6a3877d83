@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "126ff45c_0ee51e03",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-23T22:36:40Z",
+      "side": 1,
+      "message": "One line above that:\n\nPrefer using return values over output parameters: they improve readability, and often provide the same or better performance",
+      "parentUuid": "ccfa5c14_48fe85d0",
+      "range": {
+        "startLine": 1840,
+        "startChar": 0,
+        "endLine": 1845,
+        "endChar": 1
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a6d80db_3c0fd06a",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 1
