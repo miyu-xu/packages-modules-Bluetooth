@@ -16,6 +16,24 @@
       "message": "Should we call `on_device_properties_changed` here too?",
       "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7276df2_f2f4dc0e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-07-23T12:39:11Z",
+      "side": 1,
+      "message": "I think no because the clients would naturally sync all properties when a new device is found?\n\nBut this reminds me that we probably want to fire a OnDeviceFound in `BleDiscoveryScannerResult` if the device doesn\u0027t exist. WDYT?",
+      "parentUuid": "527e1204_9357e87e",
+      "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
