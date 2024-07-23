@@ -34,6 +34,24 @@
       "parentUuid": "c90648f0_9cbeb769",
       "revId": "f776fed5dfb9be508f4bdf2988246567b9212a31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c95504_39570db8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T16:02:06Z",
+      "side": 1,
+      "message": "now it is using bluetooth_flags_c_lib_for_test. Kudos to you William!",
+      "parentUuid": "e5430b4a_944dba1f",
+      "revId": "f776fed5dfb9be508f4bdf2988246567b9212a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
