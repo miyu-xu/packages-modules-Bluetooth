@@ -435,7 +435,7 @@ public class AdapterServiceTest {
             IBluetoothCallback callback,
             boolean onlyGatt,
             List<ProfileService> services) {
-        adapter.disable();
+        adapter.onToBleOn();
         TestUtils.syncHandler(looper, AdapterState.USER_TURN_OFF);
         verifyStateChange(callback, STATE_ON, STATE_TURNING_OFF);
 
