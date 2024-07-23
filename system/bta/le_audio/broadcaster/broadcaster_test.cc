@@ -392,8 +392,12 @@ protected:
     ContentControlIdKeeper::GetInstance()->Stop();
 
     bluetooth::hci::testing::mock_controller_ = nullptr;
-    delete mock_audio_source_;
     iso_active_callback = nullptr;
+    // Deallocate only if OnDestroyed was not called
+    if (mock_audio_source_) {
+      delete mock_audio_source_;
+      mock_audio_source_ = nullptr;
+    }
     iso_manager_->Stop();
     if (codec_manager_) {
       codec_manager_->Stop();

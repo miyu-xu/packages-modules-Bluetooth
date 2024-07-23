@@ -986,6 +986,11 @@ private:
 
   static class BroadcastStateMachineCallbacks : public IBroadcastStateMachineCallbacks {
     void OnStateMachineCreateStatus(uint32_t broadcast_id, bool initialized) override {
+      if (!instance) {
+        log::warn("Service instance already destroyed.");
+        return;
+      }
+
       auto pending_broadcast = std::find_if(
               instance->pending_broadcasts_.begin(), instance->pending_broadcasts_.end(),
               [broadcast_id](auto& sm) { return sm->GetBroadcastId() == broadcast_id; });
@@ -1031,6 +1036,10 @@ private:
     void OnStateMachineEvent(uint32_t broadcast_id, BroadcastStateMachine::State state,
                              const void* data) override {
       log::info("broadcast_id={} state={}", broadcast_id, ToString(state));
+      if (!instance) {
+        log::warn("Service instance already destroyed.");
+        return;
+      }
 
       switch (state) {
         case BroadcastStateMachine::State::STOPPED:
@@ -1090,6 +1099,10 @@ private:
     }
 
     void OnBigCreated(const std::vector<uint16_t>& conn_handle) {
+      if (!instance) {
+        log::warn("Service instance already destroyed.");
+        return;
+      }
       CodecManager::GetInstance()->UpdateBroadcastConnHandle(
               conn_handle,
               std::bind(&LeAudioSourceAudioHalClient::UpdateBroadcastAudioConfigToHal,
@@ -1097,6 +1110,10 @@ private:
     }
 
     void OnAnnouncementUpdated(uint32_t broadcast_id) {
+      if (!instance) {
+        log::warn("Service instance already destroyed.");
+        return;
+      }
       instance->GetBroadcastMetadata(broadcast_id);
     }
   } state_machine_callbacks_;
