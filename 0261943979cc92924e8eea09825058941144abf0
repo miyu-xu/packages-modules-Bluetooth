@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c994f05_1c2ce823",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T14:48:23Z",
+      "side": 1,
+      "message": "maybe  \"libcutils\", is missing here and other places?",
+      "revId": "0261943979cc92924e8eea09825058941144abf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
