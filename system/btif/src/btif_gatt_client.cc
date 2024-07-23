@@ -44,6 +44,7 @@
 #include "btif_config.h"
 #include "btif_gatt.h"
 #include "btif_gatt_util.h"
+#include "com_android_bluetooth_flags.h"
 #include "gatt_api.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bte_appl.h"
@@ -105,6 +106,16 @@ static btif_test_cb_t test_cb;
     } else {                                                                   \
       ASSERTC(0, "Callback is NULL", 0);                                       \
     }                                                                          \
+  } while (0)
+
+#define CLI_CBACK(P_CBACK, ...)                                    \
+  do {                                                             \
+    if (bt_gatt_callbacks && bt_gatt_callbacks->client->P_CBACK) { \
+      log::verbose("HAL bt_gatt_callbacks->client->{}", #P_CBACK); \
+      bt_gatt_callbacks->client->P_CBACK(__VA_ARGS__);             \
+    } else {                                                       \
+      ASSERTC(0, "Callback is NULL", 0);                           \
+    }                                                              \
   } while (0)
 
 #define CHECK_BTGATT_INIT()                \
@@ -240,8 +251,17 @@ void btm_read_rssi_cb(void* p_void) {
     return;
   }
 
-  CLI_CBACK_IN_JNI(read_remote_rssi_cb, rssi_request_client_if, p_result->rem_bda, p_result->rssi,
-                   p_result->status);
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce(
+            [](uint8_t rssi_request_client_if, tBTM_RSSI_RESULT* p_result) {
+              CLI_CBACK(read_remote_rssi_cb, rssi_request_client_if, p_result->rem_bda,
+                        p_result->rssi, p_result->status);
+            },
+            rssi_request_client_if, p_result));
+  } else {
+    CLI_CBACK_IN_JNI(read_remote_rssi_cb, rssi_request_client_if, p_result->rem_bda, p_result->rssi,
+                     p_result->status);
+  }
 }
 
 /*******************************************************************************
@@ -417,7 +437,15 @@ void read_char_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16
     memcpy(params.value.value, value, len);
   }
 
-  CLI_CBACK_IN_JNI(read_characteristic_cb, conn_id, status, params);
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce(
+            [](uint16_t conn_id, tGATT_STATUS status, const btgatt_read_params_t& params) {
+              CLI_CBACK(read_characteristic_cb, conn_id, status, params);
+            },
+            conn_id, status, params));
+  } else {
+    CLI_CBACK_IN_JNI(read_characteristic_cb, conn_id, status, params);
+  }
 }
 
 static bt_status_t btif_gattc_read_char(int conn_id, uint16_t handle, int auth_req) {
@@ -439,7 +467,15 @@ void read_using_char_uuid_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t han
     memcpy(params.value.value, value, len);
   }
 
-  CLI_CBACK_IN_JNI(read_characteristic_cb, conn_id, status, params);
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce(
+            [](uint16_t conn_id, tGATT_STATUS status, const btgatt_read_params_t& params) {
+              CLI_CBACK(read_characteristic_cb, conn_id, status, params);
+            },
+            conn_id, status, params));
+  } else {
+    CLI_CBACK_IN_JNI(read_characteristic_cb, conn_id, status, params);
+  }
 }
 
 static bt_status_t btif_gattc_read_using_char_uuid(int conn_id, const Uuid& uuid, uint16_t s_handle,
@@ -460,8 +496,15 @@ void read_desc_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16
   if (len > 0) {
     memcpy(params.value.value, value, len);
   }
-
-  CLI_CBACK_IN_JNI(read_descriptor_cb, conn_id, status, params);
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce(
+            [](uint16_t conn_id, tGATT_STATUS status, const btgatt_read_params_t& params) {
+              CLI_CBACK_IN_JNI(read_descriptor_cb, conn_id, status, params);
+            },
+            conn_id, status, params));
+  } else {
+    CLI_CBACK_IN_JNI(read_descriptor_cb, conn_id, status, params);
+  }
 }
 
 static bt_status_t btif_gattc_read_char_descr(int conn_id, uint16_t handle, int auth_req) {
@@ -473,15 +516,25 @@ static bt_status_t btif_gattc_read_char_descr(int conn_id, uint16_t handle, int 
 void write_char_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
                    const uint8_t* value, void* /* data */) {
   std::vector<uint8_t> val(value, value + len);
-  CLI_CBACK_WRAP_IN_JNI(
-          write_characteristic_cb,
-          base::BindOnce(
-                  [](write_characteristic_callback cb, uint16_t conn_id, tGATT_STATUS status,
-                     uint16_t handle, std::vector<uint8_t> moved_value) {
-                    cb(conn_id, status, handle, moved_value.size(), moved_value.data());
-                  },
-                  bt_gatt_callbacks->client->write_characteristic_cb, conn_id, status, handle,
-                  std::move(val)));
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce(
+            [](uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
+               const std::vector<uint8_t>& moved_value) {
+              CLI_CBACK(write_characteristic_cb, conn_id, status, handle, moved_value.size(),
+                        moved_value.data());
+            },
+            conn_id, status, handle, std::move(val)));
+  } else {
+    CLI_CBACK_WRAP_IN_JNI(
+            write_characteristic_cb,
+            base::BindOnce(
+                    [](write_characteristic_callback cb, uint16_t conn_id, tGATT_STATUS status,
+                       uint16_t handle, std::vector<uint8_t> moved_value) {
+                      cb(conn_id, status, handle, moved_value.size(), moved_value.data());
+                    },
+                    bt_gatt_callbacks->client->write_characteristic_cb, conn_id, status, handle,
+                    std::move(val)));
+  }
 }
 
 static bt_status_t btif_gattc_write_char(int conn_id, uint16_t handle, int write_type, int auth_req,
@@ -502,15 +555,25 @@ void write_descr_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint
                     const uint8_t* value, void* /* data */) {
   std::vector<uint8_t> val(value, value + len);
 
-  CLI_CBACK_WRAP_IN_JNI(
-          write_descriptor_cb,
-          base::BindOnce(
-                  [](write_descriptor_callback cb, uint16_t conn_id, tGATT_STATUS status,
-                     uint16_t handle, std::vector<uint8_t> moved_value) {
-                    cb(conn_id, status, handle, moved_value.size(), moved_value.data());
-                  },
-                  bt_gatt_callbacks->client->write_descriptor_cb, conn_id, status, handle,
-                  std::move(val)));
+  if (com::android::bluetooth::flags::gatt_cleanup_jni_thread()) {
+    do_in_jni_thread(base::BindOnce(
+            [](uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
+               const std::vector<uint8_t>& moved_value) {
+              CLI_CBACK(write_descriptor_cb, conn_id, status, handle, moved_value.size(),
+                        moved_value.data());
+            },
+            conn_id, status, handle, std::move(val)));
+  } else {
+    CLI_CBACK_WRAP_IN_JNI(
+            write_descriptor_cb,
+            base::BindOnce(
+                    [](write_descriptor_callback cb, uint16_t conn_id, tGATT_STATUS status,
+                       uint16_t handle, std::vector<uint8_t> moved_value) {
+                      cb(conn_id, status, handle, moved_value.size(), moved_value.data());
+                    },
+                    bt_gatt_callbacks->client->write_descriptor_cb, conn_id, status, handle,
+                    std::move(val)));
+  }
 }
 
 static bt_status_t btif_gattc_write_char_descr(int conn_id, uint16_t handle, int auth_req,
