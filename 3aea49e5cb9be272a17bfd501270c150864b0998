@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527e1204_9357e87e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-23T11:25:46Z",
+      "side": 1,
+      "message": "Should we call `on_device_properties_changed` here too?",
+      "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
