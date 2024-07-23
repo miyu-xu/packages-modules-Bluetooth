@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e66f92cb_44ee6f11",
+        "filename": "flags/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T14:50:28Z",
+      "side": 1,
+      "message": "so mode \"test\" will give use `reset_flags()` method ?",
+      "revId": "f4368bc2bbcd46a947917bba9ffae1e5020df7fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
