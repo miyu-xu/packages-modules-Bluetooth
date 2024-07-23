@@ -22,6 +22,30 @@
       },
       "revId": "3a09546524ea1988383eb281b0b1573a5865d7ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd3d5dae_c32abc8a",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2196,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T22:01:30Z",
+      "side": 1,
+      "message": "Any non listed field is zero-initialized with this syntax.\nBut I wanted to do `link_spec \u003d {` for consistency",
+      "parentUuid": "2cd79073_c6b68d16",
+      "range": {
+        "startLine": 2196,
+        "startChar": 2,
+        "endLine": 2196,
+        "endChar": 14
+      },
+      "revId": "3a09546524ea1988383eb281b0b1573a5865d7ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
