@@ -842,6 +842,7 @@ cc_test {
         "libflatbuffers-cpp",
         "libgmock",
         "libosi",
+        "server_configurable_flags",
     ],
     sanitize: {
         cfi: false,
@@ -1022,7 +1023,6 @@ cc_test {
         "libcrypto",
         "libhidlbase",
         "liblog",
-        "server_configurable_flags",
     ],
     static_libs: [
         "libbluetooth-types",
@@ -1042,6 +1042,7 @@ cc_test {
         "libgtest",
         "liblc3",
         "libosi",
+        "server_configurable_flags",
     ],
     data: [
         ":audio_set_configurations_bfbs",
@@ -1210,6 +1211,7 @@ cc_test {
         "libgtest",
         "liblc3",
         "libosi",
+        "server_configurable_flags",
     ],
     sanitize: {
         cfi: true,
