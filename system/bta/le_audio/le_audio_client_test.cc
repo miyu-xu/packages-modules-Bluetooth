@@ -2720,6 +2720,7 @@ protected:
   }
 
   void TearDown() override {
+    com::android::bluetooth::flags::provider_->reset_flags();
     MockCodecInterface::ClearMockInstanceHookList();
 
     // Clear the default actions before the parent class teardown is called
@@ -9892,9 +9893,8 @@ TEST_F(UnicastTestHandoverMode, SetAllowedContextMask) {
   Mock::VerifyAndClearExpectations(mock_le_audio_source_hal_client_);
 }
 
-TEST_F_WITH_FLAGS(UnicastTest, NoContextvalidateStreamingRequest,
-                  REQUIRES_FLAGS_ENABLED(
-                          ACONFIG_FLAG(TEST_BT, leaudio_no_context_validate_streaming_request))) {
+TEST_F(UnicastTest, NoContextvalidateStreamingRequest) {
+  com::android::bluetooth::flags::provider_->leaudio_no_context_validate_streaming_request(true);
   const RawAddress test_address0 = GetTestAddress(0);
   int group_id = bluetooth::groups::kGroupUnknown;
 
