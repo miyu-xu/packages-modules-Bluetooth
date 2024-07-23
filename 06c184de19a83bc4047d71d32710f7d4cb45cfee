@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de90e0a7_22a0dc1c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-23T22:34:05Z",
+      "side": 1,
+      "message": "What about:\n```suggestion\n        assertThat(mFutureIntent.get())\n            .containsExactly​(\n                BluetoothUuid.HFP,\n                BluetoothUuid.A2DP_SOURCE,\n                BluetoothUuid.A2DP_SINK,\n                BluetoothUuid.AVRCP,\n            )\n```\n\nI believe it will do everything you want and display a readable message in case of error too",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "06c184de19a83bc4047d71d32710f7d4cb45cfee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
