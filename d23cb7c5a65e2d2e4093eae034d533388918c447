@@ -22,6 +22,30 @@
       },
       "revId": "d23cb7c5a65e2d2e4093eae034d533388918c447",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ee9247_f179d0bd",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 6444,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T19:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d538da35_cf324114",
+      "range": {
+        "startLine": 6444,
+        "startChar": 0,
+        "endLine": 6444,
+        "endChar": 62
+      },
+      "revId": "d23cb7c5a65e2d2e4093eae034d533388918c447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
