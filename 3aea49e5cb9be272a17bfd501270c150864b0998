@@ -34,6 +34,24 @@
       "parentUuid": "527e1204_9357e87e",
       "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77e498d1_d29a881a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-23T12:51:20Z",
+      "side": 1,
+      "message": "\u003e the clients would naturally sync all properties when a new device is found\n\nProbably either that doesn\u0027t happen or it does that wrong then. I saw some properties there that isn\u0027t propagated to the UI as well (notably the UUIDs).\n\n\u003e we probably want to fire a OnDeviceFound in BleDiscoveryScannerResult if the device doesn\u0027t exist\n\nAgree, but then we might also be better checking that we don\u0027t re-report the device in the `device_found` callback, because these callbacks seems possible to be called in any order.\nAnd also sometimes it\u0027s called only in either one of them... I don\u0027t really get what\u0027s going on.",
+      "parentUuid": "a7276df2_f2f4dc0e",
+      "revId": "3aea49e5cb9be272a17bfd501270c150864b0998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
