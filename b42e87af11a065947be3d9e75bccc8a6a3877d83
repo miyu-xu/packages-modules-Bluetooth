@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6d9f13_078b4b09",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-23T22:13:54Z",
+      "side": 1,
+      "message": "Can we return this parameter instead? I don\u0027t like using non-const references for return values.\n```suggestion\nstatic uint16_t get_clock_offset_from_storage(const RawAddress\u0026 remote_bda) {\n  int clock_offset_in_cfg \u003d 0;\n  if (btif_get_device_clockoffset(remote_bda, \u0026clock_offset_in_cfg)) {\n    return clock_offset_in_cfg;\n  }\n  return 0;\n}\n```",
+      "range": {
+        "startLine": 1840,
+        "startChar": 0,
+        "endLine": 1845,
+        "endChar": 1
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a6d80db_3c0fd06a",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-23T22:13:54Z",
+      "side": 1,
+      "message": "```suggestion\n      clock_offset \u003d get_clock_offset_from_storage(remote_bda);\n```",
+      "range": {
+        "startLine": 1863,
+        "startChar": 6,
+        "endLine": 1863,
+        "endChar": 62
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90bb527e_98ec4f5d",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-23T22:13:54Z",
+      "side": 1,
+      "message": "```suggestion\n    uint16_t clock_offset \u003d get_clock_offset_from_storage(remote_bda);\n```",
+      "range": {
+        "startLine": 1877,
+        "startChar": 0,
+        "endLine": 1878,
+        "endChar": 60
+      },
+      "revId": "b42e87af11a065947be3d9e75bccc8a6a3877d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
