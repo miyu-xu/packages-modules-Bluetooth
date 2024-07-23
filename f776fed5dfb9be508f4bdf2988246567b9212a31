@@ -16,6 +16,24 @@
       "message": "Despite new change, I still think this is not the correct way to do it.\n\nI uploaded aosp/3189024 for an example of flag override in test.",
       "revId": "f776fed5dfb9be508f4bdf2988246567b9212a31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5430b4a_944dba1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-23T15:23:08Z",
+      "side": 1,
+      "message": "yes, this is something I was looking for when I asked the other day.\nI see that creating `flag_provider` with  \"mode\u003dtest\" will do work for us, right? Let me check it out.",
+      "parentUuid": "c90648f0_9cbeb769",
+      "revId": "f776fed5dfb9be508f4bdf2988246567b9212a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
