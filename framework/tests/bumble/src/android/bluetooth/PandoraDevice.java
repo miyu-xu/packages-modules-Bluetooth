@@ -35,6 +35,7 @@ import pandora.HostGrpc;
 import pandora.HostProto;
 import pandora.RFCOMMGrpc;
 import pandora.SecurityGrpc;
+import pandora.l2cap.L2CAPGrpc;
 
 import java.util.concurrent.TimeUnit;
 
@@ -151,5 +152,15 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora RFCOMM blocking service */
     public RFCOMMGrpc.RFCOMMBlockingStub rfcommBlocking() {
         return RFCOMMGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora L2CAP service */
+    public L2CAPGrpc.L2CAPStub l2cap() {
+        return L2CAPGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora L2CAP blocking service */
+    public L2CAPGrpc.L2CAPBlockingStub l2capBlocking() {
+        return L2CAPGrpc.newBlockingStub(mChannel);
     }
 }

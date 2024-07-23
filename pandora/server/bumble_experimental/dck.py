@@ -16,7 +16,7 @@ import grpc
 import logging
 
 from bumble.core import UUID as BumbleUUID, AdvertisingData
-from bumble.device import Device
+from bumble.device import Connection, Device
 from bumble.gatt import Characteristic, CharacteristicValue, TemplateService
 from bumble.l2cap import Channel
 from bumble.pandora import utils
@@ -42,7 +42,7 @@ class DckGattService(TemplateService):
         self.device_dk_version_value = None
         self.psm = device.register_l2cap_channel_server(0, on_l2cap_server)  # type: ignore
 
-        def on_device_version_write(value: bytes) -> None:
+        def on_device_version_write(connection: Connection, value: bytes) -> None:
             logger.info(f"--- DK Device Version Write: {value!r}")
             self.device_dk_version_value = value
 
@@ -51,13 +51,15 @@ class DckGattService(TemplateService):
                 DckGattService.UUID_SPSM,
                 Characteristic.Properties.READ,
                 Characteristic.READABLE,
-                CharacteristicValue(read=bytes(self.psm)),  # type: ignore[no-untyped-call]
+                # CCC Specification Digital-Key R3-1.2.3
+                # 19.2.1.6 DK Service
+                self.psm.to_bytes(2, 'big'),
             ),
             Characteristic(
                 DckGattService.UUID_SPSM_DK_VERSION,
                 Characteristic.Properties.READ,
                 Characteristic.READ_REQUIRES_ENCRYPTION,
-                CharacteristicValue(read=b''),  # type: ignore[no-untyped-call]
+                b'',
             ),
             Characteristic(
                 DckGattService.UUID_DEVICE_DK_VERSION,
@@ -69,7 +71,7 @@ class DckGattService(TemplateService):
                 DckGattService.UUID_ANTENNA_IDENTIFIER,
                 Characteristic.READ,
                 Characteristic.READABLE,
-                CharacteristicValue(read=b''),  # type: ignore[no-untyped-call]
+                b'',
             ),
         ]
 
