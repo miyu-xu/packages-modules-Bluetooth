@@ -486,7 +486,7 @@ public class AdapterServiceTest {
 
         offToBleOn(looper, gattService, adapter, ctx, callback, nativeInterface);
 
-        adapter.startBrEdr();
+        adapter.bleOnToOn();
         TestUtils.syncHandler(looper, AdapterState.USER_TURN_ON);
         verifyStateChange(callback, STATE_BLE_ON, STATE_TURNING_ON);
 
@@ -778,7 +778,7 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getBluetoothScan()).isNotNull();
         assertThat(mAdapterService.getBluetoothGatt()).isNull();
 
-        mAdapterService.startBrEdr();
+        mAdapterService.bleOnToOn();
         TestUtils.syncHandler(mLooper, AdapterState.USER_TURN_ON);
         verifyStateChange(callback, STATE_BLE_ON, STATE_TURNING_ON);
 
@@ -835,7 +835,7 @@ public class AdapterServiceTest {
                 mIBluetoothCallback,
                 mNativeInterface);
 
-        mAdapterService.startBrEdr();
+        mAdapterService.bleOnToOn();
         syncHandler(AdapterState.USER_TURN_ON);
         verifyStateChange(STATE_BLE_ON, STATE_TURNING_ON);
         assertThat(mAdapterService.mSetProfileServiceStateCounter).isEqualTo(2);
