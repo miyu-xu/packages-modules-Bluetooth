@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd79073_c6b68d16",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2196,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-23T21:33:12Z",
+      "side": 1,
+      "message": "Do these not complain about uninitialized fields?",
+      "range": {
+        "startLine": 2196,
+        "startChar": 2,
+        "endLine": 2196,
+        "endChar": 14
+      },
+      "revId": "3a09546524ea1988383eb281b0b1573a5865d7ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
