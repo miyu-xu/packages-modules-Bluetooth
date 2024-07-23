@@ -22,6 +22,30 @@
       },
       "revId": "7e7c04498e545a9f1c6f6f106f4e71cc1b4fe390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf79da4_db352805",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-23T22:44:47Z",
+      "side": 1,
+      "message": "They\u0027re just variations in the order of operations, the order that the tests are completed doesn\u0027t matter.  Would `Var1` and `Var2` work?",
+      "parentUuid": "55ad9aa0_eb8a6fdc",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 34
+      },
+      "revId": "7e7c04498e545a9f1c6f6f106f4e71cc1b4fe390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
