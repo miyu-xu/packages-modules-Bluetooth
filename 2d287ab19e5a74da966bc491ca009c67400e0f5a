@@ -51,6 +51,24 @@
       "message": "Does `atest net_test_bta` try shutting down BT on a device?",
       "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "812511ed_c4a6e9ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:22:23Z",
+      "side": 1,
+      "message": "+1, if we are working around calling `bta_dm_init_pm` we should also not call the associated stop method.\nRemoving the assert is very suspicious to me",
+      "parentUuid": "8bafad8c_b519164e",
+      "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
