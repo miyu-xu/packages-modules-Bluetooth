@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90ff94e_687fdb23",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-24T11:11:38Z",
+      "side": 1,
+      "message": "is ? or \"when there is no active connection\"\n\n\nIn this file code was moved, but not changed. You can probably get that merged in separate small patch without flag.",
+      "range": {
+        "startLine": 251,
+        "startChar": 45,
+        "endLine": 251,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b404c6c4_023a90b4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_main.cc",
+              "range": {
+                "startLine": 251,
+                "startChar": 0,
+                "endLine": 252,
+                "endChar": 0
+              },
+              "replacement": "  /* This shall be call only when there is no active connection */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "747db0f7_98704b9f",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-24T11:11:38Z",
+      "side": 1,
+      "message": "do we care about background connections ?\nor about targetted announcements ?\n\nOr is that handled in different layer ?",
+      "range": {
+        "startLine": 1524,
+        "startChar": 32,
+        "endLine": 1524,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "56fdd717_2ded79c5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_utils.cc",
+              "range": {
+                "startLine": 1524,
+                "startChar": 0,
+                "endLine": 1525,
+                "endChar": 0
+              },
+              "replacement": "    if (p_reg-\u003ein_use \u0026\u0026 p_reg-\u003edirect_connect_request.count(bda) \u003e 0 \u0026\u0026\n        !p_reg-\u003edirect_connect_request.at(bda).is_background) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
