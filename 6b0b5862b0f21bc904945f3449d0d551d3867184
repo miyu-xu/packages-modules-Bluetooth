@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da054775_a7c9cca3",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:09:30Z",
+      "side": 1,
+      "message": "Is this a bugfix or a feature ?\nIf it\u0027s a bugfix you need to mark it in the flag declaration.\nIf it is a feature you will need to fill a go/android-fr",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 58
+      },
+      "revId": "6b0b5862b0f21bc904945f3449d0d551d3867184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1910c2_0f8834ab",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:09:30Z",
+      "side": 1,
+      "message": "This is not a valid bug for flag",
+      "range": {
+        "startLine": 22,
+        "startChar": 10,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "6b0b5862b0f21bc904945f3449d0d551d3867184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
