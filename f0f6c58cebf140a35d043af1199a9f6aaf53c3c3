@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09445c47_b50ec6d1",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2225,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-24T22:51:13Z",
+      "side": 1,
+      "message": "This looks like the same log on 2155, except this one is a warning and that one is debug.",
+      "range": {
+        "startLine": 2224,
+        "startChar": 0,
+        "endLine": 2225,
+        "endChar": 47
+      },
+      "revId": "f0f6c58cebf140a35d043af1199a9f6aaf53c3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
