@@ -646,6 +646,16 @@ public:
       msg.public_announcement = preparePublicAnnouncement(public_features, public_ltv);
     }
 
+    /* Prepare Broadcast audio session */
+    const auto& broadcast_config = msg.config;
+    auto is_started = instance->le_audio_source_hal_client_->Start(
+            broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
+    callbacks_->OnBroadcastAudioSessionCreated(is_started);
+    if (!is_started) {
+      log::error("Broadcast audio session can't be started");
+      return;
+    }
+
     // If there is ongoing ISO traffic, it might be a unicast stream
     if (is_iso_running_) {
       log::info("Iso is still active. Queueing broadcast creation for later.");
@@ -1051,15 +1061,7 @@ private:
               audio_receiver_.CheckAndReconfigureEncoders(broadcast_config);
 
               broadcast->SetMuted(false);
-              auto is_started = instance->le_audio_source_hal_client_->Start(
-                      broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
-              if (!com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
-                if (!is_started) {
-                  /* Audio Source setup failed - stop the broadcast */
-                  instance->StopAudioBroadcast(broadcast_id);
-                  return;
-                }
-              } else {
+              if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
                 instance->UpdateAudioActiveStateInPublicAnnouncement();
               }
             }
