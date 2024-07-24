@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde66a67_6003b070",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T16:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc3815f5_89e9518d",
+      "range": {
+        "startLine": 1496,
+        "startChar": 0,
+        "endLine": 1506,
+        "endChar": 80
+      },
+      "revId": "379614e993b55bd1501bd8ed30ead8cdb7927d12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9356e7c1_1a5770e0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-18T22:03:01Z",
       "side": 1,
       "message": "Currently, the names of the events printed in the logs don\u0027t match the name of the events in the code.  From what I can tell, `L2CEVT_LP_` indicates lower layer, `L2CEVT_L2CA_` indicates upper layer, and `L2CEVT_L2CAP` indicates peer.\n\nWould it be a lot of work to rename them while you\u0027re here?  If it\u0027s too much can you put a comment to help distinguish the ones that are lower layer, upper layer, and peer?",
+      "range": {
+        "startLine": 1507,
+        "startChar": 19,
+        "endLine": 1507,
+        "endChar": 41
+      },
+      "revId": "379614e993b55bd1501bd8ed30ead8cdb7927d12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa35032_9837bf35",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1507,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T16:23:35Z",
+      "side": 1,
+      "message": "This ensures that exact string representing the enum is printed, so this will conform to your request.\n\ne.g. L2CEVT_LP_CONNECT_CFM \u003d\u003e \"L2CEVT_LP_CONNECT_CFM\"\n\nAt some point when these events are enum-ified it could look more like:\n\n`tL2CEVT::LP_CONNECT_CFM`\n\nor further refinement, if needed\n\n`tL2CEVT::LOWER_LAYER_CONNECT_CFM` or something similar, depending on your mental model of where the events originate.",
+      "parentUuid": "9356e7c1_1a5770e0",
       "range": {
         "startLine": 1507,
         "startChar": 19,
