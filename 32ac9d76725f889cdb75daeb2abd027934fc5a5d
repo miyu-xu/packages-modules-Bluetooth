@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ac6f1e_53d8f9e2",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T05:12:12Z",
+      "side": 1,
+      "message": "I think this is unsafe since bdname is a local variable, so the address is freed when returning from the function. The returned pointer would then would refer to unexpected memory.",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 311,
+        "endChar": 37
+      },
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59cdcde6_4e614cf0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T05:12:12Z",
+      "side": 1,
+      "message": "Don\u0027t reuse the same variable name.\nBtw why we even need to copy dscp_info in the first place?",
+      "range": {
+        "startLine": 828,
+        "startChar": 4,
+        "endLine": 830,
+        "endChar": 50
+      },
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcbdacf_5169c804",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T05:12:12Z",
+      "side": 1,
+      "message": "This function has its own version of copy dscp_info, it might be a good time to unify them.",
+      "range": {
+        "startLine": 831,
+        "startChar": 4,
+        "endLine": 831,
+        "endChar": 16
+      },
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4207c4ff_d2fe80e8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T05:12:12Z",
+      "side": 1,
+      "message": "`Device {} status {}`",
+      "range": {
+        "startLine": 894,
+        "startChar": 13,
+        "endLine": 894,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2dac41c3_357147db",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hh.cc",
+              "range": {
+                "startLine": 894,
+                "startChar": 0,
+                "endLine": 895,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"Device {} status {}\", p_dev-\u003elink_spec, dev_status.status);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
