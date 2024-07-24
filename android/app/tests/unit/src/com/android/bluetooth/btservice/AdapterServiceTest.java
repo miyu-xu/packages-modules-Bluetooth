@@ -409,7 +409,7 @@ public class AdapterServiceTest {
             Context ctx,
             IBluetoothCallback callback,
             AdapterNativeInterface nativeInterface) {
-        adapter.enable(false);
+        adapter.offToBleOn(false);
         if (Flags.fastBindToApp()) {
             TestUtils.syncHandler(looper, 0); // when fastBindToApp is enable init need to be run
         }
