@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cec5811_f42166b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-24T09:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbf3af54_14eb068a",
+      "range": {
+        "startLine": 9,
+        "startChar": 51,
+        "endLine": 9,
+        "endChar": 59
+      },
+      "revId": "1610e1770f5532c07bec0b3de0ba6c23f5c14794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7aa41de0_f5b76e73",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T09:13:10Z",
       "side": 1,
       "message": "trivial change covered by unit tests ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "1610e1770f5532c07bec0b3de0ba6c23f5c14794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac62f1f_0e1c5170",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-24T09:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aa41de0_f5b76e73",
       "range": {
         "startLine": 13,
         "startChar": 14,
