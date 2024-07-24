@@ -34,6 +34,23 @@
       "parentUuid": "ab848fbf_17f4b92a",
       "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4461301c_fbf2c955",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2034225
+      },
+      "writtenOn": "2024-07-24T13:46:08Z",
+      "side": 1,
+      "message": "Does `atest net_test_bta` try shutting down BT on a device?",
+      "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
