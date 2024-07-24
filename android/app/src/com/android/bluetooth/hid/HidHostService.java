@@ -794,7 +794,7 @@ public class HidHostService extends ProfileService {
             // Locally initiated connection, move out of quiet mode
             Log.i(TAG, "updateQuietMode: Move out of quiet mode. device=" + device);
             mTargetDevice = null;
-            mAdapterService.enable(false);
+            mAdapterService.offToBleOn(false);
         }
     }
 
