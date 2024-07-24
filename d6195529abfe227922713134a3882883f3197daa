@@ -64,6 +64,30 @@
       },
       "revId": "d6195529abfe227922713134a3882883f3197daa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d50563_0d2c3e79",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-24T06:03:12Z",
+      "side": 1,
+      "message": "Actually, if the flag is disabled, we check if app_hold_link is empty then disconnect. We have to find a way to handle that scenario.",
+      "parentUuid": "48438f95_ed281d04",
+      "range": {
+        "startLine": 1538,
+        "startChar": 6,
+        "endLine": 1538,
+        "endChar": 25
+      },
+      "revId": "d6195529abfe227922713134a3882883f3197daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
