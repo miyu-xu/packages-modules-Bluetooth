@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121e814b_fbf44359",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-24T15:21:33Z",
+      "side": 1,
+      "message": "This list can go null, as this function gets called before link_xmit_data_q is allocated.\n\nRef:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/l2cap/l2c_utils.cc;drc\u003d3d1666bdf09ecf2923b5ce69d75e5c78fce3a84d;l\u003d102",
+      "range": {
+        "startLine": 669,
+        "startChar": 18,
+        "endLine": 669,
+        "endChar": 34
+      },
+      "revId": "16ff3bbe45321a0b8107fb5751b58848b595e67e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
