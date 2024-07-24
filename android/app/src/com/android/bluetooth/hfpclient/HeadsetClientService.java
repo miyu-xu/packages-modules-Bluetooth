@@ -527,24 +527,6 @@ public class HeadsetClientService extends ProfileService {
         }
 
         @Override
-        public List<BluetoothHeadsetClientCall> getCurrentCalls(
-                BluetoothDevice device, AttributionSource source) {
-            HeadsetClientService service = getService(source);
-            List<BluetoothHeadsetClientCall> currentCalls = new ArrayList<>();
-            if (service == null) {
-                return currentCalls;
-            }
-
-            List<HfpClientCall> calls = service.getCurrentCalls(device);
-            if (calls != null) {
-                for (HfpClientCall call : calls) {
-                    currentCalls.add(toLegacyCall(call));
-                }
-            }
-            return currentCalls;
-        }
-
-        @Override
         public boolean sendDTMF(BluetoothDevice device, byte code, AttributionSource source) {
             HeadsetClientService service = getService(source);
             if (service == null) {
