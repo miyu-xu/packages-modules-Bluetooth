@@ -21,6 +21,7 @@
 
 #include <chrono>
 #include <future>
+#include <utility>
 
 #include "hci/address.h"
 #include "os/thread.h"
@@ -240,19 +241,19 @@ TEST_F(AclSchedulerTest, QueueWhileIncomingConnectionsPending) {
   // an incoming connection arrives
   acl_scheduler_->RegisterPendingIncomingConnection(address3);
 
+  // the outgoing_connection callback should not have executed yet
+  EXPECT_THAT(future.wait_for(timeout), std::future_status::timeout);
+
   // then the first outgoing connection completes
   acl_scheduler_->ReportAclConnectionCompletion(address1, emptyCallback(), impossibleCallback(),
                                                 impossibleCallbackTakingString());
 
-  // the outgoing_connection callback should not have executed yet
-  EXPECT_THAT(future.wait_for(timeout), std::future_status::timeout);
+  // only now does the next outgoing connection start
+  EXPECT_THAT(future, IsSet());
 
   // now the incoming connection completes
   acl_scheduler_->ReportAclConnectionCompletion(address3, impossibleCallback(), emptyCallback(),
                                                 impossibleCallbackTakingString());
-
-  // only now does the next outgoing connection start
-  EXPECT_THAT(future, IsSet());
 }
 
 TEST_F(AclSchedulerTest, DoNothingWhileIncomingConnectionsExist) {
@@ -283,6 +284,50 @@ TEST_F(AclSchedulerTest, DoNothingWhileIncomingConnectionsExist) {
                                                 impossibleCallbackTakingString());
 
   // only now does the outgoing connection start
+  EXPECT_THAT(future, IsSet());
+}
+
+TEST_F(AclSchedulerTest, RemoteNameRequestWhileIncomingConnectionPending) {
+  auto promise = std::promise<void>{};
+  auto future = promise.get_future();
+
+  // an incoming connection arrives
+  acl_scheduler_->RegisterPendingIncomingConnection(address1);
+
+  // start an outgoing RNR
+  acl_scheduler_->EnqueueRemoteNameRequest(address1, promiseCallback(std::move(promise)),
+                                           emptyCallback());
+
+  // we expect the start callback to be invoked immediately
+  EXPECT_THAT(future, IsSet());
+}
+
+TEST_F(AclSchedulerTest, ConnectionToSameDeviceIncomingConnectionPending) {
+  auto promise = std::promise<void>{};
+  auto future = promise.get_future();
+
+  // an incoming connection arrives
+  acl_scheduler_->RegisterPendingIncomingConnection(address1);
+
+  // try to start an outgoing connection to same device
+  acl_scheduler_->EnqueueOutgoingAclConnection(address1, promiseCallback(std::move(promise)));
+
+  // we expect the outgoing connection to wait and then dropped once connection
+  // established
+  EXPECT_THAT(future.wait_for(timeout), std::future_status::timeout);
+}
+
+TEST_F(AclSchedulerTest, ConnectionToAnotherDeviceIncomingConnectionPending) {
+  auto promise = std::promise<void>{};
+  auto future = promise.get_future();
+
+  // an incoming connection arrives
+  acl_scheduler_->RegisterPendingIncomingConnection(address1);
+
+  // start an outgoing connection to another device
+  acl_scheduler_->EnqueueOutgoingAclConnection(address2, promiseCallback(std::move(promise)));
+
+  // we expect the outgoing connection to another device to proceed
   EXPECT_THAT(future, IsSet());
 }
 

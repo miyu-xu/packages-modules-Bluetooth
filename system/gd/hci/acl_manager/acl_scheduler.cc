@@ -166,7 +166,19 @@ private:
     if (pending_outgoing_operations_.empty()) {
       return false;
     }
-    return incoming_connecting_address_set_.empty() && !outgoing_entry_.has_value();
+    const auto& front = pending_outgoing_operations_.front();
+    // Delay if the next operation is an acl create connection to the
+    // currently incoming one.
+    if (const AclCreateConnectionQueueEntry* peek =
+                std::get_if<AclCreateConnectionQueueEntry>(&front)) {
+      if (incoming_connecting_address_set_.contains(peek->address)) {
+        log::info("Defering outgoing connection while incoming pending peer:{}", peek->address);
+        return false;
+      } else {
+        log::info("Outgoing connection is not currently pending incoming");
+      }
+    }
+    return !outgoing_entry_.has_value();
   }
 
   void try_dequeue_next_operation() {
