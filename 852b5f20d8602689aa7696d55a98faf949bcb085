@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a09f680_e589dbbd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T01:43:27Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: this declaration needs opt-in. Its usage should be marked with \u0027@kotlinx.coroutines.ExperimentalCoroutinesApi\u0027 or \u0027@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)\u0027\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    this declaration needs opt-in. Its usage should be marked with \u0027@kotlinx.coroutines.ExperimentalCoroutinesApi\u0027 or \u0027@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)\u0027\n        private lateinit var host: Host\n                                   ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P78034578/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "852b5f20d8602689aa7696d55a98faf949bcb085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f39f37_2ac3d8d6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T01:43:27Z",
+      "side": 1,
+      "message": "createBondAndVerify take mBumble in parameter…",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 41
+      },
+      "revId": "852b5f20d8602689aa7696d55a98faf949bcb085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a9c013_6f8b1b0d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T01:43:27Z",
+      "side": 1,
+      "message": "… while removeBondTake mBumbleDevice.\n\nCan we uniformise ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 17,
+        "endLine": 73,
+        "endChar": 36
+      },
+      "revId": "852b5f20d8602689aa7696d55a98faf949bcb085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c3b9e4f_2d904f8d",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 1
