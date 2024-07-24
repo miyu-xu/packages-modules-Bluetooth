@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cb34395_afcc0bae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T06:45:17Z",
+      "side": 1,
+      "message": "Why? Isn\u0027t it the other way around, i.e. on virtual unplug event, the device must be removed?\n\nWhich direction is the virtual unplug event generated? to the peripherals, or to the upper layers?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac3e519_141d332d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T06:45:17Z",
+      "side": 1,
+      "message": "Tangential topic: do you know why we don\u0027t just unconditionally call `BTA_DmRemoveDevice`? IIUC virtual unplug means removing the bonding information.",
+      "range": {
+        "startLine": 924,
+        "startChar": 4,
+        "endLine": 924,
+        "endChar": 22
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcbc44ec_ec9b04b0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T06:45:17Z",
+      "side": 1,
+      "message": "Would this be called when we want to unbond a currently disconnected HID device? If so, isn\u0027t that unexpected?",
+      "range": {
+        "startLine": 1013,
+        "startChar": 31,
+        "endLine": 1013,
+        "endChar": 48
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72aeb4d2_c6b4a661",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-24T06:45:17Z",
+      "side": 1,
+      "message": "Isn\u0027t it possible for a device to be on the added_dev list, is not currently connected, and is currently pending on connection?\nIf that\u0027s the case, should we just execute the next block, otherwise the `pending_link_spec` will be dirty?",
+      "range": {
+        "startLine": 1054,
+        "startChar": 4,
+        "endLine": 1054,
+        "endChar": 29
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
