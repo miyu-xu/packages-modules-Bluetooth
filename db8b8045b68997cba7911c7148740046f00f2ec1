@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d712c39_11787a7f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-24T20:30:28Z",
+      "side": 1,
+      "message": "This seems odd that it\u0027s unused.  Should we leave a TODO or file a bug?  I wouldn\u0027t have expected the transport to be a parameter to the security callaback.",
+      "range": {
+        "startLine": 1691,
+        "startChar": 16,
+        "endLine": 1691,
+        "endChar": 25
+      },
+      "revId": "db8b8045b68997cba7911c7148740046f00f2ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
