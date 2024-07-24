@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b34e184_ab0c70fa",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-07-24T13:26:19Z",
+      "side": 1,
+      "message": "aosp/3192830",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "396d2b8c_99d359d5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 1,
+                "startChar": 0,
+                "endLine": 2,
+                "endChar": 0
+              },
+              "replacement": "# Copyright 2023 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c4b77ad1b43f3b186656c6b15e1a21e9c0446212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
