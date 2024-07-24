@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d01403_06f60c2c",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T22:52:11Z",
+      "side": 1,
+      "message": "It should have been used later which I had missed.",
+      "parentUuid": "c11493d9_39f9ee80",
+      "range": {
+        "startLine": 1004,
+        "startChar": 0,
+        "endLine": 1006,
+        "endChar": 3
+      },
+      "revId": "6d05353f58753a30e77875878d734c1f374611c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8134021_56628aee",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T22:41:41Z",
       "side": 1,
       "message": "Remove \u0027already\u0027?  Remove the whole comment?",
+      "range": {
+        "startLine": 1025,
+        "startChar": 16,
+        "endLine": 1025,
+        "endChar": 23
+      },
+      "revId": "6d05353f58753a30e77875878d734c1f374611c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ba2fcc_955db536",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T22:52:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8134021_56628aee",
       "range": {
         "startLine": 1025,
         "startChar": 16,
