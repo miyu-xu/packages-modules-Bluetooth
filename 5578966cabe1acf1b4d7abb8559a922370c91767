@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68b8da52_a5e44b2a",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-24T22:00:24Z",
+      "side": 1,
+      "message": "I wonder if we still need this.  It\u0027s surprising to have it for a single keyboard from 8 years ago.\n\nMaybe we should just remove the for loop and check for the single keyboard.",
+      "range": {
+        "startLine": 282,
+        "startChar": 23,
+        "endLine": 282,
+        "endChar": 45
+      },
+      "revId": "5578966cabe1acf1b4d7abb8559a922370c91767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1051711d_942ca7c8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-24T22:00:24Z",
+      "side": 1,
+      "message": "Why do we sleep here?",
+      "range": {
+        "startLine": 294,
+        "startChar": 7,
+        "endLine": 294,
+        "endChar": 23
+      },
+      "revId": "5578966cabe1acf1b4d7abb8559a922370c91767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
