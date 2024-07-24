@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cad3243_c2efa0be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:36Z",
+      "side": 1,
+      "message": "The HID virtual unplug event is generated to inform HidHostService and apps that the HID device has been removed.\n\nApp requests HID VUP\n1. HID host sends VUP command to the HID device if connected and supported\n2. HID host disconnects if connected\n3. HID host removes the bond and HID info\n4. HID host generates HID VUP event\n\nApp removes bond\n1. Stack requests HID host to perform HID VUP\n2. HID host sends VUP command to the HID device if connected and supported\n3. HID host disconnects if connected\n4. HID host removes the bond and HID info\n5. HID host generates HID VUP event\n\nHID device sends HID VUP\n1. HID host disconnects if connected\n2. HID host removes the bond if required\n3. HID host generates HID VUP event\n\nStack removes the bond autonomously (stack has to ensure that related ACLs are disconnected before this)\n1. Stack requests HID host to remove HID information\n2. HID host removes HID info\n3. HID host generates HID VUP event",
+      "parentUuid": "4cb34395_afcc0bae",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ac3e519_141d332d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T06:45:17Z",
       "side": 1,
       "message": "Tangential topic: do you know why we don\u0027t just unconditionally call `BTA_DmRemoveDevice`? IIUC virtual unplug means removing the bonding information.",
+      "range": {
+        "startLine": 924,
+        "startChar": 4,
+        "endLine": 924,
+        "endChar": 22
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ceed0a_1319f3f1",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:36Z",
+      "side": 1,
+      "message": "HID may not be the primary profile of some devices. For example, earbuds can support Android Dynamic Spatial Audio with A2DP over HID. A HID app must not disrupt the core A2DP functionality.",
+      "parentUuid": "0ac3e519_141d332d",
       "range": {
         "startLine": 924,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27f7e3cb_86762045",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:36Z",
+      "side": 1,
+      "message": "HidHostService keeps track of added HID devices. If a HID device is silently removed, HidHostService will get out of sync with native stack.\nHID VUP event conclusively tells HidHostService that the HID device has been removed and it does not need to track it anymore.",
+      "parentUuid": "fcbc44ec_ec9b04b0",
+      "range": {
+        "startLine": 1013,
+        "startChar": 31,
+        "endLine": 1013,
+        "endChar": 48
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72aeb4d2_c6b4a661",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-07-24T06:45:17Z",
       "side": 1,
       "message": "Isn\u0027t it possible for a device to be on the added_dev list, is not currently connected, and is currently pending on connection?\nIf that\u0027s the case, should we just execute the next block, otherwise the `pending_link_spec` will be dirty?",
+      "range": {
+        "startLine": 1054,
+        "startChar": 4,
+        "endLine": 1054,
+        "endChar": 29
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b866390_0169294d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:36Z",
+      "side": 1,
+      "message": "Resting `pending_link_spec` if it matches",
+      "parentUuid": "72aeb4d2_c6b4a661",
       "range": {
         "startLine": 1054,
         "startChar": 4,
