@@ -135,6 +135,30 @@
       },
       "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d7361b_80394a62",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:15:56Z",
+      "side": 1,
+      "message": "Acknowledged\nThat sad but that make sens",
+      "parentUuid": "4962c71a_de42b9e0",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 18
+      },
+      "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

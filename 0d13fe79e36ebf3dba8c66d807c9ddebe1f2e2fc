@@ -79,6 +79,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20ce56c1_bbf9bcbd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:15:56Z",
+      "side": 1,
+      "message": "I believe this is Bluetooth spec related.\n\nThe MMI ask to write the select preset and then it will assert that nothing has changed.\n\nKrzysztof comment mention the fix required in the Android bluetooth stack to make this MMI works as expected.\n\nI believe we can simply remove the comment as this confuse you and since the description of the method is already explicit",
+      "parentUuid": "84ef7a43_f320f194",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43445234_e93cae04",
         "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
         "patchSetId": 7
