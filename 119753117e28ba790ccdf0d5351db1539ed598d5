@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd677376_c9ffa1da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-07-24T21:16:45Z",
+      "side": 1,
+      "message": "Added https://buganizer.corp.google.com/issues/355271755 to fix this.",
+      "parentUuid": "6342e6eb_6322491a",
+      "range": {
+        "startLine": 832,
+        "startChar": 8,
+        "endLine": 832,
+        "endChar": 83
+      },
+      "revId": "119753117e28ba790ccdf0d5351db1539ed598d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bd7d5ad_5995fcce",
