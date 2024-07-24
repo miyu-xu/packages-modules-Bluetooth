@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b596f22_bc81464f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T19:48:58Z",
+      "side": 1,
+      "message": "you need to remove from Android.bp and BUILD.gn file too",
+      "revId": "27f18a1fdd3ab90e5eab45a6c424f1fbbbe56685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
