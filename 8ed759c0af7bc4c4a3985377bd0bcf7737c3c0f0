@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d24aaa7_8cb5727b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-24T15:39:29Z",
+      "side": 1,
+      "message": "This is not a good EXEMPT condition. The real condition here is `TEST ONLY`. Even a minor change could introduce bugs",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 27
+      },
+      "revId": "8ed759c0af7bc4c4a3985377bd0bcf7737c3c0f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
