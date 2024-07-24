@@ -61,6 +61,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84ef7a43_f320f194",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-24T15:56:14Z",
+      "side": 1,
+      "message": "Sorry for the confusion, by Bluetooth stack I meant Bluetooth specification.",
+      "parentUuid": "eee4fc68_5783693d",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43445234_e93cae04",
         "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
         "patchSetId": 7
