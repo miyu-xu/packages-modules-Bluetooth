@@ -46,6 +46,30 @@
       },
       "revId": "430ed6c28d04c514cd5d94799877779914a1d5de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af47720_05cece6e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:19:29Z",
+      "side": 1,
+      "message": "Independently of `persist` or not, if you depend on 2 different flags sources you are at risk to have a desync.\n\nI believe more and more that you don\u0027t want a flag for this development",
+      "parentUuid": "c36a0da6_288b55d2",
+      "range": {
+        "startLine": 92,
+        "startChar": 52,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "430ed6c28d04c514cd5d94799877779914a1d5de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
