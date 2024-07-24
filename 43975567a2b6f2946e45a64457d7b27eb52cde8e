@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2c28fd3_7c95f487",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-24T12:36:00Z",
+      "side": 1,
+      "message": "Since the `use_preference` boolean is an implementation detail that is relevant only to this particular implementation of the verifier (`FindFirstSupportedConfiguration()`), I\u0027m thinking that maybe we could keep the CodecManager interface as is and instead of changing its API and using a `std::placeholders::_3` here to route the boolean value via the CodecManager interface, we could just bind a function requiring 3 parameters (`FindFirstSupportedConfiguration(_, _, _)`) as a 2 parameter callback (`UnicastConfigurationVerifier(_, _)`) by simply providing this 3rd parameter value like this:\n```\n  auto new_conf \u003d CodecManager::GetInstance()-\u003eGetCodecConfig(\n          requirements,\n          std::bind(\u0026LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,\n                    std::placeholders::_1, std::placeholders::_2, use_preferred));\n```\nThis makes the codec manager think that this is still a function taking 2 arguments, while in reality this binding wraps a function requiring 3 arguments and provides the missing 3rd boolean.\n\nWould that makes sense?",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 908,
+        "endChar": 25
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db8c604_94639122",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-24T12:36:00Z",
+      "side": 1,
+      "message": "nit: I know that `context_to_configuration_cache_map` didn\u0027t follow the convention, but could we end these members names with an underscore: `context_to_preferred_configuration_cache_map_` and `preferred_config_`?",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 26
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1f5d14_6f480466",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-24T12:36:00Z",
+      "side": 1,
+      "message": "nit: typo Sampleing... -\u003e Sampling...",
+      "range": {
+        "startLine": 103,
+        "startChar": 18,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02042c8a_b8e19ffc",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-24T12:36:00Z",
+      "side": 1,
+      "message": "For the peace of mind, could we verify these with some simple unit tests in `le_audio_types_test.cc` covering all values?\n\nSomething like this:\n```\nASSERT_EQ(SampleingFreqCapability2Config(codec_spec_caps::kLeAudioSamplingFreq48000Hz), codec_spec_conf::kLeAudioSamplingFreq48000Hz);\n```\n?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 1
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
