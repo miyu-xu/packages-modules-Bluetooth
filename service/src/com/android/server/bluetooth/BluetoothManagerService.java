@@ -115,6 +115,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.stream.Collectors;
 
 class BluetoothManagerService {
     private static final String TAG = BluetoothManagerService.class.getSimpleName();
@@ -1826,7 +1827,7 @@ class BluetoothManagerService {
         int flags = Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT;
         Intent intent = new Intent(IBluetooth.class.getName());
         ComponentName comp = resolveSystemService(intent);
-        if (comp == null) {
+        if (comp == null && !Flags.enforceResolveSystemServiceBehavior()) {
             Log.e(TAG, "No ComponentName found for intent=" + intent);
             return;
         }
@@ -2305,7 +2306,7 @@ class BluetoothManagerService {
         return bOptions.toBundle();
     }
 
-    private ComponentName resolveSystemService(@NonNull Intent intent) {
+    private ComponentName legacyresolveSystemService(@NonNull Intent intent) {
         List<ResolveInfo> results = mContext.getPackageManager().queryIntentServices(intent, 0);
         if (results == null) {
             return null;
@@ -2331,6 +2332,35 @@ class BluetoothManagerService {
             comp = foundComp;
         }
         return comp;
+    }
+
+    private ComponentName resolveSystemService(@NonNull Intent intent) {
+        if (!Flags.enforceResolveSystemServiceBehavior()) {
+            return legacyresolveSystemService(intent);
+        }
+        List<ComponentName> results =
+                mContext.getPackageManager().queryIntentServices(intent, 0).stream()
+                        .filter(
+                                ri ->
+                                        (ri.serviceInfo.applicationInfo.flags
+                                                        & ApplicationInfo.FLAG_SYSTEM)
+                                                != 0)
+                        .map(
+                                ri ->
+                                        new ComponentName(
+                                                ri.serviceInfo.applicationInfo.packageName,
+                                                ri.serviceInfo.name))
+                        .collect(Collectors.toList());
+        switch (results.size()) {
+            case 0 -> throw new IllegalStateException("No services can handle intent " + intent);
+            case 1 -> {
+                return results.get(0);
+            }
+            default -> {
+                throw new IllegalStateException(
+                        "Multiples services can handle intent " + intent + ": " + results);
+            }
+        }
     }
 
     int setBtHciSnoopLogMode(int mode) {
