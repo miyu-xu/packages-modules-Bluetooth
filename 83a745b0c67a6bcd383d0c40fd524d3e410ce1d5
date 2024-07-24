@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eb89cd0_2cc479c2",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-24T11:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e90ff94e_687fdb23",
+      "range": {
+        "startLine": 251,
+        "startChar": 45,
+        "endLine": 251,
+        "endChar": 48
+      },
+      "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "747db0f7_98704b9f",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9444edec_64ce4430",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-24T11:58:40Z",
+      "side": 1,
+      "message": "`direct_connect_request` is only for direct connects. No need to check if it is background",
+      "parentUuid": "747db0f7_98704b9f",
+      "range": {
+        "startLine": 1524,
+        "startChar": 32,
+        "endLine": 1524,
+        "endChar": 54
+      },
       "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
