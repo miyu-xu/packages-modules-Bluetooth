@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3dd4cb1_a4d126db",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-24T18:39:01Z",
+      "side": 1,
+      "message": "It should be good to let this fall through as It would get chance to push if there are anything on queue. please correct me if I am wrong.",
+      "range": {
+        "startLine": 850,
+        "startChar": 6,
+        "endLine": 850,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "edf62d61_0bae5ca5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_link.cc",
+              "range": {
+                "startLine": 849,
+                "startChar": 0,
+                "endLine": 851,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "43fc0b96472a4ea41be64ff53175a74067b48500",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

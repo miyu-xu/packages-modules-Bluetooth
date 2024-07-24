@@ -22,6 +22,30 @@
       },
       "revId": "b3ed24b364e9609aa3473c05f4ba720113179c6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "948c64e4_556fb6e8",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1030,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-24T18:39:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5644440_3219df6c",
+      "range": {
+        "startLine": 1030,
+        "startChar": 18,
+        "endLine": 1030,
+        "endChar": 34
+      },
+      "revId": "b3ed24b364e9609aa3473c05f4ba720113179c6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
