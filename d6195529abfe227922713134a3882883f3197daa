@@ -88,6 +88,30 @@
       },
       "revId": "d6195529abfe227922713134a3882883f3197daa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daba6d6e_1ce1a18b",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-24T08:09:46Z",
+      "side": 1,
+      "message": "good point. Please check latest CL - this should work now",
+      "parentUuid": "48d50563_0d2c3e79",
+      "range": {
+        "startLine": 1538,
+        "startChar": 6,
+        "endLine": 1538,
+        "endChar": 25
+      },
+      "revId": "d6195529abfe227922713134a3882883f3197daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
