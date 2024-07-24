@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e23455c9_5d54bc07",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-07-24T09:19:03Z",
+      "side": 1,
+      "message": "Great idea. This lead to a lot more cleaner tests. Thank you.",
+      "parentUuid": "ec9329c8_ac93e305",
+      "range": {
+        "startLine": 517,
+        "startChar": 16,
+        "endLine": 517,
+        "endChar": 44
+      },
+      "revId": "c0317284a4e9743658f82a494390890abf36d592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15ed3310_446ec884",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "c0317284a4e9743658f82a494390890abf36d592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e9ece71_4a05a485",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-07-24T09:19:03Z",
+      "side": 1,
+      "message": "I\u0027ve looked quite a bit into this and I think we have useful scenarios for ScanController covered with a few other tests already such as the `startBrDr_whenScanManagerRefactorFlagIsOn_startAndStopScanController`. This test `testEnableDisableOnlyGatt` compared to `testEnableDisable` looks to be covering the change for `onlyGatt` boolean in the OFF-\u003eBLE_ON and ON-\u003eBLE_ON state with the `GATT` profile. So I believe the other tests are covering our use case already. PTAL and feel free to let me know if you think it\u0027s not sufficient.",
+      "parentUuid": "15ed3310_446ec884",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 41
+      },
       "revId": "c0317284a4e9743658f82a494390890abf36d592",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
