@@ -111,6 +111,30 @@
       },
       "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4962c71a_de42b9e0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-24T08:19:11Z",
+      "side": 1,
+      "message": "Okay, I looked into this a bit more and I don\u0027t see clean and sensible way to verify this. I know it\u0027s just GATT, but what we really want here is to check if HAP connected as a service. So after encryption, Android discovers services, connects HAP, reads presets. And here is the problem: just in this test, PTS doesn\u0027t send back preset list, but error, like so:\n\n```\n07-24 07:27:13.786  1002  3934  3967 D HapClientNativeInterface: onPresetInfoError: HearingAccessStackEvent {type:EVENT_TYPE_ON_PRESET_INFO_ERROR, device: XX:XX:XX:XX:17:01, value1: {statusCode: STATUS_OPERATION_NOT_POSSIBLE}, value2: {presetIndex: 1}, value3: {groupId: 0}, list: {list: empty}}\n```\n\nand this leads to disconnection. If PTS would send back presets, we would have confirmation that HAP characteristics are there. I see that there\u0027s similar MMI in VCP, and although I don\u0027t like it, we probably can just return \u0027OK\u0027 here, as we do there.\n\nI think it\u0027s not that big of a deal, because in other tests presets are received okay, and that means Android correctly discovers characteristics and caches handles.",
+      "parentUuid": "47c09008_629ee16c",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 18
+      },
+      "revId": "a34ea7009abed714f49aa598ac0024249848b2da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

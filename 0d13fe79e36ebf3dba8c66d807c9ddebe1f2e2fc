@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eee4fc68_5783693d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-24T08:19:11Z",
+      "side": 1,
+      "message": "This is Bluetooth stack related, in fact, there is a bug in Android (write was always executed). I created a patch for this: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3165918",
+      "parentUuid": "265ecb64_ef36c4fe",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43445234_e93cae04",
         "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
         "patchSetId": 7
@@ -169,6 +187,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7eb8e955_c3b99434",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-24T08:19:11Z",
+      "side": 1,
+      "message": "Okay, makes sense, I will remove this.",
+      "parentUuid": "380b6258_8f13c493",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d47b0e4_4a0afa9f",
         "filename": "pandora/interfaces/pandora_experimental/hap.proto",
         "patchSetId": 7
@@ -220,6 +256,24 @@
       "writtenOn": "2024-07-17T21:38:13Z",
       "side": 1,
       "message": "Is there any more informations that might be necessary here ? Such as the reason why it could fail ? e.g: https://github.com/google/bt-test-interfaces/blob/main/pandora/security.proto#L232",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee78dc3b_fa1a84ba",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-24T08:19:11Z",
+      "side": 1,
+      "message": "I think we can just add here what arrives in event, it\u0027s sane to assume that if we get \"Preset Changed\" event we get what are the new presets, and why were they changed.",
+      "parentUuid": "c32a4a58_5e4fd4a6",
       "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
