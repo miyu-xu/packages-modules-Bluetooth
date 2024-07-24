@@ -50,6 +50,30 @@
       ],
       "revId": "29ebf0e125f252465b193fa899c971ddf479b28b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dec19ab_dddeb06d",
+        "filename": "system/test/mock/mock_stack_l2cap_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T20:43:05Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "b60b5a14_b8791bf2",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "29ebf0e125f252465b193fa899c971ddf479b28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
