@@ -22,6 +22,30 @@
       },
       "revId": "db8b8045b68997cba7911c7148740046f00f2ec1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "184bfb65_3abe0a1b",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T20:53:43Z",
+      "side": 1,
+      "message": "b/355272389\n\nTODOs for cpplint require username and that conflicts with AOSP requirements.\n\nhttps://source.android.com/docs/setup/contribute/code-style#use-todo-comments",
+      "parentUuid": "4d712c39_11787a7f",
+      "range": {
+        "startLine": 1691,
+        "startChar": 16,
+        "endLine": 1691,
+        "endChar": 25
+      },
+      "revId": "db8b8045b68997cba7911c7148740046f00f2ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
