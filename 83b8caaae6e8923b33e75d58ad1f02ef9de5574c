@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38669625_fedbdb41",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-24T20:33:18Z",
+      "side": 1,
+      "message": "prefer to remove the is:",
+      "range": {
+        "startLine": 165,
+        "startChar": 7,
+        "endLine": 165,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ee9dc985_7b504e41",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/acl_scheduler.cc",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "  bool ready_to_send_next_operation() const {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/acl_scheduler.cc",
+              "range": {
+                "startLine": 175,
+                "startChar": 0,
+                "endLine": 176,
+                "endChar": 0
+              },
+              "replacement": "    if (ready_to_send_next_operation()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "83b8caaae6e8923b33e75d58ad1f02ef9de5574c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
