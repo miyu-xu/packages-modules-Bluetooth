@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29083437_d22c41aa",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55ac6f1e_53d8f9e2",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 311,
+        "endChar": 37
+      },
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59cdcde6_4e614cf0",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4aedb8a_146c6f4c",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:45Z",
+      "side": 1,
+      "message": "Good catch. I have removed the copy now.",
+      "parentUuid": "59cdcde6_4e614cf0",
+      "range": {
+        "startLine": 828,
+        "startChar": 4,
+        "endLine": 830,
+        "endChar": 50
+      },
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bcbdacf_5169c804",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-07-24T05:12:12Z",
       "side": 1,
       "message": "This function has its own version of copy dscp_info, it might be a good time to unify them.",
+      "range": {
+        "startLine": 831,
+        "startChar": 4,
+        "endLine": 831,
+        "endChar": 16
+      },
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0cff97c_a72ec145",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:45Z",
+      "side": 1,
+      "message": "Removed `btif_hh_copy_hid_info()` entirely",
+      "parentUuid": "5bcbdacf_5169c804",
       "range": {
         "startLine": 831,
         "startChar": 4,
@@ -107,6 +179,30 @@
           ]
         }
       ],
+      "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bad7d23_fc1831d7",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-24T16:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4207c4ff_d2fe80e8",
+      "range": {
+        "startLine": 894,
+        "startChar": 13,
+        "endLine": 894,
+        "endChar": 29
+      },
       "revId": "32ac9d76725f889cdb75daeb2abd027934fc5a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
