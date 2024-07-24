@@ -1186,7 +1186,7 @@ class BluetoothManagerService {
                 Log.e(TAG, "Bluetooth death not received correctly", e);
             }
 
-            mAdapter = null;
+            mAdapter = null; // Don't call resetAdapter as we already call unbindService
             mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
         } finally {
             mAdapterLock.writeLock().unlock();
@@ -1626,18 +1626,8 @@ class BluetoothManagerService {
 
                 case MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED:
                     Log.e(TAG, "MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED");
-                    // Keep the writeLock to allow synchronization with read operation from binder
-                    // thread
-                    mAdapterLock.writeLock().lock();
-                    try {
-                        // if service is unbinded already, do nothing and return
-                        if (mAdapter == null) {
-                            break;
-                        }
-                        mContext.unbindService(mConnection);
-                        mAdapter = null;
-                    } finally {
-                        mAdapterLock.writeLock().unlock();
+                    if (!resetAdapter()) {
+                        break;
                     }
 
                     // log the unexpected crash
@@ -1678,18 +1668,7 @@ class BluetoothManagerService {
                         ActiveLogs.add(ENABLE_DISABLE_REASON_RESTARTED, true);
                         handleEnable(mQuietEnable);
                     } else {
-                        // Keep the writeLock to allow synchronization with read operation from
-                        // binder thread
-                        try {
-                            // if service is unbinded already, do nothing and return
-                            if (mAdapter == null) {
-                                break;
-                            }
-                            mContext.unbindService(mConnection);
-                            mAdapter = null;
-                        } finally {
-                            mAdapterLock.writeLock().unlock();
-                        }
+                        resetAdapter();
                         Log.e(TAG, "Reach maximum retry to restart Bluetooth!");
                     }
                     break;
@@ -1903,6 +1882,21 @@ class BluetoothManagerService {
         }
     }
 
+    private boolean resetAdapter() {
+        if (mAdapter == null) {
+            return false;
+        }
+        // Keep the writeLock to allow synchronization with read operation from binder thread
+        mAdapterLock.writeLock().lock();
+        try {
+            mAdapter = null;
+            mContext.unbindService(mConnection);
+        } finally {
+            mAdapterLock.writeLock().unlock();
+        }
+        return true;
+    }
+
     private void handleEnable(boolean quietMode) {
         mQuietEnable = quietMode;
 
@@ -2107,17 +2101,7 @@ class BluetoothManagerService {
 
         sendBluetoothServiceDownCallback();
 
-        // Keep the writeLock to allow synchronization with read operation from binder thread
-        mAdapterLock.writeLock().lock();
-        try {
-            if (mAdapter != null) {
-                mAdapter = null;
-                // Unbind
-                mContext.unbindService(mConnection);
-            }
-        } finally {
-            mAdapterLock.writeLock().unlock();
-        }
+        resetAdapter();
 
         mHandler.removeMessages(MESSAGE_BLUETOOTH_STATE_CHANGE);
         mState.set(STATE_OFF);
