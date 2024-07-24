@@ -22,6 +22,30 @@
       },
       "revId": "f0f6c58cebf140a35d043af1199a9f6aaf53c3c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "028216e3_bd9dc27a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2225,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T23:00:39Z",
+      "side": 1,
+      "message": "Done\n\nPulled the debug up a level and folded into a warn for a single log.",
+      "parentUuid": "09445c47_b50ec6d1",
+      "range": {
+        "startLine": 2224,
+        "startChar": 0,
+        "endLine": 2225,
+        "endChar": 47
+      },
+      "revId": "f0f6c58cebf140a35d043af1199a9f6aaf53c3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
