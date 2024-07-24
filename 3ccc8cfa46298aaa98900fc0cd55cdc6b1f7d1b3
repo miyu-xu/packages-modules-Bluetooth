@@ -16,6 +16,24 @@
       "message": "This is only idea how this should be changed - currently the quality isn\u0027t matched with what would be streamed (sound may be distorted on earbuds)",
       "revId": "3ccc8cfa46298aaa98900fc0cd55cdc6b1f7d1b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ae0452_654f4f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-24T22:45:22Z",
+      "side": 1,
+      "message": "If this is mainly for supporting broadcast SW offload, do we need this for Broadcast launch in 25Q1?\n\nTrying to understand the priority and risks here considering SW offload is not our POR.",
+      "parentUuid": "03422fed_df65eb6f",
+      "revId": "3ccc8cfa46298aaa98900fc0cd55cdc6b1f7d1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
