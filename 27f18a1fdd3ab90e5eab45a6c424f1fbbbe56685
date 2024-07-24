@@ -16,6 +16,24 @@
       "message": "you need to remove from Android.bp and BUILD.gn file too",
       "revId": "27f18a1fdd3ab90e5eab45a6c424f1fbbbe56685",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4647fdb7_c7483b56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T20:28:05Z",
+      "side": 1,
+      "message": "thanks...I decoupled this effort from the flag removal(x2) and will proceed shortly.",
+      "parentUuid": "3b596f22_bc81464f",
+      "revId": "27f18a1fdd3ab90e5eab45a6c424f1fbbbe56685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
