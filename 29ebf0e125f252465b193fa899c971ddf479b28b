@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60b5a14_b8791bf2",
+        "filename": "system/test/mock/mock_stack_l2cap_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-24T20:24:27Z",
+      "side": 1,
+      "message": "types/bt_transport.h ?",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "76e7092e_68177d51",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/test/mock/mock_stack_l2cap_api.h",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/test/mock/mock_stack_l2cap_api.h",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 34,
+                "endChar": 0
+              },
+              "replacement": "#include \"types/bt_transport.h\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "29ebf0e125f252465b193fa899c971ddf479b28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
