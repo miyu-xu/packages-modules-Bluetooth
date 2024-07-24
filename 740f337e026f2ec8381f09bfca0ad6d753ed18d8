@@ -1,0 +1,126 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fba4c17_a0f88adc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T23:47:20Z",
+      "side": 1,
+      "message": "You are only concerned with classic ? How will you extend with LE ?",
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379d1836_ac239876",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T23:47:20Z",
+      "side": 1,
+      "message": "year",
+      "fixSuggestions": [
+        {
+          "fixId": "16094f92_289ac61a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/metrics/bluetooth_event.cc",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright 2023 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b8e507_14d3f410",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T23:47:20Z",
+      "side": 1,
+      "message": "Can you do this ?",
+      "fixSuggestions": [
+        {
+          "fixId": "52df086f_69b8a73e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/metrics/bluetooth_event.cc",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": "  bluetooth::os::LogMetricBluetoothEvent(\n      address,\n      is_locally_initiated ? EventType::ACL_CONNECTION_INITIATOR\n                           : EventType::ACL_CONNECTION_RESPONDER,\n      MapErrorCodeToState(reason));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf19b67_1b316d88",
+        "filename": "system/gd/metrics/bluetooth_event.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T23:47:20Z",
+      "side": 1,
+      "message": "update year",
+      "fixSuggestions": [
+        {
+          "fixId": "c2125411_c79f0b06",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/metrics/bluetooth_event.h",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright 2023 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
