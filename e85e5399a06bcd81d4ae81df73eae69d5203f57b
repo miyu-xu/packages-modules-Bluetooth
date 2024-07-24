@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f6f12b7_78ecdbbe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T17:54:54Z",
+      "side": 1,
+      "message": "Replace with Kotin duration\n```suggestion\nimport kotlin.time.Duration.Companion.seconds\n```",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "e85e5399a06bcd81d4ae81df73eae69d5203f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b7dd4bf_5b514871",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T17:54:54Z",
+      "side": 1,
+      "message": "```suggestion\n        private val TIMEOUT \u003d 10.seconds\n```",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 63
+      },
+      "revId": "e85e5399a06bcd81d4ae81df73eae69d5203f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
