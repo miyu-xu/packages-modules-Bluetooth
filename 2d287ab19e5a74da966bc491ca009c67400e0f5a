@@ -16,6 +16,24 @@
       "message": "This fixes the symptom but I\u0027m concerned why `bta_dm_pm_stop_timer_by_index` is called in the first place. Maybe some logic like a variable `bool pmInitialized` that can be checked to be true before calling the cleanup, which happens in more than one place. You can verify this by making ` bta_dm_disable_pm` a NOP but `bta_dm_pm_stop_timer_by_index` still gets called from other code paths",
       "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bafad8c_b519164e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2034225
+      },
+      "writtenOn": "2024-07-24T13:45:27Z",
+      "side": 1,
+      "message": "Making unresolved",
+      "parentUuid": "ab848fbf_17f4b92a",
+      "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
