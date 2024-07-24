@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e83edc61_54de0414",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-24T20:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f6f12b7_78ecdbbe",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "e85e5399a06bcd81d4ae81df73eae69d5203f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b7dd4bf_5b514871",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T17:54:54Z",
       "side": 1,
       "message": "```suggestion\n        private val TIMEOUT \u003d 10.seconds\n```",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 63
+      },
+      "revId": "e85e5399a06bcd81d4ae81df73eae69d5203f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "116e63cd_4fdf14ab",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Host.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-24T20:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b7dd4bf_5b514871",
       "range": {
         "startLine": 130,
         "startChar": 0,
