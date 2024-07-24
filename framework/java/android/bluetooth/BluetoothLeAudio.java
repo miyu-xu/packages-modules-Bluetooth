@@ -723,6 +723,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
 
     /** @hide */
     @Override
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void onServiceConnected(IBinder service) {
         mService = IBluetoothLeAudio.Stub.asInterface(service);
         // re-register the service-to-app callback

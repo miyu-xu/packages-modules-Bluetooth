@@ -201,6 +201,7 @@ public final class PeriodicAdvertisingManager {
      *
      * @hide
      */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     public void transferSync(BluetoothDevice bda, int serviceData, int syncHandle) {
         IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
 
@@ -217,6 +218,7 @@ public final class PeriodicAdvertisingManager {
      *
      * @hide
      */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     public void transferSetInfo(
             BluetoothDevice bda,
             int serviceData,
@@ -230,6 +232,7 @@ public final class PeriodicAdvertisingManager {
      *
      * @hide
      */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     public void transferSetInfo(
             BluetoothDevice bda,
             int serviceData,
