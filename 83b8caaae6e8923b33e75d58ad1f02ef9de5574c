@@ -50,6 +50,30 @@
       ],
       "revId": "83b8caaae6e8923b33e75d58ad1f02ef9de5574c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4fca283_6fbad2dd",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-24T20:44:45Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "38669625_fedbdb41",
+      "range": {
+        "startLine": 165,
+        "startChar": 7,
+        "endLine": 165,
+        "endChar": 38
+      },
+      "revId": "83b8caaae6e8923b33e75d58ad1f02ef9de5574c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
