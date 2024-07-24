@@ -1481,7 +1481,6 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public void prepareToEnterProcess(@NonNull AttributionSource attributionSource) {
         setAttributionSource(attributionSource);
     }
@@ -1579,7 +1578,6 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @SystemApi
     @NonNull
-    @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public String getAnonymizedAddress() {
         return BluetoothUtils.toAnonymizedAddress(mAddress);
     }
@@ -1731,7 +1729,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public @SetAliasReturnValues int setAlias(@Nullable String alias) {
         if (alias != null && alias.isEmpty()) {
             throw new IllegalArgumentException("alias cannot be the empty string");
@@ -1908,7 +1908,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean cancelBondProcess() {
         if (DBG) log("cancelBondProcess()");
         final IBluetooth service = getService();
@@ -2036,6 +2036,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
+    @SuppressLint("AndroidFrameworkRequiresPermission") // IpcDataCache prevent lint enforcement
     public int getBondState() {
         if (DBG) log("getBondState(" + this + ")");
         final IBluetooth service = getService();
@@ -2377,6 +2378,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
+    // BLUETOOTH_PRIVILEGED required only when calling fetchUuidsWithSdp with a different transport
+    @SuppressLint("AndroidFrameworkRequiresPermission")
     public boolean fetchUuidsWithSdp() {
         return fetchUuidsWithSdp(TRANSPORT_AUTO);
     }
@@ -2403,7 +2406,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             allOf = {
                 BLUETOOTH_CONNECT,
                 BLUETOOTH_PRIVILEGED,
-            })
+            },
+            conditional = true)
     public boolean fetchUuidsWithSdp(@Transport int transport) {
         if (DBG) log("fetchUuidsWithSdp()");
         final IBluetooth service = getService();

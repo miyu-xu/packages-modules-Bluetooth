@@ -22,6 +22,7 @@ import static android.Manifest.permission.BLUETOOTH_ADVERTISE;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
+import static android.Manifest.permission.LOCAL_MAC_ADDRESS;
 import static android.Manifest.permission.MODIFY_PHONE_STATE;
 
 import static java.util.Objects.requireNonNull;
@@ -1619,6 +1620,8 @@ public final class BluetoothAdapter {
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
+    // BLUETOOTH_PRIVILEGED required only when calling disable(false)
+    @SuppressLint("AndroidFrameworkRequiresPermission")
     public boolean disable() {
         return disable(true);
     }
@@ -1634,10 +1637,8 @@ public final class BluetoothAdapter {
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
-            allOf = {
-                BLUETOOTH_CONNECT,
-                BLUETOOTH_PRIVILEGED,
-            })
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public boolean disable(boolean persist) {
         try {
             return mManagerService.disable(mAttributionSource, persist);
@@ -1658,6 +1659,7 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, LOCAL_MAC_ADDRESS})
     public String getAddress() {
         try {
             return mManagerService.getAddress(mAttributionSource);
@@ -2703,7 +2705,7 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(BLUETOOTH_SCAN)
     public boolean isHardwareTrackingFiltersAvailable() {
         if (!getLeAccess()) {
             return false;
@@ -2952,7 +2954,7 @@ public final class BluetoothAdapter {
                     Pair<IBluetooth, Pair<AttributionSource, Integer>>, Integer>
             sBluetoothProfileQuery =
                     new IpcDataCache.QueryHandler<>() {
-                        @RequiresNoPermission
+                        @SuppressLint("AndroidFrameworkRequiresPermission")
                         @Override
                         public Integer apply(
                                 Pair<IBluetooth, Pair<AttributionSource, Integer>> pairQuery) {
@@ -2994,6 +2996,7 @@ public final class BluetoothAdapter {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
+    @SuppressLint("AndroidFrameworkRequiresPermission") // IpcDataCache prevent lint enforcement
     public @ConnectionState int getProfileConnectionState(int profile) {
         if (getState() != STATE_ON) {
             return STATE_DISCONNECTED;
@@ -3574,6 +3577,7 @@ public final class BluetoothAdapter {
      * @param proxy Profile proxy object
      * @hide
      */
+    @SuppressLint("AndroidFrameworkRequiresPermission") // Call control is not expose to 3p app
     public void closeProfileProxy(@NonNull BluetoothProfile proxy) {
         if (proxy instanceof BluetoothGatt gatt) {
             gatt.close();
@@ -3710,6 +3714,7 @@ public final class BluetoothAdapter {
 
     private final IBluetoothManagerCallback mManagerCallback =
             new IBluetoothManagerCallback.Stub() {
+                @SuppressLint("AndroidFrameworkRequiresPermission") // Internal callback
                 public void onBluetoothServiceUp(@NonNull IBinder bluetoothService) {
                     requireNonNull(bluetoothService, "bluetoothService cannot be null");
                     mServiceLock.writeLock().lock();
@@ -4690,6 +4695,7 @@ public final class BluetoothAdapter {
         return true;
     }
 
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     private void registerBluetoothConnectionCallback() {
         mServiceLock.readLock().lock();
         try {
@@ -4705,6 +4711,7 @@ public final class BluetoothAdapter {
         }
     }
 
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     private void registerBluetoothConnectionCallbackIfNeeded() {
         synchronized (mBluetoothConnectionCallbackExecutorMap) {
             if (mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
@@ -4899,16 +4906,15 @@ public final class BluetoothAdapter {
         if (DBG) {
             Log.d(TAG, "setPreferredAudioProfiles( " + modeToProfileBundle + ", " + device + ")");
         }
-        requireNonNull(modeToProfileBundle, "modeToProfileBundle must not be null");
-        requireNonNull(device, "device must not be null");
-        if (!BluetoothAdapter.checkBluetoothAddress(getAddress())) {
+        requireNonNull(modeToProfileBundle);
+        requireNonNull(device);
+        if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
             throw new IllegalArgumentException("device cannot have an invalid address");
         }
         if (!modeToProfileBundle.containsKey(AUDIO_MODE_OUTPUT_ONLY)
                 && !modeToProfileBundle.containsKey(AUDIO_MODE_DUPLEX)) {
             throw new IllegalArgumentException(
-                    "Bundle does not contain a key "
-                            + "AUDIO_MODE_OUTPUT_ONLY or AUDIO_MODE_DUPLEX");
+                    "Bundle does not contain a key AUDIO_MODE_OUTPUT_ONLY or AUDIO_MODE_DUPLEX");
         }
         if (modeToProfileBundle.containsKey(AUDIO_MODE_OUTPUT_ONLY)
                 && modeToProfileBundle.getInt(AUDIO_MODE_OUTPUT_ONLY) != BluetoothProfile.A2DP

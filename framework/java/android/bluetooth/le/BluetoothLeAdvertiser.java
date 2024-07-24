@@ -17,7 +17,6 @@
 package android.bluetooth.le;
 
 import static android.Manifest.permission.BLUETOOTH_ADVERTISE;
-import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.annotation.NonNull;
@@ -99,7 +98,9 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertising(
             AdvertiseSettings settings,
             AdvertiseData advertiseData,
@@ -120,7 +121,9 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertising(
             AdvertiseSettings settings,
             AdvertiseData advertiseData,
@@ -272,8 +275,9 @@ public final class BluetoothLeAdvertiser {
      *     Advertising feature is made when it's not supported by the controller.
      */
     @RequiresLegacyBluetoothAdminPermission
-    @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -318,7 +322,9 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -368,7 +374,9 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -422,7 +430,9 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -485,11 +495,8 @@ public final class BluetoothLeAdvertiser {
     @SuppressLint("ExecutorRegistration")
     @RequiresBluetoothAdvertisePermission
     @RequiresPermission(
-            allOf = {
-                BLUETOOTH_PRIVILEGED,
-                BLUETOOTH_ADVERTISE,
-                BLUETOOTH_CONNECT,
-            })
+            allOf = {BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void startAdvertisingSet(
             @NonNull AdvertisingSetParameters parameters,
             @Nullable AdvertiseData advertiseData,
