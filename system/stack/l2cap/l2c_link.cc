@@ -364,10 +364,12 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
     if (p_lcb->ccb_queue.p_first_ccb != NULL || p_lcb->p_pending_ccb) {
       log::debug("l2c_link_hci_disc_comp: Restarting pending ACL request");
       /* Release any held buffers */
-      while (!list_is_empty(p_lcb->link_xmit_data_q)) {
-        BT_HDR* p_buf = static_cast<BT_HDR*>(list_front(p_lcb->link_xmit_data_q));
-        list_remove(p_lcb->link_xmit_data_q, p_buf);
-        osi_free(p_buf);
+      if (p_lcb->link_xmit_data_q) {
+        while (!list_is_empty(p_lcb->link_xmit_data_q)) {
+          BT_HDR* p_buf = static_cast<BT_HDR*>(list_front(p_lcb->link_xmit_data_q));
+          list_remove(p_lcb->link_xmit_data_q, p_buf);
+          osi_free(p_buf);
+        }
       }
       /* for LE link, always drop and re-open to ensure to get LE remote feature
        */
@@ -665,7 +667,8 @@ void l2c_link_adjust_allocation(void) {
       /* There is a special case where we have readjusted the link quotas and */
       /* this link may have sent anything but some other link sent packets so */
       /* so we may need a timer to kick off this link's transmissions. */
-      if ((p_lcb->link_state == LST_CONNECTED) && (!list_is_empty(p_lcb->link_xmit_data_q)) &&
+      if ((p_lcb->link_state == LST_CONNECTED) &&
+	 (p_lcb->link_xmit_data_q && !list_is_empty(p_lcb->link_xmit_data_q)) &&
           (p_lcb->sent_not_acked < p_lcb->link_xmit_quota)) {
         alarm_set_on_mloop(p_lcb->l2c_lcb_timer, L2CAP_LINK_FLOW_CONTROL_TIMEOUT_MS,
                            l2c_lcb_timer_timeout, p_lcb);
@@ -796,7 +799,7 @@ static bool l2c_link_check_power_mode(tL2C_LCB* p_lcb) {
   /*
    * We only switch park to active only if we have unsent packets
    */
-  if (list_is_empty(p_lcb->link_xmit_data_q)) {
+  if (p_lcb->link_xmit_data_q == nullptr || list_is_empty(p_lcb->link_xmit_data_q)) {
     for (tL2C_CCB* p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb; p_ccb = p_ccb->p_next_ccb) {
       if (!fixed_queue_is_empty(p_ccb->xmit_hold_q)) {
         need_to_active = true;
@@ -843,7 +846,9 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid, BT_HDR* p_buf
     }
 
     p_buf->layer_specific = 0;
-    list_append(p_lcb->link_xmit_data_q, p_buf);
+    if (p_lcb->link_xmit_data_q != nullptr) {
+      list_append(p_lcb->link_xmit_data_q, p_buf);
+    }
 
     if (p_lcb->link_xmit_quota == 0) {
       if (p_lcb->transport == BT_TRANSPORT_LE) {
@@ -1128,7 +1133,9 @@ void l2c_link_segments_xmitted(BT_HDR* p_msg) {
 
   /* Enqueue the buffer to the head of the transmit queue, and see */
   /* if we can transmit anything more.                             */
-  list_prepend(p_lcb->link_xmit_data_q, p_msg);
+  if (p_lcb->link_xmit_data_q) {
+    list_prepend(p_lcb->link_xmit_data_q, p_msg);
+  }
 
   l2c_link_check_send_pkts(p_lcb, 0, NULL);
 }
