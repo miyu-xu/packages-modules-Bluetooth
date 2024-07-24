@@ -22,6 +22,30 @@
       },
       "revId": "430ed6c28d04c514cd5d94799877779914a1d5de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c36a0da6_288b55d2",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1999105
+      },
+      "writtenOn": "2024-07-24T14:22:16Z",
+      "side": 1,
+      "message": "I believe the com.android.bluetooth.flags.enable_sniff_offload aflag persists through reboots.\n\nThe sniff offload feature is controlled by a combination of the com.android.bluetooth.flags.enable_sniff_offload aflag and bluetooth.sniff_offload.enabled sysprop. I want to make sure we don\u0027t have a developer or tester change the flag + sysprop from the default value, then reboot and have the sysprop reset to default and the flag persist. That would leave the developer or tester in a broken sniff offload state.",
+      "parentUuid": "1a093dd8_27f9a19a",
+      "range": {
+        "startLine": 92,
+        "startChar": 52,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "430ed6c28d04c514cd5d94799877779914a1d5de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
