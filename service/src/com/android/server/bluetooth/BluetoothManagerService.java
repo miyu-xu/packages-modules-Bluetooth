@@ -1636,13 +1636,6 @@ class BluetoothManagerService {
                     if (!mEnable) {
                         waitForState(STATE_ON);
                         adapterDisable();
-                        waitForState(
-                                STATE_OFF,
-                                STATE_TURNING_ON,
-                                STATE_TURNING_OFF,
-                                STATE_BLE_TURNING_ON,
-                                STATE_BLE_ON,
-                                STATE_BLE_TURNING_OFF);
                     }
                     break;
 
@@ -1987,6 +1980,7 @@ class BluetoothManagerService {
             return;
         }
         Log.d(TAG, "adapterEnable: Sending request");
+        bluetoothStateChangeHandler(STATE_OFF, STATE_BLE_TURNING_ON);
         try {
             mAdapter.enable(mQuietEnable, mContext.getAttributionSource());
         } catch (RemoteException e) {
@@ -2000,6 +1994,7 @@ class BluetoothManagerService {
             return;
         }
         Log.d(TAG, "adapterDisable: Sending request");
+        bluetoothStateChangeHandler(STATE_ON, STATE_TURNING_OFF);
         try {
             mAdapter.disable(mContext.getAttributionSource());
         } catch (RemoteException e) {
@@ -2013,6 +2008,7 @@ class BluetoothManagerService {
             return;
         }
         Log.d(TAG, "adapterStartBrEdr: sending request");
+        bluetoothStateChangeHandler(STATE_BLE_ON, STATE_TURNING_ON);
         try {
             mAdapter.startBrEdr(mContext.getAttributionSource());
         } catch (RemoteException e) {
@@ -2026,6 +2022,7 @@ class BluetoothManagerService {
             return;
         }
         Log.d(TAG, "adapterStopBle: Sending request");
+        bluetoothStateChangeHandler(STATE_BLE_ON, STATE_BLE_TURNING_OFF);
         try {
             mAdapter.stopBle(mContext.getAttributionSource());
         } catch (RemoteException e) {
@@ -2060,7 +2057,7 @@ class BluetoothManagerService {
     }
 
     private void bluetoothStateChangeHandler(int prevState, int newState) {
-        if (prevState == newState) { // No change. Nothing to do.
+        if (mState.oneOf(newState)) { // Already in correct state
             return;
         }
         mState.set(newState);
