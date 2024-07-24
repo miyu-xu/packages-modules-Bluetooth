@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a7e0aac_ca6b7808",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:06:26Z",
+      "side": 1,
+      "message": "nit, I believe an array is already an iterable and now that you are using assertThat you no longer need the List",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "99e306f4_38c3f80d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+              "range": {
+                "startLine": 66,
+                "startChar": 0,
+                "endLine": 68,
+                "endChar": 0
+              },
+              "replacement": "                        mFutureIntent.set(Arrays.asList(parcelUuids));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "19a69ee51ab764f96eaf3684e253d4834bf72a35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
