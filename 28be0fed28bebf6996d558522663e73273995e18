@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab530d17_72a78c62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:42:35Z",
+      "side": 1,
+      "message": "Looking at `btif_gatt_client.cc`, I see some macro that can assert prior to be run to the \"jni\" thread:\n```\n#define CLI_CBACK_WRAP_IN_JNI(P_CBACK, P_CBACK_WRAP)               \\\n  do {                                                             \\\n    if (bt_gatt_callbacks \u0026\u0026 bt_gatt_callbacks-\u003eclient-\u003eP_CBACK) { \\\n      log::verbose(\"HAL bt_gatt_callbacks-\u003eclient-\u003e{}\", #P_CBACK); \\\n      do_in_jni_thread(P_CBACK_WRAP);                              \\\n    } else {                                                       \\\n      ASSERTC(0, \"Callback is NULL\", 0);                           \\\n    }                                                              \\\n  } while (0)\n```\n\nI believe we want all interaction with bt_gatt_callbacks to be done in the jni thread, Should the the macro be (pseudo-code)\n\n```\n#define CLI_CBACK_WRAP_IN_JNI(P_CBACK, P_CBACK_WRAP)               \\\n  do {                                                             \\\n    do_in_jni_thread(\n        if (bt_gatt_callbacks \u0026\u0026 bt_gatt_callbacks-\u003eclient-\u003eP_CBACK) { \\\n          log::verbose(\"HAL bt_gatt_callbacks-\u003eclient-\u003e{}\", #P_CBACK); \\\n           P_CBACK_WRAP.run()\n        } else {                                                       \\\n          ASSERTC(0, \"Callback is NULL\", 0);                           \\\n        }                                                              \\\n    );\n  } while (0)\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "28be0fed28bebf6996d558522663e73273995e18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34449156_119dc005",
+        "filename": "system/btif/src/btif_gatt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-24T18:42:35Z",
+      "side": 1,
+      "message": "This is called from `initializeNative` in com_android_bluetooth_gatt.cpp  which is jni code and come from java but has nothing to do with the \"jni\" thread.\n\nThe \"jni\" thread is a random thread in the native stack, that is registered to the jvm and used to handle the callback from the native to the java code.\n\nFor consistency, you should move this to the jni thread too, to avoid race condition between the cleanup and the init",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 33
+      },
+      "revId": "28be0fed28bebf6996d558522663e73273995e18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
