@@ -512,6 +512,11 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
 
     /** @hide */
     @Override
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     public void onServiceConnected(IBinder service) {
         mService = IBluetoothLeBroadcastAssistant.Stub.asInterface(service);
         // re-register the service-to-app callback

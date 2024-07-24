@@ -974,7 +974,11 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     public Bundle getCurrentAgEvents(BluetoothDevice device) {
         if (DBG) log("getCurrentAgEvents()");
         final IBluetoothHeadsetClient service = getService();

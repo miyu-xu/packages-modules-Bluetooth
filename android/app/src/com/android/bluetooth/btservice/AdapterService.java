@@ -3779,7 +3779,7 @@ public class AdapterService extends Service {
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
 
-            return service.mDatabaseManager.getCustomMeta(device, key);
+            return service.getMetadata(device, key);
         }
 
         @Override

@@ -717,7 +717,7 @@ public final class BluetoothLeScanner {
         return true;
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     private boolean isHardwareResourcesAvailableForScan(ScanSettings settings) {
         final int callbackType = settings.getCallbackType();
         if ((callbackType & ScanSettings.CALLBACK_TYPE_FIRST_MATCH) != 0

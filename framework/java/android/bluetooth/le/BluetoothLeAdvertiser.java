@@ -95,7 +95,12 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_ADVERTISE,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertising(
             AdvertiseSettings settings,
             AdvertiseData advertiseData,
@@ -116,7 +121,12 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_ADVERTISE,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertising(
             AdvertiseSettings settings,
             AdvertiseData advertiseData,
@@ -269,7 +279,12 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_ADVERTISE,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -314,7 +329,12 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_ADVERTISE,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -364,7 +384,12 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_ADVERTISE,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -418,7 +443,12 @@ public final class BluetoothLeAdvertiser {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothAdvertisePermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_ADVERTISE,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,
@@ -482,10 +512,10 @@ public final class BluetoothLeAdvertiser {
     @RequiresBluetoothAdvertisePermission
     @RequiresPermission(
             allOf = {
-                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
                 android.Manifest.permission.BLUETOOTH_ADVERTISE,
-                android.Manifest.permission.BLUETOOTH_CONNECT,
-            })
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            },
+            conditional = true)
     public void startAdvertisingSet(
             @NonNull AdvertisingSetParameters parameters,
             @Nullable AdvertiseData advertiseData,

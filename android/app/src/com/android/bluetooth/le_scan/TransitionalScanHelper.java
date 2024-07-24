@@ -1432,9 +1432,9 @@ public class TransitionalScanHelper {
         mPeriodicScanManager.transferSetInfo(bda, serviceData, advHandle, callback);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
     public int numHwTrackFiltersAvailable(AttributionSource attributionSource) {
-        if (!Utils.checkConnectPermissionForDataDelivery(
+        if (!Utils.checkScanPermissionForDataDelivery(
                 mContext, attributionSource, "ScanHelper numHwTrackFiltersAvailable")) {
             return 0;
         }

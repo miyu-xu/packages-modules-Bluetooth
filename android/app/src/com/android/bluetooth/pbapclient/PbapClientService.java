@@ -381,7 +381,11 @@ public class PbapClientService extends ProfileService {
             mService = null;
         }
 
-        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_CONNECT,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
         private PbapClientService getService(AttributionSource source) {
             // Cache mService because it can change while getService is called
             PbapClientService service = mService;
@@ -396,6 +400,8 @@ public class PbapClientService extends ProfileService {
                 return null;
             }
 
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
             return service;
         }
 
@@ -409,8 +415,6 @@ public class PbapClientService extends ProfileService {
                 return false;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-
             return service.connect(device);
         }
 
@@ -420,8 +424,6 @@ public class PbapClientService extends ProfileService {
             if (service == null) {
                 return false;
             }
-
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
 
             return service.disconnect(device);
         }
@@ -465,8 +467,6 @@ public class PbapClientService extends ProfileService {
                 return false;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-
             return service.setConnectionPolicy(device, connectionPolicy);
         }
 
@@ -476,8 +476,6 @@ public class PbapClientService extends ProfileService {
             if (service == null) {
                 return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
             }
-
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
 
             return service.getConnectionPolicy(device);
         }

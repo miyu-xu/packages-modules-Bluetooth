@@ -402,6 +402,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
+    @SuppressLint("AndroidFrameworkRequiresPermission") // IpcDataCache prevent lint enforcement
     public int getConnectionState(BluetoothDevice device) {
         if (DBG) log("getConnectionState(" + device + ")");
         final IBluetoothMap service = getService();

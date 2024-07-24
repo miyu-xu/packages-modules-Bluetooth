@@ -276,7 +276,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * <p>Application should call this method as early as possible after it is done with this
      * VolumeControl server.
      */
-    @RequiresPermission(Manifest.permission.BLUETOOTH_PRIVILEGED)
     @Override
     public void close() {
         if (VDBG) log("close()");
@@ -286,6 +285,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
 
     /** @hide */
     @Override
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     public void onServiceConnected(IBinder service) {
         mService = IBluetoothVolumeControl.Stub.asInterface(service);
         // re-register the service-to-app callback
@@ -354,7 +358,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         if (DBG) log("getDevicesMatchingStates()");
         final IBluetoothVolumeControl service = getService();
@@ -575,6 +583,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * @param volumeOffset volume offset to be set on VOCS instance
      * @hide
      */
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
     private void setVolumeOffsetInternal(
             @NonNull BluetoothDevice device,
             @IntRange(from = 1, to = 255) int instanceId,
