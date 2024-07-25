@@ -357,7 +357,7 @@ public class VolumeControlService extends ProfileService {
         if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return false;
         }
-        final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
+        ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
         if (!Utils.arrayContains(featureUuids, BluetoothUuid.VOLUME_CONTROL)) {
             Log.e(
                     TAG,
@@ -456,7 +456,7 @@ public class VolumeControlService extends ProfileService {
         }
         synchronized (mStateMachines) {
             for (BluetoothDevice device : bondedDevices) {
-                final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
+                final ParcelUuid[] featureUuids = device.getUuids();
                 if (!Utils.arrayContains(featureUuids, BluetoothUuid.VOLUME_CONTROL)) {
                     continue;
                 }

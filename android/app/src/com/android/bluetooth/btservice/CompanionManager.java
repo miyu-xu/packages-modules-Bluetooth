@@ -222,7 +222,7 @@ public class CompanionManager {
 
         if (mCompanionDevice == null) {
             // We don't have any companion phone registered, try look from the bonded devices
-            for (BluetoothDevice device : mAdapterService.getBondedDevices()) {
+            for (BluetoothDevice device : mAdapter.getBondedDevices()) {
                 byte[] metadata =
                         mAdapterService.getMetadata(
                                 device, BluetoothDevice.METADATA_SOFTWARE_VERSION);

@@ -811,7 +811,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         A2dpService a2dpService = mFactory.getA2dpService();
         PanService panService = mFactory.getPanService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCoordinatorService =
+        CsipSetCoordinatorService csipSetCooridnatorService =
                 mFactory.getCsipSetCoordinatorService();
 
         if (hsService != null) {
@@ -824,8 +824,8 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
             allProfilesEmpty &= a2dpConnDevList.isEmpty();
             atLeastOneProfileConnectedForDevice |= a2dpConnDevList.contains(device);
         }
-        if (csipSetCoordinatorService != null) {
-            List<BluetoothDevice> csipConnDevList = csipSetCoordinatorService.getConnectedDevices();
+        if (csipSetCooridnatorService != null) {
+            List<BluetoothDevice> csipConnDevList = csipSetCooridnatorService.getConnectedDevices();
             allProfilesEmpty &= csipConnDevList.isEmpty();
             atLeastOneProfileConnectedForDevice |= csipConnDevList.contains(device);
         }
@@ -1011,7 +1011,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         A2dpService a2dpService = mFactory.getA2dpService();
         PanService panService = mFactory.getPanService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCoordinatorService =
+        CsipSetCoordinatorService csipSetCooridnatorService =
                 mFactory.getCsipSetCoordinatorService();
         VolumeControlService volumeControlService = mFactory.getVolumeControlService();
         BatteryService batteryService = mFactory.getBatteryService();
@@ -1064,15 +1064,15 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
                 leAudioService.connect(device);
             }
         }
-        if (csipSetCoordinatorService != null) {
-            List<BluetoothDevice> csipConnDevList = csipSetCoordinatorService.getConnectedDevices();
+        if (csipSetCooridnatorService != null) {
+            List<BluetoothDevice> csipConnDevList = csipSetCooridnatorService.getConnectedDevices();
             if (!csipConnDevList.contains(device)
-                    && (csipSetCoordinatorService.getConnectionPolicy(device)
+                    && (csipSetCooridnatorService.getConnectionPolicy(device)
                             == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
-                    && (csipSetCoordinatorService.getConnectionState(device)
+                    && (csipSetCooridnatorService.getConnectionState(device)
                             == BluetoothProfile.STATE_DISCONNECTED)) {
                 debugLog("Retrying connection to CSIP with device " + device);
-                csipSetCoordinatorService.connect(device);
+                csipSetCooridnatorService.connect(device);
             }
         }
         if (volumeControlService != null) {

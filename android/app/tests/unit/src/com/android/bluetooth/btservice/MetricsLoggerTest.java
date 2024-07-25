@@ -116,7 +116,7 @@ public class MetricsLoggerTest {
         // Dump metrics to clean up internal states
         MetricsLogger.dumpProto(BluetoothLog.newBuilder());
         mTestableMetricsLogger = new TestableMetricsLogger();
-        mTestableMetricsLogger.init(mMockAdapterService);
+        mTestableMetricsLogger.mBloomFilterInitialized = true;
         doReturn(null).when(mMockAdapterService).registerReceiver(any(), any());
     }
 
@@ -180,6 +180,7 @@ public class MetricsLoggerTest {
     /** Test add counters and send them to statsd */
     @Test
     public void testAddAndSendCountersNormalCases() {
+        mTestableMetricsLogger.init(mMockAdapterService);
         mTestableMetricsLogger.cacheCount(1, 10);
         mTestableMetricsLogger.cacheCount(1, 10);
         mTestableMetricsLogger.cacheCount(2, 5);
@@ -200,6 +201,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testAddAndSendCountersCornerCases() {
+        mTestableMetricsLogger.init(mMockAdapterService);
         Assert.assertTrue(mTestableMetricsLogger.isInitialized());
         mTestableMetricsLogger.cacheCount(1, -1);
         mTestableMetricsLogger.cacheCount(3, 0);
@@ -215,6 +217,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testMetricsLoggerClose() {
+        mTestableMetricsLogger.init(mMockAdapterService);
         mTestableMetricsLogger.cacheCount(1, 1);
         mTestableMetricsLogger.cacheCount(2, 10);
         mTestableMetricsLogger.cacheCount(2, Long.MAX_VALUE);
@@ -227,7 +230,6 @@ public class MetricsLoggerTest {
 
     @Test
     public void testMetricsLoggerNotInit() {
-        mTestableMetricsLogger.close();
         Assert.assertFalse(mTestableMetricsLogger.cacheCount(1, 1));
         mTestableMetricsLogger.drainBufferedCounters();
         Assert.assertFalse(mTestableMetricsLogger.mTestableCounters.containsKey(1));
@@ -236,6 +238,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testAddAndSendCountersDoubleInit() {
+        Assert.assertTrue(mTestableMetricsLogger.init(mMockAdapterService));
         Assert.assertTrue(mTestableMetricsLogger.isInitialized());
         Assert.assertFalse(mTestableMetricsLogger.init(mMockAdapterService));
     }
@@ -259,7 +262,7 @@ public class MetricsLoggerTest {
                 TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
 
         byte[] remoteDeviceInformationBytes =
-                mTestableMetricsLogger.getRemoteDeviceInfoProto(bluetoothDevice);
+                MetricsLogger.getInstance().getRemoteDeviceInfoProto(bluetoothDevice);
 
         try {
             BluetoothRemoteDeviceInformation bluetoothRemoteDeviceInformation =

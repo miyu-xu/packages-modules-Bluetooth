@@ -68,7 +68,7 @@ public class MetricsLogger {
 
     HashMap<Integer, Long> mCounters = new HashMap<>();
     private static volatile MetricsLogger sInstance = null;
-    private AdapterService mAdapterService = null;
+    private Context mContext = null;
     private AlarmManager mAlarmManager = null;
     private boolean mInitialized = false;
     private static final Object sLock = new Object();
@@ -149,12 +149,12 @@ public class MetricsLogger {
         mBloomFilter = bloomfilter;
     }
 
-    public boolean init(AdapterService adapterService) {
+    public boolean init(Context context) {
         if (mInitialized) {
             return false;
         }
         mInitialized = true;
-        mAdapterService = adapterService;
+        mContext = context;
         scheduleDrains();
         if (!initBloomFilter(BLOOMFILTER_FULL_PATH)) {
             Log.w(TAG, "MetricsLogger can't initialize the bloomfilter");
@@ -224,7 +224,7 @@ public class MetricsLogger {
     protected void scheduleDrains() {
         Log.i(TAG, "setCounterMetricsAlarm()");
         if (mAlarmManager == null) {
-            mAlarmManager = ((Context) mAdapterService).getSystemService(AlarmManager.class);
+            mAlarmManager = mContext.getSystemService(AlarmManager.class);
         }
         mAlarmManager.set(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
@@ -266,7 +266,7 @@ public class MetricsLogger {
         cancelPendingDrain();
         drainBufferedCounters();
         mAlarmManager = null;
-        mAdapterService = null;
+        mContext = null;
         mInitialized = false;
         mBloomFilterInitialized = false;
         return true;
@@ -305,9 +305,6 @@ public class MetricsLogger {
      * @return A byte array containing the serialized remote device information.
      */
     public byte[] getRemoteDeviceInfoProto(BluetoothDevice device) {
-        if (!mInitialized) {
-            return null;
-        }
         ProtoOutputStream proto = new ProtoOutputStream();
 
         // write Allowlisted Device Name Hash
@@ -316,7 +313,7 @@ public class MetricsLogger {
                 ProtoOutputStream.FIELD_TYPE_STRING,
                 ProtoOutputStream.FIELD_COUNT_SINGLE,
                 BluetoothRemoteDeviceInformation.ALLOWLISTED_DEVICE_NAME_HASH_FIELD_NUMBER,
-                getAllowlistedDeviceNameHash(mAdapterService.getRemoteName(device)));
+                getAllowlistedDeviceNameHash(device.getName()));
 
         // write COD
         writeFieldIfNotNull(
@@ -324,7 +321,9 @@ public class MetricsLogger {
                 ProtoOutputStream.FIELD_TYPE_INT32,
                 ProtoOutputStream.FIELD_COUNT_SINGLE,
                 BluetoothRemoteDeviceInformation.CLASS_OF_DEVICE_FIELD_NUMBER,
-                mAdapterService.getRemoteClass(device));
+                device.getBluetoothClass() != null
+                        ? device.getBluetoothClass().getClassOfDevice()
+                        : null);
 
         // write OUI
         writeFieldIfNotNull(
