@@ -17,7 +17,6 @@
 package com.android.bluetooth.sap;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
