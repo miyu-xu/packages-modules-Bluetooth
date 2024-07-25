@@ -34,6 +34,24 @@
       "parentUuid": "03422fed_df65eb6f",
       "revId": "3ccc8cfa46298aaa98900fc0cd55cdc6b1f7d1b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25fbb5ab_c3def414",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-07-25T08:24:38Z",
+      "side": 1,
+      "message": "This is mainly for starting audio session before BIG. If there is no session before BIG, there is no possibility to handle resume request.\n\nWith this the behavior would be like Unicast.",
+      "parentUuid": "f4ae0452_654f4f5f",
+      "revId": "3ccc8cfa46298aaa98900fc0cd55cdc6b1f7d1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
