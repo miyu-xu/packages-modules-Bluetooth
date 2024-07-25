@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe0cb10_d2964673",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-25T18:31:41Z",
+      "side": 1,
+      "message": "For the time being yes, I am only concerned with classic connections.",
+      "parentUuid": "9fba4c17_a0f88adc",
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "379d1836_ac239876",
