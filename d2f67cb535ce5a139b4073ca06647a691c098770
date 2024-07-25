@@ -16,6 +16,24 @@
       "message": "Where is the state set to OFF now ?",
       "revId": "d2f67cb535ce5a139b4073ca06647a691c098770",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c86455c5_ae3d6545",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-25T18:22:01Z",
+      "side": 0,
+      "message": "line 1738 we do the TURNING_OFF -\u003e OFF transition and line 1735 we do the TUNRING_ON/ON -\u003e TURNING_OFF transition",
+      "parentUuid": "6825174d_f156feba",
+      "revId": "d2f67cb535ce5a139b4073ca06647a691c098770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
