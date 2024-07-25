@@ -18,7 +18,6 @@
 package com.android.bluetooth.csip;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.annotation.CallbackExecutor;
 import android.annotation.NonNull;

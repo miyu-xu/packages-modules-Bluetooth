@@ -18,7 +18,6 @@
 package com.android.bluetooth.vc;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
