@@ -22,6 +22,30 @@
       },
       "revId": "453ced8d2a563e8d0190ae3d9604904c16ff169d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d00365_29d9688a",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-25T16:03:27Z",
+      "side": 1,
+      "message": "Not really required. Both `BTIF_HH_DEV_CONNECTING` and `pending_link_spec` are set together. So checking `pending_link_spec` is conclusive.",
+      "parentUuid": "b6c95459_4999bef3",
+      "range": {
+        "startLine": 1025,
+        "startChar": 10,
+        "endLine": 1025,
+        "endChar": 71
+      },
+      "revId": "453ced8d2a563e8d0190ae3d9604904c16ff169d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
