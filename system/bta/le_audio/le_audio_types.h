@@ -100,6 +100,48 @@ static const bluetooth::Uuid kTelephonyMediaAudioProfileRoleCharacteristicUuid =
 }  // namespace uuid
 
 namespace codec_spec_conf {
+constexpr uint8_t SampleingFreqCapability2Config(uint16_t cap) {
+  if (!cap || (cap & (cap - 1))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf + 1;
+}
+
+constexpr uint8_t FrameDurationCapability2Config(uint16_t cap) {
+  if (!cap || (cap & (cap - 1))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf;
+}
+
+constexpr uint8_t ChannelCountCapability2Config(uint16_t cap) {
+  if (!cap || (cap & (cap - 1))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf + 1;
+}
+
 /* LTV Types */
 constexpr uint8_t kLeAudioLtvTypeSamplingFreq = 0x01;
 constexpr uint8_t kLeAudioLtvTypeFrameDuration = 0x02;
@@ -185,9 +227,21 @@ constexpr uint16_t kLeAudioCodecFrameLen120 = 120;
 constexpr uint8_t kInvalidCisId = 0xFF;
 
 namespace codec_spec_caps {
-uint16_t constexpr SamplingFreqConfig2Capability(uint8_t conf) { return 1 << (conf - 1); }
+uint16_t constexpr SamplingFreqConfig2Capability(uint8_t conf) {
+  if (!conf) {
+    return 0;
+  }
+  return 1 << (conf - 1);
+}
 
 uint8_t constexpr FrameDurationConfig2Capability(uint8_t conf) { return 0x01 << (conf); }
+
+uint16_t constexpr ChannelCountConfig2Capability(uint8_t conf) {
+  if (!conf) {
+    return 0;
+  }
+  return 0x01 << (conf - 1);
+}
 
 /* LTV Types - same values as in Codec Specific Configurations but 0x03 is
  * named differently.
