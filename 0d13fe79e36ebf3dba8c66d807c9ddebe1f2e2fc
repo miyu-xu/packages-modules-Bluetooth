@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f041a8e_d74f127c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-25T08:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58fcfe22_238343b1",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "265ecb64_ef36c4fe",
@@ -121,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9dfde67_a46d9a70",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-25T08:21:00Z",
+      "side": 1,
+      "message": "Okay, I will just delete the comment then",
+      "parentUuid": "20ce56c1_bbf9bcbd",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43445234_e93cae04",
         "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
         "patchSetId": 7
@@ -173,6 +215,30 @@
       "side": 1,
       "message": "Changed code to the one you proposed",
       "parentUuid": "ad971eb3_2e7ecb92",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f68123d_95f51be2",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-25T08:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1911af8a_b8c7fb05",
       "range": {
         "startLine": 62,
         "startChar": 4,
@@ -377,6 +443,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "485317be_513a48ef",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-25T08:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3893a2d_f85151f9",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d47b0e4_4a0afa9f",
@@ -414,6 +498,30 @@
       "side": 1,
       "message": "Added responses for both of these methods",
       "parentUuid": "4d47b0e4_4a0afa9f",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 74
+      },
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "327f5a0c_be923767",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-25T08:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6f42685_f2c2d1a7",
       "range": {
         "startLine": 22,
         "startChar": 2,
