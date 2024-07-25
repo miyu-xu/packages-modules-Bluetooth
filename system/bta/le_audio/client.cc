@@ -4114,7 +4114,9 @@ public:
                                             "r_state: " + ToString(audio_receiver_state_) +
                                                     ", s_state: " + ToString(audio_sender_state_));
 
-    StartVbcCloseTimeout();
+    if (audio_receiver_state_ != AudioState::IDLE) {
+      StartVbcCloseTimeout();
+    }
 
     /* Note: This callback is from audio hal driver.
      * Bluetooth peer is a Source for Audio Framework.
