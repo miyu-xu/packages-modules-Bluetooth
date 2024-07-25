@@ -155,7 +155,6 @@ public:
   static const std::string kBtSnoopLogFilterProfileRfcommProperty;
   static const std::string kSoCManufacturerProperty;
 
-  static const std::string kBtSnoopLogModeKernel;
   static const std::string kBtSnoopLogModeDisabled;
   static const std::string kBtSnoopLogModeFiltered;
   static const std::string kBtSnoopLogModeFull;

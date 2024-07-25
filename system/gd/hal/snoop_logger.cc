@@ -446,7 +446,6 @@ const std::string SnoopLogger::kBtSnoopLogFilterProfileRfcommProperty =
 const std::string SnoopLogger::kSoCManufacturerProperty = "ro.soc.manufacturer";
 
 // persist.bluetooth.btsnooplogmode
-const std::string SnoopLogger::kBtSnoopLogModeKernel = "kernel";
 const std::string SnoopLogger::kBtSnoopLogModeDisabled = "disabled";
 const std::string SnoopLogger::kBtSnoopLogModeFiltered = "filtered";
 const std::string SnoopLogger::kBtSnoopLogModeFull = "full";
@@ -1166,9 +1165,6 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
       }
       btsnooz_buffer_.Push(ss.str());
       return;
-    } else if (btsnoop_mode_ == kBtSnoopLogModeKernel) {
-      // Skip logging as btsnoop is done in kernel space
-      return;
     }
 
     FilterCapturedPacket(packet, direction, type, length, header);
@@ -1254,7 +1250,7 @@ void SnoopLogger::ListDependencies(ModuleList* /* list */) const {
 
 void SnoopLogger::Start() {
   std::lock_guard<std::recursive_mutex> lock(file_mutex_);
-  if (btsnoop_mode_ != kBtSnoopLogModeDisabled && btsnoop_mode_ != kBtSnoopLogModeKernel) {
+  if (btsnoop_mode_ != kBtSnoopLogModeDisabled) {
     OpenNextSnoopLogFile();
 
     if (btsnoop_mode_ == kBtSnoopLogModeFiltered) {
