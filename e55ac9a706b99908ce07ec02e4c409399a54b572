@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8640e4de_9f18659e",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-25T06:00:31Z",
+      "side": 1,
+      "message": "I am under the impression that when pending_link_spec isn\u0027t empty, it means `p_dev \u003d btif_hh_find_dev_by_link_spec(link_spec)` doesn\u0027t return null and `p_dev-\u003edev_status \u003d\u003d BTHH_CONN_STATE_CONNECTING`. \n\nIf so, wouldn\u0027t this else branch never gets executed?\nIf not, maybe we didn\u0027t maintain the synchronization of the state well?\n\nShould we merge this with the if arm instead?",
+      "range": {
+        "startLine": 1626,
+        "startChar": 8,
+        "endLine": 1626,
+        "endChar": 59
+      },
+      "revId": "e55ac9a706b99908ce07ec02e4c409399a54b572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
