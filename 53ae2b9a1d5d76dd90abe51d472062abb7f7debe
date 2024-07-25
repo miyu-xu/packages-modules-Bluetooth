@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41efa6e9_64c46042",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-07-25T21:45:03Z",
+      "side": 1,
+      "message": "I see that this would be functionally the same as previous but seems a bit suspicious for me that function \"HandleNextRequest\" changes sync state.\n\nI would suggest rather to move this to block to HandleStartSyncRequest and return from that function status.",
+      "range": {
+        "startLine": 571,
+        "startChar": 4,
+        "endLine": 571,
+        "endChar": 8
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ec90c33b_07e7a8a3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/le_periodic_sync_manager.h",
+              "range": {
+                "startLine": 571,
+                "startChar": 0,
+                "endLine": 572,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/le_periodic_sync_manager.h",
+              "range": {
+                "startLine": 587,
+                "startChar": 0,
+                "endLine": 587,
+                "endChar": 0
+              },
+              "replacement": "    auto sync \u003d GetSyncFromAddressWithTypeAndSid(it-\u003eaddress_with_type, it-\u003eadvertiser_sid);\n    if (sync !\u003d periodic_syncs_.end()) {\n      sync-\u003esync_state \u003d PERIODIC_SYNC_STATE_PENDING;\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
