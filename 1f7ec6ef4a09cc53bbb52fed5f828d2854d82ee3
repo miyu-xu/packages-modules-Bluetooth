@@ -51,6 +51,24 @@
       "parentUuid": "220d0c31_5928a4bb",
       "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc84d29_93e1a34a",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-25T18:46:03Z",
+      "side": 1,
+      "message": "See my comment in `pts_bot_tests_config.json`\n\nThe flag support is still very new and @charliebout@google.com is trying to improve it so he will be the best to tell you what is ready now",
+      "parentUuid": "f0d430d7_aa5f04c9",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
