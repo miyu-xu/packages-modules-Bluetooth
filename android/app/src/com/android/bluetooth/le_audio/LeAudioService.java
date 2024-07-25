@@ -837,9 +837,10 @@ public class LeAudioService extends ProfileService {
                 if (descriptor == null) {
                     Log.e(
                             TAG,
-                            "getDevicesMatchingConnectionStates: No valid descriptor for device: "
+                            "getDevicesMatchingConnectionStates: "
+                                    + "No valid descriptor for device: "
                                     + device);
-                    continue;
+                    return null;
                 }
 
                 LeAudioStateMachine sm = descriptor.mStateMachine;
