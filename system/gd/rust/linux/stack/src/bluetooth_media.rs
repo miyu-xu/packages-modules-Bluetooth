@@ -92,6 +92,15 @@ const MEDIA_CLASSIC_AUDIO_PROFILES: &[Profile] =
 const MEDIA_LE_AUDIO_PROFILES: &[Profile] =
     &[Profile::LeAudio, Profile::VolumeControl, Profile::CoordinatedSet];
 
+const MEDIA_PROFILE_ENABLE_ORDER: &[Profile] = &[
+    Profile::A2dpSource,
+    Profile::AvrcpTarget,
+    Profile::Hfp,
+    Profile::LeAudio,
+    Profile::VolumeControl,
+    Profile::CoordinatedSet,
+];
+
 /// Group ID used to identify unknown/non-existent groups.
 pub const LEA_UNKNOWN_GROUP_ID: i32 = -1;
 
@@ -565,6 +574,13 @@ impl BluetoothMedia {
             hfp_audio_connection_listener: None,
             a2dp_audio_connection_listener: None,
         }
+    }
+
+    pub fn cleanup(&mut self) -> bool {
+        for profile in MEDIA_PROFILE_ENABLE_ORDER.iter().rev() {
+            self.disable_profile(&profile);
+        }
+        true
     }
 
     fn is_profile_connected(&self, addr: &RawAddress, profile: &Profile) -> bool {
@@ -3193,15 +3209,7 @@ impl IBluetoothMedia for BluetoothMedia {
 
         // TODO(b/284811956) A2DP needs to be enabled before AVRCP otherwise AVRCP gets memset'd.
         // Iterate the delay_enable_profiles hashmap directly when this is fixed.
-        let profile_order = vec![
-            Profile::A2dpSource,
-            Profile::AvrcpTarget,
-            Profile::Hfp,
-            Profile::LeAudio,
-            Profile::VolumeControl,
-            Profile::CoordinatedSet,
-        ];
-        for profile in profile_order {
+        for profile in MEDIA_PROFILE_ENABLE_ORDER {
             if self.delay_enable_profiles.contains(&profile) {
                 self.enable_profile(&profile);
             }
@@ -3597,7 +3605,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn cleanup(&mut self) -> bool {
-        true
+        self.cleanup()
     }
 
     // This may not disconnect all media profiles at once, but once the stack
