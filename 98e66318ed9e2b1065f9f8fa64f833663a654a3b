@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ecee46e_8cd82b72",
+        "filename": "framework/tests/bumble/build.gradle.kts",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-25T18:56:32Z",
+      "side": 1,
+      "message": "This require you to source the build/envsetup.\n\nWhile if you are to use relative path, and since the relative path is unlikely to move, you can skip this.\n\nOr you can use it as a fallback ?\n\n`System.getenv(\"ANDROID_BUILD_TOP\") ?: \"../../../../../../\"` ← Please double check ^^",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 40,
+        "endChar": 57
+      },
+      "revId": "98e66318ed9e2b1065f9f8fa64f833663a654a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
