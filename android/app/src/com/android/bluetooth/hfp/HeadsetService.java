@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.MODIFY_PHONE_STATE;
 
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
 import static java.util.Objects.requireNonNull;
@@ -601,7 +602,7 @@ public class HeadsetService extends ProfileService {
                 return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.getConnectionPolicy(device);
         }
 
@@ -664,7 +665,7 @@ public class HeadsetService extends ProfileService {
                 return BluetoothHeadset.STATE_AUDIO_DISCONNECTED;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.getAudioState(device);
         }
 
@@ -675,7 +676,7 @@ public class HeadsetService extends ProfileService {
                 return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.connectAudio();
         }
 
@@ -686,7 +687,7 @@ public class HeadsetService extends ProfileService {
                 return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.disconnectAudio();
         }
 
@@ -697,7 +698,7 @@ public class HeadsetService extends ProfileService {
                 return;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             service.setAudioRouteAllowed(allowed);
         }
 
@@ -708,7 +709,7 @@ public class HeadsetService extends ProfileService {
                 return false;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.getAudioRouteAllowed();
         }
 
@@ -831,7 +832,7 @@ public class HeadsetService extends ProfileService {
                 return false;
             }
 
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.isInbandRingingEnabled();
         }
     }
