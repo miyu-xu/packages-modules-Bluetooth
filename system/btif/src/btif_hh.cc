@@ -1623,6 +1623,11 @@ static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
                   bthh_connection_state_text(p_dev->dev_status));
         p_dev->dev_status = BTHH_CONN_STATE_DISCONNECTED;
         return BT_STATUS_DONE;
+      } else if (btif_hh_cb.pending_link_spec == link_spec) {
+        log::info("Pending connection cancelled {}", btif_hh_cb.pending_link_spec);
+        btif_hh_cb.pending_link_spec = {};
+        btif_hh_cb.status = BTIF_HH_ENABLED;
+        return BT_STATUS_SUCCESS;
       }
     }
 
