@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "110c6865_4e52f292",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-25T16:51:41Z",
+      "side": 1,
+      "message": "Is there a chance that we can run into this null list again before allocating it now that we\u0027re adding the null checks?  If so maybe we can add a warning log for all of them?",
+      "revId": "43fc0b96472a4ea41be64ff53175a74067b48500",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3dd4cb1_a4d126db",
         "filename": "system/stack/l2cap/l2c_link.cc",
         "patchSetId": 6
