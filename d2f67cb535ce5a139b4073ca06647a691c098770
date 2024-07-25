@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6825174d_f156feba",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-25T16:20:29Z",
+      "side": 0,
+      "message": "Where is the state set to OFF now ?",
+      "revId": "d2f67cb535ce5a139b4073ca06647a691c098770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
