@@ -22,6 +22,30 @@
       },
       "revId": "898c08f41cdf90093940f46c3d8e795c7f7f456b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b56585bb_0bdbbb20",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 2034225
+      },
+      "writtenOn": "2024-07-25T20:00:09Z",
+      "side": 1,
+      "message": "That should be done too. By the way I tried that initially for a temp fix and realized even when `bta_dm_init_pm()` is not directly called there are other calls to `bta_dm_pm_stop_timer_by_index` (as I had described in my other comment)",
+      "parentUuid": "07b02aa2_4e458600",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "898c08f41cdf90093940f46c3d8e795c7f7f456b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
