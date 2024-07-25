@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.mapclient;
 
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.bluetooth.SdpMasRecord;
@@ -106,7 +105,6 @@ public class MasClient {
         mHandler.obtainMessage(CONNECT).sendToTarget();
     }
 
-    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786
     private void connect() {
         try {
             int l2capSocket = mSdpMasRecord.getL2capPsm();

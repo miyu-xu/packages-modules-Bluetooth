@@ -17,7 +17,6 @@
 package android.bluetooth;
 
 import android.annotation.NonNull;
-import android.content.AttributionSource;
 import android.os.Binder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -33,13 +32,10 @@ public class BluetoothLeBroadcastAssistantCallback
     private boolean mIsRegistered = false;
     private final Map<BluetoothLeBroadcastAssistant.Callback, Executor> mCallbackMap =
             new HashMap<>();
-    private final IBluetoothLeBroadcastAssistant mAdapter;
-    private final AttributionSource mAttributionSource;
+    IBluetoothLeBroadcastAssistant mAdapter;
 
-    public BluetoothLeBroadcastAssistantCallback(
-            IBluetoothLeBroadcastAssistant adapter, AttributionSource source) {
+    public BluetoothLeBroadcastAssistantCallback(IBluetoothLeBroadcastAssistant adapter) {
         mAdapter = adapter;
-        mAttributionSource = source;
     }
 
     /**
@@ -58,7 +54,7 @@ public class BluetoothLeBroadcastAssistantCallback
 
             if (!mIsRegistered) {
                 try {
-                    mAdapter.registerCallback(this, mAttributionSource);
+                    mAdapter.registerCallback(this);
                     mIsRegistered = true;
                 } catch (RemoteException e) {
                     Log.w(TAG, "Failed to register broadcast assistant callback");
@@ -81,7 +77,7 @@ public class BluetoothLeBroadcastAssistantCallback
             mCallbackMap.remove(callback);
             if (mCallbackMap.isEmpty() && mIsRegistered) {
                 try {
-                    mAdapter.unregisterCallback(this, mAttributionSource);
+                    mAdapter.unregisterCallback(this);
                     mIsRegistered = false;
                 } catch (RemoteException e) {
                     Log.w(TAG, "Failed to unregister callback with service");

@@ -1908,12 +1908,7 @@ public class GattService extends ProfileService {
     /**************************************************************************
      * ADVERTISING SET
      *************************************************************************/
-    @RequiresPermission(
-            allOf = {
-                android.Manifest.permission.BLUETOOTH_ADVERTISE,
-                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-            },
-            conditional = true)
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
     void startAdvertisingSet(
             AdvertisingSetParameters parameters,
             AdvertiseData advertiseData,

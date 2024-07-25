@@ -29,7 +29,6 @@ import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
 import android.bluetooth.annotations.RequiresBluetoothScanPermission;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanSettings;
-import android.content.AttributionSource;
 import android.content.Context;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -476,8 +475,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             "android.bluetooth.action.CONNECTION_STATE_CHANGED";
 
     private CloseGuard mCloseGuard;
-    private final BluetoothAdapter mBluetoothAdapter;
-    private final AttributionSource mAttributionSource;
+    private BluetoothAdapter mBluetoothAdapter;
 
     private IBluetoothLeBroadcastAssistant mService;
 
@@ -489,7 +487,6 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     /*package*/ BluetoothLeBroadcastAssistant(
             @NonNull Context context, @NonNull BluetoothAdapter bluetoothAdapter) {
         mBluetoothAdapter = bluetoothAdapter;
-        mAttributionSource = bluetoothAdapter.getAttributionSource();
         mService = null;
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
@@ -521,7 +518,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
                 return;
             }
             try {
-                mService.registerCallback(mCallback, mAttributionSource);
+                mService.registerCallback(mCallback);
             } catch (RemoteException e) {
                 Log.e(
                         TAG,
@@ -572,7 +569,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled() && isValidDevice(sink)) {
             try {
-                return service.getConnectionState(sink, mAttributionSource);
+                return service.getConnectionState(sink);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -604,7 +601,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
             try {
-                return service.getDevicesMatchingConnectionStates(states, mAttributionSource);
+                return service.getDevicesMatchingConnectionStates(states);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -634,7 +631,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
             try {
-                return service.getConnectedDevices(mAttributionSource);
+                return service.getConnectedDevices();
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -676,7 +673,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
                 && (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
                         || connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
             try {
-                return service.setConnectionPolicy(device, connectionPolicy, mAttributionSource);
+                return service.setConnectionPolicy(device, connectionPolicy);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -712,7 +709,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled() && isValidDevice(device)) {
             try {
-                return service.getConnectionPolicy(device, mAttributionSource);
+                return service.getConnectionPolicy(device);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -760,7 +757,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
                 try {
                     final IBluetoothLeBroadcastAssistant service = getService();
                     if (service != null) {
-                        service.registerCallback(mCallback, mAttributionSource);
+                        service.registerCallback(mCallback);
                     }
                 } catch (RemoteException e) {
                     throw e.rethrowAsRuntimeException();
@@ -809,7 +806,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
                 try {
                     final IBluetoothLeBroadcastAssistant service = getService();
                     if (service != null) {
-                        service.unregisterCallback(mCallback, mAttributionSource);
+                        service.unregisterCallback(mCallback);
                     }
                 } catch (RemoteException e) {
                     throw e.rethrowAsRuntimeException();
@@ -875,7 +872,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
             try {
-                service.startSearchingForSources(filters, mAttributionSource);
+                service.startSearchingForSources(filters);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -917,7 +914,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
             try {
-                service.stopSearchingForSources(mAttributionSource);
+                service.stopSearchingForSources();
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -946,7 +943,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
             try {
-                return service.isSearchInProgress(mAttributionSource);
+                return service.isSearchInProgress();
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -1041,7 +1038,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled() && isValidDevice(sink)) {
             try {
-                service.addSource(sink, sourceMetadata, isGroupOp, mAttributionSource);
+                service.addSource(sink, sourceMetadata, isGroupOp);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -1121,7 +1118,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled() && isValidDevice(sink)) {
             try {
-                service.modifySource(sink, sourceId, updatedMetadata, mAttributionSource);
+                service.modifySource(sink, sourceId, updatedMetadata);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -1176,7 +1173,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled() && isValidDevice(sink)) {
             try {
-                service.removeSource(sink, sourceId, mAttributionSource);
+                service.removeSource(sink, sourceId);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -1211,7 +1208,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
             try {
-                return service.getAllSources(sink, mAttributionSource);
+                return service.getAllSources(sink);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
@@ -1243,7 +1240,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled() && isValidDevice(sink)) {
             try {
-                return service.getMaximumSourceCapacity(sink, mAttributionSource);
+                return service.getMaximumSourceCapacity(sink);
             } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }

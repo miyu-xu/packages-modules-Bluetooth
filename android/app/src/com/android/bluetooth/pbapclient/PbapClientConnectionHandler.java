@@ -17,7 +17,6 @@ package com.android.bluetooth.pbapclient;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.bluetooth.BluetoothUuid;
@@ -281,7 +280,6 @@ class PbapClientConnectionHandler extends Handler {
     /* Utilize SDP, if available, to create a socket connection over L2CAP, RFCOMM specified
      * channel, or RFCOMM default channel. */
     @VisibleForTesting
-    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786
     synchronized boolean connectSocket() {
         try {
             /* Use BluetoothSocket to connect */

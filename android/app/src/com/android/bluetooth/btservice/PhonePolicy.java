@@ -18,6 +18,7 @@ package com.android.bluetooth.btservice;
 
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 
+import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothCsipSetCoordinator;
 import android.bluetooth.BluetoothDevice;
@@ -299,6 +300,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     }
 
     // Policy implementation, all functions MUST be private
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     private void processInitProfilePriorities(BluetoothDevice device, ParcelUuid[] uuids) {
         debugLog("processInitProfilePriorities() - device " + device);
         HidHostService hidService = mFactory.getHidHostService();
@@ -689,6 +691,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         }
     }
 
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     private void processProfileStateChanged(
             BluetoothDevice device, int profileId, int nextState, int prevState) {
         debugLog(
@@ -800,6 +803,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         mDatabaseManager.setConnection(device);
     }
 
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     private boolean handleAllProfilesDisconnected(BluetoothDevice device) {
         boolean atLeastOneProfileConnectedForDevice = false;
         boolean allProfilesEmpty = true;
@@ -983,6 +987,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     // profiles which are not already connected or in the process of connecting to attempt to
     // connect to the device that initiated the connection.  In the event that this function is
     // invoked and there are no current bluetooth connections no new profiles will be connected.
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     private void processConnectOtherProfiles(BluetoothDevice device) {
         debugLog("processConnectOtherProfiles, device=" + device);
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
