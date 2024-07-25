@@ -18,6 +18,7 @@
 
 #include <cstdint>
 
+#include "common/init_flags.h"
 #include "hci/controller_interface_mock.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_int_types.h"

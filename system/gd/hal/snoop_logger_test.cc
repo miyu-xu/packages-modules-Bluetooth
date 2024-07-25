@@ -25,6 +25,7 @@
 #include <future>
 #include <unordered_map>
 
+#include "common/init_flags.h"
 #include "hal/snoop_logger_common.h"
 #include "hal/syscall_wrapper_impl.h"
 #include "os/fake_timer/fake_timerfd.h"

@@ -20,11 +20,13 @@
 
 #include <bluetooth/log.h>
 
-#include <array>
 #include <iomanip>
 #include <mutex>
 #include <sstream>
 #include <utility>
+
+#include "common/init_flags.h"
+#include "os/log.h"
 
 namespace bluetooth {
 namespace common {

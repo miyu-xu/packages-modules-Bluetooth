@@ -31,7 +31,9 @@
 #include <sys/un.h>
 #include <unistd.h>
 
+#include "common/init_flags.h"
 #include "hal/snoop_logger_common.h"
+#include "os/log.h"
 
 namespace bluetooth {
 namespace hal {
