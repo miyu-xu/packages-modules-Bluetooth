@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2355bd5b_5912deb7",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-25T02:33:52Z",
+      "side": 1,
+      "message": "Q) Isn\u0027t 32 valid id?",
+      "range": {
+        "startLine": 1523,
+        "startChar": 39,
+        "endLine": 1523,
+        "endChar": 44
+      },
+      "revId": "49a479831fa5925d80e33accd51ac15f12fc0b05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

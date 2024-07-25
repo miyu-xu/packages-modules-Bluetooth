@@ -112,6 +112,30 @@
       },
       "revId": "d6195529abfe227922713134a3882883f3197daa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cf3eac2_af86afb4",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-25T02:33:52Z",
+      "side": 1,
+      "message": "That\u0027s exactly the same way I tried.",
+      "parentUuid": "daba6d6e_1ce1a18b",
+      "range": {
+        "startLine": 1538,
+        "startChar": 6,
+        "endLine": 1538,
+        "endChar": 25
+      },
+      "revId": "d6195529abfe227922713134a3882883f3197daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
