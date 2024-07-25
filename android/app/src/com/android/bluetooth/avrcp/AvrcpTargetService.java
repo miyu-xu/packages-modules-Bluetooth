@@ -43,7 +43,6 @@ import com.android.bluetooth.audio_util.Metadata;
 import com.android.bluetooth.audio_util.PlayStatus;
 import com.android.bluetooth.audio_util.PlayerInfo;
 import com.android.bluetooth.audio_util.PlayerSettingsManager;
-import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -96,11 +95,9 @@ public class AvrcpTargetService extends ProfileService {
     private AvrcpCoverArtService mAvrcpCoverArtService = null;
 
     private static AvrcpTargetService sInstance = null;
-    private final AdapterService mAdapterService;
 
-    public AvrcpTargetService(AdapterService adapterService) {
-        super(adapterService);
-        mAdapterService = adapterService;
+    public AvrcpTargetService(Context ctx) {
+        super(ctx);
     }
 
     /** Checks for profile enabled state in Bluetooth sysprops. */
@@ -217,7 +214,7 @@ public class AvrcpTargetService extends ProfileService {
 
         mAvrcpVersion = AvrcpVersion.getCurrentSystemPropertiesValue();
 
-        mVolumeManager = new AvrcpVolumeManager(mAdapterService, mAudioManager, mNativeInterface);
+        mVolumeManager = new AvrcpVolumeManager(this, mAudioManager, mNativeInterface);
 
         UserManager userManager = getApplicationContext().getSystemService(UserManager.class);
         if (userManager.isUserUnlocked()) {
