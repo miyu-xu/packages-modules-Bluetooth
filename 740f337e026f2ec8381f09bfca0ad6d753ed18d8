@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff29f115_ba48522e",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-25T18:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "379d1836_ac239876",
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66b8e507_14d3f410",
@@ -88,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "547924b1_104173fb",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-25T18:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66b8e507_14d3f410",
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cf19b67_1b316d88",
@@ -119,6 +155,24 @@
           ]
         }
       ],
+      "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8d4537_5cd72f80",
+        "filename": "system/gd/metrics/bluetooth_event.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-25T18:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf19b67_1b316d88",
       "revId": "740f337e026f2ec8381f09bfca0ad6d753ed18d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
