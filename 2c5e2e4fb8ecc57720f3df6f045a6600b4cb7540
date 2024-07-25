@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cdd949d_90507913",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-25T00:09:25Z",
+      "side": 1,
+      "message": "Hi Jason, I noticed that a bunch of hidden method in Bluetooth are marked as UnsupportedAppUsage without referencing a max target. I am adding you because of b/171933273\n\nMy understanding is that we can only remove a method with this annotation, if the associated target is already not supported, and therefor, if there is is no target we have to keep it forever ?\n\nIf that\u0027s correct, I have added a max target for V for all of that, in the hope that we will be able to remove the code in a few years.\nIf I am wrong, I am happy to re-edit this and simply delete the annotation and associated dead code !",
+      "revId": "2c5e2e4fb8ecc57720f3df6f045a6600b4cb7540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
