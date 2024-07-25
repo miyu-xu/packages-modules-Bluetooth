@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cc3b0ca0_0b249820",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-25T06:34:11Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "5578966cabe1acf1b4d7abb8559a922370c91767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "68b8da52_a5e44b2a",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 3
