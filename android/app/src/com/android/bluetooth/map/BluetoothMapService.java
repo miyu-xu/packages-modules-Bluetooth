@@ -18,6 +18,8 @@ package com.android.bluetooth.map;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+
 import android.annotation.RequiresPermission;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -1368,7 +1370,7 @@ public class BluetoothMapService extends ProfileService {
                     return Collections.emptyList();
                 }
 
-                service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+                enforceBluetoothPrivilegedPermission(service);
                 return service.getConnectedDevices();
             } catch (RuntimeException e) {
                 ContentProfileErrorReportUtils.report(
