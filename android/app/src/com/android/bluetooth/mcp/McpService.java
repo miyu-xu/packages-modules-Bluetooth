@@ -17,8 +17,6 @@
 
 package com.android.bluetooth.mcp;
 
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothMcpServiceManager;
@@ -249,7 +247,7 @@ public class McpService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            Utils.enforceBluetoothPrivilegedPermission(service);
             service.setDeviceAuthorized(device, isAuthorized);
         }
 

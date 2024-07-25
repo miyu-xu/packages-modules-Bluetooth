@@ -17,7 +17,8 @@
 package com.android.bluetooth.hid;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
+
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import static java.util.Objects.requireNonNull;
 
@@ -830,7 +831,7 @@ public class HidHostService extends ProfileService {
             if (service == null) {
                 return false;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.connect(device);
         }
 
@@ -840,7 +841,7 @@ public class HidHostService extends ProfileService {
             if (service == null) {
                 return false;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.disconnect(device);
         }
 
@@ -876,7 +877,7 @@ public class HidHostService extends ProfileService {
             if (service == null) {
                 return false;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.setConnectionPolicy(device, connectionPolicy);
         }
 
@@ -886,7 +887,7 @@ public class HidHostService extends ProfileService {
             if (service == null) {
                 return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.getConnectionPolicy(device);
         }
 
@@ -897,7 +898,7 @@ public class HidHostService extends ProfileService {
             if (service == null) {
                 return false;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.setPreferredTransport(device, transport);
         }
 
@@ -907,7 +908,7 @@ public class HidHostService extends ProfileService {
             if (service == null) {
                 return BluetoothDevice.TRANSPORT_AUTO;
             }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            enforceBluetoothPrivilegedPermission(service);
             return service.getPreferredTransport(device);
         }
 
