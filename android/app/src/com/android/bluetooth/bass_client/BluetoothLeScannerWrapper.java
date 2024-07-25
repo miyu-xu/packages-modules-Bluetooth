@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.bass_client;
 
-import android.annotation.SuppressLint;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
@@ -34,14 +33,12 @@ public class BluetoothLeScannerWrapper {
     }
 
     /** Starts Bluetooth LE scanning */
-    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
     public void startScan(
             List<ScanFilter> filters, ScanSettings settings, final ScanCallback callback) {
         mBluetoothLeScanner.startScan(filters, settings, callback);
     }
 
     /** Stops Bluetooth LE scanning */
-    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
     public void stopScan(ScanCallback callback) {
         mBluetoothLeScanner.stopScan(callback);
     }

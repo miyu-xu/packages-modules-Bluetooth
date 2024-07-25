@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.btservice;
 
+import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
@@ -104,6 +105,7 @@ public abstract class ProfileService extends ContextWrapper {
      * @param className The class name of the owned component residing in the Bluetooth package
      * @param enable True to enable the component, False to disable it
      */
+    @RequiresPermission(android.Manifest.permission.CHANGE_COMPONENT_ENABLED_STATE)
     protected void setComponentAvailable(String className, boolean enable) {
         Log.d(mName, "setComponentAvailable(className=" + className + ", enable=" + enable + ")");
         if (className == null) {
@@ -123,6 +125,7 @@ public abstract class ProfileService extends ContextWrapper {
      * @param component The component name of owned component
      * @param enable True to enable the component, False to disable it
      */
+    @RequiresPermission(android.Manifest.permission.CHANGE_COMPONENT_ENABLED_STATE)
     protected void setComponentAvailable(ComponentName component, boolean enable) {
         Log.d(mName, "setComponentAvailable(component=" + component + ", enable=" + enable + ")");
         if (component == null) {
