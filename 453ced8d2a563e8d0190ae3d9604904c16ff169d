@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c95459_4999bef3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-25T05:35:56Z",
+      "side": 1,
+      "message": "should we also specify the condition `btif_hh_cb.status \u003d\u003d BTIF_HH_DEV_CONNECTING`?",
+      "range": {
+        "startLine": 1025,
+        "startChar": 10,
+        "endLine": 1025,
+        "endChar": 71
+      },
+      "revId": "453ced8d2a563e8d0190ae3d9604904c16ff169d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0dcdbf7_00f0dce1",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-25T05:35:56Z",
+      "side": 1,
+      "message": "Got it. But if we don\u0027t remove the bonding information, would we violate the HID spec?",
+      "parentUuid": "49ceed0a_1319f3f1",
+      "range": {
+        "startLine": 924,
+        "startChar": 4,
+        "endLine": 924,
+        "endChar": 22
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcbc44ec_ec9b04b0",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "HidHostService keeps track of added HID devices. If a HID device is silently removed, HidHostService will get out of sync with native stack.\nHID VUP event conclusively tells HidHostService that the HID device has been removed and it does not need to track it anymore.",
       "parentUuid": "fcbc44ec_ec9b04b0",
+      "range": {
+        "startLine": 1013,
+        "startChar": 31,
+        "endLine": 1013,
+        "endChar": 48
+      },
+      "revId": "cf03442fbbc52526fac2df54e2fe3bfd0aef7891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b164332_1992fea3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-25T05:35:56Z",
+      "side": 1,
+      "message": "So the HID VUP event doesn\u0027t necessarily inform an actual HID control \"virtual unplug\" command, right?",
+      "parentUuid": "27f7e3cb_86762045",
       "range": {
         "startLine": 1013,
         "startChar": 31,
