@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6e2df3b2_b08d9bf7",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-25T05:08:05Z",
+      "side": 1,
+      "message": "done, thanks for pointing this out.",
+      "parentUuid": "c2c28fd3_7c95f487",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 908,
+        "endChar": 25
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5db8c604_94639122",
         "filename": "system/bta/le_audio/device_groups.h",
         "patchSetId": 18
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T12:36:00Z",
       "side": 1,
       "message": "nit: I know that `context_to_configuration_cache_map` didn\u0027t follow the convention, but could we end these members names with an underscore: `context_to_preferred_configuration_cache_map_` and `preferred_config_`?",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 26
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5cf2e38_76aa3d1a",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-25T05:08:05Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5db8c604_94639122",
       "range": {
         "startLine": 452,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff303f8d_7a0d643a",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-25T05:08:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df1f5d14_6f480466",
+      "range": {
+        "startLine": 103,
+        "startChar": 18,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02042c8a_b8e19ffc",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-07-24T12:36:00Z",
       "side": 1,
       "message": "For the peace of mind, could we verify these with some simple unit tests in `le_audio_types_test.cc` covering all values?\n\nSomething like this:\n```\nASSERT_EQ(SampleingFreqCapability2Config(codec_spec_caps::kLeAudioSamplingFreq48000Hz), codec_spec_conf::kLeAudioSamplingFreq48000Hz);\n```\n?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 1
+      },
+      "revId": "43975567a2b6f2946e45a64457d7b27eb52cde8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab681ca_0115602d",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-25T05:08:05Z",
+      "side": 1,
+      "message": "I split this into separate cl here: aosp/3195432",
+      "parentUuid": "02042c8a_b8e19ffc",
       "range": {
         "startLine": 103,
         "startChar": 0,
