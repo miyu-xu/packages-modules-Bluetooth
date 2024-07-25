@@ -69,6 +69,42 @@
       "parentUuid": "8bafad8c_b519164e",
       "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d3ac2a_8eca53db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-07-25T09:03:11Z",
+      "side": 1,
+      "message": "Nope. I added a unit test for this case.",
+      "parentUuid": "4461301c_fbf2c955",
+      "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a93017f6_93db1c83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-07-25T09:03:11Z",
+      "side": 1,
+      "message": "As for me, back to the function itself, I still don\u0027t think it needs to raise a crash even tho there\u0027s no active timer.\n\nBut anyways, I made a change like other stop functions. Checking if timer is in_use and decide to stop it in `bta_dm_disable_pm`.",
+      "parentUuid": "8bafad8c_b519164e",
+      "revId": "2d287ab19e5a74da966bc491ca009c67400e0f5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
