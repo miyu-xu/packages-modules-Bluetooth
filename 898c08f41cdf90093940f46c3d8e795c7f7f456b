@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07b02aa2_4e458600",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-25T18:27:33Z",
+      "side": 1,
+      "message": "This is not call because of \n```\n  /* if sniff is offload, no need to handle it in the stack */\n  if (com::android::bluetooth::flags::enable_sniff_offload() \u0026\u0026\n      osi_property_get_bool(kPropertySniffOffloadEnabled, false)) {\n  } else {\n    /* initialize bluetooth low power manager */\n    bta_dm_init_pm();\n  }\n```\n\nWhy don\u0027t we intercept the call for `bta_dm_disable_pm` the same way ?",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "898c08f41cdf90093940f46c3d8e795c7f7f456b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
