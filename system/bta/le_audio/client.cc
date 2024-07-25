@@ -5455,7 +5455,8 @@ public:
         if (group) {
           handleAsymmetricPhyForUnicast(group);
           UpdateLocationsAndContextsAvailability(group);
-          if (group->IsPendingConfiguration()) {
+          if (group->IsPendingConfiguration() ||
+              status == GroupStreamStatus::CONFIGURED_AUTONOMOUS) {
             auto remote_direction = kLeAudioContextAllRemoteSource.test(configuration_context_type_)
                                             ? bluetooth::le_audio::types::kLeAudioDirectionSource
                                             : bluetooth::le_audio::types::kLeAudioDirectionSink;
@@ -5473,6 +5474,7 @@ public:
               /* If configuration succeed wait for new status. */
               return;
             }
+
             log::info("Clear pending configuration flag for group {}", group->group_id_);
             group->ClearPendingConfiguration();
             reconfigurationComplete();
