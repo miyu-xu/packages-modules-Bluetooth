@@ -132,6 +132,7 @@ import com.android.bluetooth.btservice.storage.MetadataDatabase;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.GattService;
+import com.android.bluetooth.gmap.GmapClientService;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
@@ -326,6 +327,7 @@ public class AdapterService extends Service {
     private BatteryService mBatteryService;
     private BluetoothQualityReportNativeInterface mBluetoothQualityReportNativeInterface;
     private GattService mGattService;
+    private GmapClientService mGmapClientService;
     private ScanController mScanController;
 
     private volatile boolean mTestModeEnabled = false;
@@ -1516,6 +1518,7 @@ public class AdapterService extends Service {
                             Map.entry(BluetoothProfile.HID_DEVICE, HidDeviceService::new),
                             Map.entry(BluetoothProfile.HID_HOST, HidHostService::new),
                             Map.entry(BluetoothProfile.GATT, GattService::new),
+                            Map.entry(BluetoothProfile.GMAP, GmapClientService::new),
                             Map.entry(BluetoothProfile.LE_AUDIO, LeAudioService::new),
                             Map.entry(BluetoothProfile.LE_CALL_CONTROL, TbsService::new),
                             Map.entry(BluetoothProfile.MAP, BluetoothMapService::new),
@@ -1949,6 +1952,12 @@ public class AdapterService extends Service {
             Log.i(TAG, "connectEnabledProfiles: Connecting Battery Service");
             mBatteryService.connect(device);
         }
+        if(mGmapClientService != null
+                && isProfileSupported(device,BluetoothProfile.GMAP)
+                && mGmapClientService.getConnectionPolicy(device)
+                        >BluetoothProfile.CONNECTION_POLICY_FORBIDDEN){
+            Log.i(TAG, "connectEnabledProfiles: Connecting GMAP Service");
+        }
         return BluetoothStatusCodes.SUCCESS;
     }
 
@@ -1989,6 +1998,7 @@ public class AdapterService extends Service {
         mLeAudioService = LeAudioService.getLeAudioService();
         mBassClientService = BassClientService.getBassClientService();
         mBatteryService = BatteryService.getBatteryService();
+        mGmapClientService = GmapClientService.getGamingAudioService();
     }
 
     @BluetoothAdapter.RfcommListenerResult
@@ -5328,6 +5338,11 @@ public class AdapterService extends Service {
             mBatteryService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
+        if (mGmapClientService != null && isProfileSupported(device, BluetoothProfile.GMAP)) {
+            Log.i(TAG, "connectAllSupportedProfiles: Connecting GMAP Service");
+            mGmapClientService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            numProfilesConnected++;
+        }
 
         Log.i(
                 TAG,
@@ -5488,6 +5503,13 @@ public class AdapterService extends Service {
                                 == BluetoothProfile.STATE_CONNECTING)) {
             Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting " + "Battery Service");
             mBatteryService.disconnect(device);
+        }
+        if (mGmapClientService != null
+            && (mGmapClientService.getConnectionState(device) == BluetoothProfile.STATE_CONNECTED
+            || mGmapClientService.getConnectionState(device)
+            == BluetoothProfile.STATE_CONNECTING)) {
+            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting " + "GMAP Service");
+            mGmapClientService.disconnect(device);
         }
 
         return BluetoothStatusCodes.SUCCESS;
@@ -6043,6 +6065,9 @@ public class AdapterService extends Service {
         }
         if (mBatteryService != null && mBatteryService.isAvailable()) {
             mBatteryService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mGmapClientService != null && mGmapClientService.isAvailable()) {
+            mGmapClientService.handleBondStateChanged(device, fromState, toState);
         }
         if (mVolumeControlService != null && mVolumeControlService.isAvailable()) {
             mVolumeControlService.handleBondStateChanged(device, fromState, toState);
