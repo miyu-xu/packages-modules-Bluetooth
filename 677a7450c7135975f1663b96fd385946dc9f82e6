@@ -16,6 +16,24 @@
       "message": "nit: if this is caused by add source -\u003e sync -\u003e failed, would other reason code fit better for this?",
       "revId": "677a7450c7135975f1663b96fd385946dc9f82e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d26429de_2c731105",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1975,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-25T18:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e68b5c4c_279ea7d6",
+      "revId": "677a7450c7135975f1663b96fd385946dc9f82e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
