@@ -16,6 +16,24 @@
       "message": "This is adding an error log instead of counting the event in the metrics.  Are we sure the event doesn\u0027t come here?",
       "revId": "c6fff25e50a9c4669e4b71f66c8ea3b2aa60151c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d24bf385_e99f78fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-25T15:06:06Z",
+      "side": 1,
+      "message": "Yes, we are sure the event does not come here.\n\n`gd/hci/remote_name_request.cc`\n```\nstruct RemoteNameRequestModule::impl {\n...\n  void Start() {\n  ...\n    hci_layer_-\u003eRegisterEventHandler(\n            EventCode::REMOTE_NAME_REQUEST_COMPLETE,\n            handler_-\u003eBindOn(this, \u0026RemoteNameRequestModule::impl::on_remote_name_request_complete));\n            ...\n```",
+      "parentUuid": "a4642b6b_ecf4697c",
+      "revId": "c6fff25e50a9c4669e4b71f66c8ea3b2aa60151c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
