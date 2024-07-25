@@ -440,9 +440,12 @@ public class AvrcpBipClient {
     @Override
     public String toString() {
         return "<AvrcpBipClient"
-                + (" device=" + mDevice)
-                + (" psm=" + mPsm)
-                + (" state=" + getStateName())
+                + " device="
+                + mDevice
+                + " psm="
+                + mPsm
+                + " state="
+                + getStateName()
                 + ">";
     }
 

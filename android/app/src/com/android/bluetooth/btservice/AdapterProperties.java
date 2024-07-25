@@ -1187,6 +1187,8 @@ class AdapterProperties {
         StringBuilder sb = new StringBuilder();
         for (BluetoothDevice device : mBondedDevices) {
             String address = device.getAddress();
+            BluetoothClass cod = device.getBluetoothClass();
+            int codInt = cod != null ? cod.getClassOfDevice() : 0;
             String brEdrAddress =
                     Flags.identityAddressNullIfUnknown()
                             ? Utils.getBrEdrAddress(device)
@@ -1196,9 +1198,9 @@ class AdapterProperties {
                         "    "
                                 + address
                                 + " ["
-                                + dumpDeviceType(mRemoteDevices.getType(device))
+                                + dumpDeviceType(device.getType())
                                 + "][ 0x"
-                                + String.format("%06X", mRemoteDevices.getBluetoothClass(device))
+                                + String.format("%06X", codInt)
                                 + " ] "
                                 + Utils.getName(device));
             } else {
@@ -1208,9 +1210,9 @@ class AdapterProperties {
                                 + " => "
                                 + brEdrAddress
                                 + " ["
-                                + dumpDeviceType(mRemoteDevices.getType(device))
+                                + dumpDeviceType(device.getType())
                                 + "][ 0x"
-                                + String.format("%06X", mRemoteDevices.getBluetoothClass(device))
+                                + String.format("%06X", codInt)
                                 + " ] "
                                 + Utils.getName(device)
                                 + "\n");
