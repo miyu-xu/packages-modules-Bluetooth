@@ -22,27 +22,24 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.media.AudioManager;
 
+import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.btservice.AdapterService;
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
@@ -55,30 +52,27 @@ public class AvrcpVolumeManagerTest {
     private static final int TEST_DEVICE_MAX_VOLUME = 25;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-    @Rule public TestName testName = new TestName();
 
-    @Mock private AvrcpNativeInterface mNativeInterface;
-    @Mock private AdapterService mAdapterService;
+    @Mock AvrcpNativeInterface mNativeInterface;
 
     @Mock AudioManager mAudioManager;
 
+    Context mContext;
     BluetoothDevice mRemoteDevice;
     AvrcpVolumeManager mAvrcpVolumeManager;
 
     @Before
-    public void setUp() {
-        doReturn(TEST_DEVICE_MAX_VOLUME)
-                .when(mAudioManager)
-                .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        Context ctx = InstrumentationRegistry.getInstrumentation().getContext();
-        doReturn(
-                        ctx.getSharedPreferences(
-                                testName.getMethodName() + "TmpPref", Context.MODE_PRIVATE))
-                .when(mAdapterService)
-                .getSharedPreferences(anyString(), anyInt());
+    public void setUp() throws Exception {
+        mContext = InstrumentationRegistry.getTargetContext();
+        when(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC))
+                .thenReturn(TEST_DEVICE_MAX_VOLUME);
         mRemoteDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
-        mAvrcpVolumeManager =
-                new AvrcpVolumeManager(mAdapterService, mAudioManager, mNativeInterface);
+        mAvrcpVolumeManager = new AvrcpVolumeManager(mContext, mAudioManager, mNativeInterface);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        mAvrcpVolumeManager.removeStoredVolumeForDevice(mRemoteDevice);
     }
 
     @Test
