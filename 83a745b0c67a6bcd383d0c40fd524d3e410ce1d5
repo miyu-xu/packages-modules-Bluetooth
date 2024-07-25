@@ -129,6 +129,30 @@
       },
       "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c99d3bc9_048174d8",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-25T08:00:14Z",
+      "side": 1,
+      "message": "I think we still need to consider background connect here...",
+      "parentUuid": "9444edec_64ce4430",
+      "range": {
+        "startLine": 1524,
+        "startChar": 32,
+        "endLine": 1524,
+        "endChar": 54
+      },
+      "revId": "83a745b0c67a6bcd383d0c40fd524d3e410ce1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
