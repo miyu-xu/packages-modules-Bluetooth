@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64117809_99e25411",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-25T08:26:45Z",
+      "side": 1,
+      "message": "I\u0027m not sure what is missing here, but I still have this error about stream being closed, I think? The one in bug b/351858686. I updated it with fresher logs",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
