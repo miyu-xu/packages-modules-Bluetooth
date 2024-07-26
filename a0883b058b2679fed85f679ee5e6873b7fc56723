@@ -159,6 +159,30 @@
       },
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de46ed9a_aecdf44e",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1219061
+      },
+      "writtenOn": "2024-07-26T22:32:51Z",
+      "side": 1,
+      "message": "Okay, I submit this on AOSP because I saw the presubmit warning. I will move this to internal then.",
+      "parentUuid": "413b086d_74a44891",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
