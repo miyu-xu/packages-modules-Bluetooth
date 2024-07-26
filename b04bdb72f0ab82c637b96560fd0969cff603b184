@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2782ff4b_718acd46",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1998,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-26T02:02:41Z",
+      "side": 1,
+      "message": "nit: looks like it should be named `enableAdapter` rather that `adapterEnable`. `adapterEnable` looks like we are getting a value.",
+      "revId": "b04bdb72f0ab82c637b96560fd0969cff603b184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
