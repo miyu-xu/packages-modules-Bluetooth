@@ -39,6 +39,30 @@
       },
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec66d09_d473ee9c",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-26T20:57:45Z",
+      "side": 1,
+      "message": "Or does that mean we don\u0027t need to expose to `\"//packages/services/Car/tests/carservice_unit_test\",` anymore ?",
+      "parentUuid": "7a8ccc13_45029e4b",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
