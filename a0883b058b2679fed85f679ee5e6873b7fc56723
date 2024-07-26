@@ -135,6 +135,30 @@
       },
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "413b086d_74a44891",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-26T22:29:09Z",
+      "side": 1,
+      "message": "In this case, I would prefer to do the Bluetooth change in internal too, in the same topic. (as this is a valid reason to bypass the aosp first rule)\nThat will give you possibility to iterate without the need to jungle between aosp and internal.\n\nAlso that raise the point that there is no need for giving visibility to CarBuiltinLibUnitTest in aosp.\n\nOr you can consider doing the test move for car directly in AOSP too",
+      "parentUuid": "a70cd9d0_65239574",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
