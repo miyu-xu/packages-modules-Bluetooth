@@ -3574,6 +3574,14 @@ public class BassClientServiceTest {
             }
         }
 
+        // Make more stream request and stream request with no context validate
+        // and expect the sinks to resume remain unchanged
+        mBassClientService.handleUnicastSourceStreamStatusChange(
+                0 /* STATUS_LOCAL_STREAM_REQUESTED */);
+
+        mBassClientService.handleUnicastSourceStreamStatusChange(
+                3 /* STATUS_LOCAL_STREAM_REQUESTED_NO_CONTEXT_VALIDATE */);
+
         /* Unicast finished streaming */
         mBassClientService.handleUnicastSourceStreamStatusChange(
                 2 /* STATUS_LOCAL_STREAM_SUSPENDED */);
