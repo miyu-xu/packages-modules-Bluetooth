@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7665f710_9ec1e840",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2013,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-26T02:05:53Z",
+      "side": 1,
+      "message": "Shall be `disableAdapter`",
+      "revId": "61feebb9d2601d14ce24b95160a0ff85939beb70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
