@@ -16,6 +16,29 @@
       "message": "Context: required for ag/28502292",
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8ccc13_45029e4b",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-26T20:54:21Z",
+      "side": 1,
+      "message": "This is giving access to bluetooth hidden API.\nThis is against the rule of packaging the apex and we don\u0027t want to extend usage of hidden API.\n\nIf the current API surface doesn\u0027t satisfy your need, we can add new API but depending on hidden API is not futur proof and can generate breakage in the futur.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
