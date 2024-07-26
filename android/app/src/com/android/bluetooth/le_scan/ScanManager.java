@@ -1085,13 +1085,15 @@ public class ScanManager {
                     mNativeInterface.gattSetScanParameters(
                             client.scannerId, scanInterval, scanWindow, scanPhyMask);
                     mNativeInterface.gattClientScan(true);
-                    if (!AppScanStats.recordScanRadioStart(
-                            client.scanModeApp,
-                            client.scannerId,
-                            client.stats,
-                            scanWindowMs,
-                            scanIntervalMs)) {
-                        Log.w(TAG, "Scan radio already started");
+                    if (client.stats != null) {
+                        if (!AppScanStats.recordScanRadioStart(
+                                client.scanModeApp,
+                                client.scannerId,
+                                client.stats,
+                                scanWindowMs,
+                                scanIntervalMs)) {
+                            Log.w(TAG, "Scan radio already started");
+                        }
                     }
                     mLastConfiguredScanSetting = curScanSetting;
                 }
@@ -1129,7 +1131,7 @@ public class ScanManager {
                     && client.settings.getScanMode() != ScanSettings.SCAN_MODE_OPPORTUNISTIC) {
                 Log.d(TAG, "start gattClientScanNative from startRegularScan()");
                 mNativeInterface.gattClientScan(true);
-                if (!Flags.bleScanAdvMetricsRedesign()) {
+                if (!Flags.bleScanAdvMetricsRedesign() && client.stats != null) {
                     if (!AppScanStats.recordScanRadioStart(
                             client.settings.getScanMode(),
                             client.scannerId,
