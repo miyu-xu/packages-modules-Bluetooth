@@ -34,6 +34,24 @@
       ],
       "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0403437b_71727ce3",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-26T19:47:43Z",
+      "side": 1,
+      "message": "```\nI can envision a future scenario where we want to \ndeep dive into which type of timeouts and separate them further.\n```\n\nGrouping all the timeouts together at first might be a good idea, as it could make it easier to display them. I\u0027m curious about what we could do if we come across any other kinds of timeouts.\n\nFor now, how about we map PAGE_TIMEOUT to TIMEOUT and set any other timeout codes to STATE_UNKNOWN? Later on, we might need to take a closer look at the different types of timeouts and how we can group them. \n\nWhat do you think?",
+      "parentUuid": "00ef7b0e_ad42b746",
+      "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
