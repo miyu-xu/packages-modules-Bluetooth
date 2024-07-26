@@ -162,7 +162,7 @@ public class AddressMappingTest {
      */
     @Test
     public void testLePairing_whenRpaRotates() throws Exception {
-        pairAndConnect();
+        pairAndConnectLe();
         mDeviceFirst = mDevice;
         mDevice.disconnect();
         // Forget the device
@@ -171,14 +171,57 @@ public class AddressMappingTest {
         assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
         // Reset remote device
         mBumble.hostBlocking().factoryReset(Empty.getDefaultInstance());
-        pairAndConnect();
+        pairAndConnectLe();
         mDeviceSecond = mDevice;
         // Verify RPA rotated and Identity address same
         assertThat(mDeviceFirst.getAddress()).isNotEqualTo(mDeviceSecond.getAddress());
         assertThat(mDeviceFirst.getIdentityAddress()).isEqualTo(mDeviceSecond.getIdentityAddress());
     }
 
-    private void pairAndConnect() throws Exception {
+    /**
+     * Test if address mapping is removed on bond removal
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     *   <li>Bumble is a dual mode device
+     *   <li>Bumble uses RPA for LE advertisements
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over LE
+     *   <li>Android connects and bonds to Bumble over LE
+     *   <li>Android disconnects from the Bumble device
+     *   <li>Android removes the Bumble device
+     *   <li>Bumble becomes discoverable over BR/EDR but not over LE
+     *   <li>Android finds the Bumble device via inquiry
+     *   <li>Android attempts to bond with the Bumble device over BR/EDR
+     * </ol>
+     *
+     * <p>Expectation: Pairing over BR/EDR is successful
+     */
+    @Test
+    public void testLePairing_AddressMapping() throws Exception {
+        pairAndConnectLe();
+        mDeviceFirst = mDevice;
+        mDevice.disconnect();
+        // Forget the device
+        mFutureBondIntent = SettableFuture.create();
+        assertThat(mDevice.removeBond()).isTrue();
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
+        // Reset remote device
+        mBumble.hostBlocking().factoryReset(Empty.getDefaultInstance());
+        pairAndConnectBrEdr();
+        mDeviceSecond = mDevice;
+        assertThat(mDeviceFirst.getAddress()).isNotEqualTo(mDeviceSecond.getAddress());
+        assertThat(mDeviceFirst.getIdentityAddress())
+                .isNotEqualTo(mDeviceSecond.getIdentityAddress());
+    }
+
+    private void pairAndConnectLe() throws Exception {
         // Make Bumble non-discoverable over BR/EDR
         mBumble.hostBlocking()
                 .setDiscoverabilityMode(
@@ -217,6 +260,44 @@ public class AddressMappingTest {
                         .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
                         .onPairing(mPairingEventStreamObserver);
         assertThat(mDevice.createBond(BluetoothDevice.TRANSPORT_LE)).isTrue();
+        PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_BONDED);
+        Log.i(
+                TAG,
+                "testLePairing_AddressMapping: Device > addr:"
+                        + mDevice.getAddress()
+                        + ", identity:"
+                        + mDevice.getIdentityAddress());
+    }
+
+    private void pairAndConnectBrEdr() throws Exception {
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+        mDiscoveryStarted = SettableFuture.create();
+        mDeviceFoundIntent = SettableFuture.create();
+        // Start Discovery
+        assertThat(mAdapter.startDiscovery()).isTrue();
+        assertThat(mDiscoveryStarted.get()).isTrue();
+        assertThat(mDeviceFoundIntent.get()).isTrue();
+        assertThat(mAdapter.cancelDiscovery()).isTrue();
+
+        // Start pairing
+        StreamObserverSpliterator<PairingEvent> mPairingEventStreamObserver =
+                new StreamObserverSpliterator<>();
+
+        mFutureBondIntent = SettableFuture.create();
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+                mBumble.security()
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                        .onPairing(mPairingEventStreamObserver);
+        assertThat(mDevice.createBond()).isTrue();
         PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
         assertThat(pairingEvent.hasJustWorks()).isTrue();
         pairingEventAnswerObserver.onNext(
