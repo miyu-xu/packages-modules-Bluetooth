@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a8fcf63_bfe52671",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2576,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-26T18:56:15Z",
+      "side": 1,
+      "message": "If the intent here is to avoid duplicated SourceSyncRequest, should we check SourceSyncRequest instead of pendingSourcesToAdd?",
+      "revId": "5a4da97bac472e85c9d18e448524f4e7367a4479",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
