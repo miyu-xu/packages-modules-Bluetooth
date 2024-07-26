@@ -90,5 +90,9 @@ void LogUserConfirmationRequestResponse(const hci::Address& address, bool positi
                                          positive ? State::SUCCESS : State::FAIL);
 }
 
+void LogAuthenticationComplete(const hci::Address& address, hci::ErrorCode status) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::AUTHENTICATION_COMPLETE, MapErrorCodeToState(status));
+}
+
 }  // namespace metrics
 }  // namespace bluetooth
