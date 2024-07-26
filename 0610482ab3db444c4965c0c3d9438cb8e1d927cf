@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc933a76_0684bd06",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-26T19:03:34Z",
+      "side": 1,
+      "message": "If we\u0027re ignoring PERIODIC_SYNC_STATE_IDLE and PERIODIC_SYNC_STATE_ESTABLISHED, can we add some log for the status and state here?\n\nAlso for error case event_view.GetStatus() !\u003d ErrorCode::SUCCESS, do we also want to skip it here?",
+      "revId": "0610482ab3db444c4965c0c3d9438cb8e1d927cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
