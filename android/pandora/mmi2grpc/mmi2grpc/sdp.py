@@ -42,6 +42,7 @@ UUID_TO_SERVICE_NAME = {
     0x1800: "Generic Access",
     0x1801: "Generic Attribute service",
     0x1855: "TMAS",
+    0x7F7D: "RAS",
     # Custom UUIDs
     0xc26cf572_3369_4cf2_b5cc_d2cd130f5b2c: "Android Auto Compatibility",
 }
@@ -136,6 +137,7 @@ class SDPProxy(ProfileProxy):
         expected_services = [
             "Generic Attribute service",
             "Generic Access",
+            "RAS",
             "AudioSource",
             "A/V_RemoteControlTarget",
             "A/V_RemoteControl",
@@ -157,6 +159,7 @@ class SDPProxy(ProfileProxy):
             "A/V_RemoteControlController",
             "Android Auto Compatibility",
             "TMAS",
+            "RAS",
         ]
         # Service that can be in any order. This should never be extended
         movable_services = [
