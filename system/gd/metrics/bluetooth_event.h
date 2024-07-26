@@ -19,6 +19,7 @@
 #include "hci/address.h"
 #include "hci/hci_packets.h"
 #include "stack/include/btm_status.h"
+#include "stack/include/hci_error_code.h"
 #include "types/raw_address.h"
 
 namespace bluetooth {
@@ -33,5 +34,6 @@ void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS sta
 
 void LogUserConfirmationRequestResponse(const hci::Address& address, bool positive);
 
+void LogAuthenticationComplete(const RawAddress& address, tHCI_ERROR_CODE error_code);
 }  // namespace metrics
 }  // namespace bluetooth
