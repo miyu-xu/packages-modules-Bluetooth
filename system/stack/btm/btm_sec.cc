@@ -2996,6 +2996,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
   bool was_authenticating = false;
 
   if (p_dev_rec) {
+    bluetooth::metrics::LogAuthenticationComplete(p_dev_rec->bd_addr, status);
     log::verbose(
             "Security Manager: in state: {}, handle: {}, status: {}, "
             "dev->sec_rec.classic_link:{}, bda: {}, RName: {}",
@@ -3006,6 +3007,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
     log::verbose("Security Manager: in state: {}, handle: {}, status: {}",
                  tBTM_SEC_CB::btm_pair_state_descr(btm_sec_cb.pairing_state), handle, status);
   }
+
 
   /* For transaction collision we need to wait and repeat.  There is no need */
   /* for random timeout because only peripheral should receive the result */
