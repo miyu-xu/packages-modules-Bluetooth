@@ -776,6 +776,7 @@ void log_classic_pairing_other_hci_event(EventView packet) {
                        "assert failed: authentication_complete_view.IsValid()");
       status = authentication_complete_view.GetStatus();
       connection_handle = authentication_complete_view.GetConnectionHandle();
+      bluetooth::metrics::LogAuthenticationComplete(address, static_cast<ErrorCode>(status));
       break;
     }
     case EventCode::ENCRYPTION_CHANGE: {

@@ -33,5 +33,6 @@ void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS sta
 
 void LogUserConfirmationRequestResponse(const hci::Address& address, bool positive);
 
+void LogAuthenticationComplete(const hci::Address& address, hci::ErrorCode error_code);
 }  // namespace metrics
 }  // namespace bluetooth
