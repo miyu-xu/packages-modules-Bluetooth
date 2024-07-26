@@ -17,6 +17,21 @@
                 <action android:name="android.bluetooth.test.ACTION_SCAN_RESULT" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".AvrcpMediaPlayer"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".AvrcpMediaPlayerActivity"
+                android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:mimeType="audio/*"/>
+            </intent-filter>
+        </activity>
     </application>
 
     <instrumentation android:name="androidx.test.runner.AndroidJUnitRunner"

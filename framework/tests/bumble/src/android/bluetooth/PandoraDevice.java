@@ -29,6 +29,7 @@ import io.grpc.okhttp.OkHttpChannelBuilder;
 
 import org.junit.rules.ExternalResource;
 
+import pandora.AVRCPGrpc;
 import pandora.DckGrpc;
 import pandora.GATTGrpc;
 import pandora.HIDGrpc;
@@ -162,5 +163,15 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora RFCOMM blocking service */
     public RFCOMMGrpc.RFCOMMBlockingStub rfcommBlocking() {
         return RFCOMMGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora AVRCP service */
+    public AVRCPGrpc.AVRCPStub avrcp() {
+        return AVRCPGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora AVRCP blocking service */
+    public AVRCPGrpc.AVRCPBlockingStub avrcpBlocking() {
+        return AVRCPGrpc.newBlockingStub(mChannel);
     }
 }
