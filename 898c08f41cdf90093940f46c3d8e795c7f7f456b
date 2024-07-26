@@ -46,6 +46,30 @@
       },
       "revId": "898c08f41cdf90093940f46c3d8e795c7f7f456b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a71d0a3c_7f0b17e7",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-07-26T01:59:52Z",
+      "side": 1,
+      "message": "Sure! @wescande@google.com.\n\n@suneesh@google.com `bta_dm_pm_stop_timer_by_index` is called by `bta_dm_disable_pm`. Other functions all check if the timer is in_use or not then stop the timer.\nSo after we take care of `bta_dm_disable_pm`. You should not encounter this issue anymore.\n* bta_dm_pm_stop_timer\n* bta_dm_pm_stop_timer_by_mode\n* bta_dm_pm_stop_timer_by_srvc_id\n* bta_dm_sniff_cback\n* bta_dm_pm_set_mode",
+      "parentUuid": "b56585bb_0bdbbb20",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "898c08f41cdf90093940f46c3d8e795c7f7f456b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
