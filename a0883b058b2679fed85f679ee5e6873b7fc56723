@@ -63,6 +63,30 @@
       },
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dd1d072_d0597dfa",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1219061
+      },
+      "writtenOn": "2024-07-26T20:58:22Z",
+      "side": 1,
+      "message": "This is not adding any new usage or any new tests, this is a simple mechanic refactor that moved some tests that currently use the hidden API (previously in carservice_unit_test) to the new folder.",
+      "parentUuid": "7a8ccc13_45029e4b",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
