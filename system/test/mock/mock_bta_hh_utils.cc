@@ -71,7 +71,7 @@ uint8_t bta_hh_dev_handle_to_cb_idx(uint8_t dev_handle) {
   inc_func_call_count(__func__);
   return test::mock::bta_hh_utils::bta_hh_dev_handle_to_cb_idx(dev_handle);
 }
-uint8_t bta_hh_find_cb(const tAclLinkSpec& link_spec) {
+tBTA_HH_DEV_CB* bta_hh_find_cb(const tAclLinkSpec& link_spec) {
   inc_func_call_count(__func__);
   return test::mock::bta_hh_utils::bta_hh_find_cb(link_spec);
 }
