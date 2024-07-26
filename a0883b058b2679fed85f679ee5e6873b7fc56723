@@ -87,6 +87,30 @@
       },
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abeea336_b679bbdd",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-26T20:59:39Z",
+      "side": 1,
+      "message": "We commented at the same time, so I am not sure if you\u0027ll see my previous 2nd comment.\n\ncan we remove the visibility to carservice_unit_test if this is simply moving the sources ?",
+      "parentUuid": "3dd1d072_d0597dfa",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
