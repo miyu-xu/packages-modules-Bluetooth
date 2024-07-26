@@ -28,13 +28,12 @@
 
 #include <cstring>
 #include <queue>
-#include <thread>
 #include <utility>
 #include <vector>
 
 #include "hal/hci_hal.h"
+#include "hal/hci_hal_host_rootcanal_config.h"
 #include "hal/serialize_packet.h"
-#include "os/log.h"
 #include "os/thread.h"
 #include "os/utils.h"
 #include "packet/raw_builder.h"
@@ -145,10 +144,11 @@ protected:
 
     HciHalHostRootcanalConfig::Get()->SetPort(kTestPort);
     fake_server_ = new FakeRootcanalDesktopHciServer;
-    hal_ = fake_registry_.Start<HciHal>(thread_);
+    hal_ = new HciHalHost;
+    fake_registry_.InjectTestModule(&HciHal::Factory, hal_);
     hal_->registerIncomingPacketCallback(&callbacks_);
-    fake_server_socket_ =
-            fake_server_->Accept();  // accept() after client is connected to avoid blocking
+    // accept() after client is connected to avoid blocking
+    fake_server_socket_ = fake_server_->Accept();
     std::queue<std::pair<uint8_t, HciPacket>> empty;
     std::swap(incoming_packets_queue_, empty);
   }
@@ -168,8 +168,8 @@ protected:
   }
 
   FakeRootcanalDesktopHciServer* fake_server_ = nullptr;
-  HciHal* hal_ = nullptr;
-  ModuleRegistry fake_registry_;
+  HciHalHost* hal_ = nullptr;
+  TestModuleRegistry fake_registry_;
   TestHciHalCallbacks callbacks_;
   int fake_server_socket_ = -1;
   Thread* thread_;

@@ -16,36 +16,78 @@
 
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include "hal/hci_hal.h"
+#include "hal/link_clocker.h"
+#include "hal/snoop_logger.h"
+#include "module.h"
 
 namespace bluetooth {
 namespace hal {
 
-// Singleton object to store runtime configuration for rootcanal
-class HciHalHostRootcanalConfig {
+class HciHalHost : public HciHal {
 public:
-  static HciHalHostRootcanalConfig* Get() {
-    static HciHalHostRootcanalConfig instance;
-    return &instance;
-  }
+  static const ModuleFactory Factory;
 
-  // Get the listening TCP port for rootcanal HCI socket
-  uint16_t GetPort() { return port_; }
+  virtual ~HciHalHost() = default;
 
-  // Set the listening TCP port for rootcanal HCI socket
-  void SetPort(uint16_t port) { port_ = port; }
+  // Register the callback for incoming packets. All incoming packets are dropped before
+  // this callback is registered. Callback can only be registered once.
+  //
+  // @param callback implements BluetoothHciHalCallbacks which will
+  //    receive callbacks when incoming HCI packets are received
+  //    from the controller to be sent to the host.
+  void registerIncomingPacketCallback(HciHalCallbacks* callback) override;
 
-  // Get the server address for rootcanal HCI socket
-  std::string GetServerAddress() { return server_address_; }
+  // Unregister the callback for incoming packets. Drop all further incoming packets.
+  void unregisterIncomingPacketCallback() override;
 
-  // Set the server address for rootcanal HCI socket
-  void SetServerAddress(const std::string& address) { server_address_ = address; }
+  // Send an HCI command (as specified in the Bluetooth Specification
+  // V4.2, Vol 2, Part 5, Section 5.4.1) to the Bluetooth controller.
+  // Commands must be executed in order.
+  void sendHciCommand(HciPacket command) override;
+
+  // Send an HCI ACL data packet (as specified in the Bluetooth Specification
+  // V4.2, Vol 2, Part 5, Section 5.4.2) to the Bluetooth controller.
+  // Packets must be processed in order.
+  void sendAclData(HciPacket data) override;
+
+  // Send an SCO data packet (as specified in the Bluetooth Specification
+  // V4.2, Vol 2, Part 5, Section 5.4.3) to the Bluetooth controller.
+  // Packets must be processed in order.
+  void sendScoData(HciPacket data) override;
+
+  // Send an HCI ISO data packet (as specified in the Bluetooth Specification
+  // V5.2, Vol 4, Part E, Section 5.4.5) to the Bluetooth controller.
+  // Packets must be processed in order.
+  void sendIsoData(HciPacket data) override;
+
+  // Get the MSFT opcode (as specified in Microsoft-defined Bluetooth HCI
+  // extensions)
+  uint16_t getMsftOpcode() { return 0; }
+
+protected:
+  void ListDependencies(ModuleList* list) const override;
+  void Start() override;
+  void Stop() override;
+  std::string ToString() const override;
 
 private:
-  HciHalHostRootcanalConfig() = default;
-  uint16_t port_ = 6402;                      // Default server TCP port
-  std::string server_address_ = "127.0.0.1";  // Default server address
+  void write_to_fd(HciPacket packet);
+  void send_packet_ready();
+  bool socketRecvAll(void* buffer, int bufferLen);
+  void incoming_packet_received();
+
+  // Held when APIs are called, NOT to be held during callbacks
+  std::mutex api_mutex_;
+  HciHalCallbacks* incoming_packet_callback_ = nullptr;
+  std::mutex incoming_packet_callback_mutex_;
+  int sock_fd_;
+  bluetooth::os::Thread hci_incoming_thread_ =
+          bluetooth::os::Thread("hci_incoming_thread", bluetooth::os::Thread::Priority::NORMAL);
+  bluetooth::os::Reactor::Reactable* reactable_ = nullptr;
+  std::queue<std::vector<uint8_t>> hci_outgoing_queue_;
+  SnoopLogger* btsnoop_logger_ = nullptr;
+  LinkClocker* link_clocker_ = nullptr;
 };
 
 }  // namespace hal
