@@ -88,10 +88,10 @@ extern struct bta_hh_dev_handle_to_cb_idx bta_hh_dev_handle_to_cb_idx;
 // Params: const tAclLinkSpec& link_spec
 // Return: uint8_t
 struct bta_hh_find_cb {
-  uint8_t return_value{0};
-  std::function<uint8_t(const tAclLinkSpec& link_spec)> body{
+  tBTA_HH_DEV_CB* return_value{nullptr};
+  std::function<tBTA_HH_DEV_CB*(const tAclLinkSpec& link_spec)> body{
           [this](const tAclLinkSpec& /* link_spec */) { return return_value; }};
-  uint8_t operator()(const tAclLinkSpec& link_spec) { return body(link_spec); }
+  tBTA_HH_DEV_CB* operator()(const tAclLinkSpec& link_spec) { return body(link_spec); }
 };
 extern struct bta_hh_find_cb bta_hh_find_cb;
 
