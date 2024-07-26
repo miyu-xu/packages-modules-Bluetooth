@@ -111,6 +111,30 @@
       },
       "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a70cd9d0_65239574",
+        "filename": "framework/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1219061
+      },
+      "writtenOn": "2024-07-26T21:01:28Z",
+      "side": 1,
+      "message": "Since this is on AOSP and our code change is in internal, we need to land this first, land the internal change, and then we could consider removing the carservice_unit_test if it is no longer required. I only moved part of the tests to a separate folder, so I am not sure whether there are still some tests in car service unit tests which still require this.",
+      "parentUuid": "abeea336_b679bbdd",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "a0883b058b2679fed85f679ee5e6873b7fc56723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
