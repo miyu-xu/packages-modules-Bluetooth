@@ -54,6 +54,16 @@ State MapErrorCodeToState(ErrorCode reason) {
   }
 }
 
+State MapHciErrorCodeToState(tHCI_ERROR_CODE error_code) {
+  // TODO - map the error codes to the state enum variants.
+  switch(error_code) {
+    case tHCI_ERROR_CODE::HCI_SUCCESS:
+      return State::SUCCESS;
+    default:
+      return State::STATE_UNKNOWN;
+  }
+}
+
 void LogAclCompletionEvent(const hci::Address& address, ErrorCode reason,
                            bool is_locally_initiated) {
   bluetooth::os::LogMetricBluetoothEvent(address,
@@ -88,6 +98,12 @@ void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS sta
 void LogUserConfirmationRequestResponse(const hci::Address& address, bool positive) {
   bluetooth::os::LogMetricBluetoothEvent(address, EventType::USER_CONF_REQUEST,
                                          positive ? State::SUCCESS : State::FAIL);
+}
+
+void LogAuthenticationComplete(const RawAddress& raw_address, tHCI_ERROR_CODE error_code) {
+  hci::Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::AUTHENTICATION_COMPLETE,
+                                         MapHciErrorCodeToState(error_code));
 }
 
 }  // namespace metrics

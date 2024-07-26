@@ -74,6 +74,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/le_advertising_manager.h"
 #include "main_thread.h"
+#include "metrics/bluetooth_event.h"
 #include "os/logging/log_adapter.h"
 #include "osi/include/properties.h"
 #include "osi/include/stack_power_telemetry.h"
@@ -1209,6 +1210,9 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
         /* Trigger SDP on the device */
         pairing_cb.sdp_attempts = 1;
 
+        /* Log Metrics for the Authentication Complete Event */
+        bluetooth::metrics::LogAuthenticationComplete(bd_addr, tHCI_ERROR_CODE::HCI_SUCCESS);
+
         if (is_crosskey) {
           // If bonding occurred due to cross-key pairing, send address
           // consolidate callback
@@ -1236,6 +1240,8 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
               hci_reason_code_text(p_auth_cmpl->fail_reason));
     bool is_bonded_device_removed = false;
     // Map the HCI fail reason  to  bt status
+    /* Log Metrics for the Authentication Complete Event */
+    bluetooth::metrics::LogAuthenticationComplete(bd_addr, p_auth_cmpl->fail_reason);
     switch (p_auth_cmpl->fail_reason) {
       case HCI_ERR_PAGE_TIMEOUT:
       case HCI_ERR_LMP_RESPONSE_TIMEOUT:
