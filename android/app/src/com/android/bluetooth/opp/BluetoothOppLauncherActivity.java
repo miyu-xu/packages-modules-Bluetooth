@@ -341,8 +341,8 @@ public class BluetoothOppLauncherActivity extends Activity {
             /*
              * Convert the plain text to HTML
              */
-            StringBuffer sb =
-                    new StringBuffer(
+            StringBuilder sb =
+                    new StringBuilder(
                             "<html><head><meta http-equiv=\"Content-Type\""
                                     + " content=\"text/html; charset=UTF-8\"/></head><body>");
             // Escape any inadvertent HTML in the text message
