@@ -34,6 +34,24 @@
       ],
       "revId": "9451ab459ad5a16f1512be99e34dad7ed109541a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "221052c9_8701e501",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-26T20:24:55Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "d94bbb7c_fc78a5c1",
+      "revId": "9451ab459ad5a16f1512be99e34dad7ed109541a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
