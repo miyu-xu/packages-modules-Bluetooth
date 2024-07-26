@@ -50,6 +50,30 @@
       ],
       "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21666ac8_7ecec19f",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-26T08:40:50Z",
+      "side": 1,
+      "message": "That was my first thought too but after all IMHO current version is better.\nRationale for that is `HandleStartSyncRequest` is a place only to StartSyncRequest without any internal logic of the PeriodicSyncManager.  Notice that it even get data as arguments from `pending_sync_requests_`. There could be return, but only if that StartSyncRequest cannot execute because of some external thing like `EnqueueCommand` fail. `HandleNextRequest` is a place with actual logic of the PeriodicSyncManager, here if conditions are ok (pending_sync_requests_ and periodic_syncs_ are ok) and StartSyncRequest is success (always success) we change our internal state of the periodic_syncs_ and start the timer (which always was there and there is no difference with it and with this `sync-\u003esync_state \u003d PERIODIC_SYNC_STATE_PENDING;` in logic context.",
+      "parentUuid": "41efa6e9_64c46042",
+      "range": {
+        "startLine": 571,
+        "startChar": 4,
+        "endLine": 571,
+        "endChar": 8
+      },
+      "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
