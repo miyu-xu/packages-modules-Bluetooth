@@ -31,6 +31,7 @@ import io.grpc.okhttp.OkHttpChannelBuilder;
 import org.junit.rules.ExternalResource;
 
 import pandora.BumbleConfigGrpc;
+import pandora.AVRCPGrpc;
 import pandora.DckGrpc;
 import pandora.GATTGrpc;
 import pandora.HIDGrpc;
@@ -243,5 +244,14 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora L2CAP blocking service */
     public L2CAPGrpc.L2CAPBlockingStub l2capBlocking() {
         return L2CAPGrpc.newBlockingStub(mChannel);
+
+    /** Get Pandora AVRCP service */
+    public AVRCPGrpc.AVRCPStub avrcp() {
+        return AVRCPGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora AVRCP blocking service */
+    public AVRCPGrpc.AVRCPBlockingStub avrcpBlocking() {
+        return AVRCPGrpc.newBlockingStub(mChannel);
     }
 }
