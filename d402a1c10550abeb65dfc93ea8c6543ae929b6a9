@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b11748b5_1e266aaa",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-26T23:55:57Z",
+      "side": 1,
+      "message": "No need to have nested if here, just do \u0026\u0026 in a single if",
+      "range": {
+        "startLine": 1088,
+        "startChar": 20,
+        "endLine": 1089,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7c2b9909_0815da81",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1088,
+                "startChar": 0,
+                "endLine": 1097,
+                "endChar": 0
+              },
+              "replacement": "                    if (client.stats !\u003d null\n                            \u0026\u0026 !AppScanStats.recordScanRadioStart(\n                                    client.scanModeApp,\n                                    client.scannerId,\n                                    client.stats,\n                                    scanWindowMs,\n                                    scanIntervalMs)) {\n                        Log.w(TAG, \"Scan radio already started\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d402a1c10550abeb65dfc93ea8c6543ae929b6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa4b925_206469bf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-26T23:55:57Z",
+      "side": 1,
+      "message": "Nit: same here, but this one might be a bit more unreadable if merged into a single if.",
+      "range": {
+        "startLine": 1134,
+        "startChar": 16,
+        "endLine": 1134,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "afd15a71_b8926690",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1134,
+                "startChar": 0,
+                "endLine": 1143,
+                "endChar": 0
+              },
+              "replacement": "                if (!Flags.bleScanAdvMetricsRedesign()\n                        \u0026\u0026 client.stats !\u003d null\n                        \u0026\u0026 !AppScanStats.recordScanRadioStart(\n                                client.settings.getScanMode(),\n                                client.scannerId,\n                                client.stats,\n                                getScanWindowMillis(client.settings),\n                                getScanIntervalMillis(client.settings))) {\n                    Log.w(TAG, \"Scan radio already started\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d402a1c10550abeb65dfc93ea8c6543ae929b6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
