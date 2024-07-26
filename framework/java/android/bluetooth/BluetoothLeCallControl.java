@@ -296,6 +296,9 @@ public final class BluetoothLeCallControl implements BluetoothProfile {
         @Override
         public void onBearerRegistered(int ccid) {
             if (mCallback != null) {
+                if (DBG) {
+                    Log.d(TAG, "onBearerRegistered: ccid is " + ccid);
+                }
                 mCcid = ccid;
             } else {
                 // registration timeout
@@ -496,6 +499,7 @@ public final class BluetoothLeCallControl implements BluetoothProfile {
             throw new IllegalArgumentException("null parameter: " + callback);
         }
         if (mCcid != 0) {
+            Log.e(TAG, "Ccid is already set to " + mCcid);
             return false;
         }
 
