@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00ef7b0e_ad42b746",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-07-26T14:28:19Z",
+      "side": 1,
+      "message": "These are all very different timeouts.  I can envision a future scenario where we want to deep dive into which type of timeouts and separate them further.\n\nWhy not continue a 1:1 mapping ?\n\nPAGE_TIMEOUT should be far be the biggest one, and common, but the others are more subtle timeouts with potential real failures.",
+      "fixSuggestions": [
+        {
+          "fixId": "407a6d1d_adb9ef2a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/metrics/bluetooth_event.cc",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "    case ErrorCode::PAGE_TIMEOUT: return State::PAGE_TIMEOUT;\n    case ErrorCode::CONNECTION_TIMEOUT: return State::CONNECTION_TIMEOUT;\n    case ErrorCode::CONNECTION_ACCEPT_TIMEOUT: return State::CONNECTION_ACCEPT_TIMEOUT;\n    case ErrorCode::TRANSACTION_RESPONSE_TIMEOUT: return State::TRANSACTION_RESPONSE_TIMEOUT;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
