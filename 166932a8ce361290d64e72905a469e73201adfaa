@@ -1,0 +1,201 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "161a9dc6_ed46746c",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-26T19:39:38Z",
+      "side": 1,
+      "message": "maybe SingleFreqCapability2Config() ?\n\nalso `(uint16_t cap)` -\u003e `(uint16_t single_capability);`\n\nI suggest same naming for others and maybe helper function which will be called under the hood.\n\nplease consider this \n```\nuint8_t singleCapaToConfigHelper(uint16_t single_capability) {\n\n\tif (!single_capability || std::popcount(cap) \u003e 1) {\n\t\treturn 0;\n\t}\n\treturn std::countr_zero(single_capability) + 1;\n}\n```\n\nAlso please wait on Jakub T comment as we already did some helpers to translate capa to config so he might have other ideas.",
+      "fixSuggestions": [
+        {
+          "fixId": "56af8801_ffe51688",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "constexpr uint8_t SingleCapability2Config(uint16_t single_capability) {\n  if (!single_capability || (single_capability \u0026 (single_capability - 1))) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 110,
+                "endChar": 0
+              },
+              "replacement": "  while (!(single_capability \u0026 1)) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "    single_capability \u003e\u003e\u003d 1;\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 119,
+                "endChar": 0
+              },
+              "replacement": "constexpr uint8_t SingleCapability2Config(uint8_t single_capability) {\n  if (!single_capability || (single_capability \u0026 (single_capability - 1))) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "  while (!(single_capability \u0026 1)) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "    single_capability \u003e\u003e\u003d 1;\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 131,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "constexpr uint8_t SingleCapability2Config(uint16_t single_capability) {\n  if (!single_capability || (single_capability \u0026 (single_capability - 1))) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "  while (!(single_capability \u0026 1)) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 139,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": "    single_capability \u003e\u003e\u003d 1;\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 635,
+                "startChar": 0,
+                "endLine": 636,
+                "endChar": 0
+              },
+              "replacement": "           codec_spec_caps::SingleCapability2Config(value);\n"
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 639,
+                "startChar": 0,
+                "endLine": 640,
+                "endChar": 0
+              },
+              "replacement": "           codec_spec_caps::SingleCapability2Config(value);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b972d036_61b92389",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-26T19:39:38Z",
+      "side": 1,
+      "message": "I think sample freq `0` is not valid, and the idea probably was to not call this function for non valid values. Why do we need that?\n\nAlso below duration does not have this check.",
+      "fixSuggestions": [
+        {
+          "fixId": "c2077ddd_2d39786f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 231,
+                "startChar": 0,
+                "endLine": 234,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 243,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1dae31_b2d4a7aa",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-26T19:39:38Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
