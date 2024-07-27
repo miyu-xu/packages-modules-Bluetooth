@@ -22,8 +22,8 @@
  *
  ****************************************************************************/
 
-#ifndef RFCDEFS_H
-#define RFCDEFS_H
+#ifndef SYSTEM_STACK_INCLUDE_RFCDEFS_H_
+#define SYSTEM_STACK_INCLUDE_RFCDEFS_H_
 /*
  *  Server Channel Numbers (SCN) range between 1 and 30, inclusive
  */
@@ -235,4 +235,38 @@
 
 #define RFCOMM_MX_RLS 0x50
 #define RFCOMM_MX_RLS_LEN 2
-#endif
+
+/*
+ * Define RFCOMM rx and tx watermarks
+ */
+/* The port receive queue low watermark level, in bytes. */
+#define PORT_RX_LOW_WM (BTA_RFC_MTU_SIZE * PORT_RX_BUF_LOW_WM)
+
+/* The port receive queue high watermark level, in bytes. */
+#define PORT_RX_HIGH_WM (BTA_RFC_MTU_SIZE * PORT_RX_BUF_HIGH_WM)
+
+/* The port receive queue critical watermark level, in bytes. */
+#define PORT_RX_CRITICAL_WM (BTA_RFC_MTU_SIZE * PORT_RX_BUF_CRITICAL_WM)
+
+/* The port receive queue low watermark level, in number of buffers. */
+#define PORT_RX_BUF_LOW_WM 4
+
+/* The port receive queue high watermark level, in number of buffers. */
+#define PORT_RX_BUF_HIGH_WM 10
+
+/* The port receive queue critical watermark level, in number of buffers. */
+#define PORT_RX_BUF_CRITICAL_WM 15
+
+/* The port transmit queue high watermark level, in bytes. */
+#define PORT_TX_HIGH_WM (BTA_RFC_MTU_SIZE * PORT_TX_BUF_HIGH_WM)
+
+/* The port transmit queue critical watermark level, in bytes. */
+#define PORT_TX_CRITICAL_WM (BTA_RFC_MTU_SIZE * PORT_TX_BUF_CRITICAL_WM)
+
+/* The port transmit queue high watermark level, in number of buffers. */
+#define PORT_TX_BUF_HIGH_WM 10
+
+/* The port transmit queue high watermark level, in number of buffers. */
+#define PORT_TX_BUF_CRITICAL_WM 15
+
+#endif  // SYSTEM_STACK_INCLUDE_RFCDEFS_H_
