@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a06381_6508bbb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3543974
+      },
+      "writtenOn": "2024-07-27T19:55:16Z",
+      "side": 1,
+      "message": "dbb79e1e96c8c33c8cdcf1ac5d9bda9833d1e6761daa8f999d87443d14f698ca8ccc103e3309fa3e## Building a release version\n\nBy default builds use the -SNAPSHOT version.\nTo run a release build that remove the SNAPSHOT qualifier, run:\n\ngradle --init-script release.gradle \u003ctasks\u003e",
+      "revId": "07dab5d1fb0e31c2566af115ab19b5e125638314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
