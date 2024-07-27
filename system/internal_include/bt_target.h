@@ -17,8 +17,8 @@
  *
  ******************************************************************************/
 
-#ifndef BT_TARGET_H
-#define BT_TARGET_H
+#ifndef SYSTEM_INTERNAL_INCLUDE_BT_TARGET_H_
+#define SYSTEM_INTERNAL_INCLUDE_BT_TARGET_H_
 
 #ifndef FALSE
 #define FALSE false
@@ -503,56 +503,6 @@
 #define MAX_BD_CONNECTIONS 16
 #endif
 
-/* The port receive queue low watermark level, in bytes. */
-#ifndef PORT_RX_LOW_WM
-#define PORT_RX_LOW_WM (BTA_RFC_MTU_SIZE * PORT_RX_BUF_LOW_WM)
-#endif
-
-/* The port receive queue high watermark level, in bytes. */
-#ifndef PORT_RX_HIGH_WM
-#define PORT_RX_HIGH_WM (BTA_RFC_MTU_SIZE * PORT_RX_BUF_HIGH_WM)
-#endif
-
-/* The port receive queue critical watermark level, in bytes. */
-#ifndef PORT_RX_CRITICAL_WM
-#define PORT_RX_CRITICAL_WM (BTA_RFC_MTU_SIZE * PORT_RX_BUF_CRITICAL_WM)
-#endif
-
-/* The port receive queue low watermark level, in number of buffers. */
-#ifndef PORT_RX_BUF_LOW_WM
-#define PORT_RX_BUF_LOW_WM 4
-#endif
-
-/* The port receive queue high watermark level, in number of buffers. */
-#ifndef PORT_RX_BUF_HIGH_WM
-#define PORT_RX_BUF_HIGH_WM 10
-#endif
-
-/* The port receive queue critical watermark level, in number of buffers. */
-#ifndef PORT_RX_BUF_CRITICAL_WM
-#define PORT_RX_BUF_CRITICAL_WM 15
-#endif
-
-/* The port transmit queue high watermark level, in bytes. */
-#ifndef PORT_TX_HIGH_WM
-#define PORT_TX_HIGH_WM (BTA_RFC_MTU_SIZE * PORT_TX_BUF_HIGH_WM)
-#endif
-
-/* The port transmit queue critical watermark level, in bytes. */
-#ifndef PORT_TX_CRITICAL_WM
-#define PORT_TX_CRITICAL_WM (BTA_RFC_MTU_SIZE * PORT_TX_BUF_CRITICAL_WM)
-#endif
-
-/* The port transmit queue high watermark level, in number of buffers. */
-#ifndef PORT_TX_BUF_HIGH_WM
-#define PORT_TX_BUF_HIGH_WM 10
-#endif
-
-/* The port transmit queue high watermark level, in number of buffers. */
-#ifndef PORT_TX_BUF_CRITICAL_WM
-#define PORT_TX_BUF_CRITICAL_WM 15
-#endif
-
 /******************************************************************************
  *
  * BNEP
@@ -773,4 +723,4 @@
  *
  *****************************************************************************/
 
-#endif /* BT_TARGET_H */
+#endif  // SYSTEM_INTERNAL_INCLUDE_BT_TARGET_H_
