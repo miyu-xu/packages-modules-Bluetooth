@@ -129,6 +129,30 @@
       },
       "revId": "d402a1c10550abeb65dfc93ea8c6543ae929b6a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db50ca45_41769025",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-07-27T00:27:50Z",
+      "side": 1,
+      "message": "I left `Flags.bleScanAdvMetricsRedesign()` unmerged so that it is more clear when we remove the flag later.",
+      "parentUuid": "4f6267b8_06ee6619",
+      "range": {
+        "startLine": 1134,
+        "startChar": 16,
+        "endLine": 1134,
+        "endChar": 19
+      },
+      "revId": "d402a1c10550abeb65dfc93ea8c6543ae929b6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
