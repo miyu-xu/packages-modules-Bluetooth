@@ -124,6 +124,24 @@
       ],
       "revId": "8aa760cbac34250598c376d24461769ba0d16717",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "596d8f19_f497927f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-29T13:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6c455da_e9acdbd8",
+      "revId": "8aa760cbac34250598c376d24461769ba0d16717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
