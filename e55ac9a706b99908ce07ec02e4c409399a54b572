@@ -22,6 +22,30 @@
       },
       "revId": "e55ac9a706b99908ce07ec02e4c409399a54b572",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75b15203_1fca606c",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-29T16:19:10Z",
+      "side": 1,
+      "message": "Slots from btif_hh_cb.devices are reserved in https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/co/bta_hh_co.cc?q\u003dsymbol%3A%5Cbbta_hh_co_open%5Cb%20case%3Ayes when the device is finally connected.\n\n`pending_link_spec` should be valid only while the state is `BTHH_CONN_STATE_CONNECTING`.",
+      "parentUuid": "8640e4de_9f18659e",
+      "range": {
+        "startLine": 1626,
+        "startChar": 8,
+        "endLine": 1626,
+        "endChar": 59
+      },
+      "revId": "e55ac9a706b99908ce07ec02e4c409399a54b572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
