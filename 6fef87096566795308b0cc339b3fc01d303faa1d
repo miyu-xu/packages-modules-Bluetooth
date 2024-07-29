@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5dbbe13_36388abb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T09:37:28Z",
+      "side": 1,
+      "message": "In theory someone can call cacheSuspendingSources without pausing and then if suspendAllReceiversSourceSynchronization or stopReceiversSourceSynchronization (without leaudioBroadcastAssistantPeripheralEntrustment) is called sources will not be removed.",
+      "range": {
+        "startLine": 2965,
+        "startChar": 0,
+        "endLine": 2968,
+        "endChar": 13
+      },
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39171885_e94e24f5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3184,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T09:37:28Z",
+      "side": 1,
+      "message": "Iterator will not be removed in this case.",
+      "range": {
+        "startLine": 3184,
+        "startChar": 24,
+        "endLine": 3184,
+        "endChar": 32
+      },
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff3c4a5_a3f9fada",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3206,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T09:37:28Z",
+      "side": 1,
+      "message": "Iterator will not be removed in this case.",
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
