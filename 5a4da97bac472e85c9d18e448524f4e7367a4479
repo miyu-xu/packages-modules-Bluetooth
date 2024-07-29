@@ -16,6 +16,24 @@
       "message": "If the intent here is to avoid duplicated SourceSyncRequest, should we check SourceSyncRequest instead of pendingSourcesToAdd?",
       "revId": "5a4da97bac472e85c9d18e448524f4e7367a4479",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fe690e_6b9d3c99",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2576,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T05:25:46Z",
+      "side": 1,
+      "message": "Element from mSourceSyncRequestsQueue is immediately polled in handleSelectSourceRequest so if second addSource for the same device came then mSourceSyncRequestsQueue will be empty.",
+      "parentUuid": "8a8fcf63_bfe52671",
+      "revId": "5a4da97bac472e85c9d18e448524f4e7367a4479",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
