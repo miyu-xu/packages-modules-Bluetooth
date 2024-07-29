@@ -46,6 +46,30 @@
       },
       "revId": "b541dd9f75ca462f832825e47fa0a35359cf1055",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2504bc_7299ad4a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 4196,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-29T12:11:52Z",
+      "side": 1,
+      "message": "Just wanted to be sure that it is like this by design. Thanks for the confirmation.",
+      "parentUuid": "d70e0cb0_008732ed",
+      "range": {
+        "startLine": 4196,
+        "startChar": 12,
+        "endLine": 4196,
+        "endChar": 85
+      },
+      "revId": "b541dd9f75ca462f832825e47fa0a35359cf1055",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
