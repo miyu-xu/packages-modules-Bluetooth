@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2db94122_f607ba61",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-29T21:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d510156_3b9b7f54",
+      "range": {
+        "startLine": 458,
+        "startChar": 6,
+        "endLine": 458,
+        "endChar": 24
+      },
+      "revId": "bcf8404e0b4873cbcdef7cab73f39454cd3d2bfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86ad5309_21fcdd55",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "bcf8404e0b4873cbcdef7cab73f39454cd3d2bfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdb50dc7_ee76f2e0",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-07-29T21:32:15Z",
+      "side": 1,
+      "message": "Currently, stats_write lacks batching support. They trigger uploads upon reaching memory limits. We don\u0027t worry have to worry about events being sampled if we configure the granularity of sampling at device level.",
+      "parentUuid": "86ad5309_21fcdd55",
+      "range": {
+        "startLine": 461,
+        "startChar": 2,
+        "endLine": 464,
+        "endChar": 33
+      },
       "revId": "bcf8404e0b4873cbcdef7cab73f39454cd3d2bfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
