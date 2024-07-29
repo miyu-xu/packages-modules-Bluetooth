@@ -98,6 +98,30 @@
       },
       "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa524142_d067c329",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T10:48:40Z",
+      "side": 1,
+      "message": "I got your point but for me `HandleStartSyncRequest` has one action to do: \"StartSyncRequest\" and it is separate from `HandleNextRequest` only for better readability. Changing any internal states or any action resulting from this should be still in `HandleNextRequest` that developer looking at this one method got whole view of this handling.",
+      "parentUuid": "f59f1283_93506ddf",
+      "range": {
+        "startLine": 571,
+        "startChar": 4,
+        "endLine": 571,
+        "endChar": 8
+      },
+      "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
