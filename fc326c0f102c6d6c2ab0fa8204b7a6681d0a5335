@@ -22,6 +22,30 @@
       },
       "revId": "fc326c0f102c6d6c2ab0fa8204b7a6681d0a5335",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7f1f96_7db7b3db",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-29T21:15:00Z",
+      "side": 1,
+      "message": "I still don\u0027t like the name very well, but I see where it\u0027s going with the next couple of changes.",
+      "parentUuid": "38d3ce0f_95906c48",
+      "range": {
+        "startLine": 166,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 36
+      },
+      "revId": "fc326c0f102c6d6c2ab0fa8204b7a6681d0a5335",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
