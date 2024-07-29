@@ -46,6 +46,51 @@
       },
       "revId": "f07ea2dc31b92650edb0306ddb753924e55ccc4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38788458_b71fd14c",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-29T09:03:27Z",
+      "side": 1,
+      "message": "nit: Use `assertThat().isNotNull()` for better logging informations",
+      "fixSuggestions": [
+        {
+          "fixId": "8bb0134f_6934bad3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "import com.google.common.truth.Truth.assertThat\n"
+            },
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 305,
+                "startChar": 0,
+                "endLine": 306,
+                "endChar": 0
+              },
+              "replacement": "            val presetChangedReceived \u003d mPresetChanged.first()\n            assertThat(presetChangedReceived).isNotNull()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f07ea2dc31b92650edb0306ddb753924e55ccc4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
