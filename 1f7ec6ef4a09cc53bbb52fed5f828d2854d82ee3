@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5826dffe_a9877a79",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-29T08:57:54Z",
+      "side": 1,
+      "message": "I will have a look to the logs you provided and get back to you regarding this.",
+      "parentUuid": "64117809_99e25411",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "220d0c31_5928a4bb",
         "filename": "android/pandora/server/configs/PtsBotTest.xml",
         "patchSetId": 8
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "See my comment in `pts_bot_tests_config.json`\n\nThe flag support is still very new and @charliebout@google.com is trying to improve it so he will be the best to tell you what is ready now",
       "parentUuid": "f0d430d7_aa5f04c9",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac0705b7_6c39a029",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-29T08:57:54Z",
+      "side": 1,
+      "message": "Yes the documentation is almost done and will soon be released.",
+      "parentUuid": "ecc84d29_93e1a34a",
       "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
