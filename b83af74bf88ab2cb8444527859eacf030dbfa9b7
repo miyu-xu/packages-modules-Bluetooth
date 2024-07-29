@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2410c876_ec2cb5e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-07-29T21:37:55Z",
+      "side": 1,
+      "message": "Crash prevent is not a valid exemption reason. 100% automated test coverage is a good enough reason though",
+      "revId": "b83af74bf88ab2cb8444527859eacf030dbfa9b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
