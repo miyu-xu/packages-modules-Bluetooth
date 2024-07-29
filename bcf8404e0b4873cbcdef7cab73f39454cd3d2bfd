@@ -139,6 +139,30 @@
       },
       "revId": "bcf8404e0b4873cbcdef7cab73f39454cd3d2bfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23407b72_56e9a3ad",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-07-29T21:34:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bdb50dc7_ee76f2e0",
+      "range": {
+        "startLine": 461,
+        "startChar": 2,
+        "endLine": 464,
+        "endChar": 33
+      },
+      "revId": "bcf8404e0b4873cbcdef7cab73f39454cd3d2bfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
