@@ -22,6 +22,30 @@
       },
       "revId": "95612fcfce380bd4c8b9ba88c1827425d5291c55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58695638_f99a6959",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-29T20:44:51Z",
+      "side": 0,
+      "message": "It is still being used. I have made it a static function now.",
+      "parentUuid": "f3beb01a_d8833083",
+      "range": {
+        "startLine": 340,
+        "startChar": 8,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "95612fcfce380bd4c8b9ba88c1827425d5291c55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
