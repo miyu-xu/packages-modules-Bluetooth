@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d2f88c_45495413",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T18:02:44Z",
+      "side": 1,
+      "message": "Okay, got your point, sure, added the comment to clarify cacheSuspendingSources is used when broadcast got paused.",
+      "parentUuid": "bf76fe61_7c6c6c33",
+      "range": {
+        "startLine": 2965,
+        "startChar": 0,
+        "endLine": 2968,
+        "endChar": 13
+      },
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d2c3fba_8e3a363c",
