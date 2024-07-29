@@ -34,6 +34,24 @@
       "parentUuid": "f239a7b9_554b7898",
       "revId": "f973002ac2398a01daf50d9d862b68e434695d2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70684d71_a262edf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-07-29T21:35:30Z",
+      "side": 1,
+      "message": "It looks like any improvement of any sort is awaited. But interop risk has been raised (it\u0027s now for several years Android no longer exposes the capability of 48KHz).\n\nA refined design (remove of allow/deny list) should be proposed next year. In the meantime, the proposed version using \"lists\" enabling only Pixel Buds, for the 24Q4 is \"wanted\".",
+      "parentUuid": "26ca84ff_e8283953",
+      "revId": "f973002ac2398a01daf50d9d862b68e434695d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
