@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c455da_e9acdbd8",
+        "filename": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-29T06:20:17Z",
+      "side": 1,
+      "message": "I think that current approach is to not use external DBG and VDBG flags and just rely on the internal `Log` levels.  Maybe we could use this patch to clear it here ?",
+      "fixSuggestions": [
+        {
+          "fixId": "4c09ef90_8d6e1a45",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 299,
+                "startChar": 0,
+                "endLine": 302,
+                "endChar": 0
+              },
+              "replacement": "                Log.d(TAG, \"onBearerRegistered: ccid is \" + ccid);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 396,
+                "startChar": 0,
+                "endLine": 399,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"close()\");\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 495,
+                "startChar": 0,
+                "endLine": 498,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"registerBearer\");\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 553,
+                "startChar": 0,
+                "endLine": 556,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"unregisterBearer\");\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 599,
+                "startChar": 0,
+                "endLine": 602,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"onCallAdded: call\u003d\" + call);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 632,
+                "startChar": 0,
+                "endLine": 635,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"callRemoved: callId\u003d\" + callId);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 664,
+                "startChar": 0,
+                "endLine": 667,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"callStateChanged: callId\u003d\" + callId + \" state\u003d\" + state);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 723,
+                "startChar": 0,
+                "endLine": 726,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"networkStateChanged: provider\u003d\" + provider + \", technology\u003d\" + technology);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeCallControl.java",
+              "range": {
+                "startLine": 763,
+                "startChar": 0,
+                "endLine": 766,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"requestResult: requestId\u003d\" + requestId + \" result\u003d\" + result);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8aa760cbac34250598c376d24461769ba0d16717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
