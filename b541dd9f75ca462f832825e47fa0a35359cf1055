@@ -22,6 +22,30 @@
       },
       "revId": "b541dd9f75ca462f832825e47fa0a35359cf1055",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70e0cb0_008732ed",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 4196,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-29T12:05:31Z",
+      "side": 1,
+      "message": "yes it is always bidirectional as currently we check if config is valid by checking codec priority of both direction is -1 (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java;drc\u003d4b6c0d00bd58a8917ab508590b84e81a50e1c0ef;l\u003d64) or not at here \n```\nif (input_codec_config.codec_priority \u003d\u003d -1 || output_codec_config.codec_priority \u003d\u003d -1)\n```\n\nso if any of one direction is -1, we will not use this config, which mean user should set config for both direction and these two sink and source config could have different value.\n\nafter that we will iterate each context to see if config is valid or not, e.g., `media` then checking sink config, `conv` then checking both direction config\n\nfeel free to point out if there is any thing concerned, thanks",
+      "parentUuid": "e38c8ce8_3bb3b02b",
+      "range": {
+        "startLine": 4196,
+        "startChar": 12,
+        "endLine": 4196,
+        "endChar": 85
+      },
+      "revId": "b541dd9f75ca462f832825e47fa0a35359cf1055",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
