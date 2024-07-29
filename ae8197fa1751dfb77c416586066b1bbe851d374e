@@ -16,6 +16,24 @@
       "message": "Bug fix is not a valid exemption reason. 100% automated test coverage is a good enough reason though.",
       "revId": "ae8197fa1751dfb77c416586066b1bbe851d374e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390f45c2_8b409501",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T21:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a5f85e8_85b2dc1b",
+      "revId": "ae8197fa1751dfb77c416586066b1bbe851d374e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
