@@ -26,6 +26,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e368b33e_ccdbb19b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-07-29T11:24:25Z",
+      "side": 1,
+      "message": "If sink device would be on this list it means that it has already been removed or remove is in progress - there is no need to re-remove.",
+      "parentUuid": "d5dbbe13_36388abb",
+      "range": {
+        "startLine": 2965,
+        "startChar": 0,
+        "endLine": 2968,
+        "endChar": 13
+      },
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d2c3fba_8e3a363c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3170,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-07-29T11:24:25Z",
+      "side": 1,
+      "message": "do we need still this line `while (!mPausedBroadcastSinks.isEmpty()) {` ? maybe while (iterator.hasNext()) ?",
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39171885_e94e24f5",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -60,6 +101,23 @@
       "writtenOn": "2024-07-29T09:37:28Z",
       "side": 1,
       "message": "Iterator will not be removed in this case.",
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f83f5a05_e660ffcc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3679,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-07-29T11:24:25Z",
+      "side": 1,
+      "message": "I think this pattern is common across those unit test - what do you think about making this a helper method ? It would reduce a lot of lines 😊\n\ne.g. here it\u0027s known what is encryption value in meta (false)",
       "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
