@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec38b671_2ebaf9f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-07-29T21:40:04Z",
+      "side": 1,
+      "message": "FYI, since manual tests are not run in presubmit, they are not a valid exemption reason. Only unit tests matter here.",
+      "revId": "cc2b53e2869590b5d993344551c71c5a6aed8881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
