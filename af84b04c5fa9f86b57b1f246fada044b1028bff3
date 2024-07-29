@@ -16,6 +16,24 @@
       "message": "Trivial fix is not a valid exemption reason. 100% automated test coverage is a good enough reason.",
       "revId": "af84b04c5fa9f86b57b1f246fada044b1028bff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fac104c3_91adf287",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T21:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "385418e3_7db2f3f9",
+      "revId": "af84b04c5fa9f86b57b1f246fada044b1028bff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
