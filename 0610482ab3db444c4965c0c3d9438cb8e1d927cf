@@ -34,6 +34,24 @@
       "parentUuid": "fc933a76_0684bd06",
       "revId": "0610482ab3db444c4965c0c3d9438cb8e1d927cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a0e0998_52de0f8b",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T17:43:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2ce1f3f9_ca7e51bb",
+      "revId": "0610482ab3db444c4965c0c3d9438cb8e1d927cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
