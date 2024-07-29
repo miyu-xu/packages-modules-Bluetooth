@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37fbc539_45b2761a",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-29T12:05:25Z",
+      "side": 1,
+      "message": "I switch the config to be sink is output and source is input. although original change did not break test because both dir config are all same.",
+      "range": {
+        "startLine": 945,
+        "startChar": 0,
+        "endLine": 946,
+        "endChar": 93
+      },
+      "revId": "7c31b766db4632af4fb784adeaadfbf990f12d39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
