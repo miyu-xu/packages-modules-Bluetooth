@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c77ef3a9_c6c6c127",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-07-29T06:46:30Z",
+      "side": 1,
+      "message": "Hi Ying, could you please review it in TPE timezone? Thanks",
+      "revId": "55ad36e0144e2be327b3d819e6edef87f40a2e9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
