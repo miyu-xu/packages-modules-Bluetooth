@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "698b0410_42184de5",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-29T19:05:24Z",
+      "side": 1,
+      "message": "nit: constexpr int kFetchAudioProviderRetryNumber",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a7dd9d7a_e98e7d28",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+              "range": {
+                "startLine": 33,
+                "startChar": 0,
+                "endLine": 34,
+                "endChar": 0
+              },
+              "replacement": "constexpr int kFetchAudioProviderRetryNumber \u003d 3;\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": "  for (int retry_no \u003d 0; retry_no \u003c kFetchAudioProviderRetryNumber; ++retry_no) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "55142968e0c1b3dfa0ef37816052305461d51277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f815092_830cdb7f",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-29T19:05:24Z",
+      "side": 1,
+      "message": "nit:\n\nRetry if audioserver restarts in the middle of fetching.\nWhen audioserver restarts,",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5f3d97d4_0dba2f5c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+              "range": {
+                "startLine": 182,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "  // Retry if audioserver restarts in the middle of fetching.\n  // When audioserver restarts, IBluetoothAudioProviderFactory service is also\n  // re-registered. So we need to re-fetch the provider.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "55142968e0c1b3dfa0ef37816052305461d51277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
