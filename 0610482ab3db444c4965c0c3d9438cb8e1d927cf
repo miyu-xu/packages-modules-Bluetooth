@@ -16,6 +16,24 @@
       "message": "If we\u0027re ignoring PERIODIC_SYNC_STATE_IDLE and PERIODIC_SYNC_STATE_ESTABLISHED, can we add some log for the status and state here?\n\nAlso for error case event_view.GetStatus() !\u003d ErrorCode::SUCCESS, do we also want to skip it here?",
       "revId": "0610482ab3db444c4965c0c3d9438cb8e1d927cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ce1f3f9_ca7e51bb",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-07-29T06:59:53Z",
+      "side": 1,
+      "message": "state log added, status is in main log in this method.\n\nYes, we have to keep removing periodic_syncs_ when error, because it is for situation when some error occur before timeout, i.e. CONNECTION_FAILED_ESTABLISHMENT. That was major issue on previous UPF.",
+      "parentUuid": "fc933a76_0684bd06",
+      "revId": "0610482ab3db444c4965c0c3d9438cb8e1d927cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
