@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ee38aa6_e9668de3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T16:55:49Z",
+      "side": 1,
+      "message": "What Grzegorz explained is exactly why I added this, I don\u0027t see this is our current or potential use case \u0027can call cacheSuspendingSources without pausing\u0027, but please let me know if some case in your mind @belusiak@google.com",
+      "parentUuid": "e368b33e_ccdbb19b",
+      "range": {
+        "startLine": 2965,
+        "startChar": 0,
+        "endLine": 2968,
+        "endChar": 13
+      },
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d2c3fba_8e3a363c",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -61,6 +85,24 @@
       "writtenOn": "2024-07-29T11:24:25Z",
       "side": 1,
       "message": "do we need still this line `while (!mPausedBroadcastSinks.isEmpty()) {` ? maybe while (iterator.hasNext()) ?",
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "635e1b63_c4515834",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3170,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T16:55:49Z",
+      "side": 1,
+      "message": "good catch, thank you!",
+      "parentUuid": "5d2c3fba_8e3a363c",
       "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcfbd42f_7fe10ecd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3184,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T16:55:49Z",
+      "side": 1,
+      "message": "yes, we should, thx!",
+      "parentUuid": "39171885_e94e24f5",
+      "range": {
+        "startLine": 3184,
+        "startChar": 24,
+        "endLine": 3184,
+        "endChar": 32
+      },
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ff3c4a5_a3f9fada",
@@ -105,6 +171,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4647b98_bf699c6c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3206,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T16:55:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ff3c4a5_a3f9fada",
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f83f5a05_e660ffcc",
@@ -118,6 +202,24 @@
       "writtenOn": "2024-07-29T11:24:25Z",
       "side": 1,
       "message": "I think this pattern is common across those unit test - what do you think about making this a helper method ? It would reduce a lot of lines 😊\n\ne.g. here it\u0027s known what is encryption value in meta (false)",
+      "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f2aef7e_8bcd4ce5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3679,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-29T16:55:49Z",
+      "side": 1,
+      "message": "good point, will update this.",
+      "parentUuid": "f83f5a05_e660ffcc",
       "revId": "6fef87096566795308b0cc339b3fc01d303faa1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
