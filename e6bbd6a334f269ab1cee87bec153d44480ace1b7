@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "894609bb_869c6744",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-29T06:23:25Z",
+      "side": 1,
+      "message": "`available_index \u003d\u003d BTA_HH_IDX_INVALID`?",
+      "range": {
+        "startLine": 248,
+        "startChar": 15,
+        "endLine": 248,
+        "endChar": 52
+      },
+      "revId": "e6bbd6a334f269ab1cee87bec153d44480ace1b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1c96e8a_6e112759",
+        "filename": "system/bta/hh/bta_hh_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-29T06:23:25Z",
+      "side": 1,
+      "message": "rename to `bta_hh_hdl_common_failure`? it seems to handle only the failure cases..",
+      "range": {
+        "startLine": 332,
+        "startChar": 5,
+        "endLine": 332,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f9f5ba85_3b1309f9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_main.cc",
+              "range": {
+                "startLine": 324,
+                "startChar": 0,
+                "endLine": 325,
+                "endChar": 0
+              },
+              "replacement": " * Function         bta_hh_hdl_common_failure\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_main.cc",
+              "range": {
+                "startLine": 332,
+                "startChar": 0,
+                "endLine": 333,
+                "endChar": 0
+              },
+              "replacement": "void bta_hh_hdl_common_failure(tBTA_HH_INT_EVT event, const tBTA_HH_DATA* p_data) {\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_main.cc",
+              "range": {
+                "startLine": 424,
+                "startChar": 0,
+                "endLine": 425,
+                "endChar": 0
+              },
+              "replacement": "    bta_hh_hdl_common_failure(event, (tBTA_HH_DATA*)p_msg);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e6bbd6a334f269ab1cee87bec153d44480ace1b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee814a2f_3a3f7712",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-29T06:23:25Z",
+      "side": 1,
+      "message": "no need, already checked",
+      "range": {
+        "startLine": 70,
+        "startChar": 38,
+        "endLine": 70,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ba360d9f_83e015cd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_utils.cc",
+              "range": {
+                "startLine": 70,
+                "startChar": 0,
+                "endLine": 71,
+                "endChar": 0
+              },
+              "replacement": "    if (link_spec \u003d\u003d dev.link_spec) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e6bbd6a334f269ab1cee87bec153d44480ace1b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

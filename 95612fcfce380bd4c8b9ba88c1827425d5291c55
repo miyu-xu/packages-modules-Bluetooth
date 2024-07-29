@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3beb01a_d8833083",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-29T06:23:25Z",
+      "side": 0,
+      "message": "remove this function? It\u0027s not called anywhere else after this CL.",
+      "range": {
+        "startLine": 340,
+        "startChar": 8,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "95612fcfce380bd4c8b9ba88c1827425d5291c55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
