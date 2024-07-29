@@ -74,6 +74,30 @@
       },
       "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59f1283_93506ddf",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-07-29T08:52:44Z",
+      "side": 1,
+      "message": "I don\u0027t question the point of change but only setting sync state in HandleNextRequest vs HandleStartSyncRequest. Effect of starting sync request should be setting its state to PERIODIC_SYNC_STATE_PENDING.\n\nIMHO this line `sync-\u003esync_state \u003d PERIODIC_SYNC_STATE_PENDING;` should be in HandleStartSyncRequest.",
+      "parentUuid": "21666ac8_7ecec19f",
+      "range": {
+        "startLine": 571,
+        "startChar": 4,
+        "endLine": 571,
+        "endChar": 8
+      },
+      "revId": "53ae2b9a1d5d76dd90abe51d472062abb7f7debe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
