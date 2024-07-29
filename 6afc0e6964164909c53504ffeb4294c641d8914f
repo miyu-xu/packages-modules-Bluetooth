@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b11370e3_d6fcb017",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-29T21:14:44Z",
+      "side": 1,
+      "message": "Nit: Can use @GuardedBy(\"itself\")\n\nhttps://g3doc.corp.google.com/devtools/staticanalysis/errorprone/g3doc/bugpattern/GuardedBy.md?cl\u003dhead",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 36
+      },
+      "revId": "6afc0e6964164909c53504ffeb4294c641d8914f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
