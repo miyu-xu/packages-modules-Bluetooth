@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d46a216c_f7c30e9b",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-29T21:22:49Z",
+      "side": 1,
+      "message": "I never expect anything to be done immediately.  Should this be waiting for a status::ready ?\n```suggestion\n\n  // we expect the start callback to be invoked\n  EXPECT_EQ(future.wait_for(timeout), std::future_status::ready);\n}\n```",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa16bc0_a10ad6a4",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-29T21:22:49Z",
+      "side": 1,
+      "message": "Prefer to make the comparison explicit via EXPECT_THAT(actual_value, Eq(expected_value)) or EXPECT_EQ(actual_value, expected_value)",
+      "range": {
+        "startLine": 317,
+        "startChar": 2,
+        "endLine": 317,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a883db08_13bbc33d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+              "range": {
+                "startLine": 317,
+                "startChar": 0,
+                "endLine": 318,
+                "endChar": 0
+              },
+              "replacement": "  EXPECT_EQ(future.wait_for(timeout), std::future_status::timeout);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
