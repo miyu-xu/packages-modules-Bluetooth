@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d8694e6_9edf60f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-29T06:47:07Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "877bf99157f3ac9ad2a27c5e37a6518fd796e942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "056fdf26_11aea794",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-07-29T06:47:07Z",
+      "side": 1,
+      "message": "remove comment or move it before `p_cb \u003d\u003d nullptr` check?",
+      "range": {
+        "startLine": 215,
+        "startChar": 2,
+        "endLine": 215,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "55cc1a01_e2ed97d0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_act.cc",
+              "range": {
+                "startLine": 215,
+                "startChar": 0,
+                "endLine": 216,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "877bf99157f3ac9ad2a27c5e37a6518fd796e942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
