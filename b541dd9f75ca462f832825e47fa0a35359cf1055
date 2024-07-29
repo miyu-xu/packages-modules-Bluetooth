@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e38c8ce8_3bb3b02b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 4196,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-29T08:28:54Z",
+      "side": 1,
+      "message": "Should the preference be always bidirectional, or could we just set a preference for one direction only?",
+      "range": {
+        "startLine": 4196,
+        "startChar": 12,
+        "endLine": 4196,
+        "endChar": 85
+      },
+      "revId": "b541dd9f75ca462f832825e47fa0a35359cf1055",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
