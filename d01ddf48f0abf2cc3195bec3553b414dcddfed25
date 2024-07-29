@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd8a6a5f_1106180b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/avrcp/AvrcpTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-29T07:55:15Z",
+      "side": 1,
+      "message": "I need to check for the event received here.",
+      "revId": "d01ddf48f0abf2cc3195bec3553b414dcddfed25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8e510e5_37cab487",
         "filename": "framework/tests/bumble/src/android/bluetooth/avrcp/AvrcpTest.java",
         "patchSetId": 1
