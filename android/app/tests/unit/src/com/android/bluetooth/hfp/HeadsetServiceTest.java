@@ -54,6 +54,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.RemoteDevices;
 import com.android.bluetooth.btservice.SilenceDeviceManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.flags.Flags;
 
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -1298,7 +1299,11 @@ public class HeadsetServiceTest {
                                         BluetoothSinkAudioPolicy.POLICY_ALLOWED)
                                 .setInBandRingtonePolicy(BluetoothSinkAudioPolicy.POLICY_ALLOWED)
                                 .build());
-        Assert.assertEquals(true, mHeadsetService.isInbandRingingEnabled());
+        if (!Flags.updateActiveDeviceInBandRingtone()) {
+            Assert.assertEquals(true, mHeadsetService.isInbandRingingEnabled());
+        } else {
+            Assert.assertEquals(false, mHeadsetService.isInbandRingingEnabled());
+        }
 
         when(mStateMachines.get(mCurrentDevice).getHfpCallAudioPolicy())
                 .thenReturn(
