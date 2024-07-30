@@ -22,6 +22,30 @@
       },
       "revId": "656d7a7040f898ec2b140ad640a278754629e02e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da618fdb_18623354",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T20:32:51Z",
+      "side": 1,
+      "message": "Quick question.\n\nIf the bond is initiate but the user cancel the bonding, is onUuidsDiscovered called ?\n\nI understand that this was already possible prior to your fix and still is after, so this change can go in (as we are preventing connection in BOND_NONE which is an improvement), but I am concerned about this connection during BONDING.",
+      "parentUuid": "31dc99d3_5cf4a96e",
+      "range": {
+        "startLine": 1136,
+        "startChar": 53,
+        "endLine": 1136,
+        "endChar": 91
+      },
+      "revId": "656d7a7040f898ec2b140ad640a278754629e02e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
