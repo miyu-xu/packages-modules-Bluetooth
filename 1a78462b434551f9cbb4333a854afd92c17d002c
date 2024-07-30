@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d085b0db_b73da801",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T00:23:26Z",
+      "side": 1,
+      "message": "not really part of this CL, but it seems like the NOT_READY check should come before testing the internal state of pending_connections",
+      "range": {
+        "startLine": 1566,
+        "startChar": 9,
+        "endLine": 1569,
+        "endChar": 3
+      },
+      "revId": "1a78462b434551f9cbb4333a854afd92c17d002c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
