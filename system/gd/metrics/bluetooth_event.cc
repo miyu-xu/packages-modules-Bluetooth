@@ -56,9 +56,19 @@ State MapErrorCodeToState(ErrorCode reason) {
 
 State MapHciErrorCodeToState(tHCI_ERROR_CODE error_code) {
   // TODO - map the error codes to the state enum variants.
-  switch(error_code) {
+  switch (error_code) {
     case tHCI_ERROR_CODE::HCI_SUCCESS:
       return State::SUCCESS;
+    case tHCI_ERROR_CODE::HCI_ERR_AUTH_FAILURE:
+      return State::AUTH_FAILURE;
+    case tHCI_ERROR_CODE::HCI_ERR_PAGE_TIMEOUT:
+      return State::TIMEOUT;
+    case tHCI_ERROR_CODE::HCI_ERR_PAIRING_NOT_ALLOWED:
+      return State::PAIRING_NOT_ALLOWED;
+    case tHCI_ERROR_CODE::HCI_ERR_REPEATED_ATTEMPTS:
+      return State::REPEATED_ATTEMPTS;
+    case tHCI_ERROR_CODE::HCI_ERR_PEER_USER:
+      return State::REMOTE_USER_TERMINATED_CONNECTION;
     default:
       return State::STATE_UNKNOWN;
   }
