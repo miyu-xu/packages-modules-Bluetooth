@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d13679a1_79975899",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-30T22:01:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8587182b_73449109",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "152fdf3032198026a194ce7e449ceb42aed44315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ccc9072_38328a65",
@@ -99,6 +123,30 @@
           ]
         }
       ],
+      "revId": "152fdf3032198026a194ce7e449ceb42aed44315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac3f141c_dd1a17f0",
+        "filename": "system/stack/include/rfcdefs.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-30T22:01:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ccc9072_38328a65",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 0
+      },
       "revId": "152fdf3032198026a194ce7e449ceb42aed44315",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
