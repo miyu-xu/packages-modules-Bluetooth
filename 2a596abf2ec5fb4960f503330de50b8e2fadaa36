@@ -40,6 +40,30 @@
       ],
       "revId": "2a596abf2ec5fb4960f503330de50b8e2fadaa36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f34c4b34_9454a10e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-07-30T14:52:02Z",
+      "side": 1,
+      "message": "We have two issues here, the first one being `containsAtLeast` instead of `containsExactly`.\n\nNice catch for the second one, the broadcastReceiver is indeed not unregister and that a big issue. I will make another CL to fix this.",
+      "parentUuid": "66740e39_df4aa71f",
+      "range": {
+        "startLine": 66,
+        "startChar": 38,
+        "endLine": 66,
+        "endChar": 41
+      },
+      "revId": "2a596abf2ec5fb4960f503330de50b8e2fadaa36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
