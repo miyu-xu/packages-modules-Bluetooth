@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24c9ac4f_ea766e37",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-30T07:53:13Z",
+      "side": 1,
+      "message": "LGTM as it is now.",
+      "parentUuid": "da86b53b_8dca9b3e",
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b972d036_61b92389",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 2
@@ -213,6 +231,24 @@
       "side": 1,
       "message": "This is because of here: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/include/hardware/bt_le_audio.h;drc\u003d2bf4c772393460d1830fbed203a65197e5999a6c;l\u003d100\n\nactually we might pass `LE_AUDIO_SAMPLE_RATE_INDEX_NONE`, `LE_AUDIO_BITS_PER_SAMPLE_INDEX_NONE` and `LE_AUDIO_CHANNEL_COUNT_INDEX_NONE` from `SetCodecConfigPreference`. As frameduration one is 1 \u003c\u003c conf, no need to check. But other two is 1 \u003c\u003c (conf-1) and we might consider when passing `none`. An alternative way is we can have precheck once we receive config from `SetCodecConfigPreference`",
       "parentUuid": "b972d036_61b92389",
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15f6e0c_453aa2f4",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-30T07:53:13Z",
+      "side": 1,
+      "message": "IMO it is better having these checks here rather than on every caller calling this function.",
+      "parentUuid": "0c88ceb2_dd551feb",
       "revId": "166932a8ce361290d64e72905a469e73201adfaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
