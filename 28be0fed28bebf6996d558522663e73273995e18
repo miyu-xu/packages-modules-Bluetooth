@@ -93,6 +93,30 @@
       },
       "revId": "28be0fed28bebf6996d558522663e73273995e18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e3cebd0_e32f2c42",
+        "filename": "system/btif/src/btif_gatt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T18:23:00Z",
+      "side": 1,
+      "message": "A temporary variable should do the trick. and worst case it does nothing",
+      "parentUuid": "aa98ae7e_13d00083",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 33
+      },
+      "revId": "28be0fed28bebf6996d558522663e73273995e18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
