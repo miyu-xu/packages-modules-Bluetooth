@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa65cb86_082dac8c",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-30T21:03:36Z",
+      "side": 1,
+      "message": "else if",
+      "fixSuggestions": [
+        {
+          "fixId": "07269032_92f51f27",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_api.cc",
+              "range": {
+                "startLine": 327,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": "      } else if (com::android::bluetooth::flags::android_os_identifier() \u0026\u0026\n                 *p_uuid \u003d\u003d ANDROID_INFORMATION_SERVICE_UUID) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3fe90c19ce387ee739a75a7bc3ca063e94f6cb2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
