@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ed5bbd8_fc4add14",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1489,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-30T08:04:16Z",
+      "side": 1,
+      "message": "This one and the one under it are default values for when a player isn\u0027t found or the operation failed, these must be considered default values and should always be empty.\n\nThe root_id parameter *might* be empty in this case, but that could change in the future so I\u0027d rather keep the value forcefully set here!",
+      "parentUuid": "27bf495e_f0d5c9d1",
+      "range": {
+        "startLine": 1489,
+        "startChar": 79,
+        "endLine": 1489,
+        "endChar": 82
+      },
+      "revId": "a8f849ca9e9aeed7f496a1c0101b05f4dc7eb005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b514fdb5_cb66bfdd",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 1
