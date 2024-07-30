@@ -11789,10 +11789,8 @@ TEST_F(UnicastTest, testDynamicCoordinatedSet_SwapDeviceOnDisconnection) {
   }
 
   /* Disconnect ACL and do not reconnect. */
-  ON_CALL(mock_gatt_interface_, Open(_, device->address_, BTM_BLE_DIRECT_CONNECTION, _))
-          .WillByDefault(Return());
   EXPECT_CALL(mock_gatt_interface_, Open(_, device->address_, BTM_BLE_DIRECT_CONNECTION, false))
-          .Times(1);
+          .Times(0);
 
   // Record NumOfConnected when groupStateMachine_ gets notified about the
   // disconnection

@@ -2478,11 +2478,14 @@ public:
       return;
     }
 
-    /* if group is still connected, make sure that other not connected
+    /* We do not want to autoconnect to all Dynamic Set Members. Rely on Targeted Announcements.
+     * Otherwise, if group is still connected, make sure that other not connected
      * set members are in the allow list for the quick reconnect.
      * E.g. for the earbud case, probably one of the earbud is in the case now.
      */
-    group->AddToAllowListNotConnectedGroupMembers(gatt_if_);
+    if (!group->IsGroupDynamic()) {
+      group->AddToAllowListNotConnectedGroupMembers(gatt_if_);
+    }
   }
 
   void scheduleGroupConnectedCheck(int group_id) {
@@ -3421,7 +3424,9 @@ public:
 
     AttachToStreamingGroupIfNeeded(leAudioDevice);
 
-    if (reconnection_mode_ == BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS) {
+    /* We do not want to autoconnect to all Dynamic Set Members. Rely on Targeted Announcements.  */
+    if (reconnection_mode_ == BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS &&
+        !group->IsGroupDynamic()) {
       /* Add other devices to allow list if there are any not yet connected
        * from the group
        */
