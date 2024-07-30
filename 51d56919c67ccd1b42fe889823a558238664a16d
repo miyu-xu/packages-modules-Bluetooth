@@ -98,6 +98,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66dbb69b_d3656754",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T18:19:48Z",
+      "side": 1,
+      "message": "This should probably go into BluetoothDevice, but let it stay in BondStateMachine for now.",
+      "parentUuid": "13130e61_95fa8c21",
+      "range": {
+        "startLine": 1125,
+        "startChar": 19,
+        "endLine": 1125,
+        "endChar": 32
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bce57d1b_5d357e24",
@@ -121,6 +145,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb6924b5_c4c2463c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T18:19:48Z",
+      "side": 1,
+      "message": "See my response above.",
+      "parentUuid": "bce57d1b_5d357e24",
+      "range": {
+        "startLine": 1151,
+        "startChar": 0,
+        "endLine": 1155,
+        "endChar": 13
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4124383_c7271291",
@@ -134,6 +182,30 @@
       "writtenOn": "2024-07-30T17:06:06Z",
       "side": 1,
       "message": "according to above line, prop can be null.\nAccessing getBondState will therefor crash.\n\nPlease do a null check or do a preliminary CL to ensure that prop is never null when calling this function",
+      "range": {
+        "startLine": 729,
+        "startChar": 57,
+        "endLine": 729,
+        "endChar": 61
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5366fe_40cf903a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T18:19:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4124383_c7271291",
       "range": {
         "startLine": 729,
         "startChar": 57,
