@@ -734,6 +734,6 @@ public class GattServiceTest {
 
         mService.onDisconnected(
                 clientIf, connId, BluetoothGatt.GATT_SUCCESS, REMOTE_DEVICE_ADDRESS);
-        assertThat(mService.mRestrictedHandles).doesNotContainKey(connId);
+        assertThat(mService.mRestrictedHandles.get(connId)).isNull();
     }
 }

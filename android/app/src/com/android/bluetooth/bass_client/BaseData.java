@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.bass_client;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.util.Pair;
 
@@ -32,6 +33,7 @@ import java.util.MissingResourceException;
 import java.util.Set;
 
 /** Helper class to parse the Broadcast Announcement BASE data */
+@SuppressLint("AndroidFrameworkEfficientCollections") // TODO: b/350563786 - too much to fix
 class BaseData {
     private static final String TAG = "Bassclient-BaseData";
     private static final byte UNKNOWN_CODEC = (byte) 0xFE;

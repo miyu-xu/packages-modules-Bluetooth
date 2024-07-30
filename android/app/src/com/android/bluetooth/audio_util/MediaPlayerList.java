@@ -17,6 +17,7 @@
 package com.android.bluetooth.audio_util;
 
 import android.annotation.NonNull;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -92,14 +93,21 @@ public class MediaPlayerList {
             new BluetoothEventLogger(
                     AUDIO_PLAYBACK_STATE_LOGGER_SIZE, AUDIO_PLAYBACK_STATE_LOGGER_TITLE);
 
+    @SuppressLint("AndroidFrameworkEfficientCollections") // SparseArray is not synchronized
     private Map<Integer, MediaPlayerWrapper> mMediaPlayers =
             Collections.synchronizedMap(new HashMap<Integer, MediaPlayerWrapper>());
+
     private Map<String, Integer> mMediaPlayerIds =
             Collections.synchronizedMap(new HashMap<String, Integer>());
+
+    @SuppressLint("AndroidFrameworkEfficientCollections") // SparseArray is not synchronized
     private Map<Integer, BrowsedPlayerWrapper> mBrowsablePlayers =
             Collections.synchronizedMap(new HashMap<Integer, BrowsedPlayerWrapper>());
+
+    @SuppressLint("AndroidFrameworkEfficientCollections") // SparseArray is not synchronized
     private Map<Integer, MediaBrowserWrapper> mMediaBrowserWrappers =
             Collections.synchronizedMap(new HashMap<Integer, MediaBrowserWrapper>());
+
     private int mActivePlayerId = NO_ACTIVE_PLAYER;
     private int mBrowsingPlayerId = NO_ACTIVE_PLAYER;
 

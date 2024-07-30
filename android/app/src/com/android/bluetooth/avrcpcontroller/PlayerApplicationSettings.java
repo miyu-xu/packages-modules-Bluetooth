@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.avrcpcontroller;
 
+import android.annotation.SuppressLint;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.SparseArray;
@@ -25,9 +26,7 @@ import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 
-/*
- * Contains information Player Application Setting extended from BluetootAvrcpPlayerSettings
- */
+/* Contains information Player Application Setting extended from BluetoothAvrcpPlayerSettings */
 class PlayerApplicationSettings {
     private static final String TAG = "PlayerApplicationSettings";
 
@@ -61,6 +60,7 @@ class PlayerApplicationSettings {
             new SparseArray<ArrayList<Integer>>();
 
     /* Convert from JNI array to Java classes. */
+    @SuppressLint("AndroidFrameworkEfficientCollections") // IntArray is not available in Bluetooth
     static PlayerApplicationSettings makeSupportedSettings(byte[] btAvrcpAttributeList) {
         PlayerApplicationSettings newObj = new PlayerApplicationSettings();
         try {

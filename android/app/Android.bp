@@ -325,6 +325,7 @@ android_app {
             "-Xep:AlmostJavadoc:ERROR",
             "-Xep:AlreadyChecked:ERROR",
             "-Xep:AndroidFrameworkBinderIdentity:ERROR",
+            "-Xep:AndroidFrameworkEfficientCollections:ERROR",
             "-Xep:AndroidFrameworkEfficientStrings:ERROR",
             "-Xep:AndroidFrameworkRequiresPermission:ERROR",
             "-Xep:BadImport:ERROR",

@@ -25,7 +25,6 @@ import android.database.Cursor;
 import android.util.Log;
 import android.util.Pair;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -155,11 +154,10 @@ public final class BluetoothDatabaseMigration {
             Cursor cursor, String logKey, Metadata metadata) {
         final String key = "a2dpSupportsOptionalCodecs";
         final List<Integer> allowedValue =
-                new ArrayList<>(
-                        Arrays.asList(
-                                BluetoothA2dp.OPTIONAL_CODECS_SUPPORT_UNKNOWN,
-                                BluetoothA2dp.OPTIONAL_CODECS_NOT_SUPPORTED,
-                                BluetoothA2dp.OPTIONAL_CODECS_SUPPORTED));
+                List.of(
+                        BluetoothA2dp.OPTIONAL_CODECS_SUPPORT_UNKNOWN,
+                        BluetoothA2dp.OPTIONAL_CODECS_NOT_SUPPORTED,
+                        BluetoothA2dp.OPTIONAL_CODECS_SUPPORTED);
         final int value = fetchInt(cursor, key);
         if (!allowedValue.contains(value)) {
             throw new IllegalArgumentException(logKey + ": Bad value for [" + key + "]: " + value);
@@ -171,11 +169,10 @@ public final class BluetoothDatabaseMigration {
             Cursor cursor, String logKey, Metadata metadata) {
         final String key = "a2dpOptionalCodecsEnabled";
         final List<Integer> allowedValue =
-                new ArrayList<>(
-                        Arrays.asList(
-                                BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN,
-                                BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED,
-                                BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED));
+                List.of(
+                        BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN,
+                        BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED,
+                        BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED);
         final int value = fetchInt(cursor, key);
         if (!allowedValue.contains(value)) {
             throw new IllegalArgumentException(logKey + ": Bad value for [" + key + "]: " + value);
@@ -185,11 +182,10 @@ public final class BluetoothDatabaseMigration {
 
     private static void migrate_connectionPolicy(Cursor cursor, String logKey, Metadata metadata) {
         final List<Integer> allowedValue =
-                new ArrayList<>(
-                        Arrays.asList(
-                                BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN,
-                                BluetoothProfile.CONNECTION_POLICY_ALLOWED));
+                List.of(
+                        BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
+                        BluetoothProfile.CONNECTION_POLICY_FORBIDDEN,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         for (Pair<Integer, String> p : CONNECTION_POLICIES) {
             final int policy = cursor.getInt(cursor.getColumnIndexOrThrow(p.second));
             if (allowedValue.contains(policy)) {

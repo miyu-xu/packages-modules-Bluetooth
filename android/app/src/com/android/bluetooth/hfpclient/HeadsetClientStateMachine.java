@@ -27,6 +27,7 @@ import static android.content.pm.PackageManager.FEATURE_WATCH;
 
 import static java.util.Objects.requireNonNull;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
@@ -139,9 +140,13 @@ public class HeadsetClientStateMachine extends StateMachine {
 
     // Set of calls that represent the accurate state of calls that exists on AG and the calls that
     // are currently in process of being notified to the AG from HF.
-    @VisibleForTesting final Hashtable<Integer, HfpClientCall> mCalls = new Hashtable<>();
+    @SuppressLint("AndroidFrameworkEfficientCollections") // Used as keySet in a lot of place
+    @VisibleForTesting
+    final Hashtable<Integer, HfpClientCall> mCalls = new Hashtable<>();
+
     // Set of calls received from AG via the AT+CLCC command. We use this map to update the mCalls
     // which is eventually used to inform the telephony stack of any changes to call on HF.
+    @SuppressLint("AndroidFrameworkEfficientCollections") // To match mCalls
     private final Hashtable<Integer, HfpClientCall> mCallsUpdate = new Hashtable<>();
 
     private int mIndicatorNetworkState;
@@ -432,7 +437,7 @@ public class HeadsetClientStateMachine extends StateMachine {
         // 1. If from the above procedure we get N extra calls (i.e. {3}):
         // choose the first call as the one to associate with the HF call.
 
-        // Create set of IDs for added calls, removed calls and consitent calls.
+        // Create set of IDs for added calls, removed calls and consistent calls.
         // WARN!!! Java Map -> Set has association hence changes to Set are reflected in the Map
         // itself (i.e. removing an element from Set removes it from the Map hence use copy).
         Set<Integer> currCallIdSet = new HashSet<Integer>();

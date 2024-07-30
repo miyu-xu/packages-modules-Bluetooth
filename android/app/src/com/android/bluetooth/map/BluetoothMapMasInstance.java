@@ -14,6 +14,7 @@
  */
 package com.android.bluetooth.map;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
@@ -43,6 +44,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 // Next tag value for ContentProfileErrorReportUtils.report(): 4
+@SuppressLint("AndroidFrameworkEfficientCollections") // TODO: b/350563786 - too much to fix
 public class BluetoothMapMasInstance implements IObexConnectionHandler {
     private static final String TAG = "BluetoothMapMasInstance";
 

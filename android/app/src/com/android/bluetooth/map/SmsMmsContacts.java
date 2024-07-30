@@ -26,6 +26,7 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.provider.Telephony.CanonicalAddressesColumns;
 import android.provider.Telephony.MmsSms;
 import android.util.Log;
+import android.util.LongSparseArray;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
@@ -45,7 +46,7 @@ public class SmsMmsContacts {
 
     private static final String TAG = "SmsMmsContacts";
 
-    private HashMap<Long, String> mPhoneNumbers = null;
+    private LongSparseArray<String> mPhoneNumbers = null;
 
     @VisibleForTesting
     final HashMap<String, MapContact> mNames = new HashMap<String, MapContact>(10);
@@ -76,7 +77,7 @@ public class SmsMmsContacts {
      * Get a contacts phone number based on the canonical addresses id of the contact. (The ID
      * listed in the Threads table.)
      *
-     * @param resolver the ContantResolver to be used.
+     * @param resolver the ContentResolver to be used.
      * @param id the id of the contact, as listed in the Threads table
      * @return the phone number of the contact - or null if id does not exist.
      */
@@ -129,7 +130,7 @@ public class SmsMmsContacts {
      * Refreshes the cache, by clearing all cached values and fill the cache with the result of a
      * new query.
      *
-     * @param resolver the ContantResolver to be used.
+     * @param resolver the ContentResolver to be used.
      */
     @VisibleForTesting
     void fillPhoneCache(ContentResolver resolver) {
@@ -142,7 +143,7 @@ public class SmsMmsContacts {
             if (c != null) {
                 size = c.getCount();
             }
-            mPhoneNumbers = new HashMap<Long, String>(size);
+            mPhoneNumbers = new LongSparseArray<>(size);
         } else {
             mPhoneNumbers.clear();
         }

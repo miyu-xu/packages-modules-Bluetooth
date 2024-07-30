@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.util;
 
+import android.annotation.SuppressLint;
 import android.os.WorkSource;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class WorkSourceUtil {
     private final int[] mUids;
     private final String[] mTags;
 
+    @SuppressLint("AndroidFrameworkEfficientCollections") // No IntArray available in Bluetooth
     public WorkSourceUtil(WorkSource ws) {
         List<Integer> uids = new ArrayList<>();
         List<String> tags = new ArrayList<>();

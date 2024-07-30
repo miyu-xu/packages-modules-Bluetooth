@@ -25,8 +25,8 @@ import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.WorkSource;
 import android.util.Log;
+import android.util.SparseArray;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -37,10 +37,10 @@ import java.util.function.Predicate;
 
 /** List of our registered scanners. */
 public class ScannerMap {
-    private static final String TAG = "ScannerMap";
+    private static final String TAG = ScannerMap.class.getSimpleName();
 
     /** Internal map to keep track of logging information by app name */
-    private final HashMap<Integer, AppScanStats> mAppScanStatsMap = new HashMap<>();
+    private final SparseArray<AppScanStats> mAppScanStatsMap = new SparseArray<>();
 
     private final ConcurrentLinkedQueue<ScannerApp> mApps = new ConcurrentLinkedQueue<>();
 
@@ -179,8 +179,9 @@ public class ScannerMap {
     /** Logs debug information. */
     public void dump(StringBuilder sb) {
         sb.append("  Entries: ").append(mAppScanStatsMap.size()).append("\n\n");
-        for (AppScanStats appScanStats : mAppScanStatsMap.values()) {
-            appScanStats.dumpToString(sb);
+        for (int i = 0; i < mAppScanStatsMap.size(); i++) {
+            int key = mAppScanStatsMap.keyAt(i);
+            mAppScanStatsMap.get(key).dumpToString(sb);
         }
     }
 
