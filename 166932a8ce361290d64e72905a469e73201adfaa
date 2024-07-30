@@ -172,6 +172,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7ed30c7_7ad93057",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-30T07:58:51Z",
+      "side": 1,
+      "message": "mark as done as no need to change",
+      "parentUuid": "24c9ac4f_ea766e37",
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b972d036_61b92389",
@@ -253,6 +271,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc15cd37_f568cc8e",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-30T07:58:51Z",
+      "side": 1,
+      "message": "mark as done as check is inside this function, feel free to add comments if any other concern.",
+      "parentUuid": "b15f6e0c_453aa2f4",
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b1dae31_b2d4a7aa",
@@ -266,6 +302,24 @@
       "writtenOn": "2024-07-26T19:39:38Z",
       "side": 1,
       "message": "ditto",
+      "revId": "166932a8ce361290d64e72905a469e73201adfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7357a477_dbf38bbb",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-07-30T07:58:51Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "4b1dae31_b2d4a7aa",
       "revId": "166932a8ce361290d64e72905a469e73201adfaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
