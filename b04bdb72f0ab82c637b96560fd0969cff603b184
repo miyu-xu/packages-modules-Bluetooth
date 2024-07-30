@@ -16,6 +16,24 @@
       "message": "nit: looks like it should be named `enableAdapter` rather that `adapterEnable`. `adapterEnable` looks like we are getting a value.",
       "revId": "b04bdb72f0ab82c637b96560fd0969cff603b184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a809fec2_961648ec",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1998,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T22:14:48Z",
+      "side": 1,
+      "message": "Done with offToBleOn to be descriptive of what is being done.\n\nPlus, this smoothly align with the message being sent, and with the naming already use in test.",
+      "parentUuid": "2782ff4b_718acd46",
+      "revId": "b04bdb72f0ab82c637b96560fd0969cff603b184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
