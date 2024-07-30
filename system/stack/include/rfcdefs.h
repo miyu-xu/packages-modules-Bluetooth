@@ -141,7 +141,7 @@
 #define RFCOMM_T1_DSEC 0 /* None negotiable in RFCOMM */
 #define RFCOMM_N2 0      /* Number of retransmissions */
 #define RFCOMM_K 0       /* Window size */
-#define RFCOMM_K_MAX 7   /* Max value of K for credit based flow control */
+#define RFCOMM_K_MAX 10   /* Max value of K for credit based flow control */
 
 #define RFCOMM_MSC_FC 0x02  /* Flow control*/
 #define RFCOMM_MSC_RTC 0x04 /* Ready to communicate*/
@@ -260,7 +260,7 @@
 #define BTA_RFC_MTU_SIZE (L2CAP_MTU_SIZE - L2CAP_MIN_OFFSET - RFCOMM_DATA_OVERHEAD)
 
 // The port receive queue low watermark level, in number of buffers.
-#define PORT_RX_BUF_LOW_WM 4
+#define PORT_RX_BUF_LOW_WM 8
 
 // The port receive queue high watermark level, in number of buffers.
 #define PORT_RX_BUF_HIGH_WM 10
