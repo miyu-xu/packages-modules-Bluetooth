@@ -70,6 +70,30 @@
       },
       "revId": "e4b6bedfb39d0d3a52dff0c9dde9121d9fdbdcf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0c318a3_ee33b7e3",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-07-30T19:14:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "87f426f9_216b1dd0",
+      "range": {
+        "startLine": 238,
+        "startChar": 3,
+        "endLine": 240,
+        "endChar": 5
+      },
+      "revId": "e4b6bedfb39d0d3a52dff0c9dde9121d9fdbdcf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
