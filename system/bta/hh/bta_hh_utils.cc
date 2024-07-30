@@ -399,17 +399,13 @@ void bta_hh_cleanup_disable(tBTA_HH_STATUS status) {
  *
  ******************************************************************************/
 void bta_hh_trace_dev_db(void) {
-  uint8_t xx;
-
   log::verbose("bta_hh_trace_dev_db:: Device DB list********************");
-
-  for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
-    log::verbose("kdev[{}] in_use[{}]  handle[{}]", xx, bta_hh_cb.kdev[xx].in_use,
-                 bta_hh_cb.kdev[xx].hid_handle);
-
-    log::verbose("\t\t\t attr_mask[{:04x}] state [{}] sub_class[{:02x}] index = {}",
-                 bta_hh_cb.kdev[xx].attr_mask, bta_hh_cb.kdev[xx].state,
-                 bta_hh_cb.kdev[xx].sub_class, bta_hh_cb.kdev[xx].index);
+  for (auto dev : bta_hh_cb.kdev) {
+    if (dev.in_use) {
+      log::verbose("kdev[{}] handle[{}] attr_mask[{:04x}] state [{}] sub_class[{:02x}] device[{}] ",
+                   dev.index, dev.hid_handle, dev.attr_mask, dev.state, dev.sub_class,
+                   dev.link_spec);
+    }
   }
   log::verbose("*********************************************************");
 }
