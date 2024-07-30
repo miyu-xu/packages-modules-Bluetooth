@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acad7c45_9d1fdf59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T21:50:57Z",
+      "side": 1,
+      "message": "Smaller CLs are easier to review",
+      "revId": "d9aae356158a4e79707fcacbdd0fc882fe410adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dcb706a_e1af5192",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T21:50:57Z",
+      "side": 1,
+      "message": "```suggestion\nstatic uint8_t bta_hh_le_get_le_dev_hdl(uint8_t cb_index) {\n  uint8_t available_handle \u003d BTA_HH_IDX_INVALID;\n  for (uint8_t i \u003d 0; i \u003c ARRAY_SIZE(bta_hh_cb.le_cb_index); i++) {\n    if (bta_hh_cb.le_cb_index[i] \u003d\u003d cb_index) {\n      return BTA_HH_GET_LE_DEV_HDL(i);\n    } else if (available_handle \u003d\u003d BTA_HH_IDX_INVALID \u0026\u0026\n               bta_hh_cb.le_cb_index[i] \u003d\u003d BTA_HH_IDX_INVALID) {\n      available_handle \u003d BTA_HH_GET_LE_DEV_HDL(i);\n    }\n  }\n  return available_handle;\n```",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 25
+      },
+      "revId": "d9aae356158a4e79707fcacbdd0fc882fe410adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
