@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a026b31f_f02310fa",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1489,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T18:06:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9ed5bbd8_fc4add14",
+      "range": {
+        "startLine": 1489,
+        "startChar": 79,
+        "endLine": 1489,
+        "endChar": 82
+      },
+      "revId": "a8f849ca9e9aeed7f496a1c0101b05f4dc7eb005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b514fdb5_cb66bfdd",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-07-29T18:22:29Z",
       "side": 1,
       "message": "should it be added here ?",
+      "range": {
+        "startLine": 1497,
+        "startChar": 87,
+        "endLine": 1497,
+        "endChar": 90
+      },
+      "revId": "a8f849ca9e9aeed7f496a1c0101b05f4dc7eb005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "530bccce_81316864",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T18:06:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b514fdb5_cb66bfdd",
       "range": {
         "startLine": 1497,
         "startChar": 87,
