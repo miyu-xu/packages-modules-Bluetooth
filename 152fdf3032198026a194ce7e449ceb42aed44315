@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8587182b_73449109",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T18:40:10Z",
+      "side": 1,
+      "message": "nit: I prefer #pragma once, so we don\u0027t have to update it :)",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e6846fd8_f323fe92",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/internal_include/bt_target.h",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "#pragma once\n"
+            },
+            {
+              "path": "system/internal_include/bt_target.h",
+              "range": {
+                "startLine": 695,
+                "startChar": 0,
+                "endLine": 697,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "152fdf3032198026a194ce7e449ceb42aed44315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ccc9072_38328a65",
+        "filename": "system/stack/include/rfcdefs.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T18:40:10Z",
+      "side": 1,
+      "message": "nit: I prefer #pragma once",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "253c8b3b_d3393012",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/rfcdefs.h",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": "#pragma once\n"
+            },
+            {
+              "path": "system/stack/include/rfcdefs.h",
+              "range": {
+                "startLine": 291,
+                "startChar": 0,
+                "endLine": 293,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "152fdf3032198026a194ce7e449ceb42aed44315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
