@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40dac120_0e43443c",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-07-30T20:55:07Z",
+      "side": 1,
+      "message": "Nit: go/bugpattern/MissingCasesInEnumSwitch\n\nNow this isn\u0027t an enum and is just an integer, so I\u0027ll leave it up to you on whether to do it here and in the switch expressions above. Style guide seems to require this - https://engdoc.corp.google.com/eng/doc/devguide/java/style/index.md?cl\u003dhead#s4.8.4.3-switch-default",
+      "range": {
+        "startLine": 1024,
+        "startChar": 18,
+        "endLine": 1024,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6cb4e60e_339d345b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 1024,
+                "startChar": 0,
+                "endLine": 1024,
+                "endChar": 0
+              },
+              "replacement": "                        default:\n                            break;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6c0d95b607e6b0ee4b4d7aec892fdd9bdaedad4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
