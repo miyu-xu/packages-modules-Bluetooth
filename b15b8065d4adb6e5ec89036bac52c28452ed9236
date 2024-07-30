@@ -40,6 +40,30 @@
       ],
       "revId": "b15b8065d4adb6e5ec89036bac52c28452ed9236",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e92f0777_b3342aca",
+        "filename": "system/gd/rust/topshim/vc/vc_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-30T13:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f41199d_9370703e",
+      "range": {
+        "startLine": 104,
+        "startChar": 63,
+        "endLine": 104,
+        "endChar": 83
+      },
+      "revId": "b15b8065d4adb6e5ec89036bac52c28452ed9236",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
