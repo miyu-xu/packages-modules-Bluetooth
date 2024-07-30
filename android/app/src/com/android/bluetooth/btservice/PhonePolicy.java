@@ -312,7 +312,6 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         VolumeControlService volumeControlService = mFactory.getVolumeControlService();
         HapClientService hapClientService = mFactory.getHapClientService();
         BassClientService bcService = mFactory.getBassClientService();
-        BatteryService batteryService = mFactory.getBatteryService();
 
         final boolean isBypassLeAudioAllowlist =
                 SystemProperties.getBoolean(BYPASS_LE_AUDIO_ALLOWLIST_PROPERTY, false);
@@ -611,6 +610,12 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
             }
         }
 
+        processInitProfilePrioritiesBondNone(device, uuids);
+    }
+
+    private void processInitProfilePrioritiesBondNone(BluetoothDevice device, ParcelUuid[] uuids) {
+        BatteryService batteryService = mFactory.getBatteryService();
+        debugLog("processInitProfilePrioritiesBondNone() - device " + device);
         if ((batteryService != null)
                 && Utils.arrayContains(uuids, BluetoothUuid.BATTERY)
                 && (batteryService.getConnectionPolicy(device)
@@ -1123,11 +1128,22 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
      *
      * @param device is the remote device whose services have been discovered
      * @param uuids are the services supported by the remote device
+     * @param bondState is the bond state of remote device
      */
-    void onUuidsDiscovered(BluetoothDevice device, ParcelUuid[] uuids) {
-        debugLog("onUuidsDiscovered: discovered services for device " + device);
+    void onUuidsDiscovered(BluetoothDevice device, ParcelUuid[] uuids, int bondState) {
+        debugLog(
+                "onUuidsDiscovered: discovered services for device "
+                        + device
+                        + " ("
+                        + BondStateMachine.bondStateToString(bondState)
+                        + ")");
         if (uuids != null) {
-            processInitProfilePriorities(device, uuids);
+            if (Flags.unbondedProfileForbidFix() && bondState == BluetoothDevice.BOND_NONE) {
+                processInitProfilePrioritiesBondNone(device, uuids);
+            } else {
+                processInitProfilePriorities(device, uuids);
+            }
+
         } else {
             warnLog("onUuidsDiscovered: uuids is null for device " + device);
         }
