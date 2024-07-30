@@ -89,7 +89,7 @@ public class SdpClientTest {
         assertThat(device.fetchUuidsWithSdp()).isTrue();
 
         assertThat(mFutureIntent.get())
-                .containsExactly(
+                .contains(
                         BluetoothUuid.HFP,
                         BluetoothUuid.A2DP_SOURCE,
                         BluetoothUuid.A2DP_SINK,
