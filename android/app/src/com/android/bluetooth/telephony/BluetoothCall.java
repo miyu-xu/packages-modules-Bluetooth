@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.telephony;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -324,6 +325,7 @@ public class BluetoothCall {
     }
 
     /** Returns the list of ids of corresponding Call List. */
+    @SuppressLint("AndroidFrameworkEfficientCollections") // IntArray is not available in Bluetooth
     public static List<Integer> getIds(List<Call> calls) {
         List<Integer> result = new ArrayList<>();
         for (Call call : calls) {
