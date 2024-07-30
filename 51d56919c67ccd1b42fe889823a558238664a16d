@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7f83766_d0a68ad6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T18:30:54Z",
+      "side": 1,
+      "message": "So I fixed this logic for Audio devices. While reading through this code, I noticed that BatteryService doesn\u0027t care about bond state, so it should work for unbonded devices just fine.\n\nI\u0027ll perform some experiments with a heart rate monitor and see if it gets connected and reports values, or if it\u0027s non-functional thing.",
+      "parentUuid": "1d3e9947_8aa5e45b",
+      "range": {
+        "startLine": 625,
+        "startChar": 31,
+        "endLine": 625,
+        "endChar": 50
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13130e61_95fa8c21",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 3
