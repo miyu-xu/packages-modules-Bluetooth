@@ -283,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84efd18_fd03ecc7",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T22:26:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "94c80f7c_4e15c15c",
+      "range": {
+        "startLine": 733,
+        "startChar": 34,
+        "endLine": 733,
+        "endChar": 39
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec5d6b1d_b9997d84",
@@ -367,6 +391,30 @@
       "side": 1,
       "message": "The lifecycle of pointer is clear (alloc in register / dealloc in deregister) and the guide suggests passing raw pointer using .get() \n\nPlease correct me if I\u0027m wrong.\n\ngo/cpp-primer#shared_ptr",
       "parentUuid": "c1c838da_fd821f13",
+      "range": {
+        "startLine": 347,
+        "startChar": 31,
+        "endLine": 347,
+        "endChar": 62
+      },
+      "revId": "97dd92404bfd92b25a4356b3145ebb3995d73295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e0c9565_6f33583b",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T22:26:51Z",
+      "side": 1,
+      "message": "You\u0027re correct.",
+      "parentUuid": "367e131c_34761652",
       "range": {
         "startLine": 347,
         "startChar": 31,
