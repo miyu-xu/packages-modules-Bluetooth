@@ -726,7 +726,7 @@ public class RemoteDevices {
     private void sendUuidIntent(BluetoothDevice device, DeviceProperties prop) {
         // Send uuids within the stack before the broadcast is sent out
         ParcelUuid[] uuids = prop == null ? null : prop.getUuids();
-        mAdapterService.sendUuidsInternal(device, uuids);
+        mAdapterService.sendUuidsInternal(device, uuids, prop.getBondState());
 
         Intent intent = new Intent(BluetoothDevice.ACTION_UUID);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);

@@ -6879,10 +6879,15 @@ public class AdapterService extends Service {
      *
      * @param device is the remote device whose UUIDs have been discovered
      * @param uuids are the services supported on the remote device
+     * @param bondState is the bond state of remote device
      */
-    void sendUuidsInternal(BluetoothDevice device, ParcelUuid[] uuids) {
+    void sendUuidsInternal(BluetoothDevice device, ParcelUuid[] uuids, int bondState) {
         if (device == null) {
             Log.w(TAG, "sendUuidsInternal: null device");
+            return;
+        }
+        if (uuids == null) {
+            Log.w(TAG, "sendUuidsInternal: uuids is null");
             return;
         }
         if (uuids == null) {
@@ -6894,7 +6899,7 @@ public class AdapterService extends Service {
             Log.d(TAG, "sendUuidsInternal: index=" + i + " uuid=" + uuids[i]);
         }
         if (mPhonePolicy != null) {
-            mPhonePolicy.onUuidsDiscovered(device, uuids);
+            mPhonePolicy.onUuidsDiscovered(device, uuids, bondState);
         }
     }
 
