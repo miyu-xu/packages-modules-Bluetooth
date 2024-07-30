@@ -14,6 +14,7 @@
  */
 package com.android.bluetooth.map;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothProfile;
@@ -90,6 +91,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 // Next tag value for ContentProfileErrorReportUtils.report(): 41
+@SuppressLint("AndroidFrameworkEfficientCollections") // TODO: b/350563786 - too much to fix
 public class BluetoothMapContentObserver {
     private static final String TAG = "BluetoothMapContentObserver";
 

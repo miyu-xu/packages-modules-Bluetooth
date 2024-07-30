@@ -4,6 +4,7 @@ import android.hardware.radio.sap.SapApduType;
 import android.hardware.radio.sap.SapTransferProtocol;
 import android.os.RemoteException;
 import android.util.Log;
+import android.util.SparseIntArray;
 
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -24,8 +25,6 @@ import org.android.btsap.SapApi.RIL_SIM_SAP_TRANSFER_CARD_READER_STATUS_RSP;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -165,7 +164,7 @@ public class SapMessage {
     static AtomicInteger sNextSerial = new AtomicInteger(1);
 
     // Map<rilSerial, RequestType> - HashTable is synchronized
-    static Map<Integer, Integer> sOngoingRequests = new Hashtable<Integer, Integer>();
+    static SparseIntArray sOngoingRequests = new SparseIntArray();
     private boolean mSendToRil = false; // set to true for messages that needs to go to the RIL
     private boolean mClearRilQueue = false; /* set to true for messages that needs to cause the
                                               sOngoingRequests to be cleared. */
@@ -930,7 +929,7 @@ public class SapMessage {
         }
         int serial = msg.getToken();
         int error = msg.getError();
-        Integer reqType = sOngoingRequests.remove(serial);
+        Integer reqType = sOngoingRequests.get(serial);
         Log.v(
                 TAG,
                 "RIL SOLICITED serial: "
@@ -947,6 +946,7 @@ public class SapMessage {
             Log.w(TAG, "Solicited response received on a command not initiated - ignoring.");
             return;
         }
+        sOngoingRequests.delete(serial);
         mResultCode = mapRilErrorCode(error);
 
         switch (reqType) {

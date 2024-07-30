@@ -23,6 +23,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
+import android.util.SparseArray;
 import android.util.proto.ProtoOutputStream;
 
 import androidx.annotation.RequiresApi;
@@ -66,7 +67,7 @@ public class MetricsLogger {
 
     private static final HashMap<ProfileId, Integer> sProfileConnectionCounts = new HashMap<>();
 
-    HashMap<Integer, Long> mCounters = new HashMap<>();
+    private final SparseArray<Long> mCounters = new SparseArray<>();
     private static volatile MetricsLogger sInstance = null;
     private AdapterService mAdapterService = null;
     private AlarmManager mAlarmManager = null;
@@ -177,7 +178,7 @@ public class MetricsLogger {
         long total = 0;
 
         synchronized (sLock) {
-            if (mCounters.containsKey(key)) {
+            if (mCounters.contains(key)) {
                 total = mCounters.get(key);
             }
             if (Long.MAX_VALUE - total < count) {
@@ -251,7 +252,8 @@ public class MetricsLogger {
         Log.i(TAG, "drainBufferedCounters().");
         synchronized (sLock) {
             // send mCounters to statsd
-            for (int key : mCounters.keySet()) {
+            for (int i = 0; i < mCounters.size(); i++) {
+                int key = mCounters.keyAt(i);
                 count(key, mCounters.get(key));
             }
             mCounters.clear();

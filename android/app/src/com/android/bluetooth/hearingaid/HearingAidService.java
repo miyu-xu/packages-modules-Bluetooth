@@ -39,6 +39,7 @@ import android.os.Looper;
 import android.os.ParcelUuid;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
+import android.util.LongSparseArray;
 
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
@@ -81,7 +82,7 @@ public class HearingAidService extends ProfileService {
     private final Map<BluetoothDevice, HearingAidStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, Long> mDeviceHiSyncIdMap = new ConcurrentHashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceCapabilitiesMap = new HashMap<>();
-    private final Map<Long, Boolean> mHiSyncIdConnectedMap = new HashMap<>();
+    private final LongSparseArray<Boolean> mHiSyncIdConnectedMap = new LongSparseArray<>();
     private long mActiveDeviceHiSyncId = BluetoothHearingAid.HI_SYNC_ID_INVALID;
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
@@ -868,7 +869,7 @@ public class HearingAidService extends ProfileService {
                 MetricsLogger.logProfileConnectionEvent(
                         BluetoothMetricsProto.ProfileId.HEARING_AID);
             }
-            if (!mHiSyncIdConnectedMap.getOrDefault(myHiSyncId, false)) {
+            if (!mHiSyncIdConnectedMap.get(myHiSyncId, false)) {
                 mHiSyncIdConnectedMap.put(myHiSyncId, true);
             }
         }

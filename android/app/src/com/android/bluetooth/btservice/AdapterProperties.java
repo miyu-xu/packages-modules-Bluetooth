@@ -53,6 +53,7 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.util.Log;
 import android.util.Pair;
+import android.util.SparseArray;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -65,7 +66,6 @@ import com.android.modules.utils.build.SdkLevel;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -98,8 +98,7 @@ class AdapterProperties {
             new CopyOnWriteArrayList<BluetoothDevice>();
 
     private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
-    private final HashMap<Integer, Pair<Integer, Integer>> mProfileConnectionState =
-            new HashMap<>();
+    private final SparseArray<Pair<Integer, Integer>> mProfileConnectionState = new SparseArray<>();
 
     private final CompletableFuture<List<BufferConstraint>> mBufferConstraintList =
             new CompletableFuture<>();

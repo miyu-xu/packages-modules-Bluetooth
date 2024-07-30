@@ -184,7 +184,8 @@ public class SapRilReceiver implements ISapRilReceiver {
     }
 
     private void removeOngoingReqAndSendMessage(int token, SapMessage sapMessage) {
-        Integer reqType = SapMessage.sOngoingRequests.remove(token);
+        Integer reqType = SapMessage.sOngoingRequests.get(token);
+        SapMessage.sOngoingRequests.delete(token);
         Log.v(
                 TAG,
                 "removeOngoingReqAndSendMessage: token "
@@ -263,7 +264,8 @@ public class SapRilReceiver implements ISapRilReceiver {
         public void powerResponse(int token, int resultCode) {
             Log.d(TAG, "powerResponse: token " + token + " resultCode " + resultCode);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
-            Integer reqType = SapMessage.sOngoingRequests.remove(token);
+            Integer reqType = SapMessage.sOngoingRequests.get(token);
+            SapMessage.sOngoingRequests.delete(token);
             Log.v(
                     TAG,
                     "powerResponse: reqType "

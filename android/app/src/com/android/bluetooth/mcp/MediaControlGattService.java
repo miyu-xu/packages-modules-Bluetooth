@@ -43,6 +43,7 @@ import android.os.Looper;
 import android.os.ParcelUuid;
 import android.util.Log;
 import android.util.Pair;
+import android.util.SparseArray;
 
 import com.android.bluetooth.BluetoothEventLogger;
 import com.android.bluetooth.Utils;
@@ -147,7 +148,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
     private BluetoothGattServerProxy mBluetoothGattServer;
     private BluetoothGattService mGattService = null;
     private final Handler mHandler = new Handler(Looper.getMainLooper());
-    private final Map<Integer, BluetoothGattCharacteristic> mCharacteristics = new HashMap<>();
+    private final SparseArray<BluetoothGattCharacteristic> mCharacteristics = new SparseArray<>();
     private MediaState mCurrentMediaState = MediaState.INACTIVE;
     private final Map<BluetoothDevice, List<GattOpContext>> mPendingGattOperations =
             new HashMap<>();
@@ -1772,7 +1773,9 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                                         ? "REJECTED"
                                         : "UNKNOWN")));
         ProcessPendingGattOperations(device);
-        for (BluetoothGattCharacteristic characteristic : mCharacteristics.values()) {
+        for (int i = 0; i < mCharacteristics.size(); i++) {
+            int key = mCharacteristics.keyAt(i);
+            BluetoothGattCharacteristic characteristic = mCharacteristics.get(key);
             // Notify only the updated characteristics
             if (characteristic.getValue() != null) {
                 notifyCharacteristic(device, characteristic);

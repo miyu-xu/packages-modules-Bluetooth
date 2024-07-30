@@ -14,6 +14,7 @@
  */
 package com.android.bluetooth.map;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
 import android.content.ContentResolver;
@@ -68,6 +69,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 // Next tag value for ContentProfileErrorReportUtils.report(): 15
+@SuppressLint("AndroidFrameworkEfficientCollections") // TODO: b/350563786 - too much to fix
 public class BluetoothMapContent {
 
     private static final String TAG = "BluetoothMapContent";

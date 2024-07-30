@@ -24,6 +24,7 @@ import android.os.BatteryStatsManager;
 import android.os.Binder;
 import android.os.SystemClock;
 import android.os.WorkSource;
+import android.util.SparseArray;
 
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
@@ -39,7 +40,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -155,7 +155,7 @@ public class AppScanStats {
     private int mLowLantencyScan = 0;
     private int mAmbientDiscoveryScan = 0;
     private List<LastScan> mLastScans = new ArrayList<LastScan>();
-    private HashMap<Integer, LastScan> mOngoingScans = new HashMap<Integer, LastScan>();
+    private SparseArray<LastScan> mOngoingScans = new SparseArray<LastScan>();
     private long startTime = 0;
     private long stopTime = 0;
     private int results = 0;
@@ -202,7 +202,7 @@ public class AppScanStats {
     }
 
     synchronized boolean isScanning() {
-        return !mOngoingScans.isEmpty();
+        return mOngoingScans.size() != 0;
     }
 
     synchronized LastScan getScanFromScannerId(int scannerId) {
@@ -941,8 +941,9 @@ public class AppScanStats {
         int lowLatencyScan = mLowLantencyScan;
         int ambientDiscoveryScan = mAmbientDiscoveryScan;
 
-        if (!mOngoingScans.isEmpty()) {
-            for (Integer key : mOngoingScans.keySet()) {
+        if (mOngoingScans.size() != 0) {
+            for (int i = 0; i < mOngoingScans.size(); i++) {
+                int key = mOngoingScans.keyAt(i);
                 LastScan scan = mOngoingScans.get(key);
                 scanDuration = currTime - scan.timestamp;
 
@@ -1079,9 +1080,10 @@ public class AppScanStats {
             }
         }
 
-        if (!mOngoingScans.isEmpty()) {
+        if (mOngoingScans.size() != 0) {
             sb.append("\n  Ongoing scans                                               :");
-            for (Integer key : mOngoingScans.keySet()) {
+            for (int i = 0; i < mOngoingScans.size(); i++) {
+                int key = mOngoingScans.keyAt(i);
                 LastScan scan = mOngoingScans.get(key);
                 Date timestamp = new Date(currentTime - currTime + scan.timestamp);
                 sb.append("\n    ").append(DATE_FORMAT.format(timestamp)).append(" - ");

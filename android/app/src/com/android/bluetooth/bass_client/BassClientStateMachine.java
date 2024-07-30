@@ -78,6 +78,7 @@ import java.util.UUID;
 import java.util.stream.IntStream;
 
 @VisibleForTesting
+@SuppressLint("AndroidFrameworkEfficientCollections") // TODO: b/350563786 - too much to fix
 public class BassClientStateMachine extends StateMachine {
     private static final String TAG = "BassClientStateMachine";
     @VisibleForTesting static final byte[] REMOTE_SCAN_STOP = {00};

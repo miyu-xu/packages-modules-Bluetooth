@@ -15,6 +15,7 @@
  */
 package com.android.bluetooth.gatt;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import java.util.List;
@@ -86,14 +87,14 @@ class HandleMap {
         }
     }
 
-    List<Entry> mEntries = null;
-    Map<Integer, Integer> mRequestMap = null;
+    List<Entry> mEntries = new CopyOnWriteArrayList<Entry>();
+
+    @SuppressLint("AndroidFrameworkEfficientCollections") // No IntArray available in Bluetooth
+    Map<Integer, Integer> mRequestMap = new ConcurrentHashMap<>();
+
     int mLastCharacteristic = 0;
 
-    HandleMap() {
-        mEntries = new CopyOnWriteArrayList<Entry>();
-        mRequestMap = new ConcurrentHashMap<Integer, Integer>();
-    }
+    HandleMap() {}
 
     void clear() {
         mEntries.clear();

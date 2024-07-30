@@ -17,6 +17,7 @@
 
 package com.android.bluetooth.tbs;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeCall;
@@ -31,6 +32,7 @@ import android.net.Uri;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.le_audio.ContentControlIdKeeper;
@@ -101,7 +103,7 @@ public class TbsGeneric {
         String providerName;
         int technology;
         Map<UUID, Integer> callIdIndexMap = new HashMap<>();
-        Map<Integer, Request> requestMap = new HashMap<>();
+        SparseArray<Request> requestMap = new SparseArray<>();
 
         Bearer(
                 String token,
@@ -125,7 +127,10 @@ public class TbsGeneric {
     private TbsGatt mTbsGatt = null;
     private List<Bearer> mBearerList = new ArrayList<>();
     private int mLastIndexAssigned = TbsCall.INDEX_UNASSIGNED;
+
+    @SuppressLint("AndroidFrameworkEfficientCollections") // Need to check if treemap can be replace
     private Map<Integer, TbsCall> mCurrentCallsList = new TreeMap<>();
+
     private Bearer mForegroundBearer = null;
     private int mLastRequestIdAssigned = 0;
     private List<String> mUriSchemes = new ArrayList<>(Arrays.asList("tel"));
@@ -413,22 +418,19 @@ public class TbsGeneric {
 
     private synchronized void checkRequestComplete(Bearer bearer, UUID callId, TbsCall tbsCall) {
         // check if there's any pending request related to this call
-        Map.Entry<Integer, Request> requestEntry = null;
-        if (bearer.requestMap.size() > 0) {
-            for (Map.Entry<Integer, Request> entry : bearer.requestMap.entrySet()) {
-                if (entry.getValue().callIdList.contains(callId)) {
-                    requestEntry = entry;
-                }
+        int requestId = -1;
+        Request request = null;
+        for (int i = 0; i < bearer.requestMap.size(); i++) {
+            request = bearer.requestMap.valueAt(i);
+            if (request.callIdList.contains(callId)) {
+                requestId = bearer.requestMap.keyAt(i);
             }
         }
 
-        if (requestEntry == null) {
+        if (requestId == -1) {
             Log.d(TAG, "requestEntry is null");
             return;
         }
-
-        int requestId = requestEntry.getKey();
-        Request request = requestEntry.getValue();
 
         int result;
         if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE) {
@@ -525,11 +527,12 @@ public class TbsGeneric {
         }
 
         // check if there's any pending request related to this call
-        Request request = bearer.requestMap.remove(requestId);
+        Request request = bearer.requestMap.get(requestId);
         if (request == null) {
             // already sent response
             return;
         }
+        bearer.requestMap.remove(requestId);
 
         int tbsResult = getTbsResult(result, request.requestedOpcode);
         mTbsGatt.setCallControlPointResult(
@@ -1007,7 +1010,7 @@ public class TbsGeneric {
                         }
 
                         if (result == TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS) {
-                            // return here and wait for the request completition from application
+                            // return here and wait for the request completion from application
                             return;
                         }
 
