@@ -230,7 +230,7 @@ public class AdapterService extends Service {
     private final Object mEnergyInfoLock = new Object();
     private final SparseArray<UidTraffic> mUidTraffic = new SparseArray<>();
 
-    private final Map<Integer, ProfileService> mStartedProfiles = new HashMap<>();
+    private final SparseArray<ProfileService> mStartedProfiles = new SparseArray<>();
     private final List<ProfileService> mRegisteredProfiles = new ArrayList<>();
     private final List<ProfileService> mRunningProfiles = new ArrayList<>();
 
@@ -243,8 +243,8 @@ public class AdapterService extends Service {
 
     // Map<groupId, PendingAudioProfilePreferenceRequest>
     @GuardedBy("mCsipGroupsPendingAudioProfileChanges")
-    private final Map<Integer, PendingAudioProfilePreferenceRequest>
-            mCsipGroupsPendingAudioProfileChanges = new HashMap<>();
+    private final SparseArray<PendingAudioProfilePreferenceRequest>
+            mCsipGroupsPendingAudioProfileChanges = new SparseArray<>();
 
     private final Map<BluetoothStateCallback, Executor> mLocalCallbacks = new ConcurrentHashMap<>();
     private final Map<UUID, RfcommListenerData> mBluetoothServerSockets = new ConcurrentHashMap<>();
@@ -489,7 +489,8 @@ public class AdapterService extends Service {
                     synchronized (mCsipGroupsPendingAudioProfileChanges) {
                         removeFromPendingAudioProfileChanges(groupId);
                         PendingAudioProfilePreferenceRequest request =
-                                mCsipGroupsPendingAudioProfileChanges.remove(groupId);
+                                mCsipGroupsPendingAudioProfileChanges.get(groupId);
+                        mCsipGroupsPendingAudioProfileChanges.remove(groupId);
                         Log.e(
                                 TAG,
                                 "Preferred audio profiles change audio framework timeout for "
@@ -1189,7 +1190,7 @@ public class AdapterService extends Service {
         // Disable the non-supported profiles service
         for (int profileId : nonSupportedProfiles) {
             Config.setProfileEnabled(profileId, false);
-            if (mStartedProfiles.containsKey(profileId)) {
+            if (mStartedProfiles.contains(profileId)) {
                 setProfileServiceState(profileId, BluetoothAdapter.STATE_OFF);
             }
         }
@@ -1546,7 +1547,7 @@ public class AdapterService extends Service {
     @VisibleForTesting
     void setProfileServiceState(int profileId, int state) {
         if (state == BluetoothAdapter.STATE_ON) {
-            if (!mStartedProfiles.containsKey(profileId)) {
+            if (!mStartedProfiles.contains(profileId)) {
                 ProfileService profileService = PROFILE_CONSTRUCTORS.get(profileId).apply(this);
                 mStartedProfiles.put(profileId, profileService);
                 addProfile(profileService);
@@ -1567,7 +1568,8 @@ public class AdapterService extends Service {
                                 + ", STATE_ON): profile is already started");
             }
         } else if (state == BluetoothAdapter.STATE_OFF) {
-            ProfileService profileService = mStartedProfiles.remove(profileId);
+            ProfileService profileService = mStartedProfiles.get(profileId);
+            mStartedProfiles.remove(profileId);
             if (profileService != null) {
                 profileService.setAvailable(false);
                 onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_OFF);
@@ -4343,7 +4345,7 @@ public class AdapterService extends Service {
         }
 
         synchronized (mCsipGroupsPendingAudioProfileChanges) {
-            if (mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
+            if (mCsipGroupsPendingAudioProfileChanges.contains(groupId)) {
                 return BluetoothStatusCodes.ERROR_ANOTHER_ACTIVE_REQUEST;
             }
 
@@ -4497,7 +4499,7 @@ public class AdapterService extends Service {
                     TAG,
                     "removeFromPendingAudioProfileChanges: Timeout on change for groupId="
                             + groupId);
-            if (!mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
+            if (!mCsipGroupsPendingAudioProfileChanges.contains(groupId)) {
                 Log.e(
                         TAG,
                         "removeFromPendingAudioProfileChanges( "
@@ -4529,7 +4531,7 @@ public class AdapterService extends Service {
         }
 
         synchronized (mCsipGroupsPendingAudioProfileChanges) {
-            if (!mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
+            if (!mCsipGroupsPendingAudioProfileChanges.contains(groupId)) {
                 Log.e(
                         TAG,
                         "notifyActiveDeviceChangeApplied, but no pending request for "

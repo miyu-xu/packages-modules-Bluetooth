@@ -39,6 +39,7 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.view.Display;
@@ -55,10 +56,8 @@ import com.android.internal.annotations.VisibleForTesting;
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -983,9 +982,9 @@ public class ScanManager {
         private static final int LIST_LOGIC_TYPE = 0x1111111;
         private static final int FILTER_LOGIC_TYPE = 1;
         // Filter indices that are available to user. It's sad we need to maintain filter index.
-        private final Deque<Integer> mFilterIndexStack;
+        private final Deque<Integer> mFilterIndexStack = new ArrayDeque<>();
         // Map of scannerId and Filter indices used by client.
-        private final Map<Integer, Deque<Integer>> mClientFilterIndexMap;
+        private final SparseArray<Deque<Integer>> mClientFilterIndexMap = new SparseArray();
         // Keep track of the clients that uses ALL_PASS filters.
         private final Set<Integer> mAllPassRegularClients = new HashSet<>();
         private final Set<Integer> mAllPassBatchClients = new HashSet<>();
@@ -997,8 +996,6 @@ public class ScanManager {
         ScanNative(TransitionalScanHelper scanHelper) {
             mNativeInterface = ScanObjectsFactory.getInstance().getScanNativeInterface();
             mNativeInterface.init(scanHelper);
-            mFilterIndexStack = new ArrayDeque<Integer>();
-            mClientFilterIndexMap = new HashMap<Integer, Deque<Integer>>();
 
             mAlarmManager = mContext.getSystemService(AlarmManager.class);
             Intent batchIntent = new Intent(ACTION_REFRESH_BATCHED_SCAN, null);
@@ -1124,7 +1121,7 @@ public class ScanManager {
         void startRegularScan(ScanClient client) {
             if (isFilteringSupported()
                     && mFilterIndexStack.isEmpty()
-                    && mClientFilterIndexMap.isEmpty()) {
+                    && mClientFilterIndexMap.size() == 0) {
                 initFilterIndexStack();
             }
             if (isFilteringSupported()) {
@@ -1592,7 +1589,8 @@ public class ScanManager {
         }
 
         private void removeScanFilters(int scannerId) {
-            Deque<Integer> filterIndices = mClientFilterIndexMap.remove(scannerId);
+            Deque<Integer> filterIndices = mClientFilterIndexMap.get(scannerId);
+            mClientFilterIndexMap.remove(scannerId);
             if (filterIndices != null) {
                 mFilterIndexStack.addAll(filterIndices);
                 for (Integer filterIndex : filterIndices) {
@@ -1602,13 +1600,12 @@ public class ScanManager {
                 }
             }
             // Remove if ALL_PASS filters are used.
-            removeFilterIfExisits(
+            removeFilterIfExists(
                     mAllPassRegularClients, scannerId, ALL_PASS_FILTER_INDEX_REGULAR_SCAN);
-            removeFilterIfExisits(
-                    mAllPassBatchClients, scannerId, ALL_PASS_FILTER_INDEX_BATCH_SCAN);
+            removeFilterIfExists(mAllPassBatchClients, scannerId, ALL_PASS_FILTER_INDEX_BATCH_SCAN);
         }
 
-        private void removeFilterIfExisits(Set<Integer> clients, int scannerId, int filterIndex) {
+        private void removeFilterIfExists(Set<Integer> clients, int scannerId, int filterIndex) {
             if (!clients.contains(scannerId)) {
                 return;
             }

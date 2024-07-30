@@ -72,6 +72,7 @@ import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
@@ -160,7 +161,7 @@ public class GattService extends ProfileService {
     /**
      * Set of restricted (which require a BLUETOOTH_PRIVILEGED permission) handles per connectionId.
      */
-    @VisibleForTesting final Map<Integer, Set<Integer>> mRestrictedHandles = new HashMap<>();
+    @VisibleForTesting final SparseArray<Set<Integer>> mRestrictedHandles = new SparseArray<>();
 
     /**
      * HashMap used to synchronize writeCharacteristic calls mapping remote device address to
@@ -3486,6 +3487,7 @@ public class GattService extends ProfileService {
         }
     }
 
+    @SuppressLint("AndroidFrameworkEfficientCollections") // No IntArray available in Bluetooth
     private void deleteServices(int serverIf) {
         Log.d(TAG, "deleteServices() - serverIf=" + serverIf);
 
