@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d15d595_35902028",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T23:19:22Z",
+      "side": 1,
+      "message": "nit: move to line 1274 (closer to its use)",
+      "range": {
+        "startLine": 1270,
+        "startChar": 0,
+        "endLine": 1270,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3339e463_ab8e8df1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_api.cc",
+              "range": {
+                "startLine": 1270,
+                "startChar": 0,
+                "endLine": 1271,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/gatt/gatt_api.cc",
+              "range": {
+                "startLine": 1275,
+                "startChar": 0,
+                "endLine": 1275,
+                "endChar": 0
+              },
+              "replacement": "  uint8_t i_gatt_if \u003d gatt_cb.next_gatt_if;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e57d4b82f819380d92cd2b39d48548ccfb3b6455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c2e743_701de7d7",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T23:19:22Z",
+      "side": 1,
+      "message": "Prefer to use static_cast\u003ctGATT_IF\u003e() instead of a c-style cast.",
+      "range": {
+        "startLine": 1276,
+        "startChar": 32,
+        "endLine": 1276,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9de62953_267b81ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_api.cc",
+              "range": {
+                "startLine": 1276,
+                "startChar": 0,
+                "endLine": 1277,
+                "endChar": 0
+              },
+              "replacement": "     if (gatt_cb.cl_rcb_map.find(static_cast\u003ctGATT_IF\u003e(i_gatt_if)) \u003d\u003d\n         gatt_cb.cl_rcb_map.end()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e57d4b82f819380d92cd2b39d48548ccfb3b6455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
