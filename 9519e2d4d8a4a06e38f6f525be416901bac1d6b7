@@ -251,6 +251,30 @@
       ],
       "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3cc38fc_bd1f1e8c",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-30T05:01:54Z",
+      "side": 1,
+      "message": "switched to `auto` as everywhere else, and moved the whole check deeper after other checks are performed (patch was breaking unittests)",
+      "parentUuid": "73c4dd30_5033e64c",
+      "range": {
+        "startLine": 837,
+        "startChar": 6,
+        "endLine": 837,
+        "endChar": 14
+      },
+      "revId": "9519e2d4d8a4a06e38f6f525be416901bac1d6b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

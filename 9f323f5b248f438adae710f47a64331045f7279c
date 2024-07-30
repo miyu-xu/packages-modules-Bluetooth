@@ -34,6 +34,24 @@
       "parentUuid": "81b81807_db4017c9",
       "revId": "9f323f5b248f438adae710f47a64331045f7279c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70273e6c_a8a03a18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-30T05:01:54Z",
+      "side": 1,
+      "message": "Added tests for this, and with scenarios that PTS doesn\u0027t cover (binaural set with independed and not independent presets)",
+      "parentUuid": "0a8bc6ba_4398eb0a",
+      "revId": "9f323f5b248f438adae710f47a64331045f7279c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
