@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f41199d_9370703e",
+        "filename": "system/gd/rust/topshim/vc/vc_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-07-30T13:51:07Z",
+      "side": 1,
+      "message": "Please reverse the order",
+      "range": {
+        "startLine": 104,
+        "startChar": 63,
+        "endLine": 104,
+        "endChar": 83
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a19de1c1_61d25f61",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/vc/vc_shim.cc",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "              ADDRESS_TO_LOGGABLE_CSTR(address), volume, mute, flags, is_autonomous);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b15b8065d4adb6e5ec89036bac52c28452ed9236",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
