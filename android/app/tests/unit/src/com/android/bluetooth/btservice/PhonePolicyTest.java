@@ -170,7 +170,7 @@ public class PhonePolicyTest {
         ParcelUuid[] uuids = new ParcelUuid[2];
         uuids[0] = BluetoothUuid.HFP;
         uuids[1] = BluetoothUuid.A2DP_SINK;
-        mPhonePolicy.onUuidsDiscovered(device, uuids);
+        mPhonePolicy.onUuidsDiscovered(device, uuids, BluetoothDevice.BOND_BONDED);
 
         // Check that the priorities of the devices for preferred profiles are set to ON
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
@@ -261,7 +261,7 @@ public class PhonePolicyTest {
 
             when(mCsipSetCoordinatorService.getGroupDevicesOrdered(csipGroupId))
                     .thenReturn(connectedDevices);
-            mPhonePolicy.onUuidsDiscovered(dev, uuids);
+            mPhonePolicy.onUuidsDiscovered(dev, uuids, BluetoothDevice.BOND_BONDED);
             if (groupSize > 1) {
                 connectedDevices.add(dev);
                 // Simulate CSIP connection
@@ -335,7 +335,7 @@ public class PhonePolicyTest {
         ParcelUuid[] uuids = new ParcelUuid[2];
         uuids[0] = BluetoothUuid.HFP;
         uuids[1] = BluetoothUuid.A2DP_SINK;
-        mPhonePolicy.onUuidsDiscovered(device, uuids);
+        mPhonePolicy.onUuidsDiscovered(device, uuids, BluetoothDevice.BOND_BONDED);
 
         // Check auto connect
         verify(mA2dpService, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
@@ -495,7 +495,7 @@ public class PhonePolicyTest {
         uuids[0] = BluetoothUuid.HFP;
         uuids[1] = BluetoothUuid.A2DP_SINK;
         uuids[2] = BluetoothUuid.LE_AUDIO;
-        mPhonePolicy.onUuidsDiscovered(device, uuids);
+        mPhonePolicy.onUuidsDiscovered(device, uuids, BluetoothDevice.BOND_BONDED);
     }
 
     /* In this test we want to check following scenario
@@ -567,7 +567,7 @@ public class PhonePolicyTest {
                 .thenReturn(BluetoothDevice.DEVICE_TYPE_DUAL);
 
         // Inject first devices
-        mPhonePolicy.onUuidsDiscovered(firstDevice, uuids);
+        mPhonePolicy.onUuidsDiscovered(firstDevice, uuids, BluetoothDevice.BOND_BONDED);
         mPhonePolicy.profileConnectionStateChanged(
                 BluetoothProfile.CSIP_SET_COORDINATOR,
                 firstDevice,
@@ -600,7 +600,7 @@ public class PhonePolicyTest {
         connectedDevices.add(secondDevice);
 
         // Inject second set member connection
-        mPhonePolicy.onUuidsDiscovered(secondDevice, uuids);
+        mPhonePolicy.onUuidsDiscovered(secondDevice, uuids, BluetoothDevice.BOND_BONDED);
         mPhonePolicy.profileConnectionStateChanged(
                 BluetoothProfile.CSIP_SET_COORDINATOR,
                 secondDevice,
@@ -687,7 +687,7 @@ public class PhonePolicyTest {
                 .thenReturn(BluetoothDevice.DEVICE_TYPE_LE);
 
         // Inject first devices
-        mPhonePolicy.onUuidsDiscovered(firstDevice, uuids);
+        mPhonePolicy.onUuidsDiscovered(firstDevice, uuids, BluetoothDevice.BOND_BONDED);
         mPhonePolicy.profileConnectionStateChanged(
                 BluetoothProfile.CSIP_SET_COORDINATOR,
                 firstDevice,
@@ -717,7 +717,7 @@ public class PhonePolicyTest {
         connectedDevices.add(secondDevice);
 
         // Inject second set member connection
-        mPhonePolicy.onUuidsDiscovered(secondDevice, uuids);
+        mPhonePolicy.onUuidsDiscovered(secondDevice, uuids, BluetoothDevice.BOND_BONDED);
         mPhonePolicy.profileConnectionStateChanged(
                 BluetoothProfile.CSIP_SET_COORDINATOR,
                 secondDevice,
@@ -1600,7 +1600,7 @@ public class PhonePolicyTest {
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
 
         // Inject an event for UUIDs updated for a remote device with no supported services
-        mPhonePolicy.onUuidsDiscovered(device, null);
+        mPhonePolicy.onUuidsDiscovered(device, null, BluetoothDevice.BOND_BONDED);
 
         // Check that we do not crash and not call any setPriority methods
         verify(mHeadsetService, after(CONNECT_OTHER_PROFILES_TIMEOUT_WAIT_MILLIS).never())
