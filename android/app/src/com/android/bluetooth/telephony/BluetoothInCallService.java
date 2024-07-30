@@ -23,6 +23,7 @@ import static java.util.Objects.requireNonNull;
 
 import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothLeCall;
@@ -51,6 +52,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseArray;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -61,7 +63,6 @@ import com.android.bluetooth.tbs.BluetoothLeCallControlProxy;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -129,14 +130,13 @@ public class BluetoothInCallService extends InCallService {
     private TelephonyManager mTelephonyManager;
     private TelecomManager mTelecomManager;
 
-    @VisibleForTesting
-    public final HashMap<Integer, CallStateCallback> mCallbacks = new HashMap<>();
+    @VisibleForTesting public final SparseArray<CallStateCallback> mCallbacks = new SparseArray<>();
 
     @VisibleForTesting
-    public final HashMap<Integer, BluetoothCall> mBluetoothCallHashMap = new HashMap<>();
+    public final SparseArray<BluetoothCall> mBluetoothCalls = new SparseArray<>();
 
-    private final HashMap<Integer, BluetoothCall> mBluetoothConferenceCallInference =
-            new HashMap<>();
+    private final SparseArray<BluetoothCall> mBluetoothConferenceCallInference =
+            new SparseArray<>();
 
     // A queue record the removal order of bluetooth calls
     private final Queue<Integer> mBluetoothCallQueue = new ArrayDeque<>();
@@ -624,15 +624,15 @@ public class BluetoothInCallService extends InCallService {
         if (call.isExternalCall()) {
             return;
         }
-        if (!mBluetoothCallHashMap.containsKey(call.getId())) {
+        if (!mBluetoothCalls.contains(call.getId())) {
             Log.d(TAG, "onCallAdded");
             CallStateCallback callback = new CallStateCallback(call.getState());
             mCallbacks.put(call.getId(), callback);
             call.registerCallback(callback);
 
-            mBluetoothCallHashMap.put(call.getId(), call);
+            mBluetoothCalls.put(call.getId(), call);
             if (!call.isConference()) {
-                mMaxNumberOfCalls = Integer.max(mMaxNumberOfCalls, mBluetoothCallHashMap.size());
+                mMaxNumberOfCalls = Integer.max(mMaxNumberOfCalls, mBluetoothCalls.size());
             }
             updateHeadsetWithCallState(false /* force */);
 
@@ -694,8 +694,8 @@ public class BluetoothInCallService extends InCallService {
             call.unregisterCallback(callback);
         }
 
-        if (mBluetoothCallHashMap.containsKey(call.getId())) {
-            mBluetoothCallHashMap.remove(call.getId());
+        if (mBluetoothCalls.contains(call.getId())) {
+            mBluetoothCalls.remove(call.getId());
 
             DisconnectCause cause = call.getDisconnectCause();
             if (cause != null && cause.getCode() == DisconnectCause.OTHER) {
@@ -792,7 +792,7 @@ public class BluetoothInCallService extends InCallService {
         }
         sInstance = null;
         mCallbacks.clear();
-        mBluetoothCallHashMap.clear();
+        mBluetoothCalls.clear();
         mBluetoothConferenceCallInference.clear();
         mBluetoothCallQueue.clear();
         mMaxNumberOfCalls = 0;
@@ -805,6 +805,7 @@ public class BluetoothInCallService extends InCallService {
     }
 
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, MODIFY_PHONE_STATE})
+    @SuppressLint("AndroidFrameworkEfficientCollections") // TreeMap is also sorting the data
     private void sendListOfCalls(boolean shouldLog) {
         Collection<BluetoothCall> calls = mCallInfo.getBluetoothCalls();
 
@@ -812,13 +813,13 @@ public class BluetoothInCallService extends InCallService {
         BluetoothCall conferenceCallChildrenNotReady = null;
         for (BluetoothCall call : calls) {
             // find the conference call parent among calls
-            if (call.isConference() && !mBluetoothConferenceCallInference.isEmpty()) {
+            if (call.isConference() && mBluetoothConferenceCallInference.size() != 0) {
                 Log.d(
                         TAG,
                         "conference call inferred size: "
                                 + mBluetoothConferenceCallInference.size()
                                 + " current size: "
-                                + mBluetoothCallHashMap.size());
+                                + mBluetoothCalls.size());
                 // Do conference call inference until at least 2 children arrive
                 // If carrier sends children info, then inference will end when info arrives.
                 // If carrier doesn't send children info, then inference won't impact actual value.
@@ -831,7 +832,8 @@ public class BluetoothInCallService extends InCallService {
         }
         if (conferenceCallChildrenNotReady != null) {
             SortedMap<Integer, Object[]> clccResponseMap = new TreeMap<>();
-            for (BluetoothCall inferredCall : mBluetoothConferenceCallInference.values()) {
+            for (int i = 0; i < mBluetoothConferenceCallInference.size(); i++) {
+                BluetoothCall inferredCall = mBluetoothConferenceCallInference.valueAt(i);
                 if (inferredCall.isCallNull() || inferredCall.getHandle() == null) {
                     Log.w(TAG, "inferredCall does not have handle");
                     continue;
@@ -844,7 +846,8 @@ public class BluetoothInCallService extends InCallService {
                 }
 
                 // associate existing bluetoothCall with inferredCall based on call handle
-                for (BluetoothCall bluetoothCall : mBluetoothCallHashMap.values()) {
+                for (int ii = 0; ii < mBluetoothCalls.size(); ii++) {
+                    BluetoothCall bluetoothCall = mBluetoothCalls.valueAt(ii);
                     if (bluetoothCall.getHandle() == null) {
                         Log.w(TAG, "call id: " + bluetoothCall.getId() + " handle is null");
                         continue;
@@ -1060,7 +1063,8 @@ public class BluetoothInCallService extends InCallService {
         for (int i = index; i <= mMaxNumberOfCalls + 1; i++) {
             availableIndex.add(i);
         }
-        for (BluetoothCall bluetoothCall : mBluetoothCallHashMap.values()) {
+        for (int i = 0; i < mBluetoothCalls.size(); i++) {
+            BluetoothCall bluetoothCall = mBluetoothCalls.valueAt(i);
             int callCLCCIndex = bluetoothCall.mClccIndex;
             if (availableIndex.contains(callCLCCIndex)) {
                 availableIndex.remove(callCLCCIndex);
@@ -1408,8 +1412,8 @@ public class BluetoothInCallService extends InCallService {
 
     @VisibleForTesting
     public BluetoothCall getBluetoothCallById(Integer id) {
-        if (mBluetoothCallHashMap.containsKey(id)) {
-            return mBluetoothCallHashMap.get(id);
+        if (mBluetoothCalls.contains(id)) {
+            return mBluetoothCalls.get(id);
         }
         return null;
     }
@@ -1710,7 +1714,8 @@ public class BluetoothInCallService extends InCallService {
     private void sendTbsCurrentCallsList() {
         List<BluetoothLeCall> tbsCalls = new ArrayList<>();
 
-        for (BluetoothCall call : mBluetoothCallHashMap.values()) {
+        for (int i = 0; i < mBluetoothCalls.size(); i++) {
+            BluetoothCall call = mBluetoothCalls.valueAt(i);
             BluetoothLeCall tbsCall = createTbsCall(call);
             if (tbsCall != null) {
                 tbsCalls.add(tbsCall);

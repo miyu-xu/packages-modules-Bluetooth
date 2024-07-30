@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.pbap;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
 import android.content.ContentResolver;
@@ -924,6 +925,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
         return pushBytes(op, result.toString());
     }
 
+    @SuppressLint("AndroidFrameworkEfficientCollections") // IntArray is not available in Bluetooth
     private int createList(
             AppParamValue appParamValue,
             int needSendBody,

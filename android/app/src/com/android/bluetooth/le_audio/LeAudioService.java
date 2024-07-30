@@ -368,6 +368,7 @@ public class LeAudioService extends ProfileService {
     List<BluetoothLeAudioCodecConfig> mInputLocalCodecCapabilities = new ArrayList<>();
     List<BluetoothLeAudioCodecConfig> mOutputLocalCodecCapabilities = new ArrayList<>();
 
+    @SuppressLint("AndroidFrameworkEfficientCollections") // Due to complicated lock pattern
     @GuardedBy("mGroupWriteLock")
     private final Map<Integer, LeAudioGroupDescriptor> mGroupDescriptors = new LinkedHashMap<>();
 
@@ -377,6 +378,8 @@ public class LeAudioService extends ProfileService {
 
     private final Map<BluetoothDevice, LeAudioDeviceDescriptor> mDeviceDescriptors =
             new LinkedHashMap<>();
+
+    @SuppressLint("AndroidFrameworkEfficientCollections") // Due to stream usage
     private final Map<Integer, LeAudioBroadcastDescriptor> mBroadcastDescriptors =
             new LinkedHashMap<>();
 
@@ -1416,21 +1419,11 @@ public class LeAudioService extends ProfileService {
     }
 
     private boolean areBroadcastsAllStopped() {
-        if (mBroadcastDescriptors == null) {
-            Log.e(TAG, "areBroadcastsAllStopped: Invalid Broadcast Descriptors");
-            return false;
-        }
-
         return mBroadcastDescriptors.values().stream()
                 .allMatch(d -> d.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED));
     }
 
     private Optional<Integer> getFirstNotStoppedBroadcastId() {
-        if (mBroadcastDescriptors == null) {
-            Log.e(TAG, "getFirstNotStoppedBroadcastId: Invalid Broadcast Descriptors");
-            return Optional.empty();
-        }
-
         for (Map.Entry<Integer, LeAudioBroadcastDescriptor> entry :
                 mBroadcastDescriptors.entrySet()) {
             if (!entry.getValue().mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED)) {
@@ -2064,7 +2057,7 @@ public class LeAudioService extends ProfileService {
 
     /*
      * Listen mode is set when broadcast is queued, waiting for create response notification or
-     * descriptor was created - idicate that create notification was received.
+     * descriptor was created - indicate that create notification was received.
      */
     private boolean wasSetSinkListeningMode() {
         return !mCreateBroadcastQueue.isEmpty()
@@ -2684,8 +2677,8 @@ public class LeAudioService extends ProfileService {
     private void handleSinkStreamStatusChange(int status) {
         Log.d(TAG, "status: " + status);
 
-        /* Straming request of Unicast Sink stream should result in pausing broadcast and activating
-         * Unicast group.
+        /* Streaming request of Unicast Sink stream should result in pausing broadcast and
+         * activating Unicast group.
          *
          * When stream is suspended there should be a reverse handover. Active Unicast group should
          * become inactive and broadcast should be resumed grom paused state.
