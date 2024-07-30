@@ -100,6 +100,7 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** Broadcast Assistant Scan Service */
+@SuppressLint("AndroidFrameworkEfficientCollections") // TODO: b/350563786 - too much to fix
 public class BassClientService extends ProfileService {
     private static final String TAG = BassClientService.class.getSimpleName();
     private static final int MAX_ACTIVE_SYNCED_SOURCES_NUM = 4;

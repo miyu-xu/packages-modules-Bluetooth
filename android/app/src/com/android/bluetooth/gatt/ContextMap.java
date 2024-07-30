@@ -15,6 +15,7 @@
  */
 package com.android.bluetooth.gatt;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Binder;
 import android.os.IBinder;
@@ -349,8 +350,9 @@ public class ContextMap<C> {
     }
 
     /** Returns connect device map with addr and appid */
+    @SuppressLint("AndroidFrameworkEfficientCollections") // Too much to fix
     Map<Integer, String> getConnectedMap() {
-        Map<Integer, String> connectedmap = new HashMap<Integer, String>();
+        Map<Integer, String> connectedmap = new HashMap<>();
         synchronized (mConnectionsLock) {
             for (Connection conn : mConnections) {
                 connectedmap.put(conn.appId, conn.address);

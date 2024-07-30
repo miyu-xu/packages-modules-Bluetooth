@@ -39,6 +39,9 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
+import android.util.SparseArray;
+import android.util.SparseBooleanArray;
+import android.util.SparseIntArray;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -89,7 +92,7 @@ public class VolumeControlService extends ProfileService {
 
     @VisibleForTesting
     static class VolumeControlOffsetDescriptor {
-        Map<Integer, Descriptor> mVolumeOffsets;
+        private final SparseArray<Descriptor> mVolumeOffsets = new SparseArray<>();
 
         private static class Descriptor {
             Descriptor() {
@@ -101,11 +104,6 @@ public class VolumeControlService extends ProfileService {
             int mValue;
             int mLocation;
             String mDescription;
-        }
-        ;
-
-        VolumeControlOffsetDescriptor() {
-            mVolumeOffsets = new HashMap<>();
         }
 
         int size() {
@@ -179,9 +177,9 @@ public class VolumeControlService extends ProfileService {
         }
 
         void dump(StringBuilder sb) {
-            for (Map.Entry<Integer, Descriptor> entry : mVolumeOffsets.entrySet()) {
-                Descriptor descriptor = entry.getValue();
-                Integer id = entry.getKey();
+            for (int i = 0; i < mVolumeOffsets.size(); i++) {
+                int id = mVolumeOffsets.keyAt(i);
+                Descriptor descriptor = mVolumeOffsets.get(id);
                 ProfileService.println(sb, "        Id: " + id);
                 ProfileService.println(sb, "        value: " + descriptor.mValue);
                 ProfileService.println(sb, "        location: " + descriptor.mLocation);
@@ -196,8 +194,8 @@ public class VolumeControlService extends ProfileService {
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
             new HashMap<>();
-    private final Map<Integer, Integer> mGroupVolumeCache = new HashMap<>();
-    private final Map<Integer, Boolean> mGroupMuteCache = new HashMap<>();
+    private final SparseIntArray mGroupVolumeCache = new SparseIntArray();
+    private final SparseBooleanArray mGroupMuteCache = new SparseBooleanArray();
     private final Map<BluetoothDevice, Integer> mDeviceVolumeCache = new HashMap<>();
 
     /* As defined by Volume Control Service 1.0.1, 3.3.1. Volume Flags behavior.
@@ -616,12 +614,12 @@ public class VolumeControlService extends ProfileService {
         mVolumeControlNativeInterface.setGroupVolume(groupId, volume);
 
         // We only receive the volume change and mute state needs to be acquired manually
-        Boolean isGroupMute = mGroupMuteCache.getOrDefault(groupId, false);
+        Boolean isGroupMute = mGroupMuteCache.get(groupId, false);
         Boolean isStreamMute = mAudioManager.isStreamMute(getBluetoothContextualVolumeStream());
 
         /* Note: AudioService keeps volume levels for each stream and for each device type,
          * however it stores the mute state only for the stream type but not for each individual
-         * device type. When active device changes, it's volume level gets aplied, but mute state
+         * device type. When active device changes, it's volume level gets applied, but mute state
          * is not, but can be either derived from the volume level or just unmuted like for A2DP.
          * Also setting volume level > 0 to audio system will implicitly unmute the stream.
          * However LeAudio devices can keep their volume level high, while keeping it mute so we
@@ -648,7 +646,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public int getGroupVolume(int groupId) {
-        return mGroupVolumeCache.getOrDefault(
+        return mGroupVolumeCache.get(
                 groupId, IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME);
     }
 
@@ -689,7 +687,7 @@ public class VolumeControlService extends ProfileService {
      * @param groupId the group identifier
      */
     public Boolean getGroupMute(int groupId) {
-        return mGroupMuteCache.getOrDefault(groupId, false);
+        return mGroupMuteCache.get(groupId, false);
     }
 
     public void mute(BluetoothDevice device) {
@@ -804,14 +802,14 @@ public class VolumeControlService extends ProfileService {
         // If group volume has already changed, the new group member should set it
         if (can_change_volume) {
             Integer groupVolume =
-                    mGroupVolumeCache.getOrDefault(
+                    mGroupVolumeCache.get(
                             groupId, IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME);
             if (groupVolume != IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME) {
                 Log.i(TAG, "Setting value:" + groupVolume + " to " + device);
                 mVolumeControlNativeInterface.setVolume(device, groupVolume);
             }
 
-            Boolean isGroupMuted = mGroupMuteCache.getOrDefault(groupId, false);
+            Boolean isGroupMuted = mGroupMuteCache.get(groupId, false);
             Log.i(TAG, "Setting mute:" + isGroupMuted + " to " + device);
             if (isGroupMuted) {
                 mVolumeControlNativeInterface.mute(device);
@@ -1374,13 +1372,13 @@ public class VolumeControlService extends ProfileService {
                 Integer groupId = csipClient.getGroupId(device, BluetoothUuid.CAP);
                 if (groupId != IBluetoothCsipSetCoordinator.CSIS_GROUP_ID_INVALID) {
                     Integer groupVolume =
-                            mGroupVolumeCache.getOrDefault(
+                            mGroupVolumeCache.get(
                                     groupId, IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME);
                     if (groupVolume != IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME) {
                         mVolumeControlNativeInterface.setVolume(device, groupVolume);
                     }
 
-                    Boolean groupMute = mGroupMuteCache.getOrDefault(groupId, false);
+                    Boolean groupMute = mGroupMuteCache.get(groupId, false);
                     if (groupMute) {
                         mVolumeControlNativeInterface.mute(device);
                     } else {
@@ -1725,16 +1723,12 @@ public class VolumeControlService extends ProfileService {
             ProfileService.println(sb, "    Volume offset cnt: " + descriptor.size());
             descriptor.dump(sb);
         }
-        for (Map.Entry<Integer, Integer> entry : mGroupVolumeCache.entrySet()) {
-            Boolean isMute = mGroupMuteCache.getOrDefault(entry.getKey(), false);
+        for (int i = 0; i < mGroupVolumeCache.size(); i++) {
+            int key = mGroupVolumeCache.keyAt(i);
+            int volume = mGroupVolumeCache.get(key);
+            Boolean isMute = mGroupMuteCache.get(key, false);
             ProfileService.println(
-                    sb,
-                    "    GroupId: "
-                            + entry.getKey()
-                            + " volume: "
-                            + entry.getValue()
-                            + ", mute: "
-                            + isMute);
+                    sb, "    GroupId: " + key + " volume: " + volume + ", mute: " + isMute);
         }
     }
 }
