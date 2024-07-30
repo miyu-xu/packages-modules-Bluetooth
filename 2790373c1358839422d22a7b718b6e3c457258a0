@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f63998_2b0c95a7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-07-30T00:52:42Z",
+      "side": 1,
+      "message": "we can see here it is expecting to have inband ringtone, so in below, the assert part should be true.  \n\nI created aosp/3195672: Improve HeadsetServiceTest instead",
+      "range": {
+        "startLine": 1296,
+        "startChar": 24,
+        "endLine": 1301,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ba8355c2_8f344266",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+              "range": {
+                "startLine": 1303,
+                "startChar": 0,
+                "endLine": 1305,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+              "range": {
+                "startLine": 1306,
+                "startChar": 0,
+                "endLine": 1306,
+                "endChar": 0
+              },
+              "replacement": "        } else {\n            Assert.assertEquals(true, mHeadsetService.isInbandRingingEnabled());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2790373c1358839422d22a7b718b6e3c457258a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
