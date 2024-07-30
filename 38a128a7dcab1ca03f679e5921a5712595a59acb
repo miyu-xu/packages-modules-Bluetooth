@@ -16,6 +16,47 @@
       "message": "Adding an owner for a bumble test.",
       "revId": "38a128a7dcab1ca03f679e5921a5712595a59acb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ba052d_6526e2c2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-07-30T09:03:28Z",
+      "side": 1,
+      "message": "after gatt2 connection state verification, need to cleanup gatt2   gatt2.disconnect();\n        gatt2.close();",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5c39ac0b_739f4124",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+              "range": {
+                "startLine": 376,
+                "startChar": 0,
+                "endLine": 376,
+                "endChar": 0
+              },
+              "replacement": "\n        gatt2.disconnect();\n        gatt2.close();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "38a128a7dcab1ca03f679e5921a5712595a59acb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
