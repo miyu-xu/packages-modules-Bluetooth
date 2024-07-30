@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128c1d20_e691e618",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T22:15:21Z",
+      "side": 1,
+      "message": "Can we check the link_spec.transport and do the correct security checks based on that?",
+      "range": {
+        "startLine": 1076,
+        "startChar": 0,
+        "endLine": 1101,
+        "endChar": 3
+      },
+      "revId": "800ff908a8dc50e728a04e1c6c9c3211412453d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
