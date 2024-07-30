@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a2d3500_94e44b63",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-30T06:16:31Z",
+      "side": 1,
+      "message": "Rewrote without using CLI_CBACK_WRAP_IN_JNI and CLI_CBACK_IN_JNI.",
+      "parentUuid": "ab530d17_72a78c62",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "28be0fed28bebf6996d558522663e73273995e18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34449156_119dc005",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T18:42:35Z",
       "side": 1,
       "message": "This is called from `initializeNative` in com_android_bluetooth_gatt.cpp  which is jni code and come from java but has nothing to do with the \"jni\" thread.\n\nThe \"jni\" thread is a random thread in the native stack, that is registered to the jvm and used to handle the callback from the native to the java code.\n\nFor consistency, you should move this to the jni thread too, to avoid race condition between the cleanup and the init",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 33
+      },
+      "revId": "28be0fed28bebf6996d558522663e73273995e18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa98ae7e_13d00083",
+        "filename": "system/btif/src/btif_gatt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-07-30T06:16:31Z",
+      "side": 1,
+      "message": "You are right. \n\nAs bt_gatt_callbacks are set only in `initializeNative` and `cleanupNative`, strictly checking null seems enough.",
+      "parentUuid": "34449156_119dc005",
       "range": {
         "startLine": 53,
         "startChar": 19,
