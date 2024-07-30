@@ -16,6 +16,24 @@
       "message": "Note that without also updating `PORT_RX_BUF_HIGH_WM`, this will result in an RFCOMM credit update every 2 packets, as opposed to every 6. This will result in more ACL TX packets in flight, even if the device is not sending data over the RFCOMM channel.\n\nI think that should be OK for the most part, but we could consider bumping `HIGH_WM` as well if we want to avoid that behavior.",
       "revId": "f55e2de737fe94018a8e42bd1e8a860fd897ecd4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d28476a9_ed1a5c0f",
+        "filename": "system/stack/include/rfcdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-07-30T23:44:57Z",
+      "side": 0,
+      "message": "Thanks for pointing this out.  I think we\u0027ll keep it as is for now and if we have to we can change the high/critical watermarks later",
+      "parentUuid": "03452977_046ca433",
+      "revId": "f55e2de737fe94018a8e42bd1e8a860fd897ecd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
