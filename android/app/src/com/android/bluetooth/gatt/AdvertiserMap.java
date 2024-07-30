@@ -21,6 +21,7 @@ import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.content.Context;
 import android.os.Binder;
 import android.util.Log;
+import android.util.SparseArray;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -28,15 +29,13 @@ import com.android.internal.annotations.GuardedBy;
 
 import com.google.common.collect.EvictingQueue;
 
-import java.util.HashMap;
-
 /** Helper class that keeps track of advertiser stats. */
 class AdvertiserMap {
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "AdvertiserMap";
 
     /** Internal map to keep track of logging information by advertise id */
     @GuardedBy("this")
-    private final HashMap<Integer, AppAdvertiseStats> mAppAdvertiseStats = new HashMap<>();
+    private final SparseArray<AppAdvertiseStats> mAppAdvertiseStats = new SparseArray<>();
 
     private static final int ADVERTISE_STATE_MAX_SIZE = 5;
 
@@ -54,7 +53,7 @@ class AdvertiserMap {
         }
 
         synchronized (this) {
-            if (!mAppAdvertiseStats.containsKey(id)) {
+            if (!mAppAdvertiseStats.contains(id)) {
                 addAppAdvertiseStats(id, new AppAdvertiseStats(appUid, id, appName));
             }
         }
@@ -197,12 +196,12 @@ class AdvertiserMap {
             sb.append("\n");
         }
 
-        if (!mAppAdvertiseStats.isEmpty()) {
+        if (mAppAdvertiseStats.size() != 0) {
             sb.append("  Total number of ongoing advertising                   : ")
                     .append(mAppAdvertiseStats.size());
             sb.append("\n  Ongoing advertising:");
-            for (Integer key : mAppAdvertiseStats.keySet()) {
-                AppAdvertiseStats stats = mAppAdvertiseStats.get(key);
+            for (int i = 0; i < mAppAdvertiseStats.size(); i++) {
+                AppAdvertiseStats stats = mAppAdvertiseStats.valueAt(i);
                 AppAdvertiseStats.dumpToString(sb, stats);
             }
         }

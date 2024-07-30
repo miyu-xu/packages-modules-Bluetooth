@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.btservice.storage;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsPreferenceStatus;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsSupportStatus;
@@ -443,6 +444,7 @@ public class Metadata {
         return value;
     }
 
+    @SuppressLint("AndroidFrameworkEfficientCollections") // IntArray is not available in Bluetooth
     List<Integer> getChangedCustomizedMeta() {
         List<Integer> list = new ArrayList<>();
         for (int key = 0; key <= BluetoothDevice.getMaxMetadataKey(); key++) {
