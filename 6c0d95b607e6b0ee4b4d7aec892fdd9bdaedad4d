@@ -40,6 +40,30 @@
       ],
       "revId": "6c0d95b607e6b0ee4b4d7aec892fdd9bdaedad4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5288a09c_c666e585",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T20:59:17Z",
+      "side": 1,
+      "message": "I think that `default` is useless since we are doing something or nothing, but I will not argue with the global style guide and I will update this CL to put it back",
+      "parentUuid": "40dac120_0e43443c",
+      "range": {
+        "startLine": 1024,
+        "startChar": 18,
+        "endLine": 1024,
+        "endChar": 21
+      },
+      "revId": "6c0d95b607e6b0ee4b4d7aec892fdd9bdaedad4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
