@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a3830c3_db874f4d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T18:57:53Z",
+      "side": 1,
+      "message": "After small experiment, the battery service doesn\u0027t work for non-bonded devices anyway, so it\u0027s safe to do profile connection in just BONDED state.",
+      "parentUuid": "b7f83766_d0a68ad6",
+      "range": {
+        "startLine": 625,
+        "startChar": 31,
+        "endLine": 625,
+        "endChar": 50
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13130e61_95fa8c21",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 3
