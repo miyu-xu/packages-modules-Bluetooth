@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31dc99d3_5cf4a96e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T20:08:23Z",
+      "side": 1,
+      "message": "Note for reviewers: \nFor LE devices, after encryption is finished, we have 500ms wait in case remote rejects our keys.\n\nDuring this 500ms the service discovery can finish (i.e. if robust caching is enabled). and UUIDS would be sent up the stack. In this case, device will be in BONDING state.\n\nTherefore, I think it\u0027s proper to call processInitProfilePriorities in either BONDING or BONDED state.",
+      "range": {
+        "startLine": 1136,
+        "startChar": 53,
+        "endLine": 1136,
+        "endChar": 91
+      },
+      "revId": "656d7a7040f898ec2b140ad640a278754629e02e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00e21f61_2f8a0112",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T20:08:23Z",
+      "side": 1,
+      "message": "We would connect profiles just in BONDED state so no modification there. Can we continue without new tests ?",
+      "parentUuid": "5933d40e_d6f66d07",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 51
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d3e9947_8aa5e45b",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "After small experiment, the battery service doesn\u0027t work for non-bonded devices anyway, so it\u0027s safe to do profile connection in just BONDED state.",
       "parentUuid": "b7f83766_d0a68ad6",
+      "range": {
+        "startLine": 625,
+        "startChar": 31,
+        "endLine": 625,
+        "endChar": 50
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2e649b0_59016126",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-07-30T20:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a3830c3_db874f4d",
       "range": {
         "startLine": 625,
         "startChar": 31,
