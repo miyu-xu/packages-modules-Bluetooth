@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f95a8adb_70f435d0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/avrcp/AvrcpTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-30T08:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26a6efa6_83a70c89",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 58
+      },
+      "revId": "d01ddf48f0abf2cc3195bec3553b414dcddfed25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd8a6a5f_1106180b",
@@ -65,6 +89,24 @@
       "writtenOn": "2024-07-29T07:55:15Z",
       "side": 1,
       "message": "I need to check for the event received here.",
+      "revId": "d01ddf48f0abf2cc3195bec3553b414dcddfed25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52967e1c_74927775",
+        "filename": "framework/tests/bumble/src/android/bluetooth/avrcp/AvrcpTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-30T08:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd8a6a5f_1106180b",
       "revId": "d01ddf48f0abf2cc3195bec3553b414dcddfed25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -100,6 +142,24 @@
           ]
         }
       ],
+      "revId": "d01ddf48f0abf2cc3195bec3553b414dcddfed25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "663e2905_782ad8ad",
+        "filename": "framework/tests/bumble/src/android/bluetooth/avrcp/AvrcpTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-07-30T08:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8e510e5_37cab487",
       "revId": "d01ddf48f0abf2cc3195bec3553b414dcddfed25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
