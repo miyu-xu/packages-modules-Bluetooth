@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a885210_537e0d54",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-30T22:08:26Z",
+      "side": 1,
+      "message": "nit: remove function name",
+      "range": {
+        "startLine": 402,
+        "startChar": 16,
+        "endLine": 402,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "20efd961_d48084fe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_utils.cc",
+              "range": {
+                "startLine": 402,
+                "startChar": 0,
+                "endLine": 403,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"Device DB list********************\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc3c29bbf7fb03e50e368ce84472684bb4bb055d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
