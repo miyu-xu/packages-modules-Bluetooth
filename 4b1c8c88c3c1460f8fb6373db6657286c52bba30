@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5e85d1_1a50cfb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-30T06:52:53Z",
+      "side": 1,
+      "message": "Thanks a lot Krzysztof for adding unit tests for this. I have just minor comments which will help others to understand tests when they read it in a future :D",
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2732ad_96b01383",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2328,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-30T06:52:53Z",
+      "side": 1,
+      "message": "nit: just put it below the `uint8_t group_id \u003d 13;` so the reader knows that `group_id` is set here for the test.",
+      "range": {
+        "startLine": 2326,
+        "startChar": 0,
+        "endLine": 2328,
+        "endChar": 43
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a0ad25d_529fd24f",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2331,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-30T06:52:53Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 2329,
+        "startChar": 0,
+        "endLine": 2331,
+        "endChar": 43
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afdd1c4_ee71bc57",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2348,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-30T06:52:53Z",
+      "side": 1,
+      "message": "For the independent set, operation will succeed when preset is available on at least one HA, right?\n\nCould you please put a comment at the begging of the test saying in a high level, what and why is expected? You might refer to spec as well.\n\nPlease add similar note to other testcases.",
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
