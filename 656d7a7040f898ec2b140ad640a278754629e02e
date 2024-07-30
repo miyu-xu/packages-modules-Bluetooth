@@ -1,6 +1,71 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "657eacd6_1d8639de",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-30T23:56:13Z",
+      "side": 1,
+      "message": "It does not make sense for the UUID discovery related functions to also relay bond state information.\nWe can directly get the bond state from mAdapterService.getBondState(device)",
+      "fixSuggestions": [
+        {
+          "fixId": "f1da802b_cbeb43da",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1126,
+                "startChar": 0,
+                "endLine": 1127,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1128,
+                "startChar": 0,
+                "endLine": 1129,
+                "endChar": 0
+              },
+              "replacement": "    void onUuidsDiscovered(BluetoothDevice device, ParcelUuid[] uuids) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1132,
+                "startChar": 0,
+                "endLine": 1135,
+                "endChar": 0
+              },
+              "replacement": "                        + \" (\" + BondStateMachine.bondStateToString(mAdapterService.getBondState(device)) + \")\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1136,
+                "startChar": 0,
+                "endLine": 1137,
+                "endChar": 0
+              },
+              "replacement": "            if (!Flags.unbondedProfileForbidFix() || mAdapterService.getBondState(device) !\u003d BluetoothDevice.BOND_NONE) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "656d7a7040f898ec2b140ad640a278754629e02e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "31dc99d3_5cf4a96e",
