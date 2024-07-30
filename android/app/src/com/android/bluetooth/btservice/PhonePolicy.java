@@ -1123,11 +1123,21 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
      *
      * @param device is the remote device whose services have been discovered
      * @param uuids are the services supported by the remote device
+     * @param bondState is the bond state of remote device
      */
-    void onUuidsDiscovered(BluetoothDevice device, ParcelUuid[] uuids) {
-        debugLog("onUuidsDiscovered: discovered services for device " + device);
+    void onUuidsDiscovered(BluetoothDevice device, ParcelUuid[] uuids, int bondState) {
+        debugLog(
+                "onUuidsDiscovered: discovered services for device "
+                        + device
+                        + " ("
+                        + BondStateMachine.bondStateToString(bondState)
+                        + ")");
         if (uuids != null) {
-            processInitProfilePriorities(device, uuids);
+            if (!Flags.unbondedProfileForbidFix() || bondState != BluetoothDevice.BOND_NONE) {
+                processInitProfilePriorities(device, uuids);
+            } else {
+                debugLog("Device in BOND_NONE state, won't connect profiles" + device);
+            }
         } else {
             warnLog("onUuidsDiscovered: uuids is null for device " + device);
         }
