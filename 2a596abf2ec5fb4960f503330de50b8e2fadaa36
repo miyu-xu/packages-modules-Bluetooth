@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66740e39_df4aa71f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-07-30T14:33:10Z",
+      "side": 1,
+      "message": "It is good to have NULL check here. Any early failure of the testcase can result in no call in to unregisterReceiver and It can get intent with null UUIDs. please check. OR we need to ensure to unregister the receiver even when testcase fails",
+      "range": {
+        "startLine": 66,
+        "startChar": 38,
+        "endLine": 66,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "67f05cc3_cde9a86a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+              "range": {
+                "startLine": 66,
+                "startChar": 0,
+                "endLine": 67,
+                "endChar": 0
+              },
+              "replacement": "                        if (parcelUuids !\u003d null) {\n                            mFutureIntent.set(Arrays.asList(parcelUuids));\n                        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2a596abf2ec5fb4960f503330de50b8e2fadaa36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
