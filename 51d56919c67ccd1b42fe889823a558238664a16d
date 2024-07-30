@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5933d40e_d6f66d07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T17:06:06Z",
+      "side": 1,
+      "message": "Please add an additional test in PhonePolicyTest to simulate this behavior.\nCurrently all test are testing with a BOND_BONDED",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 51
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3e9947_8aa5e45b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T17:06:06Z",
+      "side": 1,
+      "message": "setConnectionPolicy is supposed to write in the database. but the database is cleared when we remove a forget device.\n\nCalling this when the bond state is NONE contradict the fact that we are keeping data associated with this device.\n\nCan you write a test that assert the database is not written to when you are connection a non-bonded device ?\n\nAlso, I am surprise we try to connect to the service while unbonded.",
+      "range": {
+        "startLine": 625,
+        "startChar": 31,
+        "endLine": 625,
+        "endChar": 50
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13130e61_95fa8c21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T17:06:06Z",
+      "side": 1,
+      "message": "The naming \"2str2 is not usual in the java code. \nMost of them are called `getXxxName or `xxxToString`.\n\nThere is actually only one usage on this writing, `state2str` in `BondStateMachine.java` that does exactly that.\n\nI recommend not duplicating the definition of this method, putting it static in BondStatMachine and renaming it in `stateToString` or `getStateName` (or using bondState instead of State as you prefer)",
+      "range": {
+        "startLine": 1125,
+        "startChar": 19,
+        "endLine": 1125,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cb56a119_23443c59",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1125,
+                "startChar": 0,
+                "endLine": 1126,
+                "endChar": 0
+              },
+              "replacement": "    private String bondStateToString(int state) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1148,
+                "startChar": 0,
+                "endLine": 1149,
+                "endChar": 0
+              },
+              "replacement": "                        + bondStateToString(bondState)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce57d1b_5d357e24",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T17:06:06Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we want to connect only when we are bonded ? \n\n```suggestion\n            if (Flags.unbondedProfileForbidFix() \u0026\u0026 bondState \u003d\u003d BluetoothDevice.BOND_BONDED) {\n                processInitProfilePriorities(device, uuids);\n            }\n```\n(and keep the else for the time of the flag rollout of course)",
+      "range": {
+        "startLine": 1151,
+        "startChar": 0,
+        "endLine": 1155,
+        "endChar": 13
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4124383_c7271291",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-30T17:06:06Z",
+      "side": 1,
+      "message": "according to above line, prop can be null.\nAccessing getBondState will therefor crash.\n\nPlease do a null check or do a preliminary CL to ensure that prop is never null when calling this function",
+      "range": {
+        "startLine": 729,
+        "startChar": 57,
+        "endLine": 729,
+        "endChar": 61
+      },
+      "revId": "51d56919c67ccd1b42fe889823a558238664a16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
