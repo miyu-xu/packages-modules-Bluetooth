@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bbcdc30_4b591926",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3516803
+      },
+      "writtenOn": "2024-07-31T16:11:39Z",
+      "side": 1,
+      "message": "PTAL. This was originally reviewed as https://chromium-review.googlesource.com/c/aosp/platform/packages/modules/Bluetooth/+/5739795, but as pointed out there, should go into AOSP.",
+      "revId": "f7f2d270b591b7b4015161f335e8f2bd2bfa343d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
