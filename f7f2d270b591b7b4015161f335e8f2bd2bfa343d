@@ -16,6 +16,24 @@
       "message": "PTAL. This was originally reviewed as https://chromium-review.googlesource.com/c/aosp/platform/packages/modules/Bluetooth/+/5739795, but as pointed out there, should go into AOSP.",
       "revId": "f7f2d270b591b7b4015161f335e8f2bd2bfa343d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c772b77b_8ed37728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-07-31T16:13:29Z",
+      "side": 1,
+      "message": "Please make sure 0.69.4 is already available in rust_crates (pre-submit here will look for it).\n\nIf pre-submit passes, I\u0027ll request a Dr-No +1 here for submission.",
+      "parentUuid": "1bbcdc30_4b591926",
+      "revId": "f7f2d270b591b7b4015161f335e8f2bd2bfa343d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
