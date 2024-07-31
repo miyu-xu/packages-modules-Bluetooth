@@ -97,7 +97,7 @@ public class MessagesFilterTest {
                 new MessagesFilter.Builder()
                         .setOriginator(originator)
                         .setRecipient(recipient)
-                        .setMessageType(messageType)
+                        .setExcludedMessageTypes(messageType)
                         .setReadStatus(readStatus)
                         .setPriority(priority)
                         .setPeriod(begin.getTime(), end.getTime())
