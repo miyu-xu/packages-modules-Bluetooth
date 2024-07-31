@@ -10580,5 +10580,88 @@ TEST_F(StateMachineTest, testDynamicCoordinatedSet_SwapDevice) {
   reset_mock_function_count_map();
 }
 
+TEST_F(StateMachineTest, testAttachDeviceWhileOtherOneIsAutonomousReleasing) {
+  const auto loc_fl = ::bluetooth::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  const auto loc_fr = ::bluetooth::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  const auto context_type = kContextTypeMedia;
+  const auto audio_contexts = types::AudioContexts(context_type);
+  const auto group_id = 4;
+  const auto num_devices = 3;
+
+  ON_CALL(mock_csis_client_module_, GetDesiredActiveSize(_)).WillByDefault(Return(2));
+
+  // Prepare multiple fake connected devices in a group
+  MultipleTestDevicePrepare(group_id, context_type, num_devices, types::AudioContexts(), false,
+                            false);
+
+  auto* group = GroupFindById(group_id);
+  ASSERT_FALSE(group == nullptr);
+  ASSERT_EQ(group->Size(), num_devices);
+
+  auto* firstDevice = group->GetFirstDevice();
+  DevicePacsInit(firstDevice, types::kLeAudioDirectionSink, loc_fl, audio_contexts, audio_contexts);
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(firstDevice->conn_id_, firstDevice->ctp_hdls_.val_hdl,
+                                              _, GATT_WRITE_NO_RSP, _, _))
+          .Times(AtLeast(3));
+
+  auto* secondDevice = group->GetNextDevice(firstDevice);
+  DevicePacsInit(secondDevice, types::kLeAudioDirectionSink, loc_fl, types::AudioContexts(),
+                 audio_contexts);
+  EXPECT_CALL(gatt_queue,
+              WriteCharacteristic(secondDevice->conn_id_, secondDevice->ctp_hdls_.val_hdl, _,
+                                  GATT_WRITE_NO_RSP, _, _))
+          .Times(0);
+
+  auto* thirdDevice = group->GetNextDevice(secondDevice);
+  DevicePacsInit(thirdDevice, types::kLeAudioDirectionSink, loc_fr, audio_contexts, audio_contexts);
+  EXPECT_CALL(gatt_queue, WriteCharacteristic(thirdDevice->conn_id_, thirdDevice->ctp_hdls_.val_hdl,
+                                              _, GATT_WRITE_NO_RSP, _, _))
+          .Times(AtLeast(3));
+
+  // let us decide when the HCI Disconnection Complete event and HCI Connection
+  // Established events will be reported
+  do_not_send_cis_disconnected_event_ = true;
+
+  PrepareConfigureCodecHandler(group, 0, true);
+  PrepareConfigureQosHandler(group);
+  PrepareEnableHandler(group, 0, /* inject_enabling */ true, /* inject_streaming */ true);
+  PrepareDisableHandler(group);
+  PrepareReleaseHandler(group, 0, /* inject_disconnect_device */ false);
+
+  // StartStream action initiated by upper layer
+  log::debug("[TESTING] StartStream");
+  ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
+          group, context_type,
+          {.sink = types::AudioContexts(context_type),
+           .source = types::AudioContexts(context_type)}));
+
+  auto* firstDeviceAse = firstDevice->GetFirstActiveAseByDirection(types::kLeAudioDirectionSink);
+  ASSERT_FALSE(firstDeviceAse == nullptr);
+
+  // make sure the ASE is in correct state, required in this scenario
+  ASSERT_TRUE(firstDeviceAse->state == types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
+  // firstDevice is not available to stream
+  ON_CALL(mock_csis_client_module_, IsMemberActive(group_id, firstDevice->address_))
+          .WillByDefault(Return(false));
+  DeviceContextsUpdate(firstDevice, types::kLeAudioDirectionSink, types::AudioContexts(),
+                       audio_contexts);
+
+  // left earbud performs autonomous ASE state transition to Releasing state
+  log::debug("[TESTING] InjectAseStateNotification firstDeviceAse kAseStateReleasing");
+  InjectAseStateNotification(firstDeviceAse, firstDevice, group, ascs::kAseStateReleasing, nullptr);
+
+  // right device available contexts are back
+  log::debug("[TESTING] secondDevice DeviceContextsUpdate");
+  DeviceContextsUpdate(secondDevice, types::kLeAudioDirectionSink, audio_contexts, audio_contexts);
+
+  PrepareEnableHandler(group, 0, /* inject_enabling */ false, /* inject_streaming */ false);
+
+  // once the contexts are back, the upper layer calls AttachToStream
+  log::debug("[TESTING] AttachToStream secondDevice");
+  ASSERT_FALSE(LeAudioGroupStateMachine::Get()->AttachToStream(
+          group, secondDevice, {.sink = {media_ccid}, .source = {}}));
+}
+
 }  // namespace internal
 }  // namespace bluetooth::le_audio

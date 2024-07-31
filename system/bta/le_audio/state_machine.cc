@@ -648,22 +648,39 @@ public:
     }
 
     /* Update state for the given cis.*/
-    auto ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(CisState::CONNECTED,
-                                                                     DataPathState::CONFIGURING);
+    auto ase_pair = leAudioDevice->GetAsesByCisConnHdl(conn_handle);
 
-    if (!ase || ase->cis_conn_hdl != conn_handle) {
+    if (ase_pair.sink && ase_pair.sink->cis_state == CisState::CONNECTED &&
+        ase_pair.sink->data_path_state == DataPathState::CONFIGURING) {
+      ase_pair.sink->data_path_state = DataPathState::CONFIGURED;
+    } else {
+      ase_pair.sink = nullptr;
+    }
+
+    if (ase_pair.source && ase_pair.source->cis_state == CisState::CONNECTED &&
+        ase_pair.source->data_path_state == DataPathState::CONFIGURING) {
+      ase_pair.source->data_path_state = DataPathState::CONFIGURED;
+    } else {
+      ase_pair.source = nullptr;
+    }
+
+    if (!ase_pair.sink && !ase_pair.source) {
       log::error("Cannot find ase by handle {}", conn_handle);
       return;
     }
-
-    ase->data_path_state = DataPathState::CONFIGURED;
 
     if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
       log::warn("Group {} is not targeting streaming state any more", group->group_id_);
       return;
     }
 
-    AddCisToStreamConfiguration(group, ase);
+    if (ase_pair.sink) {
+      AddCisToStreamConfiguration(group, ase_pair.sink);
+    }
+
+    if (ase_pair.source) {
+      AddCisToStreamConfiguration(group, ase_pair.source);
+    }
 
     if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
         !group->GetFirstActiveDeviceByCisAndDataPathState(CisState::CONNECTED,
@@ -831,6 +848,8 @@ public:
 
     /* It is possible that ACL disconnection came before CIS disconnect event */
     for (auto& ase : leAudioDevice->ases_) {
+      // XXX: Mariusz
+      ase.cis_state = CisState::IDLE;
       if (ase.data_path_state == DataPathState::CONFIGURED ||
           ase.data_path_state == DataPathState::CONFIGURING) {
         RemoveDataPathByCisHandle(leAudioDevice, ase.cis_conn_hdl);
@@ -995,14 +1014,13 @@ public:
       }
 
       if (ases_pair.sink) {
-        ases_pair.sink->cis_state = CisState::ASSIGNED;
+        ases_pair.sink->cis_state = CisState::IDLE;
       }
       if (ases_pair.source) {
-        ases_pair.source->cis_state = CisState::ASSIGNED;
+        ases_pair.source->cis_state = CisState::IDLE;
       }
 
-      log::warn("{}: failed to create CIS 0x{:04x}, status: {} (0x{:02x})", leAudioDevice->address_,
-                event->cis_conn_hdl, ErrorCodeText((ErrorCode)event->status), event->status);
+      group->RemoveCisFromStreamIfNeeded(leAudioDevice, event->cis_conn_hdl);
 
       if (event->status == HCI_ERR_CONN_FAILED_ESTABLISHMENT &&
           ((leAudioDevice->cis_failed_to_be_established_retry_cnt_++) < kNumberOfCisRetries) &&
@@ -1177,10 +1195,10 @@ public:
                                         " REASON=" + loghex(event->reason));
 
     if (ases_pair.sink) {
-      ases_pair.sink->cis_state = CisState::ASSIGNED;
+      ases_pair.sink->cis_state = CisState::IDLE;
     }
     if (ases_pair.source) {
-      ases_pair.source->cis_state = CisState::ASSIGNED;
+      ases_pair.source->cis_state = CisState::IDLE;
     }
 
     RemoveDataPathByCisHandle(leAudioDevice, event->cis_conn_hdl);
@@ -1674,6 +1692,14 @@ private:
       group->PrintDebugState();
       return false;
     }
+
+    // Ensure the CisId is assigned
+    if (!group->cig.AssignCisIds(leAudioDevice)) {
+      return false;
+    }
+
+    // Ensure the CIS connection handles are assigned
+    group->AssignCisConnHandlesToAses(leAudioDevice);
 
     std::stringstream extra_stream;
     do {
@@ -3026,6 +3052,8 @@ private:
                 bidirection_ase->id, bluetooth::common::ToString(bidirection_ase->state));
       return CIS_STILL_NEEDED;
     }
+
+    ase->cis_state = CisState::DISCONNECTING;
 
     group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase->cis_conn_hdl);
     IsoManager::GetInstance()->DisconnectCis(ase->cis_conn_hdl, HCI_ERR_PEER_USER);

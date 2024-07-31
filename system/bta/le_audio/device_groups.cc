@@ -1394,6 +1394,46 @@ void LeAudioDeviceGroup::CigConfiguration::UnassignCis(LeAudioDevice* leAudioDev
   log::info("Group {}, group_id {}, device: {}, conn_handle: {:#x}", fmt::ptr(group_),
             group_->group_id_, leAudioDevice->address_, conn_handle);
 
+  auto can_unassign = true;
+
+  auto ase_pair = leAudioDevice->GetAsesByCisConnHdl(conn_handle);
+  log::info("sink {} source {}", fmt::ptr(ase_pair.sink), fmt::ptr(ase_pair.source));
+
+  if (ase_pair.sink != nullptr) {
+    log::debug("Sink ASE: cis_state: {} data_path_state: {}",
+               common::ToString(ase_pair.sink->cis_state),
+               common::ToString(ase_pair.sink->data_path_state));
+    if (ase_pair.sink->data_path_state == DataPathState::IDLE &&
+        (ase_pair.sink->cis_state == CisState::IDLE ||
+         ase_pair.sink->cis_state == CisState::ASSIGNED)) {
+      ase_pair.sink->cis_state = CisState::IDLE;
+      ase_pair.sink->cis_id = bluetooth::le_audio::kInvalidCisId;
+      ase_pair.sink->cis_conn_hdl = kInvalidCisConnHandle;
+    } else {
+      can_unassign = false;
+    }
+  }
+
+  if (ase_pair.source != nullptr) {
+    log::debug("Source ASE: cis_state: {} data_path_state: {}",
+               common::ToString(ase_pair.source->cis_state),
+               common::ToString(ase_pair.source->data_path_state));
+    if (ase_pair.source->data_path_state == DataPathState::IDLE &&
+        (ase_pair.source->cis_state == CisState::IDLE ||
+         ase_pair.source->cis_state == CisState::ASSIGNED)) {
+      ase_pair.source->cis_state = CisState::IDLE;
+      ase_pair.source->cis_id = bluetooth::le_audio::kInvalidCisId;
+      ase_pair.source->cis_conn_hdl = kInvalidCisConnHandle;
+    } else {
+      can_unassign = false;
+    }
+  }
+
+  if (!can_unassign) {
+    log::info("cannot unassign yet, CIS in use");
+    return;
+  }
+
   for (struct bluetooth::le_audio::types::cis& cis_entry : cises) {
     if (cis_entry.conn_handle == conn_handle && cis_entry.addr == leAudioDevice->address_) {
       cis_entry.addr = RawAddress::kEmpty;

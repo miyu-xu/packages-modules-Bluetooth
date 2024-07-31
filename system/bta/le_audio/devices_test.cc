@@ -2190,6 +2190,7 @@ TEST_P(LeAudioAseConfigurationTest, test_reconnection_media) {
   group_->cig.AssignCisConnHandles(handles);
   group_->cig.AssignCisIds(left);
   group_->cig.AssignCisIds(right);
+  group_->AssignCisConnHandlesToAses();
 
   TestActiveAses();
   /* Left got disconnected */

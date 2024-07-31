@@ -1221,12 +1221,8 @@ void LeAudioDevice::DeactivateAllAses(void) {
     log::verbose("{}, ase_id {}", address_, ase.id);
 
     ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
-    ase.cis_state = CisState::IDLE;
-    ase.data_path_state = DataPathState::IDLE;
     ase.active = false;
     ase.reconfigure = 0;
-    ase.cis_id = bluetooth::le_audio::kInvalidCisId;
-    ase.cis_conn_hdl = bluetooth::le_audio::kInvalidCisConnHandle;
   }
 }
 

@@ -800,8 +800,13 @@ protected:
     }
 
     for (auto& ase : leAudioDevice->ases_) {
+      ase.cis_state = types::CisState::IDLE;
+      ase.data_path_state = types::DataPathState::IDLE;
       group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase.cis_conn_hdl);
     }
+
+    /* mark ASEs as not used. */
+    leAudioDevice->DeactivateAllAses();
 
     if (group->IsEmpty()) {
       group->cig.SetState(bluetooth::le_audio::types::CigState::NONE);
@@ -1291,17 +1296,22 @@ protected:
     ON_CALL(mock_state_machine_, ProcessHciNotifCisDisconnected(_, _, _))
             .WillByDefault([](LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice,
                               const bluetooth::hci::iso_manager::cis_disconnected_evt* event) {
+              log::info("ProcessHciNotifCisDisconnected");
               if (!group) {
                 return;
               }
+
               auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(event->cis_conn_hdl);
+
               if (ases_pair.sink) {
-                ases_pair.sink->cis_state = types::CisState::ASSIGNED;
+                ases_pair.sink->cis_state = types::CisState::IDLE;
+                ases_pair.sink->data_path_state = types::DataPathState::IDLE;
                 ases_pair.sink->active = false;
               }
               if (ases_pair.source) {
+                ases_pair.source->cis_state = types::CisState::IDLE;
+                ases_pair.source->data_path_state = types::DataPathState::IDLE;
                 ases_pair.source->active = false;
-                ases_pair.source->cis_state = types::CisState::ASSIGNED;
               }
 
               group->RemoveCisFromStreamIfNeeded(leAudioDevice, event->cis_conn_hdl);
