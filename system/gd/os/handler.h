@@ -68,6 +68,8 @@ public:
 
   friend class Alarm;
 
+  friend class ConditionalWakeupAlarm;
+
   friend class RepeatingAlarm;
 
 private:
