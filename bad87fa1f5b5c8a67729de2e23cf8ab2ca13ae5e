@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aafbe37_fb04d295",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-07-31T01:20:19Z",
+      "side": 1,
+      "message": "Maybe not in thic CL, but can we create a static method in ScanSettings that translates scan mode integer to string?\n```\nString getScanModeString(int scanMode) {\n   switch(scanMode) {\n       case SCAN_MODE_SCREEN_OFF:\n           return \"SCAN_MODE_SCREEN_OFF\";\n       ....\n   }\n}\n```\nThat will make the debugging in bugreport much easier, since we don\u0027t need to memorize the values.",
+      "range": {
+        "startLine": 651,
+        "startChar": 30,
+        "endLine": 651,
+        "endChar": 63
+      },
+      "revId": "bad87fa1f5b5c8a67729de2e23cf8ab2ca13ae5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
