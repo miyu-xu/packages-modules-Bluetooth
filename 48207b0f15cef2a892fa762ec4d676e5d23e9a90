@@ -34,6 +34,24 @@
       "parentUuid": "a8d415a6_09328dba",
       "revId": "48207b0f15cef2a892fa762ec4d676e5d23e9a90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5147faa_49ba4ff2",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-31T21:04:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0981c275_35f08020",
+      "revId": "48207b0f15cef2a892fa762ec4d676e5d23e9a90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
