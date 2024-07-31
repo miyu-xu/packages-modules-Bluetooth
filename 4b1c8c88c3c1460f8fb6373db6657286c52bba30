@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0caef69_05de5d3c",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-31T09:10:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a8b05eaa_ed097c38",
+      "range": {
+        "startLine": 500,
+        "startChar": 23,
+        "endLine": 500,
+        "endChar": 29
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "65be76fe_fec8df57",
         "filename": "system/bta/has/has_client.cc",
         "patchSetId": 8
@@ -101,6 +125,30 @@
       "writtenOn": "2024-07-30T07:36:49Z",
       "side": 1,
       "message": "If you are sure that `device \u003d\u003d devices_.end()` is not possible, then adding an assertion seem like a good idea to me.",
+      "range": {
+        "startLine": 523,
+        "startChar": 24,
+        "endLine": 523,
+        "endChar": 31
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae8685ec_aa7e95cd",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-31T09:10:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "65be76fe_fec8df57",
       "range": {
         "startLine": 523,
         "startChar": 24,
@@ -136,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7c9b3a4_98ac3197",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2328,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-31T09:10:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "7d2732ad_96b01383",
+      "range": {
+        "startLine": 2326,
+        "startChar": 0,
+        "endLine": 2328,
+        "endChar": 43
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a0ad25d_529fd24f",
         "filename": "system/bta/has/has_client_test.cc",
         "patchSetId": 8
@@ -159,6 +231,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31d5dd34_c85517af",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2331,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-31T09:10:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4a0ad25d_529fd24f",
+      "range": {
+        "startLine": 2329,
+        "startChar": 0,
+        "endLine": 2331,
+        "endChar": 43
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4afdd1c4_ee71bc57",
         "filename": "system/bta/has/has_client_test.cc",
         "patchSetId": 8
@@ -170,6 +266,24 @@
       "writtenOn": "2024-07-30T06:52:53Z",
       "side": 1,
       "message": "For the independent set, operation will succeed when preset is available on at least one HA, right?\n\nCould you please put a comment at the begging of the test saying in a high level, what and why is expected? You might refer to spec as well.\n\nPlease add similar note to other testcases.",
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4aaf1c2_c4d5da55",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2348,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-31T09:10:00Z",
+      "side": 1,
+      "message": "added comments with test steps for all new cases",
+      "parentUuid": "4afdd1c4_ee71bc57",
       "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
