@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b630bf86_8e71d177",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T19:31:40Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 325,
+        "startChar": 16,
+        "endLine": 325,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d92b3deb_83b63b67",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 325,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "    log::debug(\"{} --\u003e {}\", connectability_state_machine_text(connectability_state_),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b53276542d9ad5e0e670dfc1b268f6074d4fd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
