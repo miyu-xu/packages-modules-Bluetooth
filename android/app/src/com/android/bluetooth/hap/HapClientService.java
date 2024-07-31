@@ -113,7 +113,7 @@ public class HapClientService extends ProfileService {
     }
 
     public HapClientService(AdapterService adapterService) {
-        this(adapterService, new HapClientNativeInterface());
+        this(adapterService, new HapClientNativeInterface(adapterService));
     }
 
     @VisibleForTesting
