@@ -17,12 +17,14 @@
 
 package com.android.bluetooth.hap;
 
-import android.bluetooth.BluetoothAdapter;
+import static java.util.Objects.requireNonNull;
+
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHapPresetInfo;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -32,46 +34,22 @@ import java.util.Arrays;
 public class HapClientNativeInterface {
     private static final String TAG = HapClientNativeInterface.class.getSimpleName();
 
-    private final BluetoothAdapter mAdapter;
+    private final AdapterService mAdapterService;
 
-    public HapClientNativeInterface() {
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mAdapter == null) {
-            Log.wtf(TAG, "No Bluetooth Adapter Available");
-        }
+    public HapClientNativeInterface(AdapterService adapterService) {
+        mAdapterService = requireNonNull(adapterService);
     }
 
-    /**
-     * Initiates HapClientService connection to a remote device.
-     *
-     * @param device the remote device
-     * @return true on success, otherwise false.
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public boolean connectHapClient(BluetoothDevice device) {
+    boolean connectHapClient(BluetoothDevice device) {
         return connectHapClientNative(getByteAddress(device));
     }
 
-    /**
-     * Disconnects HapClientService from a remote device.
-     *
-     * @param device the remote device
-     * @return true on success, otherwise false.
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public boolean disconnectHapClient(BluetoothDevice device) {
+    boolean disconnectHapClient(BluetoothDevice device) {
         return disconnectHapClientNative(getByteAddress(device));
     }
 
-    /**
-     * Gets a HapClientService device
-     *
-     * @param address the remote device address
-     * @return Bluetooth Device.
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public BluetoothDevice getDevice(byte[] address) {
-        return mAdapter.getRemoteDevice(address);
+    private BluetoothDevice getDevice(byte[] address) {
+        return mAdapterService.getDeviceFromByte(address);
     }
 
     private byte[] getByteAddress(BluetoothDevice device) {
@@ -81,122 +59,56 @@ public class HapClientNativeInterface {
         return Utils.getBytesFromAddress(device.getAddress());
     }
 
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     void sendMessageToService(HapClientStackEvent event) {
         HapClientService service = HapClientService.getHapClientService();
-        if (service != null) {
+        if (service != null && service.isAvailable()) {
             service.messageFromNative(event);
         } else {
             Log.e(TAG, "Event ignored, service not available: " + event);
         }
     }
 
-    /** Initializes the native interface. */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void init() {
+    void init() {
         initNative();
     }
 
-    /** Cleanup the native interface. */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void cleanup() {
+    void cleanup() {
         cleanupNative();
     }
 
-    /**
-     * Selects the currently active preset for a HA device
-     *
-     * @param device is the device for which we want to set the active preset
-     * @param presetIndex is an index of one of the available presets
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void selectActivePreset(BluetoothDevice device, int presetIndex) {
+    void selectActivePreset(BluetoothDevice device, int presetIndex) {
         selectActivePresetNative(getByteAddress(device), presetIndex);
     }
 
-    /**
-     * Selects the currently active preset for a HA device group.
-     *
-     * @param groupId is the device group identifier for which want to set the active preset
-     * @param presetIndex is an index of one of the available presets
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void groupSelectActivePreset(int groupId, int presetIndex) {
+    void groupSelectActivePreset(int groupId, int presetIndex) {
         groupSelectActivePresetNative(groupId, presetIndex);
     }
 
-    /**
-     * Sets the next preset as a currently active preset for a HA device
-     *
-     * @param device is the device for which we want to set the active preset
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void nextActivePreset(BluetoothDevice device) {
+    void nextActivePreset(BluetoothDevice device) {
         nextActivePresetNative(getByteAddress(device));
     }
 
-    /**
-     * Sets the next preset as a currently active preset for a HA device group
-     *
-     * @param groupId is the device group identifier for which want to set the active preset
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void groupNextActivePreset(int groupId) {
+    void groupNextActivePreset(int groupId) {
         groupNextActivePresetNative(groupId);
     }
 
-    /**
-     * Sets the previous preset as a currently active preset for a HA device
-     *
-     * @param device is the device for which we want to set the active preset
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void previousActivePreset(BluetoothDevice device) {
+    void previousActivePreset(BluetoothDevice device) {
         previousActivePresetNative(getByteAddress(device));
     }
 
-    /**
-     * Sets the previous preset as a currently active preset for a HA device group
-     *
-     * @param groupId is the device group identifier for which want to set the active preset
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void groupPreviousActivePreset(int groupId) {
+    void groupPreviousActivePreset(int groupId) {
         groupPreviousActivePresetNative(groupId);
     }
 
-    /**
-     * Requests the preset name
-     *
-     * @param device is the device for which we want to get the preset name
-     * @param presetIndex is an index of one of the available presets
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void getPresetInfo(BluetoothDevice device, int presetIndex) {
+    void getPresetInfo(BluetoothDevice device, int presetIndex) {
         getPresetInfoNative(getByteAddress(device), presetIndex);
     }
 
-    /**
-     * Sets the preset name
-     *
-     * @param device is the device for which we want to get the preset name
-     * @param presetIndex is an index of one of the available presets
-     * @param name is a new name for a preset
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void setPresetName(BluetoothDevice device, int presetIndex, String name) {
+    void setPresetName(BluetoothDevice device, int presetIndex, String name) {
         setPresetNameNative(getByteAddress(device), presetIndex, name);
     }
 
-    /**
-     * Sets the preset name
-     *
-     * @param groupId is the device group
-     * @param presetIndex is an index of one of the available presets
-     * @param name is a new name for a preset
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void groupSetPresetName(int groupId, int presetIndex, String name) {
+    void groupSetPresetName(int groupId, int presetIndex, String name) {
         groupSetPresetNameNative(groupId, presetIndex, name);
     }
 
