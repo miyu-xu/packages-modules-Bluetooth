@@ -51,7 +51,7 @@ public final class MessagesFilter {
         this.priority = filter.priority;
     }
 
-    public void setMessageType(byte filter) {
+    public void setExcludedMessageTypes(byte filter) {
         messageType = filter;
     }
 
@@ -96,11 +96,11 @@ public final class MessagesFilter {
         /**
          * Sets the `Message Type` field of the filter.
          *
-         * @param messageType to filter on.
+         * @param excludedMessageTypes to filter on.
          * @return This {@link Builder} object.
          */
-        public Builder setMessageType(byte messageType) {
-            mMessagesFilter.setMessageType(messageType);
+        public Builder setExcludedMessageTypes(byte excludedMessageTypes) {
+            mMessagesFilter.setExcludedMessageTypes(excludedMessageTypes);
             return this;
         }
 
