@@ -103,5 +103,12 @@ void LogAuthenticationComplete(const hci::Address& address, ErrorCode error_code
                                          MapErrorCodeToState(error_code));
 }
 
+void LogSDPComplete(const RawAddress& raw_address, tBTA_STATUS status) {
+  hci::Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricBluetoothEvent(
+          address, EventType::SERVICE_DISCOVERY,
+          status == tBTA_STATUS::BTA_SUCCESS ? State::SUCCESS : State::FAIL);
+}
+
 }  // namespace metrics
 }  // namespace bluetooth
