@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a1e617d_afc12abd",
+        "filename": "service/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1947115
+      },
+      "writtenOn": "2024-07-31T04:04:44Z",
+      "side": 1,
+      "message": "I believe this should be\n\"\"inline-mockito-robolectric-prebuilt\" tagging @rexhoffman@google.com to confirm.",
+      "revId": "d2619eb04f380369c8801d4f451aa5e898fe2857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
