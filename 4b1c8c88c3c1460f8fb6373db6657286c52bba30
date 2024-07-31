@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b65ddfff_fac12cf9",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-07-31T08:52:01Z",
+      "side": 1,
+      "message": "I noticed it, but checking it earlier will break unit tests: there are checks for device capabilities (like `IsConnected`, `SupportsPresets` etc.). And we should check the flag as the last thing. So if we want to move this check higher, rest will need to follow, but I\u0027m not sure if this is correct approach? I see these kind of checks only in corresponding `WriteReq` methods, not in `CpPresetOperationCaller`",
+      "parentUuid": "366e755e_affe413c",
+      "range": {
+        "startLine": 497,
+        "startChar": 6,
+        "endLine": 497,
+        "endChar": 36
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8b05eaa_ed097c38",
         "filename": "system/bta/has/has_client.cc",
         "patchSetId": 8
