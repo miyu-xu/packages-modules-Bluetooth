@@ -203,7 +203,7 @@ public class AdapterServiceTest {
 
     @Parameters(name = "{0}")
     public static List<FlagsParameterization> getParams() {
-        return FlagsParameterization.allCombinationsOf(Flags.FLAG_EXPLICIT_KILL_FROM_SYSTEM_SERVER);
+        return FlagsParameterization.allCombinationsOf();
     }
 
     public AdapterServiceTest(FlagsParameterization flags) {
@@ -545,12 +545,9 @@ public class AdapterServiceTest {
         verify(nativeInterface).disable();
         adapter.stateChangeCallback(AbstractionLayer.BT_STATE_OFF);
         TestUtils.syncHandler(looper, AdapterState.BLE_STOPPED);
-        if (Flags.explicitKillFromSystemServer()) {
-            // When reaching the OFF state, the cleanup is called that will destroy the state
-            // machine of the adapterService. Destroying state machine send a -1 event on the
-            // handler
-            TestUtils.syncHandler(looper, -1);
-        }
+        // When reaching the OFF state, the cleanup is called that will destroy the state machine of
+        // the adapterService. Destroying state machine send a -1 event on the handler
+        TestUtils.syncHandler(looper, -1);
         verifyStateChange(callback, STATE_BLE_TURNING_OFF, STATE_OFF);
 
         assertThat(adapter.getState()).isEqualTo(STATE_OFF);
@@ -631,12 +628,9 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getBluetoothGatt()).isNull();
 
         syncHandler(AdapterState.BLE_STOPPED);
-        if (Flags.explicitKillFromSystemServer()) {
-            // When reaching the OFF state, the cleanup is called that will destroy the state
-            // machine of the adapterService. Destroying state machine send a -1 event on the
-            // handler
-            syncHandler(-1);
-        }
+        // When reaching the OFF state, the cleanup is called that will destroy the state machine of
+        // the adapterService. Destroying state machine send a -1 event on the handler
+        syncHandler(-1);
         syncHandler(MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
         syncHandler(MESSAGE_PROFILE_SERVICE_UNREGISTERED);
 
@@ -668,12 +662,9 @@ public class AdapterServiceTest {
 
         mLooper.moveTimeForward(120_000); // Skip time so the timeout fires
         syncHandler(AdapterState.BLE_STOP_TIMEOUT);
-        if (Flags.explicitKillFromSystemServer()) {
-            // When reaching the OFF state, the cleanup is called that will destroy the state
-            // machine of the adapterService. Destroying state machine send a -1 event on the
-            // handler
-            syncHandler(-1);
-        }
+        // When reaching the OFF state, the cleanup is called that will destroy the state machine of
+        // the adapterService. Destroying state machine send a -1 event on the handler
+        syncHandler(-1);
         verifyStateChange(STATE_BLE_TURNING_OFF, STATE_OFF);
 
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
@@ -729,12 +720,9 @@ public class AdapterServiceTest {
         verify(mNativeInterface).disable();
         mAdapterService.stateChangeCallback(AbstractionLayer.BT_STATE_OFF);
         syncHandler(AdapterState.BLE_STOPPED);
-        if (Flags.explicitKillFromSystemServer()) {
-            // When reaching the OFF state, the cleanup is called that will destroy the state
-            // machine of the adapterService. Destroying state machine send a -1 event on the
-            // handler
-            syncHandler(-1);
-        }
+        // When reaching the OFF state, the cleanup is called that will destroy the state machine of
+        // the adapterService. Destroying state machine send a -1 event on the handler
+        syncHandler(-1);
         verifyStateChange(callback, STATE_BLE_TURNING_OFF, STATE_OFF);
 
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
@@ -878,12 +866,9 @@ public class AdapterServiceTest {
         // TODO(b/280518177): The only timeout to fire here should be the BREDR
         mLooper.moveTimeForward(120_000); // Skip time so the timeout fires
         syncHandler(AdapterState.BLE_STOP_TIMEOUT);
-        if (Flags.explicitKillFromSystemServer()) {
-            // When reaching the OFF state, the cleanup is called that will destroy the state
-            // machine of the adapterService. Destroying state machine send a -1 event on the
-            // handler
-            syncHandler(-1);
-        }
+        // When reaching the OFF state, the cleanup is called that will destroy the state machine of
+        // the adapterService. Destroying state machine send a -1 event on the handler
+        syncHandler(-1);
         verifyStateChange(STATE_BLE_TURNING_OFF, STATE_OFF);
 
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
@@ -924,12 +909,9 @@ public class AdapterServiceTest {
 
         mAdapterService.stateChangeCallback(AbstractionLayer.BT_STATE_OFF);
         syncHandler(AdapterState.BLE_STOPPED);
-        if (Flags.explicitKillFromSystemServer()) {
-            // When reaching the OFF state, the cleanup is called that will destroy the state
-            // machine of the adapterService. Destroying state machine send a -1 event on the
-            // handler
-            syncHandler(-1);
-        }
+        // When reaching the OFF state, the cleanup is called that will destroy the state machine of
+        // the adapterService. Destroying state machine send a -1 event on the handler
+        syncHandler(-1);
 
         verifyStateChange(STATE_BLE_TURNING_OFF, STATE_OFF);
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
