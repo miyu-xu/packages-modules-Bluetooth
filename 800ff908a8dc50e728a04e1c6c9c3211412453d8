@@ -22,6 +22,30 @@
       },
       "revId": "800ff908a8dc50e728a04e1c6c9c3211412453d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "660efde1_e0baa441",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-31T20:01:04Z",
+      "side": 1,
+      "message": "This is applicable only for LE transport.\nOver BR/EDR, security checks are performed by the btm_sec as the incoming/outgoing security permissions are registered for the L2CAP channel.",
+      "parentUuid": "128c1d20_e691e618",
+      "range": {
+        "startLine": 1076,
+        "startChar": 0,
+        "endLine": 1101,
+        "endChar": 3
+      },
+      "revId": "800ff908a8dc50e728a04e1c6c9c3211412453d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
