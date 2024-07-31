@@ -145,16 +145,19 @@ public class BipAttachmentFormat {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (!(o instanceof BipAttachmentFormat)) return false;
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof BipAttachmentFormat a)) {
+            return false;
+        }
 
-        BipAttachmentFormat a = (BipAttachmentFormat) o;
         return a.getContentType() == getContentType()
                 && a.getName() == getName()
                 && a.getCharset() == getCharset()
                 && a.getSize() == getSize()
-                && a.getCreatedDate() == getCreatedDate()
-                && a.getModifiedDate() == getModifiedDate();
+                && Objects.equals(a.getCreatedDate(), getCreatedDate())
+                && Objects.equals(a.getModifiedDate(), getModifiedDate());
     }
 
     @Override

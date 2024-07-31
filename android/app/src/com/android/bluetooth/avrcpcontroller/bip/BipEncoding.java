@@ -172,10 +172,13 @@ public class BipEncoding {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (!(o instanceof BipEncoding)) return false;
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof BipEncoding e)) {
+            return false;
+        }
 
-        BipEncoding e = (BipEncoding) o;
         return e.getType() == getType()
                 && e.getProprietaryEncodingId() == getProprietaryEncodingId();
     }
