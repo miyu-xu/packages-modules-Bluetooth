@@ -2273,7 +2273,7 @@ public class LeAudioService extends ProfileService {
             /* Make sure active group is already exposed to audio framework.
              * If not, lets wait for it and don't sent additional intent.
              */
-            if (groupDescriptor.mCurrentLeadDevice == mExposedActiveDevice) {
+            if (Objects.equals(groupDescriptor.mCurrentLeadDevice, mExposedActiveDevice)) {
                 Log.w(
                         TAG,
                         "group is already active: device="
