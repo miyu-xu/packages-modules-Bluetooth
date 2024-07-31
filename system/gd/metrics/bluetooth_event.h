@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include "bta/include/bta_sec_api.h"
 #include "hci/address.h"
 #include "hci/hci_packets.h"
 #include "stack/include/btm_status.h"
