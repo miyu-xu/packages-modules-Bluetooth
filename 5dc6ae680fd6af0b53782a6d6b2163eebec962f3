@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a1accf_a135b412",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-31T20:37:46Z",
+      "side": 1,
+      "message": "nit: add some comment to explain the meaning of 0x01 or define the bit?",
+      "revId": "5dc6ae680fd6af0b53782a6d6b2163eebec962f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7219dd1_b8c31764",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-07-31T20:37:46Z",
+      "side": 1,
+      "message": "are we intended to change isAutonomous to true and why?",
+      "revId": "5dc6ae680fd6af0b53782a6d6b2163eebec962f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
