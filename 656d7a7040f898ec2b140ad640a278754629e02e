@@ -111,6 +111,30 @@
       },
       "revId": "656d7a7040f898ec2b140ad640a278754629e02e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a53669_3f4ff1ad",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-07-31T00:14:03Z",
+      "side": 1,
+      "message": "This may be a problem in general if app initiated service discovery happens in parallel with pairing.\n1. App initiated connection\n2. App performed service discovery\n3. App initiated bonding -\u003e bondstate changes to BONDING\n4. Service discovery completes -\u003e Properties updated\n5. PhonePolicy starts connecting profiles before pairing is complete\n\nWe have other problems with 500 ms delay but we almost never hit that.\n1. App initiated pairing over LE with dual mode device\n2. LE pairing successful, CTKD successful\n3. BR/EDR authentication completes -\u003e bondstate changes to BONDED\n4. BR/EDR service discovery starts\n5. BR/EDR service discovery completes -\u003e properties updated\n6. PhonePolicy starts connecting profiles\n7. LE authentication completes 500 Ms later\n8. LE service discovery starts\n9. LE service discovery completes",
+      "parentUuid": "da618fdb_18623354",
+      "range": {
+        "startLine": 1136,
+        "startChar": 53,
+        "endLine": 1136,
+        "endChar": 91
+      },
+      "revId": "656d7a7040f898ec2b140ad640a278754629e02e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
