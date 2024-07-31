@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ffbd60_1d267c36",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "this seems to be called only for the active group. So maybe check from line 995 should be moved  to 1011 and if group_id is not active we should return.\n\nWhat do you think?",
+      "fixSuggestions": [
+        {
+          "fixId": "af80a199_84b5a7d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 955,
+                "startChar": 0,
+                "endLine": 955,
+                "endChar": 0
+              },
+              "replacement": "\n    if (group_id !\u003d active_group_id_) {\n      log::warn(\"Selected group is not active.\");\n      return;\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47185552_5382bee0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "looks like this change does not apply to latest clang config which allows longer lines. Please double check.",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f24aa8_26a09dd5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0010d7_70aca542",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "I have feeling that instead of `||` we should have `\u0026\u0026`, isn\u0027t ?\n\nOtherwise how this will work for preference only on single direction? Maybe I do miss something",
+      "fixSuggestions": [
+        {
+          "fixId": "5f0dc0e7_460f5cb8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/device_groups.cc",
+              "range": {
+                "startLine": 959,
+                "startChar": 0,
+                "endLine": 960,
+                "endChar": 0
+              },
+              "replacement": "  if (!preferred_config_.sink \u0026\u0026 !preferred_config_.source) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4bacf67_4b1aa1fe",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "this also seems to be clang issue.",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ee72d7_7f8e8c8c",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1843,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "clang ?",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95fdeaa3_4ebc6b3f",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1958,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T15:24:14Z",
+      "side": 1,
+      "message": "clang?",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
