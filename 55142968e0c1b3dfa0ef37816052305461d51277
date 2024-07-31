@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c971548_50f24299",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-07-31T10:28:30Z",
+      "side": 1,
+      "message": "Fixed, thanks for reviewing!",
+      "parentUuid": "698b0410_42184de5",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "55142968e0c1b3dfa0ef37816052305461d51277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f815092_830cdb7f",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "55142968e0c1b3dfa0ef37816052305461d51277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd0ff1d_e0583c04",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-07-31T10:28:30Z",
+      "side": 1,
+      "message": "Fixed, thanks for reviewing!",
+      "parentUuid": "0f815092_830cdb7f",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 19
+      },
       "revId": "55142968e0c1b3dfa0ef37816052305461d51277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
