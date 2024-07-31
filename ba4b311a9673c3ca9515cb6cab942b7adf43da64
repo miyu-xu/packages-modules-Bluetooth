@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebd97789_6a5f728c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T18:38:50Z",
+      "side": 1,
+      "message": "This flag is planned for 24q3, we should wait for this to reach public rollout before removing it (unless there is an emergency need for activating it in AOSP)",
+      "revId": "ba4b311a9673c3ca9515cb6cab942b7adf43da64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
