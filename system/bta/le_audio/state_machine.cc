@@ -208,8 +208,7 @@ public:
       return false;
     }
 
-    PrepareAndSendCodecConfigure(group, leAudioDevice);
-    return true;
+    return PrepareAndSendCodecConfigure(group, leAudioDevice);
   }
 
   bool StartStream(LeAudioDeviceGroup* group, LeAudioContextType context_type,
@@ -1891,12 +1890,15 @@ private:
     }
 
     for (; leAudioDevice; leAudioDevice = group->GetNextActiveDevice(leAudioDevice)) {
-      PrepareAndSendCodecConfigure(group, leAudioDevice);
+      if (!PrepareAndSendCodecConfigure(group, leAudioDevice)) {
+        StopStream(group);
+        return false;
+      };
     }
     return true;
   }
 
-  void PrepareAndSendCodecConfigure(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+  bool PrepareAndSendCodecConfigure(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
     struct bluetooth::le_audio::client_parser::ascs::ctp_codec_conf conf;
     std::vector<struct bluetooth::le_audio::client_parser::ascs::ctp_codec_conf> confs;
     struct ase* ase;
@@ -1905,8 +1907,7 @@ private:
 
     if (!group->cig.AssignCisIds(leAudioDevice)) {
       log::error("unable to assign CIS IDs");
-      StopStream(group);
-      return;
+      return false;
     }
 
     if (group->cig.GetState() == CigState::CREATED) {
@@ -1949,6 +1950,7 @@ private:
 
     log_history_->AddLogHistory(kLogControlPointCmd, group->group_id_, leAudioDevice->address_,
                                 msg_stream.str(), extra_stream.str());
+    return true;
   }
 
   void AseStateMachineProcessCodecConfigured(
