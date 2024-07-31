@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6295a3f5_09e51a79",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T19:33:48Z",
+      "side": 1,
+      "message": "Not a valid bug",
+      "range": {
+        "startLine": 22,
+        "startChar": 10,
+        "endLine": 22,
+        "endChar": 13
+      },
+      "revId": "48f625287216ba14234b7ef853d4e0c0990dd128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866d63c6_c7ca8728",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T19:33:48Z",
+      "side": 1,
+      "message": "Not having this flag as a bugfix will require to have a validated go/android-fr in order to be rollout",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "48f625287216ba14234b7ef853d4e0c0990dd128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
