@@ -16,6 +16,7 @@
 
 #include "os/fake_timer/fake_timerfd.h"
 
+#include <poll.h>
 #include <sys/eventfd.h>
 #include <unistd.h>
 
@@ -41,8 +42,8 @@ static uint64_t timespec_to_ms(const timespec* t) {
   return t->tv_sec * 1000 + t->tv_nsec / 1000000;
 }
 
-int fake_timerfd_create(int /* clockid */, int /* flags */) {
-  int fd = eventfd(0, EFD_SEMAPHORE);
+int fake_timerfd_create(int /* clockid */, int flags) {
+  int fd = eventfd(0, EFD_SEMAPHORE | flags);
   if (fd == -1) {
     return fd;
   }
@@ -57,6 +58,18 @@ int fake_timerfd_settime(int fd, int /* flags */, const struct itimerspec* new_v
                          struct itimerspec* /* old_value */) {
   if (fake_timers.find(fd) == fake_timers.end()) {
     return -1;
+  }
+
+  // Here we need to consume by calling the read().
+  struct pollfd pfd;
+  pfd.fd = fd;
+  pfd.events = POLLIN;
+  int ret = poll(&pfd, 1, 0);  // Timeout of 0 for immediate check
+  if (ret > 0 && (pfd.revents & POLLIN)) {
+    log::info("There is data to read. Consuming...");
+    uint64_t times_invoked;
+    read(fd, &times_invoked, sizeof(uint64_t));
+    log::info("Data consume complete.");
   }
 
   FakeTimerFd* entry = fake_timers[fd];
@@ -91,10 +104,12 @@ void fake_timerfd_reset() {
 }
 
 static bool fire_next_event(uint64_t new_clock) {
+  log::info("fire_next_event step 1. new_clock={}", new_clock);
   uint64_t earliest_time = new_clock;
   FakeTimerFd* to_fire = nullptr;
   for (auto it = fake_timers.begin(); it != fake_timers.end(); it++) {
     FakeTimerFd* entry = it->second;
+    log::info("entry->fd={}, active={}", entry->fd, entry->active);
     if (!entry->active) {
       continue;
     }
