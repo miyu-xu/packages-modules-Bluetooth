@@ -20,7 +20,6 @@ import static android.bluetooth.BluetoothGatt.GATT_SUCCESS;
 import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth8.assertThat;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
@@ -53,6 +52,7 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.AdditionalMatchers;
 import org.mockito.InOrder;
 import org.mockito.invocation.Invocation;
 
@@ -493,15 +493,19 @@ public class GattClientTest {
     }
 
     @Test
-    @Ignore("b/307981748: requestMTU should return a direct error or a error on the callback")
-    public void requestMtu_invalidParamer_isFalse() {
+    @RequiresFlagsEnabled(Flags.FLAG_GATT_CALLBACK_ON_FAILURE)
+    public void requestMtu_invalidParameter_isFalse() {
         BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
         BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback);
 
         try {
             assertThat(gatt.requestMtu(1024)).isTrue();
-            // verify(gattCallback, timeout(5000).atLeast(1)).onMtuChanged(eq(gatt),
-            // eq(ANDROID_MTU), eq(BluetoothGatt.GATT_FAILURE));
+            // status should be 0x87 (GATT_ILLEGAL_PARAMETER) but not defined.
+            verify(gattCallback, timeout(5000).atLeast(1))
+                    .onMtuChanged(
+                            eq(gatt),
+                            anyInt(),
+                            AdditionalMatchers.not(eq(BluetoothGatt.GATT_SUCCESS)));
         } finally {
             disconnectAndWaitDisconnection(gatt, gattCallback);
         }
