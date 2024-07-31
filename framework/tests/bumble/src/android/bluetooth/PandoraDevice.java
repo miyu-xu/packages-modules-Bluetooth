@@ -34,6 +34,7 @@ import pandora.GATTGrpc;
 import pandora.HIDGrpc;
 import pandora.HostGrpc;
 import pandora.HostProto;
+import pandora.OOBGrpc;
 import pandora.RFCOMMGrpc;
 import pandora.SecurityGrpc;
 
@@ -142,6 +143,11 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora Security service */
     public SecurityGrpc.SecurityStub security() {
         return SecurityGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora OOB blocking service */
+    public OOBGrpc.OOBBlockingStub oobBlocking() {
+        return OOBGrpc.newBlockingStub(mChannel);
     }
 
     /** Get Pandora GATT service */
