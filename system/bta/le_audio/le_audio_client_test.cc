@@ -1298,62 +1298,8 @@ protected:
                 ases_pair.source->active = false;
                 ases_pair.source->cis_state = types::CisState::ASSIGNED;
               }
-              /* Invalidate stream configuration if needed */
-              auto* stream_conf = &group->stream_conf;
-              if (!stream_conf->stream_params.sink.stream_locations.empty() ||
-                  !stream_conf->stream_params.source.stream_locations.empty()) {
-                stream_conf->stream_params.sink.stream_locations.erase(
-                        std::remove_if(
-                                stream_conf->stream_params.sink.stream_locations.begin(),
-                                stream_conf->stream_params.sink.stream_locations.end(),
-                                [leAudioDevice, &stream_conf](auto& pair) {
-                                  auto ases = leAudioDevice->GetAsesByCisConnHdl(pair.first);
 
-                                  log::info(
-                                          ", sink ase to delete. Cis handle: {}, ase pointer: "
-                                          "{}",
-                                          (int)(pair.first), fmt::ptr(+ases.sink));
-                                  if (ases.sink) {
-                                    stream_conf->stream_params.sink.num_of_devices--;
-                                    stream_conf->stream_params.sink.num_of_channels -=
-                                            ases.sink->channel_count;
-
-                                    log::info(
-                                            "Sink Number Of Devices: {}, Sink Number Of "
-                                            "Channels: {}",
-                                            stream_conf->stream_params.sink.num_of_devices,
-                                            stream_conf->stream_params.sink.num_of_channels);
-                                  }
-                                  return ases.sink;
-                                }),
-                        stream_conf->stream_params.sink.stream_locations.end());
-
-                stream_conf->stream_params.source.stream_locations.erase(
-                        std::remove_if(
-                                stream_conf->stream_params.source.stream_locations.begin(),
-                                stream_conf->stream_params.source.stream_locations.end(),
-                                [leAudioDevice, &stream_conf](auto& pair) {
-                                  auto ases = leAudioDevice->GetAsesByCisConnHdl(pair.first);
-
-                                  log::info(", source to delete. Cis handle: {}, ase pointer: {}",
-                                            (int)(pair.first), fmt::ptr(ases.source));
-                                  if (ases.source) {
-                                    stream_conf->stream_params.source.num_of_devices--;
-                                    stream_conf->stream_params.source.num_of_channels -=
-                                            ases.source->channel_count;
-
-                                    log::info(
-                                            ", Source Number Of Devices: {}, Source Number Of "
-                                            "Channels: {}",
-                                            stream_conf->stream_params.source.num_of_devices,
-                                            stream_conf->stream_params.source.num_of_channels);
-                                  }
-                                  return ases.source;
-                                }),
-                        stream_conf->stream_params.source.stream_locations.end());
-              }
-
-              group->cig.UnassignCis(leAudioDevice, event->cis_conn_hdl);
+              group->RemoveCisFromStreamIfNeeded(leAudioDevice, event->cis_conn_hdl);
             });
 
     ON_CALL(mock_state_machine_, StopStream(_)).WillByDefault([this](LeAudioDeviceGroup* group) {
