@@ -102,7 +102,7 @@ class HeadsetStateMachine extends StateMachine {
 
     private static final int CONNECT_TIMEOUT = 201;
 
-    private static final int CLCC_RSP_TIMEOUT_MS = 5000;
+    private static final int CLCC_RSP_TIMEOUT_MS = 3000;
     // NOTE: the value is not "final" - it is modified in the unit tests
     @VisibleForTesting static int sConnectTimeoutMs = 30000;
 
@@ -762,6 +762,17 @@ class HeadsetStateMachine extends StateMachine {
                     break;
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");
+                    break;
+                case CLCC_RSP_TIMEOUT:
+                    {
+                        BluetoothDevice device = (BluetoothDevice) message.obj;
+                        if (!mDevice.equals(device)) {
+                            stateLogW("CLCC_RSP_TIMEOUT failed " + device + " is not currentDevice");
+                            break;
+                        }
+                        stateLogW("CLCC_RSP_TIMEOUT for " + device);
+                        mNativeInterface.clccResponse(device, 0, 0, 0, 0, false, "", 0);
+                    }
                     break;
                 case STACK_EVENT:
                     HeadsetStackEvent event = (HeadsetStackEvent) message.obj;
