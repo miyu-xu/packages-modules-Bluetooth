@@ -206,6 +206,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2484b8f_46a8f00f",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2328,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T12:18:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d7c9b3a4_98ac3197",
+      "range": {
+        "startLine": 2326,
+        "startChar": 0,
+        "endLine": 2328,
+        "endChar": 43
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a0ad25d_529fd24f",
@@ -253,6 +277,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a0b6feb_130e0ec2",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2331,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T12:18:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "31d5dd34_c85517af",
+      "range": {
+        "startLine": 2329,
+        "startChar": 0,
+        "endLine": 2331,
+        "endChar": 43
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4afdd1c4_ee71bc57",
@@ -284,6 +332,24 @@
       "side": 1,
       "message": "added comments with test steps for all new cases",
       "parentUuid": "4afdd1c4_ee71bc57",
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40fd4474_20c4e4f0",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2348,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-07-31T12:18:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a4aaf1c2_c4d5da55",
       "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
