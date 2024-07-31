@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca42b49f_16615cac",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T23:40:10Z",
+      "side": 1,
+      "message": "Here you only log the address",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 40
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4adbdd9_a79f2c22",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T23:40:10Z",
+      "side": 1,
+      "message": "but here you write \" address\" prior to logging it (with an extra space in front of address",
+      "range": {
+        "startLine": 683,
+        "startChar": 0,
+        "endLine": 683,
+        "endChar": 49
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f01b330f_97b77d2e",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T23:40:10Z",
+      "side": 1,
+      "message": "Remove space",
+      "range": {
+        "startLine": 703,
+        "startChar": 16,
+        "endLine": 703,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d9b45bcc_d5efd773",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 703,
+                "startChar": 0,
+                "endLine": 704,
+                "endChar": 0
+              },
+              "replacement": "    log::debug(\"Adding device to accept list {}\", address_with_type);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0349a7e_08b653b5",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-07-31T23:40:10Z",
+      "side": 1,
+      "message": "remove space",
+      "range": {
+        "startLine": 977,
+        "startChar": 18,
+        "endLine": 977,
+        "endChar": 19
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
