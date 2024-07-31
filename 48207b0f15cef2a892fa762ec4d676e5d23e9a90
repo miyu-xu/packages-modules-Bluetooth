@@ -16,6 +16,24 @@
       "message": "As I recalled, there was some debates around the default log, not sure if this is okay for test files.\n\n@mylesgw@google.com might be able to help to confirm this.",
       "revId": "48207b0f15cef2a892fa762ec4d676e5d23e9a90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0981c275_35f08020",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-07-31T20:56:26Z",
+      "side": 1,
+      "message": "Verbose is fine for tests",
+      "parentUuid": "a8d415a6_09328dba",
+      "revId": "48207b0f15cef2a892fa762ec4d676e5d23e9a90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
