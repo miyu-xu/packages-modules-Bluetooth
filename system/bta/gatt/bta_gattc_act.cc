@@ -1195,7 +1195,7 @@ static void bta_gattc_cfg_mtu_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_OP_
 
 /** operation completed */
 void bta_gattc_op_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
-  if (p_clcb->p_q_cmd == NULL) {
+  if (!com::android::bluetooth::flags::gatt_callback_on_failure() && p_clcb->p_q_cmd) {
     log::error("No pending command gatt client command");
     return;
   }
@@ -1217,7 +1217,8 @@ void bta_gattc_op_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
       return;
   }
 
-  if (p_clcb->p_q_cmd->hdr.event != bta_gattc_opcode_to_int_evt[op - GATTC_OPTYPE_READ] &&
+  if (p_clcb->p_q_cmd != NULL &&
+      p_clcb->p_q_cmd->hdr.event != bta_gattc_opcode_to_int_evt[op - GATTC_OPTYPE_READ] &&
       (p_clcb->p_q_cmd->hdr.event != BTA_GATTC_API_READ_MULTI_EVT || op != GATTC_OPTYPE_READ)) {
     uint8_t mapped_op = p_clcb->p_q_cmd->hdr.event - BTA_GATTC_API_READ_EVT + GATTC_OPTYPE_READ;
 
