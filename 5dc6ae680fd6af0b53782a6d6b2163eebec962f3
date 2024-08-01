@@ -33,6 +33,24 @@
       "message": "are we intended to change isAutonomous to true and why?",
       "revId": "5dc6ae680fd6af0b53782a6d6b2163eebec962f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f847ea_35c93a0c",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T15:02:21Z",
+      "side": 1,
+      "message": "Yes, when true is set and device is set it means this that callback has been sent after reconnection.",
+      "parentUuid": "c7219dd1_b8c31764",
+      "revId": "5dc6ae680fd6af0b53782a6d6b2163eebec962f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
