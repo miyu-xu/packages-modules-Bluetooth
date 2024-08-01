@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca3632c_797f3bf2",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-01T05:53:37Z",
+      "side": 1,
+      "message": "```suggestion\n * Description      This will remove device from allow list and cancel connection\n```",
+      "range": {
+        "startLine": 243,
+        "startChar": 60,
+        "endLine": 243,
+        "endChar": 64
+      },
+      "revId": "c943cde7111c0a93a782b32ccad8317d0bd393e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
