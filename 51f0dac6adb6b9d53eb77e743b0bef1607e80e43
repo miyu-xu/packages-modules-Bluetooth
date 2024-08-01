@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbedf63f_c43a8219",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-01T23:04:59Z",
+      "side": 1,
+      "message": "That\u0027s correct. the remoteException should not be propagated.\n\n@yuyangh@google.com, can you help giving another review (2 googlers requirement needed)",
+      "revId": "51f0dac6adb6b9d53eb77e743b0bef1607e80e43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
