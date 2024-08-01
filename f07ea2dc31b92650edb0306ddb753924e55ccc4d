@@ -91,6 +91,24 @@
       ],
       "revId": "f07ea2dc31b92650edb0306ddb753924e55ccc4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97994092_745f68d7",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-01T09:19:58Z",
+      "side": 1,
+      "message": "Looks to me that this doesn\u0027t satisfy compiler?\n```kotlin\npackages/modules/Bluetooth/android/pandora/server/src/Hap.kt:310:53: error: only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type Hap.PresetInfoChanged?\n            for (presetInfo in presetChangedReceived.presetInfoList) {\n                                                    ^\npackages/modules/Bluetooth/android/pandora/server/src/Hap.kt:322:53: error: only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type Hap.PresetInfoChanged?\n                .setConnection(presetChangedReceived.connection)\n                                                    ^\npackages/modules/Bluetooth/android/pandora/server/src/Hap.kt:324:49: error: only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type Hap.PresetInfoChanged?\n                .setReason(presetChangedReceived.reason)\n```",
+      "parentUuid": "38788458_b71fd14c",
+      "revId": "f07ea2dc31b92650edb0306ddb753924e55ccc4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
