@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0f6d581_ca242b6b",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 3143,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-01T12:45:51Z",
+      "side": 1,
+      "message": "Added here `leaudio_allow_leaudio_only_devices` as this one is set via `device_config put bluetooth` command. I need three flags enabled in total, I added the rest to PtsBotTest.xml, under `\u003ctarget_preparer class\u003d\"com.android.tradefed.targetprep.DeviceSetup\"\u003e`. I checked and it works, I set all flags to false using shell and they were set back in test run. But yes, in ideal case we need support for multiple flags in jso. I\u0027m not sure how you are implementing this, but maybe entries in json should be reversed? I mean\n```json\n  \"flags\": {\n      \"profile\": [flag1, flag2, flag3]\n  }\n```\nnot\n```json\n  \"flags\": {\n      \"flag\": [profile1, profile2, profile3]\n  }\n```\n?",
+      "parentUuid": "92084e53_9b3d9338",
+      "range": {
+        "startLine": 3143,
+        "startChar": 0,
+        "endLine": 3143,
+        "endChar": 13
+      },
+      "revId": "f07ea2dc31b92650edb0306ddb753924e55ccc4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38788458_b71fd14c",
         "filename": "android/pandora/server/src/Hap.kt",
         "patchSetId": 9

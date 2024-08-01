@@ -105,6 +105,24 @@
       "parentUuid": "ecc84d29_93e1a34a",
       "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f90db1e_059023e0",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-01T12:45:51Z",
+      "side": 1,
+      "message": "Working as described in comment above.",
+      "parentUuid": "ac0705b7_6c39a029",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
