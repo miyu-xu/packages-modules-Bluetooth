@@ -4848,7 +4848,7 @@ public:
             LeAudioContextType::NOTIFICATIONS | LeAudioContextType::SOUNDEFFECTS |
             LeAudioContextType::INSTRUCTIONAL | LeAudioContextType::ALERTS |
             LeAudioContextType::EMERGENCYALARM | LeAudioContextType::UNSPECIFIED;
-    if (group->IsStreaming() && config_context_candids.any() &&
+    if (group->IsStreaming() && !group->IsReleasingOrIdle() && config_context_candids.any() &&
         (config_context_candids & ~no_reconfigure_contexts).none() &&
         (configuration_context_type_ != LeAudioContextType::UNINITIALIZED) &&
         (configuration_context_type_ != LeAudioContextType::UNSPECIFIED) &&
