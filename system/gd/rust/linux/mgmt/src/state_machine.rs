@@ -9,7 +9,6 @@ use libc;
 use log::{debug, error, info, warn};
 use nix::sys::signal::{self, Signal};
 use nix::unistd::Pid;
-use regex::Regex;
 use std::collections::{BTreeMap, HashMap};
 use std::convert::TryFrom;
 use std::fmt::{Display, Formatter};
@@ -286,8 +285,12 @@ fn pid_inotify_async_fd() -> AsyncFd<inotify::Inotify> {
 
 /// Given an pid path, returns the adapter index for that pid path.
 fn get_hci_index_from_pid_path(path: &str) -> Option<VirtualHciIndex> {
-    let re = Regex::new(r"bluetooth([0-9]+).pid").unwrap();
-    re.captures(path)?.get(1)?.as_str().parse().ok().map(VirtualHciIndex)
+    let rem = path.strip_prefix("bluetooth").and_then(|s| s.strip_suffix(".pid"));
+    if let Some(pidstr) = rem {
+        return pidstr.parse::<i32>().ok().map(VirtualHciIndex);
+    }
+
+    None
 }
 
 fn event_name_to_string(name: Option<&std::ffi::OsStr>) -> Option<String> {
