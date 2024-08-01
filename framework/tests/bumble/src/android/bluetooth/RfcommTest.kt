@@ -65,6 +65,9 @@ class RfcommTest {
     fun setUp() {
         mBumbleDevice = mBumble.remoteDevice
         host = Host(mContext)
+        if (mAdapter.bondedDevices.contains(mBumbleDevice)) {
+            host.removeBondAndVerify(mBumbleDevice)
+        }
         host.createBondAndVerify(mBumbleDevice)
     }
 
