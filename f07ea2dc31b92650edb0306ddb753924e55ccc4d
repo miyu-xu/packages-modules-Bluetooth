@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7820d96a_e6910586",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 3143,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-01T15:13:44Z",
+      "side": 1,
+      "message": "We we\u0027ll need to make the flag logic modification before merging this CL. We cannot put any flag logic within the xml since it will affect every other tests.\n\nRegarding your comment about the json, it is not about the profile, but it is tests names. Hence I think we should aim something like this:\n\n```\n\"flags\": {\n      [\"flag1\", \"flag2\"]: [test1, test2, test3]\n  }\n```\n\n`test1`, `test2` and `test3` might be replace by a prefix as well.",
+      "parentUuid": "d0f6d581_ca242b6b",
+      "range": {
+        "startLine": 3143,
+        "startChar": 0,
+        "endLine": 3143,
+        "endChar": 13
+      },
+      "revId": "f07ea2dc31b92650edb0306ddb753924e55ccc4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38788458_b71fd14c",
         "filename": "android/pandora/server/src/Hap.kt",
         "patchSetId": 9
