@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beea3fe4_ef29b60f",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-01T10:37:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d15d595_35902028",
+      "range": {
+        "startLine": 1270,
+        "startChar": 0,
+        "endLine": 1270,
+        "endChar": 43
+      },
+      "revId": "e57d4b82f819380d92cd2b39d48548ccfb3b6455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47c2e743_701de7d7",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "e57d4b82f819380d92cd2b39d48548ccfb3b6455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e935534_42ba0cda",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-01T10:37:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47c2e743_701de7d7",
+      "range": {
+        "startLine": 1276,
+        "startChar": 32,
+        "endLine": 1276,
+        "endChar": 42
+      },
       "revId": "e57d4b82f819380d92cd2b39d48548ccfb3b6455",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
