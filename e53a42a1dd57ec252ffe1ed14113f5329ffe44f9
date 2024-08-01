@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09885958_ffb57663",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-01T02:38:27Z",
+      "side": 1,
+      "message": "This is done for b/343394964.\n@girardier@google.com if you agree with the early release of this change",
+      "revId": "e53a42a1dd57ec252ffe1ed14113f5329ffe44f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
