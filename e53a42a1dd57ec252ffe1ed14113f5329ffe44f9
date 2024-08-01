@@ -16,6 +16,24 @@
       "message": "This is done for b/343394964.\n@girardier@google.com if you agree with the early release of this change",
       "revId": "e53a42a1dd57ec252ffe1ed14113f5329ffe44f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f3fda2_e9752569",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-01T15:12:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "09885958_ffb57663",
+      "revId": "e53a42a1dd57ec252ffe1ed14113f5329ffe44f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
