@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbdac323_046ef3ad",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-01T14:05:46Z",
+      "side": 1,
+      "message": "I think this could be made easier to read:\n\n- Make the flag its own if, so that there\u0027s no confusion when it\u0027s removed\n- Move the check for direct_connect closer to its use\n\nNot enough thought to be sure about it, but something like this: ?\n\n```suggestion\n    if (add_to_accept_list) {\n\n      if (!already_in_accept_list) {\n        add_device_to_accept_list(address_with_type);\n      }\n      if (com::android::bluetooth::flags::improve_create_connection_for_already_connecting_device()) {\n        bool in_accept_list_due_to_direct_connect \u003d direct_connections_.find(address_with_type) !\u003d direct_connections_.end();\n        if (already_in_accept_list \u0026\u0026 (in_accept_list_due_to_direct_connect || !is_direct)) {\n          log::info(\"Device {} already in accept list. Stop here.\", address_with_type);\n          return;\n        }\n      }\n\n      if (is_direct) {\n        direct_connect_add(address_with_type);\n      }\n    }\n```",
+      "range": {
+        "startLine": 952,
+        "startChar": 0,
+        "endLine": 973,
+        "endChar": 5
+      },
+      "revId": "ed4e375a0a5b1938454d122a43c553a0ea1d8892",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
