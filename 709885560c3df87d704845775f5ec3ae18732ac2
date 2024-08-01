@@ -16,6 +16,24 @@
       "message": "Do we want to consider using three ASCII periods instead of an ellipse here after \"available\"?  In my logcat, I\u0027m seeing:\n\n```\n06-11 16:21:14.919 17032 20620 D BlockingBluetoothAdapter: Ble scan not yet availableâ€¦ Sleeping 20 ms 1/5\n```",
       "revId": "709885560c3df87d704845775f5ec3ae18732ac2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56d3ee1_f0cc7f83",
+        "filename": "framework/tests/util/src/BlockingBluetoothAdapter.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-01T17:58:08Z",
+      "side": 1,
+      "message": "Oh, Sorry for the inconvenience.\n\nDone with aosp/3205350",
+      "parentUuid": "fa595bc7_807f6b94",
+      "revId": "709885560c3df87d704845775f5ec3ae18732ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
