@@ -46,6 +46,30 @@
       },
       "revId": "800ff908a8dc50e728a04e1c6c9c3211412453d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "444ab769_d3a73a85",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-01T13:45:24Z",
+      "side": 1,
+      "message": "So what we need is a BTM_SecIsLeSecurityPending ?  It feels like this could still get confused.",
+      "parentUuid": "660efde1_e0baa441",
+      "range": {
+        "startLine": 1076,
+        "startChar": 0,
+        "endLine": 1101,
+        "endChar": 3
+      },
+      "revId": "800ff908a8dc50e728a04e1c6c9c3211412453d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
