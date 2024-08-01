@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "273161f6_ef0cdfc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-01T23:54:30Z",
+      "side": 1,
+      "message": "@asapperstein@google.com this is only changing permission annotations, LGTM but will let you API +2.",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
