@@ -37,6 +37,8 @@ import pandora.RfcommProto
 import pandora.RfcommProto.ServerId
 import pandora.RfcommProto.StartServerRequest
 
+import android.util.Log
+
 @RunWith(AndroidJUnit4::class)
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class RfcommTest {
@@ -65,7 +67,11 @@ class RfcommTest {
     fun setUp() {
         mBumbleDevice = mBumble.remoteDevice
         host = Host(mContext)
+        if (mAdapter.bondedDevices.contains(mBumbleDevice)) {
+            host.removeBondAndVerify(mBumbleDevice)
+        }
         host.createBondAndVerify(mBumbleDevice)
+        Log.d(TAG, "setup done")
     }
 
     @After
@@ -74,6 +80,7 @@ class RfcommTest {
             host.removeBondAndVerify(mBumbleDevice)
         }
         host.close()
+        Log.d(TAG, "teardown done")
     }
 
     @Test
@@ -185,6 +192,7 @@ class RfcommTest {
     }
 
     private fun acceptSocket(server: ServerId): RfcommProto.RfcommConnection {
+        Log.d(TAG, "acceptSocket")
         val connectionResponse =
             mBumble
                 .rfcommBlocking()
@@ -192,6 +200,7 @@ class RfcommTest {
                 .acceptConnection(
                     RfcommProto.AcceptConnectionRequest.newBuilder().setServer(server).build()
                 )
+        Log.d(TAG, "acceptSocket Done")
         Truth.assertThat(connectionResponse.connection.id).isEqualTo(mConnectionCounter)
 
         mConnectionCounter += 1
@@ -203,18 +212,22 @@ class RfcommTest {
         uuid: String = TEST_UUID,
         block: (ServerId) -> Unit
     ) {
+        Log.d(TAG, "startServer")
         val request = StartServerRequest.newBuilder().setName(name).setUuid(uuid).build()
         val response = mBumble.rfcommBlocking().startServer(request)
+        Log.d(TAG, "server started")
 
         try {
             block(response.server)
         } finally {
+            Log.d(TAG, "stop server")
             mBumble
                 .rfcommBlocking()
                 .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
                 .stopServer(
                     RfcommProto.StopServerRequest.newBuilder().setServer(response.server).build()
                 )
+            Log.d(TAG, "server stopped")
         }
     }
 
