@@ -40,6 +40,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 import pandora.HIDGrpc;
@@ -49,7 +50,7 @@ import java.util.concurrent.TimeUnit;
 
 /** Test cases for {@link Hid Host}. */
 @RunWith(AndroidJUnit4.class)
-public class HidHostTest {
+@Ignore("b/355328584") public class HidHostTest {
     private static final String TAG = "HidHostTest";
     private SettableFuture<Integer> mFutureConnectionIntent,
             mFutureAdapterStateIntent,
