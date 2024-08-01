@@ -65,30 +65,36 @@ class RfcommTest {
     fun setUp() {
         mBumbleDevice = mBumble.remoteDevice
         host = Host(mContext)
-        host.createBondAndVerify(mBumbleDevice)
+        if (mAdapter.bondedDevices.contains(mBumbleDevice)) {
+            host.removeBondAndVerify(mBumbleDevice)
+        }
     }
 
     @After
     fun tearDown() {
-        if (mAdapter.bondedDevices.contains(mBumbleDevice)) {
-            host.removeBondAndVerify(mBumbleDevice)
-        }
         host.close()
     }
 
     @Test
     fun clientConnectToOpenServerSocketBondedInsecure() {
-        startServer { serverId -> createConnectAcceptSocket(isSecure = false, serverId) }
+        startServer { serverId ->
+            host.createBondAndVerify(mBumbleDevice)
+            createConnectAcceptSocket(isSecure = false, serverId)
+        }
     }
 
     @Test
     fun clientConnectToOpenServerSocketBondedSecure() {
-        startServer { serverId -> createConnectAcceptSocket(isSecure = true, serverId) }
+        startServer { serverId ->
+            host.createBondAndVerify(mBumbleDevice)
+            createConnectAcceptSocket(isSecure = true, serverId)
+        }
     }
 
     @Test
     fun clientSendDataOverInsecureSocket() {
         startServer { serverId ->
+            host.createBondAndVerify(mBumbleDevice)
             val (insecureSocket, connection) = createConnectAcceptSocket(isSecure = false, serverId)
             val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
             val socketOs = insecureSocket.outputStream
@@ -106,6 +112,7 @@ class RfcommTest {
     @Test
     fun clientSendDataOverSecureSocket() {
         startServer { serverId ->
+            host.createBondAndVerify(mBumbleDevice)
             val (secureSocket, connection) = createConnectAcceptSocket(isSecure = true, serverId)
             val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
             val socketOs = secureSocket.outputStream
@@ -123,6 +130,7 @@ class RfcommTest {
     @Test
     fun clientReceiveDataOverInsecureSocket() {
         startServer { serverId ->
+            host.createBondAndVerify(mBumbleDevice)
             val (insecureSocket, connection) = createConnectAcceptSocket(isSecure = false, serverId)
             val buffer = ByteArray(64)
             val socketIs = insecureSocket.inputStream
@@ -141,6 +149,7 @@ class RfcommTest {
     @Test
     fun clientReceiveDataOverSecureSocket() {
         startServer { serverId ->
+            host.createBondAndVerify(mBumbleDevice)
             val (secureSocket, connection) = createConnectAcceptSocket(isSecure = true, serverId)
             val buffer = ByteArray(64)
             val socketIs = secureSocket.inputStream
@@ -215,6 +224,9 @@ class RfcommTest {
                 .stopServer(
                     RfcommProto.StopServerRequest.newBuilder().setServer(response.server).build()
                 )
+            if (mAdapter.bondedDevices.contains(mBumbleDevice)) {
+                host.removeBondAndVerify(mBumbleDevice)
+            }
         }
     }
 
