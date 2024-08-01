@@ -80,6 +80,7 @@ cc_test {
 cc_test {
     name: "net_test_device_iot_config",
     test_suites: ["general-tests"],
+    host_supported: true,
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
@@ -98,7 +99,6 @@ cc_test {
     shared_libs: [
         "libaconfig_storage_read_api_cc",
         "libbase",
-        "libdl",
         "liblog",
     ],
     static_libs: [
@@ -113,6 +113,7 @@ cc_test {
         "libchrome",
         "libflagtest",
         "libgmock",
+        "libosi",
         "server_configurable_flags",
     ],
     header_libs: ["libbluetooth_headers"],
