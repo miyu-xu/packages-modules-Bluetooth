@@ -99,7 +99,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.BiFunction;
-import java.util.function.Consumer;
 
 /**
  * Represents the local device Bluetooth adapter. The {@link BluetoothAdapter} lets you perform
@@ -891,6 +890,8 @@ public final class BluetoothAdapter {
             mBluetoothConnectionCallbackExecutorMap = new HashMap<>();
     private final Map<PreferredAudioProfilesChangedCallback, Executor>
             mAudioProfilesChangedCallbackExecutorMap = new HashMap<>();
+    private final Map<BluetoothQualityReportReadyCallback, Executor>
+            mBluetoothQualityReportReadyCallbackExecutorMap = new HashMap<>();
 
     private static final class ProfileConnection {
         int mProfile;
@@ -1105,29 +1106,6 @@ public final class BluetoothAdapter {
         } finally {
             mServiceLock.writeLock().unlock();
         }
-
-        Consumer<IBluetooth> registerQualityReportCallbackConsumer =
-                (IBluetooth service) -> {
-                    try {
-                        service.registerBluetoothQualityReportReadyCallback(
-                                mBluetoothQualityReportReadyCallback, mAttributionSource);
-                    } catch (RemoteException e) {
-                        Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                    }
-                };
-        Consumer<IBluetooth> unregisterQualityReportCallbackConsumer =
-                (IBluetooth service) -> {
-                    try {
-                        service.unregisterBluetoothQualityReportReadyCallback(
-                                mBluetoothQualityReportReadyCallback, mAttributionSource);
-                    } catch (RemoteException e) {
-                        Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                    }
-                };
-        mQualityCallbackWrapper =
-                new CallbackWrapper(
-                        registerQualityReportCallbackConsumer,
-                        unregisterQualityReportCallbackConsumer);
     }
 
     /**
@@ -3777,7 +3755,21 @@ public final class BluetoothAdapter {
                                 }
                             }
                         }
-                        mQualityCallbackWrapper.registerToNewService(mService);
+                        synchronized (mBluetoothQualityReportReadyCallbackExecutorMap) {
+                            if (!mBluetoothQualityReportReadyCallbackExecutorMap.isEmpty()) {
+                                try {
+                                    mService.registerBluetoothQualityReportReadyCallback(
+                                            mBluetoothQualityReportReadyCallback,
+                                            mAttributionSource);
+                                } catch (RemoteException e) {
+                                    Log.e(
+                                            TAG,
+                                            "onBluetoothServiceUp: Failed to register bluetooth"
+                                                    + "quality report callback",
+                                            e);
+                                }
+                            }
+                        }
                     } finally {
                         mServiceLock.readLock().unlock();
                     }
@@ -5263,20 +5255,27 @@ public final class BluetoothAdapter {
                 int status);
     }
 
-    private final CallbackWrapper<BluetoothQualityReportReadyCallback, IBluetooth>
-            mQualityCallbackWrapper;
-
+    @SuppressLint("AndroidFrameworkBluetoothPermission")
     private final IBluetoothQualityReportReadyCallback mBluetoothQualityReportReadyCallback =
             new IBluetoothQualityReportReadyCallback.Stub() {
                 @Override
                 public void onBluetoothQualityReportReady(
                         BluetoothDevice device,
-                        BluetoothQualityReport report,
+                        BluetoothQualityReport bluetoothQualityReport,
                         int status) {
-                    mQualityCallbackWrapper.forEach(
-                            (cb) -> cb.onBluetoothQualityReportReady(device, report, status));
+                    for (Map.Entry<BluetoothQualityReportReadyCallback, Executor>
+                            callbackExecutorEntry :
+                                    mBluetoothQualityReportReadyCallbackExecutorMap.entrySet()) {
+                        BluetoothQualityReportReadyCallback callback =
+                                callbackExecutorEntry.getKey();
+                        Executor executor = callbackExecutorEntry.getValue();
+                        executor.execute(
+                                () ->
+                                        callback.onBluetoothQualityReportReady(
+                                                device, bluetoothQualityReport, status));
                     }
-                };
+                }
+            };
 
     /** @hide */
     @Retention(RetentionPolicy.SOURCE)
@@ -5313,13 +5312,38 @@ public final class BluetoothAdapter {
             @NonNull @CallbackExecutor Executor executor,
             @NonNull BluetoothQualityReportReadyCallback callback) {
         if (DBG) Log.d(TAG, "registerBluetoothQualityReportReadyCallback()");
+        requireNonNull(executor, "executor cannot be null");
+        requireNonNull(callback, "callback cannot be null");
 
-        mServiceLock.readLock().lock();
-        try {
-            mQualityCallbackWrapper.registerCallback(mService, callback, executor);
-        } finally {
-            mServiceLock.readLock().unlock();
+        synchronized (mBluetoothQualityReportReadyCallbackExecutorMap) {
+            // If the callback map is empty, we register the service-to-app callback
+            if (mBluetoothQualityReportReadyCallbackExecutorMap.isEmpty()) {
+                int serviceCallStatus = BluetoothStatusCodes.ERROR_UNKNOWN;
+                mServiceLock.readLock().lock();
+                try {
+                    if (mService != null) {
+                        serviceCallStatus =
+                                mService.registerBluetoothQualityReportReadyCallback(
+                                        mBluetoothQualityReportReadyCallback, mAttributionSource);
+                    }
+                } catch (RemoteException e) {
+                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                } finally {
+                    mServiceLock.readLock().unlock();
+                }
+                if (serviceCallStatus != BluetoothStatusCodes.SUCCESS) {
+                    return serviceCallStatus;
+                }
+            }
+
+            // Adds the passed in callback to our local mapping
+            if (mBluetoothQualityReportReadyCallbackExecutorMap.containsKey(callback)) {
+                throw new IllegalArgumentException("This callback has already been registered");
+            } else {
+                mBluetoothQualityReportReadyCallbackExecutorMap.put(callback, executor);
+            }
         }
+
         return BluetoothStatusCodes.SUCCESS;
     }
 
@@ -5356,15 +5380,32 @@ public final class BluetoothAdapter {
     public int unregisterBluetoothQualityReportReadyCallback(
             @NonNull BluetoothQualityReportReadyCallback callback) {
         if (DBG) Log.d(TAG, "unregisterBluetoothQualityReportReadyCallback()");
+        requireNonNull(callback, "callback cannot be null");
 
+        synchronized (mBluetoothQualityReportReadyCallbackExecutorMap) {
+            if (mBluetoothQualityReportReadyCallbackExecutorMap.remove(callback) == null) {
+                throw new IllegalArgumentException("This callback has not been registered");
+            }
+        }
+
+        if (!mBluetoothQualityReportReadyCallbackExecutorMap.isEmpty()) {
+            return BluetoothStatusCodes.SUCCESS;
+        }
+
+        // If the callback map is empty, we unregister the service-to-app callback
         mServiceLock.readLock().lock();
         try {
-            mQualityCallbackWrapper.unregisterCallback(mService, callback);
+            if (mService != null) {
+                return mService.unregisterBluetoothQualityReportReadyCallback(
+                        mBluetoothQualityReportReadyCallback, mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
         } finally {
             mServiceLock.readLock().unlock();
         }
 
-        return BluetoothStatusCodes.SUCCESS;
+        return BluetoothStatusCodes.ERROR_UNKNOWN;
     }
 
     /**
