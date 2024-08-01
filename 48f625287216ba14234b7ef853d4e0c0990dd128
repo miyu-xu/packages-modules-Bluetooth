@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b92b91_3fee3819",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T08:05:32Z",
+      "side": 1,
+      "message": "ups, forgot about that. Thanks",
+      "parentUuid": "6295a3f5_09e51a79",
+      "range": {
+        "startLine": 22,
+        "startChar": 10,
+        "endLine": 22,
+        "endChar": 13
+      },
+      "revId": "48f625287216ba14234b7ef853d4e0c0990dd128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "866d63c6_c7ca8728",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-31T19:33:48Z",
       "side": 1,
       "message": "Not having this flag as a bugfix will require to have a validated go/android-fr in order to be rollout",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "48f625287216ba14234b7ef853d4e0c0990dd128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16205522_355df914",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T08:05:32Z",
+      "side": 1,
+      "message": "yes, that was the plan, but forgot about that. thanks.",
+      "parentUuid": "866d63c6_c7ca8728",
       "range": {
         "startLine": 18,
         "startChar": 3,
