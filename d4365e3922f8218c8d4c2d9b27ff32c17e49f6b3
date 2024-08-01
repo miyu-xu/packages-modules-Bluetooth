@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c119e6e5_c9e2a692",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T08:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca42b49f_16615cac",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 40
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4adbdd9_a79f2c22",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-31T23:40:10Z",
       "side": 1,
       "message": "but here you write \" address\" prior to logging it (with an extra space in front of address",
+      "range": {
+        "startLine": 683,
+        "startChar": 0,
+        "endLine": 683,
+        "endChar": 49
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67a18958_90eba399",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T08:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4adbdd9_a79f2c22",
       "range": {
         "startLine": 683,
         "startChar": 0,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f181a311_d06cbb9b",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T08:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f01b330f_97b77d2e",
+      "range": {
+        "startLine": 703,
+        "startChar": 16,
+        "endLine": 703,
+        "endChar": 17
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0349a7e_08b653b5",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-07-31T23:40:10Z",
       "side": 1,
       "message": "remove space",
+      "range": {
+        "startLine": 977,
+        "startChar": 18,
+        "endLine": 977,
+        "endChar": 19
+      },
+      "revId": "d4365e3922f8218c8d4c2d9b27ff32c17e49f6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce69e87b_0938eafa",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-01T08:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0349a7e_08b653b5",
       "range": {
         "startLine": 977,
         "startChar": 18,
