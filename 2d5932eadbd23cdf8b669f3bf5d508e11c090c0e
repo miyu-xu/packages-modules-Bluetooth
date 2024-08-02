@@ -16,6 +16,24 @@
       "message": "Do you think this is also fixing b/307981748 ? if so, you can add `Fix: 307981748` in the commit mesage too !",
       "revId": "2d5932eadbd23cdf8b669f3bf5d508e11c090c0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb40df00_97b64f34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-02T09:12:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1da83cc4_0381f736",
+      "revId": "2d5932eadbd23cdf8b669f3bf5d508e11c090c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
