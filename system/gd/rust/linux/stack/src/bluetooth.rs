@@ -417,13 +417,28 @@ impl BluetoothDeviceContext {
             match &prop {
                 BluetoothProperty::BdAddr(bdaddr) => {
                     self.info.address = *bdaddr;
-                    self.properties.insert(prop.get_type(), prop.clone());
+                    self.properties.insert(BtPropertyType::BdAddr, prop.clone());
                 }
                 BluetoothProperty::BdName(bdname) => {
                     if !bdname.is_empty() {
                         self.info.name = bdname.clone();
-                        self.properties.insert(prop.get_type(), prop.clone());
+                        self.properties.insert(BtPropertyType::BdName, prop.clone());
                     }
+                }
+                BluetoothProperty::Uuids(new_uuids) => {
+                    // Merge the new and the old (if exist) UUIDs.
+                    self.properties
+                        .entry(BtPropertyType::Uuids)
+                        .and_modify(|old_prop| {
+                            if let BluetoothProperty::Uuids(old_uuids) = old_prop {
+                                for uuid in new_uuids {
+                                    if !old_uuids.contains(uuid) {
+                                        old_uuids.push(*uuid);
+                                    }
+                                }
+                            }
+                        })
+                        .or_insert(prop.clone());
                 }
                 _ => {
                     self.properties.insert(prop.get_type(), prop.clone());
