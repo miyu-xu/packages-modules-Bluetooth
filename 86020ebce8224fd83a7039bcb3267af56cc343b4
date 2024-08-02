@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90a23663_3967e113",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-02T08:13:21Z",
+      "side": 1,
+      "message": "From our discussion in comment #3143m, this will need to be remove",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 97
+      },
+      "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
