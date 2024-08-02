@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f99c68_5b89f1d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-02T21:26:26Z",
+      "side": 1,
+      "message": "Verified this fix, the original disconnection issue resolved.",
+      "revId": "30b7f1396715f0eb9b03a1b7736fdf11f211d534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
