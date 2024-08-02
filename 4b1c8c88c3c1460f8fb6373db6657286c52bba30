@@ -209,6 +209,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58be2d0d_4003e6a0",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-02T13:40:01Z",
+      "side": 1,
+      "message": "GetPresetInfo() returns optional. Are you sure that preset_info.has_value()?",
+      "range": {
+        "startLine": 525,
+        "startChar": 13,
+        "endLine": 525,
+        "endChar": 24
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d2732ad_96b01383",
         "filename": "system/bta/has/has_client_test.cc",
         "patchSetId": 8
