@@ -198,6 +198,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6687d86_bd6da038",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-02T07:21:26Z",
+      "side": 1,
+      "message": "Looks like this is out of scope of this CL, I\u0027ll remove it",
+      "parentUuid": "43445234_e93cae04",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad971eb3_2e7ecb92",
         "filename": "android/pandora/server/src/Hap.kt",
         "patchSetId": 7
