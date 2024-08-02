@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3287820_c1242905",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-02T17:03:02Z",
+      "side": 1,
+      "message": "b/352455104 - DCK tests are carried with this change and all are passing.",
+      "revId": "2d4a78cbfeef189b62873c78b9a27081c84608df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
