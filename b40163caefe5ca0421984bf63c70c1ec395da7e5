@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf1a6063_d63e04a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-02T17:56:23Z",
+      "side": 1,
+      "message": "Why do we have to reset the remote device?",
+      "fixSuggestions": [
+        {
+          "fixId": "4f0cea3a_3635fcf4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+              "range": {
+                "startLine": 215,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b40163caefe5ca0421984bf63c70c1ec395da7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0970a1_d9a81a12",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-02T17:56:23Z",
+      "side": 1,
+      "message": "We just need to discover the device over BR/EDR",
+      "revId": "b40163caefe5ca0421984bf63c70c1ec395da7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
