@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "741e1d9e_db39eaa9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 3183,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2024-08-02T18:42:05Z",
+      "side": 1,
+      "message": "Do we also want to cleanup all the following profile modules?",
+      "revId": "beabe251cdf67b91bb7fcff645b59b1278919219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

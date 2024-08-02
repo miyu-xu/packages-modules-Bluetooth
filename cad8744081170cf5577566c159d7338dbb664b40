@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2776af11_1ada7410",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2024-08-02T18:42:05Z",
+      "side": 1,
+      "message": "I think I was actually thinking about using the state to replace the wait here.\n```\n            tokio::time::sleep(STACK_CLEANUP_PROFILES_TIMEOUT_MS).await;\n```\n\nSuch that we can query it in the Cleanup handler.\nPlease let me know if this is actually infeasible.",
+      "parentUuid": "d2f516f4_c5cfda81",
+      "range": {
+        "startLine": 464,
+        "startChar": 4,
+        "endLine": 464,
+        "endChar": 15
+      },
+      "revId": "cad8744081170cf5577566c159d7338dbb664b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2176b12_01a7a1fc",
         "filename": "system/gd/rust/linux/stack/src/lib.rs",
         "patchSetId": 2
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "I name it CleanupProfiles on purpose since I think there might be other profiles that needs to be cleanup when shutdown the daemon. But so far, I can only reproduce the Media profiles case so only clean up media in this function.",
       "parentUuid": "f2176b12_01a7a1fc",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "cad8744081170cf5577566c159d7338dbb664b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "927be394_637079eb",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2024-08-02T18:42:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ef9f436b_c4e4cf83",
       "range": {
         "startLine": 77,
         "startChar": 4,
