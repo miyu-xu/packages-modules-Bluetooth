@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c9078a_78db45d1",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-02T01:54:01Z",
+      "side": 1,
+      "message": "I think `cargo-bloat` needs to be added here for those who run this script directly.\n\n`grpcio-compiler` is also missing and I\u0027ve suggest this in b/347029420, @sarveshkalwit@google.com FYI",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 23
+      },
+      "revId": "8107838aac35587b36c694d4caf52d8d639c616d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
