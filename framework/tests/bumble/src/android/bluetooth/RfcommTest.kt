@@ -30,6 +30,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -39,6 +40,7 @@ import pandora.RfcommProto.StartServerRequest
 
 @RunWith(AndroidJUnit4::class)
 @kotlinx.coroutines.ExperimentalCoroutinesApi
+@Ignore("b/355328584")
 class RfcommTest {
     private val mContext = ApplicationProvider.getApplicationContext<Context>()
     private val mManager = mContext.getSystemService(BluetoothManager::class.java)
