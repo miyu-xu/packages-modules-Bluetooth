@@ -16,6 +16,24 @@
       "message": "I think we should dismantle tBTA_HH_TO_UHID_EVT and send tBTA_HH_UHID_INBOUND_EVT_TYPE and its data (const void *) as separate parameters in to_uhid_thread().\nThis would ensure that we are not allocating 4k for every input report.",
       "revId": "53cef13eb8c3f1592e2e8157f0d467f31bb5dfc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5021172b_3efba521",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-02T06:19:15Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t get how doing that would save us from allocating 4k of memory.\nCould you elaborate further?",
+      "parentUuid": "951c0c35_dfc7786c",
+      "revId": "53cef13eb8c3f1592e2e8157f0d467f31bb5dfc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
