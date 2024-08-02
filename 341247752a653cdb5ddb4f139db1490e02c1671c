@@ -1,0 +1,137 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6114390_61b5ef83",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-02T01:04:49Z",
+      "side": 1,
+      "message": "RequireNonNull ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 35,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a84634c0_9e2c9d13",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-02T01:04:49Z",
+      "side": 1,
+      "message": "Unused ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f09359f3_0a1cb042",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientNativeInterface.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33556485_6c4b799b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-02T01:04:49Z",
+      "side": 1,
+      "message": "very nit: mHapClientCallback",
+      "range": {
+        "startLine": 103,
+        "startChar": 46,
+        "endLine": 103,
+        "endChar": 71
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b954bbf5_f57658a9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-02T01:04:49Z",
+      "side": 1,
+      "message": "Rollback to calling the callback",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 42
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22be622c_43d97306",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-02T01:04:49Z",
+      "side": 1,
+      "message": "parameter value changed from 0x01 to 0x04 ?",
+      "range": {
+        "startLine": 757,
+        "startChar": 26,
+        "endLine": 757,
+        "endChar": 30
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
