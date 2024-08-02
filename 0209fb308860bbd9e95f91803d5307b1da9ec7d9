@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2c7bb3e_e6f42a23",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1484,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T19:45:14Z",
+      "side": 0,
+      "message": "Since this is a setter in framework code, there is no possibility to enforce this permission.\nSince this permission is not enforced, annotating the API with the @RequiresPermission is a lie...\n\nIf you think I should keep the annotation, I can but I have to add a SuppressLint",
+      "parentUuid": "bdc7347c_0e65c566",
+      "revId": "0209fb308860bbd9e95f91803d5307b1da9ec7d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fab3df7a_9edd72cf",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2024-08-02T14:27:51Z",
       "side": 0,
       "message": "same question",
+      "revId": "0209fb308860bbd9e95f91803d5307b1da9ec7d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "479db997_8ad9d097",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T19:45:14Z",
+      "side": 0,
+      "message": "Ack, closing this to keep only one comment open",
+      "parentUuid": "fab3df7a_9edd72cf",
       "revId": "0209fb308860bbd9e95f91803d5307b1da9ec7d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "424a22d2_3e976956",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T19:45:14Z",
+      "side": 1,
+      "message": "\u003e All of the permission additions are reflecting existing behavior that just was incorrectly documented, not changed behavior? If it\u0027s just correctly documenting, this is fine, but changing behavior can cause issues if not properly documented.\n\nThere are both. There are some annotation added on method that were already enforcing permissions, and there are permissions enforced on API that were already annotated with the permission.\n\n\u003e For conditional permissions, please document the conditions.  \n\nDone\n\n\u003e I see a number of permission removals for @SystemApi. I generally don\u0027t recommend doing that (it\u0027s not allowed for public APIs) but am curious why those APIs no longer need permissions?\n\nThe APIs concerned are not enforcing any permission and only code call is in the framework. It is not possible to enforce permission here and even if it was, a simple reflection call would bypass the security of the permission.\nThe permission have to be enforce when the call reach the service and when we are checking for the parameter.\n\n\n----\n\nYour comment point out to me that this CL is a mess, so I have split it in more easily reviewable CLs that are focussing only on 1 change at a time. To clearly see what is documentation update vs behavior change vs no-op refactor to please the lint",
+      "parentUuid": "a6670da8_0ab8e8ad",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4826511e_a12387b0",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 4
@@ -48,6 +66,24 @@
       "writtenOn": "2024-08-02T14:27:51Z",
       "side": 1,
       "message": "you should mention why it\u0027s conditional in the docs",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a560f4_acc7692a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1641,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T19:45:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4826511e_a12387b0",
       "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2024-08-02T14:27:51Z",
       "side": 1,
       "message": "please explain in the docs why it\u0027s conditional, what the conditions are",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b7815c5_b2a82af4",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2410,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T19:45:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c7022a3_fd919c68",
       "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
