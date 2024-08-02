@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2f516f4_c5cfda81",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-02T07:04:31Z",
+      "side": 1,
+      "message": "Added IsInitialized in the DBus API. Please let me know if this is enough.",
+      "parentUuid": "2e81ab8c_5a955c3c",
+      "range": {
+        "startLine": 464,
+        "startChar": 4,
+        "endLine": 464,
+        "endChar": 15
+      },
+      "revId": "cad8744081170cf5577566c159d7338dbb664b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2176b12_01a7a1fc",
         "filename": "system/gd/rust/linux/stack/src/lib.rs",
         "patchSetId": 2
@@ -71,6 +95,30 @@
       "writtenOn": "2024-07-30T19:09:53Z",
       "side": 1,
       "message": "How about call it MediaCleanup or CleanupMedia and rename the Cleanup to AdapterCleanup to be more specific.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "cad8744081170cf5577566c159d7338dbb664b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef9f436b_c4e4cf83",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-02T07:04:31Z",
+      "side": 1,
+      "message": "I name it CleanupProfiles on purpose since I think there might be other profiles that needs to be cleanup when shutdown the daemon. But so far, I can only reproduce the Media profiles case so only clean up media in this function.",
+      "parentUuid": "f2176b12_01a7a1fc",
       "range": {
         "startLine": 77,
         "startChar": 4,
