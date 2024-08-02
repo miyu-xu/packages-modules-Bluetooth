@@ -15,3 +15,13 @@ flag {
     description: "Allow user to control the preset of hearing aid devices"
     bug: "306236481"
 }
+
+flag {
+    name: "preset_notification_sent_as_one_group"
+    namespace: "bluetooth"
+    description: "When receiving a new updated series of preset, it should be sent as a group"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+    bug: "357144118"
+}
