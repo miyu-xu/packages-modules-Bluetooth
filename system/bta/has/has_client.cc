@@ -1154,6 +1154,38 @@ private:
 
   void OnHasPresetReadResponseNotification(HasDevice& device) {
     log::debug("");
+    if (com::android::bluetooth::flags::preset_notification_sent_as_one_group()) {
+      while (device.ctp_notifications_.size() != 0) {
+        auto ntf = device.ctp_notifications_.front();
+        /* Process only read response events */
+        if (ntf.opcode != PresetCtpOpcode::READ_PRESET_RESPONSE) {
+          break;
+        }
+
+        /* Update preset values */
+        if (ntf.preset.has_value()) {
+          device.has_presets.erase(ntf.preset->GetIndex());
+          device.has_presets.insert(ntf.preset.value());
+        }
+
+        /* Journal update */
+        device.has_journal_.Append(HasJournalRecord(ntf));
+        device.ctp_notifications_.pop_front();
+      }
+
+      MarkDeviceValidIfInInitialDiscovery(device);
+      callbacks_->OnPresetInfo(device.addr, PresetInfoReason::ALL_PRESET_INFO,
+                               device.GetAllPresetInfo());
+
+      /* If this was the last validation step then send the currently active
+       * preset as well.
+       */
+      if (device.isGattServiceValid()) {
+        callbacks_->OnActivePresetSelected(device.addr, device.currently_active_preset);
+      }
+
+      return;
+    }
 
     while (device.ctp_notifications_.size() != 0) {
       auto ntf = device.ctp_notifications_.front();
