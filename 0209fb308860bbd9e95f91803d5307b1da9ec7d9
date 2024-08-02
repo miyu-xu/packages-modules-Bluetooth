@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc7347c_0e65c566",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1484,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-08-02T14:27:51Z",
+      "side": 0,
+      "message": "Why removing?",
+      "revId": "0209fb308860bbd9e95f91803d5307b1da9ec7d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab3df7a_9edd72cf",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-08-02T14:27:51Z",
+      "side": 0,
+      "message": "same question",
+      "revId": "0209fb308860bbd9e95f91803d5307b1da9ec7d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

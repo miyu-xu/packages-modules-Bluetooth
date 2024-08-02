@@ -16,6 +16,57 @@
       "message": "@asapperstein@google.com this is only changing permission annotations, LGTM but will let you API +2.",
       "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6670da8_0ab8e8ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-08-02T14:27:51Z",
+      "side": 1,
+      "message": "Generally looks fine, but before I API+2, had a couple of questions/comments.\n\n1. All of the permission additions are reflecting existing behavior that just was incorrectly documented, not changed behavior? If it\u0027s just correctly documenting, this is fine, but changing behavior can cause issues if not properly documented.\n2. For conditional permissions, please document the conditions.\n3. I see a number of permission removals for @SystemApi. I generally don\u0027t recommend doing that (it\u0027s not allowed for public APIs) but am curious why those APIs no longer need permissions?",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4826511e_a12387b0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1641,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-08-02T14:27:51Z",
+      "side": 1,
+      "message": "you should mention why it\u0027s conditional in the docs",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7022a3_fd919c68",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2410,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-08-02T14:27:51Z",
+      "side": 1,
+      "message": "please explain in the docs why it\u0027s conditional, what the conditions are",
+      "revId": "f7a8edde2eb7695db4c45af4ebd74dd7085e9f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
