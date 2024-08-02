@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5dd833_e9e38570",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-02T04:36:01Z",
+      "side": 1,
+      "message": "Hi @apusaka@google.com per b/354783606#comment8 I\u0027d like to revert the `OnDevicePropertiesChanged` for now. We could add it later after we really root caused the issue.\n\nOTOH I think the rest of this CL is quite a clear fix and I\u0027d land it now although it\u0027s not causing any existing issues.\n\nPlease take another look, thanks!",
+      "revId": "533ad8186d60e605463ff855f031ac12f5d25d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
