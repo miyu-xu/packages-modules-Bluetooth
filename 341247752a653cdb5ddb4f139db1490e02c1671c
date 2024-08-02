@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cf6791b_693c9592",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T01:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6114390_61b5ef83",
+      "range": {
+        "startLine": 35,
+        "startChar": 35,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a84634c0_9e2c9d13",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c1c0410_2c4460be",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientNativeInterface.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T01:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a84634c0_9e2c9d13",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 29
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33556485_6c4b799b",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-08-02T01:04:49Z",
       "side": 1,
       "message": "very nit: mHapClientCallback",
+      "range": {
+        "startLine": 103,
+        "startChar": 46,
+        "endLine": 103,
+        "endChar": 71
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7700e1e8_78ea1d4c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T01:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33556485_6c4b799b",
       "range": {
         "startLine": 103,
         "startChar": 46,
@@ -111,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef149b46_d64cfd8f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T01:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b954bbf5_f57658a9",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 42
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22be622c_43d97306",
@@ -124,6 +220,30 @@
       "writtenOn": "2024-08-02T01:04:49Z",
       "side": 1,
       "message": "parameter value changed from 0x01 to 0x04 ?",
+      "range": {
+        "startLine": 757,
+        "startChar": 26,
+        "endLine": 757,
+        "endChar": 30
+      },
+      "revId": "341247752a653cdb5ddb4f139db1490e02c1671c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22cf32d7_efeb8758",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-02T01:15:34Z",
+      "side": 1,
+      "message": "Made on purpose to differenciate the group from the preset.\nIf the value is the same for both, this test doesn\u0027t test anything ^^",
+      "parentUuid": "22be622c_43d97306",
       "range": {
         "startLine": 757,
         "startChar": 26,
