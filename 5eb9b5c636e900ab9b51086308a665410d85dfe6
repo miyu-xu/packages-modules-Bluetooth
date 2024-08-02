@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d55cd7f_edf3370e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-02T17:59:08Z",
+      "side": 1,
+      "message": "Can you also ensure that the address type is RANDOM",
+      "fixSuggestions": [
+        {
+          "fixId": "29195456_06b66680",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+              "range": {
+                "startLine": 167,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mDeviceFirst.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5eb9b5c636e900ab9b51086308a665410d85dfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
