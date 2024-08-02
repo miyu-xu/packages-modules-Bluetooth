@@ -123,6 +123,24 @@
       "parentUuid": "ac0705b7_6c39a029",
       "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d74399_7201b752",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-02T08:12:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f90db1e_059023e0",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
