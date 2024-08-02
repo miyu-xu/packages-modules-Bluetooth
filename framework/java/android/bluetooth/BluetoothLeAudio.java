@@ -723,6 +723,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
 
     /** @hide */
     @Override
+    @SuppressLint("AndroidFrameworkRequiresPermission") // Unexposed re-entrant callback
     public void onServiceConnected(IBinder service) {
         mService = IBluetoothLeAudio.Stub.asInterface(service);
         // re-register the service-to-app callback
