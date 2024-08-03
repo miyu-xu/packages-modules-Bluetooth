@@ -61,9 +61,14 @@ void AVCT_Register() {
   /* initialize AVCTP data structures */
   memset(&avct_cb, 0, sizeof(tAVCT_CB));
 
+  uint16_t sec = BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT;
+  if (!com::android::bluetooth::flags::use_encrypt_req_for_av()) {
+    sec = BTA_SEC_AUTHENTICATE;
+  }
+
   /* register PSM with L2CAP */
   if (!L2CA_RegisterWithSecurity(AVCT_PSM, avct_l2c_appl, true /* enable_snoop */, nullptr,
-                                 kAvrcMtu, 0, BTA_SEC_AUTHENTICATE)) {
+                                 kAvrcMtu, 0, sec)) {
     log::error("Unable to register with L2CAP AVCT profile psm:AVCT_PSM[0x0017]");
   }
 

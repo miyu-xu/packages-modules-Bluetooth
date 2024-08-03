@@ -532,7 +532,13 @@ void avdt_ad_open_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb, uint8_t ro
     p_tbl->state = AVDT_AD_ST_CONN;
 
     /* call l2cap connect req */
-    lcid = L2CA_ConnectReqWithSecurity(AVDT_PSM, p_ccb->peer_addr, BTM_SEC_OUT_AUTHENTICATE);
+    if (com::android::bluetooth::flags::use_encrypt_req_for_av()) {
+      lcid = L2CA_ConnectReqWithSecurity(AVDT_PSM, p_ccb->peer_addr,
+               BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_ENCRYPT);
+    } else {
+      lcid = L2CA_ConnectReqWithSecurity(AVDT_PSM, p_ccb->peer_addr,
+               BTM_SEC_OUT_AUTHENTICATE);
+    }
     if (lcid != 0) {
       /* if connect req ok, store tcid in lcid table  */
       avdtp_cb.ad.lcid_tbl[lcid] = avdt_ad_tc_tbl_to_idx(p_tbl);
