@@ -9,3 +9,8 @@ filegroup {
         "//packages/modules/Bluetooth/android/app/aidl",
     ],
 }
+
+aidl_library {
+    name: "BluetoothDevice_aidl",
+    hdrs: ["android/bluetooth/BluetoothDevice.aidl"],
+}
