@@ -1,0 +1,6 @@
+rust_library {
+    name: "libandroid_bluetooth_aidl_rust",
+    crate_name: "android_bluetooth_aidl",
+    srcs: ["src/lib.rs"],
+    rustlibs: ["libbinder_rs"],
+}

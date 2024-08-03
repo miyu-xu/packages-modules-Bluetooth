@@ -17,4 +17,4 @@
 
 package android.bluetooth;
 
-parcelable BluetoothHapPresetInfo;
+@RustOnlyStableParcelable parcelable BluetoothHapPresetInfo rust_type "android_bluetooth_aidl::BluetoothHapPresetInfo";
