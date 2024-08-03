@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e23f237a_a5297af5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-03T01:12:21Z",
+      "side": 1,
+      "message": "Hey Jakub, Can you have a loot at this ?\nIt looks like you were calling the java one by one on purpose, but I don\u0027t understand why we would want that.\nEspecially it make it non possible to remove preset from the java cache.\n\nI believe that this is not complete yet and we need to delete the entirety of  device.has_presets somewhere but you probably know this code better than me",
+      "revId": "dc39cbc842b4d4718a8516539ba88232fc56090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
