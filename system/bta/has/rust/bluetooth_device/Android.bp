@@ -1,0 +1,6 @@
+rust_library {
+    name: "libbluetooth_device_rust",
+    crate_name: "bluetooth_device",
+    srcs: ["src/bluetooth_device.rs"],
+    rustlibs: [ "libbinder_rs"],
+}

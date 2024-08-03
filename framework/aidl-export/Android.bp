@@ -9,3 +9,27 @@ filegroup {
         "//packages/modules/Bluetooth/android/app/aidl",
     ],
 }
+filegroup {
+    name: "bluetooth_device-aidl-source",
+    srcs: ["android/bluetooth/BluetoothDevice.aidl"],
+    visibility: [
+        "//packages/modules/Bluetooth/android/app/aidl",
+    ],
+}
+aidl_interface {
+    name: "BluetoothDevice.aidl",
+    srcs: [ "android/bluetooth/BluetoothDevice.aidl"],
+    unstable: true,
+    backend: {
+        rust: {
+            additional_rustlibs: [
+                "libbluetooth_device_rust",
+            ],
+            enabled: true,
+        },
+    },
+    visibility: [
+        "//system/tools/aidl/build",
+        "//packages/modules/Bluetooth/android/app/aidl",
+    ],
+}

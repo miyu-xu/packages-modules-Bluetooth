@@ -64,3 +64,28 @@ filegroup {
         "android/bluetooth/le/IScannerCallback.aidl",
     ],
 }
+
+aidl_interface {
+    name: "HapClient.remoteservice",
+    srcs: [
+        // ":bluetooth_device-aidl-source",
+        "android/bluetooth/IBluetoothHapClient.aidl",
+        "android/bluetooth/IBluetoothHapClientCallback.aidl",
+    ],
+    imports: [
+        "BluetoothDevice.aidl",
+    ],
+    unstable: true,
+    backend: {
+        rust: {
+            additional_rustlibs: [
+                "libbluetooth_device_rust",
+            ],
+            enabled: true,
+        },
+    },
+    visibility: [
+        "//system/tools/aidl/build",
+        "//packages/modules/Bluetooth/system/bta/has/rust",
+    ],
+}

@@ -16,4 +16,4 @@
 
 package android.bluetooth;
 
-parcelable BluetoothDevice;
+parcelable BluetoothDevice rust_type "bluetooth_device::BluetoothDevice";
