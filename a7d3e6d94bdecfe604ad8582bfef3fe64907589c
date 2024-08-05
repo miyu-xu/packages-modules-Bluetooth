@@ -16,6 +16,23 @@
       "message": "Hi, PTAL, thanks!",
       "revId": "a7d3e6d94bdecfe604ad8582bfef3fe64907589c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "238c9a4c_07167f61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-05T06:48:42Z",
+      "side": 1,
+      "message": "I can\u0027t +2 but LGTM. @henrichataing@google.com could you please reaview and +2 if that\u0027s good for you too?",
+      "revId": "a7d3e6d94bdecfe604ad8582bfef3fe64907589c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
