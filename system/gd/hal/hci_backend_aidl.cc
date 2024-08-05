@@ -23,6 +23,8 @@
 #include "common/stop_watch.h"
 #include "hal/hci_backend.h"
 
+#define SIGKILL 9
+
 namespace bluetooth::hal {
 
 class AidlHciCallbacks : public ::aidl::android::hardware::bluetooth::BnBluetoothHciCallbacks {
@@ -31,7 +33,10 @@ public:
 
   using AidlStatus = ::aidl::android::hardware::bluetooth::Status;
   ::ndk::ScopedAStatus initializationComplete(AidlStatus status) override {
-    log::assert_that(status == AidlStatus::SUCCESS, "status == AidlStatus::SUCCESS");
+    if (status != AidlStatus::SUCCESS) {
+      log::warn( "status != AidlStatus::SUCCESS");
+      kill(getpid(), SIGKILL);
+    }
     callbacks_->initializationComplete();
     return ::ndk::ScopedAStatus::ok();
   }
@@ -77,8 +82,10 @@ public:
             }));
 
     auto death_link = AIBinder_linkToDeath(hci_->asBinder().get(), death_recipient_.get(), this);
-    log::assert_that(death_link == STATUS_OK,
-                     "Unable to set the death recipient for the Bluetooth HAL");
+    if (death_link != STATUS_OK) {
+      log::warn( "Unable to set the death recipient for the Bluetooth HAL");
+      kill(getpid(), SIGKILL);
+    }
   }
 
   ~AidlHci() {
