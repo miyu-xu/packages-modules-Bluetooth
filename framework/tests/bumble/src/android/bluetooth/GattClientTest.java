@@ -618,7 +618,6 @@ public class GattClientTest {
     @RequiresFlagsEnabled(Flags.FLAG_GATT_CLIENT_DYNAMIC_ALLOCATION)
     public void connectGatt_multipleClients() {
         registerGattService();
-
         List<BluetoothGatt> gatts = new ArrayList<>();
         boolean failed = false;
         final int repeatTimes = 100;
