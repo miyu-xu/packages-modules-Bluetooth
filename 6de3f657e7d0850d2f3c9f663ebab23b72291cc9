@@ -1,0 +1,230 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44fbae96_4d52d4f3",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:31:19Z",
+      "side": 1,
+      "message": "Is this related to the spec update?",
+      "range": {
+        "startLine": 123,
+        "startChar": 73,
+        "endLine": 123,
+        "endChar": 77
+      },
+      "revId": "6de3f657e7d0850d2f3c9f663ebab23b72291cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a73901c8_c74d6bd5",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:31:19Z",
+      "side": 1,
+      "message": "What\u0027s the difference between remove and erase?",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2fad81c0_766a5747",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 209,
+                "startChar": 0,
+                "endLine": 210,
+                "endChar": 0
+              },
+              "replacement": "    trackers_.erase(tracker);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6de3f657e7d0850d2f3c9f663ebab23b72291cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fc06bab_3dd339fa",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:31:19Z",
+      "side": 1,
+      "message": "Do we need both the removal at ras_client.cc:209 and this one?  OnGattDisconnect and OnGattDisconnected seem very similar.",
+      "range": {
+        "startLine": 229,
+        "startChar": 16,
+        "endLine": 229,
+        "endChar": 21
+      },
+      "revId": "6de3f657e7d0850d2f3c9f663ebab23b72291cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbb40431_8222caad",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:31:19Z",
+      "side": 1,
+      "message": "nit: tracker",
+      "fixSuggestions": [
+        {
+          "fixId": "fcb52061_bf7d9663",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_server.cc",
+              "range": {
+                "startLine": 357,
+                "startChar": 0,
+                "endLine": 358,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Can\u0027t find tracker for {}\", p_data-\u003ereq_data.remote_bda);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6de3f657e7d0850d2f3c9f663ebab23b72291cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f52e5d9_445a3dd4",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:31:19Z",
+      "side": 1,
+      "message": "nit: These braces are unnecessary.  Remove?\n```suggestion\n\n    switch (command.opcode_) {\n      case Opcode::GET_RANGING_DATA:\n        OnGetRangingData(\u0026command, tracker);\n        break;\n      case Opcode::ACK_RANGING_DATA:\n        OnAckRangingData(\u0026command, tracker);\n        break;\n      case Opcode::RETRIEVE_LOST_RANGING_DATA_SEGMENTS:\n      case Opcode::ABORT_OPERATION:\n      case Opcode::FILTER:\n        log::warn(\"Unsupported opcode:0x{:02x}, {}\", (uint16_t)command.opcode_,\n                  GetOpcodeText(command.opcode_));\n        SendResponseCode(ResponseCodeValue::OP_CODE_NOT_SUPPORTED, tracker);\n        break;\n      default:\n        log::warn(\"Unknown opcode:0x{:02x}\", (uint16_t)command.opcode_);\n        SendResponseCode(ResponseCodeValue::OP_CODE_NOT_SUPPORTED, tracker);\n    }\n```",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 587,
+        "endChar": 5
+      },
+      "revId": "6de3f657e7d0850d2f3c9f663ebab23b72291cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17f64024_f8cd13f6",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:31:19Z",
+      "side": 1,
+      "message": "nit: extra braces, remove?",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f955ab84_94e75149",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 62,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "    case (uint8_t)Opcode::ABORT_OPERATION:\n"
+            },
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 66,
+                "startChar": 0,
+                "endLine": 67,
+                "endChar": 0
+              },
+              "replacement": "      break;\n"
+            },
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "    case (uint8_t)Opcode::FILTER:\n"
+            },
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "      break;\n    case (uint8_t)Opcode::RETRIEVE_LOST_RANGING_DATA_SEGMENTS:\n"
+            },
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": "      break;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6de3f657e7d0850d2f3c9f663ebab23b72291cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
