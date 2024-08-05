@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3756a47_2e196522",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:48:31Z",
+      "side": 1,
+      "message": "CsSnrAdjustment::NOT_APPLIED\n```suggestion\n                    preferred_peer_antenna, CsSnrAdjustment::NOT_APPLIED,\n                    CsSnrAdjustment::NOT_APPLIED),\n```",
+      "range": {
+        "startLine": 499,
+        "startChar": 44,
+        "endLine": 499,
+        "endChar": 54
+      },
+      "revId": "7d82896bc9afc36ceb185b25935dd8b36c68205e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f7da4e9_58e431c4",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5211,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:48:31Z",
+      "side": 1,
+      "message": "```suggestion\n}\n\nenum CsSnrControl : 8 {\n  ADJUST_18_DB \u003d 0x00,\n  ADJUST_21_DB \u003d 0x01,\n  ADJUST_24_DB \u003d 0x02,\n  ADJUST_27_DB \u003d 0x03,\n  ADJUST_30_DB \u003d 0x04,\n  NOT_APPLIED \u003d 0xFF,\n}\n```",
+      "range": {
+        "startLine": 5211,
+        "startChar": 0,
+        "endLine": 5211,
+        "endChar": 1
+      },
+      "revId": "7d82896bc9afc36ceb185b25935dd8b36c68205e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "894232e9_36e65b18",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5229,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:48:31Z",
+      "side": 1,
+      "message": "```suggestion\n  snr_control_initiator: CsSnrControl,\n  snr_control_reflector: CsSnrControl,\n```",
+      "range": {
+        "startLine": 5228,
+        "startChar": 0,
+        "endLine": 5229,
+        "endChar": 27
+      },
+      "revId": "7d82896bc9afc36ceb185b25935dd8b36c68205e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f497c9b1_5ef497f7",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5270,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T17:48:31Z",
+      "side": 1,
+      "message": "```suggestion\n  snr_control_initiator: CsSnrControl,\n  snr_control_reflector: CsSnrControl,\n```",
+      "range": {
+        "startLine": 5269,
+        "startChar": 0,
+        "endLine": 5270,
+        "endChar": 27
+      },
+      "revId": "7d82896bc9afc36ceb185b25935dd8b36c68205e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
