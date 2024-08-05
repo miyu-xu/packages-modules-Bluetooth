@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a1d972e_161dce87",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-05T09:44:15Z",
+      "side": 1,
+      "message": "You already have a stateReceiver in the HID tests. are they factorizable ? I\u0027ve started host.kt to start factoring \"host\" method such as pairing or remove bond.\n\nIs it possible to do something similar ?\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/Host.kt;l\u003d1?q\u003dHost.kt\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main",
+      "revId": "5eb9b5c636e900ab9b51086308a665410d85dfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d55cd7f_edf3370e",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
         "patchSetId": 3
