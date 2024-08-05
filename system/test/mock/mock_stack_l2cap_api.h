@@ -346,13 +346,15 @@ struct L2CA_SendFixedChnlData {
 };
 extern struct L2CA_SendFixedChnlData L2CA_SendFixedChnlData;
 // Name: L2CA_RemoveFixedChnl
-// Params: uint16_t fixed_cid, const RawAddress& rem_bda
+// Params: uint16_t fixed_cid, const RawAddress& rem_bda, bool flush
 // Returns: bool
 struct L2CA_RemoveFixedChnl {
-  std::function<bool(uint16_t fixed_cid, const RawAddress& rem_bda)> body{
-          [](uint16_t /* fixed_cid */, const RawAddress& /* rem_bda */) { return false; }};
-  bool operator()(uint16_t fixed_cid, const RawAddress& rem_bda) {
-    return body(fixed_cid, rem_bda);
+  std::function<bool(uint16_t fixed_cid, const RawAddress& rem_bda, bool flush)> body{
+          [](uint16_t /* fixed_cid */, const RawAddress& /* rem_bda */, bool /* flush */) {
+            return false;
+          }};
+  bool operator()(uint16_t fixed_cid, const RawAddress& rem_bda, bool flush) {
+    return body(fixed_cid, rem_bda, flush);
   }
 };
 extern struct L2CA_RemoveFixedChnl L2CA_RemoveFixedChnl;

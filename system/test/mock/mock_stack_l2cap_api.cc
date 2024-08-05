@@ -204,9 +204,9 @@ tL2CAP_DW_RESULT L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& re
   inc_func_call_count(__func__);
   return test::mock::stack_l2cap_api::L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_buf);
 }
-bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
+bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda, bool flush) {
   inc_func_call_count(__func__);
-  return test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl(fixed_cid, rem_bda);
+  return test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl(fixed_cid, rem_bda, flush);
 }
 bool L2CA_SetLeGattTimeout(const RawAddress& rem_bda, uint16_t idle_tout) {
   inc_func_call_count(__func__);

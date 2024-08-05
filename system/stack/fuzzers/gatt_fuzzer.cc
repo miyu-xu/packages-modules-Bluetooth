@@ -76,7 +76,8 @@ public:
 
     test::mock::stack_l2cap_api::L2CA_SetIdleTimeoutByBdAddr.body = [](const RawAddress&, uint16_t,
                                                                        uint8_t) { return true; };
-    test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl.body = [](uint16_t lcid, const RawAddress&) {
+    test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl.body = [](uint16_t lcid, const RawAddress&,
+                                                                bool flush) {
       bluetooth::log::assert_that(lcid == L2CAP_ATT_CID, "assert failed: lcid == L2CAP_ATT_CID");
       return true;
     };

@@ -915,12 +915,12 @@ void smp_remove_fixed_channel(tSMP_CB* p_cb) {
   log::verbose("addr:{}", p_cb->pairing_bda);
 
   if (p_cb->smp_over_br) {
-    if (!L2CA_RemoveFixedChnl(L2CAP_SMP_BR_CID, p_cb->pairing_bda)) {
+    if (!L2CA_RemoveFixedChnl(L2CAP_SMP_BR_CID, p_cb->pairing_bda, true)) {
       log::error("Unable to remove L2CAP fixed channel peer:{} cid:{}", p_cb->pairing_bda,
                  L2CAP_SMP_BR_CID);
     }
   } else {
-    if (!L2CA_RemoveFixedChnl(L2CAP_SMP_CID, p_cb->pairing_bda)) {
+    if (!L2CA_RemoveFixedChnl(L2CAP_SMP_CID, p_cb->pairing_bda, true)) {
       log::error("Unable to remove L2CAP fixed channel peer:{} cid:{}", p_cb->pairing_bda,
                  L2CAP_SMP_CID);
     }

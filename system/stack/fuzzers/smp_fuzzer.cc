@@ -80,9 +80,8 @@ public:
 
     test::mock::stack_l2cap_api::L2CA_SetIdleTimeoutByBdAddr.body = [](const RawAddress&, uint16_t,
                                                                        uint8_t) { return true; };
-    test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl.body = [](uint16_t, const RawAddress&) {
-      return true;
-    };
+    test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl.body = [](uint16_t, const RawAddress&,
+                                                                bool flush) { return true; };
     test::mock::stack_l2cap_api::L2CA_ConnectFixedChnl.body = [](uint16_t, const RawAddress&) {
       return true;
     };

@@ -364,12 +364,12 @@ uint16_t L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& rem_bda, B
  *
  *  Parameters:     Fixed CID
  *                  BD Address of remote
- *                  Idle timeout to use (or 0xFFFF if don't care)
+ *                  Flush the pending packets
  *
  *  Return value:   true if channel removed
  *
  ******************************************************************************/
-bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda);
+bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda, bool flush);
 
 uint16_t L2CA_GetLeHandle(const RawAddress& rem_bda);
 hci_role_t L2CA_GetBleConnRole(const RawAddress& bd_addr);

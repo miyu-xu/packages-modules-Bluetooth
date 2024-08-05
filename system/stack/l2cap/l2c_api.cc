@@ -29,6 +29,7 @@
 #include <base/location.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 #include <string>
@@ -1200,6 +1201,16 @@ bool L2CA_ConnectFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
       return false;
     }
 
+    if (l2cu_fixed_channel_remove_pending(p_lcb, fixed_cid)) {
+      log::info("Connect requested for fixed channel pending removal CID: 0x{:04x} BDA: {}",
+                fixed_cid, rem_bda);
+      for (auto it = p_lcb->pending_remove.begin(); it != p_lcb->pending_remove.end(); it++) {
+        if (*it == fixed_cid) {
+          p_lcb->pending_remove.erase(it);
+        }
+      }
+    }
+
     // Get a CCB and link the lcb to it
     if (!l2cu_initialize_fixed_ccb(p_lcb, fixed_cid)) {
       log::warn("Unable to allocate fixed channel resource fixed_cid:0x{:04x}", fixed_cid);
@@ -1307,28 +1318,32 @@ tL2CAP_DW_RESULT L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& re
   p_buf->event = 0;
   p_buf->layer_specific = L2CAP_FLUSHABLE_CH_BASED;
 
-  if (!p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]) {
+  tL2C_CCB* p_ccb = p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL];
+
+  if (p_ccb == nullptr) {
     if (!l2cu_initialize_fixed_ccb(p_lcb, fixed_cid)) {
       log::warn("No channel control block found for CID: 0x{:4x}", fixed_cid);
       osi_free(p_buf);
       return tL2CAP_DW_RESULT::FAILED;
     }
+    p_ccb = p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL];
   }
 
-  if (p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]->cong_sent) {
-    log::warn(
-            "Unable to send data due to congestion CID: 0x{:04x} "
-            "xmit_hold_q.count: {} buff_quota: {}",
-            fixed_cid,
-            fixed_queue_length(
-                    p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]->xmit_hold_q),
-            p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]->buff_quota);
+  if (p_ccb->cong_sent) {
+    log::warn("Link congestion CID: 0x{:04x} xmit_hold_q.count: {} buff_quota: {}", fixed_cid,
+              fixed_queue_length(p_ccb->xmit_hold_q), p_ccb->buff_quota);
+    osi_free(p_buf);
+    return tL2CAP_DW_RESULT::FAILED;
+  }
+
+  if (l2cu_fixed_channel_remove_pending(p_lcb, fixed_cid)) {
+    log::warn("Device: {}, CID: 0x{:4x} awaiting removal", rem_bda, fixed_cid);
     osi_free(p_buf);
     return tL2CAP_DW_RESULT::FAILED;
   }
 
   log::debug("Enqueued data for CID: 0x{:04x} len:{}", fixed_cid, p_buf->len);
-  l2c_enqueue_peer_data(p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL], p_buf);
+  l2c_enqueue_peer_data(p_ccb, p_buf);
 
   l2c_link_check_send_pkts(p_lcb, 0, NULL);
 
@@ -1338,7 +1353,7 @@ tL2CAP_DW_RESULT L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& re
     l2cu_no_dynamic_ccbs(p_lcb);
   }
 
-  if (p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]->cong_sent) {
+  if (p_ccb->cong_sent) {
     log::debug("Link congested for CID: 0x{:04x}", fixed_cid);
     return tL2CAP_DW_RESULT::CONGESTED;
   }
@@ -1354,13 +1369,12 @@ tL2CAP_DW_RESULT L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& re
  *
  *  Parameters:     Fixed CID
  *                  BD Address of remote
- *                  Idle timeout to use (or 0xFFFF if don't care)
+ *                  Flush the pending packets
  *
  *  Return value:   true if channel removed
  *
  ******************************************************************************/
-bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
-  tL2C_CCB* p_ccb;
+bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda, bool flush) {
   tBT_TRANSPORT transport = BT_TRANSPORT_BR_EDR;
 
   /* Check CID is valid and registered */
@@ -1382,11 +1396,20 @@ bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
     return false;
   }
 
-  log::verbose("BDA: {} CID: 0x{:04x}", rem_bda, fixed_cid);
-
   /* Release the CCB, starting an inactivity timeout on the LCB if no other CCBs
    * exist */
-  p_ccb = p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL];
+  tL2C_CCB* p_ccb = p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL];
+
+  if (com::android::bluetooth::flags::transmit_smp_packets_before_release() && !flush &&
+      p_ccb->in_use && !fixed_queue_is_empty(p_ccb->xmit_hold_q)) {
+    log::warn("Waiting for transmit queue to clear, BDA: {} CID: 0x{:04x}", rem_bda, fixed_cid);
+    if (!l2cu_fixed_channel_remove_pending(p_lcb, fixed_cid)) {
+      p_lcb->pending_remove.push_back(fixed_cid);
+    }
+    return true;
+  }
+
+  log::verbose("BDA: {} CID: 0x{:04x}", rem_bda, fixed_cid);
 
   p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL] = NULL;
   p_lcb->SetDisconnectReason(HCI_ERR_CONN_CAUSE_LOCAL_HOST);
@@ -1743,6 +1766,10 @@ void L2CA_Dumpsys(int fd) {
                   ccb->local_cid, ccb->remote_cid, ccb->ecoc ? "true" : "false",
                   ccb->in_use ? "true" : "false");
       ccb = ccb->p_next_ccb;
+    }
+
+    for (auto fixed_cid : lcb.pending_remove) {
+      LOG_DUMPSYS(fd, "  pending removal fixed CID: 0x%04x", fixed_cid);
     }
   }
 }

@@ -247,10 +247,10 @@ static void Fuzz(const uint8_t* data, size_t size) {
   (void)L2CA_DisconnectReq(att_cid);
   (void)L2CA_DisconnectLECocReq(eatt_cid);
 
-  (void)L2CA_RemoveFixedChnl(L2CAP_SMP_BR_CID, kSmpBrAddr);
+  (void)L2CA_RemoveFixedChnl(L2CAP_SMP_BR_CID, kSmpBrAddr, true);
   l2c_link_hci_disc_comp(kSmpBrHndl, HCI_SUCCESS);
 
-  (void)L2CA_RemoveFixedChnl(L2CAP_ATT_CID, kAttAddr);
+  (void)L2CA_RemoveFixedChnl(L2CAP_ATT_CID, kAttAddr, true);
   l2c_link_hci_disc_comp(kAttHndl, HCI_SUCCESS);
 
   l2cu_device_reset();

@@ -300,7 +300,7 @@ bool gatt_disconnect(tGATT_TCB* p_tcb) {
 
   if (p_tcb->att_lcid == L2CAP_ATT_CID) {
     if (ch_state == GATT_CH_OPEN) {
-      if (!L2CA_RemoveFixedChnl(L2CAP_ATT_CID, p_tcb->peer_bda)) {
+      if (!L2CA_RemoveFixedChnl(L2CAP_ATT_CID, p_tcb->peer_bda, true)) {
         log::warn("Unable to remove L2CAP ATT fixed channel peer:{}", p_tcb->peer_bda);
       }
       gatt_set_ch_state(p_tcb, GATT_CH_CLOSING);

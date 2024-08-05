@@ -32,6 +32,7 @@
 
 #include "device/include/device_iot_config.h"
 #include "internal_include/bt_target.h"
+#include "l2c_api.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/acl_api.h"
@@ -1056,6 +1057,41 @@ static void l2c_link_send_to_lower(tL2C_LCB* p_lcb, BT_HDR* p_buf,
   }
   if (p_cbi) {
     l2cu_tx_complete(p_cbi);
+  }
+
+  if (!com::android::bluetooth::flags::transmit_smp_packets_before_release() ||
+      p_lcb->pending_remove.empty()) {
+    return;
+  }
+
+  for (auto it = p_lcb->pending_remove.begin(); it != p_lcb->pending_remove.end(); it++) {
+    uint16_t fixed_cid = *it;
+
+    if (fixed_cid < L2CAP_FIRST_FIXED_CHNL || fixed_cid > L2CAP_LAST_FIXED_CHNL) {
+      log::warn("Unknown channel was marked for removal, CID: 0x{:04x} BDA: {}", fixed_cid,
+                p_lcb->remote_bd_addr);
+      p_lcb->pending_remove.erase(it);
+      continue;
+    }
+
+    auto p_ccb = p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL];
+    if (p_ccb == nullptr || !p_ccb->in_use) {
+      log::warn(
+              "Fixed channel control block not active but was marked for removal, CID: 0x{:04x} "
+              "BDA: {}",
+              fixed_cid, p_lcb->remote_bd_addr);
+      p_lcb->pending_remove.erase(it);
+      continue;
+    }
+
+    if (fixed_queue_is_empty(p_ccb->xmit_hold_q)) {
+      if (L2CA_RemoveFixedChnl(fixed_cid, p_lcb->remote_bd_addr, true)) {
+        log::info("Finally removed CID: 0x{:04x} BDA: {}", fixed_cid, p_lcb->remote_bd_addr);
+      } else {
+        log::error("Failed to remove CID: 0x{:04x} BDA: {}", fixed_cid, p_lcb->remote_bd_addr);
+      }
+      p_lcb->pending_remove.erase(it);
+    }
   }
 }
 
