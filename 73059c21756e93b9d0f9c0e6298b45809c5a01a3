@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3874744_5fd82df6",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-05T16:39:19Z",
+      "side": 1,
+      "message": "I was just conforming to the patterns already existing throughout this test that use `EXPECT_THAT` everywhere.\n\nI could fix it here and leave the `EXPECT_THAT` in all the rest of the tests.",
+      "parentUuid": "d46a216c_f7c30e9b",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fa16bc0_a10ad6a4",
         "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
         "patchSetId": 3
