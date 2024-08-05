@@ -124,7 +124,7 @@ public class BassClientService extends ProfileService {
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
 
     // 30 secs timeout for keeping PSYNC active when searching is stopped
-    @VisibleForTesting static Duration sSyncActiveTimeout = Duration.ofSeconds(30);
+    @VisibleForTesting static Duration sSyncActiveTimeout = Duration.ofMinutes(30);
 
     private static BassClientService sService;
 
@@ -148,6 +148,8 @@ public class BassClientService extends ProfileService {
     private final Map<BluetoothDevice, BluetoothLeBroadcastMetadata> mBroadcastMetadataMap =
             new ConcurrentHashMap<>();
     private final HashSet<BluetoothDevice> mPausedBroadcastSinks = new HashSet<>();
+    private final HashSet<BluetoothDevice> mPlayingBroadcastSinks = new HashSet<>();
+    private final HashSet<Integer> mPausedBroadcastIds = new HashSet<>();
     private final Deque<AddSourceData> mPendingAddSources = new ArrayDeque<>();
     private final Map<Integer, HashSet<BluetoothDevice>> mLocalBroadcastReceivers =
             new ConcurrentHashMap<>();
@@ -959,7 +961,31 @@ public class BassClientService extends ProfileService {
         }
     }
 
-    private void localNotifyReceiveStateChanged(BluetoothDevice sink) {
+    private void localNotifyReceiveStateChanged(
+            BluetoothDevice sink, BluetoothLeBroadcastReceiveState receiveState) {
+        Log.d(TAG, "MICHAL localNotifyReceiveStateChanged");
+
+        boolean isPlaying = false;
+        for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
+            Long syncState = receiveState.getBisSyncState().get(i);
+            /* Synced to BIS */
+            if (syncState != BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
+                    && syncState != BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {
+                Log.d(TAG, "MICHAL localNotifyReceiveStateChanged playing");
+                isPlaying = true;
+                mPlayingBroadcastSinks.add(sink);
+                break;
+            }
+        }
+
+        if (mPlayingBroadcastSinks.contains(sink) && !isPlaying) {
+            Log.d(TAG, "MICHAL localNotifyReceiveStateChanged played but stopped");
+            mPlayingBroadcastSinks.remove(sink);
+            mPausedBroadcastIds.add(receiveState.getBroadcastId());
+            cacheSuspendingSources(receiveState.getBroadcastId());
+            addSelectSourceRequest(getCachedBroadcast(receiveState.getBroadcastId()), true);
+        }
+
         LeAudioService leAudioService = mServiceFactory.getLeAudioService();
         if (leAudioService == null) {
             return;
@@ -1853,6 +1879,9 @@ public class BassClientService extends ProfileService {
                 informConnectedDeviceAboutScanOffloadStop();
                 sEventLogger.logd(TAG, "stopSearchingForSources");
                 mCallbacks.notifySearchStopped(BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
+                for (int pausedBroadcastId : mPausedBroadcastIds) {
+                    addSelectSourceRequest(getCachedBroadcast(pausedBroadcastId), true);
+                }
             }
         }
     }
@@ -1975,6 +2004,7 @@ public class BassClientService extends ProfileService {
                                     pendingSourcesToAdd.mSourceMetadata,
                                     BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES);
                             iterator.remove();
+                            // TODO: Remove if paused
                         }
                     }
                 }
@@ -2073,9 +2103,9 @@ public class BassClientService extends ProfileService {
                 log("No device found.");
                 return;
             }
+            int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
             PeriodicAdvertisementResult result =
-                    getPeriodicAdvertisementResult(
-                            srcDevice, getBroadcastIdForSyncHandle(syncHandle));
+                    getPeriodicAdvertisementResult(srcDevice, broadcastId);
             if (result == null) {
                 log("No PA record found");
                 return;
@@ -2092,6 +2122,10 @@ public class BassClientService extends ProfileService {
                                 baseData, srcDevice, syncHandle, encrypted);
                 log("Notify broadcast source found");
                 mCallbacks.notifySourceFound(metaData);
+            }
+            if (mPausedBroadcastIds.contains(broadcastId)) {
+                mPausedBroadcastIds.remove(broadcastId);
+                resumeReceiversSourceSynchronization();
             }
         }
 
@@ -2802,6 +2836,8 @@ public class BassClientService extends ProfileService {
             if (!mPausedBroadcastSinks.contains(device)) {
                 mBroadcastMetadataMap.remove(device);
             }
+
+            mPlayingBroadcastSinks.remove(device);
 
             if (stateMachine == null) {
                 log("removeSource: Error bad parameters: device = " + device);
@@ -3696,7 +3732,7 @@ public class BassClientService extends ProfileService {
                 BluetoothDevice sink, int sourceId, BluetoothLeBroadcastReceiveState state) {
             ObjParams param = new ObjParams(sink, state);
 
-            sService.localNotifyReceiveStateChanged(sink);
+            sService.localNotifyReceiveStateChanged(sink, state);
 
             StringBuilder subgroupState = new StringBuilder(" / SUB GROUPS: ");
             for (int i = 0; i < state.getNumSubgroups(); i++) {
