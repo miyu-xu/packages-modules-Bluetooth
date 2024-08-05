@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a19bd3_f4d24de1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-05T11:24:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "624c047b_21e4a9b6",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47185552_5382bee0",
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "This is because in aosp/3158834, `SetPreferredAudioSetConfiguration`, we initialize pointer of `preferred_config_` sink and source, so even if one direction is not set, it is still not nullptr, in the following steps, we iterate all context and check if preferred codec match any context.\n\nfor exmaple\nif we set `out_codec` \u003d valid config, `in_codec` \u003d none. in this case, both sink and source is not nullptr; however, we still can change media from 48k to valid config.\n\nso user can set single direction to one config but after initialization we will make both direction unique pointer.\n\nkindly provide any suggestion, thanks!.\n\ni just added test cases for single direction codec config: aosp/3206252",
       "parentUuid": "0e0010d7_70aca542",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ebdc7b_99a75b33",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-05T11:24:27Z",
+      "side": 1,
+      "message": "alright, so if one of the direction is nullptr the other shall be nullptr as well, correct?\n\nIf so, lets add assert in the `if ( )` statement checking that.",
+      "parentUuid": "d307bdc9_2e107bd0",
       "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
