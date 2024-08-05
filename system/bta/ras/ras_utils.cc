@@ -59,13 +59,8 @@ bool ParseControlPointCommand(ControlPointCommand* command, const uint8_t* value
   command->opcode_ = static_cast<Opcode>(value[0]);
   // Check for minimum expected length
   switch (value[0]) {
-    case (uint8_t)Opcode::ABORT_OPERATION:
+    case (uint8_t)Opcode::ABORT_OPERATION: {
       if (len != 1) {
-        return false;
-      }
-      break;
-    case (uint8_t)Opcode::PCT_FORMAT: {
-      if (len != 2) {
         return false;
       }
     } break;
@@ -102,8 +97,6 @@ std::string GetOpcodeText(Opcode opcode) {
       return "ABORT_OPERATION";
     case Opcode::FILTER:
       return "FILTER";
-    case Opcode::PCT_FORMAT:
-      return "PCT_FORMAT";
     default:
       return "Unknown Opcode";
   }
@@ -125,12 +118,12 @@ std::string GetResponseOpcodeValueText(ResponseCodeValue response_code_value) {
       return "ABORT_UNSUCCESSFUL";
     case ResponseCodeValue::PROCEDURE_NOT_COMPLETED:
       return "PROCEDURE_NOT_COMPLETED";
-    case ResponseCodeValue::OPERAND_NOT_SUPPORTED:
-      return "OPERAND_NOT_SUPPORTED";
+    case ResponseCodeValue::SERVER_BUSY:
+      return "SERVER_BUSY";
     case ResponseCodeValue::NO_RECORDS_FOUND:
       return "NO_RECORDS_FOUND";
     default:
-      return "Unknown Opcode";
+      return "Reserved for Future Use";
   }
 }
 
