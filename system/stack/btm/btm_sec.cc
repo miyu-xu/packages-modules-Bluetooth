@@ -2369,7 +2369,10 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
     log::verbose("waiting for remote features!!");
     return;
   }
-
+  /* clear the pairing state so iocap req gets honored */
+  if (com::android::bluetooth::flags::clear_pair_state_on_rnr_complete()) {
+    btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
+  }
   /* Remote Name succeeded, execute the next security procedure, if any */
   tBTM_STATUS btm_status = btm_sec_execute_procedure(p_dev_rec);
 
