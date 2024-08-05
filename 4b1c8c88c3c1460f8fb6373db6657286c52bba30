@@ -232,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b7f6931_ce6fcd8c",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-05T05:27:46Z",
+      "side": 1,
+      "message": "Good catch, added check for that",
+      "parentUuid": "58be2d0d_4003e6a0",
+      "range": {
+        "startLine": 525,
+        "startChar": 13,
+        "endLine": 525,
+        "endChar": 24
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d2732ad_96b01383",
         "filename": "system/bta/has/has_client_test.cc",
         "patchSetId": 8
