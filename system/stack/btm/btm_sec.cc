@@ -3512,12 +3512,15 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
                                btm_sec_connect_after_reject_timeout, NULL);
           } else {
             /* remote device name is unknowm, start getting remote name first */
-
-            btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-            if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
+            if (btm_sec_cb.pairing_state != BTM_PAIR_STATE_GET_REM_NAME) {
+              btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
+              if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
                         p_dev_rec->bd_addr, NULL, BT_TRANSPORT_BR_EDR) != BTM_CMD_STARTED) {
-              log::error("cannot read remote name");
-              btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
+                log::error("cannot read remote name");
+                btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
+              }
+            } else {
+              log::warn("pending RNR is already in process, wait!");
             }
           }
           return;
@@ -3547,14 +3550,18 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
       btm_sec_cb.pairing_flags &= ~BTM_PAIR_FLAGS_REJECTED_CONNECT;
       if (BTM_SEC_IS_SM4_UNKNOWN(p_dev_rec->sm4)) {
         /* Try again: RNR when no ACL causes HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT */
-        btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-        if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
+        if (btm_sec_cb.pairing_state != BTM_PAIR_STATE_GET_REM_NAME) {
+          btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
+          if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
                     bda, NULL, BT_TRANSPORT_BR_EDR) != BTM_CMD_STARTED) {
-          log::error("cannot read remote name");
-          btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
+            log::error("cannot read remote name");
+            btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
+          }
+          return;
+          }
+        } else {
+          log::warn("pending RNR is already in process, wait!");
         }
-        return;
-      }
 
       /* if we already have pin code */
       if (btm_sec_cb.pairing_state != BTM_PAIR_STATE_WAIT_LOCAL_PIN) {
