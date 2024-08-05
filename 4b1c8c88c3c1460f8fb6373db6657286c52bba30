@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e06bc0a_901c5f15",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-05T08:15:07Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "b65ddfff_fac12cf9",
+      "range": {
+        "startLine": 497,
+        "startChar": 6,
+        "endLine": 497,
+        "endChar": 36
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8b05eaa_ed097c38",
@@ -244,6 +268,30 @@
       "side": 1,
       "message": "Good catch, added check for that",
       "parentUuid": "58be2d0d_4003e6a0",
+      "range": {
+        "startLine": 525,
+        "startChar": 13,
+        "endLine": 525,
+        "endChar": 24
+      },
+      "revId": "4b1c8c88c3c1460f8fb6373db6657286c52bba30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93ede50b_5f5a0ffb",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-05T08:15:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b7f6931_ce6fcd8c",
       "range": {
         "startLine": 525,
         "startChar": 13,
