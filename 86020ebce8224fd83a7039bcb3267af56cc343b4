@@ -22,6 +22,30 @@
       },
       "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee80189_6e17d040",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-05T04:23:57Z",
+      "side": 1,
+      "message": "So I think I will leave it as-is, until multiple flag support is merged, so this CL can be checked out and used, and after the merge, I will move it to json? Do you have CL number for the flags feature, maybe? I\u0027d add myself to CC there",
+      "parentUuid": "90a23663_3967e113",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 97
+      },
+      "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
