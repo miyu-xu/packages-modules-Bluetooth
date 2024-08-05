@@ -46,6 +46,30 @@
       },
       "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cde85ca_28e8ad4c",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-05T09:13:33Z",
+      "side": 1,
+      "message": "Sounds good to me, here is the bug number: b/354796119",
+      "parentUuid": "aee80189_6e17d040",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 97
+      },
+      "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
