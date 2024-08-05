@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acfc0147_b77fc231",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 2777,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c42d58_19b537e1",
+      "revId": "2e31dda77bdc00e16df129bda1b8437774a8917d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2979a799_77c15896",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-07-31T15:32:22Z",
       "side": 1,
       "message": "lets add also Mock::VerifyAndClearExpectations(\u0026mock_state_machine_)",
+      "revId": "2e31dda77bdc00e16df129bda1b8437774a8917d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc0a43b9_755d6c53",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 2838,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2979a799_77c15896",
       "revId": "2e31dda77bdc00e16df129bda1b8437774a8917d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
