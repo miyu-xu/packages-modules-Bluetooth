@@ -16,6 +16,24 @@
       "message": "Do we also want to cleanup all the following profile modules?",
       "revId": "beabe251cdf67b91bb7fcff645b59b1278919219",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128d804a_f98ea465",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 3183,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-05T04:19:54Z",
+      "side": 1,
+      "message": "Yes and it\u0027s already done. We disable all of the media profiles (defined in `MEDIA_PROFILE_ENABLE_ORDER`) including LE Audio profiles (`LeAudio`, `VolumeControl`, `CoordinatedSet`) and for safety, in disable, we also check if the profile is enabled before disabling it in topshim, ex. topshim/src/profiles/le_audio.rs",
+      "parentUuid": "741e1d9e_db39eaa9",
+      "revId": "beabe251cdf67b91bb7fcff645b59b1278919219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
