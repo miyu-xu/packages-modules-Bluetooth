@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27929bb7_6fd67fcf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3450668
+      },
+      "writtenOn": "2024-08-05T09:03:25Z",
+      "side": 1,
+      "message": "In the vc.cc file, the StartOpportunisticConnect function calls BTA_GATTC_Open with the type set to BTM_BLE_DIRECT_CONNECTION. If the device disconnects, it triggers StartOpportunisticConnect via OnGattDisconnected.\nbluetooth: system/bta/vc/vc.cc:682 OnGattDisconnected: xx:xx:xx:xx:08:05\nbluetooth: system/bta/vc/vc.cc:109 StartOpportunisticConnect: xx:xx:xx:xx:08:05\n\nIf then removeBond and createBond, during the bonding process, you will see the VCP conn_id already connected:\nsystem/bta/gatt/bta_gattc_act.cc:526 bta_gattc_conn: conn_id\u003d0xa\n\nThe previous VCP connection attempt will inevitably fail:\nVolumeControlService: connect(): XX:XX:XX:XX:08:05\nVolumeControlStateMachine: Connecting process message(XX:XX:XX:XX:08:05): CONNECT_TIMEOUT\n\nIs there a corresponding solution for this issue? Should the type be reverted to BTM_BLE_BKG_CONNECT_ALLOW_LIST?",
+      "revId": "ea9abca0622d8c4eb3a030c7455c075d95d95fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
