@@ -439,6 +439,7 @@ final class BondStateMachine extends StateMachine {
                         BluetoothProtoEnums.UNBOND_REASON_UNKNOWN,
                         mAdapterService.getMetricId(dev));
                 result = mAdapterService.getNative().createBond(addr, addrType, transport);
+
             }
             BluetoothStatsLog.write(
                     BluetoothStatsLog.BLUETOOTH_DEVICE_NAME_REPORTED,
