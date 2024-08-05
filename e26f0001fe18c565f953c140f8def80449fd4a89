@@ -1,0 +1,367 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a4c5ae6_3c4e0785",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "@wescande I wonder if there\u0027s a way to fix this and have it still pass the lint rules.\n\nAs this stands, its entirely useless! Many other doc strings were jumbled up too.\n\n@aditikat, I wouldn\u0027t bother with this if we can\u0027t put the information in a useful state",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 3
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2f6602_28d8fc70",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "I might add some context here, to aid in debugging:\n```\ndebug(\"Enter Disconnected: from state\u003d\" + mPreviousState + \", message\u003d\" + getCurrentMessage().what);\n```",
+      "range": {
+        "startLine": 1057,
+        "startChar": 12,
+        "endLine": 1057,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ef9ce8ad_d436ba23",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+              "range": {
+                "startLine": 1057,
+                "startChar": 0,
+                "endLine": 1058,
+                "endChar": 0
+              },
+              "replacement": "            debug(\"Enter Disconnected: from state\u003d\" + mPrevState + \", message\u003d\" + getCurrentMessage().what);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7eb6aaa_ef33385f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "Can this not remain as `else if (mPrevState !\u003d null) { /* ... */ }`? I think the `Connected` and `AudioOn` states are captured by that criteria, given that you changed the above criteria to ensure we pass from (Connected | AudioOn) -\u003e Disconnecting -\u003e Disconnected (here).",
+      "range": {
+        "startLine": 1095,
+        "startChar": 14,
+        "endLine": 1095,
+        "endChar": 96
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1984ffe4_6293ec71",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1872,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "So, if while in the `AudioOn` or `Connected` states, we get notified of a `STATE_DISCONNECTED` as a stack event, we then transition to `Disconnecting`.\n\nHowever, we\u0027re _not_ going to get another `STATE_DISCONNECTED` stack event. Your logic below depends on that event to transition from `Disconnecting` -\u003e `Disconnected`. This means every incoming disconnecting we get will result in a timeout.\n\nYou need some way to handle this I think.",
+      "range": {
+        "startLine": 1870,
+        "startChar": 20,
+        "endLine": 1872,
+        "endChar": 22
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79c45f1_68ddc749",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1978,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "Same as above, I might add some more context:\n```\ndebug(\"Enter Disconnecting: from state\u003d\" + mPreviousState + \", message\u003d\" + getCurrentMessage().what);\n```",
+      "range": {
+        "startLine": 1978,
+        "startChar": 12,
+        "endLine": 1978,
+        "endChar": 70
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186adf6b_806316b9",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "`BluetoothHeadsetClient.STATE_AUDIO_CONNECTED` is not a connection state. Its an audio state.\n\nYou want to broadcast the same connection state change regardless of the previous state begin `Connected` or `AudioOn`, `CONNECTED` -\u003e `DISCONNECTING`. `AudioOn` implies `CONNECTED` because its a child state of `CONNECTED`.",
+      "range": {
+        "startLine": 1985,
+        "startChar": 16,
+        "endLine": 1988,
+        "endChar": 70
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8f3ce0b_0fc21d51",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2008,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "FWIW, I think these state machine objects are meant to be reused. There\u0027s not a single call that I can find to individually remove a state machine object from `HeadsetClientService`\u0027s `mStateMachineMap`! So you definitely do want to defer messages like connect. We may want to defer more too.\n\nOr, we need to clean up that pattern and not reuse state machines.\n\nA comment might be nice with that detail. That detail would also be good in the object level docstring.",
+      "range": {
+        "startLine": 2003,
+        "startChar": 16,
+        "endLine": 2008,
+        "endChar": 26
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a9d7b4_2f0d4104",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "In the case that we placed an outgoing disconnect call, we need this state change event to indicate we\u0027re disconnected before we\u0027ll transition to `Disconnected`.\n\nHowever, why are we not looking at the value of the connection state we\u0027re receiving from the native stack? We could get a `STATE_CONNECTED` here and we would still transition to `Disconnected`, which seems wrong.",
+      "range": {
+        "startLine": 2020,
+        "startChar": 23,
+        "endLine": 2020,
+        "endChar": 76
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766f0533_0c99b7b1",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "If you want to use the `Disconnecting: ` prefix for log lines in this state (which I like, it makes debugging easier), then use it everywhere in the state! \n\nAlso, consider a follow up bug that applies that concept throughout the log lines in this class. You might also consider adding the device MAC Address too, since we can have multiple of these objects at once.\n\nYou can look at other AAOS used state machines for examples, as I think we do that in a lot of places.",
+      "range": {
+        "startLine": 2024,
+        "startChar": 28,
+        "endLine": 2024,
+        "endChar": 90
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f01d5e_b2846bd7",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2126,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "Same comment as above applies here.\n\nSo, if while in the AudioOn or Connected states, we get notified of a STATE_DISCONNECTED as a stack event, we then transition to Disconnecting.\n\nHowever, we\u0027re not going to get another STATE_DISCONNECTED stack event. Your logic below depends on that event to transition from Disconnecting -\u003e Disconnected. This means every incoming disconnecting we get will result in a timeout.\n\nYou need some way to handle this I think.",
+      "range": {
+        "startLine": 2126,
+        "startChar": 24,
+        "endLine": 2126,
+        "endChar": 53
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e6489b_4fe743a5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1681,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "This test is really testing implementation details more than it is testing the expected changes via the public interface(s).\n\nWe may want to leverage this test more, as an outgoing disconnect request with a SCO active should also go through your code path.",
+      "range": {
+        "startLine": 1670,
+        "startChar": 4,
+        "endLine": 1681,
+        "endChar": 63
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e62756c_d0bc8eab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1708,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "There appears to be two missing tests that are very relevant for your change:\n1. Incoming `STATE_DISCONNECTED` in `Connected` state, which would happen when the remote device initiates a disconnection request while the audio is off and we get notified of it.\n2. Outgoing `DISCONNECT` message in the `Connected` state, which would happen then the user initiates a disconnection while the audio is off.\n\nAlso, I noted it separately, but the outgoing `DISCONNECT` in `AudioOn` is very applicable and poorly tested.\n\nAt least we have this incoming `STATE_DISCONNECTED` in the `AudioOn` state 😊",
+      "range": {
+        "startLine": 1707,
+        "startChar": 4,
+        "endLine": 1708,
+        "endChar": 79
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baceacde_aa836178",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1723,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "This wouldn\u0027t happen in real life. You\u0027re not going to get two `DISCONNECTED` stack events.",
+      "range": {
+        "startLine": 1722,
+        "startChar": 8,
+        "endLine": 1723,
+        "endChar": 89
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77aeb139_0275e285",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1727,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "With state transitions, we problem want to assert both\n1. The current state\n2. That a broadcast with the expected state transitions happened",
+      "range": {
+        "startLine": 1725,
+        "startChar": 8,
+        "endLine": 1727,
+        "endChar": 87
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c98f644_aec96233",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1803,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-05T23:22:32Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"Messsage\" -- should it be \"Message\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"Messsage\" -- should it be \"Message\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1803,
+        "startChar": 63,
+        "endLine": 1803,
+        "endChar": 71
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
