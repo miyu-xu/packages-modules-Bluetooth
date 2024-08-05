@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81dbb7f_078c3712",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4773,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-05T16:27:05Z",
+      "side": 1,
+      "message": "Why do we need specific code to handle PTS test cases?",
+      "range": {
+        "startLine": 4773,
+        "startChar": 7,
+        "endLine": 4773,
+        "endChar": 38
+      },
+      "revId": "d26759b84ea4a7e61918c5e36a5d3cfa171d1a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
