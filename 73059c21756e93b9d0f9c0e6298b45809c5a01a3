@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1fdd681_7ceb18d9",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T23:18:42Z",
+      "side": 1,
+      "message": "I\u0027m not asking for it to be updated everywhere.\n\nI just want to make sure we leave enough time for the future to be set, so instead of EXPECTing that the future is set immediately, I\u0027m suggesting that we EXPECT the wait to succeed.",
+      "parentUuid": "e3874744_5fd82df6",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fa16bc0_a10ad6a4",
         "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
         "patchSetId": 3
