@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b33089c_24e5f025",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1377,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T23:14:29Z",
+      "side": 1,
+      "message": "What do you think about drop instead of flush?\n```suggestion\n *                  Drop the pending packets\n *\n *  Return value:   true if channel removed\n *\n ******************************************************************************/\nbool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress\u0026 rem_bda, bool drop) {\n```",
+      "range": {
+        "startLine": 1372,
+        "startChar": 0,
+        "endLine": 1377,
+        "endChar": 86
+      },
+      "revId": "2bf96939a890d47e77a813e9af158eac73a59272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b135a3db_ed51034c",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-05T23:14:29Z",
+      "side": 1,
+      "message": "Does this flagged code belong in the next CL?",
+      "range": {
+        "startLine": 1403,
+        "startChar": 38,
+        "endLine": 1403,
+        "endChar": 73
+      },
+      "revId": "2bf96939a890d47e77a813e9af158eac73a59272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
