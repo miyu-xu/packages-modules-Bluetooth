@@ -22,6 +22,30 @@
       },
       "revId": "ed4e375a0a5b1938454d122a43c553a0ea1d8892",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f1b7248_bb938a65",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-05T15:02:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbdac323_046ef3ad",
+      "range": {
+        "startLine": 952,
+        "startChar": 0,
+        "endLine": 973,
+        "endChar": 5
+      },
+      "revId": "ed4e375a0a5b1938454d122a43c553a0ea1d8892",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
