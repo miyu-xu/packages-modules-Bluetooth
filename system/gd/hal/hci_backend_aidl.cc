@@ -23,6 +23,8 @@
 #include "common/stop_watch.h"
 #include "hal/hci_backend.h"
 
+#define SIGKILL 9
+
 namespace bluetooth::hal {
 
 class AidlHciCallbacks : public ::aidl::android::hardware::bluetooth::BnBluetoothHciCallbacks {
@@ -31,7 +33,10 @@ public:
 
   using AidlStatus = ::aidl::android::hardware::bluetooth::Status;
   ::ndk::ScopedAStatus initializationComplete(AidlStatus status) override {
-    log::assert_that(status == AidlStatus::SUCCESS, "status == AidlStatus::SUCCESS");
+    if (status != AidlStatus::SUCCESS) {
+      log::warn( "status != AidlStatus::SUCCESS");
+      kill(getpid(), SIGKILL);
+    }
     callbacks_->initializationComplete();
     return ::ndk::ScopedAStatus::ok();
   }
