@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccfb0179_9071ee22",
+        "filename": "system/stack/include/a2dp_codec_api.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-08-05T23:24:07Z",
+      "side": 1,
+      "message": "Are you sure do you want to break all API\u0027s just for that?",
+      "range": {
+        "startLine": 168,
+        "startChar": 15,
+        "endLine": 168,
+        "endChar": 41
+      },
+      "revId": "e8ba3e8489e14e68795aa65eaa69bf5152cf932b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
