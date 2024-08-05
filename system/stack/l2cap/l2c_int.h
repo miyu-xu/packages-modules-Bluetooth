@@ -486,6 +486,7 @@ public:
   }
 
   tL2C_CCB* p_fixed_ccbs[L2CAP_NUM_FIXED_CHNLS];
+  std::vector<uint16_t> pending_remove;
 
 private:
   tHCI_REASON disc_reason_{HCI_ERR_UNDEFINED};
@@ -693,6 +694,8 @@ void l2cu_change_pri_ccb(tL2C_CCB* p_ccb, tL2CAP_CHNL_PRIORITY priority);
 
 tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid, bool is_eatt = false);
 void l2cu_release_ccb(tL2C_CCB* p_ccb);
+bool l2cu_fixed_channel_remove_pending(tL2C_LCB* p_lcb, uint16_t fixed_cid);
+void l2cu_fixed_channel_data_cb(tL2C_LCB* p_lcb, uint16_t fixed_cid, BT_HDR* p_buf);
 tL2C_CCB* l2cu_find_ccb_by_cid(tL2C_LCB* p_lcb, uint16_t local_cid);
 tL2C_CCB* l2cu_find_ccb_by_remote_cid(tL2C_LCB* p_lcb, uint16_t remote_cid);
 bool l2c_is_cmd_rejected(uint8_t cmd_code, uint8_t id, tL2C_LCB* p_lcb);
