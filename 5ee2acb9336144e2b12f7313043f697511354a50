@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "624c047b_21e4a9b6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "IIUC, this means we can update codec preference for non active group right? done and added test caes in aosp/3206252",
+      "parentUuid": "f4ffbd60_1d267c36",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47185552_5382bee0",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 25
@@ -49,6 +67,24 @@
       "writtenOn": "2024-07-31T15:24:14Z",
       "side": 1,
       "message": "looks like this change does not apply to latest clang config which allows longer lines. Please double check.",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dac4622b_5f0d2e0b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47185552_5382bee0",
       "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +102,24 @@
       "writtenOn": "2024-07-31T15:24:14Z",
       "side": 1,
       "message": "ditto",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "811a1e0b_e246d490",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04f24aa8_26a09dd5",
       "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -107,6 +161,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d307bdc9_2e107bd0",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "This is because in aosp/3158834, `SetPreferredAudioSetConfiguration`, we initialize pointer of `preferred_config_` sink and source, so even if one direction is not set, it is still not nullptr, in the following steps, we iterate all context and check if preferred codec match any context.\n\nfor exmaple\nif we set `out_codec` \u003d valid config, `in_codec` \u003d none. in this case, both sink and source is not nullptr; however, we still can change media from 48k to valid config.\n\nso user can set single direction to one config but after initialization we will make both direction unique pointer.\n\nkindly provide any suggestion, thanks!.\n\ni just added test cases for single direction codec config: aosp/3206252",
+      "parentUuid": "0e0010d7_70aca542",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4bacf67_4b1aa1fe",
         "filename": "system/bta/le_audio/device_groups.cc",
         "patchSetId": 25
@@ -118,6 +190,24 @@
       "writtenOn": "2024-07-31T15:24:14Z",
       "side": 1,
       "message": "this also seems to be clang issue.",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d5e25c_d10b9058",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4bacf67_4b1aa1fe",
       "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -139,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e339ca_c580a320",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1843,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87ee72d7_7f8e8c8c",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95fdeaa3_4ebc6b3f",
@@ -152,6 +260,24 @@
       "writtenOn": "2024-07-31T15:24:14Z",
       "side": 1,
       "message": "clang?",
+      "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8c6b83e_5e6c40f1",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1958,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-08-05T06:41:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95fdeaa3_4ebc6b3f",
       "revId": "5ee2acb9336144e2b12f7313043f697511354a50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
