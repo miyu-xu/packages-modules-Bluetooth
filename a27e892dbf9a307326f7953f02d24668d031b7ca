@@ -1,0 +1,66 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebecf06f_ac82d70c",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-08-05T23:19:33Z",
+      "side": 1,
+      "message": "If I understand correctly, the code has been refactored.\nPerhaps, it is better to have the refactor under another flag, and another CL?",
+      "fixSuggestions": [
+        {
+          "fixId": "f2c17043_146611f1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 378,
+                "startChar": 0,
+                "endLine": 379,
+                "endChar": 0
+              },
+              "replacement": "      if (!com::android::bluetooth::flags::a2dp_variable_aac_capability() ||\n          com::android::bluetooth::flags::a2dp_variable_aac_capability_refactor()) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 1475,
+                "startChar": 0,
+                "endLine": 1476,
+                "endChar": 0
+              },
+              "replacement": "  if (!com::android::bluetooth::flags::a2dp_variable_aac_capability() ||\n      com::android::bluetooth::flags::a2dp_variable_aac_capability_refactor()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a27e892dbf9a307326f7953f02d24668d031b7ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4e5da46_be983a40",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 22
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-08-05T23:19:33Z",
+      "side": 1,
+      "message": "Can you comment the vendor and product?",
+      "revId": "a27e892dbf9a307326f7953f02d24668d031b7ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
