@@ -199,7 +199,8 @@ static void smp_data_received(uint16_t channel, const RawAddress& bd_addr, BT_HD
     smp_int_data.p_data = p;
     smp_sm_event(p_cb, static_cast<tSMP_EVENT>(cmd), &smp_int_data);
   } else {
-    if (!L2CA_RemoveFixedChnl(channel, bd_addr, true)) {
+    bool flush = !com::android::bluetooth::flags::transmit_smp_packets_before_release();
+    if (!L2CA_RemoveFixedChnl(channel, bd_addr, flush)) {
       log::error("Unable to remove fixed channel peer:{} cid:{}", bd_addr, channel);
     }
   }
