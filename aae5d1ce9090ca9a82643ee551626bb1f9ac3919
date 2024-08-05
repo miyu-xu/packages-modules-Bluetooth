@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf7e6320_f449d7d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-05T22:51:02Z",
+      "side": 1,
+      "message": "Bypass error prone as the code related to this is the same before and after.\n\nI have a incoming change to fix all this, everywhere in the Bluetooth and to promote the warning to an error.",
+      "revId": "aae5d1ce9090ca9a82643ee551626bb1f9ac3919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
