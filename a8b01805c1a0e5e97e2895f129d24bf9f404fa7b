@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67617b5d_a942d25a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-06T21:25:56Z",
+      "side": 1,
+      "message": "Did you want to remove the mock in packages/modules/Bluetooth/system/test/mock/mock_stack_btm_devctl.cc ?",
+      "revId": "a8b01805c1a0e5e97e2895f129d24bf9f404fa7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
