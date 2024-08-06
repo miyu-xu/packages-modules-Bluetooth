@@ -22,6 +22,30 @@
       },
       "revId": "8317ce0cfb8273146d26821d2b9e7992d44104fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3143c5f2_d15a8e55",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-06T22:03:08Z",
+      "side": 0,
+      "message": "I believe that this is part of incoming lint enforcement, but that was not intented in this cl. Restored",
+      "parentUuid": "ad7bc8d0_a5ff95cc",
+      "range": {
+        "startLine": 316,
+        "startChar": 5,
+        "endLine": 316,
+        "endChar": 39
+      },
+      "revId": "8317ce0cfb8273146d26821d2b9e7992d44104fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
