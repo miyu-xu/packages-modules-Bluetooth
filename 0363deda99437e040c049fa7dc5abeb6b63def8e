@@ -34,6 +34,24 @@
       ],
       "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1308460e_e15a3233",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-06T14:26:44Z",
+      "side": 1,
+      "message": "Actually, there should be no queued request like that. But still, this if is not necessary.",
+      "parentUuid": "93861180_3491f67f",
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
