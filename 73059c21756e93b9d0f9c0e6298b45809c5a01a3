@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26dca52e_de70eaa4",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-06T23:39:52Z",
+      "side": 1,
+      "message": "Ahh.  I get it now.  So the test is racy if it fails, depending on the timing.",
+      "parentUuid": "0bfde836_3aab5d94",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fa16bc0_a10ad6a4",
@@ -151,6 +175,30 @@
       "side": 1,
       "message": "Which would you prefer ?",
       "parentUuid": "5fa16bc0_a10ad6a4",
+      "range": {
+        "startLine": 317,
+        "startChar": 2,
+        "endLine": 317,
+        "endChar": 13
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7dd6fed_4476c6a4",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-06T23:39:52Z",
+      "side": 1,
+      "message": "I like EXPECT_EQ because it has more readable failures.",
+      "parentUuid": "5ad984cd_be93ea05",
       "range": {
         "startLine": 317,
         "startChar": 2,
