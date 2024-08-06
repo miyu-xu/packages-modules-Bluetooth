@@ -6,6 +6,9 @@ flag {
     namespace: "bluetooth"
     description: "Clear authentication collision state on pairing conclusion"
     bug: "327208896"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
 }
 
 flag {
