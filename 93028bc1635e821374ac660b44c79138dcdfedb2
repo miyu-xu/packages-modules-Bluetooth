@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9645b456_c7a519c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2024-08-06T19:59:36Z",
+      "side": 1,
+      "message": "Dr. No-ing this change myself, since it\u0027s a nop. Nothing has actually changed for the generated code, although the BloatBuster lint spuriously saying that some APK sizes increased is concerning for the lint itself.",
+      "revId": "93028bc1635e821374ac660b44c79138dcdfedb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
