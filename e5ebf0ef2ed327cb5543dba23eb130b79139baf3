@@ -33,6 +33,24 @@
       "message": "...this `memset` call is no longer safe.  We don\u0027t know the internals of `std::unordered_map`, and it\u0027s not safe to memset it.",
       "revId": "e5ebf0ef2ed327cb5543dba23eb130b79139baf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4f809b3_e3384558",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-06T06:00:54Z",
+      "side": 1,
+      "message": "Thank you for pointing out this. I\u0027ll resolve it with following CLs.\n\nI guess it is not safe but would be okay unless the variable is accessed.",
+      "parentUuid": "93813585_1421cba8",
+      "revId": "e5ebf0ef2ed327cb5543dba23eb130b79139baf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
