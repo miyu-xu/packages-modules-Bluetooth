@@ -60,6 +60,30 @@
       ],
       "revId": "60b0d3dfbc063613dcb09faf861212a8f4001fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd1c2887_ef9e6fe1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-06T10:13:16Z",
+      "side": 1,
+      "message": "It is checked in `tearDown()`. This also seem to be a common pattern in the other service tests.",
+      "parentUuid": "fbcefc79_13707c4d",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 32
+      },
+      "revId": "60b0d3dfbc063613dcb09faf861212a8f4001fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
