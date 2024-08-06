@@ -184,6 +184,10 @@ private:
       pending_ = false;
       on_remote_name_complete_(status, name);
       acl_scheduler_->ReportRemoteNameRequestCompletion(address);
+      if (com::android::bluetooth::flags::cancel_pending_rnr_on_successful_rnr()
+                  && status == ErrorCode::SUCCESS) {
+        CancelRemoteNameRequest(address);
+      }
     } else {
       log::error("Received unexpected REMOTE_NAME_REQUEST_COMPLETE from {} with status {}",
                  address.ToRedactedStringForLogging(), ErrorCodeText(status));
