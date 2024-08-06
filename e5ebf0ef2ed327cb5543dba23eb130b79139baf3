@@ -69,6 +69,24 @@
       "parentUuid": "d4f809b3_e3384558",
       "revId": "e5ebf0ef2ed327cb5543dba23eb130b79139baf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "442af088_ce5f9d63",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-08-06T13:45:08Z",
+      "side": 1,
+      "message": "It is not okay.  If we don\u0027t plan to access that variable, remove the variable from the struct.  Don\u0027t put it into an illegitimate state, which could change just from a toolchain update, for it to blow up on someone in the future.\n\nThis is a bug.  There\u0027s no need to point to a \"noticeable\" runtime impact right now.  This is a noticeable bug and needs to be fixed, not blown off and talked around.",
+      "parentUuid": "7826bf18_76c2c057",
+      "revId": "e5ebf0ef2ed327cb5543dba23eb130b79139baf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
