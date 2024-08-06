@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eccd712f_e967b750",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1039338
+      },
+      "writtenOn": "2024-08-06T07:26:07Z",
+      "side": 0,
+      "message": "Why is this being renamed? There is no explanation in either the commit message or the bug.\n\nHidden API entry indicates that it is used by some Apps target target \u003c\u003d R, renaming it could break those Apps. That may be acceptable but if so it really should be explained why that is the case.",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 22
+      },
+      "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
