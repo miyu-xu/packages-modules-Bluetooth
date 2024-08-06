@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a92eaf62_88a51926",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 2164,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-06T18:09:46Z",
+      "side": 1,
+      "message": "Would you like to log both success and failure cases?",
+      "revId": "c764dfdd3c2ede43bae58e1f3acb6c8cc12819ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
