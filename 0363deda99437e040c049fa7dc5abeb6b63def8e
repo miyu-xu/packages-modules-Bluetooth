@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93861180_3491f67f",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-06T14:24:53Z",
+      "side": 1,
+      "message": "this should be not needed.\nIf there are other users trying MTU for BR/EDR this code will make sure that they will receive error status.",
+      "fixSuggestions": [
+        {
+          "fixId": "7fdcb184_e7ce0a78",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_act.cc",
+              "range": {
+                "startLine": 1354,
+                "startChar": 0,
+                "endLine": 1366,
+                "endChar": 0
+              },
+              "replacement": "    /* If there are more clients waiting for the MTU results on the same device,\n     * lets trigger them now.\n     */\n    auto outstanding_conn_ids \u003d GATTC_GetAndRemoveListOfConnIdsWaitingForMtuRequest(p_clcb-\u003ebda);\n    for (auto conn_id : outstanding_conn_ids) {\n      tBTA_GATTC_CLCB* p_clcb \u003d bta_gattc_find_clcb_by_conn_id(conn_id);\n      log::debug(\"Continue MTU request clcb {}\", fmt::ptr(p_clcb));\n      if (p_cl_cb) {\n        log::debug(\"Continue MTU request for client conn_id\u003d0x{:04x}\", conn_id);\n        bta_gattc_continue(p_cl_cb);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
