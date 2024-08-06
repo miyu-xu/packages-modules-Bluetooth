@@ -15,3 +15,10 @@ flag {
     description: "Allow user to control the preset of hearing aid devices"
     bug: "306236481"
 }
+
+flag {
+    name: "hap_rust"
+    namespace: "bluetooth"
+    description: "Implement hap in rust"
+    bug: "357949006"
+}
