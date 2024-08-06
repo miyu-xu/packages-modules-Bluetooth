@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dfacb2f_8836fcff",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-06T22:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94872259_deef907c",
+      "range": {
+        "startLine": 533,
+        "startChar": 13,
+        "endLine": 533,
+        "endChar": 30
+      },
+      "revId": "b41aabb853a0cabe8728ce040753019ac9f54723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df512e6f_51744e25",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-06T18:18:17Z",
       "side": 1,
       "message": "suggestion:\n\"Skipping because FLOSS doesn\u0027t use this API for LE scans\"\n```suggestion\n  log::info(\"Skipping because FLOSS doesn\u0027t use this API for LE scans\");\n```",
+      "range": {
+        "startLine": 625,
+        "startChar": 13,
+        "endLine": 625,
+        "endChar": 69
+      },
+      "revId": "b41aabb853a0cabe8728ce040753019ac9f54723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b5cc0ba_847ead41",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-06T22:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df512e6f_51744e25",
       "range": {
         "startLine": 625,
         "startChar": 13,
