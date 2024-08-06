@@ -47,6 +47,7 @@ java_defaults {
         exclude_filter: [],
     },
     platform_apis: true,
+    certificate: "platform",
 
     test_suites: [
         "automotive-tests",
