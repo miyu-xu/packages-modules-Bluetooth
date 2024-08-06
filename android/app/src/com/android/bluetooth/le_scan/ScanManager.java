@@ -649,7 +649,7 @@ public class ScanManager {
             Log.d(
                     TAG,
                     "Scan mode update during setAutoBatchScanClient() to "
-                            + ScanSettings.SCAN_MODE_SCREEN_OFF);
+                            + getScanModeString(ScanSettings.SCAN_MODE_SCREEN_OFF));
             if (client.stats != null) {
                 client.stats.setAutoBatchScan(client.scannerId, true);
             }
@@ -662,7 +662,8 @@ public class ScanManager {
             client.updateScanMode(client.scanModeApp);
             Log.d(
                     TAG,
-                    "Scan mode update during clearAutoBatchScanClient() to " + client.scanModeApp);
+                    "Scan mode update during clearAutoBatchScanClient() to "
+                            + getScanModeString(client.scanModeApp));
             if (client.stats != null) {
                 client.stats.setAutoBatchScan(client.scannerId, false);
             }
@@ -2114,6 +2115,25 @@ public class ScanManager {
         return mPriorityMap.get(oldScanMode) <= mPriorityMap.get(newScanMode)
                 ? oldScanMode
                 : newScanMode;
+    }
+
+    private String getScanModeString(int scanMode) {
+        switch (scanMode) {
+            case ScanSettings.SCAN_MODE_OPPORTUNISTIC:
+                return "SCAN_MODE_OPPORTUNISTIC";
+            case ScanSettings.SCAN_MODE_LOW_POWER:
+                return "SCAN_MODE_LOW_POWER";
+            case ScanSettings.SCAN_MODE_BALANCED:
+                return "SCAN_MODE_BALANCED";
+            case ScanSettings.SCAN_MODE_LOW_LATENCY:
+                return "SCAN_MODE_LOW_LATENCY";
+            case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
+                return "SCAN_MODE_AMBIENT_DISCOVERY";
+            case ScanSettings.SCAN_MODE_SCREEN_OFF:
+                return "SCAN_MODE_SCREEN_OFF";
+            default:
+                return "SCAN_MODE_SCREEN_OFF_BALANCED";
+        }
     }
 
     /**
