@@ -53,15 +53,12 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.util.Log;
 import android.util.Pair;
-
 import androidx.annotation.VisibleForTesting;
-
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
 import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.build.SdkLevel;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -776,6 +773,7 @@ class AdapterProperties {
                                         BluetoothAdapter.EXTRA_PREVIOUS_CONNECTION_STATE,
                                         prevAdapterState)
                                 .addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
+                logProfileConnectionStateChange(device, newState);
                 Log.d(TAG, "updateOnProfileConnectionChanged: " + logInfo);
                 mService.sendBroadcastAsUser(
                         intent,
@@ -785,6 +783,30 @@ class AdapterProperties {
             }
         }
     }
+
+  private void logProfileConnectionStateChange(BluetoothDevice device, int state) {
+
+    switch (state) {
+      case BluetoothAdapter.STATE_CONNECTED:
+        MetricsLogger.getInstance()
+            .logBluetoothEvent(
+                device,
+                BluetoothStatsLog
+                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION,
+                BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SUCCESS,
+                0);
+        break;
+      case BluetoothAdapter.STATE_DISCONNECTED:
+        MetricsLogger.getInstance()
+            .logBluetoothEvent(
+                device,
+                BluetoothStatsLog
+                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION,
+                BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__FAIL,
+                0);
+        break;
+    }
+  }
 
     private boolean validateProfileConnectionState(int state) {
         return (state == BluetoothProfile.STATE_DISCONNECTED
