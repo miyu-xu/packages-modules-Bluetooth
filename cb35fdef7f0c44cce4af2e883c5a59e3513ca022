@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b5cd8bb_8a2dd61e",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-06T06:01:36Z",
+      "side": 1,
+      "message": "The bug indicate bugfix, but the flag is not mark as bugfix",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "cb35fdef7f0c44cce4af2e883c5a59e3513ca022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
