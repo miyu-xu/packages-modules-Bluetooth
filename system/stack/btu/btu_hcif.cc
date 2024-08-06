@@ -1039,9 +1039,7 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status, const u
     case HCI_SETUP_ESCO_CONNECTION:
     case HCI_ENH_SETUP_ESCO_CONNECTION:
       if (status != HCI_SUCCESS) {
-        STREAM_TO_UINT16(handle, p_cmd);
-        RawAddress addr(RawAddress::kEmpty);
-        btm_sco_connection_failed(hci_status, addr, handle, nullptr);
+        btm_sco_create_comnnad_status_failed(hci_status);
       }
       break;
 
@@ -1089,6 +1087,11 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status, const u
 void bluetooth::legacy::testing::btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
                                                              const uint8_t* p_cmd) {
   ::btu_hcif_hdl_command_status(opcode, status, p_cmd);
+}
+
+void bluetooth::legacy::testing::btu_hcif_process_event(uint8_t controller_id,
+                                                        const BT_HDR* p_msg) {
+  ::btu_hcif_process_event(controller_id, p_msg);
 }
 
 /*******************************************************************************

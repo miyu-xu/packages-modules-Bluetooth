@@ -34,8 +34,31 @@ protected:
 TEST_F(StackBtuTest, post_on_main) {}
 
 TEST_F(StackBtuTest, btm_sco_connection_failed_called) {
-  uint8_t p_cmd[10];  // garbage data for testing
+  uint8_t test_data[18];  // garbage data for testing
   bluetooth::legacy::testing::btu_hcif_hdl_command_status(HCI_SETUP_ESCO_CONNECTION,
-                                                          HCI_ERR_UNSPECIFIED, p_cmd);
+                                                          HCI_ERR_UNSPECIFIED, test_data);
+  ASSERT_EQ(0, get_func_call_count("btm_sco_connection_failed"));
+
+  // prepare sco complete event with an error
+  BT_HDR* esco_command_complete_ev = (BT_HDR*)malloc(sizeof(BT_HDR) + sizeof(test_data));
+  esco_command_complete_ev->event = HCI_ESCO_CONNECTION_COMP_EVT,
+  esco_command_complete_ev->len = sizeof(test_data);
+  esco_command_complete_ev->offset = 0,
+
+  // Event code
+          esco_command_complete_ev->data[0] = HCI_ESCO_CONNECTION_COMP_EVT;
+  // Event len
+  esco_command_complete_ev->data[1] = 17;
+  // Event status - error
+  esco_command_complete_ev->data[2] = 0x0a;
+
+  bluetooth::legacy::testing::btu_hcif_process_event(0, esco_command_complete_ev);
   ASSERT_EQ(1, get_func_call_count("btm_sco_connection_failed"));
+}
+
+TEST_F(StackBtuTest, btm_sco_create_connection_status_failed_called) {
+  uint8_t test_data[10];  // garbage data for testing
+  bluetooth::legacy::testing::btu_hcif_hdl_command_status(HCI_SETUP_ESCO_CONNECTION,
+                                                          HCI_ERR_UNSPECIFIED, test_data);
+  ASSERT_EQ(1, get_func_call_count("btm_sco_create_comnnad_status_failed"));
 }
