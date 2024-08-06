@@ -73,6 +73,15 @@ void LogAclCompletionEvent(const hci::Address& address, ErrorCode reason,
                                          MapErrorCodeToState(reason));
 }
 
+void LogAclDisconnectionEvent(const hci::Address& address, ErrorCode reason,
+                              bool is_locally_initiated) {
+  bluetooth::os::LogMetricBluetoothEvent(address,
+                                         is_locally_initiated
+                                                 ? EventType::ACL_DISCONNECTION_INITIATOR
+                                                 : EventType::ACL_DISCONNECTION_RESPONDER,
+                                         MapErrorCodeToState(reason));
+}
+
 void LogRemoteNameRequestCompletion(const RawAddress& raw_address) {
   hci::Address address = bluetooth::ToGdAddress(raw_address);
   bluetooth::os::LogMetricBluetoothEvent(address, EventType::REMOTE_NAME_REQUEST, State::SUCCESS);
