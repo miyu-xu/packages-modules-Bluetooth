@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bfde836_3aab5d94",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-06T23:24:08Z",
+      "side": 1,
+      "message": "I see the disconnect.  The comment is incorrect.  This future should *not* be triggered.\n\nThis is a pattern throughout the tests",
+      "parentUuid": "b1fdd681_7ceb18d9",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fa16bc0_a10ad6a4",
         "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
         "patchSetId": 3
@@ -109,6 +133,30 @@
           ]
         }
       ],
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad984cd_be93ea05",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-06T23:24:08Z",
+      "side": 1,
+      "message": "Which would you prefer ?",
+      "parentUuid": "5fa16bc0_a10ad6a4",
+      "range": {
+        "startLine": 317,
+        "startChar": 2,
+        "endLine": 317,
+        "endChar": 13
+      },
       "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
