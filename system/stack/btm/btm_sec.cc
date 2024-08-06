@@ -2375,6 +2375,11 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
 
   /* If result is pending reply from the user or from the device is pending */
   if (btm_status == BTM_CMD_STARTED) {
+    if (com::android::bluetooth::flags::set_pair_state_on_rnr_complete() &&
+		    btm_sec_cb.pairing_state != BTM_PAIR_STATE_WAIT_PIN_REQ) {
+      log::warn("set pairing state to propert state, current state {}", btm_sec_cb.pairing_state);	    
+      btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_PIN_REQ);
+    }
     return;
   }
 
