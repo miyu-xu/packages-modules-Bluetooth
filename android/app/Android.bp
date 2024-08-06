@@ -325,6 +325,12 @@ android_app {
             "-Xep:AlmostJavadoc:ERROR",
             "-Xep:AlreadyChecked:ERROR",
             "-Xep:AndroidFrameworkBinderIdentity:ERROR",
+
+            // After fixing this errorprone, we decided to not merge the change
+            // It is not very readable and the benefit are unknown.
+            // See https://r.android.com/3200511
+            "-Xep:AndroidFrameworkEfficientCollections:OFF",
+
             "-Xep:AndroidFrameworkEfficientStrings:ERROR",
             "-Xep:AndroidFrameworkRequiresPermission:ERROR",
             "-Xep:BadImport:ERROR",
