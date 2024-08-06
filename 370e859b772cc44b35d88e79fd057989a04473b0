@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4cdbc5_dd25f39d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-06T12:30:42Z",
+      "side": 1,
+      "message": "Do you need `android.bluetooth` here ? They are on the same package I guess it should not be needed.",
+      "range": {
+        "startLine": 145,
+        "startChar": 25,
+        "endLine": 145,
+        "endChar": 42
+      },
+      "revId": "370e859b772cc44b35d88e79fd057989a04473b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27dc63f4_f2b3ba2a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-06T12:30:42Z",
+      "side": 1,
+      "message": "You can create a class attribute host, initiate it in the `setup` and close it in the `After`.\n\ne.g:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/RfcommTest.kt;l\u003d66-78",
+      "revId": "370e859b772cc44b35d88e79fd057989a04473b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
