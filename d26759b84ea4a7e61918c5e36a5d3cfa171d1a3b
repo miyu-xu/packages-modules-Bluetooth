@@ -22,6 +22,30 @@
       },
       "revId": "d26759b84ea4a7e61918c5e36a5d3cfa171d1a3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94a8d9f9_23539c46",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4773,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-06T14:34:31Z",
+      "side": 1,
+      "message": "Might be not needed anymore, as it was in the times when stack did not support multiple contexts in metadata. Now we do support it by default so this is candidate to remove, but we can do it while doing next Certification Process.",
+      "parentUuid": "c81dbb7f_078c3712",
+      "range": {
+        "startLine": 4773,
+        "startChar": 7,
+        "endLine": 4773,
+        "endChar": 38
+      },
+      "revId": "d26759b84ea4a7e61918c5e36a5d3cfa171d1a3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
