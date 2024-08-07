@@ -16,6 +16,24 @@
       "message": "for this is a new flow to start Broadcast Audio Session before establishing Bluetooth path, do we need a flag ?",
       "revId": "7295415b435481b3a4cef8c340892b6ceb2055a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b639f3_132415f2",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-07T15:10:23Z",
+      "side": 1,
+      "message": "Yes! It\u0027s now included (under big_depends) since this is a continuation of this feature.",
+      "parentUuid": "d590596c_7b2c4673",
+      "revId": "7295415b435481b3a4cef8c340892b6ceb2055a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
