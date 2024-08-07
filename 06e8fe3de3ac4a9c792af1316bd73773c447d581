@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfbb409e_661482c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T00:55:06Z",
+      "side": 1,
+      "message": "This is not possible due to gantry infra:\ngo/trunk-stable-bug-fix#switching\n\nYou will have to create an entirely new flag if this is for a bug fix",
+      "revId": "06e8fe3de3ac4a9c792af1316bd73773c447d581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
