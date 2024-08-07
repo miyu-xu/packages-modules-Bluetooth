@@ -1,0 +1,116 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f9d8f16_0c5d9364",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2120,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-08-07T10:59:17Z",
+      "side": 1,
+      "message": "How about putting this method in ScanSettings where these integers are defined?",
+      "range": {
+        "startLine": 2120,
+        "startChar": 4,
+        "endLine": 2120,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4c123af1_cb24bb09",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 652,
+                "startChar": 0,
+                "endLine": 653,
+                "endChar": 0
+              },
+              "replacement": "                            + ScanSettings.getScanModeString(ScanSettings.SCAN_MODE_SCREEN_OFF));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 666,
+                "startChar": 0,
+                "endLine": 667,
+                "endChar": 0
+              },
+              "replacement": "                            + ScanSettings.getScanModeString(client.scanModeApp));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2119,
+                "startChar": 0,
+                "endLine": 2138,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "758d3eaaff967ec3b5379b2bd69e23f1a096b2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0d46341_66d286df",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2135,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-08-07T10:59:17Z",
+      "side": 1,
+      "message": "Why should the `SCAN_MODE_SCREEN_OFF_BALANCED` be default?\n\nHow about adding `case ScanSettings.SCAN_MODE_SCREEN_OFF_BALANCED:` and return `UNKNOWN value\u003d${val}` for the default case?",
+      "range": {
+        "startLine": 2134,
+        "startChar": 12,
+        "endLine": 2135,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cdac9d74_03fb99d0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2134,
+                "startChar": 0,
+                "endLine": 2135,
+                "endChar": 0
+              },
+              "replacement": "            case ScanSettings.SCAN_MODE_SCREEN_OFF_BALANCED:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2136,
+                "startChar": 0,
+                "endLine": 2136,
+                "endChar": 0
+              },
+              "replacement": "            default:\n                return \"UNKNOWN value\u003d\" + scanMode;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "758d3eaaff967ec3b5379b2bd69e23f1a096b2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
