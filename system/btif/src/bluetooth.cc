@@ -427,10 +427,19 @@ static bool is_profile(const char* p1, const char* p2) {
  *
  ****************************************************************************/
 
+#ifdef TARGET_FLOSS
+static int global_hci_adapter = 0;
+int GetAdapterIndex() { return global_hci_adapter; }
+#endif
+
 static int init(bt_callbacks_t* callbacks, bool start_restricted, bool is_common_criteria_mode,
                 int config_compare_result, const char** init_flags, bool is_atv,
-                const char* user_data_directory) {
+                const char* user_data_directory, int hci_adapter) {
   (void)user_data_directory;
+  (void)hci_adapter;
+#ifdef TARGET_FLOSS
+  global_hci_adapter = hci_adapter;
+#endif
   log::info(
           "start restricted = {} ; common criteria mode = {}, config compare "
           "result = {}",
