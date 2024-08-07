@@ -38,6 +38,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_status.h"
@@ -3633,3 +3634,38 @@ tL2CAP_CONN le_result_to_l2c_conn(tL2CAP_LE_RESULT_CODE result) {
  *
  ******************************************************************************/
 void l2c_acl_flush(uint16_t handle) { btm_acl_flush(handle); }
+
+/*******************************************************************************
+ *
+ * Function         psm_to_l2cap_result
+ *
+ * Description      Connvert a L2CAP result code based on PSM.
+ *
+ * Returns          The converted L2CAP result code or default result code.
+ *
+ ******************************************************************************/
+uint16_t psm_to_l2cap_result(uint16_t psm, uint16_t result, uint16_t default_result) {
+  tBT_PSM psm_ = static_cast<tBT_PSM>(psm);
+  switch (psm_) {
+    case BT_PSM_AVDTP:
+      return result;
+    case BT_PSM_SDP:
+    case BT_PSM_RFCOMM:
+    case BT_PSM_TCS:
+    case BT_PSM_CTP:
+    case BT_PSM_BNEP:
+    case BT_PSM_HIDC:
+    case BT_PSM_HIDI:
+    case BT_PSM_UPNP:
+    case BT_PSM_AVCTP:
+    case BT_PSM_AVCTP_13:
+    case BT_PSM_UDI_CP:
+    case BT_PSM_ATT:
+    case BT_PSM_EATT:
+    case BRCM_RESERVED_PSM_START:
+    case BRCM_RESERVED_PSM_END:
+    default:
+      log::warn("Unknown PSM: (0x{:04x})", psm);
+      return default_result;
+  }
+}
