@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627ba1c6_6b94617b",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-07T21:00:05Z",
+      "side": 1,
+      "message": "The same change should be applied to the state `Disconnecting`.",
+      "revId": "3d321fde5baba864d247ad1d467e14b4b15fa3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
