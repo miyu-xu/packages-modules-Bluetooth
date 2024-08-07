@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ad55e5_664d71f1",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-07T21:41:52Z",
+      "side": 1,
+      "message": "` racy if it fails,` not a great signal, but a signal nonetheless",
+      "parentUuid": "26dca52e_de70eaa4",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fa16bc0_a10ad6a4",
