@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49fa175f_6da78fcb",
+        "filename": "flags/pairing.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T01:07:59Z",
+      "side": 1,
+      "message": "You still have some reference in the code in native to the previous name of the flag. You have to update them too.",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "b72b60fa37591c85131dd8dc60c611236ee8e0bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7de87dd_5b2947c9",
+        "filename": "flags/pairing.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T01:07:59Z",
+      "side": 1,
+      "message": "You also need to create a new bug",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 19
+      },
+      "revId": "b72b60fa37591c85131dd8dc60c611236ee8e0bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

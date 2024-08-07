@@ -52,6 +52,24 @@
       "parentUuid": "86fa806c_1cac41ec",
       "revId": "06e8fe3de3ac4a9c792af1316bd73773c447d581",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99d12f9b_0c4bcded",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T01:07:59Z",
+      "side": 1,
+      "message": "That is correct, the initial flag process didn\u0027t have a bugfix workflow. it required to bypass the gantry gate with an exception from the release team.",
+      "parentUuid": "86fa806c_1cac41ec",
+      "revId": "06e8fe3de3ac4a9c792af1316bd73773c447d581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
