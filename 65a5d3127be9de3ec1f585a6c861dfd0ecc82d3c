@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc1752f_444581aa",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T21:35:11Z",
+      "side": 1,
+      "message": "reset mIsSinkStreamMonitorModeEnabled \u003d false here as well?",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "071db8c3_d8299c09",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T21:35:11Z",
+      "side": 1,
+      "message": "Can we also flag this since it\u0027s a new way of queuing mCreateBroadcastQueue?\n\n\n```suggestion\n        if (leaudioBigDependsOnAudioState()) {\n            mCreateBroadcastQueue.add(broadcastSettings);\n        }\n```",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef09915_a1ce7882",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T21:35:11Z",
+      "side": 1,
+      "message": "flag this change if (leaudioBigDependsOnAudioState())?",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "895463d5_df227306",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3498,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T21:35:11Z",
+      "side": 1,
+      "message": "flag?\n\n```suggestion\n                        if (leaudioBigDependsOnAudioState()) {\n                            if (mAwaitingBroadcastCreateResponse) {\n                               updateFallbackUnicastGroupIdForBroadcast(groupId);\n                            }\n                        } else {\n                            ... old code\n                        }\n```",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7abdc621_b015b800",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3522,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T21:35:11Z",
+      "side": 1,
+      "message": "flag?",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aadda6c4_36412679",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3736,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T21:35:11Z",
+      "side": 1,
+      "message": "This doesn\u0027t match what we\u0027re trying to do here not queueing, can we update accordingly?",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
