@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "578a135e_e23ea800",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-07T06:46:01Z",
+      "side": 1,
+      "message": "if p_q_cmd \u003d\u003d NULL that means that there was no command ongoing but stack is just sending response itself.\n\nFor the moment we are using it only for MTU exchange.\n\nso maybe just handle it here so it is clear.\n\n```\nif (p_clcb-\u003ep_q_cmd \u003d\u003d NULL) {\n  if (com::android::bluetooth::flags::gatt_callback_on_failure()) {\n     if (p_data-\u003eop_cmpl.op_code \u003d\u003d GATTC_OPTYPE_CONFIG) {\n        log::info(\"MTU request failed for {}, transport {}\", bda, transport);\n        bta_gattc_cfg_mtu_cmpl(p_clcb, \u0026p_data-\u003eop_cmpl);\n        return;\n     }\n  }\n  log::error(\"No pending command gatt client command\");\n  return;\n}\n```\n\nthen we can remove other `p_clcb-\u003ep_q_cmd \u003d\u003d NULL` checks below.",
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93861180_3491f67f",
         "filename": "system/bta/gatt/bta_gattc_act.cc",
         "patchSetId": 4
@@ -68,6 +85,24 @@
       "side": 1,
       "message": "If there are ongoing MTU exchanges and another client tries to configure MTU over BR/EDR, an error could be wrongly reported to existing clients.\n\nThis is to prevent this scenario.",
       "parentUuid": "1308460e_e15a3233",
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60a0773a_33fa97ca",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-07T06:46:01Z",
+      "side": 1,
+      "message": "but then we are assuming that this is due to BR/EDR, which might not be true. But OK let\u0027s assume that if stack decides to response with an error using this path, let\u0027s make it bit cleaner. See my other comment.",
+      "parentUuid": "09669aa5_cdb16e89",
       "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
