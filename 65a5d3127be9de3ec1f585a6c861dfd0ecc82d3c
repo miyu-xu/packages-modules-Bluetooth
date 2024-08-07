@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6cc4947_10854387",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-07T22:07:01Z",
+      "side": 1,
+      "message": "```suggestion\n            } else if (Flags.leaudioBroadcastAudioHandoverPolicies()) {\n                if (!leaudioBigDependsOnAudioState()) {\n                    if (wasSetSinkListeningMode) {\n                        mNativeInterface.setUnicastMonitorMode(LeAudioStackEvent.DIRECTION_SINK, false);\n                    }\n                } else {\n                    if (mIsSinkStreamMonitorModeEnabled) {\n                        mIsSinkStreamMonitorModeEnabled \u003d false;\n                        mNativeInterface.setUnicastMonitorMode(LeAudioStackEvent.DIRECTION_SINK, false);\n                    }\n                }\n            }\n```",
+      "parentUuid": "fef09915_a1ce7882",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895463d5_df227306",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
