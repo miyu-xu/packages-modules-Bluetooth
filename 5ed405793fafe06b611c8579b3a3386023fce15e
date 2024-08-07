@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf6d1f90_8174e9bd",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-07T17:25:19Z",
+      "side": 1,
+      "message": "l2cu_fixed_channel_reset_pending_remove\nand \nl2cu_fixed_channel_remove_pending\n\nare confusing to me.  l2cu_is_fixed_channel_remove_pending ?  l2cu_reset_pending_fixed_channel_removal ?",
+      "revId": "5ed405793fafe06b611c8579b3a3386023fce15e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6356e73_b45859c1",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-07T17:25:19Z",
+      "side": 1,
+      "message": "Can you include \u003calgorithm\u003e for this?  Why is it not std::find?",
+      "revId": "5ed405793fafe06b611c8579b3a3386023fce15e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
