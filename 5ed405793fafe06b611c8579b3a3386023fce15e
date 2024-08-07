@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba6b9be_9432ca13",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T20:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d6afd35_3828f6af",
+      "revId": "5ed405793fafe06b611c8579b3a3386023fce15e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6356e73_b45859c1",
@@ -67,6 +85,24 @@
       "writtenOn": "2024-08-07T17:25:19Z",
       "side": 1,
       "message": "Can you include \u003calgorithm\u003e for this?  Why is it not std::find?",
+      "revId": "5ed405793fafe06b611c8579b3a3386023fce15e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96529682_b75683bc",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T20:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6356e73_b45859c1",
       "revId": "5ed405793fafe06b611c8579b3a3386023fce15e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
