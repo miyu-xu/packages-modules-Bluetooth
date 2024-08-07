@@ -97,6 +97,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e3753b5_d94db2e8",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1373,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-07T17:28:14Z",
+      "side": 1,
+      "message": "nit: removed or queued for removal",
+      "range": {
+        "startLine": 1373,
+        "startChar": 36,
+        "endLine": 1373,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "695d4f5f_a990ca93",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1373,
+                "startChar": 0,
+                "endLine": 1374,
+                "endChar": 0
+              },
+              "replacement": " *  Return value:   true if channel removed or queued for removal\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e5ac222_a350719b",
         "filename": "system/stack/l2cap/l2c_api.cc",
         "patchSetId": 2
