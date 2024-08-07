@@ -288,7 +288,8 @@ static void bta_hh_di_sdp_cback(const RawAddress& /* bd_addr */, tSDP_RESULT res
                               0);
       }
 
-    } else /* no DI record available */ {
+    } else /* no DI record available */
+    {
       bta_hh_update_di_info(p_cb, BTA_HH_VENDOR_ID_INVALID, 0, 0, 0, 0);
     }
 
@@ -323,14 +324,14 @@ static void bta_hh_di_sdp_cback(const RawAddress& /* bd_addr */, tSDP_RESULT res
  * Returns          void
  *
  ******************************************************************************/
-static void bta_hh_start_sdp(tBTA_HH_DEV_CB* p_cb) {
+static void bta_hh_start_sdp(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   if (!bta_hh_cb.p_disc_db) {
     bta_hh_cb.p_disc_db = (tSDP_DISCOVERY_DB*)osi_malloc(p_bta_hh_cfg->sdp_db_size);
 
     /* Do DI discovery first */
     if (get_legacy_stack_sdp_api()->device_id.SDP_DiDiscover(
-                p_cb->link_spec.addrt.bda, bta_hh_cb.p_disc_db, p_bta_hh_cfg->sdp_db_size,
-                bta_hh_di_sdp_cback) == SDP_SUCCESS) {
+                p_data->api_conn.link_spec.addrt.bda, bta_hh_cb.p_disc_db,
+                p_bta_hh_cfg->sdp_db_size, bta_hh_di_sdp_cback) == SDP_SUCCESS) {
       /* SDP search started successfully
        * Connection will be triggered at the end of successful SDP search
        */
@@ -446,10 +447,12 @@ void bta_hh_sdp_cmpl(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb) {
+static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
+  bta_hh_cb.p_cur = p_cb;
+
   /* If previously virtually cabled device */
   if (p_cb->app_id) {
-    tBTA_HH_DATA bta_hh_data = {};
+    tBTA_HH_DATA bta_hh_data;
     bta_hh_data.status = BTA_HH_OK;
 
     log::verbose("skip SDP for known devices");
@@ -458,7 +461,7 @@ static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb) {
       uint8_t hdl;
       if (HID_HostAddDev(p_cb->link_spec.addrt.bda, p_cb->attr_mask, &hdl) == HID_SUCCESS) {
         /* update device CB with newly register device handle */
-        bta_hh_add_device_to_list(p_cb, hdl, p_cb->attr_mask, nullptr, p_cb->sub_class,
+        bta_hh_add_device_to_list(p_cb, hdl, p_cb->attr_mask, NULL, p_cb->sub_class,
                                   p_cb->dscp_info.ssr_max_latency, p_cb->dscp_info.ssr_min_tout,
                                   p_cb->app_id);
         /* update cb_index[] map */
@@ -470,7 +473,7 @@ static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb) {
 
     bta_hh_sm_execute(p_cb, BTA_HH_SDP_CMPL_EVT, &bta_hh_data);
   } else { /* First time connection, start SDP */
-    bta_hh_start_sdp(p_cb);
+    bta_hh_start_sdp(p_cb, p_data);
   }
 }
 
@@ -484,14 +487,15 @@ static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb) {
  *
  ******************************************************************************/
 void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
+  p_cb->link_spec = p_data->api_conn.link_spec;
   p_cb->mode = p_data->api_conn.mode;
   bta_hh_cb.p_cur = p_cb;
 
   // Initiate HID host connection
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
-    bta_hh_le_open_conn(p_cb);
+    bta_hh_le_open_conn(p_cb, p_data->api_conn.link_spec);
   } else {
-    bta_hh_bredr_conn(p_cb);
+    bta_hh_bredr_conn(p_cb, p_data);
   }
 }
 
@@ -597,6 +601,8 @@ void bta_hh_open_cmpl_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  *
  ******************************************************************************/
 void bta_hh_open_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
+  tBTA_HH_API_CONN conn_data;
+
   uint8_t dev_handle = p_data ? (uint8_t)p_data->hid_cback.hdr.layer_specific : p_cb->hid_handle;
 
   log::verbose("Device[{}] connected", dev_handle);
@@ -613,8 +619,13 @@ void bta_hh_open_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     /* store the handle here in case sdp fails - need to disconnect */
     p_cb->incoming_hid_handle = dev_handle;
 
-    bta_hh_bredr_conn(p_cb);
+    memset(&conn_data, 0, sizeof(tBTA_HH_API_CONN));
+    conn_data.link_spec = p_cb->link_spec;
+    bta_hh_cb.p_cur = p_cb;
+    bta_hh_bredr_conn(p_cb, (tBTA_HH_DATA*)&conn_data);
   }
+
+  return;
 }
 
 /*******************************************************************************
