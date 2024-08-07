@@ -46,6 +46,30 @@
       },
       "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42198824_c94eb003",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T18:29:41Z",
+      "side": 0,
+      "message": "`is not supported and lead to crash.` → When called from external and outside of the implemented path.\n\nIt goes without saying that this works perfectly fine when called by the BluetoothManagerService",
+      "parentUuid": "b8b922b4_be83cf2e",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 22
+      },
+      "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
