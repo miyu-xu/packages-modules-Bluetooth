@@ -171,18 +171,6 @@ tBTA_HH_DEV_CB* bta_hh_find_cb_by_handle(uint8_t hid_handle) {
   return &bta_hh_cb.kdev[index];
 }
 
-static void bta_hh_reset_cb(tBTA_HH_DEV_CB* p_cb) {
-  // Free buffer for report descriptor info
-  osi_free_and_reset((void**)&p_cb->dscp_info.descriptor.dsc_list);
-
-  // Cancel SDP if it had been started
-  if (p_cb->p_disc_db != nullptr) {
-    (void)get_legacy_stack_sdp_api()->service.SDP_CancelServiceSearch(p_cb->p_disc_db);
-    osi_free_and_reset((void**)&p_cb->p_disc_db);
-  }
-  *p_cb = {};
-}
-
 /*******************************************************************************
  *
  * Function         bta_hh_clean_up_kdev
@@ -194,6 +182,8 @@ static void bta_hh_reset_cb(tBTA_HH_DEV_CB* p_cb) {
  *
  ******************************************************************************/
 void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
+  uint8_t index;
+
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     uint8_t le_hid_handle = BTA_HH_GET_LE_CB_IDX(p_cb->hid_handle);
     if (le_hid_handle >= BTA_HH_LE_MAX_KNOWN) {
@@ -209,8 +199,14 @@ void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
     }
   }
 
-  uint8_t index = p_cb->index;  // Preserve index for this control block
-  bta_hh_reset_cb(p_cb);        // Reset control block
+  /* reset device control block */
+  index = p_cb->index; /* Preserve index for this control block */
+
+  /* Free buffer for report descriptor info */
+  osi_free_and_reset((void**)&p_cb->dscp_info.descriptor.dsc_list);
+
+  memset(p_cb, 0, sizeof(tBTA_HH_DEV_CB)); /* Reset control block */
+
   p_cb->index = index; /* Restore index for this control block */
   p_cb->state = BTA_HH_IDLE_ST;
   p_cb->hid_handle = BTA_HH_INVALID_HANDLE;
@@ -374,9 +370,16 @@ tBTA_HH_STATUS bta_hh_read_ssr_param(const tAclLinkSpec& link_spec, uint16_t* p_
  *
  ******************************************************************************/
 void bta_hh_cleanup_disable(tBTA_HH_STATUS status) {
+  uint8_t xx;
   /* free buffer in CB holding report descriptors */
-  for (uint8_t i = 0; i < BTA_HH_MAX_DEVICE; i++) {
-    bta_hh_reset_cb(&bta_hh_cb.kdev[i]);
+  for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
+    osi_free_and_reset((void**)&bta_hh_cb.kdev[xx].dscp_info.descriptor.dsc_list);
+  }
+
+  if (bta_hh_cb.p_disc_db) {
+    /* Cancel SDP if it had been started. */
+    (void)get_legacy_stack_sdp_api()->service.SDP_CancelServiceSearch(bta_hh_cb.p_disc_db);
+    osi_free_and_reset((void**)&bta_hh_cb.p_disc_db);
   }
 
   if (bta_hh_cb.p_cback) {
