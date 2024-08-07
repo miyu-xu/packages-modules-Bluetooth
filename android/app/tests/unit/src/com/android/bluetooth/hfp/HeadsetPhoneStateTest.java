@@ -35,7 +35,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
-import com.android.internal.telephony.ISub;
+// import com.android.internal.telephony.ISub;
 
 import org.junit.After;
 import org.junit.Before;
@@ -54,7 +54,7 @@ import java.util.HashMap;
 public class HeadsetPhoneStateTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock private ISub mISub;
+    // @Mock private ISub mISub;
     @Mock private IBinder mISubBinder;
     @Mock private HeadsetService mHeadsetService;
     @Mock private TelephonyManager mTelephonyManager;
@@ -74,9 +74,9 @@ public class HeadsetPhoneStateTest {
         SubscriptionManager.disableCaching();
         TelephonyManager.disableServiceHandleCaching();
         // Mock SubscriptionManager.getDefaultSubscriptionId() to return a valid value
-        when(mISub.getDefaultSubIdAsUser(anyInt()))
-                .thenReturn(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
-        when(mISubBinder.queryLocalInterface(anyString())).thenReturn(mISub);
+        // when(mISub.getDefaultSubIdAsUser(anyInt()))
+        //         .thenReturn(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
+        // when(mISubBinder.queryLocalInterface(anyString())).thenReturn(mISub);
         mServiceManagerMockedServices.put("isub", mISubBinder);
         mServiceManagerOriginalServices =
                 TestUtils.replaceField(

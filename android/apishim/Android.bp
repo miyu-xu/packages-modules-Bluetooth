@@ -86,7 +86,7 @@ java_library {
         "BluetoothShimsCommon",
     ],
     visibility: [
-        "//packages/modules/Bluetooth/android/app",
+        "//packages/modules/Bluetooth/android/app:__subpackages__",
     ],
     sdk_version: "module_33",
 }
