@@ -236,28 +236,6 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                     BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__LOG_WARN,
                     0);
         }
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileOppEnabled().orElse(false);
-    }
-
-    @Override
-    protected IProfileServiceBinder initBinder() {
-        return new OppBinder(this);
-    }
-
-    private static class OppBinder extends Binder implements IProfileServiceBinder {
-
-        OppBinder(BluetoothOppService service) {}
-
-        @Override
-        public void cleanup() {}
-    }
-
-    @Override
-    public void start() {
-        Log.v(TAG, "start()");
 
         setComponentAvailable(OPP_PROVIDER, true);
         setComponentAvailable(INCOMING_FILE_CONFIRM_ACTIVITY, true);
@@ -280,6 +258,23 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         mNotifier.cancelOppNotifications();
         updateFromProvider();
         setBluetoothOppService(this);
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileOppEnabled().orElse(false);
+    }
+
+    @Override
+    protected IProfileServiceBinder initBinder() {
+        return new OppBinder(this);
+    }
+
+    private static class OppBinder extends Binder implements IProfileServiceBinder {
+
+        OppBinder(BluetoothOppService service) {}
+
+        @Override
+        public void cleanup() {}
     }
 
     @Override

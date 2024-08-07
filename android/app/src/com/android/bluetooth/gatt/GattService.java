@@ -24,6 +24,8 @@ import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREG
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -55,7 +57,6 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager.PackageInfoFlags;
@@ -168,46 +169,26 @@ public class GattService extends ProfileService {
      */
     private final HashMap<String, Integer> mPermits = new HashMap<>();
 
-    private AdapterService mAdapterService;
-    AdvertiseManager mAdvertiseManager;
-    DistanceMeasurementManager mDistanceMeasurementManager;
+    private final AdapterService mAdapterService;
+    final AdvertiseManager mAdvertiseManager;
+    final DistanceMeasurementManager mDistanceMeasurementManager;
     private Handler mTestModeHandler;
     private ActivityManager mActivityManager;
     private PackageManager mPackageManager;
     private final Object mTestModeLock = new Object();
 
-    public GattService(Context ctx) {
-        super(ctx);
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileGattEnabled().orElse(true);
-    }
-
-    /** Reliable write queue */
-    @VisibleForTesting Set<String> mReliableQueue = new HashSet<>();
-
-    private GattNativeInterface mNativeInterface;
-
-    @Override
-    protected IProfileServiceBinder initBinder() {
-        return new BluetoothGattBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
-
+    public GattService(AdapterService adapterService) {
+        super(adapterService);
         if (Flags.scanManagerRefactor() && sGattService != null) {
             throw new IllegalStateException("start() called twice");
         }
+        mAdapterService = requireNonNull(adapterService);
 
         Settings.Global.putInt(
                 getContentResolver(), "bluetooth_sanitized_exposure_notification_supported", 1);
 
         mNativeInterface = GattObjectsFactory.getInstance().getNativeInterface();
         mNativeInterface.init(this);
-        mAdapterService = AdapterService.getAdapterService();
         mAdvertiseManager = new AdvertiseManager(this);
 
         if (!Flags.scanManagerRefactor()) {
@@ -224,6 +205,20 @@ public class GattService extends ProfileService {
         if (Flags.scanManagerRefactor()) {
             setGattService(this);
         }
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileGattEnabled().orElse(true);
+    }
+
+    /** Reliable write queue */
+    @VisibleForTesting Set<String> mReliableQueue = new HashSet<>();
+
+    private final GattNativeInterface mNativeInterface;
+
+    @Override
+    protected IProfileServiceBinder initBinder() {
+        return new BluetoothGattBinder(this);
     }
 
     @Override
@@ -252,16 +247,9 @@ public class GattService extends ProfileService {
     @Override
     public void cleanup() {
         Log.d(TAG, "cleanup()");
-        if (mNativeInterface != null) {
-            mNativeInterface.cleanup();
-            mNativeInterface = null;
-        }
-        if (mAdvertiseManager != null) {
-            mAdvertiseManager.cleanup();
-        }
-        if (mDistanceMeasurementManager != null) {
-            mDistanceMeasurementManager.cleanup();
-        }
+        mNativeInterface.cleanup();
+        mAdvertiseManager.cleanup();
+        mDistanceMeasurementManager.cleanup();
         if (!Flags.scanManagerRefactor()) {
             mTransitionalScanHelper.cleanup();
         }

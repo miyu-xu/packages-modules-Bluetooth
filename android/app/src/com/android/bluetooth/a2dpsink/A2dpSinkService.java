@@ -27,7 +27,6 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothA2dpSink;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.media.AudioManager;
 import android.os.Looper;
 import android.sysprop.BluetoothProperties;
@@ -69,38 +68,24 @@ public class A2dpSinkService extends ProfileService {
 
     private static A2dpSinkService sService;
 
-    private int mMaxConnectedAudioDevices;
+    private final int mMaxConnectedAudioDevices;
 
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
 
-    public A2dpSinkService(Context ctx) {
-        super(ctx);
-        mNativeInterface = requireNonNull(A2dpSinkNativeInterface.getInstance());
-        mLooper = Looper.getMainLooper();
+    public A2dpSinkService(AdapterService adapterService) {
+        this(adapterService, A2dpSinkNativeInterface.getInstance(), Looper.getMainLooper());
     }
 
     @VisibleForTesting
-    A2dpSinkService(Context ctx, A2dpSinkNativeInterface nativeInterface, Looper looper) {
-        super(ctx);
+    A2dpSinkService(
+            AdapterService adapterService, A2dpSinkNativeInterface nativeInterface, Looper looper) {
+        super(adapterService);
+        mAdapterService = requireNonNull(adapterService);
         mNativeInterface = requireNonNull(nativeInterface);
-        mLooper = looper;
-    }
+        mLooper = requireNonNull(looper);
 
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileA2dpSinkEnabled().orElse(false);
-    }
-
-    @Override
-    public void start() {
-        mAdapterService =
-                requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when A2dpSinkService starts");
-        mDatabaseManager =
-                requireNonNull(
-                        AdapterService.getAdapterService().getDatabase(),
-                        "DatabaseManager cannot be null when A2dpSinkService starts");
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
 
         mMaxConnectedAudioDevices = mAdapterService.getMaxConnectedAudioDevices();
         mNativeInterface.init(mMaxConnectedAudioDevices);
@@ -110,6 +95,10 @@ public class A2dpSinkService extends ProfileService {
         }
 
         setA2dpSinkService(this);
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileA2dpSinkEnabled().orElse(false);
     }
 
     @Override

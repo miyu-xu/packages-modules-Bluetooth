@@ -19,6 +19,8 @@ package com.android.bluetooth.hid;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothDevice;
@@ -29,7 +31,6 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothHidDevice;
 import android.bluetooth.IBluetoothHidDeviceCallback;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
@@ -55,7 +56,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public class HidDeviceService extends ProfileService {
     private static final String TAG = HidDeviceService.class.getSimpleName();
@@ -74,21 +74,29 @@ public class HidDeviceService extends ProfileService {
 
     private static HidDeviceService sHidDeviceService;
 
-    private DatabaseManager mDatabaseManager;
-    private HidDeviceNativeInterface mHidDeviceNativeInterface;
+    private final DatabaseManager mDatabaseManager;
+    private final HidDeviceNativeInterface mHidDeviceNativeInterface;
 
-    private boolean mNativeAvailable = false;
     private BluetoothDevice mHidDevice;
     private int mHidDeviceState = BluetoothHidDevice.STATE_DISCONNECTED;
     private int mUserUid = 0;
     private IBluetoothHidDeviceCallback mCallback;
     private BluetoothHidDeviceDeathRecipient mDeathRcpt;
-    private ActivityManager mActivityManager;
+    private final ActivityManager mActivityManager;
 
-    private HidDeviceServiceHandler mHandler;
+    private final HidDeviceServiceHandler mHandler;
 
-    public HidDeviceService(Context ctx) {
-        super(ctx);
+    public HidDeviceService(AdapterService adapterService) {
+        super(adapterService);
+        mDatabaseManager = requireNonNull(adapterService.getDatabase());
+
+        mHandler = new HidDeviceServiceHandler(Looper.getMainLooper());
+        mHidDeviceNativeInterface = HidDeviceNativeInterface.getInstance();
+        mHidDeviceNativeInterface.init();
+        mActivityManager = requireNonNull(getSystemService(ActivityManager.class));
+        mActivityManager.addOnUidImportanceListener(
+                mUidImportanceListener, FOREGROUND_IMPORTANCE_CUTOFF);
+        setHidDeviceService(this);
     }
 
     public static boolean isEnabled() {
@@ -693,25 +701,6 @@ public class HidDeviceService extends ProfileService {
     }
 
     @Override
-    public void start() {
-        Log.d(TAG, "start()");
-
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService().getDatabase(),
-                        "DatabaseManager cannot be null when HidDeviceService starts");
-
-        mHandler = new HidDeviceServiceHandler(Looper.getMainLooper());
-        mHidDeviceNativeInterface = HidDeviceNativeInterface.getInstance();
-        mHidDeviceNativeInterface.init();
-        mNativeAvailable = true;
-        mActivityManager = getSystemService(ActivityManager.class);
-        mActivityManager.addOnUidImportanceListener(
-                mUidImportanceListener, FOREGROUND_IMPORTANCE_CUTOFF);
-        setHidDeviceService(this);
-    }
-
-    @Override
     public void stop() {
         Log.d(TAG, "stop()");
 
@@ -721,10 +710,7 @@ public class HidDeviceService extends ProfileService {
         }
 
         setHidDeviceService(null);
-        if (mNativeAvailable) {
-            mHidDeviceNativeInterface.cleanup();
-            mNativeAvailable = false;
-        }
+        mHidDeviceNativeInterface.cleanup();
         mActivityManager.removeOnUidImportanceListener(mUidImportanceListener);
     }
 
@@ -754,7 +740,7 @@ public class HidDeviceService extends ProfileService {
     /**
      * Gets the connections state for the hid device profile for the passed in device
      *
-     * @param device is the device whose conenction state we want to verify
+     * @param device is the device whose connection state we want to verify
      * @return current connection state, one of {@link BluetoothProfile#STATE_DISCONNECTED}, {@link
      *     BluetoothProfile#STATE_CONNECTING}, {@link BluetoothProfile#STATE_CONNECTED}, or {@link
      *     BluetoothProfile#STATE_DISCONNECTING}

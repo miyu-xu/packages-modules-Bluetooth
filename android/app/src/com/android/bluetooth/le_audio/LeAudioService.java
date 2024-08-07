@@ -28,6 +28,8 @@ import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
 import static com.android.bluetooth.flags.Flags.leaudioUseAudioModeListener;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -152,9 +154,9 @@ public class LeAudioService extends ProfileService {
     /* 5 seconds timeout for Broadcast streaming state transition */
     private static final int DIALING_OUT_TIMEOUT_MS = 5000;
 
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
-    private HandlerThread mStateMachinesThread;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    private final HandlerThread mStateMachinesThread;
     private volatile BluetoothDevice mActiveAudioOutDevice;
     private volatile BluetoothDevice mActiveAudioInDevice;
     private volatile BluetoothDevice mActiveBroadcastAudioDevice;
@@ -181,7 +183,7 @@ public class LeAudioService extends ProfileService {
 
     LeAudioBroadcasterNativeInterface mLeAudioBroadcasterNativeInterface = null;
     private DialingOutTimeoutEvent mDialingOutTimeoutEvent = null;
-    @VisibleForTesting AudioManager mAudioManager;
+    @VisibleForTesting final AudioManager mAudioManager;
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
     int mUnicastGroupIdDeactivatedForBroadcastTransition = LE_AUDIO_GROUP_ID_INVALID;
@@ -223,14 +225,78 @@ public class LeAudioService extends ProfileService {
 
     private final AudioServerScanCallback2 mScanCallback2 = new AudioServerScanCallback2();
 
-    public LeAudioService(Context ctx) {
-        this(ctx, LeAudioNativeInterface.getInstance());
+    public LeAudioService(AdapterService adapterService) {
+        this(adapterService, LeAudioNativeInterface.getInstance());
     }
 
     @VisibleForTesting
-    LeAudioService(Context ctx, LeAudioNativeInterface nativeInterface) {
-        super(ctx);
-        mNativeInterface = Objects.requireNonNull(nativeInterface);
+    LeAudioService(AdapterService adapterService, LeAudioNativeInterface nativeInterface) {
+        super(adapterService);
+        mNativeInterface = requireNonNull(nativeInterface);
+        if (sLeAudioService != null) {
+            throw new IllegalStateException("start() called twice");
+        }
+
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mAudioManager = requireNonNull(getSystemService(AudioManager.class));
+
+        // Start handler thread for state machines
+        mStateMachinesThread = new HandlerThread("LeAudioService.StateMachines");
+        mStateMachinesThread.start();
+
+        mBroadcastDescriptors.clear();
+
+        mGroupWriteLock.lock();
+        try {
+            mDeviceDescriptors.clear();
+            mGroupDescriptors.clear();
+        } finally {
+            mGroupWriteLock.unlock();
+        }
+
+        mTmapRoleMask =
+                LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
+
+        // Initialize Broadcast native interface
+        if ((mAdapterService.getSupportedProfilesBitMask()
+                        & (1 << BluetoothProfile.LE_AUDIO_BROADCAST))
+                != 0) {
+            Log.i(TAG, "Init Le Audio broadcaster");
+            mLeAudioBroadcasterNativeInterface =
+                    Objects.requireNonNull(
+                            LeAudioBroadcasterNativeInterface.getInstance(),
+                            "LeAudioBroadcasterNativeInterface cannot be null when LeAudioService"
+                                    + " starts");
+            mLeAudioBroadcasterNativeInterface.init();
+            mTmapRoleMask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_BMS;
+        } else {
+            Log.w(TAG, "Le Audio Broadcasts not supported.");
+        }
+
+        mTmapStarted = registerTmap();
+
+        mLeAudioInbandRingtoneSupportedByPlatform =
+                BluetoothProperties.isLeAudioInbandRingtoneSupported().orElse(true);
+
+        mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
+
+        // Mark service as started
+        setLeAudioService(this);
+
+        // Setup codec config
+        mLeAudioCodecConfig = new LeAudioCodecConfig(this);
+        if (!Flags.leaudioSynchronizeStart()) {
+            // Delay the call to init by posting it. This ensures TBS and MCS are fully initialized
+            // before we start accepting connections
+            mHandler.post(this::init);
+            return;
+        }
+        mNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
+
+        if (leaudioUseAudioModeListener()) {
+            mAudioManager.addOnModeChangedListener(getMainExecutor(), mAudioModeChangeListener);
+        }
     }
 
     private static class LeAudioGroupDescriptor {
@@ -416,84 +482,6 @@ public class LeAudioService extends ProfileService {
         return true;
     }
 
-    @Override
-    public void start() {
-        Log.i(TAG, "start()");
-        if (sLeAudioService != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when LeAudioService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when LeAudioService starts");
-
-        mAudioManager = getSystemService(AudioManager.class);
-        Objects.requireNonNull(
-                mAudioManager, "AudioManager cannot be null when LeAudioService starts");
-
-        // Start handler thread for state machines
-        mStateMachinesThread = new HandlerThread("LeAudioService.StateMachines");
-        mStateMachinesThread.start();
-
-        mBroadcastDescriptors.clear();
-
-        mGroupWriteLock.lock();
-        try {
-            mDeviceDescriptors.clear();
-            mGroupDescriptors.clear();
-        } finally {
-            mGroupWriteLock.unlock();
-        }
-
-        mTmapRoleMask =
-                LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
-
-        // Initialize Broadcast native interface
-        if ((mAdapterService.getSupportedProfilesBitMask()
-                        & (1 << BluetoothProfile.LE_AUDIO_BROADCAST))
-                != 0) {
-            Log.i(TAG, "Init Le Audio broadcaster");
-            mLeAudioBroadcasterNativeInterface =
-                    Objects.requireNonNull(
-                            LeAudioBroadcasterNativeInterface.getInstance(),
-                            "LeAudioBroadcasterNativeInterface cannot be null when LeAudioService"
-                                    + " starts");
-            mLeAudioBroadcasterNativeInterface.init();
-            mTmapRoleMask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_BMS;
-        } else {
-            Log.w(TAG, "Le Audio Broadcasts not supported.");
-        }
-
-        mTmapStarted = registerTmap();
-
-        mLeAudioInbandRingtoneSupportedByPlatform =
-                BluetoothProperties.isLeAudioInbandRingtoneSupported().orElse(true);
-
-        mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
-
-        // Mark service as started
-        setLeAudioService(this);
-
-        // Setup codec config
-        mLeAudioCodecConfig = new LeAudioCodecConfig(this);
-        if (!Flags.leaudioSynchronizeStart()) {
-            // Delay the call to init by posting it. This ensures TBS and MCS are fully initialized
-            // before we start accepting connections
-            mHandler.post(this::init);
-            return;
-        }
-        mNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
-
-        if (leaudioUseAudioModeListener()) {
-            mAudioManager.addOnModeChangedListener(getMainExecutor(), mAudioModeChangeListener);
-        }
-    }
-
     // TODO: b/341385684 -- Delete the init method as it has been inlined in start
     private void init() {
         if (!isAvailable()) {
@@ -621,20 +609,15 @@ public class LeAudioService extends ProfileService {
             mLeAudioBroadcasterNativeInterface = null;
         }
 
-        if (mStateMachinesThread != null) {
-            try {
-                mStateMachinesThread.quitSafely();
-                mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
-                mStateMachinesThread = null;
-            } catch (InterruptedException e) {
-                // Do not rethrow as we are shutting down anyway
-            }
+        try {
+            mStateMachinesThread.quitSafely();
+            mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
+        } catch (InterruptedException e) {
+            // Do not rethrow as we are shutting down anyway
         }
 
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAudioDeviceCallback);
 
-        mAdapterService = null;
-        mAudioManager = null;
         mMcpService = null;
         mTbsService = null;
         mVolumeControlService = null;
@@ -1988,11 +1971,6 @@ public class LeAudioService extends ProfileService {
     private class AudioManagerAudioDeviceCallback extends AudioDeviceCallback {
         @Override
         public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
-            if (mAudioManager == null || mAdapterService == null) {
-                Log.e(TAG, "Callback called when LeAudioService is stopped");
-                return;
-            }
-
             for (AudioDeviceInfo deviceInfo : addedDevices) {
                 if ((deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET)
                         && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
@@ -2016,11 +1994,6 @@ public class LeAudioService extends ProfileService {
 
         @Override
         public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
-            if (mAudioManager == null || mAdapterService == null) {
-                Log.e(TAG, "Callback called when LeAudioService is stopped");
-                return;
-            }
-
             for (AudioDeviceInfo deviceInfo : removedDevices) {
                 if ((deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET)
                         && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
@@ -2064,7 +2037,7 @@ public class LeAudioService extends ProfileService {
 
     /*
      * Listen mode is set when broadcast is queued, waiting for create response notification or
-     * descriptor was created - idicate that create notification was received.
+     * descriptor was created - indicate that create notification was received.
      */
     private boolean wasSetSinkListeningMode() {
         return !mCreateBroadcastQueue.isEmpty()

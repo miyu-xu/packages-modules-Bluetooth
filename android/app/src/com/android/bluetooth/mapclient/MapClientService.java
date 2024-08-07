@@ -19,6 +19,8 @@ package com.android.bluetooth.mapclient;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.Manifest;
 import android.annotation.RequiresPermission;
 import android.app.PendingIntent;
@@ -29,7 +31,6 @@ import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothMapClient;
 import android.bluetooth.SdpMasRecord;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -50,7 +51,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MapClientService extends ProfileService {
@@ -60,24 +60,38 @@ public class MapClientService extends ProfileService {
 
     private final Map<BluetoothDevice, MceStateMachine> mMapInstanceMap =
             new ConcurrentHashMap<>(1);
-    private MnsService mMnsServer;
+    private final MnsService mMnsServer;
 
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
     private static MapClientService sMapClientService;
-    @VisibleForTesting private Handler mHandler;
+    private final Handler mHandler;
 
     private Looper mSmLooper;
 
-    public MapClientService(Context ctx) {
-        super(ctx);
+    public MapClientService(AdapterService adapterService) {
+        this(adapterService, null, null);
     }
 
     @VisibleForTesting
-    MapClientService(Context ctx, Looper looper, MnsService mnsServer) {
-        this(ctx);
+    MapClientService(AdapterService adapterService, Looper looper, MnsService mnsServer) {
+        super(adapterService);
         mSmLooper = looper;
-        mMnsServer = mnsServer;
+
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+
+        mHandler = new Handler(Looper.getMainLooper());
+
+        if (mnsServer == null) {
+            mMnsServer = new MnsService(this);
+        } else {
+            mMnsServer = mnsServer;
+        }
+
+        removeUncleanAccounts();
+        MapClientContent.clearAllContent(this);
+        setMapClientService(this);
     }
 
     public static boolean isEnabled() {
@@ -172,8 +186,11 @@ public class MapClientService extends ProfileService {
         // When creating a new statemachine, its state is set to CONNECTING - which will trigger
         // connect.
         MceStateMachine mapStateMachine;
-        if (mSmLooper != null) mapStateMachine = new MceStateMachine(this, device, mSmLooper);
-        else mapStateMachine = new MceStateMachine(this, device);
+        if (mSmLooper != null) {
+            mapStateMachine = new MceStateMachine(this, device, mSmLooper);
+        } else {
+            mapStateMachine = new MceStateMachine(this, device);
+        }
         mMapInstanceMap.put(device, mapStateMachine);
     }
 
@@ -288,33 +305,10 @@ public class MapClientService extends ProfileService {
     }
 
     @Override
-    public synchronized void start() {
-        Log.d(TAG, "start()");
-
-        mAdapterService = AdapterService.getAdapterService();
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService().getDatabase(),
-                        "DatabaseManager cannot be null when MapClientService starts");
-
-        mHandler = new Handler(Looper.getMainLooper());
-
-        if (mMnsServer == null) {
-            mMnsServer = new MnsService(this);
-        }
-
-        removeUncleanAccounts();
-        MapClientContent.clearAllContent(this);
-        setMapClientService(this);
-    }
-
-    @Override
     public synchronized void stop() {
         Log.d(TAG, "stop()");
 
-        if (mMnsServer != null) {
-            mMnsServer.stop();
-        }
+        mMnsServer.stop();
         for (MceStateMachine stateMachine : mMapInstanceMap.values()) {
             if (stateMachine.getState() == BluetoothAdapter.STATE_CONNECTED) {
                 stateMachine.disconnect();
@@ -324,10 +318,7 @@ public class MapClientService extends ProfileService {
         mMapInstanceMap.clear();
 
         // Unregister Handler and stop all queued messages.
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     @Override

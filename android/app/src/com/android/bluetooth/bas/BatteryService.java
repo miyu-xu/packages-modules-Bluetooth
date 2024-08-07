@@ -16,10 +16,11 @@
 
 package com.android.bluetooth.bas;
 
+import static java.util.Objects.requireNonNull;
+
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
-import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -37,7 +38,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /** A profile service that connects to the Battery service (BAS) of BLE devices */
 public class BatteryService extends ProfileService {
@@ -47,14 +47,27 @@ public class BatteryService extends ProfileService {
     private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1_000;
 
     private static BatteryService sBatteryService;
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
-    private HandlerThread mStateMachinesThread;
-    private Handler mHandler;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    private final HandlerThread mStateMachinesThread;
+    private final Handler mHandler;
     private final Map<BluetoothDevice, BatteryStateMachine> mStateMachines = new HashMap<>();
 
-    public BatteryService(Context ctx) {
-        super(ctx);
+    public BatteryService(AdapterService adapterService) {
+        super(adapterService);
+        if (sBatteryService != null) {
+            throw new IllegalStateException("start() called twice");
+        }
+
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+
+        mHandler = new Handler(Looper.getMainLooper());
+        mStateMachines.clear();
+        mStateMachinesThread = new HandlerThread("BatteryService.StateMachines");
+        mStateMachinesThread.start();
+
+        setBatteryService(this);
     }
 
     public static boolean isEnabled() {
@@ -64,30 +77,6 @@ public class BatteryService extends ProfileService {
     @Override
     protected IProfileServiceBinder initBinder() {
         return null;
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
-        if (sBatteryService != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when BatteryService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when BatteryService starts");
-
-        mHandler = new Handler(Looper.getMainLooper());
-        mStateMachines.clear();
-        mStateMachinesThread = new HandlerThread("BatteryService.StateMachines");
-        mStateMachinesThread.start();
-
-        setBatteryService(this);
     }
 
     @Override
@@ -109,23 +98,15 @@ public class BatteryService extends ProfileService {
             mStateMachines.clear();
         }
 
-        if (mStateMachinesThread != null) {
-            try {
-                mStateMachinesThread.quitSafely();
-                mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
-                mStateMachinesThread = null;
-            } catch (InterruptedException e) {
-                // Do not rethrow as we are shutting down anyway
-            }
+        try {
+            mStateMachinesThread.quitSafely();
+            mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
+        } catch (InterruptedException e) {
+            // Do not rethrow as we are shutting down anyway
         }
 
         // Unregister Handler and stop all queued messages.
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
-
-        mAdapterService = null;
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     @Override

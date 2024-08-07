@@ -20,6 +20,8 @@ package com.android.bluetooth.csip;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.CallbackExecutor;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -33,7 +35,6 @@ import android.bluetooth.IBluetoothCsipSetCoordinator;
 import android.bluetooth.IBluetoothCsipSetCoordinatorCallback;
 import android.bluetooth.IBluetoothCsipSetCoordinatorLockCallback;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
@@ -75,12 +76,12 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     private static CsipSetCoordinatorService sCsipSetCoordinatorService;
 
-    private Handler mHandler = null;
+    private final Handler mHandler;
 
-    private AdapterService mAdapterService;
+    private final AdapterService mAdapterService;
     private LeAudioService mLeAudioService;
     private DatabaseManager mDatabaseManager;
-    private HandlerThread mStateMachinesThread;
+    private final HandlerThread mStateMachinesThread;
     @VisibleForTesting ServiceFactory mServiceFactory = new ServiceFactory();
 
     @VisibleForTesting CsipSetCoordinatorNativeInterface mCsipSetCoordinatorNativeInterface;
@@ -101,41 +102,16 @@ public class CsipSetCoordinatorService extends ProfileService {
     private final Map<Integer, Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback>> mLocks =
             new ConcurrentHashMap<>();
 
-    public CsipSetCoordinatorService(Context ctx) {
-        super(ctx);
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false);
-    }
-
-    @Override
-    protected IProfileServiceBinder initBinder() {
-        return new BluetoothCsisBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
+    public CsipSetCoordinatorService(AdapterService adapterService) {
+        super(adapterService);
         if (sCsipSetCoordinatorService != null) {
             throw new IllegalStateException("start() called twice");
         }
 
-        // Get AdapterService, DatabaseManager, CsipSetCoordinatorNativeInterface.
-        // None of them can be null.
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when CsipSetCoordinatorService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when CsipSetCoordinatorService starts");
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
         mCsipSetCoordinatorNativeInterface =
-                Objects.requireNonNull(
-                        CsipSetCoordinatorNativeInterface.getInstance(),
-                        "CsipSetCoordinatorNativeInterface cannot be null when"
-                                .concat("CsipSetCoordinatorService starts"));
+                requireNonNull(CsipSetCoordinatorNativeInterface.getInstance());
 
         // Setup Handler.
         mHandler = new Handler(Looper.getMainLooper());
@@ -158,6 +134,15 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         // Initialize native interface
         mCsipSetCoordinatorNativeInterface.init();
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false);
+    }
+
+    @Override
+    protected IProfileServiceBinder initBinder() {
+        return new BluetoothCsisBinder(this);
     }
 
     @Override
@@ -184,21 +169,15 @@ public class CsipSetCoordinatorService extends ProfileService {
             mStateMachines.clear();
         }
 
-        if (mStateMachinesThread != null) {
-            try {
-                mStateMachinesThread.quitSafely();
-                mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
-                mStateMachinesThread = null;
-            } catch (InterruptedException e) {
-                // Do not rethrow as we are shutting down anyway
-            }
+        try {
+            mStateMachinesThread.quitSafely();
+            mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
+        } catch (InterruptedException e) {
+            // Do not rethrow as we are shutting down anyway
         }
 
         // Unregister Handler and stop all queued messages.
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
+        mHandler.removeCallbacksAndMessages(null);
 
         mDeviceGroupIdRankMap.clear();
         mCallbacks.clear();
@@ -211,7 +190,6 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         // Clear AdapterService, CsipSetCoordinatorNativeInterface
         mCsipSetCoordinatorNativeInterface = null;
-        mAdapterService = null;
     }
 
     @Override

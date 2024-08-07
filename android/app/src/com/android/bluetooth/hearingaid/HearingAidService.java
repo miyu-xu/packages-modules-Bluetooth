@@ -19,6 +19,8 @@ package com.android.bluetooth.hearingaid;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHearingAid;
@@ -27,7 +29,6 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothHearingAid;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
@@ -70,13 +71,13 @@ public class HearingAidService extends ProfileService {
     private static final int MAX_HEARING_AID_STATE_MACHINES = 10;
     private static HearingAidService sHearingAidService;
 
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
-    private HandlerThread mStateMachinesThread;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    private final HandlerThread mStateMachinesThread;
     private BluetoothDevice mActiveDevice;
 
-    @VisibleForTesting HearingAidNativeInterface mHearingAidNativeInterface;
-    @VisibleForTesting AudioManager mAudioManager;
+    @VisibleForTesting final HearingAidNativeInterface mHearingAidNativeInterface;
+    @VisibleForTesting final AudioManager mAudioManager;
 
     private final Map<BluetoothDevice, HearingAidStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, Long> mDeviceHiSyncIdMap = new ConcurrentHashMap<>();
@@ -84,48 +85,23 @@ public class HearingAidService extends ProfileService {
     private final Map<Long, Boolean> mHiSyncIdConnectedMap = new HashMap<>();
     private long mActiveDeviceHiSyncId = BluetoothHearingAid.HI_SYNC_ID_INVALID;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
     private final AudioManagerOnAudioDevicesAddedCallback mAudioManagerOnAudioDevicesAddedCallback =
             new AudioManagerOnAudioDevicesAddedCallback();
     private final AudioManagerOnAudioDevicesRemovedCallback
             mAudioManagerOnAudioDevicesRemovedCallback =
                     new AudioManagerOnAudioDevicesRemovedCallback();
 
-    public HearingAidService(Context ctx) {
-        super(ctx);
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileAshaCentralEnabled().orElse(true);
-    }
-
-    @Override
-    protected IProfileServiceBinder initBinder() {
-        return new BluetoothHearingAidBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
+    public HearingAidService(AdapterService adapterService) {
+        super(adapterService);
         if (sHearingAidService != null) {
             throw new IllegalStateException("start() called twice");
         }
 
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when HearingAidService starts");
-        mHearingAidNativeInterface =
-                Objects.requireNonNull(
-                        HearingAidNativeInterface.getInstance(),
-                        "HearingAidNativeInterface cannot be null when HearingAidService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when HearingAidService starts");
-        mAudioManager = getSystemService(AudioManager.class);
-        Objects.requireNonNull(
-                mAudioManager, "AudioManager cannot be null when HearingAidService starts");
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mHearingAidNativeInterface = requireNonNull(HearingAidNativeInterface.getInstance());
+        mAudioManager = requireNonNull(getSystemService(AudioManager.class));
 
         // Start handler thread for state machines
         mStateMachines.clear();
@@ -144,6 +120,15 @@ public class HearingAidService extends ProfileService {
         mHearingAidNativeInterface.init();
     }
 
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileAshaCentralEnabled().orElse(true);
+    }
+
+    @Override
+    protected IProfileServiceBinder initBinder() {
+        return new BluetoothHearingAidBinder(this);
+    }
+
     @Override
     public void stop() {
         Log.d(TAG, "stop()");
@@ -153,7 +138,6 @@ public class HearingAidService extends ProfileService {
         }
         // Cleanup native interface
         mHearingAidNativeInterface.cleanup();
-        mHearingAidNativeInterface = null;
 
         // Mark service as stopped
         setHearingAidService(null);
@@ -172,28 +156,17 @@ public class HearingAidService extends ProfileService {
         mDeviceCapabilitiesMap.clear();
         mHiSyncIdConnectedMap.clear();
 
-        if (mStateMachinesThread != null) {
-            try {
-                mStateMachinesThread.quitSafely();
-                mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
-                mStateMachinesThread = null;
-            } catch (InterruptedException e) {
-                // Do not rethrow as we are shutting down anyway
-            }
+        try {
+            mStateMachinesThread.quitSafely();
+            mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
+        } catch (InterruptedException e) {
+            // Do not rethrow as we are shutting down anyway
         }
 
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
+        mHandler.removeCallbacksAndMessages(null);
 
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerOnAudioDevicesAddedCallback);
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerOnAudioDevicesRemovedCallback);
-
-        // Clear AdapterService, HearingAidNativeInterface
-        mAudioManager = null;
-        mHearingAidNativeInterface = null;
-        mAdapterService = null;
     }
 
     @Override
@@ -669,12 +642,8 @@ public class HearingAidService extends ProfileService {
             for (AudioDeviceInfo deviceInfo : removedDevices) {
                 if (deviceInfo.getType() == AudioDeviceInfo.TYPE_HEARING_AID) {
                     Log.d(TAG, " onAudioDevicesRemoved: device type: " + deviceInfo.getType());
-                    if (mAudioManager != null) {
-                        notifyActiveDeviceChanged();
-                        mAudioManager.unregisterAudioDeviceCallback(this);
-                    } else {
-                        Log.w(TAG, "onAudioDevicesRemoved: mAudioManager is null");
-                    }
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(this);
                 }
             }
         }
@@ -687,12 +656,8 @@ public class HearingAidService extends ProfileService {
             for (AudioDeviceInfo deviceInfo : addedDevices) {
                 if (deviceInfo.getType() == AudioDeviceInfo.TYPE_HEARING_AID) {
                     Log.d(TAG, " onAudioDevicesAdded: device type: " + deviceInfo.getType());
-                    if (mAudioManager != null) {
-                        notifyActiveDeviceChanged();
-                        mAudioManager.unregisterAudioDeviceCallback(this);
-                    } else {
-                        Log.w(TAG, "onAudioDevicesAdded: mAudioManager is null");
-                    }
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(this);
                 }
             }
         }

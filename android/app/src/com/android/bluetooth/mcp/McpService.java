@@ -62,6 +62,24 @@ public class McpService extends ProfileService {
         } else {
             mGmcs = mediaControlProfile;
         }
+
+        if (sMcpService != null) {
+            throw new IllegalStateException("start() called twice");
+        }
+
+        // Mark service as started
+        setMcpService(this);
+
+        if (Flags.leaudioSynchronizeStart()) {
+            mGmcs.init();
+            return;
+        }
+        mHandler.post(
+                () -> {
+                    if (isAvailable()) {
+                        mGmcs.init();
+                    }
+                });
     }
 
     public static boolean isEnabled() {
@@ -89,29 +107,6 @@ public class McpService extends ProfileService {
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothMcpServiceBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
-
-        if (sMcpService != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
-        // Mark service as started
-        setMcpService(this);
-
-        if (Flags.leaudioSynchronizeStart()) {
-            mGmcs.init();
-            return;
-        }
-        mHandler.post(
-                () -> {
-                    if (isAvailable()) {
-                        mGmcs.init();
-                    }
-                });
     }
 
     @Override

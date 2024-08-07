@@ -29,6 +29,8 @@ import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicS
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastMonitorSourceSyncStatus;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -56,7 +58,6 @@ import android.bluetooth.le.ScanRecord;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -94,7 +95,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -152,17 +152,17 @@ public class BassClientService extends ProfileService {
     private final Map<Integer, HashSet<BluetoothDevice>> mLocalBroadcastReceivers =
             new ConcurrentHashMap<>();
 
-    private HandlerThread mStateMachinesThread;
-    private HandlerThread mCallbackHandlerThread;
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
-    private BluetoothAdapter mBluetoothAdapter = null;
+    private final HandlerThread mStateMachinesThread;
+    private final HandlerThread mCallbackHandlerThread;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    private final BluetoothAdapter mBluetoothAdapter;
     private BluetoothLeScannerWrapper mBluetoothLeScannerWrapper = null;
     private DialingOutTimeoutEvent mDialingOutTimeoutEvent = null;
 
     /* Caching the PeriodicAdvertisementResult from Broadcast source */
     /* This is stored at service so that each device state machine can access
-    and use it as needed. Once the periodic sync in cancelled, this data will bre
+    and use it as needed. Once the periodic sync in cancelled, this data will be
     removed to ensure stable data won't used */
     /* syncHandle, broadcastSrcDevice */
     private Map<Integer, BluetoothDevice> mSyncHandleToDeviceMap =
@@ -176,7 +176,7 @@ public class BassClientService extends ProfileService {
             mPeriodicAdvertisementResultMap =
                     new HashMap<BluetoothDevice, HashMap<Integer, PeriodicAdvertisementResult>>();
     private ScanCallback mSearchScanCallback = null;
-    private Callbacks mCallbacks;
+    private final Callbacks mCallbacks;
     private boolean mIsAssistantActive = false;
     private boolean mIsAllowedContextOfActiveGroupModified = false;
     Optional<Integer> mUnicastSourceStreamStatus = Optional.empty();
@@ -201,8 +201,35 @@ public class BassClientService extends ProfileService {
                 }
             };
 
-    public BassClientService(Context ctx) {
-        super(ctx);
+    public BassClientService(AdapterService adapterService) {
+        super(adapterService);
+        if (sService != null) {
+            throw new IllegalStateException("start() called twice");
+        }
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        mStateMachines.clear();
+        mStateMachinesThread = new HandlerThread("BassClientService.StateMachines");
+        mStateMachinesThread.start();
+        mCallbackHandlerThread = new HandlerThread(TAG);
+        mCallbackHandlerThread.start();
+        mCallbacks = new Callbacks(mCallbackHandlerThread.getLooper());
+
+        setBassClientService(this);
+        // While removing leaudioBroadcastExtractPeriodicScannerFromStateMachine remove all checks
+        // against null for: mSyncHandleToDeviceMap, mPeriodicAdvertisementResultMap,
+        // mSyncHandleToBaseDataMap, mSyncHandleToBroadcastIdMap as they never be null
+        if (!leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            // Saving PSync stuff for future addition
+            mSyncHandleToDeviceMap = new HashMap<Integer, BluetoothDevice>();
+            mPeriodicAdvertisementResultMap =
+                    new HashMap<BluetoothDevice, HashMap<Integer, PeriodicAdvertisementResult>>();
+            mSyncHandleToBaseDataMap = new HashMap<Integer, BaseData>();
+            mSyncHandleToBroadcastIdMap = new HashMap<Integer, Integer>();
+            mSearchScanCallback = null;
+        }
     }
 
     public static boolean isEnabled() {
@@ -574,44 +601,6 @@ public class BassClientService extends ProfileService {
     }
 
     @Override
-    public void start() {
-        Log.d(TAG, "start()");
-        if (sService != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when BassClientService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when BassClientService starts");
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        mStateMachines.clear();
-        mStateMachinesThread = new HandlerThread("BassClientService.StateMachines");
-        mStateMachinesThread.start();
-        mCallbackHandlerThread = new HandlerThread(TAG);
-        mCallbackHandlerThread.start();
-        mCallbacks = new Callbacks(mCallbackHandlerThread.getLooper());
-
-        setBassClientService(this);
-        // While removing leaudioBroadcastExtractPeriodicScannerFromStateMachine remove all checks
-        // against null for: mSyncHandleToDeviceMap, mPeriodicAdvertisementResultMap,
-        // mSyncHandleToBaseDataMap, mSyncHandleToBroadcastIdMap as they never be null
-        if (!leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
-            // Saving PSync stuff for future addition
-            mSyncHandleToDeviceMap = new HashMap<Integer, BluetoothDevice>();
-            mPeriodicAdvertisementResultMap =
-                    new HashMap<BluetoothDevice, HashMap<Integer, PeriodicAdvertisementResult>>();
-            mSyncHandleToBaseDataMap = new HashMap<Integer, BaseData>();
-            mSyncHandleToBroadcastIdMap = new HashMap<Integer, Integer>();
-            mSearchScanCallback = null;
-        }
-    }
-
-    @Override
     @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
     public void stop() {
         Log.d(TAG, "stop()");
@@ -646,14 +635,8 @@ public class BassClientService extends ProfileService {
             }
             mStateMachines.clear();
         }
-        if (mCallbackHandlerThread != null) {
-            mCallbackHandlerThread.quitSafely();
-            mCallbackHandlerThread = null;
-        }
-        if (mStateMachinesThread != null) {
-            mStateMachinesThread.quitSafely();
-            mStateMachinesThread = null;
-        }
+        mCallbackHandlerThread.quitSafely();
+        mStateMachinesThread.quitSafely();
 
         mHandler.removeCallbacksAndMessages(null);
 
@@ -1403,7 +1386,7 @@ public class BassClientService extends ProfileService {
             }
 
             /* Restore allowed context mask for unicast in case if last connected broadcast
-             * delegator device which has external source disconnectes.
+             * delegator device which has external source disconnects.
              */
             checkAndResetGroupAllowedContextMask();
         } else if (toState == BluetoothProfile.STATE_CONNECTED) {
@@ -1662,11 +1645,6 @@ public class BassClientService extends ProfileService {
     @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
     public void startSearchingForSources(List<ScanFilter> filters) {
         log("startSearchingForSources");
-        if (mBluetoothAdapter == null) {
-            Log.e(TAG, "startSearchingForSources: Adapter is NULL");
-            mCallbacks.notifySearchStartFailed(BluetoothStatusCodes.ERROR_UNKNOWN);
-            return;
-        }
 
         if (!BluetoothMethodProxy.getInstance()
                 .initializePeriodicAdvertisingManagerOnDefaultAdapter()) {
@@ -1813,10 +1791,6 @@ public class BassClientService extends ProfileService {
     /** Stops an ongoing search for nearby Broadcast Sources */
     public void stopSearchingForSources() {
         log("stopSearchingForSources");
-        if (mBluetoothAdapter == null) {
-            Log.e(TAG, "stopSearchingForSources: Adapter is NULL");
-            return;
-        }
         if (!leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
             BluetoothLeScannerWrapper scanner =
                     BassObjectsFactory.getInstance()

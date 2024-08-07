@@ -20,6 +20,8 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.TETHER_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothPan;
@@ -29,7 +31,6 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothPan;
 import android.bluetooth.IBluetoothPanCallback;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.net.TetheringInterface;
@@ -57,7 +58,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** Provides Bluetooth Pan Device profile, as a service in the Bluetooth application. */
@@ -72,11 +72,13 @@ public class PanService extends ProfileService {
     private int mMaxPanDevices;
     private String mPanIfName;
     @VisibleForTesting boolean mIsTethering = false;
-    private HashMap<String, IBluetoothPanCallback> mBluetoothTetheringCallbacks;
+    private final HashMap<String, IBluetoothPanCallback> mBluetoothTetheringCallbacks =
+            new HashMap<>();
 
-    private TetheringManager mTetheringManager;
-    private DatabaseManager mDatabaseManager;
-    @VisibleForTesting UserManager mUserManager;
+    private final TetheringManager mTetheringManager;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    @VisibleForTesting final UserManager mUserManager;
 
     private static final int MESSAGE_CONNECT = 1;
     private static final int MESSAGE_DISCONNECT = 2;
@@ -84,11 +86,8 @@ public class PanService extends ProfileService {
     private boolean mTetherOn = false;
 
     private BluetoothTetheringNetworkFactory mNetworkFactory;
-    private boolean mStarted = false;
 
-    private AdapterService mAdapterService;
-
-    @VisibleForTesting PanNativeInterface mNativeInterface;
+    @VisibleForTesting final PanNativeInterface mNativeInterface;
 
     TetheringManager.TetheringEventCallback mTetheringCallback =
             new TetheringManager.TetheringEventCallback() {
@@ -111,8 +110,28 @@ public class PanService extends ProfileService {
                 }
             };
 
-    public PanService(Context ctx) {
-        super(ctx);
+    public PanService(AdapterService adapterService) {
+        super(adapterService);
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mNativeInterface = requireNonNull(PanNativeInterface.getInstance());
+
+        mPanDevices = new ConcurrentHashMap<BluetoothDevice, BluetoothPanDevice>();
+        try {
+            mMaxPanDevices =
+                    getResources()
+                            .getInteger(com.android.bluetooth.R.integer.config_max_pan_devices);
+        } catch (NotFoundException e) {
+            mMaxPanDevices = BLUETOOTH_MAX_PAN_CONNECTIONS;
+        }
+        mNativeInterface.init(this);
+
+        mUserManager = requireNonNull(getSystemService(UserManager.class));
+
+        mTetheringManager = requireNonNull(getSystemService(TetheringManager.class));
+        mTetheringManager.registerTetheringEventCallback(
+                new HandlerExecutor(new Handler(Looper.getMainLooper())), mTetheringCallback);
+        setPanService(this);
     }
 
     public static boolean isEnabled() {
@@ -143,50 +162,8 @@ public class PanService extends ProfileService {
     }
 
     @Override
-    public void start() {
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when PanService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService().getDatabase(),
-                        "DatabaseManager cannot be null when PanService starts");
-        mNativeInterface =
-                Objects.requireNonNull(
-                        PanNativeInterface.getInstance(),
-                        "PanNativeInterface cannot be null when PanService starts");
-
-        mBluetoothTetheringCallbacks = new HashMap<>();
-        mPanDevices = new ConcurrentHashMap<BluetoothDevice, BluetoothPanDevice>();
-        try {
-            mMaxPanDevices =
-                    getResources()
-                            .getInteger(com.android.bluetooth.R.integer.config_max_pan_devices);
-        } catch (NotFoundException e) {
-            mMaxPanDevices = BLUETOOTH_MAX_PAN_CONNECTIONS;
-        }
-        mNativeInterface.init(this);
-
-        mUserManager = getSystemService(UserManager.class);
-
-        mTetheringManager = getSystemService(TetheringManager.class);
-        mTetheringManager.registerTetheringEventCallback(
-                new HandlerExecutor(new Handler(Looper.getMainLooper())), mTetheringCallback);
-        setPanService(this);
-        mStarted = true;
-    }
-
-    @Override
     public void stop() {
-        if (!mStarted) {
-            Log.w(TAG, "stop() called before start()");
-            return;
-        }
-        if (mTetheringManager != null) {
-            mTetheringManager.unregisterTetheringEventCallback(mTetheringCallback);
-            mTetheringManager = null;
-        }
+        mTetheringManager.unregisterTetheringEventCallback(mTetheringCallback);
         mNativeInterface.cleanup();
         mHandler.removeCallbacksAndMessages(null);
     }
@@ -195,8 +172,6 @@ public class PanService extends ProfileService {
     public void cleanup() {
         // TODO(b/72948646): this should be moved to stop()
         setPanService(null);
-
-        mUserManager = null;
 
         if (mPanDevices != null) {
             int[] desiredStates = {
@@ -695,7 +670,7 @@ public class PanService extends ProfileService {
                     mIsTethering = false;
                 }
             }
-        } else if (mStarted) {
+        } else {
             // PANU Role = reverse Tether
             Log.d(
                     TAG,

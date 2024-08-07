@@ -19,6 +19,8 @@ package com.android.bluetooth.hfpclient;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.content.pm.PackageManager.FEATURE_WATCH;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
@@ -70,22 +72,62 @@ public class HeadsetClientService extends ProfileService {
             new HashMap<>();
 
     private static HeadsetClientService sHeadsetClientService;
-    private NativeInterface mNativeInterface = null;
-    private HandlerThread mSmThread = null;
-    private HeadsetClientStateMachineFactory mSmFactory = null;
-    private DatabaseManager mDatabaseManager;
+    private final NativeInterface mNativeInterface;
+    private final HandlerThread mSmThread;
+    private HeadsetClientStateMachineFactory mSmFactory;
+    private final DatabaseManager mDatabaseManager;
     private AudioManager mAudioManager = null;
-    private BatteryManager mBatteryManager = null;
+    private final BatteryManager mBatteryManager;
     private int mLastBatteryLevel = -1;
-    // Maxinum number of devices we can try connecting to in one session
+    // Maximum number of devices we can try connecting to in one session
     private static final int MAX_STATE_MACHINES_POSSIBLE = 100;
-
-    private final Object mStartStopLock = new Object();
 
     public static final String HFP_CLIENT_STOP_TAG = "hfp_client_stop_tag";
 
-    public HeadsetClientService(Context ctx) {
-        super(ctx);
+    public HeadsetClientService(AdapterService adapterService) {
+        super(adapterService);
+        if (getHeadsetClientService() != null) {
+            throw new IllegalStateException("start() called twice");
+        }
+
+        mDatabaseManager = requireNonNull(adapterService.getDatabase());
+
+        // Setup the JNI service
+        mNativeInterface = NativeInterface.getInstance();
+        mNativeInterface.initialize();
+
+        mBatteryManager = getSystemService(BatteryManager.class);
+
+        mAudioManager = getSystemService(AudioManager.class);
+        if (mAudioManager == null) {
+            Log.e(TAG, "AudioManager service doesn't exist?");
+        } else {
+            // start AudioManager in a known state
+            mAudioManager.setHfpEnabled(false);
+        }
+
+        mSmFactory = new HeadsetClientStateMachineFactory();
+        synchronized (mStateMachineMap) {
+            mStateMachineMap.clear();
+        }
+
+        IntentFilter filter = new IntentFilter(AudioManager.ACTION_VOLUME_CHANGED);
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(mBroadcastReceiver, filter);
+
+        // Start the HfpClientConnectionService to create connection with telecom when HFP
+        // connection is available on non-wearable device.
+        if (getPackageManager() != null && !getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
+            Intent startIntent = new Intent(this, HfpClientConnectionService.class);
+            startService(startIntent);
+        }
+
+        // Create the thread on which all State Machines will run
+        mSmThread = new HandlerThread("HeadsetClient.SM");
+        mSmThread.start();
+
+        setHeadsetClientService(this);
     }
 
     public static boolean isEnabled() {
@@ -98,97 +140,37 @@ public class HeadsetClientService extends ProfileService {
     }
 
     @Override
-    public void start() {
-        synchronized (mStartStopLock) {
-            Log.d(TAG, "start()");
-            if (getHeadsetClientService() != null) {
-                throw new IllegalStateException("start() called twice");
-            }
-
-            mDatabaseManager =
-                    Objects.requireNonNull(
-                            AdapterService.getAdapterService().getDatabase(),
-                            "DatabaseManager cannot be null when HeadsetClientService starts");
-
-            // Setup the JNI service
-            mNativeInterface = NativeInterface.getInstance();
-            mNativeInterface.initialize();
-
-            mBatteryManager = getSystemService(BatteryManager.class);
-
-            mAudioManager = getSystemService(AudioManager.class);
-            if (mAudioManager == null) {
-                Log.e(TAG, "AudioManager service doesn't exist?");
-            } else {
-                // start AudioManager in a known state
-                mAudioManager.setHfpEnabled(false);
-            }
-
-            mSmFactory = new HeadsetClientStateMachineFactory();
-            synchronized (mStateMachineMap) {
-                mStateMachineMap.clear();
-            }
-
-            IntentFilter filter = new IntentFilter(AudioManager.ACTION_VOLUME_CHANGED);
-            filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-            filter.addAction(Intent.ACTION_BATTERY_CHANGED);
-            registerReceiver(mBroadcastReceiver, filter);
-
-            // Start the HfpClientConnectionService to create connection with telecom when HFP
-            // connection is available on non-wearable device.
-            if (getPackageManager() != null
-                    && !getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
-                Intent startIntent = new Intent(this, HfpClientConnectionService.class);
-                startService(startIntent);
-            }
-
-            // Create the thread on which all State Machines will run
-            mSmThread = new HandlerThread("HeadsetClient.SM");
-            mSmThread.start();
-
-            setHeadsetClientService(this);
-        }
-    }
-
-    @Override
     public void stop() {
-        synchronized (mStartStopLock) {
-            synchronized (HeadsetClientService.class) {
-                if (sHeadsetClientService == null) {
-                    Log.w(TAG, "stop() called without start()");
-                    return;
-                }
-
-                // Stop the HfpClientConnectionService for non-wearables devices.
-                if (getPackageManager() != null
-                        && !getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
-                    Intent stopIntent = new Intent(this, HfpClientConnectionService.class);
-                    sHeadsetClientService.stopService(stopIntent);
-                }
-            }
-
-            setHeadsetClientService(null);
-
-            unregisterReceiver(mBroadcastReceiver);
-
-            synchronized (mStateMachineMap) {
-                for (Iterator<Map.Entry<BluetoothDevice, HeadsetClientStateMachine>> it =
-                                mStateMachineMap.entrySet().iterator();
-                        it.hasNext(); ) {
-                    HeadsetClientStateMachine sm =
-                            mStateMachineMap.get((BluetoothDevice) it.next().getKey());
-                    sm.doQuit();
-                    it.remove();
-                }
-            }
-
-            // Stop the handler thread
-            mSmThread.quit();
-            mSmThread = null;
-
-            mNativeInterface.cleanup();
-            mNativeInterface = null;
+        if (sHeadsetClientService == null) {
+            Log.w(TAG, "stop() called without start()");
+            return;
         }
+
+        // Stop the HfpClientConnectionService for non-wearables devices.
+        if (getPackageManager() != null && !getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
+            Intent stopIntent = new Intent(this, HfpClientConnectionService.class);
+            sHeadsetClientService.stopService(stopIntent);
+        }
+
+        setHeadsetClientService(null);
+
+        unregisterReceiver(mBroadcastReceiver);
+
+        synchronized (mStateMachineMap) {
+            for (Iterator<Map.Entry<BluetoothDevice, HeadsetClientStateMachine>> it =
+                            mStateMachineMap.entrySet().iterator();
+                    it.hasNext(); ) {
+                HeadsetClientStateMachine sm =
+                        mStateMachineMap.get((BluetoothDevice) it.next().getKey());
+                sm.doQuit();
+                it.remove();
+            }
+        }
+
+        // Stop the handler thread
+        mSmThread.quit();
+
+        mNativeInterface.cleanup();
     }
 
     private final BroadcastReceiver mBroadcastReceiver =

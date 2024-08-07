@@ -19,6 +19,8 @@ package com.android.bluetooth.pbapclient;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.annotation.RequiresPermission;
@@ -54,7 +56,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** Provides Bluetooth Phone Book Access Profile Client profile. */
@@ -78,7 +79,7 @@ public class PbapClientService extends ProfileService {
     @VisibleForTesting PbapBroadcastReceiver mPbapBroadcastReceiver = new PbapBroadcastReceiver();
     private int mSdpHandle = -1;
 
-    private DatabaseManager mDatabaseManager;
+    private final DatabaseManager mDatabaseManager;
 
     /**
      * There's an ~1-2 second latency between when our Authentication service is set as available to
@@ -93,7 +94,7 @@ public class PbapClientService extends ProfileService {
     private static final int ACCOUNT_VISIBILITY_CHECK_TRIES_MAX = 6;
     private int mAccountVisibilityCheckTries = 0;
     private final Handler mAuthServiceHandler = new Handler();
-    private Handler mHandler;
+    private final Handler mHandler;
     private final Runnable mCheckAuthService =
             new Runnable() {
                 @Override
@@ -128,27 +129,9 @@ public class PbapClientService extends ProfileService {
                 }
             };
 
-    public PbapClientService(Context ctx) {
-        super(ctx);
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfilePbapClientEnabled().orElse(false);
-    }
-
-    @Override
-    public IProfileServiceBinder initBinder() {
-        return new BluetoothPbapClientBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.v(TAG, "onStart");
-
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService().getDatabase(),
-                        "DatabaseManager cannot be null when PbapClientService starts");
+    public PbapClientService(AdapterService adapterService) {
+        super(adapterService);
+        mDatabaseManager = requireNonNull(adapterService.getDatabase());
 
         setComponentAvailable(AUTHENTICATOR_SERVICE, true);
 
@@ -168,6 +151,15 @@ public class PbapClientService extends ProfileService {
         setPbapClientService(this);
     }
 
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfilePbapClientEnabled().orElse(false);
+    }
+
+    @Override
+    public IProfileServiceBinder initBinder() {
+        return new BluetoothPbapClientBinder(this);
+    }
+
     @Override
     public void stop() {
         setPbapClientService(null);
@@ -183,10 +175,7 @@ public class PbapClientService extends ProfileService {
         mPbapClientStateMachineMap.clear();
 
         // Unregister Handler and stop all queued messages.
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
+        mHandler.removeCallbacksAndMessages(null);
 
         cleanupAuthenticationService();
         setComponentAvailable(AUTHENTICATOR_SERVICE, false);

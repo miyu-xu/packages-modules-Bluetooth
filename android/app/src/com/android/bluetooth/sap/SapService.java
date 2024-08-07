@@ -19,6 +19,8 @@ package com.android.bluetooth.sap;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -101,7 +103,7 @@ public class SapService extends ProfileService implements AdapterService.Bluetoo
     private static final int USER_CONFIRM_TIMEOUT_VALUE = 25000;
 
     private PowerManager.WakeLock mWakeLock = null;
-    private AdapterService mAdapterService;
+    private final AdapterService mAdapterService;
     private SocketAcceptThread mAcceptThread = null;
     private BluetoothServerSocket mServerSocket = null;
     private int mSdpHandle = -1;
@@ -123,9 +125,26 @@ public class SapService extends ProfileService implements AdapterService.Bluetoo
         BluetoothUuid.SAP,
     };
 
-    public SapService(Context ctx) {
-        super(ctx);
+    public SapService(AdapterService adapterService) {
+        super(adapterService);
+        mAdapterService = requireNonNull(adapterService);
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
+        filter.addAction(USER_CONFIRM_TIMEOUT_ACTION);
+
+        try {
+            registerReceiver(mSapReceiver, filter);
+            mIsRegistered = true;
+        } catch (Exception e) {
+            Log.w(TAG, "Unable to register sap receiver", e);
+        }
+        mInterrupted = false;
+        mAdapterService.registerBluetoothStateCallback(getMainExecutor(), this);
+        // start RFCOMM listener
+        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
+        setSapService(this);
     }
 
     public static boolean isEnabled() {
@@ -148,7 +167,7 @@ public class SapService extends ProfileService implements AdapterService.Bluetoo
 
     private void removeSdpRecord() {
         SdpManagerNativeInterface nativeInterface = SdpManagerNativeInterface.getInstance();
-        if (mAdapterService != null && mSdpHandle >= 0 && nativeInterface.isAvailable()) {
+        if (mSdpHandle >= 0 && nativeInterface.isAvailable()) {
             Log.v(TAG, "Removing SDP record handle: " + mSdpHandle);
             nativeInterface.removeSdpRecord(mSdpHandle);
             mSdpHandle = -1;
@@ -203,9 +222,6 @@ public class SapService extends ProfileService implements AdapterService.Bluetoo
 
             if (!initSocketOK) {
                 // Need to break out of this loop if BT is being turned off.
-                if (mAdapterService == null) {
-                    break;
-                }
                 int state = mAdapterService.getState();
                 if ((state != BluetoothAdapter.STATE_TURNING_ON)
                         && (state != BluetoothAdapter.STATE_ON)) {
@@ -667,28 +683,6 @@ public class SapService extends ProfileService implements AdapterService.Bluetoo
     @Override
     protected IProfileServiceBinder initBinder() {
         return new SapBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.v(TAG, "start()");
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
-        filter.addAction(USER_CONFIRM_TIMEOUT_ACTION);
-
-        try {
-            registerReceiver(mSapReceiver, filter);
-            mIsRegistered = true;
-        } catch (Exception e) {
-            Log.w(TAG, "Unable to register sap receiver", e);
-        }
-        mInterrupted = false;
-        mAdapterService = AdapterService.getAdapterService();
-        mAdapterService.registerBluetoothStateCallback(getMainExecutor(), this);
-        // start RFCOMM listener
-        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
-        setSapService(this);
     }
 
     @Override

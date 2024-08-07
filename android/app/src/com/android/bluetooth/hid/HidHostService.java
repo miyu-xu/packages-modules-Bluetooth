@@ -108,8 +108,6 @@ public class HidHostService extends ProfileService {
     private final DatabaseManager mDatabaseManager;
     private final HidHostNativeInterface mNativeInterface;
 
-    private boolean mNativeAvailable;
-
     private static final int MESSAGE_CONNECT = 1;
     private static final int MESSAGE_DISCONNECT = 2;
     private static final int MESSAGE_CONNECT_STATE_CHANGED = 3;
@@ -140,6 +138,8 @@ public class HidHostService extends ProfileService {
         mAdapterService = requireNonNull(adapterService);
         mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
         mNativeInterface = requireNonNull(HidHostNativeInterface.getInstance());
+        mNativeInterface.init(this);
+        setHidHostService(this);
     }
 
     public static boolean isEnabled() {
@@ -152,13 +152,6 @@ public class HidHostService extends ProfileService {
     }
 
     @Override
-    public void start() {
-        mNativeInterface.init(this);
-        mNativeAvailable = true;
-        setHidHostService(this);
-    }
-
-    @Override
     public void stop() {
         Log.d(TAG, "Stop");
     }
@@ -166,10 +159,7 @@ public class HidHostService extends ProfileService {
     @Override
     public void cleanup() {
         Log.d(TAG, "Cleanup");
-        if (mNativeAvailable) {
-            mNativeInterface.cleanup();
-            mNativeAvailable = false;
-        }
+        mNativeInterface.cleanup();
 
         if (mInputDevices != null) {
             for (BluetoothDevice device : mInputDevices.keySet()) {

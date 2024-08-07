@@ -20,6 +20,8 @@ package com.android.bluetooth.vc;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
@@ -29,7 +31,6 @@ import android.bluetooth.IBluetoothLeAudio;
 import android.bluetooth.IBluetoothVolumeControl;
 import android.bluetooth.IBluetoothVolumeControlCallback;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -77,10 +78,10 @@ public class VolumeControlService extends ProfileService {
 
     private static VolumeControlService sVolumeControlService;
 
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
-    private HandlerThread mStateMachinesThread;
-    private Handler mHandler = null;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    private final HandlerThread mStateMachinesThread;
+    private final Handler mHandler;
 
     @VisibleForTesting
     @GuardedBy("mCallbacks")
@@ -190,8 +191,8 @@ public class VolumeControlService extends ProfileService {
         }
     }
 
-    VolumeControlNativeInterface mVolumeControlNativeInterface;
-    @VisibleForTesting AudioManager mAudioManager;
+    final VolumeControlNativeInterface mVolumeControlNativeInterface;
+    @VisibleForTesting final AudioManager mAudioManager;
 
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
@@ -207,44 +208,16 @@ public class VolumeControlService extends ProfileService {
 
     @VisibleForTesting ServiceFactory mFactory = new ServiceFactory();
 
-    public VolumeControlService(Context ctx) {
-        super(ctx);
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
-    }
-
-    @Override
-    protected IProfileServiceBinder initBinder() {
-        return new BluetoothVolumeControlBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
+    public VolumeControlService(AdapterService adapterService) {
+        super(adapterService);
         if (sVolumeControlService != null) {
             throw new IllegalStateException("start() called twice");
         }
 
-        // Get AdapterService, VolumeControlNativeInterface, DatabaseManager, AudioManager.
-        // None of them can be null.
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when VolumeControlService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when VolumeControlService starts");
-        mVolumeControlNativeInterface =
-                Objects.requireNonNull(
-                        VolumeControlNativeInterface.getInstance(),
-                        "VolumeControlNativeInterface cannot be null when VolumeControlService"
-                                + " starts");
-        mAudioManager = getSystemService(AudioManager.class);
-        Objects.requireNonNull(
-                mAudioManager, "AudioManager cannot be null when VolumeControlService starts");
+        mAdapterService = requireNonNull(adapterService);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mVolumeControlNativeInterface = requireNonNull(VolumeControlNativeInterface.getInstance());
+        mAudioManager = requireNonNull(getSystemService(AudioManager.class));
 
         // Start handler thread for state machines
         mHandler = new Handler(Looper.getMainLooper());
@@ -262,6 +235,15 @@ public class VolumeControlService extends ProfileService {
 
         // Initialize native interface
         mVolumeControlNativeInterface.init();
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
+    }
+
+    @Override
+    protected IProfileServiceBinder initBinder() {
+        return new BluetoothVolumeControlBinder(this);
     }
 
     @Override
@@ -284,39 +266,25 @@ public class VolumeControlService extends ProfileService {
             mStateMachines.clear();
         }
 
-        if (mStateMachinesThread != null) {
-            try {
-                mStateMachinesThread.quitSafely();
-                mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
-                mStateMachinesThread = null;
-            } catch (InterruptedException e) {
-                // Do not rethrow as we are shutting down anyway
-            }
+        try {
+            mStateMachinesThread.quitSafely();
+            mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
+        } catch (InterruptedException e) {
+            // Do not rethrow as we are shutting down anyway
         }
 
         // Unregister handler and remove all queued messages.
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
+        mHandler.removeCallbacksAndMessages(null);
 
         // Cleanup native interface
         mVolumeControlNativeInterface.cleanup();
-        mVolumeControlNativeInterface = null;
 
         mAudioOffsets.clear();
         mGroupVolumeCache.clear();
         mGroupMuteCache.clear();
         mDeviceVolumeCache.clear();
 
-        // Clear AdapterService, VolumeControlNativeInterface
-        mAudioManager = null;
-        mVolumeControlNativeInterface = null;
-        mAdapterService = null;
-
-        if (mCallbacks != null) {
-            mCallbacks.kill();
-        }
+        mCallbacks.kill();
     }
 
     @Override
@@ -621,7 +589,7 @@ public class VolumeControlService extends ProfileService {
 
         /* Note: AudioService keeps volume levels for each stream and for each device type,
          * however it stores the mute state only for the stream type but not for each individual
-         * device type. When active device changes, it's volume level gets aplied, but mute state
+         * device type. When active device changes, it's volume level gets applied, but mute state
          * is not, but can be either derived from the volume level or just unmuted like for A2DP.
          * Also setting volume level > 0 to audio system will implicitly unmute the stream.
          * However LeAudio devices can keep their volume level high, while keeping it mute so we

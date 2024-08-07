@@ -27,7 +27,6 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothAvrcpController;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.support.v4.media.MediaBrowserCompat.MediaItem;
@@ -101,7 +100,7 @@ public class AvrcpControllerService extends ProfileService {
     static BrowseTree sBrowseTree;
     private static AvrcpControllerService sService;
 
-    private AdapterService mAdapterService;
+    private final AdapterService mAdapterService;
     private final AvrcpControllerNativeInterface mNativeInterface;
 
     protected Map<BluetoothDevice, AvrcpControllerStateMachine> mDeviceStateMap =
@@ -135,26 +134,18 @@ public class AvrcpControllerService extends ProfileService {
         }
     }
 
-    public AvrcpControllerService(Context ctx) {
-        super(ctx);
-        mNativeInterface = requireNonNull(AvrcpControllerNativeInterface.getInstance());
+    public AvrcpControllerService(AdapterService adapterService) {
+        this(adapterService, AvrcpControllerNativeInterface.getInstance());
     }
 
     @VisibleForTesting
-    public AvrcpControllerService(Context ctx, AvrcpControllerNativeInterface nativeInterface) {
-        super(ctx);
+    public AvrcpControllerService(
+            AdapterService adapterService, AvrcpControllerNativeInterface nativeInterface) {
+        super(adapterService);
+        mAdapterService = requireNonNull(adapterService);
         mNativeInterface = requireNonNull(nativeInterface);
-    }
-
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileAvrcpControllerEnabled().orElse(false);
-    }
-
-    @Override
-    public synchronized void start() {
         mNativeInterface.init(this);
         setComponentAvailable(ON_ERROR_SETTINGS_ACTIVITY, true);
-        mAdapterService = AdapterService.getAdapterService();
         mCoverArtEnabled = getResources().getBoolean(R.bool.avrcp_controller_enable_cover_art);
         if (mCoverArtEnabled) {
             setComponentAvailable(COVER_ART_PROVIDER, true);
@@ -167,6 +158,10 @@ public class AvrcpControllerService extends ProfileService {
         Intent startIntent = new Intent(this, BluetoothMediaBrowserService.class);
         startService(startIntent);
         setActiveDevice(null);
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileAvrcpControllerEnabled().orElse(false);
     }
 
     @Override

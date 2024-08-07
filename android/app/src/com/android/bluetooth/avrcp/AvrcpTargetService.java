@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.avrcp;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.NonNull;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
@@ -61,13 +63,13 @@ public class AvrcpTargetService extends ProfileService {
     private final BluetoothEventLogger mMediaKeyEventLogger =
             new BluetoothEventLogger(MEDIA_KEY_EVENT_LOGGER_SIZE, MEDIA_KEY_EVENT_LOGGER_TITLE);
 
-    private AvrcpVersion mAvrcpVersion;
-    private MediaPlayerList mMediaPlayerList;
-    private PlayerSettingsManager mPlayerSettingsManager;
-    private AudioManager mAudioManager;
-    private AvrcpBroadcastReceiver mReceiver;
-    private AvrcpNativeInterface mNativeInterface;
-    private AvrcpVolumeManager mVolumeManager;
+    private final AvrcpVersion mAvrcpVersion;
+    private final MediaPlayerList mMediaPlayerList;
+    private final PlayerSettingsManager mPlayerSettingsManager;
+    private final AudioManager mAudioManager;
+    private final AvrcpBroadcastReceiver mReceiver = new AvrcpBroadcastReceiver();
+    private final AvrcpNativeInterface mNativeInterface;
+    private final AvrcpVolumeManager mVolumeManager;
     private ServiceFactory mFactory = new ServiceFactory();
     private final BroadcastReceiver mUserUnlockedReceiver =
             new BroadcastReceiver() {
@@ -83,9 +85,7 @@ public class AvrcpTargetService extends ProfileService {
                         Log.e(TAG, "userChangeReceiver received an invalid EXTRA_USER_HANDLE");
                         return;
                     }
-                    if (mMediaPlayerList != null) {
-                        mMediaPlayerList.init(new ListCallback());
-                    }
+                    mMediaPlayerList.init(new ListCallback());
                 }
             };
 
@@ -101,6 +101,57 @@ public class AvrcpTargetService extends ProfileService {
     public AvrcpTargetService(AdapterService adapterService) {
         super(adapterService);
         mAdapterService = adapterService;
+
+        if (sInstance != null) {
+            throw new IllegalStateException("start() called twice");
+        }
+
+        IntentFilter userFilter = new IntentFilter();
+        userFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        userFilter.addAction(Intent.ACTION_USER_UNLOCKED);
+        getApplicationContext().registerReceiver(mUserUnlockedReceiver, userFilter);
+
+        Log.i(TAG, "Starting the AVRCP Target Service");
+        mCurrentData = new MediaData(null, null, null);
+
+        mAudioManager = requireNonNull(getSystemService(AudioManager.class));
+
+        mMediaPlayerList = new MediaPlayerList(Looper.myLooper(), this);
+
+        mPlayerSettingsManager = new PlayerSettingsManager(mMediaPlayerList, this);
+
+        mNativeInterface = AvrcpNativeInterface.getInstance();
+        mNativeInterface.init(AvrcpTargetService.this);
+
+        mAvrcpVersion = AvrcpVersion.getCurrentSystemPropertiesValue();
+
+        mVolumeManager = new AvrcpVolumeManager(mAdapterService, mAudioManager, mNativeInterface);
+
+        UserManager userManager = getApplicationContext().getSystemService(UserManager.class);
+        if (userManager.isUserUnlocked()) {
+            mMediaPlayerList.init(new ListCallback());
+        }
+
+        if (getResources().getBoolean(R.bool.avrcp_target_enable_cover_art)) {
+            if (mAvrcpVersion.isAtleastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {
+                mAvrcpCoverArtService = new AvrcpCoverArtService();
+                boolean started = mAvrcpCoverArtService.start();
+                if (!started) {
+                    Log.e(TAG, "Failed to start cover art service");
+                    mAvrcpCoverArtService = null;
+                }
+            } else {
+                Log.e(TAG, "Please use AVRCP version 1.6 to enable cover art");
+            }
+        }
+
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(AudioManager.ACTION_VOLUME_CHANGED);
+        registerReceiver(mReceiver, filter);
+
+        // Only allow the service to be used once it is initialized
+        sInstance = this;
     }
 
     /** Checks for profile enabled state in Bluetooth sysprops. */
@@ -112,8 +163,6 @@ public class AvrcpTargetService extends ProfileService {
     class ListCallback implements MediaPlayerList.MediaUpdateCallback {
         @Override
         public void run(MediaData data) {
-            if (mNativeInterface == null) return;
-
             boolean metadata = !Objects.equals(mCurrentData.metadata, data.metadata);
             boolean state = !MediaPlayerWrapper.playstateEquals(mCurrentData.state, data.state);
             boolean queue = isQueueUpdated(mCurrentData.queue, data.queue);
@@ -133,8 +182,6 @@ public class AvrcpTargetService extends ProfileService {
 
         @Override
         public void run(boolean availablePlayers, boolean addressedPlayers, boolean uids) {
-            if (mNativeInterface == null) return;
-
             mNativeInterface.sendFolderUpdate(availablePlayers, addressedPlayers, uids);
         }
     }
@@ -192,60 +239,6 @@ public class AvrcpTargetService extends ProfileService {
         return null;
     }
 
-    @Override
-    public void start() {
-        if (sInstance != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
-        IntentFilter userFilter = new IntentFilter();
-        userFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        userFilter.addAction(Intent.ACTION_USER_UNLOCKED);
-        getApplicationContext().registerReceiver(mUserUnlockedReceiver, userFilter);
-
-        Log.i(TAG, "Starting the AVRCP Target Service");
-        mCurrentData = new MediaData(null, null, null);
-
-        mAudioManager = getSystemService(AudioManager.class);
-
-        mMediaPlayerList = new MediaPlayerList(Looper.myLooper(), this);
-
-        mPlayerSettingsManager = new PlayerSettingsManager(mMediaPlayerList, this);
-
-        mNativeInterface = AvrcpNativeInterface.getInstance();
-        mNativeInterface.init(AvrcpTargetService.this);
-
-        mAvrcpVersion = AvrcpVersion.getCurrentSystemPropertiesValue();
-
-        mVolumeManager = new AvrcpVolumeManager(mAdapterService, mAudioManager, mNativeInterface);
-
-        UserManager userManager = getApplicationContext().getSystemService(UserManager.class);
-        if (userManager.isUserUnlocked()) {
-            mMediaPlayerList.init(new ListCallback());
-        }
-
-        if (getResources().getBoolean(R.bool.avrcp_target_enable_cover_art)) {
-            if (mAvrcpVersion.isAtleastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {
-                mAvrcpCoverArtService = new AvrcpCoverArtService();
-                boolean started = mAvrcpCoverArtService.start();
-                if (!started) {
-                    Log.e(TAG, "Failed to start cover art service");
-                    mAvrcpCoverArtService = null;
-                }
-            } else {
-                Log.e(TAG, "Please use AVRCP version 1.6 to enable cover art");
-            }
-        }
-
-        mReceiver = new AvrcpBroadcastReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(AudioManager.ACTION_VOLUME_CHANGED);
-        registerReceiver(mReceiver, filter);
-
-        // Only allow the service to be used once it is initialized
-        sInstance = this;
-    }
 
     @Override
     public void stop() {
@@ -265,16 +258,10 @@ public class AvrcpTargetService extends ProfileService {
         unregisterReceiver(mReceiver);
 
         // We check the interfaces first since they only get set on User Unlocked
-        if (mPlayerSettingsManager != null) mPlayerSettingsManager.cleanup();
-        if (mMediaPlayerList != null) mMediaPlayerList.cleanup();
-        if (mNativeInterface != null) mNativeInterface.cleanup();
+        mPlayerSettingsManager.cleanup();
+        mMediaPlayerList.cleanup();
+        mNativeInterface.cleanup();
         getApplicationContext().unregisterReceiver(mUserUnlockedReceiver);
-
-        mPlayerSettingsManager = null;
-        mMediaPlayerList = null;
-        mNativeInterface = null;
-        mAudioManager = null;
-        mReceiver = null;
     }
 
     /** Returns the active A2DP {@link BluetoothDevice} */
@@ -338,7 +325,7 @@ public class AvrcpTargetService extends ProfileService {
      * <p>If the A2DP connection disconnects, we request AVRCP to disconnect device as well.
      */
     public void handleA2dpConnectionStateChanged(BluetoothDevice device, int newState) {
-        if (device == null || mNativeInterface == null) return;
+        if (device == null) return;
         if (newState == BluetoothProfile.STATE_DISCONNECTED) {
             // If there is no connection, disconnectDevice() will do nothing
             if (mNativeInterface.disconnectDevice(device)) {
@@ -358,10 +345,8 @@ public class AvrcpTargetService extends ProfileService {
      */
     public void handleA2dpActiveDeviceChanged(BluetoothDevice device) {
         mVolumeManager.volumeDeviceSwitched(device);
-        if (mNativeInterface != null) {
-            // Update all the playback status info for each connected device
-            mNativeInterface.sendMediaUpdate(false, true, false);
-        }
+        // Update all the playback status info for each connected device
+        mNativeInterface.sendMediaUpdate(false, true, false);
     }
 
     /** Informs {@link AvrcpVolumeManager} that a remote device requests a volume change */
@@ -554,11 +539,6 @@ public class AvrcpTargetService extends ProfileService {
 
     /** Called from player callback to indicate new settings to remote device. */
     public void sendPlayerSettings(int repeatMode, int shuffleMode) {
-        if (mNativeInterface == null) {
-            Log.i(TAG, "Tried to send Player Settings while native interface is null");
-            return;
-        }
-
         mNativeInterface.sendPlayerSettings(repeatMode, shuffleMode);
     }
 
@@ -606,11 +586,7 @@ public class AvrcpTargetService extends ProfileService {
         StringBuilder tempBuilder = new StringBuilder();
         tempBuilder.append("AVRCP version: ").append(mAvrcpVersion).append("\n");
 
-        if (mMediaPlayerList != null) {
-            mMediaPlayerList.dump(tempBuilder);
-        } else {
-            tempBuilder.append("\nMedia Player List is empty\n");
-        }
+        mMediaPlayerList.dump(tempBuilder);
 
         mMediaKeyEventLogger.dump(tempBuilder);
         tempBuilder.append("\n");
