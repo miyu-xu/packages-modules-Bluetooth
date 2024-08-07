@@ -1006,9 +1006,10 @@ static bool initNative(JNIEnv* env, jobject obj, jboolean isGuest, jboolean isCo
 
   const char* user_data_directory = env->GetStringUTFChars(userDataDirectory, NULL);
 
-  int ret = sBluetoothInterface->init(&sBluetoothCallbacks, isGuest == JNI_TRUE ? 1 : 0,
-                                      isCommonCriteriaMode == JNI_TRUE ? 1 : 0, configCompareResult,
-                                      flags, isAtvDevice == JNI_TRUE ? 1 : 0, user_data_directory);
+  int ret =
+          sBluetoothInterface->init(&sBluetoothCallbacks, isGuest == JNI_TRUE ? 1 : 0,
+                                    isCommonCriteriaMode == JNI_TRUE ? 1 : 0, configCompareResult,
+                                    flags, isAtvDevice == JNI_TRUE ? 1 : 0, user_data_directory, 0);
 
   env->ReleaseStringUTFChars(userDataDirectory, user_data_directory);
 

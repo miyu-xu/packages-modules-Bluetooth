@@ -1213,6 +1213,7 @@ impl BluetoothInterface {
         &mut self,
         callbacks: BaseCallbacksDispatcher,
         init_flags: Vec<String>,
+        hci_index: i32,
     ) -> bool {
         // Init flags need to be converted from string to null terminated bytes
         let converted: cxx::UniquePtr<ffi::InitFlags> = ffi::ConvertFlags(init_flags);
@@ -1263,7 +1264,8 @@ impl BluetoothInterface {
             config_compare_result,
             flags,
             is_atv,
-            std::ptr::null()
+            std::ptr::null(),
+            hci_index
         );
 
         self.is_init = init == 0;
