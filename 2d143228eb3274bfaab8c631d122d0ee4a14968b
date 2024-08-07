@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbb60292_9f1f1a96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T00:56:39Z",
+      "side": 1,
+      "message": "Hey Omair, FYI on this change.\nI believed it was making more sens to check scan here.\nIt does not change any API permission.",
+      "revId": "2d143228eb3274bfaab8c631d122d0ee4a14968b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
