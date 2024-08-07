@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2c89074_9d0993e4",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-07T20:20:21Z",
+      "side": 1,
+      "message": "l2cu_fixed_channel_pending_removal_reset\n\nl2cu_fixed_channel_pending_removal_pending\n\nl2cu_fixed_channel_cid_withdrawn\nl2cu_fixed_channel_cid_withdrawal_reset",
+      "parentUuid": "bf6d1f90_8174e9bd",
+      "revId": "5ed405793fafe06b611c8579b3a3386023fce15e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6356e73_b45859c1",
         "filename": "system/stack/l2cap/l2c_utils.cc",
         "patchSetId": 4
