@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c8a0cd0_b02136a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b217bf7_e32e5beb",
+      "range": {
+        "startLine": 14,
+        "startChar": 65,
+        "endLine": 15,
+        "endChar": 11
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c684bf6_874dec48",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-07T00:15:12Z",
       "side": 1,
       "message": "Should we check this before line 1320?",
+      "range": {
+        "startLine": 1338,
+        "startChar": 0,
+        "endLine": 1343,
+        "endChar": 3
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28db3213_6f9d7fe5",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "I realized that the intention here is to open the fixed channel if it was closed. In that spirit I am resetting the pending removal for this fixed channel now.",
+      "parentUuid": "8c684bf6_874dec48",
       "range": {
         "startLine": 1338,
         "startChar": 0,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3f95524_ef62d3ef",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e5ac222_a350719b",
+      "range": {
+        "startLine": 1404,
+        "startChar": 9,
+        "endLine": 1404,
+        "endChar": 13
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ae6939b_5ff3335b",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-08-07T00:15:12Z",
       "side": 1,
       "message": "Should there be an error message in an else {} if we\u0027re trying to Remove a pending channel?\n```suggestion\n    } else {\n      log::warn(\"Removal of BDA: {} CID: 0x{:04x} already pending\", rem_bda, fixed_cid);\n    }\n```",
+      "range": {
+        "startLine": 1407,
+        "startChar": 1,
+        "endLine": 1407,
+        "endChar": 5
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf6e0dd2_e98d05b5",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ae6939b_5ff3335b",
       "range": {
         "startLine": 1407,
         "startChar": 1,
@@ -152,6 +248,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbc986c1_74dcf87b",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "df04b39d_3c15e2b4",
+      "range": {
+        "startLine": 1062,
+        "startChar": 6,
+        "endLine": 1062,
+        "endChar": 79
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de9c3130_11516eba",
@@ -189,6 +309,30 @@
           ]
         }
       ],
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8deea210_9064f3b8",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "de9c3130_11516eba",
+      "range": {
+        "startLine": 1070,
+        "startChar": 3,
+        "endLine": 1070,
+        "endChar": 6
+      },
       "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -264,6 +408,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbf05e7d_d4a8a102",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "311e3781_aa4895af",
+      "range": {
+        "startLine": 1073,
+        "startChar": 28,
+        "endLine": 1073,
+        "endChar": 33
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4406f8ad_2ba72559",
@@ -277,6 +445,30 @@
       "writtenOn": "2024-08-07T00:15:12Z",
       "side": 1,
       "message": "```suggestion\n    } else {\n      it++;\n    }\n```",
+      "range": {
+        "startLine": 1094,
+        "startChar": 0,
+        "endLine": 1094,
+        "endChar": 5
+      },
+      "revId": "0b85b00450805f8959fe56239c7e8ef12597e6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43904945_8b7fab2f",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-07T16:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4406f8ad_2ba72559",
       "range": {
         "startLine": 1094,
         "startChar": 0,
