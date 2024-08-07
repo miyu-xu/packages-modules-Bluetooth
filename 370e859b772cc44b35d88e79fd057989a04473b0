@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18dc39ec_39456578",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-08-07T09:02:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec4cdbc5_dd25f39d",
+      "range": {
+        "startLine": 145,
+        "startChar": 25,
+        "endLine": 145,
+        "endChar": 42
+      },
+      "revId": "370e859b772cc44b35d88e79fd057989a04473b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27dc63f4_f2b3ba2a",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d9b49fe_ee80956c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-08-07T09:02:55Z",
+      "side": 1,
+      "message": "I think ```lateinit``` is specific to kotlin . explicit initialization is needed before using it to achieve same functionality in java",
+      "parentUuid": "27dc63f4_f2b3ba2a",
+      "revId": "370e859b772cc44b35d88e79fd057989a04473b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b26e50c5_54ab29a5",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-08-06T12:31:44Z",
       "side": 1,
       "message": "Could you please put the `teardown` function right after the `setup` ? Thanks",
+      "revId": "370e859b772cc44b35d88e79fd057989a04473b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aed6baf7_0fee4240",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMappingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-08-07T09:02:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b26e50c5_54ab29a5",
       "revId": "370e859b772cc44b35d88e79fd057989a04473b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
