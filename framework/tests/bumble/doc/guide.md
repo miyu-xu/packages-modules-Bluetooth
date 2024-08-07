@@ -220,7 +220,7 @@ Android Bluetooth frameworks, leveraging both gRPC and Bluetooth GATT interactio
 implementation and the full code, refer to our [source code][bumble-bluetooth-tests-code].
 
 [android-junit4]: https://developer.android.com/reference/androidx/test/runner/AndroidJUnit4
-[bumble-bluetooth-tests-code]: https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/framework/tests/bumble/
+[bumble-bluetooth-tests-code]: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/
 [bumble-github-pandora-server]: https://github.com/google/bumble/tree/main/bumble/pandora
 [grpc-java-doc]: https://grpc.io/docs/languages/java/
 [pandora-experimental-apis]: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/pandora/interfaces/pandora_experimental/
