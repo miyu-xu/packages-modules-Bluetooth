@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d973535_07092869",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-07T23:21:25Z",
+      "side": 1,
+      "message": "with a 1:1 no need for TODO it can be done now",
+      "fixSuggestions": [
+        {
+          "fixId": "bf7d293c_e4e4af97",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/metrics/bluetooth_event.cc",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "  // TODO - map the error codes to the state enum variants with a 1:1 mapping.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7e32fbe_865e9bd0",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-07T23:21:25Z",
+      "side": 1,
+      "message": "Should not add thoughts into comments",
+      "fixSuggestions": [
+        {
+          "fixId": "42d2c517_034f01a9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/metrics/bluetooth_event.cc",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

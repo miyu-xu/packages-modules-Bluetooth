@@ -52,6 +52,24 @@
       "parentUuid": "00ef7b0e_ad42b746",
       "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cd98cc_ca43423c",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-07T23:21:25Z",
+      "side": 1,
+      "message": "```\n    case ErrorCode::PAGE_TIMEOUT:\n      return State::PAGE_TIMEOUT\n    case ErrorCode::CONNECTION_TIMEOUT:\n      return State::CONNECTION_TIMEOUT\n    case ErrorCode::CONNECTION_ACCEPT_TIMEOUT:\n      return State::CONNECTION_ACCEPT_TIMEOUT;\n    case ErrorCode::TRANSACTION_RESPONSE_TIMEOUT:\n      return State::TRANSACTION_RESPONSE_TIMEOUT;     \n    case ErrorCode::CONNECTION_ALREADY_EXISTS:\n      return State::CONNECTION_ALREADY_EXISTS;\n    case ErrorCode::REPEATED_ATTEMPTS:\n      return State::REPEATED_ATTEMPTS;\n    case ErrorCode::PIN_OR_KEY_MISSING:\n      return State::PIN_OR_KEY_MISSING;\n    case ErrorCode::PAIRING_NOT_ALLOWED:\n      return State::PAIRING_NOT_ALLOWED;\n```",
+      "parentUuid": "0403437b_71727ce3",
+      "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
