@@ -207,6 +207,30 @@
       },
       "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be81521a_7a3611a4",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-07T21:36:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7dd6fed_4476c6a4",
+      "range": {
+        "startLine": 317,
+        "startChar": 2,
+        "endLine": 317,
+        "endChar": 13
+      },
+      "revId": "73059c21756e93b9d0f9c0e6298b45809c5a01a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
