@@ -173,7 +173,7 @@ void rfc_port_sm_state_closed(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data
                  rfcomm_port_state_text(p_port->rfc.state));
   }
 
-  log::warn("Port state closed Event ignored {}", event);
+  log::warn("Event ignored {}", event);
   return;
 }
 
@@ -191,8 +191,7 @@ void rfc_port_sm_sabme_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event, void* p_dat
   switch (event) {
     case RFC_PORT_EVENT_OPEN:
     case RFC_PORT_EVENT_ESTABLISH_RSP:
-      log::error("Port error state {} event {}",
-                 rfcomm_port_state_text(static_cast<tRFC_PORT_STATE>(p_port->rfc.state)), event);
+      log::error("Port error event:{}", event);
       return;
 
     case RFC_PORT_EVENT_CLOSE:
@@ -275,7 +274,7 @@ void rfc_port_sm_sabme_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event, void* p_dat
       log::error("Received unexpected event:{} in state:{}", event,
                  rfcomm_port_state_text(static_cast<tRFC_PORT_STATE>(p_port->rfc.state)));
   }
-  log::warn("Port state sabme_wait_ua Event ignored {}", event);
+  log::warn("Event ignored {}", event);
 }
 
 /*******************************************************************************
@@ -314,7 +313,7 @@ void rfc_port_sm_term_wait_sec_check(tPORT* p_port, tRFC_PORT_EVENT event, void*
 
     case RFC_PORT_EVENT_OPEN:
     case RFC_PORT_EVENT_CLOSE:
-      log::error("Port error state {} event {}", p_port->rfc.state, event);
+      log::error("Port error event {}", event);
       return;
 
     case RFC_PORT_EVENT_CLEAR:
@@ -380,7 +379,7 @@ void rfc_port_sm_term_wait_sec_check(tPORT* p_port, tRFC_PORT_EVENT event, void*
       log::error("Received unexpected event:{} in state:{}", event,
                  rfcomm_port_state_text(p_port->rfc.state));
   }
-  log::warn("Port state term_wait_sec_check Event ignored {}", event);
+  log::warn("Event ignored {}", event);
 }
 
 /*******************************************************************************
@@ -436,7 +435,7 @@ void rfc_port_sm_orig_wait_sec_check(tPORT* p_port, tRFC_PORT_EVENT event, void*
       log::error("Received unexpected event:{} in state:{}", event,
                  rfcomm_port_state_text(p_port->rfc.state));
   }
-  log::warn("Port state orig_wait_sec_check Event ignored {}", event);
+  log::warn("Event ignored {}", event);
 }
 
 /*******************************************************************************
@@ -536,11 +535,12 @@ void rfc_port_sm_opened(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data) {
       return;
 
     default:
+      log::error("Received unexpected event:{} bd_addr:{} handle:{} dlci:{} scn:{}",
+                 rfcomm_port_event_text(event), p_port->bd_addr, p_port->handle, p_port->dlci,
+                 p_port->scn);
       break;
   }
-  log::error("Received unexpected event:{} bd_addr:{} handle:{} dlci:{} scn:{}",
-             rfcomm_port_event_text(event), p_port->bd_addr, p_port->handle, p_port->dlci,
-             p_port->scn);
+  log::warn("Event ignored {}", event);
 }
 
 /*******************************************************************************
@@ -557,7 +557,7 @@ void rfc_port_sm_disc_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data
   switch (event) {
     case RFC_PORT_EVENT_OPEN:
     case RFC_PORT_EVENT_ESTABLISH_RSP:
-      log::error("Port error state {} event {}", p_port->rfc.state, event);
+      log::error("Port error event {}", event);
       return;
 
     case RFC_PORT_EVENT_CLEAR:
@@ -611,7 +611,7 @@ void rfc_port_sm_disc_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data
                  rfcomm_port_state_text(p_port->rfc.state));
   }
 
-  log::warn("Port state disc_wait_ua Event ignored {}", event);
+  log::warn("Event ignored {}", event);
 }
 
 /*******************************************************************************
