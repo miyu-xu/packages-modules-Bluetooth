@@ -22,6 +22,30 @@
       },
       "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b922b4_be83cf2e",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-07T18:28:39Z",
+      "side": 0,
+      "message": "Calling directly enable on the bluetooth binder is not supported and lead to crash.\nI noticed this and got a bit scared that other app can \"call\" our internal binder.\n\nIf bluetooth is already ON, calling enable post a message that will call init again, and another that cannot be handle and will be discard. But the call to init will re-initialized some state and variable, try to load some native code again... This end up in crash.\n\nIf bluetooth is off, calling enable is not possible as there is no binder to call onto.",
+      "parentUuid": "eccd712f_e967b750",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 22
+      },
+      "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
