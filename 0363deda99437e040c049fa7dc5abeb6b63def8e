@@ -52,6 +52,24 @@
       "parentUuid": "93861180_3491f67f",
       "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09669aa5_cdb16e89",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-07T05:25:31Z",
+      "side": 1,
+      "message": "If there are ongoing MTU exchanges and another client tries to configure MTU over BR/EDR, an error could be wrongly reported to existing clients.\n\nThis is to prevent this scenario.",
+      "parentUuid": "1308460e_e15a3233",
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
