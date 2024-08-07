@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65683dcd_4f6d2a10",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-08-07T15:13:06Z",
+      "side": 1,
+      "message": "Note that it is valid to call `erase()` with a key that is not in the map.  Thus, it is more efficient to just do:\n\n```\n  trackers_.erase(address);\n```\n\ninstead of calling `find()` first.  With the current code, when `address` is in the map, we end up searching for it twice (once for the `find()`, and again for the `erase()`).\n\nSee https://en.cppreference.com/w/cpp/container/unordered_map/erase for more details.",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 0
+      },
+      "revId": "9dfe56c725780389e86f603ce17e7904bb63e5e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
