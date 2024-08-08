@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7fd0748_e1413361",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-08T06:38:41Z",
+      "side": 1,
+      "message": "BTIF layer would create security record on startup for all bonded devices in btif_storage_load_bonded_devices.\n\nSo as I understand, you should never need to read the stored properties from BTM layer. Maybe logic in btif_storage_load_bonded_devices needs some fixup ?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "09448622_45a28673",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "    name_found \u003d btif_storage_get_stored_remote_name(bd_addr, reinterpret_cast\u003cchar*\u003e(\u0026bd_name));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "81d093a0985a645a996de621293b78690e056cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7a380fd_acc2bb4c",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-08T06:38:41Z",
+      "side": 1,
+      "message": "This operation can be slow. Reads from storage should be done only on BTIF thread -  this rule is broken in multiple places, but would prefer to not break it here.\n\nMaybe trigger read from btif_dm.cc, when handling BTA_DM_LINK_UP_EVT ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c85f98cd_60938a40",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_dev.cc",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_dev.cc",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "#include \"storage/storage_legacy.h\"\n"
+            },
+            {
+              "path": "system/stack/btm/btm_dev.cc",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "      name_found \u003d storage_legacy::get_stored_remote_name(bd_addr, reinterpret_cast\u003cchar*\u003e(\u0026bd_name));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "81d093a0985a645a996de621293b78690e056cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
