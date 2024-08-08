@@ -34,6 +34,24 @@
       "parentUuid": "eecc9549_93b62717",
       "revId": "5add436f23c5da497c0cf24950125f7ed57674c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a98ef6b7_4dff8f95",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3791,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-08T18:45:43Z",
+      "side": 1,
+      "message": "Your change will not help unfortunately, the lock guard needs to span the time the pointer to BtifAvPeer is being used...",
+      "parentUuid": "3062b28d_fa3a87a4",
+      "revId": "5add436f23c5da497c0cf24950125f7ed57674c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
