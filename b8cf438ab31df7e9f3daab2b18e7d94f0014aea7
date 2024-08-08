@@ -245,6 +245,30 @@
       },
       "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccdad92a_be584307",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-08T17:17:10Z",
+      "side": 1,
+      "message": "Missing changeset I think",
+      "parentUuid": "a473a548_3cbcc443",
+      "range": {
+        "startLine": 423,
+        "startChar": 10,
+        "endLine": 423,
+        "endChar": 65
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
