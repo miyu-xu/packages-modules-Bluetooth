@@ -114,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbe3f691_87ddca8d",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-08-08T17:36:08Z",
+      "side": 1,
+      "message": "Same comment as other",
+      "parentUuid": "336ddf67_7dab728f",
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64618775_88d2a57f",
         "filename": "system/btif/co/bta_av_co.cc",
         "patchSetId": 3
@@ -261,6 +279,30 @@
       "side": 1,
       "message": "Missing changeset I think",
       "parentUuid": "a473a548_3cbcc443",
+      "range": {
+        "startLine": 423,
+        "startChar": 10,
+        "endLine": 423,
+        "endChar": 65
+      },
+      "revId": "b8cf438ab31df7e9f3daab2b18e7d94f0014aea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7557354b_e083b21f",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-08-08T17:36:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccdad92a_be584307",
       "range": {
         "startLine": 423,
         "startChar": 10,
