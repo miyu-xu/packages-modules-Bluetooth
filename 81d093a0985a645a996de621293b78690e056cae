@@ -101,6 +101,30 @@
       ],
       "revId": "81d093a0985a645a996de621293b78690e056cae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60eac0d_48514044",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-08T21:21:43Z",
+      "side": 1,
+      "message": "Do you mean, JNI thread? Some portion of BTIF runs in JNI thread, some in the main thread and some in Java service thread.\nI see that GD storage synchronizes the access using a mutex. So it should be fine to access the storage from different threads.\n\nThis function is generally called on stack initialization to add already bonded devices from persistent storage.",
+      "parentUuid": "b7a380fd_acc2bb4c",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "81d093a0985a645a996de621293b78690e056cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
