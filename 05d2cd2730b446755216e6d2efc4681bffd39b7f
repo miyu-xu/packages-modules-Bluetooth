@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb50f19_756ae64e",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-08T08:57:39Z",
+      "side": 1,
+      "message": "I am not sure this could happen... Do you observe this behavior?\n\nReading [1] and [2] (not sure why they are different), I have the impression that `poll` will block unless the fd is ready to read, or is interrupted (but here POLLIN flag is off but maybe POLLHUP is on).\n\nSo probably fd is ready to read. But why read return zero? I don\u0027t think EOF means ready to read.\nIs it possible the following happens?\n(a) fd is actually non-blocking, like reading from a regular file?\n(b) The data marked as ready is actually zero length (i.e. the other side of the connection does `write(fd, NULL, 0)`)?\n\n[1] https://man7.org/linux/man-pages/man2/poll.2.html\n[2] https://pubs.opengroup.org/onlinepubs/007904975/functions/poll.html",
+      "revId": "05d2cd2730b446755216e6d2efc4681bffd39b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
