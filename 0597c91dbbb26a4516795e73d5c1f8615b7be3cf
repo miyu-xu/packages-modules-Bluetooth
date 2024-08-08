@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1b13e39_e29ce1d2",
+        "filename": "system/gd/hci/le_advertising_manager_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-08T11:34:32Z",
+      "side": 1,
+      "message": "will that compile properly for host ? non-android ?",
+      "range": {
+        "startLine": 169,
+        "startChar": 3,
+        "endLine": 169,
+        "endChar": 60
+      },
+      "revId": "0597c91dbbb26a4516795e73d5c1f8615b7be3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
