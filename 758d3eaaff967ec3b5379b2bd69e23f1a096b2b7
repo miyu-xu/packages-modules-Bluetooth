@@ -62,6 +62,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0a84657_86a93e63",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2120,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-08-08T06:37:58Z",
+      "side": 1,
+      "message": "Moved to ScanSettings!",
+      "parentUuid": "0f9d8f16_0c5d9364",
+      "range": {
+        "startLine": 2120,
+        "startChar": 4,
+        "endLine": 2120,
+        "endChar": 52
+      },
+      "revId": "758d3eaaff967ec3b5379b2bd69e23f1a096b2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0d46341_66d286df",
@@ -109,6 +133,30 @@
           ]
         }
       ],
+      "revId": "758d3eaaff967ec3b5379b2bd69e23f1a096b2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "920050f4_48f19f9f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2135,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-08-08T06:37:58Z",
+      "side": 1,
+      "message": "It doesn\u0027t have to be default, the proposed fix looks much better since it handles unknown values correctly. Fixed!",
+      "parentUuid": "d0d46341_66d286df",
+      "range": {
+        "startLine": 2134,
+        "startChar": 12,
+        "endLine": 2135,
+        "endChar": 55
+      },
       "revId": "758d3eaaff967ec3b5379b2bd69e23f1a096b2b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
