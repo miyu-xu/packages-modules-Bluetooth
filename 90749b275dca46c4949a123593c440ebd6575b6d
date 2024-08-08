@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfeb1ef1_dd5afc3e",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-08T23:51:16Z",
+      "side": 1,
+      "message": "nit: the formatting looks odd",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "50929e8c_a3977dc3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/hci_hal_host.cc",
+              "range": {
+                "startLine": 174,
+                "startChar": 0,
+                "endLine": 177,
+                "endChar": 0
+              },
+              "replacement": "                    \"MGMT index list returns {} HCI interface, but HCI interface({}) not found\",\n                    cc-\u003enum_intf,\n                    hci_interface);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3c0716e_7130069e",
         "filename": "system/gd/hal/hci_hal_host.cc",
         "patchSetId": 1
