@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a40a8be_55630ad9",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-08-08T16:33:17Z",
+      "side": 1,
+      "message": "the state is in the name of the method so it\u0027d already be in the log line.  Do you think I should keep it?",
+      "parentUuid": "3c717f10_085ca4a9",
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6ee6d0fa_c9cf9241",
@@ -104,6 +122,24 @@
       "writtenOn": "2024-08-08T00:51:29Z",
       "side": 1,
       "message": "You could consolidate here too",
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd88557_88e201cf",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-08-08T16:33:17Z",
+      "side": 1,
+      "message": "Not sure what you mean by colsolidate.  Theres an error for an undefined event, and then there\u0027s the \"event ignored\" line",
+      "parentUuid": "bf4a1917_9b14a6d9",
       "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
