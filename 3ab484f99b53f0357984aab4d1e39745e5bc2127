@@ -62,6 +62,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ea8105_dc6a1494",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T19:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12a40d95_d0d936a7",
+      "range": {
+        "startLine": 378,
+        "startChar": 5,
+        "endLine": 391,
+        "endChar": 13
+      },
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e435eb3_38f5a580",
@@ -75,6 +99,30 @@
       "writtenOn": "2024-08-08T17:55:18Z",
       "side": 1,
       "message": "reverse the if flag and do early return to remove indentation if the flag is enabled\n```suggestion\n        if (!Flags.setAddressedPlayer()) {\n            return BLUETOOTH_PLAYER_ID;\n        }\n        if (mMediaPlayerIds.containsValue(playerId)) {\n            mAddressedPlayerId \u003d playerId;\n            sendFolderUpdate(false, true, false);\n        }\n        return mAddressedPlayerId;\n    }\n```",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 5
+      },
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a31bfd1_14bd79cb",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T19:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e435eb3_38f5a580",
       "range": {
         "startLine": 416,
         "startChar": 0,
@@ -126,6 +174,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bfe1908_89f5f58f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T19:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf1159c_a838f3c4",
+      "range": {
+        "startLine": 593,
+        "startChar": 42,
+        "endLine": 593,
+        "endChar": 60
+      },
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e69f38ca_22ad6f72",
@@ -139,6 +211,30 @@
       "writtenOn": "2024-08-08T17:55:18Z",
       "side": 1,
       "message": "You are making a behavior change outside of the flag\n```suggestion\n\n        if (Flags.setAddressedPlayer()) {\n            if (getAddressedPlayer() !\u003d null) {\n                getAddressedPlayer().playItemFromQueue(queueItemId);\n            }\n        } else if (getActivePlayer() !\u003d null) {\n            getActivePlayer().playItemFromQueue(queueItemId);\n        }\n```",
+      "range": {
+        "startLine": 593,
+        "startChar": 4,
+        "endLine": 595,
+        "endChar": 9
+      },
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1089293e_a4656cfd",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T19:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e69f38ca_22ad6f72",
       "range": {
         "startLine": 593,
         "startChar": 4,
