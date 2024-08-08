@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1a2725c_941e1b14",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T21:09:13Z",
+      "side": 1,
+      "message": "Ah I understand your question, well this is an improvement on the browsing refactor that slipped in here, but that can arguably be also needed for SetAddressedPlayer to work properly too.",
+      "parentUuid": "6b72f7f6_e357e634",
+      "range": {
+        "startLine": 376,
+        "startChar": 16,
+        "endLine": 376,
+        "endChar": 29
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42a513b0_aa784239",
