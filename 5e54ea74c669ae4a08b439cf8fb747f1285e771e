@@ -16,6 +16,24 @@
       "message": "You don\u0027t actually need this I guess... no bot complains on your previous CLs on gerrit.\nI always `--no-verify` lately to skip linter",
       "revId": "5e54ea74c669ae4a08b439cf8fb747f1285e771e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "972243c4_613859eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-08T09:26:16Z",
+      "side": 1,
+      "message": "I used to do that :) but for this one, I think some of the error makes sense. For example, the redundant `;`",
+      "parentUuid": "713d2259_951ce9a1",
+      "revId": "5e54ea74c669ae4a08b439cf8fb747f1285e771e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
