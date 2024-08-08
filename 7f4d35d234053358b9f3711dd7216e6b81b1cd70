@@ -352,6 +352,30 @@
       },
       "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a22f7ad_8430d21e",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T21:20:40Z",
+      "side": 1,
+      "message": "But...\n\nThere are situation in which we do:\n```\nmAddressedPlayerId \u003d NO_ACTIVE_PLAYER;\n```\n\nWouldn\u0027t getAddressedPlayer return null then ?",
+      "parentUuid": "df787d77_4e968aa6",
+      "range": {
+        "startLine": 517,
+        "startChar": 16,
+        "endLine": 517,
+        "endChar": 31
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
