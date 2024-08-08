@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ea79764_e9a27b9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-08T14:23:03Z",
+      "side": 1,
+      "message": "FYI, `Flag: EXEMPT logging change` would have been a better justification",
+      "revId": "b979296e9baed2d24e324b8050014ea1dd718a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
