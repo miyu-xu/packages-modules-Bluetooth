@@ -64,6 +64,30 @@
       },
       "revId": "f0281a6f52120a608774dd9009307c22229cecff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0a462e0_e842c768",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-08T19:01:25Z",
+      "side": 1,
+      "message": "aosp/3212784 tries to repopulate the device name for bonded devices after BT is restarted.\n\nI have now moved this logic to trigger from \"on connected\" to \"on established\".\n\nI initially tried to trigger pairing on the start of pairing, but changes were becoming a bit complex.\n\nChanges in this cl are not completely robust. It relies on the remote device to respond to the name request in time. The pairing procedure still just looks for the available name. If it was not available by the time pairing started, the pairing dialog box may not show the correct device name. However chances of that happening should be extremely low.",
+      "parentUuid": "b7448b63_e242fe50",
+      "range": {
+        "startLine": 1517,
+        "startChar": 2,
+        "endLine": 1520,
+        "endChar": 3
+      },
+      "revId": "f0281a6f52120a608774dd9009307c22229cecff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
