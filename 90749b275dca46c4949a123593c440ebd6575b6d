@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25b2246e_a3dc03d1",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-08T09:18:14Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "c3c0716e_7130069e",
+      "range": {
+        "startLine": 174,
+        "startChar": 48,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1d55be1_43088fcc",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000fdedf_81853a7e",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-08T09:18:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1d55be1_43088fcc",
+      "range": {
+        "startLine": 175,
+        "startChar": 43,
+        "endLine": 175,
+        "endChar": 46
+      },
       "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
