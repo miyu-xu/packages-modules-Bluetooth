@@ -1,0 +1,83 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92098b91_0d900d34",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T15:45:05Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to be flagged as this ultimately calls the same method as getMediaPlayerList, without the actual list, only the cur_player. The result of this method is flagged.",
+      "fixSuggestions": [
+        {
+          "fixId": "6018c270_d448c20b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/profile/avrcp/device.cc",
+              "range": {
+                "startLine": 201,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": "      media_interface_-\u003eSetAddressedPlayer(set_addressed_player_request-\u003eGetPlayerId());\n"
+            },
+            {
+              "path": "system/profile/avrcp/device.cc",
+              "range": {
+                "startLine": 898,
+                "startChar": 0,
+                "endLine": 914,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "36e91a2b426a34c18e5328b6ab2a207ad777b973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9a0c58b_5a1177f0",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T15:45:05Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to be flagged as this ultimately calls the same method as getMediaPlayerList, without the actual list, only the cur_player. The result of this method is flagged.",
+      "revId": "36e91a2b426a34c18e5328b6ab2a207ad777b973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3be73343_717da12d",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1696,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T15:45:05Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to be flagged as this ultimately calls the same method as getMediaPlayerList, without the actual list, only the cur_player. The result of this method is flagged.",
+      "revId": "36e91a2b426a34c18e5328b6ab2a207ad777b973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

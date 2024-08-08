@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e271c8ff_b6cc5e18",
+        "filename": "system/profile/avrcp/device.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-08T15:45:05Z",
+      "side": 0,
+      "message": "This was unused too",
+      "fixSuggestions": [
+        {
+          "fixId": "aa29ec14_1cf848fb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/profile/avrcp/device.h",
+              "range": {
+                "startLine": 256,
+                "startChar": 0,
+                "endLine": 261,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "86f579fbd5e4f03a9c844ba35ff724a47fedd3e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
