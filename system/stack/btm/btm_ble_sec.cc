@@ -81,6 +81,8 @@ static constexpr char kPropertyCtkdDisableCsrkDistribution[] =
 void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
                          tBLE_ADDR_TYPE addr_type) {
   log::debug("dev_type=0x{:x}", dev_type);
+  bool name_found = false;
+  BD_NAME bd_name{};
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (!p_dev_rec) {
@@ -100,9 +102,20 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
 
     log::debug("Device added, handle=0x{:x}, p_dev_rec={}, bd_addr={}", p_dev_rec->ble_hci_handle,
                fmt::ptr(p_dev_rec), bd_addr);
+
+    if (com::android::bluetooth::flags::name_discovery_for_le_pairing()) {
+      name_found = btif_storage_get_stored_remote_name(bd_addr, reinterpret_cast<char*>(&bd_name));
+    }
   }
 
-  memset(p_dev_rec->sec_bd_name, 0, sizeof(BD_NAME));
+  if (com::android::bluetooth::flags::name_discovery_for_le_pairing()) {
+    if (name_found) {
+      p_dev_rec->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
+      bd_name_copy(p_dev_rec->sec_bd_name, bd_name);
+    }
+  } else {
+    bd_name_clear(p_dev_rec->sec_bd_name);
+  }
 
   p_dev_rec->device_type |= dev_type;
   if (is_ble_addr_type_known(addr_type)) {

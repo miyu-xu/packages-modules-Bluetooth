@@ -31,6 +31,7 @@
 
 #include <string>
 
+#include "btif/include/btif_storage.h"
 #include "btm_api.h"
 #include "btm_int_types.h"
 #include "btm_sec_api.h"
@@ -83,6 +84,9 @@ static void wipe_secrets_and_remove(tBTM_SEC_DEV_REC* p_dev_rec) {
 void BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class, LinkKey link_key,
                       uint8_t key_type, uint8_t pin_length) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  bool name_found = false;
+  BD_NAME bd_name{};
+
   if (!p_dev_rec) {
     p_dev_rec = btm_sec_allocate_dev_rec();
     log::info(
@@ -97,6 +101,10 @@ void BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class, LinkKey li
     /* use default value for background connection params */
     /* update conn params, use default value for background connection params */
     memset(&p_dev_rec->conn_params, 0xff, sizeof(tBTM_LE_CONN_PRAMS));
+
+    if (com::android::bluetooth::flags::name_discovery_for_le_pairing()) {
+      name_found = btif_storage_get_stored_remote_name(bd_addr, reinterpret_cast<char*>(&bd_name));
+    }
   } else {
     log::info(
             "Caching existing record from config file device: {}, dev_class: "
@@ -119,7 +127,14 @@ void BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class, LinkKey li
     p_dev_rec->dev_class = dev_class;
   }
 
-  memset(p_dev_rec->sec_bd_name, 0, sizeof(BD_NAME));
+  if (com::android::bluetooth::flags::name_discovery_for_le_pairing()) {
+    if (name_found) {
+      p_dev_rec->sec_rec.sec_flags |= BTM_SEC_NAME_KNOWN;
+      bd_name_copy(p_dev_rec->sec_bd_name, bd_name);
+    }
+  } else {
+    bd_name_clear(p_dev_rec->sec_bd_name);
+  }
 
   p_dev_rec->sec_rec.sec_flags |= BTM_SEC_LINK_KEY_KNOWN;
   p_dev_rec->sec_rec.link_key = link_key;
