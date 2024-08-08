@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dacccf3_3092c4a1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3504,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-08T07:38:38Z",
+      "side": 0,
+      "message": "If we get EVENT_TYPE_BROADCAST_AUDIO_SESSION_CREATED with !areAllGroupsInNotActiveState and removeActiveDevice(true) will be called, then here we not react for that with create broadcast.\nThere will no race condition between GROUP_STATUS_INACTIVE and EVENT_TYPE_BROADCAST_CREATED?",
+      "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

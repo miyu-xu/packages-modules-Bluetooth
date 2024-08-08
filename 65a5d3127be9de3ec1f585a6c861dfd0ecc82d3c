@@ -106,6 +106,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ee02891_35889194",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3723,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-08T07:38:38Z",
+      "side": 1,
+      "message": "what if there is more than one element in queue? We should call next element:\n```\n// In case if there were additional calls to create broadcast\nif (!mCreateBroadcastQueue.isEmpty()) {\n    BluetoothLeBroadcastSettings settings \u003d mCreateBroadcastQueue.remove();\n    createBroadcast(settings);\n}\n```\nor execute clear() instead of remove().",
+      "range": {
+        "startLine": 3722,
+        "startChar": 0,
+        "endLine": 3723,
+        "endChar": 51
+      },
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aadda6c4_36412679",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
