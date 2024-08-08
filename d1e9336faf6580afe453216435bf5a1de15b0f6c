@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be83358a_fc1367c4",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T21:56:21Z",
+      "side": 1,
+      "message": "This could be combined logically into the above block.",
+      "revId": "d1e9336faf6580afe453216435bf5a1de15b0f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

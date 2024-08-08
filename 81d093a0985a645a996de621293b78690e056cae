@@ -68,6 +68,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ba60e24_95e92dfc",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T21:56:21Z",
+      "side": 1,
+      "message": "`BTM_SecAddBleDevice` should probably include a name but as I understand it that is a more complex change but could be done in a future CL.\n\n`Maybe logic in btif_storage_load_bonded_devices needs some fixup` This is a good pattern to include with the future CL too.",
+      "parentUuid": "c7fd0748_e1413361",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "81d093a0985a645a996de621293b78690e056cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7a380fd_acc2bb4c",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 1
@@ -141,6 +165,30 @@
       "side": 1,
       "message": "Do you mean, JNI thread? Some portion of BTIF runs in JNI thread, some in the main thread and some in Java service thread.\nI see that GD storage synchronizes the access using a mutex. So it should be fine to access the storage from different threads.\n\nThis function is generally called on stack initialization to add already bonded devices from persistent storage.",
       "parentUuid": "b7a380fd_acc2bb4c",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "81d093a0985a645a996de621293b78690e056cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8330cdcc_59fc0f7d",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T21:56:21Z",
+      "side": 1,
+      "message": "`only on BTIF thread` All reads are sync\u0027ed on main thread and then mutex guarded by the `gd/storage` module anyway.\n\ne.g. `int get_adapter_properties(void)`\n\n`this rule is broken in multiple places` A quick search shows it\u0027s very common to access this via main thread in bta and stack so I don\u0027t think this is a problem.\n\nSame issue with `BTM_SecAddBleDevice` should probably add the name from storage into the signature in a future CL.",
+      "parentUuid": "b60eac0d_48514044",
       "range": {
         "startLine": 106,
         "startChar": 2,
