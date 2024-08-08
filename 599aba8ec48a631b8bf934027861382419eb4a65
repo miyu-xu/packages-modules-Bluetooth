@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa882b09_b58f895c",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T23:45:42Z",
+      "side": 1,
+      "message": "discussed offline",
+      "parentUuid": "4d973535_07092869",
+      "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7e32fbe_865e9bd0",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31757fb7_a392489f",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T23:45:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f7e32fbe_865e9bd0",
       "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

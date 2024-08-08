@@ -70,6 +70,24 @@
       "parentUuid": "0403437b_71727ce3",
       "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4727fb_16f81c0f",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T23:45:42Z",
+      "side": 1,
+      "message": "discussed offline as to updating in future using 1:1",
+      "parentUuid": "77cd98cc_ca43423c",
+      "revId": "155bf732e9196d1640b7c9d09e27b90ffa18502c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
