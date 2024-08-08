@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35cd4db2_46c15fd2",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T18:00:16Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we have a new bug then ? @girardier@google.com what do you think ?\n\nEspecially since the previous flag has been in and out of gantry gate a couple times already",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "ca197eed7a0087d34738994945045183efa5fefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
