@@ -88,6 +88,30 @@
       },
       "revId": "f0281a6f52120a608774dd9009307c22229cecff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e901d48_baf4d190",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T21:46:58Z",
+      "side": 1,
+      "message": "`btm_ble_read_remote_name`\nWe just check the inq db if the device is connectable; we don\u0027t check for the name.\n\n`Would start of pairing be a better place to trigger name read instead ?`\nThis effort is difficult due to the obtuse nature of the SMP state machine code and ensuring that all possible points are covered, including any testing.",
+      "parentUuid": "e0a462e0_e842c768",
+      "range": {
+        "startLine": 1517,
+        "startChar": 2,
+        "endLine": 1520,
+        "endChar": 3
+      },
+      "revId": "f0281a6f52120a608774dd9009307c22229cecff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
