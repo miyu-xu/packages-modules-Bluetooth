@@ -1,5 +1,57 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c14c0672_b537479e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-08T09:46:11Z",
+      "side": 1,
+      "message": "NIT: maybe we should have different variable passed here, and check returned address, rather than overwritting pseudo_addr.",
+      "range": {
+        "startLine": 586,
+        "startChar": 11,
+        "endLine": 586,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6d2d40a8_b3213afd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_act.cc",
+              "range": {
+                "startLine": 585,
+                "startChar": 0,
+                "endLine": 589,
+                "endChar": 0
+              },
+              "replacement": "  bool le_connected \u003d false;\n  bool bredr_connected \u003d false;\n  get_btm_client_interface().peer.BTM_ReadConnectedTransportAddress(\n          \u0026pseudo_addr, BT_TRANSPORT_LE, \u0026le_connected);\n  get_btm_client_interface().peer.BTM_ReadConnectedTransportAddress(\n          \u0026identity_addr, BT_TRANSPORT_BR_EDR, \u0026bredr_connected);\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_act.cc",
+              "range": {
+                "startLine": 592,
+                "startChar": 0,
+                "endLine": 594,
+                "endChar": 0
+              },
+              "replacement": "    get_btm_client_interface().peer.BTM_ReadConnectedTransportAddress(\n            \u0026identity_addr, BT_TRANSPORT_BR_EDR, \u0026bredr_connected);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d0467d12c656442a2664620f003833ffad134c94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
