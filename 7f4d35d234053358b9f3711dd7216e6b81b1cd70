@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eb34871_57e1dd3d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "Why this is never the active player ?",
+      "range": {
+        "startLine": 332,
+        "startChar": 3,
+        "endLine": 340,
+        "endChar": 5
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5c65f3_b42cb8d0",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "Change in this function are only managed by browsingRefactor flag and not setaddress. Is this expected ?",
+      "range": {
+        "startLine": 376,
+        "startChar": 16,
+        "endLine": 376,
+        "endChar": 29
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a513b0_aa784239",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "What is the \"\" parameter ?",
+      "range": {
+        "startLine": 379,
+        "startChar": 40,
+        "endLine": 379,
+        "endChar": 42
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "040fe6bb_af0ef486",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "Why do you need to return a value ?",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 14
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa36d937_d67b4354",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "if it doesn\u0027t contains the value, should you return an error ?",
+      "range": {
+        "startLine": 419,
+        "startChar": 28,
+        "endLine": 419,
+        "endChar": 41
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29806bb1_47a07e97",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "If there is no addressed player, should it fall back to the active player ?\n\nShould all of this be \"getCurrentPlayer\" ?",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 18
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a699cd_2a156c9d",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T20:32:37Z",
+      "side": 1,
+      "message": "can addressedPlayer be null ?",
+      "range": {
+        "startLine": 517,
+        "startChar": 16,
+        "endLine": 517,
+        "endChar": 31
+      },
+      "revId": "7f4d35d234053358b9f3711dd7216e6b81b1cd70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
