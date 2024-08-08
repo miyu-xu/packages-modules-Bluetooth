@@ -16,6 +16,24 @@
       "message": "PTAL, thanks! Will ask AOSP maintainers to review after getting approval from our team.\n\nbtw, should we add some members in CrOS BT team as owner of these files? At least `system/gd/os/chromeos/*` is only used by us?",
       "revId": "9353d5a3ce240dbb4841fdd61ff2f885eaf96514",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad92548_91c15b50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-08T09:12:19Z",
+      "side": 1,
+      "message": "I think so. Not sure who to contact though for new OWNERS proposal.",
+      "parentUuid": "bfbb5c35_47a05019",
+      "revId": "9353d5a3ce240dbb4841fdd61ff2f885eaf96514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
