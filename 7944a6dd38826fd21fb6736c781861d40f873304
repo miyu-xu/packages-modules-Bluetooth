@@ -1,0 +1,111 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c717f10_085ca4a9",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T00:51:29Z",
+      "side": 1,
+      "message": "You didn\u0027t want to keep the `state` field ?",
+      "fixSuggestions": [
+        {
+          "fixId": "f83c079d_b8b92b63",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_port_fsm.cc",
+              "range": {
+                "startLine": 194,
+                "startChar": 0,
+                "endLine": 195,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Port error event:{} state:{}\", event,\n                 rfcomm_port_state_text(p_port-\u003erfc.state));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ee6d0fa_c9cf9241",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T00:51:29Z",
+      "side": 1,
+      "message": "Good consolidation",
+      "fixSuggestions": [
+        {
+          "fixId": "6d988dd4_b1cc3534",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_port_fsm.cc",
+              "range": {
+                "startLine": 382,
+                "startChar": 0,
+                "endLine": 383,
+                "endChar": 0
+              },
+              "replacement": "  log::warn(\"Event ignored\");\n  log::warn(\"Event ignored\");\n}\n\n/*******************************************************************************\n *\n * Function         rfc_port_sm_term_wait_sec_check\n *\n * Description      This function handles events for the port in the\n *                  WAIT_SEC_CHECK state.  SABME has been received from the\n *                  peer and Security Manager verifes address, before we can\n *                  send ESTABLISH_IND to the Port entity\n *\n * Returns          void\n *\n ******************************************************************************/\nvoid rfc_port_sm_term_wait_sec_check(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data) {\n  switch (event) {\n    case RFC_PORT_EVENT_SEC_COMPLETE:\n      if (*((tBTM_STATUS*)p_data) !\u003d BTM_SUCCESS) {\n        log::error(\"Security check failed result:{} state:{} port_handle:{}\",\n                   btm_status_text(*((tBTM_STATUS*)p_data)),\n                   rfcomm_port_state_text(p_port-\u003erfc.state), p_port-\u003ehandle);\n        /* Authentication/authorization failed.  If link is still  */\n        /* up send DM and check if we need to start inactive timer */\n        if (p_port-\u003erfc.p_mcb) {\n          rfc_send_dm(p_port-\u003erfc.p_mcb, p_port-\u003edlci, true);\n          p_port-\u003erfc.p_mcb-\u003eis_disc_initiator \u003d true;\n          port_rfc_closed(p_port, PORT_SEC_FAILED);\n        }\n      } else {\n        log::debug(\"Security check succeeded state:{} port_handle:{}\",\n                   rfcomm_port_state_text(static_cast\u003ctRFC_PORT_STATE\u003e(p_port-\u003erfc.state)),\n                   p_port-\u003ehandle);\n        PORT_DlcEstablishInd(p_port-\u003erfc.p_mcb, p_port-\u003edlci, p_port-\u003erfc.p_mcb-\u003epeer_l2cap_mtu);\n      }\n      return;\n\n    case RFC_PORT_EVENT_OPEN:\n    case RFC_PORT_EVENT_CLOSE:\n      log::error(\"Port error event {}\", event);\n      return;\n\n    case RFC_PORT_EVENT_CLEAR:\n      log::warn(\"RFC_PORT_EVENT_CLEAR, index\u003d{}\", p_port-\u003ehandle);\n      btm_sec_abort_access_req(p_port-\u003erfc.p_mcb-\u003ebd_addr);\n      rfc_port_closed(p_port);\n      return;\n\n    case RFC_PORT_EVENT_DATA:\n      log::error(\"Port error state Term Wait Sec event Data\");\n      osi_free(p_data);\n      return;\n\n    case RFC_PORT_EVENT_SABME:\n      /* Ignore SABME retransmission if client dares to do so */\n      return;\n\n    case RFC_PORT_EVENT_DISC:\n      btm_sec_abort_access_req(p_port-\u003erfc.p_mcb-\u003ebd_addr);\n      p_port-\u003erfc.state \u003d RFC_STATE_CLOSED;\n      rfc_send_ua(p_port-\u003erfc.p_mcb, p_port-\u003edlci);\n\n      PORT_DlcReleaseInd(p_port-\u003erfc.p_mcb, p_port-\u003edlci);\n      return;\n\n    case RFC_PORT_EVENT_UIH:\n      osi_free(p_data);\n      return;\n\n    case RFC_PORT_EVENT_ESTABLISH_RSP:\n      if (*((uint8_t*)p_data) !\u003d RFCOMM_SUCCESS) {\n        if (p_port-\u003erfc.p_mcb) {\n          rfc_send_dm(p_port-\u003erfc.p_mcb, p_port-\u003edlci, true);\n        }\n      } else {\n        rfc_send_ua(p_port-\u003erfc.p_mcb, p_port-\u003edlci);\n        p_port-\u003erfc.state \u003d RFC_STATE_OPENED;\n\n        if (uuid_logging_acceptlist.find(p_port-\u003euuid) !\u003d uuid_logging_acceptlist.end()) {\n          // Find Channel Control Block by Channel ID\n          tL2C_CCB* p_ccb \u003d l2cu_find_ccb_by_cid(nullptr, p_port-\u003erfc.p_mcb-\u003elcid);\n          if (p_ccb) {\n            bluetooth::shim::GetSnoopLogger()-\u003eAcceptlistRfcommDlci(\n                    p_ccb-\u003ep_lcb-\u003eHandle(), p_port-\u003erfc.p_mcb-\u003elcid, p_port-\u003edlci);\n          }\n        }\n        if (p_port-\u003erfc.p_mcb) {\n          uint16_t lcid;\n          tL2C_CCB* ccb;\n\n          lcid \u003d p_port-\u003erfc.p_mcb-\u003elcid;\n          ccb \u003d l2cu_find_ccb_by_cid(nullptr, lcid);\n\n          if (ccb) {\n            bluetooth::shim::GetSnoopLogger()-\u003eSetRfcommPortOpen(\n                    ccb-\u003ep_lcb-\u003eHandle(), lcid, p_port-\u003edlci, p_port-\u003euuid,\n                    p_port-\u003erfc.p_mcb-\u003eflow \u003d\u003d PORT_FC_CREDIT);\n          }\n        }\n      }\n      return;\n    default:\n      log::error(\"Received unexpected event:{} in state:{}\", event,\n                 rfcomm_port_state_text(p_port-\u003erfc.state));\n  }\n  log::warn(\"Event ignored\");\n  log::warn(\"Event ignored\");\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_port_fsm.cc",
+              "range": {
+                "startLine": 543,
+                "startChar": 0,
+                "endLine": 544,
+                "endChar": 0
+              },
+              "replacement": "  log::warn(\"Event ignored\");\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_port_fsm.cc",
+              "range": {
+                "startLine": 614,
+                "startChar": 0,
+                "endLine": 615,
+                "endChar": 0
+              },
+              "replacement": "  log::warn(\"Event ignored\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf4a1917_9b14a6d9",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T00:51:29Z",
+      "side": 1,
+      "message": "You could consolidate here too",
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
