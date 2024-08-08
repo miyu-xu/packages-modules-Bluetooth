@@ -3637,11 +3637,9 @@ public class LeAudioService extends ProfileService {
                                             broadcastId,
                                             BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
 
-                    if (bassClientService != null) {
-                        if (!leaudioBroadcastAssistantPeripheralEntrustment()) {
+                    if (!leaudioBroadcastAssistantPeripheralEntrustment()) {
+                        if (bassClientService != null) {
                             bassClientService.suspendReceiversSourceSynchronization(broadcastId);
-                        } else if (leaudioBigDependsOnAudioState()) {
-                            bassClientService.cacheSuspendingSources(broadcastId);
                         }
                     }
 
@@ -3665,7 +3663,8 @@ public class LeAudioService extends ProfileService {
 
                     clearBroadcastTimeoutCallback();
 
-                    if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
+                    if (!leaudioBigDependsOnAudioState()
+                            && previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
                         if (bassClientService != null) {
                             bassClientService.resumeReceiversSourceSynchronization();
                         }
