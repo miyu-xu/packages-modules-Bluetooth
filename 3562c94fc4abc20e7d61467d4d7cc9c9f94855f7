@@ -99,6 +99,24 @@
       ],
       "revId": "3562c94fc4abc20e7d61467d4d7cc9c9f94855f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "395f7655_011a1e38",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-08T23:54:05Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "29a6bc03_56becf86",
+      "revId": "3562c94fc4abc20e7d61467d4d7cc9c9f94855f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
