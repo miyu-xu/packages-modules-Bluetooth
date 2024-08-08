@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c0716e_7130069e",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-08T08:57:28Z",
+      "side": 1,
+      "message": "nit: HCI interfaces",
+      "range": {
+        "startLine": 174,
+        "startChar": 48,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "597a64b5_a470fca1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/hci_hal_host.cc",
+              "range": {
+                "startLine": 174,
+                "startChar": 0,
+                "endLine": 175,
+                "endChar": 0
+              },
+              "replacement": "                    \"MGMT index list returns {} HCI interfaces,\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1d55be1_43088fcc",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-08T08:57:28Z",
+      "side": 1,
+      "message": "nit: is not",
+      "range": {
+        "startLine": 175,
+        "startChar": 43,
+        "endLine": 175,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2caea8cb_484fa593",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/hci_hal_host.cc",
+              "range": {
+                "startLine": 175,
+                "startChar": 0,
+                "endLine": 176,
+                "endChar": 0
+              },
+              "replacement": "                    \"but HCI interface({}) is not found\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
