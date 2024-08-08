@@ -1,0 +1,104 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13bf6e6a_7ec4ab23",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T23:49:19Z",
+      "side": 1,
+      "message": "Have you been able to produce a good MATCHER for the enum ?\n\nIt would be best if we compared the string names.\n\nHacky way is to compare the strings of the values.",
+      "fixSuggestions": [
+        {
+          "fixId": "f1efcc51_d40feb43",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1051,
+                "startChar": 0,
+                "endLine": 1051,
+                "endChar": 0
+              },
+              "replacement": "  ASSERT_EQ(BT_STATUS_SUCCESS, static_cast\u003cbt_status_t\u003e(BT_STATUS_SUCCESS));\n"
+            },
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1062,
+                "startChar": 0,
+                "endLine": 1062,
+                "endChar": 0
+              },
+              "replacement": "  ASSERT_EQ(BT_STATUS_SUCCESS, static_cast\u003cbt_status_t\u003e(BT_STATUS_SUCCESS));\n"
+            },
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1070,
+                "startChar": 0,
+                "endLine": 1070,
+                "endChar": 0
+              },
+              "replacement": "  ASSERT_EQ(BT_STATUS_SUCCESS, static_cast\u003cbt_status_t\u003e(BT_STATUS_SUCCESS));\n"
+            },
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1088,
+                "startChar": 0,
+                "endLine": 1088,
+                "endChar": 0
+              },
+              "replacement": "    ASSERT_EQ(BT_STATUS_SUCCESS, static_cast\u003cbt_status_t\u003e(BT_STATUS_SUCCESS));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3562c94fc4abc20e7d61467d4d7cc9c9f94855f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a6bc03_56becf86",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-08T23:49:19Z",
+      "side": 1,
+      "message": "close() returns a value",
+      "fixSuggestions": [
+        {
+          "fixId": "4636a89a_3c4a5104",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1091,
+                "startChar": 0,
+                "endLine": 1092,
+                "endChar": 0
+              },
+              "replacement": "    ASSERT_EQ(0, close(socket_number));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3562c94fc4abc20e7d61467d4d7cc9c9f94855f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
