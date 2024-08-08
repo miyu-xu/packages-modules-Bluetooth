@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b886a6_2c0aae9c",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-08T15:33:32Z",
+      "side": 1,
+      "message": "So first thing after connection is not MTU, or parameters change, it\u0027s device name read ?\n\nin btm_ble_read_remote_name we would check inquiry db, but not security record, so this would read name for bonded devices too ?\n\nWould start of pairing be a better place to trigger name read instead ?",
+      "range": {
+        "startLine": 1517,
+        "startChar": 2,
+        "endLine": 1520,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "94df9048_3541cfc8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1519,
+                "startChar": 0,
+                "endLine": 1520,
+                "endChar": 0
+              },
+              "replacement": "    btm_ble_read_remote_name(bda, nullptr, nullptr);\n    btm_ble_read_remote_name(bda, nullptr, nullptr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f0281a6f52120a608774dd9009307c22229cecff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
