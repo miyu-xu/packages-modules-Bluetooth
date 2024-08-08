@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a40d95_d0d936a7",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T17:55:18Z",
+      "side": 1,
+      "message": "I would reverse the if, in order to have the smaller code block in it. But you can do even better and do an early return to remove the need for the indentation",
+      "range": {
+        "startLine": 378,
+        "startChar": 5,
+        "endLine": 391,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "acdac69f_c6cb10e4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 378,
+                "startChar": 0,
+                "endLine": 390,
+                "endChar": 0
+              },
+              "replacement": "            if (!haveMediaBrowser(playerId)) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 391,
+                "startChar": 0,
+                "endLine": 391,
+                "endChar": 0
+              },
+              "replacement": "                return;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 392,
+                "startChar": 0,
+                "endLine": 392,
+                "endChar": 0
+              },
+              "replacement": "            mBrowsingPlayerId \u003d playerId;\n            MediaBrowserWrapper wrapper \u003d mMediaBrowserWrappers.get(playerId);\n            wrapper.getRootId(\n                    (rootId) -\u003e {\n                        wrapper.getFolderItems(\n                                rootId,\n                                (parentId, itemList) -\u003e {\n                                    cb.run(playerId, true, rootId, itemList.size());\n                                });\n                    });\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e435eb3_38f5a580",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T17:55:18Z",
+      "side": 1,
+      "message": "reverse the if flag and do early return to remove indentation if the flag is enabled\n```suggestion\n        if (!Flags.setAddressedPlayer()) {\n            return BLUETOOTH_PLAYER_ID;\n        }\n        if (mMediaPlayerIds.containsValue(playerId)) {\n            mAddressedPlayerId \u003d playerId;\n            sendFolderUpdate(false, true, false);\n        }\n        return mAddressedPlayerId;\n    }\n```",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 5
+      },
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf1159c_a838f3c4",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T17:55:18Z",
+      "side": 1,
+      "message": "the mMediaPlayers is a synchronized map, that let me think it can be access by multiple thread.\n\nThis mean that doing this is not safe:\n```java\nif (get() !\u003d null) {\n    get().foo();\n}\n```\n\nInstead, you should do\n```java\nmyMap \u003d get();\nif (myMap !\u003d null) {\n    myMap.foo();\n}\n```",
+      "range": {
+        "startLine": 593,
+        "startChar": 42,
+        "endLine": 593,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8e2cc086_e54f56ae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 593,
+                "startChar": 0,
+                "endLine": 595,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.setAddressedPlayer()) {\n            MediaPlayerWrapper player \u003d getAddressedPlayer();\n            if (player !\u003d null) {\n                player.playItemFromQueue(queueItemId);\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69f38ca_22ad6f72",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-08T17:55:18Z",
+      "side": 1,
+      "message": "You are making a behavior change outside of the flag\n```suggestion\n\n        if (Flags.setAddressedPlayer()) {\n            if (getAddressedPlayer() !\u003d null) {\n                getAddressedPlayer().playItemFromQueue(queueItemId);\n            }\n        } else if (getActivePlayer() !\u003d null) {\n            getActivePlayer().playItemFromQueue(queueItemId);\n        }\n```",
+      "range": {
+        "startLine": 593,
+        "startChar": 4,
+        "endLine": 595,
+        "endChar": 9
+      },
+      "revId": "3ab484f99b53f0357984aab4d1e39745e5bc2127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
