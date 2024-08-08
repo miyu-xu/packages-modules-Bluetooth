@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "713d2259_951ce9a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-08T08:58:41Z",
+      "side": 1,
+      "message": "You don\u0027t actually need this I guess... no bot complains on your previous CLs on gerrit.\nI always `--no-verify` lately to skip linter",
+      "revId": "5e54ea74c669ae4a08b439cf8fb747f1285e771e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
