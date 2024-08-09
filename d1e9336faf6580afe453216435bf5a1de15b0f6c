@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc998373_8c63bcd4",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-09T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddf1b0e2_ee7a9271",
+      "revId": "d1e9336faf6580afe453216435bf5a1de15b0f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d038b84_049543fe",
@@ -85,6 +103,30 @@
       "writtenOn": "2024-08-09T17:56:16Z",
       "side": 1,
       "message": "same thing here.",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 130,
+        "endChar": 9
+      },
+      "revId": "d1e9336faf6580afe453216435bf5a1de15b0f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce29392a_70d7af06",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-09T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d038b84_049543fe",
       "range": {
         "startLine": 130,
         "startChar": 6,

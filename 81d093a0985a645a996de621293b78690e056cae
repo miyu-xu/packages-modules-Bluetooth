@@ -245,6 +245,30 @@
       },
       "revId": "81d093a0985a645a996de621293b78690e056cae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93682854_8cc2d0ec",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-09T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8330cdcc_59fc0f7d",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "81d093a0985a645a996de621293b78690e056cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
