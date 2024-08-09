@@ -263,7 +263,6 @@ static int sdp_compose_proto_list(uint8_t* p, uint16_t num_elem, tSDP_PROTOCOL_E
  ******************************************************************************/
 bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type, uint32_t attr_len,
                       uint8_t* p_val) {
-  uint16_t zz;
   tSDP_RECORD* p_rec = &sdp_cb.server_db.record[0];
 
   if (p_val == nullptr) {
@@ -295,7 +294,8 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type, uint
       if (p_val[attr_len - 1] == '\0') {
         log::verbose(
                 "SDP_AddAttribute: handle:{:X}, id:{:04X}, type:{}, len:{}, p_val:{}, *p_val:{}",
-                handle, attr_id, attr_type, attr_len, fmt::ptr(p_val), (char*)p_val);
+                handle, attr_id, attr_type, attr_len, fmt::ptr(p_val),
+                reinterpret_cast<char*>(p_val));
       } else {
         log::verbose("SDP_AddAttribute: handle:{:X}, id:{:04X}, type:{}, len:{}, p_val:{}", handle,
                      attr_id, attr_type, attr_len, fmt::ptr(p_val));
@@ -307,6 +307,7 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type, uint
   }
 
   /* Find the record in the database */
+  uint16_t zz;
   for (zz = 0; zz < sdp_cb.server_db.num_records; zz++, p_rec++) {
     if (p_rec->record_handle == handle) {
       // error out early, no need to look up
@@ -493,7 +494,7 @@ bool SDP_AddAttributeToRecord(tSDP_RECORD* p_rec, uint16_t attr_id, uint8_t attr
 
   if (attr_len > 0) {
     p_attr->len = attr_len;
-    memcpy(&p_rec->attr_pad[p_rec->free_pad_ptr], p_val, (size_t)attr_len);
+    memcpy(&p_rec->attr_pad[p_rec->free_pad_ptr], p_val, static_cast<size_t>(attr_len));
     p_attr->value_ptr = &p_rec->attr_pad[p_rec->free_pad_ptr];
     p_rec->free_pad_ptr += attr_len;
   } else if (attr_len == 0 && p_attr->len != 0) {
@@ -527,7 +528,7 @@ bool SDP_AddSequence(uint32_t handle, uint16_t attr_id, uint16_t num_elem, uint8
   uint8_t* p;
   uint8_t* p_head;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2);
+  uint8_t* p_buff = static_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2));
 
   p = p_buff;
 
@@ -595,7 +596,7 @@ bool SDP_AddUuidSequence(uint32_t handle, uint16_t attr_id, uint16_t num_uuids, 
   uint8_t* p;
   int32_t max_len = SDP_MAX_ATTR_LEN - 3;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2);
+  uint8_t* p_buff = static_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2));
 
   p = p_buff;
 
@@ -631,7 +632,7 @@ bool SDP_AddUuidSequence(uint32_t handle, uint16_t attr_id, uint16_t num_uuids, 
 bool SDP_AddProtocolList(uint32_t handle, uint16_t num_elem, tSDP_PROTOCOL_ELEM* p_elem_list) {
   int offset;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2);
+  uint8_t* p_buff = static_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2));
 
   offset = sdp_compose_proto_list(p_buff, num_elem, p_elem_list);
   result = SDP_AddAttribute(handle, ATTR_ID_PROTOCOL_DESC_LIST, DATA_ELE_SEQ_DESC_TYPE,
@@ -659,7 +660,7 @@ bool SDP_AddAdditionProtoLists(uint32_t handle, uint16_t num_elem,
   uint8_t* p_len;
   int offset;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2);
+  uint8_t* p_buff = static_cast < uint8_t * < (osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2));
 
   p = p_buff;
 
@@ -694,7 +695,7 @@ bool SDP_AddAdditionProtoLists(uint32_t handle, uint16_t num_elem,
 bool SDP_AddProfileDescriptorList(uint32_t handle, uint16_t profile_uuid, uint16_t version) {
   uint8_t* p;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN);
+  uint8_t* p_buff = static_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN));
 
   p = p_buff + 2;
 
@@ -733,7 +734,7 @@ bool SDP_AddProfileDescriptorListToRecord(tSDP_RECORD* prec, uint16_t profile_uu
                                           uint16_t version) {
   uint8_t* p;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN);
+  uint8_t* p_buff = stati_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN));
 
   p = p_buff + 2;
 
@@ -772,7 +773,7 @@ bool SDP_AddLanguageBaseAttrIDList(uint32_t handle, uint16_t lang, uint16_t char
                                    uint16_t base_id) {
   uint8_t* p;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN);
+  uint8_t* p_buff = static_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN));
 
   p = p_buff;
 
@@ -809,7 +810,7 @@ bool SDP_AddServiceClassIdList(uint32_t handle, uint16_t num_services, uint16_t*
   uint16_t xx;
   uint8_t* p;
   bool result;
-  uint8_t* p_buff = (uint8_t*)osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2);
+  uint8_t* p_buff = static_cast<uint8_t*>(osi_malloc(sizeof(uint8_t) * SDP_MAX_ATTR_LEN * 2));
 
   p = p_buff;
 
