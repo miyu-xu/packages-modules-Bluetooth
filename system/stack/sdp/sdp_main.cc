@@ -94,7 +94,6 @@ static void sdp_on_l2cap_error(uint16_t l2cap_cid, uint16_t /* result */) {
  *
  ******************************************************************************/
 static void sdp_connect_cfm(uint16_t l2cap_cid, uint16_t result) {
-  /* Find CCB based on CID */
   tCONN_CB* p_ccb = sdpu_find_ccb_by_cid(l2cap_cid);
   if (p_ccb == NULL) {
     log::warn("SDP - Rcvd conn cnf for unknown CID 0x{:x}", l2cap_cid);
@@ -122,7 +121,6 @@ static void sdp_connect_cfm(uint16_t l2cap_cid, uint16_t result) {
  *
  ******************************************************************************/
 static void sdp_config_ind(uint16_t l2cap_cid, tL2CAP_CFG_INFO* p_cfg) {
-  /* Find CCB based on CID */
   tCONN_CB* p_ccb = sdpu_find_ccb_by_cid(l2cap_cid);
   if (p_ccb == NULL) {
     log::warn("SDP - Rcvd L2CAP cfg ind, unknown CID: 0x{:x}", l2cap_cid);
@@ -190,7 +188,6 @@ static void sdp_config_cfm(uint16_t l2cap_cid, uint16_t /* initiator */, tL2CAP_
  *
  ******************************************************************************/
 static void sdp_disconnect_ind(uint16_t l2cap_cid, bool ack_needed) {
-  /* Find CCB based on CID */
   tCONN_CB* p_ccb = sdpu_find_ccb_by_cid(l2cap_cid);
   if (p_ccb == NULL) {
     log::warn("SDP - Rcvd L2CAP disc, unknown CID: 0x{:x}", l2cap_cid);
@@ -231,7 +228,6 @@ static void sdp_disconnect_ind(uint16_t l2cap_cid, bool ack_needed) {
  *
  ******************************************************************************/
 static void sdp_data_ind(uint16_t l2cap_cid, BT_HDR* p_msg) {
-  /* Find CCB based on CID */
   tCONN_CB* p_ccb = sdpu_find_ccb_by_cid(l2cap_cid);
   if (p_ccb != NULL) {
     if (p_ccb->con_state == tSDP_STATE::CONNECTED) {
@@ -349,7 +345,6 @@ void sdp_disconnect(tCONN_CB* p_ccb, tSDP_REASON reason) {
  *
  ******************************************************************************/
 static void sdp_disconnect_cfm(uint16_t l2cap_cid, uint16_t /* result */) {
-  /* Find CCB based on CID */
   tCONN_CB* p_ccb = sdpu_find_ccb_by_cid(l2cap_cid);
   if (p_ccb == NULL) {
     log::warn("SDP - Rcvd L2CAP disc cfm, unknown CID: 0x{:x}", l2cap_cid);
@@ -376,7 +371,7 @@ static void sdp_disconnect_cfm(uint16_t l2cap_cid, uint16_t /* result */) {
  *
  ******************************************************************************/
 void sdp_conn_timer_timeout(void* data) {
-  tCONN_CB& ccb = *(tCONN_CB*)data;
+  tCONN_CB& ccb = *(static_cast<tCONN_CB*>(data));
 
   log::verbose("SDP - CCB timeout in state: {}  CID: 0x{:x}", sdp_state_text(ccb.con_state),
                ccb.connection_id);
