@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ab4257b_aba5516a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-09T18:17:30Z",
+      "side": 1,
+      "message": "When the flag rolls out, we\u0027ll have two calls to cancel, one with client_if\u003d0 and the other with the client interface from the control block.  Is that the intended behavior?\n\nDo we see the  log::error(\"No such connection need to be cancelled\"); ?\n\nShould we be checking if the address in the discovery_cb matches?",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c02bbc94_2d65b6fc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 173,
+                "startChar": 0,
+                "endLine": 174,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 177,
+                "startChar": 0,
+                "endLine": 177,
+                "endChar": 0
+              },
+              "replacement": "  } else {\n    get_gatt_interface().BTA_GATTC_CancelOpen(0, bd_addr, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "935a02912b56e4b8fd9863053caf1dd21bdb0da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2c0a165_5fdfb108",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-09T18:17:30Z",
+      "side": 1,
+      "message": "Why is this a timeout?",
+      "range": {
+        "startLine": 584,
+        "startChar": 29,
+        "endLine": 584,
+        "endChar": 55
+      },
+      "revId": "935a02912b56e4b8fd9863053caf1dd21bdb0da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
