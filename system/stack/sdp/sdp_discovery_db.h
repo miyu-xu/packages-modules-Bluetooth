@@ -38,10 +38,10 @@ struct tSDP_DISC_ATVAL {
     uint16_t u16;                       /* 16-bit integer           */
     uint32_t u32;                       /* 32-bit integer           */
     struct tSDP_DISC_ATTR* p_sub_attr;  /* Addr of first sub-attr (list)*/
-    uint8_t array[];                    /* Variable length field    */
-                                        /* flexible array member    */
-                                        /* requiring backing store  */
-                                        /* from SDP DB    */
+    uint8_t array[];                    // Variable length field
+                                        // flexible array member
+                                        // requiring backing store
+                                        // from SDP DB
   } v;
 };
 
