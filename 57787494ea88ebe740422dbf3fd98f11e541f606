@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a5d7f03_5ef004f5",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-09T18:45:55Z",
+      "side": 1,
+      "message": "I agree, for this case, we want to have `p_disc_cb ` to trigger retry, \n\nbut my concern is, \n1. based on `HFP/HF/ACS/BV-05-C [HF initiated audio setup, AG has eSCO]`, HF can request eSCO connection. So only handling phone originated case may not be enough\n2. in original code, `btm_sco_connection_failed`, there are cases where it does not want `p_disc_cb` to have codec fallback and retry. Although I have not dive into the detail as it is very old code, but seems to be reasonable for some case, e.g. HCI_ERR_LMP_ERR_TRANS_COLLISION\n\nso I feel it maybe not that safe to change all of them. \n\nand in b/351301741#comment18, I request for verbose logging to discover more. But QA have not enabled yet in the new log. I will follow up on that",
+      "range": {
+        "startLine": 1045,
+        "startChar": 10,
+        "endLine": 1045,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d5f9d1db_8e22f977",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btu/btu_hcif.cc",
+              "range": {
+                "startLine": 1045,
+                "startChar": 0,
+                "endLine": 1046,
+                "endChar": 0
+              },
+              "replacement": "          btm_sco_create_command_status_failed(hci_status);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "57787494ea88ebe740422dbf3fd98f11e541f606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
