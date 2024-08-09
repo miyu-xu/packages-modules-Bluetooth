@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf16305_0c60b767",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-09T16:31:29Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by If This Then That: Changes in the preceding block may need to be reflected in these files: /flags/BUILD.gn ( https://cs.corp.google.com/piper///depot/flags/Android.bp?q\u003d\"LINT.IfChange\"+case:yes ) If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your c...\n\nAnalyzer Description: Reminders to change files when other files change\nOwner: ayeaye-team@google.com\n\nChanges in the preceding block may need to be reflected in these files: /flags/BUILD.gn ( https://cs.corp.google.com/piper///depot/flags/Android.bp?q\u003d\"LINT.IfChange\"+case:yes ) If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 39
+      },
+      "revId": "3f9397cd4b79316214ef1174fb4de91cd9cb5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
