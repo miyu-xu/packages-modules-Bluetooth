@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15447615_fca7ebb4",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-09T22:21:26Z",
+      "side": 1,
+      "message": "Nit: In other places we are using sizeof",
+      "revId": "50521bb8eabd8c4b6ab1d71d08d65dadfdd85674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
