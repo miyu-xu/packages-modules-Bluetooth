@@ -22,6 +22,30 @@
       },
       "revId": "ca197eed7a0087d34738994945045183efa5fefb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30934df6_c1545856",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-09T03:28:34Z",
+      "side": 1,
+      "message": "I\u0027m fine keeping the same bug since this is just a renaming. But it could be cleaner to have a new bug. Fine with both!",
+      "parentUuid": "35cd4db2_46c15fd2",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "ca197eed7a0087d34738994945045183efa5fefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
