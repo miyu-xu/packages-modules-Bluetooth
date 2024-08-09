@@ -16,6 +16,24 @@
       "message": "add GATT owner for visibility",
       "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c17cbe48_d32dc9dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-09T20:56:15Z",
+      "side": 1,
+      "message": "bit below you can find this\n\n```\n-\u003ecl_rcb (BTA_GATTC_CL_MAX\u003d32)\n  client_if: 3  app uuids: 0dc0a4f6-06f0-1897-7d32-0668043ee5d1  clcb_num: 0\n  client_if: 5  app uuids: 17c3f79f-3587-218b-17e0-4525cdb9f3ea  clcb_num: 0\n  client_if: 6  app uuids: 90196a52-4581-c263-2884-3f90384b9c32  clcb_num: 0\n  client_if: 7  app uuids: 06807b73-16c5-74ae-aff4-bd5cc200a50a  clcb_num: 0\n  client_if: 8  app uuids: 596b0a10-60a7-2678-adb8-38749270f5be  clcb_num: 0\n  client_if: 9  app uuids: 6bd95759-e027-4d26-475c-2faadc8f0fc0  clcb_num: 0\n  client_if: 12  app uuids: e7fda5eb-72a6-a787-c1b5-93446627ed1d  clcb_num: 0\n  client_if: 14  app uuids: d712b00c-a353-63f8-41f9-3c6b4128ccc9  clcb_num: 0  ```\n  \n  but then finding process id from the uuid is bit tricky.",
+      "parentUuid": "1a8b75ed_71eed61e",
+      "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
