@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7ef8d1e_5dcf4932",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2837,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-09T16:33:46Z",
+      "side": 1,
+      "message": "Per the PRD, we only need to enable this for primary group.\n\nThen should it be like this with \u0026\u0026 ?\n(isPrimaryGroup(groupId) \u0026\u0026 isBroadcastReadyToBeReActivated)",
+      "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
