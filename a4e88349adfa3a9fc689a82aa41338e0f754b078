@@ -40,6 +40,30 @@
       ],
       "revId": "a4e88349adfa3a9fc689a82aa41338e0f754b078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "576b1052_3c0fcd81",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-09T13:29:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dd51e24_93ce58b4",
+      "range": {
+        "startLine": 1390,
+        "startChar": 28,
+        "endLine": 1390,
+        "endChar": 50
+      },
+      "revId": "a4e88349adfa3a9fc689a82aa41338e0f754b078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
