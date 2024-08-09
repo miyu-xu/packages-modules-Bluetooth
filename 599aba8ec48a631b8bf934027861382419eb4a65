@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f5751c_da9919d4",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-08-09T17:11:35Z",
+      "side": 1,
+      "message": "I will keep the TODO for the future mappings.",
+      "parentUuid": "4d973535_07092869",
+      "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7e32fbe_865e9bd0",
@@ -102,6 +120,24 @@
       "writtenOn": "2024-08-08T23:45:42Z",
       "side": 1,
       "message": "Acknowledged",
+      "parentUuid": "f7e32fbe_865e9bd0",
+      "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4894cf76_b14473e7",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-08-09T17:11:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "f7e32fbe_865e9bd0",
       "revId": "599aba8ec48a631b8bf934027861382419eb4a65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
