@@ -27,6 +27,8 @@ const LINUX_SNOOP_MAGIC: [u8; 8] = [0x62, 0x74, 0x73, 0x6e, 0x6f, 0x6f, 0x70, 0x
 /// Snoop files in monitor format will have this value in link type.
 const LINUX_SNOOP_MONITOR_TYPE: u32 = 2001;
 
+const ANDROID_MONITOR_TYPE: u32 = 1002;
+
 /// Size of snoop header. 8 bytes for magic and another 8 for additional info.
 const LINUX_SNOOP_HEADER_SIZE: usize = 16;
 
@@ -56,13 +58,14 @@ impl TryFrom<&[u8]> for LinuxSnoopHeader {
         if header.version != 1 {
             return Err(format!("Version is not supported. Got {}.", header.version));
         }
-
+        /*
         if header.data_type != LINUX_SNOOP_MONITOR_TYPE {
             return Err(format!(
                 "Invalid data type in snoop file. We want monitor type ({}) but got {}",
                 LINUX_SNOOP_MONITOR_TYPE, header.data_type
             ));
         }
+        */
 
         Ok(header)
     }
@@ -109,15 +112,30 @@ pub struct LinuxSnoopPacket {
     pub drops: u32,
     pub timestamp_magic_us: u64,
     pub data: Vec<u8>,
+    pub haha: u8,
 }
 
 impl LinuxSnoopPacket {
     pub fn adapter_index(&self) -> u16 {
-        (self.flags >> 16).try_into().unwrap_or(0u16)
+        //(self.flags >> 16).try_into().unwrap_or(0u16)
+        0
     }
 
     pub fn opcode(&self) -> LinuxSnoopOpcodes {
-        LinuxSnoopOpcodes::from_u32(self.flags & 0xffff).unwrap_or(LinuxSnoopOpcodes::Invalid)
+        //LinuxSnoopOpcodes::from_u32(self.flags & 0xffff).unwrap_or(LinuxSnoopOpcodes::Invalid)
+        match self.haha {
+            0x01 => LinuxSnoopOpcodes::Command,
+            0x02 => match self.flags & 0x01 {
+                0x00 => LinuxSnoopOpcodes::AclTxPacket,
+                _ => LinuxSnoopOpcodes::AclRxPacket,
+            },
+            0x03 => match self.flags & 0x01 {
+                0x00 => LinuxSnoopOpcodes::ScoTxPacket,
+                _ => LinuxSnoopOpcodes::ScoRxPacket,
+            },
+            0x04 => LinuxSnoopOpcodes::Event,
+            _ => LinuxSnoopOpcodes::Invalid,
+        }
     }
 }
 
@@ -166,6 +184,7 @@ impl TryFrom<&[u8]> for LinuxSnoopPacket {
             drops: u32::from_be_bytes(drops_bytes.try_into().unwrap()),
             timestamp_magic_us: u64::from_be_bytes(ts_bytes.try_into().unwrap()),
             data: vec![],
+            haha: 0,
         };
 
         Ok(packet)
@@ -203,8 +222,13 @@ impl<'a> Iterator for LinuxSnoopReader<'a> {
         match LinuxSnoopPacket::try_from(&data[0..LINUX_SNOOP_PACKET_PREAMBLE_SIZE]) {
             Ok(mut p) => {
                 if p.included_length > 0 {
-                    let size: usize = p.included_length.try_into().unwrap();
+                    let size: usize = (p.included_length - 1).try_into().unwrap();
                     let mut rem_data = [0u8; LINUX_SNOOP_MAX_PACKET_SIZE];
+
+                    let mut hahabuf = [0u8; 1];
+                    self.fd.read_exact(&mut hahabuf);
+                    p.haha = hahabuf[0];
+
                     match self.fd.read_exact(&mut rem_data[0..size]) {
                         Ok(()) => {
                             p.data = rem_data[0..size].to_vec();
