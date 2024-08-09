@@ -46,6 +46,30 @@
       },
       "revId": "ca197eed7a0087d34738994945045183efa5fefb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39ca5b3_d81ab963",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-08-09T03:30:13Z",
+      "side": 1,
+      "message": "Will keep the bug since we\u0027re a bit tight on time.",
+      "parentUuid": "30934df6_c1545856",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "ca197eed7a0087d34738994945045183efa5fefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
