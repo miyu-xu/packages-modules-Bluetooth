@@ -782,15 +782,10 @@ class BluetoothManagerService {
     IBluetooth registerAdapter(IBluetoothManagerCallback callback) {
         synchronized (mCallbacks) {
             mCallbacks.register(callback);
-            if (Flags.broadcastAdapterStateWithCallback()) {
-                try {
-                    callback.onBluetoothAdapterStateChange(getState());
-                } catch (RemoteException e) {
-                    Log.e(
-                            TAG,
-                            "registerAdapter: Unable to call onBluetoothAdapterStateChange()",
-                            e);
-                }
+            try {
+                callback.onBluetoothAdapterStateChange(getState());
+            } catch (RemoteException e) {
+                Log.e(TAG, "registerAdapter: Unable to call onBluetoothAdapterStateChange()", e);
             }
         }
         return mAdapter != null ? mAdapter.getAdapterBinder() : null;
@@ -1398,9 +1393,6 @@ class BluetoothManagerService {
     }
 
     private void sendBluetoothAdapterStateChangeCallback(int newState) {
-        if (!Flags.broadcastAdapterStateWithCallback()) {
-            return;
-        }
         synchronized (mCallbacks) {
             try {
                 int n = mCallbacks.beginBroadcast();

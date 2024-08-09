@@ -1152,12 +1152,6 @@ public class AdapterService extends Service {
         }
     }
 
-    private void invalidateBluetoothGetStateCache() {
-        if (!Flags.broadcastAdapterStateWithCallback()) {
-            BluetoothAdapter.invalidateBluetoothGetStateCache();
-        }
-    }
-
     void updateLeAudioProfileServiceState() {
         Set<Integer> nonSupportedProfiles = new HashSet<>();
 
@@ -1186,9 +1180,6 @@ public class AdapterService extends Service {
 
     void updateAdapterState(int prevState, int newState) {
         mAdapterProperties.setState(newState);
-        if (!Flags.broadcastAdapterStateWithCallback()) {
-            invalidateBluetoothGetStateCache();
-        }
 
         // Only BluetoothManagerService should be registered
         int n = mRemoteCallbacks.beginBroadcast();
@@ -1486,9 +1477,6 @@ public class AdapterService extends Service {
         BluetoothAdapter.invalidateGetProfileConnectionStateCache();
         BluetoothAdapter.invalidateIsOffloadedFilteringSupportedCache();
         BluetoothDevice.invalidateBluetoothGetBondStateCache();
-        if (!Flags.broadcastAdapterStateWithCallback()) {
-            BluetoothAdapter.invalidateBluetoothGetStateCache();
-        }
         BluetoothAdapter.invalidateGetAdapterConnectionStateCache();
         BluetoothMap.invalidateBluetoothGetConnectionStateCache();
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
@@ -2246,9 +2234,6 @@ public class AdapterService extends Service {
 
         AdapterServiceBinder(AdapterService svc) {
             mService = svc;
-            if (!Flags.broadcastAdapterStateWithCallback()) {
-                mService.invalidateBluetoothGetStateCache();
-            }
             BluetoothAdapter.getDefaultAdapter().disableBluetoothGetStateCache();
         }
 

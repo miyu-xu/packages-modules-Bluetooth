@@ -1511,27 +1511,6 @@ public final class BluetoothAdapter {
         invalidateCache(GET_STATE_API);
     }
 
-    /** Fetch the current bluetooth state. If the service is down, return OFF. */
-    private @InternalAdapterState int getStateInternal() {
-        if (Flags.broadcastAdapterStateWithCallback()) {
-            return sAdapterState;
-        }
-        mServiceLock.readLock().lock();
-        try {
-            if (mService != null) {
-                return sBluetoothGetStateCache.query(mService);
-            }
-        } catch (RuntimeException e) {
-            if (!(e.getCause() instanceof RemoteException)) {
-                throw e;
-            }
-            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-        } finally {
-            mServiceLock.readLock().unlock();
-        }
-        return STATE_OFF;
-    }
-
     /**
      * Get the current state of the local Bluetooth adapter.
      *
@@ -1543,7 +1522,7 @@ public final class BluetoothAdapter {
     @RequiresLegacyBluetoothPermission
     @RequiresNoPermission
     public @AdapterState int getState() {
-        int state = getStateInternal();
+        int state = sAdapterState;
 
         // Consider all internal states as OFF
         if (state == BluetoothAdapter.STATE_BLE_ON
@@ -1584,7 +1563,7 @@ public final class BluetoothAdapter {
                     "Use {@link #getState()} instead to determine "
                             + "whether you can use BLE & BT classic.")
     public @InternalAdapterState int getLeState() {
-        int state = getStateInternal();
+        int state = sAdapterState;
 
         if (VDBG) {
             Log.d(TAG, "getLeState() returning " + BluetoothAdapter.nameForState(state));
