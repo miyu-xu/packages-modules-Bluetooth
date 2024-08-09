@@ -31,12 +31,12 @@
 #include <string.h>
 
 #include <cstdint>
+#include <utility>
 
 #include "internal_include/bt_target.h"
 #include "main/shim/dumpsys.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
-#include "stack/include/sdp_api.h"
 #include "stack/include/sdpdefs.h"
 #include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdpint.h"
@@ -86,12 +86,12 @@ bool SDP_InitDiscoveryDb(tSDP_DISCOVERY_DB* p_db, uint32_t len, uint16_t num_uui
     return false;
   }
 
-  memset(p_db, 0, (size_t)len);
+  memset(p_db, 0, static_cast<size_t>(len));
 
   p_db->mem_size = len - sizeof(tSDP_DISCOVERY_DB);
   p_db->mem_free = p_db->mem_size;
   p_db->p_first_rec = NULL;
-  p_db->p_free_mem = (uint8_t*)(p_db + 1);
+  p_db->p_free_mem = reinterpret_cast<uint8_t*>(p_db + 1);
 
   for (xx = 0; xx < num_uuid; xx++) {
     p_db->uuid_filters[xx] = *p_uuid_list++;
@@ -275,13 +275,11 @@ bool SDP_FindServiceUUIDInRec(const tSDP_DISC_REC* p_rec, Uuid* p_uuid) {
           }
 
           return true;
-        }
-
-        /* Checking for Toyota G Block Car Kit:
-        **  This car kit puts an extra data element sequence
-        **  where the UUID is suppose to be!!!
-        */
-        else {
+        } else {
+          /* Checking for Toyota G Block Car Kit:
+          **  This car kit puts an extra data element sequence
+          **  where the UUID is suppose to be!!!
+          */
           if (SDP_DISC_ATTR_TYPE(p_sattr->attr_len_type) == DATA_ELE_SEQ_DESC_TYPE) {
             /* Look through data element sequence until no more UUIDs */
             for (p_extra_sattr = p_sattr->attr_value.v.p_sub_attr; p_extra_sattr;
@@ -404,17 +402,14 @@ tSDP_DISC_REC* SDP_FindServiceInDb(const tSDP_DISCOVERY_DB* p_db, uint16_t servi
 
           if (SDP_DISC_ATTR_TYPE(p_sattr->attr_len_type) == UUID_DESC_TYPE &&
               (service_uuid == 0 || (SDP_DISC_ATTR_LEN(p_sattr->attr_len_type) == 2 &&
-                                     p_sattr->attr_value.v.u16 == service_uuid)))
-          /* for a specific uuid, or any one */
-          {
+                                     p_sattr->attr_value.v.u16 == service_uuid))) {
+            /* for a specific uuid, or any one */
             return p_rec;
-          }
-
-          /* Checking for Toyota G Block Car Kit:
-          **  This car kit puts an extra data element sequence
-          **  where the UUID is suppose to be!!!
-          */
-          else {
+          } else {
+            /* Checking for Toyota G Block Car Kit:
+            **  This car kit puts an extra data element sequence
+            **  where the UUID is suppose to be!!!
+            */
             if (SDP_DISC_ATTR_TYPE(p_sattr->attr_len_type) == DATA_ELE_SEQ_DESC_TYPE) {
               /* Look through data element sequence until no more UUIDs */
               for (p_extra_sattr = p_sattr->attr_value.v.p_sub_attr; p_extra_sattr;
@@ -705,8 +700,8 @@ bool SDP_FindProfileVersionInRec(const tSDP_DISC_REC* p_rec, uint16_t profile_uu
 
               return true;
             } else {
-              return false; /* The type and/or size was not valid for the
-                               profile list version */
+              return false;  // The type and/or size was not valid for the
+                             //   profile list version
             }
           }
         }
@@ -902,7 +897,7 @@ tSDP_STATUS SDP_GetDiRecord(uint8_t get_record_index, tSDP_DI_GET_RECORD* p_devi
     p_curr_attr = SDP_FindAttributeInRec(p_curr_record, ATTR_ID_PRIMARY_RECORD);
     if (p_curr_attr && SDP_DISC_ATTR_TYPE(p_curr_attr->attr_len_type) == BOOLEAN_DESC_TYPE &&
         SDP_DISC_ATTR_LEN(p_curr_attr->attr_len_type) >= 1) {
-      p_device_info->rec.primary_record = (bool)p_curr_attr->attr_value.v.u8;
+      p_device_info->rec.primary_record = p_curr_attr->attr_value.v.u8 != 0;
     } else {
       result = tSDP_STATUS::SDP_ERR_ATTR_NOT_PRESENT;
     }
@@ -929,8 +924,6 @@ tSDP_STATUS SDP_GetDiRecord(uint8_t get_record_index, tSDP_DI_GET_RECORD* p_devi
 tSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* p_handle) {
   tSDP_STATUS result = tSDP_STATUS::SDP_SUCCESS;
   uint32_t handle;
-  uint16_t di_uuid = UUID_SERVCLASS_PNP_INFORMATION;
-  uint16_t di_specid = BLUETOOTH_DI_SPECIFICATION;
   uint8_t temp_u16[2];
   uint8_t* p_temp;
   uint8_t u8;
@@ -954,6 +947,7 @@ tSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* 
 
   /* build the SDP entry */
   /* Add the UUID to the Service Class ID List */
+  uint16_t di_uuid = UUID_SERVCLASS_PNP_INFORMATION;
   if (!(SDP_AddServiceClassIdList(handle, 1, &di_uuid))) {
     result = tSDP_STATUS::SDP_DI_REG_FAILED;
   }
@@ -961,6 +955,7 @@ tSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* 
   /* mandatory */
   if (result == tSDP_STATUS::SDP_SUCCESS) {
     p_temp = temp_u16;
+    uint16_t di_specid = BLUETOOTH_DI_SPECIFICATION;
     UINT16_TO_BE_STREAM(p_temp, di_specid);
     if (!(SDP_AddAttribute(handle, ATTR_ID_SPECIFICATION_ID, UINT_DESC_TYPE, sizeof(di_specid),
                            temp_u16))) {
@@ -972,9 +967,11 @@ tSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* 
   if (result == tSDP_STATUS::SDP_SUCCESS) {
     if (p_device_info->client_executable_url[0] != '\0') {
       if (!((strlen(p_device_info->client_executable_url) + 1 <= SDP_MAX_ATTR_LEN) &&
-            SDP_AddAttribute(handle, ATTR_ID_CLIENT_EXE_URL, URL_DESC_TYPE,
-                             (uint32_t)(strlen(p_device_info->client_executable_url) + 1),
-                             (uint8_t*)p_device_info->client_executable_url))) {
+            SDP_AddAttribute(
+                    handle, ATTR_ID_CLIENT_EXE_URL, URL_DESC_TYPE,
+                    static_cast<uint32_t>(strlen(p_device_info->client_executable_url) + 1),
+                    reinterpret_cast<uint8_t*>(
+                            const_cast<char*>(p_device_info->client_executable_url))))) {
         result = tSDP_STATUS::SDP_DI_REG_FAILED;
       }
     }
@@ -985,8 +982,9 @@ tSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* 
     if (p_device_info->service_description[0] != '\0') {
       if (!((strlen(p_device_info->service_description) + 1 <= SDP_MAX_ATTR_LEN) &&
             SDP_AddAttribute(handle, ATTR_ID_SERVICE_DESCRIPTION, TEXT_STR_DESC_TYPE,
-                             (uint32_t)(strlen(p_device_info->service_description) + 1),
-                             (uint8_t*)p_device_info->service_description))) {
+                             static_cast<uint32_t>(strlen(p_device_info->service_description) + 1),
+                             reinterpret_cast<uint8_t*>(
+                                     const_cast<char*>(p_device_info->service_description))))) {
         result = tSDP_STATUS::SDP_DI_REG_FAILED;
       }
     }
@@ -997,8 +995,9 @@ tSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* 
     if (p_device_info->documentation_url[0] != '\0') {
       if (!((strlen(p_device_info->documentation_url) + 1 <= SDP_MAX_ATTR_LEN) &&
             SDP_AddAttribute(handle, ATTR_ID_DOCUMENTATION_URL, URL_DESC_TYPE,
-                             (uint32_t)(strlen(p_device_info->documentation_url) + 1),
-                             (uint8_t*)p_device_info->documentation_url))) {
+                             static_cast<uint32_t>(strlen(p_device_info->documentation_url) + 1),
+                             reinterpret_cast<uint8_t*>(
+                                     const_cast<char*>(p_device_info->documentation_url))))) {
         result = tSDP_STATUS::SDP_DI_REG_FAILED;
       }
     }
