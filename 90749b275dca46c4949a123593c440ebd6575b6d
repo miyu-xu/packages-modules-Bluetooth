@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4585506e_e9b386cd",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-09T00:08:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfeb1ef1_dd5afc3e",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 21
+      },
+      "revId": "90749b275dca46c4949a123593c440ebd6575b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3c0716e_7130069e",
