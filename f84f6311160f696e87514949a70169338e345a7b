@@ -51,6 +51,24 @@
       "parentUuid": "55f40c01_fbb128fb",
       "revId": "f84f6311160f696e87514949a70169338e345a7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbe2ab6b_8a068be0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-09T16:27:55Z",
+      "side": 1,
+      "message": "Refactor is not a valid exemption to flagging. Strict mechanical refactor (i.e. without any logic change) is a valid reason",
+      "parentUuid": "13ee5d0c_6af24efe",
+      "revId": "f84f6311160f696e87514949a70169338e345a7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
