@@ -57,7 +57,6 @@ using namespace bluetooth;
  ******************************************************************************/
 static uint8_t* sdpu_build_uuid_seq(uint8_t* p_out, uint16_t num_uuids, Uuid* p_uuid_list,
                                     uint16_t& bytes_left) {
-  uint16_t xx;
   uint8_t* p_len;
 
   if (bytes_left < 2) {
@@ -76,6 +75,7 @@ static uint8_t* sdpu_build_uuid_seq(uint8_t* p_out, uint16_t num_uuids, Uuid* p_
   bytes_left -= 2;
 
   /* Now, loop through and put in all the UUID(s) */
+  uint16_t xx;
   for (xx = 0; xx < num_uuids; xx++, p_uuid_list++) {
     int len = p_uuid_list->GetShortestRepresentationSize();
 
@@ -118,13 +118,13 @@ static uint8_t* sdpu_build_uuid_seq(uint8_t* p_out, uint16_t num_uuids, Uuid* p_
  ******************************************************************************/
 static void sdp_snd_service_search_req(tCONN_CB* p_ccb, uint8_t cont_len, uint8_t* p_cont) {
   uint8_t *p, *p_start, *p_param_len;
-  BT_HDR* p_cmd = (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);
+  BT_HDR* p_cmd = reinterpret_cast<BT_HDR*>(osi_malloc(SDP_DATA_BUF_SIZE));
   uint16_t param_len;
   uint16_t bytes_left = SDP_DATA_BUF_SIZE;
 
   /* Prepare the buffer for sending the packet to L2CAP */
   p_cmd->offset = L2CAP_MIN_OFFSET;
-  p = p_start = (uint8_t*)(p_cmd + 1) + L2CAP_MIN_OFFSET;
+  p = p_start = reinterpret_cast<uint8_t*>(p_cmd + 1) + L2CAP_MIN_OFFSET;
 
   /* Build a service search request packet */
   UINT8_TO_BE_STREAM(p, SDP_PDU_SERVICE_SEARCH_REQ);
@@ -219,7 +219,7 @@ static bool sdp_copy_raw_data(tCONN_CB* p_ccb, bool offset) {
         log::warn("bad length");
         return false;
       }
-      if ((int)cpy_len < (p - old_p)) {
+      if (static_cast<int>(cpy_len) < (p - old_p)) {
         log::warn("no bytes left for data");
         return false;
       }
@@ -256,7 +256,7 @@ tSDP_DISC_REC* add_record(tSDP_DISCOVERY_DB* p_db, const RawAddress& bd_addr) {
     return NULL;
   }
 
-  p_rec = (tSDP_DISC_REC*)p_db->p_free_mem;
+  p_rec = reinterpret_cast<tSDP_DISC_REC*>(p_db->p_free_mem);
   p_db->p_free_mem += sizeof(tSDP_DISC_REC);
   p_db->mem_free -= sizeof(tSDP_DISC_REC);
 
@@ -335,7 +335,7 @@ static uint8_t* add_attr(uint8_t* p, uint8_t* p_end, tSDP_DISCOVERY_DB* p_db, tS
     return NULL;
   }
 
-  p_attr = (tSDP_DISC_ATTR*)p_db->p_free_mem;
+  p_attr = reinterpret_cast<tSDP_DISC_ATTR*>(p_db->p_free_mem);
   p_attr->attr_id = attr_id;
   p_attr->attr_len_type = (uint16_t)attr_len | (attr_type << 12);
   p_attr->p_next_attr = NULL;
@@ -614,7 +614,7 @@ static void process_service_search_attr_rsp(tCONN_CB* p_ccb, uint8_t* p_reply,
     }
 
     if (p_ccb->rsp_list == NULL) {
-      p_ccb->rsp_list = (uint8_t*)osi_malloc(SDP_MAX_LIST_BYTE_COUNT);
+      p_ccb->rsp_list = static_cast<uint8_t*>(osi_malloc(SDP_MAX_LIST_BYTE_COUNT));
     }
     memcpy(&p_ccb->rsp_list[p_ccb->list_len], p_reply, lists_byte_count);
     p_ccb->list_len += lists_byte_count;
@@ -631,12 +631,12 @@ static void process_service_search_attr_rsp(tCONN_CB* p_ccb, uint8_t* p_reply,
 
   /* If continuation request (or first time request) */
   if ((cont_request_needed) || (!p_reply)) {
-    BT_HDR* p_msg = (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);
+    BT_HDR* p_msg = static_cast<BT_HDR*>(osi_malloc(SDP_DATA_BUF_SIZE));
     uint8_t* p;
     uint16_t bytes_left = SDP_DATA_BUF_SIZE;
 
     p_msg->offset = L2CAP_MIN_OFFSET;
-    p = p_start = (uint8_t*)(p_msg + 1) + L2CAP_MIN_OFFSET;
+    p = p_start = reinterpret_cast<uint8_t*>(p_msg + 1) + L2CAP_MIN_OFFSET;
 
     /* Build a service search request packet */
     UINT8_TO_BE_STREAM(p, SDP_PDU_SERVICE_SEARCH_ATTR_REQ);
@@ -787,7 +787,7 @@ static void process_service_attr_rsp(tCONN_CB* p_ccb, uint8_t* p_reply, uint8_t*
     }
 
     if (p_ccb->rsp_list == NULL) {
-      p_ccb->rsp_list = (uint8_t*)osi_malloc(SDP_MAX_LIST_BYTE_COUNT);
+      p_ccb->rsp_list = static_cast<uint8_t*>(osi_malloc(SDP_MAX_LIST_BYTE_COUNT));
     }
     memcpy(&p_ccb->rsp_list[p_ccb->list_len], p_reply, list_byte_count);
     p_ccb->list_len += list_byte_count;
@@ -817,11 +817,11 @@ static void process_service_attr_rsp(tCONN_CB* p_ccb, uint8_t* p_reply, uint8_t*
 
   /* Now, ask for the next handle. Re-use the buffer we just got. */
   if (p_ccb->cur_handle < p_ccb->num_handles) {
-    BT_HDR* p_msg = (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);
+    BT_HDR* p_msg = static_cast<BT_HDR*>(osi_malloc(SDP_DATA_BUF_SIZE));
     uint8_t* p;
 
     p_msg->offset = L2CAP_MIN_OFFSET;
-    p = p_start = (uint8_t*)(p_msg + 1) + L2CAP_MIN_OFFSET;
+    p = p_start = reinterpret_cast<uint8_t*>(p_msg + 1) + L2CAP_MIN_OFFSET;
 
     /* Get all the attributes from the server */
     UINT8_TO_BE_STREAM(p, SDP_PDU_SERVICE_ATTR_REQ);
@@ -988,7 +988,7 @@ void sdp_disc_server_rsp(tCONN_CB* p_ccb, BT_HDR* p_msg) {
   alarm_cancel(p_ccb->sdp_conn_timer);
 
   /* Got a reply!! Check what we got back */
-  p = (uint8_t*)(p_msg + 1) + p_msg->offset;
+  p = reinterpret_cast<uint8_t*>(p_msg + 1) + p_msg->offset;
   uint8_t* p_end = p + p_msg->len;
 
   if (p_msg->len < 1) {
