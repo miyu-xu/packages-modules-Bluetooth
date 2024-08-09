@@ -33,6 +33,24 @@
       "message": "Please provide `Flag: EXEMPT \u003creason\u003e`",
       "revId": "f84f6311160f696e87514949a70169338e345a7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13ee5d0c_6af24efe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-08-09T06:40:40Z",
+      "side": 1,
+      "message": "Done. Thanks for reminding, PTAL.",
+      "parentUuid": "55f40c01_fbb128fb",
+      "revId": "f84f6311160f696e87514949a70169338e345a7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
