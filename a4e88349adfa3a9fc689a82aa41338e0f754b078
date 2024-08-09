@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd51e24_93ce58b4",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-09T13:12:02Z",
+      "side": 1,
+      "message": "Why not use BluetoothDevice.TRANSPORT_BREDR ?",
+      "range": {
+        "startLine": 1390,
+        "startChar": 28,
+        "endLine": 1390,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "73f9b769_7368e16f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+              "range": {
+                "startLine": 1390,
+                "startChar": 0,
+                "endLine": 1391,
+                "endChar": 0
+              },
+              "replacement": "                            BluetoothDevice.TRANSPORT_BREDR);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a4e88349adfa3a9fc689a82aa41338e0f754b078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
