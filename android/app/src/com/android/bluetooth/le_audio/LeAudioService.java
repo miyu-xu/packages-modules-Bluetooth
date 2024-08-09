@@ -2832,7 +2832,12 @@ public class LeAudioService extends ProfileService {
                             + " ringtone supported: "
                             + ringtoneContextAvailable);
 
-            boolean isRingtoneEnabled = (groupDescriptor.isActive() && ringtoneContextAvailable);
+            /* Check if group is active or broadcast is ready to be activated and */
+            boolean isRingtoneEnabled =
+                    ((groupDescriptor.isActive()
+                                    || isPrimaryGroup(groupId)
+                                    || isBroadcastReadyToBeReActivated())
+                            && ringtoneContextAvailable);
 
             Log.d(
                     TAG,
