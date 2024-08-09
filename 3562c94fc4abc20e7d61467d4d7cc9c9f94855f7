@@ -66,6 +66,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c8fcf45_6d744ebf",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-09T20:07:16Z",
+      "side": 1,
+      "message": "I\u0027m hoping that the enum classes will do a better job.\n\nExpected equality of these values:\n  BT_STATUS_NOT_READY\n    Which is: 2\n  btif_sock_get_interface()-\u003elisten(BTSOCK_RFCOMM, \"TestService\", \u0026server_uuid, kChannelOne, \u0026socket_number, kFlags, kAppUid)\n    Which is: 0",
+      "parentUuid": "13bf6e6a_7ec4ab23",
+      "revId": "3562c94fc4abc20e7d61467d4d7cc9c9f94855f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29a6bc03_56becf86",
