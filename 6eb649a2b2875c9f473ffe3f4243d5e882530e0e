@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "305ba75d_2996a129",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-09T23:03:40Z",
+      "side": 1,
+      "message": "remove deprecated bondDevice line",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 98
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c2fba200_7aaabcb5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 170,
+                "startChar": 0,
+                "endLine": 172,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 188,
+                "startChar": 0,
+                "endLine": 190,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 205,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 223,
+                "startChar": 0,
+                "endLine": 225,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 257,
+                "startChar": 0,
+                "endLine": 259,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6eb649a2b2875c9f473ffe3f4243d5e882530e0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
