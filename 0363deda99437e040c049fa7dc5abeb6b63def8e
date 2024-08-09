@@ -123,6 +123,24 @@
       "parentUuid": "09669aa5_cdb16e89",
       "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d0f06a_61f1115c",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-09T16:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60a0773a_33fa97ca",
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
