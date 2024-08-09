@@ -16,6 +16,24 @@
       "message": "This is changing the configuration that has been agreed upon in AVDTP negotiations;\nthe change should be applied to A2dpCodecConfigLdacBase::setCodecConfig probably when the configuration is decided.",
       "revId": "cf08eeaafdcc65e053e1ba6de6694e557879e511",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53c4f22a_e5d249a8",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1320788
+      },
+      "writtenOn": "2024-08-09T02:30:30Z",
+      "side": 1,
+      "message": "LDAC quality mode doesn\u0027t required negotiate with remote via AVDTP. Here just adding a way to config default quality mode by property",
+      "parentUuid": "e128ebda_4780f70a",
+      "revId": "cf08eeaafdcc65e053e1ba6de6694e557879e511",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
