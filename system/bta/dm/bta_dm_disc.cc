@@ -64,6 +64,7 @@ namespace {
 constexpr char kBtmLogTag[] = "SDP";
 
 tBTA_DM_SERVICE_DISCOVERY_CB bta_dm_discovery_cb;
+tBTA_LE_GATT_STATE bta_dm_gatt_disc;
 base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> default_sdp_performer =
         base::Bind(bta_dm_sdp_find_services);
 base::RepeatingCallback<void(const RawAddress&)> default_gatt_performer =
@@ -319,7 +320,7 @@ static void bta_dm_disc_result(tBTA_DM_SVC_RES& disc_result) {
   }
 
 #if TARGET_FLOSS
-  if (bta_dm_discovery_cb.conn_id != GATT_INVALID_CONN_ID &&
+  if (bta_dm_gatt_disc.conn_id != GATT_INVALID_CONN_ID &&
       DIS_ReadDISInfo(bta_dm_discovery_cb.peer_bdaddr, bta_dm_read_dis_cmpl, DIS_ATTR_PNP_ID_BIT)) {
     return;
   }
@@ -482,7 +483,7 @@ void bta_dm_disc_override_gatt_performer_for_testing(
  *
  ******************************************************************************/
 static void bta_dm_gattc_register(void) {
-  if (bta_dm_discovery_cb.client_if != BTA_GATTS_INVALID_IF) {
+  if (bta_dm_gatt_disc.client_if != BTA_GATTS_INVALID_IF) {
     // Already registered
     return;
   }
@@ -491,13 +492,13 @@ static void bta_dm_gattc_register(void) {
             tGATT_STATUS gatt_status = static_cast<tGATT_STATUS>(status);
             if (static_cast<tGATT_STATUS>(status) == GATT_SUCCESS) {
               log::info("Registered device discovery search gatt client tGATT_IF:{}", client_id);
-              bta_dm_discovery_cb.client_if = client_id;
+              bta_dm_gatt_disc.client_if = client_id;
             } else {
               log::warn(
                       "Failed to register device discovery search gatt client "
                       "gatt_status:{} previous tGATT_IF:{}",
-                      bta_dm_discovery_cb.client_if, status);
-              bta_dm_discovery_cb.client_if = BTA_GATTS_INVALID_IF;
+                      bta_dm_gatt_disc.client_if, status);
+              bta_dm_gatt_disc.client_if = BTA_GATTS_INVALID_IF;
             }
           }),
           false);
@@ -564,18 +565,18 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
                        std::move(gatt_services));
 
   if (conn_id != GATT_INVALID_CONN_ID) {
-    bta_dm_discovery_cb.pending_close_bda = bta_dm_discovery_cb.peer_bdaddr;
+    bta_dm_gatt_disc.pending_close_bda = bta_dm_discovery_cb.peer_bdaddr;
     // Gatt will be close immediately if bluetooth.gatt.delay_close.enabled is
     // set to false. If property is true / unset there will be a delay
-    if (bta_dm_discovery_cb.gatt_close_timer != nullptr) {
+    if (bta_dm_gatt_disc.gatt_close_timer != nullptr) {
       /* start a GATT channel close delay timer */
-      alarm_set_on_mloop(bta_dm_discovery_cb.gatt_close_timer, BTA_DM_GATT_CLOSE_DELAY_TOUT,
+      alarm_set_on_mloop(bta_dm_gatt_disc.gatt_close_timer, BTA_DM_GATT_CLOSE_DELAY_TOUT,
                          gatt_close_timer_cb, 0);
     } else {
       bta_dm_disc_sm_execute(BTA_DM_DISC_CLOSE_TOUT_EVT, nullptr);
     }
   } else {
-    bta_dm_discovery_cb.conn_id = GATT_INVALID_CONN_ID;
+    bta_dm_gatt_disc.conn_id = GATT_INVALID_CONN_ID;
 
     log::info("Discovery complete for invalid conn ID. Will pick up next job");
     bta_dm_discovery_set_state(BTA_DM_DISCOVER_IDLE);
@@ -594,12 +595,12 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
  *
  ******************************************************************************/
 static void bta_dm_close_gatt_conn() {
-  if (bta_dm_discovery_cb.conn_id != GATT_INVALID_CONN_ID) {
-    BTA_GATTC_Close(bta_dm_discovery_cb.conn_id);
+  if (bta_dm_gatt_disc.conn_id != GATT_INVALID_CONN_ID) {
+    BTA_GATTC_Close(bta_dm_gatt_disc.conn_id);
   }
 
-  bta_dm_discovery_cb.pending_close_bda = RawAddress::kEmpty;
-  bta_dm_discovery_cb.conn_id = GATT_INVALID_CONN_ID;
+  bta_dm_gatt_disc.pending_close_bda = RawAddress::kEmpty;
+  bta_dm_gatt_disc.conn_id = GATT_INVALID_CONN_ID;
 }
 /*******************************************************************************
  *
@@ -615,25 +616,25 @@ static void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
   constexpr bool kUseOpportunistic = true;
 
   /* connection is already open */
-  if (bta_dm_discovery_cb.pending_close_bda == bd_addr &&
-      bta_dm_discovery_cb.conn_id != GATT_INVALID_CONN_ID) {
-    bta_dm_discovery_cb.pending_close_bda = RawAddress::kEmpty;
-    alarm_cancel(bta_dm_discovery_cb.gatt_close_timer);
-    get_gatt_interface().BTA_GATTC_ServiceSearchRequest(bta_dm_discovery_cb.conn_id, nullptr);
+  if (bta_dm_gatt_disc.pending_close_bda == bd_addr &&
+      bta_dm_gatt_disc.conn_id != GATT_INVALID_CONN_ID) {
+    bta_dm_gatt_disc.pending_close_bda = RawAddress::kEmpty;
+    alarm_cancel(bta_dm_gatt_disc.gatt_close_timer);
+    get_gatt_interface().BTA_GATTC_ServiceSearchRequest(bta_dm_gatt_disc.conn_id, nullptr);
   } else {
     if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
       log::debug(
               "Use existing gatt client connection for discovery peer:{} "
               "transport:{} opportunistic:{:c}",
               bd_addr, bt_transport_text(BT_TRANSPORT_LE), (kUseOpportunistic) ? 'T' : 'F');
-      get_gatt_interface().BTA_GATTC_Open(bta_dm_discovery_cb.client_if, bd_addr,
+      get_gatt_interface().BTA_GATTC_Open(bta_dm_gatt_disc.client_if, bd_addr,
                                           BTM_BLE_DIRECT_CONNECTION, kUseOpportunistic);
     } else {
       log::debug(
               "Opening new gatt client connection for discovery peer:{} "
               "transport:{} opportunistic:{:c}",
               bd_addr, bt_transport_text(BT_TRANSPORT_LE), (!kUseOpportunistic) ? 'T' : 'F');
-      get_gatt_interface().BTA_GATTC_Open(bta_dm_discovery_cb.client_if, bd_addr,
+      get_gatt_interface().BTA_GATTC_Open(bta_dm_gatt_disc.client_if, bd_addr,
                                           BTM_BLE_DIRECT_CONNECTION, !kUseOpportunistic);
     }
   }
@@ -655,7 +656,7 @@ static void bta_dm_proc_open_evt(tBTA_GATTC_OPEN* p_data) {
   log::debug("BTA_GATTC_OPEN_EVT conn_id = {} client_if={} status = {}", p_data->conn_id,
              p_data->client_if, p_data->status);
 
-  bta_dm_discovery_cb.conn_id = p_data->conn_id;
+  bta_dm_gatt_disc.conn_id = p_data->conn_id;
 
   if (p_data->status == GATT_SUCCESS) {
     get_gatt_interface().BTA_GATTC_ServiceSearchRequest(p_data->conn_id, nullptr);
@@ -691,7 +692,7 @@ static void bta_dm_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
       log::info("BTA_GATTC_CLOSE_EVT reason = {}", p_data->close.reason);
 
       if (p_data->close.remote_bda == bta_dm_discovery_cb.peer_bdaddr) {
-        bta_dm_discovery_cb.conn_id = GATT_INVALID_CONN_ID;
+        bta_dm_gatt_disc.conn_id = GATT_INVALID_CONN_ID;
       }
 
       if (bta_dm_discovery_get_state() == BTA_DM_DISCOVER_ACTIVE) {
@@ -823,11 +824,12 @@ static void bta_dm_disc_sm_execute(tBTA_DM_DISC_EVT event, std::unique_ptr<tBTA_
 static void bta_dm_disc_init_discovery_cb(tBTA_DM_SERVICE_DISCOVERY_CB& bta_dm_discovery_cb) {
   bta_dm_discovery_cb = {};
   bta_dm_discovery_cb.service_discovery_state = BTA_DM_DISCOVER_IDLE;
-  bta_dm_discovery_cb.conn_id = GATT_INVALID_CONN_ID;
+  bta_dm_gatt_disc = {};
+  bta_dm_gatt_disc.conn_id = GATT_INVALID_CONN_ID;
 }
 
 static void bta_dm_disc_reset() {
-  alarm_free(bta_dm_discovery_cb.gatt_close_timer);
+  alarm_free(bta_dm_gatt_disc.gatt_close_timer);
   bta_dm_disc_init_discovery_cb(::bta_dm_discovery_cb);
 }
 
@@ -837,7 +839,7 @@ void bta_dm_disc_start(bool delay_close_gatt) {
     return;
   }
   bta_dm_disc_reset();
-  bta_dm_discovery_cb.gatt_close_timer =
+  bta_dm_gatt_disc.gatt_close_timer =
           delay_close_gatt ? alarm_new("bta_dm_search.gatt_close_timer") : nullptr;
   bta_dm_discovery_cb.pending_discovery_queue = {};
 }

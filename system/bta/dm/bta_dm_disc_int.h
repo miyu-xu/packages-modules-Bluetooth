@@ -94,7 +94,6 @@ typedef struct {
 
 typedef struct {
   service_discovery_callbacks service_search_cbacks;
-  tGATT_IF client_if;
   std::queue<tBTA_DM_API_DISCOVER> pending_discovery_queue;
 
   RawAddress peer_bdaddr;
@@ -106,10 +105,14 @@ typedef struct {
   tBTA_DM_SERVICE_DISCOVERY_STATE service_discovery_state;
   std::unique_ptr<tBTA_DM_SDP_STATE> sdp_state;
 
+} tBTA_DM_SERVICE_DISCOVERY_CB;
+
+typedef struct {
+  tGATT_IF client_if;
   uint16_t conn_id;
   alarm_t* gatt_close_timer;    /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
-} tBTA_DM_SERVICE_DISCOVERY_CB;
+} tBTA_LE_GATT_STATE;
 
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
