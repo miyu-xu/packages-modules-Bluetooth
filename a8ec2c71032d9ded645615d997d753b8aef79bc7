@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d312d1_9b926a02",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-09T17:44:42Z",
+      "side": 1,
+      "message": "What about putting this in an else block?",
+      "range": {
+        "startLine": 1009,
+        "startChar": 0,
+        "endLine": 1011,
+        "endChar": 3
+      },
+      "revId": "a8ec2c71032d9ded645615d997d753b8aef79bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
