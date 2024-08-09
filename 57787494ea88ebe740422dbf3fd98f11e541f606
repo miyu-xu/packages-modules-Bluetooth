@@ -40,6 +40,30 @@
       ],
       "revId": "57787494ea88ebe740422dbf3fd98f11e541f606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fed4cc0_4c8d0899",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-09T20:09:34Z",
+      "side": 1,
+      "message": "THis is command status handling, which is early error from the controller. Any other errors then command disallowed will be handled in the Synchronous Connection Complete, and there we will have address and that handling is correct.\n\nCOmmand status was tricky here, because there is nothing more than status and host needs to remember which command was sent, and conditions in new function are the one we need.\n\nHadnling it from remote side does not make sense, as again, this is Command Status not Command Complete.",
+      "parentUuid": "1a5d7f03_5ef004f5",
+      "range": {
+        "startLine": 1045,
+        "startChar": 10,
+        "endLine": 1045,
+        "endChar": 46
+      },
+      "revId": "57787494ea88ebe740422dbf3fd98f11e541f606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
