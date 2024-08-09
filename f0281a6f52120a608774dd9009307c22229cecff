@@ -112,6 +112,30 @@
       },
       "revId": "f0281a6f52120a608774dd9009307c22229cecff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb935cf_c3feb1d7",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-09T17:59:31Z",
+      "side": 1,
+      "message": "Can we then at least move name read AFTER the read remote version returned ?",
+      "parentUuid": "9e901d48_baf4d190",
+      "range": {
+        "startLine": 1517,
+        "startChar": 2,
+        "endLine": 1520,
+        "endChar": 3
+      },
+      "revId": "f0281a6f52120a608774dd9009307c22229cecff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
