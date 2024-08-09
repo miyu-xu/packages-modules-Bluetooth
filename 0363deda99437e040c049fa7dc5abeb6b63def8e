@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b6dc4b_394ed3ed",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-09T07:25:42Z",
+      "side": 1,
+      "message": "This looks much better. Thanks for suggestion.",
+      "parentUuid": "578a135e_e23ea800",
+      "revId": "0363deda99437e040c049fa7dc5abeb6b63def8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93861180_3491f67f",
