@@ -181,13 +181,13 @@ void hfp_fallback(bool& is_hfp_fallback, const tSDP_ATTRIBUTE* p_attr) {
 static void process_service_search(tCONN_CB* p_ccb, uint16_t trans_num, uint16_t param_len,
                                    uint8_t* p_req, uint8_t* p_req_end) {
   uint16_t max_replies, cur_handles, rem_handles, cont_offset;
-  tSDP_UUID_SEQ uid_seq;
   uint8_t *p_rsp, *p_rsp_start, *p_rsp_param_len;
   uint16_t rsp_param_len, num_rsp_handles, xx;
   uint32_t rsp_handles[SDP_MAX_RECORDS] = {0};
   const tSDP_RECORD* p_rec = NULL;
   bool is_cont = false;
 
+  tSDP_UUID_SEQ uid_seq;
   p_req = sdpu_extract_uid_seq(p_req, param_len, &uid_seq);
 
   if ((!p_req) || (!uid_seq.num_uids)) {
@@ -251,16 +251,16 @@ static void process_service_search(tCONN_CB* p_ccb, uint16_t trans_num, uint16_t
 
   if (rem_handles <= cur_handles) {
     cur_handles = rem_handles;
-  } else /* Continuation is set */
-  {
+  } else {
+    /* Continuation is set */
     p_ccb->cont_offset += cur_handles;
     is_cont = true;
   }
 
   /* Get a buffer to use to build the response */
-  BT_HDR* p_buf = (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);
+  BT_HDR* p_buf = static_cast<BT_HDR*>(osi_malloc(SDP_DATA_BUF_SIZE));
   p_buf->offset = L2CAP_MIN_OFFSET;
-  p_rsp = p_rsp_start = (uint8_t*)(p_buf + 1) + L2CAP_MIN_OFFSET;
+  p_rsp = p_rsp_start = reinterpret_cast<uint8_t*>(p_buf + 1) + L2CAP_MIN_OFFSET;
 
   /* Start building a rsponse */
   UINT8_TO_BE_STREAM(p_rsp, SDP_PDU_SERVICE_SEARCH_RSP);
@@ -371,7 +371,7 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num, uint16
 
   /* Free and reallocate buffer */
   osi_free(p_ccb->rsp_list);
-  p_ccb->rsp_list = (uint8_t*)osi_malloc(max_list_len);
+  p_ccb->rsp_list = static_cast<uint8_t*>(osi_malloc(max_list_len));
 
   /* Check if this is a continuation request */
   if (p_req + 1 > p_req_end) {
@@ -461,8 +461,8 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num, uint16
         } else { /* If the partial attrib has been added in full by now */
           p_ccb->cont_info.attr_offset = 0; /* reset attr_offset */
         }
-      } else if (rem_len < attr_len) /* Not enough space for attr... so add partially */
-      {
+      } else if (rem_len < attr_len) {
+        /* Not enough space for attr... so add partially */
         if (attr_len >= SDP_MAX_ATTR_LEN) {
           log::error("SDP attr too big: max_list_len={},attr_len={}", max_list_len, attr_len);
           sdpu_build_n_send_error(p_ccb, trans_num, tSDP_STATUS::SDP_NO_RESOURCES, NULL);
@@ -523,9 +523,9 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num, uint16
   }
 
   /* Get a buffer to use to build the response */
-  BT_HDR* p_buf = (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);
+  BT_HDR* p_buf = static_cast<BT_HDR*>(osi_malloc(SDP_DATA_BUF_SIZE));
   p_buf->offset = L2CAP_MIN_OFFSET;
-  p_rsp = p_rsp_start = (uint8_t*)(p_buf + 1) + L2CAP_MIN_OFFSET;
+  p_rsp = p_rsp_start = reinterpret_cast<uint8_t*>(p_buf + 1) + L2CAP_MIN_OFFSET;
 
   /* Start building a rsponse */
   UINT8_TO_BE_STREAM(p_rsp, SDP_PDU_SERVICE_ATTR_RSP);
@@ -629,7 +629,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
   /* Free and reallocate buffer */
   osi_free(p_ccb->rsp_list);
-  p_ccb->rsp_list = (uint8_t*)osi_malloc(max_list_len);
+  p_ccb->rsp_list = static_cast<uint8_t*>(osi_malloc(max_list_len));
 
   /* Check if this is a continuation request */
   if (p_req + 1 > p_req_end) {
@@ -671,7 +671,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
   for (p_rec = sdp_db_service_search(p_ccb->cont_info.prev_sdp_rec, &uid_seq); p_rec;
        p_rec = sdp_db_service_search(p_rec, &uid_seq)) {
     /* Store the actual record pointer which would be reused later */
-    p_prev_rec = (tSDP_RECORD*)p_rec;
+    p_prev_rec = const_cast<tSDP_RECORD*>(p_rec);
     /* Allow space for attribute sequence type and length */
     p_seq_start = p_rsp;
     if (!p_ccb->cont_info.last_attr_seq_desc_sent) {
@@ -743,8 +743,8 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
           } else { /* If the partial attrib has been added in full by now */
             p_ccb->cont_info.attr_offset = 0; /* reset attr_offset */
           }
-        } else if (rem_len < attr_len) /* Not enough space for attr... so add partially */
-        {
+        } else if (rem_len < attr_len) {
+          /* Not enough space for attr... so add partially */
           if (attr_len >= SDP_MAX_ATTR_LEN) {
             log::error("SDP attr too big: max_list_len={},attr_len={}", max_list_len, attr_len);
             sdpu_build_n_send_error(p_ccb, trans_num, tSDP_STATUS::SDP_NO_RESOURCES, NULL);
@@ -870,9 +870,9 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
   }
 
   /* Get a buffer to use to build the response */
-  BT_HDR* p_buf = (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);
+  BT_HDR* p_buf = static_cast<BT_HDR*>(osi_malloc(SDP_DATA_BUF_SIZE));
   p_buf->offset = L2CAP_MIN_OFFSET;
-  p_rsp = p_rsp_start = (uint8_t*)(p_buf + 1) + L2CAP_MIN_OFFSET;
+  p_rsp = p_rsp_start = reinterpret_cast<uint8_t*>(p_buf + 1) + L2CAP_MIN_OFFSET;
 
   /* Start building a rsponse */
   UINT8_TO_BE_STREAM(p_rsp, SDP_PDU_SERVICE_SEARCH_ATTR_RSP);
@@ -934,7 +934,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
  *
  ******************************************************************************/
 void sdp_server_handle_client_req(tCONN_CB* p_ccb, BT_HDR* p_msg) {
-  uint8_t* p_req = (uint8_t*)(p_msg + 1) + p_msg->offset;
+  uint8_t* p_req = reinterpret_cast<uint8_t*>(p_msg + 1) + p_msg->offset;
   uint8_t* p_req_end = p_req + p_msg->len;
   uint8_t pdu_id;
   uint16_t trans_num, param_len;
