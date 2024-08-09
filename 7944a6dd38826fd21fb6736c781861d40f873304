@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "95f32c45_cb4e26ad",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-09T16:39:29Z",
+      "side": 1,
+      "message": "got it...makes sense",
+      "parentUuid": "2a40a8be_55630ad9",
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6ee6d0fa_c9cf9241",
         "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
         "patchSetId": 1
@@ -140,6 +158,24 @@
       "side": 1,
       "message": "Not sure what you mean by colsolidate.  Theres an error for an undefined event, and then there\u0027s the \"event ignored\" line",
       "parentUuid": "bf4a1917_9b14a6d9",
+      "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a114147_50852bbe",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-09T16:39:29Z",
+      "side": 1,
+      "message": "it looks like all unexpected events are ignored, so two log lines seems redundant within the same function.\n\nRegardless it should not hold this up.",
+      "parentUuid": "2bd88557_88e201cf",
       "revId": "7944a6dd38826fd21fb6736c781861d40f873304",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
