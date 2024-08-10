@@ -45,6 +45,7 @@
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_status.h"
 #include "stack/include/main_thread.h"
+#include "stack/include/rnr_interface.h"
 #include "stack/rnr/remote_name_request.h"
 #include "types/raw_address.h"
 
@@ -296,8 +297,8 @@ static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr, tBT_TRANSP
   bta_dm_search_cb.peer_bdaddr = bd_addr;
   bta_dm_search_cb.peer_name[0] = 0;
 
-  btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
-          bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, transport);
+  btm_status = get_rnr_interface().BTM_ReadRemoteDeviceName(bta_dm_search_cb.peer_bdaddr,
+                                                            bta_dm_remname_cback, transport);
 
   if (btm_status == BTM_CMD_STARTED) {
     log::verbose("BTM_ReadRemoteDeviceName is started");

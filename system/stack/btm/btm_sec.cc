@@ -72,6 +72,7 @@
 #include "stack/include/l2cap_security_interface.h"
 #include "stack/include/l2cdefs.h"
 #include "stack/include/main_thread.h"
+#include "stack/include/rnr_interface.h"
 #include "stack/include/smp_api.h"
 #include "stack/include/stack_metrics_logging.h"
 #include "types/bt_transport.h"
@@ -3522,7 +3523,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
             /* remote device name is unknowm, start getting remote name first */
 
             btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-            if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
+            if (get_rnr_interface().BTM_ReadRemoteDeviceName(
                         p_dev_rec->bd_addr, NULL, BT_TRANSPORT_BR_EDR) != BTM_CMD_STARTED) {
               log::error("cannot read remote name");
               btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
@@ -3556,8 +3557,8 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
       if (BTM_SEC_IS_SM4_UNKNOWN(p_dev_rec->sm4)) {
         /* Try again: RNR when no ACL causes HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT */
         btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-        if (get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
-                    bda, NULL, BT_TRANSPORT_BR_EDR) != BTM_CMD_STARTED) {
+        if (get_rnr_interface().BTM_ReadRemoteDeviceName(bda, NULL, BT_TRANSPORT_BR_EDR) !=
+            BTM_CMD_STARTED) {
           log::error("cannot read remote name");
           btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
         }
