@@ -45,7 +45,6 @@
 #include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_name.h"
 #include "stack/include/bt_uuid16.h"
-#include "stack/include/btm_ble_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_inq.h"
 #include "stack/include/btm_log_history.h"
@@ -53,6 +52,7 @@
 #include "stack/include/gap_api.h"  // GAP_BleReadPeerPrefConnParams
 #include "stack/include/hidh_api.h"
 #include "stack/include/main_thread.h"
+#include "stack/include/rnr_interface.h"
 #include "stack/include/sdp_status.h"
 #include "stack/rnr/remote_name_request.h"
 #include "stack/sdp/sdpint.h"  // is_sdp_pbap_pce_disabled
@@ -392,8 +392,8 @@ static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr, tBT_TRANSP
   bta_dm_search_cb.peer_bdaddr = bd_addr;
   bta_dm_search_cb.peer_name[0] = 0;
 
-  btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
-          bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, transport);
+  btm_status = get_rnr_interface().BTM_ReadRemoteDeviceName(bta_dm_search_cb.peer_bdaddr,
+                                                            bta_dm_remname_cback, transport);
 
   if (btm_status == tBTM_STATUS::BTM_CMD_STARTED) {
     log::verbose("BTM_ReadRemoteDeviceName is started");
@@ -1391,7 +1391,7 @@ static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr, DEV_C
     bta_dm_remname_cback(&rem_name);
   } else {
     /* get name of device */
-    btm_status = get_btm_client_interface().peer.BTM_ReadRemoteDeviceName(
+    btm_status = get_rnr_interface().BTM_ReadRemoteDeviceName(
             bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, BT_TRANSPORT_BR_EDR);
     if (btm_status == tBTM_STATUS::BTM_BUSY) {
       /* wait for next chance(notification of remote name discovery done) */
