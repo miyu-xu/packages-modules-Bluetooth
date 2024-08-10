@@ -182,9 +182,9 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint64_t timeout
 void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn, uint16_t /* evt_len */,
                              tHCI_STATUS hci_status) {
   tBTM_REMOTE_DEV_NAME rem_name = {
-          .btm_status = BTM_BAD_VALUE_RET,
           .bd_addr = bda ? *bda : RawAddress::kEmpty,
           .remote_bd_name = {},
+          .btm_status = BTM_BAD_VALUE_RET,
           .hci_status = hci_status,
   };
 
@@ -329,3 +329,40 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
   }
   return BTM_CMD_STARTED;
 }
+
+bool bluetooth::stack::rnr::Impl::BTM_SecAddRmtNameNotifyCallback(
+        tBTM_RMT_NAME_CALLBACK* p_callback) {
+  return ::BTM_SecAddRmtNameNotifyCallback(p_callback);
+}
+
+bool bluetooth::stack::rnr::Impl::BTM_SecDeleteRmtNameNotifyCallback(
+        tBTM_RMT_NAME_CALLBACK* p_callback) {
+  return ::BTM_SecDeleteRmtNameNotifyCallback(p_callback);
+}
+
+bool bluetooth::stack::rnr::Impl::BTM_IsRemoteNameKnown(const RawAddress& bd_addr,
+                                                        tBT_TRANSPORT transport) {
+  return ::BTM_IsRemoteNameKnown(bd_addr, transport);
+}
+
+tBTM_STATUS bluetooth::stack::rnr::Impl::BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
+                                                                  tBTM_NAME_CMPL_CB* p_cb,
+                                                                  tBT_TRANSPORT transport) {
+  return ::BTM_ReadRemoteDeviceName(remote_bda, p_cb, transport);
+}
+
+tBTM_STATUS bluetooth::stack::rnr::Impl::BTM_CancelRemoteDeviceName() {
+  return ::BTM_CancelRemoteDeviceName();
+}
+
+void bluetooth::stack::rnr::Impl::btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
+                                                          uint16_t evt_len,
+                                                          tHCI_STATUS hci_status) {
+  ::btm_process_remote_name(bda, bdn, evt_len, hci_status);
+}
+
+bluetooth::stack::rnr::Impl default_interface;
+
+bluetooth::stack::rnr::Interface* interface_ = &default_interface;
+
+bluetooth::stack::rnr::Interface& get_rnr_interface() { return *interface_; }
