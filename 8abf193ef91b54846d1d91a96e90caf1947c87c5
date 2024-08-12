@@ -70,6 +70,30 @@
       },
       "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4bc2a2_bc4ca6f9",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1039338
+      },
+      "writtenOn": "2024-08-12T22:27:15Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "42198824_c94eb003",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 22
+      },
+      "revId": "8abf193ef91b54846d1d91a96e90caf1947c87c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
