@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc3c3d9_53a76f33",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T16:02:07Z",
+      "side": 1,
+      "message": "ASSERT\u0027s in setup/teardown are disruptive since they are effectively part of the platform to setup and teardown tests and are not recoverable.\n\nIf this fails this is a fundamental failure of the test platform, not the test.\n\nBut overall makes readable sense.",
+      "fixSuggestions": [
+        {
+          "fixId": "99eb2e5e_109bf1ec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1036,
+                "startChar": 0,
+                "endLine": 1037,
+                "endChar": 0
+              },
+              "replacement": "      EXPECT_EQ(ptr_to_free, kThreadPtr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f54b8289_a2f65836",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T16:02:07Z",
+      "side": 1,
+      "message": "Technically the mocks should be reset here, manually, as there is no mechanism to automatically do that.\n\n```\ntest::mock::osi_thread::thread_new \u003d {};\ntest::mock::osi_thread::thread_free \u003d {};\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "88b27d1e_9217587d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1042,
+                "startChar": 0,
+                "endLine": 1042,
+                "endChar": 0
+              },
+              "replacement": "    test::mock::osi_thread::thread_new \u003d {};\n    test::mock::osi_thread::thread_free \u003d {};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c59a0529_fc3ad203",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T16:02:07Z",
+      "side": 1,
+      "message": "There is not corresponding `btif_sock_setup()`.  Assuming this releasing test resources if accidentally kept ?",
+      "fixSuggestions": [
+        {
+          "fixId": "c0d40dd1_9ec3ba4e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1042,
+                "startChar": 0,
+                "endLine": 1043,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f817d313_389f874d",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T16:02:07Z",
+      "side": 1,
+      "message": "These all could be done globally to shrink the actual test size",
+      "fixSuggestions": [
+        {
+          "fixId": "170b016c_4ad4cdae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1023,
+                "startChar": 0,
+                "endLine": 1023,
+                "endChar": 0
+              },
+              "replacement": "\nstatic constexpr int kChannelOne \u003d 1;\nstatic constexpr int kFlags \u003d 2;\nstatic constexpr int kAppUid \u003d 3;\nstatic constexpr int kChannelTwo \u003d 2;\nstatic constexpr int kFlagsTwo \u003d 4;\nstatic constexpr int kAppUidTwo \u003d 6;\n"
+            },
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1054,
+                "startChar": 0,
+                "endLine": 1057,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1065,
+                "startChar": 0,
+                "endLine": 1068,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/test/btif_core_test.cc",
+              "range": {
+                "startLine": 1073,
+                "startChar": 0,
+                "endLine": 1076,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
