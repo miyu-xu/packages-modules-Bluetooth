@@ -16,6 +16,24 @@
       "message": "Per the PRD, we only need to enable this for primary group.\n\nThen should it be like this with \u0026\u0026 ?\n(isPrimaryGroup(groupId) \u0026\u0026 isBroadcastReadyToBeReActivated)",
       "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c072be1f_195ade4b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2837,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-12T13:13:11Z",
+      "side": 1,
+      "message": "Thank You for review! Actually there is no possibility to play Unicast stream to two devices so it by default should be played on Primary group only. Isn\u0027t this enough ?",
+      "parentUuid": "d7ef8d1e_5dcf4932",
+      "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
