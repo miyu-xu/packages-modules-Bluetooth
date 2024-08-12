@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b148f9_2e23c211",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:36:56Z",
+      "side": 1,
+      "message": "Should this one be const \u0026 as well? (a separate CL is fine)\n\np_error_text could also be const.",
+      "range": {
+        "startLine": 699,
+        "startChar": 29,
+        "endLine": 699,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "23dfa473_6777e9f4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_utils.cc",
+              "range": {
+                "startLine": 699,
+                "startChar": 0,
+                "endLine": 701,
+                "endChar": 0
+              },
+              "replacement": "void sdpu_build_n_send_error(tCONN_CB\u0026 p_ccb, uint16_t trans_num, tSDP_STATUS error_code,\n                             const char* p_error_text) {\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_utils.cc",
+              "range": {
+                "startLine": 706,
+                "startChar": 0,
+                "endLine": 707,
+                "endChar": 0
+              },
+              "replacement": "            p_ccb.connection_id);\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_utils.cc",
+              "range": {
+                "startLine": 735,
+                "startChar": 0,
+                "endLine": 737,
+                "endChar": 0
+              },
+              "replacement": "  if (L2CA_DataWrite(p_ccb.connection_id, p_buf) !\u003d tL2CAP_DW_RESULT::SUCCESS) {\n    log::warn(\"Unable to write L2CAP data cid:{}\", p_ccb.connection_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "76d441b7b3b8a0fb9f0dc04147305aff3a1a0146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
