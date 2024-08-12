@@ -68,6 +68,10 @@ inline std::string bt_psm_text(const tBT_PSM& psm) {
   RETURN_UNKNOWN_TYPE_STRING(type, psm);
 }
 
+inline std::string bt_psm_uint_to_text(uint16_t psm) {
+  return bt_psm_text(static_cast<tBT_PSM>(psm));
+}
+
 namespace fmt {
 template <>
 struct formatter<tBT_PSM> : enum_formatter<tBT_PSM> {};
