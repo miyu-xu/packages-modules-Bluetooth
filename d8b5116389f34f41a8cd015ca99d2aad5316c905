@@ -34,6 +34,24 @@
       "parentUuid": "d7ef8d1e_5dcf4932",
       "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac100ca1_a99cf529",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2837,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-12T16:59:08Z",
+      "side": 1,
+      "message": "You\u0027re right, I got it technically it might not be possible in terms of the streaming.\nBut logic-wise, in previous logic, isRingtoneEnabled is only configured when the group is active. While in the new, isRingtoneEnabled can also be set even for inactive group. Wouldn\u0027t it make more sense to only set for Primary set since anyways ringtone is not played on both?\nAnd also could you also elaborate a bit why \u0027||\u0027 isBroadcastReadyToBeReActivated()?",
+      "parentUuid": "c072be1f_195ade4b",
+      "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
