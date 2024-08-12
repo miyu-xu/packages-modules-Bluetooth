@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a006db8_435f83c6",
+        "filename": "system/stack/sdp/sdp_discovery_db.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T17:03:19Z",
+      "side": 1,
+      "message": "single line?\n```suggestion\n    uint8_t array[];                    /* requires backing store from SDP DB */\n```",
+      "range": {
+        "startLine": 41,
+        "startChar": 40,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "95d3fa8aebf962c1864077deba52a709717cbed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
