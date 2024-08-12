@@ -1050,7 +1050,6 @@ package android.bluetooth {
     field public static final int HEARING_AID = 21; // 0x15
     field public static final int HID_DEVICE = 19; // 0x13
     field public static final int LE_AUDIO = 22; // 0x16
-    field public static final int SAP = 10; // 0xa
     field public static final int STATE_CONNECTED = 2; // 0x2
     field public static final int STATE_CONNECTING = 1; // 0x1
     field public static final int STATE_DISCONNECTED = 0; // 0x0
