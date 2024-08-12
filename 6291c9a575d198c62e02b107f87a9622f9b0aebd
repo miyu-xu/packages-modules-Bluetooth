@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c54e978_b5e2f5a9",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T18:22:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06bf013e_b6d749bd",
+      "range": {
+        "startLine": 900,
+        "startChar": 42,
+        "endLine": 900,
+        "endChar": 89
+      },
+      "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "babbbd42_53670efd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-12T16:48:57Z",
       "side": 1,
       "message": "This is only used in the if block.\n```suggestion\n  if (result \u003d\u003d tSDP_STATUS::SDP_SUCCESS) {\n    uint16_t di_specid \u003d BLUETOOTH_DI_SPECIFICATION;\n```",
+      "range": {
+        "startLine": 956,
+        "startChar": 0,
+        "endLine": 957,
+        "endChar": 43
+      },
+      "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f2a5b6_89c64cda",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T18:22:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "babbbd42_53670efd",
       "range": {
         "startLine": 956,
         "startChar": 0,
@@ -104,6 +152,30 @@
           ]
         }
       ],
+      "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cde4a498_add8b31f",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-12T18:22:48Z",
+      "side": 1,
+      "message": "p_device_info is passed as `const` and must be const-removed.\n\n```\ntSDP_STATUS SDP_SetLocalDiRecord(const tSDP_DI_RECORD* p_device_info, uint32_t* p_handle) {\n```\n\nYes, makes no sense but that is how the logic is currently.",
+      "parentUuid": "7bb2c0b0_0a22d768",
+      "range": {
+        "startLine": 974,
+        "startChar": 28,
+        "endLine": 974,
+        "endChar": 83
+      },
       "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
