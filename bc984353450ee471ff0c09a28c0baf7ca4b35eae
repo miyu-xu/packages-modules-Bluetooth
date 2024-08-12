@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61de1196_e93ac06b",
+        "filename": "system/stack/sdp/sdp_db.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:54:41Z",
+      "side": 1,
+      "message": "nit: move into the for loop?",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4f7bc37d_14a36c21",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_db.cc",
+              "range": {
+                "startLine": 310,
+                "startChar": 0,
+                "endLine": 312,
+                "endChar": 0
+              },
+              "replacement": "  for (uint16_t zz \u003d 0; zz \u003c sdp_cb.server_db.num_records; zz++, p_rec++) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bc984353450ee471ff0c09a28c0baf7ca4b35eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28352aeb_2c6b68cf",
+        "filename": "system/stack/sdp/sdp_db.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:54:41Z",
+      "side": 1,
+      "message": "Is this cast necessary?",
+      "range": {
+        "startLine": 497,
+        "startChar": 57,
+        "endLine": 497,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7fe9b432_02c1649f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_db.cc",
+              "range": {
+                "startLine": 497,
+                "startChar": 0,
+                "endLine": 498,
+                "endChar": 0
+              },
+              "replacement": "    memcpy(\u0026p_rec-\u003eattr_pad[p_rec-\u003efree_pad_ptr], p_val, attr_len);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bc984353450ee471ff0c09a28c0baf7ca4b35eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
