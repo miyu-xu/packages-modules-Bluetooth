@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4ce144e_43f2eab0",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-12T23:29:59Z",
+      "side": 1,
+      "message": "Kotlin allow you to directly do:\n\n\n```suggestion\n            context.packageManager.hasSystemFeature(PackageManager.FEATURE_AUTOMOTIVE) \u0026\u0026\n```",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "38f92970f5d91b5bc99e6128ec2509c829f2b282",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
