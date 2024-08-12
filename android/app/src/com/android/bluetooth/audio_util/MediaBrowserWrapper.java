@@ -384,4 +384,11 @@ class MediaBrowserWrapper {
             return mRunHandler;
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Browsable Package Name: ").append(mPackageName).append("\n");
+        return sb.toString();
+    }
 }
