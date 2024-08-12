@@ -22,6 +22,30 @@
       },
       "revId": "67e42d165191919c698da11758f987b0f557ca49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe324a5_93097688",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1087625
+      },
+      "writtenOn": "2024-08-12T18:31:32Z",
+      "side": 1,
+      "message": "https://r.android.com/3215602 turns on the warning. I will enforce the warning as error once I fix all the occurrences in Android.",
+      "parentUuid": "b86fca0e_46a1c1c7",
+      "range": {
+        "startLine": 12,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 47
+      },
+      "revId": "67e42d165191919c698da11758f987b0f557ca49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
