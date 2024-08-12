@@ -38,6 +38,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/l2cdefs.h"
 #include "stack/l2cap/l2c_int.h"
@@ -205,8 +206,8 @@ static void l2c_csm_closed(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
 
   disconnect_ind = p_ccb->p_rcb->api.pL2CA_DisconnectInd_Cb;
 
-  log::debug("LCID: 0x{:04x}  st: CLOSED  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: CLOSED  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -372,9 +373,10 @@ static void l2c_csm_orig_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event, void* p_dat
   tL2CA_DISCONNECT_IND_CB* disconnect_ind = p_ccb->p_rcb->api.pL2CA_DisconnectInd_Cb;
   uint16_t local_cid = p_ccb->local_cid;
 
-  log::debug("{} - LCID: 0x{:04x}  st: ORIG_W4_SEC_COMP  evt: {}",
+  log::debug("{} - LCID: 0x{:04x}  st: ORIG_W4_SEC_COMP  evt: {} psm: {}",
              ((p_ccb->p_lcb) && (p_ccb->p_lcb->transport == BT_TRANSPORT_LE)) ? "LE " : "",
-             p_ccb->local_cid, l2c_csm_get_event_name(event));
+             p_ccb->local_cid, l2c_csm_get_event_name(event),
+             bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -464,8 +466,8 @@ static void l2c_csm_orig_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event, void* p_dat
  *
  ******************************************************************************/
 static void l2c_csm_term_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
-  log::debug("LCID: 0x{:04x}  st: TERM_W4_SEC_COMP  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: TERM_W4_SEC_COMP  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -608,8 +610,8 @@ static void l2c_csm_w4_l2cap_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void* p
   uint16_t local_cid = p_ccb->local_cid;
   tL2C_LCB* p_lcb = p_ccb->p_lcb;
 
-  log::debug("LCID: 0x{:04x}  st: W4_L2CAP_CON_RSP  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: W4_L2CAP_CON_RSP  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -771,8 +773,8 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void* p_
   tL2CA_DISCONNECT_IND_CB* disconnect_ind = p_ccb->p_rcb->api.pL2CA_DisconnectInd_Cb;
   uint16_t local_cid = p_ccb->local_cid;
 
-  log::debug("LCID: 0x{:04x}  st: W4_L2CA_CON_RSP  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: W4_L2CA_CON_RSP  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -925,8 +927,8 @@ static void l2c_csm_config(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
   tL2C_CCB* temp_p_ccb;
   tL2CAP_LE_CFG_INFO* p_le_cfg = (tL2CAP_LE_CFG_INFO*)p_data;
 
-  log::debug("LCID: 0x{:04x}  st: CONFIG  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: CONFIG  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -1213,8 +1215,8 @@ static void l2c_csm_open(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
   uint16_t credit = 0;
   tL2CAP_LE_CFG_INFO* p_le_cfg = (tL2CAP_LE_CFG_INFO*)p_data;
 
-  log::verbose("LCID: 0x{:04x}  st: OPEN  evt: {}", p_ccb->local_cid,
-               l2c_csm_get_event_name(event));
+  log::verbose("LCID: 0x{:04x}  st: OPEN  evt: {} psm: {}", p_ccb->local_cid,
+               l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -1412,8 +1414,8 @@ static void l2c_csm_w4_l2cap_disconnect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void
   tL2CA_DISCONNECT_CFM_CB* disconnect_cfm = p_ccb->p_rcb->api.pL2CA_DisconnectCfm_Cb;
   uint16_t local_cid = p_ccb->local_cid;
 
-  log::debug("LCID: 0x{:04x}  st: W4_L2CAP_DISC_RSP  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: W4_L2CAP_DISC_RSP  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_L2CAP_DISCONNECT_RSP: /* Peer disconnect response */
@@ -1465,8 +1467,8 @@ static void l2c_csm_w4_l2ca_disconnect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void*
   tL2CA_DISCONNECT_IND_CB* disconnect_ind = p_ccb->p_rcb->api.pL2CA_DisconnectInd_Cb;
   uint16_t local_cid = p_ccb->local_cid;
 
-  log::debug("LCID: 0x{:04x}  st: W4_L2CA_DISC_RSP  evt: {}", p_ccb->local_cid,
-             l2c_csm_get_event_name(event));
+  log::debug("LCID: 0x{:04x}  st: W4_L2CA_DISC_RSP  evt: {} psm: {}", p_ccb->local_cid,
+             l2c_csm_get_event_name(event), bt_psm_uint_to_text(p_ccb->p_rcb->psm));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
