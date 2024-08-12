@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb2ee3d_0853eb56",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T21:22:48Z",
+      "side": 1,
+      "message": "Should I just print a warning?  Not check anything?",
+      "parentUuid": "1fc3c3d9_53a76f33",
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f54b8289_a2f65836",
@@ -73,6 +91,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b2a4c83a_d9dd00a6",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T21:22:48Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "f54b8289_a2f65836",
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c59a0529_fc3ad203",
         "filename": "system/btif/test/btif_core_test.cc",
         "patchSetId": 7
@@ -102,6 +138,24 @@
           ]
         }
       ],
+      "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9522fa17_74700b37",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T21:22:48Z",
+      "side": 1,
+      "message": "I think the corresponding call is btif_sock_init on 1038, but I could have grabbed the wrong function.  I didn\u0027t find a btif_sock_setup.",
+      "parentUuid": "c59a0529_fc3ad203",
       "revId": "5e9460df82425e6574d1ec5f0c513fe243480449",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
