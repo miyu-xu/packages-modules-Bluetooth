@@ -22,6 +22,30 @@
       },
       "revId": "38f92970f5d91b5bc99e6128ec2509c829f2b282",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f0a0cf3_48b95552",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-12T23:35:00Z",
+      "side": 1,
+      "message": "Done. That\u0027s a cool syntactic sugar!",
+      "parentUuid": "e4ce144e_43f2eab0",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "38f92970f5d91b5bc99e6128ec2509c829f2b282",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
