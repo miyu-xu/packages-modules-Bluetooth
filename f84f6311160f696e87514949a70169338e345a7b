@@ -87,6 +87,24 @@
       "parentUuid": "dbe2ab6b_8a068be0",
       "revId": "f84f6311160f696e87514949a70169338e345a7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57631560_3c47b399",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-12T16:29:23Z",
+      "side": 1,
+      "message": "Why is there no regression test for this fix then? Even if the API isn\u0027t used today, having a regression test would avoid this issue to be re-introduced in the future",
+      "parentUuid": "54c4bf52_2ef4a100",
+      "revId": "f84f6311160f696e87514949a70169338e345a7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
