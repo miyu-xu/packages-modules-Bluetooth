@@ -3132,6 +3132,10 @@
     "avdtp_error_codes": [
       "A2DP/SNK/AVP",
       "A2DP/SRC/AVP"
+    ],
+    "browsing_refactor": [
+      "AVRCP/TG/MPS/BV-01-I",
+      "AVRCP/TG/MCN/CB/BV-01-I"
     ]
   }
 }
