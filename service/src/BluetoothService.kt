@@ -19,6 +19,7 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.os.HandlerThread
 import android.os.UserManager
+import android.sysprop.BluetoothProperties
 import com.android.server.SystemService
 import com.android.server.SystemService.TargetUser
 
@@ -52,7 +53,10 @@ class BluetoothService(context: Context) : SystemService(context) {
     }
 
     override fun onUserStarting(user: TargetUser) {
-        if (!UserManager.isHeadlessSystemUserMode()) {
+        if (
+            !UserManager.isHeadlessSystemUserMode() ||
+                BluetoothProperties.bootWithSystemUserDespiteHsum().orElse(false)
+        ) {
             initialize(user)
         }
     }
