@@ -1,0 +1,111 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06bf013e_b6d749bd",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:48:57Z",
+      "side": 1,
+      "message": "I think I prefer completely removing the cast in this case.\n\n```suggestion\n      p_device_info-\u003erec.primary_record \u003d p_curr_attr-\u003eattr_value.v.u8 !\u003d 0;\n```",
+      "range": {
+        "startLine": 900,
+        "startChar": 42,
+        "endLine": 900,
+        "endChar": 89
+      },
+      "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "babbbd42_53670efd",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:48:57Z",
+      "side": 1,
+      "message": "This is only used in the if block.\n```suggestion\n  if (result \u003d\u003d tSDP_STATUS::SDP_SUCCESS) {\n    uint16_t di_specid \u003d BLUETOOTH_DI_SPECIFICATION;\n```",
+      "range": {
+        "startLine": 956,
+        "startChar": 0,
+        "endLine": 957,
+        "endChar": 43
+      },
+      "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb2c0b0_0a22d768",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:48:57Z",
+      "side": 1,
+      "message": "This cast doesn\u0027t look necessary.  It\u0027s already a char[]",
+      "range": {
+        "startLine": 974,
+        "startChar": 28,
+        "endLine": 974,
+        "endChar": 83
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ca1fdccd_ffd323b4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_api.cc",
+              "range": {
+                "startLine": 974,
+                "startChar": 0,
+                "endLine": 975,
+                "endChar": 0
+              },
+              "replacement": "                            p_device_info-\u003eclient_executable_url)))) {\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_api.cc",
+              "range": {
+                "startLine": 987,
+                "startChar": 0,
+                "endLine": 988,
+                "endChar": 0
+              },
+              "replacement": "                                     p_device_info-\u003eservice_description)))) {\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_api.cc",
+              "range": {
+                "startLine": 1000,
+                "startChar": 0,
+                "endLine": 1001,
+                "endChar": 0
+              },
+              "replacement": "                                     p_device_info-\u003edocumentation_url)))) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6291c9a575d198c62e02b107f87a9622f9b0aebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
