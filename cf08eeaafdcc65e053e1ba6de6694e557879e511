@@ -34,6 +34,24 @@
       "parentUuid": "e128ebda_4780f70a",
       "revId": "cf08eeaafdcc65e053e1ba6de6694e557879e511",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e38a41_0a16761b",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1320788
+      },
+      "writtenOn": "2024-08-12T02:02:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53c4f22a_e5d249a8",
+      "revId": "cf08eeaafdcc65e053e1ba6de6694e557879e511",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
