@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a564b87_4000eef2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "not needed",
+      "fixSuggestions": [
+        {
+          "fixId": "0e9d8f41_e350a390",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+              "range": {
+                "startLine": 173,
+                "startChar": 0,
+                "endLine": 174,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a971e64_fc5b102a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "maybe we can return null in node instead of checking equality of offset?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf9cc57_018dc898",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "always true (at least 2) as we check above that it is at least 8 and subtracted 6.",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f60e94_45b96c21",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "return with null? As we increase offset then result of parseLevelThree will be valid: not null and new offset different then old one. Or maybe do you want that it is valid even if not parsed correctly?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f0434cf_5183329f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "return with null? As we increase offset then result of parseLevelThree will be valid: not null and new offset different then old one. Or maybe do you want that it is valid even if not parsed correctly?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68db346a_d7593669",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "maybe we can return null in node instead of checking equality of offset?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db94b989_c227aad8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "it is always true (at least 1) as above we check that `bufferLengthLeft \u003e\u003d 2` and subtract 1 (offset++).",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ec2fb3_8e2640c7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-12T08:55:18Z",
+      "side": 1,
+      "message": "return with null? As we increase offset then result of parseLevelThree will be valid: not null and new offset different then old one. Or maybe do you want that it is valid even if not parsed correctly?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
