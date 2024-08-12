@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86fca0e_46a1c1c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-12T17:32:56Z",
+      "side": 1,
+      "message": "Do you want to enforce this as an error at the same time ? so there is no regression before the clang update ? (if this is possible)",
+      "range": {
+        "startLine": 12,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 47
+      },
+      "revId": "67e42d165191919c698da11758f987b0f557ca49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
