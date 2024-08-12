@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "827b917d_32486641",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-12T08:16:21Z",
+      "side": 1,
+      "message": "Cancel in L173 is for background connections and the one in L176 is for the direct connection.\n\nAs we open connection as a direct connection in btm_dm_start_gatt_discovery(), we should cancel the direct connection as well.",
+      "parentUuid": "0ab4257b_aba5516a",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 63
+      },
+      "revId": "935a02912b56e4b8fd9863053caf1dd21bdb0da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2c0a165_5fdfb108",
@@ -65,6 +89,30 @@
       "writtenOn": "2024-08-09T18:17:30Z",
       "side": 1,
       "message": "Why is this a timeout?",
+      "range": {
+        "startLine": 584,
+        "startChar": 29,
+        "endLine": 584,
+        "endChar": 55
+      },
+      "revId": "935a02912b56e4b8fd9863053caf1dd21bdb0da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d325acf6_45db67f5",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-12T08:16:21Z",
+      "side": 1,
+      "message": "I followed the code in L578 but calling `bta_dm_close_gatt_conn` might be better .",
+      "parentUuid": "c2c0a165_5fdfb108",
       "range": {
         "startLine": 584,
         "startChar": 29,
