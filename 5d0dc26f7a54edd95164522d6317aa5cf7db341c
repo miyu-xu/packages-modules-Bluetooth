@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fae8c44_271b1fbe",
+        "filename": "system/stack/sdp/sdp_discovery.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-12T16:59:58Z",
+      "side": 1,
+      "message": "This looks suspicious.  Maybe it should always be an int.",
+      "range": {
+        "startLine": 222,
+        "startChar": 10,
+        "endLine": 222,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b93b7072_e55b988c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_discovery.cc",
+              "range": {
+                "startLine": 201,
+                "startChar": 0,
+                "endLine": 202,
+                "endChar": 0
+              },
+              "replacement": "  int cpy_len, rem_len;\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_discovery.cc",
+              "range": {
+                "startLine": 222,
+                "startChar": 0,
+                "endLine": 223,
+                "endChar": 0
+              },
+              "replacement": "      if (cpy_len \u003c (p - old_p)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5d0dc26f7a54edd95164522d6317aa5cf7db341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
