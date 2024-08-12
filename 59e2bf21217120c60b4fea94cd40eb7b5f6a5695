@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c69f9df_14cb19c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-12T09:09:40Z",
+      "side": 1,
+      "message": "Could you help test that intentionally make the pipe broken to simulate the crash?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "59e2bf21217120c60b4fea94cd40eb7b5f6a5695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bace398d_182dc9cb",
