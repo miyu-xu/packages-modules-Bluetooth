@@ -34,6 +34,57 @@
       "parentUuid": "1a8b75ed_71eed61e",
       "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa1c79c9_9c28e088",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-12T22:32:51Z",
+      "side": 1,
+      "message": "Nit: This seems like a random place to put this, in the middle of a bunch of functions. Maybe move closer to the top of the file?",
+      "range": {
+        "startLine": 1276,
+        "startChar": 0,
+        "endLine": 1276,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "852bb495_297dbcca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_main.cc",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "bluetooth::common::TimestampedCircularBuffer\u003ctTCB_STATE_HISTORY\u003e tcb_state_history_(\n        100 /*history size*/);\n\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_main.cc",
+              "range": {
+                "startLine": 1275,
+                "startChar": 0,
+                "endLine": 1278,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
