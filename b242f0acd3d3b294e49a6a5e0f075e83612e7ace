@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02345770_2edac079",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-08-13T20:03:32Z",
+      "side": 1,
+      "message": "Somewhat of a blast from the past here.  While we see this infrequently on post-flash boot, internal GTS testing hits this much more regularly on reboot, with a device with more things setup on it.  Which suggests devices might still hit this in the field (and in their testing).  We\u0027ve also confirmed this fix clears up the GTS issue.",
+      "revId": "b242f0acd3d3b294e49a6a5e0f075e83612e7ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
