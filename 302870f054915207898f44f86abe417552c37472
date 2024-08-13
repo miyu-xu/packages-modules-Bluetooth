@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b80d665_c468605d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "We need to update the offset as we are looping over the subgroups.",
+      "parentUuid": "5a564b87_4000eef2",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a971e64_fc5b102a",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-08-12T08:55:18Z",
       "side": 1,
       "message": "maybe we can return null in node instead of checking equality of offset?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6132ed09_2c3bd8b9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Sure. That makes more sense.",
+      "parentUuid": "7a971e64_fc5b102a",
       "revId": "302870f054915207898f44f86abe417552c37472",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -70,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dd5272e_cd8e86db",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cf9cc57_018dc898",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6f60e94_45b96c21",
@@ -83,6 +137,24 @@
       "writtenOn": "2024-08-12T08:55:18Z",
       "side": 1,
       "message": "return with null? As we increase offset then result of parseLevelThree will be valid: not null and new offset different then old one. Or maybe do you want that it is valid even if not parsed correctly?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b7e7e9_e959e1db",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6f60e94_45b96c21",
       "revId": "302870f054915207898f44f86abe417552c37472",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b024e65_84100d19",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f0434cf_5183329f",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68db346a_d7593669",
@@ -117,6 +207,24 @@
       "writtenOn": "2024-08-12T08:55:18Z",
       "side": 1,
       "message": "maybe we can return null in node instead of checking equality of offset?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9f0cedb_87f9ea6b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68db346a_d7593669",
       "revId": "302870f054915207898f44f86abe417552c37472",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -138,6 +246,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "414d4f88_885ddc43",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db94b989_c227aad8",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31ec2fb3_8e2640c7",
@@ -151,6 +277,24 @@
       "writtenOn": "2024-08-12T08:55:18Z",
       "side": 1,
       "message": "return with null? As we increase offset then result of parseLevelThree will be valid: not null and new offset different then old one. Or maybe do you want that it is valid even if not parsed correctly?",
+      "revId": "302870f054915207898f44f86abe417552c37472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de6ad70b_8485732b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-13T08:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31ec2fb3_8e2640c7",
       "revId": "302870f054915207898f44f86abe417552c37472",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
