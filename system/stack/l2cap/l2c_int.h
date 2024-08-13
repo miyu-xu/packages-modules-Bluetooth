@@ -683,6 +683,11 @@ extern tL2C_CB l2cb;
  ***********************************
  */
 
+void l2cu_adj_id(tL2C_LCB* p_lcb);
+
+void l2cu_send_peer_echo_req(tL2C_LCB* p_lcb, uint8_t* p_data,
+                             uint16_t data_len);
+
 void l2c_receive_hold_timer_timeout(void* data);
 void l2c_ccb_timer_timeout(void* data);
 void l2c_lcb_timer_timeout(void* data);
