@@ -22,6 +22,30 @@
       },
       "revId": "6106273d4ce7159124dd67cf22196f7ed9bd08e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c5fd161_c9db6b47",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-13T14:45:12Z",
+      "side": 1,
+      "message": "I guess it does regress. @mhasank@google.com and @yaohuali@google.com is it possible to add something like `FEATURE_HSUM_BLUETOOTH` for our usage?",
+      "parentUuid": "1f239a72_78c961dc",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "6106273d4ce7159124dd67cf22196f7ed9bd08e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
