@@ -131,6 +131,8 @@ class MceStateMachine extends StateMachine {
     // URI Scheme for messages with email contact
     private static final String SCHEME_MAILTO = "mailto";
 
+    private static final String BT_LOG_TAG = "bluetooth";
+
     private static final String EXCLUDED_MESSAGE_TYPES =
             "persist.bluetooth.pts.mapclient.excludedmessagetypes";
     private static final String SEND_MESSAGE_TYPE =
@@ -234,6 +236,7 @@ class MceStateMachine extends StateMachine {
         mDevice = device;
         mDatabase = database;
         initStateMachine();
+        setDbg(Log.isLoggable(BT_LOG_TAG, Log.VERBOSE) || Log.isLoggable(BT_LOG_TAG, Log.DEBUG));
     }
 
     @VisibleForTesting
@@ -249,6 +252,7 @@ class MceStateMachine extends StateMachine {
         mDevice = device;
         mDatabase = database;
         initStateMachine();
+        setDbg(Log.isLoggable(BT_LOG_TAG, Log.VERBOSE) || Log.isLoggable(BT_LOG_TAG, Log.DEBUG));
     }
 
     private void initStateMachine() {
