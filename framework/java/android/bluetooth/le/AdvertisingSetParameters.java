@@ -454,9 +454,6 @@ public final class AdvertisingSetParameters implements Parcelable {
          * @throws IllegalArgumentException If the {@code txPowerLevel} is invalid.
          */
         public Builder setTxPowerLevel(int txPowerLevel) {
-            if (txPowerLevel < TX_POWER_MIN || txPowerLevel > TX_POWER_MAX) {
-                throw new IllegalArgumentException("unknown txPowerLevel " + txPowerLevel);
-            }
             mTxPowerLevel = txPowerLevel;
             return this;
         }
