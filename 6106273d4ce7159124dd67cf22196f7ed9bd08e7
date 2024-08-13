@@ -46,6 +46,30 @@
       },
       "revId": "6106273d4ce7159124dd67cf22196f7ed9bd08e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6930c4cc_b2369750",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-13T15:39:40Z",
+      "side": 1,
+      "message": "So, like cars, tablets also don\u0027t start Bluetooth on their headless user?\n\nSo that would imply you all are the exception and not the rule then, I think. Perhaps some sort of UserManager API or other semantically correct abstraction (`FEATURE_` flag) is the way to go. I think a UserManager API would bring legitimacy to the user pattern you\u0027re trying and is preferred to something like `FEATURE_HSUM_BLUETOOTH`.\n\nThere may be a `FEATURE_*` flag for tablets as well, which can hold you over until something semantically correct is implemented.",
+      "parentUuid": "7c5fd161_c9db6b47",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "6106273d4ce7159124dd67cf22196f7ed9bd08e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
