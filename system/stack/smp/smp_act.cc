@@ -1601,7 +1601,7 @@ void smp_idle_terminate(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
 }
 
 /*******************************************************************************
- * Function     smp_both_have_public_keys
+ * Function     smp_have_both_public_keys
  * Description  The function is called when both local and peer public keys are
  *              saved.
  *              Actions:
@@ -1610,7 +1610,7 @@ void smp_idle_terminate(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
  *peer.
  *              - invokes SC phase 1 process.
  ******************************************************************************/
-void smp_both_have_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
+void smp_have_both_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
   log::verbose("addr:{}", p_cb->pairing_bda);
 
   /* invokes DHKey computation */

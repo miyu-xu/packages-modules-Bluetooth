@@ -414,7 +414,7 @@ void smp_key_distribution(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_proc_srk_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_generate_csrk(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_key_pick_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
-void smp_both_have_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
+void smp_have_both_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_start_secure_connection_phase1(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_process_local_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_process_pairing_commitment(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);

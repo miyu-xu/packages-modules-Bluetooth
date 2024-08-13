@@ -85,7 +85,7 @@ struct smp_br_send_pair_response smp_br_send_pair_response;
 struct smp_pairing_cmpl smp_pairing_cmpl;
 struct smp_pair_terminate smp_pair_terminate;
 struct smp_idle_terminate smp_idle_terminate;
-struct smp_both_have_public_keys smp_both_have_public_keys;
+struct smp_have_both_public_keys smp_have_both_public_keys;
 struct smp_start_secure_connection_phase1 smp_start_secure_connection_phase1;
 struct smp_process_local_nonce smp_process_local_nonce;
 struct smp_process_peer_nonce smp_process_peer_nonce;
@@ -303,9 +303,9 @@ void smp_idle_terminate(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   inc_func_call_count(__func__);
   test::mock::stack_smp_act::smp_idle_terminate(p_cb, p_data);
 }
-void smp_both_have_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
+void smp_have_both_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   inc_func_call_count(__func__);
-  test::mock::stack_smp_act::smp_both_have_public_keys(p_cb, p_data);
+  test::mock::stack_smp_act::smp_have_both_public_keys(p_cb, p_data);
 }
 void smp_start_secure_connection_phase1(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   inc_func_call_count(__func__);
