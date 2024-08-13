@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f395c474_af89f4f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-13T23:11:26Z",
+      "side": 1,
+      "message": "That\u0027s why I gave you +2.  I just wanted to point out that your description makes it sound like we\u0027re requiring Bluetooth to come up in .5 seconds.  We just want a HAL :)  I wasn\u0027t arguing with your CL or your point.",
+      "parentUuid": "4defb15c_85610042",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 65
+      },
+      "revId": "b242f0acd3d3b294e49a6a5e0f075e83612e7ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "02345770_2edac079",
