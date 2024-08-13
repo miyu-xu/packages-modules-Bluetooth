@@ -1904,6 +1904,12 @@ bool bta_ag_is_sco_open_allowed(tBTA_AG_SCB* p_scb, const std::string event) {
     }
   }
 #endif
+
+  if (event == "BTA_AG_LOCAL_EVT_BCC" &&
+      !bluetooth::os::GetSystemPropertyBool(bluetooth::os::kIsBccOpenScoAllowed, true)) {
+    return false;
+  }
+
   return true;
 }
 
