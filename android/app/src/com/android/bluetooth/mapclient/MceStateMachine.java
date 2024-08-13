@@ -234,6 +234,7 @@ class MceStateMachine extends StateMachine {
         mDevice = device;
         mDatabase = database;
         initStateMachine();
+        setDbg(true);
     }
 
     @VisibleForTesting
@@ -249,6 +250,7 @@ class MceStateMachine extends StateMachine {
         mDevice = device;
         mDatabase = database;
         initStateMachine();
+        setDbg(true);
     }
 
     private void initStateMachine() {
@@ -1312,6 +1314,7 @@ class MceStateMachine extends StateMachine {
     }
 
     private String getMessageName(int what) {
+        Log.d(TAG, "Message: " + what);
         switch (what) {
             case MSG_MAS_CONNECTED:
                 return "MSG_MAS_CONNECTED";

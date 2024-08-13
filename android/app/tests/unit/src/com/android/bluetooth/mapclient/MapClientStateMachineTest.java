@@ -296,11 +296,7 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_DISCONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_DISCONNECTED, mMceStateMachine.getState());
     }
 
@@ -316,11 +312,7 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_CONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
     }
 
@@ -339,21 +331,12 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_CONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
 
         msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_DISCONNECTED);
         mMceStateMachine.sendMessage(msg);
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(4))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
-
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_DISCONNECTED, mMceStateMachine.getState());
     }
 
@@ -367,11 +350,7 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_CONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
 
         // Send an empty notification event, verify the mMceStateMachine is still connected
@@ -390,11 +369,7 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_CONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
         Assert.assertTrue(
                 mMceStateMachine.setMessageStatus("123456789AB", BluetoothMapClient.READ));
@@ -417,19 +392,17 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_CONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
 
         mMceStateMachine.disconnect();
+
         verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(4))
                 .sendBroadcastMultiplePermissions(
                         mIntentArgument.capture(),
                         any(String[].class),
                         any(BroadcastOptions.class));
+
         Assert.assertEquals(BluetoothProfile.STATE_DISCONNECTED, mMceStateMachine.getState());
     }
 
@@ -443,11 +416,7 @@ public class MapClientStateMachineTest {
         // Wait until the message is processed and a broadcast request is sent to
         // to MapClientService to change
         // state from STATE_CONNECTING to STATE_CONNECTED
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
 
         mMceStateMachine.disconnect();
@@ -684,11 +653,7 @@ public class MapClientStateMachineTest {
         mMceStateMachine.sendMessage(msg);
 
         // verifying that state machine is in the Connected state
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         String dateTime = new ObexTime(Instant.now()).toString();
@@ -730,11 +695,7 @@ public class MapClientStateMachineTest {
         mMceStateMachine.sendMessage(msg);
 
         // verifying that state machine is in the Connected state
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         String dateTime = new ObexTime(Instant.now()).toString();
@@ -778,11 +739,7 @@ public class MapClientStateMachineTest {
         Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
         mMceStateMachine.sendMessage(msg);
 
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         com.android.bluetooth.mapclient.Message testMessageListingSms =
@@ -829,11 +786,7 @@ public class MapClientStateMachineTest {
         Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
         mMceStateMachine.sendMessage(msg);
 
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         com.android.bluetooth.mapclient.Message testMessageListingMms =
@@ -883,11 +836,7 @@ public class MapClientStateMachineTest {
         Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
         mMceStateMachine.sendMessage(msg);
 
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         // Receive a new message notification.
@@ -968,11 +917,7 @@ public class MapClientStateMachineTest {
         mMceStateMachine.sendMessage(msg);
 
         // verifying that state machine is in the Connected state
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
         String dateTime = new ObexTime(Instant.now()).toString();
@@ -1006,13 +951,7 @@ public class MapClientStateMachineTest {
 
     @Test
     public void testSdpBusyWhileConnecting_sdpRetried() {
-        // Perform first part of MAP connection logic.
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
+        initToConnectingState();
 
         // Send SDP Failed with status "busy"
         // Note: There's no way to validate the BluetoothDevice#sdpSearch call
@@ -1025,23 +964,13 @@ public class MapClientStateMachineTest {
         mMceStateMachine.sendMessage(msg);
 
         // Verify we move into the connected state
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
     }
 
     @Test
     public void testSdpBusyWhileConnectingAndRetryResultsReceivedAfterTimeout_resultsIgnored() {
-        // Perform first part of MAP connection logic.
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
+        initToConnectingState();
 
         // Send SDP Failed with status "busy"
         // Note: There's no way to validate the BluetoothDevice#sdpSearch call
@@ -1051,12 +980,14 @@ public class MapClientStateMachineTest {
         Message msg = Message.obtain(mHandler, MceStateMachine.MSG_CONNECTING_TIMEOUT);
         mMceStateMachine.sendMessage(msg);
 
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         // Verify we move into the disconnecting state
         verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
                 .sendBroadcastMultiplePermissions(
                         mIntentArgument.capture(),
                         any(String[].class),
                         any(BroadcastOptions.class));
+
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_DISCONNECTING);
 
         // Send successful SDP record, then send MAS Client connected
@@ -1069,44 +1000,24 @@ public class MapClientStateMachineTest {
 
     @Test
     public void testSdpFailedWithNoRecordWhileConnecting_deviceDisconnected() {
-        // Perform first part of MAP connection logic.
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
+        initToConnectingState();
 
         // Send SDP process success with no record found
         mMceStateMachine.sendSdpResult(MceStateMachine.SDP_SUCCESS, null);
 
         // Verify we move into the disconnecting state
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_DISCONNECTING);
     }
 
     @Test
     public void testSdpOrganicFailure_deviceDisconnected() {
-        // Perform first part of MAP connection logic.
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
+        initToConnectingState();
 
         // Send SDP Failed entirely
         mMceStateMachine.sendSdpResult(MceStateMachine.SDP_FAILED, null);
 
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_DISCONNECTING);
     }
 
@@ -1281,17 +1192,17 @@ public class MapClientStateMachineTest {
     }
 
     private void setupSdpRecordReceipt() {
-        // Perform first part of MAP connection logic.
-        verify(mMockMapClientService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .sendBroadcastMultiplePermissions(
-                        mIntentArgument.capture(),
-                        any(String[].class),
-                        any(BroadcastOptions.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
+        initToConnectingState();
 
         // Setup receipt of SDP record
         SdpMasRecord record = new SdpMasRecord(1, 1, 1, 1, 1, 1, "MasRecord");
         mMceStateMachine.sendSdpResult(MceStateMachine.SDP_SUCCESS, record);
+    }
+
+    private void initToConnectingState() {
+        // Perform first part of MAP connection logic.
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
     }
 
     private static class MockSmsContentProvider extends MockContentProvider {
