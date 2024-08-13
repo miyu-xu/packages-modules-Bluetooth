@@ -16,6 +16,23 @@
       "message": "@girardier@google.com for API review",
       "revId": "ef880523a8553f7a1d6b19e172f15b4353ed9ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0c0a1c2_ea4fdc88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-13T23:56:29Z",
+      "side": 1,
+      "message": "I agree that startVoiceRecognition does not need the permission check as it is not modifying ` telephony state`\n\nBut I am wondering, for the `startVoiceRecognition(null)` case, should we put behind a flag and ramp up instead? current change would be effective for all apps immediately",
+      "revId": "ef880523a8553f7a1d6b19e172f15b4353ed9ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
