@@ -1203,6 +1203,12 @@ public class RemoteDevices {
                             + " Connected: "
                             + device);
         } else {
+            /* Remove delayed UUID Intent due to disconnection */
+            BluetoothDevice remoteDevice = mSdpTracker.get(mSdpTracker.indexOf(device));
+            if (remoteDevice != null) {
+                mHandler.removeMessages(MESSAGE_UUID_INTENT, remoteDevice);
+            }
+
             deviceProperties.setConnectionHandle(BluetoothDevice.ERROR, transportLinkType);
             if (getBondState(device) == BluetoothDevice.BOND_BONDING) {
                 // Send PAIRING_CANCEL intent to dismiss any dialog requesting bonding.
