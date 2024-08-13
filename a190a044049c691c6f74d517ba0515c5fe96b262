@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcc7f168_abc9ce0f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-13T20:48:48Z",
+      "side": 1,
+      "message": "Great idea, I\u0027ll do it!",
+      "parentUuid": "a72053e7_390bcdfd",
+      "range": {
+        "startLine": 102,
+        "startChar": 28,
+        "endLine": 102,
+        "endChar": 65
+      },
+      "revId": "a190a044049c691c6f74d517ba0515c5fe96b262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd26d9e4_bb9f0fa4",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0cbc6a3_7436353f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-13T20:48:48Z",
+      "side": 1,
+      "message": "Great idea too, do you think just the last requested browsers or do we want to cache more? If AA requests items by chunks we might want more? I have added a timeout behavior to disconnect the browser, we can maybe use that and keep all children items in cache until the browser is disconnected? (though it might be a lot?)",
+      "parentUuid": "fd26d9e4_bb9f0fa4",
+      "range": {
+        "startLine": 386,
+        "startChar": 4,
+        "endLine": 386,
+        "endChar": 5
+      },
+      "revId": "a190a044049c691c6f74d517ba0515c5fe96b262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7eb84e4f_4c6b0bbf",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
         "patchSetId": 1
@@ -77,6 +125,30 @@
       "writtenOn": "2024-08-13T17:00:29Z",
       "side": 1,
       "message": "using `+` will implicitly use a stringBuilder for you.\nand I am not sure you want to have the \"\\n\" inside the toString of the object. That should be the responsibility of the caller no ?\n\n```suggestion\n    public String toString() {\n        return \"Browsable Package Name: \" + mPackageName;\n    }\n```",
+      "range": {
+        "startLine": 389,
+        "startChar": 2,
+        "endLine": 393,
+        "endChar": 5
+      },
+      "revId": "a190a044049c691c6f74d517ba0515c5fe96b262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e215da_d0d11c36",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-13T20:48:48Z",
+      "side": 1,
+      "message": "Honestly I just took what was done in the class used before browsing refactor :)\n\nI\u0027ll do what Sal suggested and test if using just a String works here",
+      "parentUuid": "7eb84e4f_4c6b0bbf",
       "range": {
         "startLine": 389,
         "startChar": 2,
