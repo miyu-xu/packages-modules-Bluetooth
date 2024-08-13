@@ -14,6 +14,7 @@ import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.TestLooperManager;
@@ -52,6 +53,7 @@ public class RemoteDevicesTest {
     private RemoteDevices mRemoteDevices;
     private HandlerThread mHandlerThread;
     private TestLooperManager mTestLooperManager;
+    private Handler mHandler;
 
     private Context mTargetContext;
     private BluetoothManager mBluetoothManager;
@@ -59,10 +61,13 @@ public class RemoteDevicesTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private AdapterService mAdapterService;
+    @Mock private AdapterNativeInterface mNativeInterface;
 
     @Before
     public void setUp() {
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        doReturn(mNativeInterface).when(mAdapterService).getNative();
 
         mDevice1 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR_1);
         mHandlerThread = new HandlerThread("RemoteDevicesTestHandlerThread");
@@ -80,6 +85,9 @@ public class RemoteDevicesTest {
         mRemoteDevices = new RemoteDevices(mAdapterService, mHandlerThread.getLooper());
         verify(mAdapterService, times(1)).getSystemService(Context.BLUETOOTH_SERVICE);
         verify(mAdapterService, times(1)).getSystemService(BluetoothManager.class);
+
+        mHandler = mRemoteDevices.getRemoteDevicesHandler();
+        Assert.assertNotNull(mHandler);
     }
 
     @After
@@ -818,6 +826,28 @@ public class RemoteDevicesTest {
     @Test
     public void testIsDeviceNull() {
         Assert.assertNull(mRemoteDevices.getDeviceProperties(null));
+    }
+
+    @Test
+    public void testInterruptedByDisconnectionFetchUuids() {
+        // Verify that a handler message is sent by the method call
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_LE);
+        Assert.assertTrue(mHandler.hasMessages(1 /* MESSAGE_UUID_INTENT */));
+
+        /* Device ACL state change to DISCONNECTED */
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+        mRemoteDevices.aclStateChangeCallback(
+                0,
+                Utils.getByteAddress(mDevice1),
+                AbstractionLayer.BT_ACL_STATE_DISCONNECTED,
+                2,
+                19,
+                BluetoothDevice.ERROR); // HCI code 19 remote terminated
+
+        Assert.assertFalse(mHandler.hasMessages(1 /* MESSAGE_UUID_INTENT */));
+        // Verify that message has been removed after ACL disconnection
+        Assert.assertTrue(mTestLooperManager.getMessageQueue().isIdle());
+        verify(mAdapterService, times(0)).sendUuidsInternal(any(), any());
     }
 
     private static void verifyBatteryLevelChangedIntent(
