@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f239a72_78c961dc",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1060347
+      },
+      "writtenOn": "2024-08-13T13:12:14Z",
+      "side": 1,
+      "message": "Are we sure this will not cause a regression on non-Automotive HSUM devices, for example an HSUM tablet?",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "6106273d4ce7159124dd67cf22196f7ed9bd08e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
