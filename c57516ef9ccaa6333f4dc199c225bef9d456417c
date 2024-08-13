@@ -16,6 +16,24 @@
       "message": "Should you also log when GATT discovery is finished ?\n\n```\n  bool results_for_bonding_device \u003d\n          (bd_addr \u003d\u003d pairing_cb.bd_addr || bd_addr \u003d\u003d pairing_cb.static_bdaddr);\n          \n  if (results_for_bonding_device) {\n      // success for GATT\n    bluetooth::metrics::LogGATTComplete(bd_addr, tBTA_STATUS::BTA_SUCCESS);\n  }\n  \n ```",
       "revId": "c57516ef9ccaa6333f4dc199c225bef9d456417c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a646e92b_3bd482e1",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1727,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-08-13T17:13:50Z",
+      "side": 1,
+      "message": "Currently, we are only covering classic SDP for now within the current scope. It would be interesting to cover GATT based SDP in the future",
+      "parentUuid": "c043cd49_ba3d8936",
+      "revId": "c57516ef9ccaa6333f4dc199c225bef9d456417c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
