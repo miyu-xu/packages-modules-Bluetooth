@@ -22,6 +22,30 @@
       },
       "revId": "9dfe56c725780389e86f603ce17e7904bb63e5e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f1cd762_32a92894",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-13T08:33:58Z",
+      "side": 1,
+      "message": "Got it, many thanks for the suggestion!",
+      "parentUuid": "65683dcd_4f6d2a10",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 0
+      },
+      "revId": "9dfe56c725780389e86f603ce17e7904bb63e5e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
