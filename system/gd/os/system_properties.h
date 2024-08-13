@@ -29,6 +29,9 @@ namespace os {
 static const std::string kIsDualModeAudioEnabledProperty =
         "persist.bluetooth.enable_dual_mode_audio";
 
+/* System Property to indicate if BCC event should not open SCO. */
+static const std::string kIsBccOpenScoDisallowed = "persist.bluetooth.is_bcc_open_sco_disallowed";
+
 // Get |property| keyed system property from supported platform, return std::nullopt if the property
 // does not exist or if the platform does not support system property
 std::optional<std::string> GetSystemProperty(const std::string& property);
