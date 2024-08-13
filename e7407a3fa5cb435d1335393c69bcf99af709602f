@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb66e56_5e9ec7e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-13T18:01:33Z",
+      "side": 1,
+      "message": "Thanks for fixing those BASS and the clean-up work.\nLGTM, if you have done the sanity tests to confirm nothing break, you can consider to add this to commit message. if not done yet, I\u0027d highly recommend to do so before merging those. Please feel free to mark this as resolved if testing is fine.",
+      "revId": "e7407a3fa5cb435d1335393c69bcf99af709602f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
