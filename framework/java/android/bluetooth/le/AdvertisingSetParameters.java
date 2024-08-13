@@ -80,7 +80,7 @@ public final class AdvertisingSetParameters implements Parcelable {
     public static final int TX_POWER_MIN = -127;
 
     /** Maximum value for TX power. */
-    public static final int TX_POWER_MAX = 1;
+    public static final int TX_POWER_MAX = 20;
 
     /** @hide */
     @IntDef(
