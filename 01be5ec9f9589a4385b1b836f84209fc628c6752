@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "203bf176_d0ea5243",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-13T11:36:43Z",
+      "side": 1,
+      "message": "Is there any reference about the definition? How about Iso packet?",
+      "revId": "01be5ec9f9589a4385b1b836f84209fc628c6752",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5b89d9_2d28f1a6",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-13T11:36:43Z",
+      "side": 1,
+      "message": "Q: Is it a legal packet to have packet type but no data?",
+      "revId": "01be5ec9f9589a4385b1b836f84209fc628c6752",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
