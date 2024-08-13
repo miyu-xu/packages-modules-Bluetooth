@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d514632_eb9bae51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-13T22:13:26Z",
+      "side": 1,
+      "message": "We have a 4-second timer for startup timer.  If it takes more than 0.5 seconds to find the HAL when we know it exists, we will get a lot of bugs about Bluetooth starting slowly.  In order to avoid that, we set a timer to point out that the system started Bluetooth without starting the HAL first.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 65
+      },
+      "revId": "b242f0acd3d3b294e49a6a5e0f075e83612e7ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "02345770_2edac079",
