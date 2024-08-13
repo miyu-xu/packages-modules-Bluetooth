@@ -467,15 +467,15 @@ struct smp_idle_terminate {
   void operator()(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) { body(p_cb, p_data); }
 };
 extern struct smp_idle_terminate smp_idle_terminate;
-// Name: smp_both_have_public_keys
+// Name: smp_have_both_public_keys
 // Params: tSMP_CB* p_cb, tSMP_INT_DATA* p_data
 // Returns: void
-struct smp_both_have_public_keys {
+struct smp_have_both_public_keys {
   std::function<void(tSMP_CB* p_cb, tSMP_INT_DATA* p_data)> body{
           [](tSMP_CB* /* p_cb */, tSMP_INT_DATA* /* p_data */) {}};
   void operator()(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) { body(p_cb, p_data); }
 };
-extern struct smp_both_have_public_keys smp_both_have_public_keys;
+extern struct smp_have_both_public_keys smp_have_both_public_keys;
 // Name: smp_start_secure_connection_phase1
 // Params: tSMP_CB* p_cb, tSMP_INT_DATA* p_data
 // Returns: void
