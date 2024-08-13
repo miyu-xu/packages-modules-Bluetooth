@@ -119,6 +119,7 @@ void SyspropsModule::parse_config(std::string file_path) {
           // SCO
           "bluetooth.sco.disable_enhanced_connection",
           "bluetooth.sco.swb_supported",
+          "persist.bluetooth.is_bcc_open_sco_allowed",
           // Profile
           "bluetooth.hid.wait_ms_after_uhid_open",
           "persist.bluetooth.avrcpcontrolversion",
