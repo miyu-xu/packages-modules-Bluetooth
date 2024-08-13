@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4defb15c_85610042",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-08-13T22:52:06Z",
+      "side": 1,
+      "message": "The problem is this isn\u0027t \"just\" an Error (or Warning) in logcat.  It\u0027s a Fatal Exception.\n\nThere are some devices where, under load and with lazy HALs, it take a little more than 0.5 seconds sometimes.  Those devices self identify by setting ro.hw_timeout_multiplier.  Devices not claiming to be slower will still get the same 0.5 second behavior as before.\n\nIf this was an Error in logcat, I\u0027d probably not argue.  Although it would be reasonable for you to say that if it was an Error in logcat, it would be easily overlooked and not yell as loudly/clearly as you\u0027re wanting the system to in this case.\n\nI\u0027m putting up a bit of a counter-argument because a Fatal Exception seems to really say \"things went hopelessly wrong\", when on certain classes of hardware, it\u0027s much more of \"I just needed another 0.1 second or so\".\n\nI get that users expect Bluetooth to come up pretty quickly.  But folks on Pixel-level hardware have different expectations than those on $80 devices, and this code runs on both.\n\nI\u0027m not trying to be a pain about this, and do see where you\u0027re coming from.  I\u0027m just seeing if there\u0027s a way to have low end hardware give a reasonable (but not great) user experience, while not throwing a Fatal Exception.",
+      "parentUuid": "4d514632_eb9bae51",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 65
+      },
+      "revId": "b242f0acd3d3b294e49a6a5e0f075e83612e7ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "02345770_2edac079",
