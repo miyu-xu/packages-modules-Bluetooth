@@ -588,14 +588,10 @@ public class HapClientServiceTest {
 
     @Test
     public void testSetPresetNameForGroup() throws Exception {
-        InOrder order = inOrder(mAdapterService);
         doReturn(new ParcelUuid[] {BluetoothUuid.HAS})
                 .when(mAdapterService)
                 .getRemoteUuids(any(BluetoothDevice.class));
         int test_group = 0x02;
-        for (BluetoothDevice device : mCsipService.getGroupDevicesOrdered(test_group)) {
-            testConnectingDevice(order, device);
-        }
 
         int flags = 0x21;
         mNativeCallback.onFeaturesUpdate(getByteAddress(mDevice), flags);
