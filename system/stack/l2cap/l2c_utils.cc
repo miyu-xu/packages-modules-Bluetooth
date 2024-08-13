@@ -21,6 +21,7 @@
  *  This file contains L2CAP utility functions
  *
  ******************************************************************************/
+
 #define LOG_TAG "l2c_utils"
 
 #include <bluetooth/log.h>
@@ -345,7 +346,7 @@ static BT_HDR* l2cu_build_header(tL2C_LCB* p_lcb, uint16_t len, uint8_t cmd, uin
  * Returns          void
  *
  ******************************************************************************/
-static void l2cu_adj_id(tL2C_LCB* p_lcb) {
+void l2cu_adj_id(tL2C_LCB* p_lcb) {
   if (p_lcb->signal_id == 0) {
     p_lcb->signal_id++;
   }
@@ -394,6 +395,42 @@ void l2cu_send_peer_cmd_reject(tL2C_LCB* p_lcb, uint16_t reason, uint8_t rem_id,
 
   if (param_len >= 4) {
     UINT16_TO_STREAM(p, p2);
+  }
+
+  l2c_link_check_send_pkts(p_lcb, 0, p_buf);
+}
+
+/*******************************************************************************
+ *
+ * Function         l2cu_send_peer_echo_req
+ *
+ * Description      Build and send an L2CAP "echo request" message
+ *                  to the peer. Note that we do not currently allow
+ *                  data in the echo request.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void l2cu_send_peer_echo_req(tL2C_LCB* p_lcb, uint8_t* p_data,
+                             uint16_t data_len) {
+  BT_HDR* p_buf;
+  uint8_t* p;
+
+  p_lcb->signal_id++;
+  l2cu_adj_id(p_lcb); /* check for wrap to '0' */
+
+  p_buf = l2cu_build_header(p_lcb, (uint16_t)(L2CAP_ECHO_REQ_LEN + data_len),
+                            L2CAP_CMD_ECHO_REQ, p_lcb->signal_id);
+  if (p_buf == NULL) {
+    log::debug("L2CAP - no buffer for echo_req");
+    return;
+  }
+
+  p = (uint8_t*)(p_buf + 1) + L2CAP_SEND_CMD_OFFSET + HCI_DATA_PREAMBLE_SIZE +
+      L2CAP_PKT_OVERHEAD + L2CAP_CMD_OVERHEAD;
+
+  if (data_len) {
+    ARRAY_TO_STREAM(p, p_data, data_len);
   }
 
   l2c_link_check_send_pkts(p_lcb, 0, p_buf);
