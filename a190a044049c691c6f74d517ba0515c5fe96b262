@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a72053e7_390bcdfd",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-13T17:26:18Z",
+      "side": 1,
+      "message": "Up to you, but we _may_ want to print the full component name, not just the package name, as it\u0027s technically possible in the eyes of the Media Framework that a package has more than one media browser service.",
+      "range": {
+        "startLine": 102,
+        "startChar": 28,
+        "endLine": 102,
+        "endChar": 65
+      },
+      "revId": "a190a044049c691c6f74d517ba0515c5fe96b262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd26d9e4_bb9f0fa4",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-13T17:26:18Z",
+      "side": 1,
+      "message": "Perhaps longer term, but it might be useful to cache some debug info about the folders recently requested and what their returns contents were.\n\nThis could probably go in a full `dump()` function versus something like a `toString()` though.\n\nPerhaps the native layer is a better place to dump that as well, too. But it would help in cases like the recent talks with YTM where there\u0027s confusion on what the state of the browse tree is on the phone.",
+      "range": {
+        "startLine": 386,
+        "startChar": 4,
+        "endLine": 386,
+        "endChar": 5
+      },
+      "revId": "a190a044049c691c6f74d517ba0515c5fe96b262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7eb84e4f_4c6b0bbf",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
         "patchSetId": 1
