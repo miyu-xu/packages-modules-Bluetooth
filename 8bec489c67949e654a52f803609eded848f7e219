@@ -16,6 +16,63 @@
       "message": "Hi, PTAL, thanks!",
       "revId": "8bec489c67949e654a52f803609eded848f7e219",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba73450c_0257fee3",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-13T11:27:17Z",
+      "side": 1,
+      "message": "Now this is not exclusive for Linux, the magic term looks strange to me. Can we \nrename it as `timestamp_data` or `timestamp_val` and move the conversion logic into the `timestamp_us` implementation?",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 26
+      },
+      "revId": "8bec489c67949e654a52f803609eded848f7e219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "364c2c6f_6c163263",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-13T11:27:17Z",
+      "side": 1,
+      "message": "nit: move this to above of SnoopPacketPreamble definition since it is used in the impl.",
+      "revId": "8bec489c67949e654a52f803609eded848f7e219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23df5a8_84afbf77",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-13T11:27:17Z",
+      "side": 1,
+      "message": "nit: move this to the same block of above impl SnoopPacketPreamble.",
+      "revId": "8bec489c67949e654a52f803609eded848f7e219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
