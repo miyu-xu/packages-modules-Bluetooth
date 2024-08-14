@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c750701d_cbb192b7",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-08-14T22:08:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83cc5888_4ef49dd6",
+      "range": {
+        "startLine": 13,
+        "startChar": 3,
+        "endLine": 13,
+        "endChar": 53
+      },
+      "revId": "79214ca5729977ecdf3b9e526ce0c4b9a16e4e81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f55876c4_a78520fc",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-13T23:16:50Z",
       "side": 1,
       "message": "Consider updating this to `excludedMessageType` to match the new (much more readable!) convention.",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 27
+      },
+      "revId": "79214ca5729977ecdf3b9e526ce0c4b9a16e4e81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d58c512_e81fe02d",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-08-14T22:08:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f55876c4_a78520fc",
       "range": {
         "startLine": 28,
         "startChar": 16,
