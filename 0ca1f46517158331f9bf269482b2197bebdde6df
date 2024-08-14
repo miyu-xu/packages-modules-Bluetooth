@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acafd0f9_3aed4a28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-14T18:06:04Z",
+      "side": 1,
+      "message": "Why do we need to perform the disconnection / cleanup in 2 times ?\nCan\u0027t it be cleanup directly in the first call to Disconnect ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 44
+      },
+      "revId": "0ca1f46517158331f9bf269482b2197bebdde6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c48b9218_82dcb36c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-14T18:06:04Z",
+      "side": 1,
+      "message": "Which test is matching this ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 23
+      },
+      "revId": "0ca1f46517158331f9bf269482b2197bebdde6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
