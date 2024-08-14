@@ -225,7 +225,6 @@ public:
 
       auto conn_id = device->conn_id;
       auto is_connecting_actively = device->is_connecting_actively;
-      devices_.erase(device);
 
       if (conn_id != GATT_INVALID_CONN_ID) {
         BTA_GATTC_Close(conn_id);
@@ -1898,6 +1897,9 @@ private:
     auto peer_disconnected =
             (evt.reason == GATT_CONN_TIMEOUT) || (evt.reason == GATT_CONN_TERMINATE_PEER_USER);
     DoDisconnectCleanUp(*device, peer_disconnected ? false : true);
+
+    /* Remove device from list after it was cleaned up */
+    devices_.erase(device);
 
     /* Connect in background - is this ok? */
     if (peer_disconnected) {
