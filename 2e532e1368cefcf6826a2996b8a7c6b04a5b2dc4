@@ -22,6 +22,30 @@
       },
       "revId": "2e532e1368cefcf6826a2996b8a7c6b04a5b2dc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b713934b_6f95e9e1",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1695414
+      },
+      "writtenOn": "2024-08-14T23:02:25Z",
+      "side": 1,
+      "message": "+1 for SystemProperties.get()",
+      "parentUuid": "5c70d0f7_43671c3f",
+      "range": {
+        "startLine": 58,
+        "startChar": 16,
+        "endLine": 58,
+        "endChar": 81
+      },
+      "revId": "2e532e1368cefcf6826a2996b8a7c6b04a5b2dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
