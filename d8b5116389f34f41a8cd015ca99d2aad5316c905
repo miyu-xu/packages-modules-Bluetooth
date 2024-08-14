@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f88d4dc_d2ac11c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-14T00:40:21Z",
+      "side": 1,
+      "message": "just fyi, in the commit message\nFlag: Exempt, covered by unit test.",
+      "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7ef8d1e_5dcf4932",
@@ -68,6 +85,24 @@
       "side": 1,
       "message": "Ok - we can check the primary device, this would be clear then. Thank You!\n\nisBroadcastReadyToBeReActivated should cover a case when device is not yet broadcasting (is actively changing to broadcast) and mUnicastGroupIdDeactivatedForBroadcastTransition is for scenario when device is broadcasting.",
       "parentUuid": "ac100ca1_a99cf529",
+      "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68fcee77_0579f8c3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2837,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-14T00:40:21Z",
+      "side": 1,
+      "message": "sounds good.",
+      "parentUuid": "60396ce8_032cdc42",
       "revId": "d8b5116389f34f41a8cd015ca99d2aad5316c905",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
