@@ -198,6 +198,11 @@ public class A2dpServiceTest {
         mA2dpService.stop();
         dispatchAtLeastOneMessage();
 
+        // Verify that the intent CONNECTION_STATE_CHANGED is generated
+        // for the existing connections.
+        verifyConnectionStateIntent(
+                sTestDevice, BluetoothProfile.STATE_DISCONNECTED, BluetoothProfile.STATE_CONNECTED);
+
         // Verify that setActiveDevice(null) was called during shutdown
         verify(mMockNativeInterface).setActiveDevice(null);
         mA2dpService.start();
