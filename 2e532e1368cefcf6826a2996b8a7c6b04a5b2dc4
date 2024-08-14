@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c70d0f7_43671c3f",
+        "filename": "service/src/BluetoothService.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-14T22:24:05Z",
+      "side": 1,
+      "message": "Did we want a fully stabilized property/API, or did we want to leverage SystemProperties.get() until the dust settles so we can make sure we have the actual right mechanism here?\n\nI\u0027m fine with whatever William wants, though our chats in the separate thread indicated we wanted the latter for now if its acceptable to all parties.",
+      "range": {
+        "startLine": 58,
+        "startChar": 16,
+        "endLine": 58,
+        "endChar": 81
+      },
+      "revId": "2e532e1368cefcf6826a2996b8a7c6b04a5b2dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
