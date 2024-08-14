@@ -620,7 +620,7 @@ static void read_dis_cback(const RawAddress& bd_addr, tDIS_VALUE* p_dis_value) {
 static void gatt_channel_congestion(tGATT_TCB* p_tcb, bool congested) {
   uint8_t i = 0;
   tGATT_REG* p_reg = NULL;
-  uint16_t conn_id;
+  tCONN_ID conn_id;
 
   /* if uncongested, check to see if there is any more pending data */
   if (p_tcb != NULL && !congested) {
@@ -630,7 +630,7 @@ static void gatt_channel_congestion(tGATT_TCB* p_tcb, bool congested) {
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
       if (p_reg->in_use && p_reg->app_cb.p_congestion_cb) {
-        conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_congestion_cb)(conn_id, congested);
       }
     }
@@ -638,7 +638,7 @@ static void gatt_channel_congestion(tGATT_TCB* p_tcb, bool congested) {
     for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
       if (p_reg->in_use) {
         if (p_reg->app_cb.p_congestion_cb) {
-          conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+          conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
           (*p_reg->app_cb.p_congestion_cb)(conn_id, congested);
         }
       }
@@ -664,7 +664,7 @@ void gatt_notify_phy_updated(tHCI_STATUS status, uint16_t handle, uint8_t tx_phy
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
       if (p_reg->in_use && p_reg->app_cb.p_phy_update_cb) {
-        uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_phy_update_cb)(p_reg->gatt_if, conn_id, tx_phy, rx_phy, gatt_status);
       }
     }
@@ -672,7 +672,7 @@ void gatt_notify_phy_updated(tHCI_STATUS status, uint16_t handle, uint8_t tx_phy
     for (int i = 0; i < GATT_MAX_APPS; i++) {
       tGATT_REG* p_reg = &gatt_cb.cl_rcb[i];
       if (p_reg->in_use && p_reg->app_cb.p_phy_update_cb) {
-        uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_phy_update_cb)(p_reg->gatt_if, conn_id, tx_phy, rx_phy, gatt_status);
       }
     }
@@ -690,7 +690,7 @@ void gatt_notify_conn_update(const RawAddress& remote, uint16_t interval, uint16
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
       if (p_reg->in_use && p_reg->app_cb.p_conn_update_cb) {
-        uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_conn_update_cb)(p_reg->gatt_if, conn_id, interval, latency, timeout,
                                           static_cast<tGATT_STATUS>(status));
       }
@@ -699,7 +699,7 @@ void gatt_notify_conn_update(const RawAddress& remote, uint16_t interval, uint16
     for (int i = 0; i < GATT_MAX_APPS; i++) {
       tGATT_REG* p_reg = &gatt_cb.cl_rcb[i];
       if (p_reg->in_use && p_reg->app_cb.p_conn_update_cb) {
-        uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_conn_update_cb)(p_reg->gatt_if, conn_id, interval, latency, timeout,
                                           static_cast<tGATT_STATUS>(status));
       }
@@ -723,7 +723,7 @@ void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor, uint16
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
       if (p_reg->in_use && p_reg->app_cb.p_subrate_chg_cb) {
-        uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_subrate_chg_cb)(p_reg->gatt_if, conn_id, subrate_factor, latency,
                                           cont_num, timeout, static_cast<tGATT_STATUS>(status));
       }
@@ -732,7 +732,7 @@ void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor, uint16
     for (int i = 0; i < GATT_MAX_APPS; i++) {
       tGATT_REG* p_reg = &gatt_cb.cl_rcb[i];
       if (p_reg->in_use && p_reg->app_cb.p_subrate_chg_cb) {
-        uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_subrate_chg_cb)(p_reg->gatt_if, conn_id, subrate_factor, latency,
                                           cont_num, timeout, static_cast<tGATT_STATUS>(status));
       }
@@ -973,7 +973,7 @@ static void gatt_l2cif_congest_cback(uint16_t lcid, bool congested) {
 static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
   uint8_t i;
   tGATT_REG* p_reg;
-  uint16_t conn_id;
+  tCONN_ID conn_id;
 
   std::set<tGATT_IF> apps = {};
   if (bluetooth::common::init_flags::use_unified_connection_manager_is_enabled()) {
@@ -1006,7 +1006,7 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
       }
 
       if (p_reg->app_cb.p_conn_cb) {
-        conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, p_tcb->peer_bda, conn_id, kGattConnected,
                                    GATT_CONN_OK, p_tcb->transport);
       }
@@ -1031,7 +1031,7 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
       }
 
       if (p_reg->app_cb.p_conn_cb) {
-        conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+        conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, p_tcb->peer_bda, conn_id, kGattConnected,
                                    GATT_CONN_OK, p_tcb->transport);
       }
@@ -1152,7 +1152,7 @@ void gatt_send_srv_chg_ind(const RawAddress& peer_bda) {
     return;
   }
 
-  uint16_t conn_id = gatt_profile_find_conn_id_by_bd_addr(peer_bda);
+  tCONN_ID conn_id = gatt_profile_find_conn_id_by_bd_addr(peer_bda);
   if (conn_id == GATT_INVALID_CONN_ID) {
     log::error("Unable to find conn_id for {}", peer_bda);
     return;

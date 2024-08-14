@@ -111,7 +111,7 @@ typedef struct {
 
 typedef struct {
   BT_HDR_RIGID hdr;
-  uint16_t conn_id;
+  tCONN_ID conn_id;
   tGATT_DISCONN_REASON reason;
 } tBTA_HH_LE_CLOSE;
 
@@ -213,7 +213,7 @@ typedef struct {
   tBTA_HH_STATUS status;
   tBTM_STATUS btm_status;
   tBTA_HH_LE_HID_SRVC hid_srvc;
-  uint16_t conn_id;
+  tCONN_ID conn_id;
   bool in_bg_conn;
   uint8_t clt_cfg_idx;
   bool scps_supported;
