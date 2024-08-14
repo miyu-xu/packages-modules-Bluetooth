@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f8036d_d993bb8c",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-14T08:24:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c6f39d8_6b3f34a9",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 26
+      },
+      "revId": "8bec489c67949e654a52f803609eded848f7e219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "364c2c6f_6c163263",
