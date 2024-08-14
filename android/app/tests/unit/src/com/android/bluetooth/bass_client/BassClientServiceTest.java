@@ -3874,7 +3874,9 @@ public class BassClientServiceTest {
                                         .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
                         null,
                         (long) 0x00000000);
-                verify(mLeAudioService).activeBroadcastAssistantNotification(eq(false));
+                if (!Flags.leaudioBigDependsOnAudioState()) {
+                    verify(mLeAudioService).activeBroadcastAssistantNotification(eq(false));
+                }
             } else if (sm.getDevice().equals(mCurrentDevice1)) {
                 injectRemoteSourceStateChanged(
                         sm,
