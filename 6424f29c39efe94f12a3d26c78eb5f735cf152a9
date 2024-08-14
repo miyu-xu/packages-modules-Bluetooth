@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5381e8e7_7c291fc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-08-14T16:20:07Z",
+      "side": 1,
+      "message": "It looks like CLs in this project all need DrNo-Review, even on git_main.\n\nWhile it looks like I can provide +1 for DrNo-Review, since I don\u0027t know why DrNo is enforced in this project, I don\u0027t want to misuse my access.  Naively adding folks who have given DrNo on a couple recent reviews in this project.",
+      "revId": "6424f29c39efe94f12a3d26c78eb5f735cf152a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
