@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e986f89_9df4ea8a",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-14T18:25:03Z",
+      "side": 1,
+      "message": "I noticed that in `Disconnect.enter()` we are broadcasting prior to stopping the audio. Should we do the same (per symmetry) ? (or even better, can we make the transition happen somehow ? (to trigger the currentState.onExit and the disconnect.enter al together ))\n\nAlso I don\u0027t like very much the wording of the comment.\nwhat about something like ?\n`Broadcast CONNECTION_STATE_CHANGED when A2dpService is turned off while the device is connected`",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 9
+      },
+      "revId": "85a9e05e152729b78c8bde92c1bed014f2484fb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
