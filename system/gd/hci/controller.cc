@@ -356,6 +356,14 @@ struct Controller::impl {
     log::assert_that(status == ErrorCode::SUCCESS, "Status {}", ErrorCodeText(status));
     uint8_t page_number = complete_view.GetPageNumber();
     extended_lmp_features_array_.push_back(complete_view.GetExtendedLmpFeatures());
+    if (page_number == 0 && local_version_information_.manufacturer_name_ == 2 /* Intel */ &&
+        static_cast<uint8_t>(local_version_information_.lmp_version_) == 8 /* v4.2 */ &&
+        local_version_information_.lmp_subversion_ == 0x1100 /* The Intel AC7265 subversion */
+    ) {
+      // Override the packet boundary feature bit on Intel AC7265 because it don't support well.
+      extended_lmp_features_array_.back() &=
+              ~static_cast<uint64_t>(LMPFeaturesPage0Bits::NON_FLUSHABLE_PACKET_BOUNDARY_FLAG);
+    }
     bluetooth::os::LogMetricBluetoothLocalSupportedFeatures(page_number,
                                                             complete_view.GetExtendedLmpFeatures());
     // Query all extended features
