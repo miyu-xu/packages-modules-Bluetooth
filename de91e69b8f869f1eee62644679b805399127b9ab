@@ -16,6 +16,24 @@
       "message": "Refactor is not a valid flag exemption 😊 Strict mechanical refactor is",
       "revId": "de91e69b8f869f1eee62644679b805399127b9ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "121a65f7_da1e06bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-15T02:09:15Z",
+      "side": 1,
+      "message": "That what this was meant to be. According to go/android-flags-guidelines#exceptions-anchor\n\n\u003e Mechanical refactors (see previous section): `Flag: EXEMPT refactor`",
+      "parentUuid": "cc072699_c2e58ae0",
+      "revId": "de91e69b8f869f1eee62644679b805399127b9ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
