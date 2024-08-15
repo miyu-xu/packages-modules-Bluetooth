@@ -356,6 +356,11 @@ struct Controller::impl {
     log::assert_that(status == ErrorCode::SUCCESS, "Status {}", ErrorCodeText(status));
     uint8_t page_number = complete_view.GetPageNumber();
     extended_lmp_features_array_.push_back(complete_view.GetExtendedLmpFeatures());
+    if (page_number == 0 &&
+        bluetooth::os::GetSystemPropertyBool("bluetooth.core.disable_packet_boundary", false)) {
+      // Override the packet boundary feature bit on some old controllers that don't support well.
+      extended_lmp_features_array_.back() &= ~(0x1ULL << 54);
+    }
     bluetooth::os::LogMetricBluetoothLocalSupportedFeatures(page_number,
                                                             complete_view.GetExtendedLmpFeatures());
     // Query all extended features
