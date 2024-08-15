@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6272fd3_b700cb66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-15T08:33:15Z",
+      "side": 1,
+      "message": "Hi @mylesgw@google.com, do you think this needs a if TARGET_FLOSS guard?",
+      "revId": "88948759e9434a3c332ba7371aa1ec4695de1e9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
