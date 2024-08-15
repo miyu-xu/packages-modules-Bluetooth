@@ -33,6 +33,41 @@
       "message": "invite BT HAL owner to take a look",
       "revId": "72fe6189c5d8679f57ad938f99dce87823a2473d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9bfd2ec_c1d6fade",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T17:19:33Z",
+      "side": 1,
+      "message": "If you update the commit message to match our team\u0027s style, I\u0027ll +2 and get Dr. No for it.",
+      "revId": "72fe6189c5d8679f57ad938f99dce87823a2473d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1420a63_cbf15bea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T17:19:33Z",
+      "side": 1,
+      "message": "Thanks",
+      "parentUuid": "d4df7203_c9917173",
+      "revId": "72fe6189c5d8679f57ad938f99dce87823a2473d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
