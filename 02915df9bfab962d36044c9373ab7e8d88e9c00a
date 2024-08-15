@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76b32609_2fb68cdc",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T16:25:07Z",
+      "side": 1,
+      "message": "Can we move this property check into the controller?\nIn packages/modules/Bluetooth/system/gd/hci/controller.cc\nwe could change read_local_extended_features_complete_handler to mask out that bit if the controller does not support it.  It would be even better if we could specify which controllers don\u0027t support it, so we don\u0027t have to use a sysprop for this.",
+      "range": {
+        "startLine": 1562,
+        "startChar": 56,
+        "endLine": 1562,
+        "endChar": 69
+      },
+      "revId": "02915df9bfab962d36044c9373ab7e8d88e9c00a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
