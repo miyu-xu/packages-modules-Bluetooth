@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373b2746_2fec43fb",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-08-15T18:29:53Z",
+      "side": 1,
+      "message": "nit: double negatives could potentially be confusing. If one were to only see this definition `MESSAGE_TYPE_NONE`, the initial reaction would be that we don\u0027t want any messages, but then to see it assigned to the field `excludedMessageTypes \u003d MESSAGE_TYPE_NONE`, one would need to see a double negative to realize we\u0027re actually asking for all message types.\n\nPerhaps rename it something like `NO_MESSAGE_TYPES_EXCLUDED`?",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 46
+      },
+      "revId": "490919db11b6ae7082b1bf413adb8857c8621102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0182ca9c_ed437a8b",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-08-15T18:29:53Z",
+      "side": 1,
+      "message": "I think the original author\u0027s intent was to keep the parameter names consistent with the parameter names in the specs, e.g., Table 5.10 of the specs. Admittedly, the specs did a bad job with naming, but I would still have kept this as `messageType`.",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 36
+      },
+      "revId": "490919db11b6ae7082b1bf413adb8857c8621102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
