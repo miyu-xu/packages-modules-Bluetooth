@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d69113_39a8d4e7",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-08-15T18:27:10Z",
+      "side": 1,
+      "message": "nit: double negatives could potentially be confusing. If one were to only see this definition `MESSAGE_TYPE_NONE`, the initial reaction would be that we don\u0027t want any messages, but then to see it assigned to the field `excludedMessageTypes \u003d MESSAGE_TYPE_NONE`, one would need to see a double negative to realize we\u0027re actually asking for all message types.\n\nPerhaps rename it something like `NO_MESSAGE_TYPES_EXCLUDED`?",
+      "parentUuid": "c750701d_cbb192b7",
+      "range": {
+        "startLine": 13,
+        "startChar": 3,
+        "endLine": 13,
+        "endChar": 53
+      },
+      "revId": "79214ca5729977ecdf3b9e526ce0c4b9a16e4e81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f55876c4_a78520fc",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "f55876c4_a78520fc",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 27
+      },
+      "revId": "79214ca5729977ecdf3b9e526ce0c4b9a16e4e81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6376262_405230d8",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-08-15T18:27:10Z",
+      "side": 1,
+      "message": "I think the original author\u0027s intent was to keep the parameter names consistent with the parameter names in the specs, e.g., Table 5.10 of the specs. Admittedly, the specs did a bad job with naming, but I would still have kept this as `messageType`.",
+      "parentUuid": "2d58c512_e81fe02d",
       "range": {
         "startLine": 28,
         "startChar": 16,
