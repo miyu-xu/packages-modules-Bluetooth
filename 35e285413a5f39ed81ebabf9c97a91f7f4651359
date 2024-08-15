@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e374d5_98e8960d",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-15T20:02:09Z",
+      "side": 1,
+      "message": "nit:\nWhen adding logic behind a flag, the flag check should be the first of the if",
+      "range": {
+        "startLine": 131,
+        "startChar": 19,
+        "endLine": 131,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "23bea8d1_f1c9c9b1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 129,
+                "startChar": 0,
+                "endLine": 132,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.a2dpBroadcastConnectionStateWhenTurnedOff()\n                \u0026\u0026 mConnectionState !\u003d BluetoothProfile.STATE_DISCONNECTED\n                \u0026\u0026 mLastConnectionState !\u003d -1) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "35e285413a5f39ed81ebabf9c97a91f7f4651359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
