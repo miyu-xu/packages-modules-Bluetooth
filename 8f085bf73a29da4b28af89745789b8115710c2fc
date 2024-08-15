@@ -1,0 +1,266 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9ab1b95_4938732f",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:58:03Z",
+      "side": 1,
+      "message": "I would prefer only saving the data when it is complete.  If there is cached data, remote_supported_features_ and vendor_specific_characteristics_ were already read.  I think it will simplify the code a lot without degrading performance.\n```suggestion\n  struct CachedRasData {\n    CachedRasData(RawAddress address, uint32_t remote_supported_features, const std::vector\u003cVendorSpecificCharacteristic\u003e\u0026 vendor_specific_characteristics) : address_(address), remote_supported_features_(remote_supported_features), vendor_specific_characteristics_(vendor_specific_characteristics) {}\n    RawAddress address_;\n    uint32_t remote_supported_features_;\n    const std::vector\u003cVendorSpecificCharacteristic\u003e vendor_specific_characteristics_;\n  };\n```",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 4
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3710073f_31270c3e",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:58:03Z",
+      "side": 1,
+      "message": "This seems unrelated.  It probably would have been better in a separate CL.",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 32
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19371b2_72f6a0dc",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:58:03Z",
+      "side": 1,
+      "message": "Can we pass an extra parameter to this function, or define a new one OnReadLastCharacteristicCallback ?\n\nI feel like pending_read_command_counter is a bit of overkill.",
+      "range": {
+        "startLine": 268,
+        "startChar": 28,
+        "endLine": 268,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f4083f77_8e1739df",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 268,
+                "startChar": 0,
+                "endLine": 269,
+                "endChar": 0
+              },
+              "replacement": "                  instance-\u003eOnReadCharacteristicCallback(conn_id, status, handle, len, value, data,\n                                                         true);\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 293,
+                "startChar": 0,
+                "endLine": 294,
+                "endChar": 0
+              },
+              "replacement": "                instance-\u003eOnReadCharacteristicCallback(conn_id, status, handle, len, value, data,\n                                                       true);\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 595,
+                "startChar": 0,
+                "endLine": 596,
+                "endChar": 0
+              },
+              "replacement": "                                    uint16_t len, uint8_t* value, void* data, bool last) {\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 638,
+                "startChar": 0,
+                "endLine": 639,
+                "endChar": 0
+              },
+              "replacement": "    if (last) {\n      CheckReadComplete(tracker);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede11c18_ed82abed",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:58:03Z",
+      "side": 1,
+      "message": "I feel like the check is only the beginning of what this does.",
+      "range": {
+        "startLine": 301,
+        "startChar": 7,
+        "endLine": 301,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e0d50366_dff17174",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 298,
+                "startChar": 0,
+                "endLine": 299,
+                "endChar": 0
+              },
+              "replacement": "    CheckReadCompleteAndSubscribe(tracker);\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 301,
+                "startChar": 0,
+                "endLine": 302,
+                "endChar": 0
+              },
+              "replacement": "  void CheckReadCompleteAndSubscribe(std::shared_ptr\u003cRasTracker\u003e tracker) {\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 638,
+                "startChar": 0,
+                "endLine": 639,
+                "endChar": 0
+              },
+              "replacement": "    CheckReadCompleteAndSubscribe(tracker);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "749202fc_ca6a993e",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:58:03Z",
+      "side": 1,
+      "message": "I would prefer a StoreCachedData that is only called once, on the last read.",
+      "range": {
+        "startLine": 639,
+        "startChar": 0,
+        "endLine": 639,
+        "endChar": 30
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ebe2a88_41e977b3",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:58:03Z",
+      "side": 1,
+      "message": "Should we use std::find?\n\nShould cached_data be a map?\n\nIt feels a little awkward to use a vector here.",
+      "range": {
+        "startLine": 647,
+        "startChar": 0,
+        "endLine": 653,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "91003a5a_4fe703ee",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 647,
+                "startChar": 0,
+                "endLine": 655,
+                "endChar": 0
+              },
+              "replacement": "    auto it \u003d std::find_if(cached_data_.begin(), cached_data_.end(), [tracker](const auto\u0026 data) {\n      return data.address_ \u003d\u003d tracker-\u003eaddress_;\n    });\n    if (it \u003d\u003d cached_data_.end()) {\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 662,
+                "startChar": 0,
+                "endLine": 663,
+                "endChar": 0
+              },
+              "replacement": "      it \u003d cached_data_.end() - 1;\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 664,
+                "startChar": 0,
+                "endLine": 666,
+                "endChar": 0
+              },
+              "replacement": "    it-\u003eremote_supported_features_ \u003d tracker-\u003eremote_supported_features_;\n    it-\u003evendor_specific_characteristics_ \u003d tracker-\u003evendor_specific_characteristics_;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
