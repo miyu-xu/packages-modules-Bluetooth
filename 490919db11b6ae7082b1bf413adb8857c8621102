@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afc38335_990c42ff",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-08-15T20:15:18Z",
+      "side": 1,
+      "message": "will keep it consistent to the rest of the filters for now",
+      "parentUuid": "373b2746_2fec43fb",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 46
+      },
+      "revId": "490919db11b6ae7082b1bf413adb8857c8621102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0182ca9c_ed437a8b",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-15T18:29:53Z",
       "side": 1,
       "message": "I think the original author\u0027s intent was to keep the parameter names consistent with the parameter names in the specs, e.g., Table 5.10 of the specs. Admittedly, the specs did a bad job with naming, but I would still have kept this as `messageType`.",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 36
+      },
+      "revId": "490919db11b6ae7082b1bf413adb8857c8621102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d08b4a36_d37a2674",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-08-15T20:15:18Z",
+      "side": 1,
+      "message": "will keep excludedMessageTypes for readability - should hopefully be more readable even to those who are not familiar with spec",
+      "parentUuid": "0182ca9c_ed437a8b",
       "range": {
         "startLine": 28,
         "startChar": 16,
