@@ -16,6 +16,24 @@
       "message": "Hi Yuyang, we recently discovered that this CL breaks the SWB on ChromeOS. It is because we don\u0027t offload the encoding/decoding to DSP. I\u0027m not sure if this is the correct way to fix this. Could you take a look? Thanks!",
       "revId": "5504dd36db850dd31d5a4baaed4d5088cbebe84a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe203ecf_70782ccb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-15T16:55:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1eb6f114_70690e3c",
+      "revId": "5504dd36db850dd31d5a4baaed4d5088cbebe84a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
