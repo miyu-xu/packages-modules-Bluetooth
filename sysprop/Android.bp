@@ -12,6 +12,7 @@ sysprop_library {
         "bta.sysprop",
         "device_id.sysprop",
         "hfp.sysprop",
+        "system_service.sysprop",
     ],
     property_owner: "Platform",
     api_packages: ["android.sysprop"],

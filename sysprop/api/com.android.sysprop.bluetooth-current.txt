@@ -1,0 +1,7 @@
+props {
+  module: "android.sysprop.bluetooth.SystemServiceProperties"
+  prop {
+    api_name: "boot_with_system_user_despite_hsum"
+    prop_name: "bluetooth.system_service.boot_with_system_user_despite_hsum"
+  }
+}

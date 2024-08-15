@@ -105,6 +105,7 @@ java_library {
         "bluetooth-nano-protos",
         "bluetooth-proto-enums-java-gen",
         "bluetooth_flags_java_lib",
+        "com.android.sysprop.bluetooth",
         "modules-utils-build_system",
         "modules-utils-shell-command-handler",
     ],

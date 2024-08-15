@@ -8,6 +8,7 @@ sysprop("libcom.android.sysprop.bluetooth") {
     "bta.sysprop",
     "device_id.sysprop",
     "hfp.sysprop",
+    "system_service.sysprop",
   ]
   deps = [ "//bt/floss/android-base:android-base" ]
 }
