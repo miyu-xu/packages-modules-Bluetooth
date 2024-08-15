@@ -38,24 +38,6 @@ enum ConnectionStatus : int32_t {
   FAILED = 2,
 };
 
-/* android.bluetooth.leaudio.ContextType */
-enum class LeAudioMetricsContextType : int32_t {
-  INVALID = 0,
-  UNSPECIFIED = 1,
-  COMMUNICATION = 2,
-  MEDIA = 3,
-  INSTRUCTIONAL = 4,
-  ATTENTION_SEEKING = 5,
-  IMMEDIATE_ALERT = 6,
-  MAN_MACHINE = 7,
-  EMERGENCY_ALERT = 8,
-  RINGTONE = 9,
-  TV = 10,
-  LIVE = 11,
-  GAME = 12,
-  RFU = 13,
-};
-
 class GroupMetrics {
 public:
   GroupMetrics() {}

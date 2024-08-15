@@ -40,31 +40,6 @@ inline int64_t get_timedelta_nanos(const metrics::ClockTimePoint& t1,
   return std::abs(std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t2).count());
 }
 
-const static std::unordered_map<LeAudioContextType, LeAudioMetricsContextType> kContextTypeTable = {
-        {LeAudioContextType::UNINITIALIZED, LeAudioMetricsContextType::INVALID},
-        {LeAudioContextType::UNSPECIFIED, LeAudioMetricsContextType::UNSPECIFIED},
-        {LeAudioContextType::CONVERSATIONAL, LeAudioMetricsContextType::COMMUNICATION},
-        {LeAudioContextType::MEDIA, LeAudioMetricsContextType::MEDIA},
-        {LeAudioContextType::GAME, LeAudioMetricsContextType::GAME},
-        {LeAudioContextType::INSTRUCTIONAL, LeAudioMetricsContextType::INSTRUCTIONAL},
-        {LeAudioContextType::VOICEASSISTANTS, LeAudioMetricsContextType::MAN_MACHINE},
-        {LeAudioContextType::LIVE, LeAudioMetricsContextType::LIVE},
-        {LeAudioContextType::SOUNDEFFECTS, LeAudioMetricsContextType::ATTENTION_SEEKING},
-        {LeAudioContextType::NOTIFICATIONS, LeAudioMetricsContextType::ATTENTION_SEEKING},
-        {LeAudioContextType::RINGTONE, LeAudioMetricsContextType::RINGTONE},
-        {LeAudioContextType::ALERTS, LeAudioMetricsContextType::IMMEDIATE_ALERT},
-        {LeAudioContextType::EMERGENCYALARM, LeAudioMetricsContextType::EMERGENCY_ALERT},
-        {LeAudioContextType::RFU, LeAudioMetricsContextType::RFU},
-};
-
-inline int32_t to_atom_context_type(const LeAudioContextType stack_type) {
-  auto it = kContextTypeTable.find(stack_type);
-  if (it != kContextTypeTable.end()) {
-    return static_cast<int32_t>(it->second);
-  }
-  return static_cast<int32_t>(LeAudioMetricsContextType::INVALID);
-}
-
 class DeviceMetrics {
 public:
   RawAddress address_;
@@ -134,11 +109,11 @@ public:
   }
 
   void AddStreamStartedEvent(bluetooth::le_audio::types::LeAudioContextType context_type) override {
-    int32_t atom_context_type = to_atom_context_type(context_type);
     // Make sure events aligned
     if (streaming_offset_nanos_.size() - streaming_duration_nanos_.size() != 0) {
       // Allow type switching
-      if (!streaming_context_type_.empty() && streaming_context_type_.back() != atom_context_type) {
+      if (!streaming_context_type_.empty() &&
+          streaming_context_type_.back() != static_cast<int32_t>(context_type)) {
         AddStreamEndedEvent();
       } else {
         return;
@@ -146,7 +121,7 @@ public:
     }
     streaming_offset_nanos_.push_back(
             get_timedelta_nanos(std::chrono::high_resolution_clock::now(), beginning_timepoint_));
-    streaming_context_type_.push_back(atom_context_type);
+    streaming_context_type_.push_back(static_cast<int32_t>(context_type));
   }
 
   void AddStreamEndedEvent() override {
