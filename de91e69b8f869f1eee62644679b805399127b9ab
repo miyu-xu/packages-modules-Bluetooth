@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc072699_c2e58ae0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-15T00:09:36Z",
+      "side": 1,
+      "message": "Refactor is not a valid flag exemption 😊 Strict mechanical refactor is",
+      "revId": "de91e69b8f869f1eee62644679b805399127b9ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
