@@ -1532,6 +1532,8 @@ bool L2CA_SetChnlFlushability(uint16_t cid, bool is_flushable) {
 uint16_t L2CA_FlushChannel(uint16_t lcid, uint16_t num_to_flush) {
   tL2C_CCB* p_ccb;
   uint16_t num_left = 0, num_flushed1 = 0, num_flushed2 = 0;
+  static const bool is_enhanced_flush_allowed =
+          bluetooth::os::GetSystemPropertyBool("bluetooth.l2cap.allow_enhanced_flush", true);
 
   p_ccb = l2cu_find_ccb_by_cid(NULL, lcid);
 
@@ -1557,7 +1559,7 @@ uint16_t L2CA_FlushChannel(uint16_t lcid, uint16_t num_to_flush) {
     if (p_lcb->transport != BT_TRANSPORT_LE && num_to_flush != L2CAP_FLUSH_CHANS_GET) {
       /* If the controller supports enhanced flush, flush the data queued at the
        * controller */
-      if (bluetooth::shim::GetController()->SupportsNonFlushablePb() &&
+      if (is_enhanced_flush_allowed && bluetooth::shim::GetController()->SupportsNonFlushablePb() &&
           (get_btm_client_interface().sco.BTM_GetNumScoLinks() == 0)) {
         /* The only packet type defined - 0 - Automatically-Flushable Only */
         l2c_acl_flush(p_lcb->Handle());
