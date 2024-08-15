@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c147ac02_d9865bea",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-15T20:26:19Z",
+      "side": 1,
+      "message": "nit: It would be nice to know what the parameter is here.\n\n```suggestion\n  int default_hci_adapter \u003d 0;\n  int ret \u003d sBluetoothInterface-\u003einit(\u0026sBluetoothCallbacks, isGuest, isCommonCriteriaMode,\n                                      configCompareResult, flags, isAtvDevice, user_data_directory,\n                                      default_hci_adapter);\n```",
+      "range": {
+        "startLine": 1008,
+        "startChar": 0,
+        "endLine": 1012,
+        "endChar": 100
+      },
+      "revId": "b97ed8157681629dde58f40b8f663739229cd8a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
