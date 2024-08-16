@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ffc8c7_5889859f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-16T22:06:49Z",
+      "side": 1,
+      "message": "Nice unwinding of a horrible hack",
+      "revId": "1df938bedcb3b2caa19067bb182f7e9ba83e7d8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
