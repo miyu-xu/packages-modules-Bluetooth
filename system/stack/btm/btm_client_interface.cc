@@ -17,10 +17,10 @@
 
 #include <bluetooth/log.h>
 
-#include "security_client_callbacks.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/btm_ble_api.h"
+#include "stack/include/security_client_callbacks.h"
 
 struct btm_client_interface_t btm_client_interface = {
         .lifecycle =

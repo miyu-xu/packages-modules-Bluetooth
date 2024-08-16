@@ -80,7 +80,7 @@ void BTA_dm_update_policy(tBTA_SYS_CONN_STATUS status, uint8_t id, uint8_t app_i
                           const RawAddress& peer_addr);
 
 /* Extended Inquiry Response */
-static void bta_dm_set_eir(char* local_name);
+static void bta_dm_set_eir(uint8_t* local_name);
 
 static void bta_dm_disable_conn_down_timer_cback(void* data);
 static void bta_dm_rm_cback(tBTA_SYS_CONN_STATUS status, tBTA_SYS_ID id, uint8_t app_id,
@@ -97,12 +97,12 @@ static const char kPropertySniffOffloadEnabled[] = "persist.bluetooth.sniff_offl
 
 /* Disable timer interval (in milliseconds) */
 #ifndef BTA_DM_DISABLE_TIMER_MS
-#define BTA_DM_DISABLE_TIMER_MS (2000)
+#define BTA_DM_DISABLE_TIMER_MS 2000u
 #endif
 
 /* Disable timer retrial interval (in milliseconds) */
 #ifndef BTA_DM_DISABLE_TIMER_RETRIAL_MS
-#define BTA_DM_DISABLE_TIMER_RETRIAL_MS 1500
+#define BTA_DM_DISABLE_TIMER_RETRIAL_MS 1500u
 #endif
 
 /* Disable connection down timer (in milliseconds) */
@@ -124,27 +124,21 @@ namespace {
 
 struct WaitForAllAclConnectionsToDrain {
   uint64_t time_to_wait_in_ms;
-  unsigned long TimeToWaitInMs() const { return static_cast<unsigned long>(time_to_wait_in_ms); }
-  void* AlarmCallbackData() const { return const_cast<void*>(static_cast<const void*>(this)); }
+  bool is_first_pass;
+  void* AlarmCallbackData() { return static_cast<void*>(this); }
 
   static const WaitForAllAclConnectionsToDrain* FromAlarmCallbackData(void* data);
-  static bool IsFirstPass(const WaitForAllAclConnectionsToDrain*);
-} first_pass =
-        {
-                .time_to_wait_in_ms = static_cast<uint64_t>(BTA_DM_DISABLE_TIMER_MS),
-},
-  second_pass = {
-          .time_to_wait_in_ms = static_cast<uint64_t>(BTA_DM_DISABLE_TIMER_RETRIAL_MS),
 };
 
-bool WaitForAllAclConnectionsToDrain::IsFirstPass(const WaitForAllAclConnectionsToDrain* pass) {
-  return pass == &first_pass;
-}
+WaitForAllAclConnectionsToDrain first_pass = {.time_to_wait_in_ms = BTA_DM_DISABLE_TIMER_MS,
+                                              .is_first_pass = true};
+
+WaitForAllAclConnectionsToDrain second_pass = {
+        .time_to_wait_in_ms = BTA_DM_DISABLE_TIMER_RETRIAL_MS, .is_first_pass = false};
 
 const WaitForAllAclConnectionsToDrain* WaitForAllAclConnectionsToDrain::FromAlarmCallbackData(
         void* data) {
-  return const_cast<const WaitForAllAclConnectionsToDrain*>(
-          static_cast<WaitForAllAclConnectionsToDrain*>(data));
+  return static_cast<const WaitForAllAclConnectionsToDrain*>(data);
 }
 
 }  // namespace
@@ -220,9 +214,6 @@ void BTA_dm_on_hw_off() {
 }
 
 void BTA_dm_on_hw_on() {
-  uint8_t key_mask = 0;
-  tBTA_BLE_LOCAL_ID_KEYS id_key;
-
   /* make sure the control block is properly initialized */
   bta_dm_init_cb();
 
@@ -240,16 +231,20 @@ void BTA_dm_on_hw_on() {
   }
 
   /* load BLE local information: ID keys, ER if available */
+  uint8_t key_mask = 0;
+  tBTA_BLE_LOCAL_ID_KEYS id_key;
   Octet16 er;
   btif_dm_get_ble_local_keys(&key_mask, &er, &id_key);
 
   if (key_mask & BTA_BLE_LOCAL_KEY_TYPE_ER) {
+    tBTM_BLE_LOCAL_KEYS local_keys{.er = er};
     get_btm_client_interface().security.BTM_BleLoadLocalKeys(BTA_BLE_LOCAL_KEY_TYPE_ER,
-                                                             (tBTM_BLE_LOCAL_KEYS*)&er);
+                                                             &local_keys);
   }
   if (key_mask & BTA_BLE_LOCAL_KEY_TYPE_ID) {
+    tBTM_BLE_LOCAL_KEYS btm_id_key{.id_keys{.ir = id_key.ir, .irk = id_key.irk, .dhk = id_key.dhk}};
     get_btm_client_interface().security.BTM_BleLoadLocalKeys(BTA_BLE_LOCAL_KEY_TYPE_ID,
-                                                             (tBTM_BLE_LOCAL_KEYS*)&id_key);
+                                                             &btm_id_key);
   }
 
   btm_dm_sec_init();
@@ -339,14 +334,13 @@ void bta_dm_disable() {
         bta_dm_disable_conn_down_timer_cback(nullptr);
         break;
       default:
-        log::debug("Set timer to delay disable initiation:{} ms",
-                   static_cast<unsigned long>(disable_delay_ms));
+        log::debug("Set timer to delay disable initiation:{} ms", disable_delay_ms);
         alarm_set_on_mloop(bta_dm_cb.disable_timer, disable_delay_ms,
                            bta_dm_disable_conn_down_timer_cback, nullptr);
     }
   } else {
     log::debug("Set timer to wait for all ACL connections to close:{} ms",
-               first_pass.TimeToWaitInMs());
+               first_pass.time_to_wait_in_ms);
     alarm_set_on_mloop(bta_dm_cb.disable_timer, first_pass.time_to_wait_in_ms,
                        bta_dm_wait_for_acl_to_drain_cback, first_pass.AlarmCallbackData());
   }
@@ -377,12 +371,10 @@ static void bta_dm_wait_for_acl_to_drain_cback(void* data) {
   const WaitForAllAclConnectionsToDrain* pass =
           WaitForAllAclConnectionsToDrain::FromAlarmCallbackData(data);
 
-  if (BTM_GetNumAclLinks() && force_disconnect_all_acl_connections() &&
-      WaitForAllAclConnectionsToDrain::IsFirstPass(pass)) {
-    /* DISABLE_EVT still need to be sent out to avoid java layer disable timeout
-     */
+  if (BTM_GetNumAclLinks() && force_disconnect_all_acl_connections() && pass->is_first_pass) {
+    /* DISABLE_EVT still need to be sent out to avoid java layer disable timeout */
     log::debug("Set timer for second pass to wait for all ACL connections to close:{} ms",
-               second_pass.TimeToWaitInMs());
+               second_pass.time_to_wait_in_ms);
     alarm_set_on_mloop(bta_dm_cb.disable_timer, second_pass.time_to_wait_in_ms,
                        bta_dm_wait_for_acl_to_drain_cback, second_pass.AlarmCallbackData());
   } else {
@@ -403,7 +395,8 @@ void bta_dm_set_dev_name(const std::vector<uint8_t>& name) {
       tBTM_STATUS::BTM_CMD_STARTED) {
     log::warn("Unable to set local device name");
   }
-  bta_dm_set_eir((char*)name.data());
+  std::vector<uint8_t> scratch_name = name;
+  bta_dm_set_eir(scratch_name.data());
 }
 
 /** Sets discoverability, connectability and pairability */
@@ -1212,7 +1205,7 @@ static size_t find_utf8_char_boundary(const char* utf8str, size_t offset) {
  * Returns          None
  *
  ******************************************************************************/
-static void bta_dm_set_eir(char* local_name) {
+static void bta_dm_set_eir(uint8_t* local_name) {
   uint8_t* p;
   uint8_t* p_length;
   uint8_t* p_type;
@@ -1239,16 +1232,16 @@ static void bta_dm_set_eir(char* local_name) {
   }
 
   /* Allocate a buffer to hold HCI command */
-  BT_HDR* p_buf = (BT_HDR*)osi_malloc(BTM_CMD_BUF_SIZE);
+  BT_HDR* p_buf = reinterpret_cast<BT_HDR*>(osi_malloc(BTM_CMD_BUF_SIZE));
   log::assert_that(p_buf != nullptr, "assert failed: p_buf != nullptr");
-  p = (uint8_t*)p_buf + BTM_HCI_EIR_OFFSET;
+  p = reinterpret_cast<uint8_t*>(p_buf) + BTM_HCI_EIR_OFFSET;
 
   memset(p, 0x00, HCI_EXT_INQ_RESPONSE_LEN);
 
   log::info("Generating extended inquiry response packet EIR");
 
   if (local_name) {
-    local_name_len = strlen(local_name);
+    local_name_len = strlen(reinterpret_cast<char*>(local_name));
   } else {
     local_name_len = 0;
   }
@@ -1261,12 +1254,12 @@ static void bta_dm_set_eir(char* local_name) {
     max_num_uuid = (free_eir_length - 2) / Uuid::kNumBytes16;
     data_type = get_btm_client_interface().eir.BTM_GetEirSupportedServices(bta_dm_cb.eir_uuid, &p,
                                                                            max_num_uuid, &num_uuid);
-    p = (uint8_t*)p_buf + BTM_HCI_EIR_OFFSET; /* reset p */
+    p = reinterpret_cast<uint8_t*>(p_buf) + BTM_HCI_EIR_OFFSET; /* reset p */
 
     /* if UUID doesn't fit remaing space, shorten local name */
     if (local_name_len > (free_eir_length - 4 - num_uuid * Uuid::kNumBytes16)) {
-      local_name_len =
-              find_utf8_char_boundary(local_name, p_bta_dm_eir_cfg->bta_dm_eir_min_name_len);
+      local_name_len = find_utf8_char_boundary(reinterpret_cast<char*>(local_name),
+                                               p_bta_dm_eir_cfg->bta_dm_eir_min_name_len);
       log::warn("local name is shortened ({})", local_name_len);
       data_type = HCI_EIR_SHORTENED_LOCAL_NAME_TYPE;
     } else {
@@ -1295,9 +1288,8 @@ static void bta_dm_set_eir(char* local_name) {
 
     if (data_type == HCI_EIR_MORE_16BITS_UUID_TYPE) {
       log::warn("BTA EIR: UUID 16-bit list is truncated");
-    }
 #if (BTA_EIR_SERVER_NUM_CUSTOM_UUID > 0)
-    else {
+    } else {
       for (custom_uuid_idx = 0; custom_uuid_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID;
            custom_uuid_idx++) {
         const Uuid& curr = bta_dm_cb.bta_custom_uuid[custom_uuid_idx].custom_uuid;
@@ -1312,8 +1304,8 @@ static void bta_dm_set_eir(char* local_name) {
           }
         }
       }
-    }
 #endif /* (BTA_EIR_SERVER_NUM_CUSTOM_UUID > 0) */
+    }
 
     UINT8_TO_STREAM(p_length, num_uuid * Uuid::kNumBytes16 + 1);
     UINT8_TO_STREAM(p_type, data_type);
@@ -1493,7 +1485,7 @@ void bta_dm_eir_update_cust_uuid(const tBTA_CUSTOM_UUID& curr, bool adding) {
 
   /* Update EIR when UUIDs are changed */
   if (c_uu_idx <= BTA_EIR_SERVER_NUM_CUSTOM_UUID) {
-    bta_dm_set_eir(NULL);
+    bta_dm_set_eir(nullptr);
   }
 #endif
 }
@@ -1523,7 +1515,7 @@ void bta_dm_eir_update_uuid(uint16_t uuid16, bool adding) {
     get_btm_client_interface().eir.BTM_RemoveEirService(bta_dm_cb.eir_uuid, uuid16);
   }
 
-  bta_dm_set_eir(NULL);
+  bta_dm_set_eir(nullptr);
 }
 
 tBTA_DM_PEER_DEVICE* find_connected_device(const RawAddress& bd_addr,

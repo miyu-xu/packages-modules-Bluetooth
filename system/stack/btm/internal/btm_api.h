@@ -21,8 +21,7 @@
  *  definitions.
  *
  ******************************************************************************/
-#ifndef BTM_API_H
-#define BTM_API_H
+#pragma once
 
 #include <cstdint>
 
@@ -604,5 +603,3 @@ void BTM_RemoveEirService(uint32_t* p_eir_uuid, uint16_t uuid16);
 
 typedef void(BTM_CONSOLIDATION_CB)(const RawAddress& identity_addr, const RawAddress& rpa);
 void BTM_SetConsolidationCallback(BTM_CONSOLIDATION_CB* cb);
-
-#endif /* BTM_API_H */
