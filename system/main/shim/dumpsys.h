@@ -24,6 +24,11 @@
     dprintf(fd, "%s " fmt "\n", DUMPSYS_TAG, ##args); \
   } while (false)
 
+#define LOG_DUMPSYS_F(fd, fmt_str)                        \
+  do {                                                    \
+    dprintf(fd, "%s %s\n", DUMPSYS_TAG, fmt_str.c_str()); \
+  } while (false)
+
 #define LOG_DUMPSYS_TITLE(fd, title)         \
   do {                                       \
     dprintf(fd, " ----- %s -----\n", title); \

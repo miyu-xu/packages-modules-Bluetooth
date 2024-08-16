@@ -19,9 +19,10 @@
 #include <bluetooth/log.h>
 #include <gmock/gmock.h>
 
+#include <memory>
+#include <string>
+
 #include "bta/dm/bta_dm_int.h"
-#include "bta/include/bta_api.h"
-#include "bta/sys/bta_sys.h"
 #include "osi/include/allocator.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_status.h"
