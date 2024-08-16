@@ -70,6 +70,30 @@
       },
       "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6afe4ddc_1d26fe35",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-16T21:48:15Z",
+      "side": 1,
+      "message": "Multiple flag support is merged. Please see the updated document on how to use it:\nhttps://developers.google.com/pandora/guides/pts-bot/android-guide#add_trunk-stables_flags",
+      "parentUuid": "6cde85ca_28e8ad4c",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 97
+      },
+      "revId": "86020ebce8224fd83a7039bcb3267af56cc343b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
