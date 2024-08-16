@@ -163,6 +163,28 @@ inline std::string bt_status_text(const bt_status_t& status) {
 /** Corresponding to [Vol 2] Part D, "Error Codes" of Core_v5.1 specs */
 typedef uint8_t bt_hci_error_code_t;
 
+inline bt_status_t hci_err_to_bt_status(bt_hci_error_code_t hci_err) {
+  switch (hci_err) {
+    case 2:   /* No Connection */
+    case 4:   /* Page Timeout */
+      return BT_STATUS_DEVICE_NOT_FOUND;
+    case 5:   /* Authentication Failure */
+      return BT_STATUS_AUTH_FAILURE;
+    case 7:   /* Memory Full */
+      return BT_STATUS_NOMEM;
+    case 8:   /* Connection Timeout */
+    case 34:  /* LMP Response Timeout */
+      return BT_STATUS_TIMEOUT;
+    case 11:  /* ACL Connection Already Exists */
+      return BT_STATUS_DONE;
+    case 30:  /* Invalid LMP Parameters */
+      return BT_STATUS_PARM_INVALID;
+    case 1:   /* Unknown HCI Command */
+    default:
+      return BT_STATUS_FAIL;
+  }
+}
+
 /** Bluetooth PinKey Code */
 typedef struct {
   uint8_t pin[16];
