@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "427f1e49_ea67c789",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-16T16:24:00Z",
+      "side": 1,
+      "message": "Thanks ! I will get to the comments shortly",
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e07e2682_48c4ce2a",
@@ -170,6 +187,30 @@
       "writtenOn": "2024-08-16T16:06:37Z",
       "side": 1,
       "message": "question: Should this be a strict mock?  A nice mock?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "470debe0_52016d2b",
+        "filename": "system/test/mock/mock_stack_rnr_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-16T16:24:00Z",
+      "side": 1,
+      "message": "I like strict mocks",
+      "parentUuid": "13d9cae1_bf6762c9",
       "range": {
         "startLine": 20,
         "startChar": 0,
