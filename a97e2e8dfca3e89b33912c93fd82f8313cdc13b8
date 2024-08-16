@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4246690d_564e1ec9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-16T15:47:51Z",
+      "side": 1,
+      "message": "When assigning values, especially hex, it is typical to extend the zeros to reflect the size of the primitive, in this case 16 bits for explicit understanding.\n\nI also moved the string-ification next to the enum definitions.",
+      "revId": "a97e2e8dfca3e89b33912c93fd82f8313cdc13b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
