@@ -64,6 +64,30 @@
       },
       "revId": "aee4644f5c5fce8c583dcf614c9f64a3e745a1f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e8d1da_ec8115fa",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-16T18:37:24Z",
+      "side": 1,
+      "message": "OK, looking closer it should be redracted automatically in the formatter for RawAdrress",
+      "parentUuid": "a91543b3_68140164",
+      "range": {
+        "startLine": 358,
+        "startChar": 12,
+        "endLine": 358,
+        "endChar": 19
+      },
+      "revId": "aee4644f5c5fce8c583dcf614c9f64a3e745a1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
