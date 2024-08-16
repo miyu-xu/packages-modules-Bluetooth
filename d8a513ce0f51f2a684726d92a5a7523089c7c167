@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd6c15d_1f92738d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-16T23:24:12Z",
+      "side": 1,
+      "message": "this is not exactly needed",
+      "range": {
+        "startLine": 398,
+        "startChar": 0,
+        "endLine": 399,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a56adc03_df888705",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_act.cc",
+              "range": {
+                "startLine": 398,
+                "startChar": 0,
+                "endLine": 400,
+                "endChar": 0
+              },
+              "replacement": "  bta_dm_set_eir(name.data());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d8a513ce0f51f2a684726d92a5a7523089c7c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44bf8eb9_fe4cac7a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-16T23:24:12Z",
+      "side": 1,
+      "message": "this never fail and should just return const char* or a std::vector\u003cuint8_t\u003e",
+      "range": {
+        "startLine": 1228,
+        "startChar": 41,
+        "endLine": 1228,
+        "endChar": 64
+      },
+      "revId": "d8a513ce0f51f2a684726d92a5a7523089c7c167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
