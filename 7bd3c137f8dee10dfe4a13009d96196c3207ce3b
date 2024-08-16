@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7847496_22f41617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-16T10:18:15Z",
+      "side": 1,
+      "message": "I don\u0027t understand the conflict message. Isn\u0027t this the main branch? How could it conflict with another main?\nAlso I don\u0027t know how to browse the code for aosp-main-future. I always got confused with all the branches. Is there an easy way to browse the branches and diff them?",
+      "revId": "7bd3c137f8dee10dfe4a13009d96196c3207ce3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
