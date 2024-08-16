@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f22414e3_939aa9e8",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-16T00:59:06Z",
+      "side": 1,
+      "message": "mAdapterLock.writeLock().lock();",
+      "revId": "db15ee880bfd13101a0d348983cfdb37e4899b94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
