@@ -851,7 +851,12 @@ public class ScanManager {
             int maxScanMode = SCAN_MODE_MAX_IN_CONCURRENCY;
             if (client.updateScanMode(getMinScanMode(scanMode, maxScanMode))) {
                 client.stats.setScanDowngrade(client.scannerId, true);
-                Log.d(TAG, "downgradeScanModeFromMaxDuty() for " + client);
+                Log.d(
+                        TAG,
+                        "downgradeScanModeFromMaxDuty() to "
+                                + getScanModeString(getMinScanMode(scanMode, maxScanMode))
+                                + " for "
+                                + client);
                 return true;
             }
             return false;
