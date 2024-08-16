@@ -19,6 +19,7 @@
 #define LOG_TAG "bt_srvc"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include "gatt_api.h"
 #include "hardware/bt_gatt_types.h"
@@ -112,6 +113,24 @@ static void dis_gatt_c_read_dis_value_cmpl(uint16_t conn_id) {
 
     (*dis_cb.p_read_dis_cback)(p_clcb->bda, &p_clcb->dis_value);
     dis_cb.p_read_dis_cback = NULL;
+  }
+
+  if (com::android::bluetooth::flags::queue_dis_requests()) {
+    while (!dis_cb.pend_reqs.empty()) {
+      log::verbose("Dequeue pending DIS request.");
+      tDIS_REQ req = dis_cb.pend_reqs.front();
+      dis_cb.pend_reqs.pop();
+
+      /* only process the pending DIS if the device is connected */
+      uint16_t _conn_id;
+      if (GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, req.addr, &_conn_id, BT_TRANSPORT_LE) &&
+          DIS_ReadDISInfo(req.addr, req.p_read_dis_cback, req.mask)) {
+        break;
+      } else if (req.p_read_dis_cback) {
+        tDIS_VALUE empty = {};
+        req.p_read_dis_cback(req.addr, &empty);
+      }
+    }
   }
 }
 
@@ -246,13 +265,24 @@ bool DIS_ReadDISInfo(const RawAddress& peer_bda, tDIS_READ_CBACK* p_cback, tDIS_
   /* Initialize the DIS client if it hasn't been initialized already. */
   srvc_eng_init();
 
-  /* For now we only handle one at a time */
-  if (dis_cb.dis_read_uuid_idx != 0xff) {
+  if (p_cback == NULL) {
     return false;
   }
 
-  if (p_cback == NULL) {
-    return false;
+  if (dis_cb.dis_read_uuid_idx != 0xff) {
+    if (!com::android::bluetooth::flags::queue_dis_requests()) {
+      /* For now we only handle one at a time */
+      return false;
+    }
+    /* GATT is busy, so let's queue the request */
+    tDIS_REQ req = {
+            .p_read_dis_cback = p_cback,
+            .mask = mask,
+            .addr = peer_bda,
+    };
+    dis_cb.pend_reqs.push(req);
+
+    return true;
   }
 
   dis_cb.p_read_dis_cback = p_cback;
