@@ -785,11 +785,11 @@ public class BassClientStateMachine extends StateMachine {
 
     private void checkAndUpdateBroadcastCode(BluetoothLeBroadcastReceiveState recvState) {
         log("checkAndUpdateBroadcastCode");
-        // non colocated case, Broadcast PIN should have been updated from lyaer
-        // If there is pending one process it Now
+        // Whenever receive state indicated code requested, assistant should set the broadcast code
+        // Valid code will be checked later in convertRecvStateToSetBroadcastCodeByteArray
         if (recvState.getBigEncryptionState()
                         == BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_CODE_REQUIRED
-                && mSetBroadcastCodePending) {
+                && (leaudioBigDependsOnAudioState() || mSetBroadcastCodePending)) {
             log("Update the Broadcast now");
             if (mSetBroadcastPINMetadata != null) {
                 setCurrentBroadcastMetadata(recvState.getSourceId(), mSetBroadcastPINMetadata);
