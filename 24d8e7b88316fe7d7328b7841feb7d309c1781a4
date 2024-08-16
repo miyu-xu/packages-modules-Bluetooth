@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ac0729_23e4ef67",
+        "filename": "system/stack/include/l2cap_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-16T23:59:48Z",
+      "side": 1,
+      "message": "This is the actual production layer.\n\n```\nINTERFACE\n  /  \\\nImpl Mock  \n```",
+      "parentUuid": "fc15a454_0556e47b",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "109e2221_d4228d2e",
