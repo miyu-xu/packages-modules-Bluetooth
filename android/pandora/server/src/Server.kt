@@ -59,6 +59,7 @@ class Server(context: Context) {
                         BluetoothProfile.HEARING_AID to ::Asha,
                         BluetoothProfile.AVRCP to ::Avrcp,
                         BluetoothProfile.GATT to ::Gatt,
+                        BluetoothProfile.HAP_CLIENT to ::Hap,
                         BluetoothProfile.HEADSET to ::Hfp,
                         BluetoothProfile.HEADSET_CLIENT to ::HfpHandsfree,
                         BluetoothProfile.HID_HOST to ::Hid,

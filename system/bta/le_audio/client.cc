@@ -370,6 +370,7 @@ public:
       }
 
       if (!com::android::bluetooth::flags::le_ase_read_multiple_variable()) {
+        log::error("WILLIAM IN THE FLAG {}", leAudioDevice->conn_id_);
         BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
                                          leAudioDevice->ases_[i].hdls.val_hdl, OnGattReadRspStatic,
                                          notify_flag_ptr);
@@ -377,6 +378,7 @@ public:
       }
 
       if (i != 0 && (i % GATT_MAX_READ_MULTI_HANDLES == 0)) {
+        log::error("WILLIAM in the first {}", leAudioDevice->conn_id_);
         multi_read.num_attr = GATT_MAX_READ_MULTI_HANDLES;
         BtaGattQueue::ReadMultiCharacteristic(leAudioDevice->conn_id_, multi_read,
                                               OnGattReadMultiRspStatic, notify_flag_ptr);
@@ -387,6 +389,7 @@ public:
 
     if (ases_num % GATT_MAX_READ_MULTI_HANDLES != 0) {
       multi_read.num_attr = ases_num % GATT_MAX_READ_MULTI_HANDLES;
+      log::error("WILLIAM in the second {}", leAudioDevice->conn_id_);
       BtaGattQueue::ReadMultiCharacteristic(leAudioDevice->conn_id_, multi_read,
                                             OnGattReadMultiRspStatic, notify_flag_ptr);
     }
@@ -3058,6 +3061,9 @@ public:
         /* Reconnection case. Control point is the last CCC LeAudio is
          * registering for on reconnection */
         connectionReady(leAudioDevice);
+      } else {
+        // log::error("WILLIAM forcing connectionReady");
+        // connectionReady(leAudioDevice);
       }
 
       return;

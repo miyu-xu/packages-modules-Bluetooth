@@ -583,7 +583,8 @@ tGATT_STATUS attp_send_cl_msg(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, uint8_t op_cod
       if (!GATT_HANDLE_IS_VALID(p_msg->browse.s_handle) ||
           !GATT_HANDLE_IS_VALID(p_msg->browse.e_handle) ||
           p_msg->browse.s_handle > p_msg->browse.e_handle) {
-        log::warn("GATT message has invalid handle op_code:{}", op_code);
+        log::warn("GATT message has invalid handle op_code:{} s_handle{} e_handle{}", op_code,
+                  p_msg->browse.s_handle, p_msg->browse.e_handle);
         return GATT_ILLEGAL_PARAMETER;
       }
 
