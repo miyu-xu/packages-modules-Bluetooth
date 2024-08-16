@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc9b7443_40257a42",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-16T23:27:48Z",
+      "side": 0,
+      "message": "This not part of the current CL.\n\nPlease redirect your question to aosp/210dc68e1c6",
+      "parentUuid": "22bca06c_246af10c",
+      "range": {
+        "startLine": 1482,
+        "startChar": 8,
+        "endLine": 1482,
+        "endChar": 40
+      },
+      "revId": "1b7f783831f37739358ad14d474540684d45b92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d74c7dec_e695c9e4",
