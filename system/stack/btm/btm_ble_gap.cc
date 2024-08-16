@@ -26,7 +26,6 @@
 
 #include <android_bluetooth_sysprop.h>
 #include <base/functional/bind.h>
-#include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
@@ -597,10 +596,10 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
   } else if (btm_cb.ble_ctr_cb.is_ble_observe_active()) {
     const unsigned long long duration_timestamp =
             timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_observe.start_time_ms;
-    BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le observe stopped",
-                   base::StringPrintf("duration_s:%6.3f results:%-3lu",
-                                      (double)duration_timestamp / 1000.0,
-                                      btm_cb.neighbor.le_observe.results));
+    BTM_LogHistory(
+            kBtmLogTag, RawAddress::kEmpty, "Le observe stopped",
+            fmt::format("duration_s:{:6.3f} results:{:3}", (double)duration_timestamp / 1000.0,
+                        btm_cb.neighbor.le_observe.results));
     status = tBTM_STATUS::BTM_CMD_STARTED;
     btm_ble_stop_observe();
   } else {
@@ -2121,7 +2120,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
 
   if (!AdvertiseDataParser::IsValid(adv_data)) {
     log::verbose("Dropping bad advertisement packet: {}",
-                 base::HexEncode(adv_data.data(), adv_data.size()));
+                 fmt::format("{:02x}", fmt::join(adv_data, " ")));
     cache.Clear(addr_type, bda);
     return;
   }
@@ -2366,9 +2365,8 @@ static void btm_ble_stop_scan(void) {
   /* stop discovery now */
   const unsigned long long duration_timestamp =
           timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_legacy_scan.start_time_ms;
-  BTM_LogHistory(
-          kBtmLogTag, RawAddress::kEmpty, "Le legacy scan stopped",
-          base::StringPrintf("duration_s:%6.3f results:%-3lu", (double)duration_timestamp / 1000.0,
+  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le legacy scan stopped",
+                 fmt::format("duration_s:{:6.3f} results:{:3}", (double)duration_timestamp / 1000.0,
                              btm_cb.neighbor.le_legacy_scan.results));
   btm_send_hci_scan_enable(BTM_BLE_SCAN_DISABLE, BTM_BLE_DUPLICATE_ENABLE);
 
@@ -2388,9 +2386,8 @@ void btm_ble_stop_inquiry(void) {
 
   const unsigned long long duration_timestamp =
           timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_inquiry.start_time_ms;
-  BTM_LogHistory(
-          kBtmLogTag, RawAddress::kEmpty, "Le inquiry stopped",
-          base::StringPrintf("duration_s:%6.3f results:%-3lu", (double)duration_timestamp / 1000.0,
+  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le inquiry stopped",
+                 fmt::format("duration_s:{:6.3f} results:{:3}", (double)duration_timestamp / 1000.0,
                              btm_cb.neighbor.le_inquiry.results));
   btm_cb.ble_ctr_cb.reset_ble_inquiry();
 
