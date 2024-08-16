@@ -30,14 +30,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "acl_api_types.h"
-#include "btm_sec_cb.h"
-#include "btm_sec_int_types.h"
 #include "hci/controller_interface.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/entry.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/btm/btm_sec_cb.h"
+#include "stack/btm/btm_sec_int_types.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_api_types.h"
@@ -55,20 +54,6 @@ extern tBTM_CB btm_cb;
 
 void btm_inq_db_reset(void);
 void btm_pm_reset(void);
-/******************************************************************************/
-/*               L O C A L    D A T A    D E F I N I T I O N S                */
-/******************************************************************************/
-
-#ifndef BTM_DEV_RESET_TIMEOUT
-#define BTM_DEV_RESET_TIMEOUT 4
-#endif
-
-// TODO: Reevaluate this value in the context of timers with ms granularity
-#define BTM_DEV_NAME_REPLY_TIMEOUT_MS    \
-  (2 * 1000) /* 2 seconds for name reply \
-              */
-
-#define BTM_INFO_TIMEOUT 5 /* 5 seconds for info response */
 
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
