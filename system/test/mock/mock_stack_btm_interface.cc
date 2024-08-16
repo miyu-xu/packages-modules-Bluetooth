@@ -18,6 +18,8 @@
  * Generated mock file from original source file
  */
 
+#include "test/mock/mock_stack_btm_interface.h"
+
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/btm_ble_sec_api_types.h"
 #include "stack/include/btm_client_interface.h"
