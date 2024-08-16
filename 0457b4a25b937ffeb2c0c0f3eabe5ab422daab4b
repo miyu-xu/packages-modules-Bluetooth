@@ -1,0 +1,224 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07e2682_48c4ce2a",
+        "filename": "system/bta/test/bta_sec_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-16T16:06:37Z",
+      "side": 1,
+      "message": "Did you mean to put in the mock here, as well?",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 6
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "11f20cbe_0da3f5e2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/test/bta_sec_test.cc",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "\n  ON_CALL(mock_stack_rnr_interface_, BTM_ReadRemoteDeviceName(_, _, _))\n          .WillByDefault(Return(tBTM_STATUS::BTM_CMD_STARTED));\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0448563_d2205931",
+        "filename": "system/bta/test/bta_sec_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-16T16:06:37Z",
+      "side": 1,
+      "message": "This will warn, won\u0027t it?  EXPECT_CALL if it\u0027s only once.  Maybe pass it kRawAddress?",
+      "range": {
+        "startLine": 122,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a77319e9_2607bf5c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/test/bta_sec_test.cc",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "  EXPECT_CALL(mock_stack_rnr_interface_, BTM_ReadRemoteDeviceName(kRawAddress, _, _))\n          .WillOnce(Return(tBTM_STATUS::BTM_CMD_STARTED));\n"
+            },
+            {
+              "path": "system/bta/test/bta_sec_test.cc",
+              "range": {
+                "startLine": 205,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": "  EXPECT_CALL(mock_stack_rnr_interface_, BTM_ReadRemoteDeviceName(kRawAddress, _, _))\n          .WillOnce(Return(tBTM_STATUS::BTM_CMD_STARTED));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60200bee_bd58d60b",
+        "filename": "system/stack/include/rnr_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-16T16:06:37Z",
+      "side": 1,
+      "message": "There is no remote device parameter.",
+      "range": {
+        "startLine": 122,
+        "startChar": 56,
+        "endLine": 123,
+        "endChar": 35
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc34d17_333ec583",
+        "filename": "system/stack/include/rnr_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-16T16:06:37Z",
+      "side": 1,
+      "message": "nit: shouldn\u0027t need the comment here.",
+      "range": {
+        "startLine": 150,
+        "startChar": 48,
+        "endLine": 150,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ab5f449e_18123c16",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/rnr_interface.h",
+              "range": {
+                "startLine": 150,
+                "startChar": 0,
+                "endLine": 151,
+                "endChar": 0
+              },
+              "replacement": "                                       uint16_t evt_len, tHCI_STATUS hci_status) \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d9cae1_bf6762c9",
+        "filename": "system/test/mock/mock_stack_rnr_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-16T16:06:37Z",
+      "side": 1,
+      "message": "question: Should this be a strict mock?  A nice mock?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5acc6445_2649ecec",
+        "filename": "system/test/mock/mock_stack_rnr_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-16T16:06:37Z",
+      "side": 1,
+      "message": "nit: We shouldn\u0027t need the comment here.",
+      "range": {
+        "startLine": 45,
+        "startChar": 66,
+        "endLine": 45,
+        "endChar": 79
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e7302ee5_c9e961af",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/test/mock/mock_stack_rnr_interface.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "              (const RawAddress* bda, const BD_NAME bdn, uint16_t evt_len,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
