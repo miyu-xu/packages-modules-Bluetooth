@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c8e70b_ac6f3378",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-16T04:55:48Z",
+      "side": 1,
+      "message": "Is this obfuscated?",
+      "range": {
+        "startLine": 358,
+        "startChar": 12,
+        "endLine": 358,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "92cb3537_7bc7d661",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_gatt_client.cc",
+              "range": {
+                "startLine": 356,
+                "startChar": 0,
+                "endLine": 357,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"Transport\u003d{}, device type\u003d{}, address\u003d{}, address type\u003d{}, phy\u003d{:02x}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "aee4644f5c5fce8c583dcf614c9f64a3e745a1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
