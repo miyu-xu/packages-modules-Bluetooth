@@ -161,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b18d275_b256ff64",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "Primarily b/c this is within the `stack::l2cap` module, it can do what it wants.\n\nHowever, the longer answer is this is an ugly in-between that should not be part of the interface, as it uses system global properties to seed the default credit size in the constructor.\n\nThe philosophy is that if it\u0027s not necessary for the client, it should not be in the interface.",
+      "parentUuid": "109e2221_d4228d2e",
+      "range": {
+        "startLine": 190,
+        "startChar": 25,
+        "endLine": 190,
+        "endChar": 45
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "520849c4_71c4dd0c",
         "filename": "system/stack/l2cap/l2cap_api.cc",
         "patchSetId": 9
@@ -184,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7308f443_36ff565f",
+        "filename": "system/stack/l2cap/l2cap_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "I would be comfortable landing this in a future CL, as this is already very large.",
+      "parentUuid": "520849c4_71c4dd0c",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 36
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bde6f5fb_58eb46d3",
         "filename": "system/stack/test/common/mock_l2cap_layer.cc",
         "patchSetId": 9
@@ -195,6 +243,30 @@
       "writtenOn": "2024-08-16T23:03:02Z",
       "side": 1,
       "message": "remove these?",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "777d1e0d_a6fa6e4b",
+        "filename": "system/stack/test/common/mock_l2cap_layer.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bde6f5fb_58eb46d3",
       "range": {
         "startLine": 34,
         "startChar": 1,
@@ -246,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bdce5f7_8c99094e",
+        "filename": "system/stack/test/eatt/eatt_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e73711ed_62d64607",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3b3d34b_79be339a",
@@ -269,6 +365,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "226ca7ac_bee863e5",
+        "filename": "system/stack/test/sdp/stack_sdp_parse_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b3d34b_79be339a",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d48a85b9_09a33c02",
@@ -282,6 +402,30 @@
       "writtenOn": "2024-08-16T23:03:02Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 6
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef3ffe52_ba714fe7",
+        "filename": "system/stack/test/sdp/stack_sdp_parse_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d48a85b9_09a33c02",
       "range": {
         "startLine": 87,
         "startChar": 0,
@@ -333,6 +477,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b53199ad_b2ec3a05",
+        "filename": "system/stack/test/sdp/stack_sdp_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138175af_87d8a4c0",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 6
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c865b348_aaaf2b11",
@@ -370,6 +538,30 @@
           ]
         }
       ],
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c79a7162_0ef473f3",
+        "filename": "system/test/mock/mock_stack_l2cap_interface.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-17T00:11:25Z",
+      "side": 1,
+      "message": "The *mock* is in a different address space.\n\n`bluetooth::stack::l2cap`\nversus\n`bluetooth::testing::stack::l2cap`\n\nI think it\u0027s important to keep `testing` for the mocks.",
+      "parentUuid": "c865b348_aaaf2b11",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 10
+      },
       "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
