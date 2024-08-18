@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0e354f4_2ab9d167",
+        "filename": "system/bta/test/bta_sec_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-18T01:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e07e2682_48c4ce2a",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 6
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0448563_d2205931",
@@ -110,6 +134,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f1ef91_d6081d5e",
+        "filename": "system/bta/test/bta_sec_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-18T01:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0448563_d2205931",
+      "range": {
+        "startLine": 122,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 9
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60200bee_bd58d60b",
@@ -123,6 +171,30 @@
       "writtenOn": "2024-08-16T16:06:37Z",
       "side": 1,
       "message": "There is no remote device parameter.",
+      "range": {
+        "startLine": 122,
+        "startChar": 56,
+        "endLine": 123,
+        "endChar": 35
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d959dbee_6696512c",
+        "filename": "system/stack/include/rnr_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-18T01:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60200bee_bd58d60b",
       "range": {
         "startLine": 122,
         "startChar": 56,
@@ -174,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b11aa0b8_1c73d3d9",
+        "filename": "system/stack/include/rnr_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-18T01:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fc34d17_333ec583",
+      "range": {
+        "startLine": 150,
+        "startChar": 48,
+        "endLine": 150,
+        "endChar": 61
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13d9cae1_bf6762c9",
@@ -221,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f7255a_293b3ba3",
+        "filename": "system/test/mock/mock_stack_rnr_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-18T01:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "470debe0_52016d2b",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5acc6445_2649ecec",
@@ -258,6 +378,30 @@
           ]
         }
       ],
+      "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8dbbc77_6674435f",
+        "filename": "system/test/mock/mock_stack_rnr_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-18T01:09:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5acc6445_2649ecec",
+      "range": {
+        "startLine": 45,
+        "startChar": 66,
+        "endLine": 45,
+        "endChar": 79
+      },
       "revId": "0457b4a25b937ffeb2c0c0f3eabe5ab422daab4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
