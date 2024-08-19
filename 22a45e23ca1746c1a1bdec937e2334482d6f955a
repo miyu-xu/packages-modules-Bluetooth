@@ -117,6 +117,30 @@
       },
       "revId": "22a45e23ca1746c1a1bdec937e2334482d6f955a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8037d17_0bcc9b38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-19T20:46:52Z",
+      "side": 1,
+      "message": "This would be a case-specific exemption. Unit test coverage is expected for most CLs anyway.",
+      "parentUuid": "251a5a1a_f7ed479e",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 15
+      },
+      "revId": "22a45e23ca1746c1a1bdec937e2334482d6f955a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
