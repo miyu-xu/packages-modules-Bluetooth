@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d0adee2_ce09d901",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-19T18:21:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "69640c38_f7a61c28",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 44
+      },
+      "revId": "0ca1f46517158331f9bf269482b2197bebdde6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c48b9218_82dcb36c",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Added check for this in test_disconnect_connected (expect Clean from GATT queue to be called)",
       "parentUuid": "c48b9218_82dcb36c",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 23
+      },
+      "revId": "0ca1f46517158331f9bf269482b2197bebdde6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "967eb72d_bb962ee9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-19T18:21:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b749b4c3_b5669ee1",
       "range": {
         "startLine": 19,
         "startChar": 0,
