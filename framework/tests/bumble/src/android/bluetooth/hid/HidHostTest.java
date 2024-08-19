@@ -54,7 +54,6 @@ import java.util.concurrent.TimeUnit;
 
 /** Test cases for {@link Hid Host}. */
 @RunWith(AndroidJUnit4.class)
-@Ignore("b/355328584")
 public class HidHostTest {
     private static final String TAG = "HidHostTest";
     private SettableFuture<Integer> mFutureConnectionIntent,
