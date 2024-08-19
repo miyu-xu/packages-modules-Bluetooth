@@ -22,6 +22,30 @@
       },
       "revId": "80df94638489dfbd9efb1acdf07fc497fad89f97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1340a399_bad2e67a",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-19T19:30:18Z",
+      "side": 1,
+      "message": "This is why the status *must* be enum-ified",
+      "parentUuid": "fb8743f4_fb4729ce",
+      "range": {
+        "startLine": 1029,
+        "startChar": 8,
+        "endLine": 1029,
+        "endChar": 20
+      },
+      "revId": "80df94638489dfbd9efb1acdf07fc497fad89f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
