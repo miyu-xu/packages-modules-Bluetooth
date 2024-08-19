@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "657a1bc7_10142e70",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-19T17:10:59Z",
+      "side": 1,
+      "message": "IIRC, this was added for local running of PTS (which we haven\u0027t done since Android S on our team?). Automated testing doesn\u0027t use it to my knowledge. I\u0027m not even sure we have robust PTS bot coverage for MAP Client.",
+      "parentUuid": "9d772197_d083e49b",
+      "range": {
+        "startLine": 135,
+        "startChar": 12,
+        "endLine": 135,
+        "endChar": 67
+      },
+      "revId": "490919db11b6ae7082b1bf413adb8857c8621102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "373b2746_2fec43fb",
         "filename": "android/app/src/com/android/bluetooth/mapclient/obex/MessagesFilter.java",
         "patchSetId": 5
