@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75ea8b9a_123a2737",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-19T23:12:31Z",
+      "side": 1,
+      "message": "Just add\n```\n    metadata {\n        purpose: PURPOSE_BUGFIX\n    }\n```\n\nTo the flag declaration then :)",
+      "parentUuid": "78abf206_75a724ee",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 4
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d98089ed_93638691",
         "filename": "flags/gap.aconfig",
         "patchSetId": 2
