@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5da1d3c6_dfcd7c4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 1,
+      "message": "Got it.",
+      "parentUuid": "d5e3e83b_ec3f9c39",
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef657ac2_6bf3bd84",
@@ -201,6 +219,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a23744_304b7fea",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 1,
+      "message": "Got it.",
+      "parentUuid": "8b18d275_b256ff64",
+      "range": {
+        "startLine": 190,
+        "startChar": 25,
+        "endLine": 190,
+        "endChar": 45
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "520849c4_71c4dd0c",
@@ -238,6 +280,30 @@
       "side": 1,
       "message": "I would be comfortable landing this in a future CL, as this is already very large.",
       "parentUuid": "520849c4_71c4dd0c",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 36
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4419f6ab_892d037d",
+        "filename": "system/stack/l2cap/l2cap_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 1,
+      "message": "Sure, just please try to reduce the number of unnecessary layers during modularization.",
+      "parentUuid": "7308f443_36ff565f",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -574,6 +640,30 @@
       "side": 1,
       "message": "The *mock* is in a different address space.\n\n`bluetooth::stack::l2cap`\nversus\n`bluetooth::testing::stack::l2cap`\n\nI think it\u0027s important to keep `testing` for the mocks.",
       "parentUuid": "c865b348_aaaf2b11",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48b24166_6a2f0250",
+        "filename": "system/test/mock/mock_stack_l2cap_interface.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 1,
+      "message": "Sure, but can two sets of tests share the same mock definition?",
+      "parentUuid": "c79a7162_0ef473f3",
       "range": {
         "startLine": 28,
         "startChar": 6,

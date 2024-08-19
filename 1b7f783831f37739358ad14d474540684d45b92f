@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83ba32ae_7cb3cf3e",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 0,
+      "message": "Got it. \n\naosp/3160576 added this logic, but this change removes it. \n\nCould you rebase against tip of tree and make this diff disappear? \n\nOtherwise, if this change is merged, it will remove aosp/3160576\u0027s change by accident.",
+      "parentUuid": "bc9b7443_40257a42",
+      "range": {
+        "startLine": 1482,
+        "startChar": 8,
+        "endLine": 1482,
+        "endChar": 40
+      },
+      "revId": "1b7f783831f37739358ad14d474540684d45b92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d74c7dec_e695c9e4",
         "filename": "system/stack/l2cap/internal/l2c_api.h",
         "patchSetId": 9
@@ -85,6 +109,30 @@
       "side": 0,
       "message": "No.  At least not yet.\n\nThese are \"hidden\" globals that MUST use the interface to access.\n\nFuture CLs would incorporate these globals into the Impl for proper encapsulation.\n\n` l2cap_interface.h` is just the interface, the declaration, , and `Impl` is the definition, which is backed by these globals (for now).",
       "parentUuid": "d74c7dec_e695c9e4",
+      "range": {
+        "startLine": 358,
+        "startChar": 23,
+        "endLine": 358,
+        "endChar": 48
+      },
+      "revId": "1b7f783831f37739358ad14d474540684d45b92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e8852c_de56970d",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 0,
+      "message": "Got it. Thanks for the explanation. Could you include a short description of it in the commit message so that subsequent viewers of this commit understand it? \n\nThough it should be obvious after looking at the whole CL. However, since this is a big change, it is easier for readers to follow if you point out which headers / source files are important and their relations.",
+      "parentUuid": "80ec4ee6_158efd29",
       "range": {
         "startLine": 358,
         "startChar": 23,

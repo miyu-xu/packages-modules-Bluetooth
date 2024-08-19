@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2359f517_a5bddc95",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T17:53:33Z",
+      "side": 0,
+      "message": "aosp/3160576 added this logic, but this change removes it. \n\nCould you rebase against tip of tree and make this diff disappear? \n\nOtherwise, if this change is merged, it will remove aosp/3160576\u0027s change by accident.",
+      "range": {
+        "startLine": 1477,
+        "startChar": 0,
+        "endLine": 1482,
+        "endChar": 43
+      },
+      "revId": "e04b8832820f66675de7c7df5a65ea554c5ec1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
