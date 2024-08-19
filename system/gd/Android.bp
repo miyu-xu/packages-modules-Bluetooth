@@ -410,9 +410,11 @@ cc_test {
         ":BluetoothOsTestSources_timerfd",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib_for_test",
         "libbluetooth_log",
         "libchrome",
         "libgmock",
+        "server_configurable_flags",
     ],
     shared_libs: [
         "libbase",
