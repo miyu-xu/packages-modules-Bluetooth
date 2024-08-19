@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0490189_51205808",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-19T20:45:06Z",
+      "side": 1,
+      "message": "get gatt owner review +2",
+      "parentUuid": "c17cbe48_d32dc9dd",
+      "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa1c79c9_9c28e088",
