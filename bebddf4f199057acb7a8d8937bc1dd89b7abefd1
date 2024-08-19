@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84518095_e905ed29",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-19T18:27:01Z",
+      "side": 1,
+      "message": "Note that If the flag is not a bugfix, you will be required to do an android-fr",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 4
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d98089ed_93638691",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-19T18:27:01Z",
+      "side": 1,
+      "message": "Please associate with a bug in the flag component\n```suggestion\n    bug: \"360743527\"\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 10,
+        "endLine": 267,
+        "endChar": 19
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
