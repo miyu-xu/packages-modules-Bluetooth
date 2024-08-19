@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9519807_3210b63a",
+        "filename": "system/stack/include/rnr_interface.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-19T23:01:36Z",
+      "side": 1,
+      "message": "```suggestion\n   * Description      This function initiates a cancel request for the current request.\n```",
+      "range": {
+        "startLine": 122,
+        "startChar": 46,
+        "endLine": 123,
+        "endChar": 46
+      },
+      "revId": "64f93e4a7d641591a72466acb128450cbc537f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
