@@ -63,6 +63,7 @@ source_set("BluetoothOsSources_linux_generic") {
   ]
 
   configs += [
+    "//bt/flags:bluetooth_flags_c_lib",
     "//bt/system/gd:gd_defaults",
     "//bt/system/log:log_defaults",
   ]
