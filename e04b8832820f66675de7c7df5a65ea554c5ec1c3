@@ -22,6 +22,30 @@
       },
       "revId": "e04b8832820f66675de7c7df5a65ea554c5ec1c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2d082b8_7a94b2da",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-19T22:51:32Z",
+      "side": 0,
+      "message": "This is a problem with overly large CLs\n\nDone.",
+      "parentUuid": "2359f517_a5bddc95",
+      "range": {
+        "startLine": 1477,
+        "startChar": 0,
+        "endLine": 1482,
+        "endChar": 43
+      },
+      "revId": "e04b8832820f66675de7c7df5a65ea554c5ec1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
