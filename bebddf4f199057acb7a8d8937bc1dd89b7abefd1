@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78abf206_75a724ee",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-08-19T23:11:10Z",
+      "side": 1,
+      "message": "Is there any official doc for it? AFAIK we can use this flag without go/android-fr.\n\ngo/trunk-stable-bug-fix#policies\ngo/android-flags-guidelines#flagging-philosophy",
+      "parentUuid": "84518095_e905ed29",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 4
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d98089ed_93638691",
         "filename": "flags/gap.aconfig",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-19T18:27:01Z",
       "side": 1,
       "message": "Please associate with a bug in the flag component\n```suggestion\n    bug: \"360743527\"\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 10,
+        "endLine": 267,
+        "endChar": 19
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86e0aea7_5981805f",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-08-19T23:11:10Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "d98089ed_93638691",
       "range": {
         "startLine": 267,
         "startChar": 10,
