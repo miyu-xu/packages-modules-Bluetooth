@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b69f0b3a_1464a715",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1909,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-19T09:23:55Z",
+      "side": 1,
+      "message": "I\u0027d prefer `kIsBccOpenScoAllowed` than `kIsBccOpenScoDisallowed`. `!IsDisallowed` makes double negative and is harder to read.",
+      "range": {
+        "startLine": 1909,
+        "startChar": 58,
+        "endLine": 1909,
+        "endChar": 81
+      },
+      "revId": "e68adeeec27d23a1dba6a127ce814ab611b2a231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e4d69c_ed4a69d5",
+        "filename": "system/gd/os/system_properties.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-19T09:23:55Z",
+      "side": 1,
+      "message": "I guess we need to added the new sysprop to `system/gd/sysprops/sysprops_module.cc`?",
+      "range": {
+        "startLine": 33,
+        "startChar": 52,
+        "endLine": 33,
+        "endChar": 96
+      },
+      "revId": "e68adeeec27d23a1dba6a127ce814ab611b2a231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
