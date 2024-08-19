@@ -93,6 +93,30 @@
       },
       "revId": "22a45e23ca1746c1a1bdec937e2334482d6f955a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251a5a1a_f7ed479e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-19T18:45:33Z",
+      "side": 1,
+      "message": "go/bt-best-practices#flagging since it\u0027s covered by unit tests now, I think you\u0027d need to update the Exempt reason by following the correct format. \ne.g.\nFlag: Exempt covered with unit test.",
+      "parentUuid": "ff0d259e_6ecc485f",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 15
+      },
+      "revId": "22a45e23ca1746c1a1bdec937e2334482d6f955a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
