@@ -70,6 +70,30 @@
       },
       "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "087b0c1f_f4d1b92a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-19T19:23:49Z",
+      "side": 1,
+      "message": "Can you please describe, why we are doing this as part of CS procedure start?\n\nI believe you need this only for GATT exchanges over RAS or any other profile. For RAS or any GATT profile, you can achieve it by setting the Max MTU if not set already. please check",
+      "parentUuid": "7552cebe_032ad811",
+      "range": {
+        "startLine": 359,
+        "startChar": 10,
+        "endLine": 360,
+        "endChar": 60
+      },
+      "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
