@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5ecb638_246ef18c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-19T23:18:03Z",
+      "side": 1,
+      "message": "nit: \"discovery\"",
+      "revId": "ec5102647cc6aee2799843314c7d7aed530d7183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3908ef1d_5a6d739a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -31,6 +48,58 @@
       "writtenOn": "2024-08-19T23:14:21Z",
       "side": 1,
       "message": "https://g3doc.corp.google.com/company/teams/android-core-experiments/trunk-stable/policies/guidelines.md?cl\u003dhead#exceptions-anchor\n```\nFlag: com.android.bluetooth.flags.fix_le_evt_cancelling_sdp_discovery\n```",
+      "revId": "ec5102647cc6aee2799843314c7d7aed530d7183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0852e828_76d27f3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-19T23:18:03Z",
+      "side": 1,
+      "message": "nit: \"connect\"",
+      "revId": "ec5102647cc6aee2799843314c7d7aed530d7183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b0ebe81_ea079e8c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-19T23:18:03Z",
+      "side": 1,
+      "message": "Typo",
+      "fixSuggestions": [
+        {
+          "fixId": "1a08a2f5_9a5d845a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 590,
+                "startChar": 0,
+                "endLine": 591,
+                "endChar": 0
+              },
+              "replacement": "      log::info(\"classic discovery still pending {}\", bta_dm_discovery_cb.peer_bdaddr);\n"
+            }
+          ]
+        }
+      ],
       "revId": "ec5102647cc6aee2799843314c7d7aed530d7183",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
