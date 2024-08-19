@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89bd177f_874c7e57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-19T09:45:47Z",
+      "side": 1,
+      "message": "LGTM though I\u0027m not in the OWNERS",
+      "revId": "f1332fe9419ba2a413a7346a76302730a42a7501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
