@@ -33,6 +33,24 @@
       "message": "Can you squash this patch together with aosp/3222883 ?",
       "revId": "7bd3c137f8dee10dfe4a13009d96196c3207ce3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1664537_17117b1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-19T11:04:36Z",
+      "side": 1,
+      "message": "Yes, and no...\n\nYes I\u0027d like to do that, but as you see, there is a conflict error which I don\u0027t understand (and I write a comment about it in aosp/3222886/comments/e7847496_22f41617).\n\nI\u0027d like to merge aosp/3222883 and aosp/3222884 as fast as possible to fix a \"work with chromebook\" device issue in M128, so I don\u0027t want to spend time with my repo settings if possible.",
+      "parentUuid": "53ea731a_c0b8e5f8",
+      "revId": "7bd3c137f8dee10dfe4a13009d96196c3207ce3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
