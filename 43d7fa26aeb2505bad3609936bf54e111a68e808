@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1862e6e1_634f6381",
+        "filename": "system/stack/include/sco_hci_link_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-19T20:02:59Z",
+      "side": 1,
+      "message": "please fix the typo for command",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ecae632d_c08c2f59",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/sco_hci_link_interface.h",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": "void btm_sco_create_command_status_failed(tHCI_STATUS hci_status);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "43d7fa26aeb2505bad3609936bf54e111a68e808",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -64,6 +64,30 @@
       },
       "revId": "57787494ea88ebe740422dbf3fd98f11e541f606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbd6faa1_4d92d615",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-19T20:02:59Z",
+      "side": 1,
+      "message": "based on offline discussion, `COMMAND_DISALLOWED` is only from controller to the phone, and for that case, it is outgoing SCO connection",
+      "parentUuid": "2fed4cc0_4c8d0899",
+      "range": {
+        "startLine": 1045,
+        "startChar": 10,
+        "endLine": 1045,
+        "endChar": 46
+      },
+      "revId": "57787494ea88ebe740422dbf3fd98f11e541f606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
