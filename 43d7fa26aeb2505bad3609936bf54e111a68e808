@@ -40,6 +40,30 @@
       ],
       "revId": "43d7fa26aeb2505bad3609936bf54e111a68e808",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0b0c1c6_187cdc3c",
+        "filename": "system/stack/include/sco_hci_link_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-19T20:39:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1862e6e1_634f6381",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "revId": "43d7fa26aeb2505bad3609936bf54e111a68e808",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
