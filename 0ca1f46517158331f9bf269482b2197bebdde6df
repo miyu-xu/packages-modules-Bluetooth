@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69640c38_f7a61c28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-19T12:06:46Z",
+      "side": 1,
+      "message": "Outdated, I just added call to cleanup before the device is removed from list - clean is still called on GATT event (this covers the case when the peer initiated disconnection, not Java)",
+      "parentUuid": "acafd0f9_3aed4a28",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 44
+      },
+      "revId": "0ca1f46517158331f9bf269482b2197bebdde6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c48b9218_82dcb36c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-14T18:06:04Z",
       "side": 1,
       "message": "Which test is matching this ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 23
+      },
+      "revId": "0ca1f46517158331f9bf269482b2197bebdde6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b749b4c3_b5669ee1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-19T12:06:46Z",
+      "side": 1,
+      "message": "Added check for this in test_disconnect_connected (expect Clean from GATT queue to be called)",
+      "parentUuid": "c48b9218_82dcb36c",
       "range": {
         "startLine": 19,
         "startChar": 0,
