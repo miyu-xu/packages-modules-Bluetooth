@@ -40,6 +40,30 @@
       ],
       "revId": "9530f374a11465561944414185c88691930ad73e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e2985a3_41da7c14",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-19T20:17:22Z",
+      "side": 1,
+      "message": "The @hide never worked because this was not a javadoc.\nTherefor we currently have SAP as an API, (since so many years).\n\nIf we want to keep it, we are effectively removing an API and this is not allowed.",
+      "parentUuid": "e6d35212_ea3e9983",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 11
+      },
+      "revId": "9530f374a11465561944414185c88691930ad73e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
