@@ -214,6 +214,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70d121b6_a45690ed",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-19T06:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6687d86_bd6da038",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad971eb3_2e7ecb92",
@@ -634,6 +652,24 @@
       "side": 1,
       "message": "I think we can just add here what arrives in event, it\u0027s sane to assume that if we get \"Preset Changed\" event we get what are the new presets, and why were they changed.",
       "parentUuid": "c32a4a58_5e4fd4a6",
+      "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d385b9e5_5fa028f8",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-19T06:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee78dc3b_fa1a84ba",
       "revId": "0d13fe79e36ebf3dba8c66d807c9ddebe1f2e2fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
