@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5e3e83b_ec3f9c39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-19T02:44:12Z",
+      "side": 1,
+      "message": "I would like to keep the mocks in the `system/test/mock` directory as that is consistent with the rest of the mocks.  Future proposals may want to move them all locally to be adjacent to the interfaces they mock.\n\n`what architecture CL author is trying to achieve` I think it\u0027s pretty straightfoward.  `interface`, `mock`, and `implementation`.\n\nThis is too large a change as is, so I would prefer to move and simplify them in future CLs.",
+      "parentUuid": "7a2d7b52_221dbe1f",
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef657ac2_6bf3bd84",
         "filename": "system/stack/gatt/gatt_main.cc",
         "patchSetId": 9
