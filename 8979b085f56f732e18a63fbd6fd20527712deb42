@@ -85,6 +85,30 @@
       ],
       "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aebe5504_a3f01ba1",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-19T18:25:49Z",
+      "side": 1,
+      "message": "Just followed what we have in bta_dm_disc.cc - but will change it.",
+      "parentUuid": "aa1c79c9_9c28e088",
+      "range": {
+        "startLine": 1276,
+        "startChar": 0,
+        "endLine": 1276,
+        "endChar": 9
+      },
+      "revId": "8979b085f56f732e18a63fbd6fd20527712deb42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
