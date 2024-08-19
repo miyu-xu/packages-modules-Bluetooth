@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3908ef1d_5a6d739a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-19T23:14:21Z",
+      "side": 1,
+      "message": "nit: typo",
+      "revId": "ec5102647cc6aee2799843314c7d7aed530d7183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7200035c_476c64b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-19T23:14:21Z",
+      "side": 1,
+      "message": "https://g3doc.corp.google.com/company/teams/android-core-experiments/trunk-stable/policies/guidelines.md?cl\u003dhead#exceptions-anchor\n```\nFlag: com.android.bluetooth.flags.fix_le_evt_cancelling_sdp_discovery\n```",
+      "revId": "ec5102647cc6aee2799843314c7d7aed530d7183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
