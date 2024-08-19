@@ -16,6 +16,24 @@
       "message": "This is making a copy of this vector when we call the function.  Do we want take this argument by const reference instead, i.e.\n\n```\nconst std::vector\u003cbtav_a2dp_codec_config_t\u003e\u0026 codec_preferences,\n```\n\nto avoid the copy?",
       "revId": "3ab616611e99af2eeb676aaab1e26def2fbf2d79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e78baa7b_a51c0255",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-19T06:57:28Z",
+      "side": 1,
+      "message": "Addressed in https://r.android.com/3227102, thanks!",
+      "parentUuid": "d611a9e6_6aaf6131",
+      "revId": "3ab616611e99af2eeb676aaab1e26def2fbf2d79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
