@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d35212_ea3e9983",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-19T18:38:27Z",
+      "side": 1,
+      "message": "What\u0027s the reason for removing the @hide here?",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1b6ef3b2_a2510714",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothProfile.java",
+              "range": {
+                "startLine": 129,
+                "startChar": 0,
+                "endLine": 130,
+                "endChar": 0
+              },
+              "replacement": "    /**\n     * SAP Profile\n     *\n     * @hide\n     */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9530f374a11465561944414185c88691930ad73e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
