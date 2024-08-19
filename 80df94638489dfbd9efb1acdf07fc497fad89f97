@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8743f4_fb4729ce",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-19T18:14:08Z",
+      "side": 1,
+      "message": "nit: good catch! However, this status is returned from `OnPeriodicAdvSyncEstablished` in HCI interface, hence it sounds more like HCI_SUCCESS\n\nFeel free to deal with it in a follow-up",
+      "range": {
+        "startLine": 1029,
+        "startChar": 8,
+        "endLine": 1029,
+        "endChar": 20
+      },
+      "revId": "80df94638489dfbd9efb1acdf07fc497fad89f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
