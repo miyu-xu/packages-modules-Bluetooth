@@ -31,7 +31,8 @@ import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Looper;
-import android.platform.test.flag.junit.SetFlagsRule;
+import android.platform.test.annotations.DisableFlags;
+import android.platform.test.annotations.EnableFlags;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -466,8 +467,8 @@ public class AvrcpControllerStateMachineTest {
 
     /** Get the root of the device */
     @Test
+    @DisableFlags(Flags.FLAG_RANDOMIZE_DEVICE_LEVEL_MEDIA_IDS)
     public void testGetDeviceRootNode_flagRandomDeviceIdDisabled_rootNodeMatchesUuidFormat() {
-        mSetFlagsRule.disableFlags(Flags.FLAG_RANDOMIZE_DEVICE_LEVEL_MEDIA_IDS);
         // create new state machine to follow current flags rule
         mAvrcpStateMachine = makeStateMachine(mTestDevice);
         setUpConnectedState(true, true);
@@ -479,8 +480,8 @@ public class AvrcpControllerStateMachineTest {
 
     /** Get the root of the device */
     @Test
+    @EnableFlags(Flags.FLAG_RANDOMIZE_DEVICE_LEVEL_MEDIA_IDS)
     public void testGetDeviceRootNode_flagRandomDeviceIdEnabled_rootNodeMatchesUuidFormat() {
-        mSetFlagsRule.enableFlags(Flags.FLAG_RANDOMIZE_DEVICE_LEVEL_MEDIA_IDS);
         // create new state machine to follow current flags rule
         mAvrcpStateMachine = makeStateMachine(mTestDevice);
         setUpConnectedState(true, true);
