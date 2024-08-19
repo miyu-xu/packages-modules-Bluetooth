@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79154557_08cb231e",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-19T10:52:39Z",
+      "side": 0,
+      "message": "Don\u0027t forget mocks from system/test/mock/mock_stack_srvc_dis.cc",
+      "range": {
+        "startLine": 329,
+        "startChar": 15,
+        "endLine": 329,
+        "endChar": 21
+      },
+      "revId": "0ed8ea93bf2d7e8c590bd7daff6a84e5f68590c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
