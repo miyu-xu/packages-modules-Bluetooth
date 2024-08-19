@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f86045_a8b95098",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-08-19T02:03:30Z",
+      "side": 1,
+      "message": "Let\u0027s create a variable for this.",
+      "range": {
+        "startLine": 857,
+        "startChar": 52,
+        "endLine": 857,
+        "endChar": 89
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "766f12ae_1ea0a517",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 854,
+                "startChar": 0,
+                "endLine": 854,
+                "endChar": 0
+              },
+              "replacement": "                int newScanMode \u003d getMinScanMode(scanMode, maxScanMode);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 857,
+                "startChar": 0,
+                "endLine": 858,
+                "endChar": 0
+              },
+              "replacement": "                                + getScanModeString(newScanMode)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8574ae2b9f6178037ffbc0e1a81bfb63cbc881c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
