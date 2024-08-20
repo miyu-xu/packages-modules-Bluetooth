@@ -22,6 +22,30 @@
       },
       "revId": "1c03f00a1da30a46ef992c76994f578ecbbe8529",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8800f2a7_928973c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T17:16:10Z",
+      "side": 1,
+      "message": "Yes correct, because we are not testing the binder here, but the service.\n\nThe binder is scheduling on another thread and the synchronized is in the way. \nI figured that Either we are accessing the internal class directly, or we are not. But we cannot do both at the same time.",
+      "parentUuid": "a2ae855e_f49b936f",
+      "range": {
+        "startLine": 1408,
+        "startChar": 12,
+        "endLine": 1408,
+        "endChar": 20
+      },
+      "revId": "1c03f00a1da30a46ef992c76994f578ecbbe8529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
