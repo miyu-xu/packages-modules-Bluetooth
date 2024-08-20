@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ae855e_f49b936f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-20T06:10:29Z",
+      "side": 1,
+      "message": "mServiceBinder renamed to mService ? In other places as well",
+      "range": {
+        "startLine": 1408,
+        "startChar": 12,
+        "endLine": 1408,
+        "endChar": 20
+      },
+      "revId": "1c03f00a1da30a46ef992c76994f578ecbbe8529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
