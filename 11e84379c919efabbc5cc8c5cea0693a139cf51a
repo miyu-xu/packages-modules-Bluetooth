@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5d08876_6eb7f2a1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-20T22:23:50Z",
+      "side": 1,
+      "message": "nit: rename to `scanningResponseIterator` for clarity",
+      "range": {
+        "startLine": 168,
+        "startChar": 35,
+        "endLine": 168,
+        "endChar": 59
+      },
+      "revId": "11e84379c919efabbc5cc8c5cea0693a139cf51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889a2dfb_9bcd41a6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-20T22:23:50Z",
+      "side": 1,
+      "message": "It should be created at the beginning of the test \"if\" the connection is really fast.",
+      "range": {
+        "startLine": 259,
+        "startChar": 45,
+        "endLine": 259,
+        "endChar": 49
+      },
+      "revId": "11e84379c919efabbc5cc8c5cea0693a139cf51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
