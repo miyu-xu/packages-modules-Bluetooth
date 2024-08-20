@@ -46,6 +46,30 @@
       },
       "revId": "f2989c97459aa767f24fb6bee681513e13af8222",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681b6b21_d01bc5fc",
+        "filename": "system/gd/os/linux_generic/alarm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-20T17:37:19Z",
+      "side": 1,
+      "message": "Oh I missed `bytes_read \u003d\u003d -1`.\nThe assert is nice to have though; adding the flag will not be erasing all potential sources of errors for the timerfd read.",
+      "parentUuid": "0e1f8dbf_9d57beb9",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 10
+      },
+      "revId": "f2989c97459aa767f24fb6bee681513e13af8222",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
