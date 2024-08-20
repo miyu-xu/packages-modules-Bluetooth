@@ -44,6 +44,24 @@
       ],
       "revId": "df2e81ec3ad8cf5945ca002501f71d8663fa103a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da57788_780afb4b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-20T17:24:17Z",
+      "side": 1,
+      "message": "Hi, if you meant to have the current source metadata code validated, it\u0027s done later in convertRecvStateToSetBroadcastCodeByteArray -\u003e getCurrentBroadcastMetadata. If there is no valid code in metadata, this operation will be skipped. So in this way, it\u0027s always being checked before sending the code out.\nAnd for the flag, currently this behavior is only found with one headset when this flag is enabled, maybe we can rely on this flag to validate this in the upcoming UPF? And then if everything works, we can proceed with merging this.",
+      "parentUuid": "12cfcce7_ef9832f4",
+      "revId": "df2e81ec3ad8cf5945ca002501f71d8663fa103a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
