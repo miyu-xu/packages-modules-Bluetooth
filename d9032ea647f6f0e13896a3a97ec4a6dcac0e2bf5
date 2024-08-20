@@ -22,6 +22,30 @@
       },
       "revId": "d9032ea647f6f0e13896a3a97ec4a6dcac0e2bf5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a87177c_b9ce5bfa",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-08-20T18:05:26Z",
+      "side": 1,
+      "message": "I want it only for after bonding. We are trying to cover the pairing scenario here.",
+      "parentUuid": "84a8969b_fdcc1527",
+      "range": {
+        "startLine": 1604,
+        "startChar": 4,
+        "endLine": 1604,
+        "endChar": 74
+      },
+      "revId": "d9032ea647f6f0e13896a3a97ec4a6dcac0e2bf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
