@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20454ea9_5697216f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311067
+      },
+      "writtenOn": "2024-08-20T06:26:18Z",
+      "side": 1,
+      "message": "nit: https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/Android.bp;l\u003d313-315?q\u003dsystem%2Fgd%2FAndroid.bp\u0026sq\u003dgit:android%2Fplatform%2Fsuperproject%2Fmain@main\n\nThe `BlueberryFacadeAndCertGeneratedStub_py` should be removed from generated_headers of bluetooth_stack_with_facade because this is a last resort of building bluetooth_cert_tests.zip with an Android.mk.",
+      "revId": "42dc0daad5a0af2c408b6359a2adc1162da41f32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
