@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "730409f2_0a673635",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-08-20T01:08:41Z",
+      "side": 1,
+      "message": "Double checked in the team chat.",
+      "parentUuid": "78abf206_75a724ee",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 4
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d98089ed_93638691",
