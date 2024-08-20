@@ -1,0 +1,325 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678e63cd_2c5e7463",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 3182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "`always_use_preset_cache` is a sysprop and not a aconfig flag",
+      "range": {
+        "startLine": 3182,
+        "startChar": 15,
+        "endLine": 3182,
+        "endChar": 38
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f108e339_6334ff58",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 3183,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "`bypass_allow_list` is a sysprop and not a flag.\nIf you want to enable le_audio for hap supported device, we can look into `enable_hap_by_default`. (See hap.aconfig for the flag declaration)\n\nI believe that should do the correct thing (See PhonePolicy.java for where it is used)",
+      "range": {
+        "startLine": 3183,
+        "startChar": 15,
+        "endLine": 3183,
+        "endChar": 32
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7159255_58fb4e18",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "Can be initialized here directly\n```suggestion\n    private val scope \u003d CoroutineScope(...)\n```",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad414b1_c2a80fe8",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "I noticed other place were limiting the parallelism. Do we want to to the same ?\n\n```\nDispatchers.Default.limitedParallelism(1)\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 32,
+        "endLine": 120,
+        "endChar": 51
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a18f9d_c56cf0d7",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "Can we have just a bit more info by having the device and the request.index in the log ?",
+      "range": {
+        "startLine": 135,
+        "startChar": 24,
+        "endLine": 135,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e3279148_1fd071b1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(TAG, \"getPresetInfo index\u003d${request.index}\")\n"
+            },
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(TAG, \"getAllPresetsInfo device\u003d${device.address}\")\n"
+            },
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(\n                TAG,\n                \"setPresetName device\u003d${device.address} index\u003d${request.index} name\u003d${request.name}\"\n            )\n"
+            },
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 201,
+                "startChar": 0,
+                "endLine": 202,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(TAG, \"selectPreset device\u003d${device.address} index\u003d${request.index}\")\n"
+            },
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 216,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(TAG, \"selectNextPreset device\u003d${device.address}\")\n"
+            },
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 231,
+                "startChar": 0,
+                "endLine": 232,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(TAG, \"selectPreviousPreset device\u003d${device.address}\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c06abfc_b805508b",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "Should the preset returned be null instead of initialized to an empty preset ?",
+      "range": {
+        "startLine": 143,
+        "startChar": 22,
+        "endLine": 146,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e7051785_fcb6c012",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/Hap.kt",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "            if (presetInfo !\u003d null) {\n                GetPresetInfoResponse.newBuilder()\n                    .setPresetInfo(\n                        PresetInfo.newBuilder()\n                            .setPresetIndex(presetInfo.getIndex())\n                            .setPresetName(presetInfo.getName())\n                            .setIsWritable(presetInfo.isWritable())\n                            .setIsAvailable(presetInfo.isAvailable())\n                    )\n                    .build()\n            } else {\n                GetPresetInfoResponse.getDefaultInstance()\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "070d353f_1dfd5ab7",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "```suggestion\n// Copyright (C) 2024 The Android Open Source Project\n// Licensed under the Apache License, Version 2.0 (the \"License\");\n// you may not use this file except in compliance with the License.\n// You may obtain a copy of the License at\n\n// http://www.apache.org/licenses/LICENSE-2.0\n\n// Unless required by applicable law or agreed to in writing, software\n// distributed under the License is distributed on an \"AS IS\" BASIS,\n// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n// See the License for the specific language governing permissions and\n// limitations under the License.\n\nsyntax \u003d \"proto3\";\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0764abc1_ef271386",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "Why not using `google.protobuf.Empty`?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0a212c3b_f281db9c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hap.proto",
+              "range": {
+                "startLine": 17,
+                "startChar": 0,
+                "endLine": 18,
+                "endChar": 0
+              },
+              "replacement": "  rpc HaPlaybackAudio(stream HaPlaybackAudioRequest) returns (google.protobuf.Empty);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hap.proto",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 40,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd082355_db5fbae5",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T18:05:44Z",
+      "side": 1,
+      "message": "Unused in this file",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 1
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
