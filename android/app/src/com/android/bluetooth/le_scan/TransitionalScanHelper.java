@@ -451,6 +451,7 @@ public class TransitionalScanHelper {
                 if (app.mCallback != null) {
                     app.mCallback.onScanResult(result);
                 } else {
+                    Log.v(TAG, "Callback is null, sending scan result to pendingIntent");
                     // Send the PendingIntent
                     ArrayList<ScanResult> results = new ArrayList<>();
                     results.add(result);
