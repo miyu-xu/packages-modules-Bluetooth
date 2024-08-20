@@ -153,31 +153,15 @@ public:
       return;
     }
 
-    std::vector<RawAddress> addresses = {address};
-    auto csis_api = CsisClient::Get();
-    if (csis_api != nullptr) {
-      // Connect entire CAS set of devices
-      auto group_id =
-              csis_api->GetGroupId(address, bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE));
-      addresses = csis_api->GetDeviceList(group_id);
-    }
+    auto device = std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(address));
+    if (device == devices_.end()) {
+      devices_.emplace_back(address, true);
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
 
-    if (addresses.empty()) {
-      log::warn("{} is not part of any set", address);
-      addresses = {address};
-    }
-
-    for (auto const& addr : addresses) {
-      auto device = std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(addr));
-      if (device == devices_.end()) {
-        devices_.emplace_back(addr, true);
-        BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_DIRECT_CONNECTION, false);
-
-      } else {
-        device->is_connecting_actively = true;
-        if (!device->IsConnected()) {
-          BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_DIRECT_CONNECTION, false);
-        }
+    } else {
+      device->is_connecting_actively = true;
+      if (!device->IsConnected()) {
+        BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
       }
     }
   }
