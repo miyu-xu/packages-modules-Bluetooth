@@ -16,6 +16,23 @@
       "message": "I don\u0027t like this... but I understand it address the immediat issue",
       "revId": "a42fdcd2e0188e08caaeb321f481c8efb753f703",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9851e5f_584c2b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-08-20T06:18:25Z",
+      "side": 1,
+      "message": "Have the same thought with William. Could you check IsRunning first instead of returning 0?",
+      "revId": "a42fdcd2e0188e08caaeb321f481c8efb753f703",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
