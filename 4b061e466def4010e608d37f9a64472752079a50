@@ -16,6 +16,24 @@
       "message": "For now, please utilize `requestConnectionPriority` instead of `requestLeConnectionUpdate` when you need to request connection parameters. Android\u0027s design focuses on grouping connection parameters into a few preset connection priority levels (LOW_POWER, BALANCED, HIGH). It\u0027s important to maintain these connection parameters at standard values rather than allowing apps to specify arbitrary values. These parameters play a crucial role in radio scheduling.\n\nFor instance, when multiple LE-ACL connections exist and each has a connection interval that\u0027s a multiple of the others, it simplifies radio slot scheduling for the Bluetooth controller, leading to improved bandwidth efficiency. However, with the proposed API, an app could specify a connection interval that doesn\u0027t align with other connection intervals. This would create scheduling challenges for the Bluetooth controller due to inevitable time collisions in the future.\n\nTherefore, it is recommended to keep this API private for the time being.\n\nThanks for the suggestion!",
       "revId": "4b061e466def4010e608d37f9a64472752079a50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94454c5e_90b4b821",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-08-20T02:25:22Z",
+      "side": 1,
+      "message": "Thank you for response. Regarding \"requestConnectionPriority instead of requestLeConnectionUpdate\", do you mean to extend existing requestConnectionPriority API and add a few preset CE lengh level?",
+      "parentUuid": "21ca292e_4ea8a15b",
+      "revId": "4b061e466def4010e608d37f9a64472752079a50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
