@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f18425e_22e11ad6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-20T16:52:41Z",
+      "side": 1,
+      "message": "Same here, this needs to be updated with the exempt reason\nFlag: TEST_ONLY",
+      "revId": "6f289bb442ba3feba07a0b76b18d4ea03a87acba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
