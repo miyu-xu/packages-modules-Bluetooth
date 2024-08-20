@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cfcce7_ef9832f4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-20T12:10:30Z",
+      "side": 1,
+      "message": "Hi Rongxuan, what do you think about checking in this method if a broadcast code is set for source and if it is set then reply with it otherwise skip this request ? instead of checking those flags ? (mSetBroadcastCodePending, mSetBroadcastCodePending).",
+      "fixSuggestions": [
+        {
+          "fixId": "149fe02c_aa48db69",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+              "range": {
+                "startLine": 798,
+                "startChar": 0,
+                "endLine": 798,
+                "endChar": 0
+              },
+              "replacement": "                mSetBroadcastPINMetadata \u003d null;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+              "range": {
+                "startLine": 803,
+                "startChar": 0,
+                "endLine": 803,
+                "endChar": 0
+              },
+              "replacement": "             mSetBroadcastCodePending \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "df2e81ec3ad8cf5945ca002501f71d8663fa103a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
