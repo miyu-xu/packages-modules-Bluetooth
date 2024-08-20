@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c198a6e_ce5ab944",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-20T17:04:00Z",
+      "side": 1,
+      "message": "mSdpTracker is only cleaned up here, if MESSAGE_UUID_INTENT is not sent, then this function is not triggered and mSdpTracker will get bigger and bigger",
+      "range": {
+        "startLine": 745,
+        "startChar": 8,
+        "endLine": 745,
+        "endChar": 35
+      },
+      "revId": "c6cb7f09dd0eead7e86c8362630ecb34b67d4f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04917d01_c9de6d2c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-20T17:04:00Z",
+      "side": 1,
+      "message": "another effect of removing this message, is when SDP is cancelled, there is no more ACTION_UUID intent. \n\nper API of fetchUuidWithSdp(), we should always send ACTION_UUID after the API even after ACL disconnection, but we shouldn\u0027t make new ACL connection",
+      "range": {
+        "startLine": 1214,
+        "startChar": 40,
+        "endLine": 1214,
+        "endChar": 59
+      },
+      "revId": "c6cb7f09dd0eead7e86c8362630ecb34b67d4f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ab5fde_279e1512",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-20T17:04:00Z",
+      "side": 1,
+      "message": "mSdpTracker needs to be cleaned up here",
+      "range": {
+        "startLine": 1214,
+        "startChar": 16,
+        "endLine": 1214,
+        "endChar": 75
+      },
+      "revId": "c6cb7f09dd0eead7e86c8362630ecb34b67d4f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
