@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19acb826_74fc32d5",
+        "filename": "system/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-20T21:35:30Z",
+      "side": 0,
+      "message": "nit: I would have kept the newline at the end of the file.",
+      "revId": "e04b8832820f66675de7c7df5a65ea554c5ec1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
