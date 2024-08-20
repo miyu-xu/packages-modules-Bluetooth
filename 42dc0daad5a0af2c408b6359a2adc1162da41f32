@@ -34,6 +34,24 @@
       "parentUuid": "20454ea9_5697216f",
       "revId": "42dc0daad5a0af2c408b6359a2adc1162da41f32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca7bea7_9d2722d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2024-08-20T20:22:56Z",
+      "side": 1,
+      "message": "I didn\u0027t notice that the case is a cc_binary is using generated python code in its generated_headers property, so it should be just a order-only dependency and can be removed with this change. Uploaded a new patch for this. Thanks!",
+      "parentUuid": "ce749b7d_6bc267c4",
+      "revId": "42dc0daad5a0af2c408b6359a2adc1162da41f32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
