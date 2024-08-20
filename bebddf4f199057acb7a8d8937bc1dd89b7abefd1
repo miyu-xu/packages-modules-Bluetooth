@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31034444_e35750d7",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-20T01:11:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9adc4a9b_effa385d",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 4
+      },
+      "revId": "bebddf4f199057acb7a8d8937bc1dd89b7abefd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d98089ed_93638691",
