@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0dcfb28_9f4d6a76",
+        "filename": "system/stack/avdt/avdt_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-20T13:18:35Z",
+      "side": 1,
+      "message": "Unnecessary",
+      "range": {
+        "startLine": 94,
+        "startChar": 83,
+        "endLine": 94,
+        "endChar": 91
+      },
+      "revId": "d8778f54a121d2b10f289a61d256a9af89a6540a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd428fdf_b1cb8319",
+        "filename": "system/stack/avdt/avdt_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-20T13:18:35Z",
+      "side": 1,
+      "message": "Unnecessary",
+      "range": {
+        "startLine": 125,
+        "startChar": 68,
+        "endLine": 125,
+        "endChar": 76
+      },
+      "revId": "d8778f54a121d2b10f289a61d256a9af89a6540a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6255bbd0_5407def9",
+        "filename": "system/stack/avdt/avdt_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-20T13:18:35Z",
+      "side": 1,
+      "message": "Not necessary, and will show the full address instead of the masked one.",
+      "range": {
+        "startLine": 150,
+        "startChar": 68,
+        "endLine": 150,
+        "endChar": 76
+      },
+      "revId": "d8778f54a121d2b10f289a61d256a9af89a6540a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be88aabf_026addc0",
+        "filename": "system/stack/avdt/avdt_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-20T13:18:35Z",
+      "side": 1,
+      "message": "This is a logical change, please move it to a separate commit",
+      "range": {
+        "startLine": 321,
+        "startChar": 2,
+        "endLine": 325,
+        "endChar": 3
+      },
+      "revId": "d8778f54a121d2b10f289a61d256a9af89a6540a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
