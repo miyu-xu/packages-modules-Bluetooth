@@ -91,6 +91,30 @@
       ],
       "revId": "2e4d439bc0d579d1a59c4ea1b75727dbfed5a412",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc70b740_c8cc5971",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1453,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-21T15:57:28Z",
+      "side": 1,
+      "message": "For the case of connection both reason and GATT_CONN_OK should have the same value. Personally, I would say having reason would be better as it would help us potentially spot some unwanted logic when reason !\u003d GATT_CONN_OK but connection still happens for any reason, instead of hard coding GATT_CONN_OK. What do you think?",
+      "parentUuid": "a74db075_a6d548a4",
+      "range": {
+        "startLine": 1453,
+        "startChar": 56,
+        "endLine": 1453,
+        "endChar": 62
+      },
+      "revId": "2e4d439bc0d579d1a59c4ea1b75727dbfed5a412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
