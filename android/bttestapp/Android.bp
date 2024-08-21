@@ -1,0 +1,26 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app {
+    name: "BtTestApp",
+    certificate: "platform",
+    platform_apis: true,
+
+    srcs: ["app/src/main/**/*.kt"],
+    resource_dirs: ["app/src/main/res"],
+    manifest: "app/src/main/AndroidManifest.xml",
+    min_sdk_version: "VanillaIceCream",
+
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.activity_activity-compose",
+        "androidx.compose.ui_ui-tooling-preview",
+        "androidx.compose.material3_material3",
+        "androidx.compose.runtime_runtime",
+        "PlatformComposeCore",
+        "kotlin-stdlib",
+    ],
+
+    privileged: true,
+}
