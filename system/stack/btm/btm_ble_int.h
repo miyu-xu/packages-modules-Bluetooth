@@ -56,6 +56,7 @@ void btm_ble_adv_filter_init(void);
 bool btm_ble_topology_check(tBTM_BLE_STATE_MASK request);
 bool btm_ble_clear_topology_mask(tBTM_BLE_STATE_MASK request_state);
 bool btm_ble_set_topology_mask(tBTM_BLE_STATE_MASK request_state);
+void btm_ble_dump_local_random_address(int fd);
 
 void btm_ble_scanner_init(void);
 void btm_ble_scanner_cleanup(void);
