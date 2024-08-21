@@ -94,6 +94,30 @@
       },
       "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33059ef3_076126f3",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-21T05:41:30Z",
+      "side": 1,
+      "message": "This is legacy code for internal tests and you are right, this is not necessary in the procedure start part. I will abandon this patch. Thanks!",
+      "parentUuid": "087b0c1f_f4d1b92a",
+      "range": {
+        "startLine": 359,
+        "startChar": 10,
+        "endLine": 360,
+        "endChar": 60
+      },
+      "revId": "03908fd5cf33e647dcd2e76662fd7bbba992788f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
