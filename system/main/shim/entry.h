@@ -45,9 +45,8 @@ class RemoteNameRequestModule;
 class DistanceMeasurementManager;
 class LeAdvertisingManager;
 class LeScanningManager;
-#if TARGET_FLOSS
+class VendorSpecificEventManager;
 class MsftExtensionManager;
-#endif
 }  // namespace hci
 
 namespace metrics {
@@ -75,9 +74,7 @@ hal::SnoopLogger* GetSnoopLogger();
 storage::StorageModule* GetStorage();
 hci::AclManager* GetAclManager();
 metrics::CounterMetrics* GetCounterMetrics();
-#if TARGET_FLOSS
 hci::MsftExtensionManager* GetMsftExtensionManager();
-#endif
 
 }  // namespace shim
 }  // namespace bluetooth
