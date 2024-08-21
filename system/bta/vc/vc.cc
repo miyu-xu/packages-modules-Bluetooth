@@ -325,6 +325,27 @@ public:
       return;
     }
 
+    VolumeAudioInput* input = device->audio_inputs.FindByServiceHandle(service->handle);
+    if (input != nullptr) {
+      if (handle == input->state_handle) {
+        OnExtAudioInputStateChanged(device, input, len, value);
+      } else if (handle == input->type_handle) {
+        OnExtAudioInTypeChanged(device, input, len, value);
+      } else if (handle == input->status_handle) {
+        OnExtAudioInputStatusChanged(device, input, len, value);
+      } else if (handle == input->description_handle) {
+        OnExtAudioInDescChanged(device, input, len, value);
+      } else if (handle == input->gain_setting_handle) {
+        OnExtAudioInGainSettingChanged(device, input, len, value);
+      } else {
+        log::error("{} unknown input handle=0x{:x}", device->address, handle);
+        return;
+      }
+
+      verify_device_ready(device, handle);
+      return;
+    }
+
     VolumeOffset* offset = device->audio_offsets.FindByServiceHandle(service->handle);
     if (offset != nullptr) {
       if (handle == offset->state_handle) {
@@ -334,7 +355,7 @@ public:
       } else if (handle == offset->audio_descr_handle) {
         OnOffsetOutputDescChanged(device, offset, len, value);
       } else {
-        log::error("unknown offset handle=0x{:x}", handle);
+        log::error(" {} unknown offset handle=0x{:x}", device->address, handle);
         return;
       }
 
@@ -497,7 +518,7 @@ public:
     STREAM_TO_UINT16(offset->offset, pp);
     STREAM_TO_UINT8(offset->change_counter, pp);
 
-    log::info("{}", base::HexEncode(value, len));
+    log::info("{}, len:{}", device->address, base::HexEncode(value, len));
     log::info("id: 0x{:x} offset: 0x{:x} counter: 0x{:x}", offset->id, offset->offset,
               offset->change_counter);
 
@@ -519,7 +540,7 @@ public:
     uint8_t* pp = value;
     STREAM_TO_UINT32(offset->location, pp);
 
-    log::info("{}", base::HexEncode(value, len));
+    log::info("{}, len:{}", device->address, base::HexEncode(value, len));
     log::info("id 0x{:x}location 0x{:x}", offset->id, offset->location);
 
     if (!device->IsReady()) {
@@ -528,6 +549,123 @@ public:
     }
 
     callbacks_->OnExtAudioOutLocationChanged(device->address, offset->id, offset->location);
+  }
+
+  void OnExtAudioInputStateChanged(VolumeControlDevice* device, VolumeAudioInput* input,
+                                   uint16_t len, uint8_t* value) {
+    if (len != 4) {
+      log::info(" {} malformed len=0x{:x}", device->address, len);
+      return;
+    }
+
+    uint8_t* pp = value;
+    STREAM_TO_INT8(input->gain_value, pp);
+    STREAM_TO_UINT8(input->mute, pp);
+    STREAM_TO_UINT8(input->mode, pp);
+    STREAM_TO_UINT8(input->change_counter, pp);
+
+    log::info("{}, len:{}", device->address, base::HexEncode(value, len));
+    log::info(
+            "id 0x{:x}gain_value 0x{:x}, mute: 0x{:x}, mode: 0x{:x}, "
+            "change_counter: {}",
+            input->id, input->gain_value, input->mute, input->mode, input->change_counter);
+
+    if (!device->device_ready) {
+      return;
+    }
+
+    callbacks_->OnExtAudioInStateChanged(device->address, input->id, input->gain_value, input->mode,
+                                         input->mute);
+  }
+
+  void OnExtAudioInTypeChanged(VolumeControlDevice* device, VolumeAudioInput* input, uint16_t len,
+                               uint8_t* value) {
+    if (len != 1) {
+      log::info(" {} malformed len=0x{:x}", device->address, len);
+      return;
+    }
+
+    input->type = *value;
+
+    log::info("{}, len:{}", device->address, base::HexEncode(value, len));
+    log::info("id 0x{:x}type 0x{:x}", input->id, input->type);
+
+    if (!device->device_ready) {
+      return;
+    }
+
+    callbacks_->OnExtAudioInTypeChanged(device->address, input->id, input->type);
+  }
+
+  void OnExtAudioInputStatusChanged(VolumeControlDevice* device, VolumeAudioInput* input,
+                                    uint16_t len, uint8_t* value) {
+    if (len != 1) {
+      log::info(" {} malformed len=0x{:x}", device->address, len);
+      return;
+    }
+
+    input->status = *value;
+
+    log::info("{}, len:{}", device->address, base::HexEncode(value, len));
+    log::info("id 0x{:x} status 0x{:x}", input->id, input->status);
+
+    if (!device->device_ready) {
+      return;
+    }
+
+    callbacks_->OnExtAudioInStatusChanged(device->address, input->id, input->status);
+  }
+
+  void OnExtAudioInDescChanged(VolumeControlDevice* device, VolumeAudioInput* input, uint16_t len,
+                               uint8_t* value) {
+    std::string description = std::string(value, value + len);
+    if (!base::IsStringUTF8(description)) {
+      description = "<invalid utf8 string>";
+    }
+
+    log::info("{}, id: 0x{:x}, desc: {}", device->address, input->id, description);
+
+    if (!device->device_ready) {
+      return;
+    }
+
+    callbacks_->OnExtAudioInDescriptionChanged(device->address, input->id, std::move(description));
+  }
+
+  void OnExtAudioInCPWrite(uint16_t connection_id, tGATT_STATUS status, uint16_t handle,
+                           void* /*data*/) {
+    VolumeControlDevice* device = volume_control_devices_.FindByConnId(connection_id);
+    if (!device) {
+      log::info("Skipping unknown device disconnect, connection_id=0x{:x}", connection_id);
+      return;
+    }
+
+    log::info("{}, Input Control Point write response handle 0x{:x}, status 0x{:x}",
+              device->address, handle, status);
+  }
+
+  void OnExtAudioInGainSettingChanged(VolumeControlDevice* device, VolumeAudioInput* input,
+                                      uint16_t len, uint8_t* value) {
+    if (len != 3) {
+      log::info(" {} malformed len=0x{:x}", device->address, len);
+      return;
+    }
+
+    uint8_t* pp = value;
+    STREAM_TO_UINT8(input->gain_settings.unit, pp);
+    STREAM_TO_INT8(input->gain_settings.min, pp);
+    STREAM_TO_INT8(input->gain_settings.max, pp);
+
+    log::info("{}, len:{}", device->address, base::HexEncode(value, len));
+    log::info("id 0x{:x} gain unit 0x{:x} gain min 0x{:x} gain max 0x{:x}", input->id,
+              input->gain_settings.unit, input->gain_settings.min, input->gain_settings.max);
+
+    if (!device->device_ready) {
+      return;
+    }
+
+    callbacks_->OnExtAudioInGainPropsChanged(device->address, input->id, input->gain_settings.unit,
+                                             input->gain_settings.min, input->gain_settings.max);
   }
 
   void OnExtAudioOutCPWrite(uint16_t connection_id, tGATT_STATUS status, uint16_t handle,
@@ -1039,6 +1177,90 @@ public:
     device->SetExtAudioOutDescription(ext_output_id, descr);
   }
 
+  /* Methods to operate on Audio Input Service (AIS) */
+  void GetExtAudioInState(const RawAddress& address, uint8_t ext_input_id) override {
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->GetExtAudioInState(ext_input_id, chrc_read_callback_static, nullptr);
+  }
+
+  void GetExtAudioInStatus(const RawAddress& address, uint8_t ext_input_id) override {
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->GetExtAudioInStatus(ext_input_id, chrc_read_callback_static, nullptr);
+  }
+
+  void GetExtAudioInType(const RawAddress& address, uint8_t ext_input_id) override {
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->GetExtAudioInType(ext_input_id, chrc_read_callback_static, nullptr);
+  }
+
+  void GetExtAudioInGainProps(const RawAddress& address, uint8_t ext_input_id) override {
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->GetExtAudioInGainProps(ext_input_id, chrc_read_callback_static, nullptr);
+  }
+
+  void GetExtAudioInDescription(const RawAddress& address, uint8_t ext_input_id) override {
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->GetExtAudioInDescription(ext_input_id, chrc_read_callback_static, nullptr);
+  }
+
+  void SetExtAudioInDescription(const RawAddress& address, uint8_t ext_input_id,
+                                std::string descr) override {
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->SetExtAudioInDescription(ext_input_id, descr);
+  }
+
+  void SetExtAudioInGainValue(const RawAddress& address, uint8_t ext_input_id,
+                              int8_t value) override {
+    std::vector<uint8_t> arg({(uint8_t)value});
+    ext_audio_in_control_point_helper(address, ext_input_id, kVolumeInputControlPointOpcodeSetGain,
+                                      &arg);
+  }
+
+  void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
+                             bool automatic) override {
+    ext_audio_in_control_point_helper(address, ext_input_id,
+                                      automatic ? kVolumeInputControlPointOpcodeSetAutoGainMode
+                                                : kVolumeInputControlPointOpcodeSetManualGainMode,
+                                      nullptr);
+  }
+
+  void SetExtAudioInGainMute(const RawAddress& address, uint8_t ext_input_id, bool mute) override {
+    ext_audio_in_control_point_helper(
+            address, ext_input_id,
+            mute ? kVolumeInputControlPointOpcodeMute : kVolumeInputControlPointOpcodeUnmute,
+            nullptr);
+  }
+
   void CleanUp() {
     log::info("");
     volume_control_devices_.Disconnect(gatt_if_);
@@ -1059,6 +1281,7 @@ private:
   static constexpr uint64_t kOperationMonitorTimeoutMs = 3000;
 
   void verify_device_ready(VolumeControlDevice* device, uint16_t handle) {
+    log::debug("{}, isReady {}, verifyReady", device->address, device->IsReady());
     if (device->IsReady()) {
       return;
     }
@@ -1068,12 +1291,18 @@ private:
     if (device->VerifyReady(handle)) {
       log::info("Outstanding reads completed.");
 
-      callbacks_->OnDeviceAvailable(device->address, device->audio_offsets.Size());
+      callbacks_->OnDeviceAvailable(device->address, device->audio_offsets.Size(),
+                                    device->audio_inputs.Size());
       callbacks_->OnConnectionState(ConnectionState::CONNECTED, device->address);
 
       // once profile connected we can notify current states
       callbacks_->OnVolumeStateChanged(device->address, device->volume, device->mute, device->flags,
                                        true);
+
+      for (auto const& input : device->audio_inputs.volume_audio_inputs) {
+        callbacks_->OnExtAudioInStateChanged(device->address, input.id, input.gain_value,
+                                             input.mode, input.mute);
+      }
 
       for (auto const& offset : device->audio_offsets.volume_offsets) {
         callbacks_->OnExtAudioOutVolumeOffsetChanged(device->address, offset.id, offset.offset);
@@ -1104,6 +1333,27 @@ private:
               }
             },
             INT_TO_PTR(operation_id));
+  }
+
+  void ext_audio_in_control_point_helper(const RawAddress& address, uint8_t ext_input_id,
+                                         uint8_t opcode, const std::vector<uint8_t>* arg) {
+    log::info(" {}, input_id 0x{:x}, opcode 0x{:x}", address, ext_input_id, opcode);
+
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      log::error("{}, no such device!", address);
+      return;
+    }
+
+    device->ExtAudioInControlPointOperation(
+            ext_input_id, opcode, arg,
+            [](uint16_t connection_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
+               const uint8_t* value, void* data) {
+              if (instance) {
+                instance->OnExtAudioInCPWrite(connection_id, status, handle, data);
+              }
+            },
+            nullptr);
   }
 
   void ext_audio_out_control_point_helper(const RawAddress& address, uint8_t ext_output_id,

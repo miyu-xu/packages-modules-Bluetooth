@@ -36,6 +36,11 @@ static jmethodID method_onDeviceAvailable;
 static jmethodID method_onExtAudioOutVolumeOffsetChanged;
 static jmethodID method_onExtAudioOutLocationChanged;
 static jmethodID method_onExtAudioOutDescriptionChanged;
+static jmethodID method_onExtAudioInStateChanged;
+static jmethodID method_onExtAudioInStatusChanged;
+static jmethodID method_onExtAudioInTypeChanged;
+static jmethodID method_onExtAudioInGainPropsChanged;
+static jmethodID method_onExtAudioInDescriptionChanged;
 
 static VolumeControlInterface* sVolumeControlInterface = nullptr;
 static std::shared_timed_mutex interface_mutex;
@@ -103,7 +108,8 @@ public:
                                  (jboolean)mute, group_id, (jboolean)isAutonomous);
   }
 
-  void OnDeviceAvailable(const RawAddress& bd_addr, uint8_t num_offsets) override {
+  void OnDeviceAvailable(const RawAddress& bd_addr, uint8_t num_offsets,
+                         uint8_t num_inputs) override {
     log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
@@ -121,7 +127,7 @@ public:
 
     sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress), (jbyte*)&bd_addr);
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onDeviceAvailable, (jint)num_offsets,
-                                 addr.get());
+                                 (jint)num_inputs, addr.get());
   }
 
   void OnExtAudioOutVolumeOffsetChanged(const RawAddress& bd_addr, uint8_t ext_output_id,
@@ -193,6 +199,119 @@ public:
     jstring description = sCallbackEnv->NewStringUTF(descr.c_str());
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioOutDescriptionChanged,
                                  (jint)ext_output_id, description, addr.get());
+  }
+
+  void OnExtAudioInStateChanged(const RawAddress& bd_addr, uint8_t ext_input_id, int8_t gain_val,
+                                uint8_t gain_mode, bool mute) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to new jbyteArray bd addr for OnExtAudioInStateChanged");
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress), (jbyte*)&bd_addr);
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInStateChanged, (jint)ext_input_id,
+                                 (jint)gain_val, (jint)gain_mode, (jboolean)mute, addr.get());
+  }
+
+  void OnExtAudioInStatusChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
+                                 uint8_t status) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to new jbyteArray bd addr for OnExtAudioInStatusChanged");
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress), (jbyte*)&bd_addr);
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInStatusChanged,
+                                 (jint)ext_input_id, (jint)status, addr.get());
+  }
+
+  void OnExtAudioInTypeChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
+                               uint8_t type) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to new jbyteArray bd addr for OnExtAudioInTypeChanged");
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress), (jbyte*)&bd_addr);
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInTypeChanged, (jint)ext_input_id,
+                                 (jint)type, addr.get());
+  }
+
+  void OnExtAudioInGainPropsChanged(const RawAddress& bd_addr, uint8_t ext_input_id, uint8_t unit,
+                                    int8_t min, int8_t max) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to new jbyteArray bd addr for OnExtAudioInGainPropsChanged");
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress), (jbyte*)&bd_addr);
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInGainPropsChanged,
+                                 (jint)ext_input_id, (jint)unit, (jint)min, (jint)max, addr.get());
+  }
+
+  void OnExtAudioInDescriptionChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
+                                      std::string descr) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error(
+              "Failed to new jbyteArray bd addr for "
+              "OnExtAudioInDescriptionChanged");
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress), (jbyte*)&bd_addr);
+    jstring description = sCallbackEnv->NewStringUTF(descr.c_str());
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInDescriptionChanged,
+                                 (jint)ext_input_id, description, addr.get());
   }
 };
 
@@ -505,6 +624,195 @@ static jboolean setExtAudioOutDescriptionNative(JNIEnv* env, jobject /* object *
   return JNI_TRUE;
 }
 
+/* Native methods for external audio inputs */
+static jboolean getExtAudioInStateNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                         jint ext_input_id) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->GetExtAudioInState(*tmpraw, ext_input_id);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean getExtAudioInStatusNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                          jint ext_input_id) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->GetExtAudioInStatus(*tmpraw, ext_input_id);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean getExtAudioInTypeNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                        jint ext_input_id) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->GetExtAudioInType(*tmpraw, ext_input_id);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean getExtAudioInGainPropsNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                             jint ext_input_id) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->GetExtAudioInGainProps(*tmpraw, ext_input_id);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean getExtAudioInDescriptionNative(JNIEnv* env, jobject /* object */,
+                                               jbyteArray address, jint ext_input_id) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->GetExtAudioInDescription(*tmpraw, ext_input_id);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean setExtAudioInDescriptionNative(JNIEnv* env, jobject /* object */,
+                                               jbyteArray address, jint ext_input_id,
+                                               jstring descr) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  std::string description;
+  if (descr != nullptr) {
+    const char* value = env->GetStringUTFChars(descr, nullptr);
+    description = std::string(value);
+    env->ReleaseStringUTFChars(descr, value);
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->SetExtAudioInDescription(*tmpraw, ext_input_id, description);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean setExtAudioInGainValueNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                             jint ext_input_id, jint gain_val) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->SetExtAudioInGainValue(*tmpraw, ext_input_id, gain_val);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean setExtAudioInGainModeNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                            jint ext_input_id, jboolean mode_auto) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->SetExtAudioInGainMode(*tmpraw, ext_input_id, mode_auto);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
+static jboolean setExtAudioInGainMuteNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                            jint ext_input_id, jboolean mute) {
+  log::info("");
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->SetExtAudioInGainMute(*tmpraw, ext_input_id, mute);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
 int register_com_android_bluetooth_vc(JNIEnv* env) {
   const JNINativeMethod methods[] = {
           {"initNative", "()V", (void*)initNative},
@@ -524,6 +832,16 @@ int register_com_android_bluetooth_vc(JNIEnv* env) {
           {"getExtAudioOutDescriptionNative", "([BI)Z", (void*)getExtAudioOutDescriptionNative},
           {"setExtAudioOutDescriptionNative", "([BILjava/lang/String;)Z",
            (void*)setExtAudioOutDescriptionNative},
+          {"getExtAudioInStateNative", "([BI)Z", (void*)getExtAudioInStateNative},
+          {"getExtAudioInStatusNative", "([BI)Z", (void*)getExtAudioInStatusNative},
+          {"getExtAudioInTypeNative", "([BI)Z", (void*)getExtAudioInTypeNative},
+          {"getExtAudioInGainPropsNative", "([BI)Z", (void*)getExtAudioInGainPropsNative},
+          {"getExtAudioInDescriptionNative", "([BI)Z", (void*)getExtAudioInDescriptionNative},
+          {"setExtAudioInDescriptionNative", "([BILjava/lang/String;)Z",
+           (void*)setExtAudioInDescriptionNative},
+          {"setExtAudioInGainValueNative", "([BII)Z", (void*)setExtAudioInGainValueNative},
+          {"setExtAudioInGainModeNative", "([BIZ)Z", (void*)setExtAudioInGainModeNative},
+          {"setExtAudioInGainMuteNative", "([BIZ)Z", (void*)setExtAudioInGainMuteNative},
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/vc/VolumeControlNativeInterface", methods);
@@ -535,11 +853,17 @@ int register_com_android_bluetooth_vc(JNIEnv* env) {
           {"onConnectionStateChanged", "(I[B)V", &method_onConnectionStateChanged},
           {"onVolumeStateChanged", "(IZI[BZ)V", &method_onVolumeStateChanged},
           {"onGroupVolumeStateChanged", "(IZIZ)V", &method_onGroupVolumeStateChanged},
-          {"onDeviceAvailable", "(I[B)V", &method_onDeviceAvailable},
+          {"onDeviceAvailable", "(II[B)V", &method_onDeviceAvailable},
           {"onExtAudioOutVolumeOffsetChanged", "(II[B)V", &method_onExtAudioOutVolumeOffsetChanged},
           {"onExtAudioOutLocationChanged", "(II[B)V", &method_onExtAudioOutLocationChanged},
           {"onExtAudioOutDescriptionChanged", "(ILjava/lang/String;[B)V",
            &method_onExtAudioOutDescriptionChanged},
+          {"onExtAudioInStateChanged", "(IIIZ[B)V", &method_onExtAudioInStateChanged},
+          {"onExtAudioInStatusChanged", "(II[B)V", &method_onExtAudioInStatusChanged},
+          {"onExtAudioInTypeChanged", "(II[B)V", &method_onExtAudioInTypeChanged},
+          {"onExtAudioInGainPropsChanged", "(IIII[B)V", &method_onExtAudioInGainPropsChanged},
+          {"onExtAudioInDescriptionChanged", "(ILjava/lang/String;[B)V",
+           &method_onExtAudioInDescriptionChanged},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/vc/VolumeControlNativeInterface", javaMethods);
 
