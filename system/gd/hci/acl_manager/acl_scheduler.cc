@@ -114,6 +114,14 @@ struct AclScheduler::impl {
   void EnqueueRemoteNameRequest(Address address,
                                 common::ContextualOnceCallback<void()> start_request,
                                 common::ContextualOnceCallback<void()> cancel_request_completed) {
+    if (is_there_matching_queued_connection(
+            [&](auto& entry) {
+              auto entry_ptr = std::get_if<AclCreateConnectionQueueEntry>(&entry);
+              return entry_ptr != nullptr && entry_ptr->address == address;
+            }) {
+	    log::warn("ignoring as there is matching RNR");
+	    return;
+    }
     pending_outgoing_operations_.push_back(RemoteNameRequestQueueEntry{
             address, std::move(start_request), std::move(cancel_request_completed)});
     try_dequeue_next_operation();
@@ -190,6 +198,17 @@ private:
       std::visit([](auto&& variant) { variant.callback(); }, entry);
       outgoing_entry_ = std::move(entry);
     }
+  }
+
+  template <typename T, typename U, typename V>
+  bool is_there_matching_queued_connection(T matcher) {
+    auto it = std::find_if(pending_outgoing_operations_.begin(), pending_outgoing_operations_.end(),
+                           matcher);
+    if (it == pending_outgoing_operations_.end()) {
+      return false;
+    }
+
+    return true;
   }
 
   template <typename T, typename U, typename V>
