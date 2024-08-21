@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d326591_92e9060f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T15:52:34Z",
+      "side": 1,
+      "message": "I created a bug to track this change.  Could you add the following lines to the commit message?\n\nBug: 361326075\nFlag: EXEMPT, logging change",
+      "revId": "2e4d439bc0d579d1a59c4ea1b75727dbfed5a412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a74db075_a6d548a4",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1453,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T15:52:34Z",
+      "side": 1,
+      "message": "Is reason valid when we\u0027re connected?  I\u0027m not sure, since it\u0027s a disconnect reason.  Maybe GATT_CONN_OK was OK here.",
+      "range": {
+        "startLine": 1453,
+        "startChar": 56,
+        "endLine": 1453,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "de3bece1_2b443fa7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_act.cc",
+              "range": {
+                "startLine": 1451,
+                "startChar": 0,
+                "endLine": 1454,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"Connected client_if:{} addr:{}, transport:{}\", gattc_if, bdaddr,\n              bt_transport_text(transport));\n    btif_debug_conn_state(bdaddr, BTIF_DEBUG_CONNECTED, GATT_CONN_OK);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e4d439bc0d579d1a59c4ea1b75727dbfed5a412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
