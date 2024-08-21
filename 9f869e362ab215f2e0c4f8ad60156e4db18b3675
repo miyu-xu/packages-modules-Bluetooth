@@ -250,6 +250,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79c550df_aed8343d",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "SetActivePreset",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd3a544d_b63c019f",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "SetNextPreset",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4547e512_374cc608",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "SetPreviousPreset",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 26
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f56bb00_b0086514",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "should this be writePresetName ? Since we don\u0027t have a getter and this is clother to the spec naming",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0764abc1_ef271386",
         "filename": "pandora/interfaces/pandora_experimental/hap.proto",
         "patchSetId": 13
@@ -317,6 +409,123 @@
         "startChar": 0,
         "endLine": 45,
         "endChar": 1
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f73f76d_c4cf6efd",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "I believe the spec call that PresetRecord. We should match more with the spec naming that the android naming",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5f0ae662_5a7e8e72",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hap.proto",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "message PresetRecord {\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hap.proto",
+              "range": {
+                "startLine": 90,
+                "startChar": 0,
+                "endLine": 91,
+                "endChar": 0
+              },
+              "replacement": "    PresetRecord preset_record \u003d 1;\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hap.proto",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "    repeated PresetRecord preset_record_list \u003d 1;\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hap.proto",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "  repeated PresetRecord preset_record_list \u003d 2;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffdd01e3_fc11dc9b",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "index\n\nwe are in a preset structure so we don\u0027t need to repeat \"preset\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 9,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a3d1d46_381ea20f",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:29:25Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 80,
+        "startChar": 9,
+        "endLine": 80,
+        "endChar": 19
       },
       "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
