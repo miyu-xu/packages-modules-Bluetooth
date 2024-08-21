@@ -19,6 +19,10 @@ package android.bluetooth;
 import static com.google.common.truth.Truth.assertThat;
 
 import android.bluetooth.BluetoothAdapter.OobDataCallback;
+import android.bluetooth.le.AdvertiseData;
+import android.bluetooth.le.AdvertisingSetCallback;
+import android.bluetooth.le.AdvertisingSetParameters;
+import android.bluetooth.le.BluetoothLeAdvertiser;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +38,8 @@ import com.google.common.primitives.Bytes;
 import com.google.common.util.concurrent.SettableFuture;
 import com.google.protobuf.ByteString;
 
+import io.grpc.Deadline;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -41,13 +47,24 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import pandora.HostProto.AdvertiseRequest;
+import pandora.HostProto.ConnectLERequest;
+import pandora.HostProto.ConnectLEResponse;
 import pandora.HostProto.OwnAddressType;
+import pandora.HostProto.ScanRequest;
+import pandora.HostProto.ScanningResponse;
 import pandora.OobProto.OobDataRequest;
 import pandora.OobProto.OobDataResponse;
+import pandora.SecurityProto.LESecurityLevel;
+import pandora.SecurityProto.SecureRequest;
+import pandora.SecurityProto.SecureResponse;
+
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(AndroidJUnit4.class)
 public class OobPairingTest {
     private static final String TAG = "OobPairingTest";
+    private static final String CF_NAME = "Cuttlefish x86_64 phone";
     private BluetoothDevice mDevice;
     private final Context mContext = ApplicationProvider.getApplicationContext();
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
@@ -55,6 +72,8 @@ public class OobPairingTest {
     private OobDataResponse mRemoteOobData;
     private SettableFuture<Integer> mFutureBondIntent;
     private boolean mOnlyLOcalOob = false;
+    private boolean mRemoteInitiator = false;
+    private static final int TIMEOUT_ADVERTISING_MS = 1000;
 
     private static final int HASH_START_POSITION = 0;
     private static final int HASH_END_POSITION = 16;
@@ -127,6 +146,54 @@ public class OobPairingTest {
         mBumble.hostBlocking().advertise(request);
     }
 
+    private void initiatePairingFromRemote() {
+        ByteString deviceAddr;
+        // Start advertising
+        BluetoothLeAdvertiser leAdvertiser = mAdapter.getBluetoothLeAdvertiser();
+        AdvertisingSetParameters parameters =
+                new AdvertisingSetParameters.Builder()
+                        .setOwnAddressType(AdvertisingSetParameters.ADDRESS_TYPE_RANDOM)
+                        .setConnectable(true)
+                        .build();
+        AdvertiseData advertiseData =
+                new AdvertiseData.Builder().setIncludeDeviceName(true).build();
+        AdvertisingSetCallback advertisingSetCallback = new AdvertisingSetCallback() {};
+        leAdvertiser.startAdvertisingSet(
+                parameters, advertiseData, null, null, null, 0, 0, advertisingSetCallback);
+
+        StreamObserverSpliterator<ScanningResponse> respObserver =
+                new StreamObserverSpliterator<>();
+        Deadline deadline = Deadline.after(TIMEOUT_ADVERTISING_MS, TimeUnit.MILLISECONDS);
+        mBumble.host().withDeadline(deadline).scan(ScanRequest.newBuilder().build(), respObserver);
+        Iterator<ScanningResponse> responseObserverIterator = respObserver.iterator();
+
+        while (true) {
+            ScanningResponse scanningResponse = responseObserverIterator.next();
+            deviceAddr = scanningResponse.getRandom();
+            if (scanningResponse.getData().getCompleteLocalName().equals(CF_NAME)) {
+                break;
+            }
+        }
+
+        ConnectLEResponse leConn =
+                mBumble.hostBlocking()
+                        .connectLE(
+                                ConnectLERequest.newBuilder()
+                                        .setOwnAddressType(OwnAddressType.PUBLIC)
+                                        .setRandom(deviceAddr)
+                                        .build());
+        // Start pairing from Bumble
+        StreamObserverSpliterator<SecureResponse> responseObserver =
+                new StreamObserverSpliterator<>();
+        mBumble.security()
+                .secure(
+                        SecureRequest.newBuilder()
+                                .setConnection(leConn.getConnection())
+                                .setLe(LESecurityLevel.LE_LEVEL4)
+                                .build(),
+                        responseObserver);
+    }
+
     private final OobDataCallback mGenerateOobDataCallback =
             new OobDataCallback() {
                 @Override
@@ -147,7 +214,9 @@ public class OobPairingTest {
                                     .build();
                     mRemoteOobData = mBumble.oobBlocking().shareOobData(localOobData);
                     OobData p256 = buildOobData();
-                    if (mOnlyLOcalOob) {
+                    if (mRemoteInitiator) {
+                        initiatePairingFromRemote();
+                    } else if (mOnlyLOcalOob) {
                         mDevice.createBond(BluetoothDevice.TRANSPORT_LE);
                     } else {
                         mDevice.createBondOutOfBand(BluetoothDevice.TRANSPORT_LE, null, p256);
@@ -231,5 +300,26 @@ public class OobPairingTest {
                 BluetoothDevice.TRANSPORT_LE, mContext.getMainExecutor(), mGenerateOobDataCallback);
         assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_BONDED);
         mOnlyLOcalOob = false;
+    }
+
+    /**
+     * Test OOB pairing: Configuration: Initiator: Remote, Local OOB: yes , Remote OOB: No, Secure
+     * Connections: Yes
+     *
+     * <ol>
+     *   <li>1. Android generates OOB Data and share with Bumble.
+     *   <li>2. Bumble creates bond
+     *   <li>5. Android verifies bonded intent
+     * </ol>
+     */
+    @Test
+    public void createBondByRemoteDevicWithLocalOob() throws Exception {
+
+        mRemoteInitiator = true;
+        mFutureBondIntent = SettableFuture.create();
+        mAdapter.generateLocalOobData(
+                BluetoothDevice.TRANSPORT_LE, mContext.getMainExecutor(), mGenerateOobDataCallback);
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_BONDED);
+        mRemoteInitiator = false;
     }
 }
