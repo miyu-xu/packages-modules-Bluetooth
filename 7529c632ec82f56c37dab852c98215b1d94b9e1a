@@ -3,6 +3,77 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26d713d7_2025e67a",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-08-21T06:00:50Z",
+      "side": 1,
+      "message": "Per offline discussion, check connection state of the peer and decide if we shall drop the request. If we drop it here, proceed with next one in queue.",
+      "range": {
+        "startLine": 123,
+        "startChar": 13,
+        "endLine": 123,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4fba2031_5841e0fd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "  if (dis_cb.pend_reqs.empty()) {\n    return;\n  }\n\n  log::verbose(\"Dequeue pending DIS request.\");\n  tDIS_REQ req \u003d dis_cb.pend_reqs.front();\n  dis_cb.pend_reqs.pop();\n\n  if (req.p_read_dis_cback \u003d\u003d NULL) {\n    return;\n  }\n\n  if (srvc_eng_cb.gatt_if \u003d\u003d GATT_INVALID_IF) {\n    tDIS_VALUE empty \u003d {};\n    req.p_read_dis_cback(req.addr, \u0026empty);\n    return;\n  }\n\n  uint16_t conn_id;\n  if (!GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, req.addr, \u0026conn_id, BT_TRANSPORT_LE)) {\n    tDIS_VALUE empty \u003d {};\n    req.p_read_dis_cback(req.addr, \u0026empty);\n    return;\n  }\n"
+            },
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 131,
+                "endChar": 0
+              },
+              "replacement": "  if (!DIS_ReadDISInfo(req.addr, req.p_read_dis_cback, req.mask)) {\n    tDIS_VALUE empty \u003d {};\n    req.p_read_dis_cback(req.addr, \u0026empty);\n"
+            },
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 132,
+                "startChar": 0,
+                "endLine": 132,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 270,
+                "startChar": 0,
+                "endLine": 274,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99781c72_69e4cac1",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 2
@@ -14,6 +85,67 @@
       "writtenOn": "2024-08-21T05:45:10Z",
       "side": 1,
       "message": "might want to check the device is still connected via `gatt_find_tcb_by_addr` here",
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a86c6a_930bcf69",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-08-21T06:00:50Z",
+      "side": 1,
+      "message": "Shall we address pending DIS requests for the case DIS_ReadDISINfo() fails? Otherwise, they wait indefinitely.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8da471fb_ed8eb34f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "  if (dis_cb.pend_reqs.empty()) {\n    return;\n  }\n"
+            },
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 130,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"Dequeue pending DIS request.\");\n  tDIS_REQ req \u003d dis_cb.pend_reqs.front();\n  dis_cb.pend_reqs.pop();\n  if (!DIS_ReadDISInfo(req.addr, req.p_read_dis_cback, req.mask)) {\n    if (req.p_read_dis_cback) {\n      tDIS_VALUE empty \u003d {};\n      req.p_read_dis_cback(req.addr, \u0026empty);\n"
+            },
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 270,
+                "startChar": 0,
+                "endLine": 274,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
       "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
