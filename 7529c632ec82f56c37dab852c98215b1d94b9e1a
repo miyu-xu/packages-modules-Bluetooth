@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b92d2377_11296afc",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T06:11:02Z",
+      "side": 1,
+      "message": "Hi, if you don\u0027t think the AI suggested fix works, do you mind not attaching them? It makes the reader second-guess themselves, not to mention it takes a lot of space.",
+      "parentUuid": "26d713d7_2025e67a",
+      "range": {
+        "startLine": 123,
+        "startChar": 13,
+        "endLine": 123,
+        "endChar": 16
+      },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99781c72_69e4cac1",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 2
@@ -146,6 +170,30 @@
           ]
         }
       ],
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d102c551_1ebd4906",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T06:11:02Z",
+      "side": 1,
+      "message": "yes, you\u0027re correct",
+      "parentUuid": "27a86c6a_930bcf69",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 5
+      },
       "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
