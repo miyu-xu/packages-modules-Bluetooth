@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6744bf46_e1ee72a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-21T07:08:08Z",
+      "side": 1,
+      "message": "From the bug I see that it\u0027s about read to same characteristic being scheduled from two places.\n\nMaybe it makes sense to add ability to register 2nd callback function, if it\u0027s same thing read again, rather than having whole queue mechanism ?",
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d713d7_2025e67a",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 2
