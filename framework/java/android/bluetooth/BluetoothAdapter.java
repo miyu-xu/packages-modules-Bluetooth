@@ -31,6 +31,7 @@ import android.annotation.BroadcastBehavior;
 import android.annotation.CallbackExecutor;
 import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
+import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresNoPermission;
@@ -101,6 +102,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * Represents the local device Bluetooth adapter. The {@link BluetoothAdapter} lets you perform
@@ -3822,6 +3824,22 @@ public final class BluetoothAdapter {
                         mAudioProfilesCallbackWrapper.registerToNewService(mService);
                         mQualityCallbackWrapper.registerToNewService(mService);
                         mBluetoothConnectionCallbackWrapper.registerToNewService(mService);
+                        synchronized (mHciVendorSpecificCallbackRegistration) {
+                            if (mHciVendorSpecificCallbackRegistration != null) {
+                                try {
+                                    mService.registerHciVendorSpecificCallback(
+                                            mHciVendorSpecificCallbackStub,
+                                            mHciVendorSpecificCallbackRegistration.mEventCodes,
+                                            mAttributionSource);
+                                } catch (RemoteException e) {
+                                    Log.e(
+                                            TAG,
+                                            e.toString()
+                                                    + "\n"
+                                                    + Log.getStackTraceString(new Throwable()));
+                                }
+                            }
+                        }
                     } finally {
                         mServiceLock.readLock().unlock();
                     }
@@ -5480,6 +5498,231 @@ public final class BluetoothAdapter {
         try {
             if (mService != null) {
                 return mService.getOffloadedTransportDiscoveryDataScanSupported(mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return BluetoothStatusCodes.ERROR_UNKNOWN;
+    }
+
+    /**
+     * Callbacks for receiving response of HCI Vendor-Specific Commands and Vendor-Specific Events
+     * that arise from the controller.
+     *
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HCI_VENDOR_SPECIFIC_EXTENSION)
+    public interface BluetoothHciVendorSpecificCallback {
+        /**
+         * Invoked when an `HCI_Command_Status`, in response to a Vendor Command is received.
+         *
+         * @param ocf "Opcode command field" of the HCI Opcode
+         * @param status as defined by the Bluetooth Core Specification.
+         */
+        void onCommandStatus(
+                @IntRange(from = 0x000, to = 0x3ff) int ocf,
+                @IntRange(from = 0x00, to = 0xff) int status);
+
+        /**
+         * Invoked when an `HCI_Command_Complete`, in response to a Vendor Command is received.
+         *
+         * @param ocf "Opcode command field" of the HCI Opcode
+         * @param returnParameters Data returned by the command (from 0 to 252 Bytes).
+         */
+        void onCommandComplete(
+                @IntRange(from = 0x000, to = 0x3ff) int ocf, @NonNull byte[] returnParameters);
+
+        /**
+         * Invoked when a event is received.
+         *
+         * @param code The vendor specific event Code
+         * @param data from 0 to 254 Bytes.
+         */
+        void onEvent(int code, @NonNull byte[] data);
+    }
+
+    private static final class HciVendorSpecificCallbackRegistration {
+        public final BluetoothHciVendorSpecificCallback mCb;
+        public final int[] mEventCodes;
+        public final Executor mExecutor;
+
+        HciVendorSpecificCallbackRegistration(
+                BluetoothHciVendorSpecificCallback cb,
+                List<Integer> eventCodeList,
+                Executor executor) {
+            mCb = cb;
+            mEventCodes = eventCodeList.stream().mapToInt(i -> i).toArray();
+            mExecutor = executor;
+        }
+    }
+    ;
+
+    private HciVendorSpecificCallbackRegistration mHciVendorSpecificCallbackRegistration;
+
+    private final IBluetoothHciVendorSpecificCallback mHciVendorSpecificCallbackStub =
+            new IBluetoothHciVendorSpecificCallback.Stub() {
+                @Override
+                public void onCommandStatus(int ocf, int status) {
+                    synchronized (mHciVendorSpecificCallbackRegistration) {
+                        if (mHciVendorSpecificCallbackRegistration == null) {
+                            return;
+                        }
+                        mHciVendorSpecificCallbackRegistration.mExecutor.execute(
+                                () ->
+                                        mHciVendorSpecificCallbackRegistration.mCb.onCommandStatus(
+                                                ocf, status));
+                    }
+                }
+
+                @Override
+                public void onCommandComplete(int ocf, byte[] returnParameters) {
+                    synchronized (mHciVendorSpecificCallbackRegistration) {
+                        if (mHciVendorSpecificCallbackRegistration == null) {
+                            return;
+                        }
+                        mHciVendorSpecificCallbackRegistration.mExecutor.execute(
+                                () ->
+                                        mHciVendorSpecificCallbackRegistration.mCb
+                                                .onCommandComplete(ocf, returnParameters));
+                    }
+                }
+
+                @Override
+                public void onEvent(int code, byte[] data) {
+                    synchronized (mHciVendorSpecificCallbackRegistration) {
+                        if (mHciVendorSpecificCallbackRegistration == null) {
+                            return;
+                        }
+                        mHciVendorSpecificCallbackRegistration.mExecutor.execute(
+                                () ->
+                                        mHciVendorSpecificCallbackRegistration.mCb.onEvent(
+                                                code, data));
+                    }
+                }
+            };
+
+    /**
+     * Register an {@link BluetouthHciVendorCallback} to listen for HCI vendor responses and events
+     *
+     * @param eventCodeList Subscribe to the reception of vendor-specific events. Each vendor
+     *     specific event code, shall be in the range 0x00 to 0x4f, or 0x60 to 0xff. The range
+     *     0x50-0x5f being reserved by AOSP.
+     * @param executor an {@link Executor} to execute given callback
+     * @param callback user implementation of the {@link BluetouthHciVendorCallback}
+     * @return whether the callback was registered successfully
+     * @throws NullPointerException if executor or callback is null
+     * @throws IllegalArgumentException if the callback is already registered, or event codes not in
+     *     a valid range
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HCI_VENDOR_SPECIFIC_EXTENSION)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    @SuppressLint("AndroidFrameworkRequiresPermission") // Consumer wrongly report permission
+    public int registerBluetoothHciVendorCallback(
+            @NonNull List<Integer> eventCodeList,
+            @NonNull @CallbackExecutor Executor executor,
+            @NonNull BluetoothHciVendorSpecificCallback callback) {
+        if (DBG) Log.d(TAG, "registerBluetouthHciVendorCallback()");
+
+        eventCodeList = eventCodeList.stream().distinct().collect(Collectors.toList());
+        for (int code : eventCodeList) {
+            if (code < 0 || (code >= 0x50 && code < 0x60) || code > 0xff) {
+                throw new IllegalArgumentException("Event code not in valid range");
+            }
+        }
+
+        mServiceLock.readLock().lock();
+        try {
+            synchronized (mHciVendorSpecificCallbackRegistration) {
+                if (mHciVendorSpecificCallbackRegistration != null) {
+                    throw new IllegalArgumentException("Only one registration allowed");
+                }
+                mHciVendorSpecificCallbackRegistration =
+                        new HciVendorSpecificCallbackRegistration(
+                                callback, eventCodeList, executor);
+
+                if (mService != null) {
+                    mService.registerHciVendorSpecificCallback(
+                            mHciVendorSpecificCallbackStub,
+                            mHciVendorSpecificCallbackRegistration.mEventCodes,
+                            mAttributionSource);
+                }
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**
+     * Unregister the specified {@link BluetouthHciVendorCallback}
+     *
+     * @param callback user implementation of the {@link BluetouthHciVendorCallback}
+     * @return whether the callback was successfully unregistered
+     * @throws NullPointerException if the callback is null
+     * @throws IllegalArgumentException if the callback has not been registered
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HCI_VENDOR_SPECIFIC_EXTENSION)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    @SuppressLint("AndroidFrameworkRequiresPermission") // Consumer wrongly report permission
+    public int unregisterBluetouthHciVendorCallback(
+            @NonNull BluetoothHciVendorSpecificCallback callback) {
+        if (DBG) Log.d(TAG, "unregisterBluetouthHciVendorCallback()");
+
+        mServiceLock.readLock().lock();
+        try {
+            synchronized (mHciVendorSpecificCallbackRegistration) {
+                if (mHciVendorSpecificCallbackRegistration == null
+                        || mHciVendorSpecificCallbackRegistration.mCb != callback) {
+                    throw new IllegalArgumentException("Callback not registered");
+                }
+                mHciVendorSpecificCallbackRegistration = null;
+            }
+            if (mService != null) {
+                mService.unregisterHciVendorSpecificCallback(
+                        mHciVendorSpecificCallbackStub, mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**
+     * Send an HCI Vendor-Specific Command
+     *
+     * @param ocf "Opcode command field" of the HCI Opcode. Shall be in the range 0x000-0x14f or
+     *     0x160-0x3ff, the range 0x150-0x15f being reserved by AOSP.
+     * @param parameters shall be less or equal to 255 bytes.
+     * @throws NullPointerException if parameters is null
+     * @throws IllegalArgumentException if the ocf is not in a valid range
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HCI_VENDOR_SPECIFIC_EXTENSION)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    public int sendBluetoothHciVendorSpecificCommand(
+            @IntRange(from = 0x000, to = 0x3ff) int ocf, @NonNull byte[] parameters) {
+        if (DBG) Log.d(TAG, "sendBluetoothHciVendorSpecificCommand()");
+
+        if (ocf >= 0x150 && ocf < 0x160) {
+            throw new IllegalArgumentException("Opcode command value not in valid range");
+        }
+
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.sendHciVendorSpecificCommand(ocf, parameters, mAttributionSource);
             }
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));

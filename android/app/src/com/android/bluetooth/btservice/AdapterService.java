@@ -72,6 +72,7 @@ import android.bluetooth.IBluetooth;
 import android.bluetooth.IBluetoothActivityEnergyInfoListener;
 import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothConnectionCallback;
+import android.bluetooth.IBluetoothHciVendorSpecificCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
 import android.bluetooth.IBluetoothPreferredAudioProfilesCallback;
@@ -4108,6 +4109,61 @@ public class AdapterService extends Service {
                                 + "registered");
                 return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
             }
+            return BluetoothStatusCodes.SUCCESS;
+        }
+
+        @Override
+        public int registerHciVendorSpecificCallback(
+                IBluetoothHciVendorSpecificCallback callback,
+                int[] eventCodes,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "registerHciVendorSpecificCallback")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            requireNonNull(callback);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            // TODO
+            return BluetoothStatusCodes.SUCCESS;
+        }
+
+        @Override
+        public int unregisterHciVendorSpecificCallback(
+                IBluetoothHciVendorSpecificCallback callback, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "unregisterHciVendorSpecificCallback")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            requireNonNull(callback);
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            // TODO
+            return BluetoothStatusCodes.SUCCESS;
+        }
+
+        @Override
+        public int sendHciVendorSpecificCommand(
+                int oct, byte[] parameters, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "sendHciVendorSpecificCommand")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            // TODO
             return BluetoothStatusCodes.SUCCESS;
         }
 
