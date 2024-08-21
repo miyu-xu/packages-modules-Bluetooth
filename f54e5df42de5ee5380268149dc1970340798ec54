@@ -46,6 +46,23 @@
       },
       "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e364d2_27b36ebe",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-08-21T17:39:53Z",
+      "side": 1,
+      "message": "Will this callback always happen even when DIS does not return or fail?",
+      "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
