@@ -16,6 +16,24 @@
       "message": "It looks like this one doesn\u0027t build on the server.  One of the reasons (hopefully the only reason) is that we\u0027re missing the mock for the tests.\n\nYou could follow along with btm_ble_set_topology_mask and add a mock for your new function where there is already a mock for btm_ble_set_topoplogy_mask.",
       "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7992e9b_6ce8c52c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-21T16:43:40Z",
+      "side": 1,
+      "message": "Alright sounds good, I\u0027ll try adding the mock to the function and retry building on master. Thanks",
+      "parentUuid": "5b92198b_562520d6",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
