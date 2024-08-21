@@ -3,6 +3,80 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03c4f59f_b99ece02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T16:50:21Z",
+      "side": 1,
+      "message": "This is platform-specific.  I would leave the time out and just say the address rotates for privacy reasons.",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84210c5f_22bacc02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T16:50:21Z",
+      "side": 1,
+      "message": "nit: The formatting looks funny when it wraps.",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04cbc419_5a1c1d3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T16:50:21Z",
+      "side": 1,
+      "message": "I created a bug to track this:\n\n361335194",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "382762e5_a4693462",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T16:50:21Z",
+      "side": 1,
+      "message": "cd packages/modules/Bluetooth\nmma\n\nwould catch more build failures, since it also builds the tests.",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b92198b_562520d6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
