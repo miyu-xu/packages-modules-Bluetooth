@@ -33,6 +33,46 @@
       "message": "Seems that wescande is the only owner, so add him.",
       "revId": "df37881c204a838836b207ce50ad95afb2ffab09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "168d9b81_0317b0d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:51:52Z",
+      "side": 1,
+      "message": "You need to add the file to the list of aconfig flag in the Android.bp, and to the list of aconfig flag in the BUILD.gn",
+      "revId": "df37881c204a838836b207ce50ad95afb2ffab09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cecc7d4b_590cf94e",
+        "filename": "flags/dis.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T17:51:52Z",
+      "side": 1,
+      "message": "according to b/360289803, this is a bugfix, but you are not setting up this flag as a bugfix.\n\nPlease add the appropriate metadata",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "df37881c204a838836b207ce50ad95afb2ffab09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
