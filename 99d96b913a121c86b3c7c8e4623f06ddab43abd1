@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1faf930e_d82db672",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-21T18:42:05Z",
+      "side": 1,
+      "message": "use `sec` here as well",
+      "fixSuggestions": [
+        {
+          "fixId": "2f7736aa_002416a0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avct/avct_api.cc",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "                                 kAvrcBrMtu, AVCT_MIN_BROWSE_MTU, sec)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "99d96b913a121c86b3c7c8e4623f06ddab43abd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
