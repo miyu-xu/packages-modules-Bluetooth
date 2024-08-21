@@ -208,6 +208,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b16f47c_4b158c71",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T08:01:57Z",
+      "side": 1,
+      "message": "It seems an internal code, so I use `GATT_GetConnIdIfConnected` instead, but it comes with the downside of introducing an unused variable.",
+      "parentUuid": "99781c72_69e4cac1",
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27a86c6a_930bcf69",
