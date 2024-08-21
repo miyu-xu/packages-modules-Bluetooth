@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b483d63_e4f6f3fa",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-08-21T07:39:03Z",
+      "side": 1,
+      "message": "Remove the comment",
+      "parentUuid": "b92d2377_11296afc",
+      "range": {
+        "startLine": 123,
+        "startChar": 13,
+        "endLine": 123,
+        "endChar": 16
+      },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99781c72_69e4cac1",
@@ -259,6 +283,30 @@
       "side": 1,
       "message": "yes, you\u0027re correct",
       "parentUuid": "27a86c6a_930bcf69",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39ed6356_26967c1b",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-08-21T07:39:03Z",
+      "side": 1,
+      "message": "Remove the comment",
+      "parentUuid": "d102c551_1ebd4906",
       "range": {
         "startLine": 124,
         "startChar": 0,
