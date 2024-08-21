@@ -16,6 +16,23 @@
       "message": "Hi, this flag is for aosp/3222884. PTAL, thanks!",
       "revId": "df37881c204a838836b207ce50ad95afb2ffab09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5b0bb9_5e3faf5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T07:05:40Z",
+      "side": 1,
+      "message": "Seems that wescande is the only owner, so add him.",
+      "revId": "df37881c204a838836b207ce50ad95afb2ffab09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
