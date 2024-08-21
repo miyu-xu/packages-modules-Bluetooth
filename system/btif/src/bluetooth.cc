@@ -97,6 +97,7 @@
 #include "osi/include/stack_power_telemetry.h"
 #include "osi/include/wakelock.h"
 #include "stack/btm/btm_dev.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/a2dp_api.h"
@@ -892,6 +893,7 @@ static void dump(int fd, const char** arguments) {
   VolumeControl::DebugDump(fd);
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
+  btm_ble_dump_random_address(fd);
   PAN_Dumpsys(fd);
   DumpsysHid(fd);
   DumpsysBtaDm(fd);
