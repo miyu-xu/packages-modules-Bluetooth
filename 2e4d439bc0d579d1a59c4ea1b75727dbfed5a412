@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efde83ef_84c50c2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T16:09:09Z",
+      "side": 1,
+      "message": "You should be able to do it on the GUI, as well.  There\u0027s a REBASE button in the top right corner.",
+      "parentUuid": "a8047499_e7be5fa2",
+      "revId": "2e4d439bc0d579d1a59c4ea1b75727dbfed5a412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a74db075_a6d548a4",
         "filename": "system/bta/gatt/bta_gattc_act.cc",
         "patchSetId": 2
