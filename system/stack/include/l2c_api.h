@@ -921,6 +921,19 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status);
 *******************************************************************************/
 [[nodiscard]] bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_local_cid);
 
+/*******************************************************************************
+**
+** Function         L2CA_Dumpsys
+**
+** Description      Provides dumpsys access to l2cap module
+**
+**  Parameters:     fd: Filedescriptor to be used to write data
+**
+** Returns          void
+**
+*******************************************************************************/
+void L2CA_Dumpsys(int fd);
+
 namespace fmt {
 template <>
 struct formatter<tL2CAP_LATENCY> : enum_formatter<tL2CAP_LATENCY> {};

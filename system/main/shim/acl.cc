@@ -1265,7 +1265,6 @@ void DumpsysNeighbor(int fd) {
 void shim::Acl::Dump(int fd) const {
   DumpsysNeighbor(fd);
   DumpsysAcl(fd);
-  L2CA_Dumpsys(fd);
   DumpsysBtm(fd);
 }
 
