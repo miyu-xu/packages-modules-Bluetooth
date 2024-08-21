@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4e5293_d1f15447",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1608823
+      },
+      "writtenOn": "2024-08-21T04:52:54Z",
+      "side": 1,
+      "message": "The failed tests are already flaky. Bypass presubmit.",
+      "revId": "75083ae27288b11ec9e403571bdf263501b25c7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
