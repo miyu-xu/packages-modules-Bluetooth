@@ -83,5 +83,6 @@ void btm_ble_refresh_peer_resolvable_private_addr(const RawAddress& pseudo_bda,
   test::mock::stack_btm_ble_addr::btm_ble_refresh_peer_resolvable_private_addr(pseudo_bda, rpa,
                                                                                rra_type);
 }
+void btm_ble_dump_local_random_address(int /* fd */) { inc_func_call_count(__func__); }
 
 // END mockcify generation
