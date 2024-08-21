@@ -72,6 +72,7 @@ import android.bluetooth.IBluetooth;
 import android.bluetooth.IBluetoothActivityEnergyInfoListener;
 import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothConnectionCallback;
+import android.bluetooth.IBluetoothHciVendorSpecificCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
 import android.bluetooth.IBluetoothPreferredAudioProfilesCallback;
@@ -4109,6 +4110,72 @@ public class AdapterService extends Service {
                 return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
             }
             return BluetoothStatusCodes.SUCCESS;
+        }
+
+        @Override
+        public void registerHciVendorSpecificCallback(
+                IBluetoothHciVendorSpecificCallback callback,
+                int[] eventCodes,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                throw new IllegalStateException("Bluetooth service not enabled");
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "registerHciVendorSpecificCallback")) {
+                throw new SecurityException("not allowed");
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            requireNonNull(callback);
+            requireNonNull(eventCodes);
+
+            if (Arrays.stream(eventCodes)
+                    .anyMatch((n) -> (n < 0) || (n >= 0x50 && n < 0x60) || (n > 0xff))) {
+                throw new IllegalArgumentException("invalid vendor-specific event code");
+            }
+
+            // TODO
+        }
+
+        @Override
+        public void unregisterHciVendorSpecificCallback(
+                IBluetoothHciVendorSpecificCallback callback, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                throw new IllegalStateException("Bluetooth service not enabled");
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "unregisterHciVendorSpecificCallback")) {
+                throw new SecurityException("not allowed");
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            requireNonNull(callback);
+
+            // TODO
+        }
+
+        @Override
+        public void sendHciVendorSpecificCommand(
+                int ocf,
+                byte[] parameters,
+                IBluetoothHciVendorSpecificCallback callback,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                throw new IllegalStateException("Bluetooth service not enabled");
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "sendHciVendorSpecificCommand")) {
+                throw new SecurityException("not allowed");
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            requireNonNull(parameters);
+
+            if (ocf < 0 || (ocf >= 0x150 && ocf < 0x160) || (ocf > 0x3ff)) {
+                throw new IllegalArgumentException("invalid vendor-specific event code");
+            }
+
+            // TODO
         }
 
         @Override
