@@ -22,6 +22,30 @@
       },
       "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a9ae5f_e5066ff4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T03:40:16Z",
+      "side": 1,
+      "message": "That\u0027s correct. Now pinging the reviewer of aosp/3222884",
+      "parentUuid": "1546b600_64671397",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
