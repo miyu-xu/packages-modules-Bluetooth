@@ -1,0 +1,285 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d007bbd_4073c565",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "FYI You should have a blank line after the commit title\n\ngo/commit-change#commit-message\n\u003e Commits are required to have a subject line (the first line), followed by an empty line. After that, you have an optional body and various footer tags that add more machine-parsed information.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec8551a_534eba82",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "Since you only have one permission being enforced, you don\u0027t need to use `allOf`\n\n\n\n```suggestion\n    @JavaPassthrough(annotation\u003d\"@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)\")\n```",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 131
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e8ee66_dffd5ad1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "You need to check all the eventCodes to be sure they are in the range.\nThis method is the entry point in the Bluetooth app and the code can only be trusted starting here. Having the check in the framework is nice because it allow consisten error check even when the bluetooth is not on, but you definitively want them here to validate the data",
+      "range": {
+        "startLine": 4118,
+        "startChar": 22,
+        "endLine": 4118,
+        "endChar": 32
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804bb23e_846a0afb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "You also want to check for eventCodes being not null. But I would move the require non null after the BLUETOOTH_PRIVILEGED check. Because you already started checking if the caller is allowed with callerIsSystemOrActiveOrManagedUser, then you stop to check parameter, then you go back to permission. This is a bit confusing to check caller then stop then permission",
+      "range": {
+        "startLine": 4128,
+        "startChar": 27,
+        "endLine": 4128,
+        "endChar": 35
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85607b3_5d99a644",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "You need to check these parameters",
+      "range": {
+        "startLine": 4155,
+        "startChar": 15,
+        "endLine": 4155,
+        "endChar": 43
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6009fbb_9f1b2d95",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5577,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "I would factorize this into one method that does the synchronization + null check + post on the executor.\nand then all callback simply call it with a runnable.\n\nSee VolumeControlNotifyCallback in BluetoothVolumeControl.java for an example using a consumer. You can adapte to replace the map and perform a nullcheck instead",
+      "range": {
+        "startLine": 5569,
+        "startChar": 0,
+        "endLine": 5577,
+        "endChar": 21
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fea39adb_00ac2313",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5626,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "Because you want unique elements, you should use a Set\n\ngo/android-api-guidelines#classes-collections",
+      "range": {
+        "startLine": 5626,
+        "startChar": 0,
+        "endLine": 5626,
+        "endChar": 49
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a51d4f_536eec91",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5630,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "I would add:\n```\n        requireNonNull(eventCodeList);\n        requireNonNull(executor);\n        requireNonNull(callback);\n ```",
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d26ac5e_8d0ec221",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5636,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "We are doing a stream just above, why not adding this step in the stream instead of iterating twice ? \n\nI believe this will no longer matter if you use a set as the stream will be removed but...",
+      "range": {
+        "startLine": 5632,
+        "startChar": 0,
+        "endLine": 5636,
+        "endChar": 9
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb39a4d_cfd0c21e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5679,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "```\n@requireNonNull(callback)\n```",
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "110b9e08_e71fcdc2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5681,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "I would reduce the scope of the try to limit to the check on mService and the call to unregister. Especially because you are doing:\nlock a\n  lock b\n    foo\n       \nwhile in other place you are doing\nlock b\n   lock a\n      foo\n      \nThat could result in a deadlock",
+      "range": {
+        "startLine": 5681,
+        "startChar": 0,
+        "endLine": 5681,
+        "endChar": 13
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6628897_11d5ce87",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5690,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "I would move that to be within the synchronized",
+      "range": {
+        "startLine": 5690,
+        "startChar": 25,
+        "endLine": 5690,
+        "endChar": 60
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80af2daf_f1f61804",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5717,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:15:22Z",
+      "side": 1,
+      "message": "```\n@requireNonNull(parameters)\n```",
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
