@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "261ea909_c718b8ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-21T16:57:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "84210c5f_22bacc02",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99f67da1_9de21a1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-21T16:57:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "03c4f59f_b99ece02",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04cbc419_5a1c1d3d",
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d8ac64_37e397ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-21T16:57:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "04cbc419_5a1c1d3d",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "382762e5_a4693462",
@@ -71,6 +131,24 @@
       "writtenOn": "2024-08-21T16:50:21Z",
       "side": 1,
       "message": "cd packages/modules/Bluetooth\nmma\n\nwould catch more build failures, since it also builds the tests.",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d260faf_614918b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-21T16:57:35Z",
+      "side": 1,
+      "message": "Sweet, made the change running mma and will upload the changes on success.",
+      "parentUuid": "382762e5_a4693462",
       "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
