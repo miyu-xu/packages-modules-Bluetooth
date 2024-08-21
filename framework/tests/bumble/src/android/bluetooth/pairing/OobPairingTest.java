@@ -54,6 +54,7 @@ public class OobPairingTest {
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
     private OobDataResponse mRemoteOobData;
     private SettableFuture<Integer> mFutureBondIntent;
+    private boolean mOnlyLOcalOob = false;
 
     private static final int HASH_START_POSITION = 0;
     private static final int HASH_END_POSITION = 16;
@@ -146,7 +147,11 @@ public class OobPairingTest {
                                     .build();
                     mRemoteOobData = mBumble.oobBlocking().shareOobData(localOobData);
                     OobData p256 = buildOobData();
-                    mDevice.createBondOutOfBand(BluetoothDevice.TRANSPORT_LE, null, p256);
+                    if (mOnlyLOcalOob) {
+                        mDevice.createBond(BluetoothDevice.TRANSPORT_LE);
+                    } else {
+                        mDevice.createBondOutOfBand(BluetoothDevice.TRANSPORT_LE, null, p256);
+                    }
                 }
             };
 
@@ -170,7 +175,7 @@ public class OobPairingTest {
      * <ol>
      *   <li>1. Android gets OOB Data from Bumble.
      *   <li>2. Android creates bond with remote OOB data
-     *   <li>5. Android verifies bonded intent
+     *   <li>3. Android verifies bonded intent
      * </ol>
      */
     @Test
@@ -193,7 +198,7 @@ public class OobPairingTest {
      * <ol>
      *   <li>1. Android gets OOB Data from Bumble.
      *   <li>2. Android creates bond with remote OOB data
-     *   <li>5. Android verifies bonded intent
+     *   <li>3. Android verifies bonded intent
      * </ol>
      */
     @Test
@@ -204,5 +209,27 @@ public class OobPairingTest {
         mAdapter.generateLocalOobData(
                 BluetoothDevice.TRANSPORT_LE, mContext.getMainExecutor(), mGenerateOobDataCallback);
         assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_BONDED);
+    }
+
+    /**
+     * Test OOB pairing: Configuration: Initiator: Local, Local OOB: yes , Remote OOB: No, Secure
+     * Connections: Yes
+     *
+     * <ol>
+     *   <li>1. Android generates OOB Data and share with Bumble.
+     *   <li>2. Android creates bond
+     *   <li>3. Android verifies bonded intent
+     * </ol>
+     */
+    @Test
+    public void createBondWithLocalOob() throws Exception {
+
+        mFutureBondIntent = SettableFuture.create();
+        startAdvertise();
+        mOnlyLOcalOob = true;
+        mAdapter.generateLocalOobData(
+                BluetoothDevice.TRANSPORT_LE, mContext.getMainExecutor(), mGenerateOobDataCallback);
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_BONDED);
+        mOnlyLOcalOob = false;
     }
 }
