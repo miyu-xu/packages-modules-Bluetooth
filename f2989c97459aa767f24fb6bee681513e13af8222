@@ -94,6 +94,30 @@
       },
       "revId": "f2989c97459aa767f24fb6bee681513e13af8222",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "490d084f_ffccc8ff",
+        "filename": "system/gd/os/linux_generic/alarm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-21T06:20:44Z",
+      "side": 1,
+      "message": "```\n              A read(2) fails with the error EINVAL if the size of the\n              supplied buffer is less than 8 bytes.\n\n              If the associated clock is either CLOCK_REALTIME or\n              CLOCK_REALTIME_ALARM, the timer is absolute\n              (TFD_TIMER_ABSTIME), and the flag TFD_TIMER_CANCEL_ON_SET\n              was specified when calling timerfd_settime(), then read(2)\n              fails with the error ECANCELED if the real-time clock\n              undergoes a discontinuous change.  (This allows the\n              reading application to discover such discontinuous changes\n              to the clock.)\n```\n\nNone is likely to occur of course, which is the point of using assert.\nYour change makes EAGAIN possible as an error, so it is appropriate to gracefully handle this case, but I would keep the current behavior for other error codes.",
+      "parentUuid": "4da65734_c3c82cc4",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 10
+      },
+      "revId": "f2989c97459aa767f24fb6bee681513e13af8222",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
