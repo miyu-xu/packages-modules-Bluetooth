@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09f70fc5_fb325c12",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-08-21T09:46:14Z",
+      "side": 1,
+      "message": "addressed in aosp/3235582",
+      "parentUuid": "e5d08876_6eb7f2a1",
+      "range": {
+        "startLine": 168,
+        "startChar": 35,
+        "endLine": 168,
+        "endChar": 59
+      },
+      "revId": "11e84379c919efabbc5cc8c5cea0693a139cf51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "889a2dfb_9bcd41a6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-20T22:23:50Z",
       "side": 1,
       "message": "It should be created at the beginning of the test \"if\" the connection is really fast.",
+      "range": {
+        "startLine": 259,
+        "startChar": 45,
+        "endLine": 259,
+        "endChar": 49
+      },
+      "revId": "11e84379c919efabbc5cc8c5cea0693a139cf51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e483a4e_20aa2719",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-08-21T09:46:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "889a2dfb_9bcd41a6",
       "range": {
         "startLine": 259,
         "startChar": 45,
