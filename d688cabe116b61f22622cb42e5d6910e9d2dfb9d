@@ -353,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd2653c_dc27a138",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5577,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-08-21T22:29:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c6009fbb_9f1b2d95",
+      "range": {
+        "startLine": 5569,
+        "startChar": 0,
+        "endLine": 5577,
+        "endChar": 21
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fea39adb_00ac2313",
@@ -530,6 +554,30 @@
       "writtenOn": "2024-08-21T20:15:22Z",
       "side": 1,
       "message": "I would reduce the scope of the try to limit to the check on mService and the call to unregister. Especially because you are doing:\nlock a\n  lock b\n    foo\n       \nwhile in other place you are doing\nlock b\n   lock a\n      foo\n      \nThat could result in a deadlock",
+      "range": {
+        "startLine": 5681,
+        "startChar": 0,
+        "endLine": 5681,
+        "endChar": 13
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "635cb641_0ec2a3fc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5681,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-08-21T22:29:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "110b9e08_e71fcdc2",
       "range": {
         "startLine": 5681,
         "startChar": 0,
