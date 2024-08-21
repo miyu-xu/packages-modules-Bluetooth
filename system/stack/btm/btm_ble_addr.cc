@@ -88,6 +88,7 @@ static bool rpa_matches_irk(const RawAddress& rpa, const Octet16& irk) {
 
   if (memcmp(x.data(), rand.data(), 3) == 0) {
     // match
+    p_dev_rec->ble.cur_rand_addr = rpa;
     return true;
   }
   // not a match
@@ -275,6 +276,12 @@ void btm_ble_refresh_peer_resolvable_private_addr(const RawAddress& pseudo_bda,
       log::error("Unknown device to refresh remote device");
     }
   }
+}
+
+void btm_ble_dump_local_random_address(int fd) {
+  dprintf(fd, "\nBLE Random Address: \n");
+  dprintf(fd, "  %s\n", btm_cb.ble_random_address.ToString().c_str());
+  dprintf(fd, "\n");
 }
 
 bool maybe_resolve_address(RawAddress* bda, tBLE_ADDR_TYPE* bda_type) {
