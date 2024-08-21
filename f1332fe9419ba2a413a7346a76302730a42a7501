@@ -16,6 +16,29 @@
       "message": "LGTM though I\u0027m not in the OWNERS",
       "revId": "f1332fe9419ba2a413a7346a76302730a42a7501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "362cef92_aee88808",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1911,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-21T16:44:17Z",
+      "side": 1,
+      "message": "Is this something that needs to be configured for different FLOSS targets, or should this be #ifdef FLOSS ?\n```suggestion\n#ifdef FLOSS\n  if (event \u003d\u003d \"BTA_AG_LOCAL_EVT_BCC\") {\n    return false;\n  }\n#endif\n```",
+      "range": {
+        "startLine": 1907,
+        "startChar": 0,
+        "endLine": 1911,
+        "endChar": 3
+      },
+      "revId": "f1332fe9419ba2a413a7346a76302730a42a7501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
