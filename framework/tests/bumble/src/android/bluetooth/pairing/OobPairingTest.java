@@ -96,6 +96,7 @@ public class OobPairingTest {
     private final BluetoothAdapter mAdapter =
             mContext.getSystemService(BluetoothManager.class).getAdapter();
     private OobDataResponse mRemoteOobData;
+    private boolean mOnlyLocalOob = false;
     private boolean mRemoteInitiator = false;
     private static final int TIMEOUT_ADVERTISING_MS = 1000;
 
@@ -162,6 +163,9 @@ public class OobPairingTest {
         byte[] address = Utils.addressBytesFromString(Utils.BUMBLE_RANDOM_ADDRESS);
         byte[] addressType = {BluetoothDevice.ADDRESS_TYPE_RANDOM};
 
+        mDevice =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
         OobData p256 =
                 new OobData.LeBuilder(
                                 confirmationHash,
@@ -257,6 +261,8 @@ public class OobPairingTest {
                     OobData p256 = buildOobData();
                     if (mRemoteInitiator) {
                         initiatePairingFromRemote();
+                    } else if (mOnlyLocalOob) {
+                        mDevice.createBond(BluetoothDevice.TRANSPORT_LE);
                     } else {
                         mDevice.createBondOutOfBand(BluetoothDevice.TRANSPORT_LE, null, p256);
                     }
@@ -289,7 +295,7 @@ public class OobPairingTest {
     }
 
     /**
-     * Test OOB pairing: Configuration: Initiator: Locali, Local OOB: No, Remote OOB: Yes ,Secure
+     * Test OOB pairing: Configuration: Initiator: Local, Local OOB: No, Remote OOB: Yes ,Secure
      * Connections: Yes
      *
      * <ol>
@@ -374,6 +380,34 @@ public class OobPairingTest {
         mRemoteInitiator = false;
         // revert adapter name
         mAdapter.setName(deviceName);
+    }
+
+    /**
+     * Test OOB pairing: Configuration: Initiator: Local, Local OOB: yes , Remote OOB: No, Secure
+     * Connections: Yes
+     *
+     * <ol>
+     *   <li>1. Android generates OOB Data and share with Bumble.
+     *   <li>2. Android creates bond
+     *   <li>3. Android verifies bonded intent
+     * </ol>
+     */
+    @Test
+    public void createBondWithLocalOob() throws Exception {
+
+        startAdvertise();
+        mOnlyLocalOob = true;
+        mAdapter.generateLocalOobData(
+                BluetoothDevice.TRANSPORT_LE, mContext.getMainExecutor(), mGenerateOobDataCallback);
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));
+        mOnlyLocalOob = false;
     }
 
     @SafeVarargs
