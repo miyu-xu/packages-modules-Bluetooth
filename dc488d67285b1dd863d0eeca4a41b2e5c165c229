@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fc56452_5ed57630",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "shouldn\u0027t this still be needed?\n!isEmptyBluetoothDevice(...)",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3f0223b_cb1fbff5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "helper func?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0b38902_866cfb81",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2750,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "same as some comment below, if this logging is needed, maybe consider to put it into some helper func.",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac76cf0d_27efbd93",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3224,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "have a helper func for this?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c36c8458_8ea2589c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3434,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "Possible to merge this with stopBigMonitoring() or keep checkAndStopBigMonitoring only?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791f97d6_af8e1ebe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3462,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "nit: hostLock naming is a bit confusing to me? is this for host initiated operation?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad61f069_ac73d1c4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3482,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "I see we\u0027re logging this from multiple places.\\\nShould we consider to have some mPausedBroadcastIds mPausedBroadcastSinks operator func? And log this whenever mPausedBroadcastIds is updated?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26cd2eaf_797fa220",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3556,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "Why this line got removed?\nmBroadcastMetadataMap.put(sink, metadata);\n\nAlso can we consider to move this check to some functions to make it more readable?\n!leaudioBigDependsOnAudioState() is expected?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33a74702_cbbb44bb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3631,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-21T21:06:20Z",
+      "side": 1,
+      "message": "null check for bassClientService?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
