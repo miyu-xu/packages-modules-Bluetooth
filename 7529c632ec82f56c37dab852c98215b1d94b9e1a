@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59c76a7f_81bcc1e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T07:20:06Z",
+      "side": 1,
+      "message": "Perhaps we can improve it to send minimal requests by caching(?) later",
+      "parentUuid": "357fe8ba_72b1ceff",
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d713d7_2025e67a",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 2
