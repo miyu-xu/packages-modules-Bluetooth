@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "794738da_200c6b90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-21T17:46:13Z",
+      "side": 1,
+      "message": "This just includes the mocks and interface and impl for clarity",
+      "revId": "9a99e313dcac6f6a46936e00f54399964e7f35de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
