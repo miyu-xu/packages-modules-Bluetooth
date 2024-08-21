@@ -26,6 +26,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f178604_f0a21f0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:16:02Z",
+      "side": 1,
+      "message": "I don\u0027t think pts is a valid test for this",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba154cce_8627dbf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-21T20:16:02Z",
+      "side": 1,
+      "message": "I believe that this should be com.android.bluetooth.flags.hci_vendor_specific_extension",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "d688cabe116b61f22622cb42e5d6910e9d2dfb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fec8551a_534eba82",
         "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
         "patchSetId": 1
