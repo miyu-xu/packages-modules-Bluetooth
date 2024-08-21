@@ -112,7 +112,8 @@ public:
     topshim::rust::internal::group_volume_state_cb(group_id, volume, mute, is_autonomous);
   }
 
-  void OnDeviceAvailable(const RawAddress& address, uint8_t num_offset) override {
+  void OnDeviceAvailable(const RawAddress& address, uint8_t num_offset,
+                         uint8_t num_inputs) override {
     log::info("address={}, num_offset={}", ADDRESS_TO_LOGGABLE_CSTR(address), num_offset);
     topshim::rust::internal::device_available_cb(address, num_offset);
   }
@@ -136,6 +137,28 @@ public:
     log::info("address={}, ext_output_id={}, descr={}", ADDRESS_TO_LOGGABLE_CSTR(address),
               ext_output_id, descr.c_str());
     topshim::rust::internal::ext_audio_out_description_cb(address, ext_output_id, descr);
+  }
+
+  void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id, int8_t gain_val,
+                                uint8_t gain_mode_auto, bool mute) {
+    log::info("Not implemented");
+  }
+
+  void OnExtAudioInStatusChanged(const RawAddress& address, uint8_t ext_input_id, uint8_t status) {
+    log::info("Not implemented");
+  }
+  void OnExtAudioInTypeChanged(const RawAddress& address, uint8_t ext_input_id, uint8_t type) {
+    log::info("Not implemented");
+  }
+
+  void OnExtAudioInGainPropsChanged(const RawAddress& address, uint8_t ext_input_id, uint8_t unit,
+                                    int8_t min, int8_t max) {
+    log::info("Not implemented");
+  }
+
+  void OnExtAudioInDescriptionChanged(const RawAddress& address, uint8_t ext_input_id,
+                                      std::string descr) {
+    log::info("Not implemented");
   }
 };
 

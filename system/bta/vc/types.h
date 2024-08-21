@@ -59,6 +59,14 @@ static const Uuid kVolumeOffsetStateUuid              = Uuid::From16Bit(0x2B80);
 static const Uuid kVolumeOffsetLocationUuid           = Uuid::From16Bit(0x2B81);
 static const Uuid kVolumeOffsetControlPointUuid       = Uuid::From16Bit(0x2B82);
 static const Uuid kVolumeOffsetOutputDescriptionUuid  = Uuid::From16Bit(0x2B83);
+
+static const Uuid kVolumeAudioInputUuid               = Uuid::From16Bit(0x1843);
+static const Uuid kVolumeAudioInputStateUuid          = Uuid::From16Bit(0x2B77);
+static const Uuid kVolumeAudioInputGainSettingUuid    = Uuid::From16Bit(0x2B78);
+static const Uuid kVolumeAudioInputTypeUuid           = Uuid::From16Bit(0x2B79);
+static const Uuid kVolumeAudioInputStatusUuid         = Uuid::From16Bit(0x2B7A);
+static const Uuid kVolumeAudioInputControlPointUuid   = Uuid::From16Bit(0x2B7B);
+static const Uuid kVolumeAudioInputDescriptionUuid    = Uuid::From16Bit(0x2B7C);
 /* clang-format on */
 
 struct VolumeOperation {
@@ -111,6 +119,94 @@ struct VolumeOperation {
 
   bool IsStarted(void) { return started_; }
   void Start(void) { started_ = true; }
+};
+
+struct GainSettings {
+  uint8_t unit;
+  int8_t min;
+  int8_t max;
+
+  GainSettings() : unit(0), min(0), max(0) {}
+};
+
+struct VolumeAudioInput {
+  uint8_t id;
+  bool mute;
+  int8_t gain_value;
+  uint8_t status;
+  uint8_t type;
+  uint8_t change_counter;
+  uint8_t mode;
+  uint16_t service_handle;
+  uint16_t state_handle;
+  uint16_t state_ccc_handle;
+  uint16_t gain_setting_handle;
+  uint16_t type_handle;
+  uint16_t status_handle;
+  uint16_t status_ccc_handle;
+  uint16_t control_point_handle;
+  uint16_t description_handle;
+  uint16_t description_ccc_handle;
+  bool description_writable;
+  struct GainSettings gain_settings;
+
+  VolumeAudioInput(uint16_t service_handle)
+      : id(0),
+        mute(false),
+        gain_value(0),
+        status(0),
+        type(0),
+        change_counter(0),
+        mode(0),
+        service_handle(service_handle),
+        state_handle(0),
+        state_ccc_handle(0),
+        gain_setting_handle(0),
+        type_handle(0),
+        status_handle(0),
+        status_ccc_handle(0),
+        control_point_handle(0),
+        description_handle(0),
+        description_ccc_handle(0),
+        description_writable(false),
+        gain_settings(GainSettings()) {}
+};
+
+class VolumeAudioInputs {
+public:
+  void Add(VolumeAudioInput& input) {
+    input.id = (uint8_t)Size() + 1;
+    volume_audio_inputs.push_back(input);
+  }
+
+  VolumeAudioInput* FindByType(uint8_t type) {
+    auto iter = std::find_if(volume_audio_inputs.begin(), volume_audio_inputs.end(),
+                             [&type](const VolumeAudioInput& item) { return item.type == type; });
+
+    return (iter == volume_audio_inputs.end()) ? nullptr : &(*iter);
+  }
+
+  VolumeAudioInput* FindByServiceHandle(uint16_t service_handle) {
+    auto iter = std::find_if(volume_audio_inputs.begin(), volume_audio_inputs.end(),
+                             [&service_handle](const VolumeAudioInput& item) {
+                               return item.service_handle == service_handle;
+                             });
+
+    return (iter == volume_audio_inputs.end()) ? nullptr : &(*iter);
+  }
+
+  VolumeAudioInput* FindById(uint8_t id) {
+    auto iter = std::find_if(volume_audio_inputs.begin(), volume_audio_inputs.end(),
+                             [&id](const VolumeAudioInput& item) { return item.id == id; });
+
+    return (iter == volume_audio_inputs.end()) ? nullptr : &(*iter);
+  }
+
+  void Clear() { volume_audio_inputs.clear(); }
+
+  size_t Size() { return volume_audio_inputs.size(); }
+
+  std::vector<VolumeAudioInput> volume_audio_inputs;
 };
 
 struct VolumeOffset {
