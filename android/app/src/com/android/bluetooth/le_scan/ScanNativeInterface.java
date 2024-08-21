@@ -98,6 +98,9 @@ public class ScanNativeInterface {
 
     private native void gattClientScanFilterEnableNative(int clientIf, boolean enable);
 
+    /************************** MSFT scan related native methods *****************************/
+    // TODO
+
     /************************** Batch related native methods *********************************/
     private native void gattClientConfigBatchScanStorageNative(
             int clientIf,
