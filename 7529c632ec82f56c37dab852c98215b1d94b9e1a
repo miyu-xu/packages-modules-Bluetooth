@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "357fe8ba_72b1ceff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-21T07:18:27Z",
+      "side": 1,
+      "message": "Yes, for the bug in question it\u0027s just the same characteristics.\n\nHowever I see that DIS_ReadDISInfo is called in a few other places for LE audio and they are looking for a different characteristics. Not to mention any future changes might also call other characteristics.\nI think we still should solve this issue sooner or later.\n\nWDYT?",
+      "parentUuid": "6744bf46_e1ee72a9",
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d713d7_2025e67a",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 2
