@@ -1127,6 +1127,14 @@ package android.bluetooth {
     method @FlaggedApi("com.android.bluetooth.flags.leaudio_multiple_vocs_instances_api") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void setVolumeOffset(@NonNull android.bluetooth.BluetoothDevice, @IntRange(from=1, to=255) int, @IntRange(from=0xffffff01, to=255) int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void unregisterCallback(@NonNull android.bluetooth.BluetoothVolumeControl.Callback);
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_CONNECTION_STATE_CHANGED = "android.bluetooth.volume-control.profile.action.CONNECTION_STATE_CHANGED";
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_AMBIENT = 7; // 0x7
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_ANALOG = 3; // 0x3
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_BLUETOOTH = 1; // 0x1
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_DIGITAL = 4; // 0x4
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_MICROPHONE = 2; // 0x2
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_RADIO = 5; // 0x5
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_STREAMING = 6; // 0x6
+    field @FlaggedApi("com.android.bluetooth.flags.leaudio_add_aics_support") public static final int AUDIO_INPUT_TYPE_UNSPECIFIED = 0; // 0x0
   }
 
   public static interface BluetoothVolumeControl.Callback {

@@ -24,6 +24,7 @@ import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
+import android.bluetooth.BluetoothVolumeControl;
 import android.bluetooth.IBluetoothCsipSetCoordinator;
 import android.bluetooth.IBluetoothLeAudio;
 import android.bluetooth.IBluetoothVolumeControl;
@@ -86,6 +87,220 @@ public class VolumeControlService extends ProfileService {
     @GuardedBy("mCallbacks")
     final RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks =
             new RemoteCallbackList<>();
+
+    @VisibleForTesting
+    static class VolumeControlInputDescriptor {
+        Map<Integer, Descriptor> mVolumeInputs;
+
+        private static class Descriptor {
+            Descriptor() {
+                mIsActive = false;
+                mType = BluetoothVolumeControl.AUDIO_INPUT_TYPE_UNSPECIFIED;
+                mGainValue = 0;
+                mGainMode = 0;
+                mGainMute = false;
+
+                mGainSettingsUnits = 0;
+                mGainSettingsMaxSetting = 0;
+                mGainSettingsMinSetting = 0;
+
+                mDescription = "Unknown";
+            }
+
+            /* True when input is active, false otherwise */
+            boolean mIsActive;
+
+            /* Defined as in Assigned Numbers in the BluetoothVolumeControl.AUDIO_INPUT_TYPE_ */
+            int mType;
+
+            int mGainValue;
+
+            /* As per AICS 1.0
+             * 3.1.3. Gain_Mode field
+             * The Gain_Mode field shall be set to a value that reflects whether gain modes are
+             *  manual or automatic.
+             *
+             * If the Gain_Mode field value is Manual Only, the server allows only manual gain.
+             * If the Gain_Mode field is Automatic Only, the server allows only automatic gain.
+             *
+             * For all other Gain_Mode field values, the server allows switchable
+             * automatic/manual gain.
+             */
+            int mGainMode;
+
+            boolean mGainMute;
+
+            /* As per AICS 1.0
+             * The Gain_Setting (mGainValue) field is a signed value for which a single increment
+             * or decrement should result in a corresponding increase or decrease of the input
+             * amplitude by the value of the Gain_Setting_Units (mGainSettingsUnits)
+             * field of the Gain Setting Properties characteristic value.
+             */
+            int mGainSettingsUnits;
+
+            int mGainSettingsMaxSetting;
+            int mGainSettingsMinSetting;
+
+            String mDescription;
+        }
+        ;
+
+        VolumeControlInputDescriptor() {
+            mVolumeInputs = new HashMap<>();
+        }
+
+        int size() {
+            return mVolumeInputs.size();
+        }
+
+        void add(int id) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                mVolumeInputs.put(id, new Descriptor());
+            }
+        }
+
+        boolean setActive(int id, boolean active) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "setActive, Id " + id + " is unknown");
+                return false;
+            }
+            d.mIsActive = active;
+            return true;
+        }
+
+        boolean isActive(int id) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "isActive, Id " + id + " is unknown");
+                return false;
+            }
+            return d.mIsActive;
+        }
+
+        boolean setDescription(int id, String desc) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "setDescription, Id " + id + " is unknown");
+                return false;
+            }
+            d.mDescription = desc;
+            return true;
+        }
+
+        String getDescription(int id) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "getDescription, Id " + id + " is unknown");
+                return null;
+            }
+            return d.mDescription;
+        }
+
+        boolean setType(int id, int type) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "setType, Id " + id + " is unknown");
+                return false;
+            }
+
+            if (type > BluetoothVolumeControl.AUDIO_INPUT_TYPE_AMBIENT) {
+                Log.e(TAG, "setType, Type " + type + "for id " + id + " is invalid");
+                return false;
+            }
+
+            d.mType = type;
+            return true;
+        }
+
+        int getType(int id) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "getType, Id " + id + " is unknown");
+                return BluetoothVolumeControl.AUDIO_INPUT_TYPE_UNSPECIFIED;
+            }
+            return d.mType;
+        }
+
+        int getGain(int id) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "getGain, Id " + id + " is unknown");
+                return 0;
+            }
+            return d.mGainValue;
+        }
+
+        boolean isMuted(int id) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "isMuted, Id " + id + " is unknown");
+                return false;
+            }
+            return d.mGainMute;
+        }
+
+        boolean setPropSettings(int id, int gainUnit, int gainMin, int gainMax) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "setPropSettings, Id " + id + " is unknown");
+                return false;
+            }
+
+            d.mGainSettingsUnits = gainUnit;
+            d.mGainSettingsMinSetting = gainMin;
+            d.mGainSettingsMaxSetting = gainMax;
+
+            return true;
+        }
+
+        boolean setState(int id, int gainValue, int gainMode, boolean mute) {
+            Descriptor d = mVolumeInputs.get(id);
+            if (d == null) {
+                Log.e(TAG, "Id " + id + " is unknown");
+                return false;
+            }
+
+            if (gainValue > d.mGainSettingsMaxSetting || gainValue < d.mGainSettingsMinSetting) {
+                Log.e(TAG, "Invalid gainValue " + gainValue);
+                return false;
+            }
+
+            d.mGainValue = gainValue;
+            d.mGainMode = gainMode;
+            d.mGainMute = mute;
+
+            return true;
+        }
+
+        void remove(int id) {
+            Log.d(TAG, "remove, id: " + id);
+            mVolumeInputs.remove(id);
+        }
+
+        void clear() {
+            Log.d(TAG, "clear all inputs");
+            mVolumeInputs.clear();
+        }
+
+        void dump(StringBuilder sb) {
+            for (Map.Entry<Integer, Descriptor> entry : mVolumeInputs.entrySet()) {
+                Descriptor d = entry.getValue();
+                Integer id = entry.getKey();
+                ProfileService.println(sb, "        id: " + id);
+                ProfileService.println(sb, "        description: " + d.mDescription);
+                ProfileService.println(sb, "        type: " + d.mType);
+                ProfileService.println(sb, "        isActive: " + d.mIsActive);
+                ProfileService.println(sb, "        gainValue: " + d.mGainValue);
+                ProfileService.println(sb, "        gainMode: " + d.mGainMode);
+                ProfileService.println(sb, "        mute: " + d.mGainMute);
+                ProfileService.println(sb, "        units:" + d.mGainSettingsUnits);
+                ProfileService.println(sb, "        minGain:" + d.mGainSettingsMinSetting);
+                ProfileService.println(sb, "        maxGain:" + d.mGainSettingsMaxSetting);
+            }
+        }
+    }
 
     @VisibleForTesting
     static class VolumeControlOffsetDescriptor {
@@ -196,9 +411,11 @@ public class VolumeControlService extends ProfileService {
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
             new HashMap<>();
+    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs = new HashMap<>();
     private final Map<Integer, Integer> mGroupVolumeCache = new HashMap<>();
     private final Map<Integer, Boolean> mGroupMuteCache = new HashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceVolumeCache = new HashMap<>();
+
 
     /* As defined by Volume Control Service 1.0.1, 3.3.1. Volume Flags behavior.
      * User Set Volume Setting means that remote keeps volume in its cache.
@@ -1040,7 +1257,7 @@ public class VolumeControlService extends ProfileService {
         return AudioManager.STREAM_MUSIC;
     }
 
-    void handleDeviceAvailable(BluetoothDevice device, int numberOfExternalOutputs) {
+    void handleExternalOutputs(BluetoothDevice device, int numberOfExternalOutputs) {
         if (numberOfExternalOutputs == 0) {
             Log.i(TAG, "Volume offset not available");
             return;
@@ -1063,6 +1280,39 @@ public class VolumeControlService extends ProfileService {
             mVolumeControlNativeInterface.getExtAudioOutLocation(device, i);
             mVolumeControlNativeInterface.getExtAudioOutDescription(device, i);
         }
+    }
+
+    void handleExternalInputs(BluetoothDevice device, int numberOfExternalInputs) {
+        if (numberOfExternalInputs == 0) {
+            Log.i(TAG, "Volume offset not available");
+            return;
+        }
+
+        VolumeControlInputDescriptor inputs = mAudioInputs.get(device);
+        if (inputs == null) {
+            inputs = new VolumeControlInputDescriptor();
+            mAudioInputs.put(device, inputs);
+        } else if (inputs.size() != numberOfExternalInputs) {
+            Log.i(TAG, "Number of inputs changed: ");
+            inputs.clear();
+        }
+
+        /* Stack delivers us number of audio inputs.
+         * Offset ids a countinous from 1 to numberOfExternalInputs*/
+        for (int i = 1; i <= numberOfExternalInputs; i++) {
+            inputs.add(i);
+            mVolumeControlNativeInterface.getExtAudioInGainProps(device, i);
+            mVolumeControlNativeInterface.getExtAudioInType(device, i);
+            mVolumeControlNativeInterface.getExtAudioInDescription(device, i);
+            mVolumeControlNativeInterface.getExtAudioInState(device, i);
+            mVolumeControlNativeInterface.getExtAudioInStatus(device, i);
+        }
+    }
+
+    void handleDeviceAvailable(
+            BluetoothDevice device, int numberOfExternalOutputs, int numberOfExternaInputs) {
+        handleExternalOutputs(device, numberOfExternalOutputs);
+        handleExternalInputs(device, numberOfExternaInputs);
     }
 
     void handleDeviceExtAudioOffsetChanged(BluetoothDevice device, int id, int value) {
@@ -1142,6 +1392,137 @@ public class VolumeControlService extends ProfileService {
         }
     }
 
+    void handleDeviceExtInputStateChanged(
+            BluetoothDevice device, int id, int gainValue, int gainMode, boolean mute) {
+        Log.d(
+                TAG,
+                ("handleDeviceExtInputStateChanged, device: " + device)
+                        + (" inputId: " + id)
+                        + (" gainValue: " + gainValue)
+                        + (" gainMode: " + gainMode)
+                        + (" mute: " + mute));
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputStateChanged, inputId: " + id)
+                            + (" not found for device: " + device));
+            return;
+        }
+        if (!input.setState(id, gainValue, gainMode, mute)) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputStateChanged, error while setting inputId: " + id)
+                            + ("for: " + device));
+        }
+    }
+
+    void handleDeviceExtInputStatusChanged(BluetoothDevice device, int id, int status) {
+        Log.d(TAG, " device: " + device + " inputId: " + id + " status: " + status);
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(TAG, " inputId: " + id + " not found for device: " + device);
+            return;
+        }
+
+        /*
+         * As per ACIS 1.0. Status
+         * Inactive: 0x00
+         * Active: 0x01
+         */
+        if (status > 1 || status < 0) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputStatusChanged, invalid status: " + status)
+                            + (" for: " + device));
+            return;
+        }
+
+        boolean active = (status == 0x01);
+        if (!input.setActive(id, active)) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputStatusChanged, error while setting inputId: " + id)
+                            + ("for: " + device));
+        }
+    }
+
+    void handleDeviceExtInputTypeChanged(BluetoothDevice device, int id, int type) {
+        Log.d(
+                TAG,
+                ("handleDeviceExtInputTypeChanged, device: " + device)
+                        + (" inputId: " + id)
+                        + (" type: " + type));
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputTypeChanged, inputId: " + id)
+                            + (" not found for device: " + device));
+            return;
+        }
+
+        if (!input.setType(id, type)) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputTypeChanged, error while setting inputId: " + id)
+                            + ("for: " + device));
+        }
+    }
+
+    void handleDeviceExtInputDescriptionChanged(
+            BluetoothDevice device, int id, String description) {
+        Log.d(
+                TAG,
+                ("handleDeviceExtInputDescriptionChanged, device: " + device)
+                        + (" inputId: " + id)
+                        + (" description: " + description));
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputDescriptionChanged, inputId: " + id)
+                            + (" not found for device: " + device));
+            return;
+        }
+
+        if (!input.setDescription(id, description)) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputDescriptionChanged, error while setting inputId: " + id)
+                            + ("for: " + device));
+        }
+    }
+
+    void handleDeviceExtInputGainPropsChanged(
+            BluetoothDevice device, int id, int unit, int min, int max) {
+        Log.d(
+                TAG,
+                ("handleDeviceExtInputGainPropsChanged, device: " + device)
+                        + (" inputId: " + id)
+                        + (" unit: " + unit + " min" + min + " max:" + max));
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputDescriptionChanged, inputId: " + id)
+                            + (" not found for device: " + device));
+            return;
+        }
+
+        if (!input.setPropSettings(id, unit, min, max)) {
+            Log.e(
+                    TAG,
+                    ("handleDeviceExtInputDescriptionChanged, error while setting inputId: " + id)
+                            + ("for: " + device));
+        }
+    }
+
     void messageFromNative(VolumeControlStackEvent stackEvent) {
         Log.d(TAG, "messageFromNative: " + stackEvent);
 
@@ -1160,7 +1541,7 @@ public class VolumeControlService extends ProfileService {
 
         BluetoothDevice device = stackEvent.device;
         if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_DEVICE_AVAILABLE) {
-            handleDeviceAvailable(device, stackEvent.valueInt1);
+            handleDeviceAvailable(device, stackEvent.valueInt1, stackEvent.valueInt2);
             return;
         }
 
@@ -1179,6 +1560,42 @@ public class VolumeControlService extends ProfileService {
                 == VolumeControlStackEvent.EVENT_TYPE_EXT_AUDIO_OUT_DESCRIPTION_CHANGED) {
             handleDeviceExtAudioDescriptionChanged(
                     device, stackEvent.valueInt1, stackEvent.valueString1);
+            return;
+        }
+
+        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_EXT_AUDIO_IN_STATE_CHANGED) {
+            handleDeviceExtInputStateChanged(
+                    device,
+                    stackEvent.valueInt1,
+                    stackEvent.valueInt2,
+                    stackEvent.valueInt3,
+                    stackEvent.valueBool1);
+            return;
+        }
+
+        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_EXT_AUDIO_IN_STATUS_CHANGED) {
+            handleDeviceExtInputStatusChanged(device, stackEvent.valueInt1, stackEvent.valueInt2);
+            return;
+        }
+
+        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_EXT_AUDIO_IN_TYPE_CHANGED) {
+            handleDeviceExtInputTypeChanged(device, stackEvent.valueInt1, stackEvent.valueInt2);
+            return;
+        }
+
+        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_EXT_AUDIO_IN_DESCR_CHANGED) {
+            handleDeviceExtInputDescriptionChanged(
+                    device, stackEvent.valueInt1, stackEvent.valueString1);
+            return;
+        }
+
+        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_EXT_AUDIO_IN_GAIN_PROPS_CHANGED) {
+            handleDeviceExtInputGainPropsChanged(
+                    device,
+                    stackEvent.valueInt1,
+                    stackEvent.valueInt2,
+                    stackEvent.valueInt3,
+                    stackEvent.valueInt4);
             return;
         }
 
@@ -1725,6 +2142,16 @@ public class VolumeControlService extends ProfileService {
             ProfileService.println(sb, "    Volume offset cnt: " + descriptor.size());
             descriptor.dump(sb);
         }
+
+        for (Map.Entry<BluetoothDevice, VolumeControlInputDescriptor> entry :
+                mAudioInputs.entrySet()) {
+            VolumeControlInputDescriptor descriptor = entry.getValue();
+            BluetoothDevice device = entry.getKey();
+            ProfileService.println(sb, "    Device: " + device);
+            ProfileService.println(sb, "    Volume input cnt: " + descriptor.size());
+            descriptor.dump(sb);
+        }
+
         for (Map.Entry<Integer, Integer> entry : mGroupVolumeCache.entrySet()) {
             Boolean isMute = mGroupMuteCache.getOrDefault(entry.getKey(), false);
             ProfileService.println(
