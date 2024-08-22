@@ -119,24 +119,24 @@ public class BassClientService extends ProfileService {
     private static final int BROADCAST_STATE_STOPPING = 3;
     private static final int BROADCAST_STATE_STREAMING = 4;
 
-    private static final int MESSAGE_SYNC_TIMEOUT = 1;
-    private static final int MESSAGE_BIG_CHECK_START = 2;
-    private static final int MESSAGE_BIG_CHECK_STOP = 3;
+    @VisibleForTesting static final int MESSAGE_SYNC_TIMEOUT = 1;
+    @VisibleForTesting static final int MESSAGE_BIG_CHECK_START = 2;
+    @VisibleForTesting static final int MESSAGE_BIG_CHECK_STOP = 3;
 
     /* 1 minute timeout for primary device reconnection in Private Broadcast case */
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
 
     // 30 secs timeout for keeping PSYNC active when searching is stopped
-    @VisibleForTesting static Duration sSyncActiveTimeout = Duration.ofSeconds(30);
+    private static final Duration sSyncActiveTimeout = Duration.ofSeconds(30);
 
     // 6 seconds to start BIG check. It has to be greater than kPeriodicSyncTimeout
-    @VisibleForTesting static Duration sBigCheckStart = Duration.ofSeconds(6);
+    private static final Duration sBigCheckStart = Duration.ofSeconds(6);
 
     // 2 second for check if BIG exist
-    @VisibleForTesting static Duration sBigCheckStop = Duration.ofSeconds(2);
+    private static final Duration sBigCheckStop = Duration.ofSeconds(2);
 
     // 5 minutes timeout for monitoring BIG resynchronization
-    @VisibleForTesting static Duration sBigMonitorTimeout = Duration.ofMinutes(5);
+    private static final Duration sBigMonitorTimeout = Duration.ofMinutes(5);
 
     private enum PauseType {
         HOST_INTENTIONAL,
@@ -206,7 +206,8 @@ public class BassClientService extends ProfileService {
 
     @VisibleForTesting ServiceFactory mServiceFactory = new ServiceFactory();
 
-    private final Handler mHandler =
+    @VisibleForTesting
+    final Handler mHandler =
             new Handler(Looper.getMainLooper()) {
                 @Override
                 public void handleMessage(Message msg) {
