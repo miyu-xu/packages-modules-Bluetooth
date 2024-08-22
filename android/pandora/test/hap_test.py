@@ -174,3 +174,14 @@ class HapTest(base_test.BaseTestClass):
         dut_connection_to_ref = await self.setupHapConnection()
 
         await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
+
+    @asynchronous
+    async def test_preset__remove_preset__verify_dut_is_updated(self) -> None:
+        dut_connection_to_ref = await self.setupHapConnection()
+
+        await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
+
+        await self.has.delete_preset(unavailable_preset.index)
+        await asyncio.sleep(3)  # TODO wait event
+
+        await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
