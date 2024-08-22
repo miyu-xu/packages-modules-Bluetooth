@@ -1,0 +1,172 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "123a9b43_99ddb5a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "I think this works, but it still seems more complex than necessary.  Can we simplify it more?",
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598d4092_ac2f046c",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "Why do we care about the size?  I would expect to be able to cache as much data as we want.  The next time Bluetooth is restarted, it will be removed.  How large would this grow if we didn\u0027t have a bound?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b185aaa1_9d6b18e4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "static constexpr uint16_t kCachedDataSize \u003d 10;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc96386_775e3c2e",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "Should we be checking here to see if the data is cached? Do we need to do a service search if we\u0027re caching data?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e5cdde2f_e2144498",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 207,
+                "startChar": 0,
+                "endLine": 208,
+                "endChar": 0
+              },
+              "replacement": "    auto cached_data \u003d cached_data_.find(tracker-\u003eaddress_);\n    if (cached_data !\u003d cached_data_.end()) {\n      log::info(\"Service already cached\");\n      OnGattServiceSearchComplete(tBTA_GATTC_SEARCH_CMPL_EVT{\n              .conn_id \u003d tracker-\u003econn_id_,\n              .status \u003d GATT_SUCCESS,\n      });\n    } else {\n      BTA_GATTC_ServiceSearchRequest(tracker-\u003econn_id_, kRangingService);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1d8882d_b7f8d279",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "If you have to read anything from GATT, you have to pay the connection latency.  Can we just check to see if everything is cached, otherwise read everything?\n```suggestion\n    bool use_cached_data \u003d true;\n```",
+      "range": {
+        "startLine": 252,
+        "startChar": 26,
+        "endLine": 252,
+        "endChar": 46
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6613b305_fc793fcc",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "use_cached_data\n```suggestion\n          use_cached_data \u003d false;\n```",
+      "range": {
+        "startLine": 271,
+        "startChar": 10,
+        "endLine": 271,
+        "endChar": 71
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61abe4b5_a978b66f",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "If data isn\u0027t null, is_last_ is true.\n```suggestion\n    if (data !\u003d nullptr) {\n```",
+      "range": {
+        "startLine": 612,
+        "startChar": 0,
+        "endLine": 613,
+        "endChar": 50
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

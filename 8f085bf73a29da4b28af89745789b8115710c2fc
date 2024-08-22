@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e955695_10f8b2d2",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T22:54:54Z",
+      "side": 1,
+      "message": "Thanks for splitting this out.  I\u0027m still happy to review a new CL that fixes those names to make them more consistent.",
+      "parentUuid": "3710073f_31270c3e",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 32
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c19371b2_72f6a0dc",
