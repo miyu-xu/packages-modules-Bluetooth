@@ -20,7 +20,8 @@ from bumble.profiles import hap
 from mobly.asserts import assert_is_not_none  # type: ignore
 from bumble.profiles.hap import DynamicPresets, HearingAccessService, HearingAidFeatures,HearingAidType, IndependentPresets, PresetRecord, PresetSynchronizationSupport, WritablePresetsSupport
 
-from pandora_experimental.hap_grpc_aio import HAP as HapGrpcAio
+from pandora_experimental.hap_grpc_aio import HAP
+from pandora_experimental.hap_pb2 import PresetInfo
 from pandora._utils import AioStream
 from pandora.security_pb2 import LE_LEVEL3
 from pandora.host_pb2 import RANDOM, AdvertiseResponse, Connection, DataTypes, ScanningResponse
@@ -41,12 +42,21 @@ device_features = HearingAidFeatures(HearingAidType.MONAURAL_HEARING_AID,PresetS
 foo_preset = PresetRecord(1, "foo preset")
 bar_preset = PresetRecord(50, "bar preset")
 foobar_preset = PresetRecord(5, "foobar preset")
+unavailable_preset = PresetRecord(7, "unavailable preset", PresetRecord.Property(PresetRecord.Property.Writable.CANNOT_BE_WRITTEN, PresetRecord.Property.IsAvailable.IS_UNAVAILABLE))
+server_default_preset = [foo_preset, bar_preset, foobar_preset, unavailable_preset]
+
+def assert_preset_equal(grpc_preset: PresetInfo, bumble_preset: PresetRecord):
+        assert_equal(grpc_preset.presetIndex, bumble_preset.index)
+        assert_equal(grpc_preset.presetName, bumble_preset.name)
+        assert_equal(grpc_preset.isWritable, bumble_preset.properties.writable)
+        assert_equal(grpc_preset.isAvailable, bumble_preset.properties.is_available)
 
 class HapTest(base_test.BaseTestClass):
     devices: PandoraDevices
     dut: PandoraDevice
     ref_left: BumblePandoraDevice
-    hap_grpc: HapGrpcAio
+    hap_grpc: HAP
+    hap_service: HearingAccessService
 
     def setup_class(self):
         self.devices = PandoraDevices(self)
@@ -66,9 +76,9 @@ class HapTest(base_test.BaseTestClass):
     @asynchronous
     async def setup_test(self) -> None:
         await asyncio.gather(self.dut.reset(), self.ref_left.reset())
-        self.hap_grpc = HapGrpcAio(channel=self.dut.aio.channel)
-        hap_service = HearingAccessService(self.ref_left.device, device_features, [foo_preset, bar_preset, foobar_preset])
-        self.ref_left.device.add_service(hap_service)  # type:ignore
+        self.hap_grpc = HAP(channel=self.dut.aio.channel)
+        self.hap_service = HearingAccessService(self.ref_left.device, device_features, server_default_preset)
+        self.ref_left.device.add_service(self.hap_service)  # type:ignore
 
 
     async def ref_advertise_hap(self, device: PandoraDevice) -> AioStream[AdvertiseResponse]:
@@ -134,6 +144,7 @@ class HapTest(base_test.BaseTestClass):
         return dut_connection_to_ref
 
 
+
     @asynchronous
     async def test_get_features(self) -> None:
         dut_connection_to_ref = await self.setupHapConnection()
@@ -142,3 +153,38 @@ class HapTest(base_test.BaseTestClass):
 
         hearingaid_features = hap.HearingAidFeatures_from_bytes(features_response.features)
         assert_equal(hearingaid_features, device_features)  # type: ignore
+
+
+    @asynchronous
+    async def test_get_preset(self) -> None:
+        dut_connection_to_ref = await self.setupHapConnection()
+
+        all_presets_info = await self.hap_grpc.GetAllPresetsInfo(connection=dut_connection_to_ref)
+
+        logging.info(f'I just got theses presets: {all_presets_info}')
+
+        for (remotePreset, serverPreset) in zip(all_presets_info.preset_info_list, server_default_preset):
+            assert_preset_equal(remotePreset, serverPreset)
+            # assert_equal(remotePreset.presetIndex, serverPreset.index)
+            # assert_equal(remotePreset.name, serverPreset.name)
+            # assert_equal(remotePreset.isWritable, serverPreset.properties.is_writable)
+            # assert_equal(remotePreset.isAvailable, serverPreset.properties.is_available)
+
+    @asynchronous
+    async def test_preset__remove_preset__verify_dut_is_updated(self) -> None:
+        dut_connection_to_ref = await self.setupHapConnection()
+
+        all_presets_info = await self.hap_grpc.GetAllPresetsInfo(connection=dut_connection_to_ref)
+        logging.info(f'I just got theses presets: {all_presets_info}')
+        assert_equal(len(all_presets_info.preset_info_list), len(server_default_preset))
+
+        await self.hap_service.delete_preset(unavailable_preset.index)
+
+        new_server_preset = [foo_preset, bar_preset, foobar_preset]
+
+        await asyncio.sleep(3) # TODO wait event
+
+        all_presets_info = await self.hap_grpc.GetAllPresetsInfo(connection=dut_connection_to_ref)
+        logging.info(f'I just got theses presets after deleting {unavailable_preset}: {all_presets_info}')
+        assert_equal(len(all_presets_info.preset_info_list), len(new_server_preset))
+
