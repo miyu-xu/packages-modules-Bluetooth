@@ -1,0 +1,149 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f4054c6_dd2df034",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-22T22:27:15Z",
+      "side": 1,
+      "message": "Move this below:",
+      "fixSuggestions": [
+        {
+          "fixId": "2a1f3a5b_8a5a5832",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 785,
+                "startChar": 0,
+                "endLine": 786,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 793,
+                "startChar": 0,
+                "endLine": 793,
+                "endChar": 0
+              },
+              "replacement": "    bt_remote_version_t info{};\n"
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 799,
+                "startChar": 0,
+                "endLine": 799,
+                "endChar": 0
+              },
+              "replacement": "  bt_remote_version_t info{};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5c903d6c15c6e54a2a51da4f9c1ca61eda304a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19409a0f_62935b36",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-22T22:27:15Z",
+      "side": 1,
+      "message": "return {\n  .version \u003d tmp_lmp_ver,\n  .manufacturer \u003d tmp_manufacturer,\n  .sub_ver \u003d tmp_lmp_subver\n  };",
+      "fixSuggestions": [
+        {
+          "fixId": "ad75ba2b_867e52d0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 785,
+                "startChar": 0,
+                "endLine": 786,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 793,
+                "startChar": 0,
+                "endLine": 797,
+                "endChar": 0
+              },
+              "replacement": "    return {\n      .version \u003d tmp_lmp_ver,\n      .manufacturer \u003d tmp_manufacturer,\n      .sub_ver \u003d tmp_lmp_subver\n    };\n"
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 806,
+                "startChar": 0,
+                "endLine": 807,
+                "endChar": 0
+              },
+              "replacement": "    return {\n      .version \u003d static_cast\u003cuint8_t\u003e(prop.val.remote_version.version),\n      .manufacturer \u003d static_cast\u003cuint16_t\u003e(prop.val.remote_version.manufacturer),\n      .sub_ver \u003d static_cast\u003cuint16_t\u003e(prop.val.remote_version.sub_ver)\n    };\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5c903d6c15c6e54a2a51da4f9c1ca61eda304a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c35a746_3b158d5d",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-22T22:27:15Z",
+      "side": 1,
+      "message": "bt_remote_version_t info{};",
+      "fixSuggestions": [
+        {
+          "fixId": "24c780e4_05674cc4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 799,
+                "startChar": 0,
+                "endLine": 799,
+                "endChar": 0
+              },
+              "replacement": "  bt_remote_version_t info{};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5c903d6c15c6e54a2a51da4f9c1ca61eda304a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
