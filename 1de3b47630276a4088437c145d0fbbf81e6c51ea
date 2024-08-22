@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18149798_efb6532d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-22T23:21:54Z",
+      "side": 1,
+      "message": "Got it.\nYeah we are definitively doing an hack here. But I understand it better now.\n\nBut I think We should change the API values now instead of doing the hack. or doing both at the same time ?",
+      "parentUuid": "68223638_5fd23eda",
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31be1738_f7c09121",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 2
