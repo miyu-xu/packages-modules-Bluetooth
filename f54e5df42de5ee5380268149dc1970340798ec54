@@ -63,6 +63,24 @@
       "message": "Will this callback always happen even when DIS does not return or fail?",
       "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40c269c_35513f91",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-22T01:00:35Z",
+      "side": 1,
+      "message": "That is the contract.\nIf this is not called, we never executed this line anyway\n```p_cb-\u003edisc_active \u0026\u003d ~BTA_HH_LE_DISC_DIS;```\nand we cannot do anything in `bta_hh_le_open_cmpl` because to progress we need `p_cb-\u003edisc_active \u003d\u003d 0`. So this CL doesn\u0027t make it worse.",
+      "parentUuid": "e7e364d2_27b36ebe",
+      "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
