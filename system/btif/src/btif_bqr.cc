@@ -318,9 +318,10 @@ static void ConfigureBqr(const BqrConfiguration& bqr_config);
 
 void EnableBtQualityReport(common::PostableContext* to_bind) {
   log::info("is_enable: {}", to_bind != nullptr);
-  if (to_bind != nullptr) {
-    to_bind_ = to_bind;
+  if (to_bind_ == nullptr && to_bind == nullptr) {
+    log::warn("Skipping second call to disable (Lifecycle issue).");
   }
+  to_bind_ = to_bind;
 
   char bqr_prop_evtmask[PROPERTY_VALUE_MAX] = {0};
   char bqr_prop_interval_ms[PROPERTY_VALUE_MAX] = {0};
