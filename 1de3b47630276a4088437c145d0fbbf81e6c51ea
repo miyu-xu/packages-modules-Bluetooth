@@ -1,0 +1,103 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "568d7248_3a3a4084",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-22T18:12:20Z",
+      "side": 1,
+      "message": "I don\u0027t understand. For me your CL is doing nothing :/\nHow does this works ? Is this preventing a compiler optimisation ?",
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31be1738_f7c09121",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-22T18:12:20Z",
+      "side": 1,
+      "message": "This looks not needed as this was done when mCodecId was set",
+      "range": {
+        "startLine": 114,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c62d6dc5_5f55a800",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothCodecType.java",
+              "range": {
+                "startLine": 114,
+                "startChar": 0,
+                "endLine": 115,
+                "endChar": 0
+              },
+              "replacement": "        return mCodecId;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee00c155_fe8773ca",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-22T18:12:20Z",
+      "side": 1,
+      "message": "This looks not needed as this was done when mCodecId was set",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a40726a0_7ffcc3b0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothCodecType.java",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": "        dest.writeLong(mCodecId);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
