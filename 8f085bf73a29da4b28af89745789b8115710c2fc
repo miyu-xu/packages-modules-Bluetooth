@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a194f2f8_5ec77c66",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-22T17:53:12Z",
+      "side": 1,
+      "message": "Done, only save cached data when all data read complete",
+      "parentUuid": "e9ab1b95_4938732f",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 4
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3710073f_31270c3e",
         "filename": "system/bta/ras/ras_client.cc",
         "patchSetId": 1
@@ -118,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64543867_3645a09c",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-22T17:53:12Z",
+      "side": 1,
+      "message": "Done, check is_last by cb_data of BTA_GATTC_ReadCharacteristic",
+      "parentUuid": "c19371b2_72f6a0dc",
+      "range": {
+        "startLine": 268,
+        "startChar": 28,
+        "endLine": 268,
+        "endChar": 56
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ede11c18_ed82abed",
@@ -179,6 +227,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9d25ab_0d6d5d98",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-22T17:53:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ede11c18_ed82abed",
+      "range": {
+        "startLine": 301,
+        "startChar": 7,
+        "endLine": 301,
+        "endChar": 24
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "749202fc_ca6a993e",
@@ -192,6 +264,30 @@
       "writtenOn": "2024-08-15T20:58:03Z",
       "side": 1,
       "message": "I would prefer a StoreCachedData that is only called once, on the last read.",
+      "range": {
+        "startLine": 639,
+        "startChar": 0,
+        "endLine": 639,
+        "endChar": 30
+      },
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d88678_f77314db",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-22T17:53:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "749202fc_ca6a993e",
       "range": {
         "startLine": 639,
         "startChar": 0,
@@ -259,6 +355,30 @@
           ]
         }
       ],
+      "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f483b480_5e2062ab",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-22T17:53:12Z",
+      "side": 1,
+      "message": "sure, map doesn\u0027t support FIFO but I can use other way to implement it.",
+      "parentUuid": "8ebe2a88_41e977b3",
+      "range": {
+        "startLine": 647,
+        "startChar": 0,
+        "endLine": 653,
+        "endChar": 5
+      },
       "revId": "8f085bf73a29da4b28af89745789b8115710c2fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
