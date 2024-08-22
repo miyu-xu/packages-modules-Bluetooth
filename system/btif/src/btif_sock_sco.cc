@@ -32,6 +32,7 @@
 #include "osi/include/osi.h"  // INVALID_FD
 #include "osi/include/socket.h"
 #include "osi/include/thread.h"
+#include "stack/include/btm_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_status.h"
 #include "types/raw_address.h"

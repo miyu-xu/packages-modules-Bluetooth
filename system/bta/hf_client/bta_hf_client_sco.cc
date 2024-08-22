@@ -24,6 +24,7 @@
 #include "bta/hf_client/bta_hf_client_int.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/btm_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_status.h"
 

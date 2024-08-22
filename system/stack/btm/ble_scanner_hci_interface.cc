@@ -20,6 +20,7 @@
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
 
+#include "btm_api.h"
 #include "hci/controller_interface.h"
 #include "main/shim/entry.h"
 #include "stack/include/bt_types.h"

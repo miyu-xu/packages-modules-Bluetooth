@@ -32,6 +32,7 @@
 #include <string>
 
 #include "btif/include/btif_storage.h"
+#include "btm_api.h"
 #include "btm_int_types.h"
 #include "btm_sec_api.h"
 #include "btm_sec_cb.h"

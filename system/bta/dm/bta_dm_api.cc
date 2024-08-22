@@ -34,6 +34,7 @@
 #include "bta/dm/bta_dm_sec_int.h"
 #include "hci/le_rand_callback.h"
 #include "stack/include/bt_uuid16.h"
+#include "stack/include/btm_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/main_thread.h"
 #include "stack/include/sdp_api.h"
