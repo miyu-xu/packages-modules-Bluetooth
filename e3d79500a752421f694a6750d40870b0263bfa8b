@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa60f0f7_4387d995",
+        "filename": "system/gd/os/linux_generic/alarm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-22T16:48:39Z",
+      "side": 1,
+      "message": "I think this is what Henri is suggesting:\n```suggestion\n    if (errno \u003d\u003d EAGAIN) {\n      log::info(\"Alarm is already canceled or rescheduled.\");\n      return;\n    }\n```",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 11
+      },
+      "revId": "e3d79500a752421f694a6750d40870b0263bfa8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
