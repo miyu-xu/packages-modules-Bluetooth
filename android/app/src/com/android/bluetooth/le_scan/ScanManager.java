@@ -1549,6 +1549,8 @@ public class ScanManager {
                 configureFilterParameter(
                         scannerId, client, ALL_PASS_FILTER_SELECTION, filterIndex, 0);
                 waitForCallback();
+            } else if (mNativeInterface.gattClientIsMsftSupported()) {
+                // TODO(sarveshkalwit): Convert APCF APIs to MSFT APIs
             } else {
                 Deque<Integer> clientFilterIndices = new ArrayDeque<Integer>();
                 for (ScanFilter filter : client.filters) {
