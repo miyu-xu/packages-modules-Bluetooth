@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbbc45a_418ad355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-22T01:18:09Z",
+      "side": 1,
+      "message": "Thank you so much @mylesgw@google.com and @okamil@google.com for your quick responses, support and your in-depth review. Really appreciate it!",
+      "revId": "76b8dd089e17b065ab8836a23fcc7f69d88caec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
