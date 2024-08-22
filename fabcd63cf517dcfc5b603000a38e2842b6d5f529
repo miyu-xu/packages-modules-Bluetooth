@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4cab4d3_df67dd3c",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-22T22:04:22Z",
+      "side": 1,
+      "message": "This CL overall lgtm.\n\nnit: for this case, would logging help here?",
+      "revId": "fabcd63cf517dcfc5b603000a38e2842b6d5f529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
