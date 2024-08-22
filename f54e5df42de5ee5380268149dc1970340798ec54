@@ -81,6 +81,24 @@
       "parentUuid": "e7e364d2_27b36ebe",
       "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e95686ee_7a808dc6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-08-22T01:05:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a40c269c_35513f91",
+      "revId": "f54e5df42de5ee5380268149dc1970340798ec54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
