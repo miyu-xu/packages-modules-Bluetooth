@@ -20,7 +20,7 @@ import math
 import numpy as np
 import os
 
-from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, pandora
+from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, pandora_snippet
 from avatar.pandora_server import AndroidPandoraServer
 from bumble import l2cap
 from bumble.avctp import AVCTP_PSM
@@ -285,7 +285,7 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         self.ref1.a2dp.on('connection', on_avdtp_connection)
 
         # Retrieve Bumble connection object from Pandora connection token
-        connection = pandora.get_raw_connection(device=self.ref1, connection=ref1_dut)
+        connection = pandora_snippet.get_raw_connection(device=self.ref1, connection=ref1_dut)
 
         # Open AVCTP L2CAP channel
         avctp = await connection.create_l2cap_channel(spec=l2cap.ClassicChannelSpec(AVCTP_PSM))
