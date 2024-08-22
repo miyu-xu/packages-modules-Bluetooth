@@ -1545,7 +1545,7 @@ public class ScanManager {
             mNativeInterface.gattClientScanFilterEnable(scannerId, true);
             waitForCallback();
 
-            if (shouldUseAllPassFilter(client)) {
+            if (shouldUseAllPassFilter(client) && !mNativeInterface.gattClientIsMsftSupported()) {
                 int filterIndex =
                         (deliveryMode == DELIVERY_MODE_BATCH)
                                 ? ALL_PASS_FILTER_INDEX_BATCH_SCAN
@@ -1555,6 +1555,8 @@ public class ScanManager {
                 configureFilterParameter(
                         scannerId, client, ALL_PASS_FILTER_SELECTION, filterIndex, 0);
                 waitForCallback();
+            } else if (mNativeInterface.gattClientIsMsftSupported()) {
+
             } else {
                 Deque<Integer> clientFilterIndices = new ArrayDeque<Integer>();
                 for (ScanFilter filter : client.filters) {
