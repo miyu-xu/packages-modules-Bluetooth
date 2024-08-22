@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b623b8_b8b2f5ab",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-22T21:29:57Z",
+      "side": 1,
+      "message": "This returns `info` empty regardless of the result of the call `btif_storage_get_remote_device_property`",
+      "fixSuggestions": [
+        {
+          "fixId": "5ae64c2a_b649e409",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 805,
+                "startChar": 0,
+                "endLine": 806,
+                "endChar": 0
+              },
+              "replacement": "    return prop.val \u003d\u003d nullptr ? {} : *static_cast\u003cbt_remote_version_t*\u003e(prop.val);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c00c5aa84a1e51fee4ad82c279443ad8d0d48137",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
