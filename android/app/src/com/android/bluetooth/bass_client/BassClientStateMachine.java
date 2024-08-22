@@ -118,6 +118,9 @@ public class BassClientStateMachine extends StateMachine {
 
     static final int ATT_WRITE_CMD_HDR_LEN = 3;
 
+    static final int HCI_ERR_MAX_NUM_OF_CONNECTIONS = 0x09;
+    static final int HCI_ERR_REMOTE_LOW_RESOURCE = 0x14;
+
     private final Map<Integer, PeriodicAdvertisingCallback> mPeriodicAdvCallbacksMap =
             new HashMap<>();
     /*key is combination of sourceId, Address and advSid for this hashmap*/
@@ -166,6 +169,7 @@ public class BassClientStateMachine extends StateMachine {
     @VisibleForTesting PeriodicAdvertisingCallback mLocalPeriodicAdvCallback = new PACallback();
     int mMaxSingleAttributeWriteValueLen = 0;
     @VisibleForTesting BluetoothLeBroadcastMetadata mPendingSourceToSwitch = null;
+    private int mDisconnectStatus = 0;
 
     BassClientStateMachine(
             BluetoothDevice device,
@@ -259,6 +263,7 @@ public class BassClientStateMachine extends StateMachine {
         mPendingRemove.clear();
         mPeriodicAdvCallbacksMap.clear();
         mSourceSyncRequestsQueue.clear();
+        mDisconnectStatus = 0;
     }
 
     Boolean hasPendingSourceOperation() {
@@ -1069,6 +1074,7 @@ public class BassClientStateMachine extends StateMachine {
                 }
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED
                     && getConnectionState() != BluetoothProfile.STATE_DISCONNECTED) {
+                mDisconnectStatus = status;
                 isStateChanged = true;
                 log("Disconnected from Bass GATT server.");
             }
@@ -1445,7 +1451,9 @@ public class BassClientStateMachine extends StateMachine {
                         mDevice, mLastConnectionState, BluetoothProfile.STATE_DISCONNECTED);
                 if (mLastConnectionState != BluetoothProfile.STATE_DISCONNECTED) {
                     // Reconnect in background if not disallowed by the service
-                    if (mService.okToConnect(mDevice) && mAllowReconnect) {
+                    if (mService.okToConnect(mDevice) && mAllowReconnect
+                            && mDisconnectStatus != HCI_ERR_MAX_NUM_OF_CONNECTIONS
+                            && mDisconnectStatus != HCI_ERR_REMOTE_LOW_RESOURCE) {
                         connectGatt(true);
                     }
                 }

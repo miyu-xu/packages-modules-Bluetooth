@@ -549,7 +549,9 @@ public:
     }
     connections.crash_on_unknown_handle_ = event_also_routes_to_other_receivers;
 
-    if (background_connections_.count(remote_address) == 1) {
+    if (background_connections_.count(remote_address) == 1 &&
+            reason != ErrorCode::CONNECTION_LIMIT_EXCEEDED &&
+            reason != ErrorCode::REMOTE_DEVICE_TERMINATED_CONNECTION_LOW_RESOURCES) {
       log::info("re-add device to accept list");
       arm_on_resume_ = true;
       add_device_to_accept_list(remote_address);
