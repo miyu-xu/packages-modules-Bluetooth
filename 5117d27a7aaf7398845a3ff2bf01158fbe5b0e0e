@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eefdf7af_5d454bf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-22T23:05:01Z",
+      "side": 1,
+      "message": "Reland validated with abtd run",
+      "revId": "5117d27a7aaf7398845a3ff2bf01158fbe5b0e0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
