@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68223638_5fd23eda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-22T19:33:23Z",
+      "side": 1,
+      "message": "```\nimport java.util.*;\nimport java.lang.*;\nimport java.io.*;\n\nclass Main {\n    public static final long CODEC_ID_LDAC \u003d 0x00aa012dff;\n    public static final long CODEC_ID_LDAC_2 \u003d 0x00aa012dffL;\n    \n    public static void main(String[] args) {\n        System.out.println(\"CODEC_ID_LDAC: \" + CODEC_ID_LDAC);\n        System.out.println(\"CODEC_ID_LDAC masked: \" + (CODEC_ID_LDAC \u0026 0xFFFFFFFFL));\n        System.out.println(\"CODEC_ID_LDAC_2: \" + CODEC_ID_LDAC_2);\n    }\n}\n```\nOutput:\n```\nCODEC_ID_LDAC: -1442763265\nCODEC_ID_LDAC masked: 2852204031\nCODEC_ID_LDAC_2: 2852204031\n```\n\nso basically in our code we end up with both values and try to compare them - this CL aims to fix that, I usually try to avoid pushing code that does nothing :D Let me know if you have better solution, I might not think of something",
+      "parentUuid": "568d7248_3a3a4084",
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31be1738_f7c09121",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 2
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4324f4b_9ddfc532",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-22T19:33:23Z",
+      "side": 1,
+      "message": "right, I was sure 200% sure after that :D",
+      "parentUuid": "31be1738_f7c09121",
+      "range": {
+        "startLine": 114,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 38
+      },
       "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -96,6 +138,30 @@
           ]
         }
       ],
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "172296e3_12deb642",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-22T19:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee00c155_fe8773ca",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 45
+      },
       "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
