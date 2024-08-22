@@ -1,0 +1,139 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd027181_753d7378",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-22T17:24:37Z",
+      "side": 1,
+      "message": "Looks like false positive b/361581403 - thanks @jpawlowski@google.com",
+      "fixSuggestions": [
+        {
+          "fixId": "2eec5560_870139e6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 166,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"setActive, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 176,
+                "startChar": 0,
+                "endLine": 177,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"isActive, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 185,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"setDescription, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 195,
+                "startChar": 0,
+                "endLine": 196,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"getDescription, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"setType, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 209,
+                "startChar": 0,
+                "endLine": 210,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"setType, type \" + type + \"for id \" + id + \" is invalid\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 220,
+                "startChar": 0,
+                "endLine": 221,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"getType, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 229,
+                "startChar": 0,
+                "endLine": 230,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"getGain, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 238,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"isMuted, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 247,
+                "startChar": 0,
+                "endLine": 248,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"setPropSettings, id \" + id + \" is unknown\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 261,
+                "startChar": 0,
+                "endLine": 262,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"id \" + id + \" is unknown\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
