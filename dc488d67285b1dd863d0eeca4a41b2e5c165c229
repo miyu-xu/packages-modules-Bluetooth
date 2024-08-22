@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10c21b73_27dc5aa4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "No as getAllSources already checks that:\n```\nif (!isEmptyBluetoothDevice(rs.getSourceDevice())) {\n    recvStates.add(rs);\n}\n```",
+      "parentUuid": "8fc56452_5ed57630",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3f0223b_cb1fbff5",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 12
@@ -31,6 +49,24 @@
       "writtenOn": "2024-08-21T21:06:20Z",
       "side": 1,
       "message": "helper func?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d958cbc_bd4d2eee",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3f0223b_cb1fbff5",
       "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9692b23c_e5548733",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2750,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0b38902_866cfb81",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac76cf0d_27efbd93",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-08-21T21:06:20Z",
       "side": 1,
       "message": "have a helper func for this?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b88d1c09_014cc7f5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3224,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac76cf0d_27efbd93",
       "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a564e05f_9a2381c6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3434,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "They are not the same.\n\n`stopBigMonitoring()` stops and clears both `mPausedBroadcastSinks`, `mPausedBroadcastIds` no matter what.\n\n`checkAndStopBigMonitoring()` checks and clears only `mPausedBroadcastIds` if needed. `mPausedBroadcastSinks` has to remain as they could be stopped by host and need to be resumed after all.\n\n`stopBigMonitoring(int broadcastId, boolean hostInitiated)` is dedicated to use per broadcastId.\n\n\nI don\u0027t see easy way to merge them without losing readability.",
+      "parentUuid": "c36c8458_8ea2589c",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "791f97d6_af8e1ebe",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 12
@@ -99,6 +189,24 @@
       "writtenOn": "2024-08-21T21:06:20Z",
       "side": 1,
       "message": "nit: hostLock naming is a bit confusing to me? is this for host initiated operation?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bc1d08c_6208eea8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3462,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "yes, I added \"lock\" here as such stop monitoring block it for future monitor till rested again. hostInitiated is more clear, thanks.",
+      "parentUuid": "791f97d6_af8e1ebe",
       "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -116,6 +224,24 @@
       "writtenOn": "2024-08-21T21:06:20Z",
       "side": 1,
       "message": "I see we\u0027re logging this from multiple places.\\\nShould we consider to have some mPausedBroadcastIds mPausedBroadcastSinks operator func? And log this whenever mPausedBroadcastIds is updated?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e331791_c5b0ebe8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3482,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "I made a helper function",
+      "parentUuid": "ad61f069_ac73d1c4",
       "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a066ff5_c5b042f8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3556,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "We read it\n```\nBluetoothLeBroadcastMetadata metadata \u003d mBroadcastMetadataMap.get(sink);\n```\nand put it one again without any modification\n```\nmBroadcastMetadataMap.put(sink, metadata);\n```\nso it is not needed.\n\nIt is quite readable IMHO as this is 3 separates OR (isLocal OR PA_SYNCE OR BROADCAST_SYNCED). I removed one bracket.\n\n`!leaudioBigDependsOnAudioState()` is to disable additional check without flag.",
+      "parentUuid": "26cd2eaf_797fa220",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33a74702_cbbb44bb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 12
@@ -150,6 +294,24 @@
       "writtenOn": "2024-08-21T21:06:20Z",
       "side": 1,
       "message": "null check for bassClientService?",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9735ae34_6fbb9431",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3631,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33a74702_cbbb44bb",
       "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

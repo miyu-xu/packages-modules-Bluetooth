@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bce9e249_8e1f64fa",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3157,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-22T06:07:47Z",
+      "side": 1,
+      "message": "order change only for printing logPausedBroadcastsAndSinks() in stopBigMonitoring after removing element from mPausedBroadcastSinks.",
+      "revId": "f28fbb437e3ebcb9cf009badc3f84daaaf512615",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
