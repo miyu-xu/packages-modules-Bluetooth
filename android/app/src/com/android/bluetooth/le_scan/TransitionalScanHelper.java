@@ -1047,6 +1047,16 @@ public class TransitionalScanHelper {
         }
     }
 
+    // TODO(sarveshkalwit)
+    public void onMsftAdvMonitorAdd(int monitor_handle, int status) {
+    }
+
+    public void onMsftAdvMonitorRemove(int status) {
+    }
+
+    public void onMsftAdvMonitorEnable(int status) {
+    }
+
     /**************************************************************************
      * GATT Service functions - Shared CLIENT/SERVER
      *************************************************************************/
