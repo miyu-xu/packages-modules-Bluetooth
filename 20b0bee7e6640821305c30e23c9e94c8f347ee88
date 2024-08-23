@@ -16,6 +16,24 @@
       "message": "invite GATT owner to take a look",
       "revId": "20b0bee7e6640821305c30e23c9e94c8f347ee88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4efb136d_1c8bf066",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T07:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f652a5f7_db5dacc4",
+      "revId": "20b0bee7e6640821305c30e23c9e94c8f347ee88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
