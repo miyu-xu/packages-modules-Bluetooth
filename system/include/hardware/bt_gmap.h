@@ -20,11 +20,11 @@
 namespace bluetooth {
 namespace gmap {
 
-enum class Roles : uint8_t {
-  UGG = 0,
-  UGT,
-  BGS,
-  BGR,
+enum class RolesBitMask : uint8_t {
+  UGG = 1<<0, // Unicast Game Gateway (UGG)
+  UGT = 1<<1, // Unicast Game Terminal (UGT)
+  BGS = 1<<2, // Broadcast Game Sender (BGS)
+  BGR = 1<<3, // Broadcast Game Receiver (BGR)
 };
 
 enum class UGTFeatureBitMask : uint8_t {
