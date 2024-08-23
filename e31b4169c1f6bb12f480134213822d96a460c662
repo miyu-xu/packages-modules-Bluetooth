@@ -16,6 +16,24 @@
       "message": "Hi @abhishekpandit@google.com, any reason we disable Werror before?",
       "revId": "e31b4169c1f6bb12f480134213822d96a460c662",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c906997_7c3166ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-08-23T18:41:49Z",
+      "side": 1,
+      "message": "Inherited from when we first started Floss and codebase was a lot more fragile.",
+      "parentUuid": "11b6d459_84a7efd9",
+      "revId": "e31b4169c1f6bb12f480134213822d96a460c662",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
