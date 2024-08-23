@@ -40,6 +40,30 @@
       ],
       "revId": "b411a0c7ded2838f87e887f18048ed4a4b196b82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd45fe70_240608e3",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-23T19:09:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cf1e349_1b3fd855",
+      "range": {
+        "startLine": 193,
+        "startChar": 11,
+        "endLine": 193,
+        "endChar": 12
+      },
+      "revId": "b411a0c7ded2838f87e887f18048ed4a4b196b82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
