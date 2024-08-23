@@ -17,6 +17,7 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothHapClient
+import android.bluetooth.BluetoothHapPresetInfo
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.bluetooth.BluetoothProfile.CONNECTION_POLICY_ALLOWED
@@ -70,6 +71,32 @@ class Hap(private val context: Context) : HAPImplBase(), Closeable {
         grpcUnary<GetFeaturesResponse>(scope, responseObserver) {
             GetFeaturesResponse.newBuilder()
                 .setFeatures(bluetoothHapClient.getFeatures(device))
+                .build()
+        }
+    }
+
+    override fun getAllPresetsInfo(
+        request: GetAllPresetsInfoRequest,
+        responseObserver: StreamObserver<GetAllPresetsInfoResponse>
+    ) {
+        val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+        Log.i(TAG, "getAllPresetsInfo(${device})")
+        grpcUnary<GetAllPresetsInfoResponse>(scope, responseObserver) {
+            GetAllPresetsInfoResponse.newBuilder()
+                .addAllPresetInfoList(
+                    bluetoothHapClient
+                        .getAllPresetInfo(device)
+                        .stream()
+                        .map { it: BluetoothHapPresetInfo ->
+                            PresetInfo.newBuilder()
+                                .setPresetIndex(it.getIndex())
+                                .setPresetName(it.getName())
+                                .setIsWritable(it.isWritable())
+                                .setIsAvailable(it.isAvailable())
+                                .build()
+                        }
+                        .toList()
+                )
                 .build()
         }
     }

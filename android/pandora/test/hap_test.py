@@ -21,6 +21,7 @@ from bumble.profiles.hap import DynamicPresets, HearingAccessService, HearingAid
 
 from pandora_experimental.gatt_grpc_aio import GATT
 from pandora_experimental.hap_grpc_aio import HAP
+from pandora_experimental.hap_pb2 import PresetInfo
 from pandora._utils import AioStream
 from pandora.security_pb2 import LE_LEVEL3
 from pandora.host_pb2 import RANDOM, AdvertiseResponse, Connection, DataTypes, ScanningResponse
@@ -43,6 +44,21 @@ unavailable_preset = PresetRecord(
                           PresetRecord.Property.IsAvailable.IS_UNAVAILABLE))
 
 att.ATT_DEFAULT_MTU = 49  # 2.5. GATT sub-procedure requirements
+
+
+def toBumblePreset(grpc_preset: PresetInfo) -> PresetRecord:
+    return PresetRecord(
+        grpc_preset.presetIndex, grpc_preset.presetName,
+        PresetRecord.Property(PresetRecord.Property.Writable(grpc_preset.isWritable),
+                              PresetRecord.Property.IsAvailable(grpc_preset.isAvailable)))
+
+
+def toBumblePresetList(grpc_preset_list: List[PresetInfo]) -> List[PresetRecord]:
+    return [toBumblePreset(grpc_preset) for grpc_preset in grpc_preset_list]
+
+
+def get_server_preset_sorted(has: HearingAccessService) -> List[PresetRecord]:
+    return [has.preset_records[key] for key in sorted(has.preset_records.keys())]
 
 
 class HapTest(base_test.BaseTestClass):
@@ -139,6 +155,12 @@ class HapTest(base_test.BaseTestClass):
 
         return dut_connection_to_ref
 
+    async def assertIdentiqPresetInDutAndRef(self, dut_connection_to_ref: Connection):
+        remote_preset = toBumblePresetList(
+            (await self.hap_grpc.GetAllPresetsInfo(connection=dut_connection_to_ref)).preset_info_list)
+        AssertThat(remote_preset).ContainsExactlyElementsIn(  # type: ignore
+            get_server_preset_sorted(self.has)).InOrder()  # type: ignore
+
     @asynchronous
     async def test_get_features(self) -> None:
         dut_connection_to_ref = await self.setupHapConnection()
@@ -146,3 +168,9 @@ class HapTest(base_test.BaseTestClass):
         features = hap.HearingAidFeatures_from_bytes(
             (await self.hap_grpc.GetFeatures(connection=dut_connection_to_ref)).features)
         AssertThat(features).IsEqualTo(self.has.server_features)  # type: ignore
+
+    @asynchronous
+    async def test_get_preset(self) -> None:
+        dut_connection_to_ref = await self.setupHapConnection()
+
+        await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
