@@ -218,6 +218,9 @@ void bta_dm_sdp_callback(const RawAddress& /* bd_addr */, tSDP_STATUS sdp_status
 
   if (bta_dm_discovery_get_state() == BTA_DM_DISCOVER_IDLE || !sdp_pending ||
       !bta_dm_discovery_cb.sdp_state) {
+    log::info("Clearing transport mask (was: 0x{:02x})", bta_dm_discovery_cb.transports);
+
+    bta_dm_discovery_cb.transports = 0;
     return;
   }
 
