@@ -44,10 +44,13 @@ public:
   }
 
   void StartDistanceMeasurement(RawAddress raw_address, uint16_t interval, uint8_t method) {
+    DistanceMeasurementMethod distance_measurement_method =
+            static_cast<DistanceMeasurementMethod>(method);
     bluetooth::shim::GetDistanceMeasurementManager()->StartDistanceMeasurement(
-            bluetooth::ToGdAddress(raw_address), interval,
-            static_cast<DistanceMeasurementMethod>(method));
-    bluetooth::ras::GetRasClient()->Connect(raw_address);
+            bluetooth::ToGdAddress(raw_address), interval, distance_measurement_method);
+    if (distance_measurement_method == DistanceMeasurementMethod::METHOD_CS) {
+      bluetooth::ras::GetRasClient()->Connect(raw_address);
+    }
   }
 
   void StopDistanceMeasurement(RawAddress raw_address, uint8_t method) {
