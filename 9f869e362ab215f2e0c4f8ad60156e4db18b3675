@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e48e9785_0dc699a5",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 3182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-23T18:20:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "44c29c01_02596af5",
+      "range": {
+        "startLine": 3182,
+        "startChar": 15,
+        "endLine": 3182,
+        "endChar": 38
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f108e339_6334ff58",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Not exactly, this section is only to modify the value of the Bluetooth team\u0027s aconfig flags:\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:tools/tradefederation/core/test_framework/com/android/tradefed/testtype/pandora/PtsBotTest.java;l\u003d121-124?q\u003dPtsBotTest\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nIf `always_use_preset_cache` is true by default and will remains to be true, then I don\u0027t think doing tests without it makes sense.\n\nBesides, we cannot change this preset globally for all the tests.\n\nAdditionally, I don\u0027t know if changing a sysprop is something we want to do in testing.",
       "parentUuid": "11c8cbd0_890ff3fc",
+      "range": {
+        "startLine": 3183,
+        "startChar": 15,
+        "endLine": 3183,
+        "endChar": 32
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c5bcb2a_0a360c60",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 3183,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-23T18:20:34Z",
+      "side": 1,
+      "message": "For `bypass_allow_list`, that could eventually make sens to have it for all the tests. But I also think that we can replace it with the flag `enable_hap_by_default` as this is intended to ship in 25Q1~2.\n\nFor `always_use_preset_cache`, we were talking offline and I am gonna investigate if we can get rid of the logic associated with it. I agree that it is not great to have different behavior between code in user build and code in test build.\nBut meantime we shouldn\u0027t block this CL because of that. Let\u0027s just open a bug and track the effort to remove the property / workaround in it",
+      "parentUuid": "57ea0eea_55dd099f",
       "range": {
         "startLine": 3183,
         "startChar": 15,
