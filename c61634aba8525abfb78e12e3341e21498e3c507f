@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aecbaca_c7124397",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T09:36:03Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "123a9b43_99ddb5a2",
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "598d4092_ac2f046c",
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "657f8b80_6ebadb59",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T09:36:03Z",
+      "side": 1,
+      "message": "Done, CS only worked on a paired device, so this should not grow too large, but we can still have a size.",
+      "parentUuid": "598d4092_ac2f046c",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 46
+      },
       "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -100,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd415a45_1ab5f01b",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T09:36:03Z",
+      "side": 1,
+      "message": "The service (characteristic UUID and descriptor) is cached by the lower layer, so it returns immediately. We don\u0027t need to cache it again.\n```\n16:07:40.084 10966 10990 I bluetooth: system/bta/ras/ras_client.cc:206 OnGattConnected: Search service\n16:07:40.084 10966 10990 I bluetooth: system/bta/ras/ras_client.cc:248 OnGattServiceSearchComplete: Found Ranging Service\n16:07:40.085 10966 10990 I bluetooth: system/bta/ras/ras_client.cc:280 OnGattServiceSearchComplete: Read Ras Features\n```",
+      "parentUuid": "2fc96386_775e3c2e",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 71
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1d8882d_b7f8d279",
@@ -113,6 +179,30 @@
       "writtenOn": "2024-08-22T22:54:54Z",
       "side": 1,
       "message": "If you have to read anything from GATT, you have to pay the connection latency.  Can we just check to see if everything is cached, otherwise read everything?\n```suggestion\n    bool use_cached_data \u003d true;\n```",
+      "range": {
+        "startLine": 252,
+        "startChar": 26,
+        "endLine": 252,
+        "endChar": 46
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48d6e1d0_5e1ee836",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T09:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1d8882d_b7f8d279",
       "range": {
         "startLine": 252,
         "startChar": 26,
@@ -146,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a6ca41_95d8a33e",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T09:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6613b305_fc793fcc",
+      "range": {
+        "startLine": 271,
+        "startChar": 10,
+        "endLine": 271,
+        "endChar": 71
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61abe4b5_a978b66f",
@@ -159,6 +273,30 @@
       "writtenOn": "2024-08-22T22:54:54Z",
       "side": 1,
       "message": "If data isn\u0027t null, is_last_ is true.\n```suggestion\n    if (data !\u003d nullptr) {\n```",
+      "range": {
+        "startLine": 612,
+        "startChar": 0,
+        "endLine": 613,
+        "endChar": 50
+      },
+      "revId": "c61634aba8525abfb78e12e3341e21498e3c507f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8169cbf1_e23e9305",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T09:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61abe4b5_a978b66f",
       "range": {
         "startLine": 612,
         "startChar": 0,
