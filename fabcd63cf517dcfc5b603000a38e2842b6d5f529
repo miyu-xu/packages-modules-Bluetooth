@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d53c2c9_6a5c9e4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T12:20:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5b231b18_2af2a04c",
+      "range": {
+        "startLine": 10,
+        "startChar": 23,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "fabcd63cf517dcfc5b603000a38e2842b6d5f529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4cab4d3_df67dd3c",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-08-22T22:04:22Z",
       "side": 1,
       "message": "This CL overall lgtm.\n\nnit: for this case, would logging help here?",
+      "revId": "fabcd63cf517dcfc5b603000a38e2842b6d5f529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aedd96ce_7d0af2cb",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T12:20:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f4cab4d3_df67dd3c",
       "revId": "fabcd63cf517dcfc5b603000a38e2842b6d5f529",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
