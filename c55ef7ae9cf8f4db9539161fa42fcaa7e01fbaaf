@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b182bb9_61f2fa9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-23T23:51:42Z",
+      "side": 1,
+      "message": "Can you make a CL that move/rename SdpClientTest and another with new modifications into it please.",
+      "revId": "c55ef7ae9cf8f4db9539161fa42fcaa7e01fbaaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
