@@ -672,6 +672,30 @@
       },
       "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee48959_d49dcc38",
+        "filename": "system/test/mock/mock_stack_l2cap_interface.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-23T19:11:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48b24166_6a2f0250",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "24d8e7b88316fe7d7328b7841feb7d309c1781a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

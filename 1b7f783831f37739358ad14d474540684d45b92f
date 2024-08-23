@@ -165,6 +165,30 @@
       },
       "revId": "1b7f783831f37739358ad14d474540684d45b92f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8064c395_e2f97e6a",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-23T19:11:36Z",
+      "side": 0,
+      "message": "Done\n\nI broke it up into interface/mocks for the first CL and will follow up with at least one more CL with the usage.",
+      "parentUuid": "15e8852c_de56970d",
+      "range": {
+        "startLine": 358,
+        "startChar": 23,
+        "endLine": 358,
+        "endChar": 48
+      },
+      "revId": "1b7f783831f37739358ad14d474540684d45b92f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
