@@ -32,8 +32,8 @@ class MainActivity : ComponentActivity() {
     private var bluetoothAdapter: BluetoothAdapter? = null
     private val MY_MAC_ADDRESS = "FC:91:5D:64:FE:5F"
     private val TAG = "WENDEE TEST"
-    private lateinit var context : Context
-    private var pairedDevice : BluetoothDevice? = null
+    private lateinit var context: Context
+    private var pairedDevice: BluetoothDevice? = null
 
     // Stops scanning after 10 seconds.
     private val SCAN_PERIOD: Long = 30000
@@ -45,7 +45,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             BttestappTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     Greeting("bt testing app")
                 }
             }
@@ -63,13 +66,16 @@ class MainActivity : ComponentActivity() {
     /* Request all Bluetooth permissions when the activity starts. */
     fun requestBTPermission(_context: Context) {
         context = _context
-        val bluetoothManager = ActivityCompat.getSystemService(context, BluetoothManager::class.java) ?: return
+        val bluetoothManager =
+            ActivityCompat.getSystemService(context, BluetoothManager::class.java) ?: return
         bluetoothAdapter = bluetoothManager.adapter ?: return
 
-        if (!isPermissionGranted(Manifest.permission.BLUETOOTH_SCAN) ||
-            !isPermissionGranted(Manifest.permission.BLUETOOTH_ADVERTISE) ||
-            !isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION) ||
-            !isPermissionGranted(Manifest.permission.BLUETOOTH_CONNECT)) {
+        if (
+            !isPermissionGranted(Manifest.permission.BLUETOOTH_SCAN) ||
+                !isPermissionGranted(Manifest.permission.BLUETOOTH_ADVERTISE) ||
+                !isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION) ||
+                !isPermissionGranted(Manifest.permission.BLUETOOTH_CONNECT)
+        ) {
             requestBluetoothPermissionLauncher.launch(
                 arrayOf(
                     Manifest.permission.BLUETOOTH_SCAN,
@@ -85,7 +91,7 @@ class MainActivity : ComponentActivity() {
 
     private val requestBluetoothPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-                permissions ->
+            permissions ->
             permissions.forEach { p ->
                 if (p.value == false) {
                     Log.d(TAG, "$p is not permitted")
@@ -104,8 +110,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private val startBluetoothIntentForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                result ->
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode != Activity.RESULT_OK) {
                 // Uncomment the following line to force turn on
                 // checkAndEnableBluetooth()
@@ -140,30 +145,39 @@ class MainActivity : ComponentActivity() {
 
             return
         }
-
     }
 
-    private val broadcastReceiver = object : BroadcastReceiver() {
-        // onReceive called at ACTION_BOND_STATE_CHANGED
-        @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-        override fun onReceive(context: Context, intent: Intent) {
-            val action = intent.action ?: return
-            Log.d(TAG, "intent -> $intent ,action -> $action")
-            val device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java) ?: return
-            val previousState = intent.getParcelableExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, BluetoothDevice::class.java)
-            val deviceAddress = device.address
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.BLUETOOTH_CONNECT
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return
+    private val broadcastReceiver =
+        object : BroadcastReceiver() {
+            // onReceive called at ACTION_BOND_STATE_CHANGED
+            @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+            override fun onReceive(context: Context, intent: Intent) {
+                val action = intent.action ?: return
+                Log.d(TAG, "intent -> $intent ,action -> $action")
+                val device =
+                    intent.getParcelableExtra(
+                        BluetoothDevice.EXTRA_DEVICE,
+                        BluetoothDevice::class.java
+                    ) ?: return
+                val previousState =
+                    intent.getParcelableExtra(
+                        BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE,
+                        BluetoothDevice::class.java
+                    )
+                val deviceAddress = device.address
+                if (
+                    ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.BLUETOOTH_CONNECT
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    return
+                }
+
+                Log.d(TAG, "address -> $deviceAddress")
+                Log.d(TAG, "bondState -> ${device.bondState}, previous -> $previousState")
             }
-
-            Log.d(TAG, "address -> $deviceAddress")
-            Log.d(TAG, "bondState -> ${device.bondState}, previous -> $previousState")
         }
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -172,16 +186,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    Text(text = "Hello $name!", modifier = modifier)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    BttestappTheme {
-        Greeting("bt testing app")
-    }
+    BttestappTheme { Greeting("bt testing app") }
 }
