@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c2e5fb3_1f6dbf76",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "Good catch! Thank you!",
+      "parentUuid": "ffc1752f_444581aa",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "071db8c3_d8299c09",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-08-07T21:35:11Z",
       "side": 1,
       "message": "Can we also flag this since it\u0027s a new way of queuing mCreateBroadcastQueue?\n\n\n```suggestion\n        if (leaudioBigDependsOnAudioState()) {\n            mCreateBroadcastQueue.add(broadcastSettings);\n        }\n```",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab4e854_9762afcc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "071db8c3_d8299c09",
       "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -72,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "875d863c_492243c0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "Actually I think that this does not change anything in logic here, only wasSetSinkListeningMode is refactored as part of this CL.\n\nDo you see any suspicious thing here ?",
+      "parentUuid": "d6cc4947_10854387",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895463d5_df227306",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
@@ -83,6 +137,24 @@
       "writtenOn": "2024-08-07T21:35:11Z",
       "side": 1,
       "message": "flag?\n\n```suggestion\n                        if (leaudioBigDependsOnAudioState()) {\n                            if (mAwaitingBroadcastCreateResponse) {\n                               updateFallbackUnicastGroupIdForBroadcast(groupId);\n                            }\n                        } else {\n                            ... old code\n                        }\n```",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d34508a_cc893187",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3498,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "895463d5_df227306",
       "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -100,6 +172,24 @@
       "writtenOn": "2024-08-07T21:35:11Z",
       "side": 1,
       "message": "flag?",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "079bac49_8e00b9f4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3522,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7abdc621_b015b800",
       "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -127,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed83c67d_38e765ac",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3723,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "Thank you for review. Yes, indeed we should clear here this queue since not successful session creation is something bad for all broadcasts...",
+      "parentUuid": "8ee02891_35889194",
+      "range": {
+        "startLine": 3722,
+        "startChar": 0,
+        "endLine": 3723,
+        "endChar": 51
+      },
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aadda6c4_36412679",
@@ -140,6 +254,24 @@
       "writtenOn": "2024-08-07T21:35:11Z",
       "side": 1,
       "message": "This doesn\u0027t match what we\u0027re trying to do here not queueing, can we update accordingly?",
+      "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb2856f_ad82cab2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3736,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-23T13:53:48Z",
+      "side": 1,
+      "message": "yeah... copy-paste issue... thank you!",
+      "parentUuid": "aadda6c4_36412679",
       "revId": "65a5d3127be9de3ec1f585a6c861dfd0ecc82d3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
