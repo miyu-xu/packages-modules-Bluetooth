@@ -735,8 +735,8 @@ cc_fuzz {
 cc_benchmark {
     name: "bluetooth_benchmark_gd",
     defaults: [
-        "gd_defaults",
         "aconfig_lib_cc_shared_link.defaults",
+        "gd_defaults",
     ],
     host_supported: true,
     srcs: [
