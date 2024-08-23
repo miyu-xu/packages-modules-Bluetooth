@@ -185,3 +185,43 @@ class HapTest(base_test.BaseTestClass):
         await asyncio.sleep(3)  # TODO wait event
 
         await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
+
+    async def force_send_read_preset_response(self):
+        for conn in self.has.currently_connected_clients:
+            await self.has._read_preset_response(
+                conn, [self.has.preset_records[key] for key in sorted(self.has.preset_records.keys())])
+
+    @asynchronous
+    async def test_preset__remote_broadcast_preset_response__verify_dut_is_updated(self) -> None:
+        ''' b/350514735 specific remote behavior implementation.
+
+            Instead of using PresetChangedOperation, the remote device re-send a batch of READ_PRESET_RESPONSE
+        '''
+        dut_connection_to_ref = await self.setupHapConnection()
+
+        await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
+
+        tmp_preset = PresetRecord(8, "Tmp preset")
+        # Add the preset without a proper PresetChangedOperation and send preset read responses
+        self.has.preset_records[tmp_preset.index] = tmp_preset
+        await self.force_send_read_preset_response()
+        await asyncio.sleep(3)  # TODO wait event
+
+        await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
+
+        # Remove the preset without a proper PresetChangedOperation and send preset read responses
+        self.has.preset_records = {}
+        for p in [foo_preset, bar_preset, longname_preset, unavailable_preset]:
+            self.has.preset_records[p.index] = p
+
+        await self.force_send_read_preset_response()
+        await asyncio.sleep(3)  # TODO wait event
+
+        AssertThat(tmp_preset).IsNotIn(get_server_preset_sorted(self.has))  # type: ignore
+
+        remote_preset = toBumblePresetList(
+            (await self.hap_grpc.GetAllPresetsInfo(connection=dut_connection_to_ref)).preset_info_list)
+        # TODO: the following assertion is not correct and should be replaced with ContainsExactlyElementsIn once fixed
+        AssertThat(remote_preset).ContainsAllIn(get_server_preset_sorted(self.has)).InOrder()  # type: ignore
+        # AssertThat(tmp_preset).IsNotIn(remote_preset)
+        # await self.assertIdentiqPresetInDutAndRef(dut_connection_to_ref)
