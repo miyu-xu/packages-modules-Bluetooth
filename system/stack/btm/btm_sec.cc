@@ -2215,8 +2215,21 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr, const uint8_
        !get_btm_client_interface().peer.BTM_IsAclConnectionUp(*p_bd_addr, BT_TRANSPORT_BR_EDR))) {
     log::warn("Remote read request complete with no underlying link connection");
   }
-
-  tBTM_SEC_DEV_REC* p_dev_rec =
+  
+  tBTM_SEC_DEV_REC* p_dev_rec;
+  if (p_bd_addr) {
+      p_dev_rec = btm_find_dev(*p_bd_addr);
+      /*
+       * If Name is already resolved & security procedure is resumed,
+       * this must be a duplicate RNR completion, Ignore
+       */
+      if (p_dev_rec && p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN &&
+              p_dev_rec->sec_rec.classic_link != tSECURITY_STATE::GETTINING_NAME) {
+          log::warn("Duplicate RNR completion while security in progress, Ignore");
+          return;
+      }
+  }
+  p_dev_rec =
           btm_rnr_add_name_to_security_record(p_bd_addr, p_bd_name, hci_status);
   if (p_dev_rec == nullptr) {
     log::warn(
