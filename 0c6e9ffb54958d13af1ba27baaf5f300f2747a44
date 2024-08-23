@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7750e044_2f32a3a1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T08:52:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9902a9a_9620ca62",
+      "range": {
+        "startLine": 92,
+        "startChar": 5,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7250b831_e8d5ca43",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4837790_e82037fa",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T08:52:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7250b831_e8d5ca43",
+      "range": {
+        "startLine": 100,
+        "startChar": 3,
+        "endLine": 100,
+        "endChar": 5
+      },
       "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -216,6 +264,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccbd624d_9fd27b5a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T08:52:35Z",
+      "side": 1,
+      "message": "Maybe will do it when I will remove the flag so we don\u0027t have allocated memory for the object which is not going to be used.",
+      "parentUuid": "fc878c78_aa243167",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 49
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9461294a_8912cbd7",
         "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
         "patchSetId": 2
@@ -255,6 +327,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70de9e5e_9f406a89",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T08:52:35Z",
+      "side": 1,
+      "message": "ups, thanks!",
+      "parentUuid": "9461294a_8912cbd7",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7db47a6e_1fb2f706",
@@ -268,6 +364,30 @@
       "writtenOn": "2024-08-22T23:15:35Z",
       "side": 1,
       "message": "I expect data can be null at this point. we need to handle the case",
+      "range": {
+        "startLine": 216,
+        "startChar": 24,
+        "endLine": 216,
+        "endChar": 28
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dcc5940_9651eb01",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T08:52:35Z",
+      "side": 1,
+      "message": "correct.",
+      "parentUuid": "7db47a6e_1fb2f706",
       "range": {
         "startLine": 216,
         "startChar": 24,
