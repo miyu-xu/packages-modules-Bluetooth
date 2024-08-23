@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88a31e76_8b4fc62f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-23T09:06:16Z",
+      "side": 1,
+      "message": "According to @girardier@google.com we can not change the API now",
+      "parentUuid": "1df27357_f52bbf78",
+      "revId": "1de3b47630276a4088437c145d0fbbf81e6c51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31be1738_f7c09121",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 2
