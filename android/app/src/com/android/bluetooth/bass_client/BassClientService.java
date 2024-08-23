@@ -179,6 +179,7 @@ public class BassClientService extends ProfileService {
     private Callbacks mCallbacks;
     private boolean mIsAssistantActive = false;
     private boolean mIsAllowedContextOfActiveGroupModified = false;
+    private boolean mIsNoContextValidateHandover = false;
     Optional<Integer> mUnicastSourceStreamStatus = Optional.empty();
 
     private static final int LOG_NB_EVENTS = 100;
@@ -639,6 +640,7 @@ public class BassClientService extends ProfileService {
             }
             mIsAllowedContextOfActiveGroupModified = false;
         }
+        mIsNoContextValidateHandover = false;
 
         synchronized (mStateMachines) {
             for (BassClientStateMachine sm : mStateMachines.values()) {
@@ -951,7 +953,8 @@ public class BassClientService extends ProfileService {
             /* Restore allowed context mask for Unicast */
             if (mIsAllowedContextOfActiveGroupModified
                     && !hasAnyConnectedDeviceExternalBroadcastSource()
-                    && !isAnyConnectedDeviceSwitchingSource()) {
+                    && !isAnyConnectedDeviceSwitchingSource()
+                    && !mIsNoContextValidateHandover) {
                 leAudioService.setActiveGroupAllowedContextMask(
                         BluetoothLeAudio.CONTEXTS_ALL, BluetoothLeAudio.CONTEXTS_ALL);
                 mIsAllowedContextOfActiveGroupModified = false;
@@ -2680,6 +2683,10 @@ public class BassClientService extends ProfileService {
             }
 
             if (!isLocalBroadcast(sourceMetadata)) {
+                if (!hasAnyConnectedDeviceExternalBroadcastSource()) {
+                    // Reset the flag if this is 1st adding source operation
+                    mIsNoContextValidateHandover = false;
+                }
                 checkAndSetGroupAllowedContextMask(device);
             }
 
@@ -3313,9 +3320,13 @@ public class BassClientService extends ProfileService {
                             addSourceData.mIsGroupOp);
                 }
             }
+            mIsNoContextValidateHandover = false;
         } else if (status == STATUS_LOCAL_STREAM_STREAMING) {
             Log.d(TAG, "Ignore STREAMING source status");
         } else if (status == STATUS_LOCAL_STREAM_REQUESTED_NO_CONTEXT_VALIDATE) {
+            if (hasAnyConnectedDeviceExternalBroadcastSource()) {
+                mIsNoContextValidateHandover = true;
+            }
             suspendAllReceiversSourceSynchronization();
         }
     }

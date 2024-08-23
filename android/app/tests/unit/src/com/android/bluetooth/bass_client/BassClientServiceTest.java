@@ -3012,6 +3012,97 @@ public class BassClientServiceTest {
     }
 
     @Test
+    public void testHandoverTriggeredByNoContextValidateStream_NotRestoreContextMask() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT);
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_ALLOWED_CONTEXT_MASK);
+
+        final int testGroupId = 1;
+        prepareConnectedDeviceGroup();
+        startSearchingForSources();
+        onScanResult(mSourceDevice, TEST_BROADCAST_ID);
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
+
+        /* Fake external broadcast - no Broadcast Metadata from LE Audio service */
+        doReturn(new ArrayList<BluetoothLeBroadcastMetadata>())
+                .when(mLeAudioService)
+                .getAllBroadcastMetadata();
+        doReturn(testGroupId).when(mLeAudioService).getActiveGroupId();
+        doReturn(new ArrayList<BluetoothDevice>(Arrays.asList(mCurrentDevice)))
+                .when(mLeAudioService)
+                .getActiveDevices();
+
+        assertThat(mBassClientService.getActiveSyncedSources().size()).isEqualTo(1);
+        assertThat(mBassClientService.getActiveSyncedSources().contains(TEST_SYNC_HANDLE)).isTrue();
+        assertThat(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE))
+                .isEqualTo(mSourceDevice);
+        assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
+                .isEqualTo(TEST_BROADCAST_ID);
+
+        BluetoothLeBroadcastMetadata.Builder builder =
+                new BluetoothLeBroadcastMetadata.Builder()
+                        .setEncrypted(false)
+                        .setSourceDevice(mSourceDevice, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+                        .setSourceAdvertisingSid(TEST_ADVERTISER_SID)
+                        .setBroadcastId(TEST_BROADCAST_ID)
+                        .setBroadcastCode(null)
+                        .setPaSyncInterval(TEST_PA_SYNC_INTERVAL)
+                        .setPresentationDelayMicros(TEST_PRESENTATION_DELAY_MS);
+        // builder expect at least one subgroup
+        builder.addSubgroup(createBroadcastSubgroup());
+        BluetoothLeBroadcastMetadata meta = builder.build();
+
+        // Add source to unsynced broadcast, causes synchronization first
+        mBassClientService.addSource(mCurrentDevice, meta, true);
+
+        // Verify setting allowed context mask is triggered
+        verify(mLeAudioService)
+                .setActiveGroupAllowedContextMask(
+                        eq(
+                                BluetoothLeAudio.CONTEXTS_ALL
+                                        & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS),
+                        eq(BluetoothLeAudio.CONTEXTS_ALL));
+        handleHandoverSupport();
+        prepareRemoteSourceState(meta, true);
+
+        // Unicast would like to stream
+        mBassClientService.handleUnicastSourceStreamStatusChange(
+                3 /* STATUS_LOCAL_STREAM_REQUESTED_NO_CONTEXT_VALIDATE */);
+        // Validate notifySourceAddFailed triggered checkAndResetGroupAllowedContextMask
+        // And AllowedContextMask should not restore due to previous NO_CONTEXT_VALIDATE stream
+        mBassClientService
+                .getCallbacks()
+                .notifySourceAddFailed(mCurrentDevice, meta, BluetoothStatusCodes.ERROR_UNKNOWN);
+        TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
+
+        verify(mLeAudioService, never())
+                .setActiveGroupAllowedContextMask(
+                        eq(BluetoothLeAudio.CONTEXTS_ALL), eq(BluetoothLeAudio.CONTEXTS_ALL));
+
+        // Unicast finished streaming
+        mBassClientService.handleUnicastSourceStreamStatusChange(
+                2 /* STATUS_LOCAL_STREAM_SUSPENDED */);
+        // Remove source
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID);
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID + 1);
+            }
+        }
+
+        mBassClientService
+                .getCallbacks()
+                .notifySourceAddFailed(mCurrentDevice, meta, BluetoothStatusCodes.ERROR_UNKNOWN);
+        TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
+
+        // Validate notifySourceAddFailed triggered checkAndResetGroupAllowedContextMask
+        // And AllowedContextMask should restore now
+        verify(mLeAudioService)
+                .setActiveGroupAllowedContextMask(
+                        eq(BluetoothLeAudio.CONTEXTS_ALL), eq(BluetoothLeAudio.CONTEXTS_ALL));
+    }
+
+    @Test
     public void testSelectSource_orderOfSyncRegistering() {
         mSetFlagsRule.enableFlags(
                 Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE);
