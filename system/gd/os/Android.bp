@@ -61,6 +61,7 @@ filegroup {
     srcs: [
         "linux_generic/alarm.cc",
         "linux_generic/files.cc",
+        "linux_generic/nonwake_alarm.cc",
         "linux_generic/reactive_semaphore.cc",
         "linux_generic/reactor.cc",
         "linux_generic/repeating_alarm.cc",
@@ -74,6 +75,7 @@ filegroup {
     srcs: [
         "linux_generic/alarm_unittest.cc",
         "linux_generic/files_test.cc",
+        "linux_generic/nonwake_alarm_unittest.cc",
         "linux_generic/queue_unittest.cc",
         "linux_generic/reactor_unittest.cc",
         "linux_generic/repeating_alarm_unittest.cc",
