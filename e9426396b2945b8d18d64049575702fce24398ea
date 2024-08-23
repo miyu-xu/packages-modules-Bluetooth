@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd41fcfa_7c0d5f45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-23T11:31:03Z",
+      "side": 1,
+      "message": "This needs to wait now until flag is propagated so the presubmit has a chance to pass.",
+      "revId": "e9426396b2945b8d18d64049575702fce24398ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
