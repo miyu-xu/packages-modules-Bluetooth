@@ -62,6 +62,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "252e24a0_75357536",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T17:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e11d2f2_3d996c62",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 4
+      },
+      "revId": "0fc16c68369500cb705865eb536cd2cd97d88a67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caae0cd0_cf6828b7",
@@ -99,6 +123,30 @@
           ]
         }
       ],
+      "revId": "0fc16c68369500cb705865eb536cd2cd97d88a67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "532ae510_1a925de9",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-23T17:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caae0cd0_cf6828b7",
+      "range": {
+        "startLine": 262,
+        "startChar": 8,
+        "endLine": 262,
+        "endChar": 61
+      },
       "revId": "0fc16c68369500cb705865eb536cd2cd97d88a67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
