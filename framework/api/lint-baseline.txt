@@ -35,3 +35,9 @@ RequiresPermission: android.bluetooth.BluetoothAdapter#getAddress():
     Method 'getAddress' documentation mentions permissions without declaring @RequiresPermission
 RequiresPermission: android.bluetooth.BluetoothDevice#setAlias(String):
     Method 'setAlias' documentation mentions permissions already declared by @RequiresPermission
+
+
+UnflaggedApi: android.bluetooth.BluetoothAdapter#listenUsingEncryptedL2capChannel():
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothAdapter.listenUsingEncryptedL2capChannel()
+UnflaggedApi: android.bluetooth.BluetoothDevice#createEncryptedL2capChannel(int):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothDevice.createEncryptedL2capChannel(int)
