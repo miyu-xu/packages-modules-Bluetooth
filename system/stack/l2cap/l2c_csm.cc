@@ -818,11 +818,11 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void* p_
       if (p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
         /* Result should be OK or Reject */
         if ((!p_ci) || (p_ci->l2cap_result == L2CAP_CONN_OK)) {
-          l2cble_credit_based_conn_res(p_ccb, L2CAP_CONN_OK);
+          l2cble_credit_based_conn_res(p_ccb, tL2CAP_CFG_RESULT::L2CAP_CFG_OK);
           p_ccb->chnl_state = CST_OPEN;
           alarm_cancel(p_ccb->l2c_ccb_timer);
         } else {
-          l2cble_credit_based_conn_res(p_ccb, p_ci->l2cap_result);
+          l2cble_credit_based_conn_res(p_ccb, static_cast<tL2CAP_CFG_RESULT>(p_ci->l2cap_result));
           l2cu_release_ccb(p_ccb);
         }
       } else {
@@ -864,7 +864,7 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void* p_
     case L2CEVT_L2CA_CONNECT_RSP_NEG:
       p_ci = (tL2C_CONN_INFO*)p_data;
       if (p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
-        l2cble_credit_based_conn_res(p_ccb, p_ci->l2cap_result);
+        l2cble_credit_based_conn_res(p_ccb, static_cast<tL2CAP_CFG_RESULT>(p_ci->l2cap_result));
       } else {
         l2cu_send_peer_connect_rsp(p_ccb, p_ci->l2cap_result, p_ci->l2cap_status);
       }

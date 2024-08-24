@@ -203,9 +203,9 @@ extern struct l2cble_credit_based_conn_req l2cble_credit_based_conn_req;
 // Params: tL2C_CCB* p_ccb, uint16_t result
 // Returns: void
 struct l2cble_credit_based_conn_res {
-  std::function<void(tL2C_CCB* p_ccb, uint16_t result)> body{
-          [](tL2C_CCB* /* p_ccb */, uint16_t /* result */) {}};
-  void operator()(tL2C_CCB* p_ccb, uint16_t result) { body(p_ccb, result); }
+  std::function<void(tL2C_CCB* p_ccb, tL2CAP_CFG_RESULT result)> body{
+          [](tL2C_CCB* /* p_ccb */, tL2CAP_CFG_RESULT /* result */) {}};
+  void operator()(tL2C_CCB* p_ccb, tL2CAP_CFG_RESULT result) { body(p_ccb, result); }
 };
 extern struct l2cble_credit_based_conn_res l2cble_credit_based_conn_res;
 // Name: l2cble_send_flow_control_credit

@@ -237,11 +237,26 @@ inline tL2CAP_CONN to_l2cap_result_code(uint16_t result) {
 }
 
 /* Credit based reconfig results code */
-#define L2CAP_RECONFIG_SUCCEED 0
-#define L2CAP_RECONFIG_REDUCTION_MTU_NO_ALLOWED 1
-#define L2CAP_RECONFIG_REDUCTION_MPS_NO_ALLOWED 2
-#define L2CAP_RECONFIG_INVALID_DCID 3
-#define L2CAP_RECONFIG_UNACCAPTED_PARAM 4
+enum class tL2CAP_RECONFIG_RESULT : uint16_t {
+  L2CAP_RECONFIG_SUCCEED = 0,
+  L2CAP_RECONFIG_REDUCTION_MTU_NO_ALLOWED = 1,
+  L2CAP_RECONFIG_REDUCTION_MPS_NO_ALLOWED = 2,
+  L2CAP_RECONFIG_INVALID_DCID = 3,
+  L2CAP_RECONFIG_UNACCAPTED_PARAM = 4,
+};
+
+static inline std::string l2cap_reconfig_result_text(const tL2CAP_RECONFIG_RESULT& result) {
+  switch (result) {
+    CASE_RETURN_TEXT(tL2CAP_RECONFIG_RESULT::L2CAP_RECONFIG_SUCCEED);
+    CASE_RETURN_TEXT(tL2CAP_RECONFIG_RESULT::L2CAP_RECONFIG_REDUCTION_MTU_NO_ALLOWED);
+    CASE_RETURN_TEXT(tL2CAP_RECONFIG_RESULT::L2CAP_RECONFIG_REDUCTION_MPS_NO_ALLOWED);
+    CASE_RETURN_TEXT(tL2CAP_RECONFIG_RESULT::L2CAP_RECONFIG_INVALID_DCID);
+    CASE_RETURN_TEXT(tL2CAP_RECONFIG_RESULT::L2CAP_RECONFIG_UNACCAPTED_PARAM);
+    default:
+      return std::string("UNKNOWN L2CAP RECONFIG RESULT [") +
+             std::to_string(static_cast<uint16_t>(result)) + std::string("]");
+  }
+}
 
 /* Define the L2CAP command reject reason codes
  */
@@ -487,6 +502,8 @@ template <>
 struct formatter<tL2CAP_LE_RESULT_CODE> : enum_formatter<tL2CAP_LE_RESULT_CODE> {};
 template <>
 struct formatter<tL2CAP_CFG_RESULT> : enum_formatter<tL2CAP_CFG_RESULT> {};
+template <>
+struct formatter<tL2CAP_RECONFIG_RESULT> : enum_formatter<tL2CAP_RECONFIG_RESULT> {};
 }  // namespace fmt
 
 #endif
