@@ -1680,12 +1680,12 @@ bool l2c_fcr_renegotiate_chan(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg) {
   }
 
   /* Only retry if there are more channel options to try */
-  if (p_cfg->result == L2CAP_CFG_UNACCEPTABLE_PARAMS) {
+  if (p_cfg->result == tL2CAP_CFG_RESULT::L2CAP_CFG_UNACCEPTABLE_PARAMS) {
     peer_mode = (p_cfg->fcr_present) ? p_cfg->fcr.mode : L2CAP_FCR_BASIC_MODE;
 
     if (p_ccb->our_cfg.fcr.mode != peer_mode) {
       if ((--p_ccb->fcr_cfg_tries) == 0) {
-        p_cfg->result = L2CAP_CFG_FAILED_NO_REASON;
+        p_cfg->result = tL2CAP_CFG_RESULT::L2CAP_CFG_FAILED_NO_REASON;
         log::warn("l2c_fcr_renegotiate_chan (Max retries exceeded)");
       }
 

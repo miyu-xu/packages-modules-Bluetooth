@@ -290,7 +290,7 @@ struct tL2C_CCB {
 #define RECONFIG_FLAG 0x04 /* True after initial configuration */
 
   uint8_t config_done;               /* Configuration flag word */
-  uint16_t remote_config_rsp_result; /* The config rsp result from remote */
+  tL2CAP_CFG_RESULT remote_config_rsp_result; /* The config rsp result from remote */
   uint8_t local_id;                  /* Transaction ID for local trans */
   uint8_t remote_id;                 /* Transaction ID for local */
 
@@ -725,7 +725,7 @@ void l2cu_tx_complete(tL2C_TX_COMPLETE_CB_INFO* p_cbi);
 
 void l2cu_send_peer_ble_par_req(tL2C_LCB* p_lcb, uint16_t min_int, uint16_t max_int,
                                 uint16_t latency, uint16_t timeout);
-void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, uint16_t reason, uint8_t rem_id);
+void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, tL2CAP_CFG_RESULT reason, uint8_t rem_id);
 void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id, uint16_t result);
 void l2cu_reject_credit_based_conn_req(tL2C_LCB* p_lcb, uint8_t rem_id, uint8_t num_of_channels,
                                        uint16_t result);

@@ -705,7 +705,7 @@ void l2cu_send_peer_config_rsp(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg) {
 
   UINT16_TO_STREAM(p, p_ccb->remote_cid);
   UINT16_TO_STREAM(p, p_cfg->flags); /* Flags (continuation) Must match request */
-  UINT16_TO_STREAM(p, p_cfg->result);
+  UINT16_TO_STREAM(p, static_cast<uint16_t>(p_cfg->result));
 
   /* Now, put the options */
   if (p_cfg->mtu_present) {
@@ -808,7 +808,7 @@ void l2cu_send_peer_config_rej(tL2C_CCB* p_ccb, uint8_t* p_data, uint16_t data_l
 
   UINT16_TO_STREAM(p, p_ccb->remote_cid);
   UINT16_TO_STREAM(p, 0); /* Flags = 0 (no continuation) */
-  UINT16_TO_STREAM(p, L2CAP_CFG_UNKNOWN_OPTIONS);
+  UINT16_TO_STREAM(p, static_cast<uint16_t>(tL2CAP_CFG_RESULT::L2CAP_CFG_UNKNOWN_OPTIONS));
 
   buf_space = rej_len;
 
@@ -845,9 +845,8 @@ void l2cu_send_peer_config_rej(tL2C_CCB* p_ccb, uint8_t* p_data, uint16_t data_l
             }
           }
           p_data += cfg_len + L2CAP_CFG_OPTION_OVERHEAD;
-        }
-        /* bad length; force loop exit */
-        else {
+        } else {
+          /* bad length; force loop exit */
           p_data = p_data_end;
         }
         break;
@@ -1948,7 +1947,7 @@ uint8_t l2cu_process_peer_cfg_req(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg) {
   fcr_status = l2c_fcr_process_peer_cfg_req(p_ccb, p_cfg);
   if (fcr_status == L2CAP_PEER_CFG_DISCONNECT) {
     /* Notify caller to disconnect the channel (incompatible modes) */
-    p_cfg->result = L2CAP_CFG_FAILED_NO_REASON;
+    p_cfg->result = tL2CAP_CFG_RESULT::L2CAP_CFG_FAILED_NO_REASON;
     p_cfg->mtu_present = p_cfg->qos_present = p_cfg->flush_to_present = 0;
 
     return L2CAP_PEER_CFG_DISCONNECT;
@@ -1961,7 +1960,7 @@ uint8_t l2cu_process_peer_cfg_req(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg) {
     l2cu_adjust_out_mps(p_ccb);
     return L2CAP_PEER_CFG_OK;
   } else {
-    p_cfg->result = L2CAP_CFG_UNACCEPTABLE_PARAMS;
+    p_cfg->result = tL2CAP_CFG_RESULT::L2CAP_CFG_UNACCEPTABLE_PARAMS;
 
     if (mtu_ok) {
       p_cfg->mtu_present = false;
@@ -2962,7 +2961,7 @@ void l2cu_send_peer_ble_par_req(tL2C_LCB* p_lcb, uint16_t min_int, uint16_t max_
  * Returns          void
  *
  ******************************************************************************/
-void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, uint16_t reason, uint8_t rem_id) {
+void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, tL2CAP_CFG_RESULT reason, uint8_t rem_id) {
   BT_HDR* p_buf;
   uint8_t* p;
 
@@ -2975,7 +2974,7 @@ void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, uint16_t reason, uint8_t rem_id
   p = (uint8_t*)(p_buf + 1) + L2CAP_SEND_CMD_OFFSET + HCI_DATA_PREAMBLE_SIZE + L2CAP_PKT_OVERHEAD +
       L2CAP_CMD_OVERHEAD;
 
-  UINT16_TO_STREAM(p, reason);
+  UINT16_TO_STREAM(p, static_cast<uint16_t>(reason));
 
   l2c_link_check_send_pkts(p_lcb, 0, p_buf);
 }
