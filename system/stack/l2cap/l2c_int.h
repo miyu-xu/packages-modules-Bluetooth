@@ -546,7 +546,7 @@ public:
   uint8_t pending_ecoc_conn_cnt;
 
   uint16_t pending_lead_cid;
-  uint16_t pending_l2cap_result;
+  tL2CAP_CONN pending_l2cap_result;
 
   unsigned number_of_active_dynamic_channels() const {
     unsigned cnt = 0;
@@ -637,7 +637,7 @@ struct tL2C_CONN_INFO {
   RawAddress bd_addr;          /* Remote BD address */
   tHCI_STATUS hci_status;      /* Connection status */
   uint16_t psm;                /* PSM of the connection */
-  uint16_t l2cap_result;       /* L2CAP result */
+  tL2CAP_CONN l2cap_result;    /* L2CAP result */
   uint16_t l2cap_status;       /* L2CAP status */
   uint16_t remote_cid;         /* Remote CID */
   std::vector<uint16_t> lcids; /* Used when credit based is used*/
@@ -705,7 +705,7 @@ bool l2c_is_cmd_rejected(uint8_t cmd_code, uint8_t id, tL2C_LCB* p_lcb);
 void l2cu_send_peer_cmd_reject(tL2C_LCB* p_lcb, uint16_t reason, uint8_t rem_id, uint16_t p1,
                                uint16_t p2);
 void l2cu_send_peer_connect_req(tL2C_CCB* p_ccb);
-void l2cu_send_peer_connect_rsp(tL2C_CCB* p_ccb, uint16_t result, uint16_t status);
+void l2cu_send_peer_connect_rsp(tL2C_CCB* p_ccb, tL2CAP_CONN result, uint16_t status);
 void l2cu_send_peer_config_req(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg);
 void l2cu_send_peer_config_rsp(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg);
 void l2cu_send_peer_config_rej(tL2C_CCB* p_ccb, uint8_t* p_data, uint16_t data_len,
@@ -715,7 +715,8 @@ void l2cu_send_peer_disc_rsp(tL2C_LCB* p_lcb, uint8_t remote_id, uint16_t local_
                              uint16_t remote_cid);
 void l2cu_send_peer_echo_rsp(tL2C_LCB* p_lcb, uint8_t id, uint8_t* p_data, uint16_t data_len);
 void l2cu_send_peer_info_rsp(tL2C_LCB* p_lcb, uint8_t id, uint16_t info_type);
-void l2cu_reject_connection(tL2C_LCB* p_lcb, uint16_t remote_cid, uint8_t rem_id, uint16_t result);
+void l2cu_reject_connection(tL2C_LCB* p_lcb, uint16_t remote_cid, uint8_t rem_id,
+                            tL2CAP_CONN result);
 void l2cu_send_peer_info_req(tL2C_LCB* p_lcb, uint16_t info_type);
 void l2cu_set_acl_hci_header(BT_HDR* p_buf, tL2C_CCB* p_ccb);
 void l2cu_check_channel_congestion(tL2C_CCB* p_ccb);
@@ -726,13 +727,13 @@ void l2cu_tx_complete(tL2C_TX_COMPLETE_CB_INFO* p_cbi);
 void l2cu_send_peer_ble_par_req(tL2C_LCB* p_lcb, uint16_t min_int, uint16_t max_int,
                                 uint16_t latency, uint16_t timeout);
 void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, tL2CAP_CFG_RESULT reason, uint8_t rem_id);
-void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id, uint16_t result);
+void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id, tL2CAP_LE_RESULT_CODE result);
 void l2cu_reject_credit_based_conn_req(tL2C_LCB* p_lcb, uint8_t rem_id, uint8_t num_of_channels,
-                                       uint16_t result);
-void l2cu_reject_ble_coc_connection(tL2C_LCB* p_lcb, uint8_t rem_id, uint16_t result);
-void l2cu_send_peer_ble_credit_based_conn_res(tL2C_CCB* p_ccb, uint16_t result);
+                                       tL2CAP_LE_RESULT_CODE result);
+void l2cu_reject_ble_coc_connection(tL2C_LCB* p_lcb, uint8_t rem_id, tL2CAP_LE_RESULT_CODE result);
+void l2cu_send_peer_ble_credit_based_conn_res(tL2C_CCB* p_ccb, tL2CAP_LE_RESULT_CODE result);
 void l2cu_send_peer_credit_based_conn_res(tL2C_CCB* p_ccb, std::vector<uint16_t>& accepted_lcids,
-                                          uint16_t result);
+                                          tL2CAP_LE_RESULT_CODE result);
 
 void l2cu_send_peer_ble_credit_based_conn_req(tL2C_CCB* p_ccb);
 void l2cu_send_peer_credit_based_conn_req(tL2C_CCB* p_ccb);
@@ -747,7 +748,7 @@ bool l2cu_initialize_fixed_ccb(tL2C_LCB* p_lcb, uint16_t fixed_cid);
 void l2cu_no_dynamic_ccbs(tL2C_LCB* p_lcb);
 void l2cu_process_fixed_chnl_resp(tL2C_LCB* p_lcb);
 bool l2cu_is_ccb_active(tL2C_CCB* p_ccb);
-uint16_t le_result_to_l2c_conn(uint16_t result);
+tL2CAP_CONN le_result_to_l2c_conn(tL2CAP_LE_RESULT_CODE result);
 
 /* Functions provided for Broadcom Aware
  ***************************************
@@ -829,7 +830,7 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len);
 void l2c_ble_link_adjust_allocation(void);
 
 void l2cble_credit_based_conn_req(tL2C_CCB* p_ccb);
-void l2cble_credit_based_conn_res(tL2C_CCB* p_ccb, uint16_t result);
+void l2cble_credit_based_conn_res(tL2C_CCB* p_ccb, tL2CAP_LE_RESULT_CODE result);
 void l2cble_send_peer_disc_req(tL2C_CCB* p_ccb);
 void l2cble_send_flow_control_credit(tL2C_CCB* p_ccb, uint16_t credit_value);
 tL2CAP_LE_RESULT_CODE l2ble_sec_access_req(const RawAddress& bd_addr, uint16_t psm,
