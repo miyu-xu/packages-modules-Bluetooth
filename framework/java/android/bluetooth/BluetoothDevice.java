@@ -3227,6 +3227,42 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * be used to start a secure outgoing connection to the remote device with the same dynamic
      * protocol/service multiplexer (PSM) value. The supported Bluetooth transport is LE only.
      *
+     * <p>This is designed to be used with {@link BluetoothAdapter#listenUsingEncryptedL2capChannel()} for
+     * peer-peer Bluetooth applications.
+     *
+     * <p>Use {@link BluetoothSocket#connect} to initiate the outgoing connection.
+     *
+     * <p>Application using this API is responsible for obtaining PSM value from remote device.
+     *
+     * <p>The remote device will be authenticated and communication on this socket will be
+     * encrypted.
+     *
+     * <p>Use this socket if an encrypted socket link is possible. 
+     * This ensures that data over socket is encrypted over the aid and doesn't guarantee
+     * person-in-the-middle type of attacks.
+     *
+     * @param psm dynamic PSM value from remote device
+     * @return a CoC #BluetoothSocket ready for an outgoing connection
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    @SuppressLint("AndroidFrameworkRequiresPermission")
+    public @NonNull BluetoothSocket createEncryptedL2capChannel(int psm) throws IOException {
+        if (!isBluetoothEnabled()) {
+            Log.e(TAG, "createEncryptedL2capChannel: Bluetooth is not enabled");
+            throw new IOException();
+        }
+        if (DBG) Log.d(TAG, "createEncryptedL2capChannel: psm=" + psm);
+        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, false, true, this, psm, null);
+    }
+    /**
+     * Create a Bluetooth L2CAP Connection-oriented Channel (CoC) {@link BluetoothSocket} that can
+     * be used to start a secure outgoing connection to the remote device with the same dynamic
+     * protocol/service multiplexer (PSM) value. The supported Bluetooth transport is LE only.
+     *
      * <p>This is designed to be used with {@link
      * BluetoothAdapter#listenUsingInsecureL2capChannel()} for peer-peer Bluetooth applications.
      *
