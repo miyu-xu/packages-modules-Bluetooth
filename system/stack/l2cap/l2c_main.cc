@@ -602,8 +602,9 @@ static void process_l2cap_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
         }
         STREAM_TO_UINT16(lcid, p);
         STREAM_TO_UINT16(cfg_info.flags, p);
-        STREAM_TO_UINT16(cfg_info.result, p);
-
+        uint16_t cfg_result;
+        STREAM_TO_UINT16(cfg_result, p);
+        cfg_info.result = static_cast<tL2CAP_CFG_RESULT>(cfg_result);
         cfg_info.flush_to_present = cfg_info.mtu_present = cfg_info.qos_present =
                 cfg_info.fcr_present = cfg_info.fcs_present = false;
 
@@ -695,7 +696,7 @@ static void process_l2cap_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
             log::warn("cfg rsp - bad ID. Exp: {} Got: {}", p_ccb->local_id, id);
             break;
           }
-          if (cfg_info.result == L2CAP_CFG_OK) {
+          if (cfg_info.result == tL2CAP_CFG_RESULT::L2CAP_CFG_OK) {
             l2c_csm_execute(p_ccb, L2CEVT_L2CAP_CONFIG_RSP, &cfg_info);
           } else {
             l2c_csm_execute(p_ccb, L2CEVT_L2CAP_CONFIG_RSP_NEG, &cfg_info);

@@ -441,7 +441,7 @@ TEST_F(EattTest, ReconfigAllSucceed) {
 
   ASSERT_TRUE(cids.size() == connected_cids_.size());
 
-  tL2CAP_LE_CFG_INFO cfg = {.result = L2CAP_CFG_OK, .mtu = new_mtu};
+  tL2CAP_LE_CFG_INFO cfg = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_OK, .mtu = new_mtu};
 
   for (uint16_t cid : cids) {
     l2cap_app_info_.pL2CA_CreditBasedReconfigCompleted_Cb(test_address, cid, true, &cfg);
@@ -466,7 +466,8 @@ TEST_F(EattTest, ReconfigAllFailed) {
 
   ASSERT_TRUE(cids.size() == connected_cids_.size());
 
-  tL2CAP_LE_CFG_INFO cfg = {.result = L2CAP_CFG_FAILED_NO_REASON, .mtu = new_mtu};
+  tL2CAP_LE_CFG_INFO cfg = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_FAILED_NO_REASON,
+                            .mtu = new_mtu};
 
   for (uint16_t cid : cids) {
     l2cap_app_info_.pL2CA_CreditBasedReconfigCompleted_Cb(test_address, cid, true, &cfg);
@@ -491,7 +492,7 @@ TEST_F(EattTest, ReconfigSingleSucceed) {
 
   ASSERT_TRUE(cids.size() == 1);
 
-  tL2CAP_LE_CFG_INFO cfg = {.result = L2CAP_CFG_OK, .mtu = new_mtu};
+  tL2CAP_LE_CFG_INFO cfg = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_OK, .mtu = new_mtu};
 
   auto it = std::find(connected_cids_.begin(), connected_cids_.end(), cids[0]);
   ASSERT_TRUE(it != connected_cids_.end());
@@ -516,7 +517,8 @@ TEST_F(EattTest, ReconfigSingleFailed) {
 
   ASSERT_TRUE(cids.size() == connected_cids_.size());
 
-  tL2CAP_LE_CFG_INFO cfg = {.result = L2CAP_CFG_FAILED_NO_REASON, .mtu = new_mtu};
+  tL2CAP_LE_CFG_INFO cfg = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_FAILED_NO_REASON,
+                            .mtu = new_mtu};
 
   auto it = std::find(connected_cids_.begin(), connected_cids_.end(), cids[0]);
   ASSERT_TRUE(it != connected_cids_.end());
@@ -533,7 +535,7 @@ TEST_F(EattTest, ReconfigPeerSucceed) {
   ConnectDeviceEattSupported(3);
 
   uint16_t new_mtu = 300;
-  tL2CAP_LE_CFG_INFO cfg = {.result = L2CAP_CFG_OK, .mtu = new_mtu};
+  tL2CAP_LE_CFG_INFO cfg = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_OK, .mtu = new_mtu};
 
   for (uint16_t cid : connected_cids_) {
     l2cap_app_info_.pL2CA_CreditBasedReconfigCompleted_Cb(test_address, cid, false, &cfg);
@@ -550,7 +552,8 @@ TEST_F(EattTest, ReconfigPeerFailed) {
   ConnectDeviceEattSupported(2);
 
   uint16_t new_mtu = 300;
-  tL2CAP_LE_CFG_INFO cfg = {.result = L2CAP_CFG_FAILED_NO_REASON, .mtu = new_mtu};
+  tL2CAP_LE_CFG_INFO cfg = {.result = tL2CAP_CFG_RESULT::L2CAP_CFG_FAILED_NO_REASON,
+                            .mtu = new_mtu};
 
   for (uint16_t cid : connected_cids_) {
     l2cap_app_info_.pL2CA_CreditBasedReconfigCompleted_Cb(test_address, cid, false, &cfg);

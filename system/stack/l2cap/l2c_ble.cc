@@ -317,9 +317,9 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
              * 1.25) - 1)) ||*/
             timeout < BTM_BLE_CONN_SUP_TOUT_MIN || timeout > BTM_BLE_CONN_SUP_TOUT_MAX ||
             max_interval < min_interval) {
-          l2cu_send_peer_ble_par_rsp(p_lcb, L2CAP_CFG_UNACCEPTABLE_PARAMS, id);
+          l2cu_send_peer_ble_par_rsp(p_lcb, tL2CAP_CFG_RESULT::L2CAP_CFG_UNACCEPTABLE_PARAMS, id);
         } else {
-          l2cu_send_peer_ble_par_rsp(p_lcb, L2CAP_CFG_OK, id);
+          l2cu_send_peer_ble_par_rsp(p_lcb, tL2CAP_CFG_RESULT::L2CAP_CFG_OK, id);
 
           p_lcb->min_interval = min_interval;
           p_lcb->max_interval = max_interval;
@@ -664,7 +664,7 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
 
       log::verbose("Recv L2CAP_CMD_CREDIT_BASED_RECONFIG_RES for result = 0x{:04x}", result);
 
-      p_lcb->pending_ecoc_reconfig_cfg.result = result;
+      p_lcb->pending_ecoc_reconfig_cfg.result = static_cast<tL2CAP_CFG_RESULT>(result);
 
       /* All channels which are in reconfiguration state are marked with
        * reconfig_started flag. Find it and send response
@@ -676,7 +676,7 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
                           &p_lcb->pending_ecoc_reconfig_cfg);
 
           temp_p_ccb->reconfig_started = false;
-          if (result == L2CAP_CFG_OK) {
+          if (result == static_cast<uint16_t>(tL2CAP_CFG_RESULT::L2CAP_CFG_OK)) {
             temp_p_ccb->local_conn_cfg = p_lcb->pending_ecoc_reconfig_cfg;
           }
         }
