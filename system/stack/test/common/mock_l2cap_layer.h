@@ -44,7 +44,7 @@ public:
                                  uint16_t sec_level) = 0;
   virtual void DeregisterLECoc(uint16_t psm) = 0;
   virtual bool ConnectCreditBasedRsp(const RawAddress& bd_addr, uint8_t id,
-                                     std::vector<uint16_t>& lcids, uint16_t result,
+                                     std::vector<uint16_t>& lcids, tL2CAP_LE_RESULT_CODE result,
                                      tL2CAP_LE_CFG_INFO* p_cfg) = 0;
   virtual std::vector<uint16_t> ConnectCreditBasedReq(uint16_t psm, const RawAddress& bd_addr,
                                                       tL2CAP_LE_CFG_INFO* p_cfg) = 0;
@@ -73,7 +73,7 @@ public:
   MOCK_METHOD1(GetBleConnRole, uint8_t(const RawAddress& bd_addr));
   MOCK_METHOD5(ConnectCreditBasedRsp,
                bool(const RawAddress& p_bd_addr, uint8_t id, std::vector<uint16_t>& lcids,
-                    uint16_t result, tL2CAP_LE_CFG_INFO* p_cfg));
+                    tL2CAP_LE_RESULT_CODE result, tL2CAP_LE_CFG_INFO* p_cfg));
   MOCK_METHOD3(ConnectCreditBasedReq, std::vector<uint16_t>(uint16_t psm, const RawAddress& bd_addr,
                                                             tL2CAP_LE_CFG_INFO* p_cfg));
   MOCK_METHOD3(ReconfigCreditBasedConnsReq,

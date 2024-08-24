@@ -413,7 +413,9 @@ static void process_l2cap_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
         }
         STREAM_TO_UINT16(con_info.remote_cid, p);
         STREAM_TO_UINT16(lcid, p);
-        STREAM_TO_UINT16(con_info.l2cap_result, p);
+        uint16_t l2cap_result;
+        STREAM_TO_UINT16(l2cap_result, p);
+        con_info.l2cap_result = static_cast<tL2CAP_CONN>(l2cap_result);
         STREAM_TO_UINT16(con_info.l2cap_status, p);
 
         tL2C_CCB* p_ccb = l2cu_find_ccb_by_cid(p_lcb, lcid);
