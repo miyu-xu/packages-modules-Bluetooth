@@ -24,6 +24,10 @@
 namespace bluetooth {
 namespace common {
 
+//
+// Interface for one context to send and receive data over
+// a pair of queues (|BidiQueue|).
+//
 template <typename TENQUEUE, typename TDEQUEUE>
 class BidiQueueEnd : public ::bluetooth::os::IQueueEnqueue<TENQUEUE>,
                      public ::bluetooth::os::IQueueDequeue<TDEQUEUE> {
@@ -54,6 +58,22 @@ private:
   ::bluetooth::os::IQueueDequeue<TDEQUEUE>* rx_;
 };
 
+//
+// Interface managing a pair of queues shared between two contexts
+// (typically user and hardware).
+//
+// The up queue can be used for data to indicate up to user context and
+// the down queue can be used for data to sent to hardware context.
+// Each context uses its |BidiQueueEnd| to manage their data operations:
+//
+// The up end (user context):
+// - Receives data indicated from the down end (hardware).
+// - Sends data to the down end (hardware).
+//
+// The down end (hardware context):
+// - Receives data sent from the up end (user).
+// - Indicates data to the up end (user).
+//
 template <typename TUP, typename TDOWN>
 class BidiQueue {
 public:
