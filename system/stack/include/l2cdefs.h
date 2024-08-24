@@ -298,7 +298,7 @@ inline std::string l2cap_cid_fixed_text(const tL2CAP_CID_FIXED& cid) {
 
 /* Define the L2CAP configuration result codes
  */
-enum tL2CAP_CFG_RESULT : uint16_t {
+enum class tL2CAP_CFG_RESULT : uint16_t {
   L2CAP_CFG_OK = 0,
   L2CAP_CFG_UNACCEPTABLE_PARAMS = 1,
   L2CAP_CFG_FAILED_NO_REASON = 2,
@@ -485,6 +485,8 @@ template <>
 struct formatter<tL2CAP_CID_FIXED> : enum_formatter<tL2CAP_CID_FIXED> {};
 template <>
 struct formatter<tL2CAP_LE_RESULT_CODE> : enum_formatter<tL2CAP_LE_RESULT_CODE> {};
+template <>
+struct formatter<tL2CAP_CFG_RESULT> : enum_formatter<tL2CAP_CFG_RESULT> {};
 }  // namespace fmt
 
 #endif
