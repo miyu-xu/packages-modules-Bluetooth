@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14dee5ba_683db743",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2596,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-24T09:05:57Z",
+      "side": 1,
+      "message": "Should you call `L2CA_SetMediaStreamChannel` as well ?",
+      "revId": "906352bf7e84b27378d46f158b412a8c2c4a269e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
