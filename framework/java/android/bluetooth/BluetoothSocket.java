@@ -741,6 +741,12 @@ public final class BluetoothSocket implements Closeable {
                     mSocket.shutdownInput();
                     mSocket.shutdownOutput();
                     mSocket.close();
+                    //clear the l2cap read buffer
+                    if (mL2capBuffer != null) {
+                      Log.e(TAG, "Clearing the buffer: " + mSocket);
+                      mL2capBuffer.limit(0);
+                      mL2capBuffer = null;
+                    }
                     mSocket = null;
                 }
                 if (mPfd != null) {
