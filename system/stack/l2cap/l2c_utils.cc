@@ -3269,7 +3269,7 @@ void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id, uint16_t result
  *
  ******************************************************************************/
 
-void l2cu_send_ble_reconfig_rsp(tL2C_LCB* p_lcb, uint8_t rem_id, uint16_t result) {
+void l2cu_send_ble_reconfig_rsp(tL2C_LCB* p_lcb, uint8_t rem_id, tL2CAP_RECONFIG_RESULT result) {
   BT_HDR* p_buf;
   uint8_t* p;
 
@@ -3286,7 +3286,8 @@ void l2cu_send_ble_reconfig_rsp(tL2C_LCB* p_lcb, uint8_t rem_id, uint16_t result
       L2CAP_CMD_OVERHEAD;
 
   memset(p, 0, L2CAP_CMD_CREDIT_BASED_RECONFIG_RES_LEN);
-  UINT16_TO_STREAM(p, result);
+  uint16_t reconfig_result = static_cast<uint16_t>(result);
+  UINT16_TO_STREAM(p, reconfig_result);
 
   l2c_link_check_send_pkts(p_lcb, 0, p_buf);
 }
