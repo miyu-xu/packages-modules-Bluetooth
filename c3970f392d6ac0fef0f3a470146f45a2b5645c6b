@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc6c595f_99640b1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:20:19Z",
+      "side": 1,
+      "message": "I don\u0027t understand how this change could have caused the problem, but revert first.",
+      "revId": "c3970f392d6ac0fef0f3a470146f45a2b5645c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
