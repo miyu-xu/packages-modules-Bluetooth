@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb2584a_f2939b6d",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:45:16Z",
+      "side": 1,
+      "message": "Should RAS be connected before the call to StartDistanceMeasurement?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4844ddc5_7589e353",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 49,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "    bluetooth::shim::GetDistanceMeasurementManager()-\u003eStartDistanceMeasurement(\n            bluetooth::ToGdAddress(raw_address), interval, distance_measurement_method);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0d902e79a9755e57f90757c19c9f0b9d1503863c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
