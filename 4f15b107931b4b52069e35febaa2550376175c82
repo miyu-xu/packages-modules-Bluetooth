@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4050b47f_db4a2901",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:17:47Z",
+      "side": 1,
+      "message": "LocalInformation is read here.",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 46
+      },
+      "revId": "4f15b107931b4b52069e35febaa2550376175c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdb562dc_43429015",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:17:47Z",
+      "side": 1,
+      "message": "At this point, it should be available.",
+      "range": {
+        "startLine": 337,
+        "startChar": 33,
+        "endLine": 337,
+        "endChar": 72
+      },
+      "revId": "4f15b107931b4b52069e35febaa2550376175c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "851f15d4_e5edf506",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:17:47Z",
+      "side": 1,
+      "message": "You should be able to check the local version here.  The AI suggested fix is incorrect, but shows the correct naming of the struct, so I left it.",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 363,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "72ae3ec3_2489e9bd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/controller.cc",
+              "range": {
+                "startLine": 359,
+                "startChar": 0,
+                "endLine": 363,
+                "endChar": 0
+              },
+              "replacement": "    if (page_number \u003d\u003d 0) {\n      if (bluetooth::os::GetSystemPropertyBool(\"bluetooth.core.disable_packet_boundary\", false)) {\n        // Override the packet boundary feature bit on some old controllers that don\u0027t support well.\n        extended_lmp_features_array_.back() \u0026\u003d ~(0x1ULL \u003c\u003c 54);\n      }\n      if (local_version_information_.hci_version_ \u003c HciVersion::V_5_0) {\n        // Override the packet boundary feature bit on controllers that don\u0027t support well.\n        extended_lmp_features_array_.back() \u0026\u003d ~(0x1ULL \u003c\u003c 54);\n      }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4f15b107931b4b52069e35febaa2550376175c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
