@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c02383ad_82432aa8",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:27:07Z",
+      "side": 1,
+      "message": "This wasn\u0027t even used\n\nDone",
+      "parentUuid": "48f03769_2d788a16",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 22
+      },
+      "revId": "83da5a271858e87549e572790e612aa5780491c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4025d5c1_58595bef",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "83da5a271858e87549e572790e612aa5780491c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41933b04_65317ead",
+        "filename": "system/types/bt_transport.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:27:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4025d5c1_58595bef",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 17
+      },
       "revId": "83da5a271858e87549e572790e612aa5780491c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
