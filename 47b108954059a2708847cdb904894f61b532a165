@@ -57,6 +57,30 @@
       ],
       "revId": "47b108954059a2708847cdb904894f61b532a165",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc5c8504_9da5fa35",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-08-26T19:02:44Z",
+      "side": 1,
+      "message": "this is the only one which seems related to this. otherwise, we need a new API. or do you think \u0027NOT_ALLOWED\u0027 is better? (IMO, \u0027NOT_ALLOWED\u0027 is a kind of local error.)",
+      "parentUuid": "000bb977_7568a73c",
+      "range": {
+        "startLine": 103,
+        "startChar": 41,
+        "endLine": 103,
+        "endChar": 77
+      },
+      "revId": "47b108954059a2708847cdb904894f61b532a165",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
