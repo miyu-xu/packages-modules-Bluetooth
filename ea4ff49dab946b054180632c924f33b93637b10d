@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "214fe147_29dc9469",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-26T23:27:00Z",
+      "side": 1,
+      "message": "DrNo owner will need to approve this exempt since it is handle on a  on a case by case basis.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e33f9ccd_dd8ba358",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -31,6 +54,29 @@
       "writtenOn": "2024-08-26T02:39:10Z",
       "side": 1,
       "message": "Ref from [headset](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;l\u003d355)",
+      "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f6ef289_18128721",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-26T23:27:00Z",
+      "side": 1,
+      "message": "Why do we need to use this specific function ? It seems weird to use an `AsUser` method in a system stack.\n\nTwo things here:\n\n* First, is the Broadcast receiver correctly configured to receive an intent sent with `sendBroadcast` ? \n* The Telecom team is currently under a pretty big refactor, did you test with their flag to on and check if the issue still exist ?",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 663,
+        "endChar": 46
+      },
       "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
