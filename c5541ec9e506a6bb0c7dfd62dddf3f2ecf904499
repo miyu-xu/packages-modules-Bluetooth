@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d846259a_4abe163a",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:42:06Z",
+      "side": 1,
+      "message": "Yes.  I should have included this with the initial `enum` but as there were no log parsing failures this wasn\u0027t needed.\n\nAnd as you mention this is only needed if we lack a `ToString` option.\n\nDone",
+      "parentUuid": "1b2bac38_a95eea7f",
+      "range": {
+        "startLine": 488,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 75
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdee119e_4ee71c50",
@@ -134,6 +158,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcabc149_082dcf11",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:42:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3270214b_0c469ea2",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 81
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34990ca3_262eca5a",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:42:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c57be66d_4d200d9e",
+      "range": {
+        "startLine": 679,
+        "startChar": 14,
+        "endLine": 679,
+        "endChar": 20
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd678e75_dabf725a",
@@ -147,6 +219,30 @@
       "writtenOn": "2024-08-26T16:47:16Z",
       "side": 1,
       "message": "Can we inline the cast?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(cfg_result));\n```",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 709,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b90d6260_a049d647",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:42:06Z",
+      "side": 1,
+      "message": "Sure...I don\u0027t fully trust the macros but it should work",
+      "parentUuid": "cd678e75_dabf725a",
       "range": {
         "startLine": 708,
         "startChar": 0,
@@ -216,6 +312,30 @@
       "writtenOn": "2024-08-26T16:47:16Z",
       "side": 1,
       "message": "I didn\u0027t think we had any of these left 😭",
+      "range": {
+        "startLine": 224,
+        "startChar": 12,
+        "endLine": 224,
+        "endChar": 25
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a34811_763fed1e",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T17:42:06Z",
+      "side": 1,
+      "message": "sad thing is after a couple calls this parameter is not even used 😭",
+      "parentUuid": "7abdd800_17b6024c",
       "range": {
         "startLine": 224,
         "startChar": 12,
