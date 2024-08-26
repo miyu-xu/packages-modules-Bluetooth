@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5496acdc_7a4a7b30",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2590,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-26T09:02:42Z",
+      "side": 1,
+      "message": "nit: Tx priority \nI know that in the main code\n(https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/av/bta_av_aact.cc;drc\u003d69fe17309810b18f66f443265d9f723a0c9be600;l\u003d1179)\nit is also \u0027flush\u0027 in this place. Optionally it would be great if you could fix the log there as well within your CL, thank you!",
+      "range": {
+        "startLine": 2590,
+        "startChar": 37,
+        "endLine": 2590,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f085abe4_e0ed900d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/av/bta_av_aact.cc",
+              "range": {
+                "startLine": 2590,
+                "startChar": 0,
+                "endLine": 2591,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Unable to set L2CAP Tx priority peer:{} cid:{}\", p_scb-\u003ePeerAddress(), p_scb-\u003el2c_cid);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "358c5df5bf1ee9a5756a49327c5dbba453c72dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7507debf_9a76dd18",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2594,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-26T09:02:42Z",
+      "side": 1,
+      "message": "nit: Unable",
+      "range": {
+        "startLine": 2594,
+        "startChar": 17,
+        "endLine": 2594,
+        "endChar": 22
+      },
+      "revId": "358c5df5bf1ee9a5756a49327c5dbba453c72dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
