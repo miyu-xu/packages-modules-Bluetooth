@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cdd6e4d_802751d1",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:53:44Z",
+      "side": 1,
+      "message": "I like letting the compiler check if the case is complete, which we can only do if we don\u0027t have a default.\n```suggestion\n  }\n  RETURN_UNKNOWN_TYPE_STRING(tL2CAP_RECONFIG_RESULT, result);\n}\n```",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 1
+      },
+      "revId": "ccc5031f563cbd8dbac48ade8cfdd45ad333c3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "188e171f_5c9401ce",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:53:44Z",
+      "side": 1,
+      "message": "I\u0027d prefer using l2cap_reconfig_result_text to using the generic formatter.",
+      "range": {
+        "startLine": 505,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 85
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4bb8ce89_f739fcd1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2cdefs.h",
+              "range": {
+                "startLine": 505,
+                "startChar": 0,
+                "endLine": 507,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ccc5031f563cbd8dbac48ade8cfdd45ad333c3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df3ec0c4_02c27b63",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3290,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:53:44Z",
+      "side": 1,
+      "message": "Can we inline the cast?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3289,
+        "startChar": 0,
+        "endLine": 3290,
+        "endChar": 39
+      },
+      "revId": "ccc5031f563cbd8dbac48ade8cfdd45ad333c3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
