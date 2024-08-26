@@ -360,6 +360,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d25ae111_4c375e09",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-26T11:37:36Z",
+      "side": 1,
+      "message": ".. *how  ...",
+      "parentUuid": "038224c8_493335f4",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 49
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9461294a_8912cbd7",
         "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
         "patchSetId": 2
