@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1216ced9_e2b0bbeb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T18:31:33Z",
+      "side": 1,
+      "message": "nit: unbonded",
+      "revId": "47b108954059a2708847cdb904894f61b532a165",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "000bb977_7568a73c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T18:31:33Z",
+      "side": 1,
+      "message": "Is there a better status code?",
+      "range": {
+        "startLine": 103,
+        "startChar": 41,
+        "endLine": 103,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1f405d62_a7eab5ec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "                    BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "47b108954059a2708847cdb904894f61b532a165",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
