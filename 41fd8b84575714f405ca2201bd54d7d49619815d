@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c350e522_be94b0de",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-26T13:04:59Z",
+      "side": 1,
+      "message": "Please add a comment that this is an invalid handle",
+      "range": {
+        "startLine": 389,
+        "startChar": 46,
+        "endLine": 389,
+        "endChar": 53
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
