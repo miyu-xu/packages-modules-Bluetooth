@@ -52,6 +52,24 @@
       "parentUuid": "b2a0f251_60b23eb2",
       "revId": "115a66b83b80c2ef8ee558637fa0dbecc828094a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84c9be8f_fc0503a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-26T21:39:20Z",
+      "side": 1,
+      "message": "\u003e Existing avatar test cases have been flaky. \n\nWhat gives you the assurance that your tests are not? Also existing tests weren\u0027t flaky when they got merged, the flakiness (of ssp tests) is a result of them not being maintained properly. \n\nI would highly encourage you to look at why the existing tests recently got flaky (see history: https://android-build.corp.google.com/test_hub/search/?filter\u003dmediumFailureRate\u0026invfilter\u003dunhealthyInvocations\u0026invfilter\u003dstaleInvocations\u0026query\u003dconfig%3Av2%2Fpandora-prod-team%2Favatar+target%3Aaosp_cf_x86_64_phone-trunk_staging-userdebug+branch%3Aaosp-main+module%3Aavatar). It clearly shows that around last June these tests went from a \u003c1% flakiness to 5-10%. This might be due to a Bumble update or a stack regression, @charliebout@google.com can help you in the investigation\n\n\u003e This specific cl covers secured service access which I don\u0027t believe is covered by existing Avatar test cases.\n\nThis was more a general comment for this whole CL chain. As I said, all tests which aren\u0027t covered today should be merged.\n\n\u003e I have not planned any effort to contribute or maintain the github project.\n\nBluetooth areas are expected to maintain tests related to their area which are located in the avatar repo. Only stable non flaky tests are supposed to be moved in the avatar repo by the Pandora team so this shouldn\u0027t require much time.",
+      "parentUuid": "d41c79da_7d332102",
+      "revId": "115a66b83b80c2ef8ee558637fa0dbecc828094a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
