@@ -94,6 +94,12 @@ public class DistanceMeasurementManager {
                 "startDistanceMeasurement:"
                         + (" device=" + params.getDevice())
                         + (" method=" + params.getMethodId()));
+        if (!mAdapterService.isConnected(params.getDevice())) {
+            Log.e(TAG, "Device " + params.getDevice() + " is not connected");
+            invokeStartFail(
+                    callback, params.getDevice(), BluetoothStatusCodes.ERROR_NO_LE_CONNECTION);
+            return;
+        }
         String address = mAdapterService.getIdentityAddress(params.getDevice().getAddress());
         if (address == null) {
             address = params.getDevice().getAddress();
@@ -120,12 +126,14 @@ public class DistanceMeasurementManager {
                 startRssiTracker(tracker);
                 break;
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING:
-                if (!mAdapterService.isConnected(params.getDevice())) {
-                    Log.e(TAG, "Device " + params.getDevice() + " is not connected");
+                // TODO(b/362273853): may check the RAS/RAP service UUID upfront.
+                if (mAdapterService.getBondState(params.getDevice())
+                        != BluetoothDevice.BOND_BONDED) {
+                    Log.e(TAG, "StartDistanceMeasurement: the target device is not bonded.");
                     invokeStartFail(
                             callback,
                             params.getDevice(),
-                            BluetoothStatusCodes.ERROR_NO_LE_CONNECTION);
+                            BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED);
                     return;
                 }
                 startCsTracker(tracker);
