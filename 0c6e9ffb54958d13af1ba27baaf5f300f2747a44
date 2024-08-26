@@ -384,6 +384,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3059b67d_44611936",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-26T11:52:31Z",
+      "side": 1,
+      "message": "hmm, on the second thought: So your point of view is as long as we are not using connId to do any actions then it can be unflagged because there is no logical change,  even the way request is storing and retrieving is different from previous one, correct?\nI understand that this change should be done in separate CL and should use Dr No request, is that correct?\n\nMy take was to simply flag the new code, as for me this is not really over complicated (not more that all other flagged CLs).\nThis saves time for delivered (no DR No request), and also assures no other regression introduced as without the flag the original code is working.\n\nLet me know if I should proceed with creating 2 CLs out of it.",
+      "parentUuid": "d25ae111_4c375e09",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 49
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9461294a_8912cbd7",
         "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
         "patchSetId": 2
