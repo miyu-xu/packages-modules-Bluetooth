@@ -50,6 +50,30 @@
       ],
       "revId": "0d902e79a9755e57f90757c19c9f0b9d1503863c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "706c8461_f20f4580",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-08-26T18:08:43Z",
+      "side": 1,
+      "message": "yes, the distance_measurement_manager in HCI was waiting for the RAS connection.\nthe problem here is that, the RAS is not required for RSSI.",
+      "parentUuid": "beb2584a_f2939b6d",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 5
+      },
+      "revId": "0d902e79a9755e57f90757c19c9f0b9d1503863c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
