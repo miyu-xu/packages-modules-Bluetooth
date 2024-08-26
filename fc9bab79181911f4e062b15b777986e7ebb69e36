@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "098a429e_1ffbbca9",
+        "filename": "android/pandora/test/pairing/br_edr/legacy/tests.py",
+        "patchSetId": 72
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-26T21:40:01Z",
+      "side": 1,
+      "message": "Use a more explicit name instead of `1` or `2`.",
+      "range": {
+        "startLine": 65,
+        "startChar": 50,
+        "endLine": 65,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "22cd5633_c954d212",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/pairing/br_edr/legacy/tests.py",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": "    async def test_dedicated_pairing_ref_initiate_bumble_initiator(self) -\u003e None:\n"
+            },
+            {
+              "path": "android/pandora/test/pairing/br_edr/legacy/tests.py",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": "    async def test_dedicated_pairing_ref_initiate_bumble_responder(self) -\u003e None:\n"
+            },
+            {
+              "path": "android/pandora/test/pairing/br_edr/legacy/tests.py",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "    async def test_dedicated_pairing_dut_initiate_bumble_initiator(self) -\u003e None:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fc9bab79181911f4e062b15b777986e7ebb69e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
