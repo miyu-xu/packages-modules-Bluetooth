@@ -34,6 +34,24 @@
       "parentUuid": "fe2aacea_218bd334",
       "revId": "115a66b83b80c2ef8ee558637fa0dbecc828094a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d41c79da_7d332102",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-26T21:08:51Z",
+      "side": 1,
+      "message": "Existing avatar test cases have been flaky. There is some redundancy but also new cases in these test cases. This specific cl covers secured service access which I don\u0027t believe is covered by existing Avatar test cases.\nI have not planned any effort to contribute or maintain the github project.",
+      "parentUuid": "b2a0f251_60b23eb2",
+      "revId": "115a66b83b80c2ef8ee558637fa0dbecc828094a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
