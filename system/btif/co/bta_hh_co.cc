@@ -55,6 +55,8 @@ static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
 #define BTA_HH_UHID_POLL_PERIOD2_MS -1
 /* Max number of polling interrupt allowed */
 #define BTA_HH_UHID_INTERRUPT_COUNT_MAX 100
+/* Disconnect if UHID isn't ready after this many milliseconds. */
+#define BTA_HH_UHID_DISCONN_TIMEOUT_MS 10000
 
 using namespace bluetooth;
 
@@ -181,9 +183,21 @@ static void uhid_open_timeout(void* data) {
   to_uhid_thread(send_fd, &ev);
 }
 
+// This runs on main thread.
+static void uhid_disconn_timeout(void* data) {
+  int dev_handle = PTR_TO_INT(data);
+
+  log::verbose("UHID disconn timeout evt");
+  BTA_HhClose(dev_handle);
+}
+
 static void uhid_on_open(btif_hh_uhid_t* p_uhid) {
   if (p_uhid->ready_for_data || alarm_is_scheduled(p_uhid->ready_timer)) {
     return;
+  }
+
+  if (alarm_is_scheduled(p_uhid->disconn_timer)) {
+    alarm_cancel(p_uhid->disconn_timer);
   }
 
   // On some platforms delay is required, because even though UHID has indicated
@@ -258,6 +272,10 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
       if (com::android::bluetooth::flags::hid_report_queuing()) {
         if (alarm_is_scheduled(p_uhid->ready_timer)) {
           alarm_cancel(p_uhid->ready_timer);
+        }
+        if (!alarm_is_scheduled(p_uhid->disconn_timer)) {
+          alarm_set_on_mloop(p_uhid->disconn_timer, BTA_HH_UHID_DISCONN_TIMEOUT_MS,
+                             uhid_disconn_timeout, INT_TO_PTR(p_uhid->dev_handle));
         }
       }
       break;
@@ -444,6 +462,7 @@ static void uhid_fd_close(btif_hh_uhid_t* p_uhid) {
     p_uhid->input_queue = nullptr;
 
     alarm_free(p_uhid->ready_timer);
+    alarm_free(p_uhid->disconn_timer);
     osi_free(p_uhid);
   }
 }
@@ -633,6 +652,9 @@ static void* btif_hh_poll_event_thread(void* arg) {
     }
     p_uhid->ready_for_data = false;
     p_uhid->ready_timer = alarm_new("uhid_ready_timer");
+    p_uhid->disconn_timer = alarm_new("uhid_disconn_timer");
+    alarm_set_on_mloop(p_uhid->disconn_timer, BTA_HH_UHID_DISCONN_TIMEOUT_MS, uhid_disconn_timeout,
+                       INT_TO_PTR(p_uhid->dev_handle));
 
     p_uhid->get_rpt_id_queue = fixed_queue_new(SIZE_MAX);
     log::assert_that(p_uhid->get_rpt_id_queue, "assert failed: p_uhid->get_rpt_id_queue");
