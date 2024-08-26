@@ -19,6 +19,7 @@ package com.android.bluetooth.gatt;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.after;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.times;
@@ -69,6 +70,7 @@ public class DistanceMeasurementManagerTest {
     @Before
     public void setUp() throws Exception {
         doReturn(IDENTITY_ADDRESS).when(mAdapterService).getIdentityAddress(IDENTITY_ADDRESS);
+        doReturn(true).when(mAdapterService).isConnected(any());
         DistanceMeasurementNativeInterface.setInstance(mDistanceMeasurementNativeInterface);
         mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
         mUuid = UUID.randomUUID();
