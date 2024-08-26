@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48f03769_2d788a16",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:03:05Z",
+      "side": 1,
+      "message": "Should this still be here?\n\nCan it be moved into types/bt_transport.h?",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 22
+      },
+      "revId": "83da5a271858e87549e572790e612aa5780491c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4025d5c1_58595bef",
+        "filename": "system/types/bt_transport.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:03:05Z",
+      "side": 1,
+      "message": "#include \u003cbluetooth/log.h\u003e as well?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d7e9817c_14644e1e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/types/bt_transport.h",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": "#include \u003cbluetooth/log.h\u003e\n"
+            }
+          ]
+        }
+      ],
+      "revId": "83da5a271858e87549e572790e612aa5780491c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
