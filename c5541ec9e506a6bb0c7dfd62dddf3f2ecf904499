@@ -344,6 +344,30 @@
       },
       "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7613279c_af44e1a6",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:43:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "45a34811_763fed1e",
+      "range": {
+        "startLine": 224,
+        "startChar": 12,
+        "endLine": 224,
+        "endChar": 25
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
