@@ -39,6 +39,30 @@
       },
       "revId": "f1332fe9419ba2a413a7346a76302730a42a7501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2095ebf5_723931f4",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1911,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-08-26T14:10:01Z",
+      "side": 1,
+      "message": "Agreed. Don\u0027t see a particular reason to make this configurable.",
+      "parentUuid": "362cef92_aee88808",
+      "range": {
+        "startLine": 1907,
+        "startChar": 0,
+        "endLine": 1911,
+        "endChar": 3
+      },
+      "revId": "f1332fe9419ba2a413a7346a76302730a42a7501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
