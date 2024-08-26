@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60aaa73_e4018728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-26T21:21:56Z",
+      "side": 1,
+      "message": "Underlying (and required) CL need to be reland prior to this change as this will break cts test without it",
+      "revId": "3cbf9f588ef74652ece54b72ea333ef884f23d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
