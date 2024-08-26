@@ -94,6 +94,13 @@ public class DistanceMeasurementManager {
                 "startDistanceMeasurement:"
                         + (" device=" + params.getDevice())
                         + (" method=" + params.getMethodId()));
+        // TODO(b/362273853): may check the RAS/RAP service UUID upfront for channel sounding
+        if (mAdapterService.getBondState(params.getDevice()) != BluetoothDevice.BOND_BONDED) {
+            Log.e(TAG, "StartDistanceMeasurement: the target device is not bonded.");
+            invokeStartFail(
+                    callback, params.getDevice(), BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED);
+            return;
+        }
         String address = mAdapterService.getIdentityAddress(params.getDevice().getAddress());
         if (address == null) {
             address = params.getDevice().getAddress();
