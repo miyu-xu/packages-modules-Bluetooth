@@ -19,6 +19,7 @@ package com.android.bluetooth.gatt;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.after;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.verify;
@@ -33,9 +34,11 @@ import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.os.RemoteException;
 
 import androidx.test.filters.SmallTest;
-import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
+
+import com.google.testing.junit.testparameterinjector.TestParameterInjector;
+import com.google.testing.junit.testparameterinjector.TestParameters;
 
 import org.junit.After;
 import org.junit.Before;
@@ -51,7 +54,7 @@ import java.util.UUID;
 
 /** Test cases for {@link DistanceMeasurementManager}. */
 @SmallTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(TestParameterInjector.class)
 public class DistanceMeasurementManagerTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -63,11 +66,12 @@ public class DistanceMeasurementManagerTest {
     private BluetoothDevice mDevice;
 
     private static final String IDENTITY_ADDRESS = "00:01:02:03:04:05";
-    private static final int RSSI_FREQUENCY_LOW = 3000;
+    private static final int MEASUREMENT_FREQUENCY_LOW = 3000;
 
     @Before
     public void setUp() throws Exception {
         doReturn(IDENTITY_ADDRESS).when(mAdapterService).getIdentityAddress(IDENTITY_ADDRESS);
+        doReturn(true).when(mAdapterService).isConnected(any());
         DistanceMeasurementNativeInterface.setInstance(mDistanceMeasurementNativeInterface);
         mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
         mUuid = UUID.randomUUID();
@@ -92,7 +96,7 @@ public class DistanceMeasurementManagerTest {
         verify(mDistanceMeasurementNativeInterface)
                 .startDistanceMeasurement(
                         IDENTITY_ADDRESS,
-                        RSSI_FREQUENCY_LOW,
+                        MEASUREMENT_FREQUENCY_LOW,
                         DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
     }
 
@@ -125,7 +129,7 @@ public class DistanceMeasurementManagerTest {
         verify(mDistanceMeasurementNativeInterface)
                 .startDistanceMeasurement(
                         IDENTITY_ADDRESS,
-                        RSSI_FREQUENCY_LOW,
+                        MEASUREMENT_FREQUENCY_LOW,
                         DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         mDistanceMeasurementManager.onDistanceMeasurementStarted(
                 IDENTITY_ADDRESS, DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
@@ -144,7 +148,7 @@ public class DistanceMeasurementManagerTest {
         verify(mDistanceMeasurementNativeInterface)
                 .startDistanceMeasurement(
                         IDENTITY_ADDRESS,
-                        RSSI_FREQUENCY_LOW,
+                        MEASUREMENT_FREQUENCY_LOW,
                         DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         mDistanceMeasurementManager.onDistanceMeasurementStopped(
                 IDENTITY_ADDRESS,
@@ -152,6 +156,47 @@ public class DistanceMeasurementManagerTest {
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         verify(mCallback)
                 .onStartFail(mDevice, BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL);
+    }
+
+    @Test
+    @TestParameters({"{bondState:10}" /*BOND_NONE*/, "{bondState:11}" /*BOND_BONDED*/})
+    public void testCsStartMeasurementForBondedBLE(int bondState) throws RemoteException {
+        doReturn(bondState).when(mAdapterService).getBondState(any());
+        DistanceMeasurementParams params =
+                new DistanceMeasurementParams.Builder(mDevice)
+                        .setDurationSeconds(1000)
+                        .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                        .setMethodId(
+                                DistanceMeasurementMethod
+                                        .DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING)
+                        .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        verify(mDistanceMeasurementNativeInterface)
+                .startDistanceMeasurement(
+                        IDENTITY_ADDRESS,
+                        MEASUREMENT_FREQUENCY_LOW,
+                        DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING);
+        if (bondState == BluetoothDevice.BOND_NONE) {
+            mDistanceMeasurementManager.onDistanceMeasurementStopped(
+                    IDENTITY_ADDRESS,
+                    BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL,
+                    DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING);
+            verify(mCallback)
+                    .onStartFail(mDevice, BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL);
+        } else if (bondState == BluetoothDevice.BOND_BONDED) {
+            mDistanceMeasurementManager.onDistanceMeasurementResult(
+                    IDENTITY_ADDRESS,
+                    100,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING);
+            verify(mCallback).onResult(mDevice, any());
+        }
     }
 
     @Test
