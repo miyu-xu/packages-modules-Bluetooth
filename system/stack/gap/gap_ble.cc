@@ -382,6 +382,14 @@ void client_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op, tGATT_STATUS status,
     case GATT_UUID_GAP_CENTRAL_ADDR_RESOL:
       cl_op_cmpl(*p_clcb, true, 1, pp);
       break;
+
+    case GATT_UUID_GAP_ICON:
+      cl_op_cmpl(*p_clcb, true, p_data->att_value.len, pp);
+      break;
+
+    default:
+      log::error("Unexpected operation {}", op);
+      break;
   }
 }
 
