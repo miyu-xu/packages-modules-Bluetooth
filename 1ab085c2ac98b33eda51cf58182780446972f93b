@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8874b5b4_cb241346",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "This one looks odd.",
+      "range": {
+        "startLine": 698,
+        "startChar": 38,
+        "endLine": 698,
+        "endChar": 49
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceeb2b28_f6328a58",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "This one too.",
+      "range": {
+        "startLine": 279,
+        "startChar": 24,
+        "endLine": 279,
+        "endChar": 35
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aa59845_0ed0865b",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "Can we inline the cast here?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 36
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f9b8d1_bfb0c23a",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "Why did this not need a cast?  Do none of the others need them?",
+      "range": {
+        "startLine": 504,
+        "startChar": 22,
+        "endLine": 504,
+        "endChar": 28
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b4c3042_cd27aa6f",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3136,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3135,
+        "startChar": 0,
+        "endLine": 3136,
+        "endChar": 33
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d67eb507_2f440c22",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3170,
+        "startChar": 0,
+        "endLine": 3171,
+        "endChar": 33
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bd25086_df91c06d",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3221,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "```suggestion\n    UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(p_ccb-\u003ep_lcb-\u003epending_l2cap_result));\n  } else {\n    UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n  }\n```",
+      "range": {
+        "startLine": 3217,
+        "startChar": 0,
+        "endLine": 3221,
+        "endChar": 33
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52da2174_8ca3638b",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T17:06:18Z",
+      "side": 1,
+      "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3330,
+        "startChar": 0,
+        "endLine": 3331,
+        "endChar": 34
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
