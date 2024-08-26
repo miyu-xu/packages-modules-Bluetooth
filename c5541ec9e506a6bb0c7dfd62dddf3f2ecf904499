@@ -1,0 +1,229 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2bac38_a95eea7f",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "I thought we only put these in when we didn\u0027t have a ToString() defined for the class.  Doesn\u0027t this just print the number?",
+      "range": {
+        "startLine": 488,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 75
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdee119e_4ee71c50",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "I wonder if it\u0027s worth renaming this to result_u16, defining a new variable result of type tL2CAP_CFG_RESULT named result, and using that without casting.\n```suggestion\n      uint16_t result_u16;\n```",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 22
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da55ce7e_c0a39ff9",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "```suggestion\n      STREAM_TO_UINT16(result_u16, p);\n```",
+      "range": {
+        "startLine": 663,
+        "startChar": 23,
+        "endLine": 663,
+        "endChar": 29
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3270214b_0c469ea2",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "```suggestion\n      tL2CAP_CFG_RESULT result \u003d static_cast\u003ctL2CAP_CFG_RESULT\u003e(result_u16);\n      p_lcb-\u003epending_ecoc_reconfig_cfg.result \u003d result;\n\n      /* All channels which are in reconfiguration state are marked with\n       * reconfig_started flag. Find it and send response\n       */\n      for (temp_p_ccb \u003d p_lcb-\u003eccb_queue.p_first_ccb; temp_p_ccb;\n           temp_p_ccb \u003d temp_p_ccb-\u003ep_next_ccb) {\n        if ((temp_p_ccb-\u003ein_use) \u0026\u0026 (temp_p_ccb-\u003ereconfig_started)) {\n          l2c_csm_execute(temp_p_ccb, L2CEVT_L2CAP_CREDIT_BASED_RECONFIG_RSP,\n                          \u0026p_lcb-\u003epending_ecoc_reconfig_cfg);\n\n          temp_p_ccb-\u003ereconfig_started \u003d false;\n          if (result \u003d\u003d tL2CAP_CFG_RESULT::L2CAP_CFG_OK) {\n```",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 81
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c57be66d_4d200d9e",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "I think I would prefer having the cast\u0027s be the same direction.",
+      "range": {
+        "startLine": 679,
+        "startChar": 14,
+        "endLine": 679,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c4a66b6f_ddd8b1c1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 679,
+                "startChar": 0,
+                "endLine": 680,
+                "endChar": 0
+              },
+              "replacement": "          if (static_cast\u003ctL2CAP_CFG_RESULT\u003e(result) \u003d\u003d tL2CAP_CFG_RESULT::L2CAP_CFG_OK) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd678e75_dabf725a",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "Can we inline the cast?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(cfg_result));\n```",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 709,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c4393f4_389e4039",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "Can we inline the cast?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(tL2CAP_CFG_RESULT::L2CAP_CFG_UNKNOWN_OPTIONS));\n```",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 813,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa668f08_63e0b9b2",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(reason));\n```",
+      "range": {
+        "startLine": 2979,
+        "startChar": 0,
+        "endLine": 2980,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7abdd800_17b6024c",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-26T16:47:16Z",
+      "side": 1,
+      "message": "I didn\u0027t think we had any of these left 😭",
+      "range": {
+        "startLine": 224,
+        "startChar": 12,
+        "endLine": 224,
+        "endChar": 25
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
