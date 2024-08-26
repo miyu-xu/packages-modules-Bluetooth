@@ -30,14 +30,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "acl_api_types.h"
-#include "btm_sec_cb.h"
-#include "btm_sec_int_types.h"
 #include "hci/controller_interface.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/entry.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/btm/btm_sec_cb.h"
+#include "stack/btm/btm_sec_int_types.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_api_types.h"
@@ -55,20 +54,6 @@ extern tBTM_CB btm_cb;
 
 void btm_inq_db_reset(void);
 void btm_pm_reset(void);
-/******************************************************************************/
-/*               L O C A L    D A T A    D E F I N I T I O N S                */
-/******************************************************************************/
-
-#ifndef BTM_DEV_RESET_TIMEOUT
-#define BTM_DEV_RESET_TIMEOUT 4
-#endif
-
-// TODO: Reevaluate this value in the context of timers with ms granularity
-#define BTM_DEV_NAME_REPLY_TIMEOUT_MS    \
-  (2 * 1000) /* 2 seconds for name reply \
-              */
-
-#define BTM_INFO_TIMEOUT 5 /* 5 seconds for info response */
 
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
@@ -296,49 +281,6 @@ static void decode_controller_support() {
   l2cu_set_non_flushable_pbf(bluetooth::shim::GetController()->SupportsNonFlushablePb());
   BTM_EnableInterlacedPageScan();
   BTM_EnableInterlacedInquiryScan();
-}
-
-/*******************************************************************************
- *
- * Function         BTM_SetLocalDeviceName
- *
- * Description      This function is called to set the local device name.
- *
- * Returns          status of the operation
- *
- ******************************************************************************/
-tBTM_STATUS BTM_SetLocalDeviceName(const char* p_name) {
-  if (!p_name || !p_name[0] || (strlen(p_name) > BD_NAME_LEN)) {
-    return tBTM_STATUS::BTM_ILLEGAL_VALUE;
-  }
-
-  if (bluetooth::shim::GetController() == nullptr) {
-    return tBTM_STATUS::BTM_DEV_RESET;
-  }
-  /* Save the device name if local storage is enabled */
-
-  bd_name_from_char_pointer(btm_sec_cb.cfg.bd_name, p_name);
-
-  bluetooth::shim::GetController()->WriteLocalName(p_name);
-  return tBTM_STATUS::BTM_CMD_STARTED;
-}
-
-/*******************************************************************************
- *
- * Function         BTM_ReadLocalDeviceName
- *
- * Description      This function is called to read the local device name.
- *
- * Returns          status of the operation
- *                  If success, tBTM_STATUS::BTM_SUCCESS is returned and p_name points stored
- *                              local device name
- *                  If BTM doesn't store local device name, tBTM_STATUS::BTM_NO_RESOURCES is
- *                              is returned and p_name is set to NULL
- *
- ******************************************************************************/
-tBTM_STATUS BTM_ReadLocalDeviceName(const char** p_name) {
-  *p_name = (const char*)btm_sec_cb.cfg.bd_name;
-  return tBTM_STATUS::BTM_SUCCESS;
 }
 
 /*******************************************************************************

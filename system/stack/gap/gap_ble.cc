@@ -25,6 +25,8 @@
 #include "gap_api.h"
 #include "gatt_api.h"
 #include "hardware/bt_gatt_types.h"
+#include "hci/controller_interface.h"
+#include "main/shim/entry.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_client_interface.h"
@@ -132,7 +134,7 @@ void clcb_dealloc(tGAP_CLCB& clcb) {
 tGATT_STATUS read_attr_value(uint16_t handle, tGATT_VALUE* p_value, bool is_long) {
   uint8_t* p = p_value->value;
   uint16_t offset = p_value->offset;
-  uint8_t* p_dev_name = NULL;
+  std::string dev_name = NULL;
 
   for (const tGAP_ATTR& db_attr : gatt_attr) {
     const tGAP_BLE_ATTR_VALUE& attr_value = db_attr.attr_value;
@@ -143,22 +145,18 @@ tGATT_STATUS read_attr_value(uint16_t handle, tGATT_VALUE* p_value, bool is_long
 
       switch (db_attr.uuid) {
         case GATT_UUID_GAP_DEVICE_NAME:
-          if (get_btm_client_interface().local.BTM_ReadLocalDeviceName((const char**)&p_dev_name) !=
-              tBTM_STATUS::BTM_SUCCESS) {
-            log::warn("Unable to read local device name");
-          };
-          if (strlen((char*)p_dev_name) > GATT_MAX_ATTR_LEN) {
+          dev_name = shim::GetController()->GetLocalName();
+          if (dev_name.size() > GATT_MAX_ATTR_LEN) {
             p_value->len = GATT_MAX_ATTR_LEN;
           } else {
-            p_value->len = (uint16_t)strlen((char*)p_dev_name);
+            p_value->len = static_cast<uint16_t>(dev_name.size());
           }
 
           if (offset > p_value->len) {
             return GATT_INVALID_OFFSET;
           } else {
-            p_value->len -= offset;
-            p_dev_name += offset;
-            ARRAY_TO_STREAM(p, p_dev_name, p_value->len);
+            int bytes_to_copy = p_value->len - offset;
+            ARRAY_TO_STREAM(p, dev_name.data() + offset, bytes_to_copy);
           }
           break;
 
@@ -514,10 +512,8 @@ void GAP_BleAttrDBUpdate(uint16_t attr_uuid, tGAP_BLE_ATTR_VALUE* p_value) {
           break;
 
         case GATT_UUID_GAP_DEVICE_NAME:
-          if (get_btm_client_interface().local.BTM_SetLocalDeviceName(
-                      (const char*)p_value->p_dev_name) != tBTM_STATUS::BTM_SUCCESS) {
-            log::warn("Unable to set local name");
-          }
+          bluetooth::shim::GetController()->WriteLocalName(
+                  reinterpret_cast<const char*>(p_value->p_dev_name));
           break;
 
         case GATT_UUID_GAP_CENTRAL_ADDR_RESOL:

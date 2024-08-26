@@ -437,11 +437,11 @@ struct BTA_DmSetDefaultEventMaskExcept {
 extern struct BTA_DmSetDefaultEventMaskExcept BTA_DmSetDefaultEventMaskExcept;
 
 // Name: BTA_DmSetDeviceName
-// Params: const char* p_name
+// Params: const std::string name
 // Return: void
 struct BTA_DmSetDeviceName {
-  std::function<void(const char* p_name)> body{[](const char* /* p_name */) {}};
-  void operator()(const char* p_name) { body(p_name); }
+  std::function<void(const std::string name)> body{[](const std::string /* p_name */) {}};
+  void operator()(const std::string name) { body(name); }
 };
 extern struct BTA_DmSetDeviceName BTA_DmSetDeviceName;
 

@@ -483,7 +483,7 @@ extern void BTA_EnableTestMode(void);
  * Returns          void
  *
  ******************************************************************************/
-void BTA_DmSetDeviceName(const char* p_name);
+void BTA_DmSetDeviceName(const std::string name);
 
 /*******************************************************************************
  *

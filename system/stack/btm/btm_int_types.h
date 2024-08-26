@@ -30,7 +30,6 @@
 #include "stack/btm/btm_sco.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/btm_ble_api_types.h"
-#include "stack/include/security_client_callbacks.h"
 #include "stack/rnr/remote_name_request.h"
 #include "types/raw_address.h"
 
@@ -68,26 +67,20 @@ typedef struct tBTM_DEVCB {
                                   /* read local name function complete    */
 
   alarm_t* read_rssi_timer;     /* Read RSSI timer */
-  tBTM_CMPL_CB* p_rssi_cmpl_cb; /* Callback function to be called when  */
-                                /* read RSSI function completes */
+  tBTM_CMPL_CB* p_rssi_cmpl_cb; /* Callback function */
 
-  alarm_t* read_failed_contact_counter_timer;     /* Read Failed Contact Counter */
-                                                  /* timer */
-  tBTM_CMPL_CB* p_failed_contact_counter_cmpl_cb; /* Callback function to be */
-  /* called when read Failed Contact Counter function completes */
+  alarm_t* read_failed_contact_counter_timer;     /* Read Failed Contact Counter timer */
+  tBTM_CMPL_CB* p_failed_contact_counter_cmpl_cb; /* Callback function */
 
-  alarm_t* read_automatic_flush_timeout_timer;     /* Read Automatic Flush Timeout */
-                                                   /* timer */
-  tBTM_CMPL_CB* p_automatic_flush_timeout_cmpl_cb; /* Callback function to be */
-  /* called when read Automatic Flush Timeout function completes */
+  alarm_t* read_automatic_flush_timeout_timer;     /* Read Automatic Flush Timeout timer */
+  tBTM_CMPL_CB* p_automatic_flush_timeout_cmpl_cb; /* Callback function */
 
   alarm_t* read_tx_power_timer;     /* Read tx power timer */
-  tBTM_CMPL_CB* p_tx_power_cmpl_cb; /* Callback function to be called       */
+  tBTM_CMPL_CB* p_tx_power_cmpl_cb; /* Callback function */
 
-  DEV_CLASS dev_class; /* Local device class                   */
+  DEV_CLASS dev_class; /* Local device class */
 
-  tBTM_CMPL_CB* p_le_test_cmd_cmpl_cb; /* Callback function to be called when
-                                       LE test mode command has been sent successfully */
+  tBTM_CMPL_CB* p_le_test_cmd_cmpl_cb; /* Callback for LE Test Mode */
 
   RawAddress read_tx_pwr_addr; /* read TX power target address     */
 
@@ -136,8 +129,7 @@ public:
   uint16_t disc_handle{0}; /* for legacy devices */
   uint8_t disc_reason{0};  /* for legacy devices */
 
-  fixed_queue_t* sec_pending_q{nullptr}; /* pending sequrity requests in
-                                            tBTM_SEC_QUEUE_ENTRY format */
+  fixed_queue_t* sec_pending_q{nullptr}; /* pending sequrity requests: tBTM_SEC_QUEUE_ENTRY */
 
 #define BTM_CODEC_TYPE_MAX_RECORDS 32
   tBTM_BT_DYNAMIC_AUDIO_BUFFER_CB dynamic_audio_buffer_cb[BTM_CODEC_TYPE_MAX_RECORDS];
@@ -148,8 +140,8 @@ public:
 
   struct {
     struct {
-      long long start_time_ms;
-      unsigned long results;
+      int64_t start_time_ms;
+      uint64_t results;
     } classic_inquiry, le_scan, le_inquiry, le_observe, le_legacy_scan;
     std::unique_ptr<bluetooth::common::TimestampedCircularBuffer<tBTM_INQUIRY_CMPL>>
             inquiry_history_ = std::make_unique<

@@ -464,12 +464,11 @@ struct bta_dm_search_cancel_notify {
 extern struct bta_dm_search_cancel_notify bta_dm_search_cancel_notify;
 
 // Name: bta_dm_set_dev_name
-// Params: const std::vector<uint8_t>& name
+// Params: const std::string name
 // Return: void
 struct bta_dm_set_dev_name {
-  std::function<void(const std::vector<uint8_t>& name)> body{
-          [](const std::vector<uint8_t>& /* name */) {}};
-  void operator()(const std::vector<uint8_t>& name) { body(name); }
+  std::function<void(const std::string name)> body{[](const std::string /* name */) {}};
+  void operator()(const std::string name) { body(name); }
 };
 extern struct bta_dm_set_dev_name bta_dm_set_dev_name;
 

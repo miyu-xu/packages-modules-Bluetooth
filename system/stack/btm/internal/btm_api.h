@@ -21,8 +21,7 @@
  *  definitions.
  *
  ******************************************************************************/
-#ifndef BTM_API_H
-#define BTM_API_H
+#pragma once
 
 #include <cstdint>
 
@@ -64,17 +63,6 @@ void BTM_reset_complete();
 
 /*******************************************************************************
  *
- * Function         BTM_SetLocalDeviceName
- *
- * Description      This function is called to set the local device name.
- *
- * Returns          tBTM_STATUS::BTM_CMD_STARTED if successful, otherwise an error
- *
- ******************************************************************************/
-[[nodiscard]] tBTM_STATUS BTM_SetLocalDeviceName(const char* p_name);
-
-/*******************************************************************************
- *
  * Function         BTM_SetDeviceClass
  *
  * Description      This function is called to set the local device class
@@ -83,21 +71,6 @@ void BTM_reset_complete();
  *
  ******************************************************************************/
 [[nodiscard]] tBTM_STATUS BTM_SetDeviceClass(DEV_CLASS dev_class);
-
-/*******************************************************************************
- *
- * Function         BTM_ReadLocalDeviceName
- *
- * Description      This function is called to read the local device name.
- *
- * Returns          status of the operation
- *                  If success, tBTM_STATUS::BTM_SUCCESS is returned and p_name points stored
- *                              local device name
- *                  If BTM doesn't store local device name, tBTM_STATUS::BTM_NO_RESOURCES is
- *                              is returned and p_name is set to NULL
- *
- ******************************************************************************/
-[[nodiscard]] tBTM_STATUS BTM_ReadLocalDeviceName(const char** p_name);
 
 /*******************************************************************************
  *
@@ -557,5 +530,3 @@ void BTM_RemoveEirService(uint32_t* p_eir_uuid, uint16_t uuid16);
 
 typedef void(BTM_CONSOLIDATION_CB)(const RawAddress& identity_addr, const RawAddress& rpa);
 void BTM_SetConsolidationCallback(BTM_CONSOLIDATION_CB* cb);
-
-#endif /* BTM_API_H */

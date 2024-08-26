@@ -28,7 +28,7 @@
 
 #define LOG_TAG "bt_btif_dm"
 
-#include "btif_dm.h"
+#include "btif/include/btif_dm.h"
 
 #include <base/functional/bind.h>
 #include <base/strings/stringprintf.h>
@@ -46,23 +46,19 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <mutex>
+#include <mutex>  // NOLINT
 #include <optional>
 
-#include "advertise_data_parser.h"
-#include "bt_dev_class.h"
-#include "bt_name.h"
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_hh_api.h"
+#include "btif/include/btif_api.h"
+#include "btif/include/btif_bqr.h"
+#include "btif/include/btif_config.h"
+#include "btif/include/btif_metrics_logging.h"
+#include "btif/include/btif_storage.h"
+#include "btif/include/btif_util.h"
 #include "btif/include/stack_manager_t.h"
-#include "btif_api.h"
-#include "btif_bqr.h"
-#include "btif_config.h"
-#include "btif_dm.h"
-#include "btif_metrics_logging.h"
-#include "btif_storage.h"
-#include "btif_util.h"
 #include "common/lru_cache.h"
 #include "common/metrics.h"
 #include "device/include/interop.h"
@@ -73,7 +69,6 @@
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/le_advertising_manager.h"
-#include "main_thread.h"
 #include "metrics/bluetooth_event.h"
 #include "os/logging/log_adapter.h"
 #include "osi/include/properties.h"
@@ -82,7 +77,9 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_api_types.h"
+#include "stack/include/advertise_data_parser.h"
 #include "stack/include/bt_dev_class.h"
+#include "stack/include/bt_name.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
@@ -94,6 +91,7 @@
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_sec_api.h"
 #include "stack/include/btm_sec_api_types.h"
+#include "stack/include/main_thread.h"
 #include "stack/include/rnr_interface.h"
 #include "stack/include/smp_api.h"
 #include "stack/include/srvc_api.h"  // tDIS_VALUE
@@ -198,7 +196,6 @@ typedef struct {
   Octet16 er;
   bool is_id_keys_rcvd;
   btif_dm_local_key_id_t id_keys; /* ID kyes */
-
 } btif_dm_local_key_cb_t;
 
 /* this structure holds optional OOB data for remote device */
@@ -268,7 +265,7 @@ static size_t btif_events_end_index = 0;
  *****************************************************************************/
 static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req, bool is_consent);
 static void btif_dm_remove_ble_bonding_keys(void);
-static void btif_dm_save_ble_bonding_keys(RawAddress& bd_addr);
+static void btif_dm_save_ble_bonding_keys(RawAddress bd_addr);
 static btif_dm_pairing_cb_t pairing_cb;
 static btif_dm_oob_cb_t oob_cb;
 static btif_dm_metadata_cb_t metadata_cb{.le_audio_cache{40}};
@@ -446,7 +443,7 @@ static bool check_eir_appearance(tBTA_DM_SEARCH* p_search_data, uint16_t* p_appe
 
     if (p_eir_appearance && appearance_len >= 2) {
       if (p_appearance) {
-        *p_appearance = *((uint16_t*)p_eir_appearance);
+        *p_appearance = *(reinterpret_cast<const uint16_t*>(p_eir_appearance));
       }
 
       return true;
@@ -1959,7 +1956,7 @@ void BTIF_dm_enable() {
   status = btif_storage_get_adapter_property(&prop);
   if (status == BT_STATUS_SUCCESS) {
     /* A name exists in the storage. Make this the device name */
-    BTA_DmSetDeviceName((const char*)prop.val);
+    BTA_DmSetDeviceName(reinterpret_cast<const char*>(prop.val));
   } else {
     /* Storage does not have a name yet.
      * Use the default name and write it to the chip
@@ -3449,7 +3446,7 @@ void btif_dm_get_ble_local_keys(tBTA_DM_BLE_LOCAL_KEY_MASK* p_key_mask, Octet16*
   log::verbose("*p_key_mask=0x{:02x}", *p_key_mask);
 }
 
-static void btif_dm_save_ble_bonding_keys(RawAddress& bd_addr) {
+static void btif_dm_save_ble_bonding_keys(RawAddress bd_addr) {
   log::verbose("{}", bd_addr);
 
   if (bd_addr.IsEmpty()) {
