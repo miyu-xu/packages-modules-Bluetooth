@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c1a8e2_4605b561",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-08-26T02:39:10Z",
+      "side": 1,
+      "message": "Ref from [headset](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;l\u003d355)",
+      "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa926bd_596e63c8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-08-26T02:39:10Z",
+      "side": 1,
+      "message": "sendBroadcastAsUserMultiplePermissions directly won\u0027t compile for some reason(`symbol not found`).",
+      "range": {
+        "startLine": 1715,
+        "startChar": 17,
+        "endLine": 1715,
+        "endChar": 49
+      },
+      "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

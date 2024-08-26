@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d82dd907_1dbd6a3c",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-08-26T02:39:10Z",
+      "side": 1,
+      "message": "Ref from [headset](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;l\u003d355)",
+      "revId": "69efb391d27a215e00637758495148c3ebbebfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07702f68_b4f57235",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1701,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-08-26T02:39:10Z",
+      "side": 1,
+      "message": "Same, ref from [headset](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;l\u003d355)",
+      "revId": "69efb391d27a215e00637758495148c3ebbebfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
