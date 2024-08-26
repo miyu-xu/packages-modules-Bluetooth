@@ -60,6 +60,30 @@
       ],
       "revId": "fc9bab79181911f4e062b15b777986e7ebb69e36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "320b830e_dce0bbd1",
+        "filename": "android/pandora/test/pairing/br_edr/legacy/tests.py",
+        "patchSetId": 72
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-26T22:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "098a429e_1ffbbca9",
+      "range": {
+        "startLine": 65,
+        "startChar": 50,
+        "endLine": 65,
+        "endChar": 51
+      },
+      "revId": "fc9bab79181911f4e062b15b777986e7ebb69e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
