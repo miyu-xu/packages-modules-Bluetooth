@@ -123,8 +123,6 @@ struct btm_client_interface_t {
   } sco;
 
   struct {
-    [[nodiscard]] tBTM_STATUS (*BTM_ReadLocalDeviceName)(const char** p_name);
-    [[nodiscard]] tBTM_STATUS (*BTM_SetLocalDeviceName)(const char* p_name);
     [[nodiscard]] tBTM_STATUS (*BTM_SetDeviceClass)(DEV_CLASS dev_class);
     [[nodiscard]] bool (*BTM_IsDeviceUp)();
     [[nodiscard]] DEV_CLASS (*BTM_ReadDeviceClass)();

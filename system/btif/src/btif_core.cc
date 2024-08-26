@@ -569,9 +569,10 @@ void btif_set_adapter_property(bt_property_t* property) {
       memcpy(bd_name, property->val, name_len);
       bd_name[name_len] = '\0';
 
-      log::verbose("set property name : {}", (char*)bd_name);
+      log::verbose("set property name : {}", bd_name);
 
-      BTA_DmSetDeviceName((const char*)bd_name);
+      std::string name = std::string(bd_name, name_len);
+      BTA_DmSetDeviceName(name);
 
       btif_core_storage_adapter_write(property);
     } break;

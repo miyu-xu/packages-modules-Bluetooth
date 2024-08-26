@@ -233,7 +233,7 @@ void bta_dm_rm_cback(tBTA_SYS_CONN_STATUS status, uint8_t id, uint8_t app_id,
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::bta_dm_rm_cback(status, id, app_id, peer_addr);
 }
-void bta_dm_set_dev_name(const std::vector<uint8_t>& name) {
+void bta_dm_set_dev_name(const std::string name) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::bta_dm_set_dev_name(name);
 }

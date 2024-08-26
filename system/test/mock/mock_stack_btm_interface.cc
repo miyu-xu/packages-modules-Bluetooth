@@ -18,6 +18,8 @@
  * Generated mock file from original source file
  */
 
+#include "test/mock/mock_stack_btm_interface.h"
+
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/btm_ble_sec_api_types.h"
 #include "stack/include/btm_client_interface.h"
@@ -215,12 +217,6 @@ struct btm_client_interface_t default_btm_client_interface = {
                 },
         },
         .local = {
-                .BTM_ReadLocalDeviceName = [](const char** /* p_name */) -> tBTM_STATUS {
-                  return tBTM_STATUS::BTM_SUCCESS;
-                },
-                .BTM_SetLocalDeviceName = [](const char* /* p_name */) -> tBTM_STATUS {
-                  return tBTM_STATUS::BTM_SUCCESS;
-                },
                 .BTM_SetDeviceClass = [](DEV_CLASS /* dev_class */) -> tBTM_STATUS {
                   return tBTM_STATUS::BTM_SUCCESS;
                 },

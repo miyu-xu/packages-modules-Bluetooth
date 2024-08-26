@@ -46,7 +46,6 @@
 
 #define TEST_BT com::android::bluetooth::flags
 
-using namespace std::chrono_literals;
 using namespace bluetooth;
 
 namespace {

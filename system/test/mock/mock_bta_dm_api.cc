@@ -250,9 +250,9 @@ void BTA_DmSetDefaultEventMaskExcept(uint64_t mask, uint64_t le_mask) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmSetDefaultEventMaskExcept(mask, le_mask);
 }
-void BTA_DmSetDeviceName(const char* p_name) {
+void BTA_DmSetDeviceName(const std::string name) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmSetDeviceName(p_name);
+  test::mock::bta_dm_api::BTA_DmSetDeviceName(name);
 }
 void BTA_DmSetEncryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
                          tBTA_DM_ENCRYPT_CBACK* p_callback, tBTM_BLE_SEC_ACT sec_act) {
