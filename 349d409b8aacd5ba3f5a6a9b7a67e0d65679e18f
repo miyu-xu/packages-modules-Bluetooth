@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f02eb0a0_cb13b683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-26T09:01:09Z",
+      "side": 1,
+      "message": "Ignore ps#4 please - I did a wrong cp/rebase.",
+      "revId": "349d409b8aacd5ba3f5a6a9b7a67e0d65679e18f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
