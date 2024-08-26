@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5674398_1c549a29",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 3183,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-08-26T04:55:40Z",
+      "side": 1,
+      "message": "I agree with William, I replaced flag with `enable_hap_by_default`, and `always_use_preset_cache` is very awkward to use here, as this needs to be disabled to make sense. I agree that couple of tests that require it can be left as-is, and follow-up CL will solve this when we have working solution",
+      "parentUuid": "4c5bcb2a_0a360c60",
+      "range": {
+        "startLine": 3183,
+        "startChar": 15,
+        "endLine": 3183,
+        "endChar": 32
+      },
+      "revId": "9f869e362ab215f2e0c4f8ad60156e4db18b3675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7159255_58fb4e18",
         "filename": "android/pandora/server/src/Hap.kt",
         "patchSetId": 13
