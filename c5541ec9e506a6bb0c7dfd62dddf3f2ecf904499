@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddf50b7a_4b42b78e",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T19:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdee119e_4ee71c50",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 22
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da55ce7e_c0a39ff9",
@@ -84,6 +108,30 @@
       "writtenOn": "2024-08-26T16:47:16Z",
       "side": 1,
       "message": "```suggestion\n      STREAM_TO_UINT16(result_u16, p);\n```",
+      "range": {
+        "startLine": 663,
+        "startChar": 23,
+        "endLine": 663,
+        "endChar": 29
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "812e5190_99521d47",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T19:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da55ce7e_c0a39ff9",
       "range": {
         "startLine": 663,
         "startChar": 23,
@@ -253,6 +301,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93ce5516_ba59ee04",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T19:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b90d6260_a049d647",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 709,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c4393f4_389e4039",
@@ -276,6 +348,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "392f2510_96bbf556",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T19:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c4393f4_389e4039",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 813,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa668f08_63e0b9b2",
@@ -289,6 +385,30 @@
       "writtenOn": "2024-08-26T16:47:16Z",
       "side": 1,
       "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(reason));\n```",
+      "range": {
+        "startLine": 2979,
+        "startChar": 0,
+        "endLine": 2980,
+        "endChar": 34
+      },
+      "revId": "c5541ec9e506a6bb0c7dfd62dddf3f2ecf904499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf18df25_9f57c437",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-26T19:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa668f08_63e0b9b2",
       "range": {
         "startLine": 2979,
         "startChar": 0,
