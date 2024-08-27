@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c82fe4a_a3d6ec1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-08-27T07:13:06Z",
+      "side": 1,
+      "message": "Acknowledged, thanks for the note! I made the exempt explanation more clear.",
+      "parentUuid": "214fe147_29dc9469",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e33f9ccd_dd8ba358",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-08-26T23:27:00Z",
       "side": 1,
       "message": "Why do we need to use this specific function ? It seems weird to use an `AsUser` method in a system stack.\n\nTwo things here:\n\n* First, is the Broadcast receiver correctly configured to receive an intent sent with `sendBroadcast` ? \n* The Telecom team is currently under a pretty big refactor, did you test with their flag to on and check if the issue still exist ?",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 663,
+        "endChar": 46
+      },
+      "revId": "ea4ff49dab946b054180632c924f33b93637b10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10140dc9_1d7ccbc3",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-08-27T07:13:06Z",
+      "side": 1,
+      "message": "Thanks for the review! Addressing the 3 points\n\n1. Why use this specific function? \n   - While I cannot find a good documentation on this, but from [Android doc](https://developer.android.com/reference/android/content/Context#sendBroadcastAsUser(android.content.Intent,%20android.os.UserHandle)), **\"This is not available to applications that are not pre-installed on the system image\"** to me sounds correct to be in a system stack\n   - As mentioned, `sendBroadcastAsUser` is repeatly used in [HeadsetService](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetService.java;l\u003d2408?q\u003dsendbroadcastasuser%20headset) and [HeadsetStatemachine](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;l\u003d355). Tracing the code, it has been [added to address specifically a multi-user issue](http://ag/586032). This sounds like the right solution for the specific scenario I am facing. As HFP is the only path that is working with Telecom right now.\n   \n2. Is Broadcast receiver correctly configured to receive the intents?\n  - I think so, Telecom state receiver specifically [filtered](https://cs.android.com/android/platform/superproject/main/+/main:packages/services/Telecomm/src/com/android/server/telecom/bluetooth/BluetoothStateReceiver.java;l\u003d83?q\u003dbluetoothstate%20receiver\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain) these intents. It works for Headset but not LE Audio and hearing aid.\n  - I guess we can also fix this by using `registerReceiverForAllUsers` in Telecom. But again, I see that headset already uses `sendBroadcastAsUser` so it makes more sense to me here.\n  \n3. Telecom refactor\n  - I did try enabling their flag (`use_refactored_audio_route_switching`). Still does not work. And I see that they did not touch the intent receiver yet.",
+      "parentUuid": "7f6ef289_18128721",
       "range": {
         "startLine": 663,
         "startChar": 0,
