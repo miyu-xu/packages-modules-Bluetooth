@@ -11,8 +11,6 @@ mod ffi {
         fn set_all_for_testing();
 
         fn dump() -> Vec<InitFlagWithValue>;
-
-        fn use_unified_connection_manager_is_enabled() -> bool;
     }
 }
 
