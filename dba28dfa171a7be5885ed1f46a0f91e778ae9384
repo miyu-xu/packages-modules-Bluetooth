@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ccb3392_6125d5a4",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-27T14:59:00Z",
+      "side": 1,
+      "message": "ok so we only set the postable to nullptr *after* the lifecycle has ended.\n\nAt first glance it looks like this should be in the preceeding CL, but makes sense that it cannot without the `nullptr` conditional, else the failure occurs with the previous fix.",
+      "fixSuggestions": [
+        {
+          "fixId": "9f5638d8_bf612f01",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 378,
+                "startChar": 0,
+                "endLine": 382,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 383,
+                "startChar": 0,
+                "endLine": 384,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "dba28dfa171a7be5885ed1f46a0f91e778ae9384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
