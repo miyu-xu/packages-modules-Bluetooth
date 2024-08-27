@@ -17,6 +17,7 @@
 
 #include "module_dumper.h"
 
+#include <queue>
 #include <sstream>
 
 #include "dumpsys_data_generated.h"
