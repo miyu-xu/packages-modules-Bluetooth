@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2370cb5_3598ef60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-27T14:55:52Z",
+      "side": 1,
+      "message": "this looks a lateral change which has the same issue but cleaner abstractions",
+      "revId": "eb0ea9fa7e80acec05d4454af63fe73e160f7850",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
