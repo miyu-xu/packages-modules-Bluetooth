@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadb1acb_45350a0b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-08-27T23:47:23Z",
+      "side": 1,
+      "message": "based on offline discussion, will add another comment in AudioOn state",
+      "parentUuid": "55df0c82_0670e44e",
+      "range": {
+        "startLine": 1129,
+        "startChar": 23,
+        "endLine": 1129,
+        "endChar": 97
+      },
+      "revId": "8c93df6d571a11c257e9fdadb20295b0eb1468c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
