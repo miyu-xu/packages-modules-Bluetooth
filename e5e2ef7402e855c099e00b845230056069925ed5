@@ -20,6 +20,103 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3a807ab_376119aa",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "It would be cleaner to have another file that contains this class, with the associated test file to do a 1-1 matching.\n\nHaving it as internal subclass is pushing you to write all the test in a unique test and the overall readability is impacted",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 45
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da367528_e73d1aae",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "Move the value assignation to be in the declaration of the variable",
+      "range": {
+        "startLine": 97,
+        "startChar": 10,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b66ffde6_67ca6dbb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "            boolean mIsActive \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1edcd2a9_b2cc4f43",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "mIsMute ? I don\u0027t understand why we have `Gain` in the name",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 29
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab953827_3f0e18f0",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
@@ -31,6 +128,52 @@
       "writtenOn": "2024-08-23T09:23:12Z",
       "side": 1,
       "message": "remove it",
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd84cc06_996a5ad6",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "move to variable declaration and set variable as final",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 25
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9097038e_66287a86",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "```\nif (!mVolumeInputs.containsKey(id)) {\n    mVolumeInputs.put(id, new Descriptor());\n}\n```\n\nFor other place, the errorprone warning will disapear if we used another name for the temporary variable",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 160,
+        "endChar": 13
+      },
       "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -166,6 +309,121 @@
           ]
         }
       ],
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99fd45c2_97d0487e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "We are checking the status here, but we are not doing this for other data. For example, InputType should be one of :\n* 0x00 Unspecified Unspecified Input\n* 0x01 Bluetooth Bluetooth Audio Stream\n* 0x02 Microphone Microphone\n* 0x03 Analog Analog Interface\n* 0x04 Digital Digital Interface\n* 0x05 Radio AM/FM/XM/etc.\n* 0x06 Streaming Streaming Audio Source\n* 0x07 Ambient .\n\n\nBut also... it looks too late to check for the data, shouldn\u0027t the data be validated when parsing the packet and don\u0027t trigger the whole callback chain up to java to be discarded then ?",
+      "range": {
+        "startLine": 1430,
+        "startChar": 2,
+        "endLine": 1442,
+        "endChar": 0
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de400f69_25ab1bcc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1491,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "This is a big mix of everything and I can\u0027t tell what you are testing in it.\nCan you split it in small test. Ideally in another file after moving the VolumeControlInputDescriptor too",
+      "range": {
+        "startLine": 1491,
+        "startChar": 16,
+        "endLine": 1491,
+        "endChar": 48
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8255c868_052852a2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1492,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "This is deprecated, please used @EnableFlag annotation instead",
+      "range": {
+        "startLine": 1492,
+        "startChar": 0,
+        "endLine": 1492,
+        "endChar": 71
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c914d3_2ee9d16c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "For example: This should be a separate test on its own (actually there are 3 tests here):\nDoes the initial descriptor size is empty\nDoes calling add is indeed adding descriptor\nDoes adding twice the same id result in no change in the size",
+      "range": {
+        "startLine": 1509,
+        "startChar": 2,
+        "endLine": 1514,
+        "endChar": 50
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "312ef98b_b1bd768b",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:20:04Z",
+      "side": 1,
+      "message": "Do you already want to expose them as API ?",
+      "range": {
+        "startLine": 1130,
+        "startChar": 0,
+        "endLine": 1137,
+        "endChar": 142
+      },
       "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
