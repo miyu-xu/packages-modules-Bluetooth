@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc3b04d8_74cbc6ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-27T14:43:26Z",
+      "side": 1,
+      "message": "Somehow I think it could be part of bt_le_audio.h - but we can start from that and it can be changed if needed.",
+      "revId": "888ddc601c6250450e7e3b1fb78fa733cc56efe7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
