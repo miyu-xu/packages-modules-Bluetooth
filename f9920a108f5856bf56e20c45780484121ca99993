@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa0e39a1_d8a286cc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-27T03:09:58Z",
+      "side": 1,
+      "message": "Log.e",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cb77d52a_c09dfb68",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"StartDistanceMeasurement: the target device is not bonded.\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f9920a108f5856bf56e20c45780484121ca99993",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

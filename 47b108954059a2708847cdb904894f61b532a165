@@ -99,6 +99,30 @@
       },
       "revId": "47b108954059a2708847cdb904894f61b532a165",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9fb9db4_db0ce5f9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-27T03:09:58Z",
+      "side": 1,
+      "message": "The AI gives a good suggestion, BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED seems more match.",
+      "parentUuid": "fc5c8504_9da5fa35",
+      "range": {
+        "startLine": 103,
+        "startChar": 41,
+        "endLine": 103,
+        "endChar": 77
+      },
+      "revId": "47b108954059a2708847cdb904894f61b532a165",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
