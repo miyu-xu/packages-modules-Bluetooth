@@ -16,6 +16,24 @@
       "message": "This one won\u0027t build, because there are so many unused things once there are no flags.",
       "revId": "135357774ade343e8692296082c526002b993d94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb7100d9_b0833221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T23:40:29Z",
+      "side": 1,
+      "message": "Right, let\u0027s remote the vote just to not trigger a useless presubmit.\n\nWe can look into removing the whole modules once the preliminary CL is merged :)",
+      "parentUuid": "9e23f947_3dddd356",
+      "revId": "135357774ade343e8692296082c526002b993d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
