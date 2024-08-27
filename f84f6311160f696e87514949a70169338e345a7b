@@ -105,6 +105,24 @@
       "parentUuid": "54c4bf52_2ef4a100",
       "revId": "f84f6311160f696e87514949a70169338e345a7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ef875c_8ceccbdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-08-27T05:02:16Z",
+      "side": 1,
+      "message": "Hi Thomas,\nI\u0027ve added a new unit test to cover this regression. PTAL, thanks!",
+      "parentUuid": "57631560_3c47b399",
+      "revId": "f84f6311160f696e87514949a70169338e345a7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
