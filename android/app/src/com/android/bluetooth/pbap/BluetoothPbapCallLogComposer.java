@@ -26,7 +26,6 @@ import android.provider.CallLog.Calls;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -116,14 +115,8 @@ public class BluetoothPbapCallLogComposer {
         }
 
         mCursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                mContext.getContentResolver(),
-                                contentUri,
-                                projection,
-                                selection,
-                                selectionArgs,
-                                sortOrder);
+                mContext.getContentResolver()
+                        .query(contentUri, projection, selection, selectionArgs, sortOrder);
 
         if (mCursor == null) {
             mErrorReason = FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO;

@@ -47,7 +47,6 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
@@ -70,7 +69,6 @@ public class BluetoothOppLauncherActivityTest {
     Context mTargetContext;
     Intent mIntent;
 
-    BluetoothMethodProxy mMethodProxy;
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock BluetoothOppManager mBluetoothOppManager;
@@ -85,8 +83,6 @@ public class BluetoothOppLauncherActivityTest {
         Assume.assumeTrue(BluetoothProperties.isProfileOppEnabled().orElse(false));
 
         mTargetContext = spy(new ContextWrapper(ApplicationProvider.getApplicationContext()));
-        mMethodProxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
 
         mIntent = new Intent();
         mIntent.setClass(mTargetContext, BluetoothOppLauncherActivity.class);
@@ -103,7 +99,6 @@ public class BluetoothOppLauncherActivityTest {
             return;
         }
         TestUtils.tearDownUiTest();
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppManager.setInstance(null);
         Intents.release();
     }
@@ -139,8 +134,6 @@ public class BluetoothOppLauncherActivityTest {
         ActivityScenario.launch(mIntent);
         ArgumentCaptor<Intent> argument = ArgumentCaptor.forClass(Intent.class);
 
-        verify(mMethodProxy).contextSendBroadcast(any(), argument.capture());
-
         assertThat(argument.getValue().getAction()).isEqualTo(Constants.ACTION_OPEN);
         assertThat(argument.getValue().getComponent().getClassName())
                 .isEqualTo(BluetoothOppReceiver.class.getName());
@@ -150,7 +143,6 @@ public class BluetoothOppLauncherActivityTest {
     @Ignore("b/263724420")
     @Test
     public void launchDevicePicker_bluetoothNotEnabled_launchEnableActivity() throws Exception {
-        doReturn(false).when(mMethodProxy).bluetoothAdapterIsEnabled(any());
         // Unsupported action, the activity will stay without being finished right the way
         mIntent.setAction("unsupported-action");
         ActivityScenario<BluetoothOppLauncherActivity> scenario = ActivityScenario.launch(mIntent);
@@ -163,7 +155,6 @@ public class BluetoothOppLauncherActivityTest {
     @Ignore("b/263724420")
     @Test
     public void launchDevicePicker_bluetoothEnabled_launchActivity() throws Exception {
-        doReturn(true).when(mMethodProxy).bluetoothAdapterIsEnabled(any());
         // Unsupported action, the activity will stay without being finished right the way
         mIntent.setAction("unsupported-action");
         ActivityScenario<BluetoothOppLauncherActivity> scenario = ActivityScenario.launch(mIntent);
@@ -175,7 +166,6 @@ public class BluetoothOppLauncherActivityTest {
 
     @Test
     public void createFileForSharedContent_returnFile() throws Exception {
-        doReturn(true).when(mMethodProxy).bluetoothAdapterIsEnabled(any());
         // Unsupported action, the activity will stay without being finished right the way
         mIntent.setAction("unsupported-action");
         ActivityScenario<BluetoothOppLauncherActivity> scenario = ActivityScenario.launch(mIntent);
@@ -198,7 +188,6 @@ public class BluetoothOppLauncherActivityTest {
     @Ignore("b/263754734")
     @Test
     public void sendFileInfo_finishImmediately() throws Exception {
-        doReturn(true).when(mMethodProxy).bluetoothAdapterIsEnabled(any());
         // Unsupported action, the activity will stay without being finished right the way
         mIntent.setAction("unsupported-action");
         ActivityScenario<BluetoothOppLauncherActivity> scenario = ActivityScenario.launch(mIntent);

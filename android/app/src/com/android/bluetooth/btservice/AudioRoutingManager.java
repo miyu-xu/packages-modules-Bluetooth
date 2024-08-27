@@ -37,7 +37,6 @@ import android.util.ArrayMap;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -152,9 +151,8 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         Log.d(TAG, "start()");
 
         mHandlerThread = new HandlerThread("BluetoothActiveDeviceManager");
-        BluetoothMethodProxy mp = BluetoothMethodProxy.getInstance();
-        mp.threadStart(mHandlerThread);
-        mHandler = new AudioRoutingHandler(mp.handlerThreadGetLooper(mHandlerThread));
+        mHandlerThread.start();
+        mHandler = new AudioRoutingHandler(mHandlerThread.getLooper());
 
         mAudioManager.addOnModeChangedListener(cmd -> mHandler.post(cmd), mHandler);
         mAudioManager.registerAudioDeviceCallback(
@@ -683,8 +681,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
             // automatically activated when connected.
             for (int p : connectedDevice.supportedProfiles) {
                 if (!getActiveDevices(p).isEmpty()) {
-                    BluetoothMethodProxy mp = BluetoothMethodProxy.getInstance();
-                    if (!mp.mediaSessionManagerGetActiveSessions(mSessionManager).isEmpty()
+                    if (!mSessionManager.getActiveSessions(null).isEmpty()
                             || mAudioMode == AudioManager.MODE_IN_CALL) {
                         Log.i(
                                 TAG,

@@ -43,7 +43,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 
@@ -97,18 +96,16 @@ public class BluetoothOppReceiveFileInfo {
         String hint = null, mimeType = null;
         long length = 0;
         Cursor metadataCursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                contentResolver,
-                                contentUri,
-                                new String[] {
-                                    BluetoothShare.FILENAME_HINT,
-                                    BluetoothShare.TOTAL_BYTES,
-                                    BluetoothShare.MIMETYPE
-                                },
-                                null,
-                                null,
-                                null);
+                contentResolver.query(
+                        contentUri,
+                        new String[] {
+                            BluetoothShare.FILENAME_HINT,
+                            BluetoothShare.TOTAL_BYTES,
+                            BluetoothShare.MIMETYPE
+                        },
+                        null,
+                        null,
+                        null);
         if (metadataCursor != null) {
             try {
                 if (metadataCursor.moveToFirst()) {
@@ -176,11 +173,8 @@ public class BluetoothOppReceiveFileInfo {
         mediaContentValues.put(
                 MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
         Uri insertUri =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverInsert(
-                                contentResolver,
-                                MediaStore.Downloads.EXTERNAL_CONTENT_URI,
-                                mediaContentValues);
+                contentResolver.insert(
+                        MediaStore.Downloads.EXTERNAL_CONTENT_URI, mediaContentValues);
 
         if (insertUri == null) {
             Log.e(Constants.TAG, "Error when creating file " + fullfilename);

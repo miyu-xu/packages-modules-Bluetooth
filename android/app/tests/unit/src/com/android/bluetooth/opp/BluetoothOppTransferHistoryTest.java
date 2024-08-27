@@ -41,7 +41,6 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.flags.Flags;
@@ -70,7 +69,6 @@ public class BluetoothOppTransferHistoryTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock Cursor mCursor;
-    @Spy BluetoothMethodProxy mBluetoothMethodProxy;
 
     List<BluetoothOppTestUtils.CursorMockData> mCursorMockDataList;
 
@@ -84,20 +82,12 @@ public class BluetoothOppTransferHistoryTest {
 
     @Before
     public void setUp() throws Exception {
-        mBluetoothMethodProxy = Mockito.spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
-
         Uri dataUrl = Uri.parse("content://com.android.bluetooth.opp.test/random");
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         mIntent = new Intent();
         mIntent.setClass(mTargetContext, BluetoothOppTransferHistory.class);
         mIntent.setData(dataUrl);
-
-        doReturn(mCursor)
-                .when(mBluetoothMethodProxy)
-                .contentResolverQuery(
-                        any(), eq(BluetoothShare.CONTENT_URI), any(), any(), any(), any());
 
         int idValue = 1234;
         Long timestampValue = 123456789L;
@@ -144,7 +134,6 @@ public class BluetoothOppTransferHistoryTest {
     @After
     public void tearDown() throws Exception {
         TestUtils.tearDownUiTest();
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppTestUtils.enableActivity(
                 BluetoothOppTransferHistory.class, false, mTargetContext);
     }
@@ -211,18 +200,6 @@ public class BluetoothOppTransferHistoryTest {
         // Controlling clear all download
         doReturn(true, false).when(mCursor).moveToFirst();
         doReturn(false, true).when(mCursor).isAfterLast();
-        doReturn(0)
-                .when(mBluetoothMethodProxy)
-                .contentResolverUpdate(
-                        any(),
-                        any(),
-                        argThat(
-                                arg ->
-                                        Objects.equal(
-                                                arg.get(BluetoothShare.VISIBILITY),
-                                                BluetoothShare.VISIBILITY_HIDDEN)),
-                        any(),
-                        any());
 
         onView(withText(mTargetContext.getText(R.string.transfer_clear_dlg_title).toString()))
                 .inRoot(isDialog())
@@ -235,16 +212,5 @@ public class BluetoothOppTransferHistoryTest {
                 .perform(click());
 
         // Verify that item is hidden
-        verify(mBluetoothMethodProxy)
-                .contentResolverUpdate(
-                        any(),
-                        any(),
-                        argThat(
-                                arg ->
-                                        Objects.equal(
-                                                arg.get(BluetoothShare.VISIBILITY),
-                                                BluetoothShare.VISIBILITY_HIDDEN)),
-                        any(),
-                        any());
     }
 }

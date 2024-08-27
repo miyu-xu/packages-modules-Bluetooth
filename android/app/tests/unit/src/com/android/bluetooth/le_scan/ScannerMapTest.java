@@ -31,7 +31,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
@@ -63,11 +62,8 @@ public class ScannerMapTest {
     @Mock private TransitionalScanHelper mMockTransitionalScanHelper;
     @Mock private IScannerCallback mMockScannerCallback;
 
-    @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
-
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mMapMethodProxy);
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mMockPackageManager).when(mAdapterService).getPackageManager();
         doReturn(APP_NAME).when(mMockPackageManager).getNameForUid(anyInt());
@@ -75,7 +71,6 @@ public class ScannerMapTest {
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         TestUtils.clearAdapterService(mAdapterService);
     }
 

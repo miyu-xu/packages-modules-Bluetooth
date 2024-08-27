@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.flags.Flags;
 
@@ -98,9 +97,7 @@ public class BluetoothOppHandoverReceiver extends BroadcastReceiver {
                 Uri contentUri = Uri.parse(BluetoothShare.CONTENT_URI + "/" + id);
 
                 Log.d(TAG, "Stopping handover transfer with Uri " + contentUri);
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverDelete(
-                                context.getContentResolver(), contentUri, null, null);
+                context.getContentResolver().delete(contentUri, null, null);
             }
         } else {
             Log.d(TAG, "Unknown action: " + action);

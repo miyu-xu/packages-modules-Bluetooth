@@ -33,8 +33,6 @@ import android.content.ContextWrapper;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,8 +42,6 @@ import org.junit.runner.RunWith;
 public class BluetoothOppPreferenceTest {
     Context mContext;
 
-    BluetoothMethodProxy mCallProxy;
-
     @Before
     public void setUp() {
         mContext =
@@ -53,17 +49,11 @@ public class BluetoothOppPreferenceTest {
                         new ContextWrapper(
                                 InstrumentationRegistry.getInstrumentation().getTargetContext()));
 
-        mCallProxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
 
-        doReturn(null)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(BluetoothShare.CONTENT_URI), any());
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppUtility.sSendFileMap.clear();
         mContext.getSharedPreferences(OPP_PREFERENCE_FILE, 0).edit().clear().apply();
         BluetoothOppManager.sInstance = null;

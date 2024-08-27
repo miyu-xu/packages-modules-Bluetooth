@@ -44,7 +44,6 @@ import android.os.ParcelFileDescriptor;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.opp.BluetoothOppTestUtils.CursorMockData;
@@ -73,12 +72,9 @@ public class BluetoothOppUtilityTest {
 
     @Mock Cursor mCursor;
 
-    @Spy BluetoothMethodProxy mCallProxy = BluetoothMethodProxy.getInstance();
-
     @Before
     public void setUp() throws Exception {
         mContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
         TestUtils.setUpUiTest();
     }
 
@@ -86,7 +82,6 @@ public class BluetoothOppUtilityTest {
     public void tearDown() throws Exception {
         TestUtils.tearDownUiTest();
 
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -98,15 +93,6 @@ public class BluetoothOppUtilityTest {
 
     @Test
     public void queryRecord_withInvalidFileUrl_returnsNull() {
-        doReturn(null)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(CORRECT_FORMAT_BUT_INVALID_FILE_URI),
-                        eq(null),
-                        eq(null),
-                        eq(null),
-                        eq(null));
         assertThat(BluetoothOppUtility.queryRecord(mContext, CORRECT_FORMAT_BUT_INVALID_FILE_URI))
                 .isNull();
     }
@@ -115,15 +101,6 @@ public class BluetoothOppUtilityTest {
     public void queryRecord_mockCursor_returnsInstance() {
         String destinationValue = "AA:BB:CC:00:11:22";
 
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(CORRECT_FORMAT_BUT_INVALID_FILE_URI),
-                        eq(null),
-                        eq(null),
-                        eq(null),
-                        eq(null));
         doReturn(true).when(mCursor).moveToFirst();
         doReturn(destinationValue).when(mCursor).getString(anyInt());
         assertThat(BluetoothOppUtility.queryRecord(mContext, CORRECT_FORMAT_BUT_INVALID_FILE_URI))
@@ -135,16 +112,6 @@ public class BluetoothOppUtilityTest {
         long timestampValue = 123456;
         String where = BluetoothShare.TIMESTAMP + " == " + timestampValue;
         AtomicInteger cnt = new AtomicInteger(1);
-
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(BluetoothShare.CONTENT_URI),
-                        eq(new String[] {BluetoothShare._DATA}),
-                        eq(where),
-                        eq(null),
-                        eq(BluetoothShare._ID));
 
         doAnswer(invocation -> cnt.incrementAndGet() > 5).when(mCursor).isAfterLast();
         doReturn(CORRECT_FORMAT_BUT_INVALID_FILE_URI.toString()).when(mCursor).getString(0);
@@ -163,19 +130,9 @@ public class BluetoothOppUtilityTest {
 
         Context spiedContext = spy(new ContextWrapper(mContext));
 
-        doReturn(0).when(mCallProxy).contentResolverDelete(any(), any(), any(), any());
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(), eq(contentResolverUri), any(), eq(null), eq(null), eq(null));
-
         doReturn(true).when(mCursor).moveToFirst();
         doReturn(fileUri.toString()).when(mCursor).getString(anyInt());
 
-        doReturn(0)
-                .when(mCallProxy)
-                .contentResolverDelete(
-                        any(), any(), nullable(String.class), nullable(String[].class));
 
         // Do nothing since we don't need the actual activity to be launched.
         doNothing().when(spiedContext).startActivity(any());
@@ -201,16 +158,10 @@ public class BluetoothOppUtilityTest {
 
         Context spiedContext = spy(new ContextWrapper(mContext));
         // Control BluetoothOppUtility#fileExists flow
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(), eq(contentResolverUri), any(), eq(null), eq(null), eq(null));
 
         doReturn(true).when(mCursor).moveToFirst();
         doReturn(fileUri.toString()).when(mCursor).getString(anyInt());
 
-        doReturn(0).when(mCallProxy).contentResolverDelete(any(), any(), any(), any());
-        doReturn(pfd).when(mCallProxy).contentResolverOpenFileDescriptor(any(), eq(fileUri), any());
 
         // Control BluetoothOppUtility#isRecognizedFileType flow
         PackageManager mockManager = mock(PackageManager.class);
@@ -244,16 +195,10 @@ public class BluetoothOppUtilityTest {
 
         Context spiedContext = spy(new ContextWrapper(mContext));
         // Control BluetoothOppUtility#fileExists flow
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(), eq(contentResolverUri), any(), eq(null), eq(null), eq(null));
 
         doReturn(true).when(mCursor).moveToFirst();
         doReturn(fileUri.toString()).when(mCursor).getString(anyInt());
 
-        doReturn(0).when(mCallProxy).contentResolverDelete(any(), any(), any(), any());
-        doReturn(pfd).when(mCallProxy).contentResolverOpenFileDescriptor(any(), eq(fileUri), any());
 
         // Control BluetoothOppUtility#isRecognizedFileType flow
         PackageManager mockManager = mock(PackageManager.class);

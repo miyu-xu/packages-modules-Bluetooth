@@ -43,7 +43,6 @@ import android.provider.ContactsContract.Data;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.vcard.VCardConfig;
 
 import org.junit.After;
@@ -70,11 +69,8 @@ public class BluetoothPbapUtilsTest {
 
     @Mock Resources mResources;
 
-    @Spy BluetoothMethodProxy mProxy;
-
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mProxy);
 
         when(mContext.getResources()).thenReturn(mResources);
         clearStaticFields();
@@ -82,7 +78,6 @@ public class BluetoothPbapUtilsTest {
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         clearStaticFields();
     }
 
@@ -172,7 +167,6 @@ public class BluetoothPbapUtilsTest {
 
     @Test
     public void fetchAndSetContacts_whenCursorIsNull_returnsMinusOne() {
-        doReturn(null).when(mProxy).contentResolverQuery(any(), any(), any(), any(), any(), any());
         HandlerThread handlerThread = new HandlerThread("BluetoothPbapUtilsTest");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
@@ -196,9 +190,6 @@ public class BluetoothPbapUtilsTest {
         cursor.addRow(new Object[] {"id2", StructuredName.CONTENT_ITEM_TYPE, "And Roid"});
         cursor.addRow(new Object[] {null, null, null});
 
-        doReturn(cursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         HandlerThread handlerThread = new HandlerThread("BluetoothPbapUtilsTest");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
@@ -223,9 +214,6 @@ public class BluetoothPbapUtilsTest {
         cursor.addRow(new Object[] {"id2", StructuredName.CONTENT_ITEM_TYPE, "And Roid"});
         cursor.addRow(new Object[] {null, null, null});
 
-        doReturn(cursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         HandlerThread handlerThread = new HandlerThread("BluetoothPbapUtilsTest");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
@@ -245,7 +233,6 @@ public class BluetoothPbapUtilsTest {
 
     @Test
     public void updateSecondaryVersionCounter_whenCursorIsNull_shouldNotCrash() {
-        doReturn(null).when(mProxy).contentResolverQuery(any(), any(), any(), any(), any(), any());
         HandlerThread handlerThread = new HandlerThread("BluetoothPbapUtilsTest");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
@@ -268,18 +255,12 @@ public class BluetoothPbapUtilsTest {
         contactCursor.addRow(new Object[] {"id2", Calendar.getInstance().getTimeInMillis()});
         contactCursor.addRow(new Object[] {"id3", Calendar.getInstance().getTimeInMillis()});
         contactCursor.addRow(new Object[] {"id4", Calendar.getInstance().getTimeInMillis()});
-        doReturn(contactCursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), eq(Contacts.CONTENT_URI), any(), any(), any(), any());
 
         MatrixCursor dataCursor = new MatrixCursor(new String[] {CONTACT_ID, MIMETYPE, DATA1});
         dataCursor.addRow(new Object[] {"id1", Phone.CONTENT_ITEM_TYPE, "01234567"});
         dataCursor.addRow(new Object[] {"id1", Email.CONTENT_ITEM_TYPE, "android@android.com"});
         dataCursor.addRow(new Object[] {"id1", StructuredPostal.CONTENT_ITEM_TYPE, "01234"});
         dataCursor.addRow(new Object[] {"id2", StructuredName.CONTENT_ITEM_TYPE, "And Roid"});
-        doReturn(dataCursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), eq(Data.CONTENT_URI), any(), any(), any(), any());
 
         HandlerThread handlerThread = new HandlerThread("BluetoothPbapUtilsTest");
         handlerThread.start();
@@ -299,14 +280,8 @@ public class BluetoothPbapUtilsTest {
         MatrixCursor contactCursor =
                 new MatrixCursor(
                         new String[] {Contacts._ID, Contacts.CONTACT_LAST_UPDATED_TIMESTAMP});
-        doReturn(contactCursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), eq(Contacts.CONTENT_URI), any(), any(), any(), any());
 
         MatrixCursor dataCursor = new MatrixCursor(new String[] {CONTACT_ID, MIMETYPE, DATA1});
-        doReturn(dataCursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), eq(Data.CONTENT_URI), any(), any(), any(), any());
 
         HandlerThread handlerThread = new HandlerThread("BluetoothPbapUtilsTest");
         handlerThread.start();
@@ -331,18 +306,12 @@ public class BluetoothPbapUtilsTest {
                 new MatrixCursor(
                         new String[] {Contacts._ID, Contacts.CONTACT_LAST_UPDATED_TIMESTAMP});
         contactCursor.addRow(new Object[] {"id1", Calendar.getInstance().getTimeInMillis()});
-        doReturn(contactCursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), eq(Contacts.CONTENT_URI), any(), any(), any(), any());
 
         MatrixCursor dataCursor = new MatrixCursor(new String[] {CONTACT_ID, MIMETYPE, DATA1});
         dataCursor.addRow(new Object[] {"id1", Phone.CONTENT_ITEM_TYPE, "01234567"});
         dataCursor.addRow(new Object[] {"id1", Email.CONTENT_ITEM_TYPE, "android@android.com"});
         dataCursor.addRow(new Object[] {"id1", StructuredPostal.CONTENT_ITEM_TYPE, "01234"});
         dataCursor.addRow(new Object[] {"id1", StructuredName.CONTENT_ITEM_TYPE, "And Roid"});
-        doReturn(dataCursor)
-                .when(mProxy)
-                .contentResolverQuery(any(), eq(Data.CONTENT_URI), any(), any(), any(), any());
         assertThat(BluetoothPbapUtils.sSecondaryVersionCounter).isEqualTo(0);
 
         BluetoothPbapUtils.sTotalContacts = 1;

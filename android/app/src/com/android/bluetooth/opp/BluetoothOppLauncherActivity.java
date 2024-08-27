@@ -49,7 +49,6 @@ import android.util.Log;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
@@ -248,7 +247,7 @@ public class BluetoothOppLauncherActivity extends Activity {
             Intent intent1 = new Intent(Constants.ACTION_OPEN);
             intent1.setClassName(this, BluetoothOppReceiver.class.getName());
             intent1.setDataAndNormalize(uri);
-            BluetoothMethodProxy.getInstance().contextSendBroadcast(this, intent1);
+            sendBroadcast(intent1);
             finish();
         } else {
             Log.w(TAG, "Unsupported action: " + action);

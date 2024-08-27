@@ -50,7 +50,6 @@ import android.util.SparseIntArray;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
@@ -111,14 +110,10 @@ public class ActiveDeviceManagerTest {
     @Mock private HearingAidService mHearingAidService;
     @Mock private LeAudioService mLeAudioService;
     @Mock private AudioManager mAudioManager;
-    @Spy private BluetoothMethodProxy mMethodProxy = BluetoothMethodProxy.getInstance();
 
     @Before
     public void setUp() throws Exception {
         mTestLooper = new TestLooper();
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
-        doReturn(mTestLooper.getLooper()).when(mMethodProxy).handlerThreadGetLooper(any());
-        doNothing().when(mMethodProxy).threadStart(any());
         TestUtils.setAdapterService(mAdapterService);
 
         mDatabaseManager = new TestDatabaseManager(mAdapterService);
@@ -198,7 +193,6 @@ public class ActiveDeviceManagerTest {
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         if (mActiveDeviceManager != null) {
             mActiveDeviceManager.cleanup();
         }

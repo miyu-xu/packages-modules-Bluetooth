@@ -40,7 +40,6 @@ import android.provider.CallLog;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -273,12 +272,7 @@ public class PbapClientService extends ProfileService {
                         + "=?";
         String[] selectionArgs = new String[] {accountName, componentName.flattenToString()};
         try {
-            BluetoothMethodProxy.getInstance()
-                    .contentResolverDelete(
-                            getContentResolver(),
-                            CallLog.Calls.CONTENT_URI,
-                            selectionFilter,
-                            selectionArgs);
+            getContentResolver().delete(CallLog.Calls.CONTENT_URI, selectionFilter, selectionArgs);
         } catch (IllegalArgumentException e) {
             Log.w(TAG, "Call Logs could not be deleted, they may not exist yet.");
         }

@@ -49,7 +49,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
@@ -307,7 +306,7 @@ public class BluetoothOppManager {
      */
     public boolean isEnabled() {
         if (mAdapter != null) {
-            return BluetoothMethodProxy.getInstance().bluetoothAdapterIsEnabled(mAdapter);
+            return mAdapter.isEnabled();
         } else {
             Log.v(TAG, "BLUETOOTH_SERVICE is not available! ");
             return false;
@@ -492,11 +491,7 @@ public class BluetoothOppManager {
                             BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED);
                 }
                 final Uri contentUri =
-                        BluetoothMethodProxy.getInstance()
-                                .contentResolverInsert(
-                                        mContext.getContentResolver(),
-                                        BluetoothShare.CONTENT_URI,
-                                        values);
+                        mContext.getContentResolver().insert(BluetoothShare.CONTENT_URI, values);
                 Log.v(
                         TAG,
                         "Insert contentUri: "
@@ -523,11 +518,7 @@ public class BluetoothOppManager {
                         BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED);
             }
             final Uri contentUri =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverInsert(
-                                    mContext.getContentResolver(),
-                                    BluetoothShare.CONTENT_URI,
-                                    values);
+                    mContext.getContentResolver().insert(BluetoothShare.CONTENT_URI, values);
             Log.v(
                     TAG,
                     "Insert contentUri: "

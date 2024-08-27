@@ -34,7 +34,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 
 import org.junit.After;
@@ -59,21 +58,17 @@ public class BluetoothPbapVcardManagerTest {
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Spy BluetoothMethodProxy mPbapMethodProxy = BluetoothMethodProxy.getInstance();
-
     Context mContext;
     BluetoothPbapVcardManager mManager;
 
     @Before
     public void setUp() {
-        BluetoothMethodProxy.setInstanceForTesting(mPbapMethodProxy);
         mContext = InstrumentationRegistry.getTargetContext();
         mManager = new BluetoothPbapVcardManager(mContext);
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -95,9 +90,6 @@ public class BluetoothPbapVcardManagerTest {
     @Test
     public void testGetPhonebookSize_whenTypeIsPhonebook() {
         Cursor cursor = mock(Cursor.class);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         // 5 distinct contact IDs.
         final List<Integer> contactIdsWithDuplicates = Arrays.asList(0, 1, 1, 2, 2, 3, 3, 4, 4);
@@ -138,9 +130,6 @@ public class BluetoothPbapVcardManagerTest {
     @Test
     public void testGetPhonebookSize_whenTypeIsFavorites() {
         Cursor cursor = mock(Cursor.class);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         // 5 distinct contact IDs.
         final List<Integer> contactIdsWithDuplicates =
@@ -192,9 +181,6 @@ public class BluetoothPbapVcardManagerTest {
     @Test
     public void testGetPhonebookSize_whenTypeIsSimPhonebook() {
         Cursor cursor = mock(Cursor.class);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         final int expectedSize = 10;
         when(cursor.getCount()).thenReturn(expectedSize);
         BluetoothPbapSimVcardManager simVcardManager = mock(BluetoothPbapSimVcardManager.class);
@@ -211,9 +197,6 @@ public class BluetoothPbapVcardManagerTest {
         final int historySize = 10;
         Cursor cursor = mock(Cursor.class);
         when(cursor.getCount()).thenReturn(historySize);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(
                         mManager.getPhonebookSize(
@@ -224,9 +207,6 @@ public class BluetoothPbapVcardManagerTest {
     @Test
     public void testLoadCallHistoryList() {
         Cursor cursor = mock(Cursor.class);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         List<String> nameList = Arrays.asList("A", "B", "", "");
         List<String> numberList = Arrays.asList("0000", "1111", "2222", "3333");
@@ -295,9 +275,6 @@ public class BluetoothPbapVcardManagerTest {
         BluetoothPbapService.setLocalPhoneName(localPhoneName);
 
         Cursor cursor = mock(Cursor.class);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         List<String> nameList = Arrays.asList("A", "B", "C", "");
         List<Integer> contactIdList = Arrays.asList(0, 1, 2, 3);
@@ -354,9 +331,6 @@ public class BluetoothPbapVcardManagerTest {
     @Test
     public void testGetContactNamesByNumber_whenNumberIsNull() {
         Cursor cursor = mock(Cursor.class);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         List<String> nameList = Arrays.asList("A", "B", "C", "");
         List<Integer> contactIdList = Arrays.asList(0, 1, 2, 3);

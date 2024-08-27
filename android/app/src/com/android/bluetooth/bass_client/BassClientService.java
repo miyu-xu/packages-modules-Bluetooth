@@ -70,7 +70,6 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.android.bluetooth.BluetoothEventLogger;
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
@@ -1668,7 +1667,7 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        if (!BluetoothMethodProxy.getInstance()
+        if (!BassClientPeriodicAdvertisingManager
                 .initializePeriodicAdvertisingManagerOnDefaultAdapter()) {
             Log.e(TAG, "Failed to initialize Periodic Advertising Manager on Default Adapter");
             mCallbacks.notifySearchStartFailed(BluetoothStatusCodes.ERROR_UNKNOWN);
@@ -2244,11 +2243,8 @@ public class BassClientService extends ProfileService {
         log("unsyncSource: syncHandle: " + syncHandle);
         if (mPeriodicAdvCallbacksMap.containsKey(syncHandle)) {
             try {
-                BluetoothMethodProxy.getInstance()
-                        .periodicAdvertisingManagerUnregisterSync(
-                                BassClientPeriodicAdvertisingManager
-                                        .getPeriodicAdvertisingManager(),
-                                mPeriodicAdvCallbacksMap.get(syncHandle));
+                BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager()
+                        .unregisterSync(mPeriodicAdvCallbacksMap.get(syncHandle));
             } catch (IllegalArgumentException ex) {
                 Log.w(TAG, "unregisterSync:IllegalArgumentException");
                 return false;
@@ -2416,14 +2412,8 @@ public class BassClientService extends ProfileService {
         }
 
         try {
-            BluetoothMethodProxy.getInstance()
-                    .periodicAdvertisingManagerRegisterSync(
-                            BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager(),
-                            scanRes,
-                            0,
-                            BassConstants.PSYNC_TIMEOUT,
-                            paCb,
-                            null);
+            BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager()
+                    .registerSync(scanRes, 0, BassConstants.PSYNC_TIMEOUT, paCb, null);
         } catch (IllegalArgumentException ex) {
             Log.w(TAG, "registerSync:IllegalArgumentException");
             mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);

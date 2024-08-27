@@ -31,7 +31,6 @@ import android.telephony.TelephonyManager;
 import android.text.format.DateUtils;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.SignedLongLong;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -169,8 +168,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
     /** */
     private ContentProviderClient acquireUnstableContentProviderOrThrow() throws RemoteException {
         ContentProviderClient providerClient =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverAcquireUnstableContentProviderClient(mResolver, mAuthority);
+                mResolver.acquireUnstableContentProviderClient(mAuthority);
         if (providerClient == null) {
             throw new RemoteException("Failed to acquire provider for " + mAuthority);
         }

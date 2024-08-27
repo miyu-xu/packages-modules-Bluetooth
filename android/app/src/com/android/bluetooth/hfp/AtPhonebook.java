@@ -33,7 +33,6 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -438,13 +437,7 @@ public class AtPhonebook {
             queryArgs.putString(ContentResolver.QUERY_ARG_SQL_SORT_ORDER, Calls.DEFAULT_SORT_ORDER);
             queryArgs.putInt(ContentResolver.QUERY_ARG_LIMIT, MAX_PHONEBOOK_SIZE);
             pbr.cursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mContentResolver,
-                                    Calls.CONTENT_URI,
-                                    CALLS_PROJECTION,
-                                    queryArgs,
-                                    null);
+                    mContentResolver.query(Calls.CONTENT_URI, CALLS_PROJECTION, queryArgs, null);
 
             if (pbr.cursor == null) {
                 return false;
@@ -460,13 +453,7 @@ public class AtPhonebook {
             queryArgs.putInt(ContentResolver.QUERY_ARG_LIMIT, MAX_PHONEBOOK_SIZE);
             final Uri phoneContentUri = DevicePolicyUtils.getEnterprisePhoneUri(mContext);
             pbr.cursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mContentResolver,
-                                    phoneContentUri,
-                                    PHONES_PROJECTION,
-                                    queryArgs,
-                                    null);
+                    mContentResolver.query(phoneContentUri, PHONES_PROJECTION, queryArgs, null);
 
             if (pbr.cursor == null) {
                 return false;
@@ -563,16 +550,14 @@ public class AtPhonebook {
                 // TODO: This code is horribly inefficient. I saw it
                 // take 7 seconds to process 100 missed calls.
                 Cursor c =
-                        BluetoothMethodProxy.getInstance()
-                                .contentResolverQuery(
-                                        mContentResolver,
-                                        Uri.withAppendedPath(
-                                                PhoneLookup.ENTERPRISE_CONTENT_FILTER_URI,
-                                                Uri.encode(number)),
-                                        new String[] {PhoneLookup.DISPLAY_NAME, PhoneLookup.TYPE},
-                                        null,
-                                        null,
-                                        null);
+                        mContentResolver.query(
+                                Uri.withAppendedPath(
+                                        PhoneLookup.ENTERPRISE_CONTENT_FILTER_URI,
+                                        Uri.encode(number)),
+                                new String[] {PhoneLookup.DISPLAY_NAME, PhoneLookup.TYPE},
+                                null,
+                                null,
+                                null);
                 if (c != null) {
                     if (c.moveToFirst()) {
                         name = c.getString(0);

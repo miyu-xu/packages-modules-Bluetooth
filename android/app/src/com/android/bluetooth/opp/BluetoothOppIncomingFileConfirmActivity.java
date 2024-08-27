@@ -54,7 +54,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -156,9 +155,7 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
             mUpdateValues = new ContentValues();
             mUpdateValues.put(
                     BluetoothShare.USER_CONFIRMATION, BluetoothShare.USER_CONFIRMATION_CONFIRMED);
-            BluetoothMethodProxy.getInstance()
-                    .contentResolverUpdate(
-                            this.getContentResolver(), mUri, mUpdateValues, null, null);
+            getContentResolver().update(mUri, mUpdateValues, null, null);
 
             Toast.makeText(this, getString(R.string.bt_toast_1), Toast.LENGTH_SHORT).show();
         }
@@ -169,8 +166,7 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
         mUpdateValues = new ContentValues();
         mUpdateValues.put(
                 BluetoothShare.USER_CONFIRMATION, BluetoothShare.USER_CONFIRMATION_DENIED);
-        BluetoothMethodProxy.getInstance()
-                .contentResolverUpdate(this.getContentResolver(), mUri, mUpdateValues, null, null);
+        getContentResolver().update(mUri, mUpdateValues, null, null);
     }
 
     @Override
@@ -217,10 +213,8 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
         changeButtonText(
                 DialogInterface.BUTTON_POSITIVE,
                 getString(R.string.incoming_file_confirm_timeout_ok));
-
-        BluetoothMethodProxy.getInstance()
-                .handlerSendMessageDelayed(
-                        mTimeoutHandler, DISMISS_TIMEOUT_DIALOG, DISMISS_TIMEOUT_DIALOG_VALUE);
+        mTimeoutHandler.sendEmptyMessageDelayed(
+                DISMISS_TIMEOUT_DIALOG, DISMISS_TIMEOUT_DIALOG_VALUE);
     }
 
     private final Handler mTimeoutHandler =

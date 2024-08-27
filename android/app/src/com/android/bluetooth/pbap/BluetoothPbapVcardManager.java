@@ -36,7 +36,6 @@ import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -162,14 +161,12 @@ public class BluetoothPbapVcardManager {
         }
         try {
             contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    new String[] {Phone.CONTACT_ID},
-                                    selectionClause,
-                                    null,
-                                    Phone.CONTACT_ID);
+                    mResolver.query(
+                            myUri,
+                            new String[] {Phone.CONTACT_ID},
+                            selectionClause,
+                            null,
+                            Phone.CONTACT_ID);
             if (contactCursor == null) {
                 return 0;
             }
@@ -200,14 +197,7 @@ public class BluetoothPbapVcardManager {
         Cursor callCursor = null;
         try {
             callCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    null,
-                                    selection,
-                                    null,
-                                    CallLog.Calls.DEFAULT_SORT_ORDER);
+                    mResolver.query(myUri, null, selection, null, CallLog.Calls.DEFAULT_SORT_ORDER);
             if (callCursor != null) {
                 size = callCursor.getCount();
             }
@@ -240,15 +230,7 @@ public class BluetoothPbapVcardManager {
         Cursor callCursor = null;
         ArrayList<String> list = new ArrayList<String>();
         try {
-            callCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    projection,
-                                    selection,
-                                    null,
-                                    CALLLOG_SORT_ORDER);
+            callCursor = mResolver.query(myUri, projection, selection, null, CALLLOG_SORT_ORDER);
             if (callCursor != null) {
                 for (callCursor.moveToFirst(); !callCursor.isAfterLast(); callCursor.moveToNext()) {
                     String name = callCursor.getString(CALLS_NAME_COLUMN_INDEX);
@@ -304,15 +286,7 @@ public class BluetoothPbapVcardManager {
             if (orderByWhat == BluetoothPbapObexServer.ORDER_BY_ALPHABETICAL) {
                 orderBy = Phone.DISPLAY_NAME;
             }
-            contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    PHONES_CONTACTS_PROJECTION,
-                                    null,
-                                    null,
-                                    orderBy);
+            contactCursor = mResolver.query(myUri, PHONES_CONTACTS_PROJECTION, null, null, orderBy);
             if (contactCursor != null) {
                 appendDistinctNameIdList(
                         nameList, mContext.getString(android.R.string.unknownName), contactCursor);
@@ -387,14 +361,8 @@ public class BluetoothPbapVcardManager {
         Cursor contactCursor = null;
         try {
             contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    PHONES_CONTACTS_PROJECTION,
-                                    null,
-                                    null,
-                                    Phone.CONTACT_ID);
+                    mResolver.query(
+                            myUri, PHONES_CONTACTS_PROJECTION, null, null, Phone.CONTACT_ID);
 
             ArrayList<String> contactNameIdList = new ArrayList<String>();
             appendDistinctNameIdList(
@@ -496,10 +464,7 @@ public class BluetoothPbapVcardManager {
         }
 
         try {
-            contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver, uri, projection, null, null, Phone.CONTACT_ID);
+            contactCursor = mResolver.query(uri, projection, null, null, Phone.CONTACT_ID);
 
             if (contactCursor != null) {
                 appendDistinctNameIdList(
@@ -535,9 +500,7 @@ public class BluetoothPbapVcardManager {
         long count = 0;
         long primaryVcMsb = 0;
         try {
-            callCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(mResolver, myUri, null, selection, null, null);
+            callCursor = mResolver.query(myUri, null, selection, null, null);
             while (callCursor != null && callCursor.moveToNext()) {
                 count = count + 1;
             }
@@ -601,14 +564,8 @@ public class BluetoothPbapVcardManager {
         try {
             // Need test to see if order by _ID is ok here, or by date?
             callsCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    CALLLOG_PROJECTION,
-                                    typeSelection,
-                                    null,
-                                    CALLLOG_SORT_ORDER);
+                    mResolver.query(
+                            myUri, CALLLOG_PROJECTION, typeSelection, null, CALLLOG_SORT_ORDER);
             if (callsCursor != null) {
                 callsCursor.moveToPosition(startPoint - 1);
                 startPointId = callsCursor.getLong(ID_COLUMN_INDEX);
@@ -703,14 +660,12 @@ public class BluetoothPbapVcardManager {
 
         try {
             contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    PHONES_CONTACTS_PROJECTION,
-                                    selectionClause,
-                                    null,
-                                    Phone.CONTACT_ID);
+                    mResolver.query(
+                            myUri,
+                            PHONES_CONTACTS_PROJECTION,
+                            selectionClause,
+                            null,
+                            Phone.CONTACT_ID);
             if (contactCursor != null) {
                 contactIdCursor =
                         ContactCursorFilter.filterByRange(contactCursor, startPoint, endPoint);
@@ -773,15 +728,7 @@ public class BluetoothPbapVcardManager {
             if (orderByWhat == BluetoothPbapObexServer.ORDER_BY_ALPHABETICAL) {
                 orderBy = Phone.DISPLAY_NAME;
             }
-            contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mResolver,
-                                    myUri,
-                                    PHONES_CONTACTS_PROJECTION,
-                                    null,
-                                    null,
-                                    orderBy);
+            contactCursor = mResolver.query(myUri, PHONES_CONTACTS_PROJECTION, null, null, orderBy);
         } catch (CursorWindowAllocationException e) {
             ContentProfileErrorReportUtils.report(
                     BluetoothProfile.PBAP,

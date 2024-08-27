@@ -53,7 +53,6 @@ import android.os.SystemProperties;
 import android.util.EventLog;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -94,10 +93,7 @@ public class BluetoothOppUtility {
 
     public static BluetoothOppTransferInfo queryRecord(Context context, Uri uri) {
         BluetoothOppTransferInfo info = new BluetoothOppTransferInfo();
-        Cursor cursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                context.getContentResolver(), uri, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 fillRecord(context, cursor, info);
@@ -161,9 +157,8 @@ public class BluetoothOppUtility {
         List<String> uris = new ArrayList<>();
         final String where = BluetoothShare.TIMESTAMP + " == " + timeStamp;
         Cursor metadataCursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                context.getContentResolver(),
+                context.getContentResolver()
+                        .query(
                                 BluetoothShare.CONTENT_URI,
                                 new String[] {BluetoothShare._DATA},
                                 where,
@@ -207,7 +202,7 @@ public class BluetoothOppUtility {
         }
 
         if (!isBluetoothShareUri(uri)) {
-            Log.e(TAG, "Trying to open a file that wasn't transfered over Bluetooth");
+            Log.e(TAG, "Trying to open a file that wasn't transferred over Bluetooth");
             ContentProfileErrorReportUtils.report(
                     BluetoothProfile.OPP,
                     BluetoothProtoEnums.BLUETOOTH_OPP_UTILITY,
@@ -218,14 +213,8 @@ public class BluetoothOppUtility {
 
         Uri path = null;
         Cursor metadataCursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                context.getContentResolver(),
-                                uri,
-                                new String[] {BluetoothShare.URI},
-                                null,
-                                null,
-                                null);
+                context.getContentResolver()
+                        .query(uri, new String[] {BluetoothShare.URI}, null, null, null);
         if (metadataCursor != null) {
             try {
                 if (metadataCursor.moveToFirst()) {
@@ -256,8 +245,7 @@ public class BluetoothOppUtility {
             // Due to the file is not existing, delete related info in btopp db
             // to prevent this file from appearing in live folder
             Log.v(TAG, "This uri will be deleted: " + uri);
-            BluetoothMethodProxy.getInstance()
-                    .contentResolverDelete(context.getContentResolver(), uri, null, null);
+            context.getContentResolver().delete(uri, null, null);
             return;
         }
 
@@ -291,9 +279,7 @@ public class BluetoothOppUtility {
         // Open a specific media item using ParcelFileDescriptor.
         ContentResolver resolver = context.getContentResolver();
         String readOnlyMode = "r";
-        try (ParcelFileDescriptor unusedPfd =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverOpenFileDescriptor(resolver, uri, readOnlyMode)) {
+        try (ParcelFileDescriptor unusedPfd = resolver.openFileDescriptor(uri, readOnlyMode)) {
             return true;
         } catch (IOException e) {
             ContentProfileErrorReportUtils.report(
@@ -329,8 +315,7 @@ public class BluetoothOppUtility {
     public static void updateVisibilityToHidden(Context context, Uri uri) {
         ContentValues updateValues = new ContentValues();
         updateValues.put(BluetoothShare.VISIBILITY, BluetoothShare.VISIBILITY_HIDDEN);
-        BluetoothMethodProxy.getInstance()
-                .contentResolverUpdate(context.getContentResolver(), uri, updateValues, null, null);
+        context.getContentResolver().update(uri, updateValues, null, null);
     }
 
     /** Helper function to build the progress text. */

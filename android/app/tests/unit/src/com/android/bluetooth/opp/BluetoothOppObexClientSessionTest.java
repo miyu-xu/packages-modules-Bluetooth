@@ -38,7 +38,6 @@ import android.os.Message;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.obex.ClientSession;
 
@@ -61,8 +60,6 @@ import java.util.concurrent.TimeUnit;
 public class BluetoothOppObexClientSessionTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock BluetoothMethodProxy mMethodProxy;
-
     Context mTargetContext;
     @Mock BluetoothObexTransport mTransport;
 
@@ -79,12 +76,10 @@ public class BluetoothOppObexClientSessionTest {
         doReturn(input).when(mTransport).openInputStream();
         doReturn(output).when(mTransport).openOutputStream();
 
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test

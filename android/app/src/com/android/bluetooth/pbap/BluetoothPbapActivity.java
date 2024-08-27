@@ -39,7 +39,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -212,10 +211,8 @@ public class BluetoothPbapActivity extends AlertActivity
             changeButtonEnabled(DialogInterface.BUTTON_POSITIVE, true);
             changeButtonVisibility(DialogInterface.BUTTON_NEGATIVE, View.GONE);
         }
-
-        BluetoothMethodProxy.getInstance()
-                .handlerSendMessageDelayed(
-                        mTimeoutHandler, DISMISS_TIMEOUT_DIALOG, DISMISS_TIMEOUT_DIALOG_DELAY_MS);
+        mTimeoutHandler.sendEmptyMessageDelayed(
+                DISMISS_TIMEOUT_DIALOG, DISMISS_TIMEOUT_DIALOG_DELAY_MS);
     }
 
     @Override

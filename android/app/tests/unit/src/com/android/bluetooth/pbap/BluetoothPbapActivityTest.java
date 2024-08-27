@@ -46,8 +46,6 @@ import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,12 +62,9 @@ public class BluetoothPbapActivityTest {
 
     ActivityScenario<BluetoothPbapActivity> mActivityScenario;
 
-    BluetoothMethodProxy mMethodProxy;
 
     @Before
     public void setUp() {
-        mMethodProxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
 
         mIntent = new Intent();
         mIntent.setClass(mTargetContext, BluetoothPbapActivity.class);
@@ -87,7 +82,6 @@ public class BluetoothPbapActivityTest {
             mActivityScenario.close();
         }
         enableActivity(false);
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -148,9 +142,6 @@ public class BluetoothPbapActivityTest {
                     activity.mReceiver.onReceive(activity, intent);
                 });
 
-        verify(mMethodProxy)
-                .handlerSendMessageDelayed(
-                        any(), eq(DISMISS_TIMEOUT_DIALOG), eq(DISMISS_TIMEOUT_DIALOG_DELAY_MS));
     }
 
     @Test

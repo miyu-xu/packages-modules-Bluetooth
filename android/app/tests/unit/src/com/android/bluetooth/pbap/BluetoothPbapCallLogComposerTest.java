@@ -38,8 +38,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -64,19 +62,12 @@ public class BluetoothPbapCallLogComposerTest {
 
     private BluetoothPbapCallLogComposer mComposer;
 
-    @Spy BluetoothMethodProxy mPbapCallProxy = BluetoothMethodProxy.getInstance();
-
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock Cursor mMockCursor;
 
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mPbapCallProxy);
-
-        doReturn(mMockCursor)
-                .when(mPbapCallProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         final int validRowCount = 5;
         when(mMockCursor.getCount()).thenReturn(validRowCount);
         when(mMockCursor.moveToFirst()).thenReturn(true);
@@ -86,7 +77,6 @@ public class BluetoothPbapCallLogComposerTest {
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -107,9 +97,6 @@ public class BluetoothPbapCallLogComposerTest {
 
     @Test
     public void testInit_failWhenCursorIsNull() {
-        doReturn(null)
-                .when(mPbapCallProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(mComposer.init(CALL_LOG_URI, SELECTION, SELECTION_ARGS, SORT_ORDER)).isFalse();
         assertThat(mComposer.getErrorReason())

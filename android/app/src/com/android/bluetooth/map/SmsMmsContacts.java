@@ -27,7 +27,6 @@ import android.provider.Telephony.CanonicalAddressesColumns;
 import android.provider.Telephony.MmsSms;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
@@ -76,7 +75,7 @@ public class SmsMmsContacts {
      * Get a contacts phone number based on the canonical addresses id of the contact. (The ID
      * listed in the Threads table.)
      *
-     * @param resolver the ContantResolver to be used.
+     * @param resolver the ContentResolver to be used.
      * @param id the id of the contact, as listed in the Threads table
      * @return the phone number of the contact - or null if id does not exist.
      */
@@ -91,10 +90,7 @@ public class SmsMmsContacts {
 
     public static String getPhoneNumberUncached(ContentResolver resolver, long id) {
         String where = CanonicalAddressesColumns._ID + " = " + id;
-        Cursor c =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                resolver, ADDRESS_URI, ADDRESS_PROJECTION, where, null, null);
+        Cursor c = resolver.query(ADDRESS_URI, ADDRESS_PROJECTION, where, null, null);
         try {
             if (c != null) {
                 if (c.moveToPosition(0)) {
@@ -129,14 +125,12 @@ public class SmsMmsContacts {
      * Refreshes the cache, by clearing all cached values and fill the cache with the result of a
      * new query.
      *
-     * @param resolver the ContantResolver to be used.
+     * @param resolver the ContentResolver to be used.
      */
     @VisibleForTesting
     void fillPhoneCache(ContentResolver resolver) {
-        Cursor c =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                resolver, ADDRESS_URI, ADDRESS_PROJECTION, null, null, null);
+        Cursor c = resolver.query(ADDRESS_URI, ADDRESS_PROJECTION, null, null, null);
+
         if (mPhoneNumbers == null) {
             int size = 0;
             if (c != null) {
@@ -214,10 +208,8 @@ public class SmsMmsContacts {
             selectionArgs = new String[] {"%" + contactNameFilter.replace("*", "%") + "%"};
         }
 
-        Cursor c =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                resolver, uri, CONTACT_PROJECTION, selection, selectionArgs, null);
+        Cursor c = resolver.query(uri, CONTACT_PROJECTION, selection, selectionArgs, null);
+
         try {
             if (c != null && c.getCount() >= 1) {
                 c.moveToFirst();

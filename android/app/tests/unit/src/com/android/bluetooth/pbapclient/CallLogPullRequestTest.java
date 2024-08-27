@@ -32,7 +32,6 @@ import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.vcard.VCardConstants;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardProperty;
@@ -60,17 +59,14 @@ public class CallLogPullRequestTest {
     private Context mTargetContext;
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
 
     @Before
     public void setUp() {
-        BluetoothMethodProxy.setInstanceForTesting(mMapMethodProxy);
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     }
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -186,9 +182,6 @@ public class CallLogPullRequestTest {
         MatrixCursor cursor =
                 new MatrixCursor(new String[] {ContactsContract.PhoneLookup.CONTACT_ID});
         cursor.addRow(new Object[] {"contact_id"});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), eq(null), eq(null), eq(null));
         assertThat(cursor.isClosed()).isFalse();
 
         request.updateTimesContacted();

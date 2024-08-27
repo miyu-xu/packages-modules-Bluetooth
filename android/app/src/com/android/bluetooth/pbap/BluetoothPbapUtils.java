@@ -35,7 +35,6 @@ import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
@@ -175,9 +174,8 @@ class BluetoothPbapUtils {
 
     public static synchronized String getProfileName(Context context) {
         try (Cursor c =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                context.getContentResolver(),
+                context.getContentResolver()
+                        .query(
                                 Profile.CONTENT_URI,
                                 new String[] {Profile.DISPLAY_NAME},
                                 null,
@@ -295,14 +293,8 @@ class BluetoothPbapUtils {
         String[] projection = {Contacts._ID, Contacts.CONTACT_LAST_UPDATED_TIMESTAMP};
         int currentContactCount = 0;
         try (Cursor c =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                context.getContentResolver(),
-                                Contacts.CONTENT_URI,
-                                projection,
-                                null,
-                                null,
-                                null)) {
+                context.getContentResolver()
+                        .query(Contacts.CONTENT_URI, projection, null, null, null)) {
 
             if (c == null) {
                 Log.d(TAG, "Failed to fetch data from contact database");
@@ -355,9 +347,8 @@ class BluetoothPbapUtils {
                 sContactSet.remove(deletedContact);
                 String[] selectionArgs = {deletedContact};
                 try (Cursor dataCursor =
-                        BluetoothMethodProxy.getInstance()
-                                .contentResolverQuery(
-                                        context.getContentResolver(),
+                        context.getContentResolver()
+                                .query(
                                         Data.CONTENT_URI,
                                         dataProjection,
                                         whereClause,
@@ -392,9 +383,8 @@ class BluetoothPbapUtils {
 
                 String[] selectionArgs = {contact};
                 try (Cursor dataCursor =
-                        BluetoothMethodProxy.getInstance()
-                                .contentResolverQuery(
-                                        context.getContentResolver(),
+                        context.getContentResolver()
+                                .query(
                                         Data.CONTENT_URI,
                                         dataProjection,
                                         whereClause,
@@ -518,14 +508,8 @@ class BluetoothPbapUtils {
             boolean isLoad) {
         long currentTotalFields = 0, currentSvcFieldCount = 0;
         try (Cursor c =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                context.getContentResolver(),
-                                Data.CONTENT_URI,
-                                projection,
-                                whereClause,
-                                selectionArgs,
-                                null)) {
+                context.getContentResolver()
+                        .query(Data.CONTENT_URI, projection, whereClause, selectionArgs, null)) {
 
             /* send delayed message to loadContact when ContentResolver is unable
              * to fetch data from contact database using the specified URI at that

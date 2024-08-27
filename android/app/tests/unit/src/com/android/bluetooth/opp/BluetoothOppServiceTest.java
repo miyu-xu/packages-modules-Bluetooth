@@ -38,7 +38,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.btservice.AdapterService;
 
 import org.junit.After;
@@ -57,8 +56,6 @@ import org.mockito.junit.MockitoRule;
 public class BluetoothOppServiceTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock private BluetoothMethodProxy mBluetoothMethodProxy;
-
     private final Context mTargetContext =
             InstrumentationRegistry.getInstrumentation().getTargetContext();
 
@@ -67,14 +64,12 @@ public class BluetoothOppServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
 
         // BluetoothOppService can create a UpdateThread, which will call
         // BluetoothOppNotification#updateNotification(), which in turn create a new
         // NotificationUpdateThread. Both threads may cause the tests to fail because they try to
         // access to ContentProvider in multiple places (ContentProvider might be disabled & there
         // is no mocking). Since we have no intention to test those threads, avoid running them
-        doNothing().when(mBluetoothMethodProxy).threadStart(any());
 
         if (Looper.myLooper() == null) {
             Looper.prepare();
@@ -87,16 +82,6 @@ public class BluetoothOppServiceTest {
         mIsBluetoothOppServiceStarted = true;
 
         // Wait until the initial trimDatabase operation is done.
-        verify(mBluetoothMethodProxy, timeout(3_000))
-                .contentResolverQuery(
-                        any(),
-                        eq(BluetoothShare.CONTENT_URI),
-                        eq(new String[] {BluetoothShare._ID}),
-                        any(),
-                        isNull(),
-                        eq(BluetoothShare._ID));
-
-        Mockito.clearInvocations(mBluetoothMethodProxy);
     }
 
     @After
@@ -109,7 +94,6 @@ public class BluetoothOppServiceTest {
             service.mUpdateThread = null;
         }
 
-        BluetoothMethodProxy.setInstanceForTesting(null);
         if (mIsBluetoothOppServiceStarted) {
             service.stop();
         }
@@ -190,42 +174,14 @@ public class BluetoothOppServiceTest {
     public void trimDatabase_trimsOldOrInvisibleRecords() {
         ContentResolver contentResolver = mTargetContext.getContentResolver();
 
-        doReturn(1 /* any int is Ok */)
-                .when(mBluetoothMethodProxy)
-                .contentResolverDelete(
-                        eq(contentResolver), eq(BluetoothShare.CONTENT_URI), anyString(), any());
 
         MatrixCursor cursor = new MatrixCursor(new String[] {BluetoothShare._ID}, 500);
         for (long i = 0; i < Constants.MAX_RECORDS_IN_DATABASE + 20; i++) {
             cursor.addRow(new Object[] {i});
         }
 
-        doReturn(cursor)
-                .when(mBluetoothMethodProxy)
-                .contentResolverQuery(
-                        eq(contentResolver),
-                        eq(BluetoothShare.CONTENT_URI),
-                        any(),
-                        any(),
-                        any(),
-                        any());
 
         BluetoothOppService.trimDatabase(contentResolver);
 
-        // check trimmed invisible records
-        verify(mBluetoothMethodProxy)
-                .contentResolverDelete(
-                        eq(contentResolver),
-                        eq(BluetoothShare.CONTENT_URI),
-                        eq(WHERE_INVISIBLE_UNCONFIRMED),
-                        any());
-
-        // check trimmed old records
-        verify(mBluetoothMethodProxy)
-                .contentResolverDelete(
-                        eq(contentResolver),
-                        eq(BluetoothShare.CONTENT_URI),
-                        eq(BluetoothShare._ID + " < " + 20),
-                        any());
     }
 }

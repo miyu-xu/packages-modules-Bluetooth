@@ -43,7 +43,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.obex.HeaderSet;
@@ -251,9 +250,7 @@ public class Constants {
         Uri contentUri = Uri.parse(BluetoothShare.CONTENT_URI + "/" + id);
         ContentValues updateValues = new ContentValues();
         updateValues.put(BluetoothShare.STATUS, status);
-        BluetoothMethodProxy.getInstance()
-                .contentResolverUpdate(
-                        context.getContentResolver(), contentUri, updateValues, null, null);
+        context.getContentResolver().update(contentUri, updateValues, null, null);
         Constants.sendIntentIfCompleted(context, contentUri, status);
     }
 

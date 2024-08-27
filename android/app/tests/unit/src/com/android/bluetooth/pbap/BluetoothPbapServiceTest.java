@@ -37,7 +37,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -69,15 +68,11 @@ public class BluetoothPbapServiceTest {
 
     @Mock private AdapterService mAdapterService;
     @Mock private DatabaseManager mDatabaseManager;
-    @Spy private BluetoothMethodProxy mMethodProxy = BluetoothMethodProxy.getInstance();
 
     @Before
     public void setUp() throws Exception {
         Context targetContext = InstrumentationRegistry.getTargetContext();
         mTestLooper = new TestLooper();
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
-        doReturn(mTestLooper.getLooper()).when(mMethodProxy).handlerThreadGetLooper(any());
-        doNothing().when(mMethodProxy).threadStart(any());
         mTestLooper.startAutoDispatch();
         TestUtils.setAdapterService(mAdapterService);
         mIsAdapterServiceSet = true;
@@ -95,7 +90,6 @@ public class BluetoothPbapServiceTest {
     @After
     public void tearDown() throws Exception {
         mTestLooper.stopAutoDispatchAndIgnoreExceptions();
-        BluetoothMethodProxy.setInstanceForTesting(null);
         if (!mIsAdapterServiceSet) {
             return;
         }

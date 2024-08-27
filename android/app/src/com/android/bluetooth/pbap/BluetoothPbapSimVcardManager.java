@@ -31,7 +31,6 @@ import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -109,15 +108,7 @@ public class BluetoothPbapSimVcardManager {
         }
 
         // checkpoint Figure out if we can apply selection, projection and sort order.
-        mCursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                mContentResolver,
-                                contentUri,
-                                SIM_PROJECTION,
-                                null,
-                                null,
-                                sortOrder);
+        mCursor = mContentResolver.query(contentUri, SIM_PROJECTION, null, null, sortOrder);
 
         if (mCursor == null) {
             mErrorReason = FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO;
@@ -281,10 +272,7 @@ public class BluetoothPbapSimVcardManager {
         int size = 0;
         Cursor contactCursor = null;
         try {
-            contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mContentResolver, SIM_URI, SIM_PROJECTION, null, null, null);
+            contactCursor = mContentResolver.query(SIM_URI, SIM_PROJECTION, null, null, null);
             if (contactCursor != null) {
                 size = contactCursor.getCount();
             }
@@ -303,10 +291,7 @@ public class BluetoothPbapSimVcardManager {
         ArrayList<String> allnames = new ArrayList<String>();
         Cursor contactCursor = null;
         try {
-            contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mContentResolver, SIM_URI, SIM_PROJECTION, null, null, null);
+            contactCursor = mContentResolver.query(SIM_URI, SIM_PROJECTION, null, null, null);
             if (contactCursor != null) {
                 for (contactCursor.moveToFirst();
                         !contactCursor.isAfterLast();
@@ -347,10 +332,7 @@ public class BluetoothPbapSimVcardManager {
         Cursor contactCursor = null;
 
         try {
-            contactCursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    mContentResolver, SIM_URI, SIM_PROJECTION, null, null, null);
+            contactCursor = mContentResolver.query(SIM_URI, SIM_PROJECTION, null, null, null);
 
             if (contactCursor != null) {
                 for (contactCursor.moveToFirst();

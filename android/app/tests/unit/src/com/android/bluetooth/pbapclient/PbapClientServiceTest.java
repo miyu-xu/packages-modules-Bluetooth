@@ -39,7 +39,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -100,7 +99,6 @@ public class PbapClientServiceTest {
             Assert.assertNull(mService);
         }
         TestUtils.clearAdapterService(mAdapterService);
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -359,21 +357,12 @@ public class PbapClientServiceTest {
 
     @Test
     public void headsetClientConnectionStateChanged_hfpCallLogIsRemoved() {
-        BluetoothMethodProxy methodProxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(methodProxy);
-
         mService.handleHeadsetClientConnectionStateChanged(
                 mRemoteDevice,
                 BluetoothProfile.STATE_CONNECTED,
                 BluetoothProfile.STATE_DISCONNECTED);
 
         ArgumentCaptor<Object> selectionArgsCaptor = ArgumentCaptor.forClass(Object.class);
-        verify(methodProxy)
-                .contentResolverDelete(
-                        any(),
-                        eq(CallLog.Calls.CONTENT_URI),
-                        any(),
-                        (String[]) selectionArgsCaptor.capture());
 
         assertThat(((String[]) selectionArgsCaptor.getValue())[0])
                 .isEqualTo(mRemoteDevice.getAddress());

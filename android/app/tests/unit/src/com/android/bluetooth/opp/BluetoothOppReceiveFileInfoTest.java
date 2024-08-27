@@ -33,8 +33,6 @@ import android.provider.MediaStore;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
@@ -44,7 +42,6 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppReceiveFileInfoTest {
     Context mContext;
-    BluetoothMethodProxy mCallProxy;
 
     MatrixCursor mCursor;
 
@@ -55,17 +52,10 @@ public class BluetoothOppReceiveFileInfoTest {
                         new ContextWrapper(
                                 InstrumentationRegistry.getInstrumentation().getTargetContext()));
 
-        mCallProxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
-
-        doReturn(null)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(BluetoothShare.CONTENT_URI), any());
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppManager.sInstance = null;
     }
 
@@ -123,15 +113,6 @@ public class BluetoothOppReceiveFileInfoTest {
                         });
         mCursor.addRow(new Object[] {hint, fileLength, mimeType});
 
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(Uri.parse(BluetoothShare.CONTENT_URI + "/" + id)),
-                        any(),
-                        any(),
-                        any(),
-                        any());
 
         BluetoothOppReceiveFileInfo info =
                 BluetoothOppReceiveFileInfo.generateFileInfo(mContext, id);
@@ -171,20 +152,6 @@ public class BluetoothOppReceiveFileInfoTest {
                         });
         mCursor.addRow(new Object[] {hint, fileLength, mimeType});
 
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(Uri.parse(BluetoothShare.CONTENT_URI + "/" + id)),
-                        any(),
-                        any(),
-                        any(),
-                        any());
-
-        doReturn(null)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(MediaStore.Downloads.EXTERNAL_CONTENT_URI), any());
-
         BluetoothOppReceiveFileInfo info =
                 BluetoothOppReceiveFileInfo.generateFileInfo(mContext, id);
 
@@ -210,20 +177,6 @@ public class BluetoothOppReceiveFileInfoTest {
                             BluetoothShare.MIMETYPE
                         });
         mCursor.addRow(new Object[] {hint, fileLength, mimeType});
-
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(Uri.parse(BluetoothShare.CONTENT_URI + "/" + id)),
-                        any(),
-                        any(),
-                        any(),
-                        any());
-
-        doReturn(insertUri)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(MediaStore.Downloads.EXTERNAL_CONTENT_URI), any());
 
         assertThat(mCursor.moveToFirst()).isTrue();
 
@@ -254,20 +207,6 @@ public class BluetoothOppReceiveFileInfoTest {
                             BluetoothShare.MIMETYPE
                         });
         mCursor.addRow(new Object[] {hint, fileLength, mimeType});
-
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(Uri.parse(BluetoothShare.CONTENT_URI + "/" + id)),
-                        any(),
-                        any(),
-                        any(),
-                        any());
-
-        doReturn(insertUri)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(MediaStore.Downloads.EXTERNAL_CONTENT_URI), any());
 
         assertThat(mCursor.moveToFirst()).isTrue();
 

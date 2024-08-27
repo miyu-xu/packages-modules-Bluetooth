@@ -58,7 +58,6 @@ import android.os.Process;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.IObexConnectionHandler;
@@ -691,7 +690,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
             mPendingUpdate = true;
             if (mUpdateThread == null) {
                 mUpdateThread = new UpdateThread();
-                BluetoothMethodProxy.getInstance().threadStart(mUpdateThread);
+                mUpdateThread.start();
                 mUpdateThreadRunning = true;
             }
         }
@@ -1247,24 +1246,18 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         try {
             // remove the invisible/unconfirmed inbound shares
             int delNum =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverDelete(
-                                    contentResolver,
-                                    BluetoothShare.CONTENT_URI,
-                                    WHERE_INVISIBLE_UNCONFIRMED,
-                                    null);
+                    contentResolver.delete(
+                            BluetoothShare.CONTENT_URI, WHERE_INVISIBLE_UNCONFIRMED, null);
             Log.v(TAG, "Deleted shares, number = " + delNum);
 
             // Keep the latest inbound and successful shares.
             Cursor cursor =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverQuery(
-                                    contentResolver,
-                                    BluetoothShare.CONTENT_URI,
-                                    new String[] {BluetoothShare._ID},
-                                    WHERE_INBOUND_SUCCESS,
-                                    null,
-                                    BluetoothShare._ID); // sort by id
+                    contentResolver.query(
+                            BluetoothShare.CONTENT_URI,
+                            new String[] {BluetoothShare._ID},
+                            WHERE_INBOUND_SUCCESS,
+                            null,
+                            BluetoothShare._ID); // sort by id
             if (cursor == null) {
                 return;
             }
@@ -1276,12 +1269,10 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                     int columnId = cursor.getColumnIndexOrThrow(BluetoothShare._ID);
                     long id = cursor.getLong(columnId);
                     delNum =
-                            BluetoothMethodProxy.getInstance()
-                                    .contentResolverDelete(
-                                            contentResolver,
-                                            BluetoothShare.CONTENT_URI,
-                                            BluetoothShare._ID + " < " + id,
-                                            null);
+                            contentResolver.delete(
+                                    BluetoothShare.CONTENT_URI,
+                                    BluetoothShare._ID + " < " + id,
+                                    null);
                     Log.v(TAG, "Deleted old inbound success share: " + delNum);
                 }
             }

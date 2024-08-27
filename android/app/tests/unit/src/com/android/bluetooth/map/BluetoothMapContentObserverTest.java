@@ -44,7 +44,6 @@ import android.test.mock.MockContentResolver;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.map.BluetoothMapUtils.TYPE;
 import com.android.bluetooth.mapapi.BluetoothMapContract;
@@ -132,7 +131,6 @@ public class BluetoothMapContentObserverTest {
     @Mock private ContentProviderClient mProviderClient;
     @Mock private BluetoothMapAccountItem mItem;
     @Mock private Intent mIntent;
-    @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
 
     private ExceptionTestProvider mProvider;
     private MockContentResolver mMockContentResolver;
@@ -170,7 +168,6 @@ public class BluetoothMapContentObserverTest {
 
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mMapMethodProxy);
         if (Looper.myLooper() == null) {
             Looper.prepare();
         }
@@ -198,7 +195,6 @@ public class BluetoothMapContentObserverTest {
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -382,9 +378,6 @@ public class BluetoothMapContentObserverTest {
         BluetoothMapContentObserver.Msg msg = createSimpleMsg();
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListSms(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setMessageStatusRead(
@@ -400,9 +393,6 @@ public class BluetoothMapContentObserverTest {
         BluetoothMapContentObserver.Msg msg = createSimpleMsg();
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMms(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setMessageStatusRead(
@@ -439,12 +429,6 @@ public class BluetoothMapContentObserverTest {
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Mms.THREAD_ID});
         cursor.addRow(new Object[] {TEST_THREAD_ID});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(mObserver.deleteMessageMms(TEST_HANDLE_ONE));
 
@@ -462,12 +446,6 @@ public class BluetoothMapContentObserverTest {
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Mms.THREAD_ID});
         cursor.addRow(new Object[] {BluetoothMapContentObserver.DELETED_THREAD_ID});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverDelete(any(), any(), any(), any());
 
         Assert.assertTrue(mObserver.deleteMessageMms(TEST_HANDLE_ONE));
 
@@ -485,12 +463,6 @@ public class BluetoothMapContentObserverTest {
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Mms.THREAD_ID});
         cursor.addRow(new Object[] {TEST_THREAD_ID});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(mObserver.deleteMessageSms(TEST_HANDLE_ONE));
 
@@ -508,12 +480,6 @@ public class BluetoothMapContentObserverTest {
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Mms.THREAD_ID});
         cursor.addRow(new Object[] {BluetoothMapContentObserver.DELETED_THREAD_ID});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverDelete(any(), any(), any(), any());
 
         Assert.assertTrue(mObserver.deleteMessageSms(TEST_HANDLE_ONE));
 
@@ -540,15 +506,6 @@ public class BluetoothMapContentObserverTest {
                     Mms.MESSAGE_BOX_INBOX,
                     TEST_ADDRESS
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
-        doReturn(TEST_OLD_THREAD_ID)
-                .when(mMapMethodProxy)
-                .telephonyGetOrCreateThreadId(any(), any());
 
         Assert.assertTrue(mObserver.unDeleteMessageMms(TEST_HANDLE_ONE));
 
@@ -576,15 +533,6 @@ public class BluetoothMapContentObserverTest {
                     Mms.MESSAGE_BOX_SENT,
                     TEST_ADDRESS
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
-        doReturn(TEST_OLD_THREAD_ID)
-                .when(mMapMethodProxy)
-                .telephonyGetOrCreateThreadId(any(), any());
 
         Assert.assertTrue(mObserver.unDeleteMessageMms(TEST_HANDLE_ONE));
 
@@ -608,12 +556,6 @@ public class BluetoothMapContentObserverTest {
                             Mms.THREAD_ID, Mms._ID, Mms.MESSAGE_BOX, Mms.Addr.ADDRESS,
                         });
         cursor.addRow(new Object[] {TEST_THREAD_ID, 1L, Mms.MESSAGE_BOX_SENT, TEST_ADDRESS});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_OLD_THREAD_ID)
-                .when(mMapMethodProxy)
-                .telephonyGetOrCreateThreadId(any(), any());
 
         Assert.assertTrue(mObserver.unDeleteMessageMms(TEST_HANDLE_ONE));
 
@@ -634,15 +576,6 @@ public class BluetoothMapContentObserverTest {
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Sms.THREAD_ID, Sms.ADDRESS});
         cursor.addRow(new Object[] {BluetoothMapContentObserver.DELETED_THREAD_ID, TEST_ADDRESS});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
-        doReturn(TEST_OLD_THREAD_ID)
-                .when(mMapMethodProxy)
-                .telephonyGetOrCreateThreadId(any(), any());
 
         Assert.assertTrue(mObserver.unDeleteMessageSms(TEST_HANDLE_ONE));
 
@@ -662,12 +595,6 @@ public class BluetoothMapContentObserverTest {
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Sms.THREAD_ID, Sms.ADDRESS});
         cursor.addRow(new Object[] {TEST_THREAD_ID, TEST_ADDRESS});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_OLD_THREAD_ID)
-                .when(mMapMethodProxy)
-                .telephonyGetOrCreateThreadId(any(), any());
 
         Assert.assertTrue(mObserver.unDeleteMessageSms(TEST_HANDLE_ONE));
 
@@ -704,9 +631,6 @@ public class BluetoothMapContentObserverTest {
         BluetoothMapContentObserver.Msg msg = createSimpleMsg();
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setEmailMessageStatusDelete(
@@ -727,7 +651,6 @@ public class BluetoothMapContentObserverTest {
         BluetoothMapContentObserver.Msg msg = createSimpleMsg();
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
-        doReturn(0).when(mMapMethodProxy).contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertFalse(
                 mObserver.setEmailMessageStatusDelete(
@@ -751,9 +674,6 @@ public class BluetoothMapContentObserverTest {
         msg.folderId = TEST_DELETE_FOLDER_ID;
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setEmailMessageStatusDelete(
@@ -779,9 +699,6 @@ public class BluetoothMapContentObserverTest {
         msg.folderId = TEST_DELETE_FOLDER_ID;
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setEmailMessageStatusDelete(
@@ -809,9 +726,6 @@ public class BluetoothMapContentObserverTest {
         msg.folderId = TEST_DELETE_FOLDER_ID;
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setEmailMessageStatusDelete(
@@ -832,9 +746,6 @@ public class BluetoothMapContentObserverTest {
         BluetoothMapContentObserver.Msg msg = createSimpleMsg();
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         Assert.assertTrue(
                 mObserver.setMessageStatusDeleted(
@@ -858,12 +769,6 @@ public class BluetoothMapContentObserverTest {
 
     @Test
     public void setMessageStatusDeleted_withTypeGsmOrMms_andStatusValueNo() {
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_OLD_THREAD_ID)
-                .when(mMapMethodProxy)
-                .telephonyGetOrCreateThreadId(any(), any());
 
         // setMessageStatusDeleted with type Gsm or Mms calls either deleteMessage() or
         // unDeleteMessage(), which returns false when no cursor is set with BluetoothMethodProxy.
@@ -885,12 +790,6 @@ public class BluetoothMapContentObserverTest {
 
     @Test
     public void setMessageStatusDeleted_withTypeGsmOrMms_andStatusValueYes() {
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         // setMessageStatusDeleted with type Gsm or Mms calls either deleteMessage() or
         // unDeleteMessage(), which returns false when no cursor is set with BluetoothMethodProxy.
@@ -918,15 +817,6 @@ public class BluetoothMapContentObserverTest {
                 new Object[] {
                     (long) TEST_ID, TEST_SMS_TYPE_ALL, TEST_THREAD_ID, TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        any(),
-                        eq(BluetoothMapContentObserver.SMS_PROJECTION_SHORT),
-                        any(),
-                        any(),
-                        any());
         cursor.moveToFirst();
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         mObserver.setMsgListMsg(map, true);
@@ -948,24 +838,6 @@ public class BluetoothMapContentObserverTest {
                 new Object[] {
                     (long) TEST_ID, TEST_MMS_TYPE_ALL, TEST_THREAD_ID, TEST_READ_FLAG_ZERO
                 });
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        any(),
-                        eq(BluetoothMapContentObserver.SMS_PROJECTION_SHORT),
-                        any(),
-                        any(),
-                        any());
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        any(),
-                        eq(BluetoothMapContentObserver.MMS_PROJECTION_SHORT),
-                        any(),
-                        any(),
-                        any());
         cursor.moveToFirst();
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         mObserver.setMsgListMsg(map, true);
@@ -987,24 +859,6 @@ public class BluetoothMapContentObserverTest {
                             MessageColumns._ID, MessageColumns.FOLDER_ID, MessageColumns.FLAG_READ
                         });
         cursor.addRow(new Object[] {(long) TEST_ID, TEST_INBOX_FOLDER_ID, TEST_READ_FLAG_ONE});
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        any(),
-                        eq(BluetoothMapContentObserver.SMS_PROJECTION_SHORT),
-                        any(),
-                        any(),
-                        any());
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        any(),
-                        eq(BluetoothMapContentObserver.MMS_PROJECTION_SHORT),
-                        any(),
-                        any(),
-                        any());
         when(mProviderClient.query(any(), any(), any(), any(), any())).thenReturn(cursor);
         cursor.moveToFirst();
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
@@ -1049,9 +903,6 @@ public class BluetoothMapContentObserverTest {
                     TEST_PRIORITY,
                     TEST_LAST_ONLINE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         mObserver.mContactUri = mock(Uri.class);
         when(mProviderClient.query(any(), any(), any(), any(), any())).thenReturn(cursor);
@@ -1303,9 +1154,6 @@ public class BluetoothMapContentObserverTest {
         map.put(TEST_HANDLE_ONE, msg);
         mObserver.setMsgListMsg(map, true);
         mObserver.mMapEventReportVersion = BluetoothMapUtils.MAP_EVENT_REPORT_V11;
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverDelete(any(), any(), any(), any());
         setFolderStructureWithTelecomAndMsg(
                 mFolders, BluetoothMapContract.FOLDER_NAME_SENT, TEST_SENT_FOLDER_ID);
         mObserver.setFolderStructure(mFolders);
@@ -1383,9 +1231,6 @@ public class BluetoothMapContentObserverTest {
                     PduHeaders.PRIORITY_HIGH,
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1434,9 +1279,6 @@ public class BluetoothMapContentObserverTest {
                     PduHeaders.PRIORITY_HIGH,
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1491,9 +1333,6 @@ public class BluetoothMapContentObserverTest {
                     PduHeaders.PRIORITY_HIGH,
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1543,9 +1382,6 @@ public class BluetoothMapContentObserverTest {
                     PduHeaders.PRIORITY_HIGH,
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1577,9 +1413,6 @@ public class BluetoothMapContentObserverTest {
                     TEST_THREAD_ID,
                     TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1616,9 +1449,6 @@ public class BluetoothMapContentObserverTest {
                     TEST_THREAD_ID,
                     TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1656,9 +1486,6 @@ public class BluetoothMapContentObserverTest {
                     TEST_THREAD_ID,
                     TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1696,9 +1523,6 @@ public class BluetoothMapContentObserverTest {
                     BluetoothMapContentObserver.DELETED_THREAD_ID,
                     TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1738,9 +1562,6 @@ public class BluetoothMapContentObserverTest {
                     undeletedThreadId,
                     TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1788,9 +1609,6 @@ public class BluetoothMapContentObserverTest {
                     TEST_ADDRESS,
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesSms()
@@ -1836,9 +1654,6 @@ public class BluetoothMapContentObserverTest {
                     "",
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesSms()
@@ -1888,9 +1703,6 @@ public class BluetoothMapContentObserverTest {
                     "",
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1935,9 +1747,6 @@ public class BluetoothMapContentObserverTest {
                     "",
                     null
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesMms()
@@ -1962,9 +1771,6 @@ public class BluetoothMapContentObserverTest {
                 new Object[] {
                     TEST_HANDLE_ONE, TEST_SMS_TYPE_ALL, TEST_THREAD_ID, TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving a different handle for msg below and cursor above makes handleMsgListChangesSms()
@@ -1994,9 +1800,6 @@ public class BluetoothMapContentObserverTest {
                 new Object[] {
                     TEST_HANDLE_ONE, TEST_SMS_TYPE_ALL, TEST_THREAD_ID, TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesSms()
@@ -2029,9 +1832,6 @@ public class BluetoothMapContentObserverTest {
                     BluetoothMapContentObserver.DELETED_THREAD_ID,
                     TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesSms()
@@ -2063,9 +1863,6 @@ public class BluetoothMapContentObserverTest {
                 new Object[] {
                     TEST_HANDLE_ONE, TEST_SMS_TYPE_ALL, undeletedThreadId, TEST_READ_FLAG_ONE
                 });
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         Map<Long, BluetoothMapContentObserver.Msg> map = new HashMap<>();
         // Giving the same handle for msg below and cursor above makes handleMsgListChangesSms()
@@ -2135,9 +1932,6 @@ public class BluetoothMapContentObserverTest {
                         BluetoothMapContentObserver.EXTRA_MESSAGE_SENT_RESULT,
                         Activity.RESULT_CANCELED);
         mObserver.mObserverRegistered = true;
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverDelete(any(), any(), any(), any());
 
         Assert.assertTrue(mObserver.handleMmsSendIntent(mContext, mIntent));
     }
@@ -2216,9 +2010,6 @@ public class BluetoothMapContentObserverTest {
         doReturn(TEST_HANDLE_ONE)
                 .when(mIntent)
                 .getLongExtra(BluetoothMapContentObserver.EXTRA_MESSAGE_SENT_HANDLE, -1);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverDelete(any(), any(), any(), any());
 
         mObserver.actionMmsSent(mContext, mIntent, 1, mmsMsgList);
 
@@ -2239,12 +2030,6 @@ public class BluetoothMapContentObserverTest {
                 .getLongExtra(BluetoothMapContentObserver.EXTRA_MESSAGE_SENT_HANDLE, -1);
 
         MatrixCursor cursor = new MatrixCursor(new String[] {});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         mObserver.actionMmsSent(mContext, mIntent, Activity.RESULT_OK, mmsMsgList);
 
@@ -2294,9 +2079,6 @@ public class BluetoothMapContentObserverTest {
         doReturn(0)
                 .when(mIntent)
                 .getIntExtra(BluetoothMapContentObserver.EXTRA_MESSAGE_SENT_TRANSPARENT, 0);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         clearInvocations(mContext);
         mObserver.actionSmsSentDisconnected(mContext, mIntent, Activity.RESULT_OK);
@@ -2313,9 +2095,6 @@ public class BluetoothMapContentObserverTest {
         doReturn(1)
                 .when(mIntent)
                 .getIntExtra(BluetoothMapContentObserver.EXTRA_MESSAGE_SENT_TRANSPARENT, 0);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverDelete(any(), any(), any(), any());
 
         clearInvocations(mContext);
         mObserver.actionSmsSentDisconnected(mContext, mIntent, Activity.RESULT_OK);
@@ -2332,9 +2111,6 @@ public class BluetoothMapContentObserverTest {
         doReturn(0)
                 .when(mIntent)
                 .getIntExtra(BluetoothMapContentObserver.EXTRA_MESSAGE_SENT_TRANSPARENT, 0);
-        doReturn(TEST_PLACEHOLDER_INT)
-                .when(mMapMethodProxy)
-                .contentResolverUpdate(any(), any(), any(), any(), any());
 
         clearInvocations(mContext);
         mObserver.actionSmsSentDisconnected(mContext, mIntent, Activity.RESULT_OK);

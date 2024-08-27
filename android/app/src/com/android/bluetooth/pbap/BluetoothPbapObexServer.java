@@ -29,7 +29,6 @@ import android.provider.CallLog.Calls;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
@@ -216,8 +215,6 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
 
     private PbapStateMachine mStateMachine;
 
-    private BluetoothMethodProxy mPbapMethodProxy;
-
     private enum ContactsType {
         TYPE_PHONEBOOK,
         TYPE_SIM;
@@ -247,7 +244,6 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
         mVcardManager = new BluetoothPbapVcardManager(mContext);
         mVcardSimManager = new BluetoothPbapSimVcardManager(mContext);
         mStateMachine = stateMachine;
-        mPbapMethodProxy = BluetoothMethodProxy.getInstance();
     }
 
     @Override
@@ -255,7 +251,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
         logHeader(request);
         notifyUpdateWakeLock();
         try {
-            byte[] uuid = (byte[]) mPbapMethodProxy.getHeader(request, HeaderSet.TARGET);
+            byte[] uuid = (byte[]) request.getHeader(HeaderSet.TARGET);
             if (uuid == null) {
                 return ResponseCodes.OBEX_HTTP_NOT_ACCEPTABLE;
             }
@@ -294,7 +290,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
         }
 
         try {
-            byte[] remote = (byte[]) mPbapMethodProxy.getHeader(request, HeaderSet.WHO);
+            byte[] remote = (byte[]) request.getHeader(HeaderSet.WHO);
             if (remote != null) {
                 Log.d(TAG, "onConnect(): remote=" + Arrays.toString(remote));
                 reply.setHeader(HeaderSet.TARGET, remote);
@@ -311,8 +307,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
 
         try {
             mConnAppParamValue = new AppParamValue();
-            byte[] appParam =
-                    (byte[]) mPbapMethodProxy.getHeader(request, HeaderSet.APPLICATION_PARAMETER);
+            byte[] appParam = (byte[]) request.getHeader(HeaderSet.APPLICATION_PARAMETER);
             if ((appParam != null) && !parseApplicationParameter(appParam, mConnAppParamValue)) {
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
@@ -373,7 +368,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
         String currentPathTmp = mCurrentPath;
         String tmpPath = null;
         try {
-            tmpPath = (String) mPbapMethodProxy.getHeader(request, HeaderSet.NAME);
+            tmpPath = (String) request.getHeader(HeaderSet.NAME);
         } catch (IOException e) {
             ContentProfileErrorReportUtils.report(
                     BluetoothProfile.PBAP,
@@ -443,10 +438,9 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
         AppParamValue appParamValue = new AppParamValue();
         try {
             request = op.getReceivedHeader();
-            type = (String) mPbapMethodProxy.getHeader(request, HeaderSet.TYPE);
-            name = (String) mPbapMethodProxy.getHeader(request, HeaderSet.NAME);
-            appParam =
-                    (byte[]) mPbapMethodProxy.getHeader(request, HeaderSet.APPLICATION_PARAMETER);
+            type = (String) request.getHeader(HeaderSet.TYPE);
+            name = (String) request.getHeader(HeaderSet.NAME);
+            appParam = (byte[]) request.getHeader(HeaderSet.APPLICATION_PARAMETER);
         } catch (IOException e) {
             ContentProfileErrorReportUtils.report(
                     BluetoothProfile.PBAP,
@@ -466,7 +460,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
             return ResponseCodes.OBEX_HTTP_NOT_ACCEPTABLE;
         }
 
-        if (!mPbapMethodProxy.getSystemService(mContext, UserManager.class).isUserUnlocked()) {
+        if (!mContext.getSystemService(UserManager.class).isUserUnlocked()) {
             Log.e(TAG, "Storage locked, " + type + " failed");
             ContentProfileErrorReportUtils.report(
                     BluetoothProfile.PBAP,
@@ -476,7 +470,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
             return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
         }
 
-        // Accroding to specification,the name header could be omitted such as
+        // According to specification,the name header could be omitted such as
         // sony erriccsonHBH-DS980
 
         // For "x-bt/phonebook" and "x-bt/vcard-listing":

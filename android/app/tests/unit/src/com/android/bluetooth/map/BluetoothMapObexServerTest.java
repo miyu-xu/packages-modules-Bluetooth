@@ -37,7 +37,6 @@ import android.os.RemoteException;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.mapapi.BluetoothMapContract;
 import com.android.obex.ResponseCodes;
 
@@ -75,14 +74,9 @@ public class BluetoothMapObexServerTest {
     @Mock private BluetoothMapService mMapService;
     @Mock private ContentProviderClient mProviderClient;
     @Mock private BluetoothMapContentObserver mObserver;
-    @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
 
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mMapMethodProxy);
-        doReturn(mProviderClient)
-                .when(mMapMethodProxy)
-                .contentResolverAcquireUnstableContentProviderClient(any(), any());
         mAccountItem =
                 BluetoothMapAccountItem.create(
                         TEST_ID,

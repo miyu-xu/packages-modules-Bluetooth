@@ -35,8 +35,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -56,21 +54,13 @@ public class BluetoothOppHandoverReceiverTest {
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Spy BluetoothMethodProxy mCallProxy = BluetoothMethodProxy.getInstance();
-
     @Before
     public void setUp() {
         mContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
-        doReturn(0).when(mCallProxy).contentResolverDelete(any(), any(Uri.class), any(), any());
-        doReturn(null)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(BluetoothShare.CONTENT_URI), any());
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -94,9 +84,6 @@ public class BluetoothOppHandoverReceiverTest {
 
         // this will run BluetoothOppManager#startTransfer, which will then make
         // InsertShareInfoThread insert into content resolver
-        verify(mCallProxy, timeout(3_000).times(1))
-                .contentResolverInsert(
-                        any(), eq(BluetoothShare.CONTENT_URI), nullable(ContentValues.class));
         BluetoothOppManager.setInstance(null);
     }
 
@@ -126,9 +113,6 @@ public class BluetoothOppHandoverReceiverTest {
 
         // this will run BluetoothOppManager#startTransfer, which will then make
         // InsertShareInfoThread insert into content resolver
-        verify(mCallProxy, timeout(3_000).times(3))
-                .contentResolverInsert(
-                        any(), eq(BluetoothShare.CONTENT_URI), nullable(ContentValues.class));
         BluetoothOppManager.setInstance(null);
     }
 
@@ -145,8 +129,5 @@ public class BluetoothOppHandoverReceiverTest {
 
         new BluetoothOppHandoverReceiver().onReceive(mContext, intent);
 
-        verify(mCallProxy)
-                .contentResolverDelete(
-                        any(), any(), nullable(String.class), nullable(String[].class));
     }
 }

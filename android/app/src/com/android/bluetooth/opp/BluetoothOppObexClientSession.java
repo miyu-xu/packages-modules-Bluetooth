@@ -45,7 +45,6 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.btservice.MetricsLogger;
@@ -377,13 +376,7 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
                 updateValues.put(BluetoothShare.FILENAME_HINT, fileInfo.mFileName);
                 updateValues.put(BluetoothShare.TOTAL_BYTES, fileInfo.mLength);
                 updateValues.put(BluetoothShare.MIMETYPE, fileInfo.mMimetype);
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverUpdate(
-                                mContext1.getContentResolver(),
-                                contentUri,
-                                updateValues,
-                                null,
-                                null);
+                mContext1.getContentResolver().update(contentUri, updateValues, null, null);
             }
             return fileInfo;
         }

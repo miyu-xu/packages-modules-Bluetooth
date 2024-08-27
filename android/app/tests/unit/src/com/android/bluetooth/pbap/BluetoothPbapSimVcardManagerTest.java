@@ -35,7 +35,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.obex.Operation;
 import com.android.obex.ResponseCodes;
 
@@ -64,8 +63,6 @@ public class BluetoothPbapSimVcardManagerTest {
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Spy BluetoothMethodProxy mPbapMethodProxy = BluetoothMethodProxy.getInstance();
-
     Context mContext;
     BluetoothPbapSimVcardManager mManager;
 
@@ -73,14 +70,12 @@ public class BluetoothPbapSimVcardManagerTest {
 
     @Before
     public void setUp() {
-        BluetoothMethodProxy.setInstanceForTesting(mPbapMethodProxy);
         mContext = InstrumentationRegistry.getTargetContext();
         mManager = new BluetoothPbapSimVcardManager(mContext);
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -92,10 +87,6 @@ public class BluetoothPbapSimVcardManagerTest {
 
     @Test
     public void testInit_whenCursorIsNull() {
-        doReturn(null)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
-
         assertThat(mManager.init(BluetoothPbapSimVcardManager.SIM_URI, null, null, null)).isFalse();
         assertThat(mManager.getErrorReason())
                 .isEqualTo(BluetoothPbapSimVcardManager.FAILURE_REASON_FAILED_TO_GET_DATABASE_INFO);
@@ -105,9 +96,6 @@ public class BluetoothPbapSimVcardManagerTest {
     public void testInit_whenCursorHasNoEntry() {
         Cursor cursor = mock(Cursor.class);
         when(cursor.getCount()).thenReturn(0);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(mManager.init(BluetoothPbapSimVcardManager.SIM_URI, null, null, null)).isFalse();
         verify(cursor).close();
@@ -120,9 +108,6 @@ public class BluetoothPbapSimVcardManagerTest {
         Cursor cursor = mock(Cursor.class);
         when(cursor.getCount()).thenReturn(1);
         when(cursor.moveToFirst()).thenReturn(true);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(mManager.init(BluetoothPbapSimVcardManager.SIM_URI, null, null, null)).isTrue();
         assertThat(mManager.getErrorReason()).isEqualTo(BluetoothPbapSimVcardManager.NO_ERROR);
@@ -444,9 +429,6 @@ public class BluetoothPbapSimVcardManagerTest {
         Operation operation = mock(Operation.class);
         final int startPoint = 1;
         final int endPoint = 1;
-        doReturn(null)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         int result =
                 BluetoothPbapSimVcardManager.composeAndSendSIMPhonebookVcards(
@@ -465,9 +447,6 @@ public class BluetoothPbapSimVcardManagerTest {
         when(cursor.getCount()).thenReturn(10);
         when(cursor.moveToFirst()).thenReturn(true);
         when(cursor.isAfterLast()).thenReturn(false);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         Operation operation = mock(Operation.class);
         OutputStream outputStream = mock(OutputStream.class);
         when(operation.openOutputStream()).thenReturn(outputStream);
@@ -508,9 +487,6 @@ public class BluetoothPbapSimVcardManagerTest {
         when(cursor.getCount()).thenReturn(10);
         when(cursor.moveToFirst()).thenReturn(true);
         when(cursor.isAfterLast()).thenReturn(false);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         Operation operation = mock(Operation.class);
         OutputStream outputStream = mock(OutputStream.class);
         when(operation.openOutputStream()).thenReturn(outputStream);
@@ -533,9 +509,6 @@ public class BluetoothPbapSimVcardManagerTest {
         when(cursor.getCount()).thenReturn(10);
         when(cursor.moveToFirst()).thenReturn(true);
         when(cursor.isAfterLast()).thenReturn(false);
-        doReturn(cursor)
-                .when(mPbapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         mManager.init(BluetoothPbapSimVcardManager.SIM_URI, null, null, null);
 
         return cursor;

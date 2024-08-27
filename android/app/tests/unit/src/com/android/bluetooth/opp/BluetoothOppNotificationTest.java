@@ -42,7 +42,6 @@ import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.Until;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 
@@ -65,8 +64,6 @@ public class BluetoothOppNotificationTest {
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock BluetoothMethodProxy mMethodProxy;
-
     Context mTargetContext;
 
     BluetoothOppNotification mOppNotification;
@@ -82,7 +79,6 @@ public class BluetoothOppNotificationTest {
     @Before
     public void setUp() throws Exception {
         mTargetContext = spy(new ContextWrapper(ApplicationProvider.getApplicationContext()));
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
 
         InstrumentationRegistry.getInstrumentation()
                 .runOnMainSync(
@@ -114,7 +110,6 @@ public class BluetoothOppNotificationTest {
         // Back to home screen
         UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressHome();
 
-        BluetoothMethodProxy.setInstanceForTesting(null);
         Intents.release();
 
         mTargetContext
@@ -177,10 +172,6 @@ public class BluetoothOppNotificationTest {
                     destination,
                     status
                 });
-        doReturn(cursor)
-                .when(mMethodProxy)
-                .contentResolverQuery(
-                        any(), eq(BluetoothShare.CONTENT_URI), any(), any(), any(), any());
 
         mOppNotification.updateActiveNotification();
 
@@ -256,10 +247,6 @@ public class BluetoothOppNotificationTest {
                     destination,
                     statusError
                 });
-        doReturn(cursor)
-                .when(mMethodProxy)
-                .contentResolverQuery(
-                        any(), eq(BluetoothShare.CONTENT_URI), any(), any(), any(), any());
 
         mOppNotification.updateCompletedNotification();
 
@@ -336,10 +323,6 @@ public class BluetoothOppNotificationTest {
                     destination,
                     statusError
                 });
-        doReturn(cursor)
-                .when(mMethodProxy)
-                .contentResolverQuery(
-                        any(), eq(BluetoothShare.CONTENT_URI), any(), any(), any(), any());
 
         mOppNotification.updateCompletedNotification();
 
@@ -405,15 +388,6 @@ public class BluetoothOppNotificationTest {
                     status,
                     mimeType
                 });
-        doReturn(cursor)
-                .when(mMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(com.android.bluetooth.opp.BluetoothShare.CONTENT_URI),
-                        any(),
-                        any(),
-                        any(),
-                        any());
 
         mOppNotification.updateIncomingFileConfirmNotification();
 

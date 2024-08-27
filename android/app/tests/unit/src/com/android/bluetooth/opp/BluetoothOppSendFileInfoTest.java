@@ -34,8 +34,6 @@ import android.provider.OpenableColumns;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -55,17 +53,14 @@ public class BluetoothOppSendFileInfoTest {
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock BluetoothMethodProxy mCallProxy;
 
     @Before
     public void setUp() {
         mContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -124,9 +119,6 @@ public class BluetoothOppSendFileInfoTest {
         String type = "text/plain";
         Uri uri = Uri.parse("content:///hello/world");
 
-        doThrow(new SecurityException())
-                .when(mCallProxy)
-                .contentResolverQuery(any(), eq(uri), any(), any(), any(), any());
 
         BluetoothOppSendFileInfo info =
                 BluetoothOppSendFileInfo.generateFileInfo(mContext, uri, type, true);
@@ -149,14 +141,8 @@ public class BluetoothOppSendFileInfoTest {
                 new MatrixCursor(new String[] {OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE});
         mCursor.addRow(new Object[] {fileName, fileLength});
 
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(any(), eq(uri), any(), any(), any(), any());
-
-        doReturn(fd).when(mCallProxy).contentResolverOpenAssetFileDescriptor(any(), eq(uri), any());
         doReturn(0L).when(fd).getLength();
         doThrow(new IOException()).when(fd).createInputStream();
-        doReturn(fs).when(mCallProxy).contentResolverOpenInputStream(any(), eq(uri));
         doReturn(0, -1).when(fs).read(any(), anyInt(), anyInt());
 
         BluetoothOppSendFileInfo info =
@@ -182,11 +168,6 @@ public class BluetoothOppSendFileInfoTest {
                 new MatrixCursor(new String[] {OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE});
         mCursor.addRow(new Object[] {fileName, fileLength});
 
-        doReturn(mCursor)
-                .when(mCallProxy)
-                .contentResolverQuery(any(), eq(uri), any(), any(), any(), any());
-
-        doReturn(fd).when(mCallProxy).contentResolverOpenAssetFileDescriptor(any(), eq(uri), any());
         doReturn(0L).when(fd).getLength();
         doReturn(fs).when(fd).createInputStream();
 

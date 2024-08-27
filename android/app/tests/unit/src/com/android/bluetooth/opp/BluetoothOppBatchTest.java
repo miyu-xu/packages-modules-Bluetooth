@@ -28,8 +28,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -118,17 +116,10 @@ public class BluetoothOppBatchTest {
 
     @Test
     public void cancelBatch_cancelSuccessfully() {
-
-        BluetoothMethodProxy proxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(proxy);
-        doReturn(0).when(proxy).contentResolverDelete(any(), any(), any(), any());
-        doReturn(0).when(proxy).contentResolverUpdate(any(), any(), any(), any(), any());
-
         assertThat(mBluetoothOppBatch.getPendingShare()).isEqualTo(mInitShareInfo);
 
         mBluetoothOppBatch.cancelBatch();
         assertThat(mBluetoothOppBatch.isEmpty()).isTrue();
 
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 }

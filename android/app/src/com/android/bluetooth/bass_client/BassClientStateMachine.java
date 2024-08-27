@@ -54,7 +54,6 @@ import android.provider.DeviceConfig;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
@@ -444,6 +443,7 @@ public class BassClientStateMachine extends StateMachine {
         return broadcastName;
     }
 
+    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 stop calling Framework
     private boolean selectSource(ScanResult scanRes, boolean autoTriggered) {
         if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
             throw new RuntimeException(
@@ -492,15 +492,8 @@ public class BassClientStateMachine extends StateMachine {
             int tempHandle = BassConstants.INVALID_SYNC_HANDLE;
             mPeriodicAdvCallbacksMap.put(tempHandle, paCb);
             try {
-                BluetoothMethodProxy.getInstance()
-                        .periodicAdvertisingManagerRegisterSync(
-                                BassClientPeriodicAdvertisingManager
-                                        .getPeriodicAdvertisingManager(),
-                                scanRes,
-                                0,
-                                BassConstants.PSYNC_TIMEOUT,
-                                paCb,
-                                null);
+                BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager()
+                        .registerSync(scanRes, 0, BassConstants.PSYNC_TIMEOUT, paCb, null);
             } catch (IllegalArgumentException ex) {
                 Log.w(TAG, "registerSync:IllegalArgumentException");
                 mPeriodicAdvCallbacksMap.remove(tempHandle);
@@ -566,6 +559,7 @@ public class BassClientStateMachine extends StateMachine {
         }
     }
 
+    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 stop calling Framework
     private boolean unsyncSource(int syncHandle) {
         if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
             throw new RuntimeException(
@@ -575,11 +569,8 @@ public class BassClientStateMachine extends StateMachine {
         if (syncHandle != BassConstants.INVALID_SYNC_HANDLE
                 && mPeriodicAdvCallbacksMap.containsKey(syncHandle)) {
             try {
-                BluetoothMethodProxy.getInstance()
-                        .periodicAdvertisingManagerUnregisterSync(
-                                BassClientPeriodicAdvertisingManager
-                                        .getPeriodicAdvertisingManager(),
-                                mPeriodicAdvCallbacksMap.get(syncHandle));
+                BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager()
+                        .unregisterSync(mPeriodicAdvCallbacksMap.get(syncHandle));
             } catch (IllegalArgumentException ex) {
                 Log.w(TAG, "unregisterSync:IllegalArgumentException");
                 return false;
@@ -713,6 +704,7 @@ public class BassClientStateMachine extends StateMachine {
         return IntStream.range(0, data.length).parallel().allMatch(i -> data[i] == 0);
     }
 
+    @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 stop calling Framework
     private void processPASyncState(BluetoothLeBroadcastReceiveState recvState) {
         int serviceData = 0;
         if (recvState == null) {
@@ -745,13 +737,8 @@ public class BassClientStateMachine extends StateMachine {
                                     + syncHandle
                                     + "serviceData"
                                     + serviceData);
-                    BluetoothMethodProxy.getInstance()
-                            .periodicAdvertisingManagerTransferSync(
-                                    BassClientPeriodicAdvertisingManager
-                                            .getPeriodicAdvertisingManager(),
-                                    mDevice,
-                                    serviceData,
-                                    syncHandle);
+                    BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager()
+                            .transferSync(mDevice, serviceData, syncHandle);
                 }
             } else {
                 BluetoothLeBroadcastMetadata currentMetadata =
@@ -770,14 +757,9 @@ public class BassClientStateMachine extends StateMachine {
                                     + advHandle
                                     + ", serviceData: "
                                     + serviceData);
-                    BluetoothMethodProxy.getInstance()
-                            .periodicAdvertisingManagerTransferSetInfo(
-                                    BassClientPeriodicAdvertisingManager
-                                            .getPeriodicAdvertisingManager(),
-                                    mDevice,
-                                    serviceData,
-                                    advHandle,
-                                    mLocalPeriodicAdvCallback);
+                    BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager()
+                            .transferSetInfo(
+                                    mDevice, serviceData, advHandle, mLocalPeriodicAdvCallback);
                 } else {
                     Log.e(TAG, "There is no valid sync handle for this Source");
                 }

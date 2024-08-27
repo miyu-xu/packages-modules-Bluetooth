@@ -39,7 +39,6 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
@@ -60,8 +59,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class BluetoothOppBtEnablingActivityTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Spy BluetoothMethodProxy mBluetoothMethodProxy;
-
     Intent mIntent;
     Context mTargetContext;
 
@@ -76,9 +73,6 @@ public class BluetoothOppBtEnablingActivityTest {
     public void setUp() throws Exception {
         Assume.assumeTrue(BluetoothProperties.isProfileOppEnabled().orElse(false));
 
-        mBluetoothMethodProxy = Mockito.spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
-
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         mIntent = new Intent();
@@ -91,7 +85,6 @@ public class BluetoothOppBtEnablingActivityTest {
     @After
     public void tearDown() throws Exception {
         TestUtils.tearDownUiTest();
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppBtEnablingActivity.sBtEnablingTimeoutMs = mRealTimeoutValue;
     }
 
@@ -101,7 +94,6 @@ public class BluetoothOppBtEnablingActivityTest {
         int spedUpTimeoutValue = 1000;
         // To speed up the test
         BluetoothOppBtEnablingActivity.sBtEnablingTimeoutMs = spedUpTimeoutValue;
-        doReturn(false).when(mBluetoothMethodProxy).bluetoothAdapterIsEnabled(any());
 
         ActivityScenario<BluetoothOppBtEnablingActivity> activityScenario =
                 ActivityScenario.launch(mIntent);
@@ -118,7 +110,6 @@ public class BluetoothOppBtEnablingActivityTest {
 
     @Test
     public void onKeyDown_cancelProgress() throws Exception {
-        doReturn(false).when(mBluetoothMethodProxy).bluetoothAdapterIsEnabled(any());
         ActivityScenario<BluetoothOppBtEnablingActivity> activityScenario =
                 ActivityScenario.launch(mIntent);
 
@@ -140,7 +131,6 @@ public class BluetoothOppBtEnablingActivityTest {
 
     @Test
     public void onCreate_bluetoothAlreadyEnabled_finishImmediately() throws Exception {
-        doReturn(true).when(mBluetoothMethodProxy).bluetoothAdapterIsEnabled(any());
         ActivityScenario<BluetoothOppBtEnablingActivity> activityScenario =
                 ActivityScenario.launch(mIntent);
         assertActivityState(activityScenario, DESTROYED);
@@ -148,7 +138,6 @@ public class BluetoothOppBtEnablingActivityTest {
 
     @Test
     public void broadcastReceiver_onReceive_finishImmediately() throws Exception {
-        doReturn(false).when(mBluetoothMethodProxy).bluetoothAdapterIsEnabled(any());
         ActivityScenario<BluetoothOppBtEnablingActivity> activityScenario =
                 ActivityScenario.launch(mIntent);
 

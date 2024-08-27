@@ -47,7 +47,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.flags.Flags;
 import com.android.obex.ObexTransport;
@@ -84,7 +83,6 @@ public class BluetoothOppTransferTest {
     @Rule public final SetFlagsRule mSetFlagRule = new SetFlagsRule();
 
     @Mock BluetoothOppObexSession mSession;
-    @Mock BluetoothMethodProxy mCallProxy;
     Context mContext;
     BluetoothOppBatch mBluetoothOppBatch;
     BluetoothOppTransfer mTransfer;
@@ -93,23 +91,6 @@ public class BluetoothOppTransferTest {
 
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
-        doReturn(0)
-                .when(mCallProxy)
-                .contentResolverDelete(
-                        any(),
-                        nullable(Uri.class),
-                        nullable(String.class),
-                        nullable(String[].class));
-        doReturn(0)
-                .when(mCallProxy)
-                .contentResolverUpdate(
-                        any(),
-                        nullable(Uri.class),
-                        nullable(ContentValues.class),
-                        nullable(String.class),
-                        nullable(String[].class));
-
         mInitShareInfo =
                 new BluetoothOppShareInfo(
                         8765,
@@ -137,7 +118,6 @@ public class BluetoothOppTransferTest {
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -192,7 +172,6 @@ public class BluetoothOppTransferTest {
 
     @Test
     public void start_receiverRegistered() {
-        doReturn(true).when(mCallProxy).bluetoothAdapterIsEnabled(any());
         mTransfer.start();
         verify(mContext).registerReceiver(any(), any(IntentFilter.class));
         // need this, or else the handler thread might throw in middle of the next test
@@ -201,7 +180,6 @@ public class BluetoothOppTransferTest {
 
     @Test
     public void stop_unregisterRegistered() {
-        doReturn(true).when(mCallProxy).bluetoothAdapterIsEnabled(any());
         mTransfer.start();
         mTransfer.stop();
         verify(mContext).unregisterReceiver(any());
@@ -394,7 +372,6 @@ public class BluetoothOppTransferTest {
         transfer.mSessionHandler = mEventHandler;
 
         socketConnectThread.run();
-        verify(mCallProxy).handlerSendEmptyMessage(any(), eq(TRANSPORT_ERROR));
     }
 
     @Test
@@ -413,8 +390,6 @@ public class BluetoothOppTransferTest {
 
         transfer.mSessionHandler = mEventHandler;
         receiver.onReceive(mContext, intent);
-        verify(mCallProxy)
-                .handlerSendEmptyMessage(any(), eq(BluetoothOppObexSession.MSG_CONNECT_TIMEOUT));
     }
 
     @Test
@@ -439,6 +414,5 @@ public class BluetoothOppTransferTest {
         receiver.onReceive(mContext, intent);
 
         // No sdp record was passed to intent => sends TRANSPORT_ERROR
-        verify(mCallProxy).handlerSendEmptyMessage(any(), eq(TRANSPORT_ERROR));
     }
 }

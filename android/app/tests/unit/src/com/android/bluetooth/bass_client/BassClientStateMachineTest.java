@@ -95,7 +95,6 @@ import android.platform.test.flag.junit.SetFlagsRule;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -149,7 +148,6 @@ public class BassClientStateMachineTest {
 
     @Mock private AdapterService mAdapterService;
     @Mock private BassClientService mBassClientService;
-    @Mock private BluetoothMethodProxy mMethodProxy;
 
     @Before
     public void setUp() throws Exception {
@@ -163,10 +161,6 @@ public class BassClientStateMachineTest {
 
         TestUtils.setAdapterService(mAdapterService);
 
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
-        doNothing()
-                .when(mMethodProxy)
-                .periodicAdvertisingManagerTransferSync(any(), any(), anyInt(), anyInt());
 
         // Get a device for testing
         mTestDevice = TestUtils.getTestDevice(mAdapter, 0);
@@ -1354,10 +1348,6 @@ public class BassClientStateMachineTest {
                 };
         ScanRecord record = ScanRecord.parseFromBytes(scanRecord);
 
-        doNothing()
-                .when(mMethodProxy)
-                .periodicAdvertisingManagerRegisterSync(
-                        any(), any(), anyInt(), anyInt(), any(), any());
         ScanResult scanResult = new ScanResult(mTestDevice, 0, 0, 0, 0, 0, 0, 0, record, 0);
         mBassClientStateMachine.sendMessage(SELECT_BCAST_SOURCE, BassConstants.AUTO, 0, scanResult);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
@@ -2132,10 +2122,6 @@ public class BassClientStateMachineTest {
         // need this to ensure expected mock behavior for getActiveSyncedSource
         when(mBassClientService.getActiveSyncedSources(any())).thenReturn(activeSyncedSrc);
         when(mBassClientService.getSyncHandleForBroadcastId(anyInt())).thenReturn(testSyncHandle);
-        doNothing()
-                .when(mMethodProxy)
-                .periodicAdvertisingManagerRegisterSync(
-                        any(), any(), anyInt(), anyInt(), any(), any());
 
         mBassClientStateMachine.sendMessage(SELECT_BCAST_SOURCE, BassConstants.AUTO, 0, scanResult);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
@@ -2250,17 +2236,10 @@ public class BassClientStateMachineTest {
                         record,
                         0);
         when(mBassClientService.getCachedBroadcast(anyInt())).thenReturn(scanResult);
-        doNothing()
-                .when(mMethodProxy)
-                .periodicAdvertisingManagerRegisterSync(
-                        any(), any(), anyInt(), anyInt(), any(), any());
         // validate add source will trigger select source and update mPendingSourceToAdd
         mBassClientStateMachine.sendMessage(ADD_BCAST_SOURCE, metadata);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
-        verify(mMethodProxy, timeout(TIMEOUT_MS))
-                .periodicAdvertisingManagerRegisterSync(
-                        any(), any(), anyInt(), anyInt(), any(), any());
         Assert.assertEquals(mBassClientStateMachine.mPendingSourceToAdd, metadata);
         verify(mBassClientService, never()).sendBroadcast(any(Intent.class), anyString(), any());
     }

@@ -27,7 +27,6 @@ import android.database.MatrixCursor;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 
 import org.junit.After;
 import org.junit.Before;
@@ -51,28 +50,22 @@ public class SmsMmsContactsTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private ContentResolver mResolver;
-    @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
 
     private SmsMmsContacts mContacts;
 
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mMapMethodProxy);
         mContacts = new SmsMmsContacts();
     }
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
     public void getPhoneNumberUncached_withNonEmptyCursor() {
         MatrixCursor cursor = new MatrixCursor(new String[] {"COL_ARRR_ID", "COL_ADDR_ADDR"});
         cursor.addRow(new Object[] {null, TEST_PHONE_NUMBER});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(SmsMmsContacts.getPhoneNumberUncached(mResolver, TEST_ID))
                 .isEqualTo(TEST_PHONE_NUMBER);
@@ -81,9 +74,6 @@ public class SmsMmsContactsTest {
     @Test
     public void getPhoneNumberUncached_withEmptyCursor() {
         MatrixCursor cursor = new MatrixCursor(new String[] {});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(SmsMmsContacts.getPhoneNumberUncached(mResolver, TEST_ID)).isNull();
     }
@@ -92,9 +82,6 @@ public class SmsMmsContactsTest {
     public void fillPhoneCache() {
         MatrixCursor cursor = new MatrixCursor(new String[] {"COL_ADDR_ID", "COL_ADDR_ADDR"});
         cursor.addRow(new Object[] {TEST_ID, TEST_PHONE_NUMBER});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         mContacts.fillPhoneCache(mResolver);
 
@@ -105,15 +92,9 @@ public class SmsMmsContactsTest {
     public void fillPhoneCache_withNonNullPhoneNumbers() {
         MatrixCursor cursor = new MatrixCursor(new String[] {"COL_ADDR_ID", "COL_ADDR_ADDR"});
         cursor.addRow(new Object[] {TEST_ID, TEST_PHONE_NUMBER});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         mContacts.fillPhoneCache(mResolver);
         assertThat(mContacts.getPhoneNumber(mResolver, TEST_ID)).isEqualTo(TEST_PHONE_NUMBER);
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         mContacts.fillPhoneCache(mResolver);
 
         assertThat(mContacts.getPhoneNumber(mResolver, TEST_ID)).isNull();
@@ -123,9 +104,6 @@ public class SmsMmsContactsTest {
     public void clearCache() {
         MatrixCursor cursor = new MatrixCursor(new String[] {"COL_ADDR_ID", "COL_ADDR_ADDR"});
         cursor.addRow(new Object[] {TEST_ID, TEST_PHONE_NUMBER});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         MapContact contact = MapContact.create(TEST_ID, TEST_PHONE);
 
         mContacts.mNames.put(TEST_PHONE, contact);
@@ -133,9 +111,6 @@ public class SmsMmsContactsTest {
         assertThat(mContacts.getPhoneNumber(mResolver, TEST_ID)).isEqualTo(TEST_PHONE_NUMBER);
         mContacts.clearCache();
 
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
         assertThat(mContacts.mNames).isEmpty();
         assertThat(mContacts.getPhoneNumber(mResolver, TEST_ID)).isEqualTo(null);
     }
@@ -144,9 +119,6 @@ public class SmsMmsContactsTest {
     public void getContactNameFromPhone_withNonNullCursor() {
         MatrixCursor cursor = new MatrixCursor(new String[] {"COL_CONTACT_ID", "COL_CONTACT_NAME"});
         cursor.addRow(new Object[] {TEST_ID, TEST_NAME});
-        doReturn(cursor)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         MapContact expected = MapContact.create(TEST_ID, TEST_NAME);
         assertThat(
@@ -159,9 +131,6 @@ public class SmsMmsContactsTest {
 
     @Test
     public void getContactNameFromPhone_withNullCursor() {
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(
                         mContacts.getContactNameFromPhone(
@@ -171,9 +140,6 @@ public class SmsMmsContactsTest {
 
     @Test
     public void getContactNameFromPhone_withNoParameterForContactNameFilter() {
-        doReturn(null)
-                .when(mMapMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         assertThat(mContacts.getContactNameFromPhone(TEST_PHONE, mResolver)).isNull();
     }

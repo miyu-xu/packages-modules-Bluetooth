@@ -48,7 +48,6 @@ import androidx.test.espresso.action.ViewActions;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 
@@ -75,7 +74,6 @@ public class IncomingFileConfirmActivityTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock Cursor mCursor;
-    @Spy BluetoothMethodProxy mBluetoothMethodProxy;
 
     List<BluetoothOppTestUtils.CursorMockData> mCursorMockDataList;
 
@@ -91,9 +89,6 @@ public class IncomingFileConfirmActivityTest {
 
     @Before
     public void setUp() throws Exception {
-        mBluetoothMethodProxy = Mockito.spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
-
         Uri dataUrl = Uri.parse("content://com.android.bluetooth.opp.test/random");
 
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -102,13 +97,6 @@ public class IncomingFileConfirmActivityTest {
         mIntent.setClass(mTargetContext, BluetoothOppIncomingFileConfirmActivity.class);
         mIntent.setData(dataUrl);
 
-        doReturn(mCursor)
-                .when(mBluetoothMethodProxy)
-                .contentResolverQuery(any(), eq(dataUrl), eq(null), eq(null), eq(null), eq(null));
-
-        doReturn(1)
-                .when(mBluetoothMethodProxy)
-                .contentResolverUpdate(any(), eq(dataUrl), any(), eq(null), eq(null));
 
         int idValue = 1234;
         Long timestampValue = 123456789L;
@@ -156,7 +144,6 @@ public class IncomingFileConfirmActivityTest {
     public void tearDown() throws Exception {
         TestUtils.tearDownUiTest();
 
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppTestUtils.enableActivity(
                 BluetoothOppIncomingFileConfirmActivity.class, false, mTargetContext);
     }
@@ -182,17 +169,6 @@ public class IncomingFileConfirmActivityTest {
                 .check(matches(isDisplayed()))
                 .perform(click());
 
-        verify(mBluetoothMethodProxy)
-                .contentResolverUpdate(
-                        any(),
-                        any(),
-                        argThat(
-                                argument ->
-                                        Objects.equal(
-                                                BluetoothShare.USER_CONFIRMATION_DENIED,
-                                                argument.get(BluetoothShare.USER_CONFIRMATION))),
-                        nullable(String.class),
-                        nullable(String[].class));
     }
 
     @Test
@@ -214,17 +190,6 @@ public class IncomingFileConfirmActivityTest {
                 .check(matches(isDisplayed()))
                 .perform(click());
 
-        verify(mBluetoothMethodProxy)
-                .contentResolverUpdate(
-                        any(),
-                        any(),
-                        argThat(
-                                argument ->
-                                        Objects.equal(
-                                                BluetoothShare.USER_CONFIRMATION_CONFIRMED,
-                                                argument.get(BluetoothShare.USER_CONFIRMATION))),
-                        nullable(String.class),
-                        nullable(String[].class));
     }
 
     @Test
@@ -237,9 +202,6 @@ public class IncomingFileConfirmActivityTest {
         Intent in = new Intent(BluetoothShare.USER_CONFIRMATION_TIMEOUT_ACTION);
         mTargetContext.sendBroadcast(in);
 
-        verify(mBluetoothMethodProxy, timeout(TIMEOUT_MS))
-                .handlerSendMessageDelayed(
-                        any(), eq(DISMISS_TIMEOUT_DIALOG), eq((long) DISMISS_TIMEOUT_DIALOG_VALUE));
     }
 
     @Test

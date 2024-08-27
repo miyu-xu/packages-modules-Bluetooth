@@ -48,7 +48,6 @@ import android.os.Process;
 import android.text.format.Formatter;
 import android.util.Log;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.flags.Flags;
@@ -280,14 +279,8 @@ class BluetoothOppNotification {
     void updateActiveNotification() {
         // Active transfers
         Cursor cursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                mContentResolver,
-                                BluetoothShare.CONTENT_URI,
-                                null,
-                                WHERE_RUNNING,
-                                null,
-                                BluetoothShare._ID);
+                mContentResolver.query(
+                        BluetoothShare.CONTENT_URI, null, WHERE_RUNNING, null, BluetoothShare._ID);
         if (cursor == null) {
             return;
         }
@@ -464,14 +457,12 @@ class BluetoothOppNotification {
 
         // Creating outbound notification
         Cursor cursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                mContentResolver,
-                                BluetoothShare.CONTENT_URI,
-                                null,
-                                WHERE_COMPLETED_OUTBOUND,
-                                null,
-                                BluetoothShare.TIMESTAMP + " DESC");
+                mContentResolver.query(
+                        BluetoothShare.CONTENT_URI,
+                        null,
+                        WHERE_COMPLETED_OUTBOUND,
+                        null,
+                        BluetoothShare.TIMESTAMP + " DESC");
         if (cursor == null) {
             return;
         }
@@ -556,14 +547,12 @@ class BluetoothOppNotification {
 
         // Creating inbound notification
         cursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                mContentResolver,
-                                BluetoothShare.CONTENT_URI,
-                                null,
-                                WHERE_COMPLETED_INBOUND,
-                                null,
-                                BluetoothShare.TIMESTAMP + " DESC");
+                mContentResolver.query(
+                        BluetoothShare.CONTENT_URI,
+                        null,
+                        WHERE_COMPLETED_INBOUND,
+                        null,
+                        BluetoothShare.TIMESTAMP + " DESC");
         if (cursor == null) {
             return;
         }
@@ -665,14 +654,12 @@ class BluetoothOppNotification {
     @VisibleForTesting
     void updateIncomingFileConfirmNotification() {
         Cursor cursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                mContentResolver,
-                                BluetoothShare.CONTENT_URI,
-                                null,
-                                WHERE_CONFIRM_PENDING,
-                                null,
-                                BluetoothShare._ID);
+                mContentResolver.query(
+                        BluetoothShare.CONTENT_URI,
+                        null,
+                        WHERE_CONFIRM_PENDING,
+                        null,
+                        BluetoothShare._ID);
 
         if (cursor == null) {
             return;

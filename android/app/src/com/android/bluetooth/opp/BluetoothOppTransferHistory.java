@@ -54,7 +54,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -139,9 +138,8 @@ public class BluetoothOppTransferHistory extends Activity
 
         final String sortOrder = BluetoothShare.TIMESTAMP + " DESC";
         mTransferCursor =
-                BluetoothMethodProxy.getInstance()
-                        .contentResolverQuery(
-                                getContentResolver(),
+                getContentResolver()
+                        .query(
                                 BluetoothShare.CONTENT_URI,
                                 new String[] {
                                     "_id",

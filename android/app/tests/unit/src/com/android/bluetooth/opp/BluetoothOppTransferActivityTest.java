@@ -39,7 +39,6 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
@@ -62,7 +61,6 @@ public class BluetoothOppTransferActivityTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock Cursor mCursor;
-    @Spy BluetoothMethodProxy mBluetoothMethodProxy;
 
     List<CursorMockData> mCursorMockDataList;
 
@@ -76,8 +74,6 @@ public class BluetoothOppTransferActivityTest {
 
     @Before
     public void setUp() throws Exception {
-        mBluetoothMethodProxy = Mockito.spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
 
         Uri dataUrl = Uri.parse("content://com.android.bluetooth.opp.test/random");
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -86,13 +82,6 @@ public class BluetoothOppTransferActivityTest {
         mIntent.setClass(mTargetContext, BluetoothOppTransferActivity.class);
         mIntent.setData(dataUrl);
 
-        doReturn(mCursor)
-                .when(mBluetoothMethodProxy)
-                .contentResolverQuery(any(), eq(dataUrl), eq(null), eq(null), eq(null), eq(null));
-
-        doReturn(1)
-                .when(mBluetoothMethodProxy)
-                .contentResolverUpdate(any(), eq(dataUrl), any(), eq(null), eq(null));
 
         int idValue = 1234;
         Long timestampValue = 123456789L;
@@ -123,7 +112,6 @@ public class BluetoothOppTransferActivityTest {
     public void tearDown() throws Exception {
         TestUtils.tearDownUiTest();
 
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppTestUtils.enableActivity(
                 BluetoothOppTransferActivity.class, false, mTargetContext);
     }

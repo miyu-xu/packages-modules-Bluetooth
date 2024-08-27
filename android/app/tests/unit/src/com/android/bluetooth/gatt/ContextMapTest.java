@@ -28,7 +28,6 @@ import androidx.test.filters.SmallTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.gatt.ContextMap.App;
@@ -68,12 +67,8 @@ public class ContextMapTest {
     @Mock private IBluetoothGattCallback mMockCallback;
     @Mock private PackageManager mMockPackageManager;
 
-    @Spy private BluetoothMethodProxy mMapMethodProxy = BluetoothMethodProxy.getInstance();
-
     @Before
     public void setUp() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(mMapMethodProxy);
-
         TestUtils.setAdapterService(mAdapterService);
 
         doReturn(mMockPackageManager).when(mAdapterService).getPackageManager();
@@ -82,8 +77,6 @@ public class ContextMapTest {
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
-
         TestUtils.clearAdapterService(mAdapterService);
     }
 

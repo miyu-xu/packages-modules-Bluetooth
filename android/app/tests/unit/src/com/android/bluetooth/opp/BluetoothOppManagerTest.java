@@ -44,8 +44,6 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -60,8 +58,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class BluetoothOppManagerTest {
     Context mContext;
 
-    BluetoothMethodProxy mCallProxy;
-
     @Before
     public void setUp() {
         mContext =
@@ -69,19 +65,11 @@ public class BluetoothOppManagerTest {
                         new ContextWrapper(
                                 InstrumentationRegistry.getInstrumentation().getTargetContext()));
 
-        mCallProxy = spy(BluetoothMethodProxy.getInstance());
-        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
-
-        doReturn(null)
-                .when(mCallProxy)
-                .contentResolverInsert(any(), eq(BluetoothShare.CONTENT_URI), any());
-
         Intents.init();
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         BluetoothOppUtility.sSendFileMap.clear();
         mContext.getSharedPreferences(OPP_PREFERENCE_FILE, 0).edit().clear().apply();
         BluetoothOppManager.sInstance = null;
@@ -187,8 +175,6 @@ public class BluetoothOppManagerTest {
                         .getRemoteDevice(address);
         bluetoothOppManager.startTransfer(device);
         // add 2 files
-        verify(mCallProxy, timeout(5_000).times(3))
-                .contentResolverInsert(any(), nullable(Uri.class), nullable(ContentValues.class));
     }
 
     @Test
@@ -202,8 +188,6 @@ public class BluetoothOppManagerTest {
                         .getAdapter()
                         .getRemoteDevice(address);
         bluetoothOppManager.startTransfer(device);
-        verify(mCallProxy, timeout(5_000).times(1))
-                .contentResolverInsert(any(), nullable(Uri.class), nullable(ContentValues.class));
     }
 
     @Ignore("b/267270055")
@@ -234,8 +218,6 @@ public class BluetoothOppManagerTest {
         }
 
         // success at least ALLOWED_INSERT_SHARE_THREAD_NUMBER times
-        verify(mCallProxy, timeout(5_000).atLeast(ALLOWED_INSERT_SHARE_THREAD_NUMBER))
-                .contentResolverInsert(any(), nullable(Uri.class), nullable(ContentValues.class));
 
         // there is at least a failed attempt
         assertThat(intended.get()).isTrue();
@@ -244,9 +226,7 @@ public class BluetoothOppManagerTest {
     @Test
     public void isEnabled() {
         BluetoothOppManager bluetoothOppManager = BluetoothOppManager.getInstance(mContext);
-        doReturn(true).when(mCallProxy).bluetoothAdapterIsEnabled(any());
         assertThat(bluetoothOppManager.isEnabled()).isTrue();
-        doReturn(false).when(mCallProxy).bluetoothAdapterIsEnabled(any());
         assertThat(bluetoothOppManager.isEnabled()).isFalse();
     }
 

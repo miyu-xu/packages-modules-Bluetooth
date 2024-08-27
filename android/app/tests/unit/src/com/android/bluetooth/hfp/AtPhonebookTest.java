@@ -37,7 +37,6 @@ import android.telephony.PhoneNumberUtils;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -67,14 +66,12 @@ public class AtPhonebookTest {
     @Mock private HeadsetNativeInterface mNativeInterface;
 
     private AtPhonebook mAtPhonebook;
-    @Spy private BluetoothMethodProxy mHfpMethodProxy = BluetoothMethodProxy.getInstance();
 
     @Before
     public void setUp() throws Exception {
         mTargetContext = InstrumentationRegistry.getTargetContext();
         TestUtils.setAdapterService(mAdapterService);
 
-        BluetoothMethodProxy.setInstanceForTesting(mHfpMethodProxy);
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
         // Spy on native interface
@@ -84,7 +81,6 @@ public class AtPhonebookTest {
     @After
     public void tearDown() throws Exception {
         TestUtils.clearAdapterService(mAdapterService);
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -229,9 +225,6 @@ public class AtPhonebookTest {
         when(mockCursorOne.getString(2)).thenReturn(null);
         when(mockCursorOne.getString(3)).thenReturn(null);
         when(mockCursorOne.moveToNext()).thenReturn(false);
-        doReturn(mockCursorOne)
-                .when(mHfpMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any());
 
         mAtPhonebook.mCurrentPhonebook = "ME";
         mAtPhonebook.mCpbrIndex1 = 1;
@@ -264,18 +257,12 @@ public class AtPhonebookTest {
         String number = "1".repeat(31);
         when(mockCursorOne.getString(1)).thenReturn(number);
         when(mockCursorOne.getInt(2)).thenReturn(CallLog.Calls.PRESENTATION_RESTRICTED);
-        doReturn(mockCursorOne)
-                .when(mHfpMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any());
 
         Cursor mockCursorTwo = mock(Cursor.class);
         when(mockCursorTwo.moveToFirst()).thenReturn(true);
         String name = "k".repeat(30);
         when(mockCursorTwo.getString(0)).thenReturn(name);
         when(mockCursorTwo.getInt(1)).thenReturn(1);
-        doReturn(mockCursorTwo)
-                .when(mHfpMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         mAtPhonebook.mCurrentPhonebook = "MC";
         mAtPhonebook.mCpbrIndex1 = 1;
@@ -306,18 +293,12 @@ public class AtPhonebookTest {
         String number = "1".repeat(31);
         when(mockCursorOne.getString(1)).thenReturn(number);
         when(mockCursorOne.getInt(2)).thenReturn(CallLog.Calls.PRESENTATION_RESTRICTED);
-        doReturn(mockCursorOne)
-                .when(mHfpMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any());
 
         Cursor mockCursorTwo = mock(Cursor.class);
         when(mockCursorTwo.moveToFirst()).thenReturn(true);
         String name = "k".repeat(30);
         when(mockCursorTwo.getString(0)).thenReturn(name);
         when(mockCursorTwo.getInt(1)).thenReturn(1);
-        doReturn(mockCursorTwo)
-                .when(mHfpMethodProxy)
-                .contentResolverQuery(any(), any(), any(), any(), any(), any());
 
         mAtPhonebook.mCurrentPhonebook = "RC";
         mAtPhonebook.mCpbrIndex1 = 1;
@@ -353,14 +334,6 @@ public class AtPhonebookTest {
         when(mockCursorOne.getInt(1)).thenReturn(Phone.TYPE_WORK);
         when(mockCursorOne.getString(2)).thenReturn(encodingNeededNumber);
         when(mockCursorOne.moveToNext()).thenReturn(false);
-        doReturn(mockCursorOne)
-                .when(mHfpMethodProxy)
-                .contentResolverQuery(
-                        any(),
-                        eq(DevicePolicyUtils.getEnterprisePhoneUri(mTargetContext)),
-                        any(),
-                        any(),
-                        any());
 
         mAtPhonebook.mCurrentPhonebook = "ME";
         mAtPhonebook.mCpbrIndex1 = 1;

@@ -38,7 +38,6 @@ import android.os.Handler;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.obex.HeaderSet;
 import com.android.obex.Operation;
@@ -61,8 +60,6 @@ import java.io.OutputStream;
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppObexServerSessionTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-
-    @Mock BluetoothMethodProxy mMethodProxy;
 
     Context mTargetContext;
     @Mock BluetoothObexTransport mTransport;
@@ -88,12 +85,10 @@ public class BluetoothOppObexServerSessionTest {
         doReturn(input).when(mTransport).openInputStream();
         doReturn(output).when(mTransport).openOutputStream();
 
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
     }
 
     @After
     public void tearDown() {
-        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -280,10 +275,6 @@ public class BluetoothOppObexServerSessionTest {
         headerSet.setHeader(HeaderSet.TYPE, mimeType);
         doReturn(headerSet).when(mOperation).getReceivedHeader();
 
-        doReturn(contentUri)
-                .when(mMethodProxy)
-                .contentResolverInsert(any(), eq(BluetoothShare.CONTENT_URI), any());
-
         // unblocking the session
         mServerSession.unblock();
         mServerSession.mAccepted = BluetoothShare.USER_CONFIRMATION_CONFIRMED;
@@ -306,7 +297,6 @@ public class BluetoothOppObexServerSessionTest {
         OutputStream os = mock(OutputStream.class);
         doReturn(is).when(mOperation).openInputStream();
         doReturn(10).when(mOperation).getMaxPacketSize();
-        doReturn(os).when(mMethodProxy).contentResolverOpenOutputStream(any(), eq(uri));
         doReturn((int) length, -1).when(is).read(any());
 
         assertThat(mServerSession.onPut(mOperation)).isEqualTo(ResponseCodes.OBEX_HTTP_OK);
