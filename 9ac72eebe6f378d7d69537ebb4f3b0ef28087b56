@@ -16,6 +16,23 @@
       "message": "Upstream from Meta! Thanks in advance for reviewing 😊",
       "revId": "9ac72eebe6f378d7d69537ebb4f3b0ef28087b56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfbd96bf_67fa3064",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T19:57:26Z",
+      "side": 1,
+      "message": "Hi Abhishek,\n\nThanks for the upload of the patch.\nBut I am not sure this is a good idea.\n\nI don\u0027t trust that Bluetooth is managing properly it\u0027s data, and if we were to allow the Bluetooth using the reserved disk space, we could potentially be the source of much more issues.\n\nHaving a Bluetooth failure doesn\u0027t looks so bad compare to having an unbootable system or who knows what can happens if the reserved space is full.\n\nLet me know what you think of that.",
+      "revId": "9ac72eebe6f378d7d69537ebb4f3b0ef28087b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
