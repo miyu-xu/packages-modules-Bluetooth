@@ -1124,6 +1124,9 @@ class HeadsetStateMachine extends StateMachine {
                         }
                     }
                     break;
+                case INTENT_SCO_VOLUME_CHANGED:
+                    processIntentScoVolume((Intent) message.obj, mDevice);
+                    break;
                 case INTENT_CONNECTION_ACCESS_REPLY:
                     handleAccessPermissionResult((Intent) message.obj);
                     break;
@@ -1613,6 +1616,7 @@ class HeadsetStateMachine extends StateMachine {
                         break;
                     }
                 case INTENT_SCO_VOLUME_CHANGED:
+                    // TODO: b/362313390 Remove this case once the fix is in place
                     processIntentScoVolume((Intent) message.obj, mDevice);
                     break;
                 case STACK_EVENT:
