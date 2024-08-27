@@ -5068,4 +5068,566 @@ public class BassClientServiceTest {
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
     }
+
+    private void prepareSynchronizedPair() {
+        prepareConnectedDeviceGroup();
+        startSearchingForSources();
+
+        // Scan and sync
+        onScanResult(mSourceDevice, TEST_BROADCAST_ID);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
+
+        // Add source
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        verifyAddSourceForGroup(meta);
+
+        // Bis syned
+        prepareRemoteSourceState(meta, true);
+        verify(mLeAudioService).activeBroadcastAssistantNotification(eq(true));
+    }
+
+    private void prepareSynchronizedPairAndStopSearching() {
+        prepareSynchronizedPair();
+
+        // Stop searching
+        mBassClientService.stopSearchingForSources();
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerUnregisterSync(any(), any());
+    }
+
+    private void sinkUnintentionalWithoutScanning() {
+        prepareSynchronizedPairAndStopSearching();
+
+        // Bis unsynced, SINK_INTENTIONAL, verify broadcast sync and MESSAGE_BIG_CHECK_START
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, false);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+
+        // No BIG, SINK_UNINTENTIONAL
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
+        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+    }
+
+    private void sinkUnintentionalDuringScanning() {
+        prepareSynchronizedPair();
+
+        // Bis unsynced, SINK_INTENTIONAL, verify MESSAGE_BIG_CHECK_START
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, false);
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+
+        // No BIG, SINK_UNINTENTIONAL
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
+    }
+
+    private void sinkIntentionalWithoutScanning() {
+        prepareSynchronizedPairAndStopSearching();
+
+        // Bis unsynced, SINK_INTENTIONAL, verify broadcast sync and MESSAGE_BIG_CHECK_START
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, false);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+
+        // BIG, SINK_INTENTIONAL
+        onPeriodicAdvertisingReport();
+        onBigInfoAdvertisingReport();
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
+        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+    }
+
+    private void sinkIntentionalDuringScanning() {
+        prepareSynchronizedPair();
+
+        // Bis unsynced, SINK_INTENTIONAL, verify MESSAGE_BIG_CHECK_START
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, false);
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+
+        // BIG, SINK_INTENTIONAL
+        onPeriodicAdvertisingReport();
+        onBigInfoAdvertisingReport();
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
+    }
+
+    private void checkResumeSynchronizationByBig() {
+        // BIG causes resume synchronization
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            clearInvocations(sm);
+        }
+        onPeriodicAdvertisingReport();
+        onBigInfoAdvertisingReport();
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        verifyAllGroupMembersGettingUpdateOrAddSource(meta);
+    }
+
+    private void checkNoResumeSynchronizationByBig() {
+        // BIG not cause resume synchronization
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            clearInvocations(sm);
+        }
+        onPeriodicAdvertisingReport();
+        onBigInfoAdvertisingReport();
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            verify(sm, never()).sendMessage(any());
+        }
+    }
+
+    private void checkResumeSynchronizationByHost() {
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            clearInvocations(sm);
+        }
+        mBassClientService.resumeReceiversSourceSynchronization();
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        verifyAllGroupMembersGettingUpdateOrAddSource(meta);
+    }
+
+    private void checkNoResumeSynchronizationByHost() {
+        // Verify empty resume list
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            clearInvocations(sm);
+        }
+        mBassClientService.resumeReceiversSourceSynchronization();
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            verify(sm, never()).sendMessage(any());
+        }
+    }
+
+    private void verifyStopBigMonitoringWithUnsync() {
+        checkNoMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_START);
+        checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_STOP);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerUnregisterSync(any(), any());
+    }
+
+    private void verifyStopBigMonitoringWithoutUnsync() {
+        checkNoMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_START);
+        checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_STOP);
+        mInOrderMethodProxy
+                .verify(mMethodProxy, never())
+                .periodicAdvertisingManagerUnregisterSync(any(), any());
+    }
+
+    private void resyncAndVerifyWithUnsync() {
+        // Resync, verify stopBigMonitoring with broadcast unsync
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, true);
+        verifyStopBigMonitoringWithUnsync();
+    }
+
+    private void resyncAndVerifyWithoutUnsync() {
+        // Resync, verify stopBigMonitoring without broadcast unsync
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, true);
+        verifyStopBigMonitoringWithoutUnsync();
+    }
+
+    private void checkNoSinkPause() {
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, false);
+        mInOrderMethodProxy
+                .verify(mMethodProxy, never())
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        checkNoMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_START);
+        checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_STOP);
+    }
+
+    @Test
+    public void sinkUnintentional_resync_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalWithoutScanning();
+        checkResumeSynchronizationByBig();
+        resyncAndVerifyWithUnsync();
+    }
+
+    @Test
+    public void sinkUnintentional_resync_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalDuringScanning();
+        checkResumeSynchronizationByBig();
+        resyncAndVerifyWithoutUnsync();
+    }
+
+    @Test
+    public void sinkUnintentional_addNewSource() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalDuringScanning();
+
+        // Scan and sync second broadcast
+        onScanResult(mSourceDevice2, TEST_BROADCAST_ID + 1);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        onSyncEstablished(mSourceDevice2, TEST_SYNC_HANDLE + 1);
+
+        // Add second source, HOST_INTENTIONAL
+        BluetoothLeBroadcastMetadata.Builder builder =
+                new BluetoothLeBroadcastMetadata.Builder()
+                        .setEncrypted(false)
+                        .setSourceDevice(mSourceDevice2, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+                        .setSourceAdvertisingSid(TEST_ADVERTISER_SID)
+                        .setBroadcastId(TEST_BROADCAST_ID + 1)
+                        .setBroadcastCode(null)
+                        .setPaSyncInterval(TEST_PA_SYNC_INTERVAL)
+                        .setPresentationDelayMicros(TEST_PRESENTATION_DELAY_MS);
+        // builder expect at least one subgroup
+        builder.addSubgroup(createBroadcastSubgroup());
+        BluetoothLeBroadcastMetadata meta2 = builder.build();
+        mBassClientService.addSource(mCurrentDevice, meta2, true);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        // BIG for first broadcast not cause resume synchronization
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    public void sinkUnintentional_removeSource_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalWithoutScanning();
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        verifyStopBigMonitoringWithUnsync();
+    }
+
+    @Test
+    public void sinkUnintentional_removeSource_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalDuringScanning();
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    public void sinkUnintentional_stopReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalWithoutScanning();
+
+        // Stop receivers, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithUnsync();
+
+        checkNoResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkUnintentional_stopReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalDuringScanning();
+
+        // Stop receivers, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+        checkNoResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkUnintentional_suspendReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalWithoutScanning();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithUnsync();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkUnintentional_suspendReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalDuringScanning();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkUnintentional_suspendAllReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalWithoutScanning();
+
+        // Suspend all receivers, HOST_INTENTIONAL
+        mBassClientService.suspendAllReceiversSourceSynchronization();
+        verifyStopBigMonitoringWithUnsync();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkUnintentional_suspendAllReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkUnintentionalDuringScanning();
+
+        // Suspend all receivers, HOST_INTENTIONAL
+        mBassClientService.suspendAllReceiversSourceSynchronization();
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkIntentional_resync_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalWithoutScanning();
+        checkNoResumeSynchronizationByBig();
+        resyncAndVerifyWithUnsync(); // By remote
+    }
+
+    @Test
+    public void sinkIntentional_resync_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalDuringScanning();
+        checkNoResumeSynchronizationByBig();
+        resyncAndVerifyWithoutUnsync(); // By remote
+    }
+
+    @Test
+    public void sinkIntentional_addNewSource() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalDuringScanning();
+
+        // Scan and sync second broadcast
+        onScanResult(mSourceDevice2, TEST_BROADCAST_ID + 1);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        onSyncEstablished(mSourceDevice2, TEST_SYNC_HANDLE + 1);
+
+        // Add second source, HOST_INTENTIONAL
+        BluetoothLeBroadcastMetadata.Builder builder =
+                new BluetoothLeBroadcastMetadata.Builder()
+                        .setEncrypted(false)
+                        .setSourceDevice(mSourceDevice2, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+                        .setSourceAdvertisingSid(TEST_ADVERTISER_SID)
+                        .setBroadcastId(TEST_BROADCAST_ID + 1)
+                        .setBroadcastCode(null)
+                        .setPaSyncInterval(TEST_PA_SYNC_INTERVAL)
+                        .setPresentationDelayMicros(TEST_PRESENTATION_DELAY_MS);
+        // builder expect at least one subgroup
+        builder.addSubgroup(createBroadcastSubgroup());
+        BluetoothLeBroadcastMetadata meta2 = builder.build();
+        mBassClientService.addSource(mCurrentDevice, meta2, true);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        // BIG for first broadcast not cause resume synchronization
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    public void sinkIntentional_removeSource_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalWithoutScanning();
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        verifyStopBigMonitoringWithUnsync();
+    }
+
+    @Test
+    public void sinkIntentional_removeSource_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalDuringScanning();
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    public void sinkIntentional_stopReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalWithoutScanning();
+
+        // Stop receivers, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithUnsync();
+
+        checkNoResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkIntentional_stopReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalDuringScanning();
+
+        // Stop receivers, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+        checkNoResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkIntentional_suspendReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalWithoutScanning();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithUnsync();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkIntentional_suspendReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalDuringScanning();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkIntentional_suspendAllReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalWithoutScanning();
+
+        // Suspend all receivers, HOST_INTENTIONAL
+        mBassClientService.suspendAllReceiversSourceSynchronization();
+        verifyStopBigMonitoringWithUnsync();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void sinkIntentional_suspendAllReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        sinkIntentionalDuringScanning();
+
+        // Suspend all receivers, HOST_INTENTIONAL
+        mBassClientService.suspendAllReceiversSourceSynchronization();
+        verifyStopBigMonitoringWithoutUnsync();
+
+        checkNoResumeSynchronizationByBig();
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void hostIntentional_removeSource_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPairAndStopSearching();
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        checkNoSinkPause();
+    }
+
+    @Test
+    public void hostIntentional_removeSource_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPair();
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        checkNoSinkPause();
+    }
+
+    @Test
+    public void hostIntentional_stopReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPairAndStopSearching();
+
+        // Stop receivers, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        checkNoSinkPause();
+    }
+
+    @Test
+    public void hostIntentional_stopReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPair();
+
+        // Stop receivers, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        checkNoSinkPause();
+    }
+
+    @Test
+    public void hostIntentional_suspendReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPairAndStopSearching();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        checkNoSinkPause();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void hostIntentional_suspendReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPair();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        checkNoSinkPause();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void hostIntentional_suspendAllReceivers_withoutScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPairAndStopSearching();
+
+        // Suspend all receivers, HOST_INTENTIONAL
+        mBassClientService.suspendAllReceiversSourceSynchronization();
+        checkNoSinkPause();
+
+        checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    public void hostIntentional_suspendAllReceivers_duringScanning() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE);
+        prepareSynchronizedPair();
+
+        // Suspend all receivers, HOST_INTENTIONAL
+        mBassClientService.suspendAllReceiversSourceSynchronization();
+        checkNoSinkPause();
+
+        checkResumeSynchronizationByHost();
+    }
 }
