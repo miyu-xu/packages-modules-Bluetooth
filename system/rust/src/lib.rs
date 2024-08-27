@@ -29,8 +29,6 @@ use tokio::sync::mpsc;
 #[cfg(feature = "via_android_bp")]
 mod do_not_use {
     // DO NOT USE
-    #[allow(unused)]
-    use bt_shim::*;
 }
 
 pub mod connection;

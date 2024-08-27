@@ -426,7 +426,6 @@ mod tests {
     // A workaround needed for linking. For more details, check the comment in
     // system/gd/rust/topshim/facade/src/main.rs
     #[allow(unused)]
-    use bt_shim::*;
     use serde_json::{json, Value};
 
     #[test]
