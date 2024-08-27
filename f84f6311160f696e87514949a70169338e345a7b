@@ -123,6 +123,24 @@
       "parentUuid": "57631560_3c47b399",
       "revId": "f84f6311160f696e87514949a70169338e345a7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc5f7b9_23960fad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-08-27T17:15:33Z",
+      "side": 1,
+      "message": "Thanks! Dr.No granted, I\u0027ll let the other assignees review the code",
+      "parentUuid": "a7ef875c_8ceccbdc",
+      "revId": "f84f6311160f696e87514949a70169338e345a7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
