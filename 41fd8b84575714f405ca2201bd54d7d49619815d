@@ -1,6 +1,231 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ce0890_de349662",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "I believe the cast should be `reinterpret_cast\u003cconst jbyte*\u003e`",
+      "range": {
+        "startLine": 221,
+        "startChar": 72,
+        "endLine": 221,
+        "endChar": 80
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6adbe9ad_7f9d2c0f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 70,
+                "startChar": 0,
+                "endLine": 71,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 128,
+                "startChar": 0,
+                "endLine": 129,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 153,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 174,
+                "startChar": 0,
+                "endLine": 175,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 198,
+                "startChar": 0,
+                "endLine": 199,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 221,
+                "startChar": 0,
+                "endLine": 222,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 243,
+                "startChar": 0,
+                "endLine": 244,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 265,
+                "startChar": 0,
+                "endLine": 266,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 287,
+                "startChar": 0,
+                "endLine": 288,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 311,
+                "startChar": 0,
+                "endLine": 312,
+                "endChar": 0
+              },
+              "replacement": "    sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                     reinterpret_cast\u003cconst jbyte*\u003e(\u0026bd_addr));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5bcba16_90a85614",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "You don\u0027t need to repeat the function name in these logs are they will be included by the log function",
+      "range": {
+        "startLine": 239,
+        "startChar": 55,
+        "endLine": 239,
+        "endChar": 80
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d51a6e93_93b24d1f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 239,
+                "startChar": 0,
+                "endLine": 240,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Failed to new jbyteArray bd addr\");\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 261,
+                "startChar": 0,
+                "endLine": 262,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Failed to new jbyteArray bd addr\");\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_vc.cpp",
+              "range": {
+                "startLine": 283,
+                "startChar": 0,
+                "endLine": 284,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Failed to new jbyteArray bd addr\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de53194b_28e6a2a4",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "nit extra space",
+      "range": {
+        "startLine": 257,
+        "startChar": 23,
+        "endLine": 257,
+        "endChar": 24
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c350e522_be94b0de",
@@ -19,6 +244,208 @@
         "startChar": 46,
         "endLine": 389,
         "endChar": 53
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f47ffaa_3afbc2a0",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "Generic question about VolumeControl, but why are we putting \"ext\" everywhere ?\n\nDoes that mean there is an \"internal\" somewhere ?",
+      "range": {
+        "startLine": 502,
+        "startChar": 29,
+        "endLine": 502,
+        "endChar": 33
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1bc90f_061aa4e9",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "I am surprised to see manual parsing instead of PDL.\nI thought any new code was supposed to use PDL.",
+      "range": {
+        "startLine": 562,
+        "startChar": 3,
+        "endLine": 565,
+        "endChar": 47
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017ed1b2_af192f40",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we perform data validation here ?",
+      "range": {
+        "startLine": 607,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 27
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8f352cc_2052922f",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "why do you have a parameter if we don\u0027t need it ?\n\nWhat is the goal of this method ? Can\u0027t we simply delete it ?",
+      "range": {
+        "startLine": 636,
+        "startChar": 27,
+        "endLine": 636,
+        "endChar": 41
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c1adf3_9f5307ce",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "nit extra space",
+      "range": {
+        "startLine": 650,
+        "startChar": 17,
+        "endLine": 650,
+        "endChar": 18
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76b3d224_968c4acc",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "why \"verifyReady\" ? is this to indicate you will call verifyReady below ? or did you mean to add something else to log after it ?",
+      "range": {
+        "startLine": 1284,
+        "startChar": 32,
+        "endLine": 1284,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "474f611b_805fde38",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/vc/vc.cc",
+              "range": {
+                "startLine": 1284,
+                "startChar": 0,
+                "endLine": 1285,
+                "endChar": 0
+              },
+              "replacement": "    log::debug(\"{}, isReady {}\", device-\u003eaddress, device-\u003eIsReady());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be04260b_feaa552e",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "When the device is ready we are sending id / gain_value / mode / mute but shouldn\u0027t we also send the status / type and other data ?",
+      "range": {
+        "startLine": 1303,
+        "startChar": 7,
+        "endLine": 1304,
+        "endChar": 69
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9997d6a_9490d74f",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-27T00:14:41Z",
+      "side": 1,
+      "message": "nit extra space",
+      "range": {
+        "startLine": 1340,
+        "startChar": 15,
+        "endLine": 1340,
+        "endChar": 16
       },
       "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
