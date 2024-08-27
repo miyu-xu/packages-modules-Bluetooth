@@ -168,6 +168,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public int getState() {
+        if (Flags.getStateFromSystemServer()) {
+            return mBluetoothManagerService.getState();
+        }
         if (!isCallerSystem(getCallingAppId())
                 && !mPermissionUtils.checkIfCallerIsForegroundUser(mUserManager)) {
             Log.w(TAG, "getState(): UNAUTHORIZED. Report OFF for non-active and non system user");
