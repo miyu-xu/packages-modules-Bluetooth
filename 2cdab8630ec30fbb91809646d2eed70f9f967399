@@ -1,0 +1,103 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52485f30_1a8245c8",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-27T23:31:56Z",
+      "side": 1,
+      "message": "Should this be a warning?  Bluetooth chips reuse connection handles pretty frequently.",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 64
+      },
+      "revId": "2cdab8630ec30fbb91809646d2eed70f9f967399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d31e906_068445b4",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-27T23:31:56Z",
+      "side": 1,
+      "message": "This looks like it was moved to init_cs_tracker.  Remove?",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1260d453_f73b000b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 285,
+                "startChar": 0,
+                "endLine": 291,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "2cdab8630ec30fbb91809646d2eed70f9f967399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e633856_8461761a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-27T23:31:56Z",
+      "side": 1,
+      "message": "nit: was started by the",
+      "fixSuggestions": [
+        {
+          "fixId": "dd95d7c1_4871ffcd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 1423,
+                "startChar": 0,
+                "endLine": 1424,
+                "endChar": 0
+              },
+              "replacement": "    bool local_start \u003d false;  // If the CS was started by the local device.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2cdab8630ec30fbb91809646d2eed70f9f967399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
