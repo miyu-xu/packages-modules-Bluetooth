@@ -33,6 +33,24 @@
       "message": "nit: we don\u0027t need this else",
       "revId": "910bc5977915bf051dda52426c1ed82a5800728e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b831690_3283836d",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-08-27T08:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10411181_441c185b",
+      "revId": "910bc5977915bf051dda52426c1ed82a5800728e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
