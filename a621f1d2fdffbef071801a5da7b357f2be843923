@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde234b2_c3f5e31b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-27T00:43:42Z",
+      "side": 1,
+      "message": "Please provide a valid flag exemption reason, as bug fix is not a valid exemption reason. This can be something like \"only affects AL devices, does not impact phones\". Thank you.",
+      "revId": "a621f1d2fdffbef071801a5da7b357f2be843923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
