@@ -16,6 +16,23 @@
       "message": "Shouldn\u0027t this be reset on SetUp ?",
       "revId": "bd528f030e7318d7aaa40a599ada1c54f34aac34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4002843_9df08454",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 8479,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-28T14:00:28Z",
+      "side": 1,
+      "message": "is this complete comment ? \"(for stereo\" ?",
+      "revId": "bd528f030e7318d7aaa40a599ada1c54f34aac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
