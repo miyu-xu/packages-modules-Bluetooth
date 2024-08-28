@@ -285,6 +285,24 @@
       "parentUuid": "72c28d9e_ccc75df5",
       "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "408b5687_c1e01058",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-08-28T10:14:05Z",
+      "side": 1,
+      "message": "Hey @cmanton@google.com, how are you doing? Any updates on this? Thanks.",
+      "parentUuid": "eeed8274_e725cb53",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
