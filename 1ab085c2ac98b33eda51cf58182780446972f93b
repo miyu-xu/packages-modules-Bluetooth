@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80262c5_eb61a249",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ceeb2b28_f6328a58",
+      "range": {
+        "startLine": 279,
+        "startChar": 24,
+        "endLine": 279,
+        "endChar": 35
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aa59845_0ed0865b",
@@ -84,6 +108,30 @@
       "writtenOn": "2024-08-26T17:06:18Z",
       "side": 1,
       "message": "Can we inline the cast here?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 36
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "410d1bf0_a2882848",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aa59845_0ed0865b",
       "range": {
         "startLine": 470,
         "startChar": 0,
@@ -117,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "847b1cf6_62e63e69",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "This is a later change on top of this one class-enum ifying `tL2CAP_CONN` which erroneously got mixed into this CL.\n\nThis works b/c tL2CAP_CONN is still a uint16_t at this point.\n\nThis function signature will be removed from this CL as it is done in a future CL.",
+      "parentUuid": "75f9b8d1_bfb0c23a",
+      "range": {
+        "startLine": 504,
+        "startChar": 22,
+        "endLine": 504,
+        "endChar": 28
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b4c3042_cd27aa6f",
@@ -130,6 +202,30 @@
       "writtenOn": "2024-08-26T17:06:18Z",
       "side": 1,
       "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3135,
+        "startChar": 0,
+        "endLine": 3136,
+        "endChar": 33
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "836b6db5_39294d78",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3136,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b4c3042_cd27aa6f",
       "range": {
         "startLine": 3135,
         "startChar": 0,
@@ -163,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8abf291_e4ecff1a",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3171,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d67eb507_2f440c22",
+      "range": {
+        "startLine": 3170,
+        "startChar": 0,
+        "endLine": 3171,
+        "endChar": 33
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bd25086_df91c06d",
@@ -186,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4af9f6c_bdd9ff6f",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3221,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bd25086_df91c06d",
+      "range": {
+        "startLine": 3217,
+        "startChar": 0,
+        "endLine": 3221,
+        "endChar": 33
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52da2174_8ca3638b",
@@ -199,6 +343,30 @@
       "writtenOn": "2024-08-26T17:06:18Z",
       "side": 1,
       "message": "```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3330,
+        "startChar": 0,
+        "endLine": 3331,
+        "endChar": 34
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85aba1f_fa257e1c",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3331,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:47:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52da2174_8ca3638b",
       "range": {
         "startLine": 3330,
         "startChar": 0,
