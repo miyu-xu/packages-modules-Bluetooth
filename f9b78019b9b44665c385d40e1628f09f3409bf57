@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39a01870_b4e4f3d0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-08-28T21:37:45Z",
+      "side": 1,
+      "message": "I don\u0027t see where it was checked. @chienyuan to confirm.\nI think le connection is required commonly for both RSSI and CS.",
+      "parentUuid": "abae899e_0c421311",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 95
+      },
+      "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c71a3d34_d3129196",
         "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
         "patchSetId": 5
@@ -37,6 +61,24 @@
       "writtenOn": "2024-08-28T21:06:00Z",
       "side": 1,
       "message": "It would be nice to add a test case that covers the new lines of code",
+      "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8272f7c6_6376a4e3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-08-28T21:37:45Z",
+      "side": 1,
+      "message": "it seems there is no any test about the channel sounding; any reason? @chienyuan",
+      "parentUuid": "c71a3d34_d3129196",
       "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
