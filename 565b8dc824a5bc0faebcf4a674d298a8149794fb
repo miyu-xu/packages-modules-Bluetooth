@@ -39,6 +39,30 @@
       },
       "revId": "565b8dc824a5bc0faebcf4a674d298a8149794fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "420243ad_117d85bf",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-28T08:11:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55700cd6_abac4f34",
+      "range": {
+        "startLine": 1493,
+        "startChar": 0,
+        "endLine": 1494,
+        "endChar": 64
+      },
+      "revId": "565b8dc824a5bc0faebcf4a674d298a8149794fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

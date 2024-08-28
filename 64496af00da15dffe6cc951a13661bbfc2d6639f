@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba90c43d_1b808e0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-28T08:11:09Z",
+      "side": 1,
+      "message": "Hi @melhuishj@google.com, feel free to postpone this CL after your fix for ARC",
+      "revId": "64496af00da15dffe6cc951a13661bbfc2d6639f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
