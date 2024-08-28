@@ -39,6 +39,30 @@
       },
       "revId": "3448185e65873286bc877c81f012cfdd64690f93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0923c39_56a018cb",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-28T06:34:33Z",
+      "side": 1,
+      "message": "I think for 2 reasons that we prefer sysprop (1) more flexible, not yet find it needs to be set differently in different platform but prepare for the future and also (2) we are moving away the #if Floss. Is there any concern in adding this to sysprop?",
+      "parentUuid": "a13ce413_4431b823",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 3
+      },
+      "revId": "3448185e65873286bc877c81f012cfdd64690f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
