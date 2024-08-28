@@ -73,6 +73,7 @@ static SecurityClientInterface security = {
         .BTM_GetSecurityMode = BTM_GetSecurityMode,
 
         .BTM_SecReadDevName = BTM_SecReadDevName,
+        .BTM_SecReadDevClass = BTM_SecReadDevClass,
         .BTM_SecAddRmtNameNotifyCallback = BTM_SecAddRmtNameNotifyCallback,
         .BTM_SecDeleteRmtNameNotifyCallback = BTM_SecDeleteRmtNameNotifyCallback,
 };
