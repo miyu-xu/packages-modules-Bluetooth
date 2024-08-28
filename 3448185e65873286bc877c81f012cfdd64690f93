@@ -63,6 +63,30 @@
       },
       "revId": "3448185e65873286bc877c81f012cfdd64690f93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "222ec8f3_7df7b14d",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T06:36:40Z",
+      "side": 1,
+      "message": "My only worry is that when there are a lot of knobs to set, it is hard to get them all configured correctly.  I agree that it\u0027s more flexible, though.",
+      "parentUuid": "b0923c39_56a018cb",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 3
+      },
+      "revId": "3448185e65873286bc877c81f012cfdd64690f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
