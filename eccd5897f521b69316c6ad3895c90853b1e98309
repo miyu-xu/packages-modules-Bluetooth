@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9187579_754183df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-28T08:21:34Z",
+      "side": 1,
+      "message": "Hi, PTAL! This is for aosp/3235675. Thanks~",
+      "revId": "eccd5897f521b69316c6ad3895c90853b1e98309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
