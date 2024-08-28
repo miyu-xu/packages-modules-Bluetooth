@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3dd10161_203f42dc",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T15:21:54Z",
+      "side": 1,
+      "message": "Yes, yes it does.  \n\nThis intended to highlight this result code effectively `union`s both types of results into a single u16.  The source and sink are aware of it which is why it mostly works.  \n\nHowever,If a `L2CAP_CONN` is sourced and incorrectly sinked as a `LE_RESULT` that could be a problem, but for that several of the underlying values actually overlap correctly.\n\nThis is done due to the limitations of passing around a single connection info for both le and classic channel state machines.\n\nFuture revisions could address this by breaking them out into separate fields, or use a proper class structure to allow the language to provide this feature.\n\nThere are other statuses and fields that are intermingled with contextual required uint_t elsewhere too. (L2CAP_CFG, l2cap error callback, etc)",
+      "parentUuid": "8874b5b4_cb241346",
+      "range": {
+        "startLine": 698,
+        "startChar": 38,
+        "endLine": 698,
+        "endChar": 49
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ceeb2b28_f6328a58",
         "filename": "system/stack/l2cap/l2c_ble.cc",
         "patchSetId": 2
