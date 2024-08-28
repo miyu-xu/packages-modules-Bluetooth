@@ -16,6 +16,24 @@
       "message": "add avrcp owner for visibility",
       "revId": "19bb75446f3d5f7931cec951d4668619b2254d54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df23d0e4_608869a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-28T22:41:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "12b0b96d_88750a44",
+      "revId": "19bb75446f3d5f7931cec951d4668619b2254d54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
