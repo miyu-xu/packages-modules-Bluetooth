@@ -3325,8 +3325,8 @@ public class GattService extends ProfileService {
         } else {
             HandleMap.RequestData requestData = mHandleMap.getRequestDataByRequestId(requestId);
             if (requestData != null) {
-                handle = requestData.handle;
-                connId = requestData.connId;
+                handle = requestData.mHandle;
+                connId = requestData.mConnId;
             } else {
                 connId = mServerMap.connIdByAddress(serverIf, address);
             }

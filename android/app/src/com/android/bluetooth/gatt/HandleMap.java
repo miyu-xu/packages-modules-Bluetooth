@@ -17,8 +17,6 @@ package com.android.bluetooth.gatt;
 
 import android.util.Log;
 
-import com.android.bluetooth.flags.Flags;
-
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -89,36 +87,27 @@ class HandleMap {
     }
 
     static class RequestData {
-        int connId;
-        int handle;
+        int mConnId;
+        int mHandle;
 
         RequestData(int connId, int handle) {
-            this.connId = connId;
-            this.handle = handle;
+            mConnId = connId;
+            mHandle = handle;
         }
     }
 
     List<Entry> mEntries = null;
-    Map<Integer, Integer> mRequestMap = null;
-    Map<Integer, RequestData> mEnhancedRequestMap = null;
+    Map<Integer, RequestData> mRequestMap = null;
     int mLastCharacteristic = 0;
 
     HandleMap() {
         mEntries = new CopyOnWriteArrayList<Entry>();
-        if (!Flags.gattServerRequestsFix()) {
-            mRequestMap = new ConcurrentHashMap<Integer, Integer>();
-        } else {
-            mEnhancedRequestMap = new ConcurrentHashMap<Integer, RequestData>();
-        }
+        mRequestMap = new ConcurrentHashMap<Integer, RequestData>();
     }
 
     void clear() {
         mEntries.clear();
-        if (!Flags.gattServerRequestsFix()) {
-            mRequestMap.clear();
-        } else {
-            mEnhancedRequestMap.clear();
-        }
+        mRequestMap.clear();
     }
 
     void addService(
@@ -192,30 +181,18 @@ class HandleMap {
     }
 
     void addRequest(int connId, int requestId, int handle) {
-        if (!Flags.gattServerRequestsFix()) {
-            mRequestMap.put(requestId, handle);
-        } else {
-            mEnhancedRequestMap.put(requestId, new RequestData(connId, handle));
-        }
+        mRequestMap.put(requestId, new RequestData(connId, handle));
     }
 
     void deleteRequest(int requestId) {
-        if (!Flags.gattServerRequestsFix()) {
-            mRequestMap.remove(requestId);
-        } else {
-            mEnhancedRequestMap.remove(requestId);
-        }
+        mRequestMap.remove(requestId);
     }
 
     Entry getByRequestId(int requestId) {
         Integer handle = null;
-        if (!Flags.gattServerRequestsFix()) {
-            handle = mRequestMap.get(requestId);
-        } else {
-            RequestData data = mEnhancedRequestMap.get(requestId);
-            if (data != null) {
-                handle = data.handle;
-            }
+        RequestData data = mRequestMap.get(requestId);
+        if (data != null) {
+            handle = data.mHandle;
         }
 
         if (handle == null) {
@@ -226,14 +203,14 @@ class HandleMap {
     }
 
     RequestData getRequestDataByRequestId(int requestId) {
-        RequestData data = mEnhancedRequestMap.get(requestId);
+        RequestData data = mRequestMap.get(requestId);
         if (data == null) {
             Log.e(TAG, "getRequestDataByRequestId() - Request ID " + requestId + " not found!");
         } else {
             Log.d(
                     TAG,
                     ("getRequestDataByRequestId(), requestId=" + requestId)
-                            + (", connId=" + data.connId + ",handle=" + data.handle));
+                            + (", connId=" + data.mConnId + ",handle=" + data.mHandle));
         }
 
         return data;
@@ -242,11 +219,7 @@ class HandleMap {
     /** Logs debug information. */
     void dump(StringBuilder sb) {
         sb.append("  Entries: ").append(mEntries.size()).append("\n");
-        if (!Flags.gattServerRequestsFix()) {
-            sb.append("  Requests: ").append(mRequestMap.size()).append("\n");
-        } else {
-            sb.append("  Requests: ").append(mEnhancedRequestMap.size()).append("\n");
-        }
+        sb.append("  Requests: ").append(mRequestMap.size()).append("\n");
 
         for (Entry entry : mEntries) {
             sb.append("  ").append(entry.serverIf).append(": [").append(entry.handle).append("] ");
