@@ -776,8 +776,22 @@ void Device::GetElementAttributesResponse(uint8_t label,
       }
     }
   } else {  // zero attributes requested which means all attributes requested
-    for (const auto& attribute : info.attributes) {
-      response->AddAttributeEntry(attribute);
+    std::vector<Attribute> all_attributes = {Attribute::TITLE,
+                                             Attribute::ARTIST_NAME,
+                                             Attribute::ALBUM_NAME,
+                                             Attribute::TRACK_NUMBER,
+                                             Attribute::TOTAL_NUMBER_OF_TRACKS,
+                                             Attribute::GENRE,
+                                             Attribute::PLAYING_TIME,
+                                             Attribute::DEFAULT_COVER_ART};
+    for (const auto& attribute : all_attributes) {
+      if (info.attributes.find(attribute) != info.attributes.end()) {
+        response->AddAttributeEntry(*info.attributes.find(attribute));
+      } else {
+        // If all attributes were requested, we send a response even for attributes that we don't
+        // have a value for.
+        response->AddAttributeEntry(attribute, std::string());
+      }
     }
   }
 
