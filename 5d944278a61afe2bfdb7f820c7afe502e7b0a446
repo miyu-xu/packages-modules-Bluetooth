@@ -52,6 +52,24 @@
       "parentUuid": "c8255477_fce2c181",
       "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce07e95_88e0aa48",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T17:08:31Z",
+      "side": 1,
+      "message": "Thanks for clarifying.",
+      "parentUuid": "fca042f8_ef87db6e",
+      "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
