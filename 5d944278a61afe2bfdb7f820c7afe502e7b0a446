@@ -34,6 +34,24 @@
       "parentUuid": "9338e72c_f5e7aa24",
       "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca042f8_ef87db6e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-08-28T17:05:30Z",
+      "side": 1,
+      "message": "No,I\u0027m talking about the ble role - \u0027central\u0027 or \u0027peripheral\u0027, if the measurement started by a peripheral device, the local_start is still true. I think we need check the role specifically.",
+      "parentUuid": "c8255477_fce2c181",
+      "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
