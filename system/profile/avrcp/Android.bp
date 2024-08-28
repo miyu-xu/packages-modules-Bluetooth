@@ -116,8 +116,12 @@ cc_fuzz {
         "packages/modules/Bluetooth/system/packet/tests",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    shared_libs: [
+        "server_configurable_flags",
+    ],
     static_libs: [
         "avrcp-target-service",
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
