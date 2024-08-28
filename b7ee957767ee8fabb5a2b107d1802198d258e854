@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a97f31_a619f71c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-08-28T21:22:27Z",
+      "side": 1,
+      "message": "Unsafe changes are just formatting.",
+      "revId": "b7ee957767ee8fabb5a2b107d1802198d258e854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
