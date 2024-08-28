@@ -22,6 +22,30 @@
       },
       "revId": "c8c8cdf2c150183bb1f18e9343e6fd99182b2ecd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37cf2cfa_8906b436",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-28T18:53:02Z",
+      "side": 0,
+      "message": "This will require aosp/3247857 to fix the aconfig rust code generator",
+      "parentUuid": "aea251b0_4ea9bc80",
+      "range": {
+        "startLine": 149,
+        "startChar": 23,
+        "endLine": 149,
+        "endChar": 64
+      },
+      "revId": "c8c8cdf2c150183bb1f18e9343e6fd99182b2ecd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
