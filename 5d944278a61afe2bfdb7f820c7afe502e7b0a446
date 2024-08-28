@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9338e72c_f5e7aa24",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-08-28T15:02:03Z",
+      "side": 1,
+      "message": "according to spec, the security_enable should only be sent by the \u0027central\u0027. or would you like to change it later?",
+      "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
