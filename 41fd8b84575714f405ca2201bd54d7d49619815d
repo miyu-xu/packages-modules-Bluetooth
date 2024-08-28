@@ -159,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a112c1a9_e7c8dbde",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:14:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1ce0890_de349662",
+      "range": {
+        "startLine": 221,
+        "startChar": 72,
+        "endLine": 221,
+        "endChar": 80
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5bcba16_90a85614",
@@ -216,6 +240,30 @@
           ]
         }
       ],
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02170816_eca36c14",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:14:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5bcba16_90a85614",
+      "range": {
+        "startLine": 239,
+        "startChar": 55,
+        "endLine": 239,
+        "endChar": 80
+      },
       "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -562,6 +610,30 @@
           ]
         }
       ],
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd4d5c6_48a7e48b",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:14:43Z",
+      "side": 1,
+      "message": "looks maybe there should be {} after that and `device-\u003eVerifyRead(handle)`, but since we have a log behind the `if (device-\u003eVerifyRead(handle))` I will remove this part.",
+      "parentUuid": "76b3d224_968c4acc",
+      "range": {
+        "startLine": 1284,
+        "startChar": 32,
+        "endLine": 1284,
+        "endChar": 43
+      },
       "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
