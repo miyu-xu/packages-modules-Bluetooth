@@ -16,6 +16,24 @@
       "message": "according to spec, the security_enable should only be sent by the \u0027central\u0027. or would you like to change it later?",
       "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8255477_fce2c181",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T16:57:09Z",
+      "side": 1,
+      "message": "I thought that was what \"local_start\" is tracking.",
+      "parentUuid": "9338e72c_f5e7aa24",
+      "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
