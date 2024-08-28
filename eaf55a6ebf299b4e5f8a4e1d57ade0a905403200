@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b77c6f55_8e10a34b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-28T18:38:55Z",
+      "side": 1,
+      "message": "I am sorry but that looks like a behavior change that is sending a different information to the remote.\n\nI think we will prefer to flag this.\n\nFlagging will allow a progressive ramp-up of the change and provide a way to revert the change if something unplanned happend",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "eaf55a6ebf299b4e5f8a4e1d57ade0a905403200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7d5009_31f56481",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-28T18:38:55Z",
+      "side": 1,
+      "message": "if you add a comma here, clang format will produce a nicer output 😊:\n```\n    std::vector\u003cAttribute\u003e all_attributes \u003d {\n            Attribute::TITLE,\n            Attribute::ARTIST_NAME,\n            Attribute::ALBUM_NAME,\n            Attribute::TRACK_NUMBER,\n            Attribute::TOTAL_NUMBER_OF_TRACKS,\n            Attribute::GENRE,\n            Attribute::PLAYING_TIME,\n            Attribute::DEFAULT_COVER_ART,\n    };\n```",
+      "range": {
+        "startLine": 786,
+        "startChar": 73,
+        "endLine": 786,
+        "endChar": 75
+      },
+      "revId": "eaf55a6ebf299b4e5f8a4e1d57ade0a905403200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d51a6db_5ca3a4f5",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-28T18:38:55Z",
+      "side": 1,
+      "message": "I am worry about this.\n\nDoes the spec specify as empty string the content of an entry if we don\u0027t have the info?",
+      "range": {
+        "startLine": 793,
+        "startChar": 47,
+        "endLine": 793,
+        "endChar": 60
+      },
+      "revId": "eaf55a6ebf299b4e5f8a4e1d57ade0a905403200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
