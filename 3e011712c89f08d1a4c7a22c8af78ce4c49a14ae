@@ -112,6 +112,30 @@
       },
       "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7372b48_a513e35f",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T06:35:09Z",
+      "side": 1,
+      "message": "2nd part: Agreed.\n\n1st part:\nThose checks were added this April, so I think they are trying to address the same style of life-cycle issue.",
+      "parentUuid": "4f87499b_4ecf5165",
+      "range": {
+        "startLine": 861,
+        "startChar": 0,
+        "endLine": 861,
+        "endChar": 86
+      },
+      "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
