@@ -81,6 +81,24 @@
       "parentUuid": "c71a3d34_d3129196",
       "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f699be1d_8f072269",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T21:42:49Z",
+      "side": 1,
+      "message": "My guess is lack of bandwidth, CS is a big project.  I was surprised that a Channel-sounding-specific change broke the RSSI tests, though, which is why I took a closer look.",
+      "parentUuid": "8272f7c6_6376a4e3",
+      "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
