@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10b4251_af4c1008",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T00:18:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cdd6e4d_802751d1",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 1
+      },
+      "revId": "ccc5031f563cbd8dbac48ade8cfdd45ad333c3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "188e171f_5c9401ce",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "348d75c3_3ed4e7aa",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T00:18:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "188e171f_5c9401ce",
+      "range": {
+        "startLine": 505,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 85
+      },
+      "revId": "ccc5031f563cbd8dbac48ade8cfdd45ad333c3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df3ec0c4_02c27b63",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-08-26T16:53:44Z",
       "side": 1,
       "message": "Can we inline the cast?\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 3289,
+        "startChar": 0,
+        "endLine": 3290,
+        "endChar": 39
+      },
+      "revId": "ccc5031f563cbd8dbac48ade8cfdd45ad333c3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23098af5_dc59f724",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3290,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T00:18:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df3ec0c4_02c27b63",
       "range": {
         "startLine": 3289,
         "startChar": 0,
