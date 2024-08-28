@@ -64,6 +64,30 @@
       },
       "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8511deec_71907a8f",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T00:07:15Z",
+      "side": 1,
+      "message": "I\u0027m worried that if we didn\u0027t add the packet to the queue, there may be nothing in the queue.  That doesn\u0027t look like it\u0027s handled very well down below.\n\nI\u0027m also thinking that the only way to have a null q is when Bluetooth is shutting down, so we don\u0027t care about scheduling the next packet....",
+      "parentUuid": "ca84855b_273b1cec",
+      "range": {
+        "startLine": 861,
+        "startChar": 0,
+        "endLine": 861,
+        "endChar": 86
+      },
+      "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
