@@ -408,6 +408,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d60f1e1_cbe8adb5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-28T06:35:35Z",
+      "side": 1,
+      "message": "We do not need a flag to store another piece of data that is unused. It\u0027s enough to only guard the usage of that data with the flag.\n\nA single CL is also sufficient. With the enhanced data map we don\u0027t need flagging in this file, and can retain the flagged logic in GattService.\n\nSee aosp/3246782 - I think this is perfectly fine",
+      "parentUuid": "3059b67d_44611936",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 49
+      },
+      "revId": "0c6e9ffb54958d13af1ba27baaf5f300f2747a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9461294a_8912cbd7",
         "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
         "patchSetId": 2
