@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d557b986_4f31db6a",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2662,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-28T13:59:22Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be reset on SetUp ?",
+      "revId": "bd528f030e7318d7aaa40a599ada1c54f34aac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
