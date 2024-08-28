@@ -16,6 +16,29 @@
       "message": "PTAL, thanks!",
       "revId": "3448185e65873286bc877c81f012cfdd64690f93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13ce413_4431b823",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T06:27:27Z",
+      "side": 1,
+      "message": "From the bug, it seems like this could be simpler:\n \n```suggestion\n#if FLOSS\n  acl_write_automatic_flush_timeout(p_acl.remote_addr, 150);\n#endif\n```\n\nIs it going to be configurable per platform?",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 3
+      },
+      "revId": "3448185e65873286bc877c81f012cfdd64690f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
