@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a69449_8f40caa5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-08-28T07:26:27Z",
+      "side": 1,
+      "message": "Unsafe Rust review: There are some things that could be improved (no safety comments), but they are pre-existing issues. The actual changes to unsafe code look ok, so I will give this change an unsafe code LGTM.",
+      "revId": "565b8dc824a5bc0faebcf4a674d298a8149794fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55700cd6_abac4f34",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-08-28T07:26:27Z",
+      "side": 1,
+      "message": "It looks like you could reduce the scope of this unsafe block.\n```\nif unsafe { bindings::hal_util_load_bt_library(\u0026mut ifptr) } \u003d\u003d 0 {\n    ...\n}\n```",
+      "range": {
+        "startLine": 1493,
+        "startChar": 0,
+        "endLine": 1494,
+        "endChar": 64
+      },
+      "revId": "565b8dc824a5bc0faebcf4a674d298a8149794fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
