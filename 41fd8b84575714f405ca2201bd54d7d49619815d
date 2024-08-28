@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d460fb2_1a6197a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "thanks for comments - working on fixes.",
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1ce0890_de349662",
@@ -228,6 +245,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f8660e70_e86f6a58",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de53194b_28e6a2a4",
+      "range": {
+        "startLine": 257,
+        "startChar": 23,
+        "endLine": 257,
+        "endChar": 24
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c350e522_be94b0de",
         "filename": "system/bta/vc/device.cc",
         "patchSetId": 3
@@ -274,6 +315,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5d19990_9c020ba5",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "This stands for External Audio Input.\nOr External Audio Output.\n\nAICS is about devices connected to remote device, this is why from BT perspective this is external Input",
+      "parentUuid": "7f47ffaa_3afbc2a0",
+      "range": {
+        "startLine": 502,
+        "startChar": 29,
+        "endLine": 502,
+        "endChar": 33
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba1bc90f_061aa4e9",
         "filename": "system/bta/vc/vc.cc",
         "patchSetId": 3
@@ -285,6 +350,30 @@
       "writtenOn": "2024-08-27T00:14:41Z",
       "side": 1,
       "message": "I am surprised to see manual parsing instead of PDL.\nI thought any new code was supposed to use PDL.",
+      "range": {
+        "startLine": 562,
+        "startChar": 3,
+        "endLine": 565,
+        "endChar": 47
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3642fca_52137d5e",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "As said, this code is porting now from partner repo and it was written long time ago.\n\nI recall that back then we had tries to use PDL at that time but there we some issues with that.\nAnyways, we are save here as len is checked, and all other code uses this way. I\u0027m open to schedule work to move all of this to PDL.",
+      "parentUuid": "ba1bc90f_061aa4e9",
       "range": {
         "startLine": 562,
         "startChar": 3,
@@ -318,6 +407,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bbb14dc_4455612e",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "Added.",
+      "parentUuid": "017ed1b2_af192f40",
+      "range": {
+        "startLine": 607,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 27
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8f352cc_2052922f",
@@ -341,6 +454,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "346611e4_1c0825b7",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "correct - seems to be not needed.",
+      "parentUuid": "e8f352cc_2052922f",
+      "range": {
+        "startLine": 636,
+        "startChar": 27,
+        "endLine": 636,
+        "endChar": 41
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10c1adf3_9f5307ce",
@@ -354,6 +491,30 @@
       "writtenOn": "2024-08-27T00:14:41Z",
       "side": 1,
       "message": "nit extra space",
+      "range": {
+        "startLine": 650,
+        "startChar": 17,
+        "endLine": 650,
+        "endChar": 18
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0357c4f_375f06df",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10c1adf3_9f5307ce",
       "range": {
         "startLine": 650,
         "startChar": 17,
@@ -430,6 +591,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "215482c7_63c88d5a",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "Good question - this seems to be not right.. let me fix that. Same for the offset.",
+      "parentUuid": "be04260b_feaa552e",
+      "range": {
+        "startLine": 1303,
+        "startChar": 7,
+        "endLine": 1304,
+        "endChar": 69
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9997d6a_9490d74f",
         "filename": "system/bta/vc/vc.cc",
         "patchSetId": 3
@@ -441,6 +626,30 @@
       "writtenOn": "2024-08-27T00:14:41Z",
       "side": 1,
       "message": "nit extra space",
+      "range": {
+        "startLine": 1340,
+        "startChar": 15,
+        "endLine": 1340,
+        "endChar": 16
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec35b2a4_a62072ae",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-28T16:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9997d6a_9490d74f",
       "range": {
         "startLine": 1340,
         "startChar": 15,
