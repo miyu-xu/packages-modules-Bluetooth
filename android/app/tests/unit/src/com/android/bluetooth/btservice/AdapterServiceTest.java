@@ -999,7 +999,7 @@ public class AdapterServiceTest {
             hmac256.init(new SecretKeySpec(key, algorithm));
             return hmac256.doFinal(Utils.getByteAddress(device));
         } catch (NoSuchAlgorithmException | IllegalStateException | InvalidKeyException exp) {
-            exp.printStackTrace();
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             return null;
         }
     }
