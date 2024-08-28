@@ -956,14 +956,12 @@ public:
     }
 
     if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
-      if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
-        log::warn("group {} was about to stream, but got canceled: {}", group_id,
-                  ToString(group->GetTargetState()));
-        group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
-      } else {
+      if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
         log::warn(", group {} already stopped: {}", group_id, ToString(group->GetState()));
+        return;
       }
-      return;
+      log::warn("group {} was about to stream, but got canceled: {}", group_id,
+                ToString(group->GetTargetState()));
     }
 
     groupStateMachine_->StopStream(group);
