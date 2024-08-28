@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea251b0_4ea9bc80",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T06:18:30Z",
+      "side": 0,
+      "message": "I guess I have to try harder to get a rust flag.  I tried, but I kept running into a recursion error.  If I manually remove all the flags but two, it works.\n\nAnother way to do this is to change the tests to only run when the flag is set.\n\n```\nerror: recursion limit reached while expanding `__lazy_static_internal!`\n    --\u003e out/soong/.intermediates/packages/modules/Bluetooth/flags/libbluetooth_aconfig_flags_rust/android_x86_silvermont_source/ge\nn/src/lib.rs:14:1\n     |\n14   | / lazy_static::lazy_static! {\n15   | |     \n16   | |     /// flag value cache for a2dp_aidl_encoding_interval\n...    |\n1555 | |     \n1556 | | }\n     | |_^\n     |\n     \u003d help: consider increasing the recursion limit by adding a `#![recursion_limit \u003d \"256\"]` attribute to your crate (`bluetooth\n_aconfig_flags_rust`)\n     \u003d note: this error originates in the macro `__lazy_static_internal` which comes from the expansion of the macro `lazy_static:\n:lazy_static` (in Nightly builds, run with -Z macro-backtrace for more info)\n\nerror: aborting due to 1 previous error\n\n```",
+      "range": {
+        "startLine": 149,
+        "startChar": 23,
+        "endLine": 149,
+        "endChar": 64
+      },
+      "revId": "c8c8cdf2c150183bb1f18e9343e6fd99182b2ecd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
