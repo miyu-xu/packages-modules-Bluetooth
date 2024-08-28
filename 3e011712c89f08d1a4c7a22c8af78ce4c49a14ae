@@ -88,6 +88,30 @@
       },
       "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f87499b_4ecf5165",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T00:20:12Z",
+      "side": 1,
+      "message": "2nd part first: Yes, which is why I think a return or not return is moot as all the rest of the code won\u0027t matter on shut down.\n\n1st part: Several places below this check if the queue is nullptr or not; for some reason it\u0027s not done here, as apparently that\u0027s possible.",
+      "parentUuid": "8511deec_71907a8f",
+      "range": {
+        "startLine": 861,
+        "startChar": 0,
+        "endLine": 861,
+        "endChar": 86
+      },
+      "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
