@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ca4a42_b06c7ca3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-28T09:30:33Z",
+      "side": 1,
+      "message": "new flag in aosp/3247154",
+      "parentUuid": "2afd0fef_861f0310",
+      "revId": "c48f58b62ea9360db53fd74adfd7b0752a0ad302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1d8cf20d_0add23b3",
