@@ -66,6 +66,7 @@ extern tBTM_CB btm_cb;
 
 bool btm_ble_init_pseudo_addr(tBTM_SEC_DEV_REC* p_dev_rec, const RawAddress& new_pseudo_addr);
 tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda, tBTM_NAME_CMPL_CB* p_cb);
+tBTM_STATUS btm_ble_read_remote_cod(const RawAddress& remote_bda);
 
 namespace {
 constexpr char kBtmLogTag[] = "SEC";
@@ -1541,6 +1542,15 @@ void btm_ble_connection_established(const RawAddress& bda) {
   if (p_dev_rec != nullptr && !p_dev_rec->sec_rec.is_name_known()) {
     btm_ble_read_remote_name(bda, nullptr);
   }
+
+  if (com::android::bluetooth::flags::read_le_appearance() && p_dev_rec != nullptr &&
+      !p_dev_rec->sec_rec.is_le_link_key_known()) {
+    // Unknown device
+    if (p_dev_rec->dev_class == kDevClassEmpty || p_dev_rec->dev_class == kDevClassUnclassified) {
+      // Class of device not known, read appearance characteristic
+      btm_ble_read_remote_cod(bda);
+    }
+  }
 }
 
 static void btm_ble_user_confirmation_req(tBTM_SEC_DEV_REC* p_dev_rec, tBTM_LE_EVT event,
@@ -1557,8 +1567,8 @@ static void btm_ble_sec_req(tBTM_SEC_DEV_REC* p_dev_rec, tBTM_LE_EVT_DATA* p_dat
     log::warn("Ignoring SMP Security request");
     return;
   }
-  btm_sec_cb.pairing_bda = p_dev_rec->bd_addr;
   p_dev_rec->sec_rec.le_link = tSECURITY_STATE::AUTHENTICATING;
+  btm_sec_cb.pairing_bda = p_dev_rec->bd_addr;
   btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_LE_ACTIVE;
   BTM_BLE_SEC_CALLBACK(BTM_LE_SEC_REQUEST_EVT, p_dev_rec->bd_addr, p_data);
 }
@@ -1596,8 +1606,7 @@ static void btm_ble_complete_evt(tBTM_SEC_DEV_REC* p_dev_rec, tBTM_LE_EVT_DATA* 
           "pin_code_len={:x}",
           btm_sec_cb.pairing_state, btm_sec_cb.pairing_flags, btm_sec_cb.pin_code_len);
 
-  /* Reset btm state only if the callback address matches pairing
-   * address*/
+  /* Reset btm state only if the callback address matches pairing address */
   if (p_dev_rec->bd_addr == btm_sec_cb.pairing_bda) {
     btm_sec_cb.pairing_bda = RawAddress::kAny;
     btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
