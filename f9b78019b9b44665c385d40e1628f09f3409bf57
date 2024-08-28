@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abae899e_0c421311",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T21:06:00Z",
+      "side": 1,
+      "message": "Did you mean to check this only for Channel sounding, or did RSSI already require a connection before starting?  This change seems distinct from the bonding check.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 95
+      },
+      "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71a3d34_d3129196",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T21:06:00Z",
+      "side": 1,
+      "message": "It would be nice to add a test case that covers the new lines of code",
+      "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
