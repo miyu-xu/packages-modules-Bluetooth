@@ -40,6 +40,30 @@
       ],
       "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca84855b_273b1cec",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-28T00:02:45Z",
+      "side": 1,
+      "message": "meybe ?!?...\n\nunsure",
+      "parentUuid": "74cf6701_1c8e37ca",
+      "range": {
+        "startLine": 861,
+        "startChar": 0,
+        "endLine": 861,
+        "endChar": 86
+      },
+      "revId": "3e011712c89f08d1a4c7a22c8af78ce4c49a14ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
