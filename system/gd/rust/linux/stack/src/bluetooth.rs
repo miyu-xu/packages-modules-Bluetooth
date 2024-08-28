@@ -592,7 +592,7 @@ pub struct Bluetooth {
     remote_devices: HashMap<RawAddress, BluetoothDeviceContext>,
     ble_scanner_id: Option<u8>,
     ble_scanner_uuid: Option<Uuid>,
-    bluetooth_gatt: Arc<Mutex<Box<BluetoothGatt>>>,
+    bluetooth_gatt: Option<Arc<Mutex<Box<BluetoothGatt>>>>,
     bluetooth_media: Option<Arc<Mutex<Box<BluetoothMedia>>>>,
     callbacks: Callbacks<dyn IBluetoothCallback + Send>,
     connection_callbacks: Callbacks<dyn IBluetoothConnectionCallback + Send>,
@@ -640,7 +640,6 @@ impl Bluetooth {
         api_tx: Sender<APIMessage>,
         sig_notifier: Arc<SigData>,
         intf: Arc<Mutex<BluetoothInterface>>,
-        bluetooth_gatt: Arc<Mutex<Box<BluetoothGatt>>>,
     ) -> Bluetooth {
         Bluetooth {
             virt_index,
@@ -654,7 +653,7 @@ impl Bluetooth {
             hh: None,
             ble_scanner_id: None,
             ble_scanner_uuid: None,
-            bluetooth_gatt,
+            bluetooth_gatt: None,
             bluetooth_media: None,
             discovering_started: Instant::now(),
             intf,
@@ -688,6 +687,17 @@ impl Bluetooth {
 
     pub(crate) fn set_media(&mut self, bluetooth_media: Arc<Mutex<Box<BluetoothMedia>>>) {
         self.bluetooth_media = Some(bluetooth_media);
+    }
+
+    pub(crate) fn set_gatt(&mut self, bluetooth_gatt: Arc<Mutex<Box<BluetoothGatt>>>) {
+        self.bluetooth_gatt = Some(bluetooth_gatt.clone());
+
+        // Initialize the BLE scanner for discovery.
+        let callback_id = bluetooth_gatt
+            .lock()
+            .unwrap()
+            .register_scanner_callback(Box::new(BleDiscoveryCallbacks::new(self.tx.clone())));
+        self.ble_scanner_uuid = Some(bluetooth_gatt.lock().unwrap().register_scanner(callback_id));
     }
 
     fn update_connectable_mode(&mut self, is_sock_listening: bool) {
@@ -768,8 +778,6 @@ impl Bluetooth {
     }
 
     pub fn init_profiles(&mut self) {
-        self.bluetooth_gatt.lock().unwrap().enable(true);
-
         self.sdp = Some(Sdp::new(&self.intf.lock().unwrap()));
         self.sdp.as_mut().unwrap().initialize(SdpCallbacksDispatcher {
             dispatch: make_message_dispatcher(self.tx.clone(), Message::Sdp),
@@ -1487,13 +1495,6 @@ impl BtifBluetoothCallbacks for Bluetooth {
                 self.le_supported_states = controller.get_ble_supported_states();
                 self.le_local_supported_features = controller.get_ble_local_supported_features();
 
-                // Initialize the BLE scanner for discovery.
-                let callback_id = self.bluetooth_gatt.lock().unwrap().register_scanner_callback(
-                    Box::new(BleDiscoveryCallbacks::new(self.tx.clone())),
-                );
-                self.ble_scanner_uuid =
-                    Some(self.bluetooth_gatt.lock().unwrap().register_scanner(callback_id));
-
                 // Update connectable mode so that disconnected bonded classic device can reconnect
                 self.trigger_update_connectable_mode();
 
@@ -1656,11 +1657,12 @@ impl BtifBluetoothCallbacks for Bluetooth {
         });
 
         // Start or stop BLE scanning based on discovering state
-        if let Some(scanner_id) = self.ble_scanner_id {
+        if let (Some(gatt), Some(scanner_id)) = (self.bluetooth_gatt.as_ref(), self.ble_scanner_id)
+        {
             if is_discovering {
-                self.bluetooth_gatt.lock().unwrap().start_active_scan(scanner_id);
+                gatt.lock().unwrap().start_active_scan(scanner_id);
             } else {
-                self.bluetooth_gatt.lock().unwrap().stop_active_scan(scanner_id);
+                gatt.lock().unwrap().stop_active_scan(scanner_id);
             }
         }
 
@@ -2108,11 +2110,7 @@ impl IBluetooth for Bluetooth {
     }
 
     fn disable(&mut self) -> bool {
-        let success = self.intf.lock().unwrap().disable() == 0;
-        if success {
-            self.bluetooth_gatt.lock().unwrap().enable(false);
-        }
-        success
+        self.intf.lock().unwrap().disable() == 0
     }
 
     fn cleanup(&mut self) {
