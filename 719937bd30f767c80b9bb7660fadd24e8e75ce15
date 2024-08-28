@@ -16,6 +16,24 @@
       "message": "It\u0027s too bad that this CL couldn\u0027t go first to skip the revert.",
       "revId": "719937bd30f767c80b9bb7660fadd24e8e75ce15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d034b4_ae4162e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-28T05:31:12Z",
+      "side": 1,
+      "message": "The sad thing is that I thought I was being safer by putting the smaller, simpler CL first.",
+      "parentUuid": "90a97179_0a515fd9",
+      "revId": "719937bd30f767c80b9bb7660fadd24e8e75ce15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
