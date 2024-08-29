@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "302a58cc_600e6e69",
+        "filename": "system/stack/avdt/avdt_ad.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-29T14:03:09Z",
+      "side": 0,
+      "message": "@cmanton@google.com can you please comment on this ? It seems something else was intended here",
+      "range": {
+        "startLine": 518,
+        "startChar": 4,
+        "endLine": 519,
+        "endChar": 29
+      },
+      "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9fac3ef_7a42726e",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-29T14:03:09Z",
+      "side": 0,
+      "message": "I would prefer a separate CL with all the enum changes, then another one with the logging changes",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 58
+      },
+      "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
