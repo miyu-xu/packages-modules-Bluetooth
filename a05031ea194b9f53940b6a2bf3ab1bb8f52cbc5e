@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e204e4_45d1400d",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-08-29T20:26:37Z",
+      "side": 1,
+      "message": "Is there a reason for changing the initialization order here?",
+      "revId": "a05031ea194b9f53940b6a2bf3ab1bb8f52cbc5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "070a9766_d27ea431",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-08-29T20:26:37Z",
+      "side": 1,
+      "message": "We should probably either change this name to include the side effects or split the scanner part out. `set_gatt_and_init_scanner` or similar.",
+      "range": {
+        "startLine": 692,
+        "startChar": 18,
+        "endLine": 692,
+        "endChar": 26
+      },
+      "revId": "a05031ea194b9f53940b6a2bf3ab1bb8f52cbc5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
