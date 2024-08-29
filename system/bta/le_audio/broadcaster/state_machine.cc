@@ -250,11 +250,14 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [this](const void*) {
+            SetState(State::ENABLING);
+            CreateBig();
+          },
           /* in ENABLING state */
           [](const void*) { /* Do nothing */ },
           /* in DISABLING state */
-          [](const void*) { /* Do nothing */ },
+          [this](const void*) { SetState(State::ENABLING); },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -293,14 +296,7 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) {
-            suspending_ = true;
-
-            /* Terminate BIG if suspend happens before setting STREAMING state */
-            if (active_config_ != std::nullopt) {
-              TerminateBig();
-            }
-          },
+          [](const void*) { /* Already suspended */ },
           /* in ENABLING state */
           [](const void*) { /* Do nothing */ },
           /* in DISABLING state */
@@ -321,7 +317,10 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [this](const void*) {
+            SetState(State::ENABLING);
+            CreateBig();
+          },
           /* in ENABLING state */
           [](const void*) { /* Do nothing */ },
           /* in DISABLING state */
@@ -339,7 +338,14 @@ private:
           /* in CONFIGURED state */
           [](const void*) { /* Do nothing */ },
           /* in ENABLING state */
-          [](const void*) { /* Do nothing */ },
+          [this](const void*) {
+            SetState(State::DISABLING);
+
+            /* Terminate BIG if suspend happens before setting STREAMING state */
+            if (active_config_ != std::nullopt) {
+              TerminateBig();
+            }
+          },
           /* in DISABLING state */
           [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
@@ -431,6 +437,7 @@ private:
                                                   : std::array<uint8_t, 16>({0}),
     };
 
+    sm_config_.awaits_big_event = true;
     IsoManager::GetInstance()->CreateBig(GetAdvertisingSid(), std::move(big_params));
   }
 
@@ -443,6 +450,7 @@ private:
   void TerminateBig() {
     log::info("suspending={}", suspending_);
     /* Terminate with reason: Connection Terminated By Local Host */
+    sm_config_.awaits_big_event = true;
     IsoManager::GetInstance()->TerminateBig(GetAdvertisingSid(), 0x16);
   }
 
@@ -550,6 +558,8 @@ private:
       case HCI_BLE_CREATE_BIG_CPL_EVT: {
         auto* evt = static_cast<big_create_cmpl_evt*>(data);
 
+        sm_config_.awaits_big_event = false;
+
         if (evt->big_id != GetAdvertisingSid()) {
           log::error("State={}, Event={}, Unknown big, big_id={}", ToString(GetState()), event,
                      evt->big_id);
@@ -573,7 +583,7 @@ private:
                   .connection_handles = evt->conn_handles,
           };
 
-          if (suspending_) {
+          if (GetState() == BroadcastStateMachine::State::DISABLING) {
             log::info("Terminating BIG due to stream suspending, big_id={}", evt->big_id);
             TerminateBig();
           } else {
@@ -588,6 +598,8 @@ private:
       case HCI_BLE_TERM_BIG_CPL_EVT: {
         auto* evt = static_cast<big_terminate_cmpl_evt*>(data);
 
+        sm_config_.awaits_big_event = false;
+
         log::info("BIG terminate BIG cmpl, reason={} big_id={}", evt->reason, evt->big_id);
 
         if (evt->big_id != GetAdvertisingSid()) {
@@ -597,12 +609,13 @@ private:
         }
 
         active_config_ = std::nullopt;
+        bool disabling = GetState() == BroadcastStateMachine::State::DISABLING;
 
         /* Go back to configured if BIG is inactive (we are still announcing) */
         SetState(State::CONFIGURED);
 
         /* Check if we got this HCI event due to STOP or SUSPEND message. */
-        if (suspending_) {
+        if (suspending_ || disabling) {
           callbacks_->OnStateMachineEvent(GetBroadcastId(), GetState(), evt);
           suspending_ = false;
         } else {
