@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e68e541c_ce2db129",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-29T21:37:18Z",
+      "side": 1,
+      "message": "😭",
+      "parentUuid": "3dd10161_203f42dc",
+      "range": {
+        "startLine": 698,
+        "startChar": 38,
+        "endLine": 698,
+        "endChar": 49
+      },
+      "revId": "1ab085c2ac98b33eda51cf58182780446972f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ceeb2b28_f6328a58",
