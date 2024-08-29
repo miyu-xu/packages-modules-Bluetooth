@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc678ebc_c144fa26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-29T22:54:30Z",
+      "side": 1,
+      "message": "The code modified here is fully gated by the mentioned flag.",
+      "revId": "8a2b1e0858f2dd708a0aec6ac4c26f94f194298e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
