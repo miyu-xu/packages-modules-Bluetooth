@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ae69b4_b2f4e1fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-29T00:18:00Z",
+      "side": 1,
+      "message": "Thanks for working on solving this!\nRandom \"floss build failure\" has been the number 1 reason by far for retrying presubmit lately.",
+      "revId": "c58820a5b56c941f7233ed97adb31d9cfaa5086e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
