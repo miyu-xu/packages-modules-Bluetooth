@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41168f67_6e2120a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-29T05:23:27Z",
+      "side": 1,
+      "message": "Don\u0027t be sorry William, will do.",
+      "parentUuid": "b77c6f55_8e10a34b",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "eaf55a6ebf299b4e5f8a4e1d57ade0a905403200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e7d5009_31f56481",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-28T18:38:55Z",
       "side": 1,
       "message": "if you add a comma here, clang format will produce a nicer output 😊:\n```\n    std::vector\u003cAttribute\u003e all_attributes \u003d {\n            Attribute::TITLE,\n            Attribute::ARTIST_NAME,\n            Attribute::ALBUM_NAME,\n            Attribute::TRACK_NUMBER,\n            Attribute::TOTAL_NUMBER_OF_TRACKS,\n            Attribute::GENRE,\n            Attribute::PLAYING_TIME,\n            Attribute::DEFAULT_COVER_ART,\n    };\n```",
+      "range": {
+        "startLine": 786,
+        "startChar": 73,
+        "endLine": 786,
+        "endChar": 75
+      },
+      "revId": "eaf55a6ebf299b4e5f8a4e1d57ade0a905403200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4cd91c0_4cf3a6bb",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-29T05:23:27Z",
+      "side": 1,
+      "message": "If this wasn\u0027t the whole enum that would be fine, but here I feel adding a comma can be confusing as nothing can be added in the list.",
+      "parentUuid": "3e7d5009_31f56481",
       "range": {
         "startLine": 786,
         "startChar": 73,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-08-28T18:38:55Z",
       "side": 1,
       "message": "I am worry about this.\n\nDoes the spec specify as empty string the content of an entry if we don\u0027t have the info?",
+      "range": {
+        "startLine": 793,
+        "startChar": 47,
+        "endLine": 793,
+        "endChar": 60
+      },
+      "revId": "eaf55a6ebf299b4e5f8a4e1d57ade0a905403200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44f83d1a_bb46553e",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-29T05:23:27Z",
+      "side": 1,
+      "message": "Well no, the spec specifies either nothing or either to not return anything. I asked the team to have a look but had no answer. I\u0027ll ask the original reporter to confirm if this is what\u0027s expected.",
+      "parentUuid": "7d51a6db_5ca3a4f5",
       "range": {
         "startLine": 793,
         "startChar": 47,
