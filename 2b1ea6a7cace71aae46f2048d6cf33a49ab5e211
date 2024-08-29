@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62b53a5_71b885b4",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-29T14:09:20Z",
+      "side": 1,
+      "message": "I would prefer sending the actual error code for all profiles; this very looks like a hack, and I am afraid it is never going to be removed.\n\nHave you checked the l2c error handlers to see what callees make of the error code ?",
+      "revId": "2b1ea6a7cace71aae46f2048d6cf33a49ab5e211",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
