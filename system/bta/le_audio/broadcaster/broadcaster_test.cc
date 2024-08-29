@@ -1487,7 +1487,7 @@ TEST_F(BroadcasterTest, AudioSuspendBeforeBigCreateCallback) {
   ASSERT_TRUE(broadcast_stop_timer_->cb == nullptr);
 
   // OnAudioSuspend cause starting the BIG termination timer
-  EXPECT_CALL(*mock_state_machine, ProcessMessage(BroadcastStateMachine::Message::SUSPEND, _))
+  EXPECT_CALL(*mock_state_machine, ProcessMessage(BroadcastStateMachine::Message::CANCEL_OP, _))
           .WillOnce(Return());
   audio_receiver->OnAudioSuspend();
   ASSERT_EQ(6, get_func_call_count("alarm_set_on_mloop"));

@@ -1312,11 +1312,10 @@ private:
         instance->UpdateAudioActiveStateInPublicAnnouncement();
         instance->setBroadcastTimers();
 
+        /* If some of broadcast is in transition (controller setup) - cancel */
         for (auto& broadcast_pair : instance->broadcasts_) {
           auto& broadcast = broadcast_pair.second;
-          if (broadcast->GetState() == BroadcastStateMachine::State::CONFIGURED) {
-            broadcast->ProcessMessage(BroadcastStateMachine::Message::SUSPEND, nullptr);
-          }
+          broadcast->ProcessMessage(BroadcastStateMachine::Message::CANCEL_OP, nullptr);
         }
       }
     }

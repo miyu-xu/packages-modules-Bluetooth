@@ -1,4 +1,4 @@
-/*
+ń/*
  * Copyright 2021 HIMSA II K/S - www.himsa.com.
  * Represented by EHIMA - www.ehima.com
  *
@@ -250,11 +250,14 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [this](const void*) {
+            SetState(State::ENABLING);
+            CreateBig();
+          },
           /* in ENABLING state */
           [](const void*) { /* Do nothing */ },
           /* in DISABLING state */
-          [](const void*) { /* Do nothing */ },
+          [this](const void*) { SetState(State::ENABLING); },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -293,14 +296,7 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) {
-            suspending_ = true;
-
-            /* Terminate BIG if suspend happens before setting STREAMING state */
-            if (active_config_ != std::nullopt) {
-              TerminateBig();
-            }
-          },
+          [](const void*) { /* Already suspended */ },
           /* in ENABLING state */
           [](const void*) { /* Do nothing */ },
           /* in DISABLING state */
@@ -321,7 +317,10 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [this](const void*) {
+            SetState(State::ENABLING);
+            CreateBig();
+          },
           /* in ENABLING state */
           [](const void*) { /* Do nothing */ },
           /* in DISABLING state */
@@ -339,7 +338,14 @@ private:
           /* in CONFIGURED state */
           [](const void*) { /* Do nothing */ },
           /* in ENABLING state */
-          [](const void*) { /* Do nothing */ },
+          [this](const void*) {
+            SetState(State::DISABLING);
+
+            /* Terminate BIG if suspend happens before setting STREAMING state */
+            if (active_config_ != std::nullopt) {
+              TerminateBig();
+            }
+          },
           /* in DISABLING state */
           [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
@@ -573,7 +579,7 @@ private:
                   .connection_handles = evt->conn_handles,
           };
 
-          if (suspending_) {
+          if (GetState() == BroadcastStateMachine::State::DISABLING) {
             log::info("Terminating BIG due to stream suspending, big_id={}", evt->big_id);
             TerminateBig();
           } else {
@@ -597,12 +603,13 @@ private:
         }
 
         active_config_ = std::nullopt;
+        bool disabling = GetState() == BroadcastStateMachine::State::DISABLING;
 
         /* Go back to configured if BIG is inactive (we are still announcing) */
         SetState(State::CONFIGURED);
 
         /* Check if we got this HCI event due to STOP or SUSPEND message. */
-        if (suspending_) {
+        if (suspending_ || disabling) {
           callbacks_->OnStateMachineEvent(GetBroadcastId(), GetState(), evt);
           suspending_ = false;
         } else {
