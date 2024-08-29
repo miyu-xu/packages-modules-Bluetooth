@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b2d29b_69c15c78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-29T11:43:10Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 9,
+        "startChar": 49,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63c41e0f_d28ed1a5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3747,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-29T11:43:10Z",
+      "side": 1,
+      "message": "nit: \"will\"",
+      "range": {
+        "startLine": 3747,
+        "startChar": 29,
+        "endLine": 3747,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f21cd560_5702c2dd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3747,
+                "startChar": 0,
+                "endLine": 3748,
+                "endChar": 0
+              },
+              "replacement": "                /* Broadcast will be created once unicast group became inactive */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47581ecc_3242dc45",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-29T11:43:10Z",
+      "side": 1,
+      "message": "if Session is started and big will fail to be established, session will be cleared?",
+      "fixSuggestions": [
+        {
+          "fixId": "12a11c8f_4d4a06d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 654,
+                "startChar": 0,
+                "endLine": 655,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 659,
+                "startChar": 0,
+                "endLine": 659,
+                "endChar": 0
+              },
+              "replacement": "      callbacks_-\u003eOnBroadcastAudioSessionCreated(is_started);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f5b3ca4_8e739d56",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-29T11:43:10Z",
+      "side": 1,
+      "message": "What about callback_-\u003eOnBroadcastCreated() callback in this case?",
+      "fixSuggestions": [
+        {
+          "fixId": "1313838c_39bb637f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 657,
+                "startChar": 0,
+                "endLine": 657,
+                "endChar": 0
+              },
+              "replacement": "        callbacks_-\u003eOnBroadcastCreated(broadcast_id, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1c5c6ad_b28b9696",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-29T11:43:10Z",
+      "side": 1,
+      "message": "there was an attempt to create Broadcast Session above - does it makes sense before we check this?\n\nI don\u0027t remember if it is possible for Broadcast session to be established along with Unicast one.",
+      "fixSuggestions": [
+        {
+          "fixId": "dce24f52_138e0996",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 629,
+                "startChar": 0,
+                "endLine": 629,
+                "endChar": 0
+              },
+              "replacement": "\n    // If there is ongoing ISO traffic, it might be a unicast stream\n    if (is_iso_running_) {\n      log::info(\"Iso is still active. Queueing broadcast creation for later.\");\n      if (queued_create_broadcast_request_) {\n        log::warn(\"Already queued. Updating queued broadcast creation with the new configuration.\");\n      }\n      queued_create_broadcast_request_ \u003d std::move(msg);\n      return;\n    }\n"
+            },
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 660,
+                "startChar": 0,
+                "endLine": 671,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
