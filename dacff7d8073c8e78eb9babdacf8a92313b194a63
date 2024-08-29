@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd1ac37f_83425e43",
+        "filename": "system/stack/include/bt_psm_types.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-29T14:04:46Z",
+      "side": 1,
+      "message": "nit: `psm_to_text`",
+      "range": {
+        "startLine": 71,
+        "startChar": 19,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "dacff7d8073c8e78eb9babdacf8a92313b194a63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
