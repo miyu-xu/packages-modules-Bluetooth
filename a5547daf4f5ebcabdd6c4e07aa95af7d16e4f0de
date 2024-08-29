@@ -147,6 +147,61 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea741c84_e79bd53e",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-29T11:50:02Z",
+      "side": 1,
+      "message": "This seems to be the only place this callback is used, did you consider to enhance onBroadcastCreate callback with a status ?",
+      "fixSuggestions": [
+        {
+          "fixId": "de16dc34_b1b04260",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 650,
+                "startChar": 0,
+                "endLine": 650,
+                "endChar": 0
+              },
+              "replacement": "    // If there is ongoing ISO traffic, it might be a unicast stream\n    if (is_iso_running_) {\n      log::info(\"Iso is still active. Queueing broadcast creation for later.\");\n      if (queued_create_broadcast_request_) {\n        log::warn(\"Already queued. Updating queued broadcast creation with the new configuration.\");\n      }\n      queued_create_broadcast_request_ \u003d std::move(msg);\n      return;\n    }\n\n"
+            },
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 661,
+                "startChar": 0,
+                "endLine": 672,
+                "endChar": 0
+              },
+              "replacement": "    InstantiateBroadcast(std::move(msg), is_iso_running_);\n"
+            },
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 923,
+                "startChar": 0,
+                "endLine": 924,
+                "endChar": 0
+              },
+              "replacement": "        InstantiateBroadcast(std::move(broadcast_msg), is_iso_running_);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1c5c6ad_b28b9696",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 8
