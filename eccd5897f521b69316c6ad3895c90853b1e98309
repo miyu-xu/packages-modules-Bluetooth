@@ -16,6 +16,24 @@
       "message": "Hi, PTAL! This is for aosp/3235675. Thanks~",
       "revId": "eccd5897f521b69316c6ad3895c90853b1e98309",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7922044f_1ecd57c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-29T01:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9187579_754183df",
+      "revId": "eccd5897f521b69316c6ad3895c90853b1e98309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
