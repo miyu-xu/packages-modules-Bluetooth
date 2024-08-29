@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a4ae95f_6c489413",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-29T17:22:39Z",
+      "side": 1,
+      "message": "That is nice, I should redo this CL entirely ^^",
+      "parentUuid": "0142c676_b0aeb641",
+      "range": {
+        "startLine": 415,
+        "startChar": 15,
+        "endLine": 415,
+        "endChar": 70
+      },
+      "revId": "f73c11f45c6a2bc1544f4a73b4159237204eee28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ae77f16_e34977f0",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-29T15:13:55Z",
       "side": 1,
       "message": "`states.stream()` ?",
+      "range": {
+        "startLine": 1879,
+        "startChar": 29,
+        "endLine": 1879,
+        "endChar": 50
+      },
+      "revId": "f73c11f45c6a2bc1544f4a73b4159237204eee28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55eefdc1_4a42851e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1879,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-08-29T17:22:39Z",
+      "side": 1,
+      "message": "`stream` doesn\u0027t works for arrays, we have to use Arrays.stream",
+      "parentUuid": "2ae77f16_e34977f0",
       "range": {
         "startLine": 1879,
         "startChar": 29,
