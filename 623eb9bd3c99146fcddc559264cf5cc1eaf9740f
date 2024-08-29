@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9082d082_617654e7",
+        "filename": "system/stack/btm/btm_sec_cb.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-29T16:54:00Z",
+      "side": 1,
+      "message": "Why not make it a function ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 28
+      },
+      "revId": "623eb9bd3c99146fcddc559264cf5cc1eaf9740f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
