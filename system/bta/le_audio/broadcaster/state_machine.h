@@ -99,6 +99,7 @@ struct BigConfig {
 
 struct BroadcastStateMachineConfig {
   bool is_public;
+  bool awaits_big_event;
   bluetooth::le_audio::BroadcastId broadcast_id;
   std::string broadcast_name;
   uint8_t streaming_phy;

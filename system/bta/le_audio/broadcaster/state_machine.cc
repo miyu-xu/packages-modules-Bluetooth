@@ -247,7 +247,12 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [this](const void*) {
+            suspending_ = false;
+            if (!sm_config_.awaits_big_event) {
+              CreateBig();
+            }
+          },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -306,7 +311,11 @@ private:
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [this](const void*) {
+            if (!sm_config_.awaits_big_event) {
+              CreateBig();
+            }
+          },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -396,6 +405,7 @@ private:
                                                   : std::array<uint8_t, 16>({0}),
     };
 
+    sm_config_.awaits_big_event = true;
     IsoManager::GetInstance()->CreateBig(GetAdvertisingSid(), std::move(big_params));
   }
 
@@ -408,6 +418,7 @@ private:
   void TerminateBig() {
     log::info("suspending={}", suspending_);
     /* Terminate with reason: Connection Terminated By Local Host */
+    sm_config_.awaits_big_event = true;
     IsoManager::GetInstance()->TerminateBig(GetAdvertisingSid(), 0x16);
   }
 
@@ -515,6 +526,8 @@ private:
       case HCI_BLE_CREATE_BIG_CPL_EVT: {
         auto* evt = static_cast<big_create_cmpl_evt*>(data);
 
+        sm_config_.awaits_big_event = false;
+
         if (evt->big_id != GetAdvertisingSid()) {
           log::error("State={}, Event={}, Unknown big, big_id={}", ToString(GetState()), event,
                      evt->big_id);
@@ -552,6 +565,8 @@ private:
       } break;
       case HCI_BLE_TERM_BIG_CPL_EVT: {
         auto* evt = static_cast<big_terminate_cmpl_evt*>(data);
+
+        sm_config_.awaits_big_event = false;
 
         log::info("BIG terminate BIG cmpl, reason={} big_id={}", evt->reason, evt->big_id);
 
