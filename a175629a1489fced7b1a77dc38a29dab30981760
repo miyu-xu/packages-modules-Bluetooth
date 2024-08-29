@@ -50,6 +50,30 @@
       ],
       "revId": "a175629a1489fced7b1a77dc38a29dab30981760",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7cdf374_09da2f49",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-29T18:56:04Z",
+      "side": 1,
+      "message": "This format makes it easier to remove the flag after it is shipped.",
+      "parentUuid": "4aeeef9c_16ef3994",
+      "range": {
+        "startLine": 669,
+        "startChar": 51,
+        "endLine": 669,
+        "endChar": 59
+      },
+      "revId": "a175629a1489fced7b1a77dc38a29dab30981760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
