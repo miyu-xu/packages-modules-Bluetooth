@@ -113,24 +113,28 @@ public class HapClientService extends ProfileService {
     }
 
     public HapClientService(AdapterService adapterService) {
-        this(adapterService, new HapClientNativeInterface());
+        this(adapterService, Flags.HapRust() ? null : new HapClientNativeInterface());
     }
 
     @VisibleForTesting
     HapClientService(AdapterService adapterService, HapClientNativeInterface nativeInterface) {
         super(adapterService);
         mAdapterService = requireNonNull(adapterService);
-        mHapClientNativeInterface = requireNonNull(nativeInterface);
         mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        if (Flags.HapRust()) {
+            mHapClientNativeInterface = null
+            mHandler = null;
+            mStateMachinesThread = null;
+        } else {
+            mHapClientNativeInterface = requireNonNull(nativeInterface);
+            mHandler = new Handler(Looper.getMainLooper());
+            mStateMachines.clear();
+            mStateMachinesThread = new HandlerThread("HapClientService.StateMachines");
+            mStateMachinesThread.start();
 
-        // Start handler thread for state machines
-        mHandler = new Handler(Looper.getMainLooper());
-        mStateMachines.clear();
-        mStateMachinesThread = new HandlerThread("HapClientService.StateMachines");
-        mStateMachinesThread.start();
-
-        // Initialize native interface
-        mHapClientNativeInterface.init();
+            // Initialize native interface
+            mHapClientNativeInterface.init();
+        }
 
         // Mark service as started
         setHapClient(this);
@@ -138,6 +142,9 @@ public class HapClientService extends ProfileService {
 
     @Override
     protected IProfileServiceBinder initBinder() {
+        if (Flags.HapRust()) {
+            return HapRust.getBinder();
+        }
         return new HapClientBinder(this);
     }
 
@@ -151,6 +158,11 @@ public class HapClientService extends ProfileService {
 
         // Marks service as stopped
         setHapClient(null);
+        if (Flags.HapRust()) {
+            HapRust.clean();
+            mBinder = null;
+            return;
+        }
 
         // Destroy state machines and stop handler thread
         synchronized (mStateMachines) {

@@ -1,298 +1,40 @@
-// Note carefully the AIDL crates structure:
-// * the AIDL module name: "com_example_android_remoteservice"
-// * next "::aidl"
-// * next the AIDL package name "::com::example::android"
-// * the interface: "::IRemoteService"
-// * finally, the 'BnRemoteService' and 'IRemoteService' submodules
+//! This module implements the BluetoothHapClient
 
-//! This module implements the IBluetoothHapClient AIDL interface
-// use binder::{BinderFeatures, Interface, Result as BinderResult, Strong};
-use async_trait::async_trait;
-use binder::{Interface, Result, Strong};
-use HapClient_remoteservice::aidl::android::bluetooth::{
-    IBluetoothHapClient::IBluetoothHapClientAsyncServer,
-    IBluetoothHapClientCallback::IBluetoothHapClientCallback,
-};
+mod bluetooth_hap_client_binder;
+// This is the interface to the JVM that we'll call the majority of our
+// methods on.
+use jni::JNIEnv;
 
-use android_bluetooth::BluetoothDevice;
-use android_bluetooth::BluetoothHapPresetInfo;
-use android_content::AttributionSource;
+// These objects are what you should use as arguments to your native
+// function. They carry extra lifetime information to prevent them escaping
+// this context and getting used after being GC'd.
+use jni::objects::{JClass, JString};
 
-/// This struct is defined to implement IBluetoothHapClient  AIDL interface.
-pub struct BluetoothHapClient;
+// This is just a pointer. We'll be returning it from our function. We
+// can't return one of the objects with lifetime information because the
+// lifetime checker won't let us.
+use jni::sys::jstring;
 
-impl Interface for BluetoothHapClient {}
+// This keeps Rust from "mangling" the name and making it unique for this
+// crate.
+#[no_mangle]
+pub extern "system" fn Java_HelloWorld_hello<'local>(
+    mut env: JNIEnv<'local>,
+    // This is the class that owns our static method. It's not going to be used,
+    // but still must be present to match the expected signature of a static
+    // native method.
+    class: JClass<'local>,
+    input: JString<'local>,
+) -> jstring {
+    // First, we have to get the string out of Java. Check out the `strings`
+    // module for more info on how this works.
+    let input: String = env.get_string(&input).expect("Couldn't get java string!").into();
 
-// impl IBluetoothHapClient for BluetoothHapClient {
-//     fn getConnectedDevices(
-//         &self,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<std::vec::Vec<BluetoothDevice>, binder::Status> {
-//         todo!()
-//     }
-//     fn getDevicesMatchingConnectionStates(
-//         &self,
-//         _: &[i32],
-//         _: &AttributionSource,
-//     ) -> std::result::Result<std::vec::Vec<BluetoothDevice>, binder::Status> {
-//         todo!()
-//     }
-//     fn getConnectionState(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<i32, binder::Status> {
-//         todo!()
-//     }
-//     fn setConnectionPolicy(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: i32,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<bool, binder::Status> {
-//         todo!()
-//     }
-//     fn getConnectionPolicy(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<i32, binder::Status> {
-//         todo!()
-//     }
-//     fn getHapGroup(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<i32, binder::Status> {
-//         todo!()
-//     }
-//     fn getActivePresetIndex(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<i32, binder::Status> {
-//         todo!()
-//     }
-//     fn getActivePresetInfo(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<BluetoothHapPresetInfo, binder::Status> {
-//         todo!()
-//     }
-//     fn selectPreset(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: i32,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn selectPresetForGroup(
-//         &self,
-//         _: i32,
-//         _: i32,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn switchToNextPreset(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn switchToNextPresetForGroup(
-//         &self,
-//         _: i32,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn switchToPreviousPreset(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn switchToPreviousPresetForGroup(
-//         &self,
-//         _: i32,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn getPresetInfo(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: i32,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<BluetoothHapPresetInfo, binder::Status> {
-//         todo!()
-//     }
-//     fn getAllPresetInfo(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<std::vec::Vec<BluetoothHapPresetInfo>, binder::Status> {
-//         todo!()
-//     }
-//     fn getFeatures(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<i32, binder::Status> {
-//         todo!()
-//     }
-//     fn setPresetName(
-//         &self,
-//         _: &BluetoothDevice,
-//         _: i32,
-//         _: &str,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn setPresetNameForGroup(
-//         &self,
-//         _: i32,
-//         _: i32,
-//         _: &str,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn registerCallback(
-//         &self,
-//         _: &Strong<(dyn IBluetoothHapClientCallback + 'static)>,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-//     fn unregisterCallback(
-//         &self,
-//         _: &Strong<(dyn IBluetoothHapClientCallback + 'static)>,
-//         _: &AttributionSource,
-//     ) -> std::result::Result<(), binder::Status> {
-//         todo!()
-//     }
-// }
+    // Then we have to create a new Java string to return. Again, more info
+    // in the `strings` module.
+    let output =
+        env.new_string(format!("Hello, {}!", input)).expect("Couldn't create java string!");
 
-#[async_trait]
-impl IBluetoothHapClientAsyncServer for BluetoothHapClient {
-    async fn getConnectedDevices(&self, _: &AttributionSource) -> Result<Vec<BluetoothDevice>> {
-        todo!()
-    }
-    async fn getDevicesMatchingConnectionStates(
-        &self,
-        _: &[i32],
-        _: &AttributionSource,
-    ) -> Result<Vec<BluetoothDevice>> {
-        todo!()
-    }
-    async fn getConnectionState(&self, _: &BluetoothDevice, _: &AttributionSource) -> Result<i32> {
-        todo!()
-    }
-    async fn setConnectionPolicy(
-        &self,
-        _: &BluetoothDevice,
-        _: i32,
-        _: &AttributionSource,
-    ) -> Result<bool> {
-        todo!()
-    }
-    async fn getConnectionPolicy(&self, _: &BluetoothDevice, _: &AttributionSource) -> Result<i32> {
-        todo!()
-    }
-    async fn getHapGroup(&self, _: &BluetoothDevice, _: &AttributionSource) -> Result<i32> {
-        todo!()
-    }
-    async fn getActivePresetIndex(
-        &self,
-        _: &BluetoothDevice,
-        _: &AttributionSource,
-    ) -> Result<i32> {
-        todo!()
-    }
-    async fn getActivePresetInfo(
-        &self,
-        _: &BluetoothDevice,
-        _: &AttributionSource,
-    ) -> Result<BluetoothHapPresetInfo> {
-        todo!()
-    }
-    async fn selectPreset(&self, _: &BluetoothDevice, _: i32, _: &AttributionSource) -> Result<()> {
-        todo!()
-    }
-    async fn selectPresetForGroup(&self, _: i32, _: i32, _: &AttributionSource) -> Result<()> {
-        todo!()
-    }
-    async fn switchToNextPreset(&self, _: &BluetoothDevice, _: &AttributionSource) -> Result<()> {
-        todo!()
-    }
-    async fn switchToNextPresetForGroup(&self, _: i32, _: &AttributionSource) -> Result<()> {
-        todo!()
-    }
-    async fn switchToPreviousPreset(
-        &self,
-        _: &BluetoothDevice,
-        _: &AttributionSource,
-    ) -> Result<()> {
-        todo!()
-    }
-    async fn switchToPreviousPresetForGroup(&self, _: i32, _: &AttributionSource) -> Result<()> {
-        todo!()
-    }
-    async fn getPresetInfo(
-        &self,
-        _: &BluetoothDevice,
-        _: i32,
-        _: &AttributionSource,
-    ) -> Result<BluetoothHapPresetInfo> {
-        todo!()
-    }
-    async fn getAllPresetInfo(
-        &self,
-        _: &BluetoothDevice,
-        _: &AttributionSource,
-    ) -> Result<Vec<BluetoothHapPresetInfo>> {
-        todo!()
-    }
-    async fn getFeatures(&self, _: &BluetoothDevice, _: &AttributionSource) -> Result<i32> {
-        todo!()
-    }
-    async fn setPresetName(
-        &self,
-        _: &BluetoothDevice,
-        _: i32,
-        _: &str,
-        _: &AttributionSource,
-    ) -> Result<()> {
-        todo!()
-    }
-    async fn setPresetNameForGroup(
-        &self,
-        _: i32,
-        _: i32,
-        _: &str,
-        _: &AttributionSource,
-    ) -> Result<()> {
-        todo!()
-    }
-    async fn registerCallback(
-        &self,
-        _: &Strong<(dyn IBluetoothHapClientCallback)>,
-        _: &AttributionSource,
-    ) -> Result<()> {
-        todo!()
-    }
-    async fn unregisterCallback(
-        &self,
-        _: &Strong<dyn IBluetoothHapClientCallback>,
-        _: &AttributionSource,
-    ) -> Result<()> {
-        todo!()
-    }
+    // Finally, extract the raw pointer to return.
+    output.into_raw()
 }
