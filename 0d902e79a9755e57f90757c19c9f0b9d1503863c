@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbac6edf_3f9a9265",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-29T02:24:27Z",
+      "side": 1,
+      "message": "Please add Bug id for cs flag as well\nBug: 324185011",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "0d902e79a9755e57f90757c19c9f0b9d1503863c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "beb2584a_f2939b6d",
