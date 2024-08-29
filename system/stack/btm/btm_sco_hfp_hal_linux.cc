@@ -318,8 +318,20 @@ bool is_coding_format_supported(esco_coding_format_t coding_format) {
 
 // Check if wideband speech is supported on local device
 bool get_wbs_supported() {
+#if TARGET_FLOSS
   return is_coding_format_supported(ESCO_CODING_FORMAT_TRANSPNT) ||
          is_coding_format_supported(ESCO_CODING_FORMAT_MSBC);
+#else
+  // TODO(b/351743644): remove this workaround after fixing mSBC for hfp.
+  int hf_features = osi_property_get_int32("bluetooth.hfp.hf_features.config", 0);
+  bool is_wbs_supported = is_coding_format_supported(ESCO_CODING_FORMAT_TRANSPNT) ||
+                          is_coding_format_supported(ESCO_CODING_FORMAT_MSBC);
+  if (0 == hf_features) {
+    return is_wbs_supported;
+  }
+  // if BTA_AG_FEAT_CODEC=0x00000200 disable in hf_feature, return false for wbs_support.
+  return (hf_features & 0x00000200) && is_wbs_supported;
+#endif
 }
 
 // Check if super-wideband speech is supported on local device
