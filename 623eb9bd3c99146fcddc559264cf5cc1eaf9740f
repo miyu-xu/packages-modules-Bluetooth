@@ -22,6 +22,30 @@
       },
       "revId": "623eb9bd3c99146fcddc559264cf5cc1eaf9740f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf58121_1e088529",
+        "filename": "system/stack/btm/btm_sec_cb.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-29T17:00:35Z",
+      "side": 1,
+      "message": "Macro keeps the calling function name in the log.",
+      "parentUuid": "9082d082_617654e7",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 28
+      },
+      "revId": "623eb9bd3c99146fcddc559264cf5cc1eaf9740f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
