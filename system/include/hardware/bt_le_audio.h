@@ -91,6 +91,9 @@ enum class UnicastMonitorModeStatus {
 
 typedef enum {
   LE_AUDIO_CODEC_INDEX_SOURCE_LC3 = 0,
+  LE_AUDIO_CODEC_INDEX_SOURCE_APTX_LE = 1,
+  LE_AUDIO_CODEC_INDEX_SOURCE_APTX_LEX = 2,
+  LE_AUDIO_CODEC_INDEX_SOURCE_DEFAULT = 3,
   LE_AUDIO_CODEC_INDEX_SOURCE_INVALID = 1000 * 1000,
 } btle_audio_codec_index_t;
 
@@ -179,6 +182,12 @@ typedef struct btle_audio_codec_config {
     switch (codec_type) {
       case LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
         codec_name_str = "LC3";
+        break;
+      case LE_AUDIO_CODEC_INDEX_SOURCE_APTX_LE:
+        codec_name_str = "APTX_LE";
+        break;
+      case LE_AUDIO_CODEC_INDEX_SOURCE_APTX_LEX:
+        codec_name_str = "APTX_LEX";
         break;
       default:
         codec_name_str = "Unknown LE codec " + std::to_string(codec_type);
