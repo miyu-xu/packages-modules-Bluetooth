@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed85d36_f7420dbe",
+        "filename": "system/gd/rust/linux/mgmt/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-29T13:45:31Z",
+      "side": 1,
+      "message": "I think this line needs to moved as well?",
+      "revId": "7891ed10469f31f19c77e8fb2f9998ae47825043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
