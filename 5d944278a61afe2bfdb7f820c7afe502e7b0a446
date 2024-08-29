@@ -70,6 +70,24 @@
       "parentUuid": "fca042f8_ef87db6e",
       "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "605c67a0_07eaf3f9",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-08-29T02:23:50Z",
+      "side": 1,
+      "message": "Thanks for point this out.\nCurrently, it not block our use case.\nI would like to merge this patch first and check this by another patch later.\nFiled a bug 362854477 to track.\nThanks!",
+      "parentUuid": "0ce07e95_88e0aa48",
+      "revId": "5d944278a61afe2bfdb7f820c7afe502e7b0a446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
