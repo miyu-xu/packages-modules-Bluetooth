@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1bc7c1_40b644b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:43:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b9b2d29b_69c15c78",
+      "range": {
+        "startLine": 9,
+        "startChar": 49,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63c41e0f_d28ed1a5",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f3edc43_f2167cc6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3747,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:43:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "63c41e0f_d28ed1a5",
+      "range": {
+        "startLine": 3747,
+        "startChar": 29,
+        "endLine": 3747,
+        "endChar": 34
+      },
       "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c25f8afc_09c5c3d5",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:43:32Z",
+      "side": 1,
+      "message": "Since session is created in broadcast create call time, symmetric stop call should be in destroy. I\u0027ll update this. Thanks",
+      "parentUuid": "47581ecc_3242dc45",
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f5b3ca4_8e739d56",
@@ -141,6 +207,24 @@
           ]
         }
       ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b402f13_dc32236a",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:43:32Z",
+      "side": 1,
+      "message": "Right! Thanks",
+      "parentUuid": "8f5b3ca4_8e739d56",
       "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -202,6 +286,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47060a23_11f908c3",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:43:32Z",
+      "side": 1,
+      "message": "You mean to replace `OnBroadcastAudioSessionCreated` with `OnBroadcastCreated` ? I have feeling that use of `OnBroadcastCreated` would be an abuse.",
+      "parentUuid": "ea741c84_e79bd53e",
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1c5c6ad_b28b9696",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 8
@@ -241,6 +343,24 @@
           ]
         }
       ],
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e439fa7d_53726d59",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:43:32Z",
+      "side": 1,
+      "message": "Established sessions should not be a problem. I think as long as there is sense for broadcast to exist (destroy finally removes session) then session can be \"prepared\"",
+      "parentUuid": "c1c5c6ad_b28b9696",
       "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
