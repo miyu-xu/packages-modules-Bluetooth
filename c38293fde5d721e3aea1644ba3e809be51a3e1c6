@@ -22,6 +22,30 @@
       },
       "revId": "c38293fde5d721e3aea1644ba3e809be51a3e1c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bca1a9d3_c1505b26",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1534,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-29T05:39:23Z",
+      "side": 1,
+      "message": "Nice catch! I added Admin API",
+      "parentUuid": "fb033f15_e617d863",
+      "range": {
+        "startLine": 1534,
+        "startChar": 41,
+        "endLine": 1534,
+        "endChar": 83
+      },
+      "revId": "c38293fde5d721e3aea1644ba3e809be51a3e1c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
