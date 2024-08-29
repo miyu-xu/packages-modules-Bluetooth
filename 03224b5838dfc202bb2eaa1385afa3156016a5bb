@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26963402_23195b01",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T13:26:05Z",
+      "side": 1,
+      "message": "Do we cover here scenario that ASEs have cached codec configuration ?",
+      "revId": "03224b5838dfc202bb2eaa1385afa3156016a5bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
