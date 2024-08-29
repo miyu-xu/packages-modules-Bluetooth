@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aeeef9c_16ef3994",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-29T03:26:49Z",
+      "side": 1,
+      "message": "Isn\u0027t it better to avoid this call to BTM_SecReadDevClass when flag is not enabled?",
+      "range": {
+        "startLine": 669,
+        "startChar": 51,
+        "endLine": 669,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ee77b748_82ce272f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_sec.cc",
+              "range": {
+                "startLine": 669,
+                "startChar": 0,
+                "endLine": 670,
+                "endChar": 0
+              },
+              "replacement": "  DEV_CLASS dev_class \u003d kDevClassEmpty;\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_sec.cc",
+              "range": {
+                "startLine": 671,
+                "startChar": 0,
+                "endLine": 672,
+                "endChar": 0
+              },
+              "replacement": "    dev_class \u003d get_btm_client_interface().security.BTM_SecReadDevClass(bda);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a175629a1489fced7b1a77dc38a29dab30981760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
