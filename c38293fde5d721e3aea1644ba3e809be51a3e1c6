@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb033f15_e617d863",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1534,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-08-29T03:38:15Z",
+      "side": 1,
+      "message": "This calls to InterfaceManager to export the DBus objects including the admin object. Since now the admin object is initialized after the above AdapterReady is processed. If the order isn\u0027t guaranteed given that they are 2 different rx/tx, it might cause some race in clients.\nCould you either move the Adapter API ready in the place we handled Message:AdapterReady lib.rs or perhaps we can also separate the Admin API ready from Adapter API ready.",
+      "range": {
+        "startLine": 1534,
+        "startChar": 41,
+        "endLine": 1534,
+        "endChar": 83
+      },
+      "revId": "c38293fde5d721e3aea1644ba3e809be51a3e1c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
