@@ -53,6 +53,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** Class of Bluetooth Metrics */
 public class MetricsLogger {
@@ -410,7 +411,8 @@ public class MetricsLogger {
             }
         }
 
-        return wordBreakdownList;
+        // Prevent returning a mutable list
+        return wordBreakdownList.stream().collect(Collectors.toList());
     }
 
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)

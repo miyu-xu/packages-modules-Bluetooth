@@ -98,6 +98,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /** Broadcast Assistant Scan Service */
 public class BassClientService extends ProfileService {
@@ -2880,14 +2881,9 @@ public class BassClientService extends ProfileService {
                 log("stateMachine is null");
                 return Collections.emptyList();
             }
-            List<BluetoothLeBroadcastReceiveState> recvStates =
-                    new ArrayList<BluetoothLeBroadcastReceiveState>();
-            for (BluetoothLeBroadcastReceiveState rs : stateMachine.getAllSources()) {
-                if (!isEmptyBluetoothDevice(rs.getSourceDevice())) {
-                    recvStates.add(rs);
-                }
-            }
-            return recvStates;
+            return stateMachine.getAllSources().stream()
+                    .filter(rs -> !isEmptyBluetoothDevice(rs.getSourceDevice()))
+                    .collect(Collectors.toList());
         }
     }
 
