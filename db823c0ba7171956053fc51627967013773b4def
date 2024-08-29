@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48ab5bf9_7d53bb0f",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T14:32:04Z",
+      "side": 1,
+      "message": "Yeah, I was also thinking about this...\n\nSo you think ENABLING would be ok ?",
+      "parentUuid": "b1aec7d0_13ccda4a",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 12
+      },
+      "revId": "db823c0ba7171956053fc51627967013773b4def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0cf90c87_3f3da8cb",
         "filename": "system/bta/le_audio/broadcaster/state_machine.h",
         "patchSetId": 1
