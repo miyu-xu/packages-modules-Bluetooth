@@ -22,6 +22,30 @@
       },
       "revId": "2be076a9f9bd23e30e9ebffb187583f7d3b359c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3251012_ad1d2b61",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-29T18:47:03Z",
+      "side": 1,
+      "message": "Ah you\u0027re right, if `info.attributes` contains unexpected values currently we\u0027d still process them, but with the flag we wouldn\u0027t.\n\nPlus it\u0027d be a shame to temper with your peace of mind.\n\nI\u0027ll make the change, thanks!",
+      "parentUuid": "1ddc3145_19d2efef",
+      "range": {
+        "startLine": 780,
+        "startChar": 0,
+        "endLine": 796,
+        "endChar": 5
+      },
+      "revId": "2be076a9f9bd23e30e9ebffb187583f7d3b359c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
