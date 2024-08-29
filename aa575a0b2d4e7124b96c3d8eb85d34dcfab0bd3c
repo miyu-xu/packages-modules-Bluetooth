@@ -16,6 +16,24 @@
       "message": "If we get EVENT_TYPE_BROADCAST_AUDIO_SESSION_CREATED with !areAllGroupsInNotActiveState and removeActiveDevice(true) will be called, then here we not react for that with create broadcast.\nThere will no race condition between GROUP_STATUS_INACTIVE and EVENT_TYPE_BROADCAST_CREATED?",
       "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69fcf1db_8a840502",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3504,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-08-29T15:53:09Z",
+      "side": 0,
+      "message": "I think I don\u0027t understand the question here, but will try explain my understanding on create broadcast queue.\n\nI think broadcast queue should be a FIFO queue. Once the response for create broadcast would be received, next broadcast create should be triggered (in EVENT_TYPE_BROADCAST_CREATED handler).",
+      "parentUuid": "1dacccf3_3092c4a1",
+      "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
