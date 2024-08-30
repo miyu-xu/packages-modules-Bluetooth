@@ -1,0 +1,99 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b93b4272_b91c3774",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-30T22:11:41Z",
+      "side": 1,
+      "message": "Can we make it time bound?",
+      "fixSuggestions": [
+        {
+          "fixId": "2bdb56a3_79df72ea",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 27,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "import java.util.concurrent.TimeUnit;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mFutureBondIntent.get(10, TimeUnit.SECONDS))\n            .isEqualTo(BluetoothDevice.BOND_BONDED);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mFutureBondIntent.get(10, TimeUnit.SECONDS))\n            .isEqualTo(BluetoothDevice.BOND_BONDED);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2db2658a744675f98d63d5a8f22969adb69eb006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
