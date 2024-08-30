@@ -34,6 +34,24 @@
       "parentUuid": "1dacccf3_3092c4a1",
       "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bb829a5_caca89ab",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3504,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-30T13:01:23Z",
+      "side": 0,
+      "message": "For the next broadcast you have right but I mean case when you try to create broadcast before audio session is created.\nIf you get `EVENT_TYPE_BROADCAST_AUDIO_SESSION_CREATED` but unicast group is still active, you start monitoring it for \"Broadcast would be created once unicast group became inactive\". In this place here (LeAudioStackEvent.GROUP_STATUS_INACTIVE) you removed createBroadcast(settings); so what will create a broadcast?",
+      "parentUuid": "69fcf1db_8a840502",
+      "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
