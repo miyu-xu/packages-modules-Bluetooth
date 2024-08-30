@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f24e33b_e106a687",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-30T07:34:29Z",
+      "side": 1,
+      "message": "why not just desc_len?\n\nBtw a tangent topic: HIDD_APP_DESCRIPTOR_LEN is set to 2048, but SDP_MAX_ATTR_LEN is 400. This doesn\u0027t seem right, should it be our concern?",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ea778251_dda43db9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/hid/hidd_api.cc",
+              "range": {
+                "startLine": 266,
+                "startChar": 0,
+                "endLine": 267,
+                "endChar": 0
+              },
+              "replacement": "      p_buf \u003d (uint8_t*)osi_malloc(desc_len + 8);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd6cf57_8473fad2",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-08-30T07:34:29Z",
+      "side": 1,
+      "message": "can we calculate the correct number here?",
+      "range": {
+        "startLine": 269,
+        "startChar": 57,
+        "endLine": 269,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "470c7f39_f56ece40",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/hid/hidd_api.cc",
+              "range": {
+                "startLine": 269,
+                "startChar": 0,
+                "endLine": 270,
+                "endChar": 0
+              },
+              "replacement": "        log::error(\"Buffer allocation failure for size \u003d {}\", HIDD_APP_DESCRIPTOR_LEN + 8);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
