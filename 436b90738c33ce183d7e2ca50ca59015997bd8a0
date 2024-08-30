@@ -40,6 +40,30 @@
       ],
       "revId": "436b90738c33ce183d7e2ca50ca59015997bd8a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8207180_68dbfe89",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-30T17:40:47Z",
+      "side": 1,
+      "message": "Ignore the util function comment. Looks like It is not used in the file",
+      "parentUuid": "a1b7c152_6bc011a1",
+      "range": {
+        "startLine": 1580,
+        "startChar": 41,
+        "endLine": 1580,
+        "endChar": 60
+      },
+      "revId": "436b90738c33ce183d7e2ca50ca59015997bd8a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
