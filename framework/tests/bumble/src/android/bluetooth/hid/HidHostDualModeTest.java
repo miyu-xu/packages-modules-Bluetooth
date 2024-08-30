@@ -41,7 +41,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import pandora.HostProto.AdvertiseRequest;
+import pandora.HostProto.DataTypes;
+import pandora.HostProto.DiscoverabilityMode;
 import pandora.HostProto.OwnAddressType;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -49,14 +52,15 @@ import java.util.concurrent.TimeUnit;
 /** Test cases for {@link Hid Host}. */
 @RunWith(AndroidJUnit4.class)
 public class HidHostDualModeTest {
-    private static final String TAG = "HidHostDualModeTest";
+    private static final String TAG = HidHostDualModeTest.class.getSimpleName();
+    private static final String BUMBLE_DEVICE_NAME = "Bumble";
     private CompletableFuture<Integer> mFutureConnectionIntent,
             mFutureBondIntent,
             mFutureHandShakeIntent,
             mFutureReportIntent,
             mFutureProtocolModeIntent,
             mFutureTransportIntent;
-    private CompletableFuture<Boolean> mFutureHogpServiceIntent;
+    private CompletableFuture<Boolean> mDeviceFoundIntent, mFutureHogpServiceIntent;
     private BluetoothDevice mDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
@@ -71,6 +75,7 @@ public class HidHostDualModeTest {
     private static final int MOUSE_RPT_SIZE = 4;
     private static final int CONNECT_TIMEOUT_MS = 30000;
     private static final int BOND_TIMEOUT_MS = 5000;
+    private static final int DISCOVERY_TIMEOUT_MS = 30000;
     private static final int TIMEOUT_MS = 2000;
 
     @Rule(order = 0)
@@ -171,6 +176,23 @@ public class HidHostDualModeTest {
                                 mFutureReportIntent.complete((reportSize - 1));
                             }
                             break;
+                        case BluetoothDevice.ACTION_FOUND:
+                            BluetoothDevice device =
+                                    intent.getParcelableExtra(
+                                            BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                            String deviceName =
+                                    String.valueOf(
+                                            intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                            Log.i(
+                                    TAG,
+                                    "Discovered device: " + device + " with name: " + deviceName);
+                            if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
+                                if (mDeviceFoundIntent != null) {
+                                    mDevice = device;
+                                    mDeviceFoundIntent.complete(true);
+                                }
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -209,6 +231,7 @@ public class HidHostDualModeTest {
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
         filter.addAction(BluetoothDevice.ACTION_UUID);
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
         filter.addAction(BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED);
         filter.addAction(BluetoothHidHost.ACTION_HANDSHAKE);
         filter.addAction(BluetoothHidHost.ACTION_REPORT);
@@ -218,19 +241,39 @@ public class HidHostDualModeTest {
         mAdapter.getProfileProxy(mContext, mBluetoothProfileServiceListener, BluetoothProfile.A2DP);
         mAdapter.getProfileProxy(
                 mContext, mBluetoothProfileServiceListener, BluetoothProfile.HEADSET);
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+
+        DataTypes.Builder dataTypeBuilder = DataTypes.newBuilder();
+        dataTypeBuilder.setCompleteLocalName(BUMBLE_DEVICE_NAME);
+        dataTypeBuilder.setLeDiscoverabilityModeValue(
+                DiscoverabilityMode.DISCOVERABLE_GENERAL_VALUE);
         AdvertiseRequest request =
                 AdvertiseRequest.newBuilder()
                         .setLegacy(true)
                         .setConnectable(true)
                         .setOwnAddressType(OwnAddressType.RANDOM)
+                        .setData(dataTypeBuilder.build())
                         .build();
         mBumble.hostBlocking().advertise(request);
+        mDeviceFoundIntent = new CompletableFuture<>();
+        // Start Discovery
+        assertThat(mAdapter.startDiscovery()).isTrue();
+        assertThat(
+                        mDeviceFoundIntent
+                                .completeOnTimeout(
+                                        null, DISCOVERY_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isTrue();
+        assertThat(mAdapter.cancelDiscovery()).isTrue();
 
         mFutureConnectionIntent = new CompletableFuture<>();
         mFutureBondIntent = new CompletableFuture<>();
         mFutureHogpServiceIntent = new CompletableFuture<>();
 
-        mDevice = mBumble.getRemoteDevice();
         assertThat(mDevice.createBond()).isTrue();
         assertThat(
                         mFutureBondIntent
@@ -266,7 +309,7 @@ public class HidHostDualModeTest {
                 .isEqualTo(BluetoothProfile.STATE_CONNECTED);
         assertThat(
                         mFutureHogpServiceIntent
-                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .completeOnTimeout(null, CONNECT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
                                 .join())
                 .isTrue();
         assertThat(mHidService.getPreferredTransport(mDevice))
@@ -287,7 +330,7 @@ public class HidHostDualModeTest {
 
         assertThat(
                         mFutureTransportIntent
-                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .completeOnTimeout(null, CONNECT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
                                 .join())
                 .isEqualTo(BluetoothDevice.TRANSPORT_LE);
         assertThat(mHidService.getPreferredTransport(mDevice))
@@ -296,7 +339,7 @@ public class HidHostDualModeTest {
 
     @After
     public void tearDown() throws Exception {
-        if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+        if (mDevice != null && mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
             mFutureBondIntent = new CompletableFuture<>();
             mDevice.removeBond();
             assertThat(
@@ -343,7 +386,7 @@ public class HidHostDualModeTest {
 
         assertThat(
                         mFutureTransportIntent
-                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .completeOnTimeout(null, CONNECT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
                                 .join())
                 .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
         assertThat(mHidService.getPreferredTransport(mDevice))
