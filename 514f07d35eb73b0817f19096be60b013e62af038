@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "431b899a_0e521f70",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "Please move this definition to the `if (pass_to_application) {` to show that modifying this struct does not have any side effects since you are modifying the if condition.",
+      "range": {
+        "startLine": 878,
+        "startChar": 19,
+        "endLine": 878,
+        "endChar": 26
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c6daa4e_735258d8",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "nit: should return early on error to reduce indentation",
+      "range": {
+        "startLine": 1411,
+        "startChar": 0,
+        "endLine": 1411,
+        "endChar": 91
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df11c808_c9d15a0f",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "with the macro and remove the p_dev_rec, the first 3 methods are short, maybe not worth it to extract them into functions?\n\ntakes more space than keeping them in the switch-case\n\nbut it is up to you",
+      "range": {
+        "startLine": 1546,
+        "startChar": 12,
+        "endLine": 1546,
+        "endChar": 41
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ea36f5_b3af568d",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "btm_ble_smp_user_confirmation_request",
+      "range": {
+        "startLine": 1546,
+        "startChar": 12,
+        "endLine": 1546,
+        "endChar": 41
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202f66b5_b0825562",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1548,
+        "startChar": 20,
+        "endLine": 1548,
+        "endChar": 29
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ca4a2d1_5b43c01b",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "btm_ble_smp_security_request",
+      "range": {
+        "startLine": 1556,
+        "startChar": 12,
+        "endLine": 1556,
+        "endChar": 27
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b35454b_46ec2425",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1557,
+        "startChar": 0,
+        "endLine": 1557,
+        "endChar": 54
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3267d10b_5f9b2b6d",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "btm_ble_smp_consent_request",
+      "range": {
+        "startLine": 1568,
+        "startChar": 12,
+        "endLine": 1568,
+        "endChar": 31
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "911b6c29_38c31019",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1569,
+        "startChar": 0,
+        "endLine": 1569,
+        "endChar": 54
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98f90f6b_9b565d8e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "nit: btm_ble_smp_complete_event\n\noriginal handler contains the word \"smp\", missing it make this method name harder to related to the original handler",
+      "range": {
+        "startLine": 1575,
+        "startChar": 12,
+        "endLine": 1575,
+        "endChar": 32
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1697eb_c686f068",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1576,
+        "startChar": 0,
+        "endLine": 1576,
+        "endChar": 54
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dbf4c01_26c82899",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1654,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "btm_find_dev is already called here, no need to call it inside each function",
+      "range": {
+        "startLine": 1654,
+        "startChar": 32,
+        "endLine": 1654,
+        "endChar": 44
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b1f04ed_2cdba2e2",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1692,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 1,
+      "message": "tBTM_LE_EVT_DATA is completely different from tSMP_EVT_DATA, please explain why you can just cast it",
+      "range": {
+        "startLine": 1692,
+        "startChar": 69,
+        "endLine": 1692,
+        "endChar": 94
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

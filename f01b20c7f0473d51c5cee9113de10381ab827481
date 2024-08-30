@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbed22e5_c96d7504",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-30T22:47:53Z",
+      "side": 0,
+      "message": "callback_rc used to determine whether to proceed to next step, do we assume p_le_callback will never fail? if yes, we should let it return void; if not, callback_rc should still get the callback\u0027s return status\n\nthis is another reason to use an inline function instead of macro\n\nif you need line number, pass `__line__` and `__file__` as arguments\n\nor, leave this call site as is and don\u0027t replace it with macro",
+      "range": {
+        "startLine": 1411,
+        "startChar": 4,
+        "endLine": 1411,
+        "endChar": 15
+      },
+      "revId": "f01b20c7f0473d51c5cee9113de10381ab827481",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
