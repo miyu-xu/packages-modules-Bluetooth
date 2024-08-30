@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c38117ae_db17509d",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-30T02:58:58Z",
+      "side": 1,
+      "message": "Because the topshim objects of the other profiles can only be obtained after the `bluetooth.lock().unwrap().init(init_flags, hci_index);` call",
+      "parentUuid": "15e204e4_45d1400d",
+      "revId": "a05031ea194b9f53940b6a2bf3ab1bb8f52cbc5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "070a9766_d27ea431",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 5
@@ -31,6 +49,30 @@
       "writtenOn": "2024-08-29T20:26:37Z",
       "side": 1,
       "message": "We should probably either change this name to include the side effects or split the scanner part out. `set_gatt_and_init_scanner` or similar.",
+      "range": {
+        "startLine": 692,
+        "startChar": 18,
+        "endLine": 692,
+        "endChar": 26
+      },
+      "revId": "a05031ea194b9f53940b6a2bf3ab1bb8f52cbc5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d04c71_efeb694f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-08-30T02:58:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "070a9766_d27ea431",
       "range": {
         "startLine": 692,
         "startChar": 18,
