@@ -22,6 +22,30 @@
       },
       "revId": "656c869444fa734083c4694efe5167660a6bbfdf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61e4470_de8f71b5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3549,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-30T15:31:44Z",
+      "side": 1,
+      "message": "The class of the device is now extracted from BTM in `bta_dm_ble_smp_cback()` and set to this field. In case it is not known, it is expected to be empty or unclassified, in which case it will be ignored.",
+      "parentUuid": "55f82a8a_3ab64999",
+      "range": {
+        "startLine": 3549,
+        "startChar": 72,
+        "endLine": 3549,
+        "endChar": 92
+      },
+      "revId": "656c869444fa734083c4694efe5167660a6bbfdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
