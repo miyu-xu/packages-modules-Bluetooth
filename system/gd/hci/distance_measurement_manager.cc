@@ -494,20 +494,33 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
             handler_->BindOnceOn(this, &impl::on_cs_set_procedure_parameters));
   }
 
+  void handle_cs_stop_or_fail(uint16_t connection_handle, DistanceMeasurementErrorCode errorCode) {
+    if (cs_trackers_[connection_handle].role == CsRole::INITIATOR) {
+      if (cs_trackers_[connection_handle].waiting_for_start_callback) {
+        distance_measurement_callbacks_->OnDistanceMeasurementStartFail(
+                cs_trackers_[connection_handle].address, errorCode, METHOD_CS);
+      } else {
+        distance_measurement_callbacks_->OnDistanceMeasurementStopped(
+                cs_trackers_[connection_handle].address, errorCode, METHOD_CS);
+      }
+      cs_trackers_[connection_handle].repeating_alarm->Cancel();
+      cs_trackers_[connection_handle].repeating_alarm.reset();
+    }
+    cs_trackers_.erase(connection_handle);
+  }
+
   void send_le_cs_procedure_enable(uint16_t connection_handle, Enable enable) {
+    log::info("send le cs procedure enable cmd: {}", enable);
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       log::warn("Can't find cs tracker for connection {}", connection_handle);
       return;
     }
     Address address = cs_trackers_[connection_handle].address;
+    Address connection_address = acl_manager_->HACK_GetLeAddress(connection_handle);
     // Check if the connection still exists
-    if (connection_handle == kIllegalConnectionHandle) {
+    if (connection_address.IsEmpty()) {
       log::warn("Can't find connection for {}", address);
-      distance_measurement_callbacks_->OnDistanceMeasurementStopped(
-              address, REASON_NO_LE_CONNECTION, METHOD_CS);
-      cs_trackers_[connection_handle].repeating_alarm->Cancel();
-      cs_trackers_[connection_handle].repeating_alarm.reset();
-      cs_trackers_.erase(connection_handle);
+      handle_cs_stop_or_fail(connection_handle, REASON_NO_LE_CONNECTION);
       return;
     }
     hci_layer_->EnqueueCommand(
@@ -534,14 +547,18 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (!event_view.IsValid()) {
       log::warn("Get invalid LeCsReadRemoteSupportedCapabilitiesCompleteView");
       return;
-    } else if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+    }
+    uint16_t connection_handle = event_view.GetConnectionHandle();
+    if (event_view.GetStatus() != ErrorCode::SUCCESS) {
       std::string error_code = ErrorCodeText(event_view.GetStatus());
       log::warn("Received LeCsReadRemoteSupportedCapabilitiesCompleteView with error code {}",
                 error_code);
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end()) {
+        handle_cs_stop_or_fail(connection_handle, REASON_INTERNAL_ERROR);
+      }
       return;
     }
-    uint16_t connection_handle = event_view.GetConnectionHandle();
-    send_le_cs_set_default_settings(event_view.GetConnectionHandle());
+    send_le_cs_set_default_settings(connection_handle);
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       // Create a cs tracker with role reflector
       // TODO: Check ROLE via CS config. (b/304295768)
@@ -571,6 +588,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
       std::string error_code = ErrorCodeText(complete_view.GetStatus());
       log::warn("Received LeCsSetDefaultSettingsComplete with error code {}", error_code);
+      uint16_t connection_handle = complete_view.GetConnectionHandle();
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end()) {
+        handle_cs_stop_or_fail(connection_handle, REASON_INTERNAL_ERROR);
+      }
       return;
     }
   }
@@ -579,12 +600,16 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (!event_view.IsValid()) {
       log::warn("Get invalid LeCsSecurityEnableCompleteView");
       return;
-    } else if (event_view.GetStatus() != ErrorCode::SUCCESS) {
-      std::string error_code = ErrorCodeText(event_view.GetStatus());
-      log::warn("Received LeCsSecurityEnableCompleteView with error code {}", error_code);
-      return;
     }
     uint16_t connection_handle = event_view.GetConnectionHandle();
+    if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+      std::string error_code = ErrorCodeText(event_view.GetStatus());
+      log::warn("Received LeCsSecurityEnableCompleteView with error code {}", error_code);
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end()) {
+        handle_cs_stop_or_fail(connection_handle, REASON_INTERNAL_ERROR);
+      }
+      return;
+    }
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       log::warn("Can't find cs tracker for connection_handle {}", connection_handle);
       return;
@@ -601,12 +626,16 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (!event_view.IsValid()) {
       log::warn("Get invalid LeCsConfigCompleteView");
       return;
-    } else if (event_view.GetStatus() != ErrorCode::SUCCESS) {
-      std::string error_code = ErrorCodeText(event_view.GetStatus());
-      log::warn("Received LeCsConfigCompleteView with error code {}", error_code);
-      return;
     }
     uint16_t connection_handle = event_view.GetConnectionHandle();
+    if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+      std::string error_code = ErrorCodeText(event_view.GetStatus());
+      log::warn("Received LeCsConfigCompleteView with error code {}", error_code);
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end()) {
+        handle_cs_stop_or_fail(connection_handle, REASON_INTERNAL_ERROR);
+      }
+      return;
+    }
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       log::warn("Can't find cs tracker for connection_handle {}", connection_handle);
       return;
@@ -631,12 +660,17 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (!complete_view.IsValid()) {
       log::warn("Get Invalid LeCsSetProcedureParametersCompleteView");
       return;
-    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
-      std::string error_code = ErrorCodeText(complete_view.GetStatus());
-      log::warn("Received LeCsSetProcedureParametersCompleteView with error code {}", error_code);
-      return;
     }
     uint16_t connection_handle = complete_view.GetConnectionHandle();
+    if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      std::string error_code = ErrorCodeText(complete_view.GetStatus());
+      log::warn("Received LeCsSetProcedureParametersCompleteView with error code {}", error_code);
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end()) {
+        handle_cs_stop_or_fail(connection_handle, REASON_INTERNAL_ERROR);
+      }
+      return;
+    }
+
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       log::warn("Can't find cs tracker for connection_handle {}", connection_handle);
       return;
@@ -657,18 +691,18 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   void on_cs_procedure_enable_complete(LeCsProcedureEnableCompleteView event_view) {
     log::assert_that(event_view.IsValid(), "assert failed: event_view.IsValid()");
     uint16_t connection_handle = event_view.GetConnectionHandle();
+    log::debug("on cs procedure enabled complete");
     if (event_view.GetStatus() != ErrorCode::SUCCESS) {
       std::string error_code = ErrorCodeText(event_view.GetStatus());
       log::warn("Received LeCsProcedureEnableCompleteView with error code {}", error_code);
-      if (cs_trackers_.find(connection_handle) != cs_trackers_.end() &&
-          cs_trackers_[connection_handle].waiting_for_start_callback) {
-        cs_trackers_[connection_handle].waiting_for_start_callback = false;
-        distance_measurement_callbacks_->OnDistanceMeasurementStartFail(
-                cs_trackers_[connection_handle].address, REASON_INTERNAL_ERROR, METHOD_CS);
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end()) {
+        if (cs_trackers_[connection_handle].waiting_for_start_callback) {
+          cs_trackers_[connection_handle].waiting_for_start_callback = false;
+        }
+        handle_cs_stop_or_fail(connection_handle, REASON_INTERNAL_ERROR);
       }
       return;
     }
-
     if (event_view.GetState() == Enable::ENABLED) {
       log::debug("Procedure enabled, {}", event_view.ToString());
       if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
