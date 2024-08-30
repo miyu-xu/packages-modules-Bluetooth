@@ -93,6 +93,30 @@
       },
       "revId": "db823c0ba7171956053fc51627967013773b4def",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ae2dd8_fccd2bbd",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-08-30T13:45:54Z",
+      "side": 1,
+      "message": "agree here, imho it has exact same function as suspending_",
+      "parentUuid": "0cf90c87_3f3da8cb",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 24
+      },
+      "revId": "db823c0ba7171956053fc51627967013773b4def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
