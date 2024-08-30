@@ -806,7 +806,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                     .anyMatch(AudioManagerAudioDeviceCallback::isWiredAudioHeadset)) {
                 return;
             }
-            wiredAudioDeviceConnected();
+            //wiredAudioDeviceConnected();
         }
 
         @Override
