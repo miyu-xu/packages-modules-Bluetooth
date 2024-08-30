@@ -1587,25 +1587,13 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
       btm_sec_cb.pairing_bda = bd_addr;
       p_dev_rec->sec_rec.le_link = tSECURITY_STATE::AUTHENTICATING;
       btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_LE_ACTIVE;
-      if (btm_sec_cb.api.p_le_callback) {
-        /* the callback function implementation may change the IO
-         * capability... */
-        log::verbose("btm_sec_cb.api.p_le_callback=0x{}", fmt::ptr(btm_sec_cb.api.p_le_callback));
-        (*btm_sec_cb.api.p_le_callback)(static_cast<tBTM_LE_EVT>(event), bd_addr,
-                                        (tBTM_LE_EVT_DATA*)p_data);
-      }
+      BTM_BLE_SEC_CALLBACK(static_cast<tBTM_LE_EVT>(event), bd_addr, (tBTM_LE_EVT_DATA*)p_data);
       break;
 
     case SMP_CONSENT_REQ_EVT:
       btm_sec_cb.pairing_bda = bd_addr;
       btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_LE_ACTIVE;
-      if (btm_sec_cb.api.p_le_callback) {
-        /* the callback function implementation may change the IO
-         * capability... */
-        log::verbose("btm_sec_cb.api.p_le_callback=0x{}", fmt::ptr(btm_sec_cb.api.p_le_callback));
-        (*btm_sec_cb.api.p_le_callback)(static_cast<tBTM_LE_EVT>(event), bd_addr,
-                                        (tBTM_LE_EVT_DATA*)p_data);
-      }
+      BTM_BLE_SEC_CALLBACK(BTM_LE_CONSENT_REQ_EVT, bd_addr, (tBTM_LE_EVT_DATA*)p_data);
       break;
 
     case SMP_SEC_REQUEST_EVT:
@@ -1616,23 +1604,11 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
       btm_sec_cb.pairing_bda = bd_addr;
       p_dev_rec->sec_rec.le_link = tSECURITY_STATE::AUTHENTICATING;
       btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_LE_ACTIVE;
-      if (btm_sec_cb.api.p_le_callback) {
-        /* the callback function implementation may change the IO
-         * capability... */
-        log::verbose("btm_sec_cb.api.p_le_callback=0x{}", fmt::ptr(btm_sec_cb.api.p_le_callback));
-        (*btm_sec_cb.api.p_le_callback)(static_cast<tBTM_LE_EVT>(event), bd_addr,
-                                        (tBTM_LE_EVT_DATA*)p_data);
-      }
+      BTM_BLE_SEC_CALLBACK(BTM_LE_SEC_REQUEST_EVT, bd_addr, (tBTM_LE_EVT_DATA*)p_data);
       break;
 
     case SMP_COMPLT_EVT: {
-      if (btm_sec_cb.api.p_le_callback) {
-        /* the callback function implementation may change the IO
-         * capability... */
-        log::verbose("btm_sec_cb.api.p_le_callback=0x{}", fmt::ptr(btm_sec_cb.api.p_le_callback));
-        (*btm_sec_cb.api.p_le_callback)(static_cast<tBTM_LE_EVT>(event), bd_addr,
-                                        (tBTM_LE_EVT_DATA*)p_data);
-      }
+      BTM_BLE_SEC_CALLBACK(BTM_LE_COMPLT_EVT, bd_addr, (tBTM_LE_EVT_DATA*)p_data);
 
       p_dev_rec = btm_find_dev(bd_addr);
       if (p_dev_rec == NULL) {
@@ -1701,11 +1677,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
     }
 
     case SMP_LE_ADDR_ASSOC_EVT:
-      if (btm_sec_cb.api.p_le_callback) {
-        log::verbose("btm_sec_cb.api.p_le_callback=0x{}", fmt::ptr(btm_sec_cb.api.p_le_callback));
-        (*btm_sec_cb.api.p_le_callback)(static_cast<tBTM_LE_EVT>(event), bd_addr,
-                                        (tBTM_LE_EVT_DATA*)p_data);
-      }
+      BTM_BLE_SEC_CALLBACK(static_cast<tBTM_LE_EVT>(event), bd_addr, (tBTM_LE_EVT_DATA*)p_data);
       break;
 
     case SMP_SIRK_VERIFICATION_REQ_EVT:
