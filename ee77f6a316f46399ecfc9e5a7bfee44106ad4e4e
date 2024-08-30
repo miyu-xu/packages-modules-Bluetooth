@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e27ef00f_16ab8037",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-30T16:05:50Z",
+      "side": 1,
+      "message": "net_test_stack_l2cap does a simple string comparison to ensure the `to_text` functions present expected output.  All that\u0027s needed is to get the string matchers working again to get the test running again.",
+      "revId": "ee77f6a316f46399ecfc9e5a7bfee44106ad4e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87533244_e190ed55",
