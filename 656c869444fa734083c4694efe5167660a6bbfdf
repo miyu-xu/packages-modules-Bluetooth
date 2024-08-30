@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55f82a8a_3ab64999",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3549,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-30T15:04:43Z",
+      "side": 1,
+      "message": "Are you certain this CoD value is always filled with proper value at the source of this event ?\nWe had some nasty erors where events carried dangling values, and ended up corrupting the stored CoD.\n\nIf CoD is kDevClassEmpty, btif_update_remote_properties would not update the value.\n\nSame comment applies to all changes below in this file.",
+      "range": {
+        "startLine": 3549,
+        "startChar": 72,
+        "endLine": 3549,
+        "endChar": 92
+      },
+      "revId": "656c869444fa734083c4694efe5167660a6bbfdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
