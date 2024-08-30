@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85497ed_a2e81f9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e33767d_1cc71173",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "c4af152317c91c527130c123c632f2d74a380a6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "879f28f0_343cd530",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-08-30T14:01:20Z",
       "side": 1,
       "message": "The benefits of this change are not as evident as the previous one\u0027s...",
+      "revId": "c4af152317c91c527130c123c632f2d74a380a6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8406063d_662dbc9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:19Z",
+      "side": 1,
+      "message": "There are no benefits of leaving this function either 😄",
+      "parentUuid": "879f28f0_343cd530",
       "revId": "c4af152317c91c527130c123c632f2d74a380a6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -78,6 +120,30 @@
       "side": 1,
       "message": "it looks like this could just be:\n\n```\nlcid \u003d p_tbl-\u003elcid\n```",
       "parentUuid": "7100a000_64519512",
+      "range": {
+        "startLine": 589,
+        "startChar": 13,
+        "endLine": 589,
+        "endChar": 66
+      },
+      "revId": "c4af152317c91c527130c123c632f2d74a380a6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45fa9905_d9de7755",
+        "filename": "system/stack/avdt/avdt_ad.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c5cc339_a73b1f13",
       "range": {
         "startLine": 589,
         "startChar": 13,
