@@ -22,6 +22,30 @@
       },
       "revId": "dacff7d8073c8e78eb9babdacf8a92313b194a63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b73168c7_b3b76165",
+        "filename": "system/stack/include/bt_psm_types.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T13:52:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd1ac37f_83425e43",
+      "range": {
+        "startLine": 71,
+        "startChar": 19,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "dacff7d8073c8e78eb9babdacf8a92313b194a63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
