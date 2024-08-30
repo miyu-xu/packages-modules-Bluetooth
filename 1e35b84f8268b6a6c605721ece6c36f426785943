@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02b8b685_13ab0454",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T13:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4474eb6c_06d6e2c7",
+      "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32f4ed00_26ebac0d",
@@ -49,6 +67,24 @@
           ]
         }
       ],
+      "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48cf2bda_ebf7afea",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T13:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32f4ed00_26ebac0d",
       "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
