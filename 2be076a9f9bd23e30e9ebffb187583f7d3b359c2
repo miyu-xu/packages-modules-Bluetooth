@@ -46,6 +46,30 @@
       },
       "revId": "2be076a9f9bd23e30e9ebffb187583f7d3b359c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000fb4f5_f11d4809",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-08-30T09:42:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3251012_ad1d2b61",
+      "range": {
+        "startLine": 780,
+        "startChar": 0,
+        "endLine": 796,
+        "endChar": 5
+      },
+      "revId": "2be076a9f9bd23e30e9ebffb187583f7d3b359c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
