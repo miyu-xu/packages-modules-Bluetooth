@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "239782f6_56b93a94",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-30T08:21:49Z",
+      "side": 1,
+      "message": "Thanks, with the improvement done in last patchset, we also support cached case",
+      "parentUuid": "26963402_23195b01",
+      "revId": "03224b5838dfc202bb2eaa1385afa3156016a5bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7df75ae7_61c43fc6",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-08-29T13:53:10Z",
       "side": 1,
       "message": "It seem that if current group state is IDLE, `StopStream(group)` does nothing due to check for `group-\u003eIsReleasingOrIdle()`and the target state does not matter. Am I missing something?",
+      "range": {
+        "startLine": 967,
+        "startChar": 4,
+        "endLine": 967,
+        "endChar": 42
+      },
+      "revId": "03224b5838dfc202bb2eaa1385afa3156016a5bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e25f59_bba03fd7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-08-30T08:21:49Z",
+      "side": 1,
+      "message": "Thanks, very good catch. This should be actually tested with a unit test in the state_machine_test but I was missing there one verifier before injecting remote states.\n\nNow it is fixed!",
+      "parentUuid": "7df75ae7_61c43fc6",
       "range": {
         "startLine": 967,
         "startChar": 4,
