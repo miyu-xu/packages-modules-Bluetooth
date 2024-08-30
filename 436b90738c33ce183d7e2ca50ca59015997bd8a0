@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1b7c152_6bc011a1",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-30T17:31:00Z",
+      "side": 1,
+      "message": "Use the util function instead.\nchange_pairing_state(BTM_PAIR_STATE_IDLE);\n\ncan we please share the bug report for this issue ?",
+      "range": {
+        "startLine": 1580,
+        "startChar": 41,
+        "endLine": 1580,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0407e76a_1ed2e7b3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1580,
+                "startChar": 0,
+                "endLine": 1581,
+                "endChar": 0
+              },
+              "replacement": "              btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "436b90738c33ce183d7e2ca50ca59015997bd8a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
