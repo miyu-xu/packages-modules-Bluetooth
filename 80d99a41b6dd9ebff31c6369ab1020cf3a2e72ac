@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b46e41_0f82f180",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-08-30T14:33:00Z",
+      "side": 1,
+      "message": "Maybe btif_storage* should no longer be btif* thing ?\n\nIf it\u0027s to be safe for use anywere, maybe storage should be a separate module, avaliable to all layers just like logging ?",
+      "revId": "80d99a41b6dd9ebff31c6369ab1020cf3a2e72ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
