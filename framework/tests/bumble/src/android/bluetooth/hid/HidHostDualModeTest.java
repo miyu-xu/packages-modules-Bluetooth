@@ -34,8 +34,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
-import com.google.common.util.concurrent.SettableFuture;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -45,17 +43,20 @@ import org.junit.runner.RunWith;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.OwnAddressType;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
 /** Test cases for {@link Hid Host}. */
 @RunWith(AndroidJUnit4.class)
 public class HidHostDualModeTest {
     private static final String TAG = "HidHostDualModeTest";
-    private SettableFuture<Integer> mFutureConnectionIntent,
+    private CompletableFuture<Integer> mFutureConnectionIntent,
             mFutureBondIntent,
             mFutureHandShakeIntent,
             mFutureReportIntent,
             mFutureProtocolModeIntent,
             mFutureTransportIntent;
-    private SettableFuture<Boolean> mFutureHogpServiceIntent;
+    private CompletableFuture<Boolean> mFutureHogpServiceIntent;
     private BluetoothDevice mDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
@@ -68,6 +69,9 @@ public class HidHostDualModeTest {
     private static final int KEYBD_RPT_SIZE = 9;
     private static final int MOUSE_RPT_ID = 2;
     private static final int MOUSE_RPT_SIZE = 4;
+    private static final int CONNECT_TIMEOUT_MS = 30000;
+    private static final int BOND_TIMEOUT_MS = 5000;
+    private static final int TIMEOUT_MS = 2000;
 
     @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
@@ -100,11 +104,11 @@ public class HidHostDualModeTest {
                             if (state == BluetoothProfile.STATE_CONNECTED
                                     || state == BluetoothProfile.STATE_DISCONNECTED) {
                                 if (mFutureConnectionIntent != null) {
-                                    mFutureConnectionIntent.set(state);
+                                    mFutureConnectionIntent.complete(state);
                                 }
                                 if (state == BluetoothProfile.STATE_CONNECTED
                                         && mFutureTransportIntent != null) {
-                                    mFutureTransportIntent.set(transport);
+                                    mFutureTransportIntent.complete(transport);
                                 }
                             }
                             break;
@@ -120,7 +124,7 @@ public class HidHostDualModeTest {
                             if (bondState == BluetoothDevice.BOND_BONDED
                                     || bondState == BluetoothDevice.BOND_NONE) {
                                 if (mFutureBondIntent != null) {
-                                    mFutureBondIntent.set(bondState);
+                                    mFutureBondIntent.complete(bondState);
                                 }
                             }
                             break;
@@ -132,7 +136,7 @@ public class HidHostDualModeTest {
                                 Log.d(TAG, "UUIDs : index=" + i + " uuid=" + parcelUuids[i]);
                                 if (parcelUuids[i].equals(BluetoothUuid.HOGP)) {
                                     if (mFutureHogpServiceIntent != null) {
-                                        mFutureHogpServiceIntent.set(true);
+                                        mFutureHogpServiceIntent.complete(true);
                                     }
                                 }
                             }
@@ -144,7 +148,7 @@ public class HidHostDualModeTest {
                                             BluetoothHidHost.PROTOCOL_UNSUPPORTED_MODE);
                             Log.i(TAG, "Protocol mode:" + protocolMode);
                             if (mFutureProtocolModeIntent != null) {
-                                mFutureProtocolModeIntent.set(protocolMode);
+                                mFutureProtocolModeIntent.complete(protocolMode);
                             }
                             break;
                         case BluetoothHidHost.ACTION_HANDSHAKE:
@@ -154,7 +158,7 @@ public class HidHostDualModeTest {
                                             BluetoothHidDevice.ERROR_RSP_UNKNOWN);
                             Log.i(TAG, "Handshake status:" + handShake);
                             if (mFutureHandShakeIntent != null) {
-                                mFutureHandShakeIntent.set(handShake);
+                                mFutureHandShakeIntent.complete(handShake);
                             }
                             break;
                         case BluetoothHidHost.ACTION_REPORT:
@@ -164,7 +168,7 @@ public class HidHostDualModeTest {
                                             BluetoothHidHost.EXTRA_REPORT_BUFFER_SIZE, 0);
                             mReportId = report[0];
                             if (mFutureReportIntent != null) {
-                                mFutureReportIntent.set((reportSize - 1));
+                                mFutureReportIntent.complete((reportSize - 1));
                             }
                             break;
                         default:
@@ -222,12 +226,20 @@ public class HidHostDualModeTest {
                         .build();
         mBumble.hostBlocking().advertise(request);
 
-        mFutureConnectionIntent = SettableFuture.create();
+        mFutureConnectionIntent = new CompletableFuture<>();
+        mFutureBondIntent = new CompletableFuture<>();
+        mFutureHogpServiceIntent = new CompletableFuture<>();
 
         mDevice = mBumble.getRemoteDevice();
-        mFutureBondIntent = SettableFuture.create();
         assertThat(mDevice.createBond()).isTrue();
-        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_BONDED);
+        assertThat(
+                        mFutureBondIntent
+                                .completeOnTimeout(
+                                        BluetoothDevice.BOND_NONE,
+                                        BOND_TIMEOUT_MS,
+                                        TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothDevice.BOND_BONDED);
         if (mA2dpService != null
                 && mA2dpService.getConnectionPolicy(mDevice)
                         == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
@@ -244,19 +256,40 @@ public class HidHostDualModeTest {
                                     mDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN))
                     .isTrue();
         }
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
-        mFutureHogpServiceIntent = SettableFuture.create();
-        assertThat(mFutureHogpServiceIntent.get()).isTrue();
+        assertThat(
+                        mFutureConnectionIntent
+                                .completeOnTimeout(
+                                        BluetoothProfile.STATE_DISCONNECTED,
+                                        CONNECT_TIMEOUT_MS,
+                                        TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothProfile.STATE_CONNECTED);
+        assertThat(
+                        mFutureHogpServiceIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isTrue();
         assertThat(mHidService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
         // LE transport
-        mFutureTransportIntent = SettableFuture.create();
+        mFutureConnectionIntent = new CompletableFuture<>();
+        mFutureTransportIntent = new CompletableFuture<>();
         mHidService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
         // Verifies BREDR transport Disconnected
-        mFutureConnectionIntent = SettableFuture.create();
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+        assertThat(
+                        mFutureConnectionIntent
+                                .completeOnTimeout(
+                                        BluetoothProfile.STATE_CONNECTED,
+                                        CONNECT_TIMEOUT_MS,
+                                        TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
 
-        assertThat(mFutureTransportIntent.get()).isEqualTo(BluetoothDevice.TRANSPORT_LE);
+        assertThat(
+                        mFutureTransportIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothDevice.TRANSPORT_LE);
         assertThat(mHidService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_LE);
     }
@@ -264,9 +297,16 @@ public class HidHostDualModeTest {
     @After
     public void tearDown() throws Exception {
         if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
-            mFutureBondIntent = SettableFuture.create();
+            mFutureBondIntent = new CompletableFuture<>();
             mDevice.removeBond();
-            assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
+            assertThat(
+                            mFutureBondIntent
+                                    .completeOnTimeout(
+                                            BluetoothDevice.BOND_BONDED,
+                                            BOND_TIMEOUT_MS,
+                                            TimeUnit.MILLISECONDS)
+                                    .join())
+                    .isEqualTo(BluetoothDevice.BOND_NONE);
         }
         mContext.unregisterReceiver(mHidStateReceiver);
     }
@@ -288,13 +328,24 @@ public class HidHostDualModeTest {
     public void setPreferredTransportTest() throws Exception {
 
         // BREDR transport
-        mFutureTransportIntent = SettableFuture.create();
+        mFutureTransportIntent = new CompletableFuture<>();
+        mFutureConnectionIntent = new CompletableFuture<>();
         mHidService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_BREDR);
         // Verifies LE transport Disconnected
-        mFutureConnectionIntent = SettableFuture.create();
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+        assertThat(
+                        mFutureConnectionIntent
+                                .completeOnTimeout(
+                                        BluetoothProfile.STATE_CONNECTED,
+                                        CONNECT_TIMEOUT_MS,
+                                        TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
 
-        assertThat(mFutureTransportIntent.get()).isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
+        assertThat(
+                        mFutureTransportIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
         assertThat(mHidService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
     }
@@ -317,15 +368,23 @@ public class HidHostDualModeTest {
         // Keyboard report
         byte id = KEYBD_RPT_ID;
         mHidService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
-        mFutureReportIntent = SettableFuture.create();
-        assertThat(mFutureReportIntent.get()).isEqualTo(KEYBD_RPT_SIZE);
+        mFutureReportIntent = new CompletableFuture<>();
+        assertThat(
+                        mFutureReportIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(KEYBD_RPT_SIZE);
         assertThat(mReportId).isEqualTo(KEYBD_RPT_ID);
 
         // Mouse report
         id = MOUSE_RPT_ID;
         mHidService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
-        mFutureReportIntent = SettableFuture.create();
-        assertThat(mFutureReportIntent.get()).isEqualTo(MOUSE_RPT_SIZE);
+        mFutureReportIntent = new CompletableFuture<>();
+        assertThat(
+                        mFutureReportIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(MOUSE_RPT_SIZE);
         assertThat(mReportId).isEqualTo(MOUSE_RPT_ID);
     }
 
@@ -343,9 +402,12 @@ public class HidHostDualModeTest {
         Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
     })
     public void hogpGetProtocolModeTest() throws Exception {
+        mFutureProtocolModeIntent = new CompletableFuture<>();
         mHidService.getProtocolMode(mDevice);
-        mFutureProtocolModeIntent = SettableFuture.create();
-        assertThat(mFutureProtocolModeIntent.get())
+        assertThat(
+                        mFutureProtocolModeIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
                 .isEqualTo(BluetoothHidHost.PROTOCOL_REPORT_MODE);
     }
 
@@ -363,9 +425,13 @@ public class HidHostDualModeTest {
         Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
     })
     public void hogpSetProtocolModeTest() throws Exception {
+        mFutureHandShakeIntent = new CompletableFuture<>();
         mHidService.setProtocolMode(mDevice, BluetoothHidHost.PROTOCOL_BOOT_MODE);
-        mFutureHandShakeIntent = SettableFuture.create();
-        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+        assertThat(
+                        mFutureHandShakeIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
     }
 
     /**
@@ -383,13 +449,21 @@ public class HidHostDualModeTest {
     })
     public void hogpSetReportTest() throws Exception {
         // Keyboard report
+        mFutureHandShakeIntent = new CompletableFuture<>();
         mHidService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "010203040506070809");
-        mFutureHandShakeIntent = SettableFuture.create();
-        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+        assertThat(
+                        mFutureHandShakeIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
         // Mouse report
+        mFutureHandShakeIntent = new CompletableFuture<>();
         mHidService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "02030405");
-        mFutureHandShakeIntent = SettableFuture.create();
-        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+        assertThat(
+                        mFutureHandShakeIntent
+                                .completeOnTimeout(null, TIMEOUT_MS, TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
     }
 
     /**
@@ -406,8 +480,15 @@ public class HidHostDualModeTest {
         Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
     })
     public void hogpVirtualUnplugFromHidHostTest() throws Exception {
+        mFutureBondIntent = new CompletableFuture<>();
         mHidService.virtualUnplug(mDevice);
-        mFutureBondIntent = SettableFuture.create();
-        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
+        assertThat(
+                        mFutureBondIntent
+                                .completeOnTimeout(
+                                        BluetoothDevice.BOND_BONDED,
+                                        BOND_TIMEOUT_MS,
+                                        TimeUnit.MILLISECONDS)
+                                .join())
+                .isEqualTo(BluetoothDevice.BOND_NONE);
     }
 }
