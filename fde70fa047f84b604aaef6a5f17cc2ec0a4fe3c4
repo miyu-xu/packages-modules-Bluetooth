@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b36af04_72fda187",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-30T18:30:14Z",
+      "side": 1,
+      "message": "If we get rid of the default, the compiler can warn us about missing cases.",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c883d63b_acc13116",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2cdefs.h",
+              "range": {
+                "startLine": 200,
+                "startChar": 0,
+                "endLine": 202,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "fde70fa047f84b604aaef6a5f17cc2ec0a4fe3c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c45f848e_1773586e",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-30T18:30:14Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 34
+      },
+      "revId": "fde70fa047f84b604aaef6a5f17cc2ec0a4fe3c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25cc7cf8_9a360842",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-08-30T18:30:14Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n  UINT16_TO_STREAM(p, static_cast\u003cuint16_t\u003e(result));\n```",
+      "range": {
+        "startLine": 504,
+        "startChar": 0,
+        "endLine": 505,
+        "endChar": 34
+      },
+      "revId": "fde70fa047f84b604aaef6a5f17cc2ec0a4fe3c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
