@@ -14,4 +14,15 @@ cc_fuzz {
     srcs: [
         "fuzz_sdp.cc",
     ],
+    fuzz_config: {
+        cc: [
+            "android-bluetooth-security@google.com",
+        ],
+        componentid: 27441,
+        description: "The fuzzer targets the APIs of libchrome",
+        vector: "remote",
+        service_privilege: "privileged",
+        users: "multi_user",
+        fuzzed_code_usage: "shipped",
+    },
 }
