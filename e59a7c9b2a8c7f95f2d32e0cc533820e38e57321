@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af0b5498_71340630",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capClientTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-30T03:54:01Z",
+      "side": 1,
+      "message": "I think we are creating L2CAP socket server on phone side and using bumble as client. Should we Ideally call this as DckL2capServerTest() ? please correct me if I am wrong.",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "667e9a09_fa1928d7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capClientTest.kt",
+              "range": {
+                "startLine": 63,
+                "startChar": 0,
+                "endLine": 64,
+                "endChar": 0
+              },
+              "replacement": "/** Digital car key L2CAP Client Tests */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e59a7c9b2a8c7f95f2d32e0cc533820e38e57321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
