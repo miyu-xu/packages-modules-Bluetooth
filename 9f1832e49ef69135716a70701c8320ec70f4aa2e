@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c384fd35_f8bc48d1",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-08-30T09:25:49Z",
+      "side": 1,
+      "message": "I believe this schedules `instance-\u003eSuspendAudioBroadcasts()` which is sending Message::SUSPEND to broadcast state machines. Why do we need to do this one more twice? Why are we manually checking the broadcast state machine state? The state machine should handle the Message::SUSPEND internally, according to its current state and we should not try to micromanage it from here.",
+      "range": {
+        "startLine": 1309,
+        "startChar": 18,
+        "endLine": 1309,
+        "endChar": 39
+      },
+      "revId": "9f1832e49ef69135716a70701c8320ec70f4aa2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
