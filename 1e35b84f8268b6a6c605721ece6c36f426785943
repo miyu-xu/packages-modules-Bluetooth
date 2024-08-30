@@ -16,6 +16,41 @@
       "message": "You are mixing logging and refactoring changes in this CL, which is making it harder to review than it should be... Could you please split out (and squash to next CL in the chain) the logging changes and make sure that the refactoring changes are as minimal as possible ? (no logging changes, refactor one function at a time).",
       "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32f4ed00_26ebac0d",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-30T03:25:06Z",
+      "side": 1,
+      "message": "you can go ahead and delete the above test and replace the above very similar function with yours below which is superior.",
+      "fixSuggestions": [
+        {
+          "fixId": "85c02c1c_3734bed2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2cdefs.h",
+              "range": {
+                "startLine": 180,
+                "startChar": 0,
+                "endLine": 206,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
