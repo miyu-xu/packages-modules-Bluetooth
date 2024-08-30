@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "835c8dd2_aed3a863",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 3605356
+      },
+      "writtenOn": "2024-08-30T15:22:40Z",
+      "side": 1,
+      "message": "makes sense, don\u0027t know why that wasn\u0027t already done before\n\nRegarding the other SDP_MAX_ATTR_LEN issue:\nWith the current implementation, this limit of 400 bytes can indeed be exceeded. Things however still seem to be working, the rather simple report descriptor for a 5-finger touchpad I have tested with was for example 408 bytes and worked like expected. \n\nIf I however increase the descriptor length beyond something like 460 (this depends on previous sdp attributes, such as device description), we exceed another limit [here](https://cs.android.com/android/platform/superproject/+/android14-qpr3-release:packages/modules/Bluetooth/system/stack/sdp/sdp_db.cc;l\u003d487?q\u003dsdp_db.cc). This limit is also well below our 2kb report descriptor limit in any case.\n\nI\u0027m not too familiar with this codebase and why these two limits exist in the first place. I did not find anything in the sdp spec about them, and things (on Linux at least) seem still to work with SDP_MAX_ATTR_LEN being exceeded. So what is the purpose of these limits / where do they come from?\n\nI am also wondering whether there exist any mechanisms to get around these limits, because 400 bytes is still not ideal for report descriptors (allthough already much better than the current behaviour).",
+      "parentUuid": "9f24e33b_e106a687",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dd6cf57_8473fad2",
         "filename": "system/stack/hid/hidd_api.cc",
         "patchSetId": 2
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e871524_1430042f",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 3605356
+      },
+      "writtenOn": "2024-08-30T15:22:40Z",
+      "side": 1,
+      "message": "sure, we\u0027d now also have to change it to desc_len + 8 with the above change\n\nOn another note, I just wanted to make these changes and upload a new patchset, however:\n- On the git source editor, I don\u0027t get the \"Update Change\" button (I opened this CL with its URL).\n- I cannot submit via repo upload, because I cannot generate a git http password for android.googlesource.com for some reason (it just says \"something went wrong\").\n\nAm I missing something, must my account first be unlocked or similar?",
+      "parentUuid": "4dd6cf57_8473fad2",
+      "range": {
+        "startLine": 269,
+        "startChar": 57,
+        "endLine": 269,
+        "endChar": 61
+      },
       "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
