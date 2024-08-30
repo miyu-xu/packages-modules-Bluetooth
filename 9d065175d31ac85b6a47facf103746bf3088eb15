@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e97c89e6_a76ce27b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2119,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-30T20:18:22Z",
+      "side": 1,
+      "message": "I was just copying the convention elsewhere in the tests, but `getChild(0)` would also suffice.\n\nIn all honesty, this convention does feel a little silly though. We have a direct reference to the node, so we don\u0027t really need to call `findNode()`, unless we want to exercise the code path that proves \"yep, this still in the map of known, not removed, nodes\" (which, may be fine. I guess it doesn\u0027t really hurt. But still, its silly. We do it all over the other tests in this file).\n\nI\u0027ll probably leave it as, since it doesn\u0027t hurt, and its done in other places.",
+      "parentUuid": "85c30f8e_84e4b2a4",
+      "range": {
+        "startLine": 2119,
+        "startChar": 52,
+        "endLine": 2119,
+        "endChar": 72
+      },
+      "revId": "9d065175d31ac85b6a47facf103746bf3088eb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "427cd50b_91ff6c27",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-08-30T19:25:18Z",
       "side": 1,
       "message": "Q: is this line needed, does it return the same object? (Same q for uncaching of player1 below)",
+      "range": {
+        "startLine": 2143,
+        "startChar": 24,
+        "endLine": 2143,
+        "endChar": 90
+      },
+      "revId": "9d065175d31ac85b6a47facf103746bf3088eb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "574b0e1b_5d26114c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2143,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-08-30T20:18:22Z",
+      "side": 1,
+      "message": "See my \"this is definitely silly, but its done elsewhere and doesn\u0027t hurt\" rant above 😊",
+      "parentUuid": "427cd50b_91ff6c27",
       "range": {
         "startLine": 2143,
         "startChar": 24,
