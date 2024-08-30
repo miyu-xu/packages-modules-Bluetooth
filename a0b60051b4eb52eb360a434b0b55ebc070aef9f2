@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04ebd678_a6b15d1f",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bce3a7_86a28b42",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "a0b60051b4eb52eb360a434b0b55ebc070aef9f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e68b6d31_8a8aed6a",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08eaa28c_840f9a3e",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e68b6d31_8a8aed6a",
+      "range": {
+        "startLine": 344,
+        "startChar": 13,
+        "endLine": 344,
+        "endChar": 81
+      },
+      "revId": "a0b60051b4eb52eb360a434b0b55ebc070aef9f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a0931bb_52b945a3",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-08-30T14:11:43Z",
       "side": 1,
       "message": "`fmt::print(\"UNKNOWN[{}]\", state_)`",
+      "range": {
+        "startLine": 355,
+        "startChar": 13,
+        "endLine": 355,
+        "endChar": 80
+      },
+      "revId": "a0b60051b4eb52eb360a434b0b55ebc070aef9f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eafe935d_a3c3ea96",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0931bb_52b945a3",
       "range": {
         "startLine": 355,
         "startChar": 13,

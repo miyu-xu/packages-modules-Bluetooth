@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c852308_da65cb40",
+        "filename": "system/stack/avdt/avdt_ad.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-08-30T17:21:36Z",
+      "side": 0,
+      "message": "aosp/1437938",
+      "parentUuid": "302a58cc_600e6e69",
+      "range": {
+        "startLine": 518,
+        "startChar": 4,
+        "endLine": 519,
+        "endChar": 29
+      },
+      "revId": "1e35b84f8268b6a6c605721ece6c36f426785943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9fac3ef_7a42726e",
         "filename": "system/stack/avdt/avdt_int.h",
         "patchSetId": 7
