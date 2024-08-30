@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87533244_e190ed55",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-08-30T13:55:58Z",
+      "side": 1,
+      "message": "`l2cap_result_code_text` and function overloading should pass ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 19,
+        "endLine": 237,
+        "endChar": 41
+      },
+      "revId": "ee77f6a316f46399ecfc9e5a7bfee44106ad4e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
