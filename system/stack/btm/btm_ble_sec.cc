@@ -1546,6 +1546,69 @@ void btm_ble_connection_established(const RawAddress& bda) {
   }
 }
 
+static void btm_ble_smp_complete_evt(const RawAddress& bd_addr, tBTM_SEC_DEV_REC* p_dev_rec,
+                                     const tSMP_EVT_DATA* p_data) {
+  BTM_BLE_SEC_CALLBACK(BTM_LE_COMPLT_EVT, bd_addr, (tBTM_LE_EVT_DATA*)p_data);
+
+  log::verbose("before update sec_level=0x{:x} sec_flags=0x{:x}", p_data->cmplt.sec_level,
+               p_dev_rec->sec_rec.sec_flags);
+
+  tBTM_STATUS res = (p_data->cmplt.reason == SMP_SUCCESS) ? tBTM_STATUS::BTM_SUCCESS
+                                                          : tBTM_STATUS::BTM_ERR_PROCESSING;
+
+  log::verbose("after update result={} sec_level=0x{:x} sec_flags=0x{:x}", res,
+               p_data->cmplt.sec_level, p_dev_rec->sec_rec.sec_flags);
+
+  if (p_data->cmplt.is_pair_cancel && btm_sec_cb.api.p_bond_cancel_cmpl_callback) {
+    log::verbose("Pairing Cancel completed");
+    (*btm_sec_cb.api.p_bond_cancel_cmpl_callback)(tBTM_STATUS::BTM_SUCCESS);
+  }
+
+  if (res != tBTM_STATUS::BTM_SUCCESS && p_data->cmplt.reason != SMP_CONN_TOUT) {
+    log::verbose("Pairing failed - prepare to remove ACL");
+    l2cu_start_post_bond_timer(p_dev_rec->ble_hci_handle);
+  }
+
+  log::verbose(
+          "btm_sec_cb.pairing_state={:x} pairing_flags={:x} "
+          "pin_code_len={:x}",
+          btm_sec_cb.pairing_state, btm_sec_cb.pairing_flags, btm_sec_cb.pin_code_len);
+
+  /* Reset btm state only if the callback address matches pairing
+   * address*/
+  if (bd_addr == btm_sec_cb.pairing_bda) {
+    btm_sec_cb.pairing_bda = RawAddress::kAny;
+    btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
+    btm_sec_cb.pairing_flags = 0;
+  }
+
+  if (res == tBTM_STATUS::BTM_SUCCESS) {
+    p_dev_rec->sec_rec.le_link = tSECURITY_STATE::IDLE;
+
+    if (p_dev_rec->sec_rec.bond_type != BOND_TYPE_TEMPORARY) {
+      // Add all bonded device into resolving list if IRK is available.
+      btm_ble_resolving_list_load_dev(*p_dev_rec);
+    } else if (p_dev_rec->ble_hci_handle == HCI_INVALID_HANDLE) {
+      // At this point LTK should have been dropped by btif.
+      // Reset the flags here if LE is not connected (over BR),
+      // otherwise they would be reset on disconnected.
+      log::debug(
+              "SMP over BR triggered by temporary bond has completed, "
+              "resetting the LK flags");
+      p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LE_LINK_KEY_KNOWN);
+      p_dev_rec->sec_rec.ble_keys.key_type = BTM_LE_KEY_NONE;
+    }
+  }
+  BD_NAME remote_name = {};
+  if (BTM_GetRemoteDeviceName(p_dev_rec->ble.pseudo_addr, remote_name) &&
+      interop_match_name(INTEROP_SUSPEND_ATT_TRAFFIC_DURING_PAIRING, (const char*)remote_name)) {
+    log::debug("Notifying encryption cmpl delayed due to IOP match");
+    btm_ble_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr, true);
+  }
+
+  btm_sec_dev_rec_cback_event(p_dev_rec, res, true);
+}
+
 /*****************************************************************************
  *  Function        btm_proc_smp_cback
  *
@@ -1562,8 +1625,6 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
   }
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
-  tBTM_STATUS res = tBTM_STATUS::BTM_SUCCESS;
-
   if (p_dev_rec == nullptr) {
     log::warn("Unexpected event '{}' for unknown device.", smp_evt_to_text(event));
     return tBTM_STATUS::BTM_UNKNOWN_ADDR;
@@ -1607,87 +1668,22 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
       BTM_BLE_SEC_CALLBACK(BTM_LE_SEC_REQUEST_EVT, bd_addr, (tBTM_LE_EVT_DATA*)p_data);
       break;
 
-    case SMP_COMPLT_EVT: {
-      BTM_BLE_SEC_CALLBACK(BTM_LE_COMPLT_EVT, bd_addr, (tBTM_LE_EVT_DATA*)p_data);
-
-      p_dev_rec = btm_find_dev(bd_addr);
-      if (p_dev_rec == NULL) {
-        log::error("p_dev_rec is NULL");
-        return tBTM_STATUS::BTM_SUCCESS;
-      }
-      log::verbose("before update sec_level=0x{:x} sec_flags=0x{:x}", p_data->cmplt.sec_level,
-                   p_dev_rec->sec_rec.sec_flags);
-
-      res = (p_data->cmplt.reason == SMP_SUCCESS) ? tBTM_STATUS::BTM_SUCCESS
-                                                  : tBTM_STATUS::BTM_ERR_PROCESSING;
-
-      log::verbose("after update result={} sec_level=0x{:x} sec_flags=0x{:x}", res,
-                   p_data->cmplt.sec_level, p_dev_rec->sec_rec.sec_flags);
-
-      if (p_data->cmplt.is_pair_cancel && btm_sec_cb.api.p_bond_cancel_cmpl_callback) {
-        log::verbose("Pairing Cancel completed");
-        (*btm_sec_cb.api.p_bond_cancel_cmpl_callback)(tBTM_STATUS::BTM_SUCCESS);
-      }
-
-      if (res != tBTM_STATUS::BTM_SUCCESS && p_data->cmplt.reason != SMP_CONN_TOUT) {
-        log::verbose("Pairing failed - prepare to remove ACL");
-        l2cu_start_post_bond_timer(p_dev_rec->ble_hci_handle);
-      }
-
-      log::verbose(
-              "btm_sec_cb.pairing_state={:x} pairing_flags={:x} "
-              "pin_code_len={:x}",
-              btm_sec_cb.pairing_state, btm_sec_cb.pairing_flags, btm_sec_cb.pin_code_len);
-
-      /* Reset btm state only if the callback address matches pairing
-       * address*/
-      if (bd_addr == btm_sec_cb.pairing_bda) {
-        btm_sec_cb.pairing_bda = RawAddress::kAny;
-        btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
-        btm_sec_cb.pairing_flags = 0;
-      }
-
-      if (res == tBTM_STATUS::BTM_SUCCESS) {
-        p_dev_rec->sec_rec.le_link = tSECURITY_STATE::IDLE;
-
-        if (p_dev_rec->sec_rec.bond_type != BOND_TYPE_TEMPORARY) {
-          // Add all bonded device into resolving list if IRK is available.
-          btm_ble_resolving_list_load_dev(*p_dev_rec);
-        } else if (p_dev_rec->ble_hci_handle == HCI_INVALID_HANDLE) {
-          // At this point LTK should have been dropped by btif.
-          // Reset the flags here if LE is not connected (over BR),
-          // otherwise they would be reset on disconnected.
-          log::debug(
-                  "SMP over BR triggered by temporary bond has completed, "
-                  "resetting the LK flags");
-          p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LE_LINK_KEY_KNOWN);
-          p_dev_rec->sec_rec.ble_keys.key_type = BTM_LE_KEY_NONE;
-        }
-      }
-      BD_NAME remote_name = {};
-      if (BTM_GetRemoteDeviceName(p_dev_rec->ble.pseudo_addr, remote_name) &&
-          interop_match_name(INTEROP_SUSPEND_ATT_TRAFFIC_DURING_PAIRING,
-                             (const char*)remote_name)) {
-        log::debug("Notifying encryption cmpl delayed due to IOP match");
-        btm_ble_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr, true);
-      }
-
-      btm_sec_dev_rec_cback_event(p_dev_rec, res, true);
+    case SMP_COMPLT_EVT:
+      btm_ble_smp_complete_evt(bd_addr, p_dev_rec, p_data);
       break;
-    }
 
     case SMP_LE_ADDR_ASSOC_EVT:
       BTM_BLE_SEC_CALLBACK(static_cast<tBTM_LE_EVT>(event), bd_addr, (tBTM_LE_EVT_DATA*)p_data);
       break;
 
-    case SMP_SIRK_VERIFICATION_REQ_EVT:
-      res = (*btm_sec_cb.api.p_sirk_verification_callback)(bd_addr);
+    case SMP_SIRK_VERIFICATION_REQ_EVT: {
+      tBTM_STATUS res = (*btm_sec_cb.api.p_sirk_verification_callback)(bd_addr);
       log::debug("SMP SIRK verification result:{}", btm_status_text(res));
       if (res != tBTM_STATUS::BTM_CMD_STARTED) {
         return res;
       }
-
       break;
+    }
 
     default:
       log::verbose("unknown event={}", smp_evt_to_text(event));
