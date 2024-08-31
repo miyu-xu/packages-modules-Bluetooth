@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4816eb_ab7d1ba1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-08-31T08:43:19Z",
+      "side": 1,
+      "message": "This is actually not allowed in nested matchers. I removed it in the subsequent CL.",
+      "range": {
+        "startLine": 395,
+        "startChar": 56,
+        "endLine": 395,
+        "endChar": 78
+      },
+      "revId": "636646b7571251434fba2e96bd41cf9667b92873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
