@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0de8f2_5a8691e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-31T00:20:11Z",
+      "side": 1,
+      "message": "Presubmit failed for some BassClientServiceTest cases, can you help to double check?",
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
