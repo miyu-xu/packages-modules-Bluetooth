@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c09617f9_8389af9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-31T01:05:38Z",
+      "side": 1,
+      "message": "The PandoraServer is unused by BumbleBluetoothTests. Only Avatar and pts-bot are using it",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "59803b4f234bfd5b3dccc1577142096320303640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
