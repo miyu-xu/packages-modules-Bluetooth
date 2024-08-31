@@ -21,6 +21,8 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.oneOf;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
@@ -39,11 +41,13 @@ import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.PandoraDevice;
+import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.ParcelUuid;
+import android.os.Parcelable;
 import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.CheckFlagsRule;
 import android.platform.test.flag.junit.DeviceFlagsValueProvider;
@@ -77,9 +81,11 @@ import java.time.Duration;
 import java.util.Arrays;
 
 /** Test cases for {@link BluetoothHidHost}. */
+@SuppressLint("MissingPermission")
 @RunWith(AndroidJUnit4.class)
 public class HidHostDualModeTest {
-    private static final String TAG = "HidHostDualModeTest";
+    private static final String TAG = HidHostDualModeTest.class.getSimpleName();
+    private static final String BUMBLE_DEVICE_NAME = "Bumble";
     private static final Duration INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int KEYBD_RPT_ID = 1;
     private static final int KEYBD_RPT_SIZE = 9;
@@ -101,19 +107,23 @@ public class HidHostDualModeTest {
     @Rule(order = 2)
     public final PandoraDevice mBumble = new PandoraDevice();
 
+    @Rule(order = 3)
+    public final EnableBluetoothRule enableBluetoothRule = new EnableBluetoothRule(false, true);
+
     @Mock private BroadcastReceiver mReceiver;
     private InOrder mInOrder = null;
     private byte[] mReportData = {};
 
     @Mock private BluetoothProfile.ServiceListener mProfileServiceListener;
 
-    @SuppressLint("MissingPermission")
     private final Answer<Void> mIntentHandler =
             inv -> {
                 Log.i(TAG, "onReceive(): intent=" + Arrays.toString(inv.getArguments()));
                 Intent intent = inv.getArgument(1);
                 String action = intent.getAction();
-                if (BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED.equals(action)) {
+                if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                    Log.d(TAG, "onReceive(): discovery finished");
+                } else if (BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED.equals(action)) {
                     BluetoothDevice device =
                             intent.getParcelableExtra(
                                     BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
@@ -163,12 +173,30 @@ public class HidHostDualModeTest {
                     BluetoothDevice device =
                             intent.getParcelableExtra(
                                     BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
-                    ParcelUuid[] uuids =
+                    Parcelable[] uuidsRaw =
                             intent.getParcelableArrayExtra(
                                     BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
-                    Log.d(
-                            TAG,
-                            "onReceive(): device " + device + ", UUID=" + Arrays.toString(uuids));
+                    if (uuidsRaw == null) {
+                        Log.e(TAG, "onReceive(): device " + device + " null uuid list");
+                    } else if (uuidsRaw.length == 0) {
+                        Log.e(TAG, "onReceive(): device " + device + " 0 length uuid list");
+                    } else {
+                        ParcelUuid[] uuids =
+                                Arrays.copyOf(uuidsRaw, uuidsRaw.length, ParcelUuid[].class);
+                        Log.d(
+                                TAG,
+                                "onReceive(): device "
+                                        + device
+                                        + ", UUID="
+                                        + Arrays.toString(uuids));
+                    }
+                } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    BluetoothDevice device =
+                            intent.getParcelableExtra(
+                                    BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                    String deviceName =
+                            String.valueOf(intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                    Log.i(TAG, "Discovered device: " + device + " with name: " + deviceName);
                 } else if (BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED.equals(action)) {
                     BluetoothDevice device =
                             intent.getParcelableExtra(
@@ -206,7 +234,6 @@ public class HidHostDualModeTest {
                 return null;
             };
 
-    @SuppressLint("MissingPermission")
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
@@ -216,10 +243,12 @@ public class HidHostDualModeTest {
         mInOrder = inOrder(mReceiver);
 
         final IntentFilter filter = new IntentFilter();
-        filter.addAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
         filter.addAction(BluetoothDevice.ACTION_UUID);
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED);
         filter.addAction(BluetoothHidHost.ACTION_HANDSHAKE);
         filter.addAction(BluetoothHidHost.ACTION_REPORT);
@@ -245,7 +274,11 @@ public class HidHostDualModeTest {
 
         mDevice = mBumble.getRemoteDevice();
 
-        assertThat(mDevice.createBond()).isTrue();
+        // Remove bond if the device is already bonded
+        if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+            removeBond(mDevice);
+        }
+        assertThat(mDevice.createBond(BluetoothDevice.TRANSPORT_BREDR)).isTrue();
         verifyIntentReceived(
                 hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
@@ -253,8 +286,6 @@ public class HidHostDualModeTest {
         verifyIntentReceived(
                 hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice));
-        verifyIntentReceived(hasAction(BluetoothDevice.ACTION_UUID));
-        // Two ACTION_UUIDs are returned after pairing with dual mode HID device
         verifyIntentReceived(
                 hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
@@ -274,51 +305,44 @@ public class HidHostDualModeTest {
                     .isTrue();
         }
 
-        verifyIntentReceived(
-                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
-                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR),
-                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_CONNECTING));
-        verifyIntentReceived(
-                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
-                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR),
-                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_CONNECTED));
-        // 2nd ACTION_UUID and ACTION_CONNECTION_STATE_CHANGED has a race condition, hence unordered
-        verifyIntentReceivedUnordered(
+        // Have to use Hamcrest matchers instead of Mockito matchers in MockitoHamcrest context
+        verifyTransportConnection(
+                mDevice, oneOf(BluetoothDevice.TRANSPORT_BREDR, BluetoothDevice.TRANSPORT_LE));
+        // Two ACTION_UUIDs are returned after pairing with dual mode HID device
+        // 2nd ACTION_UUID and ACTION_CONNECTION_STATE_CHANGED has race condition, hence unordered
+        verifyIntentReceivedUnorderedAtLeast(
+                1,
                 hasAction(BluetoothDevice.ACTION_UUID),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
                 hasExtra(BluetoothDevice.EXTRA_UUID, Matchers.hasItemInArray(BluetoothUuid.HOGP)));
 
-        assertThat(mHidService.getPreferredTransport(mDevice))
-                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
-
-        // Switch to LE transport to prepare for test cases
-        mHidService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
-        // Verifies BR/EDR transport is disconnected
-        verifyIntentReceived(
-                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR),
-                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED));
-        // Verifies LE transport is connected
-        verifyIntentReceived(
-                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE),
-                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_CONNECTED));
+        // Cannot guarantee TRANSPORT_BREDR at this moment, hence we need to check
+        if (mHidService.getPreferredTransport(mDevice) == BluetoothDevice.TRANSPORT_BREDR) {
+            // Switch to LE transport to prepare for test cases
+            mHidService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
+            // Verifies BR/EDR transport is disconnected
+            verifyTransportDisconnection(mDevice, equalTo(BluetoothDevice.TRANSPORT_BREDR));
+            // Verifies LE transport is connected
+            verifyTransportConnection(mDevice, equalTo(BluetoothDevice.TRANSPORT_LE));
+        }
 
         assertThat(mHidService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_LE);
     }
 
-    @SuppressLint("MissingPermission")
     @After
     public void tearDown() throws Exception {
         if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
-            mDevice.removeBond();
-            verifyIntentReceived(
-                    hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
-                    hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
-                    hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
+            // Restore transport to BR/EDR
+            if (mHidService.getPreferredTransport(mDevice) == BluetoothDevice.TRANSPORT_LE) {
+                boolean connected = mHidService.getConnectedDevices().contains(mDevice);
+                mHidService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_BREDR);
+                if (connected) {
+                    verifyTransportDisconnection(mDevice, equalTo(BluetoothDevice.TRANSPORT_LE));
+                }
+                verifyTransportConnection(mDevice, equalTo(BluetoothDevice.TRANSPORT_BREDR));
+            }
+            removeBond(mDevice);
         }
         mContext.unregisterReceiver(mReceiver);
     }
@@ -332,7 +356,6 @@ public class HidHostDualModeTest {
      *   <li>3. Android switch the transport to BR/EDR and Verifies the transport
      * </ol>
      */
-    @SuppressLint("MissingPermission")
     @Test
     @RequiresFlagsEnabled({
         Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
@@ -342,15 +365,9 @@ public class HidHostDualModeTest {
         // BR/EDR transport
         mHidService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_BREDR);
         // Verifies LE transport disconnected
-        verifyIntentReceived(
-                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE),
-                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED));
+        verifyTransportDisconnection(mDevice, equalTo(BluetoothDevice.TRANSPORT_LE));
         // Verifies BR/EDR transport is connected
-        verifyIntentReceived(
-                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR),
-                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_CONNECTED));
+        verifyTransportConnection(mDevice, equalTo(BluetoothDevice.TRANSPORT_BREDR));
         // Check if the API returns the correct transport
         assertThat(mHidService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
@@ -364,7 +381,6 @@ public class HidHostDualModeTest {
      *   <li>2. Android get report and verifies the report
      * </ol>
      */
-    @SuppressLint("MissingPermission")
     @Test
     @RequiresFlagsEnabled({
         Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
@@ -402,7 +418,6 @@ public class HidHostDualModeTest {
      *   <li>2. Android Gets the Protocol mode and verifies the mode
      * </ol>
      */
-    @SuppressLint("MissingPermission")
     @Test
     @RequiresFlagsEnabled({
         Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
@@ -425,7 +440,6 @@ public class HidHostDualModeTest {
      *   <li>2. Android Sets the Protocol mode and verifies the mode
      * </ol>
      */
-    @SuppressLint("MissingPermission")
     @Test
     @RequiresFlagsEnabled({
         Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
@@ -433,9 +447,11 @@ public class HidHostDualModeTest {
     })
     public void hogpSetProtocolModeTest() throws Exception {
         mHidService.setProtocolMode(mDevice, BluetoothHidHost.PROTOCOL_BOOT_MODE);
+        // Must cast ERROR_RSP_SUCCESS, otherwise, it won't match with the int extra
         verifyIntentReceived(
                 hasAction(BluetoothHidHost.ACTION_HANDSHAKE),
-                hasExtra(BluetoothHidHost.EXTRA_STATUS, BluetoothHidDevice.ERROR_RSP_SUCCESS));
+                hasExtra(
+                        BluetoothHidHost.EXTRA_STATUS, (int) BluetoothHidDevice.ERROR_RSP_SUCCESS));
     }
 
     /**
@@ -454,14 +470,18 @@ public class HidHostDualModeTest {
     public void hogpSetReportTest() throws Exception {
         // Keyboard report
         mHidService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "010203040506070809");
+        /// Must cast ERROR_RSP_SUCCESS, otherwise, it won't match with the int extra
         verifyIntentReceived(
                 hasAction(BluetoothHidHost.ACTION_HANDSHAKE),
-                hasExtra(BluetoothHidHost.EXTRA_STATUS, BluetoothHidDevice.ERROR_RSP_SUCCESS));
+                hasExtra(
+                        BluetoothHidHost.EXTRA_STATUS, (int) BluetoothHidDevice.ERROR_RSP_SUCCESS));
         // Mouse report
         mHidService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "02030405");
+        // Must cast ERROR_RSP_SUCCESS, otherwise, it won't match with the int extra
         verifyIntentReceived(
                 hasAction(BluetoothHidHost.ACTION_HANDSHAKE),
-                hasExtra(BluetoothHidHost.EXTRA_STATUS, BluetoothHidDevice.ERROR_RSP_SUCCESS));
+                hasExtra(
+                        BluetoothHidHost.EXTRA_STATUS, (int) BluetoothHidDevice.ERROR_RSP_SUCCESS));
     }
 
     /**
@@ -485,6 +505,40 @@ public class HidHostDualModeTest {
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
     }
 
+    private void verifyTransportDisconnection(BluetoothDevice device, Matcher<Integer> transport) {
+        verifyIntentReceived(
+                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, transport),
+                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTING));
+        verifyIntentReceived(
+                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, transport),
+                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED));
+    }
+
+    private void verifyTransportConnection(BluetoothDevice device, Matcher<Integer> transport) {
+        verifyIntentReceived(
+                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, transport),
+                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_CONNECTING));
+        verifyIntentReceived(
+                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, transport),
+                hasExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_CONNECTED));
+    }
+
+    private void removeBond(BluetoothDevice device) {
+        assertThat(device.removeBond()).isTrue();
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
+    }
+
     @SafeVarargs
     private void verifyIntentReceived(Matcher<Intent>... matchers) {
         mInOrder.verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()))
@@ -492,14 +546,21 @@ public class HidHostDualModeTest {
     }
 
     @SafeVarargs
-    private void verifyIntentReceivedUnordered(int num, Matcher<Intent>... matchers) {
-        verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()).times(num))
+    private void verifyIntentReceived(int num, Matcher<Intent>... matchers) {
+        mInOrder.verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()).times(num))
                 .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
     }
 
     @SafeVarargs
-    private void verifyIntentReceivedUnordered(Matcher<Intent>... matchers) {
-        verifyIntentReceivedUnordered(1, matchers);
+    private void verifyIntentReceivedAtLeast(int atLeast, Matcher<Intent>... matchers) {
+        mInOrder.verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()).atLeast(atLeast))
+                .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
+    }
+
+    @SafeVarargs
+    private void verifyIntentReceivedUnorderedAtLeast(int atLeast, Matcher<Intent>... matchers) {
+        verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()).atLeast(atLeast))
+                .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
     }
 
     private BluetoothProfile verifyProfileServiceConnected(int profile) {
