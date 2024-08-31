@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f173993c_45ff59d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-08-31T01:17:55Z",
+      "side": 1,
+      "message": "Why do we need to have the `pairing` subfolder under `service_discovery` ?",
+      "revId": "581dd6947164387d34d578230d5978903debbb1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
