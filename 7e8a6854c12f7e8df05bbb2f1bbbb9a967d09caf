@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f53ab5af_df2b4486",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-31T00:15:42Z",
+      "side": 1,
+      "message": "The change lgtm in my 2nd pass, thank you Michal for updating this. \nSince it\u0027s a large CL, @gkolodziejczyk could you also help to take a look? +1 first.",
+      "revId": "7e8a6854c12f7e8df05bbb2f1bbbb9a967d09caf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

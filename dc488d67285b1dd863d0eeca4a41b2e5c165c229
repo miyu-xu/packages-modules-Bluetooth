@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bef6bb8_3e9e4f98",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-31T00:15:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "10c21b73_27dc5aa4",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3f0223b_cb1fbff5",
@@ -176,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "690ef6d4_77351383",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3434,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-31T00:15:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a564e05f_9a2381c6",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "791f97d6_af8e1ebe",
@@ -277,6 +313,24 @@
       "side": 1,
       "message": "We read it\n```\nBluetoothLeBroadcastMetadata metadata \u003d mBroadcastMetadataMap.get(sink);\n```\nand put it one again without any modification\n```\nmBroadcastMetadataMap.put(sink, metadata);\n```\nso it is not needed.\n\nIt is quite readable IMHO as this is 3 separates OR (isLocal OR PA_SYNCE OR BROADCAST_SYNCED). I removed one bracket.\n\n`!leaudioBigDependsOnAudioState()` is to disable additional check without flag.",
       "parentUuid": "26cd2eaf_797fa220",
+      "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e8f73ad_4d4c69d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3556,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-08-31T00:15:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6a066ff5_c5b042f8",
       "revId": "dc488d67285b1dd863d0eeca4a41b2e5c165c229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
