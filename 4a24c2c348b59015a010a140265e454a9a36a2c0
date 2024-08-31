@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ebbe47_ba8a3dfd",
+        "filename": "android/ChannelSoundingTestApp/app/build.gradle.kts",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-31T22:19:29Z",
+      "side": 1,
+      "message": "Nit: indentation doesn\u0027t match the rest",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "4a24c2c348b59015a010a140265e454a9a36a2c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7cf20fe_109b5cc2",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/BleConnectionViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-08-31T22:19:29Z",
+      "side": 1,
+      "message": "Does this need PHY_LE_ALL_SUPPORTED? I don\u0027t think many devices advertise on coded PHY, and it\u0027s probably better to leave this as the default for the sample app if it\u0027s not needed.",
+      "range": {
+        "startLine": 315,
+        "startChar": 45,
+        "endLine": 315,
+        "endChar": 65
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b3b98b58_44646773",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/BleConnectionViewModel.java",
+              "range": {
+                "startLine": 315,
+                "startChar": 0,
+                "endLine": 316,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4a24c2c348b59015a010a140265e454a9a36a2c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
