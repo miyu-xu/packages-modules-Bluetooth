@@ -22,6 +22,30 @@
       },
       "revId": "59803b4f234bfd5b3dccc1577142096320303640",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82869b77_4728fbe0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-08-31T01:12:40Z",
+      "side": 1,
+      "message": "I actually testing avatar tests. Commit message was wrongly updated. Fixed it now",
+      "parentUuid": "c09617f9_8389af9d",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "59803b4f234bfd5b3dccc1577142096320303640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
