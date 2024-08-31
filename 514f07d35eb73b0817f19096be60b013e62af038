@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44db7d6e_d2567987",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "431b899a_0e521f70",
+      "range": {
+        "startLine": 878,
+        "startChar": 19,
+        "endLine": 878,
+        "endChar": 26
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c6daa4e_735258d8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-30T22:47:53Z",
       "side": 1,
       "message": "nit: should return early on error to reduce indentation",
+      "range": {
+        "startLine": 1411,
+        "startChar": 0,
+        "endLine": 1411,
+        "endChar": 91
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70270ecd_cbcc8914",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c6daa4e_735258d8",
       "range": {
         "startLine": 1411,
         "startChar": 0,
@@ -93,6 +141,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a653640_e42a4416",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Refactoring case handling keeps the functions short and readable.",
+      "parentUuid": "df11c808_c9d15a0f",
+      "range": {
+        "startLine": 1546,
+        "startChar": 12,
+        "endLine": 1546,
+        "endChar": 41
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13810639_cbb7cf42",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Retains the existing naming convention used.",
+      "parentUuid": "74ea36f5_b3af568d",
+      "range": {
+        "startLine": 1546,
+        "startChar": 12,
+        "endLine": 1546,
+        "endChar": 41
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "202f66b5_b0825562",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-08-30T22:47:53Z",
       "side": 1,
       "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1548,
+        "startChar": 20,
+        "endLine": 1548,
+        "endChar": 29
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39f1bef0_bd347c91",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "202f66b5_b0825562",
       "range": {
         "startLine": 1548,
         "startChar": 20,
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e3d8f3_519d1d00",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Consistent with existing naming convention used",
+      "parentUuid": "8ca4a2d1_5b43c01b",
+      "range": {
+        "startLine": 1556,
+        "startChar": 12,
+        "endLine": 1556,
+        "endChar": 27
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b35454b_46ec2425",
@@ -152,6 +296,30 @@
       "writtenOn": "2024-08-30T22:47:53Z",
       "side": 1,
       "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1557,
+        "startChar": 0,
+        "endLine": 1557,
+        "endChar": 54
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0494e0d1_0fa8aec3",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b35454b_46ec2425",
       "range": {
         "startLine": 1557,
         "startChar": 0,
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9ca875_394afeaa",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Consistent with existing naming convention used",
+      "parentUuid": "3267d10b_5f9b2b6d",
+      "range": {
+        "startLine": 1568,
+        "startChar": 12,
+        "endLine": 1568,
+        "endChar": 31
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "911b6c29_38c31019",
@@ -198,6 +390,30 @@
       "writtenOn": "2024-08-30T22:47:53Z",
       "side": 1,
       "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1569,
+        "startChar": 0,
+        "endLine": 1569,
+        "endChar": 54
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68939ad3_07012e99",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "911b6c29_38c31019",
       "range": {
         "startLine": 1569,
         "startChar": 0,
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af227cf1_f02bd4c3",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Consistent with existing naming convention used",
+      "parentUuid": "98f90f6b_9b565d8e",
+      "range": {
+        "startLine": 1575,
+        "startChar": 12,
+        "endLine": 1575,
+        "endChar": 32
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb1697eb_c686f068",
@@ -244,6 +484,30 @@
       "writtenOn": "2024-08-30T22:47:53Z",
       "side": 1,
       "message": "pass in p_dev_rec, no need to get it here",
+      "range": {
+        "startLine": 1576,
+        "startChar": 0,
+        "endLine": 1576,
+        "endChar": 54
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "687befec_697db5d2",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb1697eb_c686f068",
       "range": {
         "startLine": 1576,
         "startChar": 0,
@@ -277,6 +541,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d458060_2b1d085d",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1654,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dbf4c01_26c82899",
+      "range": {
+        "startLine": 1654,
+        "startChar": 32,
+        "endLine": 1654,
+        "endChar": 44
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b1f04ed_2cdba2e2",
@@ -290,6 +578,30 @@
       "writtenOn": "2024-08-30T22:47:53Z",
       "side": 1,
       "message": "tBTM_LE_EVT_DATA is completely different from tSMP_EVT_DATA, please explain why you can just cast it",
+      "range": {
+        "startLine": 1692,
+        "startChar": 69,
+        "endLine": 1692,
+        "endChar": 94
+      },
+      "revId": "514f07d35eb73b0817f19096be60b013e62af038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "617683dd_08a2450e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1692,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-08-31T02:15:34Z",
+      "side": 1,
+      "message": "Existing logic. Out of scope of this cl.",
+      "parentUuid": "7b1f04ed_2cdba2e2",
       "range": {
         "startLine": 1692,
         "startChar": 69,
