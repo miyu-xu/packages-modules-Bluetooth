@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f68fc39b_ecd0e656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-08-31T00:03:47Z",
+      "side": 1,
+      "message": "I just landed a `enum class` of `tL2CAP_CONN` so this requires a `tL2CAP_CONN::` prefix for the underlying values, otherwise should be a good replacement to use the 16 bit representation of these codes.",
+      "revId": "9923661799d6ad4e2ac26612e8b3c117f7f08fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
