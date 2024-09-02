@@ -108,7 +108,7 @@ struct BroadcastStateMachineConfig {
   std::optional<bluetooth::le_audio::BroadcastCode> broadcast_code;
 };
 
-class BroadcastStateMachine : public StateMachine<5> {
+class BroadcastStateMachine : public StateMachine<7> {
 public:
   static constexpr uint8_t kAdvSidUndefined = 0xFF;
   static constexpr uint8_t kPaIntervalMax = 0xA0; /* 160 * 0.625 = 100ms */
@@ -137,6 +137,8 @@ public:
     STOPPED = 0,
     CONFIGURING,
     CONFIGURED,
+    ENABLING,
+    DISABLING,
     STOPPING,
     STREAMING,
   };
