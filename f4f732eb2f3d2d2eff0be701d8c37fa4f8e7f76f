@@ -16,6 +16,24 @@
       "message": "nit: would be nice to add a comment here that here we have uuids len for Fromat 0x01 and Format 0x02",
       "revId": "f4f732eb2f3d2d2eff0be701d8c37fa4f8e7f76f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d00180_56788a01",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-02T12:57:44Z",
+      "side": 1,
+      "message": "Not part of this CL",
+      "parentUuid": "58ea461d_daf47edf",
+      "revId": "f4f732eb2f3d2d2eff0be701d8c37fa4f8e7f76f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
