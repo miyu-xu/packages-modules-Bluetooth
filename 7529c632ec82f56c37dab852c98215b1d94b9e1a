@@ -74,6 +74,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "626bb9af_9ea7da25",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-02T18:14:54Z",
+      "side": 1,
+      "message": "I would be leaning toward debug or info. Plus please put bdaddr or conn_id in the log, with the attr_mask",
+      "range": {
+        "startLine": 122,
+        "startChar": 9,
+        "endLine": 122,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "98b788cc_4c256eed",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"Dequeue pending DIS request. conn_id: {} attr_mask: 0x{:04x}\",\n              conn_id, dis_cb.request_mask);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d713d7_2025e67a",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 2
@@ -331,6 +372,47 @@
         "endLine": 130,
         "endChar": 5
       },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce9ac4f5_39eca0b0",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-02T18:14:54Z",
+      "side": 1,
+      "message": "This should probably be true (opportunistic). You probably don\u0027t want DIS request establishing or keeping the connection.",
+      "range": {
+        "startLine": 302,
+        "startChar": 24,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c2f0f6b8_256d1ffd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 302,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": "                        true);\n"
+            }
+          ]
+        }
+      ],
       "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

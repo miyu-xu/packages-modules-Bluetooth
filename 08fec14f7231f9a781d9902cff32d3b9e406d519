@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f5a988_fb8d82b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-02T18:14:54Z",
+      "side": 1,
+      "message": "The original code is terrible - if you have two devices connected at same time, they can interfere and mess up each other DIS request.\n\nThe fix you propose is partial, but good enough.",
+      "revId": "08fec14f7231f9a781d9902cff32d3b9e406d519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
