@@ -224,6 +224,9 @@ public:
       case Message::SUSPEND:
         suspend_msg_handlers[StateMachine::GetState()](data);
         break;
+      case Message::CANCEL_OP:
+        cancel_msg_handlers[StateMachine::GetState()](data);
+        break;
     };
   }
 
@@ -248,6 +251,10 @@ private:
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
           [this](const void*) { CreateBig(); },
+          /* in ENABLING state */
+          [](const void*) { /* Do nothing */ },
+          /* in DISABLING state */
+          [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -264,6 +271,10 @@ private:
             callbacks_->OnStateMachineEvent(GetBroadcastId(), GetState());
             DisableAnnouncement();
           },
+          /* in ENABLING state */
+          [](const void*) { /* Do nothing */ },
+          /* in DISABLING state */
+          [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -290,6 +301,10 @@ private:
               TerminateBig();
             }
           },
+          /* in ENABLING state */
+          [](const void*) { /* Do nothing */ },
+          /* in DISABLING state */
+          [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -307,10 +322,30 @@ private:
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
           [this](const void*) { CreateBig(); },
+          /* in ENABLING state */
+          [](const void*) { /* Do nothing */ },
+          /* in DISABLING state */
+          [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
           [](const void*) { /* Already streaming */ }};
+
+  const std::array<msg_handler_t, BroadcastStateMachine::STATE_COUNT> cancel_msg_handlers{
+          /* in STOPPED state */
+          [](const void*) { /* Do nothing */ },
+          /* in CONFIGURING state */
+          [](const void*) { /* Do nothing */ },
+          /* in CONFIGURED state */
+          [](const void*) { /* Do nothing */ },
+          /* in ENABLING state */
+          [](const void*) { /* Do nothing */ },
+          /* in DISABLING state */
+          [](const void*) { /* Do nothing */ },
+          /* in STOPPING state */
+          [](const void*) { /* Do nothing */ },
+          /* in STREAMING state */
+          [](const void*) { /* Do nothing */ }};
 
   void OnAddressResponse(uint8_t addr_type, RawAddress addr) {
     log::info("own address={}, type={}", addr, addr_type);
@@ -610,14 +645,14 @@ namespace broadcaster {
 
 std::ostream& operator<<(std::ostream& os, const BroadcastStateMachine::Message& msg) {
   static const char* char_value_[BroadcastStateMachine::MESSAGE_COUNT] = {"START", "SUSPEND",
-                                                                          "STOP"};
+                                                                          "CANCEL_OP", "STOP"};
   os << char_value_[static_cast<uint8_t>(msg)];
   return os;
 }
 
 std::ostream& operator<<(std::ostream& os, const BroadcastStateMachine::State& state) {
   static const char* char_value_[BroadcastStateMachine::STATE_COUNT] = {
-          "STOPPED", "CONFIGURING", "CONFIGURED", "STOPPING", "STREAMING"};
+          "STOPPED", "CONFIGURING", "CONFIGURED", "ENABLING", "DISABLING", "STOPPING", "STREAMING"};
   os << char_value_[static_cast<uint8_t>(state)];
   return os;
 }

@@ -54,6 +54,8 @@ public:
                                                           nullptr);
                           }
                           break;
+                        case Message::CANCEL_OP:
+                          break;
                         case Message::SUSPEND:
                           if (GetState() != State::CONFIGURED && result_) {
                             SetState(State::CONFIGURED);
