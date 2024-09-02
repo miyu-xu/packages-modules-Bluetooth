@@ -141,6 +141,30 @@
       },
       "revId": "db823c0ba7171956053fc51627967013773b4def",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e4d6aba_1b72bd26",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-02T21:23:20Z",
+      "side": 1,
+      "message": "yeah... have the same feeling... let\u0027s do it as an intermediate state.",
+      "parentUuid": "0cf90c87_3f3da8cb",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 24
+      },
+      "revId": "db823c0ba7171956053fc51627967013773b4def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
