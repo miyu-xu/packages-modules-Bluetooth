@@ -177,6 +177,30 @@
       },
       "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b43ce4_7dd690b9",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 3605356
+      },
+      "writtenOn": "2024-09-02T08:20:12Z",
+      "side": 1,
+      "message": "Okay, tried generating git credentials on android.googlesource.com again this morning, and everything magically worked. The suggested changes should now be here.",
+      "parentUuid": "faae6bac_37fc2403",
+      "range": {
+        "startLine": 269,
+        "startChar": 57,
+        "endLine": 269,
+        "endChar": 61
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
