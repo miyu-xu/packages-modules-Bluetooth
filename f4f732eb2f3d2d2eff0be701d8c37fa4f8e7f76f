@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ea461d_daf47edf",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-02T12:55:59Z",
+      "side": 1,
+      "message": "nit: would be nice to add a comment here that here we have uuids len for Fromat 0x01 and Format 0x02",
+      "revId": "f4f732eb2f3d2d2eff0be701d8c37fa4f8e7f76f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
