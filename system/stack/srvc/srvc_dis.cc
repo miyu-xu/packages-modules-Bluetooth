@@ -285,6 +285,12 @@ bool DIS_ReadDISInfo(const RawAddress& peer_bda, tDIS_READ_CBACK* p_cback, tDIS_
     return true;
   }
 
+  /* For now, we don't serve the request if GATT isn't connected.
+   * We need to call GATT_Connect and implement the handler for both success and failure case. */
+  if (!GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, peer_bda, &conn_id, BT_TRANSPORT_LE)) {
+    return false;
+  }
+
   dis_cb.p_read_dis_cback = p_cback;
   /* Mark currently active operation */
   dis_cb.dis_read_uuid_idx = 0;
@@ -293,17 +299,8 @@ bool DIS_ReadDISInfo(const RawAddress& peer_bda, tDIS_READ_CBACK* p_cback, tDIS_
 
   log::verbose("BDA: {} cl_read_uuid: 0x{:04x}", peer_bda, dis_attr_uuid[dis_cb.dis_read_uuid_idx]);
 
-  if (!GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, peer_bda, &conn_id, BT_TRANSPORT_LE)) {
-    conn_id = GATT_INVALID_CONN_ID;
-  }
-
   /* need to enhance it as multiple service is needed */
   srvc_eng_request_channel(peer_bda, SRVC_ID_DIS);
-
-  if (conn_id == GATT_INVALID_CONN_ID) {
-    return GATT_Connect(srvc_eng_cb.gatt_if, peer_bda, BTM_BLE_DIRECT_CONNECTION, BT_TRANSPORT_LE,
-                        false);
-  }
 
   return dis_gatt_c_read_dis_req(conn_id);
 }
