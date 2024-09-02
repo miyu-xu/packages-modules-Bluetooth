@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70edce6a_88d15120",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-09-02T07:29:08Z",
+      "side": 1,
+      "message": "bug report is attached in Bug: 331682621.\nThe issue in bugreport was reproduced on Android 14 device, following below test steps, issue is always seen.\n\nPower off BLE device after it is displayed in scanning list\nTrigger pairing to the BLE device from local device.\nAfter pairing fail, trigger another paring immediately (within 5s)",
+      "parentUuid": "b74d86a9_1554b42c",
+      "revId": "436b90738c33ce183d7e2ca50ca59015997bd8a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1b7c152_6bc011a1",
