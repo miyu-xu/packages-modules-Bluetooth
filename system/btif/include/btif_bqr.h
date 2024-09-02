@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-#pragma once
+#ifndef BTIF_BQR_H_
+#define BTIF_BQR_H_
 
 #include <bluetooth/log.h>
 
 #include "common/postable_context.h"
+#include "hci/hci_packets.h"
 #include "include/hardware/bt_bqr.h"
 #include "osi/include/osi.h"
-#include "types/raw_address.h"
+#include "raw_address.h"
 
 namespace bluetooth {
 namespace bqr {
@@ -384,18 +386,15 @@ public:
 
 BluetoothQualityReportInterface* getBluetoothQualityReportInterface();
 
-// Enable Bluetooth Quality Report mechanism.
+// Enable/Disable Bluetooth Quality Report mechanism.
 //
 // Which Quality event will be enabled is according to the setting of the
 // property "persist.bluetooth.bqr.event_mask".
 // And the minimum time interval of quality event reporting depends on the
 // setting of property "persist.bluetooth.bqr.min_interval_ms".
 //
-// @param to_bind gives the postable for the callback.
+// @param to_bind gives the postable for the callback, or null if disabling.
 void EnableBtQualityReport(common::PostableContext* to_bind);
-
-// Disable Bluetooth Quality Report mechanism.
-void DisableBtQualityReport();
 
 // Dump Bluetooth Quality Report information.
 //
@@ -412,3 +411,5 @@ struct formatter<bluetooth::bqr::BqrReportAction>
 template <>
 struct formatter<bluetooth::bqr::BqrVseSubEvt> : ostream_formatter {};
 }  // namespace fmt
+
+#endif  // BTIF_BQR_H_
