@@ -16,6 +16,24 @@
       "message": "Presubmit failed for some BassClientServiceTest cases, can you help to double check?",
       "revId": "bf99073c185648aec474c2b91c01211dcc684227",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2f265a8_b7356eae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-02T07:31:18Z",
+      "side": 1,
+      "message": "it failed in all new test cases. It looks like flag is not enabled even if I enable it inside each test:\n```\nmSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER);\n```\n\nSometimes I had similar issue when tests were included in the same CL as source code but then after few tries it passes. Here I tried few times and still no success. I will try one again and ask for help",
+      "parentUuid": "ea0de8f2_5a8691e8",
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
