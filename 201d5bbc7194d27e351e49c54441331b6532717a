@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e16f5b3a_33c3c25b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-02T08:23:16Z",
+      "side": 1,
+      "message": "LGTM from HID.\nI am not an OWNER of this section so waiting for other reviewers to give OWNER\u0027s approval.",
+      "revId": "201d5bbc7194d27e351e49c54441331b6532717a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
