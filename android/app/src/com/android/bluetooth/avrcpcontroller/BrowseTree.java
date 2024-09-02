@@ -182,13 +182,12 @@ public class BrowseTree {
         }
 
         BrowseNode(BluetoothDevice device) {
+            mIsPlayer = true;
+            String playerKey = PLAYER_PREFIX + device.getAddress().toString();
+
             AvrcpItem.Builder aid = new AvrcpItem.Builder();
             aid.setDevice(device);
-            if (Flags.randomizeDeviceLevelMediaIds()) {
-                aid.setUuid(ROOT + device.getAddress().toString() + UUID.randomUUID().toString());
-            } else {
-                aid.setUuid(PLAYER_PREFIX + device.getAddress().toString());
-            }
+            aid.setUuid(playerKey);
             aid.setDisplayableName(Utils.getName(device));
             aid.setTitle(Utils.getName(device));
             aid.setBrowsable(true);
