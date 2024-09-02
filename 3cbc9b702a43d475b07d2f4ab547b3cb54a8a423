@@ -68,6 +68,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef4bce8e_84b7b49a",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-02T04:25:13Z",
+      "side": 1,
+      "message": "Yeah you\u0027re right, it has been there for long.\nMaybe Myles knows the history better? I\u0027m also adding the SDP DRI Jakub to review this part.",
+      "parentUuid": "835c8dd2_aed3a863",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dd6cf57_8473fad2",
         "filename": "system/stack/hid/hidd_api.cc",
         "patchSetId": 2
@@ -121,6 +145,30 @@
       "side": 1,
       "message": "sure, we\u0027d now also have to change it to desc_len + 8 with the above change\n\nOn another note, I just wanted to make these changes and upload a new patchset, however:\n- On the git source editor, I don\u0027t get the \"Update Change\" button (I opened this CL with its URL).\n- I cannot submit via repo upload, because I cannot generate a git http password for android.googlesource.com for some reason (it just says \"something went wrong\").\n\nAm I missing something, must my account first be unlocked or similar?",
       "parentUuid": "4dd6cf57_8473fad2",
+      "range": {
+        "startLine": 269,
+        "startChar": 57,
+        "endLine": 269,
+        "endChar": 61
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faae6bac_37fc2403",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-02T04:25:13Z",
+      "side": 1,
+      "message": "Thanks for the contribution~\nThis is the first time I see an external contributor and to be honest I don\u0027t know what are the correct steps, and it\u0027s weird if you can submit the first time but cannot submit another CL. Hopefully Myles can help you with that?",
+      "parentUuid": "0e871524_1430042f",
       "range": {
         "startLine": 269,
         "startChar": 57,
