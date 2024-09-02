@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459aff76_c4aa55d9",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-02T18:51:01Z",
+      "side": 0,
+      "message": "would a GATT_Read return the result in callback if your client doesn\u0027t GATT_Conenct first ?\n\nI was proposing in previous patch to use opportunistic background connection, this could solve this problem, but background connection don\u0027t expire, so you\u0027ll need some sort of timeout.",
+      "range": {
+        "startLine": 304,
+        "startChar": 11,
+        "endLine": 304,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0811c76f_70c9cb58",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 287,
+                "startChar": 0,
+                "endLine": 293,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/srvc/srvc_dis.cc",
+              "range": {
+                "startLine": 304,
+                "startChar": 0,
+                "endLine": 304,
+                "endChar": 0
+              },
+              "replacement": "\n  /* For now, we don\u0027t serve the request if GATT isn\u0027t connected.\n   * We need to call GATT_Connect and implement the handler for both success and failure case. */\n  if (!GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, peer_bda, \u0026conn_id, BT_TRANSPORT_LE)) {\n    return false;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "08fec14f7231f9a781d9902cff32d3b9e406d519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
