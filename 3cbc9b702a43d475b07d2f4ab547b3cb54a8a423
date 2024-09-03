@@ -114,6 +114,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eeb4ad5_cf046d76",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-03T13:27:06Z",
+      "side": 1,
+      "message": "So SDP record definition shed some light no what\u0027s going on:\n\nhttps://cs.android.com/android/platform/superproject/+/android14-qpr3-release:packages/modules/Bluetooth/system/stack/sdp/sdpint.h;l\u003d106?q\u003dfree_pad_ptr\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2Fsystem%2Fstack%2Fsdp%2F\n\nSDP record can contain maximum SDP_MAX_REC_ATTR attributes, and their values are stored in attr_pad, which is fixed size SDP_MAX_PAD_LEN (600) but then every falue is limited to SDP_MAX_ATTR_LEN (400)",
+      "parentUuid": "dd6f7da6_0efdcc6e",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dd6cf57_8473fad2",
