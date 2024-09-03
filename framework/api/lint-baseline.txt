@@ -29,3 +29,13 @@ BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_PAIRING_REQUEST:
     Field 'ACTION_PAIRING_REQUEST' is missing @BroadcastBehavior
 BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_UUID:
     Field 'ACTION_UUID' is missing @BroadcastBehavior
+
+
+UnflaggedApi: android.bluetooth.BluetoothHeadset#HFP_CONNECTION_FAIL_RESOURCES:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothHeadset.HFP_CONNECTION_FAIL_RESOURCES
+UnflaggedApi: android.bluetooth.BluetoothHeadset#HFP_CONNECTION_FAIL_RFCOMM:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothHeadset.HFP_CONNECTION_FAIL_RFCOMM
+UnflaggedApi: android.bluetooth.BluetoothHeadset#HFP_CONNECTION_SDP:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothHeadset.HFP_CONNECTION_SDP
+UnflaggedApi: android.bluetooth.BluetoothHeadset#HFP_CONNECTION_SUCCESS:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothHeadset.HFP_CONNECTION_SUCCESS

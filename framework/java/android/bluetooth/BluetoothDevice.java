@@ -1334,6 +1334,19 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @SystemApi public static final int PAIRING_VARIANT_PIN_16_DIGITS = 7;
 
     /**
+     * Used as an int extra field in {@link BluetoothHeadset#ACTION_CONNECTION_STATE_CHANGED}
+     * intents for connection failure reason.
+     * Possible value are :
+     * - {@link BluetoothHeadset#HFP_CONNECTION_SUCCESS}
+     * - {@link BluetoothHeadset#HFP_CONNECTION_SDP}
+     * - {@link BluetoothHeadset#HFP_CONNECTION_FAIL_RFCOMM}
+     * - {@link BluetoothHeadset#HFP_CONNECTION_FAIL_RESOURCES}
+     * @hide
+     */
+    public static final String EXTRA_DISCONNECTED_REASON =
+            "android.bluetooth.device.extra.DISCONNECTED_REASON";
+
+    /**
      * Used as an extra field in {@link #ACTION_UUID} intents, Contains the {@link
      * android.os.ParcelUuid}s of the remote device which is a parcelable version of {@link UUID}. A
      * {@code null} EXTRA_UUID indicates a timeout.
