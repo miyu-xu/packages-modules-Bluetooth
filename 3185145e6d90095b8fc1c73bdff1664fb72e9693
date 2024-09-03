@@ -16,6 +16,23 @@
       "message": "Omair, could you give review for this CL? Thanks!",
       "revId": "3185145e6d90095b8fc1c73bdff1664fb72e9693",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4183afb_c65ed36d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-03T20:01:19Z",
+      "side": 1,
+      "message": "Can you add a boolean parameter to the existing alarm class to support both types instead?",
+      "revId": "3185145e6d90095b8fc1c73bdff1664fb72e9693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
