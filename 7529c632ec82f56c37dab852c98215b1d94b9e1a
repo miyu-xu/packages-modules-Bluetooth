@@ -553,6 +553,30 @@
       },
       "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c95611_f5bd53c5",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-03T15:17:05Z",
+      "side": 1,
+      "message": "OK, I understand what opportunistic means.\n\n\u003e Your queue is global, not per-device. This means that if you make one request to device that is disconnected, you might end up stuck and block all other requests until this particular device connects, or stack is restarted.\n\nThis is correct. But the same thing happens without the queue as well, and regardless of opportunistic or not. \nThat\u0027s why in the other CL I remove the GATT_Connect and return false directly if we are not currently connected, because calling GATT_Connect is equal to getting stuck (regardless of the connection is successful or fail).\n\nI also want to reiterate what say in the other CL, I think we should separate the effort to correctly do the GATT_Connect since that involves a timer, so the changes are not trivial and ideally we should need a flag for that.",
+      "parentUuid": "e9cee56e_8144c0d2",
+      "range": {
+        "startLine": 302,
+        "startChar": 24,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
