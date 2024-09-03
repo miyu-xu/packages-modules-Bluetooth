@@ -905,6 +905,7 @@ TEST_F(VolumeControlTest, test_read_vocs_volume_offset) {
   EXPECT_CALL(*callbacks, OnExtAudioOutVolumeOffsetChanged(test_address, 2, _));
   std::vector<uint16_t> handles({0x0072, 0x0082});
   TestReadCharacteristic(test_address, 1, handles);
+  Mock::VerifyAndClearExpectations(callbacks.get());
 }
 
 TEST_F(VolumeControlTest, test_read_vocs_offset_location) {
@@ -913,6 +914,7 @@ TEST_F(VolumeControlTest, test_read_vocs_offset_location) {
   EXPECT_CALL(*callbacks, OnExtAudioOutLocationChanged(test_address, 2, _));
   std::vector<uint16_t> handles({0x0075, 0x0085});
   TestReadCharacteristic(test_address, 1, handles);
+  Mock::VerifyAndClearExpectations(callbacks.get());
 }
 
 TEST_F(VolumeControlTest, test_read_vocs_output_description) {
