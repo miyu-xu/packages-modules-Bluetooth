@@ -61,6 +61,7 @@
 #define BT_PROFILE_LE_AUDIO_ID "le_audio"
 #define BT_PROFILE_LE_AUDIO_BROADCASTER_ID "le_audio_broadcaster"
 #define BT_BQR_ID "bqr"
+#define BT_HCIVS_ID "hcivs"
 
 /** Bluetooth Device Name */
 typedef struct {
