@@ -181,6 +181,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -262,6 +263,12 @@ public class AdapterService extends Service {
     private final EvictingQueue<String> mScanModeChanges = EvictingQueue.create(10);
 
     private final DeviceConfigListener mDeviceConfigListener = new DeviceConfigListener();
+
+    private final BluetoothHciVendorSpecificDispatcher mBluetoothHciVendorSpecificDispatcher =
+            new BluetoothHciVendorSpecificDispatcher();
+    private final BluetoothHciVendorSpecificNativeInterface
+            mBluetoothHciVendorSpecificNativeInterface =
+                    new BluetoothHciVendorSpecificNativeInterface();
 
     private final Looper mLooper;
     private final AdapterServiceHandler mHandler;
@@ -712,6 +719,8 @@ public class AdapterService extends Service {
                         BluetoothQualityReportNativeInterface.getInstance(),
                         "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
         mBluetoothQualityReportNativeInterface.init();
+
+        mBluetoothHciVendorSpecificNativeInterface.init();
 
         if (Flags.fastBindToApp()) {
             mSdpManager = new SdpManager(this, mLooper);
@@ -1356,6 +1365,66 @@ public class AdapterService extends Service {
         }
 
         return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**
+     * Callback from Bluetooth HCI Vendor Specific Native Interface to return status relative to a
+     * vendor-specific command sent.
+     *
+     * @param ocf The vendor-specific OpCode field of the comannd
+     * @param status The normative bluetooth status code
+     * @param cookie Identifies the command sender {@link sendHciVendorSpecificCommand}
+     */
+    public void bluetoothHciVendorSpecificCommandStatus(int ocf, int status, byte[] cookie) {
+        mBluetoothHciVendorSpecificDispatcher.dispatchCommandReturn(
+                cookie,
+                (cb) -> {
+                    try {
+                        cb.onCommandStatus(ocf, status);
+                    } catch (RemoteException e) {
+                        Log.d(TAG, "bluetoothHciVendorSpecificCommandStatus() failed");
+                    }
+                });
+    }
+
+    /**
+     * Callback from Bluetooth HCI Vendor Specific Native Interface to return parameters relative to
+     * a vendor-specific command sent.
+     *
+     * @param ocf The vendor-specific OpCode field of the comannd
+     * @param returnParameters the data returned from this command
+     * @param cookie Identifies the command send {@link sendHciVendorSpecificCommand}
+     */
+    public void bluetoothHciVendorSpecificCommandComplete(
+            int ocf, byte[] returnParameters, byte[] cookie) {
+        mBluetoothHciVendorSpecificDispatcher.dispatchCommandReturn(
+                cookie,
+                (cb) -> {
+                    try {
+                        cb.onCommandComplete(ocf, returnParameters);
+                    } catch (RemoteException e) {
+                        Log.d(TAG, "bluetoothHciVendorSpecificCommandComplete() failed");
+                    }
+                });
+    }
+
+    /**
+     * Callback from Bluetooth HCI Vendor Specific Native Interface to return Vendor Specific
+     * events.
+     *
+     * @param code is the vendor specific event code
+     * @param data the vendor data associated to this event
+     */
+    public void bluetoothHciVendorSpecificEventCallback(int code, byte[] data) {
+        mBluetoothHciVendorSpecificDispatcher.broadcastEvent(
+                code,
+                (cb) -> {
+                    try {
+                        cb.onEvent(code, data);
+                    } catch (RemoteException e) {
+                        Log.d(TAG, "bluetoothHciVendorSpecificEventCallback() failed");
+                    }
+                });
     }
 
     void switchBufferSizeCallback(boolean isLowLatencyBufferSize) {
@@ -4129,13 +4198,14 @@ public class AdapterService extends Service {
             requireNonNull(callback);
             requireNonNull(eventCodes);
 
-            if (Arrays.stream(eventCodes)
+            Set<Integer> eventCodesSet =
+                    Arrays.stream(eventCodes).boxed().collect(Collectors.toSet());
+            if (eventCodesSet.stream()
                     .anyMatch((n) -> (n < 0) || (n >= 0x50 && n < 0x60) || (n > 0xff))) {
                 throw new IllegalArgumentException("invalid vendor-specific event code");
             }
 
-            // TODO
-            return BluetoothStatusCodes.SUCCESS;
+            return service.mBluetoothHciVendorSpecificDispatcher.register(callback, eventCodesSet);
         }
 
         @Override
@@ -4152,8 +4222,7 @@ public class AdapterService extends Service {
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             requireNonNull(callback);
 
-            // TODO
-            return BluetoothStatusCodes.SUCCESS;
+            return service.mBluetoothHciVendorSpecificDispatcher.unregister(callback);
         }
 
         @Override
@@ -4177,7 +4246,15 @@ public class AdapterService extends Service {
                 throw new IllegalArgumentException("invalid vendor-specific event code");
             }
 
-            // TODO
+            Optional<byte[]> cookie =
+                    service.mBluetoothHciVendorSpecificDispatcher.getRegisteredCookie(callback);
+            if (!cookie.isPresent()) {
+                Log.e(TAG, "send command without registered callback");
+                return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
+            }
+
+            service.mBluetoothHciVendorSpecificNativeInterface.sendCommand(
+                    ocf, parameters, cookie.get());
             return BluetoothStatusCodes.SUCCESS;
         }
 
