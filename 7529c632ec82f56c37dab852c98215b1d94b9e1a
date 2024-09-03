@@ -529,6 +529,30 @@
       },
       "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9cee56e_8144c0d2",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-03T15:04:18Z",
+      "side": 1,
+      "message": "If you register for opportunistic connection, you will not timeout after 30 seconds, like regular BTM_BLE_DIRECT_CONNECTION would do.\n\n\"opportunistic\" means to reuse existing connection, and if it\u0027s not established, it would wait until some app establishes it.\n\nYour queue is global, not per-device. This means that if you make one request to device that is disconnected, you might end up stuck and block all other requests until this particular device connects, or stack is restarted. That\u0027s why I mentioned need for some sort of timer in comment in next patch.",
+      "parentUuid": "72099ff6_42aacaa9",
+      "range": {
+        "startLine": 302,
+        "startChar": 24,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
