@@ -87,6 +87,30 @@
       ],
       "revId": "4a24c2c348b59015a010a140265e454a9a36a2c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffb92132_863f5dfe",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/BleConnectionViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-03T15:37:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7cf20fe_109b5cc2",
+      "range": {
+        "startLine": 315,
+        "startChar": 45,
+        "endLine": 315,
+        "endChar": 65
+      },
+      "revId": "4a24c2c348b59015a010a140265e454a9a36a2c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
