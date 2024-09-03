@@ -22,6 +22,30 @@
       },
       "revId": "9c96b0a06b3ee4349d510b278bf53acdb2d29903",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ed4ed8_dad0889e",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-03T15:53:50Z",
+      "side": 0,
+      "message": "It seems like the PID should be parsed when the header is parsed.",
+      "parentUuid": "7dd06ef6_a3331b0a",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 742,
+        "endChar": 0
+      },
+      "revId": "9c96b0a06b3ee4349d510b278bf53acdb2d29903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
