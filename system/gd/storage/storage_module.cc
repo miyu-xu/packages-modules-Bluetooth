@@ -41,6 +41,7 @@ namespace storage {
 
 using os::Alarm;
 using os::Handler;
+using os::Thread;
 
 static const std::string kFactoryResetProperty = "persist.bluetooth.factoryreset";
 
@@ -71,6 +72,8 @@ StorageModule::StorageModule(std::string config_file_path,
       temp_devices_capacity_(temp_devices_capacity),
       is_restricted_mode_(is_restricted_mode),
       is_single_user_mode_(is_single_user_mode) {
+  thread_ = new Thread("storage_thread", Thread::Priority::NORMAL);
+  handler_ = new Handler(thread_);
   log::assert_that(config_save_delay > kMinConfigSaveDelay,
                    "Config save delay of {} ms is not enough, must be at least {} ms to avoid "
                    "overwhelming the "
@@ -80,6 +83,10 @@ StorageModule::StorageModule(std::string config_file_path,
 
 StorageModule::~StorageModule() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
+  handler_->Clear();
+  handler_->WaitUntilStopped(std::chrono::milliseconds(2000));
+  delete handler_;
+  delete thread_;
   pimpl_.reset();
 }
 
@@ -115,7 +122,7 @@ void StorageModule::SaveDelayed() {
   pimpl_->has_pending_config_save_ = true;
 }
 
-void StorageModule::SaveImmediately() {
+void StorageModule::SaveImmediatelyInternal() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   if (pimpl_->has_pending_config_save_) {
     pimpl_->config_save_alarm_.Cancel();
@@ -136,6 +143,10 @@ void StorageModule::SaveImmediately() {
     bluetooth::os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
             kConfigFilePrefix, kConfigFileHash);
   }
+}
+
+void StorageModule::SaveImmediately() {
+  handler_->Post(common::BindOnce(&StorageModule::SaveImmediatelyInternal, common::Unretained(this)));
 }
 
 void StorageModule::Clear() {
@@ -195,7 +206,7 @@ void StorageModule::Stop() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   if (pimpl_->has_pending_config_save_) {
     // Save pending changes before stopping the module.
-    SaveImmediately();
+    SaveImmediatelyInternal();
   }
   if (bluetooth::os::ParameterProvider::GetBtKeystoreInterface() != nullptr) {
     bluetooth::os::ParameterProvider::GetBtKeystoreInterface()->clear_map();
