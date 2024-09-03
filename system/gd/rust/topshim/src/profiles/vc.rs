@@ -193,9 +193,10 @@ impl ToggleableProfile for VolumeControl {
 
 impl VolumeControl {
     pub fn new(intf: &BluetoothInterface) -> VolumeControl {
+        let vc_if: cxx::UniquePtr<ffi::VolumeControlIntf>;
+
         // SAFETY: `intf.as_raw_ptr()` is a valid pointer to a `BluetoothInterface`
-        let vc_if: cxx::UniquePtr<ffi::VolumeControlIntf> =
-            unsafe { ffi::GetVolumeControlProfile(intf.as_raw_ptr()) };
+        vc_if = unsafe { ffi::GetVolumeControlProfile(intf.as_raw_ptr()) };
 
         VolumeControl { internal: vc_if, is_init: false, is_enabled: false }
     }

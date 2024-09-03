@@ -582,9 +582,10 @@ impl ToggleableProfile for LeAudioClient {
 
 impl LeAudioClient {
     pub fn new(intf: &BluetoothInterface) -> LeAudioClient {
+        let lea_client_if: cxx::UniquePtr<ffi::LeAudioClientIntf>;
+
         // SAFETY: `intf.as_raw_ptr()` is a valid pointer to a `BluetoothInterface`
-        let lea_client_if: cxx::UniquePtr<ffi::LeAudioClientIntf> =
-            unsafe { ffi::GetLeAudioClientProfile(intf.as_raw_ptr()) };
+        lea_client_if = unsafe { ffi::GetLeAudioClientProfile(intf.as_raw_ptr()) };
 
         LeAudioClient { internal: lea_client_if, is_init: false, is_enabled: false }
     }
