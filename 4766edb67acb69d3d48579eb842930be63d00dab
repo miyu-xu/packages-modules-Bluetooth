@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5aa120_499e47a7",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-09-03T08:20:59Z",
+      "side": 1,
+      "message": "Could we just handle the SUSPEND message in the ENABLING state accordingly?",
+      "range": {
+        "startLine": 1318,
+        "startChar": 68,
+        "endLine": 1318,
+        "endChar": 77
+      },
+      "revId": "4766edb67acb69d3d48579eb842930be63d00dab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d785488_463af455",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-09-03T08:20:59Z",
+      "side": 1,
+      "message": "Wasn\u0027t the ENABLING state invented to avoid having this boolean?",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 23
+      },
+      "revId": "4766edb67acb69d3d48579eb842930be63d00dab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
