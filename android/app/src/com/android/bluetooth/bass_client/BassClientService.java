@@ -121,8 +121,10 @@ public class BassClientService extends ProfileService {
     private static final int BROADCAST_STATE_STREAMING = 4;
 
     @VisibleForTesting static final int MESSAGE_SYNC_TIMEOUT = 1;
-    @VisibleForTesting static final int MESSAGE_BIG_CHECK_START = 2;
-    @VisibleForTesting static final int MESSAGE_BIG_CHECK_STOP = 3;
+    @VisibleForTesting static final int MESSAGE_BIG_MONITOR_TIMEOUT = 2;
+    @VisibleForTesting static final int MESSAGE_BIG_CHECK_START = 3;
+    @VisibleForTesting static final int MESSAGE_BIG_CHECK_STOP = 4;
+    @VisibleForTesting static final int MESSAGE_BROADCAST_MONITOR_TIMEOUT = 5;
 
     /* 1 minute timeout for primary device reconnection in Private Broadcast case */
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
@@ -133,14 +135,18 @@ public class BassClientService extends ProfileService {
     // 6 seconds to start BIG check. It has to be greater than kPeriodicSyncTimeout
     private static final Duration sBigCheckStart = Duration.ofSeconds(6);
 
-    // 2 second for check if BIG exist
+    // 2 seconds for check if BIG exist
     private static final Duration sBigCheckStop = Duration.ofSeconds(2);
 
     // 5 minutes timeout for monitoring BIG resynchronization
     private static final Duration sBigMonitorTimeout = Duration.ofMinutes(5);
 
+    // 30 seconds timeout for monitoring broadcaster
+    private static final Duration sBroadcasterMonitorTimeout = Duration.ofSeconds(30);
+
     private enum PauseType {
         HOST_INTENTIONAL,
+        SINK_UNKNOWN,
         SINK_INTENTIONAL,
         SINK_UNINTENTIONAL
     }
@@ -215,13 +221,31 @@ public class BassClientService extends ProfileService {
                     switch (msg.what) {
                         case MESSAGE_SYNC_TIMEOUT:
                             {
-                                if (!leaudioBroadcastResyncHelper()) {
-                                    clearAllSyncData();
+                                log("MESSAGE_SYNC_TIMEOUT");
+                                clearAllSyncData();
+                                break;
+                            }
+                        case MESSAGE_BROADCAST_MONITOR_TIMEOUT:
+                            {
+                                log("MESSAGE_BROADCAST_MONITOR_TIMEOUT");
+                                int broadcastId = msg.arg1;
+                                List<Integer> activeSyncedSrc =
+                                        new ArrayList<>(getActiveSyncedSources());
+                                if (activeSyncedSrc.contains(
+                                        getSyncHandleForBroadcastId(broadcastId))) {
                                     break;
                                 }
-                                log("MESSAGE_SYNC_TIMEOUT");
+                                // fall through
+                            }
+                        case MESSAGE_BIG_MONITOR_TIMEOUT:
+                            {
+                                log("MESSAGE_BIG_MONITOR_TIMEOUT");
                                 int broadcastId = msg.arg1;
-                                stopBigMonitoring(broadcastId, false);
+                                if (isSinkUnintentionalPauseType(broadcastId)) {
+                                    stopSourceReceivers(broadcastId);
+                                } else {
+                                    stopBigMonitoring(broadcastId, false);
+                                }
                                 synchronized (mSearchScanCallbackLock) {
                                     // when searching is stopped then clear all sync data
                                     if (mSearchScanCallback == null) {
@@ -238,6 +262,7 @@ public class BassClientService extends ProfileService {
                                 mHandler.removeMessages(MESSAGE_BIG_CHECK_STOP);
                                 Message newMsg = mHandler.obtainMessage(MESSAGE_BIG_CHECK_STOP);
                                 newMsg.arg1 = broadcastId;
+                                log("Started MESSAGE_BIG_CHECK_STOP");
                                 mHandler.sendMessageDelayed(newMsg, sBigCheckStop.toMillis());
                                 break;
                             }
@@ -245,19 +270,15 @@ public class BassClientService extends ProfileService {
                             {
                                 log("MESSAGE_BIG_CHECK_STOP");
                                 int broadcastId = msg.arg1;
-                                if (!mBigInfoReportExistForBroadcast.contains(broadcastId)) {
+                                if (mBigInfoReportExistForBroadcast.contains(broadcastId)) {
+                                    mPausedBroadcastIds.put(
+                                            broadcastId, PauseType.SINK_INTENTIONAL);
+                                    logPausedBroadcastsAndSinks();
+                                } else {
                                     mPausedBroadcastIds.put(
                                             broadcastId, PauseType.SINK_UNINTENTIONAL);
                                     cacheSuspendingSources(broadcastId);
-                                    logPausedBroadcastsAndSinks();
                                 }
-                                // Timer starts even if pause is SINK_INTENTIONAL to keep sync in
-                                // case that buds send SyncInfo Request
-                                mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
-                                log("Started timeout for canceling syncs");
-                                Message newMsg = mHandler.obtainMessage(MESSAGE_SYNC_TIMEOUT);
-                                newMsg.arg1 = broadcastId;
-                                mHandler.sendMessageDelayed(newMsg, sBigMonitorTimeout.toMillis());
                                 break;
                             }
                         default:
@@ -1045,13 +1066,19 @@ public class BassClientService extends ProfileService {
                 ScanResult scanRes = getCachedBroadcast(broadcastId);
                 if (scanRes != null) {
                     addSelectSourceRequest(scanRes, true);
-                    // Can change to SINK_UNINTENTIONAL after BIG check
-                    mPausedBroadcastIds.put(broadcastId, PauseType.SINK_INTENTIONAL);
+                    mPausedBroadcastIds.put(broadcastId, PauseType.SINK_UNKNOWN);
                     logPausedBroadcastsAndSinks();
                     mHandler.removeMessages(MESSAGE_BIG_CHECK_START);
                     Message newMsg = mHandler.obtainMessage(MESSAGE_BIG_CHECK_START);
                     newMsg.arg1 = broadcastId;
+                    log("Started MESSAGE_BIG_CHECK_START");
                     mHandler.sendMessageDelayed(newMsg, sBigCheckStart.toMillis());
+
+                    mHandler.removeMessages(MESSAGE_BIG_MONITOR_TIMEOUT);
+                    newMsg = mHandler.obtainMessage(MESSAGE_BIG_MONITOR_TIMEOUT);
+                    newMsg.arg1 = broadcastId;
+                    log("Started MESSAGE_BIG_MONITOR_TIMEOUT");
+                    mHandler.sendMessageDelayed(newMsg, sBigMonitorTimeout.toMillis());
                 }
             }
         } else if (isEmptyBluetoothDevice(receiveState.getSourceDevice())) {
@@ -2046,15 +2073,18 @@ public class BassClientService extends ProfileService {
                         null);
                 addActiveSyncedSource(syncHandle);
 
-                synchronized (mSearchScanCallbackLock) {
-                    // when searching is stopped then start timer to stop active sync
-                    if (mSearchScanCallback == null) {
-                        mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
-                        log("Started timeout for canceling syncs");
-                        Message newMsg = mHandler.obtainMessage(MESSAGE_SYNC_TIMEOUT);
-                        newMsg.arg1 = broadcastId;
-                        mHandler.sendMessageDelayed(newMsg, sSyncActiveTimeout.toMillis());
+                if (!leaudioBroadcastResyncHelper()) {
+                    synchronized (mSearchScanCallbackLock) {
+                        // when searching is stopped then start timer to stop active syncs
+                        if (mSearchScanCallback == null) {
+                            mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
+                            log("Started MESSAGE_SYNC_TIMEOUT");
+                            mHandler.sendEmptyMessageDelayed(
+                                    MESSAGE_SYNC_TIMEOUT, sSyncActiveTimeout.toMillis());
+                        }
                     }
+                } else {
+                    mHandler.removeMessages(MESSAGE_BROADCAST_MONITOR_TIMEOUT);
                 }
 
                 // update valid sync handle in mPeriodicAdvCallbacksMap
@@ -2102,7 +2132,18 @@ public class BassClientService extends ProfileService {
                         }
                     }
                 }
-                stopBigMonitoring(broadcastId, false);
+                if (isAnySinkPauseType(broadcastId)) {
+                    if (!mHandler.hasMessages(MESSAGE_BROADCAST_MONITOR_TIMEOUT)) {
+                        Message newMsg = mHandler.obtainMessage(MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+                        newMsg.arg1 = broadcastId;
+                        log("Started MESSAGE_BROADCAST_MONITOR_TIMEOUT");
+                        mHandler.sendMessageDelayed(newMsg, sBroadcasterMonitorTimeout.toMillis());
+                    }
+                    ScanResult scanRes = getCachedBroadcast(broadcastId);
+                    if (scanRes != null) {
+                        addSelectSourceRequest(scanRes, true);
+                    }
+                }
                 synchronized (mSearchScanCallbackLock) {
                     // Clear from cache to make possible sync again (only during active searching)
                     if (mSearchScanCallback != null) {
@@ -2171,14 +2212,24 @@ public class BassClientService extends ProfileService {
         public void onSyncLost(int syncHandle) {
             int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
             log("OnSyncLost: syncHandle=" + syncHandle + ", broadcastID=" + broadcastId);
+            clearAllDataForSyncHandle(syncHandle);
             if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
-                if (leaudioBroadcastMonitorSourceSyncStatus()) {
+                if (isAnySinkPauseType(broadcastId)) {
+                    if (!mHandler.hasMessages(MESSAGE_BROADCAST_MONITOR_TIMEOUT)) {
+                        Message newMsg = mHandler.obtainMessage(MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+                        newMsg.arg1 = broadcastId;
+                        log("Started MESSAGE_BROADCAST_MONITOR_TIMEOUT");
+                        mHandler.sendMessageDelayed(newMsg, sBroadcasterMonitorTimeout.toMillis());
+                    }
+                    ScanResult scanRes = getCachedBroadcast(broadcastId);
+                    if (scanRes != null) {
+                        addSelectSourceRequest(scanRes, true);
+                    }
+                } else if (leaudioBroadcastMonitorSourceSyncStatus()) {
                     log("Notify broadcast source lost, broadcast id: " + broadcastId);
                     mCallbacks.notifySourceLost(broadcastId);
                 }
-                stopBigMonitoring(broadcastId, false);
             }
-            clearAllDataForSyncHandle(syncHandle);
             // Clear from cache to make possible sync again (only during active searching)
             synchronized (mSearchScanCallbackLock) {
                 if (mSearchScanCallback != null) {
@@ -3403,14 +3454,20 @@ public class BassClientService extends ProfileService {
                 && mPausedBroadcastIds.get(broadcastId).equals(PauseType.HOST_INTENTIONAL));
     }
 
+    private boolean isSinkUnintentionalPauseType(int broadcastId) {
+        return (mPausedBroadcastIds.containsKey(broadcastId)
+                && mPausedBroadcastIds.get(broadcastId).equals(PauseType.SINK_UNINTENTIONAL));
+    }
+
     public void stopBigMonitoring() {
         if (!leaudioBroadcastResyncHelper()) {
             return;
         }
         log("stopBigMonitoring");
-        mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
+        mHandler.removeMessages(MESSAGE_BIG_MONITOR_TIMEOUT);
         mHandler.removeMessages(MESSAGE_BIG_CHECK_START);
         mHandler.removeMessages(MESSAGE_BIG_CHECK_STOP);
+        mHandler.removeMessages(MESSAGE_BROADCAST_MONITOR_TIMEOUT);
 
         mPausedBroadcastSinks.clear();
 
@@ -3437,9 +3494,10 @@ public class BassClientService extends ProfileService {
         while (iterator.hasNext()) {
             int pausedBroadcastId = iterator.next();
             if (!isAnyReceiverSyncedToBroadcast(pausedBroadcastId)) {
-                mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
+                mHandler.removeMessages(MESSAGE_BIG_MONITOR_TIMEOUT);
                 mHandler.removeMessages(MESSAGE_BIG_CHECK_START);
                 mHandler.removeMessages(MESSAGE_BIG_CHECK_STOP);
+                mHandler.removeMessages(MESSAGE_BROADCAST_MONITOR_TIMEOUT);
                 iterator.remove();
                 synchronized (mSearchScanCallbackLock) {
                     // when searching is stopped then stop active sync
@@ -3457,9 +3515,10 @@ public class BassClientService extends ProfileService {
             return;
         }
         log("stopBigMonitoring broadcastId: " + broadcastId + ", hostInitiated: " + hostInitiated);
-        mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
+        mHandler.removeMessages(MESSAGE_BIG_MONITOR_TIMEOUT);
         mHandler.removeMessages(MESSAGE_BIG_CHECK_START);
         mHandler.removeMessages(MESSAGE_BIG_CHECK_STOP);
+        mHandler.removeMessages(MESSAGE_BROADCAST_MONITOR_TIMEOUT);
         if (hostInitiated) {
             mPausedBroadcastIds.put(broadcastId, PauseType.HOST_INTENTIONAL);
         } else {
