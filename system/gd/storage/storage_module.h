@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 
+#include "../os/handler.h"
 #include "hci/address.h"
 #include "module.h"
 #include "storage/config_cache.h"
@@ -134,6 +135,8 @@ protected:
   // series of changes This method triggers the delayed saving automatically, the delay is equal to
   // |config_save_delay_|
   void SaveDelayed();
+  // This method will save the config to disk immediately on the internal storage thread
+  void SaveImmediatelyInternal();
   // In some cases, one may want to save the config immediately to disk. Call this method with
   // caution as it runs immediately on the calling thread
   void SaveImmediately();
@@ -190,6 +193,8 @@ private:
   size_t temp_devices_capacity_;
   bool is_restricted_mode_;
   bool is_single_user_mode_;
+  os::Thread* thread_ = nullptr;
+  os::Handler* handler_ = nullptr;
   static bool is_config_checksum_pass(int check_bit);
 };
 
