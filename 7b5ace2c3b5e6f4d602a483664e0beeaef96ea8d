@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c36bc55e_d56311ad",
+        "filename": "service/generate_local_coverage.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1132849
+      },
+      "writtenOn": "2024-09-03T22:20:27Z",
+      "side": 1,
+      "message": "Should there be a space here?",
+      "range": {
+        "startLine": 17,
+        "startChar": 57,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "7b5ace2c3b5e6f4d602a483664e0beeaef96ea8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
