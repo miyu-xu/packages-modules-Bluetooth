@@ -1133,6 +1133,7 @@ public class BassClientServiceTest {
 
     @Test
     @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE)
+    @DisableFlags(Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER)
     public void testStopSearchingForSources_timeoutForActiveSync() {
         prepareConnectedDeviceGroup();
         startSearchingForSources();
@@ -1172,6 +1173,7 @@ public class BassClientServiceTest {
 
     @Test
     @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE)
+    @DisableFlags(Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER)
     public void testStopSearchingForSources_clearTimeoutForActiveSync() {
         prepareConnectedDeviceGroup();
         startSearchingForSources();
@@ -5349,10 +5351,10 @@ public class BassClientServiceTest {
                         any(), any(), anyInt(), anyInt(), any(), any());
         onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // No BIG, SINK_UNINTENTIONAL
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
     }
 
     private void sinkUnintentionalDuringScanning() {
@@ -5362,10 +5364,10 @@ public class BassClientServiceTest {
         BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
         injectRemoteSourceStateChanged(meta, false);
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // No BIG, SINK_UNINTENTIONAL
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
     }
 
     private void sinkIntentionalWithoutScanning() {
@@ -5380,12 +5382,12 @@ public class BassClientServiceTest {
                         any(), any(), anyInt(), anyInt(), any(), any());
         onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // BIG, SINK_INTENTIONAL
         onPeriodicAdvertisingReport();
         onBigInfoAdvertisingReport();
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
     }
 
     private void sinkIntentionalDuringScanning() {
@@ -5395,12 +5397,12 @@ public class BassClientServiceTest {
         BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
         injectRemoteSourceStateChanged(meta, false);
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_START, TEST_BROADCAST_ID);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // BIG, SINK_INTENTIONAL
         onPeriodicAdvertisingReport();
         onBigInfoAdvertisingReport();
         checkAndDispatchMessage(BassClientService.MESSAGE_BIG_CHECK_STOP, TEST_BROADCAST_ID);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
     }
 
     private void checkResumeSynchronizationByBig() {
@@ -5450,18 +5452,20 @@ public class BassClientServiceTest {
     }
 
     private void verifyStopBigMonitoringWithUnsync() {
-        checkNoMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
         checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_START);
         checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_STOP);
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
         mInOrderMethodProxy
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
     }
 
     private void verifyStopBigMonitoringWithoutUnsync() {
-        checkNoMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
         checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_START);
         checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_STOP);
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
         mInOrderMethodProxy
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -5488,9 +5492,10 @@ public class BassClientServiceTest {
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
-        checkNoMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
         checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_START);
         checkNoMessage(BassClientService.MESSAGE_BIG_CHECK_STOP);
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
     }
 
     private void checkSinkPause() {
@@ -5769,7 +5774,7 @@ public class BassClientServiceTest {
                         (long) 0x00000000);
             }
         }
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Unsync all sinks cause stop monitoring
         for (BassClientStateMachine sm : mStateMachines.values()) {
@@ -5811,7 +5816,7 @@ public class BassClientServiceTest {
                         (long) 0x00000000);
             }
         }
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Unsync all sinks cause stop monitoring
         for (BassClientStateMachine sm : mStateMachines.values()) {
@@ -5848,7 +5853,7 @@ public class BassClientServiceTest {
                 mCurrentDevice,
                 BluetoothProfile.STATE_CONNECTED,
                 BluetoothProfile.STATE_DISCONNECTED);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Disconnect all sinks cause stop monitoring
         doReturn(BluetoothProfile.STATE_DISCONNECTED)
@@ -5880,7 +5885,7 @@ public class BassClientServiceTest {
                 mCurrentDevice,
                 BluetoothProfile.STATE_CONNECTED,
                 BluetoothProfile.STATE_DISCONNECTED);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Disconnect all sinks cause stop monitoring
         doReturn(BluetoothProfile.STATE_DISCONNECTED)
@@ -5900,11 +5905,28 @@ public class BassClientServiceTest {
         Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
         Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
     })
-    public void sinkUnintentional_syncLost_withoutScanning() {
+    public void sinkUnintentional_syncLost_withoutScanning_outOfRange() {
         sinkUnintentionalWithoutScanning();
 
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+
         onSyncLost();
+        checkMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        checkAndDispatchMessage(
+                BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
         verifyStopBigMonitoringWithUnsync();
+        verifyRemoveMessageAndInjectSourceRemoval();
         checkNoResumeSynchronizationByBig();
     }
 
@@ -5913,11 +5935,56 @@ public class BassClientServiceTest {
         Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
         Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
     })
-    public void sinkUnintentional_syncLost_duringScanning() {
+    public void sinkUnintentional_syncLost_duringScanning_outOfRange() {
         sinkUnintentionalDuringScanning();
 
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+
         onSyncLost();
+        checkMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        checkAndDispatchMessage(
+                BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
         verifyStopBigMonitoringWithoutUnsync();
+        verifyRemoveMessageAndInjectSourceRemoval();
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void sinkUnintentional_bigMonitorTimeout_withoutScanning() {
+        sinkUnintentionalWithoutScanning();
+
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithUnsync();
+        verifyRemoveMessageAndInjectSourceRemoval();
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void sinkUnintentional_bigMonitorTimeout_duringScanning() {
+        sinkUnintentionalDuringScanning();
+
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+        verifyRemoveMessageAndInjectSourceRemoval();
         checkNoResumeSynchronizationByBig();
     }
 
@@ -6274,7 +6341,7 @@ public class BassClientServiceTest {
                         (long) 0x00000000);
             }
         }
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Unsync all sinks cause stop monitoring
         for (BassClientStateMachine sm : mStateMachines.values()) {
@@ -6316,7 +6383,7 @@ public class BassClientServiceTest {
                         (long) 0x00000000);
             }
         }
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Unsync all sinks cause stop monitoring
         for (BassClientStateMachine sm : mStateMachines.values()) {
@@ -6353,7 +6420,7 @@ public class BassClientServiceTest {
                 mCurrentDevice,
                 BluetoothProfile.STATE_CONNECTED,
                 BluetoothProfile.STATE_DISCONNECTED);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Disconnect all sinks cause stop monitoring
         doReturn(BluetoothProfile.STATE_DISCONNECTED)
@@ -6385,7 +6452,7 @@ public class BassClientServiceTest {
                 mCurrentDevice,
                 BluetoothProfile.STATE_CONNECTED,
                 BluetoothProfile.STATE_DISCONNECTED);
-        checkMessage(BassClientService.MESSAGE_SYNC_TIMEOUT);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
 
         // Disconnect all sinks cause stop monitoring
         doReturn(BluetoothProfile.STATE_DISCONNECTED)
@@ -6405,10 +6472,26 @@ public class BassClientServiceTest {
         Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
         Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
     })
-    public void sinkIntentional_syncLost_withoutScanning() {
+    public void sinkIntentional_syncLost_withoutScanning_outOfRange() {
         sinkIntentionalWithoutScanning();
 
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+
         onSyncLost();
+        checkMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        checkAndDispatchMessage(
+                BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
         verifyStopBigMonitoringWithUnsync();
         checkNoResumeSynchronizationByBig();
     }
@@ -6418,10 +6501,52 @@ public class BassClientServiceTest {
         Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
         Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
     })
-    public void sinkIntentional_syncLost_duringScanning() {
+    public void sinkIntentional_syncLost_duringScanning_outOfRange() {
         sinkIntentionalDuringScanning();
 
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+
         onSyncLost();
+        checkMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        checkAndDispatchMessage(
+                BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithoutUnsync();
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void sinkIntentional_bigMonitorTimeout_withoutScanning() {
+        sinkIntentionalWithoutScanning();
+
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
+        verifyStopBigMonitoringWithUnsync();
+        checkNoResumeSynchronizationByBig();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void sinkIntentional_bigMonitorTimeout_duringScanning() {
+        sinkIntentionalDuringScanning();
+
+        checkAndDispatchMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
         verifyStopBigMonitoringWithoutUnsync();
         checkNoResumeSynchronizationByBig();
     }
@@ -6768,7 +6893,7 @@ public class BassClientServiceTest {
         Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
         Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
     })
-    public void stopMonitoring_syncEstablishedFailed() {
+    public void outOfRange_syncEstablishedFailed_stopMonitoringAfterTimeout() {
         prepareSynchronizedPairAndStopSearching();
 
         // Bis unsynced, SINK_UNKNOWN, verify broadcast sync and MESSAGE_BIG_CHECK_START
@@ -6778,9 +6903,62 @@ public class BassClientServiceTest {
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
+        checkMessage(BassClientService.MESSAGE_BIG_CHECK_START);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
 
         onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        checkMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        checkAndDispatchMessage(
+                BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT, TEST_BROADCAST_ID);
         verifyStopBigMonitoringWithUnsync();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void outOfRange_syncEstablishedFailed_clearTimeout() {
+        prepareSynchronizedPairAndStopSearching();
+
+        // Bis unsynced, SINK_UNKNOWN, verify broadcast sync and MESSAGE_BIG_CHECK_START
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        injectRemoteSourceStateChanged(meta, false);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+        checkMessage(BassClientService.MESSAGE_BIG_CHECK_START);
+        checkMessage(BassClientService.MESSAGE_BIG_MONITOR_TIMEOUT);
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        checkMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
+        mInOrderMethodProxy
+                .verify(mMethodProxy)
+                .periodicAdvertisingManagerRegisterSync(
+                        any(), any(), anyInt(), anyInt(), any(), any());
+
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
+        checkNoMessage(BassClientService.MESSAGE_BROADCAST_MONITOR_TIMEOUT);
     }
 
     @Test
