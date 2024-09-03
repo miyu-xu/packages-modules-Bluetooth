@@ -50,6 +50,30 @@
       ],
       "revId": "08fec14f7231f9a781d9902cff32d3b9e406d519",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1970a3f0_050f4cb7",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-03T04:47:46Z",
+      "side": 0,
+      "message": "\u003e would a GATT_Read return the result in callback if your client doesn\u0027t GATT_Conenct first ?\n\nNot sure. If so, are you suggesting to just call GATTC_Read?\nIt requires the conn_id param though, so I suppose the correct usage is to call GATT_GetConnIdIfConnected first.\n\n\u003e I was proposing in previous patch to use opportunistic background connection, this could solve this problem\n\nI don\u0027t think that solves this problem. The problem is\n(1) After the device is connected, we don\u0027t carry out the DIS query.\n(2) It\u0027s possible the connection itself fails. Currently we don\u0027t detect this.\n\n\u003e but background connection don\u0027t expire, so you\u0027ll need some sort of timeout.\n\nYeah, I guess this is one step towards solving the problem the correct way. I think we should split the patch and set another flag to implement the timer, since a lot of things might go wrong with a timer.",
+      "parentUuid": "459aff76_c4aa55d9",
+      "range": {
+        "startLine": 304,
+        "startChar": 11,
+        "endLine": 304,
+        "endChar": 23
+      },
+      "revId": "08fec14f7231f9a781d9902cff32d3b9e406d519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
