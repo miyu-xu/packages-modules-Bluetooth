@@ -34,6 +34,24 @@
       "parentUuid": "0e24cb0c_9870a299",
       "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "534836db_e99a5758",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-09-03T20:27:07Z",
+      "side": 1,
+      "message": "Yes, we\u0027re still on 1.77.1. If you\u0027re familiar enough with Docker, please try your changes after uprev-ing to 1.80 (or matching whatever version Android is currently using) and upload a CL -- I can push the new image to our CI repository.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/floss/build/Dockerfile",
+      "parentUuid": "692cf96e_f1eae736",
+      "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
