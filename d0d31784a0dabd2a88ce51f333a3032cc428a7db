@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad119c5_9d0ec7a3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-09-03T19:29:37Z",
+      "side": 1,
+      "message": "This is a little more complicated than just this because `shouldUseAllPassFilter` will probably return true if APCF is not supported if you look through the logic if that func a bit more.\n\nAlso, we want to use APCF over MSFT if that\u0027s available to us",
+      "fixSuggestions": [
+        {
+          "fixId": "0d1f197a_3759188e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1552,
+                "startChar": 0,
+                "endLine": 1553,
+                "endChar": 0
+              },
+              "replacement": "            } else if (mNativeInterface.gattClientIsMsftSupported()\n                    \u0026\u0026 shouldUseAllPassFilter(client)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d0d31784a0dabd2a88ce51f333a3032cc428a7db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
