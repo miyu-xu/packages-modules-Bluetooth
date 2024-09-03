@@ -580,6 +580,7 @@ package android.bluetooth {
     field public static final String EXTRA_BOND_STATE = "android.bluetooth.device.extra.BOND_STATE";
     field public static final String EXTRA_CLASS = "android.bluetooth.device.extra.CLASS";
     field public static final String EXTRA_DEVICE = "android.bluetooth.device.extra.DEVICE";
+    field public static final String EXTRA_DISCONNECTED_REASON = "android.bluetooth.device.extra.DISCONNECTED_REASON";
     field @FlaggedApi("com.android.bluetooth.flags.encryption_change_broadcast") public static final String EXTRA_ENCRYPTION_ALGORITHM = "android.bluetooth.device.extra.EXTRA_ENCRYPTION_ALGORITHM";
     field @FlaggedApi("com.android.bluetooth.flags.encryption_change_broadcast") public static final String EXTRA_ENCRYPTION_ENABLED = "android.bluetooth.device.extra.ENCRYPTION_ENABLED";
     field @FlaggedApi("com.android.bluetooth.flags.encryption_change_broadcast") public static final String EXTRA_ENCRYPTION_STATUS = "android.bluetooth.device.extra.ENCRYPTION_STATUS";
@@ -832,6 +833,10 @@ package android.bluetooth {
     field public static final String EXTRA_VENDOR_SPECIFIC_HEADSET_EVENT_ARGS = "android.bluetooth.headset.extra.VENDOR_SPECIFIC_HEADSET_EVENT_ARGS";
     field public static final String EXTRA_VENDOR_SPECIFIC_HEADSET_EVENT_CMD = "android.bluetooth.headset.extra.VENDOR_SPECIFIC_HEADSET_EVENT_CMD";
     field public static final String EXTRA_VENDOR_SPECIFIC_HEADSET_EVENT_CMD_TYPE = "android.bluetooth.headset.extra.VENDOR_SPECIFIC_HEADSET_EVENT_CMD_TYPE";
+    field public static final int HFP_CONNECTION_FAIL_RESOURCES = 3; // 0x3
+    field public static final int HFP_CONNECTION_FAIL_RFCOMM = 2; // 0x2
+    field public static final int HFP_CONNECTION_SDP = 1; // 0x1
+    field public static final int HFP_CONNECTION_SUCCESS = 0; // 0x0
     field public static final int STATE_AUDIO_CONNECTED = 12; // 0xc
     field public static final int STATE_AUDIO_CONNECTING = 11; // 0xb
     field public static final int STATE_AUDIO_DISCONNECTED = 10; // 0xa

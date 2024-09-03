@@ -115,6 +115,7 @@ class HeadsetStateMachine extends StateMachine {
 
     private static final HeadsetAgIndicatorEnableState DEFAULT_AG_INDICATOR_ENABLE_STATE =
             new HeadsetAgIndicatorEnableState(true, true, true, true);
+    private int mReason = 0;
 
     // State machine states
     private final Disconnected mDisconnected = new Disconnected();
@@ -354,6 +355,9 @@ class HeadsetStateMachine extends StateMachine {
             intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, fromState);
             intent.putExtra(BluetoothProfile.EXTRA_STATE, toState);
             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
+            if (toState == BluetoothProfile.STATE_DISCONNECTED && fromState == BluetoothProfile.STATE_CONNECTING) {
+                intent.putExtra(BluetoothDevice.EXTRA_DISCONNECTED_REASON, mReason);
+            }
             intent.addFlags(Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
             mHeadsetService.sendBroadcastAsUser(
                     intent,
@@ -797,6 +801,7 @@ class HeadsetStateMachine extends StateMachine {
                     }
                     switch (event.type) {
                         case HeadsetStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED:
+                            mReason = event.reason;
                             processConnectionEvent(message, event.valueInt);
                             break;
                         case HeadsetStackEvent.EVENT_TYPE_AT_CIND:

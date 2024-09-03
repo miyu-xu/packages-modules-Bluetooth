@@ -311,6 +311,43 @@ public final class BluetoothHeadset implements BluetoothProfile {
      */
     public static final int STATE_AUDIO_CONNECTED = 12;
 
+
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+        prefix = {"HFP_CONNECTION_"},
+        value = {
+            HFP_CONNECTION_SUCCESS,
+            HFP_CONNECTION_SDP,
+            HFP_CONNECTION_FAIL_RFCOMM,
+            HFP_CONNECTION_FAIL_RESOURCES,
+        })
+    public @interface HfpConnection {}
+
+    /**
+     * HFP successful operation
+     *
+     */
+    public static final int HFP_CONNECTION_SUCCESS = 0;
+
+    /**
+     * HFP Open failed due to SDP
+     *
+     */
+    public static final int HFP_CONNECTION_SDP = 1;
+
+    /**
+     * HFP Open failed due to RFCOMM
+     *
+     */
+    public static final int HFP_CONNECTION_FAIL_RFCOMM = 2;
+
+    /**
+     * HFP out of resources failure
+     *
+     */
+    public static final int HFP_CONNECTION_FAIL_RESOURCES = 3;
+
     /**
      * Intent used to broadcast the headset's indicator status
      *

@@ -98,12 +98,13 @@ public class HeadsetNativeInterface {
         }
     }
 
-    void onConnectionStateChanged(int state, byte[] address) {
+    void onConnectionStateChanged(int state, byte[] address, int reason) {
         HeadsetStackEvent event =
                 new HeadsetStackEvent(
                         HeadsetStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED,
                         state,
                         getDevice(address));
+        event.reason = reason;
         sendMessageToService(event);
     }
 

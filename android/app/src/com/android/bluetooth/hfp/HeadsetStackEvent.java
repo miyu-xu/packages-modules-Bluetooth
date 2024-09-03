@@ -51,6 +51,7 @@ public class HeadsetStackEvent extends HeadsetMessageObject {
     public final String valueString;
     public final HeadsetMessageObject valueObject;
     public final BluetoothDevice device;
+    public int reason = 0;
 
     /**
      * Create a headset stack event
