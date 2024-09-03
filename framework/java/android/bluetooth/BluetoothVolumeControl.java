@@ -69,6 +69,30 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
     @GuardedBy("mCallbackExecutorMap")
     private final Map<Callback, Executor> mCallbackExecutorMap = new HashMap<>();
 
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_UNSPECIFIED = 0x00;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_BLUETOOTH = 0x01;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_MICROPHONE = 0x02;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_ANALOG = 0x03;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_DIGITAL = 0x04;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_RADIO = 0x05;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_STREAMING = 0x06;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
+    public static final int AUDIO_INPUT_TYPE_AMBIENT = 0x07;
+
     /**
      * This class provides a callback that is invoked when volume offset value changes on the remote
      * device.
