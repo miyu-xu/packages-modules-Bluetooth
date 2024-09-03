@@ -68,6 +68,7 @@
 #include "btif/include/btif_config.h"
 #include "btif/include/btif_debug_conn.h"
 #include "btif/include/btif_dm.h"
+#include "btif/include/btif_hcivs.h"
 #include "btif/include/btif_hd.h"
 #include "btif/include/btif_hf.h"
 #include "btif/include/btif_hh.h"
@@ -999,6 +1000,10 @@ static const void* get_profile_interface(const char* profile_id) {
 
   if (is_profile(profile_id, BT_BQR_ID)) {
     return bluetooth::bqr::getBluetoothQualityReportInterface();
+  }
+
+  if (is_profile(profile_id, BT_HCIVS_ID)) {
+    return bluetooth::hcivs::getBluetoothHciVendorSpecificInterface();
   }
 
   return NULL;
