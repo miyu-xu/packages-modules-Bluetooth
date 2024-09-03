@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de9513d_3c942b9c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-09-03T17:19:15Z",
+      "side": 1,
+      "message": "The approach has changed. No longer relevant.",
+      "parentUuid": "934597a8_1aaa1076",
+      "range": {
+        "startLine": 1318,
+        "startChar": 68,
+        "endLine": 1318,
+        "endChar": 77
+      },
+      "revId": "4766edb67acb69d3d48579eb842930be63d00dab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d785488_463af455",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "yeah... sorry leftover - Thank You!",
       "parentUuid": "8d785488_463af455",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 23
+      },
+      "revId": "4766edb67acb69d3d48579eb842930be63d00dab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5701062c_79ca23f0",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-09-03T17:19:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c1c9c1cc_bdf4537d",
       "range": {
         "startLine": 102,
         "startChar": 7,
