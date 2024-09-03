@@ -16,6 +16,24 @@
       "message": "The floss build fail with this error:\n```\nerror[E0658]: use of unstable library feature \u0027lazy_cell\u0027\n --\u003e system/gd/rust/common/src/init_flags.rs:5:5\n  |\n5 | use std::sync::LazyLock;\n  |     ^^^^^^^^^^^^^^^^^^^\n  |\n  \u003d note: see issue #109736 \u003chttps://github.com/rust-lang/rust/issues/109736\u003e for more information\n```\n\nAre the version used by floss different than android ?\n\n@abhishekpandit@google.com FYI, you may have good information here",
       "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692cf96e_f1eae736",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-09-03T20:24:48Z",
+      "side": 1,
+      "message": "lazy_cell is stable since Rust 1.80.0, are you using a different toolchain somehow?",
+      "parentUuid": "0e24cb0c_9870a299",
+      "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
