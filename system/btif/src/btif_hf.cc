@@ -364,7 +364,7 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
     // RFCOMM connected or failed to connect
     case BTA_AG_OPEN_EVT:
       bt_hf_callbacks->ConnectionStateCallback(BTHF_CONNECTION_STATE_CONNECTING,
-                                               &(p_data->open.bd_addr));
+                                               &(p_data->open.bd_addr), BTA_AG_SUCCESS);
       // Check if an outgoing connection is pending
       if (btif_hf_cb[idx].is_initiator) {
         // There is an outgoing connection.
@@ -390,7 +390,8 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
                     "state for p_data bda.",
                     p_data->open.status, btif_hf_cb[idx].connected_bda, p_data->open.bd_addr);
             bt_hf_callbacks->ConnectionStateCallback(BTHF_CONNECTION_STATE_DISCONNECTED,
-                                                     &(p_data->open.bd_addr));
+                                                     &(p_data->open.bd_addr),
+                                                     p_data->open.status);
             log_counter_metrics_btif(
                     android::bluetooth::CodePathCounterKeyEnum::HFP_COLLISON_AT_AG_OPEN, 1);
           }
@@ -412,7 +413,8 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
                   "report disconnect state for btif_hf_cb bda.",
                   btif_hf_cb[idx].connected_bda, p_data->open.bd_addr);
           bt_hf_callbacks->ConnectionStateCallback(BTHF_CONNECTION_STATE_DISCONNECTED,
-                                                   &(btif_hf_cb[idx].connected_bda));
+                                                   &(btif_hf_cb[idx].connected_bda),
+                                                   p_data->open.status);
           log_counter_metrics_btif(
                   android::bluetooth::CodePathCounterKeyEnum::HFP_COLLISON_AT_CONNECTING, 1);
           reset_control_block(&btif_hf_cb[idx]);
@@ -437,7 +439,8 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
         bluetooth::common::BluetoothMetricsLogger::GetInstance()->LogHeadsetProfileRfcConnection(
                 p_data->open.service_id);
         bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
-                                                 &btif_hf_cb[idx].connected_bda);
+                                                 &btif_hf_cb[idx].connected_bda,
+                                                 p_data->open.status);
       } else {
         if (!btif_hf_cb[idx].is_initiator) {
           // Ignore remote initiated open failures
@@ -469,10 +472,10 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
           }
 
           if (notify_required) {
-            bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state, &connected_bda);
+            bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state, &connected_bda, p_data->open.status);
           }
         } else {
-          bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state, &connected_bda);
+          bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state, &connected_bda, p_data->open.status);
         }
 
         log_counter_metrics_btif(
@@ -489,14 +492,14 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
               "btif_hf_cb.handle:{}",
               dump_hf_event(event), idx, btif_hf_cb[idx].handle);
       RawAddress connected_bda = btif_hf_cb[idx].connected_bda;
-      bt_hf_callbacks->ConnectionStateCallback(BTHF_CONNECTION_STATE_DISCONNECTING, &connected_bda);
+      bt_hf_callbacks->ConnectionStateCallback(BTHF_CONNECTION_STATE_DISCONNECTING, &connected_bda, BTA_AG_SUCCESS);
       // If AG_OPEN was received but SLC was not connected in time, then
       // AG_CLOSE may be received. We need to advance the queue here.
       bool failed_to_setup_slc = (btif_hf_cb[idx].state != BTHF_CONNECTION_STATE_SLC_CONNECTED) &&
                                  btif_hf_cb[idx].is_initiator;
 
       reset_control_block(&btif_hf_cb[idx]);
-      bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state, &connected_bda);
+      bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state, &connected_bda, BTA_AG_SUCCESS);
       if (failed_to_setup_slc) {
         log::error("failed to setup SLC for {}", connected_bda);
         log_counter_metrics_btif(android::bluetooth::CodePathCounterKeyEnum::HFP_SLC_SETUP_FAILED,
@@ -521,7 +524,7 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
       btif_hf_cb[idx].peer_feat = p_data->conn.peer_feat;
       btif_hf_cb[idx].state = BTHF_CONNECTION_STATE_SLC_CONNECTED;
       bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
-                                               &btif_hf_cb[idx].connected_bda);
+                                               &btif_hf_cb[idx].connected_bda, BTA_AG_SUCCESS);
       if (btif_hf_cb[idx].is_initiator) {
         btif_queue_advance();
       }

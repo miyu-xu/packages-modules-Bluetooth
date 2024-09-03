@@ -1,4 +1,8 @@
 // Baseline format: 1.0
+ActionValue: android.bluetooth.BluetoothDevice#EXTRA_CONNECTION_FAIL_REASON:
+    Inconsistent extra value; expected `android.bluetooth.extra.CONNECTION_FAIL_REASON`, was `android.bluetooth.device.extra.REASON`
+
+
 BroadcastBehavior: android.bluetooth.BluetoothAdapter#ACTION_BLE_STATE_CHANGED:
     Field 'ACTION_BLE_STATE_CHANGED' is missing @BroadcastBehavior
 BroadcastBehavior: android.bluetooth.BluetoothAdapter#ACTION_DISCOVERY_FINISHED:
@@ -43,3 +47,15 @@ BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_SWITCH_BUFFER_SIZE:
     Field 'ACTION_SWITCH_BUFFER_SIZE' is missing @BroadcastBehavior
 BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_UUID:
     Field 'ACTION_UUID' is missing @BroadcastBehavior
+
+
+UnflaggedApi: android.bluetooth.BluetoothDevice#EXTRA_CONNECTION_FAIL_REASON:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.EXTRA_CONNECTION_FAIL_REASON
+UnflaggedApi: android.bluetooth.BluetoothDevice#HFP_CONNECTION_FAIL_RESOURCES:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.HFP_CONNECTION_FAIL_RESOURCES
+UnflaggedApi: android.bluetooth.BluetoothDevice#HFP_CONNECTION_FAIL_RFCOMM:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.HFP_CONNECTION_FAIL_RFCOMM
+UnflaggedApi: android.bluetooth.BluetoothDevice#HFP_CONNECTION_SDP:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.HFP_CONNECTION_SDP
+UnflaggedApi: android.bluetooth.BluetoothDevice#HFP_CONNECTION_SUCCESS:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.HFP_CONNECTION_SUCCESS
