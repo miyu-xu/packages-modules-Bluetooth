@@ -16,6 +16,24 @@
       "message": "The original code is terrible - if you have two devices connected at same time, they can interfere and mess up each other DIS request.\n\nThe fix you propose is partial, but good enough.",
       "revId": "08fec14f7231f9a781d9902cff32d3b9e406d519",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f281add_7393d888",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-03T04:35:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "69f5a988_fb8d82b0",
+      "revId": "08fec14f7231f9a781d9902cff32d3b9e406d519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
