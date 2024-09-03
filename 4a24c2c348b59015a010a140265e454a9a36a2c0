@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11eac610_9e7192d6",
+        "filename": "android/ChannelSoundingTestApp/app/build.gradle.kts",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-03T15:34:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6ebbe47_ba8a3dfd",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "4a24c2c348b59015a010a140265e454a9a36a2c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7cf20fe_109b5cc2",
