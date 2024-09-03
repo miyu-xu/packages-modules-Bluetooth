@@ -1027,7 +1027,7 @@ public class BassClientService extends ProfileService {
         if (leaudioBroadcastResyncHelper()
                 && !isLocalBroadcast(receiveState)
                 && !isEmptyBluetoothDevice(receiveState.getSourceDevice())
-                && !isAnyHostPauseType(broadcastId)) {
+                && !isHostPauseType(broadcastId)) {
             boolean isPlaying = false;
             for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
                 Long syncState = receiveState.getBisSyncState().get(i);
@@ -2171,12 +2171,12 @@ public class BassClientService extends ProfileService {
         public void onSyncLost(int syncHandle) {
             int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
             log("OnSyncLost: syncHandle=" + syncHandle + ", broadcastID=" + broadcastId);
-            if (leaudioBroadcastMonitorSourceSyncStatus()) {
-                if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
+            if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
+                if (leaudioBroadcastMonitorSourceSyncStatus()) {
                     log("Notify broadcast source lost, broadcast id: " + broadcastId);
                     mCallbacks.notifySourceLost(broadcastId);
-                    stopBigMonitoring(broadcastId, false);
                 }
+                stopBigMonitoring(broadcastId, false);
             }
             clearAllDataForSyncHandle(syncHandle);
             // Clear from cache to make possible sync again (only during active searching)
@@ -2350,7 +2350,9 @@ public class BassClientService extends ProfileService {
 
     private void cancelActiveSync(Integer syncHandle) {
         log("cancelActiveSync: syncHandle = " + syncHandle);
-        if (syncHandle == null) {
+        if (syncHandle == null
+                || (leaudioBroadcastResyncHelper()
+                        && syncHandle == BassConstants.INVALID_SYNC_HANDLE)) {
             // clean up the pending sync request if syncHandle is null
             unsyncSource(BassConstants.INVALID_SYNC_HANDLE);
         }
@@ -3396,7 +3398,7 @@ public class BassClientService extends ProfileService {
                 && !mPausedBroadcastIds.get(broadcastId).equals(PauseType.HOST_INTENTIONAL));
     }
 
-    private boolean isAnyHostPauseType(int broadcastId) {
+    private boolean isHostPauseType(int broadcastId) {
         return (mPausedBroadcastIds.containsKey(broadcastId)
                 && mPausedBroadcastIds.get(broadcastId).equals(PauseType.HOST_INTENTIONAL));
     }

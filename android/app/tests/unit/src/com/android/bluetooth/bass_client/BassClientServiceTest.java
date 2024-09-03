@@ -6547,7 +6547,7 @@ public class BassClientServiceTest {
                         any(), any(), anyInt(), anyInt(), any(), any());
 
         onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
-        verifyStopBigMonitoringWithoutUnsync();
+        verifyStopBigMonitoringWithUnsync();
     }
 
     @Test
