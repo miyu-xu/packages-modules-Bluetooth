@@ -90,6 +90,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd6f7da6_0efdcc6e",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-03T12:50:58Z",
+      "side": 1,
+      "message": "I don\u0027t know much about SDP yet. I\u0027ll close this comment so we can merge this fix.",
+      "parentUuid": "ef4bce8e_84b7b49a",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dd6cf57_8473fad2",
