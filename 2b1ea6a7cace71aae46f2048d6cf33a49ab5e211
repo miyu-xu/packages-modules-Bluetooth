@@ -16,6 +16,24 @@
       "message": "I would prefer sending the actual error code for all profiles; this very looks like a hack, and I am afraid it is never going to be removed.\n\nHave you checked the l2c error handlers to see what callees make of the error code ?",
       "revId": "2b1ea6a7cace71aae46f2048d6cf33a49ab5e211",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2534601c_d480120b",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-03T15:42:56Z",
+      "side": 1,
+      "message": "Unfortunately the error code for the `error` callback is context dependent and is a uint16_t primitive to cover all possible errors in the various address spaces.\n\nThere are at least 3 address spaces and they (mostly) map to the l2cap result in the l2cap packet.\n```\ntL2CAP_CONN\ntL2CAP_LE_RESULT\ntL2CAP_CFG_RESULT\n```\n\nThis mostly works because the source and sink are context aware; further, the underlying codes may overlap correctly.  For example, success is always zero.\n\nI agree this needs fixing, but this requires an API update across all profiles to handle properly.",
+      "parentUuid": "d62b53a5_71b885b4",
+      "revId": "2b1ea6a7cace71aae46f2048d6cf33a49ab5e211",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
