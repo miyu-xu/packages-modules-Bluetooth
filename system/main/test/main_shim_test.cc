@@ -42,6 +42,7 @@
 #include "hci/distance_measurement_manager_mock.h"
 #include "hci/le_advertising_manager_mock.h"
 #include "hci/le_scanning_manager_mock.h"
+#include "hci/lpp_offload_manager_mock.h"
 #include "include/hardware/ble_scanner.h"
 #include "main/shim/acl.h"
 #include "main/shim/acl_interface.h"
@@ -343,6 +344,8 @@ protected:
             new bluetooth::hci::testing::MockLeAdvertisingManager();
     /* extern */ test::mock_distance_measurement_manager_ =
             new bluetooth::hci::testing::MockDistanceMeasurementManager();
+    /* extern */ test::mock_lpp_offload_manager_ =
+            new bluetooth::hci::testing::MockLppOffloadManager();
   }
   void TearDown() override {
     delete test::mock_controller_;
@@ -355,6 +358,8 @@ protected:
     test::mock_le_scanning_manager_ = nullptr;
     delete test::mock_distance_measurement_manager_;
     test::mock_distance_measurement_manager_ = nullptr;
+    delete test::mock_lpp_offload_manager_;
+    test::mock_lpp_offload_manager_ = nullptr;
 
     handler_->Clear();
     delete handler_;
