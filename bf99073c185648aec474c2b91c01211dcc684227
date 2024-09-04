@@ -36,6 +36,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae21646_69c8d048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:00:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b2f265a8_b7356eae",
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "962d4a44_8bf053d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:00:01Z",
+      "side": 1,
+      "message": "@wescande@google.com thank you for review! all changes made in aosp/3235787 and aosp/3207452.",
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bc36755_9083f7da",
@@ -49,6 +84,30 @@
       "writtenOn": "2024-09-03T22:59:54Z",
       "side": 1,
       "message": "This is deprecated, please use the @EnableFlag annotation instead\n\n(same every-where else).\n\nI recommand doing a CL before this to replace all current `mSetFlagsRule.enableFlags` to the annotation (same with disableFlags is there is any)",
+      "range": {
+        "startLine": 2924,
+        "startChar": 0,
+        "endLine": 2924,
+        "endChar": 78
+      },
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b158b09_fcfe8ce4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2924,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bc36755_9083f7da",
       "range": {
         "startLine": 2924,
         "startChar": 0,
@@ -82,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b86dc6e3_1e72677f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e8743b_d4aa7c31",
+      "range": {
+        "startLine": 2963,
+        "startChar": 8,
+        "endLine": 2968,
+        "endChar": 92
+      },
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a287a4c0_6af58019",
@@ -105,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4861171_5a4017ec",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3162,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:00:01Z",
+      "side": 1,
+      "message": "oh yea, thanks:)",
+      "parentUuid": "a287a4c0_6af58019",
+      "range": {
+        "startLine": 3080,
+        "startChar": 9,
+        "endLine": 3162,
+        "endChar": 13
+      },
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b21de06_fe662366",
@@ -118,6 +225,30 @@
       "writtenOn": "2024-09-03T22:59:54Z",
       "side": 1,
       "message": "If you are asserting in seri at the end of a test, you may want to use `expect` instead.\n\nassert will fail and throw at the first failure, while expect will run all the check and only throw when reaching the end of the test.\n\nSo that perfect here.\n\nSee https://truth.dev/expect.html#why-you-should-use-expect\n\nNote that you don\u0027t want to use it everywhere especially in \"test setup\" for which you don\u0027t even want the test to continue processing if the preliminary assertion failed",
+      "range": {
+        "startLine": 3174,
+        "startChar": 8,
+        "endLine": 3191,
+        "endChar": 63
+      },
+      "revId": "bf99073c185648aec474c2b91c01211dcc684227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59db6b13_8d5979a1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3191,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b21de06_fe662366",
       "range": {
         "startLine": 3174,
         "startChar": 8,
