@@ -22,6 +22,30 @@
       },
       "revId": "7b1ff2dd700d6521ee2089da7693da310de303ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fd36450_4ae6dbe0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-04T19:43:49Z",
+      "side": 1,
+      "message": "Indeed 😄",
+      "parentUuid": "1525706f_66a8cb12",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "7b1ff2dd700d6521ee2089da7693da310de303ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
