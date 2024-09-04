@@ -30,7 +30,9 @@ use tokio::time::{sleep, Duration};
 
 use crate::battery_manager::{BatteryManager, BatterySet};
 use crate::battery_provider_manager::BatteryProviderManager;
-use crate::battery_service::{BatteryService, BatteryServiceActions};
+use crate::battery_service::{
+    BatteryService, BatteryServiceActions, BATTERY_SERVICE_GATT_CLIENT_APP_ID,
+};
 use crate::bluetooth::{
     dispatch_base_callbacks, dispatch_hid_host_callbacks, dispatch_sdp_callbacks, Bluetooth,
     BluetoothDevice, DelayedActions, IBluetooth,
@@ -46,7 +48,7 @@ use crate::dis::{DeviceInformation, ServiceCallbacks};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
 use crate::suspend::Suspend;
 use bt_topshim::{
-    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, RawAddress},
+    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, RawAddress, Uuid},
     profiles::{
         a2dp::A2dpCallbacks,
         avrcp::AvrcpCallbacks,
@@ -139,6 +141,7 @@ pub enum Message {
     BatteryServiceRefresh,
     BatteryManagerCallbackDisconnected(u32),
 
+    // GATT related
     GattActions(GattActions),
     GattClientCallbackDisconnected(u32),
     GattServerCallbackDisconnected(u32),
@@ -169,6 +172,10 @@ pub enum Message {
     // UHid callbacks
     UHidHfpOutputCallback(RawAddress, u8, u8),
     UHidTelephonyUseCallback(RawAddress, bool),
+
+    // Profile related
+    ProfileConnected(RawAddress),
+    ProfileDisconnected(RawAddress),
 }
 
 /// Returns a callable object that dispatches a BTIF callback to Message
@@ -600,6 +607,28 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .dispatch_uhid_telephony_use_callback(addr, state);
+                }
+
+                Message::ProfileConnected(_device_address) => {}
+
+                Message::ProfileDisconnected(device_address) => {
+                    let bas_app_uuid =
+                        Uuid::from_string(String::from(BATTERY_SERVICE_GATT_CLIENT_APP_ID))
+                            .expect("BAS Uuid failed to be parsed");
+                    if bluetooth_gatt.lock().unwrap().get_connected_applications(&device_address)
+                        == vec![bas_app_uuid]
+                        && !bluetooth.lock().unwrap().is_hh_connected(&device_address)
+                        && bluetooth_media
+                            .lock()
+                            .unwrap()
+                            .get_connected_profiles(&device_address)
+                            .is_empty()
+                    {
+                        bluetooth_gatt
+                            .lock()
+                            .unwrap()
+                            .handle_action(GattActions::Disconnect(device_address));
+                    }
                 }
             }
         }
