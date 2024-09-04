@@ -1,0 +1,160 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d069cb_b26222de",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T21:00:37Z",
+      "side": 1,
+      "message": "VisibleForTesting is no longer necessary here, we need VolumeControlOffsetDescriptor to be package private because it is referenced inside VolumeControlService too",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "10fcae90_234248d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1eeb1003e4607356ced149638cccc0936b7cb462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adba5047_82e193ae",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T21:00:37Z",
+      "side": 1,
+      "message": "remove empty constructor ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ed01d34b_cf994854",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1eeb1003e4607356ced149638cccc0936b7cb462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ff6a866_25331404",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T21:00:37Z",
+      "side": 1,
+      "message": "Remove empty constructor ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d81642c3_99e7f92e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptor.java",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 42,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "1eeb1003e4607356ced149638cccc0936b7cb462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762c83be_1ec16fc7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptorTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T21:00:37Z",
+      "side": 1,
+      "message": "We should use truth instead",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "1eeb1003e4607356ced149638cccc0936b7cb462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
