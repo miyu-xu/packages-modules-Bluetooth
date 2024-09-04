@@ -100,6 +100,7 @@ extern tBTM_CB btm_cb;
 
 bool btm_ble_init_pseudo_addr(tBTM_SEC_DEV_REC* p_dev_rec, const RawAddress& new_pseudo_addr);
 void bta_dm_remove_device(const RawAddress& bd_addr);
+void bta_dm_on_encryption_change(bt_encryption_change_evt encryption_change);
 void bta_dm_remote_key_missing(const RawAddress bd_addr);
 void bta_dm_process_remove_device(const RawAddress& bd_addr);
 
@@ -3254,6 +3255,10 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
   log::debug("after update p_dev_rec->sec_rec.sec_flags=0x{:x}", p_dev_rec->sec_rec.sec_flags);
 
   btm_sec_check_pending_enc_req(p_dev_rec, transport, encr_enable);
+
+  bta_dm_on_encryption_change(bt_encryption_change_evt{p_dev_rec->ble.pseudo_addr, status,
+                                                       (bool)encr_enable, transport,
+                                                       p_dev_rec->SupportsSecureConnections()});
 
   if (transport == BT_TRANSPORT_LE) {
     if (status == HCI_ERR_KEY_MISSING || status == HCI_ERR_AUTH_FAILURE ||
