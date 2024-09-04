@@ -51,6 +51,7 @@
 #include "common/message_loop_thread.h"
 #include "device/include/device_iot_config.h"
 #include "hci/controller_interface.h"
+#include "hci/lpp_offload_manager.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
@@ -520,6 +521,18 @@ void btif_get_adapter_property(bt_property_type_t type) {
         log::verbose("Don't support Dynamic Audio Buffer");
       }
     }
+  } else if (prop.type == BT_PROPERTY_LPP_OFFLOAD_FEATURES) {
+    bt_lpp_offload_features_t lpp_offload_features;
+    // Low power processor offload features are retrieved from offload manager.
+    hci::LppOffloadFeatures features;
+    bluetooth::shim::GetLppOffloadManager()->GetOffloadFeaturesSupported(features);
+    if (features.socket_offload_supported) {
+      lpp_offload_features.socket_offload_supported = true;
+      lpp_offload_features.max_le_coc_socket_num = features.max_le_coc_socket_num;
+      lpp_offload_features.max_rfcomm_socket_num = features.max_rfcomm_socket_num;
+    }
+    prop.len = sizeof(bt_lpp_offload_features_t);
+    memcpy(prop.val, &lpp_offload_features, prop.len);
   } else {
     status = btif_storage_get_adapter_property(&prop);
   }
