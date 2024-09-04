@@ -577,6 +577,30 @@
       },
       "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0adc0fa0_7f2eda99",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-04T08:59:35Z",
+      "side": 1,
+      "message": "Dropping this in favor of squashing the other CL into this one.",
+      "parentUuid": "75c95611_f5bd53c5",
+      "range": {
+        "startLine": 302,
+        "startChar": 24,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "7529c632ec82f56c37dab852c98215b1d94b9e1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
