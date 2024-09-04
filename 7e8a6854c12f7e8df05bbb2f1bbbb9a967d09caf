@@ -51,6 +51,24 @@
       "parentUuid": "d6380b4c_ad84780a",
       "revId": "7e8a6854c12f7e8df05bbb2f1bbbb9a967d09caf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f48009c4_8d33f2cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T14:15:35Z",
+      "side": 1,
+      "message": "I found it! I miss one flag which is not enabled yet by default: FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE",
+      "parentUuid": "b6634f03_356046fc",
+      "revId": "7e8a6854c12f7e8df05bbb2f1bbbb9a967d09caf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
