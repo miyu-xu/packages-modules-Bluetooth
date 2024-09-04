@@ -44,6 +44,10 @@ public:
   virtual void EnqueueCommand(
           std::unique_ptr<hci::AclCommandBuilder> command,
           common::ContextualOnceCallback<void(hci::CommandStatusView)> on_status) {}
+
+  virtual void EnqueueCommand(std::unique_ptr<hci::AclCommandBuilder> command,
+                              common::ContextualOnceCallback<void(hci::CommandStatusOrCompleteView)>
+                                      on_status_or_complete) {}
 } fake_command_interface;
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
