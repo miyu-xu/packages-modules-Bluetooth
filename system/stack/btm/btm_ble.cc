@@ -167,11 +167,11 @@ void BTM_BleReadPhy(const RawAddress& bd_addr,
     return;
   }
 
-  // The connection PHY is always LE_1M when the controller supports
-  // neither LE_2M nor LE_CODED PHYs.
+  // checking if local controller supports it!
   if (!bluetooth::shim::GetController()->SupportsBle2mPhy() &&
       !bluetooth::shim::GetController()->SupportsBleCodedPhy()) {
-    cb.Run(1, 1, HCI_SUCCESS);
+    log::error("request not supported in local controller!");
+    cb.Run(0, 0, GATT_REQ_NOT_SUPPORTED);
     return;
   }
 
