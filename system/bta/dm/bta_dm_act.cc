@@ -268,6 +268,11 @@ void BTA_dm_on_hw_on() {
     }
   }
 
+  /* Reads low power processor offload features */
+  if (bta_dm_acl_cb.p_acl_cback) {
+    bta_dm_acl_cb.p_acl_cback(BTA_DM_LPP_FEATURES_READ, NULL);
+  }
+
   btm_ble_scanner_init();
 
   // Synchronize with the controller before continuing
