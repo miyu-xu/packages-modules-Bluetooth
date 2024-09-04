@@ -22,6 +22,30 @@
       },
       "revId": "ef2750903076854c91acd2b595b1c8de3bed3798",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a981932_fb1bb0fc",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-09-04T05:14:11Z",
+      "side": 1,
+      "message": "This change can never break anything, and will likely not fix anything either. It should be considered as dead code removal!",
+      "parentUuid": "692af292_2863343d",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1427,
+        "endChar": 43
+      },
+      "revId": "ef2750903076854c91acd2b595b1c8de3bed3798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
