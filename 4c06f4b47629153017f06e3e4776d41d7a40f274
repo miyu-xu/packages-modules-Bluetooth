@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63aea961_5fcc9f55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:11:02Z",
+      "side": 1,
+      "message": "You need to write the associated CTS test to perform minimal API check",
+      "revId": "4c06f4b47629153017f06e3e4776d41d7a40f274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637f11e9_a545d310",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:11:02Z",
+      "side": 1,
+      "message": "you can throw a illegalargumentException instead, as the error \"bluetooth not allowed\" usually indicate a permission issue rather than a parameter one\n(like being done in the framework code)",
+      "range": {
+        "startLine": 4134,
+        "startChar": 0,
+        "endLine": 4134,
+        "endChar": 72
+      },
+      "revId": "4c06f4b47629153017f06e3e4776d41d7a40f274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb13a49f_5a1aa58d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4177,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:11:02Z",
+      "side": 1,
+      "message": "Same, I would throw IllegalArgument",
+      "range": {
+        "startLine": 4177,
+        "startChar": 0,
+        "endLine": 4177,
+        "endChar": 72
+      },
+      "revId": "4c06f4b47629153017f06e3e4776d41d7a40f274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc80d0e4_e213dd41",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5701,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:11:02Z",
+      "side": 1,
+      "message": "`Bluetouth` ? 😂\n\nYou have it a bit everywhere",
+      "range": {
+        "startLine": 5701,
+        "startChar": 15,
+        "endLine": 5701,
+        "endChar": 51
+      },
+      "revId": "4c06f4b47629153017f06e3e4776d41d7a40f274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
