@@ -33,6 +33,24 @@
       "message": "Please merge the Test CL into this CL.\n\nGerrit indicate that this CL is 20% cover while we should aim for 70% at least for any added code.\n\nI believe that you did already a lot of test but this will be easier to check and validate the coverage by merging them together.\n\nAlso, if there is some test failure that require to modify the implementation, we will not know it yet.",
       "revId": "7e8a6854c12f7e8df05bbb2f1bbbb9a967d09caf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6634f03_356046fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-04T13:57:30Z",
+      "side": 1,
+      "message": "Done. The same as in unit tests CL here presubmit does not pass in every new unit tests, I meant flag is not enabled by them.\n\nAdditionally after rebase I can see some errors in `ScanManagerTestes` but in each run different test fails i.e. `testStartUnfilteredBatchScan\u0027 or `testMetricsScanRadioDurationMultiScan`. There is very little chance that it is because of my changes.",
+      "parentUuid": "d6380b4c_ad84780a",
+      "revId": "7e8a6854c12f7e8df05bbb2f1bbbb9a967d09caf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
