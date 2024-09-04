@@ -70,6 +70,24 @@
       "parentUuid": "534836db_e99a5758",
       "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8f94a6_6d1e1ac6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-09-04T17:13:15Z",
+      "side": 1,
+      "message": "I need to push the new docker image. Did you try building with the new image from this change? You seem to be in a different time zone so I\u0027ll try to do this for you. Otherwise, you could follow the README.md at the Docker file location to build Bluetooth.",
+      "parentUuid": "b5c57fea_b26bb05e",
+      "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
