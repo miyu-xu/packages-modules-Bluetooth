@@ -1,0 +1,266 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bedb053_9b5a91a7",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:54:52Z",
+      "side": 1,
+      "message": "I believe that this can\u0027t be null as the get java method will crash and shut down bluetooth if any symbol are missing.\n\nI prefer a strong obvious crash that a silent failure for that one (especially because the value is never un-initialized\n\nSame for the others",
+      "range": {
+        "startLine": 67,
+        "startChar": 60,
+        "endLine": 67,
+        "endChar": 96
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a9eefdc_7dcf6d6a",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:54:52Z",
+      "side": 1,
+      "message": "I can\u0027t find this information but... if we can allocate the first one and not the second one, should we \"release/free\" or something the first one ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 86
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d38749f_8ea80c7b",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:54:52Z",
+      "side": 1,
+      "message": "I believe this should be `Error while allocating` instead of `allocation` (same other place",
+      "range": {
+        "startLine": 74,
+        "startChar": 30,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "469772ad_67b38f9d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Error while allocating byte array for cookie\");\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Error while allocating byte array for return parameters or cookie\");\n"
+            },
+            {
+              "path": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+              "range": {
+                "startLine": 93,
+                "startChar": 0,
+                "endLine": 94,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Error while allocating byte array for event data\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce69609_da363076",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:54:52Z",
+      "side": 1,
+      "message": "If you want this to always been accessed within a lock, you can add a Guarded by annotation that will enforce it",
+      "range": {
+        "startLine": 55,
+        "startChar": 42,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae081b17_ca5a1899",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:54:52Z",
+      "side": 1,
+      "message": "You can take directly a Utils.RemoteExceptionIgnoringConsumer instead.",
+      "range": {
+        "startLine": 117,
+        "startChar": 27,
+        "endLine": 117,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "951a79de_3e3d659c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "import com.android.bluetooth.Utils;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 118,
+                "endChar": 0
+              },
+              "replacement": "    void dispatchCommandReturn(byte[] cookie, Utils.RemoteExceptionIgnoringConsumer action) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 132,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "    void broadcastEvent(int eventCode, Utils.RemoteExceptionIgnoringConsumer action) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e853a2f_4a034df7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T18:54:52Z",
+      "side": 1,
+      "message": "I belive that doing the forEach outside of the synchronized is bypassing the purpose of the synchronized since stream are lazy evaluated.\n\nI would move everything in the synchronized",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dfefb6df_5de8e06f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 134,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "            Stream\u003cRegistration\u003e stream \u003d\n                    mRegistrations.stream().filter((r) -\u003e r.mEventCodes.contains(eventCode));\n            stream.forEach((r) -\u003e action.accept(r.mCallback));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
