@@ -92,6 +92,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0b7bb7f_c2cefd25",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da367528_e73d1aae",
+      "range": {
+        "startLine": 97,
+        "startChar": 10,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1edcd2a9_b2cc4f43",
@@ -105,6 +129,30 @@
       "writtenOn": "2024-08-27T00:20:04Z",
       "side": 1,
       "message": "mIsMute ? I don\u0027t understand why we have `Gain` in the name",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 29
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ac960b5_610ef939",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1edcd2a9_b2cc4f43",
       "range": {
         "startLine": 131,
         "startChar": 20,
@@ -132,6 +180,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d1b9979_90de8fb6",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab953827_3f0e18f0",
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd84cc06_996a5ad6",
@@ -155,6 +221,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab83c811_9c87202d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd84cc06_996a5ad6",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 25
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9097038e_66287a86",
@@ -168,6 +258,30 @@
       "writtenOn": "2024-08-27T00:20:04Z",
       "side": 1,
       "message": "```\nif (!mVolumeInputs.containsKey(id)) {\n    mVolumeInputs.put(id, new Descriptor());\n}\n```\n\nFor other place, the errorprone warning will disapear if we used another name for the temporary variable",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 160,
+        "endChar": 13
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76599113_d1c0f649",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9097038e_66287a86",
       "range": {
         "startLine": 157,
         "startChar": 12,
@@ -326,6 +440,30 @@
       "writtenOn": "2024-08-27T00:20:04Z",
       "side": 1,
       "message": "We are checking the status here, but we are not doing this for other data. For example, InputType should be one of :\n* 0x00 Unspecified Unspecified Input\n* 0x01 Bluetooth Bluetooth Audio Stream\n* 0x02 Microphone Microphone\n* 0x03 Analog Analog Interface\n* 0x04 Digital Digital Interface\n* 0x05 Radio AM/FM/XM/etc.\n* 0x06 Streaming Streaming Audio Source\n* 0x07 Ambient .\n\n\nBut also... it looks too late to check for the data, shouldn\u0027t the data be validated when parsing the packet and don\u0027t trigger the whole callback chain up to java to be discarded then ?",
+      "range": {
+        "startLine": 1430,
+        "startChar": 2,
+        "endLine": 1442,
+        "endChar": 0
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e520c9_44d2c857",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:03Z",
+      "side": 1,
+      "message": "because for now we have either Active or Inactive state and here we translate it into bool.\n\nType is checked inside  the `setType` function",
+      "parentUuid": "99fd45c2_97d0487e",
       "range": {
         "startLine": 1430,
         "startChar": 2,
