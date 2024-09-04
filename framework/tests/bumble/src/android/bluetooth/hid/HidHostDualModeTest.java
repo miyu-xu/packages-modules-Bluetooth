@@ -313,21 +313,45 @@ public class HidHostDualModeTest {
                     .isTrue();
         }
 
-        // Have to use Hamcrest matchers instead of Mockito matchers in MockitoHamcrest context
-        verifyConnectionState(
-                mDevice, oneOf(TRANSPORT_BREDR, TRANSPORT_LE), equalTo(STATE_CONNECTING));
-        verifyConnectionState(
-                mDevice, oneOf(TRANSPORT_BREDR, TRANSPORT_LE), equalTo(STATE_CONNECTED));
-        // Two ACTION_UUIDs are returned after pairing with dual mode HID device
-        // 2nd ACTION_UUID and ACTION_CONNECTION_STATE_CHANGED has race condition, hence unordered
-        verifyIntentReceivedUnorderedAtLeast(
-                1,
-                hasAction(BluetoothDevice.ACTION_UUID),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
-                hasExtra(BluetoothDevice.EXTRA_UUID, Matchers.hasItemInArray(BluetoothUuid.HOGP)));
+        // When preventDuplicateUuidIntent is enabled, ACTION_UUID should happen right after bonding
+        if (Flags.preventDuplicateUuidIntent()) {
+            verifyIntentReceived(
+                    hasAction(BluetoothDevice.ACTION_UUID),
+                    hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
+                    hasExtra(
+                            BluetoothDevice.EXTRA_UUID,
+                            Matchers.hasItemInArray(BluetoothUuid.HOGP)));
+        }
 
-        // Cannot guarantee TRANSPORT_BREDR at this moment, hence we need to check
-        if (mHidService.getPreferredTransport(mDevice) == TRANSPORT_BREDR) {
+        // Have to use Hamcrest matchers instead of Mockito matchers in MockitoHamcrest context
+        if (Flags.removeInputDeviceOnVup()) {
+            verifyConnectionState(mDevice, equalTo(TRANSPORT_BREDR), equalTo(STATE_CONNECTING));
+            verifyConnectionState(mDevice, equalTo(TRANSPORT_BREDR), equalTo(STATE_CONNECTED));
+            assertThat(mHidService.getPreferredTransport(mDevice)).isEqualTo(TRANSPORT_BREDR);
+        } else {
+            // Without removeInputDeviceOnVup, previous preference on LE transport might still exist
+            verifyConnectionState(
+                    mDevice, oneOf(TRANSPORT_BREDR, TRANSPORT_LE), equalTo(STATE_CONNECTING));
+            verifyConnectionState(
+                    mDevice, oneOf(TRANSPORT_BREDR, TRANSPORT_LE), equalTo(STATE_CONNECTED));
+        }
+        // When preventDuplicateUuidIntent is false, ACTION_UUID may come at random time
+        if (!Flags.preventDuplicateUuidIntent()) {
+            // Two ACTION_UUIDs are returned after pairing with dual mode HID device
+            // 2nd ACTION_UUID and ACTION_CONNECTION_STATE_CHANGED has race condition, hence
+            // unordered
+            verifyIntentReceivedUnorderedAtLeast(
+                    1,
+                    hasAction(BluetoothDevice.ACTION_UUID),
+                    hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
+                    hasExtra(
+                            BluetoothDevice.EXTRA_UUID,
+                            Matchers.hasItemInArray(BluetoothUuid.HOGP)));
+        }
+
+        if (Flags.removeInputDeviceOnVup()
+                || mHidService.getPreferredTransport(mDevice) == TRANSPORT_BREDR) {
+            // Cannot guarantee TRANSPORT_BREDR without removeInputDeviceOnVup, hence we need to
             // Switch to LE transport to prepare for test cases
             mHidService.setPreferredTransport(mDevice, TRANSPORT_LE);
             verifyTransportSwitch(mDevice, TRANSPORT_BREDR, TRANSPORT_LE);
@@ -339,8 +363,9 @@ public class HidHostDualModeTest {
     @After
     public void tearDown() throws Exception {
         if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
-            // Restore transport to BR/EDR
-            if (mHidService.getPreferredTransport(mDevice) == TRANSPORT_LE) {
+            // Restore transport to BR/EDR when removeInputDeviceOnVup is not enabled
+            if (!Flags.removeInputDeviceOnVup()
+                    && mHidService.getPreferredTransport(mDevice) == TRANSPORT_LE) {
                 boolean connected = mHidService.getConnectedDevices().contains(mDevice);
                 mHidService.setPreferredTransport(mDevice, TRANSPORT_BREDR);
                 if (connected) {
