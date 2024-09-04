@@ -367,6 +367,17 @@ public class GattServiceTest {
     }
 
     @Test
+    public void registerClient_checkLimitPerApp() {
+        doReturn(GattService.LIMIT_GATT_CLIENT_PER_APP).when(mClientMap).countByAppUid(anyInt());
+        UUID uuid = UUID.randomUUID();
+        IBluetoothGattCallback callback = mock(IBluetoothGattCallback.class);
+
+        mService.registerClient(uuid, callback, /* eattSupport= */ true, mAttributionSource);
+        verify(mClientMap, never()).add(any(), any(), any());
+        verify(mNativeInterface, never()).gattClientRegisterApp(anyLong(), anyLong(), anyBoolean());
+    }
+
+    @Test
     public void unregisterClient() {
         int clientIf = 3;
 
