@@ -1395,6 +1395,33 @@ public class RemoteDevices {
         }
     }
 
+    void encryptionChangeCallback(
+            byte[] address,
+            int status,
+            boolean encryptionEnable,
+            int transport,
+            boolean secureConnection) {
+        BluetoothDevice bluetoothDevice = getDevice(address);
+        if (bluetoothDevice == null) {
+            errorLog(
+                    "encryptionChangeCallback: device is NULL, address="
+                            + Utils.getRedactedAddressStringFromByte(address));
+            return;
+        }
+        Log.i(
+                TAG,
+                "encryptionChangeCallback device: "
+                        + bluetoothDevice
+                        + ", status: "
+                        + status
+                        + ", enabled: "
+                        + encryptionEnable
+                        + ", transport: "
+                        + transport
+                        + ", secureConnection: "
+                        + secureConnection);
+    }
+
     void fetchUuids(BluetoothDevice device, int transport) {
         if (mSdpTracker.contains(device)) {
             debugLog(
