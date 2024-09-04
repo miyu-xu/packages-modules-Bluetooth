@@ -40,6 +40,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.location.LocationManager;
 import android.platform.test.annotations.DisableFlags;
+import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.InstrumentationRegistry;
@@ -364,6 +365,18 @@ public class GattServiceTest {
         verify(mNativeInterface)
                 .gattClientRegisterApp(
                         uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), eattSupport);
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_GATT_CLIENT_DYNAMIC_ALLOCATION)
+    public void registerClient_checkLimitPerApp() {
+        doReturn(GattService.GATT_CLIENT_LIMIT_PER_APP).when(mClientMap).countByAppUid(anyInt());
+        UUID uuid = UUID.randomUUID();
+        IBluetoothGattCallback callback = mock(IBluetoothGattCallback.class);
+
+        mService.registerClient(uuid, callback, /* eattSupport= */ true, mAttributionSource);
+        verify(mClientMap, never()).add(any(), any(), any());
+        verify(mNativeInterface, never()).gattClientRegisterApp(anyLong(), anyLong(), anyBoolean());
     }
 
     @Test
