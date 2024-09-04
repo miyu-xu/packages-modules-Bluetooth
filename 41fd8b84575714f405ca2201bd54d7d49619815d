@@ -685,6 +685,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0bebec_04ccc023",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T12:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "215482c7_63c88d5a",
+      "range": {
+        "startLine": 1303,
+        "startChar": 7,
+        "endLine": 1304,
+        "endChar": 69
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9997d6a_9490d74f",
