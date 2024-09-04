@@ -379,6 +379,9 @@ struct BluetoothDeviceContext {
     /// If supported UUIDs weren't available in EIR, wait for services to be
     /// resolved to connect.
     pub wait_to_connect: bool,
+
+    pub connected_hid_profile: Option<Profile>,
+    pub connected_gatt_applications: HashSet<Uuid>,
 }
 
 impl BluetoothDeviceContext {
@@ -400,6 +403,8 @@ impl BluetoothDeviceContext {
             properties: HashMap::new(),
             services_resolved: false,
             wait_to_connect: false,
+            connected_hid_profile: None,
+            connected_gatt_applications: HashSet::new(),
         };
         device.update_properties(&properties);
         device
@@ -1282,6 +1287,14 @@ impl Bluetooth {
         self.intf.lock().unwrap().pairing_is_busy()
             || self.active_pairing_address.is_some()
             || self.pending_create_bond.is_some()
+    }
+
+    pub fn is_hh_connected(&self, device_address: &RawAddress) -> bool {
+        let context = match self.remote_devices.get(&device_address) {
+            Some(context) => context.clone(),
+            None => return false,
+        };
+        context.connected_hid_profile.is_some()
     }
 }
 
@@ -2869,7 +2882,7 @@ impl IBluetooth for Bluetooth {
         // Disconnect all GATT connections
         let txl = self.tx.clone();
         topstack::get_runtime().spawn(async move {
-            let _ = txl.send(Message::GattActions(GattActions::Disconnect(device))).await;
+            let _ = txl.send(Message::GattActions(GattActions::Disconnect(device.address))).await;
         });
 
         true
@@ -3016,7 +3029,7 @@ impl BtifHHCallbacks for Bluetooth {
             BtDeviceType::Bredr => Profile::Hid,
             _ => {
                 if self
-                    .get_remote_uuids(device)
+                    .get_remote_uuids(device.clone())
                     .contains(UuidHelper::get_profile_uuid(&Profile::Hogp).unwrap())
                 {
                     Profile::Hogp
@@ -3030,9 +3043,19 @@ impl BtifHHCallbacks for Bluetooth {
             address,
             profile as u32,
             BtStatus::Success,
-            state as u32,
+            state.clone() as u32,
         );
 
+        match state {
+            BthhConnectionState::Connected => {
+                self.remote_devices.entry(device.address).and_modify(|context| {
+                    context.connected_hid_profile = Some(profile);
+                })
+            }
+            _ => self.remote_devices.entry(device.address).and_modify(|context| {
+                context.connected_hid_profile = None;
+            }),
+        };
         if BtBondState::Bonded != self.get_bond_state_by_addr(&address) {
             warn!(
                 "[{}]: Rejecting a unbonded device's attempt to connect to HID/HOG profiles",
