@@ -647,8 +647,13 @@ static void on_l2cap_close(tBTA_JV_L2CAP_CLOSE* p_close, uint32_t id) {
                               sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
                               sock->app_uid, sock->channel, 0, 0, sock->name);
 
-  if (!send_app_err_code(sock, p_close->reason)) {
-    log::error("Unable to send l2cap socket to application socket_id:{}", sock->id);
+  log::error("connected: {}", sock->connected);
+  if (!sock->connected) {
+    if (!send_app_err_code(sock, p_close->reason)) {
+      log::error("Unable to send l2cap socket to application socket_id:{}", sock->id);
+    }
+  } else {
+    log::error("Dont push error for already connected socket:{}", sock->id);
   }
   // TODO: This does not seem to be called...
   // I'm not sure if this will be called for non-server sockets?
