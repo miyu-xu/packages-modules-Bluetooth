@@ -56,6 +56,7 @@ struct Controller::impl {
                                handler->BindOn(this, &Controller::impl::NumberOfCompletedPackets));
 
     set_event_mask(kDefaultEventMask);
+    set_event_mask_page_2(kDefaultEventMaskPage2);
     write_le_host_support(Enable::ENABLED, Enable::DISABLED);
     hci_->EnqueueCommand(
             ReadLocalNameBuilder::Create(),
@@ -764,6 +765,13 @@ struct Controller::impl {
     std::unique_ptr<SetEventMaskBuilder> packet = SetEventMaskBuilder::Create(event_mask);
     hci_->EnqueueCommand(std::move(packet),
                          module_.GetHandler()->BindOnce(check_complete<SetEventMaskCompleteView>));
+  }
+
+  void set_event_mask_page_2(uint64_t event_mask_page_2) {
+    std::unique_ptr<SetEventMaskPage2Builder> packet =
+            SetEventMaskPage2Builder::Create(event_mask_page_2);
+    hci_->EnqueueCommand(std::move(packet), module_.GetHandler()->BindOnce(
+                                                    check_complete<SetEventMaskPage2CompleteView>));
   }
 
   void write_le_host_support(Enable enable, Enable deprecated_host_bit) {
