@@ -91,6 +91,16 @@ class JniCallbacks {
         mRemoteDevices.keyMissingCallback(address);
     }
 
+    void encryptionChangeCallback(
+            byte[] address,
+            int status,
+            boolean encryptionEnable,
+            int transport,
+            boolean secureConnection) {
+        mRemoteDevices.encryptionChangeCallback(
+                address, status, encryptionEnable, transport, secureConnection);
+    }
+
     void stateChangeCallback(int status) {
         mAdapterService.stateChangeCallback(status);
     }
