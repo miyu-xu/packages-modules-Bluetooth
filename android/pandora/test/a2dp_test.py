@@ -24,6 +24,8 @@ from avatar.pandora_server import AndroidPandoraServer
 import bumble
 from bumble.avctp import AVCTP_PSM
 from bumble.a2dp import (
+    A2DP_MPEG_2_4_AAC_CODEC_TYPE,
+    MPEG_2_AAC_LC_OBJECT_TYPE,
     A2DP_SBC_CODEC_TYPE,
     SBC_DUAL_CHANNEL_MODE,
     SBC_JOINT_STEREO_CHANNEL_MODE,
@@ -31,6 +33,7 @@ from bumble.a2dp import (
     SBC_MONO_CHANNEL_MODE,
     SBC_SNR_ALLOCATION_METHOD,
     SBC_STEREO_CHANNEL_MODE,
+    AacMediaCodecInformation,
     SbcMediaCodecInformation,
     make_audio_sink_service_sdp_records,
 )
@@ -45,7 +48,7 @@ from mobly.asserts import assert_in  # type: ignore
 from mobly.asserts import assert_is_not_none  # type: ignore
 from mobly.asserts import fail  # type: ignore
 from pandora.a2dp_grpc_aio import A2DP
-from pandora.a2dp_pb2 import PlaybackAudioRequest, Source
+from pandora.a2dp_pb2 import PlaybackAudioRequest, Source, CodecConfig
 from pandora.host_pb2 import Connection
 from pandora.security_pb2 import LEVEL2
 from typing import Optional
@@ -91,7 +94,7 @@ async def open_source(device, connection) -> Source:
     return source
 
 
-def codec_capabilities():
+def sbc_codec_capabilities() -> MediaCodecCapabilities:
     """Codec capabilities for the Bumble sink devices."""
 
     return MediaCodecCapabilities(
@@ -113,6 +116,22 @@ def codec_capabilities():
             ],
             minimum_bitpool_value=2,
             maximum_bitpool_value=53,
+        ),
+    )
+
+
+def aac_codec_capabilities() -> MediaCodecCapabilities:
+    """Codec capabilities for the Bumble sink devices."""
+
+    return MediaCodecCapabilities(
+        media_type=AVDTP_AUDIO_MEDIA_TYPE,
+        media_codec_type=A2DP_MPEG_2_4_AAC_CODEC_TYPE,
+        media_codec_information=AacMediaCodecInformation.from_lists(
+            object_types=[MPEG_2_AAC_LC_OBJECT_TYPE],
+            sampling_frequencies=[48000, 44100],
+            channels=[1, 2],
+            vbr=1,
+            bitrate=256000,
         ),
     )
 
@@ -209,10 +228,11 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         self.ref2.a2dp_sink = None
 
         def on_ref1_avdtp_connection(server):
-            self.ref1.a2dp_sink = server.add_sink(codec_capabilities())
+            self.ref1.a2dp_sink = server.add_sink(sbc_codec_capabilities())
 
         def on_ref2_avdtp_connection(server):
-            self.ref2.a2dp_sink = server.add_sink(codec_capabilities())
+            self.ref2.a2dp_sink = server.add_sink(sbc_codec_capabilities())
+            self.ref2.a2dp_sink = server.add_sink(aac_codec_capabilities())
 
         self.ref1.a2dp.on('connection', on_ref1_avdtp_connection)
         self.ref2.a2dp.on('connection', on_ref2_avdtp_connection)
@@ -275,7 +295,7 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         def on_avdtp_connection(server):
             nonlocal avdtp_future
-            self.ref1.a2dp_sink = server.add_sink(codec_capabilities())
+            self.ref1.a2dp_sink = server.add_sink(sbc_codec_capabilities())
             self.ref1.log.info(f'Sink: {self.ref1.a2dp_sink}')
             avdtp_future.set_result(None)
 
@@ -403,8 +423,53 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         # Initiate AVDTP with connected L2CAP signaling channel
         protocol = Protocol(channel)
-        protocol.add_sink(codec_capabilities())
+        protocol.add_sink(sbc_codec_capabilities())
         logger.info("<< Test finished! >>")
+
+    @avatar.asynchronous
+    async def test_codec_reconfiguration(self) -> None:
+        """Basic A2DP connection and codec reconfiguration.
+
+        1. Pair and Connect RD2
+        2. Check current codec configuration - should be AAC
+        3. Set SBC codec configuration
+        """
+        codecConfig = CodecConfig()
+
+        # Connect and pair RD2.
+        dut_ref2, ref2_dut = await asyncio.gather(
+            initiate_pairing(self.dut, self.ref2.address),
+            accept_pairing(self.ref2, self.dut.address),
+        )
+
+        # Connect AVDTP to RD2.
+        dut_ref2_source = await open_source(self.dut, dut_ref2)
+        assert_is_not_none(self.ref2.a2dp_sink)
+        assert_is_not_none(self.ref2.a2dp_sink.stream)
+        assert_in(self.ref2.a2dp_sink.stream.state, [AVDTP_OPEN_STATE, AVDTP_STREAMING_STATE])
+
+        # Get current codec status
+        codecStatus = await self.dut.a2dp.GetCodecStatus(connection=dut_ref2)
+        logger.info(f"Current codec: {codecStatus.codec_status.current_codec_config}")
+        assert codecStatus.codec_status.current_codec_config.codec_id == A2DP_MPEG_2_4_AAC_CODEC_TYPE
+
+        for capability in codecStatus.codec_status.selectable_codecs_capabilities:
+            logger.info(f"Selectable codec: {capability}")
+            if (capability.codec_id == A2DP_SBC_CODEC_TYPE):
+                codecConfig.codec_name = capability.codec_name  # SBC
+                codecConfig.codec_id = capability.codec_id  # A2DP_SBC_CODEC_TYPE
+                codecConfig.sample_rate = capability.sample_rate & (0x1 << 0)  # 44100 Hz
+                codecConfig.bits_per_sample = capability.bits_per_sample & (0x1 << 0)  # 16 bits
+                codecConfig.channel_mode = capability.channel_mode & (0x1 << 1)  # Stereo
+
+        # Set new codec
+        logger.info(f"Switching to codec: {codecConfig}")
+        await self.dut.a2dp.SetCodecConfig(connection=dut_ref2, codec_config=codecConfig)
+
+        # Check current codec status
+        codecStatus = await self.dut.a2dp.GetCodecStatus(connection=dut_ref2)
+        logger.info(f"Current codec: {codecStatus.codec_status.current_codec_config}")
+        assert codecStatus.codec_status.current_codec_config.codec_id == A2DP_SBC_CODEC_TYPE
 
 
 if __name__ == '__main__':

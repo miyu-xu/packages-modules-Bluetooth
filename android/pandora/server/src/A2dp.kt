@@ -18,6 +18,9 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothA2dp
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothCodecConfig
+import android.bluetooth.BluetoothCodecStatus
+import android.bluetooth.BluetoothCodecType
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
@@ -65,6 +68,7 @@ class A2dp(val context: Context) : A2DPImplBase(), Closeable {
         val intentFilter = IntentFilter()
         intentFilter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED)
         intentFilter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
+        intentFilter.addAction(BluetoothA2dp.ACTION_CODEC_CONFIG_CHANGED)
 
         flow = intentFlow(context, intentFilter, scope).shareIn(scope, SharingStarted.Eagerly)
     }
@@ -320,5 +324,127 @@ class A2dp(val context: Context) : A2DPImplBase(), Closeable {
                 .setEncoding(AudioEncoding.PCM_S16_LE_44K1_STEREO)
                 .build()
         }
+    }
+
+    override fun getCodecStatus(
+        request: GetCodecStatusRequest,
+        responseObserver: StreamObserver<GetCodecStatusResponse>
+    ) {
+        grpcUnary<GetCodecStatusResponse>(scope, responseObserver) {
+            val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+            Log.i(TAG, "getCodecStatus: device=$device")
+
+            if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+                throw RuntimeException("Device is not connected, cannot getCodecStatus")
+            }
+
+            val codecStatus = bluetoothA2dp.getCodecStatus(device)
+            if (codecStatus == null) {
+                throw RuntimeException("Codec status is null")
+            }
+
+            val currentCodecConfig = codecStatus.getCodecConfig()
+            if (currentCodecConfig == null) {
+                throw RuntimeException("Codec configuration is null")
+            }
+
+            val selectableCodecCapabilities = mutableListOf<CodecConfig>()
+            for (codecConfig: BluetoothCodecConfig in
+                codecStatus.getCodecsSelectableCapabilities()) {
+                val codecCapability = fromBluetoothCodecConfig(codecConfig)
+                if (codecCapability.getCodecName() == "") {
+                    Log.w(TAG, "Codec capability is empty!")
+                    continue
+                }
+                selectableCodecCapabilities.add(codecCapability)
+            }
+
+            val codecStatusBuilder =
+                CodecStatus.newBuilder()
+                    .setCurrentCodecConfig(fromBluetoothCodecConfig(currentCodecConfig))
+                    .addAllSelectableCodecsCapabilities(selectableCodecCapabilities)
+                    .build()
+
+            GetCodecStatusResponse.newBuilder().setCodecStatus(codecStatusBuilder).build()
+        }
+    }
+
+    override fun setCodecConfig(
+        request: SetCodecConfigRequest,
+        responseObserver: StreamObserver<SetCodecConfigResponse>
+    ) {
+        grpcUnary<SetCodecConfigResponse>(scope, responseObserver) {
+            val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+            Log.i(TAG, "setCodecConfig: device=$device")
+
+            if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+                throw RuntimeException("Device is not connected, cannot getCodecStatus")
+            }
+
+            val newCodecConfig = fromProtoCodecConfig(request.getCodecConfig())
+            if (newCodecConfig == null) {
+                throw RuntimeException("New codec configuration is null")
+            }
+
+            val a2dpCodecConfigChangedFlow =
+                flow
+                    .filter { it.getAction() == BluetoothA2dp.ACTION_CODEC_CONFIG_CHANGED }
+                    .filter { it.getBluetoothDeviceExtra() == device }
+                    .map {
+                        it.getParcelableExtra(
+                                BluetoothCodecStatus.EXTRA_CODEC_STATUS,
+                                BluetoothCodecStatus::class.java
+                            )
+                            ?.getCodecConfig()
+                    }
+
+            bluetoothA2dp.setCodecConfigPreference(device, newCodecConfig!!)
+
+            a2dpCodecConfigChangedFlow
+                .filter {
+                    it?.getExtendedCodecType()?.getCodecId() ==
+                        request.getCodecConfig().getCodecId()
+                }
+                .first()
+
+            SetCodecConfigResponse.getDefaultInstance()
+        }
+    }
+
+    private fun fromProtoCodecConfig(codecConfig: CodecConfig): BluetoothCodecConfig? {
+        var selectedCodecType: BluetoothCodecType? = null
+        val codecTypes = bluetoothA2dp.getSupportedCodecTypes()
+        for (codecType: BluetoothCodecType in codecTypes) {
+            if (codecType.getCodecId() == codecConfig.getCodecId()) {
+                selectedCodecType = codecType
+            }
+        }
+        if (selectedCodecType == null) {
+            Log.e(TAG, "fromProtoCodecConfig: selectedCodecType is null")
+            return null
+        }
+        return BluetoothCodecConfig.Builder()
+            .setExtendedCodecType(selectedCodecType!!)
+            .setCodecPriority(BluetoothCodecConfig.CODEC_PRIORITY_HIGHEST)
+            .setSampleRate(codecConfig.getSampleRate())
+            .setBitsPerSample(codecConfig.getBitsPerSample())
+            .setChannelMode(codecConfig.getChannelMode())
+            .build()
+    }
+
+    private fun fromBluetoothCodecConfig(codecConfig: BluetoothCodecConfig): CodecConfig {
+        var codecConfigBuilder = CodecConfig.newBuilder()
+        val codecType = codecConfig.getExtendedCodecType()
+        if (codecType == null) {
+            Log.e(TAG, "fromBluetoothCodecConfig: codecType is null")
+            return codecConfigBuilder.build()
+        }
+        codecConfigBuilder
+            .setCodecName(codecType.getCodecName())
+            .setCodecId(codecType.getCodecId())
+            .setSampleRate(codecConfig.getSampleRate())
+            .setBitsPerSample(codecConfig.getBitsPerSample())
+            .setChannelMode(codecConfig.getChannelMode())
+        return codecConfigBuilder.build()
     }
 }
