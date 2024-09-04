@@ -37,6 +37,8 @@
 namespace bluetooth {
 namespace hci {
 
+typedef std::variant<CommandStatusView, CommandCompleteView> CommandStatusOrCompleteView;
+
 class HciInterface : public CommandInterface<CommandBuilder> {
 public:
   HciInterface() = default;
@@ -49,6 +51,10 @@ public:
   void EnqueueCommand(std::unique_ptr<CommandBuilder> command,
                       common::ContextualOnceCallback<void(CommandStatusView)> on_status) override =
           0;
+
+  virtual void EnqueueCommand(std::unique_ptr<CommandBuilder> command,
+                              common::ContextualOnceCallback<void(CommandStatusOrCompleteView)>
+                                      on_status_or_complete) = 0;
 
   virtual common::BidiQueueEnd<AclBuilder, AclView>* GetAclQueueEnd() = 0;
 
