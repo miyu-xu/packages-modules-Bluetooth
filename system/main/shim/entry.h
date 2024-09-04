@@ -45,6 +45,7 @@ class RemoteNameRequestModule;
 class DistanceMeasurementManager;
 class LeAdvertisingManager;
 class LeScanningManager;
+class LppOffloadManager;
 #if TARGET_FLOSS
 class MsftExtensionManager;
 #endif
@@ -71,6 +72,7 @@ hci::HciInterface* GetHciLayer();
 hci::RemoteNameRequestModule* GetRemoteNameRequest();
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager();
 hci::LeScanningManager* GetScanning();
+hci::LppOffloadManager* GetLppOffloadManager();
 hal::SnoopLogger* GetSnoopLogger();
 storage::StorageModule* GetStorage();
 hci::AclManager* GetAclManager();
