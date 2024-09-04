@@ -22,6 +22,30 @@
       },
       "revId": "1ccbb4f8c54347f70ee059e35b47f88710866605",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce31f9b_2499e476",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T19:26:04Z",
+      "side": 0,
+      "message": "```\nReturns the first argument if it is non-null and otherwise returns the non-null value of supplier.get().\n```\n\nIt will check both",
+      "parentUuid": "5c3cd474_97085e47",
+      "range": {
+        "startLine": 1186,
+        "startChar": 29,
+        "endLine": 1186,
+        "endChar": 43
+      },
+      "revId": "1ccbb4f8c54347f70ee059e35b47f88710866605",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -22,6 +22,30 @@
       },
       "revId": "d4306c71ab263b274c032072d9bbefd659681a94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0bc3f71_135d6605",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5528,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T19:26:04Z",
+      "side": 1,
+      "message": "Impossible, broadcast is hidden and we can\u0027t call it",
+      "parentUuid": "38f6f87b_2912a3f0",
+      "range": {
+        "startLine": 5523,
+        "startChar": 8,
+        "endLine": 5528,
+        "endChar": 43
+      },
+      "revId": "d4306c71ab263b274c032072d9bbefd659681a94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
