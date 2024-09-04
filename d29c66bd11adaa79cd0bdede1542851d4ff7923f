@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a414dcbe_9e55b874",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-09-04T09:09:52Z",
+      "side": 1,
+      "message": "Could you please extend this info with the new states descriptions, including what each state mean in terms of BIG/data path/etc. and what is happening in these new transient states?",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 78,
+        "endChar": 66
+      },
+      "revId": "d29c66bd11adaa79cd0bdede1542851d4ff7923f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
