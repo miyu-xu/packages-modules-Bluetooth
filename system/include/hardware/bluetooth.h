@@ -239,6 +239,12 @@ typedef struct {
   bool le_channel_sounding_supported;
 } bt_local_le_features_t;
 
+typedef struct {
+  bool socket_offload_supported;
+  uint8_t max_le_coc_socket_num;
+  uint8_t max_rfcomm_socket_num;
+} bt_lpp_offload_features_t;
+
 /** Bluetooth Vendor and Product ID info */
 typedef struct {
   uint8_t vendor_id_src;
@@ -415,6 +421,13 @@ typedef enum {
    * Data Type - uint8_t.
    */
   BT_PROPERTY_REMOTE_MAX_SESSION_KEY_SIZE,
+
+  /**
+   * Description - Low power processor offload features
+   * Access mode - GET.
+   * Data Type   - bt_lpp_offload_features_t.
+   */
+  BT_PROPERTY_LPP_OFFLOAD_FEATURES,
 
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
