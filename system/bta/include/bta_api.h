@@ -163,6 +163,7 @@ typedef enum : uint8_t {
   BTA_DM_LINK_UP_EVT = 5,         /* Connection UP event */
   BTA_DM_LINK_DOWN_EVT = 6,       /* Connection DOWN event */
   BTA_DM_LE_FEATURES_READ = 27,   /* Cotroller specific LE features are read */
+  BTA_DM_LPP_FEATURES_READ = 28,  /* Low power processor specific offload features are read */
   BTA_DM_LINK_UP_FAILED_EVT = 34, /* Create connection failed event */
 } tBTA_DM_ACL_EVT;
 

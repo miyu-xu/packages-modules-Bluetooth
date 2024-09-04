@@ -20,6 +20,7 @@
 #include "hci/hci_interface.h"
 #include "hci/le_advertising_manager_mock.h"
 #include "hci/le_scanning_manager_mock.h"
+#include "hci/lpp_offload_interface_mock.h"
 #include "main/shim/entry.h"
 #include "os/handler.h"
 #include "storage/storage_module.h"
@@ -36,6 +37,7 @@ os::Handler* mock_gd_shim_handler_{nullptr};
 MockLeAdvertisingManager* mock_le_advertising_manager_{nullptr};
 MockLeScanningManager* mock_le_scanning_manager_{nullptr};
 MockDistanceMeasurementManager* mock_distance_measurement_manager_{nullptr};
+MockLppOffloadInterface* mock_lpp_offload_interface_{nullptr};
 
 }  // namespace testing
 }  // namespace hci
@@ -52,6 +54,9 @@ hci::LeAdvertisingManager* GetAdvertising() { return hci::testing::mock_le_adver
 hci::LeScanningManager* GetScanning() { return hci::testing::mock_le_scanning_manager_; }
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager() {
   return hci::testing::mock_distance_measurement_manager_;
+}
+hci::LppOffloadInterface* GetLppOffloadManager() {
+  return hci::testing::mock_lpp_offload_interface_;
 }
 os::Handler* GetGdShimHandler() { return hci::testing::mock_gd_shim_handler_; }
 hal::SnoopLogger* GetSnoopLogger() { return nullptr; }
