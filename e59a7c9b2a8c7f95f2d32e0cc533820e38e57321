@@ -40,6 +40,30 @@
       ],
       "revId": "e59a7c9b2a8c7f95f2d32e0cc533820e38e57321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f602be1c_48bcbefb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capClientTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-04T19:02:04Z",
+      "side": 1,
+      "message": "This is the new Client",
+      "parentUuid": "af0b5498_71340630",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "e59a7c9b2a8c7f95f2d32e0cc533820e38e57321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
