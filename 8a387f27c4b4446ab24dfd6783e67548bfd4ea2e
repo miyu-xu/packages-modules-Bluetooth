@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19159098_2971f564",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-04T18:38:06Z",
+      "side": 1,
+      "message": "nit: add `Flag: xxxxx`",
+      "revId": "8a387f27c4b4446ab24dfd6783e67548bfd4ea2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
