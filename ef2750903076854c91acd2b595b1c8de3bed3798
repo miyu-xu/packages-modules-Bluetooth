@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692af292_2863343d",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-04T00:21:14Z",
+      "side": 1,
+      "message": "unflagged change, same below.\n\nI don\u0027t know how pertinent it is to flag this, so I am still upvoting.\n\nFeel free to close this comment without fixing it or to add a new patchset using the get_all_element_attributes_empty flag again",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1427,
+        "endChar": 43
+      },
+      "revId": "ef2750903076854c91acd2b595b1c8de3bed3798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
