@@ -17,7 +17,7 @@ use bt_topshim::sysprop;
 use bt_utils::adv_parser;
 use bt_utils::array_utils;
 
-use crate::bluetooth::{Bluetooth, BluetoothDevice};
+use crate::bluetooth::Bluetooth;
 use crate::bluetooth_adv::{
     AdvertiseData, AdvertiseManager, AdvertiserActions, AdvertisingSetParameters,
     BtifGattAdvCallbacks, IAdvertisingSetCallback, PeriodicAdvertisingParameters,
@@ -166,10 +166,19 @@ impl ContextMap {
     }
 
     fn get_client_ids_from_address(&self, address: &RawAddress) -> Vec<i32> {
-        self.connections
+        self.get_connected_clients_from_address(address).iter().map(|conn| conn.client_id).collect()
+    }
+
+    fn get_connected_clients_from_address(&self, address: &RawAddress) -> Vec<&Connection> {
+        self.connections.iter().filter(|conn| conn.address == *address).collect()
+    }
+
+    fn get_connected_applications_from_address(&self, address: &RawAddress) -> Vec<Uuid> {
+        self.get_connected_clients_from_address(address)
             .iter()
-            .filter(|conn| conn.address == *address)
-            .map(|conn| conn.client_id)
+            .map(|conn| self.get_client_by_conn_id(conn.conn_id))
+            .filter_map(|client| client)
+            .map(|client| client.uuid)
             .collect()
     }
 
@@ -1311,8 +1320,8 @@ pub enum GattActions {
     /// Params: client_id, address, interval, latency, timeout, status
     InvokeConnectionUpdated(i32, RawAddress, i32, i32, i32, GattStatus),
     /// This disconnects all server and client connections to the device.
-    /// Params: remote_device
-    Disconnect(BluetoothDevice),
+    /// Params: device_address
+    Disconnect(RawAddress),
 }
 
 enum MsftCommandQueue {
@@ -1368,6 +1377,7 @@ pub struct BluetoothGatt {
     small_rng: SmallRng,
 
     enabled: bool,
+    tx: Sender<Message>,
 }
 
 impl BluetoothGatt {
@@ -1390,6 +1400,7 @@ impl BluetoothGatt {
             small_rng: SmallRng::from_entropy(),
             adv_manager: AdvertiseManager::new(tx.clone()),
             enabled: false,
+            tx: tx.clone(),
         }
     }
 
@@ -1826,6 +1837,13 @@ impl BluetoothGatt {
 
     pub fn handle_action(&mut self, action: GattActions) {
         match action {
+<<<<<<< PATCH SET (8ac531 Floss: Disconnect device after final GATT client closes with)
+            GattActions::Disconnect(device_address) => {
+                for client_id in self.context_map.get_client_ids_from_address(&device_address) {
+||||||| BASE
+            GattActions::Disconnect(device) => {
+                for client_id in self.context_map.get_client_ids_from_address(&device.address) {
+=======
             GattActions::InvokeConnectionUpdated(
                 client_id,
                 addr,
@@ -1842,25 +1860,26 @@ impl BluetoothGatt {
             }
             GattActions::Disconnect(device) => {
                 for client_id in self.context_map.get_client_ids_from_address(&device.address) {
+>>>>>>> BASE      (3277d8 Merge "l2cap: Upper tester implementation" into main)
                     if let Some(conn_id) =
-                        self.context_map.get_conn_id_from_address(client_id, &device.address)
+                        self.context_map.get_conn_id_from_address(client_id, &device_address)
                     {
                         self.gatt.lock().unwrap().client.disconnect(
                             client_id,
-                            &device.address,
+                            &device_address,
                             conn_id,
                         );
                     }
                 }
                 for server_id in
-                    self.server_context_map.get_server_ids_from_address(&device.address)
+                    self.server_context_map.get_server_ids_from_address(&device_address)
                 {
                     if let Some(conn_id) =
-                        self.server_context_map.get_conn_id_from_address(server_id, &device.address)
+                        self.server_context_map.get_conn_id_from_address(server_id, &device_address)
                     {
                         self.gatt.lock().unwrap().server.disconnect(
                             server_id,
-                            &device.address,
+                            &device_address,
                             conn_id,
                         );
                     }
@@ -1871,6 +1890,10 @@ impl BluetoothGatt {
 
     pub fn handle_adv_action(&mut self, action: AdvertiserActions) {
         self.adv_manager.get_impl().handle_action(action);
+    }
+
+    pub fn get_connected_applications(&self, device_address: &RawAddress) -> Vec<Uuid> {
+        self.context_map.get_connected_applications_from_address(device_address)
     }
 }
 
@@ -2836,8 +2859,14 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         }
 
         let Some(client) = self.context_map.get_by_client_id(client_id) else { return };
+        let tx = self.tx.clone();
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_client_connection_state(status, client_id, status == GattStatus::Success, addr);
+            if status == GattStatus::Success {
+                tokio::spawn(async move {
+                    let _ = tx.send(Message::ProfileConnected(addr)).await;
+                });
+            }
         }
     }
 
@@ -2849,8 +2878,12 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         addr: RawAddress,
     ) {
         let Some(client) = self.context_map.get_by_client_id(client_id) else { return };
+        let tx = self.tx.clone();
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_client_connection_state(status, client_id, false, addr);
+            tokio::spawn(async move {
+                let _ = tx.send(Message::ProfileDisconnected(addr)).await;
+            });
         }
         self.context_map.remove_connection(client_id, conn_id);
 

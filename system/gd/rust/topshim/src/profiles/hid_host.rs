@@ -15,7 +15,13 @@ use topshim_macros::{cb_variant, profile_enabled_or};
 
 use log::warn;
 
+<<<<<<< PATCH SET (8ac531 Floss: Disconnect device after final GATT client closes with)
+#[derive(Clone, Debug, FromPrimitive, PartialEq, PartialOrd)]
+||||||| BASE
+#[derive(Debug, FromPrimitive, PartialEq, PartialOrd)]
+=======
 #[derive(Debug, FromPrimitive, PartialEq, PartialOrd, Copy, Clone)]
+>>>>>>> BASE      (3277d8 Merge "l2cap: Upper tester implementation" into main)
 #[repr(u32)]
 pub enum BthhConnectionState {
     Connected = 0,

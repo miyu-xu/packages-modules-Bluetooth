@@ -376,9 +376,28 @@ struct BluetoothDeviceContext {
     pub last_seen: Instant,
     pub properties: HashMap<BtPropertyType, BluetoothProperty>,
 
+<<<<<<< PATCH SET (8ac531 Floss: Disconnect device after final GATT client closes with)
+    /// Keep track of whether services have been resolved.
+    pub services_resolved: bool,
+
+    /// If supported UUIDs weren't available in EIR, wait for services to be
+    /// resolved to connect.
+    pub wait_to_connect: bool,
+
+    pub connected_hid_profile: Option<Profile>,
+    pub connected_gatt_applications: HashSet<Uuid>,
+||||||| BASE
+    /// Keep track of whether services have been resolved.
+    pub services_resolved: bool,
+
+    /// If supported UUIDs weren't available in EIR, wait for services to be
+    /// resolved to connect.
+    pub wait_to_connect: bool,
+=======
     /// If user wants to connect to all profiles, when new profiles are discovered we will also try
     /// to connect them.
     pub connect_to_new_profiles: bool,
+>>>>>>> BASE      (3277d8 Merge "l2cap: Upper tester implementation" into main)
 }
 
 impl BluetoothDeviceContext {
@@ -398,7 +417,17 @@ impl BluetoothDeviceContext {
             info,
             last_seen,
             properties: HashMap::new(),
+<<<<<<< PATCH SET (8ac531 Floss: Disconnect device after final GATT client closes with)
+            services_resolved: false,
+            wait_to_connect: false,
+            connected_hid_profile: None,
+            connected_gatt_applications: HashSet::new(),
+||||||| BASE
+            services_resolved: false,
+            wait_to_connect: false,
+=======
             connect_to_new_profiles: false,
+>>>>>>> BASE      (3277d8 Merge "l2cap: Upper tester implementation" into main)
         };
         device.update_properties(&properties);
         device
@@ -1296,6 +1325,13 @@ impl Bluetooth {
             || self.pending_create_bond.is_some()
     }
 
+<<<<<<< PATCH SET (8ac531 Floss: Disconnect device after final GATT client closes with)
+    pub fn is_hh_connected(&self, device_address: &RawAddress) -> bool {
+        self.remote_devices
+            .get(&device_address)
+            .map_or(false, |context| context.connected_hid_profile.is_some())
+||||||| BASE
+=======
     /// Checks whether the list of device properties contains some UUID we should connect now
     /// This function also connects those UUIDs.
     fn check_new_property_and_potentially_connect_profiles(
@@ -1463,6 +1499,7 @@ impl Bluetooth {
         if !has_supported_profile {
             self.resume_discovery();
         }
+>>>>>>> BASE      (3277d8 Merge "l2cap: Upper tester implementation" into main)
     }
 }
 
@@ -2879,7 +2916,7 @@ impl IBluetooth for Bluetooth {
         // Disconnect all GATT connections
         let txl = self.tx.clone();
         topstack::get_runtime().spawn(async move {
-            let _ = txl.send(Message::GattActions(GattActions::Disconnect(device))).await;
+            let _ = txl.send(Message::GattActions(GattActions::Disconnect(device.address))).await;
         });
 
         if let Some(d) = self.remote_devices.get_mut(&addr) {
@@ -3030,7 +3067,7 @@ impl BtifHHCallbacks for Bluetooth {
             BtDeviceType::Bredr => Profile::Hid,
             _ => {
                 if self
-                    .get_remote_uuids(device)
+                    .get_remote_uuids(device.clone())
                     .contains(UuidHelper::get_profile_uuid(&Profile::Hogp).unwrap())
                 {
                     Profile::Hogp
@@ -3044,13 +3081,37 @@ impl BtifHHCallbacks for Bluetooth {
             address,
             profile as u32,
             BtStatus::Success,
-            state as u32,
+            state.clone() as u32,
         );
 
+<<<<<<< PATCH SET (8ac531 Floss: Disconnect device after final GATT client closes with)
+        match state {
+            BthhConnectionState::Connected => {
+                self.remote_devices.entry(device.address).and_modify(|context| {
+                    context.connected_hid_profile = Some(profile);
+                });
+            }
+            _ => {
+                let tx = self.tx.clone();
+                self.remote_devices.entry(device.address).and_modify(|context| {
+                    if context.connected_hid_profile.is_some() {
+                        tokio::spawn(async move {
+                            let _ = tx.send(Message::ProfileDisconnected(address)).await;
+                        });
+                    }
+                    context.connected_hid_profile = None;
+                });
+            }
+        };
+        if BtBondState::Bonded != self.get_bond_state_by_addr(&address) {
+||||||| BASE
+        if BtBondState::Bonded != self.get_bond_state_by_addr(&address) {
+=======
         if BtBondState::Bonded != self.get_bond_state_by_addr(&address)
             && (state != BthhConnectionState::Disconnecting
                 && state != BthhConnectionState::Disconnected)
         {
+>>>>>>> BASE      (3277d8 Merge "l2cap: Upper tester implementation" into main)
             warn!(
                 "[{}]: Rejecting a unbonded device's attempt to connect to HID/HOG profiles",
                 DisplayAddress(&address)
