@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b87d0ee_b4212ff3",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-04T09:28:33Z",
+      "side": 1,
+      "message": "Accepting the Connection request should be postponed, to be closer to the bugreport scenario, so\n\n1. DUT (android) sends L2CAP Connection Request\n2. IUT (bumble) waits for L2CAP Connection Request\n3. IUT sends L2CAP Connection Request \n4. IUT Rejects incoming L2CAP Connection Request\n\nand see what happens on android side.",
+      "range": {
+        "startLine": 299,
+        "startChar": 8,
+        "endLine": 299,
+        "endChar": 121
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2e41ad_d485c4f6",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-04T09:28:33Z",
+      "side": 1,
+      "message": "```\n@dataclasses.dataclass\nclass L2capConfigurationRequest:\n    connection: Optional[Connection] \u003d None\n    cid: Optional[int] \u003d None\n    request: Optional[ConfigureRequest] \u003d None\n```",
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2c0b8a5_f01e4301",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-04T09:28:33Z",
+      "side": 1,
+      "message": "It does not need to be global to be used accross closures, I think",
+      "range": {
+        "startLine": 321,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 44
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18d19014_19ed8eae",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-04T09:28:33Z",
+      "side": 1,
+      "message": "TestChannelManager ?",
+      "range": {
+        "startLine": 324,
+        "startChar": 14,
+        "endLine": 324,
+        "endChar": 38
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb815877_d50424bc",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-04T09:28:33Z",
+      "side": 1,
+      "message": "I suggest initiating the AVDTP connection here to cause the channel collision, before rejecting the peer request",
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155f6596_63a7a94b",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-04T09:28:33Z",
+      "side": 1,
+      "message": "nit, paraphrasing the check",
+      "range": {
+        "startLine": 390,
+        "startChar": 37,
+        "endLine": 390,
+        "endChar": 70
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
