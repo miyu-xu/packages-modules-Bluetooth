@@ -216,6 +216,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "85fe99f4_843d6ec1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-04T06:44:12Z",
+      "side": 1,
+      "message": "Done, see next CL",
+      "parentUuid": "2e9af6da_e19cc4b6",
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2d4e45ee_72b25da4",
         "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
         "patchSetId": 5
@@ -227,6 +245,24 @@
       "writtenOn": "2024-09-04T00:57:36Z",
       "side": 1,
       "message": "Nit: May not be necessary after remove_input_device_on_vup flag is enabled",
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b029910_911f3be5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-04T06:44:12Z",
+      "side": 1,
+      "message": "Done, see next CL",
+      "parentUuid": "2d4e45ee_72b25da4",
       "revId": "fb175d034e52496313769771e1388aa287dffa52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
