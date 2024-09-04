@@ -3173,7 +3173,8 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
  * Returns          void
  *
  ******************************************************************************/
-void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_enable) {
+void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_enable,
+                            uint8_t key_size) {
   /* For transaction collision we need to wait and repeat.  There is no need */
   /* for random timeout because only peripheral should receive the result */
   if ((status == HCI_ERR_LMP_ERR_TRANS_COLLISION) ||
@@ -3394,7 +3395,7 @@ static void read_encryption_key_size_complete_after_encryption_change(uint8_t st
 
   // good key size - succeed
   btm_acl_encrypt_change(handle, static_cast<tHCI_STATUS>(status), 1 /* enable */);
-  btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status), 1 /* enable */);
+  btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status), 1 /* enable */, key_size);
 }
 
 // TODO: Remove
@@ -3409,21 +3410,29 @@ void smp_cancel_start_encryption_attempt();
  * Returns          void
  *
  ******************************************************************************/
-void btm_sec_encryption_change_evt(uint16_t handle, tHCI_STATUS status, uint8_t encr_enable) {
-  if (status != HCI_SUCCESS || encr_enable == 0 || BTM_IsBleConnection(handle) ||
-      !bluetooth::shim::GetController()->IsSupported(
-              bluetooth::hci::OpCode::READ_ENCRYPTION_KEY_SIZE)) {
-    if (status == HCI_ERR_CONNECTION_TOUT) {
-      smp_cancel_start_encryption_attempt();
+void btm_sec_encryption_change_evt(uint16_t handle, tHCI_STATUS status, uint8_t encr_enable,
+                                   uint8_t key_size) {
+  if (status == HCI_SUCCESS && encr_enable != 0 && !BTM_IsBleConnection(handle)) {
+    if (key_size != 0) {
+      read_encryption_key_size_complete_after_encryption_change(status, handle, key_size);
       return;
     }
 
-    btm_acl_encrypt_change(handle, static_cast<tHCI_STATUS>(status), encr_enable);
-    btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status), encr_enable);
-  } else {
-    btsnd_hcic_read_encryption_key_size(
-            handle, base::Bind(&read_encryption_key_size_complete_after_encryption_change));
+    if (bluetooth::shim::GetController()->IsSupported(
+                bluetooth::hci::OpCode::READ_ENCRYPTION_KEY_SIZE)) {
+      btsnd_hcic_read_encryption_key_size(
+              handle, base::Bind(&read_encryption_key_size_complete_after_encryption_change));
+      return;
+    }
   }
+
+  if (status == HCI_ERR_CONNECTION_TOUT) {
+    smp_cancel_start_encryption_attempt();
+    return;
+  }
+
+  btm_acl_encrypt_change(handle, static_cast<tHCI_STATUS>(status), encr_enable);
+  btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status), encr_enable, key_size);
 }
 /*******************************************************************************
  *
@@ -3946,7 +3955,7 @@ static void read_encryption_key_size_complete_after_key_refresh(uint8_t status, 
     return;
   }
 
-  btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status), 1 /* enc_enable */);
+  btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status), 1 /* enc_enable */, key_size);
 }
 
 void btm_sec_encryption_key_refresh_complete(uint16_t handle, tHCI_STATUS status) {
@@ -3955,7 +3964,7 @@ void btm_sec_encryption_key_refresh_complete(uint16_t handle, tHCI_STATUS status
       bluetooth::shim::GetController()->IsSupported(
               bluetooth::hci::OpCode::SET_MIN_ENCRYPTION_KEY_SIZE)) {
     btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status),
-                           (status == HCI_SUCCESS) ? 1 : 0);
+                           (status == HCI_SUCCESS) ? 1 : 0, 0);
   } else {
     btsnd_hcic_read_encryption_key_size(
             handle, base::Bind(&read_encryption_key_size_complete_after_key_refresh));

@@ -5638,7 +5638,10 @@ ErrorCode LinkLayerController::LeLongTermKeyRequestReply(uint16_t handle,
     }
   } else {
     connections_.Encrypt(handle);
-    if (IsEventUnmasked(EventCode::ENCRYPTION_CHANGE)) {
+    if (IsEventUnmasked(EventCode::ENCRYPTION_CHANGE_V2)) {
+      send_event_(bluetooth::hci::EncryptionChangeV2Builder::Create(
+              ErrorCode::SUCCESS, handle, bluetooth::hci::EncryptionEnabled::ON, 0 /* key_size */));
+    } else if (IsEventUnmasked(EventCode::ENCRYPTION_CHANGE)) {
       send_event_(bluetooth::hci::EncryptionChangeBuilder::Create(
               ErrorCode::SUCCESS, handle, bluetooth::hci::EncryptionEnabled::ON));
     }
@@ -5689,7 +5692,7 @@ void LinkLayerController::Reset() {
   class_of_device_ = 0;
   min_encryption_key_size_ = 16;
   event_mask_ = 0x00001fffffffffff;
-  event_mask_page_2_ = 0x0;
+  event_mask_page_2_ = 0x1800000;
   le_event_mask_ = 0x01f;
   le_suggested_max_tx_octets_ = 0x001b;
   le_suggested_max_tx_time_ = 0x0148;

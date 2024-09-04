@@ -750,7 +750,7 @@ static void btu_hcif_encryption_change_evt(uint8_t* p) {
   STREAM_TO_UINT16(handle, p);
   STREAM_TO_UINT8(encr_enable, p);
 
-  btm_sec_encryption_change_evt(handle, static_cast<tHCI_STATUS>(status), encr_enable);
+  btm_sec_encryption_change_evt(handle, static_cast<tHCI_STATUS>(status), encr_enable, 0);
 }
 
 /*******************************************************************************
@@ -1025,7 +1025,7 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status, const u
       if (status != HCI_SUCCESS) {
         // Device refused to start encryption
         // This is treated as an encryption failure
-        btm_sec_encrypt_change(HCI_INVALID_HANDLE, hci_status, false);
+        btm_sec_encrypt_change(HCI_INVALID_HANDLE, hci_status, false, 0);
       }
       break;
     case HCI_READ_RMT_EXT_FEATURES:
