@@ -34,6 +34,7 @@ source_set("BluetoothHciSources") {
     "le_scanning_reassembler.cc",
     "link_key.cc",
     "msft.cc",
+    "lpp_offload_manager.cc",
     "remote_name_request.cc",
     "uuid.cc",
   ]

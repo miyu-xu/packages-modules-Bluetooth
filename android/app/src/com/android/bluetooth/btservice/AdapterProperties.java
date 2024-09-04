@@ -142,6 +142,10 @@ class AdapterProperties {
     private boolean mIsLeIsochronousBroadcasterSupported;
     private boolean mIsLeChannelSoundingSupported;
 
+    private boolean mIsSocketOffloadSupported;
+    private int mNumOfOffloadedLeCocSocketSupported;
+    private int mNumOfOffloadedRfcommSocketSupported;
+
     private boolean mReceiverRegistered;
 
     private final BroadcastReceiver mReceiver =
@@ -1031,11 +1035,52 @@ class AdapterProperties {
                         updateDynamicAudioBufferSupport(val);
                         break;
 
+                    case AbstractionLayer.BT_PROPERTY_LPP_OFFLOAD_FEATURES:
+                        updateLppOffloadFeatureSupport(val);
+                        break;
+
                     default:
                         Log.e(TAG, "Property change not handled in Java land:" + type);
                 }
             }
         }
+    }
+
+    /**
+     * @return Socket offload support
+     */
+    boolean isSocketOffloadSupported() {
+        return mIsSocketOffloadSupported;
+    }
+
+    /**
+     * @return the mNumOfOffloadedLeCocSocketSupported
+     */
+    int getNumOfOffloadedLeCocSocketSupported() {
+        return mNumOfOffloadedLeCocSocketSupported;
+    }
+
+    /**
+     * @return the mNumOfOffloadedRfcommSocketSupported
+     */
+    int getNumOfOffloadedRfcommSocketSupported() {
+        return mNumOfOffloadedRfcommSocketSupported;
+    }
+
+    private void updateLppOffloadFeatureSupport(byte[] val) {
+        mIsSocketOffloadSupported = ((0xFF & ((int) val[0])) != 0);
+        mNumOfOffloadedLeCocSocketSupported = (0xFF & ((int) val[1]));
+        mNumOfOffloadedRfcommSocketSupported = (0xFF & ((int) val[2]));
+
+        Log.d(
+                TAG,
+                "BT_PROPERTY_LPP_OFFLOAD_FEATURES: update from Offload HAL"
+                        + " mIsSocketOffloadSupported = "
+                        + mIsSocketOffloadSupported
+                        + " mNumOfOffloadedLeCocSocketSupported = "
+                        + mNumOfOffloadedLeCocSocketSupported
+                        + " mNumOfOffloadedRfcommSocketSupported = "
+                        + mNumOfOffloadedRfcommSocketSupported);
     }
 
     private void updateFeatureSupport(byte[] val) {
