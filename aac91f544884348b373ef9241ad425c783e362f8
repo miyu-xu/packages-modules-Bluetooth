@@ -16,6 +16,24 @@
       "message": "Nit: Should we initialize it before calling getReport.",
       "revId": "aac91f544884348b373ef9241ad425c783e362f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08a051d_0f1ed278",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-04T02:34:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b378dd3_d1737bfe",
+      "revId": "aac91f544884348b373ef9241ad425c783e362f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
