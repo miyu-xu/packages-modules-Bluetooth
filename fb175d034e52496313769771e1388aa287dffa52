@@ -1,0 +1,162 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc235b6_13b585d2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T00:57:36Z",
+      "side": 1,
+      "message": "Error?",
+      "fixSuggestions": [
+        {
+          "fixId": "90d97d7f_e9f1c2ba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+              "range": {
+                "startLine": 179,
+                "startChar": 0,
+                "endLine": 180,
+                "endChar": 0
+              },
+              "replacement": "                        Log.e(TAG, \"onReceive(): device \" + device + \" null uuid list\");\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+              "range": {
+                "startLine": 181,
+                "startChar": 0,
+                "endLine": 182,
+                "endChar": 0
+              },
+              "replacement": "                        Log.e(TAG, \"onReceive(): device \" + device + \" 0 length uuid list\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7281bfad_a32f70a2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T00:57:36Z",
+      "side": 1,
+      "message": "It would have been simpler to not perform any device discovery at all and bond over BR/EDR.",
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef11cc03_00440a3f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T00:57:36Z",
+      "side": 1,
+      "message": "It should be either of TRANSPORT_BREDR or TRANSPORT_LE",
+      "fixSuggestions": [
+        {
+          "fixId": "554aa820_59c9a830",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+              "range": {
+                "startLine": 330,
+                "startChar": 0,
+                "endLine": 331,
+                "endChar": 0
+              },
+              "replacement": "                hasExtra(\n                        BluetoothDevice.EXTRA_TRANSPORT,\n                        Matchers.anyOf(\n                                BluetoothDevice.TRANSPORT_BREDR, BluetoothDevice.TRANSPORT_LE)),\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+              "range": {
+                "startLine": 335,
+                "startChar": 0,
+                "endLine": 336,
+                "endChar": 0
+              },
+              "replacement": "                hasExtra(\n                        BluetoothDevice.EXTRA_TRANSPORT,\n                        Matchers.anyOf(\n                                BluetoothDevice.TRANSPORT_BREDR, BluetoothDevice.TRANSPORT_LE)),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9f79f60_8dc18ac6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T00:57:36Z",
+      "side": 1,
+      "message": "Nit: May not be necessary after `prevent_duplicate_uuid_intent` flag is enabled",
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9af6da_e19cc4b6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T00:57:36Z",
+      "side": 1,
+      "message": "Nit: May not be necessary after `remove_input_device_on_vup` flag is enabled",
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d4e45ee_72b25da4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T00:57:36Z",
+      "side": 1,
+      "message": "Nit: May not be necessary after remove_input_device_on_vup flag is enabled",
+      "revId": "fb175d034e52496313769771e1388aa287dffa52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
