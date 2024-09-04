@@ -1442,6 +1442,7 @@ pub struct BluetoothGatt {
 
     gatt_async: Arc<tokio::sync::Mutex<GattAsyncIntf>>,
     enabled: bool,
+    tx: Sender<Message>,
 }
 
 impl BluetoothGatt {
@@ -1474,6 +1475,7 @@ impl BluetoothGatt {
                 async_helper_msft_adv_monitor_enable,
             })),
             enabled: false,
+            tx: tx.clone(),
         }
     }
 
@@ -2881,8 +2883,15 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         }
 
         let Some(client) = self.context_map.get_by_client_id(client_id) else { return };
+        let tx = self.tx.clone();
+        let app_uuid = client.uuid.clone();
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_client_connection_state(status, client_id, status == GattStatus::Success, addr);
+            if status == GattStatus::Success {
+                tokio::spawn(async move {
+                    let _ = tx.send(Message::GattClientConnected(addr, app_uuid)).await;
+                });
+            }
         }
     }
 
@@ -2894,8 +2903,13 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         addr: RawAddress,
     ) {
         let Some(client) = self.context_map.get_by_client_id(client_id) else { return };
+        let tx = self.tx.clone();
+        let app_uuid = client.uuid.clone();
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_client_connection_state(status, client_id, false, addr);
+            tokio::spawn(async move {
+                let _ = tx.send(Message::GattClientDisconnected(addr, app_uuid)).await;
+            });
         }
         self.context_map.remove_connection(client_id, conn_id);
     }

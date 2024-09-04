@@ -46,7 +46,7 @@ use crate::dis::{DeviceInformation, ServiceCallbacks};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
 use crate::suspend::Suspend;
 use bt_topshim::{
-    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, RawAddress},
+    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, RawAddress, Uuid},
     profiles::{
         a2dp::A2dpCallbacks,
         avrcp::AvrcpCallbacks,
@@ -140,9 +140,13 @@ pub enum Message {
     BatteryServiceRefresh,
     BatteryManagerCallbackDisconnected(u32),
 
+    // GATT related
     GattActions(GattActions),
     GattClientCallbackDisconnected(u32),
     GattServerCallbackDisconnected(u32),
+    // Remote device address, app UUID
+    GattClientConnected(RawAddress, Uuid),
+    GattClientDisconnected(RawAddress, Uuid),
 
     // Admin policy related
     AdminCallbackDisconnected(u32),
@@ -532,6 +536,12 @@ impl Stack {
                 }
                 Message::GattServerCallbackDisconnected(id) => {
                     bluetooth_gatt.lock().unwrap().remove_server_callback(id);
+                }
+                Message::GattClientConnected(device_address, app_uuid) => {
+                    bluetooth.lock().unwrap().gatt_connection_added(device_address, app_uuid);
+                }
+                Message::GattClientDisconnected(device_address, app_uuid) => {
+                    bluetooth.lock().unwrap().gatt_connection_removed(device_address, app_uuid);
                 }
                 Message::AdminCallbackDisconnected(id) => {
                     bluetooth_admin.lock().unwrap().unregister_admin_policy_callback(id);
