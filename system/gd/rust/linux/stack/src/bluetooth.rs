@@ -379,6 +379,8 @@ struct BluetoothDeviceContext {
     /// If user wants to connect to all profiles, when new profiles are discovered we will also try
     /// to connect them.
     pub connect_to_new_profiles: bool,
+
+    pub connected_hid_profile: Option<Profile>,
 }
 
 impl BluetoothDeviceContext {
@@ -399,6 +401,7 @@ impl BluetoothDeviceContext {
             last_seen,
             properties: HashMap::new(),
             connect_to_new_profiles: false,
+            connected_hid_profile: None,
         };
         device.update_properties(&properties);
         device
@@ -1294,6 +1297,12 @@ impl Bluetooth {
         self.intf.lock().unwrap().pairing_is_busy()
             || self.active_pairing_address.is_some()
             || self.pending_create_bond.is_some()
+    }
+
+    pub fn is_hh_connected(&self, device_address: &RawAddress) -> bool {
+        self.remote_devices
+            .get(&device_address)
+            .map_or(false, |context| context.connected_hid_profile.is_some())
     }
 
     /// Checks whether the list of device properties contains some UUID we should connect now
@@ -2850,11 +2859,11 @@ impl IBluetooth for Bluetooth {
 
                             Profile::Bas => {
                                 let tx = self.tx.clone();
-                                let device_to_send = device.clone();
+                                let addr = device.address;
                                 topstack::get_runtime().spawn(async move {
                                     let _ = tx
                                         .send(Message::BatteryService(
-                                            BatteryServiceActions::Disconnect(device_to_send),
+                                            BatteryServiceActions::Disconnect(addr),
                                         ))
                                         .await;
                                 });
@@ -2879,7 +2888,7 @@ impl IBluetooth for Bluetooth {
         // Disconnect all GATT connections
         let txl = self.tx.clone();
         topstack::get_runtime().spawn(async move {
-            let _ = txl.send(Message::GattActions(GattActions::Disconnect(device))).await;
+            let _ = txl.send(Message::GattActions(GattActions::Disconnect(device.address))).await;
         });
 
         if let Some(d) = self.remote_devices.get_mut(&addr) {
@@ -3030,7 +3039,7 @@ impl BtifHHCallbacks for Bluetooth {
             BtDeviceType::Bredr => Profile::Hid,
             _ => {
                 if self
-                    .get_remote_uuids(device)
+                    .get_remote_uuids(device.clone())
                     .contains(UuidHelper::get_profile_uuid(&Profile::Hogp).unwrap())
                 {
                     Profile::Hogp
@@ -3044,9 +3053,27 @@ impl BtifHHCallbacks for Bluetooth {
             address,
             profile as u32,
             BtStatus::Success,
-            state as u32,
+            state.clone() as u32,
         );
 
+        match state {
+            BthhConnectionState::Connected => {
+                self.remote_devices.entry(device.address).and_modify(|context| {
+                    context.connected_hid_profile = Some(profile);
+                });
+            }
+            _ => {
+                let tx = self.tx.clone();
+                self.remote_devices.entry(device.address).and_modify(|context| {
+                    if context.connected_hid_profile.is_some() {
+                        tokio::spawn(async move {
+                            let _ = tx.send(Message::ProfileDisconnected(address)).await;
+                        });
+                    }
+                    context.connected_hid_profile = None;
+                });
+            }
+        };
         if BtBondState::Bonded != self.get_bond_state_by_addr(&address)
             && (state != BthhConnectionState::Disconnecting
                 && state != BthhConnectionState::Disconnected)

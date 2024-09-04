@@ -23,6 +23,9 @@ use tokio::sync::mpsc::Sender;
 /// specification.
 pub const CHARACTERISTIC_BATTERY_LEVEL: &str = "00002A1-9000-0100-0800-000805F9B34FB";
 
+/// The app UUID BAS provides when connecting as a GATT client. Chosen at random.
+pub const BATTERY_SERVICE_GATT_CLIENT_APP_ID: &str = "e4d2acffcfaa42198f494606b7412117";
+
 /// Represents the Floss BatteryService implementation.
 pub struct BatteryService {
     gatt: Arc<Mutex<Box<BluetoothGatt>>>,
@@ -57,8 +60,8 @@ pub enum BatteryServiceActions {
     OnNotify(RawAddress, i32, Vec<u8>),
     /// Params: remote_device, transport
     Connect(BluetoothDevice, BtAclState, BtBondState, BtTransport),
-    /// Params: remote_device
-    Disconnect(BluetoothDevice),
+    /// Params: addr
+    Disconnect(RawAddress),
 }
 
 /// API for Floss implementation of the Bluetooth Battery Service (BAS). BAS is built on GATT and
@@ -128,7 +131,7 @@ impl BatteryService {
         debug!("Registering GATT client for BatteryService");
         self.gatt.lock().unwrap().register_client(
             // TODO(b/233101174): make dynamic or decide on a static UUID
-            String::from("e4d2acffcfaa42198f494606b7412117"),
+            String::from(BATTERY_SERVICE_GATT_CLIENT_APP_ID),
             Box::new(GattCallback::new(self.tx.clone(), self.api_tx.clone())),
             false,
         );
@@ -233,8 +236,8 @@ impl BatteryService {
                 self.init_device(device.address, transport);
             }
 
-            BatteryServiceActions::Disconnect(device) => {
-                self.drop_device(device.address);
+            BatteryServiceActions::Disconnect(device_address) => {
+                self.drop_device(device_address);
             }
         }
     }
