@@ -16,6 +16,103 @@
       "message": "This makes sense to me.  I think it would be a good idea to have a couple of tests that exercise this code.",
       "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d416768_71d0bba1",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-04T23:00:53Z",
+      "side": 1,
+      "message": "Why is this necessary?  I would have expected this to still be true, even for vendor specific commands.",
+      "range": {
+        "startLine": 201,
+        "startChar": 41,
+        "endLine": 201,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "78182190_c992a014",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/hci_layer.cc",
+              "range": {
+                "startLine": 199,
+                "startChar": 0,
+                "endLine": 200,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/hci_layer.cc",
+              "range": {
+                "startLine": 201,
+                "startChar": 0,
+                "endLine": 202,
+                "endChar": 0
+              },
+              "replacement": "    if (status !\u003d ErrorCode::SUCCESS) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7ee899_ac9f4432",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-04T23:00:53Z",
+      "side": 1,
+      "message": "Is this the same?\n```suggestion\n    using CommandQueueEntry::WaitingFor;\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 3,
+        "endLine": 237,
+        "endChar": 45
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67e00fab_14b8a125",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-04T23:00:53Z",
+      "side": 1,
+      "message": "I feel like this case should be removed, since all VSC call sites could be updated to use the new method.",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 63
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
