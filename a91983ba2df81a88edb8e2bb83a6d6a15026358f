@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19b37f9_4662e65a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3177,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-04T17:22:14Z",
+      "side": 1,
+      "message": "We can get the key size from the caller since this is called after the key size is read.\nThen we can include the key size information in the encryption change event as well.",
+      "revId": "a91983ba2df81a88edb8e2bb83a6d6a15026358f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
