@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7fde3c8_64979f64",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a807ab_376119aa",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 45
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da367528_e73d1aae",
@@ -510,6 +534,30 @@
       "writtenOn": "2024-08-27T00:20:04Z",
       "side": 1,
       "message": "This is deprecated, please used @EnableFlag annotation instead",
+      "range": {
+        "startLine": 1492,
+        "startChar": 0,
+        "endLine": 1492,
+        "endChar": 71
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1021a6f_0ff00ffd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1492,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-04T14:18:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8255c868_052852a2",
       "range": {
         "startLine": 1492,
         "startChar": 0,
