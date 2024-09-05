@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607ad39b_2064227c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3177,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-05T23:40:38Z",
+      "side": 1,
+      "message": "For the LE link, the key size remains constant and can be found in the security record (`p_dev_rec.sec_rec.ble_keys.key_size`).\nThough I am not sure if this is valid for when the link is encrypted as part of pairing, specifically during legacy pairing.",
+      "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1665ac9_1e38a138",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3967,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-05T23:40:38Z",
+      "side": 1,
+      "message": "We can get the key size from the device property `BT_PROPERTY_REMOTE_MAX_SESSION_KEY_SIZE` for the BR/EDR link.\n\nFor the LE link, the key size remains constant and can be found in the security record (`tBTM_SEC_DEV_REC.sec_rec.ble_keys.key_size`).",
+      "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
