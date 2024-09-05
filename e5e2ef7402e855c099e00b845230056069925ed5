@@ -498,6 +498,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b7226dd_89edd628",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T21:03:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47e520c9_44d2c857",
+      "range": {
+        "startLine": 1430,
+        "startChar": 2,
+        "endLine": 1442,
+        "endChar": 0
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de400f69_25ab1bcc",
@@ -641,6 +665,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45a188a8_6df59e87",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T21:03:15Z",
+      "side": 1,
+      "message": "Different behavior should be tested independently, see go/unit-testing-practices#behavior-testing-examples\n\nOne of the big advantage of having small \u0026 focus test is that it is possible to start debugging just when you have the test name \u0026 the exception.\n\na big test require you to open the code of the test, check the line, hoping that there are matching and that there was no other change merged in between, then understand all the implication that the previous statement may have generated.",
+      "parentUuid": "b48e308a_aa8aa7d9",
+      "range": {
+        "startLine": 1509,
+        "startChar": 2,
+        "endLine": 1514,
+        "endChar": 50
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "312ef98b_b1bd768b",
         "filename": "framework/api/system-current.txt",
         "patchSetId": 4
@@ -676,6 +724,30 @@
       "side": 1,
       "message": "Behind  the flag so it should not hurt, right ?",
       "parentUuid": "312ef98b_b1bd768b",
+      "range": {
+        "startLine": 1130,
+        "startChar": 0,
+        "endLine": 1137,
+        "endChar": 142
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d09610_b8781aaa",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T21:03:15Z",
+      "side": 1,
+      "message": "I would prefer to not have any API for now. It is way easier to add then than to remove them",
+      "parentUuid": "6c277e60_0de06a9f",
       "range": {
         "startLine": 1130,
         "startChar": 0,
