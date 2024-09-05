@@ -22,6 +22,30 @@
       },
       "revId": "ce649c40e0f8c1b180f30a30f1356e7c74a8e0eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7d9eeb_e0132b48",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T00:36:04Z",
+      "side": 0,
+      "message": "go/cstyle#Namespaces:\n\u003e Do not use using-directives (e.g., `using namespace foo`).\n\nThere are 3 way to solve it \n1. use the whole path when calling log (what is done here)\n2. put `using bluetooth::log::debug;` `using bluetooth::log::error;` ... in the start of the file instead of using the whole namespace. (cleaner import)\n3. moving the code to already be in the Bluetooth namespace.\n\nI think in the long run, we should aim for 3.",
+      "parentUuid": "75206ab4_e805b5ba",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "ce649c40e0f8c1b180f30a30f1356e7c74a8e0eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
