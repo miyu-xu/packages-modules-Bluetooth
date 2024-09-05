@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5892ea72_734065ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlOffsetDescriptorTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T17:53:55Z",
+      "side": 1,
+      "message": "This is in fact 5 different test squashed in one.\n\nI am not gonna push to split them because this is just intended to be a migration... But this is not good practice",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 51
+      },
+      "revId": "da88a9d535b716162f91e487138c246fb64a4cf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
