@@ -181,6 +181,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35abfe71_055566c4",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-05T17:08:37Z",
+      "side": 1,
+      "message": "It\u0027s unsigned ?!?  but unsure about sizing (versus size_t which is typical)",
+      "parentUuid": "358855f3_181be356",
+      "range": {
+        "startLine": 148,
+        "startChar": 58,
+        "endLine": 148,
+        "endChar": 98
+      },
+      "revId": "ed16f6998522f2e2e8cf656fdadbae3040ad516a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1500dbaa_4acedd82",
