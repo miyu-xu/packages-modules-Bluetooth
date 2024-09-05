@@ -708,7 +708,6 @@ public final class BluetoothA2dp implements BluetoothProfile {
     @NonNull
     @RequiresLegacyBluetoothPermission
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
-    @FlaggedApi(Flags.FLAG_A2DP_OFFLOAD_CODEC_EXTENSIBILITY)
     public Collection<BluetoothCodecType> getSupportedCodecTypes() {
         Log.d(TAG, "getSupportedSourceCodecTypes()");
         final IBluetoothA2dp service = getService();
