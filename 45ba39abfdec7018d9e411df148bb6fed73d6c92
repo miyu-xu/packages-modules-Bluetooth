@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c64082_daef6e32",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-05T06:14:38Z",
+      "side": 1,
+      "message": "Its already merged:\nhttps://cs.android.com/android/_/android/platform/packages/modules/Bluetooth/+/29a8f8ba705e627d879fd0006ad1c4e2e5e3b191",
+      "range": {
+        "startLine": 620,
+        "startChar": 8,
+        "endLine": 623,
+        "endChar": 33
+      },
+      "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7c0a7e2_538bf19c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-05T06:14:38Z",
+      "side": 1,
+      "message": "You check here a specific case which is fine and needed but please add general case with full range from 0x01 to 0x08. It can be added here in the same unit test.",
+      "range": {
+        "startLine": 77,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 94
+      },
+      "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
