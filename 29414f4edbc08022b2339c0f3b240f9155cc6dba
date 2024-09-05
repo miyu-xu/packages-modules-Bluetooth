@@ -88,6 +88,24 @@
       "parentUuid": "b5c57fea_b26bb05e",
       "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e6a3398_fa0d8964",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-09-05T11:20:18Z",
+      "side": 1,
+      "message": "I\u0027ve tried running `floss/build/container-build-image.py --tag floss:latest` but it fails with an error that looks unrelated:\n\n```\nSTEP 7/9: RUN cargo install --git https://android.googlesource.com/platform/build#8f9ca807 aconfig\n    Updating git repository `https://android.googlesource.com/platform/build#8f9ca807`\nerror: failed to load manifest for workspace member `/root/.cargo/git/checkouts/build-9d8e06fba6db4aac/84aefc9/tools/aconfig/aflags`\nreferenced by workspace at `/root/.cargo/git/checkouts/build-9d8e06fba6db4aac/84aefc9/tools/aconfig/Cargo.toml`\n\nCaused by:\n  failed to load manifest for dependency `aconfigd_protos`\n\nCaused by:\n  failed to read `/root/.cargo/git/checkouts/system/server_configurable_flags/aconfigd/Cargo.toml`\n\nCaused by:\n  No such file or directory (os error 2)\nError: building at STEP \"RUN cargo install --git https://android.googlesource.com/platform/build#8f9ca807 aconfig\": while running runtime: exit status 101\nTraceback (most recent call last):\n  File \"/usr/local/google/home/qwandor/aosp-main-with-phones/packages/modules/Bluetooth/floss/build/container-build-image.py\", line 158, in \u003cmodule\u003e\n    main()\n  File \"/usr/local/google/home/qwandor/aosp-main-with-phones/packages/modules/Bluetooth/floss/build/container-build-image.py\", line 154, in main\n    pib.build()\n  File \"/usr/local/google/home/qwandor/aosp-main-with-phones/packages/modules/Bluetooth/floss/build/container-build-image.py\", line 134, in build\n    self._container_build()\n  File \"/usr/local/google/home/qwandor/aosp-main-with-phones/packages/modules/Bluetooth/floss/build/container-build-image.py\", line 62, in _container_build\n    self.run_command(self.container_binary + \u0027 build\u0027, [self.container_binary, \u0027build\u0027, \u0027-t\u0027, self.build_tag, \u0027.\u0027])\n  File \"/usr/local/google/home/qwandor/aosp-main-with-phones/packages/modules/Bluetooth/floss/build/container-build-image.py\", line 59, in run_command\n    raise Exception(\"{} failed. Return code is {}\".format(target, rc))\nException: podman build failed. Return code is 101\n```",
+      "parentUuid": "9e8f94a6_6d1e1ac6",
+      "revId": "29414f4edbc08022b2339c0f3b240f9155cc6dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
