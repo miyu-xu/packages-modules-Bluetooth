@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94ef3605_a10379ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-05T08:30:28Z",
+      "side": 1,
+      "message": "Maybe also ask the opinion of Ying or Zhengping, I don\u0027t really understand the implication of suspend.",
+      "revId": "f869f76853fd04a2606efd1cfea8fa9cb88f36d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d435c6_22260116",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-05T08:30:28Z",
+      "side": 1,
+      "message": "should we set `self.disabling \u003d false` here?",
+      "revId": "f869f76853fd04a2606efd1cfea8fa9cb88f36d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
