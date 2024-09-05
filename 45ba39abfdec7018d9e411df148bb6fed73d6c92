@@ -45,6 +45,30 @@
       },
       "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fba6f084_4d9bcf10",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-05T11:24:17Z",
+      "side": 1,
+      "message": "I\u0027m just curious about what \"full range case\" are you here talking about ? It\u0027s about parsing all possible hex values ?\n\nIf I may add something here - nice would be a case that would prove that order of parsed data is correct e.g. `valueBuf \u003d\n                new byte[] {\n                    (byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, 0x00, 0x00, 0x00, 0x00` vs `assertThat(s).isEqualTo(0x01020304L);` What do you think ?",
+      "parentUuid": "a7c0a7e2_538bf19c",
+      "range": {
+        "startLine": 77,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 94
+      },
+      "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
