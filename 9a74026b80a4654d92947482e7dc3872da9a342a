@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b73e9b_57ce0703",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-05T21:48:28Z",
+      "side": 1,
+      "message": "@mylesgw@google.com Looks `true` to me to any OGF except for the group 0, that doesn\u0027t seem to exist. Do you confirm?",
+      "range": {
+        "startLine": 234,
+        "startChar": 9,
+        "endLine": 234,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c9b60f41_d2716696",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/hci_layer.cc",
+              "range": {
+                "startLine": 234,
+                "startChar": 0,
+                "endLine": 235,
+                "endChar": 0
+              },
+              "replacement": "    bool is_vendor_specific \u003d static_cast\u003cint\u003e(op_code) \u0026 (0x3f \u003c\u003c 10) \u0026\u0026\n                              static_cast\u003cint\u003e(op_code) !\u003d 0x0000;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a74026b80a4654d92947482e7dc3872da9a342a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
