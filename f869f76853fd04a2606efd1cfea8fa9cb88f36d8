@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b01e5a1_c4e43619",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-05T08:43:24Z",
+      "side": 1,
+      "message": "\\+ @jiangzp@google.com\n\nActually this patch doesn\u0027t change the Floss suspend behavior, but the poweroff behavior.",
+      "parentUuid": "94ef3605_a10379ba",
+      "revId": "f869f76853fd04a2606efd1cfea8fa9cb88f36d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35d435c6_22260116",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-05T08:30:28Z",
       "side": 1,
       "message": "should we set `self.disabling \u003d false` here?",
+      "revId": "f869f76853fd04a2606efd1cfea8fa9cb88f36d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99f33cf0_85ce2a36",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-05T08:43:24Z",
+      "side": 1,
+      "message": "Done though it\u0027s probably not necessary as `disable()` can only be called once and then the btadapterd process shall exit.",
+      "parentUuid": "35d435c6_22260116",
       "revId": "f869f76853fd04a2606efd1cfea8fa9cb88f36d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
