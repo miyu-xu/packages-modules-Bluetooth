@@ -371,7 +371,14 @@ class HeadsetStateMachine extends StateMachine {
                             ? BluetoothHfpProtoEnums.SCO_CODEC_MSBC
                             : BluetoothHfpProtoEnums.SCO_CODEC_CVSD,
                     mAdapterService.getMetricId(device));
-            mHeadsetService.onAudioStateChangedFromStateMachine(device, fromState, toState);
+            // With this flag, we want to ensure the state transitions during phoneStateChange.
+            // That cannot happen if it is the state machine thread entering phoneStateChange.
+            if (Utils.isScoManagedByAudioEnabled()) {
+                mHeadsetService.handleOnAudioStateChangedFromStateMachine(
+                        device, fromState, toState);
+            } else {
+                mHeadsetService.onAudioStateChangedFromStateMachine(device, fromState, toState);
+            }
             Intent intent = new Intent(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED);
             intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, fromState);
             intent.putExtra(BluetoothProfile.EXTRA_STATE, toState);
