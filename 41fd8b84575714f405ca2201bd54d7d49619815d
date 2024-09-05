@@ -432,6 +432,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f6acdaf_8855ce42",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T12:40:41Z",
+      "side": 1,
+      "message": "This is not planned for this CL",
+      "parentUuid": "c3642fca_52137d5e",
+      "range": {
+        "startLine": 562,
+        "startChar": 3,
+        "endLine": 565,
+        "endChar": 47
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "017ed1b2_af192f40",
