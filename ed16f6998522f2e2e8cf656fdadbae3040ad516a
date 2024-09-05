@@ -1,0 +1,111 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf0a91c_270cd9fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T16:56:35Z",
+      "side": 1,
+      "message": "nit: sdp or SDP",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "ed16f6998522f2e2e8cf656fdadbae3040ad516a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e57cee2_518d5fb7",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T16:56:35Z",
+      "side": 1,
+      "message": "Do we have to cast this?",
+      "range": {
+        "startLine": 148,
+        "startChar": 58,
+        "endLine": 148,
+        "endChar": 98
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b46fca03_66b5571d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/sdp/sdp_api.cc",
+              "range": {
+                "startLine": 148,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"no spare CCB for peer:{} max:{}\", bd_addr, SDP_MAX_CONNECTIONS);\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_api.cc",
+              "range": {
+                "startLine": 179,
+                "startChar": 0,
+                "endLine": 180,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"no spare CCB for peer:{} max:{}\", bd_addr, SDP_MAX_CONNECTIONS);\n"
+            },
+            {
+              "path": "system/stack/sdp/sdp_api.cc",
+              "range": {
+                "startLine": 212,
+                "startChar": 0,
+                "endLine": 213,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"no spare CCB for peer:{} max:{}\", bd_addr, SDP_MAX_CONNECTIONS);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ed16f6998522f2e2e8cf656fdadbae3040ad516a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1500dbaa_4acedd82",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T16:56:35Z",
+      "side": 1,
+      "message": "nit: remove?  All calls to sdp_conn_originate have the same log.\n```suggestion\n    return NULL;\n```",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 16
+      },
+      "revId": "ed16f6998522f2e2e8cf656fdadbae3040ad516a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
