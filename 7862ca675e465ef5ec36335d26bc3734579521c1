@@ -16,6 +16,23 @@
       "message": "This remains an unsupported path, but is probably still useful to many people.",
       "revId": "7862ca675e465ef5ec36335d26bc3734579521c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd306ad_6d8c0a2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T21:05:02Z",
+      "side": 1,
+      "message": "@abhishekpandit@google.com, you need to upvote your own CL as I am not owner of floss.",
+      "revId": "7862ca675e465ef5ec36335d26bc3734579521c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
