@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c9b4fa0_c809ca27",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-09-05T16:56:27Z",
+      "side": 1,
+      "message": "I will go ahead and implement this, but my personal opinion is that this would contradict our existing system architecture. Currently, `lib.rs` just handles dispatching messages between modules in the stack, while all logic about what actions to take is handled by the modules themselves. Moving the disconnect logic into `lib.rs` breaks that precedent.\n\nGetting to the specifics of the suggestion: what exactly is the ideal outcome? My understanding was \"If a GATT connection is dropped, determine whether we should disconnect the device entirely\". However, it seems from this comment that what we actually want is \"If any service/profile/connection is dropped, potentially drop the GATT connection\". Does that seem more accurate?",
+      "parentUuid": "ba43f476_308306e5",
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "117f6f52_aaf9a6ec",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
