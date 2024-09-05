@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67fb7246_ce753962",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-05T00:02:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4bedb053_9b5a91a7",
+      "range": {
+        "startLine": 67,
+        "startChar": 60,
+        "endLine": 67,
+        "endChar": 96
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a9eefdc_7dcf6d6a",
@@ -110,6 +134,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b83d833a_7418013a",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-05T00:02:18Z",
+      "side": 1,
+      "message": "This returns a `ScopedLocalRef\u003cT\u003e`, that looks wrapping the pointer of type `T`. If allocated, the managed pointer will be freed with the `ScopedLocalRef` object destruction (When out of scope / function returns).",
+      "parentUuid": "2a9eefdc_7dcf6d6a",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 86
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbeb8325_52f53580",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-05T00:02:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2d38749f_8ea80c7b",
+      "range": {
+        "startLine": 74,
+        "startChar": 30,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ce69609_da363076",
         "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
         "patchSetId": 2
@@ -121,6 +193,30 @@
       "writtenOn": "2024-09-04T18:54:52Z",
       "side": 1,
       "message": "If you want this to always been accessed within a lock, you can add a Guarded by annotation that will enforce it",
+      "range": {
+        "startLine": 55,
+        "startChar": 42,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "9edf04b34478822786f3f1af5598bed512b8e8a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7de0ede_8ab146a9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificDispatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-05T00:02:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5ce69609_da363076",
       "range": {
         "startLine": 55,
         "startChar": 42,
