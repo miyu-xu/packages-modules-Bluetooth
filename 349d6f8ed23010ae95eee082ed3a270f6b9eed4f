@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7157b94e_228df149",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/RequestSetMessageStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T00:20:05Z",
+      "side": 1,
+      "message": "it looks like both values should be final too as they are only set during the constructor",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b5f8b9fe_f5ffc8c6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/mapclient/obex/RequestSetMessageStatus.java",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "    private final StatusIndicator mStatusInd;\n    private final byte mValue;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "349d6f8ed23010ae95eee082ed3a270f6b9eed4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
