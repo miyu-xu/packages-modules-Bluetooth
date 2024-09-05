@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "839883b4_f9a5dd3e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-05T12:53:50Z",
+      "side": 1,
+      "message": "This is only called on GATT disconnection, which seems quite concerning to me. There\u0027s no guarantee that the similar issue could only happen on the GATT devices.",
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba43f476_308306e5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-05T12:53:50Z",
+      "side": 1,
+      "message": "I\u0027d prefer to implement this in lib.rs so we don\u0027t need to store GATT state in bluetooth.rs (decouple them). Something like:\n```\nMessage::ProfileDisconnected(device_address) \u003d\u003e {\n    if bluetooth_gatt.lock().unwrap().connected_clients(device_address) \u003d\u003d vec![bas_uuid]\n        \u0026\u0026 !bluetooth.lock().unwrap().is_hh_connected(device_address)\n        \u0026\u0026 !bluetooth_socketmgr.lock().unwrap().is_device_connected(device_address)\n        \u0026\u0026 bluetooth_media.lock().unwrap().get_connected_profiles(device_address).is_empty() {\n        bluetooth_gatt.lock().unwrap().drop_device(device_address);\n    }\n}\n```\n\nThen, in each of them (bluetooth/_gatt/_socketmgr/_media) we just propagate this event whenever there\u0027s a profile disconnected.",
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117f6f52_aaf9a6ec",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1322,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-05T12:53:50Z",
+      "side": 1,
+      "message": "Please define it in the battery_service.rs as a constant and import it",
+      "range": {
+        "startLine": 1322,
+        "startChar": 55,
+        "endLine": 1322,
+        "endChar": 87
+      },
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80de9a6d_3fc01bd5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-05T12:53:50Z",
+      "side": 1,
+      "message": "Now we store tx in BluetoothGatt so we can remove it",
+      "range": {
+        "startLine": 1482,
+        "startChar": 36,
+        "endLine": 1482,
+        "endChar": 55
+      },
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
