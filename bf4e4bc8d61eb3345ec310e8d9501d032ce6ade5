@@ -39,6 +39,30 @@
       },
       "revId": "bf4e4bc8d61eb3345ec310e8d9501d032ce6ade5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5364ed7_bad52185",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-09-05T03:30:35Z",
+      "side": 1,
+      "message": "Yep, verified that this new patchset also works! Ready for final review @yuyangh@google.com . Thanks a lot!",
+      "parentUuid": "566255f1_3273121d",
+      "range": {
+        "startLine": 1715,
+        "startChar": 17,
+        "endLine": 1715,
+        "endChar": 49
+      },
+      "revId": "bf4e4bc8d61eb3345ec310e8d9501d032ce6ade5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
