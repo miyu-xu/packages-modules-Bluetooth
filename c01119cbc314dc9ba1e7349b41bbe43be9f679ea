@@ -59,6 +59,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd01785_cbd3225e",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-05T20:22:49Z",
+      "side": 1,
+      "message": "Yes it would have been better. None of those masks are defined this way, and the goal of this already too big is not making cleanup here.\n\nI made a patch for wireshark so you can actually decipher those values:\nhttps://gitlab.com/wireshark/wireshark/-/merge_requests/17154\nHope it makes it easier.",
+      "parentUuid": "b911de90_fa4dc320",
+      "revId": "c01119cbc314dc9ba1e7349b41bbe43be9f679ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48bd7448_443d9929",
@@ -72,6 +90,24 @@
       "writtenOn": "2024-09-05T16:11:54Z",
       "side": 1,
       "message": "This should be (1\u003c\u003c25)",
+      "revId": "c01119cbc314dc9ba1e7349b41bbe43be9f679ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b0d910_e1860540",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5695,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-05T20:22:49Z",
+      "side": 1,
+      "message": "This is default value, so as per spec it should stay empty.\nHost would call \"set event mask page 2\" to set this value.",
+      "parentUuid": "48bd7448_443d9929",
       "revId": "c01119cbc314dc9ba1e7349b41bbe43be9f679ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
