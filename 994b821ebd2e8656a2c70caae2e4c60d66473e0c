@@ -1,0 +1,214 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d05885_dc7bbc1b",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T21:11:09Z",
+      "side": 1,
+      "message": "what is the intention for this function ?",
+      "fixSuggestions": [
+        {
+          "fixId": "817e2004_4e5eb55e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 33,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "242eb1e6_77ac57b9",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T21:11:09Z",
+      "side": 1,
+      "message": "could you elaborate on how those parseFoo functions are intended to work?",
+      "fixSuggestions": [
+        {
+          "fixId": "bbe64230_c782c1da",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": "  // Parse the Gmap role from the value.\n  // The value is the value of the attribute.\n  // The len is the length of the value.\n"
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "  // Parse the UGT feature from the value.\n  // The value is the value of the attribute.\n  // The len is the length of the value.\n"
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "  // Read the Gmap role from the attribute.\n"
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "  // Get the Gmap role.\n"
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "  // Read the UGT feature from the attribute.\n"
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "  // Get the UGT feature.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d81dec29_07904efc",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T21:11:09Z",
+      "side": 1,
+      "message": "what is a difference between readRole and getRole?",
+      "fixSuggestions": [
+        {
+          "fixId": "a0114947_e258fcd7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "164cf1f3_a15e02ed",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T21:11:09Z",
+      "side": 1,
+      "message": "what this handle_ stands for?",
+      "fixSuggestions": [
+        {
+          "fixId": "cfff29e3_5f358433",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 49,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t handle_; // handle of the gmap client\n"
+            }
+          ]
+        }
+      ],
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
