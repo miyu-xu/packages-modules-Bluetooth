@@ -52,6 +52,24 @@
       "parentUuid": "69fcf1db_8a840502",
       "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b75881f_c5108335",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3504,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-05T11:08:45Z",
+      "side": 0,
+      "message": "I belive this is not possible to create a broadcast before session. The flow in native is:\n1. Create broadcast is called (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster.cc;drc\u003d9f1832e49ef69135716a70701c8320ec70f4aa2e;l\u003d486)\n2. Session is created (service is informed) https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3139473/12/system/bta/le_audio/broadcaster/broadcaster.cc#654\n3. When state machine is created - an event with broadcast created is sent to service - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster.cc;drc\u003d7d54e84fb0c4718bbbbcc4f4d4d47e89f8a748cb;l\u003d1003\n3.1) When there is no ISO traffic on Unicast, broadcast creation is triggered here: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster.cc;drc\u003d7d54e84fb0c4718bbbbcc4f4d4d47e89f8a748cb;l\u003d659\n3.2) or if there is Unicast traffic, https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster.cc;drc\u003d7d54e84fb0c4718bbbbcc4f4d4d47e89f8a748cb;l\u003d911\n\nIn both ways, always after Session start.",
+      "parentUuid": "4bb829a5_caca89ab",
+      "revId": "aa575a0b2d4e7124b96c3d8eb85d34dcfab0bd3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
