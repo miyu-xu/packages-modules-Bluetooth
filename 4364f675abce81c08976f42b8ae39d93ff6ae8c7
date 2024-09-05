@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f9fcdcb_0baa2313",
+        "filename": "system/gd/os/linux_generic/alarm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-05T16:22:15Z",
+      "side": 1,
+      "message": "I don\u0027t think this needs to be done under the flag. It\u0027s up to each caller to decide on whether to flag or not, and which flag to use (there may be a different use case for non-wake alarm that comes up that shouldn\u0027t be tied to rpa rotation).\n\nSo I\u0027d prefer it to be:\n\nint timerfd_flag \u003d\n          com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation() ? TFD_NONBLOCK : 0;        \nfd_ \u003d TIMERFD_CREATE(isWakeAlarm? ALARM_CLOCK : CLOCK_BOOTTIME, timerfd_flag);",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "067f5be5_6b43dc4b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/os/linux_generic/alarm.cc",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "  clock_type \u003d isWakeAlarm ? ALARM_CLOCK : CLOCK_BOOTTIME;\n  timerfd_flag \u003d TFD_NONBLOCK;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4364f675abce81c08976f42b8ae39d93ff6ae8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
