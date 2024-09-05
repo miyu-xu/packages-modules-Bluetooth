@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "052f53b9_6bde9f2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-09-05T14:36:17Z",
+      "side": 1,
+      "message": "Hi Yuyang, I\u0027ve uploaded a new patchset to address the presubmit failure - caused by Floss-only test cases in `sco_hci_test.cc`.\nThis patch moves over those Floss-only test cases to sco_hci_linux_test.cc with a new test target built in BUILD.gn. The overall test coverage stays the same. Floss-only tests now live where they should\u0027ve belonged. PTAL.",
+      "revId": "e4ffd3f63ba01d846b1a49bebf6d0919a22d89c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
