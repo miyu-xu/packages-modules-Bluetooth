@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dca9ef14_ccac82c2",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-05T16:55:56Z",
+      "side": 1,
+      "message": "thank you, yea, my rebase error :p",
+      "parentUuid": "22c64082_daef6e32",
+      "range": {
+        "startLine": 620,
+        "startChar": 8,
+        "endLine": 623,
+        "endChar": 33
+      },
+      "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7c0a7e2_538bf19c",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "\"full range case\" i mean all bytes for long:\n```\n(byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07, (byte) 0x08,\n```",
       "parentUuid": "fba6f084_4d9bcf10",
+      "range": {
+        "startLine": 77,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 94
+      },
+      "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49cefe66_9ae9bae8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-05T16:55:56Z",
+      "side": 1,
+      "message": "the reason why I put this test value is we\u0027re having this issue with BIS 0xFFFFFFFF. but I\u0027m okay to change this test case and let it be more generic, and we have covered 0xFFFFFFFF in our state machine tests.",
+      "parentUuid": "5b82d031_5919bc35",
       "range": {
         "startLine": 77,
         "startChar": 20,
