@@ -2337,7 +2337,12 @@ public class HeadsetService extends ProfileService {
                     }
                 }
                 if (mVoiceRecognitionStarted) {
-                    if (!stopVoiceRecognitionByHeadset(device)) {
+                    if (Utils.isScoManagedByAudioEnabled()) {
+                        Log.i(
+                                TAG,
+                                "onAudioStateChangedFromStateMachine: isScoManagedByAudio "
+                                        + "enabled, do not stopVoiceRecognitionByHeadset");
+                    } else if (!stopVoiceRecognitionByHeadset(device)) {
                         Log.w(
                                 TAG,
                                 "onAudioStateChangedFromStateMachine: failed to stop voice "
@@ -2345,7 +2350,12 @@ public class HeadsetService extends ProfileService {
                     }
                 }
                 if (mVirtualCallStarted) {
-                    if (!stopScoUsingVirtualVoiceCall()) {
+                    if (Utils.isScoManagedByAudioEnabled()) {
+                        Log.i(
+                                TAG,
+                                "onAudioStateChangedFromStateMachine: isScoManagedByAudio "
+                                        + "enabled, do not stopScoUsingVirtualVoiceCall");
+                    } else if (!stopScoUsingVirtualVoiceCall()) {
                         Log.w(
                                 TAG,
                                 "onAudioStateChangedFromStateMachine: failed to stop virtual "
