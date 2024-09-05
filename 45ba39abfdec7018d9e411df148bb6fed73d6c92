@@ -69,6 +69,30 @@
       },
       "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b82d031_5919bc35",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-05T12:17:37Z",
+      "side": 1,
+      "message": "\"full range case\" i mean all bytes for long:\n```\n(byte) 0x01, (byte) 0x02, (byte) 0x03, (byte) 0x04, (byte) 0x05, (byte) 0x06, (byte) 0x07, (byte) 0x08,\n```",
+      "parentUuid": "fba6f084_4d9bcf10",
+      "range": {
+        "startLine": 77,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 94
+      },
+      "revId": "45ba39abfdec7018d9e411df148bb6fed73d6c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
