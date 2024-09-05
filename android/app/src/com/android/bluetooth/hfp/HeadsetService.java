@@ -2305,6 +2305,11 @@ public class HeadsetService extends ProfileService {
         return !mVirtualCallStarted && shouldCallAudioBeActive();
     }
 
+    public void handleOnAudioStateChangedFromStateMachine(
+            BluetoothDevice device, int fromState, int toState) {
+        mHandler.post(() -> onAudioStateChangedFromStateMachine(device, fromState, toState));
+    }
+
     /**
      * Called from {@link HeadsetStateMachine} in state machine thread when there is a audio
      * connection state change
