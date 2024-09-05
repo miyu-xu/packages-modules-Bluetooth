@@ -16,6 +16,29 @@
       "message": "Gentle ping for reviews, thanks!",
       "revId": "bf4e4bc8d61eb3345ec310e8d9501d032ce6ade5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "566255f1_3273121d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2024-09-05T03:09:13Z",
+      "side": 1,
+      "message": "I found that using `sendBroadcastWithMultiplePermissions` here also does work, and keep the same function call structure. Will upload new patchset.",
+      "range": {
+        "startLine": 1715,
+        "startChar": 17,
+        "endLine": 1715,
+        "endChar": 49
+      },
+      "revId": "bf4e4bc8d61eb3345ec310e8d9501d032ce6ade5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
