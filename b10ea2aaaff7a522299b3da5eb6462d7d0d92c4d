@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2589714d_30e103e4",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T00:25:35Z",
+      "side": 1,
+      "message": "Not all vendor-specific commands will come from your interface.  Maybe just reduce it to a warning?",
+      "parentUuid": "8d5bf46e_bffc27b6",
+      "range": {
+        "startLine": 201,
+        "startChar": 41,
+        "endLine": 201,
+        "endChar": 59
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a7ee899_ac9f4432",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 1
@@ -130,6 +154,30 @@
       "side": 1,
       "message": "I am not sure we can do using whithout `\u003d` here. I would say, the same as `using WaitingFor \u003d CommandQueueEntry::WaitingFor;`.",
       "parentUuid": "9a7ee899_ac9f4432",
+      "range": {
+        "startLine": 237,
+        "startChar": 3,
+        "endLine": 237,
+        "endChar": 45
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77d27bb8_e65e4ae1",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T00:25:35Z",
+      "side": 1,
+      "message": "You\u0027re right.  I like using `WaitingFor \u003d CommandQueueEntry::WaitingFor;` better.",
+      "parentUuid": "d0907382_c3948318",
       "range": {
         "startLine": 237,
         "startChar": 3,
@@ -177,6 +225,30 @@
       "side": 1,
       "message": "Yes probably, I can open a bug dedicated for it.",
       "parentUuid": "67e00fab_14b8a125",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 63
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55b44a07_7cbd893a",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T00:25:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b219de7b_4fad9016",
       "range": {
         "startLine": 239,
         "startChar": 0,
