@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca8fcc91_b39dcf31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2024-09-05T20:29:55Z",
+      "side": 1,
+      "message": "This remains an unsupported path, but is probably still useful to many people.",
+      "revId": "7862ca675e465ef5ec36335d26bc3734579521c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
