@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c01812_7836908b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-05T05:12:50Z",
+      "side": 1,
+      "message": "Is this more readable?\n\nif (enableTestMode \u003d\u003d mTestModeEnabled) {\n  return;\n}\nmTestModeEnabled \u003d enableTestMode;\nmTestModeHandler.removeMessages(0);\nmTestModeHandler.sendEmptyMessageDelayed(0, enableTestMode ? DateUtils.SECOND_IN_MILLIS : 0);",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "71f8bd7d_95b6c993",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 134,
+                "endChar": 0
+              },
+              "replacement": "            if (enableTestMode \u003d\u003d mTestModeEnabled) {\n                return;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 135,
+                "endChar": 0
+              },
+              "replacement": "            mTestModeEnabled \u003d enableTestMode;\n            mTestModeHandler.removeMessages(0);\n            mTestModeHandler.sendEmptyMessageDelayed(0, enableTestMode ? DateUtils.SECOND_IN_MILLIS : 0);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae06bb746645b9430102751f89a0491938842267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
