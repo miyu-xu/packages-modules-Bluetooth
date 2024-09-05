@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3df4c9a2_2051858b",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T01:00:57Z",
+      "side": 1,
+      "message": "Unecessary ?",
+      "range": {
+        "startLine": 342,
+        "startChar": 2,
+        "endLine": 342,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c303b20b_ccde48e2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/osi/src/alarm.cc",
+              "range": {
+                "startLine": 342,
+                "startChar": 0,
+                "endLine": 343,
+                "endChar": 0
+              },
+              "replacement": "  bool mobile_device \u003d is_mobile_device();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b53560536a6b949f4e2caa099ba1d1c87dbb88ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d0b2464_40cf90af",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T01:00:57Z",
+      "side": 1,
+      "message": "```suggestion\n    log::warn(\"wakeup_timer will not fire during CPU suspend. wakeup_enabled\u003d{}\", wakeup_enabled);\n```",
+      "range": {
+        "startLine": 370,
+        "startChar": 0,
+        "endLine": 372,
+        "endChar": 34
+      },
+      "revId": "b53560536a6b949f4e2caa099ba1d1c87dbb88ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420119a7_117ac695",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T01:00:57Z",
+      "side": 1,
+      "message": "```suggestion\n      log::error(\"unable to create wakeup_timer: {}\", strerror(errno));\n```",
+      "range": {
+        "startLine": 374,
+        "startChar": 1,
+        "endLine": 375,
+        "endChar": 33
+      },
+      "revId": "b53560536a6b949f4e2caa099ba1d1c87dbb88ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
