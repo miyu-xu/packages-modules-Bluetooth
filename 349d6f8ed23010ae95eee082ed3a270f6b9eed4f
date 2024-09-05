@@ -40,6 +40,30 @@
       ],
       "revId": "349d6f8ed23010ae95eee082ed3a270f6b9eed4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16ee1e9b_811c1524",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/obex/RequestSetMessageStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-05T00:29:06Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "7157b94e_228df149",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "349d6f8ed23010ae95eee082ed3a270f6b9eed4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
