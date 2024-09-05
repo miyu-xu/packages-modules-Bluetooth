@@ -56,7 +56,7 @@ bool init(bluetooth::common::MessageLoopThread* message_loop);
 void cleanup();
 
 // Set up the codec into BluetoothAudio HAL
-bool setup_codec();
+bool setup_codec(A2dpCodecConfig* a2dp_config);
 
 // Set low latency buffer mode allowed or disallowed
 void set_audio_low_latency_mode_allowed(bool allowed);
