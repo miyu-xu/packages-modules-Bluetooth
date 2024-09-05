@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e933e11e_62f8c501",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-05T17:51:16Z",
+      "side": 1,
+      "message": "I don\u0027t grasp how the HCI, that don\u0027t interpret the command sent can decide of the gravity of the status. Status like, \"feature not supported\", \"too early\", \"too late\", \"role switch pending\", doesn\u0027t sound as error/warning to me, in some contexts. Just information of \"you need to retry\", and this is how it\u0027s supposed to work.\nBTW, I changed to warning.",
+      "parentUuid": "2589714d_30e103e4",
+      "range": {
+        "startLine": 201,
+        "startChar": 41,
+        "endLine": 201,
+        "endChar": 59
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a7ee899_ac9f4432",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 1
