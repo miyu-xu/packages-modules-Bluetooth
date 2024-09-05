@@ -48,6 +48,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9fb63a8_46ebeba4",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-05T22:10:47Z",
+      "side": 1,
+      "message": "`SetGmapOffloaderSupport` will change `is_offloader_support_gmap_` value, and then decides the return value of `IsGmapClientEnabled` function",
+      "parentUuid": "63d05885_dc7bbc1b",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "242eb1e6_77ac57b9",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 5
@@ -133,6 +151,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ec94c4b_78685e20",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-05T22:10:47Z",
+      "side": 1,
+      "message": "those are used to parse the value read from gmap handle",
+      "parentUuid": "242eb1e6_77ac57b9",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d81dec29_07904efc",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 5
@@ -172,6 +208,24 @@
           ]
         }
       ],
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b73176e0_27fa676a",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-05T22:10:47Z",
+      "side": 1,
+      "message": "readRole is to read characteristics, getRole is to get the value of characteristics",
+      "parentUuid": "d81dec29_07904efc",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
