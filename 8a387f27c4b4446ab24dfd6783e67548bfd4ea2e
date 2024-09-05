@@ -16,6 +16,24 @@
       "message": "nit: add `Flag: xxxxx`",
       "revId": "8a387f27c4b4446ab24dfd6783e67548bfd4ea2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c158251_090a0baa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-09-05T02:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19159098_2971f564",
+      "revId": "8a387f27c4b4446ab24dfd6783e67548bfd4ea2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
