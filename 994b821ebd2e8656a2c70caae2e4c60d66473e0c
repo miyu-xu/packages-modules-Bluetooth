@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd8c3f79_3a56da91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-05T22:35:36Z",
+      "side": 1,
+      "message": "Or another design that I can have is to instantiate a gmap client when Characteristics are discovered, and store, parse all those values within GmapClient constructor?",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63d05885_dc7bbc1b",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 5
