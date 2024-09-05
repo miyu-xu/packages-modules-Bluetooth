@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab10ec3e_89f8fdb9",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-05T17:22:34Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by If This Then That:  \n\nChanges in the preceding block may need to be reflected in these files: /system/gd/hci/fuzz/fuzz_hci_layer.h ( https://cs.corp.google.com/piper///depot/system/gd/hci/hci_layer.h?q\u003d\"LINT.IfChange\"+case:yes ) If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 43
+      },
+      "revId": "9a4ad88b4911f9c152e27126d376b091cff0abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
