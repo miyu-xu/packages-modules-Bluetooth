@@ -521,6 +521,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0c3cb53_b67ffec1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1491,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T12:41:51Z",
+      "side": 1,
+      "message": "I added comments inside this test function. Hope this is clear now.",
+      "parentUuid": "de400f69_25ab1bcc",
+      "range": {
+        "startLine": 1491,
+        "startChar": 16,
+        "endLine": 1491,
+        "endChar": 48
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8255c868_052852a2",
@@ -581,6 +605,30 @@
       "writtenOn": "2024-08-27T00:20:04Z",
       "side": 1,
       "message": "For example: This should be a separate test on its own (actually there are 3 tests here):\nDoes the initial descriptor size is empty\nDoes calling add is indeed adding descriptor\nDoes adding twice the same id result in no change in the size",
+      "range": {
+        "startLine": 1509,
+        "startChar": 2,
+        "endLine": 1514,
+        "endChar": 50
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b48e308a_aa8aa7d9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-05T12:41:51Z",
+      "side": 1,
+      "message": "Those are simple tests. I added comments inside, and hope this is fine.",
+      "parentUuid": "43c914d3_2ee9d16c",
       "range": {
         "startLine": 1509,
         "startChar": 2,
