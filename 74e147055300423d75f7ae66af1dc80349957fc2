@@ -166,6 +166,30 @@
       },
       "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f25497_5892cbfa",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2024-09-05T00:53:22Z",
+      "side": 1,
+      "message": "The privacy team has reviewed this behavior, and it is already the case that devices ship with variations of this behavior (either because of vendor patching in the case of some TVs, or because of lack of kernel support for wakeup alarms).\n\nThere is the notion of \"actively using BLE\" in \"actively using BLE for scanning or advertising\", which I suspect is why the current implementation where we don\u0027t rotate if the kernel support is missing is and has been acceptable.\n\nAt the very least, the privacy experts have already been consulted and have approved. If the CDD language isn\u0027t clear, we should also push to clarify, but I don\u0027t feel that ambiguous language should be blocking.\n\nWDYT?",
+      "parentUuid": "a88cf349_22df4b04",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 1
+      },
+      "revId": "74e147055300423d75f7ae66af1dc80349957fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
