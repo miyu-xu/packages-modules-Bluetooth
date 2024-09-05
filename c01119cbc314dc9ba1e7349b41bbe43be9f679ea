@@ -1,0 +1,79 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7f28c3_25c26e94",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-05T16:11:54Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Bug Validation: \"Bug: \u003cbug_id\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages contains the required bug information.\nOwner: ayeaye-team@google.com\n\n\"Bug: \u003cbug_id\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "c01119cbc314dc9ba1e7349b41bbe43be9f679ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b911de90_fa4dc320",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-05T16:11:54Z",
+      "side": 1,
+      "message": "It would have been better if these even masks were prepared using identifiers for spec-defined event masks. I can understand that it would be tedious for existing event masks. But we can atleast add a comment here that this includes encryption change event v2. Or use `(1\u003c\u003c25)` so it is easier to refer to spec.",
+      "fixSuggestions": [
+        {
+          "fixId": "70d7bc8a_ae1283f0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/controller.h",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 204,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(jpawlowski): use identifiers for spec-defined event masks\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c01119cbc314dc9ba1e7349b41bbe43be9f679ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48bd7448_443d9929",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5695,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-05T16:11:54Z",
+      "side": 1,
+      "message": "This should be (1\u003c\u003c25)",
+      "revId": "c01119cbc314dc9ba1e7349b41bbe43be9f679ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
