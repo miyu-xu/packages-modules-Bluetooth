@@ -280,6 +280,24 @@
       ],
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f841c77a_b8d3a604",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-05T22:35:57Z",
+      "side": 1,
+      "message": "gatt handle",
+      "parentUuid": "164cf1f3_a15e02ed",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
