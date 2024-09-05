@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75206ab4_e805b5ba",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-05T00:13:38Z",
+      "side": 0,
+      "message": "nit: just asking, why do we need to remove using this namespace, it seems like it will let all log::XXX to have additional prefix",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "ce649c40e0f8c1b180f30a30f1356e7c74a8e0eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
