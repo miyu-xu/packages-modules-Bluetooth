@@ -583,4 +583,53 @@ public class MetricsLogger {
         }
         return digest.digest(name.getBytes(StandardCharsets.UTF_8));
     }
+
+    /** Logs LE Audio Broadcast audio session. */
+    public void logLeAudioBroadcastAudioSession(
+            int broadcastId,
+            int[] audioQuality,
+            int groupSize,
+            long sessionDurationMs,
+            long latencySessionConfiguredMs,
+            long latencySessionStreamingMs,
+            int sessionStatus) {
+        if (!mInitialized) {
+            return;
+        }
+
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.BROADCAST_AUDIO_SESSION_REPORTED,
+                broadcastId,
+                audioQuality.length,
+                audioQuality,
+                groupSize,
+                sessionDurationMs,
+                latencySessionConfiguredMs,
+                latencySessionStreamingMs,
+                sessionStatus);
+    }
+
+    /** Logs LE Audio Broadcast audio sync. */
+    public void logLeAudioBroadcastAudioSync(
+            BluetoothDevice device,
+            int broadcastId,
+            boolean isLocalBroadcast,
+            long syncDurationMs,
+            long latencyPaSyncMs,
+            long latencyBisSyncMs,
+            int syncStatus) {
+        if (!mInitialized) {
+            return;
+        }
+
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.BROADCAST_AUDIO_SYNC_REPORTED,
+                broadcastId,
+                isLocalBroadcast,
+                syncDurationMs,
+                latencyPaSyncMs,
+                latencyBisSyncMs,
+                syncStatus,
+                getRemoteDeviceInfoProto(device));
+    }
 }
