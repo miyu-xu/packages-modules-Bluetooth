@@ -16,6 +16,24 @@
       "message": "mAdapterLock.writeLock().lock();",
       "revId": "db15ee880bfd13101a0d348983cfdb37e4899b94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0b685c1_110d5fc6",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-06T01:26:41Z",
+      "side": 1,
+      "message": "Done - obsolete comment",
+      "parentUuid": "f22414e3_939aa9e8",
+      "revId": "db15ee880bfd13101a0d348983cfdb37e4899b94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
