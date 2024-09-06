@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd01017a_cb9a046e",
+        "filename": "system/gd/hci/lpp_offload_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-06T21:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b4a52c4_3bd98f45",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33c6b116_fc4cef10",
@@ -55,6 +79,24 @@
           ]
         }
       ],
+      "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12334224_3b324ef3",
+        "filename": "system/main/shim/entry.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-06T21:45:02Z",
+      "side": 1,
+      "message": "Applied lpp_offload_interface.h but we still need to include \"hci/lpp_offload_manager.h\" to get the instance of `hci::LppOffloadManage`.",
+      "parentUuid": "33c6b116_fc4cef10",
       "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -100,6 +142,24 @@
           ]
         }
       ],
+      "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bcdfa3b_e28c696e",
+        "filename": "system/main/shim/entry.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-06T21:45:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf29a6ff_3b51c319",
       "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
