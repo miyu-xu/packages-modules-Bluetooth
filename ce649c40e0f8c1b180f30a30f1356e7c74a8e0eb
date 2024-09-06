@@ -46,6 +46,30 @@
       },
       "revId": "ce649c40e0f8c1b180f30a30f1356e7c74a8e0eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80bb8d8_345b9f66",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T10:23:16Z",
+      "side": 0,
+      "message": "I believe we can mark it as resolved",
+      "parentUuid": "5a7d9eeb_e0132b48",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "ce649c40e0f8c1b180f30a30f1356e7c74a8e0eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
