@@ -70,6 +70,7 @@ cc_defaults {
         // Override global.go that demote the error to a warning
         "-Werror=format",
         "-Werror=reorder-init-list",
+        "-Wno-cast-function-type-mismatch",
     ],
     c_std: "c99",
     cpp_std: "c++20",
