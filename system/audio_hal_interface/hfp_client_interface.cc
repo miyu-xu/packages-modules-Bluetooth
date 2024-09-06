@@ -209,7 +209,7 @@ void HfpClientInterface::Decode::CancelStreamingRequest() {
       return;
     case aidl::hfp::HFP_CTRL_CMD_NONE:
       log::warn("no pending start stream request");
-      return;
+      FALLTHROUGH_INTENDED;
     case aidl::hfp::HFP_CTRL_CMD_SUSPEND:
       log::info("suspends");
       aidl::hfp::HfpDecodingTransport::software_hal_interface->StreamSuspended(
@@ -360,7 +360,7 @@ void HfpClientInterface::Encode::CancelStreamingRequest() {
       return;
     case aidl::hfp::HFP_CTRL_CMD_NONE:
       log::warn("no pending start stream request");
-      return;
+      FALLTHROUGH_INTENDED;
     case aidl::hfp::HFP_CTRL_CMD_SUSPEND:
       log::info("suspends");
       aidl::hfp::HfpEncodingTransport::software_hal_interface->StreamSuspended(
