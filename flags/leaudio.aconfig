@@ -417,3 +417,10 @@ flag {
     description: "API to manage broadcast primary group"
     bug: "375422410"
 }
+
+flag {
+    name: "leaudio_unicast_dynamic_coordinated_sets"
+    namespace: "bluetooth"
+    description: "Enable CSIS Dynamic Coordinated Sets support"
+    bug: "357472821"
+}
