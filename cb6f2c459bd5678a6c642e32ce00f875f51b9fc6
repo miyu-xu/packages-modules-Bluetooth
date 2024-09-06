@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17dd23ef_0c8e94c5",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T15:42:17Z",
+      "side": 0,
+      "message": "This one looks different than the rest.  Should I take a closer look, or was it an oversight?",
+      "range": {
+        "startLine": 625,
+        "startChar": 0,
+        "endLine": 629,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "922c46b1_8fd1fd6c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 625,
+                "startChar": 0,
+                "endLine": 626,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"WARNING: GAP Conn Indication for Unexpected Bd Addr...Disconnecting.\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cb6f2c459bd5678a6c642e32ce00f875f51b9fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
