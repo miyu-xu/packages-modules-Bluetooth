@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b4a52c4_3bd98f45",
+        "filename": "system/gd/hci/lpp_offload_manager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T04:08:20Z",
+      "side": 1,
+      "message": "This part is the part that isn\u0027t compatible with the rest of the stack, so I wouldn\u0027t put it in the interface.  The rest can be in the interface, for mocking and the shim.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33c6b116_fc4cef10",
+        "filename": "system/main/shim/entry.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T04:08:20Z",
+      "side": 1,
+      "message": "Same thing here with lpp_offload_interface.h .  system/main/shim/entry.cc and entry.h should be the only files that need to be touched in system/main.  The rest of the shim isn\u0027t needed.  It was a temporary thing.",
+      "fixSuggestions": [
+        {
+          "fixId": "d5b49ed2_1d9192bd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/entry.cc",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": "#include \"hci/lpp_offload_interface.h\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf29a6ff_3b51c319",
+        "filename": "system/main/shim/entry.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T04:08:20Z",
+      "side": 1,
+      "message": "I would use an interface, like Hci and Controller here.\nLppOfloadInterface",
+      "fixSuggestions": [
+        {
+          "fixId": "29b67af6_b4a37a8d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/entry.h",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "class LppOffloadInterface;\n"
+            },
+            {
+              "path": "system/main/shim/entry.h",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "hci::LppOffloadInterface* GetLppOffloadManager();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "58923dc4931d2598b0669cd0ba72fcc807fa2062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
