@@ -303,6 +303,24 @@
       "parentUuid": "eeed8274_e725cb53",
       "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f7582f_6b3a0d14",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T16:46:25Z",
+      "side": 1,
+      "message": "Is this the local controller random address ?\n\nIf so, please make this clear by adding `local_` or make it clear that this is the case.",
+      "parentUuid": "408b5687_c1e01058",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
