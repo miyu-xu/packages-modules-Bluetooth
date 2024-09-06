@@ -20,6 +20,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc5f1255_404983ee",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T06:57:18Z",
+      "side": 1,
+      "message": "I understand that here decision is taken based on the SystemProperty and if HostStack supports GMAP, is that correct?",
+      "fixSuggestions": [
+        {
+          "fixId": "16dcbbd6_1567a66e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gmap_client_api.h",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "  static bool IsGmapClientEnabled(bool host_stack_support_gmap);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63d05885_dc7bbc1b",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 5
@@ -77,6 +112,24 @@
       "side": 1,
       "message": "`SetGmapOffloaderSupport` will change `is_offloader_support_gmap_` value, and then decides the return value of `IsGmapClientEnabled` function",
       "parentUuid": "63d05885_dc7bbc1b",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81443469_e36d9aa0",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T06:57:18Z",
+      "side": 1,
+      "message": "Maybe the intention is that with this API the Host stack wants to say to GmapClient if GMAP is supported, is that correct?\n\nAnd this could be supported either with offloader or SW path - so maybe it should be `SetGmapHostSupport()` ?",
+      "parentUuid": "f9fb63a8_46ebeba4",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -180,6 +233,24 @@
       "side": 1,
       "message": "those are used to parse the value read from gmap handle",
       "parentUuid": "242eb1e6_77ac57b9",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ad9682d_daea2994",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T06:57:18Z",
+      "side": 1,
+      "message": "I think I\u0027m missing something to understand on how that API should work, \nWe should wait for the implementation which will prove API is working.\n\n\nActually in my head I had following idea, let me share.\n1. We could have API which allows to set characteristic Uuids and corresponding handles\n\ne.g. bool setCharacteristicInformations(address, \u003cuuid, handle\u003e);\n\nThis would be called in client.cc od OnServiceSearchComplete\n\n2. Then we could have API that can handle data read responses\n\ne.g. bool handleCharacteristicValueHandle(address, handle, len, value, is_notification);\n\n3. then API which verifies that GMAP is ready, which means that all characteristics are read, and then all the needed getters for different values.\n\n\nAnyways, for sure we need to have and address as a context either in each API or we can have different GmapClient instances per address (then we need some instance getter or constructor).",
+      "parentUuid": "8ec94c4b_78685e20",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -296,6 +367,24 @@
       "side": 1,
       "message": "gatt handle",
       "parentUuid": "164cf1f3_a15e02ed",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79b375f1_dd6941db",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T06:57:18Z",
+      "side": 1,
+      "message": "like the service handle on the remote device pointing the GMAP service?",
+      "parentUuid": "f841c77a_b8d3a604",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
