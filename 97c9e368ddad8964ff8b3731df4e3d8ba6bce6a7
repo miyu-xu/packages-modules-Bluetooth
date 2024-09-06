@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cd9b058_77177f8c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-06T21:39:13Z",
+      "side": 1,
+      "message": "If the device is already connectable, should this still set false?",
+      "revId": "97c9e368ddad8964ff8b3731df4e3d8ba6bce6a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
