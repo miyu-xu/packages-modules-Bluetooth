@@ -687,6 +687,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad4186ed_0377961a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T10:08:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45a188a8_6df59e87",
+      "range": {
+        "startLine": 1509,
+        "startChar": 2,
+        "endLine": 1514,
+        "endChar": 50
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "312ef98b_b1bd768b",
@@ -748,6 +772,30 @@
       "side": 1,
       "message": "I would prefer to not have any API for now. It is way easier to add then than to remove them",
       "parentUuid": "6c277e60_0de06a9f",
+      "range": {
+        "startLine": 1130,
+        "startChar": 0,
+        "endLine": 1137,
+        "endChar": 142
+      },
+      "revId": "e5e2ef7402e855c099e00b845230056069925ed5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3814a6a_105a18db",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-06T10:08:18Z",
+      "side": 1,
+      "message": "Ah you are not sure that UI will make use of this ?\nI do not expect this to be removed.",
+      "parentUuid": "06d09610_b8781aaa",
       "range": {
         "startLine": 1130,
         "startChar": 0,
