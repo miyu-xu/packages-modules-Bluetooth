@@ -214,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f4c450b_2a4be467",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-06T18:41:23Z",
+      "side": 1,
+      "message": "@Tyler, what do you think? I could change it if you still think getMeasurementMethod is better.",
+      "parentUuid": "42f27913_ecc9aca8",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 55
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8de52f8_35508c1b",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
         "patchSetId": 10
