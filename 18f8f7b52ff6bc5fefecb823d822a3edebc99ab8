@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30900096_40738998",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T22:33:31Z",
+      "side": 1,
+      "message": "thought i got this...could be bad merge",
+      "parentUuid": "784e5891_114a66a9",
+      "range": {
+        "startLine": 331,
+        "startChar": 56,
+        "endLine": 331,
+        "endChar": 62
+      },
+      "revId": "18f8f7b52ff6bc5fefecb823d822a3edebc99ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f7d69fe_7096abc9",
         "filename": "system/stack/gap/gap_conn.cc",
         "patchSetId": 17
@@ -55,6 +79,30 @@
       "writtenOn": "2024-09-06T22:25:31Z",
       "side": 1,
       "message": "```suggestion\n      if (!stack::l2cap::get_interface().L2CA_DisconnectLECocReq(l2cap_cid)) {\n        log::warn(\"Unable to request L2CAP disconnect le_coc peer:{} cid:{}\", bd_addr, l2cap_cid);\n      } else {\n      if (!stack::l2cap::get_interface().L2CA_DisconnectReq(l2cap_cid)) {\n        log::warn(\"Unable to request L2CAP disconnect peer:{} cid:{}\", bd_addr, l2cap_cid);\n      }\n```",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 7
+      },
+      "revId": "18f8f7b52ff6bc5fefecb823d822a3edebc99ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b345bbe_5e3497cb",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T22:33:31Z",
+      "side": 1,
+      "message": "that is a good one...i was wondering why the original was like that",
+      "parentUuid": "5f7d69fe_7096abc9",
       "range": {
         "startLine": 630,
         "startChar": 0,
