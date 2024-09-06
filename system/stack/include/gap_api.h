@@ -21,8 +21,6 @@
 
 #include <cstdint>
 
-#include "l2c_api.h"
-#include "l2cdefs.h"
 #include "profiles_api.h"
 #include "stack/include/bt_hdr.h"
 #include "types/bt_transport.h"
