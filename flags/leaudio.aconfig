@@ -344,3 +344,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_unicast_dynamic_coordinated_sets"
+    namespace: "bluetooth"
+    description: "Enable Dynamic Coordinated Sets feature support"
+    bug: "357472821"
+}
