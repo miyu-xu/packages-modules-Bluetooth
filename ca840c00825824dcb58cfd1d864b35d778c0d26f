@@ -22,6 +22,30 @@
       },
       "revId": "ca840c00825824dcb58cfd1d864b35d778c0d26f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11d59fc_6bcc6acc",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T16:26:31Z",
+      "side": 1,
+      "message": "nice...copied -n- pasted !\n\nsorry",
+      "parentUuid": "46c20fa5_09a7456b",
+      "range": {
+        "startLine": 634,
+        "startChar": 41,
+        "endLine": 634,
+        "endChar": 64
+      },
+      "revId": "ca840c00825824dcb58cfd1d864b35d778c0d26f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
