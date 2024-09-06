@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c20fa5_09a7456b",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T16:24:58Z",
+      "side": 1,
+      "message": "```suggestion\n      if (!stack::l2cap::get_interface().L2CA_DisconnectReq(l2cap_cid)) {\n```",
+      "range": {
+        "startLine": 634,
+        "startChar": 41,
+        "endLine": 634,
+        "endChar": 64
+      },
+      "revId": "ca840c00825824dcb58cfd1d864b35d778c0d26f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
