@@ -16,6 +16,29 @@
       "message": "Per the offline discussion with @ahujapalash@google.com, we can directly use the proto enums. Update to include this and also some sync logging part.",
       "revId": "e5a2575b5c298a5ffe73d32fe3a34624e07d166c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94b13449_f47b5c49",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2396,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-06T11:40:38Z",
+      "side": 1,
+      "message": "Not needed as it is inside prepareInitialReceiveStateForGatt().\nThe same in tests below except the last one.",
+      "range": {
+        "startLine": 2390,
+        "startChar": 8,
+        "endLine": 2396,
+        "endChar": 22
+      },
+      "revId": "e5a2575b5c298a5ffe73d32fe3a34624e07d166c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
