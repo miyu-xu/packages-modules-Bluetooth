@@ -877,6 +877,7 @@ private:
     log::debug("{}", device->addr);
 
     if (device->is_gatt_service_valid) {
+      EnableGattNotifications(device);
       NotifyCsisDeviceValidAndStoreIfNeeded(device);
     } else {
       BTA_GATTC_ServiceSearchRequest(device->conn_id, kCsisServiceUuid);
@@ -1676,7 +1677,7 @@ private:
     }
   }
 
-  void DeregisterNotifications(std::shared_ptr<CsisDevice> device) {
+  void DisableGattNotifications(std::shared_ptr<CsisDevice> device) {
     device->ForEachCsisInstance([&](const std::shared_ptr<CsisInstance>& csis_inst) {
       DisableGattNotification(device->conn_id, device->addr,
                               csis_inst->svc_data.lock_handle.val_hdl);
@@ -1687,10 +1688,21 @@ private:
     });
   }
 
+  void EnableGattNotifications(std::shared_ptr<CsisDevice> device) {
+    device->ForEachCsisInstance([&](const std::shared_ptr<CsisInstance>& csis_inst) {
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.lock_handle.val_hdl);
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.sirk_handle.val_hdl);
+      EnableGattNotification(device->conn_id, device->addr,
+                             csis_inst->svc_data.size_handle.val_hdl);
+    });
+  }
+
   void DoDisconnectCleanUp(std::shared_ptr<CsisDevice> device) {
     log::info("{}", device->addr);
 
-    DeregisterNotifications(device);
+    DisableGattNotifications(device);
 
     if (device->IsConnected()) {
       BtaGattQueue::Clean(device->conn_id);
@@ -2121,7 +2133,7 @@ private:
 
     /* Invalidate service discovery results */
     BtaGattQueue::Clean(device->conn_id);
-    DeregisterNotifications(device);
+    DisableGattNotifications(device);
     device->ClearSvcData();
     BTA_GATTC_ServiceSearchRequest(device->conn_id, kCsisServiceUuid);
   }
@@ -2169,15 +2181,8 @@ private:
 
   void SubscribeForNotifications(uint16_t conn_id, const RawAddress& address, uint16_t value_handle,
                                  uint16_t ccc_handle) {
-    if (value_handle != GAP_INVALID_HANDLE) {
-      tGATT_STATUS register_status =
-              BTA_GATTC_RegisterForNotifications(gatt_if_, address, value_handle);
-      log::debug("BTA_GATTC_RegisterForNotifications, status=0x{:02x}, value=0x{:x}, ccc=0x{:04x}",
-                 register_status, value_handle, ccc_handle);
-
-      if (register_status != GATT_SUCCESS) {
-        return;
-      }
+    if (!EnableGattNotification(conn_id, address, value_handle)) {
+      return;
     }
 
     std::vector<uint8_t> value(2);
@@ -2194,12 +2199,25 @@ private:
             nullptr);
   }
 
+  bool EnableGattNotification(uint16_t conn_id, const RawAddress& address, uint16_t value_handle) {
+    if (value_handle != GAP_INVALID_HANDLE) {
+      tGATT_STATUS register_status =
+              BTA_GATTC_RegisterForNotifications(gatt_if_, address, value_handle);
+      log::debug("BTA_GATTC_RegisterForNotifications, status=0x{:02x}, value=0x{:x}",
+                 register_status, value_handle);
+
+      return register_status == GATT_SUCCESS;
+    }
+
+    return false;
+  }
+
   void DisableGattNotification(uint16_t conn_id, const RawAddress& address, uint16_t value_handle) {
     if (value_handle != GAP_INVALID_HANDLE) {
       tGATT_STATUS register_status =
               BTA_GATTC_DeregisterForNotifications(gatt_if_, address, value_handle);
-      log::debug("DisableGattNotification, status=0x{:02x}, value_handle=0x{:04x}", register_status,
-                 value_handle);
+      log::debug("BTA_GATTC_DeregisterForNotifications, status=0x{:02x}, value_handle=0x{:04x}",
+                 register_status, value_handle);
 
       if (register_status != GATT_SUCCESS) {
         return;
