@@ -40,6 +40,30 @@
       ],
       "revId": "cb6f2c459bd5678a6c642e32ce00f875f51b9fc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad972e2f_a49d94f3",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T15:47:37Z",
+      "side": 0,
+      "message": "no that is a good catch.  some merge failure somewhere (manually be me of course)",
+      "parentUuid": "17dd23ef_0c8e94c5",
+      "range": {
+        "startLine": 625,
+        "startChar": 0,
+        "endLine": 629,
+        "endChar": 12
+      },
+      "revId": "cb6f2c459bd5678a6c642e32ce00f875f51b9fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
