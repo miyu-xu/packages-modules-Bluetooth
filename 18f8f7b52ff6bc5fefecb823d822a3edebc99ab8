@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "784e5891_114a66a9",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T22:25:31Z",
+      "side": 1,
+      "message": "remove le_coc",
+      "range": {
+        "startLine": 331,
+        "startChar": 56,
+        "endLine": 331,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7f96916d_35bbe8f4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 331,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": "          log::warn(\"Unable to request L2CAP disconnect peer:{} cid:{}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "18f8f7b52ff6bc5fefecb823d822a3edebc99ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7d69fe_7096abc9",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T22:25:31Z",
+      "side": 1,
+      "message": "```suggestion\n      if (!stack::l2cap::get_interface().L2CA_DisconnectLECocReq(l2cap_cid)) {\n        log::warn(\"Unable to request L2CAP disconnect le_coc peer:{} cid:{}\", bd_addr, l2cap_cid);\n      } else {\n      if (!stack::l2cap::get_interface().L2CA_DisconnectReq(l2cap_cid)) {\n        log::warn(\"Unable to request L2CAP disconnect peer:{} cid:{}\", bd_addr, l2cap_cid);\n      }\n```",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 7
+      },
+      "revId": "18f8f7b52ff6bc5fefecb823d822a3edebc99ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
