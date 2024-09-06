@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72d0846e_5dbf156d",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T15:49:40Z",
+      "side": 1,
+      "message": "```suggestion\n  if (!stack::l2cap::get_interface().L2CA_RegisterWithSecurity(\n```",
+      "revId": "d6c24de5c2bf9dc385ed65e826bce6de63862faa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
