@@ -77,7 +77,12 @@ cc_defaults {
         // Override global.go that demote the error to a warning
         "-Werror=format",
         "-Werror=reorder-init-list",
+<<<<<<< PATCH SET (8dc22f Disable -Wcast-function-type-mismatch)
+        "-Wno-cast-function-type-mismatch",
+||||||| BASE
+=======
         "-Wthread-safety",
+>>>>>>> BASE      (0af7da Merge "Revert "Run unit test with sources"" into main)
     ],
     c_std: "c99",
     cpp_std: "c++20",
