@@ -40,6 +40,30 @@
       ],
       "revId": "adba7facea28e9c85f2211530da62896914d751b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10e9d87f_0d227a1c",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T14:48:59Z",
+      "side": 1,
+      "message": "Fix applied.\n\nMust have been some kind of `vim`-ism that snuck in from my editor",
+      "parentUuid": "1fd6d9cd_205fde30",
+      "range": {
+        "startLine": 195,
+        "startChar": 7,
+        "endLine": 195,
+        "endChar": 13
+      },
+      "revId": "adba7facea28e9c85f2211530da62896914d751b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
