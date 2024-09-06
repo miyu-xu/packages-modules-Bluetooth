@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09190381_957a2d37",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T22:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30900096_40738998",
+      "range": {
+        "startLine": 331,
+        "startChar": 56,
+        "endLine": 331,
+        "endChar": 62
+      },
+      "revId": "18f8f7b52ff6bc5fefecb823d822a3edebc99ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f7d69fe_7096abc9",
@@ -103,6 +127,30 @@
       "side": 1,
       "message": "that is a good one...i was wondering why the original was like that",
       "parentUuid": "5f7d69fe_7096abc9",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 7
+      },
+      "revId": "18f8f7b52ff6bc5fefecb823d822a3edebc99ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75fa7f77_ab088464",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T22:50:03Z",
+      "side": 1,
+      "message": "actually this doesn\u0027t work; the outer conditional is for LE and is used to disconnect over classic.",
+      "parentUuid": "5b345bbe_5e3497cb",
       "range": {
         "startLine": 630,
         "startChar": 0,
