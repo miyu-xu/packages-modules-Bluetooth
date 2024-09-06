@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c6ccb7_9be20cd2",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3177,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-06T17:05:09Z",
+      "side": 1,
+      "message": "Good hint! I tried pairing, the value of key_size was filled correctly, so we should be good.",
+      "parentUuid": "607ad39b_2064227c",
+      "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1665ac9_1e38a138",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-05T23:40:38Z",
       "side": 1,
       "message": "We can get the key size from the device property `BT_PROPERTY_REMOTE_MAX_SESSION_KEY_SIZE` for the BR/EDR link.\n\nFor the LE link, the key size remains constant and can be found in the security record (`tBTM_SEC_DEV_REC.sec_rec.ble_keys.key_size`).",
+      "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2a1aa6_b32235a5",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3967,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-06T17:05:09Z",
+      "side": 1,
+      "message": "for LE devices, we would read the key_size, see diff between 3 and 4 patchset and solved comment above.\n\nSo only thing remaining is Classic connection. I can read this property and just pass it, but can we trust that controller won\u0027t lower the key size during key refresh ?",
+      "parentUuid": "d1665ac9_1e38a138",
       "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
