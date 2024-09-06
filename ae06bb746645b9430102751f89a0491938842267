@@ -50,6 +50,30 @@
       ],
       "revId": "ae06bb746645b9430102751f89a0491938842267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a454cff_098b3132",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-09-06T01:15:17Z",
+      "side": 1,
+      "message": "I just double checked and I saw `sendEmptyMessage` and `sendEmptyMessageDelayed` is the same implementation so indeed that is more readable. Done, thank you.\n\nI updated the `GattService` as well to simplify for future reading.",
+      "parentUuid": "e3c01812_7836908b",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 13
+      },
+      "revId": "ae06bb746645b9430102751f89a0491938842267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
