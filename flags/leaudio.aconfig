@@ -427,3 +427,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_unicast_dynamic_coordinated_sets"
+    namespace: "bluetooth"
+    description: "Enable CSIS Dynamic Coordinated Sets support"
+    bug: "357472821"
+}
