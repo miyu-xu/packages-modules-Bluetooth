@@ -33,6 +33,24 @@
       "message": "Hi @sarveshkalwit@google.com and @laikatherine@google.com,\n\nI\u0027m making a change to make the scanner not use async. I\u0027m modifying topshim but not BTIF so probably won\u0027t affect your tasks, just FYI.",
       "revId": "57d7a4abd29b24c707ea81879171a0154868cce9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "512020ad_ed4c4fb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-09-06T20:38:03Z",
+      "side": 1,
+      "message": "Ack. Thanks for letting us know",
+      "parentUuid": "3850c50d_66458de3",
+      "revId": "57d7a4abd29b24c707ea81879171a0154868cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
