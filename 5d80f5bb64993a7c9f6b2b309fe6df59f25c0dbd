@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "036d16c8_43c3c016",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-09-06T07:37:04Z",
+      "side": 1,
+      "message": "LGTM! Thanks for continuing refactor work!",
+      "revId": "5d80f5bb64993a7c9f6b2b309fe6df59f25c0dbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
