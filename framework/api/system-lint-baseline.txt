@@ -53,6 +53,22 @@ RequiresPermission: android.bluetooth.BluetoothDevice#setAlias(String):
     Method 'setAlias' documentation mentions permissions already declared by @RequiresPermission
 
 
+UnflaggedApi: android.bluetooth.BluetoothAdapter#ACTION_AUTO_ON_STATE_CHANGED:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothAdapter.ACTION_AUTO_ON_STATE_CHANGED
+UnflaggedApi: android.bluetooth.BluetoothAdapter#AUTO_ON_STATE_DISABLED:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothAdapter.AUTO_ON_STATE_DISABLED
+UnflaggedApi: android.bluetooth.BluetoothAdapter#AUTO_ON_STATE_ENABLED:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothAdapter.AUTO_ON_STATE_ENABLED
+UnflaggedApi: android.bluetooth.BluetoothAdapter#EXTRA_AUTO_ON_STATE:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothAdapter.EXTRA_AUTO_ON_STATE
+UnflaggedApi: android.bluetooth.BluetoothAdapter#isAutoOnEnabled():
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothAdapter.isAutoOnEnabled()
+UnflaggedApi: android.bluetooth.BluetoothAdapter#isAutoOnSupported():
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothAdapter.isAutoOnSupported()
+UnflaggedApi: android.bluetooth.BluetoothAdapter#setAutoOnEnabled(boolean):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothAdapter.setAutoOnEnabled(boolean)
+UnflaggedApi: android.bluetooth.BluetoothAssignedNumbers.OrganizationId:
+    Changes to modifiers, from 'public' to 'public static' must be flagged with @FlaggedApi: class android.bluetooth.BluetoothAssignedNumbers.OrganizationId
 UnflaggedApi: android.bluetooth.BluetoothHapClient#PRESET_INDEX_UNAVAILABLE:
     New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothHapClient.PRESET_INDEX_UNAVAILABLE
 UnflaggedApi: android.bluetooth.BluetoothHapClient#getActivePresetIndex(android.bluetooth.BluetoothDevice):
