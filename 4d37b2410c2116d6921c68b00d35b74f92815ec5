@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40535899_d7b06859",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T15:51:10Z",
+      "side": 1,
+      "message": "remove bluetooth?\n```suggestion\n      p_cb-\u003erole \u003d stack::l2cap::get_interface().L2CA_GetBleConnRole(bd_addr);\n```",
+      "range": {
+        "startLine": 170,
+        "startChar": 19,
+        "endLine": 170,
+        "endChar": 28
+      },
+      "revId": "4d37b2410c2116d6921c68b00d35b74f92815ec5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
