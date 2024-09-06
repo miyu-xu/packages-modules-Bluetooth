@@ -64,6 +64,47 @@
       },
       "revId": "12af51b4633f6d300b5c5ca8279cf33f62c5e14b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e510add7_a9247b76",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T16:53:42Z",
+      "side": 1,
+      "message": "And this one?",
+      "range": {
+        "startLine": 635,
+        "startChar": 54,
+        "endLine": 635,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b078e8de_b3efe27c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 635,
+                "startChar": 0,
+                "endLine": 636,
+                "endChar": 0
+              },
+              "replacement": "        log::warn(\"Unable to request L2CAP disconnect peer:{} cid:{}\", bd_addr, l2cap_cid);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "12af51b4633f6d300b5c5ca8279cf33f62c5e14b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
