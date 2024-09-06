@@ -34,6 +34,24 @@
       "parentUuid": "d62b53a5_71b885b4",
       "revId": "2b1ea6a7cace71aae46f2048d6cf33a49ab5e211",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c12f4c3_af77cbf7",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-06T16:42:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2534601c_d480120b",
+      "revId": "2b1ea6a7cace71aae46f2048d6cf33a49ab5e211",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
