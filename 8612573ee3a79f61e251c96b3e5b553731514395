@@ -34,6 +34,24 @@
       "parentUuid": "48457f46_45e91816",
       "revId": "8612573ee3a79f61e251c96b3e5b553731514395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ef9594_736b8f87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-06T18:22:11Z",
+      "side": 1,
+      "message": "@zhidou@google.com, This pattern is still unused. \n\nhttps://source.corp.google.com/search?q\u003daconfig_declarations%5C%20%7B%20f:Android.bp%20f:packages%2Fmodules\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\n\nI am more and more thinking that we don\u0027t want to split the flag into 2 different library as there is nobody doing it and we already have flags into the old library.\n\nI plan to rebase this CL to the already existing aconfig declaration in com.android.bluetooth as this is the most common way.",
+      "parentUuid": "b5e45885_6383cbe0",
+      "revId": "8612573ee3a79f61e251c96b3e5b553731514395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
