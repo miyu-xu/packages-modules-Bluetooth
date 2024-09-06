@@ -1468,6 +1468,56 @@ TEST_F(CsisClientTest, test_database_out_of_sync) {
   TestAppUnregister();
 }
 
+TEST_F(CsisClientTest, test_enable_gatt_notifications) {
+  auto test_address = GetTestAddress(0);
+  auto conn_id = 1;
+
+  SetSampleCapIncludedDatabaseCsis(conn_id, 1);
+
+  TestAppRegister();
+
+  TestConnect(test_address);
+
+  /* GATT discovery expected */
+  EXPECT_CALL(gatt_interface, ServiceSearchRequest(conn_id, _));
+
+  InjectConnectedEvent(test_address, conn_id);
+
+  /* Enable GATT notification: SIRK */
+  EXPECT_CALL(gatt_interface, RegisterForNotifications(gatt_if, test_address, 0x0021)).Times(1);
+  /* Enable GATT notification: Size */
+  EXPECT_CALL(gatt_interface, RegisterForNotifications(gatt_if, test_address, 0x0024)).Times(1);
+  /* Enable GATT notification: Lock */
+  EXPECT_CALL(gatt_interface, RegisterForNotifications(gatt_if, test_address, 0x0027)).Times(1);
+
+  GetSearchCompleteEvent(conn_id);
+
+  InjectDisconnectedEvent(test_address, conn_id);
+
+  Mock::VerifyAndClearExpectations(&gatt_interface);
+  Mock::VerifyAndClearExpectations(callbacks.get());
+
+  /* Reconnect */
+  TestConnect(test_address);
+
+  /* GATT discovery not expected */
+  EXPECT_CALL(gatt_interface, ServiceSearchRequest(conn_id, _)).Times(0);
+
+  /* Enable GATT notification: SIRK */
+  EXPECT_CALL(gatt_interface, RegisterForNotifications(gatt_if, test_address, 0x0021)).Times(1);
+  /* Enable GATT notification: Size */
+  EXPECT_CALL(gatt_interface, RegisterForNotifications(gatt_if, test_address, 0x0024)).Times(1);
+  /* Enable GATT notification: Lock */
+  EXPECT_CALL(gatt_interface, RegisterForNotifications(gatt_if, test_address, 0x0027)).Times(1);
+
+  InjectConnectedEvent(test_address, conn_id);
+
+  Mock::VerifyAndClearExpectations(&gatt_interface);
+  Mock::VerifyAndClearExpectations(callbacks.get());
+
+  TestAppUnregister();
+}
+
 }  // namespace
 }  // namespace internal
 }  // namespace csis
