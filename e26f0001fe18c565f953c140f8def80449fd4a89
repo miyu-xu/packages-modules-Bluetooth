@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d2ccd8d_32a87ecc",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "should I just undo the addition of Disconnecting?",
+      "parentUuid": "2a4c5ae6_3c4e0785",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 3
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b2f6602_28d8fc70",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 2
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7d4481f_2f384fa0",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b2f6602_28d8fc70",
+      "range": {
+        "startLine": 1057,
+        "startChar": 12,
+        "endLine": 1057,
+        "endChar": 69
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7eb6aaa_ef33385f",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-08-05T23:22:32Z",
       "side": 1,
       "message": "Can this not remain as `else if (mPrevState !\u003d null) { /* ... */ }`? I think the `Connected` and `AudioOn` states are captured by that criteria, given that you changed the above criteria to ensure we pass from (Connected | AudioOn) -\u003e Disconnecting -\u003e Disconnected (here).",
+      "range": {
+        "startLine": 1095,
+        "startChar": 14,
+        "endLine": 1095,
+        "endChar": 96
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee9553ce_dcea778f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "yes, I think I combined two and consolidated. null should cover all cases. Fixed.",
+      "parentUuid": "e7eb6aaa_ef33385f",
       "range": {
         "startLine": 1095,
         "startChar": 14,
@@ -111,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd2b7091_a0a10075",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1872,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Added a transitionTo(mDisconnected) inside the enter() function for the Disconnecting.",
+      "parentUuid": "1984ffe4_6293ec71",
+      "range": {
+        "startLine": 1870,
+        "startChar": 20,
+        "endLine": 1872,
+        "endChar": 22
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b79c45f1_68ddc749",
@@ -124,6 +220,30 @@
       "writtenOn": "2024-08-05T23:22:32Z",
       "side": 1,
       "message": "Same as above, I might add some more context:\n```\ndebug(\"Enter Disconnecting: from state\u003d\" + mPreviousState + \", message\u003d\" + getCurrentMessage().what);\n```",
+      "range": {
+        "startLine": 1978,
+        "startChar": 12,
+        "endLine": 1978,
+        "endChar": 70
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a49989_91d1876d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1978,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b79c45f1_68ddc749",
       "range": {
         "startLine": 1978,
         "startChar": 12,
@@ -157,6 +277,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9533b1bb_e434efc9",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "got it, thanks for the explanation",
+      "parentUuid": "186adf6b_806316b9",
+      "range": {
+        "startLine": 1985,
+        "startChar": 16,
+        "endLine": 1988,
+        "endChar": 70
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8f3ce0b_0fc21d51",
@@ -170,6 +314,30 @@
       "writtenOn": "2024-08-05T23:22:32Z",
       "side": 1,
       "message": "FWIW, I think these state machine objects are meant to be reused. There\u0027s not a single call that I can find to individually remove a state machine object from `HeadsetClientService`\u0027s `mStateMachineMap`! So you definitely do want to defer messages like connect. We may want to defer more too.\n\nOr, we need to clean up that pattern and not reuse state machines.\n\nA comment might be nice with that detail. That detail would also be good in the object level docstring.",
+      "range": {
+        "startLine": 2003,
+        "startChar": 16,
+        "endLine": 2008,
+        "endChar": 26
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0ac99e_638ec697",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2008,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "added, let me know if it needs to be changed further",
+      "parentUuid": "e8f3ce0b_0fc21d51",
       "range": {
         "startLine": 2003,
         "startChar": 16,
@@ -226,6 +394,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50206739_b39f1951",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "766f0533_0c99b7b1",
+      "range": {
+        "startLine": 2024,
+        "startChar": 28,
+        "endLine": 2024,
+        "endChar": 90
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08f01d5e_b2846bd7",
@@ -249,6 +441,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9b01651_c086d9cf",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2126,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Added a transitionTo(mDisconnected) inside the enter() function for the Disconnecting.",
+      "parentUuid": "08f01d5e_b2846bd7",
+      "range": {
+        "startLine": 2126,
+        "startChar": 24,
+        "endLine": 2126,
+        "endChar": 53
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15e6489b_4fe743a5",
@@ -262,6 +478,30 @@
       "writtenOn": "2024-08-05T23:22:32Z",
       "side": 1,
       "message": "This test is really testing implementation details more than it is testing the expected changes via the public interface(s).\n\nWe may want to leverage this test more, as an outgoing disconnect request with a SCO active should also go through your code path.",
+      "range": {
+        "startLine": 1670,
+        "startChar": 4,
+        "endLine": 1681,
+        "endChar": 63
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b97d561_a2741895",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1681,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15e6489b_4fe743a5",
       "range": {
         "startLine": 1670,
         "startChar": 4,
@@ -318,6 +558,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bb7ee0f_ac8a3e1b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1723,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "baceacde_aa836178",
+      "range": {
+        "startLine": 1722,
+        "startChar": 8,
+        "endLine": 1723,
+        "endChar": 89
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77aeb139_0275e285",
@@ -341,6 +605,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8592b7_409454b8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1727,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77aeb139_0275e285",
+      "range": {
+        "startLine": 1725,
+        "startChar": 8,
+        "endLine": 1727,
+        "endChar": 87
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c98f644_aec96233",
@@ -354,6 +642,30 @@
       "writtenOn": "2024-08-05T23:22:32Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"Messsage\" -- should it be \"Message\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"Messsage\" -- should it be \"Message\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1803,
+        "startChar": 63,
+        "endLine": 1803,
+        "endChar": 71
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe9e3e9_e2484dd4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1803,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-06T19:27:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c98f644_aec96233",
       "range": {
         "startLine": 1803,
         "startChar": 63,
