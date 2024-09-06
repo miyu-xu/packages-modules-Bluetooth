@@ -141,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16eb0f3_b2b39da5",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T03:55:12Z",
+      "side": 1,
+      "message": "Most of those things should be able to be avoided.  Avoiding them is much easier than the error handling and retrying.  Surfacing unsuccessful commands makes it clear what\u0027s going wrong.",
+      "parentUuid": "e933e11e_62f8c501",
+      "range": {
+        "startLine": 201,
+        "startChar": 41,
+        "endLine": 201,
+        "endChar": 59
+      },
+      "revId": "b10ea2aaaff7a522299b3da5eb6462d7d0d92c4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a7ee899_ac9f4432",

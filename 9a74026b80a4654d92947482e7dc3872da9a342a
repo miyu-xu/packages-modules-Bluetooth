@@ -40,6 +40,30 @@
       ],
       "revId": "9a74026b80a4654d92947482e7dc3872da9a342a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b93ce4f_41129e38",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T03:55:12Z",
+      "side": 1,
+      "message": "That\u0027s correct, 0 doesn\u0027t exist.\n\nDoesn\u0027t this have to be \n```suggestion\n    bool is_vendor_specific \u003d (static_cast\u003cint\u003e(op_code) \u0026 (0x3f \u003c\u003c 10) \u003d\u003d (0x3f \u003c\u003c 10));\n```",
+      "parentUuid": "27b73e9b_57ce0703",
+      "range": {
+        "startLine": 234,
+        "startChar": 9,
+        "endLine": 234,
+        "endChar": 27
+      },
+      "revId": "9a74026b80a4654d92947482e7dc3872da9a342a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
