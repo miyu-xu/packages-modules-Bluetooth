@@ -46,6 +46,54 @@
       },
       "revId": "9c96b0a06b3ee4349d510b278bf53acdb2d29903",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26aa185b_7749298b",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 3231678
+      },
+      "writtenOn": "2024-09-06T02:40:19Z",
+      "side": 0,
+      "message": "I find that  label,  type, cr_ipid are parsed already. so wr",
+      "parentUuid": "01ed4ed8_dad0889e",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 742,
+        "endChar": 0
+      },
+      "revId": "9c96b0a06b3ee4349d510b278bf53acdb2d29903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aade9c0_e4bfe3c0",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 3231678
+      },
+      "writtenOn": "2024-09-06T02:40:19Z",
+      "side": 0,
+      "message": "I found that the label, type, and cr_ipid parameters are all correctly assigned in the input arguments of the function。     \nwe can delete the parse code",
+      "parentUuid": "01ed4ed8_dad0889e",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 742,
+        "endChar": 0
+      },
+      "revId": "9c96b0a06b3ee4349d510b278bf53acdb2d29903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
