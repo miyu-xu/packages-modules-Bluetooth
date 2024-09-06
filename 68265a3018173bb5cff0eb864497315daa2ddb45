@@ -39,6 +39,24 @@
       "message": "There is one thing I want to confirm : as far as I can tell mAdapter can be null when executing on mHandler, except a couple cases of messages that are removed from the handler when the adapter is removed.\n\nWhat is the basis for removing the mAdapter !\u003d null checks ?",
       "revId": "68265a3018173bb5cff0eb864497315daa2ddb45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e96939c_283ebe65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-06T17:22:41Z",
+      "side": 1,
+      "message": "If the state is not STATE_OFF, then it is impossible for the mAdapter to be null.\n\nThis is by construction of the code in this file.\n\nAnd in STATE_OFF, there is a couple place in which we know for sure it is not yet null (because coming from BLE_TURNING_OFF) or place we know for sure it is null (because not yet binded).\n\nThe removing of mAdapter !\u003d null is in fact removing a double check",
+      "parentUuid": "4215e756_03c1751b",
+      "revId": "68265a3018173bb5cff0eb864497315daa2ddb45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
