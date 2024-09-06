@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ec6374_84faca18",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-09-06T11:48:41Z",
+      "side": 1,
+      "message": "I will add separate test for this scenario",
+      "parentUuid": "6b87d0ee_b4212ff3",
+      "range": {
+        "startLine": 299,
+        "startChar": 8,
+        "endLine": 299,
+        "endChar": 121
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e2e41ad_d485c4f6",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "710ecd85_2bf1bea6",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-09-06T11:48:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e2e41ad_d485c4f6",
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2c0b8a5_f01e4301",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-09-04T09:28:33Z",
       "side": 1,
       "message": "It does not need to be global to be used accross closures, I think",
+      "range": {
+        "startLine": 321,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 44
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4655079_63eabd22",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-09-06T11:48:41Z",
+      "side": 1,
+      "message": "in other functions it\u0027s not visible",
+      "parentUuid": "f2c0b8a5_f01e4301",
       "range": {
         "startLine": 321,
         "startChar": 8,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "139d37ad_6b7e66d0",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-09-06T11:48:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18d19014_19ed8eae",
+      "range": {
+        "startLine": 324,
+        "startChar": 14,
+        "endLine": 324,
+        "endChar": 38
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb815877_d50424bc",
@@ -104,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51ff5478_d94a0ca9",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-09-06T11:48:41Z",
+      "side": 1,
+      "message": "I will do this in the other tests as well",
+      "parentUuid": "cb815877_d50424bc",
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "155f6596_63a7a94b",
@@ -117,6 +225,30 @@
       "writtenOn": "2024-09-04T09:28:33Z",
       "side": 1,
       "message": "nit, paraphrasing the check",
+      "range": {
+        "startLine": 390,
+        "startChar": 37,
+        "endLine": 390,
+        "endChar": 70
+      },
+      "revId": "5d89244b9c91f0afd6fb44759add5b33ae1892e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02b6349_6b2d8bc1",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-09-06T11:48:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "155f6596_63a7a94b",
       "range": {
         "startLine": 390,
         "startChar": 37,
