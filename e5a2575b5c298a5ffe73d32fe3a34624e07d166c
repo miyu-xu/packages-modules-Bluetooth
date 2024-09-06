@@ -20,6 +20,58 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9e483ad_6b15b23d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-09-06T16:13:11Z",
+      "side": 1,
+      "message": "Could we ensure to log the broadcastId w",
+      "revId": "e5a2575b5c298a5ffe73d32fe3a34624e07d166c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62662143_209bbe4f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-09-06T16:13:11Z",
+      "side": 1,
+      "message": "Can we ensure to log the broadcastId when `isLocalBrodcast \u003d true`?",
+      "fixSuggestions": [
+        {
+          "fixId": "509ed7f5_55341a4f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 625,
+                "startChar": 0,
+                "endLine": 625,
+                "endChar": 0
+              },
+              "replacement": "        int broadcastId \u003d isLocalBroadcast ? broadcastId : 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e5a2575b5c298a5ffe73d32fe3a34624e07d166c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94b13449_f47b5c49",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
         "patchSetId": 4
