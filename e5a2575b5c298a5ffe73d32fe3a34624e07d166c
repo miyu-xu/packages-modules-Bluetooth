@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "473941d3_273e10e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-06T01:55:00Z",
+      "side": 1,
+      "message": "Per the offline discussion with @ahujapalash@google.com, we can directly use the proto enums. Update to include this and also some sync logging part.",
+      "revId": "e5a2575b5c298a5ffe73d32fe3a34624e07d166c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
