@@ -915,6 +915,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "463d54ad_2ab5c54a",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-06T18:39:36Z",
+      "side": 1,
+      "message": "@Willam do you still have concern with this?",
+      "parentUuid": "f82c7a85_2d0513d2",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
