@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10fc06b7_a60f7f1c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-06T02:42:08Z",
+      "side": 1,
+      "message": "\u003e `lib.rs`\n\nAgree that we shouldn\u0027t put heavy logic in `lib.rs` (this case seems acceptable to me though). I have no strong opinion to move this to `lib.rs` now, but I still prefer not to store GATT state in `bluetooth.rs`. I guess we can just query the GATT state from `bluetooth_gatt`. And for socket manager you\u0027ll need to get it from `lib.rs`\n\n\u003e what we actually want is \"If any service/profile/connection is dropped, potentially drop the GATT connection\". Does that seem more accurate?\n\nYes. Consider an LE mouse or LE audio device. If they disconnect only the main profiles but not ACL for some reason (perhaps because BAS was connected from our end, Smart Audio Source Switch, etc), then the connection would never be dropped. Therefore verifying the status on every profile connection changed seems preferable to me.",
+      "parentUuid": "6c9b4fa0_c809ca27",
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "117f6f52_aaf9a6ec",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
