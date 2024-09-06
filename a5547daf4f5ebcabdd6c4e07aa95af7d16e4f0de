@@ -302,6 +302,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7101aa8_b7fab5d1",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-06T16:59:57Z",
+      "side": 1,
+      "message": "Since we\u0027d like to validate the full path in the UPF, the whole change is anyways behind the flag with low risk.\n\n@rlukasz@google.com We\u0027re moving forwarding to merge this first, and let\u0027s plan a separate patch if this improvement is preferred. Marking this resolved to unblock.",
+      "parentUuid": "47060a23_11f908c3",
+      "revId": "a5547daf4f5ebcabdd6c4e07aa95af7d16e4f0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1c5c6ad_b28b9696",
