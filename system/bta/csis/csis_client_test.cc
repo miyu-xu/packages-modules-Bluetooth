@@ -128,10 +128,6 @@ private:
     builder.AddService(0x0001, 0x0003, Uuid::From16Bit(0x1800), true);
     builder.AddCharacteristic(0x0002, 0x0003, Uuid::From16Bit(0x2a00), GATT_CHAR_PROP_BIT_READ);
     if (csis) {
-      builder.AddService(0x0005, 0x0009, bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE),
-                         true);
-      builder.AddIncludedService(0x0006, kCsisServiceUuid, 0x0010, 0x0030);
-
       builder.AddService(0x0010, 0x0030, kCsisServiceUuid, true);
       builder.AddCharacteristic(0x0020, 0x0021, kCsisSirkUuid,
                                 GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
@@ -152,6 +148,10 @@ private:
 
       builder.AddDescriptor(0x0022, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
     }
+
+    builder.AddService(0x0005, 0x0009, bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE), true);
+    builder.AddIncludedService(0x0006, kCsisServiceUuid, 0x0010, 0x0030);
+
     builder.AddService(0x0090, 0x0093, Uuid::From16Bit(UUID_SERVCLASS_GATT_SERVER), true);
     builder.AddCharacteristic(0x0091, 0x0092, Uuid::From16Bit(GATT_UUID_GATT_SRV_CHGD),
                               GATT_CHAR_PROP_BIT_NOTIFY);
