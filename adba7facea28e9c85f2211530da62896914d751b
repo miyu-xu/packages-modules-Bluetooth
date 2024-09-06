@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd6d9cd_205fde30",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T05:11:50Z",
+      "side": 1,
+      "message": "remote seems correct :)",
+      "range": {
+        "startLine": 195,
+        "startChar": 7,
+        "endLine": 195,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "15b7a527_79b6a9d7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 195,
+                "startChar": 0,
+                "endLine": 196,
+                "endChar": 0
+              },
+              "replacement": "    /* remote addr is not specified and is not a server -\u003e bad */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "adba7facea28e9c85f2211530da62896914d751b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
