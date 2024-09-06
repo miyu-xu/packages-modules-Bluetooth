@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675bd3c6_01390727",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-06T16:52:01Z",
+      "side": 1,
+      "message": "Sorry, while you\u0027re here, do you want to correct this?",
+      "range": {
+        "startLine": 331,
+        "startChar": 56,
+        "endLine": 331,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d953d7bb_9cf2ab08",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 331,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": "          log::warn(\"Unable to request L2CAP disconnect peer:{} cid:{}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "12af51b4633f6d300b5c5ca8279cf33f62c5e14b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
