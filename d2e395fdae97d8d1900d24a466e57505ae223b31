@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f35479f7_c52c7459",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-06T21:05:31Z",
+      "side": 1,
+      "message": "put the flag as if it was a normal change",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "d2e395fdae97d8d1900d24a466e57505ae223b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
