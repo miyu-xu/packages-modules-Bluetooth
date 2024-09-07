@@ -16,6 +16,52 @@
       "message": "Make a small update in the Test file to resolve the presubmit failures.\nNeed to set one extra flag.",
       "revId": "fb400ba50ae5bf16bc6ea9a158412c704c9999d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa7150d1_ce74685d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T05:03:04Z",
+      "side": 1,
+      "message": "This is not in the correct order and contradict with the formatter use in this project.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "fb400ba50ae5bf16bc6ea9a158412c704c9999d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4e5bb0e_e5c060e8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T05:03:04Z",
+      "side": 1,
+      "message": "same there should be a space here in between the lines",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 35
+      },
+      "revId": "fb400ba50ae5bf16bc6ea9a158412c704c9999d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
