@@ -957,6 +957,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dd509b3_4319ec95",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T04:19:44Z",
+      "side": 1,
+      "message": "I am in between because\n\nOn the first hand:\n* I honestly still think that we should prefer java time unit as this is what is being asked by the guidelines\ngo/android-api-guidelines#time-types  \n\\\nWhich mean uwb should be updated too  in order to let the wrapper easy.\nDoing the opposite is leveling down the code.\n\nOn the other hand:\n* But that may be because I don\u0027t understand entirely what you are doing.\n\\\nLooking at system/gd/hci/distance_measurement_manager.cc, this value is computed \nwith `steady_clock::now().time_since_epoch()`, which indicate it\u0027s a epoch time value. (note that this return a duration, which align with my initial comment that we should return a duration java type).  \nWhat is the epoch of the steady clock ? I searched online and didn\u0027t found a optimal answer. Worst, Some stackoverflow comments mention that this cannot be shared across process, so I am more and more perplex and worried about the data we are returning. What will this value be used for ?\n\\\nTyler, you are mentioning `SystemClock.elapsedRealTimeNanos()`, but the computation is different: `steady_clock::now().time_since_epoch()`. Which one is correct ? are they the same ? if they are, why are we using chrono instead of the  SystemClock ?\n\n\nBut I am not api reviewer so I let @girardier@google.com give the final say.",
+      "parentUuid": "463d54ad_2ab5c54a",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
