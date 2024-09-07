@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d506dc7_6ada41b4",
+        "filename": "service/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T04:25:47Z",
+      "side": 1,
+      "message": "I am surprised about this.\nWhy it is `.impl` here and not blank ? how did you find it ?",
+      "range": {
+        "startLine": 141,
+        "startChar": 29,
+        "endLine": 141,
+        "endChar": 33
+      },
+      "revId": "1e83ff01f964e71d19dd36a6245e91debdcd0dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
