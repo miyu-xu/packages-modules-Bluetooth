@@ -46,6 +46,30 @@
       },
       "revId": "1e83ff01f964e71d19dd36a6245e91debdcd0dc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f453516_2d0983d1",
+        "filename": "service/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T04:41:51Z",
+      "side": 1,
+      "message": "Thanks for the explanation. I am surprised but thanks ^^\n\nI understand that .impl dependenci also allow to depend on hidden API, but only when explicitly asked. I thought that this wasn\u0027t the case of the service-bluetooth, I guess I was wrong.",
+      "parentUuid": "dc82f53b_f1b6fddc",
+      "range": {
+        "startLine": 141,
+        "startChar": 29,
+        "endLine": 141,
+        "endChar": 33
+      },
+      "revId": "1e83ff01f964e71d19dd36a6245e91debdcd0dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
