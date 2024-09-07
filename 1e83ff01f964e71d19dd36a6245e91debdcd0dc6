@@ -22,6 +22,30 @@
       },
       "revId": "1e83ff01f964e71d19dd36a6245e91debdcd0dc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc82f53b_f1b6fddc",
+        "filename": "service/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1962375
+      },
+      "writtenOn": "2024-09-07T04:39:33Z",
+      "side": 1,
+      "message": "`framework-bluetooth` is a `java_sdk_library`, and depending on `java_sdk_library` as `libs` actually means depending on one of the submodules the `java_sdk_library` generates, which is determined by some calculus internal to Soong. This change is part of the large scale changes to remove the calculus. \n\nI\u0027ve printed out what the calculus resolves to, and found out that `\"framework-bluetooth\"` here resolves to `\"framework-bluetooth.impl\"`.",
+      "parentUuid": "6d506dc7_6ada41b4",
+      "range": {
+        "startLine": 141,
+        "startChar": 29,
+        "endLine": 141,
+        "endChar": 33
+      },
+      "revId": "1e83ff01f964e71d19dd36a6245e91debdcd0dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
