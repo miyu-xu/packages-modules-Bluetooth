@@ -385,6 +385,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f256d6_d9c80d59",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T00:26:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f5d19990_9c020ba5",
+      "range": {
+        "startLine": 502,
+        "startChar": 29,
+        "endLine": 502,
+        "endChar": 33
+      },
+      "revId": "41fd8b84575714f405ca2201bd54d7d49619815d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba1bc90f_061aa4e9",

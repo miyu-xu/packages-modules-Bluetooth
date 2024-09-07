@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e810427d_64f4cd70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T00:26:00Z",
+      "side": 1,
+      "message": "We may need to revisit this in the futur as some partner are mentioning MICS, which is based on AICS too, and I would be sad to have to duplicate the code.\n\nBut since this is not established yet, I think this can be merged.\n\nNote that we start implementing it in Bumble to be able to test it.",
+      "revId": "7a88ddf437357f2fc50ea9a32a4da88e94937ff5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
