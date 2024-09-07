@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da591282_1537e6c7",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T00:22:44Z",
+      "side": 1,
+      "message": "handleDeviceExtInputGainPropsChanged",
+      "range": {
+        "startLine": 1187,
+        "startChar": 22,
+        "endLine": 1187,
+        "endChar": 60
+      },
+      "revId": "c3e37c6599a13e5da28885f8d0b166e5d4f37732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb88bcf_68506ea4",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T00:22:44Z",
+      "side": 1,
+      "message": "handleDeviceExtInputGainPropsChanged",
+      "range": {
+        "startLine": 1195,
+        "startChar": 22,
+        "endLine": 1195,
+        "endChar": 60
+      },
+      "revId": "c3e37c6599a13e5da28885f8d0b166e5d4f37732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c675ed_f3dd01ba",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1198,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-07T00:22:44Z",
+      "side": 1,
+      "message": "Nit, I don\u0027t know if you want or not, but this code looks very repetitive.\nOne option could be to use a common \"apply\" method that handle the null check...\n\nIt still feel a bit bloated to me but I don\u0027t see how to make it nice for now\n\n```suggestion\n\n    boolean applyDescriptorOp/*not a good name */(VolumeControlInputDescriptor descriptor, Consumer\u003cVolumeControlInputDescriptor\u003e consumer) {\n        if (descriptor \u003d\u003d null) {\n            Log.e(TAG, \"null descriptor\");\n            return false;\n        }\n        return consumer.accept(descriptor);\n\n    }\n\n    void handleDeviceExtInputStateChanged(\n            BluetoothDevice device, int id, int gainValue, int gainMode, boolean mute) {\n        Log.d(\n                TAG,\n                (\"handleDeviceExtInputStateChanged, device: \" + device)\n                        + (\" inputId: \" + id)\n                        + (\" gainValue: \" + gainValue)\n                        + (\" gainMode: \" + gainMode)\n                        + (\" mute: \" + mute));\n\n        if (!applyDescriptorOp(mAudioInputs.get(device), input -\u003e input.setState(id, gainValue, gainMode, mute))) {\n            Log.e(\n                    TAG,\n                    (\"handleDeviceExtInputStateChanged, error while setting inputId: \" + id)\n                            + (\"for: \" + device));\n        }\n    }\n\n    void handleDeviceExtInputStatusChanged(BluetoothDevice device, int id, int status) {\n        Log.d(TAG, \" device: \" + device + \" inputId: \" + id + \" status: \" + status);\n\n        /*\n         * As per ACIS 1.0. Status\n         * Inactive: 0x00\n         * Active: 0x01\n         */\n        if (status \u003e 1 || status \u003c 0) {\n            Log.e(\n                    TAG,\n                    (\"handleDeviceExtInputStatusChanged, invalid status: \" + status)\n                            + (\" for: \" + device));\n            return;\n        }\n\n        boolean active \u003d (status \u003d\u003d 0x01);\n\n        if (!applyDescriptorOp(mAudioInputs.get(device), input -\u003e input.setActive(id, active))) {\n            Log.e(\n                    TAG,\n                    (\"handleDeviceExtInputStatusChanged, error while setting inputId: \" + id)\n                            + (\"for: \" + device));\n        }\n    }\n\n    void handleDeviceExtInputTypeChanged(BluetoothDevice device, int id, int type) {\n        Log.d(\n                TAG,\n                (\"handleDeviceExtInputTypeChanged, device: \" + device)\n                        + (\" inputId: \" + id)\n                        + (\" type: \" + type));\n\n        if (!applyDescriptorOp(mAudioInputs.get(device), input -\u003e input.setType(id, type))) {\n            Log.e(\n                    TAG,\n                    (\"handleDeviceExtInputTypeChanged, error while setting inputId: \" + id)\n                            + (\"for: \" + device));\n        }\n    }\n\n    void handleDeviceExtInputDescriptionChanged(\n            BluetoothDevice device, int id, String description) {\n        Log.d(\n                TAG,\n                (\"handleDeviceExtInputDescriptionChanged, device: \" + device)\n                        + (\" inputId: \" + id)\n                        + (\" description: \" + description));\n\n        if (!applyDescriptorOp(mAudioInputs.get(device), input -\u003e input.setDescription(id, description))) {\n            Log.e(\n                    TAG,\n                    (\"handleDeviceExtInputDescriptionChanged, error while setting inputId: \" + id)\n                            + (\"for: \" + device));\n        }\n    }\n\n    void handleDeviceExtInputGainPropsChanged(\n            BluetoothDevice device, int id, int unit, int min, int max) {\n        Log.d(\n                TAG,\n                (\"handleDeviceExtInputGainPropsChanged, device: \" + device)\n                        + (\" inputId: \" + id)\n                        + (\" unit: \" + unit + \" min\" + min + \" max:\" + max));\n\n        if (!applyDescriptorOp(mAudioInputs.get(device), input -\u003e input.setPropSettings(id, unit, min, max))) {\n            Log.e(\n                    TAG,\n                    (\"handleDeviceExtInputGainPropsChanged, error while setting inputId: \" + id)\n                            + (\"for: \" + device));\n        }\n    }\n```",
+      "range": {
+        "startLine": 1069,
+        "startChar": 4,
+        "endLine": 1198,
+        "endChar": 5
+      },
+      "revId": "c3e37c6599a13e5da28885f8d0b166e5d4f37732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
