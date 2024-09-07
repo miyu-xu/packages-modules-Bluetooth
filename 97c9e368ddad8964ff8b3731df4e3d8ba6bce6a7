@@ -16,6 +16,24 @@
       "message": "If the device is already connectable, should this still set false?",
       "revId": "97c9e368ddad8964ff8b3731df4e3d8ba6bce6a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6803737_94f2c2d0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-07T03:02:33Z",
+      "side": 1,
+      "message": "I don\u0027t understand. Do you mean already \"not\" connectable? `set_connectable_internal` would handle it properly. We just need to make sure it\u0027s off.",
+      "parentUuid": "6cd9b058_77177f8c",
+      "revId": "97c9e368ddad8964ff8b3731df4e3d8ba6bce6a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
