@@ -34,6 +34,24 @@
       "parentUuid": "6cd9b058_77177f8c",
       "revId": "97c9e368ddad8964ff8b3731df4e3d8ba6bce6a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd66da3f_0a047fe8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-07T04:23:58Z",
+      "side": 1,
+      "message": "OK. I got it. You mean the set_connectable_internal(false) in disable().",
+      "parentUuid": "a6803737_94f2c2d0",
+      "revId": "97c9e368ddad8964ff8b3731df4e3d8ba6bce6a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
