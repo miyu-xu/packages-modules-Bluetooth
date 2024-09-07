@@ -81,6 +81,24 @@
       "parentUuid": "4215e756_03c1751b",
       "revId": "68265a3018173bb5cff0eb864497315daa2ddb45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6825824_04aa25d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-07T07:45:30Z",
+      "side": 1,
+      "message": "Thanks for the confirmqtion; I just failed to find the common point",
+      "parentUuid": "3e96939c_283ebe65",
+      "revId": "68265a3018173bb5cff0eb864497315daa2ddb45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
