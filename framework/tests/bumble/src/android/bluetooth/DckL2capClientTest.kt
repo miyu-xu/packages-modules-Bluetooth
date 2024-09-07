@@ -145,7 +145,7 @@ public class DckL2capClientTest() : Closeable {
         val bluetoothSocket = createSocket(dckSpsm, remoteDevice)
         runBlocking {
             val waitFlow = flow { emit(waitConnection(dckSpsm, remoteDevice)) }
-            scope.launch { bluetoothSocket.connect() }
+            bluetoothSocket.connect()
             connectionResponse = waitFlow.first()
         }
         assertThat(connectionResponse).isNotNull()
