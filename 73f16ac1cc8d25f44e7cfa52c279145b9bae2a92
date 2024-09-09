@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91db94f8_e1648a94",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "This would need to be `STATE_DISCONNECTING`, no?",
+      "range": {
+        "startLine": 1099,
+        "startChar": 24,
+        "endLine": 1099,
+        "endChar": 57
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774ef045_bd5e0a1d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "You should only add the timeout message if you plan to issue a disconnect call to the native stack.",
+      "range": {
+        "startLine": 1988,
+        "startChar": 12,
+        "endLine": 1988,
+        "endChar": 80
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc952838_1ac21f74",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2000,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "Remember, you only need to issue a disconnect call to native if the message that got us here was a user driven `DISCONNECT` message. If it was a stack event carrying a DISCONNECTED state, then we can pass on through to Disconnected.\n\nOtherwise, as this stands, all incoming disconnections will yield timeouts.\n\ni.e.:\n```\nif (getCurrentMessage().what \u003d\u003d DISCONNECT) {\n    debug(\"Disconnecting: issue disconnect call to native\");\n    if (!mNativeInterface.disconnect(dev)) {\n        error(\"Disconnecting: disconnectNative failed for \" + dev);\n    }\n    sendMessageDelayed(DISCONNECTING_TIMEOUT, DISCONNECTING_TIMEOUT_MS);\n} else {\n    transitionTo(mDisconnected);\n}\n```",
+      "range": {
+        "startLine": 2000,
+        "startChar": 12,
+        "endLine": 2000,
+        "endChar": 13
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feb9574f_335ba22d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2002,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "Each state machine only has one device, so you can use `mCurrentDevice` directly.\n\nI do realize as well that the code checks the device _all over the place_, when it really doesn\u0027t need to. A refactor for another day though 😊\n\nProof:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java;l\u003d1179-1189;drc\u003de78627769e1d85e23686488338225bdc288f36d3",
+      "range": {
+        "startLine": 2001,
+        "startChar": 12,
+        "endLine": 2002,
+        "endChar": 64
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "630a2ef9_3fcdff65",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2004,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "To follow your convention, add `Disconnecting:`",
+      "range": {
+        "startLine": 2004,
+        "startChar": 22,
+        "endLine": 2004,
+        "endChar": 23
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ceaca4_72c38c52",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2042,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "To follow your convention, add `Disconnecting:`",
+      "range": {
+        "startLine": 2042,
+        "startChar": 34,
+        "endLine": 2042,
+        "endChar": 35
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a47957_09cf2426",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-09T18:39:49Z",
+      "side": 1,
+      "message": "To follow your convention, add `Disconnecting:`",
+      "range": {
+        "startLine": 2063,
+        "startChar": 27,
+        "endLine": 2063,
+        "endChar": 28
+      },
+      "revId": "73f16ac1cc8d25f44e7cfa52c279145b9bae2a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
