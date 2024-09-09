@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e61466_97834ac3",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-09T15:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da591282_1537e6c7",
+      "range": {
+        "startLine": 1187,
+        "startChar": 22,
+        "endLine": 1187,
+        "endChar": 60
+      },
+      "revId": "c3e37c6599a13e5da28885f8d0b166e5d4f37732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fb88bcf_68506ea4",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-07T00:22:44Z",
       "side": 1,
       "message": "handleDeviceExtInputGainPropsChanged",
+      "range": {
+        "startLine": 1195,
+        "startChar": 22,
+        "endLine": 1195,
+        "endChar": 60
+      },
+      "revId": "c3e37c6599a13e5da28885f8d0b166e5d4f37732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "799baf28_506d0ac1",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-09T15:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fb88bcf_68506ea4",
       "range": {
         "startLine": 1195,
         "startChar": 22,
