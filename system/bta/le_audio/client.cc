@@ -114,7 +114,7 @@ using bluetooth::le_audio::types::LeAudioContextType;
 using bluetooth::le_audio::types::PublishedAudioCapabilities;
 using bluetooth::le_audio::utils::GetAudioContextsFromSinkMetadata;
 using bluetooth::le_audio::utils::GetAudioContextsFromSourceMetadata;
-
+using bluetooth::gmap::RolesBitMask;
 using namespace bluetooth;
 
 /* Enums */
@@ -1992,7 +1992,11 @@ public:
     } else if (hdl == leAudioDevice->tmap_role_hdl_) {
       bluetooth::le_audio::client_parser::tmap::ParseTmapRole(leAudioDevice->tmap_role_, len,
                                                               value);
-    } else {
+    } else if (leAudioDevice->gmap_client_!=nullptr && hdl == LeAudioDevice->gmap_client_->getRoleHandle()){
+      leAudioDevice->gmap_client_->parseGmapRole(len, value);
+    } else if (leAudioDevice->gmap_client_!=nullptr && hdl == LeAudioDevice->gmap_client_->getUGTFeatureHandle()){
+      leAudioDevice->gmap_client_->parseUGTFeature(len, value);
+    }else {
       log::error("Unknown attribute read: 0x{:x}", hdl);
     }
   }
@@ -2686,6 +2690,7 @@ public:
     const gatt::Service* pac_svc = nullptr;
     const gatt::Service* ase_svc = nullptr;
     const gatt::Service* tmas_svc = nullptr;
+    const gatt::Service* gmap_svc = nullptr;
 
     std::vector<uint16_t> csis_primary_handles;
     uint16_t cas_csis_included_handle = 0;
@@ -2724,6 +2729,10 @@ public:
         log::info("Found Telephony and Media Audio service, handle: 0x{:04x}, device: {}",
                   tmp.handle, leAudioDevice->address_);
         tmas_svc = &tmp;
+      } else if (tmp.uuid == bluetooth::le_audio::uuid::kGmapServiceUuid) {
+        log::info("Found Gaming Audio service, handle: 0x{:04x}, device: {}", tmp.handle,
+                  leAudioDevice->address_);
+        gmap_svc = &tmp;
       }
     }
 
@@ -2972,6 +2981,29 @@ public:
           log::info(
                   "Found Telephony and Media Profile characteristic, handle: 0x{:04x}, device: {}",
                   leAudioDevice->tmap_role_hdl_, leAudioDevice->address_);
+        }
+      }
+    }
+
+    if(gmap_svc) {
+      leAudioDevice->gmap_client_ = std::make_unique<GmapClient(LeAudioDevice.address_);
+      for (const gatt::Characteristic& charac : gmap_svc->characteristics) {
+        if (charac.uuid ==
+            bluetooth::le_audio::uuid::kGmapRoleCharacteristicUuid) {
+          uint16_t handle = charac.value_handle;
+          leAudioDevice.gmap_client_->setRoleHandle(handle);
+          BtaGattQueue::ReadCharacteristic(conn_id, handle,
+                                           OnGattReadRspStatic, NULL);
+          log::info("Found Gmap Role characteristic, handle: 0x{:04x}, device: {}",
+                   leAudioDevice->gmap_client_->getRoleHandle(), leAudioDevice->address_);
+        }
+        if(charac.uuid == bluetooth::le_audio::uuid::kGmapUgtFeatureCharacteristicUuid) {
+          uint16_t handle = charac.value_handle;
+          leAudioDevice->gmap_client_->setUGTFeatureHandle(handle);
+          BtaGattQueue::ReadCharacteristic(conn_id, handle,
+                                           OnGattReadRspStatic, NULL);
+          log::info("Found Gmap UGT Feature characteristic, handle: 0x{:04x}, device: {}",
+                   leAudioDevice->gmap_client_->getUGTFeatureHandle(), leAudioDevice->address_);
         }
       }
     }
