@@ -1009,6 +1009,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef21783_d0a8e047",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-09T18:46:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0189b14b_c95ba0de",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83707bef_a8bd6db6",
