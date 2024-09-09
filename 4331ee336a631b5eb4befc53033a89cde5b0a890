@@ -22,6 +22,30 @@
       },
       "revId": "4331ee336a631b5eb4befc53033a89cde5b0a890",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3996cc6a_b3e74be8",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1488,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-09T23:42:26Z",
+      "side": 0,
+      "message": "Seems you are missing https://r.android.com/3160576",
+      "parentUuid": "22302237_9ea4102b",
+      "range": {
+        "startLine": 1488,
+        "startChar": 8,
+        "endLine": 1488,
+        "endChar": 40
+      },
+      "revId": "4331ee336a631b5eb4befc53033a89cde5b0a890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
