@@ -321,6 +321,24 @@
       "parentUuid": "408b5687_c1e01058",
       "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "411a7886_af377cfc",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-09-09T17:58:29Z",
+      "side": 1,
+      "message": "Hi @cmanton@google.com, updated accordingly.",
+      "parentUuid": "c4f7582f_6b3a0d14",
+      "revId": "eb9243ab60dfaa51e537a71d729e855687d70b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
