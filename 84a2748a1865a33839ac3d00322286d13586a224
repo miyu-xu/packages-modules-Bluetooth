@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84590f42_3a993ca8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-09T19:00:57Z",
+      "side": 1,
+      "message": "Nit:\n\n```\nFlags: com.android.bluetooth.flags.get_address_type_api\n```",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "84a2748a1865a33839ac3d00322286d13586a224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a65b81dc_5fd1266f",
+        "filename": "framework/api/lint-baseline.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-09T19:00:57Z",
+      "side": 1,
+      "message": "Theses doesn\u0027t looks like they are coming from this flag :/\n\nI would update this file to remove unrelated lint exception",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 99
+      },
+      "revId": "84a2748a1865a33839ac3d00322286d13586a224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
