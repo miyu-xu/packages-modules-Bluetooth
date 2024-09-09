@@ -138,6 +138,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8536b3a0_e0f45e06",
+        "filename": "system/stack/hid/hidd_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 3605356
+      },
+      "writtenOn": "2024-09-09T18:12:43Z",
+      "side": 1,
+      "message": "Okay I see. \n\nBut I wonder why these values are not higher. Is this a limitation imposed by the hardware or some part of the spec? Or is there another way to have bigger attributes than 400 bytes, or the 600 bytes service record limit respectively?\n\nIf there\u0027s no way we can support larger attributes and thus descriptors, we probably should also update the current 2048 byte check to something realistic both here and in the Java API.",
+      "parentUuid": "3eeb4ad5_cf046d76",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "3cbc9b702a43d475b07d2f4ab547b3cb54a8a423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dd6cf57_8473fad2",
