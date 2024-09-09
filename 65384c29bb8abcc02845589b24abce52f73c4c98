@@ -87,6 +87,24 @@
       "parentUuid": "7d2a1aa6_b32235a5",
       "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9e922d9_421f291b",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3967,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-09T15:58:23Z",
+      "side": 1,
+      "message": "`LMP_ENCRYPTION_KEY_SIZE_REQ` is not used in the encryption pause/resume procedure.",
+      "parentUuid": "5d268101_4ffec73a",
+      "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
