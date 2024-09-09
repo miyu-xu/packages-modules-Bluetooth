@@ -993,6 +993,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0189b14b_c95ba0de",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-09T18:28:25Z",
+      "side": 1,
+      "message": "`android.uwb.RangingMeasurement#getElapsedRealtimeNanos()`\u0027s goal was to provide a comparable timestamp to `android.os.SystemClock#elapsedRealtimeNanos()` and that\u0027s why `long` was used instead of `Instant`\n\nThis timestamp must: \n\n* be monotonously increasing and not affected by timezone or wall-clock changes. \n* has sub-millisecond precision (hence micro or nano are fine) as minimum measurement interval can go down to 1 millisecond\n\nIn later Java API iterations, `java.time.Clock#instant()` does provide a `long`-alternative, but Android does not provide a subclass to `Clock` that gives us value equivalent to `SystemClock#elapsedRealtimeNanos()`. All `Clock` instances on Java/Android are wall-clock instances instead of up-time, such as:\n\n* SystemClock#currentGnssTimeClock()\n* SystemClock#currentNetworkTimeClock()\n* Clock#systemUTC()\n* Clock#system(zone)\n\nHence, at that moment, providing a `long` was the best option for UWB. @steveliu@google.com if this API goal is also to provide the same measurement timestamp as UWB, then above consideration also goes into effect. \n\nWith above, I will still defer to @wescande@google.com to see if he still has concerns.",
+      "parentUuid": "e8e03494_5dcd28ba",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
