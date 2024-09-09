@@ -371,6 +371,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a835cb52_da58f4b3",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-09T17:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91a9d7b4_2f0d4104",
+      "range": {
+        "startLine": 2020,
+        "startChar": 23,
+        "endLine": 2020,
+        "endChar": 76
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "766f0533_0c99b7b1",
@@ -525,6 +549,30 @@
       "writtenOn": "2024-08-05T23:22:32Z",
       "side": 1,
       "message": "There appears to be two missing tests that are very relevant for your change:\n1. Incoming `STATE_DISCONNECTED` in `Connected` state, which would happen when the remote device initiates a disconnection request while the audio is off and we get notified of it.\n2. Outgoing `DISCONNECT` message in the `Connected` state, which would happen then the user initiates a disconnection while the audio is off.\n\nAlso, I noted it separately, but the outgoing `DISCONNECT` in `AudioOn` is very applicable and poorly tested.\n\nAt least we have this incoming `STATE_DISCONNECTED` in the `AudioOn` state 😊",
+      "range": {
+        "startLine": 1707,
+        "startChar": 4,
+        "endLine": 1708,
+        "endChar": 79
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "219d5178_59184e48",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1708,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-09T17:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e62756c_d0bc8eab",
       "range": {
         "startLine": 1707,
         "startChar": 4,
