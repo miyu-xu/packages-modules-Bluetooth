@@ -1,0 +1,323 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9086dd04_fa26cb5a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "Can you check to ensure that `byte[]` array is large enough ?",
+      "fixSuggestions": [
+        {
+          "fixId": "0459094c_2ddb3e7e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1071,
+                "startChar": 0,
+                "endLine": 1071,
+                "endChar": 0
+              },
+              "replacement": "        if (val.length \u003c 3) {\n            Log.e(TAG, \"BT_PROPERTY_LPP_OFFLOAD_FEATURES: invalid value length\");\n            return;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55330fdd_737d5d44",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "Where did this value come from ?  \n\n```\n40\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "f7ada93b_1751be6d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_api.h",
+              "range": {
+                "startLine": 167,
+                "startChar": 0,
+                "endLine": 168,
+                "endChar": 0
+              },
+              "replacement": "  BTA_DM_LPP_FEATURES_READ \u003d 40,  /* Low power processor specific offload features are read. */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a0ec2fd_d90550bd",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "explicitly initialize:",
+      "fixSuggestions": [
+        {
+          "fixId": "a4626b3c_2283e8de",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 525,
+                "startChar": 0,
+                "endLine": 526,
+                "endChar": 0
+              },
+              "replacement": "    bt_lpp_offload_features_t lpp_offload_features \u003d {};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b850fa0_d5c2a9da",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "Can you move this just above `BluetoothHalSources_socket_host\"` so they are colocated and sort of preserving alphabetic order.",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67fa1e97_d390f757",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "What is an `int link` ? Is this an hci handle ? or socket descriptor ?",
+      "fixSuggestions": [
+        {
+          "fixId": "9cc48e04_b0952abf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 155,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": "  virtual bool SetAclCredits(int handle, int link, int credit) \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4137751c_2462b233",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "What is handle ? `hci_handle` ? What is `mode` ?",
+      "fixSuggestions": [
+        {
+          "fixId": "beff8115_78076924",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "  virtual bool NotifyAclConnectionStateChange(int aclHandle, int link, int state) \u003d 0;\n  virtual bool NotifyAclLeDataLengthChange(int aclHandle, int txDataLen, int rxDataLen) \u003d 0;\n  virtual bool NotifyAclPowerModeChange(int aclHandle, int mode, int interval) \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "346256a3_355bf7fa",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "This module has no dependencies ?  It probably has at least one, but that could be added later when more impl is added.",
+      "fixSuggestions": [
+        {
+          "fixId": "3fd08952_87596275",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "  void ListDependencies(ModuleList* list) const {\n    list-\u003eadd\u003cModule::Bluetooth\u003e();\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfba3616_a98bf374",
+        "filename": "system/gd/hal/socket_hal_host.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "What does it mean for these APIs to return `true` or `false` ? That is, what conditions must a user of this API need to handle true/false return codes.\n\nSame for the rest underneath.",
+      "fixSuggestions": [
+        {
+          "fixId": "6189065b_2a3c57f1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "  // Returns true if the operation is successful.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "  // Returns true if the operation is successful.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "  // Returns true if the operation is successful.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 49,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "  // Returns true if the operation is successful.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "  // Returns true if the operation is successful.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "120e6a93_477c0cc6",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-09T21:36:05Z",
+      "side": 1,
+      "message": "We are accumulating many properties so could you explicitly specify the value for this symbol ?\n\n\n```\nBT_PROPERTY_LPP_OFFLOAD_FEATURES \u003d 0x1b,\n```",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
