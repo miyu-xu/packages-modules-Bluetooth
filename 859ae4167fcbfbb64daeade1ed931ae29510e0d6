@@ -975,6 +975,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8e03494_5dcd28ba",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-09T18:09:35Z",
+      "side": 1,
+      "message": "William,\nthe purpose is to get a relative timestamps for a series of measurement.\nIt is not possible to change the UWB API for now. and @siyuanh@google.com was the original author for the UWB timestamp API. @siyuanh@google.com could you share your thought here?",
+      "parentUuid": "9dd509b3_4319ec95",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
