@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b07e60ed_8384fb2b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T08:42:46Z",
+      "side": 1,
+      "message": "offline discussion: 1st scanner (either active or passive) is not None. May consider declare is_active_scan to an enum",
+      "parentUuid": "426bb375_522d42b9",
+      "range": {
+        "startLine": 1554,
+        "startChar": 8,
+        "endLine": 1556,
+        "endChar": 9
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "262e730a_aa95b082",
