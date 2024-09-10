@@ -70,6 +70,30 @@
       },
       "revId": "0ad71d431349dfbb070409a8da80787c7a1b79a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0643b61_b9c7d046",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-10T01:23:10Z",
+      "side": 1,
+      "message": "checking for IsHeld will reduce the number of time the exception is thrown.\n\nI will let the code owner refactor and clean this code (for example with a \u0027releaseifHeld\u0027 method in getVoiceRecognitionWakeLock)\n\nThis is not something that I want to do in this CL",
+      "parentUuid": "b0aa6dc2_670ee232",
+      "range": {
+        "startLine": 260,
+        "startChar": 16,
+        "endLine": 262,
+        "endChar": 81
+      },
+      "revId": "0ad71d431349dfbb070409a8da80787c7a1b79a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
