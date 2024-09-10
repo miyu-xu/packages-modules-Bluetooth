@@ -46,6 +46,30 @@
       },
       "revId": "0ad71d431349dfbb070409a8da80787c7a1b79a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0aa6dc2_670ee232",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-10T01:19:43Z",
+      "side": 1,
+      "message": "Well then remove the check for isHeld no ?",
+      "parentUuid": "a0670cc3_8d547727",
+      "range": {
+        "startLine": 260,
+        "startChar": 16,
+        "endLine": 262,
+        "endChar": 81
+      },
+      "revId": "0ad71d431349dfbb070409a8da80787c7a1b79a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
