@@ -70,6 +70,30 @@
       },
       "revId": "3cba38edd2fc67184fe7b3023a6d83b30be4b7b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e01af3_22c25e58",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpPlayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-10T01:21:36Z",
+      "side": 1,
+      "message": "I agree, your suggestion is better, but if possible I try not to change anything when enforcing errorprone.\n\nI think the result value can change in case we are overflowing the long, as the downcast will result in a different truncation if being perform on the float only, vs than on the result of the sum.",
+      "parentUuid": "212b43bd_7f1a237a",
+      "range": {
+        "startLine": 111,
+        "startChar": 29,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "3cba38edd2fc67184fe7b3023a6d83b30be4b7b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
