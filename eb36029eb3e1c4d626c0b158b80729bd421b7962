@@ -80,6 +80,30 @@
       ],
       "revId": "eb36029eb3e1c4d626c0b158b80729bd421b7962",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca582c5_115d382e",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T17:11:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ddfaea6_68c05738",
+      "range": {
+        "startLine": 50,
+        "startChar": 5,
+        "endLine": 50,
+        "endChar": 18
+      },
+      "revId": "eb36029eb3e1c4d626c0b158b80729bd421b7962",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
