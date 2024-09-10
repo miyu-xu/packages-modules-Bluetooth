@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ddfaea6_68c05738",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-10T16:38:26Z",
+      "side": 1,
+      "message": "Nit: TODO(b/342012881) here and in the other places\n\n-------------------------------------------------------------------\n\nPlease fix this WARNING reported by Check Contents: TODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nTODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.",
+      "range": {
+        "startLine": 50,
+        "startChar": 5,
+        "endLine": 50,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4b47b68c_8777fb1a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/342012881): Invoke socket offload HAL AIDL backend when the AIDL interface is merged.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/342012881): Invoke socket offload HAL AIDL backend when the AIDL interface is merged.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 62,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/342012881): Invoke socket offload HAL AIDL backend when the AIDL interface is merged.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 68,
+                "startChar": 0,
+                "endLine": 69,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/342012881): Invoke socket offload HAL AIDL backend when the AIDL interface is merged.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/342012881): Invoke socket offload HAL AIDL backend when the AIDL interface is merged.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "eb36029eb3e1c4d626c0b158b80729bd421b7962",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
