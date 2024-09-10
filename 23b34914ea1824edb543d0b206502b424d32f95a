@@ -22,6 +22,53 @@
       },
       "revId": "23b34914ea1824edb543d0b206502b424d32f95a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a01820_5cfdfabf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-10T04:43:05Z",
+      "side": 1,
+      "message": "Since Intel controllers are only used with Floss, I would still think it\u0027s floss-only.  I just changed teams, though.  I would ask Jack.",
+      "parentUuid": "514d04c7_51ab3b8f",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 45
+      },
+      "revId": "23b34914ea1824edb543d0b206502b424d32f95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de91cc5_efbb6407",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-10T04:43:05Z",
+      "side": 1,
+      "message": "```suggestion\n      extended_lmp_features_array_.back() \u0026\u003d ~(LMPFeaturesPage0Bits::NON_FLUSHABLE_PACKET_BOUNDARY_FLAG);\n```",
+      "range": {
+        "startLine": 364,
+        "startChar": 57,
+        "endLine": 364,
+        "endChar": 59
+      },
+      "revId": "23b34914ea1824edb543d0b206502b424d32f95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
