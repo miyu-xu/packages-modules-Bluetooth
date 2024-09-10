@@ -22,6 +22,30 @@
       },
       "revId": "06c9932b09b35d074d87ee361540cc7e7032e6cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e20b148_71ce7d23",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-10T01:16:47Z",
+      "side": 1,
+      "message": "Yes, because the equals error is due to javaUtilDate.\nWe don\u0027t have any error of UndefinedEquals if we stop using the Date API.\n\nI thought it was not necessary to mention it, because the commit message was already long enough",
+      "parentUuid": "a603526b_3cce1487",
+      "range": {
+        "startLine": 363,
+        "startChar": 18,
+        "endLine": 363,
+        "endChar": 33
+      },
+      "revId": "06c9932b09b35d074d87ee361540cc7e7032e6cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
