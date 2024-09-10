@@ -32,11 +32,18 @@
 #include "os/files.h"
 #include "os/parameter_provider.h"
 #include "os/system_properties.h"
+#include "hci/hci_packets.h"
+#include "packet/packet_view.h"
 
 #ifdef USE_FAKE_TIMERS
 #include "os/fake_timer/fake_timerfd.h"
 using bluetooth::os::fake_timer::fake_timerfd_get_clock;
 #endif
+
+#define ATRACE_TAG ATRACE_TAG_POWER
+#include <cutils/trace.h>
+#include <android/log.h>
+#define TRACE_BUF_SZ 256
 
 namespace bluetooth {
 namespace hal {
@@ -1150,6 +1157,9 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
                              .dropped_packets = 0,
                              .timestamp = htonll(timestamp_us + kBtSnoopEpochDelta),
                              .type = static_cast<uint8_t>(type)};
+
+  LogTracePoint(packet, direction, type, length);
+
   {
     std::lock_guard<std::recursive_mutex> lock(file_mutex_);
     if (btsnoop_mode_ == kBtSnoopLogModeDisabled) {
@@ -1400,6 +1410,50 @@ const ModuleFactory SnoopLogger::Factory = ModuleFactory([]() {
                          kBtSnoozLogLifeTime, kBtSnoozLogDeleteRepeatingAlarmInterval,
                          IsBtSnoopLogPersisted());
 });
+
+void SnoopLogger::LogTracePoint(HciPacket& packet, Direction direction,
+                                PacketType type, uint32_t& length) {
+  std::string codetext = "";
+
+  switch (type) {
+    case PacketType::EVT:
+      {
+        std::vector<uint8_t> data(packet.data(), packet.data() + packet.size());
+        std::shared_ptr<std::vector<uint8_t>> bytes = std::make_shared<std::vector<uint8_t>>(data);
+        auto evt_view = hci::EventView::Create(packet::PacketView<packet::kLittleEndian>(bytes));
+        if (evt_view.IsValid()) {
+          hci::EventCode event_code = evt_view.GetEventCode();
+          codetext = EventCodeText(event_code);
+
+          if (event_code == hci::EventCode::LE_META_EVENT) {
+            auto le_meta_evt_view = hci::LeMetaEventView::Create(evt_view);
+
+            if (le_meta_evt_view.IsValid()) {
+              codetext = codetext + " " + SubeventCodeText(le_meta_evt_view.GetSubeventCode());
+            }
+          }
+        }
+      }
+      break;
+    case PacketType::CMD:
+      {
+        std::vector<uint8_t> data(packet.data(), packet.data() + packet.size());
+        std::shared_ptr<std::vector<uint8_t>> bytes = std::make_shared<std::vector<uint8_t>>(data);
+        auto cmd_view = hci::CommandView::Create(packet::PacketView<packet::kLittleEndian>(bytes));
+        if (cmd_view.IsValid()) {
+          codetext = OpCodeText(cmd_view.GetOpCode());
+        }
+      }
+      break;
+    default:
+      break;
+  }
+
+  char trace_buf[TRACE_BUF_SZ];
+  snprintf(trace_buf, TRACE_BUF_SZ, "type:%d direction:%d length:%d code:%s", type,
+           direction, length, codetext.c_str());
+  ATRACE_INSTANT_FOR_TRACK(LOG_TAG, trace_buf);
+}
 
 }  // namespace hal
 }  // namespace bluetooth
