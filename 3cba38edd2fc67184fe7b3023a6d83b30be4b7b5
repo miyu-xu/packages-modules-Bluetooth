@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eae209fe_7ab3570a",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpPlayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-10T01:04:56Z",
+      "side": 1,
+      "message": "Casting only the right hand side does not address the lint warning ?",
+      "range": {
+        "startLine": 111,
+        "startChar": 29,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "3cba38edd2fc67184fe7b3023a6d83b30be4b7b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
