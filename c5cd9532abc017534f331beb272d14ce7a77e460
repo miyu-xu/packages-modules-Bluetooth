@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172ec455_2381af24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-10T18:29:56Z",
+      "side": 1,
+      "message": "Security level is determined when the association model is selected (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_act.cc?q\u003dsymbol%3A%5Cbsmp_decide_association_model%5Cb%20case%3Ayes), SC phase 1 (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_act.cc?q\u003dsymbol%3A%5Cbsmp_start_secure_connection_phase1%5Cb%20case%3Ayes), or when pairing is apporved (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_api.cc?q\u003dsymbol%3A%5CbSMP_SecurityGrant%5Cb%20case%3Ayes). All of these should happen before phase 3.\n\nAm I missing something? I don\u0027t see the security level getting set during key distribution.",
+      "revId": "c5cd9532abc017534f331beb272d14ce7a77e460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
