@@ -111,6 +111,17 @@ public:
     }
   }
 
+  void RegisterVendorSpecificEventHandler(
+          VseSubeventCode /* event */,
+          common::ContextualCallback<void(VendorSpecificEventView)> /* handler */) {}
+
+  void UnregisterVendorSpecificEventHandler(hci::VseSubeventCode /* event */) {}
+
+  void RegisterVendorSpecificEventDefaultHandler(
+          common::ContextualCallback<void(VendorSpecificEventView)> /* handler */) {}
+
+  void UnregisterVendorSpecificEventDefaultHandler() {}
+
   hci::SecurityInterface* GetSecurityInterface(
           common::ContextualCallback<void(hci::EventView)> event_handler) override;
 
