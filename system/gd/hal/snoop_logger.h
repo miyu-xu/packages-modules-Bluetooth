@@ -319,6 +319,8 @@ protected:
 
   std::unique_ptr<SnoopLoggerSocketThread> snoop_logger_socket_thread_;
 
+  void LogTracePoint(HciPacket& packet, Direction direction, PacketType type, uint32_t& length);
+
 private:
   static std::string btsnoop_mode_;
   std::string snoop_log_path_;
