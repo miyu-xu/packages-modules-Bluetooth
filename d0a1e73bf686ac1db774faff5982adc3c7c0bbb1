@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f6c032_281d9547",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-10T22:42:37Z",
+      "side": 0,
+      "message": "This check might be removed: mAdapter is only accessed after either state \u003d\u003d BTE_ON ot state \u003d\u003d ON. The return value would not change either.",
+      "range": {
+        "startLine": 272,
+        "startChar": 12,
+        "endLine": 274,
+        "endChar": 13
+      },
+      "revId": "d0a1e73bf686ac1db774faff5982adc3c7c0bbb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
