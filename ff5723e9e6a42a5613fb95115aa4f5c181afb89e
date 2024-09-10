@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12343b7e_cb99f4ba",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9086dd04_fa26cb5a",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55330fdd_737d5d44",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c873cb02_47553c1c",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "I thought we wanted some space between events. Assigned right after the LE feature event.",
+      "parentUuid": "55330fdd_737d5d44",
       "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -106,6 +142,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1218dabb_c59be89d",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a0ec2fd_d90550bd",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b850fa0_d5c2a9da",
@@ -119,6 +173,24 @@
       "writtenOn": "2024-09-09T21:36:05Z",
       "side": 1,
       "message": "Can you move this just above `BluetoothHalSources_socket_host\"` so they are colocated and sort of preserving alphabetic order.",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b10fae6_185a67de",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b850fa0_d5c2a9da",
       "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -158,6 +230,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "122b2a27_b3b58416",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "link was for linkType between classic and LE. handle is for aclHandle. Updated the name correctly.",
+      "parentUuid": "67fa1e97_d390f757",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4137751c_2462b233",
@@ -193,6 +283,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25cc36a7_9777521b",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "They were for `aclHandle` and `powerMode` between low power and active. Updated the name.",
+      "parentUuid": "4137751c_2462b233",
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "346256a3_355bf7fa",
@@ -224,6 +332,24 @@
           ]
         }
       ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7a6007d_44465bcd",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "This socket hal shim talks to the vendor socket hal implementation. The vendor implementation may talk to low power processor directly or need to send Vendor Specific Commands to BT SoC. Because it depends on the vendor hardware configuration, we don\u0027t use HciLayer module here for now.",
+      "parentUuid": "346256a3_355bf7fa",
       "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -299,6 +425,24 @@
           ]
         }
       ],
+      "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68234cca_6ceea4da",
+        "filename": "system/gd/hal/socket_hal_host.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T05:02:52Z",
+      "side": 1,
+      "message": "In these APIs, `false` could be returned when the vendor hal could not deliver the operation to offload stack or offload app successfully. In that case, the native stack need to handle the error properly. For example, if `SetAclCredits()` is failed, the native stack needs to take the credits back to its own credits, and if `NotifySocketConnectionStateChange()` is failed then the native stack can disconnect the connection connection because the offload stack/app doesn\u0027t work properly.",
+      "parentUuid": "dfba3616_a98bf374",
       "revId": "ff5723e9e6a42a5613fb95115aa4f5c181afb89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
