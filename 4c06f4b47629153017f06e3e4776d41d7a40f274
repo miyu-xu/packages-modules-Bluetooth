@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59dd6fcd_6dee00bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-10T22:06:16Z",
+      "side": 1,
+      "message": "PTAL, aosp/3260430",
+      "parentUuid": "63aea961_5fcc9f55",
+      "revId": "4c06f4b47629153017f06e3e4776d41d7a40f274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "637f11e9_a545d310",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 4
