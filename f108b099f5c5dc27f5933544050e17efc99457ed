@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565e4ec1_1c0840b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "Could you add more information in the commit message on how you plan to utilize BT 6.0 Encryption Change V2 Event? Or use a separate document to explain?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4d2f0c_0ad99eb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "Please file a bug for this",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e18d584_3951b71f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "This is not a good reason for not flagging, could you evaluate the impact of this change? \n\nFor example, if this change only applies to devices with a BT 6.0 controller and above, then we should be able to flag it by checking the encryption V2 support bit instead of a feature flag.",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b2e9cc9_82330f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "A few comments:\n\n1. Could you add a doc or update the commit message explaining how you plan to use encryption V2 event? \n2. Could you access the impact of this change and if it is not flagged, would it affect legacy devices using BT 5.3 controllers and below? \n3. I see duplicate implementation of event parsing in btif using STREAM_TO_UINT8() and in GD stack by using PDL and EventView, is there a way to avoid STREAM_TO_UINT8 and just use PDL? \n4. Some methods are modified without explanation such as the method that checks if the event mask matches the event code. Please add explanation either in commit message or in code comments on why they need to be changed. \n\nThanks",
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e68bc923_c21b0bea",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3424,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "what if HCI event reports key size to be 0? assuming it is a controller bug and try to read it again?\n\n(based on current logic)",
+      "range": {
+        "startLine": 3424,
+        "startChar": 8,
+        "endLine": 3424,
+        "endChar": 21
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36296a7d_b9f9a2ad",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3443,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "what is the point of passing key size if status is not HCI_SUCCESS?",
+      "range": {
+        "startLine": 3443,
+        "startChar": 80,
+        "endLine": 3443,
+        "endChar": 88
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c82e896_66d124b4",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "can we use PDL instead?",
+      "range": {
+        "startLine": 779,
+        "startChar": 12,
+        "endLine": 779,
+        "endChar": 45
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0935a1_8ecd1924",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "int or uint8_t?",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0099f9c5_c937b5b4",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "why this needs to be changed? do we have two pages for the event?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d93fb6_7b76ee1a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 5652,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-10T19:40:14Z",
+      "side": 1,
+      "message": "16 instead of 0x10? given this is an intent and 16 is more human readable",
+      "range": {
+        "startLine": 5652,
+        "startChar": 14,
+        "endLine": 5652,
+        "endChar": 18
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
