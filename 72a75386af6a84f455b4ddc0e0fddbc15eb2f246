@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "901a29cd_75cd811c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-10T17:41:19Z",
+      "side": 1,
+      "message": "Linter made me - it said static constants have to start with an s and all camel case and would not let me upload otherwise. I assume the others are that way because this is maybe a new requirement?",
+      "parentUuid": "f55607fb_6c7b21ff",
+      "range": {
+        "startLine": 119,
+        "startChar": 35,
+        "endLine": 119,
+        "endChar": 55
+      },
+      "revId": "72a75386af6a84f455b4ddc0e0fddbc15eb2f246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a74a155_0731fbcc",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9081adaf_bfb1570d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-10T17:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a74a155_0731fbcc",
+      "range": {
+        "startLine": 1063,
+        "startChar": 30,
+        "endLine": 1063,
+        "endChar": 54
+      },
+      "revId": "72a75386af6a84f455b4ddc0e0fddbc15eb2f246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8db31f4b_9c5c8d4d",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-09-10T15:31:27Z",
       "side": 1,
       "message": "nit: you don\u0027t need this variable and assignment. Just use `mCurrentDevice` below.",
+      "range": {
+        "startLine": 2000,
+        "startChar": 12,
+        "endLine": 2000,
+        "endChar": 49
+      },
+      "revId": "72a75386af6a84f455b4ddc0e0fddbc15eb2f246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ba2d023_5712f7c5",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2000,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-10T17:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8db31f4b_9c5c8d4d",
       "range": {
         "startLine": 2000,
         "startChar": 12,
