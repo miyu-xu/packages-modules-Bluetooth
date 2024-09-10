@@ -16,6 +16,24 @@
       "message": "Security level is determined when the association model is selected (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_act.cc?q\u003dsymbol%3A%5Cbsmp_decide_association_model%5Cb%20case%3Ayes), SC phase 1 (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_act.cc?q\u003dsymbol%3A%5Cbsmp_start_secure_connection_phase1%5Cb%20case%3Ayes), or when pairing is apporved (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_api.cc?q\u003dsymbol%3A%5CbSMP_SecurityGrant%5Cb%20case%3Ayes). All of these should happen before phase 3.\n\nAm I missing something? I don\u0027t see the security level getting set during key distribution.",
       "revId": "c5cd9532abc017534f331beb272d14ce7a77e460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bda12c64_edd695d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-10T20:05:52Z",
+      "side": 1,
+      "message": "This is SSP and LTK derivation on smp_over_bredr case.\n\nIt is getting set here for this particular case:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_keys.cc;drc\u003d2bf4c772393460d1830fbed203a65197e5999a6c;l\u003d1018\n\nplease check and let me know if my understanding is wrong.",
+      "parentUuid": "172ec455_2381af24",
+      "revId": "c5cd9532abc017534f331beb272d14ce7a77e460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
