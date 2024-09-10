@@ -135,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e14d757b_8fe50541",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:16:33Z",
+      "side": 1,
+      "message": "1. It\u0027s just adding key size to the event, so we can skip the \"HCI read encryption key size\".\n2. Shouldn\u0027t cause any troubles.\n3. GD PDL implementation is dead, the old version will be in use.\n4. This is just a minor rootcanal change, not gonna obfruscate commit message with that.",
+      "parentUuid": "4b2e9cc9_82330f0c",
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e68bc923_c21b0bea",
