@@ -84,6 +84,11 @@ public:
 
   virtual void UnregisterVendorSpecificEventHandler(VseSubeventCode event);
 
+  virtual void RegisterVendorSpecificEventDefaultHandler(
+          common::ContextualCallback<void(VendorSpecificEventView)> handler);
+
+  virtual void UnregisterVendorSpecificEventDefaultHandler();
+
   virtual void RegisterForDisconnects(
           common::ContextualCallback<void(uint16_t, hci::ErrorCode)> on_disconnect);
 
