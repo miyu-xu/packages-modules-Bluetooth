@@ -122,7 +122,6 @@ struct VolumeOffset {
   uint8_t change_counter;
   int16_t offset;
   uint32_t location;
-  std::string description;
   uint16_t service_handle;
   uint16_t state_handle;
   uint16_t state_ccc_handle;
@@ -139,7 +138,6 @@ struct VolumeOffset {
         change_counter(0),
         offset(0),
         location(0),
-        description(""),
         service_handle(service_handle),
         state_handle(0),
         state_ccc_handle(0),
@@ -192,12 +190,12 @@ public:
     int n = Size();
     stream << "     == number of offsets: " << n << " == \n";
 
-    for (auto const v : volume_offsets) {
+    for (int i = 0; i < n; i++) {
+      auto v = volume_offsets[i];
       stream << "   id: " << +v.id << "\n"
              << "    offset: " << +v.offset << "\n"
              << "    changeCnt: " << +v.change_counter << "\n"
              << "    location: " << +v.location << "\n"
-             << "    description: " << v.description << "\n"
              << "    service_handle: " << +v.service_handle << "\n"
              << "    audio_location_writable " << v.audio_location_writable << "\n"
              << "    audio_descr_writable: " << v.audio_descr_writable << "\n";

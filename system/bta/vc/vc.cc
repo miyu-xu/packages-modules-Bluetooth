@@ -563,10 +563,7 @@ public:
                                  uint8_t* value) {
     std::string description = std::string(value, value + len);
     if (!base::IsStringUTF8(description)) {
-      bluetooth::log::error(" Received description is no utf8 string for {}, offset id={:#x}",
-                            device->address, offset->id);
-    } else {
-      offset->description = description;
+      description = "<invalid utf8 string>";
     }
 
     bluetooth::log::info("{}, {}", device->address, description);
@@ -576,7 +573,7 @@ public:
       return;
     }
 
-    callbacks_->OnExtAudioOutDescriptionChanged(device->address, offset->id, offset->description);
+    callbacks_->OnExtAudioOutDescriptionChanged(device->address, offset->id, description);
   }
 
   void OnGattWriteCcc(uint16_t connection_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
