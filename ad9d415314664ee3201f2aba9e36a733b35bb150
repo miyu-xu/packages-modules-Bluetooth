@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f29e664f_8ccce84d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-09-10T20:48:22Z",
+      "side": 1,
+      "message": "Add `Test: mmm packages/modules/Bluetooth` to get rid of lint",
+      "revId": "ad9d415314664ee3201f2aba9e36a733b35bb150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc665f11_563fd6c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-09-10T20:48:22Z",
+      "side": 1,
+      "message": "LGTM - https://doc.rust-lang.org/std/slice/fn.from_raw_parts.html#safety for reference\n\nFYI @chharry@google.com",
+      "revId": "ad9d415314664ee3201f2aba9e36a733b35bb150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
