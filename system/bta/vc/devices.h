@@ -56,7 +56,6 @@ public:
   uint16_t volume_flags_handle;
   uint16_t volume_flags_ccc_handle;
 
-  VolumeAudioInputs audio_inputs;
   VolumeOffsets audio_offsets;
 
   /* Set when device successfully reads server status and registers for
@@ -106,7 +105,6 @@ public:
 
     dprintf(fd, "%s", stream.str().c_str());
     audio_offsets.Dump(fd);
-    audio_inputs.Dump(fd);
   }
 
   bool IsConnected() { return connection_id != GATT_INVALID_CONN_ID; }
@@ -131,15 +129,6 @@ public:
   void ExtAudioOutControlPointOperation(uint8_t ext_output_id, uint8_t opcode,
                                         const std::vector<uint8_t>* arg, GATT_WRITE_OP_CB cb,
                                         void* cb_data);
-  void GetExtAudioInState(uint8_t ext_input_id, GATT_READ_OP_CB cb, void* cb_data);
-  void GetExtAudioInStatus(uint8_t ext_input_id, GATT_READ_OP_CB cb, void* cb_data);
-  void GetExtAudioInType(uint8_t ext_input_id, GATT_READ_OP_CB cb, void* cb_data);
-  void GetExtAudioInGainProps(uint8_t ext_input_id, GATT_READ_OP_CB cb, void* cb_data);
-  void GetExtAudioInDescription(uint8_t ext_input_id, GATT_READ_OP_CB cb, void* cb_data);
-  void SetExtAudioInDescription(uint8_t ext_input_id, const std::string& descr);
-  void ExtAudioInControlPointOperation(uint8_t ext_input_id, uint8_t opcode,
-                                       const std::vector<uint8_t>* arg, GATT_WRITE_OP_CB cb,
-                                       void* cb_data);
   bool IsEncryptionEnabled();
 
   bool EnableEncryption();
@@ -164,7 +153,6 @@ private:
   uint16_t find_ccc_handle(uint16_t chrc_handle);
   bool set_volume_control_service_handles(const gatt::Service& service);
   void set_volume_offset_control_service_handles(const gatt::Service& service);
-  void set_audio_input_control_service_handles(const gatt::Service& service);
   bool subscribe_for_notifications(tGATT_IF gatt_if, uint16_t handle, uint16_t ccc_handle,
                                    GATT_WRITE_OP_CB cb);
 };
