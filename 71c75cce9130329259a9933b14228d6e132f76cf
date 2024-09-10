@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f069a52_9a4d1d53",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T13:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66e6b6fa_9c44c9e5",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "71c75cce9130329259a9933b14228d6e132f76cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e5ab1ac_b2200ede",
@@ -119,6 +143,30 @@
           ]
         }
       ],
+      "revId": "71c75cce9130329259a9933b14228d6e132f76cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1ee054_f86b7907",
+        "filename": "system/gd/hal/socket_hal_host.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-10T13:37:17Z",
+      "side": 1,
+      "message": "Currently, there is no plan to implement host interface for socket offload HAL.",
+      "parentUuid": "8e5ab1ac_b2200ede",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 94
+      },
       "revId": "71c75cce9130329259a9933b14228d6e132f76cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
