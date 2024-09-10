@@ -70,6 +70,30 @@
       },
       "revId": "4331ee336a631b5eb4befc53033a89cde5b0a890",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd7d5fa_82fcd920",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1488,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-09-10T00:55:35Z",
+      "side": 0,
+      "message": "And looks like some logging levels were also changed which I fixed.",
+      "parentUuid": "61995df0_7dc1d3d0",
+      "range": {
+        "startLine": 1488,
+        "startChar": 8,
+        "endLine": 1488,
+        "endChar": 40
+      },
+      "revId": "4331ee336a631b5eb4befc53033a89cde5b0a890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
