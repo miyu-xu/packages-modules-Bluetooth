@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08e2960_10ad5ce5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T07:32:12Z",
+      "side": 1,
+      "message": "If the programming is done synchronously, why is there still a need for a queue (e.g. vendor quirk)?",
+      "range": {
+        "startLine": 1344,
+        "startChar": 0,
+        "endLine": 1344,
+        "endChar": 51
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "426bb375_522d42b9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T07:32:12Z",
+      "side": 1,
+      "message": "How does the first scanner work when self.is_active_scan is initialized to None? Is  force_restart\u003dtrue while advmon is being used?",
+      "range": {
+        "startLine": 1554,
+        "startChar": 8,
+        "endLine": 1556,
+        "endChar": 9
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "262e730a_aa95b082",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1561,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T07:32:12Z",
+      "side": 1,
+      "message": "Does this break background scanning?",
+      "range": {
+        "startLine": 1561,
+        "startChar": 12,
+        "endLine": 1561,
+        "endChar": 58
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d3e135_0dcfc036",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1612,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T07:32:12Z",
+      "side": 1,
+      "message": "Shall we clean msf_command_pending for empty msft_command_queue case?",
+      "range": {
+        "startLine": 1600,
+        "startChar": 12,
+        "endLine": 1612,
+        "endChar": 17
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c891f0e_44a9dc52",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 3612,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T07:32:12Z",
+      "side": 1,
+      "message": "This should be okay if everything is in order. Please also log monitor_handle and status so that we can debug the spurious callback (e.g. firmware bug). Please also do that for another two callbacks.",
+      "range": {
+        "startLine": 3608,
+        "startChar": 12,
+        "endLine": 3612,
+        "endChar": 10
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
