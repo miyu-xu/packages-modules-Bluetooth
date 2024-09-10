@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1af74a_0feedb48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "This is already in V5 spec, controllers have it avaliable.",
+      "parentUuid": "565e4ec1_1c0840b8",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb4d2f0c_0ad99eb5",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-09-10T19:40:14Z",
       "side": 1,
       "message": "This is not a good reason for not flagging, could you evaluate the impact of this change? \n\nFor example, if this change only applies to devices with a BT 6.0 controller and above, then we should be able to flag it by checking the encryption V2 support bit instead of a feature flag.",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2f8cc5_f4646afb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "We set the bit in event mask page 2. If controller supports V2, it would send it. If it doesn\u0027t, it would fall back to V1.\nI don\u0027t see good reason to flag that.",
+      "parentUuid": "3e18d584_3951b71f",
       "range": {
         "startLine": 11,
         "startChar": 14,
@@ -110,6 +158,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ff24d0_ea6527aa",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3424,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "This is called from both V1 and V2 of HCI event. \n\nV1 would pass 0, and then we would go back to reading key size in line 3431, so we are compatibile with controllers that don\u0027t do V2.\nIf V2 was to pass 0 for Classic device success, we would also read the key size in 3431.",
+      "parentUuid": "e68bc923_c21b0bea",
+      "range": {
+        "startLine": 3424,
+        "startChar": 8,
+        "endLine": 3424,
+        "endChar": 21
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36296a7d_b9f9a2ad",
@@ -123,6 +195,30 @@
       "writtenOn": "2024-09-10T19:40:14Z",
       "side": 1,
       "message": "what is the point of passing key size if status is not HCI_SUCCESS?",
+      "range": {
+        "startLine": 3443,
+        "startChar": 80,
+        "endLine": 3443,
+        "endChar": 88
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc03380_0e0cf301",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3443,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "You can get here if status is SUCCESS and your device is LE. The key would not matter then and we would not use it, but I have to pass something.",
+      "parentUuid": "36296a7d_b9f9a2ad",
       "range": {
         "startLine": 3443,
         "startChar": 80,
@@ -156,6 +252,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f501e1c2_f93b00f4",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "It\u0027s a copy paste from above.\n\nThere is no PDL usage in this file, it\u0027s not linked. Don\u0027t want to add it as part of this CL",
+      "parentUuid": "2c82e896_66d124b4",
+      "range": {
+        "startLine": 779,
+        "startChar": 12,
+        "endLine": 779,
+        "endChar": 45
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db0935a1_8ecd1924",
@@ -169,6 +289,30 @@
       "writtenOn": "2024-09-10T19:40:14Z",
       "side": 1,
       "message": "int or uint8_t?",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f1717d_bf3f222d",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db0935a1_8ecd1924",
       "range": {
         "startLine": 86,
         "startChar": 2,
@@ -202,6 +346,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac300cb_802744bf",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "yes, there are two 64 bit pages of events.",
+      "parentUuid": "0099f9c5_c937b5b4",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80d93fb6_7b76ee1a",
@@ -215,6 +383,30 @@
       "writtenOn": "2024-09-10T19:40:14Z",
       "side": 1,
       "message": "16 instead of 0x10? given this is an intent and 16 is more human readable",
+      "range": {
+        "startLine": 5652,
+        "startChar": 14,
+        "endLine": 5652,
+        "endChar": 18
+      },
+      "revId": "f108b099f5c5dc27f5933544050e17efc99457ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e10fe95_d9e7f0f1",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 5652,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T23:02:56Z",
+      "side": 1,
+      "message": "it\u0027s not intent, it\u0027s HCI event. We\u0027re all engineers, it should cause troubles to anyone to read hex value.",
+      "parentUuid": "80d93fb6_7b76ee1a",
       "range": {
         "startLine": 5652,
         "startChar": 14,
