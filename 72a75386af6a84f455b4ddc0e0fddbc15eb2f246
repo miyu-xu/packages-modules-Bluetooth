@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f55607fb_6c7b21ff",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-10T15:31:27Z",
+      "side": 1,
+      "message": "nit: Just noticed this, but any reason why you changed from all caps to this naming format? The other static constants in the code follow the other format!",
+      "range": {
+        "startLine": 119,
+        "startChar": 35,
+        "endLine": 119,
+        "endChar": 55
+      },
+      "revId": "72a75386af6a84f455b4ddc0e0fddbc15eb2f246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a74a155_0731fbcc",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-10T15:31:27Z",
+      "side": 1,
+      "message": "nit: One of my biggest debug logging pet peeves is logging magic numbers that I can never remember the meanings behind! We have `getMessageName()`, so instead of logging `getCurrentMessage().what`,`message.what`, etc., lets use the `getMessageName()` function.\n\nWe\u0027re missing it everywhere, but it should take about 30 seconds to add! Feel free to update only your new/related logs and we can hit the rest in a follow up (Or, do them all now, either is fine).",
+      "range": {
+        "startLine": 1063,
+        "startChar": 30,
+        "endLine": 1063,
+        "endChar": 54
+      },
+      "revId": "72a75386af6a84f455b4ddc0e0fddbc15eb2f246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8db31f4b_9c5c8d4d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2000,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-10T15:31:27Z",
+      "side": 1,
+      "message": "nit: you don\u0027t need this variable and assignment. Just use `mCurrentDevice` below.",
+      "range": {
+        "startLine": 2000,
+        "startChar": 12,
+        "endLine": 2000,
+        "endChar": 49
+      },
+      "revId": "72a75386af6a84f455b4ddc0e0fddbc15eb2f246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
