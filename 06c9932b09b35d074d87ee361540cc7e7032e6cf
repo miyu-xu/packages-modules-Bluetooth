@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a603526b_3cce1487",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-10T00:50:51Z",
+      "side": 1,
+      "message": "Not mentioned in commit message ?",
+      "range": {
+        "startLine": 363,
+        "startChar": 18,
+        "endLine": 363,
+        "endChar": 33
+      },
+      "revId": "06c9932b09b35d074d87ee361540cc7e7032e6cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
