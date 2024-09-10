@@ -22,6 +22,30 @@
       },
       "revId": "3cba38edd2fc67184fe7b3023a6d83b30be4b7b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e48ba7_b70625e0",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpPlayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-10T01:15:28Z",
+      "side": 1,
+      "message": "The lint warning is about the transformation being implicit.\napplying this fix is a strict no-op as this is what is being done by the JVM.\n\nSimply now it is explicit that the conversion is downcast from float to long.",
+      "parentUuid": "eae209fe_7ab3570a",
+      "range": {
+        "startLine": 111,
+        "startChar": 29,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "3cba38edd2fc67184fe7b3023a6d83b30be4b7b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
