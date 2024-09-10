@@ -22,6 +22,30 @@
       },
       "revId": "0ad71d431349dfbb070409a8da80787c7a1b79a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0670cc3_8d547727",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-10T01:18:35Z",
+      "side": 1,
+      "message": "This is exactly what this errorprone is about.\n\nisHeld doesn\u0027t give you any mutex. Between the call to isHeld and to release, the wakelock may be release elsewhere, especially for this wakelock that works with a timeout and can be release after some time independently.",
+      "parentUuid": "cd55a9b4_10b67bd4",
+      "range": {
+        "startLine": 260,
+        "startChar": 16,
+        "endLine": 262,
+        "endChar": 81
+      },
+      "revId": "0ad71d431349dfbb070409a8da80787c7a1b79a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
