@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9849ec2_b7f7e6b3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T11:37:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "60626705_2254a4df",
+      "range": {
+        "startLine": 1344,
+        "startChar": 0,
+        "endLine": 1344,
+        "endChar": 51
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "426bb375_522d42b9",
@@ -142,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e09aa699_0a106821",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1561,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T11:37:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f8961699_2feb1f45",
+      "range": {
+        "startLine": 1561,
+        "startChar": 12,
+        "endLine": 1561,
+        "endChar": 58
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8d3e135_0dcfc036",
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "`self.msft_command_pending` should always be `NoPending` when we reach here. I added a comment in the first `if` block.",
       "parentUuid": "b8d3e135_0dcfc036",
+      "range": {
+        "startLine": 1600,
+        "startChar": 12,
+        "endLine": 1612,
+        "endChar": 17
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135c30ff_f4bc0469",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1612,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-10T11:37:31Z",
+      "side": 1,
+      "message": "There are two cases, line 1608 overrides msft_command_pending, but line 1611 leave it unchanged. My question is about the later case. Can you elaborate it?",
+      "parentUuid": "74f5b6a4_400848d4",
       "range": {
         "startLine": 1600,
         "startChar": 12,
