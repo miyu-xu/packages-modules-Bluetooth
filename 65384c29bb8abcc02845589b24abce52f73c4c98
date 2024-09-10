@@ -105,6 +105,24 @@
       "parentUuid": "5d268101_4ffec73a",
       "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f74488e6_4768a047",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3967,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-10T18:14:37Z",
+      "side": 1,
+      "message": "Fied, when we refresh keys, we won\u0027t report it as encryption change to upper layers.",
+      "parentUuid": "d9e922d9_421f291b",
+      "revId": "65384c29bb8abcc02845589b24abce52f73c4c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
