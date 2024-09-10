@@ -1,0 +1,126 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e6b6fa_9c44c9e5",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-10T05:54:47Z",
+      "side": 1,
+      "message": "Might be good to add TODOs here to indicate that these will be implemented later, or clarify why they are canned method implementations.",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7e947ce3_9007ba11",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/271151111): Implement the following methods.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "71c75cce9130329259a9933b14228d6e132f76cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e5ab1ac_b2200ede",
+        "filename": "system/gd/hal/socket_hal_host.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-10T05:54:47Z",
+      "side": 1,
+      "message": "Same for this file, add comments about the implementation",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 94
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cce2c893_53fd013f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/280351111): Implement this method.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/280351111): Implement this method.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/280351111): Implement this method.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/280351111): Implement this method.\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_host.cc",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/280351111): Implement this method.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "71c75cce9130329259a9933b14228d6e132f76cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
