@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dec7a67_ea3b39a3",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-10T21:22:40Z",
+      "side": 1,
+      "message": "if this return an invalid packet, you will have a codetext to `\"\"` that will be logged.\n\nIdk if this is expected.\n\nIf not I suggest doing an early return:\n```\n        if (!evt_view.IsValid()) {\n          return;\n        }\n```\n\n(and save some indentation in the rest of the function)",
+      "range": {
+        "startLine": 1424,
+        "startChar": 0,
+        "endLine": 1424,
+        "endChar": 33
+      },
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
