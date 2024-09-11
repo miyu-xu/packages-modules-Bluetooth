@@ -16,6 +16,98 @@
       "message": "Thanks for the review",
       "revId": "bee5f329088b9ed95e3bf6100ede5f2fc6bde724",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1b5fa4_5a95b90f",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T18:18:02Z",
+      "side": 1,
+      "message": "Could you add documentation to the class and each of the methods so that people who review this header knows what they are for?\n\nLike what the method does, what are input parameters, and what are the return values?",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 46
+      },
+      "revId": "bee5f329088b9ed95e3bf6100ede5f2fc6bde724",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93914fd2_f4bdbb83",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T18:18:02Z",
+      "side": 1,
+      "message": "what is the unit of this interval?",
+      "range": {
+        "startLine": 161,
+        "startChar": 74,
+        "endLine": 161,
+        "endChar": 82
+      },
+      "revId": "bee5f329088b9ed95e3bf6100ede5f2fc6bde724",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa1cb60_4cfb5e56",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T18:18:02Z",
+      "side": 1,
+      "message": "nit: use enum types instead of int",
+      "range": {
+        "startLine": 161,
+        "startChar": 55,
+        "endLine": 161,
+        "endChar": 58
+      },
+      "revId": "bee5f329088b9ed95e3bf6100ede5f2fc6bde724",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "defc7532_6d771545",
+        "filename": "system/gd/hci/lpp_offload_interface.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T18:18:02Z",
+      "side": 1,
+      "message": "Same as above, please add documentation to headers, especially for new code in GD",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 27
+      },
+      "revId": "bee5f329088b9ed95e3bf6100ede5f2fc6bde724",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
