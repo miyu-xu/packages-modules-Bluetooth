@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fcbf3b0_f1cffba8",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3178,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:42:18Z",
+      "side": 1,
+      "message": "where is this value used in this function besides logging?",
+      "range": {
+        "startLine": 3178,
+        "startChar": 27,
+        "endLine": 3178,
+        "endChar": 44
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
