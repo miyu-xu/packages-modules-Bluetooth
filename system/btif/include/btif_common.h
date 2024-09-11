@@ -165,4 +165,6 @@ void invoke_link_quality_report_cb(uint64_t timestamp, int report_id, int rssi, 
 void invoke_switch_buffer_size_cb(bool is_low_latency_buffer_size);
 void invoke_switch_codec_cb(bool is_low_latency_buffer_size);
 void invoke_key_missing_cb(RawAddress bd_addr);
+void invoke_socket_state_changed_cb(int reg_id, const bluetooth::Uuid& conn_uuid,
+                                    bt_status_t status, int role, int state);
 #endif /* BTIF_COMMON_H */
