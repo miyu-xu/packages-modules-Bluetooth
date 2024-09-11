@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba8d30dd_4f62c917",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-09-11T21:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "839883b4_f9a5dd3e",
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba43f476_308306e5",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e72718d7_6aaaf442",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-09-11T21:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10fc06b7_a60f7f1c",
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "117f6f52_aaf9a6ec",
@@ -94,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8111fedb_9d7d6923",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1322,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-09-11T21:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "117f6f52_aaf9a6ec",
+      "range": {
+        "startLine": 1322,
+        "startChar": 55,
+        "endLine": 1322,
+        "endChar": 87
+      },
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80de9a6d_3fc01bd5",
@@ -107,6 +167,30 @@
       "writtenOn": "2024-09-05T12:53:50Z",
       "side": 1,
       "message": "Now we store tx in BluetoothGatt so we can remove it",
+      "range": {
+        "startLine": 1482,
+        "startChar": 36,
+        "endLine": 1482,
+        "endChar": 55
+      },
+      "revId": "9e8f43f59cecf9e3cc1615c3cb1a8707717ba3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "781d0de0_7d958282",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-09-11T21:16:40Z",
+      "side": 1,
+      "message": "Is there a reason for doing this in this change? I\u0027d rather keep this small to simplify merges.",
+      "parentUuid": "80de9a6d_3fc01bd5",
       "range": {
         "startLine": 1482,
         "startChar": 36,
