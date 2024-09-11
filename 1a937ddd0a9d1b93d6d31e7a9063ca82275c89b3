@@ -3,6 +3,109 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86718b50_e230e24f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "These include directives should be moved to line 21.",
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b9656f_4ec5a91a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "Please place the function call at the beginning of `Capture`",
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0154079a_c11ba53f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "`const HciPacket\u0026`",
+      "range": {
+        "startLine": 1414,
+        "startChar": 32,
+        "endLine": 1414,
+        "endChar": 43
+      },
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b716013e_035522ab",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "This field is not necessary: the packet is a vector.",
+      "range": {
+        "startLine": 1415,
+        "startChar": 49,
+        "endLine": 1415,
+        "endChar": 65
+      },
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9856ed_de890654",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "You are doing a double allocation+copy here. It would be more efficient to manually extract the information from the HciPacket here.\n\nSee follow up comments for each packet type.",
+      "range": {
+        "startLine": 1421,
+        "startChar": 8,
+        "endLine": 1422,
+        "endChar": 99
+      },
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dec7a67_ea3b39a3",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 2
@@ -20,6 +123,40 @@
         "endLine": 1424,
         "endChar": 33
       },
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89fa1e30_b2a82af9",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "```\nuint16_t op_code \u003d packet[0] | (packet[1] \u003c\u003c 8);\nuint8_t packet_length \u003d packet[2];\n\nstd::string message \u003d fmt::format(\"type:CMD direction:{} length:{} op_code:{}\", \n\t\t\t  \t  direction, packet.size(), \n\t\t\t \t   OpCodeText(static_cast\u003cOpCode\u003e(op_code));\n\nATRACE_INSTANT_FOR_TRACK(ATRACE_TAG, message.c_str());\n```\n\nAnd similar for other packet types.\nPacket formats are documented here: https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-54/out/en/host-controller-interface/host-controller-interface-functional-specification.html#UUID-e0b6e648-e0e0-6a65-4fff-2c97facd5aa3",
+      "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d0f046_c1abade7",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1453,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-11T23:18:42Z",
+      "side": 1,
+      "message": "Every packet type will have a different format; I suggest doing the formatting in each packet type case instead.",
       "revId": "1a937ddd0a9d1b93d6d31e7a9063ca82275c89b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
