@@ -16,6 +16,23 @@
       "message": "thanks!",
       "revId": "46ca452cf98d01e07e4a0f8bebf51960ca853670",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da8113da_05596368",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-09-11T07:51:56Z",
+      "side": 1,
+      "message": "Unsafe Rust LGTM.",
+      "revId": "46ca452cf98d01e07e4a0f8bebf51960ca853670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
