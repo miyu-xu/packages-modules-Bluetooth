@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b95521f2_723b20b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-09-11T21:32:05Z",
+      "side": 1,
+      "message": "Unit tests I will deliver after my OOO.\nFrom UPF experience it looks like all companies can resync automatically if they have PA synced so we should help to resync only if both are unsynced.",
+      "revId": "dfe9115a25efcc8305d988e20f1f822425a349c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
