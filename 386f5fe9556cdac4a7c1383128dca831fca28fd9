@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "451c87ff_900d2124",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T17:41:41Z",
+      "side": 1,
+      "message": "If you want this CL to be flagged, an easy place is here:\n\n```\nif (use_encryption_change_v2()) {\n  set_event_mask_page_2(kDefaultEventMaskPage2);\n}\n```",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "386f5fe9556cdac4a7c1383128dca831fca28fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
