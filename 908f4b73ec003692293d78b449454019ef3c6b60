@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d7a716_a8388589",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-09-11T09:28:04Z",
+      "side": 1,
+      "message": "I guess it should be `GAP characteristics`.",
+      "range": {
+        "startLine": 259,
+        "startChar": 47,
+        "endLine": 259,
+        "endChar": 67
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "99f9ca2f_3b2d6393",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_ble.cc",
+              "range": {
+                "startLine": 259,
+                "startChar": 0,
+                "endLine": 260,
+                "endChar": 0
+              },
+              "replacement": " * utility function to send a read request for a GAP characteristics.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "908f4b73ec003692293d78b449454019ef3c6b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
