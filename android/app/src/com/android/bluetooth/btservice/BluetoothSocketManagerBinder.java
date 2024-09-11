@@ -30,6 +30,8 @@ import android.util.Log;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.flags.Flags;
 
+import java.util.UUID;
+
 class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
     private static final String TAG = "BtSocketManagerBinder";
 
@@ -37,14 +39,37 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
 
     private static final int INVALID_CID = -1;
 
+    static final int SOCKET_CONNECTION_STATE_LISTENING = 1;
+    static final int SOCKET_CONNECTION_STATE_CONNECTING = 2;
+    static final int SOCKET_CONNECTION_STATE_CONNECTED = 3;
+    static final int SOCKET_CONNECTION_STATE_DISCONNECTING = 4;
+    static final int SOCKET_CONNECTION_STATE_DISCONNECTED = 5;
+    static final int SOCKET_ROLE_LISTEN = 1;
+    static final int SOCKET_ROLE_CONNECTION = 2;
+
+    private static int sClientRegistrationId = 0;
+    private static int sServerRegistrationId = 0;
+
     private AdapterService mService;
+    private BluetoothSocketContextMap mClientMap;
+    private BluetoothSocketContextMap mServerMap;
 
     BluetoothSocketManagerBinder(AdapterService service) {
         mService = service;
+        mClientMap = new BluetoothSocketContextMap();
+        mServerMap = new BluetoothSocketContextMap();
     }
 
     void cleanUp() {
         mService = null;
+        sClientRegistrationId = 0;
+        sServerRegistrationId = 0;
+        if (mClientMap != null) {
+            mClientMap.clear();
+        }
+        if (mServerMap != null) {
+            mServerMap.clear();
+        }
     }
 
     @Override
@@ -61,6 +86,9 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                 Flags.identityAddressNullIfNotKnown()
                         ? Utils.getBrEdrAddress(device)
                         : mService.getIdentityAddress(device.getAddress());
+        int regId = --sClientRegistrationId;
+        int appUid = Binder.getCallingUid();
+        mClientMap.add(regId, appUid, type);
 
         Log.i(
                 TAG,
@@ -72,6 +100,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", regId="
+                        + regId
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -86,7 +116,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                appUid,
+                                regId));
     }
 
     @Override
@@ -99,6 +130,10 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
             return null;
         }
 
+        int regId = ++sServerRegistrationId;
+        int appUid = Binder.getCallingUid();
+        mServerMap.add(regId, appUid, type);
+
         Log.i(
                 TAG,
                 "createSocketChannel: type="
@@ -109,6 +144,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", regId="
+                        + regId
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -120,7 +157,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                appUid,
+                                regId));
     }
 
     @Override
@@ -174,5 +212,61 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
             return null;
         }
         return ParcelFileDescriptor.adoptFd(fd);
+    }
+
+    void socketStateChangeCallback(int regId, UUID connUuid, int status, int role, int state) {
+        Log.i(
+                TAG,
+                "socketStateChangeCallback: regId="
+                        + regId
+                        + ", connUuid="
+                        + connUuid
+                        + ", status="
+                        + status
+                        + ", role="
+                        + role
+                        + ", state="
+                        + state);
+
+        if (role == SOCKET_ROLE_LISTEN) {
+            handleListenSocketStateChange(regId, status, state);
+        } else if (role == SOCKET_ROLE_CONNECTION) {
+            handleConnectionSocketStateChange(regId, connUuid, status, state);
+        }
+    }
+
+    void handleListenSocketStateChange(int regId, int status, int state) {
+        switch (state) {
+            case SOCKET_CONNECTION_STATE_DISCONNECTED:
+                mClientMap.removeApp(regId);
+                break;
+        }
+    }
+
+    void handleConnectionSocketStateChange(int regId, UUID connUuid, int status, int state) {
+        switch (state) {
+            case SOCKET_CONNECTION_STATE_CONNECTED:
+                if (status != 0) {
+                    Log.w(TAG, "Socket connection state was not successful: status " + status);
+                    return;
+                }
+                if (regId > 0) {
+                    mServerMap.addConnection(regId, connUuid);
+                } else {
+                    mClientMap.addConnection(regId, connUuid);
+                }
+                break;
+            case SOCKET_CONNECTION_STATE_DISCONNECTED:
+                if (regId > 0) {
+                    mServerMap.removeConnection(connUuid);
+                } else {
+                    mClientMap.removeConnection(connUuid);
+                    mClientMap.removeApp(regId);
+                }
+                break;
+            default:
+                Log.w(TAG, "handleConnectionSocketStateChange: unknown state=" + state);
+                break;
+        }
     }
 }
