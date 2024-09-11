@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1686529_403ef116",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "If we send commands, we have to check first.\nIf we receive events, we just indicate what we support and they ignore reserved ones.",
+      "parentUuid": "d9a4de60_d144fdcb",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 50
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d98d2208_4eb3a5d2",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "If controller supports V2, it will send V2, otherwise it sends V1.\n\n\"HCI Set event mask\" command description explains this behavior - reserved bits are ignored, never versions are preferred.",
+      "parentUuid": "3c601fa1_34db5297",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 63
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fcbf3b0_f1cffba8",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-09-11T01:42:18Z",
       "side": 1,
       "message": "where is this value used in this function besides logging?",
+      "range": {
+        "startLine": 3178,
+        "startChar": 27,
+        "endLine": 3178,
+        "endChar": 44
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57fce052_3f740605",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3178,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "In next patch, https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3254597/5/system/stack/btm/btm_sec.cc#3259",
+      "parentUuid": "6fcbf3b0_f1cffba8",
       "range": {
         "startLine": 3178,
         "startChar": 27,
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6fa219d_a5cac437",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3203,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "It is just logged below. it will be used in next patch http://aosp/3254597/5/system/stack/btm/btm_sec.cc#3259",
+      "parentUuid": "222674a5_903c948b",
+      "range": {
+        "startLine": 3201,
+        "startChar": 0,
+        "endLine": 3203,
+        "endChar": 3
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9075248e_998ca15e",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-09-11T01:56:36Z",
       "side": 1,
       "message": "This if condition seems fall outside the current change\u0027s scope. \n\nWhy `btm_sec_check_pending_enc_req` can be skipped if `btm_sec_encrypt_change` is called from the key_refresh handler?",
+      "range": {
+        "startLine": 3263,
+        "startChar": 0,
+        "endLine": 3266,
+        "endChar": 0
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d710f48_4e09e465",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "good catch\n\nfrom_key_refresh is needed for next patch, removing from this one.",
+      "parentUuid": "9075248e_998ca15e",
       "range": {
         "startLine": 3263,
         "startChar": 0,
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c975ac9_251eed11",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3443,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d236cf86_a72ed65f",
+      "range": {
+        "startLine": 3443,
+        "startChar": 80,
+        "endLine": 3443,
+        "endChar": 88
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1227769b_8e91757a",
@@ -152,6 +296,30 @@
       "writtenOn": "2024-09-11T01:56:36Z",
       "side": 1,
       "message": "false by default, no need to add false here",
+      "range": {
+        "startLine": 1065,
+        "startChar": 73,
+        "endLine": 1065,
+        "endChar": 78
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50129374_1b942b00",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T17:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1227769b_8e91757a",
       "range": {
         "startLine": 1065,
         "startChar": 73,
