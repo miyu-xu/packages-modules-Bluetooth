@@ -33,6 +33,23 @@
       "message": "Unsafe Rust LGTM.",
       "revId": "46ca452cf98d01e07e4a0f8bebf51960ca853670",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c19f558_1d92ebab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2024-09-11T13:19:20Z",
+      "side": 1,
+      "message": "Thanks! +enh for DrNo on a simple fix of existing UB :)",
+      "revId": "46ca452cf98d01e07e4a0f8bebf51960ca853670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
