@@ -999,7 +999,9 @@ public class AdapterService extends Service {
         Log.d(TAG, "bleOnProcessStart() - Make Bond State Machine");
         mBondStateMachine = BondStateMachine.make(this, mAdapterProperties, mRemoteDevices);
 
-        mNativeInterface.getCallbacks().init(mBondStateMachine, mRemoteDevices);
+        mNativeInterface
+                .getCallbacks()
+                .init(mBondStateMachine, mRemoteDevices, mBluetoothSocketManagerBinder);
 
         mBatteryStatsManager.reportBleScanReset();
         BluetoothStatsLog.write_non_chained(

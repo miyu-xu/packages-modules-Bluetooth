@@ -595,6 +595,10 @@ typedef void (*generate_local_oob_data_callback)(tBT_TRANSPORT transport, bt_oob
 
 typedef void (*key_missing_callback)(const RawAddress bd_addr);
 
+/** Callback invoked when socket state is changed */
+typedef void (*socket_state_changed_callback)(int reg_id, const bluetooth::Uuid& conn_uuid,
+                                              bt_status_t status, int role, int state);
+
 /** TODO: Add callbacks for Link Up/Down and other generic
  *  notifications/callbacks */
 
@@ -623,6 +627,7 @@ typedef struct {
   switch_codec_callback switch_codec_cb;
   le_rand_callback le_rand_cb;
   key_missing_callback key_missing_cb;
+  socket_state_changed_callback socket_state_changed_cb;
 } bt_callbacks_t;
 
 typedef int (*acquire_wake_lock_callout)(const char* lock_name);
