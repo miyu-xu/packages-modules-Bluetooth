@@ -46,6 +46,30 @@
       },
       "revId": "577f07b42504d4ad823c35b649125e66b916a5f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f84fdece_15237b6c",
+        "filename": "framework/api/system-lint-baseline.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-09-11T17:39:15Z",
+      "side": 1,
+      "message": "Yeah I\u0027m aware of that guidance, but it may be a little different for flags that add APIs right now. I\u0027m checking with folks on whether this is the right thing to do.",
+      "parentUuid": "603733c2_ac6da386",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 156
+      },
+      "revId": "577f07b42504d4ad823c35b649125e66b916a5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
