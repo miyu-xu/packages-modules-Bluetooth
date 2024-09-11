@@ -75,6 +75,7 @@ cc_library_static {
         "av/bta_av_main.cc",
         "av/bta_av_ssm.cc",
         "csis/csis_client.cc",
+        "gmap/gmap_client.cc",
         "groups/groups.cc",
         "has/has_client.cc",
         "has/has_ctp.cc",
