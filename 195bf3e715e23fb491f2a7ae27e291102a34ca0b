@@ -72,6 +72,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "222674a5_903c948b",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3203,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:56:36Z",
+      "side": 1,
+      "message": "key_size is assigned, but never used",
+      "range": {
+        "startLine": 3201,
+        "startChar": 0,
+        "endLine": 3203,
+        "endChar": 3
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9075248e_998ca15e",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:56:36Z",
+      "side": 1,
+      "message": "This if condition seems fall outside the current change\u0027s scope. \n\nWhy `btm_sec_check_pending_enc_req` can be skipped if `btm_sec_encrypt_change` is called from the key_refresh handler?",
+      "range": {
+        "startLine": 3263,
+        "startChar": 0,
+        "endLine": 3266,
+        "endChar": 0
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d236cf86_a72ed65f",
         "filename": "system/stack/btm/btm_sec.cc",
         "patchSetId": 8
@@ -88,6 +134,29 @@
         "startChar": 80,
         "endLine": 3443,
         "endChar": 88
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1227769b_8e91757a",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:56:36Z",
+      "side": 1,
+      "message": "false by default, no need to add false here",
+      "range": {
+        "startLine": 1065,
+        "startChar": 73,
+        "endLine": 1065,
+        "endChar": 78
       },
       "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
