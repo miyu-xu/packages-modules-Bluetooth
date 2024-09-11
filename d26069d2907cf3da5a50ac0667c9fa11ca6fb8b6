@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e87352d_d5dd0709",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1542,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-11T17:29:05Z",
+      "side": 1,
+      "message": "Before calling this, you need to check the aconfig flag. (and maybe the sysprop)",
+      "range": {
+        "startLine": 1542,
+        "startChar": 68,
+        "endLine": 1542,
+        "endChar": 93
+      },
+      "revId": "d26069d2907cf3da5a50ac0667c9fa11ca6fb8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
