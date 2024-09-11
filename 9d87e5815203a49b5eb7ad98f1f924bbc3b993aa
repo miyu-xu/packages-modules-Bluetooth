@@ -34,6 +34,24 @@
       "parentUuid": "0777f27f_5d947bf6",
       "revId": "9d87e5815203a49b5eb7ad98f1f924bbc3b993aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c08d125e_dccd5bab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-11T21:03:29Z",
+      "side": 1,
+      "message": "Fine by me.\n\nIt will still require an exception by the release team in order to go to nextfood and into the prebuilt.\n\nFYI @girardier@google.com",
+      "parentUuid": "38590326_966b0b19",
+      "revId": "9d87e5815203a49b5eb7ad98f1f924bbc3b993aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
