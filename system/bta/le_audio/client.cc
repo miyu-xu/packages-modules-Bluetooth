@@ -32,6 +32,7 @@
 #include "bta/csis/csis_types.h"
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
+#include "bta_gmap_client_api.h"
 #include "bta_groups.h"
 #include "bta_le_audio_api.h"
 #include "bta_le_audio_broadcaster_api.h"
@@ -46,6 +47,7 @@
 #include "devices.h"
 #include "gatt_api.h"
 #include "hci/controller_interface.h"
+#include "include/hardware/bt_gmap.h"
 #include "internal_include/stack_config.h"
 #include "le_audio/device_groups.h"
 #include "le_audio_health_status.h"
@@ -69,6 +71,7 @@
 using base::Closure;
 using bluetooth::Uuid;
 using bluetooth::common::ToString;
+using bluetooth::gmap::RolesBitMask;
 using bluetooth::groups::DeviceGroups;
 using bluetooth::groups::DeviceGroupsCallbacks;
 using bluetooth::hci::IsoManager;
@@ -114,7 +117,6 @@ using bluetooth::le_audio::types::LeAudioContextType;
 using bluetooth::le_audio::types::PublishedAudioCapabilities;
 using bluetooth::le_audio::utils::GetAudioContextsFromSinkMetadata;
 using bluetooth::le_audio::utils::GetAudioContextsFromSourceMetadata;
-
 using namespace bluetooth;
 
 /* Enums */
@@ -1992,6 +1994,12 @@ public:
     } else if (hdl == leAudioDevice->tmap_role_hdl_) {
       bluetooth::le_audio::client_parser::tmap::ParseTmapRole(leAudioDevice->tmap_role_, len,
                                                               value);
+    } else if (leAudioDevice->gmap_client_ != nullptr && GmapClient::IsGmapClientEnabled() &&
+               hdl == leAudioDevice->gmap_client_->getRoleHandle()) {
+      leAudioDevice->gmap_client_->parseAndSaveGmapRole(len, value);
+    } else if (leAudioDevice->gmap_client_ != nullptr && GmapClient::IsGmapClientEnabled() &&
+               hdl == leAudioDevice->gmap_client_->getUGTFeatureHandle()) {
+      leAudioDevice->gmap_client_->parseAndSaveUGTFeature(len, value);
     } else {
       log::error("Unknown attribute read: 0x{:x}", hdl);
     }
@@ -2686,6 +2694,7 @@ public:
     const gatt::Service* pac_svc = nullptr;
     const gatt::Service* ase_svc = nullptr;
     const gatt::Service* tmas_svc = nullptr;
+    const gatt::Service* gmap_svc = nullptr;
 
     std::vector<uint16_t> csis_primary_handles;
     uint16_t cas_csis_included_handle = 0;
@@ -2724,6 +2733,10 @@ public:
         log::info("Found Telephony and Media Audio service, handle: 0x{:04x}, device: {}",
                   tmp.handle, leAudioDevice->address_);
         tmas_svc = &tmp;
+      } else if (tmp.uuid == bluetooth::le_audio::uuid::kGamingAudioServiceUuid) {
+        log::info("Found Gaming Audio service, handle: 0x{:04x}, device: {}", tmp.handle,
+                  leAudioDevice->address_);
+        gmap_svc = &tmp;
       }
     }
 
@@ -2972,6 +2985,26 @@ public:
           log::info(
                   "Found Telephony and Media Profile characteristic, handle: 0x{:04x}, device: {}",
                   leAudioDevice->tmap_role_hdl_, leAudioDevice->address_);
+        }
+      }
+    }
+
+    if (gmap_svc && GmapClient::IsGmapClientEnabled()) {
+      leAudioDevice->gmap_client_ = std::make_unique<GmapClient>(leAudioDevice->address_);
+      for (const gatt::Characteristic& charac : gmap_svc->characteristics) {
+        if (charac.uuid == bluetooth::le_audio::uuid::kRoleCharacteristicUuid) {
+          uint16_t handle = charac.value_handle;
+          leAudioDevice->gmap_client_->setRoleHandle(handle);
+          BtaGattQueue::ReadCharacteristic(conn_id, handle, OnGattReadRspStatic, NULL);
+          log::info("Found Gmap Role characteristic, handle: 0x{:04x}, device: {}",
+                    leAudioDevice->gmap_client_->getRoleHandle(), leAudioDevice->address_);
+        }
+        if (charac.uuid == bluetooth::le_audio::uuid::kUnicastGameTerminalCharacteristicUuid) {
+          uint16_t handle = charac.value_handle;
+          leAudioDevice->gmap_client_->setUGTFeatureHandle(handle);
+          BtaGattQueue::ReadCharacteristic(conn_id, handle, OnGattReadRspStatic, NULL);
+          log::info("Found Gmap UGT Feature characteristic, handle: 0x{:04x}, device: {}",
+                    leAudioDevice->gmap_client_->getUGTFeatureHandle(), leAudioDevice->address_);
         }
       }
     }
