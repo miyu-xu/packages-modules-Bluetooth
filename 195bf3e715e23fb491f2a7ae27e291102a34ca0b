@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9a4de60_d144fdcb",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:48:20Z",
+      "side": 1,
+      "message": "Do we need to check for controller support before enabling HCI_Encryption_Change [v2]? If controller does not support the v2 event, would it return error?",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 50
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c601fa1_34db5297",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:48:20Z",
+      "side": 1,
+      "message": "If HCI_Encryption_Change [v2] is enabled as well as HCI_Encryption_Change [v1], when encryption happened, which event will come back after encryption is enabled?",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 63
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fcbf3b0_f1cffba8",
         "filename": "system/stack/btm/btm_sec.cc",
         "patchSetId": 8
