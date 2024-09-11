@@ -22,6 +22,29 @@
       },
       "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d236cf86_a72ed65f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3443,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-11T01:43:01Z",
+      "side": 1,
+      "message": "then we should put 0 here to indicate `key_size` is not used by `btm_sec_encrypt_change` in this case",
+      "range": {
+        "startLine": 3443,
+        "startChar": 80,
+        "endLine": 3443,
+        "endChar": 88
+      },
+      "revId": "195bf3e715e23fb491f2a7ae27e291102a34ca0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
