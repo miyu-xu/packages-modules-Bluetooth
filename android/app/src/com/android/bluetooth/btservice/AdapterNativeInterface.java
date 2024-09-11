@@ -197,13 +197,20 @@ public class AdapterNativeInterface {
         return getMetricIdNative(address);
     }
 
-    int connectSocket(byte[] address, int type, byte[] uuid, int port, int flag, int callingUid) {
-        return connectSocketNative(address, type, uuid, port, flag, callingUid);
+    int connectSocket(
+            byte[] address, int type, byte[] uuid, int port, int flag, int callingUid, int regId) {
+        return connectSocketNative(address, type, uuid, port, flag, callingUid, regId);
     }
 
     int createSocketChannel(
-            int type, String serviceName, byte[] uuid, int port, int flag, int callingUid) {
-        return createSocketChannelNative(type, serviceName, uuid, port, flag, callingUid);
+            int type,
+            String serviceName,
+            byte[] uuid,
+            int port,
+            int flag,
+            int callingUid,
+            int regId) {
+        return createSocketChannelNative(type, serviceName, uuid, port, flag, callingUid, regId);
     }
 
     void requestMaximumTxDataLength(byte[] address) {
@@ -339,10 +346,16 @@ public class AdapterNativeInterface {
     private native int getMetricIdNative(byte[] address);
 
     private native int connectSocketNative(
-            byte[] address, int type, byte[] uuid, int port, int flag, int callingUid);
+            byte[] address, int type, byte[] uuid, int port, int flag, int callingUid, int regId);
 
     private native int createSocketChannelNative(
-            int type, String serviceName, byte[] uuid, int port, int flag, int callingUid);
+            int type,
+            String serviceName,
+            byte[] uuid,
+            int port,
+            int flag,
+            int callingUid,
+            int regId);
 
     private native void requestMaximumTxDataLengthNative(byte[] address);
 

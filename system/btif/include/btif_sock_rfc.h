@@ -36,9 +36,9 @@ bt_status_t btsock_rfc_control_req(uint8_t dlci, const RawAddress& bd_addr, uint
                                    uint8_t break_signal, uint8_t discard_buffers,
                                    uint8_t break_signal_seq, bool fc);
 bt_status_t btsock_rfc_listen(const char* name, const bluetooth::Uuid* uuid, int channel,
-                              int* sock_fd, int flags, int app_uid);
+                              int* sock_fd, int flags, int app_uid, int reg_id);
 bt_status_t btsock_rfc_connect(const RawAddress* bd_addr, const bluetooth::Uuid* uuid, int channel,
-                               int* sock_fd, int flags, int app_uid);
+                               int* sock_fd, int flags, int app_uid, int reg_id);
 void btsock_rfc_signaled(int fd, int flags, uint32_t user_id);
 bt_status_t btsock_rfc_disconnect(const RawAddress* bd_addr);
 

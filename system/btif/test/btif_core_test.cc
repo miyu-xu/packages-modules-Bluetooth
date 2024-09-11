@@ -171,6 +171,8 @@ void switch_buffer_size_callback(bool /* is_low_latency_buffer_size */) {}
 void switch_codec_callback(bool /* is_low_latency_buffer_size */) {}
 void le_rand_callback(uint64_t /* random */) {}
 void key_missing_callback(const RawAddress /* bd_addr */) {}
+void socket_state_changed_callback(int /* reg_id */, const bluetooth::Uuid& /* conn_uuid */,
+                                   bt_status_t /* status */, int /* role */, int /* state */) {}
 #undef TESTCB
 
 bt_callbacks_t callbacks = {
@@ -196,6 +198,7 @@ bt_callbacks_t callbacks = {
         .switch_codec_cb = switch_codec_callback,
         .le_rand_cb = le_rand_callback,
         .key_missing_cb = key_missing_callback,
+        .socket_state_changed_cb = socket_state_changed_callback,
 };
 
 }  // namespace
@@ -1056,22 +1059,24 @@ TEST_F(BtifCoreSocketTest, CreateRfcommServerSocket) {
   static constexpr int kChannelOne = 1;
   static constexpr int kFlags = 2;
   static constexpr int kAppUid = 3;
+  static constexpr int kRegId = 4;
   const Uuid server_uuid = Uuid::From16Bit(UUID_SERVCLASS_SERIAL_PORT);
   int socket_number = 0;
-  ASSERT_EQ(BT_STATUS_SUCCESS,
-            btif_sock_get_interface()->listen(BTSOCK_RFCOMM, "TestService", &server_uuid,
-                                              kChannelOne, &socket_number, kFlags, kAppUid));
+  ASSERT_EQ(BT_STATUS_SUCCESS, btif_sock_get_interface()->listen(
+                                       BTSOCK_RFCOMM, "TestService", &server_uuid, kChannelOne,
+                                       &socket_number, kFlags, kAppUid, kRegId));
 }
 
 TEST_F(BtifCoreSocketTest, CreateTwoRfcommServerSockets) {
   static constexpr int kChannelOne = 1;
   static constexpr int kFlags = 2;
   static constexpr int kAppUid = 3;
+  static constexpr int kRegId = 4;
   const Uuid server_uuid = Uuid::From16Bit(UUID_SERVCLASS_SERIAL_PORT);
   int socket_number = 0;
-  ASSERT_EQ(BT_STATUS_SUCCESS,
-            btif_sock_get_interface()->listen(BTSOCK_RFCOMM, "TestService", &server_uuid,
-                                              kChannelOne, &socket_number, kFlags, kAppUid));
+  ASSERT_EQ(BT_STATUS_SUCCESS, btif_sock_get_interface()->listen(
+                                       BTSOCK_RFCOMM, "TestService", &server_uuid, kChannelOne,
+                                       &socket_number, kFlags, kAppUid, kRegId));
   static constexpr int kChannelTwo = 2;
   static constexpr int kFlagsTwo = 4;
   static constexpr int kAppUidTwo = 6;
@@ -1079,10 +1084,11 @@ TEST_F(BtifCoreSocketTest, CreateTwoRfcommServerSockets) {
   int socket_number_two = 1;
   ASSERT_EQ(BT_STATUS_SUCCESS, btif_sock_get_interface()->listen(
                                        BTSOCK_RFCOMM, "ServiceTwo", &server_uuid_two, kChannelTwo,
-                                       &socket_number_two, kFlagsTwo, kAppUidTwo));
+                                       &socket_number_two, kFlagsTwo, kAppUidTwo, kRegId));
 }
 
 TEST_F(BtifCoreSocketTest, CreateManyRfcommServerSockets) {
+  static constexpr int kRegId = 4;
   char server_uuid_str[] = "____5678-1234-2345-3456-456789123456";
   int number_of_sockets = 20;
   for (int i = 0; i < number_of_sockets; i++) {
@@ -1097,7 +1103,7 @@ TEST_F(BtifCoreSocketTest, CreateManyRfcommServerSockets) {
     Uuid server_uuid = Uuid::FromString(server_uuid_str);
     ASSERT_EQ(BT_STATUS_SUCCESS,
               btif_sock_get_interface()->listen(BTSOCK_RFCOMM, "TestService", &server_uuid, channel,
-                                                &socket_number, flags, app_uuid));
+                                                &socket_number, flags, app_uuid, kRegId));
     ASSERT_EQ(0, close(socket_number));
   }
 }

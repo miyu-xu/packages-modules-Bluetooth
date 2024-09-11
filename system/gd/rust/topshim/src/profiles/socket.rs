@@ -154,6 +154,7 @@ impl BtSocket {
         channel: i32,
         flags: i32,
         calling_uid: i32,
+        reg_id: i32,
     ) -> (BtStatus, Result<File, FdError>) {
         let mut sockfd: i32 = -1;
         let sockfd_ptr = LTCheckedPtrMut::from_ref(&mut sockfd);
@@ -173,7 +174,8 @@ impl BtSocket {
             channel,
             sockfd_ptr.into(),
             flags,
-            calling_uid
+            calling_uid,
+            reg_id
         )
         .into();
 
@@ -188,6 +190,7 @@ impl BtSocket {
         channel: i32,
         flags: i32,
         calling_uid: i32,
+        reg_id: i32,
     ) -> (BtStatus, Result<File, FdError>) {
         let mut sockfd: i32 = -1;
         let sockfd_ptr = LTCheckedPtrMut::from_ref(&mut sockfd);
@@ -203,7 +206,8 @@ impl BtSocket {
             channel,
             sockfd_ptr.into(),
             flags,
-            calling_uid
+            calling_uid,
+            reg_id
         )
         .into();
 
