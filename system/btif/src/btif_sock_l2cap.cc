@@ -32,6 +32,7 @@
 #include "btif/include/btif_sock_thread.h"
 #include "btif/include/btif_sock_util.h"
 #include "btif/include/btif_uid.h"
+#include "btif/include/stack_manager_t.h"
 #include "gd/os/rand.h"
 #include "include/hardware/bluetooth.h"
 #include "internal_include/bt_target.h"
@@ -80,6 +81,7 @@ typedef struct l2cap_socket {
   uint16_t local_cid;   // The local CID
   uint16_t remote_cid;  // The remote CID
   Uuid conn_uuid;       // The connection uuid
+  int reg_id;           // The registration id
 } l2cap_socket;
 
 static void btsock_l2cap_server_listen(l2cap_socket* sock);
@@ -92,6 +94,8 @@ static uid_set_t* uid_set = NULL;
 static int pth = -1;
 
 static void btsock_l2cap_cbk(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t l2cap_socket_id);
+static bool notify_btsock_l2cap_state_change(int reg_id, const bluetooth::Uuid& conn_uuid,
+                                             bt_status_t status, int role, int state);
 
 /* TODO: Consider to remove this buffer, as we have a buffer in l2cap as well,
  * and we risk
@@ -244,6 +248,9 @@ static void btsock_l2cap_free_l(l2cap_socket* sock) {
           "Disconnected L2CAP connection for device: {}, channel: {}, app_uid: {}, "
           "id: {}, is_le: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc);
+  notify_btsock_l2cap_state_change(sock->reg_id, sock->conn_uuid, BT_STATUS_SUCCESS,
+                                   sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
+                                   SOCKET_CONNECTION_STATE_DISCONNECTED);
   btif_sock_connection_logger(
           sock->addr, sock->id, sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
           SOCKET_CONNECTION_STATE_DISCONNECTED,
@@ -334,6 +341,7 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
   sock->handle = 0;
   sock->server_psm_sent = false;
   sock->app_uid = -1;
+  sock->conn_uuid = Uuid::kEmpty;
 
   if (name) {
     strncpy(sock->name, name, sizeof(sock->name) - 1);
@@ -539,6 +547,7 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
   accept_rs->remote_cid = p_open->remote_cid;
   Uuid uuid = Uuid::From128BitBE(bluetooth::os::GenerateRandom<Uuid::kNumBytes128>());
   accept_rs->conn_uuid = uuid;
+  accept_rs->reg_id = sock->reg_id;
 
   /* Swap IDs to hand over the GAP connection to the accepted socket, and start
      a new server on the newly create socket ID. */
@@ -550,6 +559,9 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
           "Connected to L2CAP connection for device: {}, channel: {}, app_uid: {}, "
           "id: {}, is_le: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc);
+  notify_btsock_l2cap_state_change(accept_rs->reg_id, accept_rs->conn_uuid, BT_STATUS_SUCCESS,
+                                   accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
+                                   SOCKET_CONNECTION_STATE_CONNECTED);
   btif_sock_connection_logger(accept_rs->addr, accept_rs->id,
                               accept_rs->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
                               SOCKET_CONNECTION_STATE_CONNECTED,
@@ -590,6 +602,9 @@ static void on_cl_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket* 
           "Connected to L2CAP connection for device: {}, channel: {}, app_uid: {}, "
           "id: {}, is_le: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc);
+  notify_btsock_l2cap_state_change(sock->reg_id, sock->conn_uuid, BT_STATUS_SUCCESS,
+                                   sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
+                                   SOCKET_CONNECTION_STATE_CONNECTED);
   btif_sock_connection_logger(sock->addr, sock->id,
                               sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
                               SOCKET_CONNECTION_STATE_CONNECTED,
@@ -823,7 +838,7 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
 
 static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAddress* addr,
                                                   int channel, int* sock_fd, int flags, char listen,
-                                                  int app_uid) {
+                                                  int app_uid, int reg_id) {
   if (!is_inited()) {
     return BT_STATUS_NOT_READY;
   }
@@ -862,6 +877,7 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   sock->app_uid = app_uid;
   sock->is_le_coc = is_le_coc;
   sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
+  sock->reg_id = reg_id;
 
   /* "role" is never initialized in rfcomm code */
   if (listen) {
@@ -895,14 +911,14 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   return BT_STATUS_SUCCESS;
 }
 
-bt_status_t btsock_l2cap_listen(const char* name, int channel, int* sock_fd, int flags,
-                                int app_uid) {
-  return btsock_l2cap_listen_or_connect(name, NULL, channel, sock_fd, flags, 1, app_uid);
+bt_status_t btsock_l2cap_listen(const char* name, int channel, int* sock_fd, int flags, int app_uid,
+                                int reg_id) {
+  return btsock_l2cap_listen_or_connect(name, NULL, channel, sock_fd, flags, 1, app_uid, reg_id);
 }
 
 bt_status_t btsock_l2cap_connect(const RawAddress* bd_addr, int channel, int* sock_fd, int flags,
-                                 int app_uid) {
-  return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags, 0, app_uid);
+                                 int app_uid, int reg_id) {
+  return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags, 0, app_uid, reg_id);
 }
 
 /* return true if we have more to send and should wait for user readiness, false
@@ -1059,4 +1075,16 @@ bt_status_t btsock_l2cap_get_l2cap_remote_cid(Uuid& conn_uuid, uint16_t* cid) {
   }
   *cid = sock->remote_cid;
   return BT_STATUS_SUCCESS;
+}
+
+static bool notify_btsock_l2cap_state_change(int reg_id, const bluetooth::Uuid& conn_uuid,
+                                             bt_status_t status, int role, int state) {
+  if (!GetInterfaceToProfiles() || !GetInterfaceToProfiles()->events ||
+      !GetInterfaceToProfiles()->events->invoke_socket_state_changed_cb) {
+    log::warn(" Notification interface is null");
+    return false;
+  }
+  GetInterfaceToProfiles()->events->invoke_socket_state_changed_cb(reg_id, conn_uuid, status, role,
+                                                                   state);
+  return true;
 }

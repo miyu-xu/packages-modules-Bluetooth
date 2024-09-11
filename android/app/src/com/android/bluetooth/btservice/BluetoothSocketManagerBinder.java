@@ -28,7 +28,14 @@ import android.os.ParcelUuid;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.BluetoothSocketContextMap.Connection;
 import com.android.bluetooth.flags.Flags;
+import com.android.internal.annotations.GuardedBy;
+
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
     private static final String TAG = "BtSocketManagerBinder";
@@ -37,14 +44,38 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
 
     private static final int INVALID_CID = -1;
 
+    static final int SOCKET_CONNECTION_STATE_LISTENING = 1;
+    static final int SOCKET_CONNECTION_STATE_CONNECTING = 2;
+    static final int SOCKET_CONNECTION_STATE_CONNECTED = 3;
+    static final int SOCKET_CONNECTION_STATE_DISCONNECTED = 5;
+
+    static final int SOCKET_ROLE_LISTEN = 1;
+    static final int SOCKET_ROLE_CONNECTION = 2;
+
+    private static int sClientRegistrationId = 0;
+    private static int sServerRegistrationId = 0;
+
     private AdapterService mService;
+    private BluetoothSocketContextMap mClientMap;
+    private BluetoothSocketContextMap mServerMap;
+    private final Object mLock = new Object();
 
     BluetoothSocketManagerBinder(AdapterService service) {
         mService = service;
+        mClientMap = new BluetoothSocketContextMap();
+        mServerMap = new BluetoothSocketContextMap();
     }
 
     void cleanUp() {
         mService = null;
+        sClientRegistrationId = 0;
+        sServerRegistrationId = 0;
+        if (mClientMap != null) {
+            mClientMap.clear();
+        }
+        if (mServerMap != null) {
+            mServerMap.clear();
+        }
     }
 
     @Override
@@ -61,6 +92,17 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                 Flags.identityAddressNullIfNotKnown()
                         ? Utils.getBrEdrAddress(device)
                         : mService.getIdentityAddress(device.getAddress());
+        if (sClientRegistrationId == Integer.MIN_VALUE) {
+            sClientRegistrationId = 0;
+        }
+        int regId = --sClientRegistrationId;
+        int appUid = Binder.getCallingUid();
+        mClientMap.add(
+                regId,
+                type,
+                SOCKET_CONNECTION_STATE_CONNECTING,
+                appUid,
+                getPackageNameFromUid(appUid));
 
         Log.i(
                 TAG,
@@ -72,6 +114,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", regId="
+                        + regId
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -86,7 +130,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                appUid,
+                                regId));
     }
 
     @Override
@@ -99,6 +144,18 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
             return null;
         }
 
+        if (sServerRegistrationId == Integer.MAX_VALUE) {
+            sServerRegistrationId = 0;
+        }
+        int regId = ++sServerRegistrationId;
+        int appUid = Binder.getCallingUid();
+        mServerMap.add(
+                regId,
+                type,
+                SOCKET_CONNECTION_STATE_LISTENING,
+                appUid,
+                getPackageNameFromUid(appUid));
+
         Log.i(
                 TAG,
                 "createSocketChannel: type="
@@ -109,6 +166,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", regId="
+                        + regId
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -120,7 +179,8 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                appUid,
+                                regId));
     }
 
     @Override
@@ -174,5 +234,154 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
             return null;
         }
         return ParcelFileDescriptor.adoptFd(fd);
+    }
+
+    void socketStateChangeCallback(int regId, UUID connUuid, int status, int role, int state) {
+        Log.i(
+                TAG,
+                "socketStateChangeCallback: regId="
+                        + regId
+                        + ", connUuid="
+                        + connUuid
+                        + ", status="
+                        + status
+                        + ", role="
+                        + role
+                        + ", state="
+                        + state);
+
+        if (role == SOCKET_ROLE_LISTEN) {
+            handleListenSocketStateChange(regId, status, state);
+        } else if (role == SOCKET_ROLE_CONNECTION) {
+            handleConnectionSocketStateChange(regId, connUuid, status, state);
+        }
+    }
+
+    void handleListenSocketStateChange(int regId, int status, int state) {
+        synchronized (mLock) {
+            BluetoothSocketContextMap.App app = mServerMap.getByRegId(regId);
+            if (app == null) {
+                return;
+            }
+            switch (state) {
+                case SOCKET_CONNECTION_STATE_DISCONNECTED:
+                    app.state = state;
+                    removeAppIfNeeded(mServerMap, app, regId);
+                    break;
+                default:
+                    Log.w(
+                            TAG,
+                            "handleListenSocketStateChange: unknown state="
+                                    + state
+                                    + ", status="
+                                    + status);
+                    break;
+            }
+        }
+    }
+
+    void handleConnectionSocketStateChange(int regId, UUID connUuid, int status, int state) {
+        synchronized (mLock) {
+            BluetoothSocketContextMap contextMap = (regId > 0) ? mServerMap : mClientMap;
+            BluetoothSocketContextMap.App app = contextMap.getByRegId(regId);
+            if (app == null) {
+                return;
+            }
+            switch (state) {
+                case SOCKET_CONNECTION_STATE_CONNECTED:
+                    if (status != 0) {
+                        Log.w(TAG, "Socket connection state was not successful: status " + status);
+                        return;
+                    }
+                    // Update connection state of client app but keep the one of server app
+                    // until listen socket is disconnected.
+                    if (regId < 0) {
+                        app.state = state;
+                    }
+                    contextMap.addConnection(regId, connUuid);
+                    break;
+                case SOCKET_CONNECTION_STATE_DISCONNECTED:
+                    // Update connection state of client app but keep the one of server app
+                    // until listen socket is disconnected.
+                    if (regId < 0) {
+                        app.state = state;
+                    }
+                    contextMap.removeConnection(connUuid);
+                    removeAppIfNeeded(contextMap, app, regId);
+                    break;
+                default:
+                    Log.w(TAG, "handleConnectionSocketStateChange: unknown state=" + state);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Dump socket context map to a PrintWriter
+     *
+     * @param writer the PrintWriter to write log
+     */
+    public void dump(PrintWriter writer) {
+        writer.println("");
+        writer.println(TAG);
+        writer.println("  Server Socket Entry:");
+        dumpContext(writer, mServerMap);
+        writer.println("  Client Socket Entry:");
+        dumpContext(writer, mClientMap);
+    }
+
+    private void dumpContext(PrintWriter writer, BluetoothSocketContextMap contextMap) {
+        Map<Integer, List<Connection>> map = contextMap.getConnectedSocketMap();
+        writer.println("    Total number of registered appUids: " + map.size());
+        for (Map.Entry<Integer, List<Connection>> entry : map.entrySet()) {
+            int appUid = entry.getKey();
+            writer.println("    " + getPackageNameFromUid(appUid) + " appUid=" + appUid);
+            List<Connection> conns = entry.getValue();
+            writer.println("      Total number of connection: " + conns.size());
+            for (Connection conn : conns) {
+                writer.println(
+                        "      L regId="
+                                + conn.regId
+                                + " protocol="
+                                + getSocketTypeToString(conn.protocol)
+                                + " connUuid="
+                                + conn.connUuid);
+            }
+        }
+    }
+
+    private String getPackageNameFromUid(int appUid) {
+        String packageName = null;
+        if (mService.getPackageManager() != null) {
+            packageName = mService.getPackageManager().getNameForUid(appUid);
+        }
+        if (packageName == null) {
+            packageName = "Unknown package name (UID: " + appUid + ")";
+        }
+        return packageName;
+    }
+
+    private String getSocketTypeToString(int type) {
+        switch (type) {
+            case BluetoothSocket.TYPE_RFCOMM:
+                return "RFCOMM";
+            case BluetoothSocket.TYPE_SCO:
+                return "SCO";
+            case BluetoothSocket.TYPE_L2CAP:
+                return "L2CAP";
+            case BluetoothSocket.TYPE_L2CAP_LE:
+                return "L2CAP_LE";
+            default:
+                return "UNKNOWN_TYPE";
+        }
+    }
+
+    @GuardedBy("mLock")
+    private void removeAppIfNeeded(
+            BluetoothSocketContextMap contextMap, BluetoothSocketContextMap.App app, int regId) {
+        if (contextMap.getConnectionByregId(regId).isEmpty()
+                && app.state == SOCKET_CONNECTION_STATE_DISCONNECTED) {
+            contextMap.removeApp(regId);
+        }
     }
 }
