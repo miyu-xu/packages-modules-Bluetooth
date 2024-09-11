@@ -21,7 +21,6 @@
 #endif
 #include <sys/stat.h>
 
-#include "btif_common.h"
 #include "btif_hci_vs.h"
 #include "hci/hci_interface.h"
 #include "main/shim/entry.h"
@@ -46,15 +45,13 @@ static void CommandStatusOrCompleteCallback(BluetoothHciVendorSpecificCallbacks*
     auto view = std::get<CommandStatusView>(status_or_complete);
     auto ocf = static_cast<uint16_t>(view.GetCommandOpCode()) & 0x3ff;
     auto status = static_cast<uint8_t>(view.GetStatus());
-    do_in_jni_thread(base::BindOnce(&BluetoothHciVendorSpecificCallbacks::commandStatusDelivery,
-                                    base::Unretained(callbacks), ocf, status, cookie));
+    callbacks->commandStatusDelivery(ocf, status, cookie);
 
   } else if (status_or_complete.index() == 1) {
     auto view = std::get<CommandCompleteView>(status_or_complete);
     auto ocf = static_cast<uint16_t>(view.GetCommandOpCode()) & 0x3ff;
     std::vector<uint8_t> return_parameters(view.GetPayload().begin(), view.GetPayload().end());
-    do_in_jni_thread(base::BindOnce(&BluetoothHciVendorSpecificCallbacks::commandCompleteDelivery,
-                                    base::Unretained(callbacks), ocf, return_parameters, cookie));
+    callbacks->commandCompleteDelivery(ocf, return_parameters, cookie);
   }
 }
 
@@ -67,8 +64,7 @@ static void EventCallback(BluetoothHciVendorSpecificCallbacks* callbacks,
   }
 
   std::vector<uint8_t> data(view.GetPayload().begin(), view.GetPayload().end());
-  do_in_jni_thread(base::BindOnce(&BluetoothHciVendorSpecificCallbacks::eventDelivery,
-                                  base::Unretained(callbacks), code, data));
+  callbacks->eventDelivery(code, data);
 }
 
 class BluetoothHciVendorSpecificInterfaceImpl
@@ -80,7 +76,7 @@ class BluetoothHciVendorSpecificInterfaceImpl
     log::assert_that(callbacks != nullptr, "callbacks cannot be null");
     callbacks_ = callbacks;
 
-    shim::GetHciLayer()->RegisterDefaultVendorSpecificEventHandler(
+    shim::GetHciLayer()->RegisterVendorSpecificEventDefaultHandler(
             get_main()->Bind(EventCallback, callbacks_));
   }
 
