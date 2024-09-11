@@ -1681,13 +1681,19 @@ impl IBluetoothGatt for BluetoothGattDBus {
     }
 
     #[dbus_method("ReadCharacteristic")]
-    fn read_characteristic(&self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32) {
+    fn read_characteristic(
+        &mut self,
+        client_id: i32,
+        addr: RawAddress,
+        handle: i32,
+        auth_req: i32,
+    ) {
         dbus_generated!()
     }
 
     #[dbus_method("ReadUsingCharacteristicUuid")]
     fn read_using_characteristic_uuid(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         uuid: String,
@@ -1700,7 +1706,7 @@ impl IBluetoothGatt for BluetoothGattDBus {
 
     #[dbus_method("WriteCharacteristic")]
     fn write_characteristic(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         handle: i32,
@@ -1712,13 +1718,13 @@ impl IBluetoothGatt for BluetoothGattDBus {
     }
 
     #[dbus_method("ReadDescriptor")]
-    fn read_descriptor(&self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32) {
+    fn read_descriptor(&mut self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32) {
         dbus_generated!()
     }
 
     #[dbus_method("WriteDescriptor")]
     fn write_descriptor(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         handle: i32,

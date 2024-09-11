@@ -1262,7 +1262,7 @@ impl CommandHandler {
 
                 self.lock_context()
                     .gatt_dbus
-                    .as_ref()
+                    .as_mut()
                     .unwrap()
                     .write_characteristic(client_id, addr, handle, write_type, auth_req, value);
             }
@@ -1281,7 +1281,7 @@ impl CommandHandler {
 
                 self.lock_context()
                     .gatt_dbus
-                    .as_ref()
+                    .as_mut()
                     .unwrap()
                     .read_characteristic(client_id, addr, handle, auth_req);
             }
@@ -1303,7 +1303,7 @@ impl CommandHandler {
 
                 let auth_req = self.lock_context().gatt_client_context.get_auth_req().into();
 
-                self.lock_context().gatt_dbus.as_ref().unwrap().read_using_characteristic_uuid(
+                self.lock_context().gatt_dbus.as_mut().unwrap().read_using_characteristic_uuid(
                     client_id,
                     addr,
                     uuid,

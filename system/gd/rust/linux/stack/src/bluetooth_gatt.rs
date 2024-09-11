@@ -8,10 +8,11 @@ use bt_topshim::btif::{
 use bt_topshim::profiles::gatt::{
     AdvertisingStatus, AdvertisingTrackInfo, BtGattDbElement, BtGattNotifyParams, BtGattReadParams,
     BtGattResponse, BtGattValue, Gatt, GattAdvCallbacksDispatcher,
-    GattAdvInbandCallbacksDispatcher, GattClientCallbacks, GattClientCallbacksDispatcher,
-    GattScannerCallbacks, GattScannerCallbacksDispatcher, GattScannerInbandCallbacks,
-    GattScannerInbandCallbacksDispatcher, GattServerCallbacks, GattServerCallbacksDispatcher,
-    GattStatus, LePhy, MsftAdvMonitor, MsftAdvMonitorAddress, MsftAdvMonitorPattern,
+    GattAdvInbandCallbacksDispatcher, GattClient, GattClientCallbacks,
+    GattClientCallbacksDispatcher, GattScannerCallbacks, GattScannerCallbacksDispatcher,
+    GattScannerInbandCallbacks, GattScannerInbandCallbacksDispatcher, GattServerCallbacks,
+    GattServerCallbacksDispatcher, GattStatus, LePhy, MsftAdvMonitor, MsftAdvMonitorAddress,
+    MsftAdvMonitorPattern,
 };
 use bt_topshim::sysprop;
 use bt_utils::adv_parser;
@@ -525,11 +526,11 @@ pub trait IBluetoothGatt {
     fn discover_service_by_uuid(&self, client_id: i32, addr: RawAddress, uuid: String);
 
     /// Reads a characteristic on a remote device.
-    fn read_characteristic(&self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32);
+    fn read_characteristic(&mut self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32);
 
     /// Reads a characteristic on a remote device.
     fn read_using_characteristic_uuid(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         uuid: String,
@@ -540,7 +541,7 @@ pub trait IBluetoothGatt {
 
     /// Writes a remote characteristic.
     fn write_characteristic(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         handle: i32,
@@ -550,11 +551,11 @@ pub trait IBluetoothGatt {
     ) -> GattWriteRequestStatus;
 
     /// Reads the descriptor for a given characteristic.
-    fn read_descriptor(&self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32);
+    fn read_descriptor(&mut self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32);
 
     /// Writes a remote descriptor for a given characteristic.
     fn write_descriptor(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         handle: i32,
@@ -1332,6 +1333,8 @@ enum ControllerScanType {
     PassiveScan,
 }
 
+type GattClientCommand = Box<dyn FnOnce(&GattClient) + Send>;
+
 /// Implementation of the GATT API (IBluetoothGatt).
 pub struct BluetoothGatt {
     gatt: Arc<Mutex<Gatt>>,
@@ -1339,6 +1342,12 @@ pub struct BluetoothGatt {
     context_map: ContextMap,
     server_context_map: ServerContextMap,
     reliable_queue: HashSet<RawAddress>,
+    // LibBluetooth doesn't handle the concurrent commands to the same remote correctly.
+    // |gatt_client_permits| records the lower layer status per remote device and
+    // |gatt_client_command_queue| stores the pending commands from the clients.
+    gatt_client_permits: HashMap<RawAddress, Option<i32>>,
+    // The queue of (connection ID, client command)
+    gatt_client_command_queue: HashMap<RawAddress, VecDeque<(i32, GattClientCommand)>>,
     scanner_callbacks: Callbacks<dyn IScannerCallback + Send>,
     scanners: HashMap<Uuid, ScannerInfo>,
 
@@ -1372,6 +1381,8 @@ impl BluetoothGatt {
             context_map: ContextMap::new(tx.clone()),
             server_context_map: ServerContextMap::new(tx.clone()),
             reliable_queue: HashSet::new(),
+            gatt_client_permits: HashMap::new(),
+            gatt_client_command_queue: HashMap::new(),
             scanner_callbacks: Callbacks::new(tx.clone(), Message::ScannerCallbackDisconnected),
             scanners: HashMap::new(),
             controller_scan_type: ControllerScanType::NotScanning,
@@ -1850,6 +1861,36 @@ impl BluetoothGatt {
     pub fn handle_adv_action(&mut self, action: AdvertiserActions) {
         self.adv_manager.get_impl().handle_action(action);
     }
+
+    fn run_client_command_or_queue(
+        &mut self,
+        addr: RawAddress,
+        conn_id: i32,
+        cmd: GattClientCommand,
+    ) {
+        let permit = self.gatt_client_permits.entry(addr).or_insert(None);
+        if permit.is_none() {
+            // Got the permit, hold it and run command.
+            *permit = Some(conn_id);
+            cmd(&self.gatt.lock().unwrap().client);
+        } else {
+            self.gatt_client_command_queue.entry(addr).or_default().push_back((conn_id, cmd));
+        }
+    }
+
+    fn increase_permit_and_run_queue(&mut self, addr: RawAddress) {
+        if let Some((conn_id, cmd)) = self
+            .gatt_client_command_queue
+            .get_mut(&addr)
+            .unwrap_or(&mut VecDeque::new())
+            .pop_front()
+        {
+            self.gatt_client_permits.insert(addr, Some(conn_id));
+            cmd(&self.gatt.lock().unwrap().client);
+        } else {
+            self.gatt_client_permits.insert(addr, None);
+        }
+    }
 }
 
 #[derive(Debug, FromPrimitive, ToPrimitive)]
@@ -2316,18 +2357,31 @@ impl IBluetoothGatt for BluetoothGatt {
         self.gatt.lock().unwrap().client.btif_gattc_discover_service_by_uuid(conn_id, &uuid);
     }
 
-    fn read_characteristic(&self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32) {
+    fn read_characteristic(
+        &mut self,
+        client_id: i32,
+        addr: RawAddress,
+        handle: i32,
+        auth_req: i32,
+    ) {
         let Some(conn_id) = self.context_map.get_conn_id_from_address(client_id, &addr) else {
             return;
         };
+        let handle = handle as u16;
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.lock().unwrap().client.read_characteristic(conn_id, handle as u16, auth_req);
+        self.run_client_command_or_queue(
+            addr,
+            conn_id,
+            Box::new(move |client| {
+                client.read_characteristic(conn_id, handle, auth_req);
+            }),
+        );
     }
 
     fn read_using_characteristic_uuid(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         uuid: String,
@@ -2339,20 +2393,28 @@ impl IBluetoothGatt for BluetoothGatt {
             return;
         };
         let Some(uuid) = Uuid::from_string(uuid) else { return };
+        let start_handle = start_handle as u16;
+        let end_handle = end_handle as u16;
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.lock().unwrap().client.read_using_characteristic_uuid(
+        self.run_client_command_or_queue(
+            addr,
             conn_id,
-            &uuid,
-            start_handle as u16,
-            end_handle as u16,
-            auth_req,
+            Box::new(move |client| {
+                client.read_using_characteristic_uuid(
+                    conn_id,
+                    &uuid,
+                    start_handle,
+                    end_handle,
+                    auth_req,
+                );
+            }),
         );
     }
 
     fn write_characteristic(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         handle: i32,
@@ -2367,34 +2429,40 @@ impl IBluetoothGatt for BluetoothGatt {
         if self.reliable_queue.contains(&addr) {
             write_type = GattWriteType::WritePrepare;
         }
+        let handle = handle as u16;
+        let write_type = write_type.to_i32().unwrap();
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        // TODO(b/200070162): Handle concurrent write characteristic.
-
-        self.gatt.lock().unwrap().client.write_characteristic(
+        self.run_client_command_or_queue(
+            addr,
             conn_id,
-            handle as u16,
-            write_type.to_i32().unwrap(),
-            auth_req,
-            &value,
+            Box::new(move |client| {
+                client.write_characteristic(conn_id, handle, write_type, auth_req, &value);
+            }),
         );
-
         GattWriteRequestStatus::Success
     }
 
-    fn read_descriptor(&self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32) {
+    fn read_descriptor(&mut self, client_id: i32, addr: RawAddress, handle: i32, auth_req: i32) {
         let Some(conn_id) = self.context_map.get_conn_id_from_address(client_id, &addr) else {
             return;
         };
+        let handle = handle as u16;
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.lock().unwrap().client.read_descriptor(conn_id, handle as u16, auth_req);
+        self.run_client_command_or_queue(
+            addr,
+            conn_id,
+            Box::new(move |client| {
+                client.read_descriptor(conn_id, handle, auth_req);
+            }),
+        );
     }
 
     fn write_descriptor(
-        &self,
+        &mut self,
         client_id: i32,
         addr: RawAddress,
         handle: i32,
@@ -2404,10 +2472,17 @@ impl IBluetoothGatt for BluetoothGatt {
         let Some(conn_id) = self.context_map.get_conn_id_from_address(client_id, &addr) else {
             return;
         };
+        let handle = handle as u16;
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.lock().unwrap().client.write_descriptor(conn_id, handle as u16, auth_req, &value);
+        self.run_client_command_or_queue(
+            addr,
+            conn_id,
+            Box::new(move |client| {
+                client.write_descriptor(conn_id, handle, auth_req, &value);
+            }),
+        );
     }
 
     fn register_for_notification(
@@ -2449,8 +2524,15 @@ impl IBluetoothGatt for BluetoothGatt {
         let Some(conn_id) = self.context_map.get_conn_id_from_address(client_id, &addr) else {
             return;
         };
+        let execute = if execute { 1 } else { 0 };
 
-        self.gatt.lock().unwrap().client.execute_write(conn_id, if execute { 1 } else { 0 });
+        self.run_client_command_or_queue(
+            addr,
+            conn_id,
+            Box::new(move |client| {
+                client.execute_write(conn_id, execute);
+            }),
+        );
     }
 
     fn read_remote_rssi(&self, client_id: i32, addr: RawAddress) {
@@ -2809,6 +2891,16 @@ impl BtifGattClientCallbacks for BluetoothGatt {
             cb.on_client_connection_state(status, client_id, false, addr);
         }
         self.context_map.remove_connection(client_id, conn_id);
+        if self.context_map.get_client_ids_from_address(&addr).is_empty() {
+            // Cleaning up as no client connects to this address.
+            self.gatt_client_permits.remove(&addr);
+            self.gatt_client_command_queue.remove(&addr);
+        } else {
+            // If the permit is held by this |conn_id|, reset it and run the next command.
+            if self.gatt_client_permits.get(&addr).cloned() == Some(Some(conn_id)) {
+                self.increase_permit_and_run_queue(addr);
+            }
+        }
     }
 
     fn search_complete_cb(&mut self, conn_id: i32, _status: GattStatus) {
@@ -2835,6 +2927,7 @@ impl BtifGattClientCallbacks for BluetoothGatt {
 
     fn read_characteristic_cb(&mut self, conn_id: i32, status: GattStatus, data: BtGattReadParams) {
         let Some(addr) = self.context_map.get_address_by_conn_id(conn_id) else { return };
+        self.increase_permit_and_run_queue(addr);
         let Some(client) = self.context_map.get_client_by_conn_id(conn_id) else { return };
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_characteristic_read(
@@ -2854,12 +2947,9 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         _len: u16,
         _value: *const u8,
     ) {
-        // TODO(b/200070162): Design how to handle concurrent write characteristic to the same
-        // peer.
-
         let Some(addr) = self.context_map.get_address_by_conn_id(conn_id) else { return };
+        self.increase_permit_and_run_queue(addr);
         let Some(client) = self.context_map.get_client_by_conn_id_mut(conn_id) else { return };
-
         if client.is_congested {
             if status == GattStatus::Congested {
                 status = GattStatus::Success;
@@ -2876,6 +2966,7 @@ impl BtifGattClientCallbacks for BluetoothGatt {
 
     fn read_descriptor_cb(&mut self, conn_id: i32, status: GattStatus, data: BtGattReadParams) {
         let Some(addr) = self.context_map.get_address_by_conn_id(conn_id) else { return };
+        self.increase_permit_and_run_queue(addr);
         let Some(client) = self.context_map.get_client_by_conn_id(conn_id) else { return };
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_descriptor_read(
@@ -2896,6 +2987,7 @@ impl BtifGattClientCallbacks for BluetoothGatt {
         _value: *const u8,
     ) {
         let Some(addr) = self.context_map.get_address_by_conn_id(conn_id) else { return };
+        self.increase_permit_and_run_queue(addr);
         let Some(client) = self.context_map.get_client_by_conn_id(conn_id) else { return };
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_descriptor_write(addr, status, handle as i32);
@@ -2904,6 +2996,7 @@ impl BtifGattClientCallbacks for BluetoothGatt {
 
     fn execute_write_cb(&mut self, conn_id: i32, status: GattStatus) {
         let Some(addr) = self.context_map.get_address_by_conn_id(conn_id) else { return };
+        self.increase_permit_and_run_queue(addr);
         let Some(client) = self.context_map.get_client_by_conn_id(conn_id) else { return };
         if let Some(cb) = self.context_map.get_callback_from_callback_id(client.cbid) {
             cb.on_execute_write(addr, status);
