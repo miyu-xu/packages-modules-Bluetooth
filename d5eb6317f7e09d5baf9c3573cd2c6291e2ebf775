@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d0c808b_37e14b34",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-11T21:20:03Z",
+      "side": 1,
+      "message": "Because there is no internal flagging once initialized, I believe that we should have flagged this init.\n\nBut initializing JNI will either crash 100% or fail 100% so I would be fine if you still keep this unflagged and decide to flag underlying behavior.",
+      "range": {
+        "startLine": 723,
+        "startChar": 8,
+        "endLine": 723,
+        "endChar": 50
+      },
+      "revId": "d5eb6317f7e09d5baf9c3573cd2c6291e2ebf775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
