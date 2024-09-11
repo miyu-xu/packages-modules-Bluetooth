@@ -380,6 +380,7 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
           .invoke_energy_info_cb = invoke_energy_info_cb,
           .invoke_link_quality_report_cb = invoke_link_quality_report_cb,
           .invoke_key_missing_cb = invoke_key_missing_cb,
+          .invoke_socket_state_changed_cb = invoke_socket_state_changed_cb,
   };
   static bluetooth::core::HACK_ProfileInterface profileInterface{
           // HID
@@ -1551,6 +1552,17 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {
 void invoke_key_missing_cb(RawAddress bd_addr) {
   do_in_jni_thread(base::BindOnce(
           [](RawAddress bd_addr) { HAL_CBACK(bt_hal_cbacks, key_missing_cb, bd_addr); }, bd_addr));
+}
+
+void invoke_socket_state_changed_cb(int reg_id, const bluetooth::Uuid& conn_uuid,
+                                    bt_status_t status, int role, int state) {
+  do_in_jni_thread(base::BindOnce(
+          [](int reg_id, const bluetooth::Uuid& conn_uuid, bt_status_t status, int role,
+             int state) {
+            HAL_CBACK(bt_hal_cbacks, socket_state_changed_cb, reg_id, conn_uuid, status, role,
+                      state);
+          },
+          reg_id, conn_uuid, status, role, state));
 }
 
 namespace bluetooth::testing {
