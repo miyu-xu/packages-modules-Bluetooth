@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6ab2c7_484ecab5",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-11T21:23:22Z",
+      "side": 1,
+      "message": "This bug is not in the bluetooth flag tracking component. Did you mean 365844219 ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "revId": "262628a47a7e42802acea9f4469d57a8ddea21a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
