@@ -282,6 +282,10 @@ tBTM_SEC_DEV_REC* btm_sec_alloc_dev(const RawAddress& bd_addr) {
   tBTM_INQ_INFO* p_inq_info;
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_sec_allocate_dev_rec();
+  if (p_dev_rec == nullptr) {
+    log::warn("Unable to allocate device record as stack is torn down");
+    return nullptr;
+  }
 
   log::debug("Allocated device record bd_addr:{}", bd_addr);
 
