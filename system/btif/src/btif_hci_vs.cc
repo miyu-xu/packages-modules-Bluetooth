@@ -42,13 +42,15 @@ static void CommandStatusOrCompleteCallback(BluetoothHciVendorSpecificCallbacks*
     auto view = std::get<CommandStatusView>(status_or_complete);
     auto ocf = static_cast<uint16_t>(view.GetCommandOpCode()) & 0x3ff;
     auto status = static_cast<uint8_t>(view.GetStatus());
-    callbacks->commandStatusDelivery(ocf, status, cookie);
+    do_in_jni_thread(base::BindOnce(&BluetoothHciVendorSpecificCallbacks::commandStatusDelivery,
+                                    base::Unretained(callbacks), ocf, status, cookie));
 
   } else if (status_or_complete.index() == 1) {
     auto view = std::get<CommandCompleteView>(status_or_complete);
     auto ocf = static_cast<uint16_t>(view.GetCommandOpCode()) & 0x3ff;
     std::vector<uint8_t> return_parameters(view.GetPayload().begin(), view.GetPayload().end());
-    callbacks->commandCompleteDelivery(ocf, return_parameters, cookie);
+    do_in_jni_thread(base::BindOnce(&BluetoothHciVendorSpecificCallbacks::commandCompleteDelivery,
+                                    base::Unretained(callbacks), ocf, return_parameters, cookie));
   }
 }
 
@@ -61,7 +63,8 @@ static void EventCallback(BluetoothHciVendorSpecificCallbacks* callbacks,
   }
 
   std::vector<uint8_t> data(view.GetPayload().begin(), view.GetPayload().end());
-  callbacks->eventDelivery(code, data);
+  do_in_jni_thread(base::BindOnce(&BluetoothHciVendorSpecificCallbacks::eventDelivery,
+                                  base::Unretained(callbacks), code, data));
 }
 
 class BluetoothHciVendorSpecificInterfaceImpl
