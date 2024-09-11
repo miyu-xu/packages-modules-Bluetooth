@@ -16,6 +16,24 @@
       "message": "This flag is not a bugfix and not associated to an android-fr. (looking at b/366018699)\n\nI believe this CL should reference b/365846652.\nI believe b/366018699 should indicate it is a feature request and link to b/365846652 and start the process of the fr (should be a quick one as this is spec related)",
       "revId": "9d87e5815203a49b5eb7ad98f1f924bbc3b993aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38590326_966b0b19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-11T20:59:58Z",
+      "side": 1,
+      "message": "Added bug reference. This is not a Android Feature Request, just a new HCI command.",
+      "parentUuid": "0777f27f_5d947bf6",
+      "revId": "9d87e5815203a49b5eb7ad98f1f924bbc3b993aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
