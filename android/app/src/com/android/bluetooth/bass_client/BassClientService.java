@@ -29,6 +29,7 @@ import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicS
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastMonitorSourceSyncStatus;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastResyncHelper;
+import static com.android.bluetooth.flags.Flags.leaudioSortScansToSyncByFails;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
@@ -160,6 +161,7 @@ public class BassClientService extends ProfileService {
             new HashMap<>();
     private final PriorityQueue<SourceSyncRequest> mSourceSyncRequestsQueue =
             new PriorityQueue<>(sSourceSyncRequestComparator);
+    private final Map<Integer, Integer> mFailsCounter = new HashMap<>();
     private final Map<Integer, Integer> mBisDiscoveryCounterMap = new HashMap<>();
     private final List<AddSourceData> mPendingSourcesToAdd = new ArrayList<>();
 
@@ -283,12 +285,14 @@ public class BassClientService extends ProfileService {
     }
 
     private static class SourceSyncRequest {
-        private ScanResult mScanResult;
-        private boolean mHasPriority;
+        private final ScanResult mScanResult;
+        private final boolean mHasPriority;
+        private final int mFailsCounter;
 
-        SourceSyncRequest(ScanResult scanResult, boolean hasPriority) {
+        SourceSyncRequest(ScanResult scanResult, boolean hasPriority, int failsCounter) {
             this.mScanResult = scanResult;
             this.mHasPriority = hasPriority;
+            this.mFailsCounter = failsCounter;
         }
 
         public ScanResult getScanResult() {
@@ -303,6 +307,10 @@ public class BassClientService extends ProfileService {
             return mHasPriority;
         }
 
+        public int getFailsCounter() {
+            return mFailsCounter;
+        }
+
         @Override
         public String toString() {
             return "SourceSyncRequest{"
@@ -310,6 +318,8 @@ public class BassClientService extends ProfileService {
                     + mScanResult
                     + ", mHasPriority="
                     + mHasPriority
+                    + ", mFailsCounter="
+                    + mFailsCounter
                     + '}';
         }
     }
@@ -322,6 +332,9 @@ public class BassClientService extends ProfileService {
                         return -1;
                     } else if (!ssr1.hasPriority() && ssr2.hasPriority()) {
                         return 1;
+                    } else if (leaudioSortScansToSyncByFails()
+                            && (ssr1.getFailsCounter() != ssr2.getFailsCounter())) {
+                        return Integer.compare(ssr1.getFailsCounter(), ssr2.getFailsCounter());
                     } else {
                         return Integer.compare(ssr2.getRssi(), ssr1.getRssi());
                     }
@@ -1049,9 +1062,8 @@ public class BassClientService extends ProfileService {
             if (isPlaying) {
                 stopBigMonitoring(broadcastId, false);
             } else if (!mPausedBroadcastIds.containsKey(broadcastId)) {
-                ScanResult scanRes = getCachedBroadcast(broadcastId);
-                if (scanRes != null) {
-                    addSelectSourceRequest(scanRes, true);
+                if (mCachedBroadcasts.containsKey(broadcastId)) {
+                    addSelectSourceRequest(broadcastId, true);
                     mPausedBroadcastIds.put(broadcastId, PauseType.SINK_UNKNOWN);
                     logPausedBroadcastsAndSinks();
                     mHandler.removeMessages(MESSAGE_BIG_CHECK_START);
@@ -1845,11 +1857,11 @@ public class BassClientService extends ProfileService {
                                         "Broadcast Source Found: Broadcast ID: " + broadcastId);
 
                                 if (broadcastId != BassConstants.INVALID_BROADCAST_ID
-                                        && mCachedBroadcasts.get(broadcastId) == null) {
+                                        && !mCachedBroadcasts.containsKey(broadcastId)) {
                                     log("selectBroadcastSource: broadcastId " + broadcastId);
                                     mCachedBroadcasts.put(broadcastId, result);
                                     if (leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
-                                        addSelectSourceRequest(result, false);
+                                        addSelectSourceRequest(broadcastId, false);
                                     } else {
                                         synchronized (mStateMachines) {
                                             for (BassClientStateMachine sm :
@@ -1874,10 +1886,7 @@ public class BassClientService extends ProfileService {
                 // Sync to the broadcasts already synced with sinks
                 Set<Integer> syncedBroadcasts = getExternalBroadcastsActiveOnSinks();
                 for (int syncedBroadcast : syncedBroadcasts) {
-                    ScanResult scanRes = getCachedBroadcast(syncedBroadcast);
-                    if (scanRes != null) {
-                        addSelectSourceRequest(scanRes, true);
-                    }
+                    addSelectSourceRequest(syncedBroadcast, true);
                 }
             }
             // when starting scan, clear the previously cached broadcast scan results
@@ -1975,10 +1984,7 @@ public class BassClientService extends ProfileService {
                     Integer broadcastId = entry.getKey();
                     PauseType pauseType = entry.getValue();
                     if (pauseType != PauseType.HOST_INTENTIONAL) {
-                        ScanResult scanRes = getCachedBroadcast(broadcastId);
-                        if (scanRes != null) {
-                            addSelectSourceRequest(scanRes, true);
-                        }
+                        addSelectSourceRequest(broadcastId, true);
                     }
                 }
             }
@@ -1988,6 +1994,7 @@ public class BassClientService extends ProfileService {
     private void clearAllSyncData() {
         log("clearAllSyncData");
         mSourceSyncRequestsQueue.clear();
+        mFailsCounter.clear();
         mPendingSourcesToAdd.clear();
 
         cancelActiveSync(null);
@@ -2109,6 +2116,10 @@ public class BassClientService extends ProfileService {
                     }
                 }
                 stopBigMonitoring(broadcastId, false);
+                synchronized (mSourceSyncRequestsQueue) {
+                    int failsCounter = mFailsCounter.getOrDefault(broadcastId, 0) + 1;
+                    mFailsCounter.put(broadcastId, failsCounter);
+                }
                 synchronized (mSearchScanCallbackLock) {
                     // Clear from cache to make possible sync again (only during active searching)
                     if (mSearchScanCallback != null) {
@@ -2467,30 +2478,35 @@ public class BassClientService extends ProfileService {
         return broadcastName;
     }
 
-    void addSelectSourceRequest(ScanResult scanRes, boolean hasPriority) {
+    void addSelectSourceRequest(int broadcastId, boolean hasPriority) {
         sEventLogger.logd(
                 TAG,
-                "Add Select Broadcast Source, result: "
-                        + scanRes
+                "Add Select Broadcast Source, broadcastId: "
+                        + broadcastId
                         + ", hasPriority: "
                         + hasPriority);
 
-        if (scanRes == null) {
-            Log.e(TAG, "addSelectSourceRequest: Error bad parameters: scanRes cannot be null");
-            return;
-        }
+        ScanResult scanRes = getCachedBroadcast(broadcastId);
+        if (scanRes != null) {
+            ScanRecord scanRecord = scanRes.getScanRecord();
+            if (scanRecord == null) {
+                log("addSelectSourceRequest: ScanRecord empty");
+                return;
+            }
 
-        ScanRecord scanRecord = scanRes.getScanRecord();
-        if (scanRecord == null) {
-            log("addSelectSourceRequest: ScanRecord empty");
-            return;
-        }
+            synchronized (mSourceSyncRequestsQueue) {
+                if (!mFailsCounter.containsKey(broadcastId)) {
+                    mFailsCounter.put(broadcastId, 0);
+                }
+                mSourceSyncRequestsQueue.add(
+                        new SourceSyncRequest(
+                                scanRes, hasPriority, mFailsCounter.get(broadcastId)));
+            }
 
-        synchronized (mSourceSyncRequestsQueue) {
-            mSourceSyncRequestsQueue.add(new SourceSyncRequest(scanRes, hasPriority));
+            handleSelectSourceRequest();
+        } else {
+            log("addSelectSourceRequest: ScanResult empty");
         }
-
-        handleSelectSourceRequest();
     }
 
     @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
@@ -2735,7 +2751,7 @@ public class BassClientService extends ProfileService {
                         mPendingSourcesToAdd.add(
                                 new AddSourceData(sink, sourceMetadata, isGroupOp));
                         if (!alreadyAdded) {
-                            addSelectSourceRequest(getCachedBroadcast(broadcastId), true);
+                            addSelectSourceRequest(broadcastId, true);
                         }
                     }
                 } else {
