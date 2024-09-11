@@ -36,6 +36,8 @@
 using bluetooth::Uuid;
 extern bt_interface_t bluetoothInterface;
 
+#define UUID_PARAMS(uuid) uuid_lsb(uuid), uuid_msb(uuid)
+
 namespace fmt {
 template <>
 struct formatter<bt_state_t> : enum_formatter<bt_state_t> {};
@@ -50,6 +52,30 @@ static Uuid from_java_uuid(jlong uuid_msb, jlong uuid_lsb) {
     uu[15 - i] = (uuid_lsb >> (8 * i)) & 0xFF;
   }
   return Uuid::From128BitBE(uu);
+}
+
+static uint64_t uuid_lsb(const Uuid& uuid) {
+  uint64_t lsb = 0;
+
+  auto uu = uuid.To128BitBE();
+  for (int i = 8; i <= 15; i++) {
+    lsb <<= 8;
+    lsb |= uu[i];
+  }
+
+  return lsb;
+}
+
+static uint64_t uuid_msb(const Uuid& uuid) {
+  uint64_t msb = 0;
+
+  auto uu = uuid.To128BitBE();
+  for (int i = 0; i <= 7; i++) {
+    msb <<= 8;
+    msb |= uu[i];
+  }
+
+  return msb;
 }
 
 namespace {
@@ -97,6 +123,7 @@ static jmethodID method_acquireWakeLock;
 static jmethodID method_releaseWakeLock;
 static jmethodID method_energyInfo;
 static jmethodID method_keyMissingCallback;
+static jmethodID method_socketStateChangeCallback;
 
 static struct {
   jclass clazz;
@@ -773,6 +800,22 @@ static void key_missing_callback(const RawAddress bd_addr) {
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_keyMissingCallback, addr.get());
 }
 
+static void socket_state_changed_callback(int reg_id, const bluetooth::Uuid& conn_uuid,
+                                          bt_status_t status, int role, int state) {
+  std::shared_lock<std::shared_timed_mutex> lock(jniObjMutex);
+  if (!sJniCallbacksObj) {
+    log::error("JNI obj is null. Failed to call JNI callback");
+    return;
+  }
+
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid()) {
+    return;
+  }
+  sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_socketStateChangeCallback, (jint)reg_id,
+                               UUID_PARAMS(conn_uuid), (jint)status, (jint)role, (jint)state);
+}
+
 static void callback_thread_event(bt_cb_thread_evt event) {
   if (event == ASSOCIATE_JVM) {
     JavaVMAttachArgs args;
@@ -861,6 +904,7 @@ static bt_callbacks_t sBluetoothCallbacks = {
         switch_codec_callback,
         le_rand_callback,
         key_missing_callback,
+        socket_state_changed_callback,
 };
 
 class JNIThreadAttacher {
@@ -1762,7 +1806,8 @@ static jboolean setBufferLengthMillisNative(JNIEnv* /* env */, jobject /* obj */
 }
 
 static jint connectSocketNative(JNIEnv* env, jobject /* obj */, jbyteArray address, jint type,
-                                jbyteArray uuid, jint port, jint flag, jint callingUid) {
+                                jbyteArray uuid, jint port, jint flag, jint callingUid,
+                                jint regId) {
   int socket_fd = INVALID_FD;
   jbyte* addr = nullptr;
   jbyte* uuidBytes = nullptr;
@@ -1780,8 +1825,8 @@ static jint connectSocketNative(JNIEnv* env, jobject /* obj */, jbyteArray addre
 
   btUuid = Uuid::From128BitBE(reinterpret_cast<uint8_t*>(uuidBytes));
   if (sBluetoothSocketInterface->connect(reinterpret_cast<RawAddress*>(addr), (btsock_type_t)type,
-                                         &btUuid, port, &socket_fd, flag,
-                                         callingUid) != BT_STATUS_SUCCESS) {
+                                         &btUuid, port, &socket_fd, flag, callingUid,
+                                         regId) != BT_STATUS_SUCCESS) {
     socket_fd = INVALID_FD;
   }
 
@@ -1797,7 +1842,7 @@ done:
 
 static jint createSocketChannelNative(JNIEnv* env, jobject /* obj */, jint type,
                                       jstring serviceName, jbyteArray uuid, jint port, jint flag,
-                                      jint callingUid) {
+                                      jint callingUid, jint regId) {
   int socket_fd = INVALID_FD;
   jbyte* uuidBytes = nullptr;
   Uuid btUuid;
@@ -1817,7 +1862,7 @@ static jint createSocketChannelNative(JNIEnv* env, jobject /* obj */, jint type,
   btUuid = Uuid::From128BitBE(reinterpret_cast<uint8_t*>(uuidBytes));
 
   if (sBluetoothSocketInterface->listen((btsock_type_t)type, nativeServiceName, &btUuid, port,
-                                        &socket_fd, flag, callingUid) != BT_STATUS_SUCCESS) {
+                                        &socket_fd, flag, callingUid, regId) != BT_STATUS_SUCCESS) {
     socket_fd = INVALID_FD;
   }
 
@@ -2181,8 +2226,8 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
           {"setBufferLengthMillisNative", "(II)Z",
            reinterpret_cast<void*>(setBufferLengthMillisNative)},
           {"getMetricIdNative", "([B)I", reinterpret_cast<void*>(getMetricIdNative)},
-          {"connectSocketNative", "([BI[BIII)I", reinterpret_cast<void*>(connectSocketNative)},
-          {"createSocketChannelNative", "(ILjava/lang/String;[BIII)I",
+          {"connectSocketNative", "([BI[BIIII)I", reinterpret_cast<void*>(connectSocketNative)},
+          {"createSocketChannelNative", "(ILjava/lang/String;[BIIII)I",
            reinterpret_cast<void*>(createSocketChannelNative)},
           {"requestMaximumTxDataLengthNative", "([B)V",
            reinterpret_cast<void*>(requestMaximumTxDataLengthNative)},
@@ -2241,6 +2286,7 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
           {"releaseWakeLock", "(Ljava/lang/String;)Z", &method_releaseWakeLock},
           {"energyInfoCallback", "(IIJJJJ[Landroid/bluetooth/UidTraffic;)V", &method_energyInfo},
           {"keyMissingCallback", "([B)V", &method_keyMissingCallback},
+          {"socketStateChangeCallback", "(IJJIII)V", &method_socketStateChangeCallback},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/btservice/JniCallbacks", javaMethods);
 
