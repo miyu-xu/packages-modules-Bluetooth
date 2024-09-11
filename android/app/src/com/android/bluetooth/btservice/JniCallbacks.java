@@ -19,21 +19,28 @@ package com.android.bluetooth.btservice;
 import android.bluetooth.OobData;
 import android.bluetooth.UidTraffic;
 
+import java.util.UUID;
+
 class JniCallbacks {
 
     private RemoteDevices mRemoteDevices;
     private AdapterProperties mAdapterProperties;
     private AdapterService mAdapterService;
     private BondStateMachine mBondStateMachine;
+    private BluetoothSocketManagerBinder mBluetoothSocketManagerBinder;
 
     JniCallbacks(AdapterService adapterService, AdapterProperties adapterProperties) {
         mAdapterService = adapterService;
         mAdapterProperties = adapterProperties;
     }
 
-    void init(BondStateMachine bondStateMachine, RemoteDevices remoteDevices) {
+    void init(
+            BondStateMachine bondStateMachine,
+            RemoteDevices remoteDevices,
+            BluetoothSocketManagerBinder bluetoothSocketManagerBinder) {
         mRemoteDevices = remoteDevices;
         mBondStateMachine = bondStateMachine;
+        mBluetoothSocketManagerBinder = bluetoothSocketManagerBinder;
     }
 
     void cleanup() {
@@ -151,5 +158,11 @@ class JniCallbacks {
             UidTraffic[] data) {
         mAdapterService.energyInfoCallback(
                 status, ctrlState, txTime, rxTime, idleTime, energyUsed, data);
+    }
+
+    void socketStateChangeCallback(
+            int regId, long uuidLsb, long uuidMsb, int status, int role, int state) {
+        mBluetoothSocketManagerBinder.socketStateChangeCallback(
+                regId, new UUID(uuidMsb, uuidLsb), status, role, state);
     }
 }
