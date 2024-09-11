@@ -965,6 +965,10 @@ bool LeAudioDeviceGroup::SetPreferredAudioSetConfiguration(
   bool is_updated = false;
 
   for (LeAudioContextType ctx_type : types::kLeAudioContextAllTypesArray) {
+    if (ctx_type == types::LeAudioContextType::CONVERSATIONAL) {
+      log::info("skip update audio config for CONVERSATIONAL");
+      continue;
+    }
     is_updated |= UpdateAudioSetConfigurationCache(ctx_type, true);
   }
 
