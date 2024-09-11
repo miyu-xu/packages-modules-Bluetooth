@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddab7562_5fab144b",
+        "filename": "framework/api/system-lint-baseline.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-09-11T15:18:57Z",
+      "side": 1,
+      "message": "We shouldn\u0027t have to do this. I\u0027m checking with API Council whether it\u0027s yet safe to remove flags that have been fully rolled out.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 156
+      },
+      "revId": "577f07b42504d4ad823c35b649125e66b916a5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
