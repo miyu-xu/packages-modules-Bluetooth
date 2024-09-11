@@ -52,6 +52,24 @@
       "parentUuid": "38590326_966b0b19",
       "revId": "9d87e5815203a49b5eb7ad98f1f924bbc3b993aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78217930_4258843f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-09-11T21:46:43Z",
+      "side": 1,
+      "message": "Fine with me as well. We should be able to get an exemption for this.",
+      "parentUuid": "c08d125e_dccd5bab",
+      "revId": "9d87e5815203a49b5eb7ad98f1f924bbc3b993aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
