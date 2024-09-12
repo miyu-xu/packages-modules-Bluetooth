@@ -45,6 +45,30 @@
       },
       "revId": "84a2748a1865a33839ac3d00322286d13586a224",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d23f339_c71fd35e",
+        "filename": "framework/api/lint-baseline.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-12T19:02:26Z",
+      "side": 1,
+      "message": "Update, we should not need to do anything in this file.\n\ncan you remove these modification ?\n\n(it worked for me after syncing the tree to a more recent version)",
+      "parentUuid": "a65b81dc_5fd1266f",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 99
+      },
+      "revId": "84a2748a1865a33839ac3d00322286d13586a224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
