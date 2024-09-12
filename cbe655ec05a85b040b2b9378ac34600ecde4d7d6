@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22864c4e_ce36b312",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-12T00:26:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9504094d_cd975f49",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 12
+      },
+      "revId": "cbe655ec05a85b040b2b9378ac34600ecde4d7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "413df142_f07c4f15",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-11T23:21:29Z",
       "side": 1,
       "message": "Do we want to guarantee one write at a time? Or do we want to guarantee one write per device at a time? \nHere you implement one write per device at a time, does the Android Java layer have the same assumption?",
+      "range": {
+        "startLine": 1441,
+        "startChar": 42,
+        "endLine": 1441,
+        "endChar": 65
+      },
+      "revId": "cbe655ec05a85b040b2b9378ac34600ecde4d7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f668557_aa8fc571",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-12T00:26:03Z",
+      "side": 1,
+      "message": "Yes Android implements the permit per device ([link](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d2382;drc\u003d8702b8469f1459883f97aa5b1c0269268e3538dd))",
+      "parentUuid": "413df142_f07c4f15",
       "range": {
         "startLine": 1441,
         "startChar": 42,
