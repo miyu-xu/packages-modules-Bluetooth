@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a487b30_ec6381ec",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-12T23:45:29Z",
+      "side": 1,
+      "message": "same socketpair/pipe fds are used as signaling channel (between stack \u0026 java) to notify the sock connection status \u0026 error codes. These error codes are read in connect() API before handlng over socket to application layer - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;l\u003d479\n\nsock-\u003econnected \u003d\u003e basically indicates that app is no longer waiting for the connection and has hold of the socket. this is set after \"socket connection signaling info\" is pumped over fd here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_sock_l2cap.cc;l\u003d602\n\nSo pushing these error codes meant only when connect() is still blocked in the Java layer and hence can be determined by sock-\u003econnected flag.\nIn the close() path, sock structure is cleared at the end of on_l2cap_close() here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_sock_l2cap.cc;drc\u003d87fe50f1324b648ac378ec3a84e2ab5e60edccfc;l\u003d658\n\nI will try to summarize this in commit text.",
+      "parentUuid": "882df7d5_e9ebc07a",
+      "range": {
+        "startLine": 651,
+        "startChar": 9,
+        "endLine": 651,
+        "endChar": 24
+      },
+      "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e341bf3_e20eee14",
@@ -84,6 +108,54 @@
           ]
         }
       ],
+      "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f1b8f0_f6bd97cc",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-12T23:45:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6cdf48e4_5d924590",
+      "range": {
+        "startLine": 656,
+        "startChar": 11,
+        "endLine": 656,
+        "endChar": 15
+      },
+      "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b888af0_352b5ec3",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-12T23:45:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5e341bf3_e20eee14",
+      "range": {
+        "startLine": 656,
+        "startChar": 17,
+        "endLine": 656,
+        "endChar": 21
+      },
       "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
