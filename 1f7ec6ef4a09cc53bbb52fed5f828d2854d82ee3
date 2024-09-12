@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f39192_9bad69e6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-12T17:42:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5826dffe_a9877a79",
+      "revId": "1f7ec6ef4a09cc53bbb52fed5f828d2854d82ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "220d0c31_5928a4bb",
