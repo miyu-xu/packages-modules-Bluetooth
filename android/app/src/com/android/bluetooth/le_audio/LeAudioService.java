@@ -91,8 +91,10 @@ import com.android.bluetooth.mcp.McpService;
 import com.android.bluetooth.tbs.TbsGatt;
 import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.vc.VolumeControlService;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -235,6 +237,8 @@ public class LeAudioService extends ProfileService {
 
     private static class LeAudioGroupDescriptor {
         LeAudioGroupDescriptor(boolean isInbandRingtonEnabled) {
+            mIsDefaultCodec = true;
+            mMultiLeCodecs = false;
             mIsConnected = false;
             mActiveState = ACTIVE_STATE_INACTIVE;
             mAllowedSinkContexts = BluetoothLeAudio.CONTEXTS_ALL;
@@ -250,7 +254,8 @@ public class LeAudioService extends ProfileService {
             mOutputSelectableConfig = new ArrayList<>();
             mInactivatedDueToContextType = false;
         }
-
+        Boolean mIsDefaultCodec;
+        Boolean mMultiLeCodecs;
         Boolean mIsConnected;
         Boolean mHasFallbackDeviceWhenGettingInactive;
         Integer mDirection;
@@ -344,7 +349,6 @@ public class LeAudioService extends ProfileService {
             mDirection = AUDIO_DIRECTION_NONE;
             mDevInbandRingtoneEnabled = isInbandRingtonEnabled;
         }
-
         public boolean mAclConnected;
         public LeAudioStateMachine mStateMachine;
         public Integer mGroupId;
@@ -645,6 +649,18 @@ public class LeAudioService extends ProfileService {
     @Override
     public void cleanup() {
         Log.i(TAG, "cleanup()");
+        List<BluetoothDevice> leAudioConnDevList = getConnectedDevices();
+        for (BluetoothDevice device : leAudioConnDevList) {
+            int groupId = getGroupId(device);
+            LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
+            Log.i(TAG, "mIsDefaultCodec: " + groupDescriptor.mIsDefaultCodec);
+            if (groupDescriptor.mIsDefaultCodec) {
+                Log.i(TAG, "The group didn't use default codec, store current codec");
+                InteropUtil.interopDatabaseAddAddr(
+                         InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                         device.getAddress(),3)
+            }
+        }
     }
 
     public static synchronized LeAudioService getLeAudioService() {
@@ -3327,6 +3343,28 @@ public class LeAudioService extends ProfileService {
                     ("Codec update for group:" + groupId)
                             + (", outputCodecOrFreqChanged: " + outputCodecOrFreqChanged)
                             + (", inputCodecOrFreqChanged: " + inputCodecOrFreqChanged));
+
+            if (status != null && status.getOutputCodecConfig() != null) {
+                Log.d(TAG, " the new codec type is " + status.getOutputCodecConfig().getCodecType());
+				if (status.getOutputCodecConfig().getCodecType()) {
+                    descriptor.mMultiLeCodecs = true;
+                    boolean matched = InteropUtil.interopMatchAddrOrName(
+                                             InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                                             device.getAddress());
+                    if (matched) {
+                        descriptor.mIsDefaultCodec = true;
+                        Log.d(TAG, "Remove device from INTEROP_PREFER_LE_CODEC_IS_LC3.");
+                        InteropUtil.interopDatabaseRemoveAddr(
+                                             InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                                             device.getAddress());
+                    }
+				} else {
+                    Log.d(TAG, " codec is lc3 ");
+                    if (descriptor.mMultiLeCodecs) {
+                       descriptor.mIsDefaultCodec = false;
+                    }
+                }
+            }
 
             descriptor.mCodecStatus = status;
             mHandler.post(() -> notifyUnicastCodecConfigChanged(groupId, status));
