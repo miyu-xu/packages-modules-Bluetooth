@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c90f3f6_ca796023",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1297,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-12T01:36:51Z",
+      "side": 1,
+      "message": "nit: We can save a clone by:\n```suggestion\n        match self.remote_devices.get(\u0026device_address) {\n            Some(context) \u003d\u003e context.connected_hid_profile.is_some(),\n            None \u003d\u003e false,\n        }\n```\nor functional type:\n```suggestion\n        self.remote_devices\n            .get(\u0026device_address)\n            .map_or(false, |context| context.connected_hid_profile.is_some())\n```",
+      "range": {
+        "startLine": 1293,
+        "startChar": 0,
+        "endLine": 1297,
+        "endChar": 47
+      },
+      "revId": "8f0c19a8de67cbf3f92c48b7a713b9299b40dca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7782f1b5_ac41c353",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 3055,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-12T01:36:51Z",
+      "side": 1,
+      "message": "We should also fire a `Message::ProfileDisconnected` when HH disconnected",
+      "range": {
+        "startLine": 3055,
+        "startChar": 12,
+        "endLine": 3055,
+        "endChar": 13
+      },
+      "revId": "8f0c19a8de67cbf3f92c48b7a713b9299b40dca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69c775e2_e1cecf73",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 2304,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-12T01:36:51Z",
+      "side": 1,
+      "message": "Similarly, we should fire a `Message::ProfileDisconnected` when media profiles are fully disconnected.",
+      "revId": "8f0c19a8de67cbf3f92c48b7a713b9299b40dca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
