@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e253a325_dee63223",
+        "filename": "system/gd/hci/fuzz/fuzz_hci_layer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d50a16e_228184a8",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 55
+      },
+      "revId": "9ffc9a52e82046417ae10f7b9341b6241aa6e0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31114d13_8e2a13d1",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-11T23:26:49Z",
       "side": 1,
       "message": "nit: prefer naming`RegisterDefaultVendorSpecificEventHandler`",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 56
+      },
+      "revId": "9ffc9a52e82046417ae10f7b9341b6241aa6e0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96df715_cac5de79",
+        "filename": "system/gd/hci/hci_interface.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31114d13_8e2a13d1",
       "range": {
         "startLine": 68,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "414a1027_2e1c4bd1",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89757795_cf1890f6",
+      "range": {
+        "startLine": 393,
+        "startChar": 32,
+        "endLine": 393,
+        "endChar": 39
+      },
+      "revId": "9ffc9a52e82046417ae10f7b9341b6241aa6e0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1de711c1_19bc5962",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-09-11T23:26:49Z",
       "side": 1,
       "message": "nit: `vs_event_default_handler.has_value()` to make it more explicit",
+      "range": {
+        "startLine": 524,
+        "startChar": 15,
+        "endLine": 524,
+        "endChar": 40
+      },
+      "revId": "9ffc9a52e82046417ae10f7b9341b6241aa6e0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22c981d5_cd9d7ee0",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1de711c1_19bc5962",
       "range": {
         "startLine": 524,
         "startChar": 15,
