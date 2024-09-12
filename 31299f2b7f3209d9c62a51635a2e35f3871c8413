@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2bf32c6_adbc1f71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-12T01:07:46Z",
+      "side": 1,
+      "message": "Please add the following annotations:\n\n```\nFlag: EXEMPT, no logical change\nBug: 331817295\nTest: m com.android.btservices\n```",
+      "revId": "31299f2b7f3209d9c62a51635a2e35f3871c8413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
