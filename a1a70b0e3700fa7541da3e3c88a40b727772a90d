@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "882df7d5_e9ebc07a",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-12T23:18:42Z",
+      "side": 1,
+      "message": "Could you explain in the commit message on why `sock-connected` can be `true` even though L2CAP is disconnected as indicated by `on_l2cap_close`? \n\nWhat state is `sock-connected`? Is it for the ACL connection state?",
+      "range": {
+        "startLine": 651,
+        "startChar": 9,
+        "endLine": 651,
+        "endChar": 24
+      },
+      "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e341bf3_e20eee14",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 9
@@ -20,6 +43,47 @@
         "endLine": 656,
         "endChar": 21
       },
+      "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cdf48e4_5d924590",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-12T23:18:42Z",
+      "side": 1,
+      "message": "`log::info`?",
+      "range": {
+        "startLine": 656,
+        "startChar": 11,
+        "endLine": 656,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e9851c45_0b9b8ef0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 656,
+                "startChar": 0,
+                "endLine": 657,
+                "endChar": 0
+              },
+              "replacement": "      log::info(\"Dont push error for already connected socket:{}\", sock-\u003eid);\n"
+            }
+          ]
+        }
+      ],
       "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
