@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36402449_39731bda",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89cbb89e_b63094ca",
+      "range": {
+        "startLine": 195,
+        "startChar": 13,
+        "endLine": 195,
+        "endChar": 23
+      },
+      "revId": "00afa3d6406aad2955dcb6f92502e892139ad821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee345b2c_85810814",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55b9541e_ec369f95",
+        "filename": "system/include/hardware/bt_hcivs.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:19:04Z",
+      "side": 1,
+      "message": "The JNI Interfaces looks living here for others profiles.",
+      "parentUuid": "ee345b2c_85810814",
+      "revId": "00afa3d6406aad2955dcb6f92502e892139ad821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a400267_f7807405",
         "filename": "system/include/hardware/bt_hcivs.h",
         "patchSetId": 9
@@ -54,6 +96,30 @@
       "writtenOn": "2024-09-12T00:08:29Z",
       "side": 1,
       "message": "Remove useless comments",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "00afa3d6406aad2955dcb6f92502e892139ad821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51e8dd87_56ba66ed",
+        "filename": "system/include/hardware/bt_hcivs.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T17:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a400267_f7807405",
       "range": {
         "startLine": 42,
         "startChar": 2,
