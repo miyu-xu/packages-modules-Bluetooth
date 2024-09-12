@@ -2499,9 +2499,16 @@ void btif_dm_cancel_bond(const RawAddress bd_addr) {
       if (pairing_cb.is_le_only) {
         BTA_DmBleSecurityGrant(bd_addr, tBTA_DM_BLE_SEC_GRANT::BTA_DM_SEC_PAIR_NOT_SPT);
       } else {
-        BTA_DmConfirm(bd_addr, false);
-        BTA_DmBondCancel(bd_addr);
-        btif_storage_remove_bonded_device(&bd_addr);
+        if (com::android::bluetooth::flags::ignore_bond_cancel_by_unintended_device() &&
+            (pairing_cb.bd_addr != bd_addr)) {
+          log::warn("Ignoring bond cancel for unexpected device: {} pairing: {}", bd_addr,
+                    pairing_cb.bd_addr);
+          return;
+        } else {
+          BTA_DmConfirm(bd_addr, false);
+          BTA_DmBondCancel(bd_addr);
+          btif_storage_remove_bonded_device(&bd_addr);
+        }
       }
     } else {
       if (pairing_cb.is_le_only) {
