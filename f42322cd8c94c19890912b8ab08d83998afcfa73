@@ -16,6 +16,24 @@
       "message": "Here is a bit of context:\n\nAfter [3247223](https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3247223) was merged I started working on a prototype (using the new support for longer descriptors) which had to be compatible with MS Windows. This is where I found a regression that Windows (tested with 10 and 11) would no longer accept short (\u003c 256 byte) report descriptors. Descriptors longer than 256 bytes would work fine. After experimenting a bit, it seems like Windows won\u0027t accept it when a sub 256 byte descriptor is specified using SIZE_IN_NEXT_WORD. This means the current state breaks almost all apps using HIDD with a sub 256 report descriptor on Windows.\n\nI think using SIZE_IN_NEXT_WORD to specify sizes below 256 bytes is well within the SDP spec, so I don\u0027t know why Windows won\u0027t accept that. I don\u0027t have the required developer tools, experience nor connections to further look into it on the Windows side. So if any of you have some connections to Microsoft and the Windows Bluetooth Stack, maybe you could shed some light on why this is.\n\nI think however that it is important that we preserve compatibililty with existing apps and Windows releases, so I think using the workaround proposed here is the way to go. Other platforms (tested bluez, flouride) work as expected with both the current state and this patch.",
       "revId": "f42322cd8c94c19890912b8ab08d83998afcfa73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b43cd35_c57c3683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-12T21:11:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6aca0d92_2ba51b79",
+      "revId": "f42322cd8c94c19890912b8ab08d83998afcfa73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
