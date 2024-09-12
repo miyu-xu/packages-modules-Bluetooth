@@ -22,6 +22,30 @@
       },
       "revId": "883a6455ea3e9075afb23be1cb5e49b6cd67c62f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e65f7e8_2d4a0c14",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-12T00:54:25Z",
+      "side": 1,
+      "message": "If the adapter is already started, this value can\u0027t be set anymore as it is only used in offToBleOn",
+      "parentUuid": "6733280c_63dbcc1e",
+      "range": {
+        "startLine": 1804,
+        "startChar": 8,
+        "endLine": 1804,
+        "endChar": 20
+      },
+      "revId": "883a6455ea3e9075afb23be1cb5e49b6cd67c62f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
