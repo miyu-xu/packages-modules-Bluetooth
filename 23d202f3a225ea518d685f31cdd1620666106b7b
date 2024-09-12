@@ -16,6 +16,24 @@
       "message": "nit: could be worth to update the name since the property is now `readable` as well ?",
       "revId": "23d202f3a225ea518d685f31cdd1620666106b7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90f0378_88392660",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-09-12T17:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1be4606f_44fc75ac",
+      "revId": "23d202f3a225ea518d685f31cdd1620666106b7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
