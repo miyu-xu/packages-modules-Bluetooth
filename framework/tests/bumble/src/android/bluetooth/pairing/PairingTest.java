@@ -170,8 +170,10 @@ public class PairingTest {
      *       input
      *   <li>2. Android tries to create bond via MAC address, emitting bonding intent
      *   <li>3. Android confirms the pairing via pairing request intent
-     *   <li>4. Bumble confirms the pairing internally (optional, added only for test confirmation)
-     *   <li>5. Android verifies bonded intent
+     *   <li>4. Android cancel the pairing of unintended device. verify current pairing is continued
+     *       and success.
+     *   <li>5. Bumble confirms the pairing internally (optional, added only for test confirmation)
+     *   <li>6. Android verifies bonded intent
      * </ol>
      */
     @Test
@@ -197,6 +199,9 @@ public class PairingTest {
                         BluetoothDevice.EXTRA_PAIRING_VARIANT,
                         BluetoothDevice.PAIRING_VARIANT_CONSENT));
         mBumbleDevice.setPairingConfirmation(true);
+        // cancel bonding for unintended device and verify current pairing continued and success.
+        BluetoothDevice fakeUnintendedDevice = sAdapter.getRemoteDevice("51:F7:A8:75:17:01");
+        assertThat(fakeUnintendedDevice.cancelBondProcess()).isTrue();
 
         PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
         assertThat(pairingEvent.hasJustWorks()).isTrue();
