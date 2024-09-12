@@ -576,12 +576,6 @@ void bta_dm_remove_device(const RawAddress& target) {
           &pseudo_addr, BT_TRANSPORT_LE);
   bool bredr_connected = get_btm_client_interface().peer.BTM_ReadConnectedTransportAddress(
           &identity_addr, BT_TRANSPORT_BR_EDR);
-  /* If connection not found with identity address, check with pseudo address if different */
-  if (!bredr_connected && identity_addr != pseudo_addr) {
-    identity_addr = pseudo_addr;
-    bredr_connected = get_btm_client_interface().peer.BTM_ReadConnectedTransportAddress(
-            &identity_addr, BT_TRANSPORT_BR_EDR);
-  }
   if (pseudo_addr.IsEmpty()) {
     pseudo_addr = target;
   }
