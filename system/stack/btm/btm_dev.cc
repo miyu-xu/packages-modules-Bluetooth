@@ -349,7 +349,7 @@ tBTM_SEC_DEV_REC* btm_find_dev_by_handle(uint16_t handle) {
   return NULL;
 }
 
-static bool is_address_equal(void* data, void* context) {
+static bool is_not_same_device(void* data, void* context) {
   tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
   const RawAddress* bd_addr = ((RawAddress*)context);
 
@@ -361,12 +361,18 @@ static bool is_address_equal(void* data, void* context) {
     return false;
   }
 
+  return true;
+}
+
+static bool is_unrelated_addr(void* data, void* context) {
+  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
+  const RawAddress* bd_addr = ((RawAddress*)context);
+
   if (btm_ble_addr_resolvable(*bd_addr, p_dev_rec)) {
     return false;
   }
   return true;
 }
-
 /*******************************************************************************
  *
  * Function         btm_find_dev
@@ -382,12 +388,16 @@ tBTM_SEC_DEV_REC* btm_find_dev(const RawAddress& bd_addr) {
     return nullptr;
   }
 
-  list_node_t* n = list_foreach(btm_sec_cb.sec_dev_rec, is_address_equal, (void*)&bd_addr);
-  if (n) {
+  list_node_t* n = list_foreach(btm_sec_cb.sec_dev_rec, is_not_same_device, (void*)&bd_addr);
+  if (n == nullptr) {
+    n = list_foreach(btm_sec_cb.sec_dev_rec, is_unrelated_addr, (void*)&bd_addr);
+  }
+
+  if (n != nullptr) {
     return static_cast<tBTM_SEC_DEV_REC*>(list_node(n));
   }
 
-  return NULL;
+  return nullptr;
 }
 
 static bool has_lenc_and_address_is_equal(void* data, void* context) {
@@ -396,7 +406,7 @@ static bool has_lenc_and_address_is_equal(void* data, void* context) {
     return true;
   }
 
-  return is_address_equal(data, context);
+  return is_not_same_device(data, context);
 }
 
 /*******************************************************************************
