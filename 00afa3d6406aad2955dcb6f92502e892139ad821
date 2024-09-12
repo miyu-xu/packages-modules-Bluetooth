@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "170c7a47_b8e8b966",
+        "filename": "system/include/hardware/bt_hcivs.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-09-12T22:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55b9541e_ec369f95",
+      "revId": "00afa3d6406aad2955dcb6f92502e892139ad821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a400267_f7807405",
