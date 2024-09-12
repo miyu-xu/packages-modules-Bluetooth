@@ -761,8 +761,12 @@ public final class BluetoothA2dp implements BluetoothProfile {
     /**
      * Sets the codec configuration preference.
      *
-     * <p>For apps without the {@link android.Manifest.permission.BLUETOOTH_PRIVILEGED} permission a
-     * {@link android.companion.CompanionDeviceManager} association is required.
+     * <p>This method requires the calling app to be associated with Companion Device Manager (see
+     * {@link android.companion.CompanionDeviceManager#associate(AssociationRequest,
+     * android.companion.CompanionDeviceManager.Callback, Handler)}) and have the {@link
+     * android.Manifest.permission#BLUETOOTH_CONNECT} permission. Alternatively, if the caller has
+     * the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission, they can bypass the
+     * Companion Device Manager association requirement.
      *
      * @param device the remote Bluetooth device.
      * @param codecConfig the codec configuration preference
@@ -772,10 +776,8 @@ public final class BluetoothA2dp implements BluetoothProfile {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
-            allOf = {
-                BLUETOOTH_CONNECT,
-                BLUETOOTH_PRIVILEGED,
-            })
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public void setCodecConfigPreference(
             @NonNull BluetoothDevice device, @NonNull BluetoothCodecConfig codecConfig) {
         if (DBG) Log.d(TAG, "setCodecConfigPreference(" + device + ")");
