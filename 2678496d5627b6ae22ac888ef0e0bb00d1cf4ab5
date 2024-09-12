@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7ff53f_2fa0bbab",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-09-12T21:29:39Z",
+      "side": 1,
+      "message": "Instead of hard-coding `StateMachine` log level to Debug, base it off of Bluetooth stack\u0027s log level, eg, something like `setDbg(isBtAtLeastDebugLevel())`, where\n```\nprivate static final String BT_LOG_TAG \u003d \"bluetooth\";\n\nprivate boolean isBtAtLeastDebugLevel() {\n    return Log.isLoggable(BT_LOG_TAG, Log.VERBOSE) || Log.isLoggable(BT_LOG_TAG, Log.DEBUG);\n}\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 15,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "2678496d5627b6ae22ac888ef0e0bb00d1cf4ab5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ef89e0_a327c762",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-09-12T21:29:39Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 253,
+        "startChar": 8,
+        "endLine": 253,
+        "endChar": 20
+      },
+      "revId": "2678496d5627b6ae22ac888ef0e0bb00d1cf4ab5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "467f6266_bac43643",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1317,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-09-12T21:29:39Z",
+      "side": 1,
+      "message": "Given how `getMessageName` is being used, is this log necessary?",
+      "range": {
+        "startLine": 1317,
+        "startChar": 8,
+        "endLine": 1317,
+        "endChar": 39
+      },
+      "revId": "2678496d5627b6ae22ac888ef0e0bb00d1cf4ab5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
