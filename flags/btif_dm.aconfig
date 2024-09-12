@@ -20,3 +20,12 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "ignore_bond_cancel_by_unintended_device"
+    namespace: "bluetooth"
+    description: "Ignore the bonding cancel request from unintended device"
+    bug: "366150975"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
