@@ -109,6 +109,30 @@
       },
       "revId": "ba4b311a9673c3ca9515cb6cab942b7adf43da64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be1d4c39_86bf7eea",
+        "filename": "framework/api/lint-baseline.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-12T19:00:51Z",
+      "side": 1,
+      "message": "@kihongs@google.com\n\nCan you try to remove any modification you did to this file ?\n\nFor me it worked fine, my local tree was just not recent enough.",
+      "parentUuid": "89f5699d_62f6ce29",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 107
+      },
+      "revId": "ba4b311a9673c3ca9515cb6cab942b7adf43da64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
