@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53723b1f_c282aeb9",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-12T05:49:46Z",
+      "side": 1,
+      "message": "Documentation says \"This value cannot be null.\", but do note that after this change, if this method does return null, it will crash BT system server.",
+      "range": {
+        "startLine": 2310,
+        "startChar": 45,
+        "endLine": 2310,
+        "endChar": 64
+      },
+      "revId": "3f91447d8626e12dd8052e15b5aa6d1e0c5d534e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c7e85ef_6713d7f0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-12T05:49:46Z",
+      "side": 1,
+      "message": "previous behavior was\n\n```\nLog.e(TAG, \"No ComponentName found for intent\u003d\" + intent);\n```\n\nthis CL changes this behavior such that it will crash BT system server when no services are found, hence this is not a no-op. Does this need to be flagged?",
+      "range": {
+        "startLine": 2323,
+        "startChar": 0,
+        "endLine": 2323,
+        "endChar": 53
+      },
+      "revId": "3f91447d8626e12dd8052e15b5aa6d1e0c5d534e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e67a77d_a3bd420d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2331,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-12T05:49:46Z",
+      "side": 1,
+      "message": "rather unique way of handling 3 types of values, normally one would expect something like:\n\n```\nif (results.isEmpty()) {\n  throw new IllegalStateException(\"No services can handle intent \" + intent);\n}\nif (results.size() \u003e 1) {\n  throw new IllegalStateException(\n          \"Multiples services can handle intent \" + intent + \": \" + results);\n}\nreturn results.get(0);\n```\n\nWould the above be more readable and has fewer nesting?",
+      "range": {
+        "startLine": 2322,
+        "startChar": 0,
+        "endLine": 2331,
+        "endChar": 9
+      },
+      "revId": "3f91447d8626e12dd8052e15b5aa6d1e0c5d534e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
