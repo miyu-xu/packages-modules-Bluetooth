@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e341bf3_e20eee14",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-09-12T23:16:02Z",
+      "side": 1,
+      "message": "nit: Don\u0027t instead of Dont",
+      "range": {
+        "startLine": 656,
+        "startChar": 17,
+        "endLine": 656,
+        "endChar": 21
+      },
+      "revId": "a1a70b0e3700fa7541da3e3c88a40b727772a90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
