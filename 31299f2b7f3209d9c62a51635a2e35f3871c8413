@@ -16,6 +16,29 @@
       "message": "Please add the following annotations:\n\n```\nFlag: EXEMPT, no logical change\nBug: 331817295\nTest: m com.android.btservices\n```",
       "revId": "31299f2b7f3209d9c62a51635a2e35f3871c8413",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62303b8_2cd41893",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-12T01:08:37Z",
+      "side": 1,
+      "message": "Now unused variable can be removed",
+      "range": {
+        "startLine": 741,
+        "startChar": 2,
+        "endLine": 741,
+        "endChar": 13
+      },
+      "revId": "31299f2b7f3209d9c62a51635a2e35f3871c8413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
