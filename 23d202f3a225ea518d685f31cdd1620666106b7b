@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1be4606f_44fc75ac",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-12T16:04:28Z",
+      "side": 1,
+      "message": "nit: could be worth to update the name since the property is now `readable` as well ?",
+      "revId": "23d202f3a225ea518d685f31cdd1620666106b7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
