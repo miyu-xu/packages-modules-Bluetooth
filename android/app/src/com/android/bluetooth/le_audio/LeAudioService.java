@@ -91,6 +91,7 @@ import com.android.bluetooth.mcp.McpService;
 import com.android.bluetooth.tbs.TbsGatt;
 import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.vc.VolumeControlService;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -235,6 +236,8 @@ public class LeAudioService extends ProfileService {
 
     private static class LeAudioGroupDescriptor {
         LeAudioGroupDescriptor(boolean isInbandRingtonEnabled) {
+            mIsDefaultCodec = true;
+            mMultiLeCodecs = false;
             mIsConnected = false;
             mActiveState = ACTIVE_STATE_INACTIVE;
             mAllowedSinkContexts = BluetoothLeAudio.CONTEXTS_ALL;
@@ -250,7 +253,8 @@ public class LeAudioService extends ProfileService {
             mOutputSelectableConfig = new ArrayList<>();
             mInactivatedDueToContextType = false;
         }
-
+        Boolean mIsDefaultCodec;
+        Boolean mMultiLeCodecs;
         Boolean mIsConnected;
         Boolean mHasFallbackDeviceWhenGettingInactive;
         Integer mDirection;
@@ -344,7 +348,6 @@ public class LeAudioService extends ProfileService {
             mDirection = AUDIO_DIRECTION_NONE;
             mDevInbandRingtoneEnabled = isInbandRingtonEnabled;
         }
-
         public boolean mAclConnected;
         public LeAudioStateMachine mStateMachine;
         public Integer mGroupId;
@@ -3328,6 +3331,48 @@ public class LeAudioService extends ProfileService {
                             + (", outputCodecOrFreqChanged: " + outputCodecOrFreqChanged)
                             + (", inputCodecOrFreqChanged: " + inputCodecOrFreqChanged));
 
+            if (status != null && status.getOutputCodecConfig() != null) {
+                Log.d(TAG, " the new codec type is " + status.getOutputCodecConfig().getCodecType());
+                BluetoothLeAudioCodecConfig currentCodec = status.getOutputCodecConfig().getCodecType();
+                if (currentCodec != BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3) {
+                    descriptor.mMultiLeCodecs = true;
+                    descriptor.mIsDefaultCodec = true;
+                    boolean matched = false;
+                    for (BluetoothDevice dev : getGroupDevices(groupId)) {
+                        matched = InteropUtil.interopMatchAddrOrName(
+                                   InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                                   dev.getAddress());
+                        if (matched) {
+                            Log.d(TAG, "Remove " + dev + " from INTEROP_PREFER_LE_CODEC_IS_LC3.");
+                            InteropUtil.interopDatabaseRemoveAddr(
+                                          InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                                          dev.getAddress());
+                        }
+                    }
+                    Log.d(TAG, "matched: " + matched);
+                    if (matched) {
+                        for (BluetoothLeAudioCodecConfig newCodecConfig : descriptor.mOutputSelectableConfig) {
+                            if (newCodecConfig.getCodecType() ==
+                                                   BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3) {
+                                Log.d(TAG, " Set LC3 codec change");
+                                BluetoothLeAudioCodecConfig CodecConfig = new BluetoothLeAudioCodecConfig.builder()
+                                                            .setCodecPriority(BluetoothLeAudioCodecConfig.CODEC_PRIORITY_HIGHEST)
+                                                            .setCodecType(BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3)
+                                                            .setSampleRate(BluetoothLeAudioCodecConfig.SAMPLE_RATE_48000)
+                                                            .build();
+                                setCodecConfigPreference(groupId,CodecConfig,CodecConfig);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    Log.d(TAG, " codec is lc3 ");
+                    if (descriptor.mMultiLeCodecs) {
+                       descriptor.mIsDefaultCodec = false;
+                    }
+                }
+            }
+
             descriptor.mCodecStatus = status;
             mHandler.post(() -> notifyUnicastCodecConfigChanged(groupId, status));
 
@@ -4234,6 +4279,35 @@ public class LeAudioService extends ProfileService {
             mBassClientService.setConnectionPolicy(device, connectionPolicy);
         }
     }
+
+    public void StoreCurrentCodecIfNeed(BluetoothDevice device) {
+        Log.d(TAG, "StoreCurrentCodecIfNeed: " + device);
+        if (device == null) {
+            return;
+        }
+       
+        int groupId = getGroupId(device);
+        LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
+        if (groupDescriptor == null) {
+            Log.e(TAG, " Group not found " + groupId);
+            return;
+        }
+        Log.i(TAG, "mIsDefaultCodec: " + groupDescriptor.mIsDefaultCodec);
+        if (!groupDescriptor.mIsDefaultCodec) {
+            Log.i(TAG, "The group didn't use default codec, store current codec");
+            boolean Matched = InteropUtil.interopMatchAddr(
+                     InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                     device.getAddress());
+            Log.i(TAG, "Matched: " + Matched);
+            if (!Matched) {
+                InteropUtil.interopDatabaseAddAddr(
+                         InteropUtil.InteropFeature.INTEROP_PREFER_LE_CODEC_IS_LC3,
+                         device.getAddress(),3);
+            }
+        }
+        return;
+    }
+
 
     /**
      * Get the connection policy of the profile.

@@ -464,6 +464,7 @@ final class LeAudioStateMachine extends StateMachine {
                             + "): "
                             + messageWhatToString(getCurrentMessage().what));
             mLastConnectionState = BluetoothProfile.STATE_CONNECTED;
+            mService.StoreCurrentCodecIfNeed(mDevice);
         }
 
         @Override

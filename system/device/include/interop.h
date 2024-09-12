@@ -356,6 +356,9 @@ typedef enum {
   // Peer can request proper latency based on its power state later.
   INTEROP_HID_PREF_CONN_ZERO_LATENCY,
 
+  //Store lc3 perfered codec when BT turn off
+  INTEROP_PREFER_LE_CODEC_IS_LC3,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
