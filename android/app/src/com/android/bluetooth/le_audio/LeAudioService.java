@@ -2056,7 +2056,8 @@ public class LeAudioService extends ProfileService {
 
     @VisibleForTesting
     boolean handleAudioDeviceAdded(
-            BluetoothDevice device, int type, boolean isSink, boolean isSource) {
+            BluetoothDevice device, @AudioDeviceInfo.AudioDeviceType int type,
+            boolean isSink, boolean isSource) {
         Log.d(
                 TAG,
                 (" handleAudioDeviceAdded: " + device)
@@ -2090,7 +2091,8 @@ public class LeAudioService extends ProfileService {
 
     @VisibleForTesting
     void handleAudioDeviceRemoved(
-            BluetoothDevice device, int type, boolean isSink, boolean isSource) {
+            BluetoothDevice device, @AudioDeviceInfo.AudioDeviceType int type,
+            boolean isSink, boolean isSource) {
         Log.d(
                 TAG,
                 (" handleAudioDeviceRemoved: " + device)
