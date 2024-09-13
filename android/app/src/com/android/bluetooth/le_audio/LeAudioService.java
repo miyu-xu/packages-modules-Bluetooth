@@ -56,6 +56,7 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
@@ -74,6 +75,8 @@ import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.Pair;
+import android.annotation.NonNull;
+
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.bass_client.BassClientService;
@@ -107,6 +110,8 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
+import java.util.HashMap;
+
 
 /** Provides Bluetooth LeAudio profile, as a service in the Bluetooth application. */
 public class LeAudioService extends ProfileService {
@@ -139,6 +144,11 @@ public class LeAudioService extends ProfileService {
     public static final String BLUETOOTH_LE_BROADCAST_FALLBACK_ACTIVE_GROUP_ID =
             "bluetooth_le_broadcast_fallback_active_group_id";
 
+    /** All codecs were stored in bluetooth_leaudio_codec_map*/
+    private static final String LEAUDIO_CODEC_MAP = "bluetooth_leaudio_codec_map";
+
+    HashMap<BluetoothDevice, Boolean> mLeAudioCodecMap = new HashMap();
+
     /**
      * Per PBP 1.0 4.3. High Quality Public Broadcast Audio, Broadcast HIGH quality audio configs
      * are with sampling frequency 48khz
@@ -169,7 +179,9 @@ public class LeAudioService extends ProfileService {
     boolean mLeAudioNativeIsInitialized = false;
     boolean mLeAudioInbandRingtoneSupportedByPlatform = true;
     boolean mBluetoothEnabled = false;
+    boolean mUserPreferred = false;
 
+    Context mContext;
     /**
      * During a call that has LE Audio -> HFP handover, the HFP device that is going to connect SCO
      * after LE Audio group becomes idle
@@ -223,8 +235,13 @@ public class LeAudioService extends ProfileService {
 
     private final AudioServerScanCallback2 mScanCallback2 = new AudioServerScanCallback2();
 
+    private SharedPreferences getLeAudioCodecMap() {
+        return mContext.getSharedPreferences(LEAUDIO_CODEC_MAP, Context.MODE_PRIVATE);
+    }
+
     public LeAudioService(Context ctx) {
         this(ctx, LeAudioNativeInterface.getInstance());
+        mContext = ctx;
     }
 
     @VisibleForTesting
@@ -478,6 +495,24 @@ public class LeAudioService extends ProfileService {
 
         // Mark service as started
         setLeAudioService(this);
+
+        Map<String, ?> allKeys = getLeAudioCodecMap().getAll();
+        SharedPreferences.Editor LeAudioCodecMapEditor = getLeAudioCodecMap().edit();
+        for (Map.Entry<String, ?> entry : allKeys.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(key);
+
+            if (value instanceof Boolean && d.getBondState() == BluetoothDevice.BOND_BONDED) {
+                Log.d(TAG, "device:" + d + ", value:" + value);
+                mLeAudioCodecMap.put(d, (boolean) value);
+            } else {
+                Log.d(TAG, "Removing " + key + " from the volume map");
+                LeAudioCodecMapEditor.remove(key);
+            }
+        }
+        LeAudioCodecMapEditor.apply();
+
 
         // Setup codec config
         mLeAudioCodecConfig = new LeAudioCodecConfig(this);
@@ -3328,6 +3363,38 @@ public class LeAudioService extends ProfileService {
                             + (", outputCodecOrFreqChanged: " + outputCodecOrFreqChanged)
                             + (", inputCodecOrFreqChanged: " + inputCodecOrFreqChanged));
 
+            if (status != null && status.getOutputCodecConfig() != null) {
+                int currentCodecType = status.getOutputCodecConfig().getCodecType();
+                Log.d(TAG, " the new codec type is " + currentCodecType);
+                if (currentCodecType != BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3) {
+                    for (BluetoothDevice dev : getGroupDevices(groupId)) {
+                        if (mLeAudioCodecMap.containsKey(dev) && mLeAudioCodecMap.get(device) && !mUserPreferred) {
+                            Log.d(TAG, " Set LC3 codec change");
+                            BluetoothLeAudioCodecConfig CodecConfig = new BluetoothLeAudioCodecConfig.Builder()
+                                      .setCodecPriority(BluetoothLeAudioCodecConfig.CODEC_PRIORITY_HIGHEST)
+                                      .setCodecType(BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3)
+                                      .setSampleRate(BluetoothLeAudioCodecConfig.SAMPLE_RATE_48000)
+                                      .setBitsPerSample(BluetoothLeAudioCodecConfig.BITS_PER_SAMPLE_16)
+                                      .setChannelCount(BluetoothLeAudioCodecConfig.CHANNEL_COUNT_1)
+                                      .setFrameDuration(BluetoothLeAudioCodecConfig.FRAME_DURATION_7500)
+                                      .build();
+                            setCodecConfigPreference(groupId,CodecConfig,CodecConfig);
+                            break;
+                        }
+                        storeSetLc3ForDevice(dev, false);
+                    }
+                } else {
+                    Log.d(TAG, " codec is lc3 ");
+                    for (BluetoothDevice dev : getGroupDevices(groupId)) {
+                        if (mLeAudioCodecMap.containsKey(dev) && !mLeAudioCodecMap.get(device)) {
+                            Log.d(TAG, " Need set lc3 if necessary");
+                            storeSetLc3ForDevice(dev, true);
+                        }
+                    }
+                }
+            }
+
+            mUserPreferred = false;
             descriptor.mCodecStatus = status;
             mHandler.post(() -> notifyUnicastCodecConfigChanged(groupId, status));
 
@@ -3814,6 +3881,7 @@ public class LeAudioService extends ProfileService {
         } finally {
             mGroupReadLock.unlock();
         }
+        removeSetLc3ForForDevice(device);
         removeStateMachine(device);
         removeAuthorizationInfoForRelatedProfiles(device);
     }
@@ -4399,6 +4467,27 @@ public class LeAudioService extends ProfileService {
         return mMcpService;
     }
 
+    synchronized void storeSetLc3ForDevice(@NonNull BluetoothDevice device, boolean value) {
+        if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+            return;
+        }
+        SharedPreferences.Editor pref = getLeAudioCodecMap().edit();
+        Log.d(TAG, "device: " + device + ", CodecType:" + value);
+        mLeAudioCodecMap.put(device, value);
+        pref.putBoolean(device.getAddress(), value);
+        pref.apply();
+    }
+
+    synchronized void removeSetLc3ForForDevice(@NonNull BluetoothDevice device) {
+        if (device.getBondState() != BluetoothDevice.BOND_NONE) {
+            return;
+        }
+        SharedPreferences.Editor pref = getLeAudioCodecMap().edit();
+        mLeAudioCodecMap.remove(device);
+        pref.remove(device.getAddress());
+        pref.apply();
+    }
+
     void setAuthorizationForRelatedProfiles(BluetoothDevice device, boolean authorize) {
         McpService mcpService = getMcpService();
         if (mcpService != null) {
@@ -4911,6 +5000,7 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
+        mUserPreferred = true;
         mNativeInterface.setCodecConfigPreference(groupId, inputCodecConfig, outputCodecConfig);
     }
 
