@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb0eb18_b535d488",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-13T17:59:31Z",
+      "side": 1,
+      "message": "The best way would be to do accordingly to the data size and avoid hardcoded number.",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 33
+      },
+      "revId": "7495938c2fd3b49f03802c81b0e76cf9b2936759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
