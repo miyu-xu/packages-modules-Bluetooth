@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f764d673_18a0c341",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T22:51:30Z",
+      "side": 1,
+      "message": "google-java-format.\nI ain\u0027t cheated on that ^^\nIt\u0027s weird I agree. but ...",
+      "parentUuid": "752f288b_c2829ed1",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 83
+      },
+      "revId": "9c5180909571ebb4ed06107bbbe2ec1960636f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "518f3f01_4eb51374",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-13T22:02:00Z",
       "side": 1,
       "message": "`final` ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 29,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "9c5180909571ebb4ed06107bbbe2ec1960636f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cffbae63_478f86a0",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MnsService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T22:51:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "518f3f01_4eb51374",
       "range": {
         "startLine": 46,
         "startChar": 29,
