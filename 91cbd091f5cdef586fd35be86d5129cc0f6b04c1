@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6d3fb6_dfcc70e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T04:59:02Z",
+      "side": 1,
+      "message": "testSend and testReceive are now in the same class and DckL2capClientTest is now called DckL2capTest",
+      "revId": "91cbd091f5cdef586fd35be86d5129cc0f6b04c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
