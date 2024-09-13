@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d62f7407_349bdbc7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-13T16:35:51Z",
+      "side": 1,
+      "message": "Is there a specific reason why we are using 64 here ?",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 33
+      },
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7844d669_54a18551",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
         "patchSetId": 8
