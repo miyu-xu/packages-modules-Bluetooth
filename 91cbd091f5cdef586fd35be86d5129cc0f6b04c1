@@ -16,6 +16,29 @@
       "message": "testSend and testReceive are now in the same class and DckL2capClientTest is now called DckL2capTest",
       "revId": "91cbd091f5cdef586fd35be86d5129cc0f6b04c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40049296_1d281152",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-13T15:31:18Z",
+      "side": 1,
+      "message": "The log is duplicated",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 48
+      },
+      "revId": "91cbd091f5cdef586fd35be86d5129cc0f6b04c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
