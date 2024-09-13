@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a2a50a_1da7bd62",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T22:22:40Z",
+      "side": 1,
+      "message": "This is set in multiples places, I can\u0027t put it final. As for the type, I preferred in this case to keep the one that it is created with. plus this variable is internal to the clientstatemachine so we don\u0027t really care about having a generic type",
+      "parentUuid": "63aa8bf2_6e7bde00",
+      "range": {
+        "startLine": 160,
+        "startChar": 23,
+        "endLine": 160,
+        "endChar": 33
+      },
+      "revId": "15d406f101ed04f84ca685c848261df47dd62f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d911bcb_035cf622",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-13T20:52:39Z",
       "side": 1,
       "message": "`Deque`",
+      "range": {
+        "startLine": 196,
+        "startChar": 18,
+        "endLine": 196,
+        "endChar": 28
+      },
+      "revId": "15d406f101ed04f84ca685c848261df47dd62f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6527e7c5_b8bcd128",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T22:22:40Z",
+      "side": 1,
+      "message": "Same",
+      "parentUuid": "5d911bcb_035cf622",
       "range": {
         "startLine": 196,
         "startChar": 18,
