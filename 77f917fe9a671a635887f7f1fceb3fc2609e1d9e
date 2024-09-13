@@ -309,6 +309,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40021f72_e3553001",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1612,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-13T01:41:34Z",
+      "side": 1,
+      "message": "Ack. Another way to avoid double negation is like tihs:\n\n```\nimpl MsftCommandPending {\n    fn has_command(\u0026self) -\u003e bool {\n        match self {\n            MsftCommandPending::NoPending \u003d\u003e false,\n            _ \u003d\u003e true,\n        }\n    }\n}\n\n...\n if !self.msft_command_pending.has_command() {\n    return;\n }\n```",
+      "parentUuid": "8e75c418_4769b437",
+      "range": {
+        "startLine": 1600,
+        "startChar": 12,
+        "endLine": 1612,
+        "endChar": 17
+      },
+      "revId": "77f917fe9a671a635887f7f1fceb3fc2609e1d9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c891f0e_44a9dc52",
