@@ -71,7 +71,7 @@ EventCallbacks mock_event_callbacks = {
 struct MockConfigInterface : public ConfigInterface {
   MOCK_METHOD((bool), isA2DPOffloadEnabled, (), ());
   MOCK_METHOD((bool), isAndroidTVDevice, (), ());
-  MOCK_METHOD((bool), isRestrictedMode, (), ());
+  MOCK_METHOD((bool), isRestrictedMode, (int* id), ());
 };
 MockConfigInterface mock_config_interface;
 

@@ -64,7 +64,7 @@ struct EventCallbacks {
 struct ConfigInterface {
   virtual bool isA2DPOffloadEnabled() = 0;
   virtual bool isAndroidTVDevice() = 0;
-  virtual bool isRestrictedMode() = 0;
+  virtual bool isRestrictedMode(int* id) = 0;
 
   explicit ConfigInterface() = default;
   ConfigInterface(const ConfigInterface&) = delete;

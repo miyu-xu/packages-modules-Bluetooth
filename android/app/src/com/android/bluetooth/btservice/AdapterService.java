@@ -691,10 +691,17 @@ public class AdapterService extends Service {
                 System.loadLibrary("bluetooth_jni");
             }
         }
+
+        boolean isGuest = mUserManager.isGuestUser();
+        int userId = 0;
+        if (Flags.guestModeBond() && isGuest) {
+            userId = android.os.Process.myUserHandle().getIdentifier();
+        }
         mNativeInterface.init(
                 this,
                 mAdapterProperties,
-                mUserManager.isGuestUser(),
+                isGuest,
+                userId,
                 isCommonCriteriaMode,
                 configCompareResult,
                 getInitFlags(),

@@ -106,9 +106,10 @@ static bool btif_has_ble_keys(const std::string& bdstr);
 
 static void btif_storage_set_mode(RawAddress* remote_bd_addr) {
   std::string bdstr = remote_bd_addr->ToString();
-  if (GetInterfaceToProfiles()->config->isRestrictedMode()) {
-    log::info("{} will be removed exiting restricted mode", *remote_bd_addr);
-    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_RESTRICTED, 1);
+  int user_id = 0;
+  if (GetInterfaceToProfiles()->config->isRestrictedMode(&user_id)) {
+    log::info("{} will be removed on user change", *remote_bd_addr);
+    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_RESTRICTED, user_id);
   }
 }
 

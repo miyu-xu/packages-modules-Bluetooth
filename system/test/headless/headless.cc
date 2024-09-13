@@ -254,7 +254,7 @@ void HeadlessStack::SetUp() {
   const int config_compare_result = 0;
   const bool is_atv = false;
 
-  int status = bluetoothInterface.init(&bt_callbacks, start_restricted, is_common_criteria_mode,
+  int status = bluetoothInterface.init(&bt_callbacks, start_restricted, 0, is_common_criteria_mode,
                                        config_compare_result, {}, is_atv, nullptr);
 
   if (status == BT_STATUS_SUCCESS) {

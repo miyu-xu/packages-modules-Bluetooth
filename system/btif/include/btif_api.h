@@ -78,18 +78,18 @@ bt_status_t btif_cleanup_bluetooth(void);
  *
  * Function         is_restricted_mode
  *
- * Description      Checks if BT was enabled in restriced mode. In restricted
- *                  mode, bonds that are created are marked as temporary.
- *                  These bonds persist until we leave restricted mode, at
- *                  which point they will be deleted from the config. Also
- *                  while in restricted mode, the user can access devices
+ * Description      Checks if BT was enabled in restricted mode and returns user
+ *                  ID. In restricted mode, bonds that are created are marked as
+ *                  temporary. These bonds persist until we leave restricted
+ *                  mode, at which point they will be deleted from the config.
+ *                  Also while in restricted mode, the user can access devices
  *                  that are already paired before entering restricted mode,
  *                  but they cannot remove any of these devices.
  *
  * Returns          bool
  *
  ******************************************************************************/
-bool is_restricted_mode(void);
+bool is_restricted_mode(int* id);
 
 /*******************************************************************************
  *
