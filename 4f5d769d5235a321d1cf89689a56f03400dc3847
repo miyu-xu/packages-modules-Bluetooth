@@ -74,6 +74,30 @@
       ],
       "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dbca3fe_34014ec7",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T19:17:26Z",
+      "side": 1,
+      "message": "No, anyOf mean that if you have one of them you are good to go. Here we always require BLUETOOTH_CONNECT. Only PRIVILEGED can be bypassed if you are a companionmanager identified app.\n\nUnfortunatly, there is no such granularity possible to mandate one and have another to be conditional.",
+      "parentUuid": "dd7be212_89d220c3",
+      "range": {
+        "startLine": 779,
+        "startChar": 12,
+        "endLine": 779,
+        "endChar": 17
+      },
+      "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
