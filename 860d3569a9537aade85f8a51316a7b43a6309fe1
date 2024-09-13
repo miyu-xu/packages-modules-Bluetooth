@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb50b01b_c9266ca8",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-13T16:19:12Z",
+      "side": 1,
+      "message": "Is there a risk of this call failing here vs in start() ?",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 77
+      },
+      "revId": "860d3569a9537aade85f8a51316a7b43a6309fe1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2843c584_e16f03eb",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1692,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-13T16:19:12Z",
+      "side": 1,
+      "message": "The AndroidLint warning here looks like a false positive, do you want to report it ?",
+      "range": {
+        "startLine": 1692,
+        "startChar": 67,
+        "endLine": 1692,
+        "endChar": 76
+      },
+      "revId": "860d3569a9537aade85f8a51316a7b43a6309fe1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b233c7a2_2eb583b8",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapVcardManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-13T16:19:12Z",
+      "side": 1,
+      "message": "You can make it private",
+      "revId": "860d3569a9537aade85f8a51316a7b43a6309fe1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
