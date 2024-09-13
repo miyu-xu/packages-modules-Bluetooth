@@ -22,6 +22,30 @@
       },
       "revId": "88b1fbe26d7c13836127a6796c4b81e020ee98fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5c9433_5f5986f7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T22:04:38Z",
+      "side": 1,
+      "message": "Oh. Let\u0027s do this in a different CL.We may need to do some refactoring to avoid duplicate code at that time? sounds good?",
+      "parentUuid": "6cc1e559_cf542197",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 19
+      },
+      "revId": "88b1fbe26d7c13836127a6796c4b81e020ee98fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
