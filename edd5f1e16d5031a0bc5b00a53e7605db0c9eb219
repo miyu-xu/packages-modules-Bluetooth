@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5cb2f65_53bfa2f2",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-13T21:15:16Z",
+      "side": 1,
+      "message": "You can flag the addition of the state too",
+      "range": {
+        "startLine": 953,
+        "startChar": 8,
+        "endLine": 953,
+        "endChar": 33
+      },
+      "revId": "edd5f1e16d5031a0bc5b00a53e7605db0c9eb219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ffc3af_2aa08db8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1642,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-13T21:15:16Z",
+      "side": 1,
+      "message": "Please use the new `@EnableFlags` annotation here and below instead of setting the flags like this. Setting flags this way has shown to be errorprone.",
+      "range": {
+        "startLine": 1642,
+        "startChar": 8,
+        "endLine": 1642,
+        "endChar": 70
+      },
+      "revId": "edd5f1e16d5031a0bc5b00a53e7605db0c9eb219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
