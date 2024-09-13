@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e887aad_1942f530",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpItem.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-13T21:05:38Z",
+      "side": 1,
+      "message": "Let\u0027s use the Uuid only, it should be sufficiently unique for the hashcode",
+      "range": {
+        "startLine": 298,
+        "startChar": 16,
+        "endLine": 298,
+        "endChar": 21
+      },
+      "revId": "9dfe4b36bda6078094408139a7c46b0757007ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
