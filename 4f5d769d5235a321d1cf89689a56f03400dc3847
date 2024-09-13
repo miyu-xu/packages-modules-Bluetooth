@@ -98,6 +98,30 @@
       },
       "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07284438_7fd68c99",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-09-13T19:29:10Z",
+      "side": 1,
+      "message": "Ok. I think you may want to rework the description then.\n\nWhat I would say is:\nThis method requires the calling app to have the BLUETOOTH_CONNECT permission. Additionally, an app must either be associated with the Companion Device manager...\n\nor can have the BLUETOOTH_PRIVILEGED PERMISSION.\n\nWhen I read it before, I thought it meant: (CONNECT AND CDM), OR PRIVILEGED when it really means CONNECT AND (CDM OR PRIVILEGED)",
+      "parentUuid": "6dbca3fe_34014ec7",
+      "range": {
+        "startLine": 779,
+        "startChar": 12,
+        "endLine": 779,
+        "endChar": 17
+      },
+      "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
