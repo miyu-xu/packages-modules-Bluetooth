@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30f2f521_3d3faf5d",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-13T00:50:57Z",
+      "side": 1,
+      "message": "Could you define `LMP_COMPID_INTEL 0x02` in `packages/modules/Bluetooth/system/stack/include/hcidefs.h` if you cannot include the header there, define a constant in this file",
+      "range": {
+        "startLine": 359,
+        "startChar": 77,
+        "endLine": 359,
+        "endChar": 78
+      },
+      "revId": "8d7ba95281db643c1f629e17b38eaff2b1ce83c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0da5ba5_bb0b24ae",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-13T00:50:57Z",
+      "side": 1,
+      "message": "Please use `LmpVersion::V_4_2` from PDL instead",
+      "range": {
+        "startLine": 360,
+        "startChar": 73,
+        "endLine": 360,
+        "endChar": 74
+      },
+      "revId": "8d7ba95281db643c1f629e17b38eaff2b1ce83c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564878a6_657803a0",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-13T00:50:57Z",
+      "side": 1,
+      "message": "Please define a constant, maybe in `packages/modules/Bluetooth/system/stack/include/hcidefs.h` if you cannot include the header there, define a constant in this file",
+      "range": {
+        "startLine": 361,
+        "startChar": 54,
+        "endLine": 361,
+        "endChar": 60
+      },
+      "revId": "8d7ba95281db643c1f629e17b38eaff2b1ce83c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
