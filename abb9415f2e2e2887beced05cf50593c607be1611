@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7844d669_54a18551",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-13T16:34:19Z",
+      "side": 1,
+      "message": "Same here, the abstraction is not necessary",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 5
+      },
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a37af7_678049dc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-13T16:34:19Z",
+      "side": 1,
+      "message": "This abstraction is unnecessary. We can directly call `l2capServcer.accept()`",
+      "range": {
+        "startLine": 236,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d0e728ff_bba626f3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 196,
+                "startChar": 0,
+                "endLine": 197,
+                "endChar": 0
+              },
+              "replacement": "        val socketFlow \u003d flow { emit(l2capServer.accept()) }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 235,
+                "startChar": 0,
+                "endLine": 240,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9e08cc_faa785a0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-13T16:34:19Z",
+      "side": 1,
+      "message": "This function is doing more than creating a channel, it is also connecting the channel. Could we rename it to something clearer like `createAndConnect...`",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c270e418_a9353993",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 197,
+                "startChar": 0,
+                "endLine": 198,
+                "endChar": 0
+              },
+              "replacement": "        val connectResponse \u003d createAndConnectL2capChannelWithBumble(l2capServer.psm)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 241,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": "    private fun createAndConnectL2capChannelWithBumble(psm: Int): ConnectResponse {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
