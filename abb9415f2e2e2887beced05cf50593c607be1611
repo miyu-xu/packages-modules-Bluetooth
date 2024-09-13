@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eeb61b2_10980d76",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T17:56:42Z",
+      "side": 1,
+      "message": "oh. I had a longer text. with the current text 16 is enough.",
+      "parentUuid": "d62f7407_349bdbc7",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 33
+      },
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7844d669_54a18551",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-13T16:34:19Z",
       "side": 1,
       "message": "Same here, the abstraction is not necessary",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 5
+      },
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16eafdcc_0ea2421c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T17:56:42Z",
+      "side": 1,
+      "message": "ok. We will simply use bluetoothAdapter.listenUsingInsecureL2capChannel() for now",
+      "parentUuid": "7844d669_54a18551",
       "range": {
         "startLine": 227,
         "startChar": 4,
@@ -98,6 +146,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "322eb101_ac0bd3d5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T17:56:42Z",
+      "side": 1,
+      "message": "Fair point",
+      "parentUuid": "88a37af7_678049dc",
+      "range": {
+        "startLine": 236,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 5
+      },
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b9e08cc_faa785a0",
@@ -145,6 +217,30 @@
           ]
         }
       ],
+      "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "619a06a5_dbc91817",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T17:56:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b9e08cc_faa785a0",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 44
+      },
       "revId": "abb9415f2e2e2887beced05cf50593c607be1611",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
