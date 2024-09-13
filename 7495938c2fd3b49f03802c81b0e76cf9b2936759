@@ -22,6 +22,30 @@
       },
       "revId": "7495938c2fd3b49f03802c81b0e76cf9b2936759",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6baf6cba_52edef17",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 2059640
+      },
+      "writtenOn": "2024-09-13T19:04:00Z",
+      "side": 1,
+      "message": "Fair point. Thanks",
+      "parentUuid": "ecb0eb18_b535d488",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 33
+      },
+      "revId": "7495938c2fd3b49f03802c81b0e76cf9b2936759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
