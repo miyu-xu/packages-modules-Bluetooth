@@ -33,6 +33,47 @@
       "message": "Hi Andrew, can you review this API related change ?\nI am skipping thomas since he is ooo.\n\nThere is no behavior change here, juste the documentation is updated accordingly",
       "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7be212_89d220c3",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-09-13T17:32:19Z",
+      "side": 1,
+      "message": "should this be anyOf?",
+      "range": {
+        "startLine": 779,
+        "startChar": 12,
+        "endLine": 779,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "54fd07eb_149c7222",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothA2dp.java",
+              "range": {
+                "startLine": 779,
+                "startChar": 0,
+                "endLine": 780,
+                "endChar": 0
+              },
+              "replacement": "            anyOf \u003d {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
