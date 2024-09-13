@@ -1294,6 +1294,35 @@ bool btif_storage_is_restricted_device(const RawAddress* remote_bd_addr) {
   return btif_config_get_int(remote_bd_addr->ToString(), BTIF_STORAGE_KEY_RESTRICTED, &val);
 }
 
+/*******************************************************************************
+ *
+ * Function         btif_storage_prune_devices
+ *
+ * Description      Removes restricted mode devices in non-restricted mode
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void btif_storage_prune_devices() {
+  int user_id = 0;
+  if (GetInterfaceToProfiles()->config->isRestrictedMode(&user_id)) {
+    // Remove the devices with different user id
+    for (const auto& bd_addr : btif_config_get_paired_devices()) {
+      auto name = bd_addr.ToString();
+      int id = 0;
+      if (btif_config_get_int(name, BTIF_STORAGE_KEY_RESTRICTED, &id)) {
+        // Restricted device, remove if user ID is different
+        if (id != user_id) {
+          btif_config_remove_device(name);
+        }
+      }
+    }
+  } else {
+    // Default user, remove all restricted devices
+    btif_config_remove_device_with_key(BTIF_STORAGE_KEY_RESTRICTED);
+  }
+}
+
 // Get the name of a device from btif for interop database matching.
 bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr, char* name) {
   bt_property_t property;
