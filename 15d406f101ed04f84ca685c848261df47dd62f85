@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5ab486_9f65467f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T22:52:55Z",
+      "side": 1,
+      "message": "They are creating it again instead of setting it to null.\n\nI think there is more to do in this file and will defer it to a later change",
+      "parentUuid": "efb419d9_1fa76bf0",
+      "range": {
+        "startLine": 160,
+        "startChar": 23,
+        "endLine": 160,
+        "endChar": 33
+      },
+      "revId": "15d406f101ed04f84ca685c848261df47dd62f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d911bcb_035cf622",
