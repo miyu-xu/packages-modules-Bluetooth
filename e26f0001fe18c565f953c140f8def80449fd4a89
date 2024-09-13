@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b240a07_4a3499c7",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-13T21:02:48Z",
+      "side": 1,
+      "message": "I don\u0027t mind one way or another what you do here.\n\nWe can figure out how to make this more useful in a future patch",
+      "parentUuid": "2d2ccd8d_32a87ecc",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 3
+      },
+      "revId": "e26f0001fe18c565f953c140f8def80449fd4a89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b2f6602_28d8fc70",
