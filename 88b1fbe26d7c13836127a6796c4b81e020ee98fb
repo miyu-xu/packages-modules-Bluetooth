@@ -46,6 +46,30 @@
       },
       "revId": "88b1fbe26d7c13836127a6796c4b81e020ee98fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d206193_4e3116e6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-13T22:53:48Z",
+      "side": 1,
+      "message": "Sure, that is fine for now. I will follow up on the required change.",
+      "parentUuid": "af5c9433_5f5986f7",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 19
+      },
+      "revId": "88b1fbe26d7c13836127a6796c4b81e020ee98fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
