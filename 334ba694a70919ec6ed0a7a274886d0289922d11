@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d8bbeb_9b8d8979",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-13T22:29:05Z",
+      "side": 1,
+      "message": "Would reformulate a bit:\n\nRemoteCallbackList implements synchronization which enables calling register / unregister as a broadcast is active. \n\nIt is still invalid to start two concurrent broadcasts, but this possibility is prevented by the fact that broadcasts are now all run on the same thread.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 63
+      },
+      "revId": "334ba694a70919ec6ed0a7a274886d0289922d11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
