@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc1e559_cf542197",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-13T21:48:12Z",
+      "side": 1,
+      "message": "Can you please keep them separate classes as planned before. I plan to extend each classes with more testcases later.",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 19
+      },
+      "revId": "88b1fbe26d7c13836127a6796c4b81e020ee98fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
