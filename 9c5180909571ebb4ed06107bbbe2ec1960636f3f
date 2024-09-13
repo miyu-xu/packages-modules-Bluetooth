@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "227b8002_e0adf656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T23:28:33Z",
+      "side": 1,
+      "message": "FYI @eruffieux@google.com, as avrcpvolumemanager is impacted",
+      "revId": "9c5180909571ebb4ed06107bbbe2ec1960636f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "752f288b_c2829ed1",
