@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5baeab1_6406ffbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T23:30:17Z",
+      "side": 1,
+      "message": "FYI @eruffieux@google.com as this involves some avrcp classes",
+      "revId": "9dfe4b36bda6078094408139a7c46b0757007ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e887aad_1942f530",
