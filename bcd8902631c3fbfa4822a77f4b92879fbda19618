@@ -16,6 +16,24 @@
       "message": "This should be in TestUtils, probably",
       "revId": "bcd8902631c3fbfa4822a77f4b92879fbda19618",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bae9b748_127532fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T22:53:56Z",
+      "side": 1,
+      "message": "It is, this one is just a wrapper to avoid repeating the context everytime.",
+      "parentUuid": "63cd3099_5114028b",
+      "revId": "bcd8902631c3fbfa4822a77f4b92879fbda19618",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
