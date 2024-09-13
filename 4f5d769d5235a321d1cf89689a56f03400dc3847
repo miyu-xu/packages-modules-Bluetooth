@@ -16,6 +16,23 @@
       "message": "adding @girardier@google.com for API review",
       "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "126dd96c_d1ce9cd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-13T16:57:21Z",
+      "side": 1,
+      "message": "Hi Andrew, can you review this API related change ?\nI am skipping thomas since he is ooo.\n\nThere is no behavior change here, juste the documentation is updated accordingly",
+      "revId": "4f5d769d5235a321d1cf89689a56f03400dc3847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
