@@ -52,6 +52,24 @@
       "parentUuid": "bae9b748_127532fb",
       "revId": "bcd8902631c3fbfa4822a77f4b92879fbda19618",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af1474eb_8e174ee4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-14T00:51:26Z",
+      "side": 1,
+      "message": "You can\u0027t, each test method will have a different context to pass to the TestUtils and this is just an easier way to write it. (else you have looooong lines that repeat the same information being passed over and over again)",
+      "parentUuid": "c201f131_cdf0ba08",
+      "revId": "bcd8902631c3fbfa4822a77f4b92879fbda19618",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
