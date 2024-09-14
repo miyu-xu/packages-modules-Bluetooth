@@ -22,6 +22,30 @@
       },
       "revId": "fd47c7d10ab18964c1518fcfc7fe6f102c22cca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05e2a5e_c5a34c88",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-09-14T04:51:47Z",
+      "side": 1,
+      "message": "Done. I have the same message for both logs but the log tag and/or function call will be clear to show if it is being booted prior to Gatt init or alongside it.\nThank you.",
+      "parentUuid": "e7918979_a695e649",
+      "range": {
+        "startLine": 1288,
+        "startChar": 15,
+        "endLine": 1288,
+        "endChar": 40
+      },
+      "revId": "fd47c7d10ab18964c1518fcfc7fe6f102c22cca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
