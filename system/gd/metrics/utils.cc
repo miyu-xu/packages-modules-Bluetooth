@@ -35,7 +35,7 @@ bool GetBootId(std::string* boot_id) {
   return true;
 }
 
-int GetArgumentTypeFromList(std::vector<std::pair<os::ArgumentType, int>>& argument_list,
+int GetArgumentTypeFromList(std::vector<std::pair<os::ArgumentType, int>> const& argument_list,
                             os::ArgumentType argumentType) {
   for (std::pair<os::ArgumentType, int> argumentPair : argument_list) {
     if (argumentPair.first == argumentType) {

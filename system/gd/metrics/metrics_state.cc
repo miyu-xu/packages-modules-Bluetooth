@@ -32,141 +32,144 @@
 #include "os/log.h"
 #include "os/metrics.h"
 
-namespace bluetooth {
-namespace metrics {
+namespace bluetooth::metrics {
 
 using android::bluetooth::le::LeConnectionOriginType;
 using android::bluetooth::le::LeConnectionState;
 using android::bluetooth::le::LeConnectionType;
 
-// const static ClockTimePoint kInvalidTimePoint{};
+inline int64_t get_timedelta_nanos(const ClockTimePoint& t1, const ClockTimePoint& t2) {
+  if (t1 == kInvalidTimePoint || t2 == kInvalidTimePoint) {
+    return -1;
+  }
+  return std::abs(std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count());
+}
 
 /*
  * This is the device level metrics state, which will be modified based on
  * incoming state events.
- *
  */
 void LEConnectionMetricState::AddStateChangedEvent(
-        LeConnectionOriginType origin_type, LeConnectionType connection_type,
-        LeConnectionState transaction_state,
-        std::vector<std::pair<os::ArgumentType, int>> argument_list) {
+        LeConnectionOriginType connection_origin_type, LeConnectionType connection_type,
+        LeConnectionState connection_state,
+        std::vector<std::pair<os::ArgumentType, int>> const& argument_list) {
   ClockTimePoint current_timestamp = std::chrono::high_resolution_clock::now();
-  state = transaction_state;
 
-  // Assign the origin of the connection
-  if (connection_origin_type == LeConnectionOriginType::ORIGIN_UNSPECIFIED) {
-    connection_origin_type = origin_type;
+  connection_state_ = connection_state;
+
+  if (connection_origin_type_ == LeConnectionOriginType::ORIGIN_UNSPECIFIED) {
+    connection_origin_type_ = origin_type;
   }
 
-  if (input_connection_type == LeConnectionType::CONNECTION_TYPE_UNSPECIFIED) {
-    input_connection_type = connection_type;
+  if (connection_type_ == LeConnectionType::CONNECTION_TYPE_UNSPECIFIED) {
+    connection_type_ = connection_type;
   }
 
-  if (start_timepoint == kInvalidTimePoint) {
-    start_timepoint = current_timestamp;
+  if (start_timepoint_ == kInvalidTimePoint) {
+    start_timepoint_ = current_timestamp;
   }
-  end_timepoint = current_timestamp;
 
-  switch (state) {
+  end_timepoint_ = current_timestamp;
+
+  switch (connection_state_) {
     case LeConnectionState::STATE_LE_ACL_START: {
       int connection_type_cid = GetArgumentTypeFromList(argument_list, os::ArgumentType::L2CAP_CID);
-      if (connection_type_cid != -1) {
-        LeConnectionType connection_type = GetLeConnectionTypeFromCID(connection_type_cid);
-        if (connection_type != LeConnectionType::CONNECTION_TYPE_UNSPECIFIED) {
-          log::info("LEConnectionMetricsRemoteDevice: Populating the connection type");
-          input_connection_type = connection_type;
-        }
+      LeConnectionType connection_type = GetLeConnectionTypeFromCID(connection_type_cid);
+      if (connection_type != LeConnectionType::CONNECTION_TYPE_UNSPECIFIED) {
+        log::info("LEConnectionMetricsRemoteDevice: Populating the connection type");
+        connection_type_ = connection_type;
       }
       break;
     }
-    case LeConnectionState::STATE_LE_ACL_END: {
-      int acl_status_code_from_args =
-              GetArgumentTypeFromList(argument_list, os::ArgumentType::ACL_STATUS_CODE);
-      acl_status_code = static_cast<android::bluetooth::hci::StatusEnum>(acl_status_code_from_args);
-      acl_state = LeAclConnectionState::LE_ACL_SUCCESS;
 
-      if (acl_status_code != android::bluetooth::hci::StatusEnum::STATUS_SUCCESS) {
-        acl_state = LeAclConnectionState::LE_ACL_FAILED;
-      }
-      break;
-    }
-    case LeConnectionState::STATE_LE_ACL_TIMEOUT: {
-      int acl_status_code_from_args =
+    case LeConnectionState::STATE_LE_ACL_END: {
+      int acl_status_code =
               GetArgumentTypeFromList(argument_list, os::ArgumentType::ACL_STATUS_CODE);
-      acl_status_code = static_cast<android::bluetooth::hci::StatusEnum>(acl_status_code_from_args);
-      acl_state = LeAclConnectionState::LE_ACL_FAILED;
+      acl_status_code_ = static_cast<android::bluetooth::hci::StatusEnum>(acl_status_code);
+      acl_connection_state_ =
+              acl_status_code_ == android::bluetooth::hci::StatusEnum::STATUS_SUCCESS
+                      ? LeAclConnectionState::LE_ACL_SUCCESS
+                      : LeAclConnectionState::LE_ACL_FAILED;
       break;
     }
+
+    case LeConnectionState::STATE_LE_ACL_TIMEOUT: {
+      int acl_status_code =
+              GetArgumentTypeFromList(argument_list, os::ArgumentType::ACL_STATUS_CODE);
+      acl_status_code_ = static_cast<android::bluetooth::hci::StatusEnum>(acl_status_code);
+      acl_connection_state_ = LeAclConnectionState::LE_ACL_FAILED;
+      break;
+    }
+
     case LeConnectionState::STATE_LE_ACL_CANCEL: {
-      acl_state = LeAclConnectionState::LE_ACL_FAILED;
+      acl_connection_state_ = LeAclConnectionState::LE_ACL_FAILED;
       is_cancelled = true;
       break;
     }
-      [[fallthrough]];
-    default: {
-      // do nothing
-    }
+
+    default:
+      break;
   }
 }
 
-bool LEConnectionMetricState::IsEnded() {
-  return acl_state == LeAclConnectionState::LE_ACL_SUCCESS ||
-         acl_state == LeAclConnectionState::LE_ACL_FAILED;
+bool LEConnectionMetricState::IsEnded() const {
+  return acl_connection_state_ == LeAclConnectionState::LE_ACL_SUCCESS ||
+         acl_connection_state_ == LeAclConnectionState::LE_ACL_FAILED;
 }
 
-bool LEConnectionMetricState::IsStarted() { return state == LeConnectionState::STATE_LE_ACL_START; }
-
-bool LEConnectionMetricState::IsCancelled() { return is_cancelled; }
-
-// Initialize the LEConnectionMetricsRemoteDevice
-LEConnectionMetricsRemoteDevice::LEConnectionMetricsRemoteDevice() {
-  metrics_logger_module = new MetricsLoggerModule();
+bool LEConnectionMetricState::IsStarted() const {
+  return connection_state_ == LeConnectionState::STATE_LE_ACL_START;
 }
+
+bool LEConnectionMetricState::IsCancelled() const { return is_cancelled; }
+
+LEConnectionMetricsRemoteDevice::LEConnectionMetricsRemoteDevice()
+    : metrics_logger_module_(new MetricsLoggerModule()) {}
 
 LEConnectionMetricsRemoteDevice::LEConnectionMetricsRemoteDevice(
-        BaseMetricsLoggerModule* baseMetricsLoggerModule) {
-  metrics_logger_module = baseMetricsLoggerModule;
-}
+        BaseMetricsLoggerModule* metrics_logger_module)
+    : metrics_logger_module_(metrics_logger_module) {}
 
-// Uploading the session
 void LEConnectionMetricsRemoteDevice::UploadLEConnectionSession(const hci::Address& address) {
-  auto it = opened_devices.find(address);
-  if (it != opened_devices.end()) {
-    os::LEConnectionSessionOptions session_options;
-    session_options.acl_connection_state = it->second->acl_state;
-    session_options.origin_type = it->second->connection_origin_type;
-    session_options.transaction_type = it->second->input_connection_type;
-    session_options.latency = bluetooth::metrics::get_timedelta_nanos(it->second->start_timepoint,
-                                                                      it->second->end_timepoint);
-    session_options.remote_address = address;
-    session_options.status = it->second->acl_status_code;
-    // TODO: keep the acl latency the same as the overall latency for now
-    // When more events are added, we will an overall latency
-    session_options.acl_latency = session_options.latency;
-    session_options.is_cancelled = it->second->is_cancelled;
-    metrics_logger_module->LogMetricBluetoothLESession(session_options);
-    log::info("LEConnectionMetricsRemoteDevice: The session is uploaded for {}", address);
-    opened_devices.erase(it);
+  auto it = opened_devices_.find(address);
+  if (it == opened_devices_.end()) {
+    return;
   }
+
+  auto latency = get_timedelta_nanos(it->second->start_timepoint, it->second->end_timepoint);
+  os::LEConnectionSessionOptions session_options = {
+          .acl_connection_state_ = it->second->acl_connection_state_,
+          .origin_type = it->second->connection_origin_type_,
+          .transaction_type = it->second->connection_type_,
+          .latency = latency,
+          .remote_address = address,
+          .status = it->second->acl_status_code_,
+          // TODO: keep the acl latency the same as the overall latency for now
+          // When more events are added, we will an overall latency
+          .acl_latency = latency,
+          .is_cancelled = it->second->is_cancelled_,
+  };
+
+  metrics_logger_module_->LogMetricBluetoothLESession(session_options);
+  opened_devices_.erase(it);
+
+  log::info("LEConnectionMetricsRemoteDevice: The session is uploaded for {}", address);
 }
 
-// Implementation of metrics per remote device
 void LEConnectionMetricsRemoteDevice::AddStateChangedEvent(
         const hci::Address& address, LeConnectionOriginType origin_type,
         LeConnectionType connection_type, LeConnectionState transaction_state,
-        std::vector<std::pair<os::ArgumentType, int>> argument_list) {
+        std::vector<std::pair<os::ArgumentType, int>> const& argument_list) {
   log::info(
-          "LEConnectionMetricsRemoteDevice: Transaction State {}, Connection Type {}, Origin Type "
-          "{}",
-          common::ToHexString(transaction_state), common::ToHexString(connection_type),
-          common::ToHexString(origin_type));
+          "LEConnectionMetricsRemoteDevice: Address {}, Transaction State 0x{:x}, Connection Type "
+          "0x{:x},"
+          " Origin Type 0x{:x}",
+          address, transaction_state, connection_type, origin_type);
 
-  std::unique_lock<std::mutex> lock(le_connection_metrics_remote_device_guard);
+  std::unique_lock<std::mutex> lock(opened_devices_mutex_);
+
   if (address.IsEmpty()) {
-    log::info("LEConnectionMetricsRemoteDevice: Empty Address Cancellation {}, {}, {}",
-              common::ToHexString(transaction_state), common::ToHexString(connection_type),
-              common::ToHexString(transaction_state));
-    for (auto& device_metric : device_metrics) {
+    for (auto& device_metric : device_metrics_) {
       if (device_metric->IsStarted() &&
           transaction_state == LeConnectionState::STATE_LE_ACL_CANCEL) {
         log::info("LEConnectionMetricsRemoteDevice: Cancellation Begin");
@@ -185,24 +188,24 @@ void LEConnectionMetricsRemoteDevice::AddStateChangedEvent(
         continue;
       }
     }
+
     return;
   }
 
-  auto it = opened_devices.find(address);
-  if (it == opened_devices.end()) {
-    device_metrics.push_back(std::make_unique<LEConnectionMetricState>(address));
-    it = opened_devices.insert(std::begin(opened_devices), {address, device_metrics.back().get()});
+  auto it = opened_devices_.find(address);
+  if (it == opened_devices_.end()) {
+    device_metrics_.push_back(std::make_unique<LEConnectionMetricState>(address));
+    it = opened_devices_.insert(std::begin(opened_devices_),
+                                {address, device_metrics_.back().get()});
   }
 
   it->second->AddStateChangedEvent(origin_type, connection_type, transaction_state, argument_list);
 
-  // Connection is finished
   if (it->second->IsEnded()) {
     UploadLEConnectionSession(address);
   }
 }
 
-// MetricsLoggerModule class
 void MetricsLoggerModule::LogMetricBluetoothLESession(
         os::LEConnectionSessionOptions session_options) {
   os::LogMetricBluetoothLEConnection(session_options);
@@ -216,6 +219,4 @@ LEConnectionMetricsRemoteDevice* MetricsCollector::GetLEConnectionMetricsCollect
   return MetricsCollector::le_connection_metrics_remote_device;
 }
 
-}  // namespace metrics
-
-}  // namespace bluetooth
+}  // namespace bluetooth::metrics

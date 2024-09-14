@@ -39,15 +39,7 @@ using android::bluetooth::le::LeConnectionState;
 using android::bluetooth::le::LeConnectionType;
 
 using ClockTimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
-
 const static ClockTimePoint kInvalidTimePoint{};
-
-inline int64_t get_timedelta_nanos(const ClockTimePoint& t1, const ClockTimePoint& t2) {
-  if (t1 == kInvalidTimePoint || t2 == kInvalidTimePoint) {
-    return -1;
-  }
-  return std::abs(std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count());
-}
 
 class BaseMetricsLoggerModule {
 public:
@@ -65,43 +57,44 @@ public:
 
 class LEConnectionMetricState {
 public:
-  hci::Address address;
-  LEConnectionMetricState(const hci::Address address) : address(address) {}
-  LeConnectionState state;
-  LeAclConnectionState acl_state;
-  LeConnectionType input_connection_type = LeConnectionType::CONNECTION_TYPE_UNSPECIFIED;
-  android::bluetooth::hci::StatusEnum acl_status_code;
-  ClockTimePoint start_timepoint = kInvalidTimePoint;
-  ClockTimePoint end_timepoint = kInvalidTimePoint;
-  bool is_cancelled = false;
-  LeConnectionOriginType connection_origin_type = LeConnectionOriginType::ORIGIN_UNSPECIFIED;
+  LEConnectionMetricState(const hci::Address address) : address_(address) {}
 
-  bool IsStarted();
-  bool IsEnded();
-  bool IsCancelled();
+  hci::Address address_;
+  LeAclConnectionState acl_connection_state_{LeAclConnectionState::LE_ACL_UNSPECIFIED};
+  android::bluetooth::hci::StatusEnum acl_status_code_{
+          android::bluetooth::hci::StatusEnum::STATUS_UNKNOWN};
+  LeConnectionState connection_state_{LeConnectionState::STATE_UNSPECIFIED};
+  LeConnectionType connection_type_{LeConnectionType::CONNECTION_TYPE_UNSPECIFIED};
+  LeConnectionOriginType connection_origin_type_{LeConnectionOriginType::ORIGIN_UNSPECIFIED};
+  ClockTimePoint start_timepoint_{kInvalidTimePoint};
+  ClockTimePoint last_timepoint_{kInvalidTimePoint};
+  bool is_cancelled{false};
+
+  bool IsStarted() const;
+  bool IsEnded() const;
+  bool IsCancelled() const;
 
   void AddStateChangedEvent(LeConnectionOriginType origin_type, LeConnectionType connection_type,
                             LeConnectionState transaction_state,
-                            std::vector<std::pair<os::ArgumentType, int>> argument_list);
+                            std::vector<std::pair<os::ArgumentType, int>> const& argument_list);
 };
 
 class LEConnectionMetricsRemoteDevice {
 public:
   LEConnectionMetricsRemoteDevice();
-
   LEConnectionMetricsRemoteDevice(BaseMetricsLoggerModule* baseMetricsLoggerModule);
 
   void AddStateChangedEvent(const hci::Address& address, LeConnectionOriginType origin_type,
                             LeConnectionType connection_type, LeConnectionState transaction_state,
-                            std::vector<std::pair<os::ArgumentType, int>> argument_list);
+                            std::vector<std::pair<os::ArgumentType, int>> const& argument_list);
 
   void UploadLEConnectionSession(const hci::Address& address);
 
 private:
-  mutable std::mutex le_connection_metrics_remote_device_guard;
-  std::vector<std::unique_ptr<LEConnectionMetricState>> device_metrics;
-  std::unordered_map<hci::Address, LEConnectionMetricState*> opened_devices;
-  BaseMetricsLoggerModule* metrics_logger_module;
+  mutable std::mutex opened_devices_mutex_;
+  std::vector<std::unique_ptr<LEConnectionMetricState>> device_metrics_;
+  std::unordered_map<hci::Address, LEConnectionMetricState*> opened_devices_;
+  BaseMetricsLoggerModule* metrics_logger_module_;
 };
 
 class MetricsCollector {
