@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7918979_a695e649",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-14T04:46:29Z",
+      "side": 1,
+      "message": "I\u0027d prefer if these were descriptive logs - for example \"Starting rust module\"",
+      "range": {
+        "startLine": 1288,
+        "startChar": 15,
+        "endLine": 1288,
+        "endChar": 40
+      },
+      "revId": "fd47c7d10ab18964c1518fcfc7fe6f102c22cca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
