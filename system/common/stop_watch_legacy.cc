@@ -39,8 +39,8 @@ void StopWatchLegacy::RecordLog(StopWatchLog log) {
   if (!lock.try_lock()) {
     log::info("try_lock fail. log content: {}, took {} us", log.message,
               static_cast<size_t>(std::chrono::duration_cast<std::chrono::microseconds>(
-                                          stopwatch_logs[current_buffer_index].end_timestamp -
-                                          stopwatch_logs[current_buffer_index].start_timestamp)
+                                          stopwatch_logs[current_buffer_index % LOG_BUFFER_LENGTH].end_timestamp -
+                                          stopwatch_logs[current_buffer_index % LOG_BUFFER_LENGTH].start_timestamp)
                                           .count()));
     return;
   }
