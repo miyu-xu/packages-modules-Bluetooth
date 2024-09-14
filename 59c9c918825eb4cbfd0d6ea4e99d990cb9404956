@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292b2030_c3d6d9a5",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-14T05:39:18Z",
+      "side": 1,
+      "message": "Can you add some comments summarizing the logic here?",
+      "range": {
+        "startLine": 512,
+        "startChar": 46,
+        "endLine": 512,
+        "endChar": 80
+      },
+      "revId": "59c9c918825eb4cbfd0d6ea4e99d990cb9404956",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
