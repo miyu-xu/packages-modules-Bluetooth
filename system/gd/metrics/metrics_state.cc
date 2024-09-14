@@ -181,7 +181,7 @@ void LEConnectionMetricsRemoteDevice::AddStateChangedEvent(
         // complete the connection
         device_metric->AddStateChangedEvent(origin_type, connection_type, transaction_state,
                                             argument_list);
-        UploadLEConnectionSession(address);
+        UploadLEConnectionSession(device_metric->address);
         continue;
       }
     }
