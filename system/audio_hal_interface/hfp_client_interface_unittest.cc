@@ -131,6 +131,9 @@ std::ostream& operator<<(std::ostream& os, const BluetoothAudioCtrlAck& ack) { r
 
 namespace hfp {
 
+static bool encoding_transport_is_stream_active_ret;
+static bool decoding_transport_is_stream_active_ret;
+
 HfpTransport::HfpTransport() {}
 BluetoothAudioCtrlAck HfpTransport::StartRequest() {
   return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
@@ -180,6 +183,7 @@ void HfpDecodingTransport::LogBytesWritten(size_t bytes_written) {}
 uint8_t HfpDecodingTransport::GetPendingCmd() const { return HFP_CTRL_CMD_NONE; }
 void HfpDecodingTransport::ResetPendingCmd() {}
 void HfpDecodingTransport::StopRequest() {}
+bool HfpDecodingTransport::IsStreamActive() { return decoding_transport_is_stream_active_ret; }
 
 HfpEncodingTransport::HfpEncodingTransport(SessionType session_type)
     : IBluetoothSinkTransportInstance(session_type, (AudioConfiguration){}) {}
@@ -204,6 +208,7 @@ void HfpEncodingTransport::ResetPresentationPosition() {}
 void HfpEncodingTransport::LogBytesRead(size_t bytes_written) {}
 uint8_t HfpEncodingTransport::GetPendingCmd() const { return HFP_CTRL_CMD_NONE; }
 void HfpEncodingTransport::ResetPendingCmd() {}
+bool HfpEncodingTransport::IsStreamActive() { return encoding_transport_is_stream_active_ret; }
 
 }  // namespace hfp
 }  // namespace aidl
@@ -241,6 +246,8 @@ protected:
     init_message_loop_thread();
     sink_client_read_called = false;
     source_client_write_called = false;
+    hfp::encoding_transport_is_stream_active_ret = true;
+    hfp::decoding_transport_is_stream_active_ret = true;
   }
 
   virtual void TearDown() override { cleanup_message_loop_thread(); }
@@ -272,4 +279,21 @@ TEST_F(HfpClientInterfaceTest, InitDecodeInterfaceAndWrite) {
   HfpClientInterface::Get()->ReleaseDecode(decode_);
 }
 
+TEST_F(HfpClientInterfaceTest, InitEncodeInterfaceAndReadWhenStreamInactive) {
+  uint8_t data[48];
+  memset(data, 0xab, sizeof(data));
+
+  HfpClientInterface::Encode* encode_ = nullptr;
+
+  hfp::encoding_transport_is_stream_active_ret = false;
+
+  encode_ = HfpClientInterface::Get()->GetEncode(&message_loop_thread);
+  ASSERT_NE(nullptr, encode_);
+
+  encode_->Read(data, 48);
+  ASSERT_EQ(1, sink_client_read_called);
+  ASSERT_EQ(true, std::all_of(data, data + 48, [](uint8_t u) { return !u; }));
+
+  HfpClientInterface::Get()->ReleaseEncode(encode_);
+}
 }  // namespace
