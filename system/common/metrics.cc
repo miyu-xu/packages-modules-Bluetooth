@@ -895,16 +895,6 @@ void LogLeAudioBroadcastSessionReported(int64_t duration_nanos) {
   }
 }
 
-void LogLeBluetoothConnectionMetricEventReported(
-        const Address& address, android::bluetooth::le::LeConnectionOriginType origin_type,
-        android::bluetooth::le::LeConnectionType connection_type,
-        android::bluetooth::le::LeConnectionState transaction_state,
-        std::vector<std::pair<os::ArgumentType, int>> argument_list) {
-  // Log the events for the State Management
-  metrics::MetricsCollector::GetLEConnectionMetricsCollector()->AddStateChangedEvent(
-          address, origin_type, connection_type, transaction_state, argument_list);
-}
-
 }  // namespace common
 
 }  // namespace bluetooth
