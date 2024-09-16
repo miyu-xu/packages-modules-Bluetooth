@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78a5da22_9bbf25be",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-09-16T20:29:53Z",
+      "side": 1,
+      "message": "zero ?  Unclassified is a different value.\n```suggestion\n    log::info(\"CoD from storage was zero\");\n```",
+      "range": {
+        "startLine": 675,
+        "startChar": 36,
+        "endLine": 675,
+        "endChar": 53
+      },
+      "revId": "b2a437d58b2c1bd6b5cfc27a135eaf13347e248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
