@@ -24,6 +24,7 @@
 #include "hal/mgmt.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <poll.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -31,6 +32,7 @@
 #include <cerrno>
 
 #include "os/log.h"
+#include "osi/include/properties.h"
 
 extern int GetAdapterIndex();
 
@@ -51,7 +53,18 @@ constexpr static uint8_t BTPROTO_HCI = 1;
 constexpr static uint16_t HCI_CHANNEL_CONTROL = 3;
 constexpr static uint16_t HCI_DEV_NONE = 0xffff;
 
+static const char kPropertyMsftHciExtEnabled[] = "bluetooth.core.le.use_msft_hci_ext";
+
+static bool msft_hci_ext_enabled() {
+  return osi_property_get_bool(kPropertyMsftHciExtEnabled, false) &&
+         com::android::bluetooth::flags::le_scan_msft_support();
+}
+
 static int btsocket_open_mgmt(uint16_t hci) {
+  if (msft_hci_ext_enabled()) {
+    hci = GetAdapterIndex();
+  }
+
   int fd = socket(PF_BLUETOOTH, SOCK_RAW | SOCK_NONBLOCK, BTPROTO_HCI);
   if (fd < 0) {
     log::error("Failed to open BT socket.");
@@ -83,6 +96,10 @@ static int btsocket_open_mgmt(uint16_t hci) {
  * be HCI_OP_NOP (0x0000).
  */
 uint16_t Mgmt::get_vs_opcode(uint16_t vendor_specification) {
+  if (msft_hci_ext_enabled()) {
+    vendor_specification = MGMT_VS_OPCODE_MSFT;
+  }
+
   int hci = GetAdapterIndex();
   int fd = btsocket_open_mgmt(hci);
   uint16_t ret_opcode = HCI_OP_NOP;
