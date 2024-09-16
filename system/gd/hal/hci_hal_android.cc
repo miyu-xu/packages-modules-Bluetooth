@@ -15,6 +15,7 @@
  */
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <future>
 #include <mutex>
@@ -24,7 +25,11 @@
 #include "hal/hci_backend.h"
 #include "hal/hci_hal.h"
 #include "hal/link_clocker.h"
+#include "hal/mgmt.h"
 #include "hal/snoop_logger.h"
+#include "osi/include/properties.h"
+
+static const char kPropertyMsftHciExtEnabled[] = "bluetooth.core.le.use_msft_hci_ext";
 
 namespace bluetooth::hal {
 
@@ -155,6 +160,13 @@ public:
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
                              SnoopLogger::PacketType::ISO);
     backend_->sendIsoData(packet);
+  }
+
+  uint16_t getMsftOpcode() override {
+    return osi_property_get_bool(kPropertyMsftHciExtEnabled, false) &&
+                           com::android::bluetooth::flags::le_scan_msft_support()
+                   ? Mgmt().get_vs_opcode(/*MGMT_VS_OPCODE_MSFT*/)
+                   : 0;
   }
 
 protected:

@@ -51,7 +51,7 @@ constexpr static uint8_t BTPROTO_HCI = 1;
 constexpr static uint16_t HCI_CHANNEL_CONTROL = 3;
 constexpr static uint16_t HCI_DEV_NONE = 0xffff;
 
-static int btsocket_open_mgmt(uint16_t hci) {
+static int btsocket_open_mgmt(/*uint16_t hci*/) {
   int fd = socket(PF_BLUETOOTH, SOCK_RAW | SOCK_NONBLOCK, BTPROTO_HCI);
   if (fd < 0) {
     log::error("Failed to open BT socket.");
@@ -82,9 +82,9 @@ static int btsocket_open_mgmt(uint16_t hci) {
  * or failures in writing/reading the MGMT socket, the return opcode would
  * be HCI_OP_NOP (0x0000).
  */
-uint16_t Mgmt::get_vs_opcode(uint16_t vendor_specification) {
+uint16_t Mgmt::get_vs_opcode(/*uint16_t vendor_specification*/) {
   int hci = GetAdapterIndex();
-  int fd = btsocket_open_mgmt(hci);
+  int fd = btsocket_open_mgmt(/*hci*/);
   uint16_t ret_opcode = HCI_OP_NOP;
 
   if (fd < 0) {
