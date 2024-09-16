@@ -52,6 +52,15 @@ filegroup {
 }
 
 filegroup {
+    name: "BluetoothHalSources_hci_msft_hidl",
+    srcs: [
+        "hci_backend_aidl.cc",
+        "hci_backend_hidl.cc",
+        "hci_hal_msft.cc",
+    ],
+}
+
+filegroup {
     name: "BluetoothHalSources_ranging_android",
     srcs: [
         "ranging_hal_android.cc",

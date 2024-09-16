@@ -89,10 +89,42 @@ cc_defaults {
     ],
 }
 
+soong_config_module_type {
+    name: "gd_hal_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "gd_hal",
+    variables: ["vertical"],
+    properties: ["srcs"],
+}
+
+soong_config_string_variable {
+    name: "vertical",
+    values: ["android_desktop"],
+}
+
+gd_hal_cc_defaults {
+    name: "gd_hal_defaults",
+    soong_config_variables: {
+        vertical: {
+            android_desktop: {
+                srcs: [
+                    ":BluetoothHalSources_hci_msft_hidl",
+                ],
+            },
+            conditions_default: {
+                srcs: [
+                    ":BluetoothHalSources_hci_android_hidl",
+                ],
+            },
+        },
+    },
+}
+
 cc_defaults {
     name: "libbluetooth_gd_defaults",
     defaults: [
         "gd_defaults",
+        "gd_hal_defaults",
     ],
     host_supported: true,
     target: {
@@ -111,7 +143,6 @@ cc_defaults {
         },
         android: {
             srcs: [
-                ":BluetoothHalSources_hci_android_hidl",
                 ":BluetoothHalSources_ranging_android",
                 ":BluetoothOsSources_android",
             ],
