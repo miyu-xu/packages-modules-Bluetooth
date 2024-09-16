@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "472023f8_beb6666a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketContextMap.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-16T05:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f17ad1c0_8ca179db",
+      "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95c99951_833dca2d",
@@ -87,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46631c01_b9cfd597",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-16T05:23:57Z",
+      "side": 1,
+      "message": "removed the unused states for now.",
+      "parentUuid": "95c99951_833dca2d",
+      "range": {
+        "startLine": 46,
+        "startChar": 21,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edd6d30f_63029c1f",
@@ -122,6 +164,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bad882f5_5b463b3d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-16T05:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edd6d30f_63029c1f",
+      "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e06e66cc_d9ba1de1",
@@ -135,6 +195,30 @@
       "writtenOn": "2024-09-13T21:29:48Z",
       "side": 1,
       "message": "nit: can be reset to ZERO once it reaches Integer.MAX_VALUE;",
+      "range": {
+        "startLine": 137,
+        "startChar": 22,
+        "endLine": 137,
+        "endChar": 43
+      },
+      "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d1c30e_21dbd35f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-16T05:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e06e66cc_d9ba1de1",
       "range": {
         "startLine": 137,
         "startChar": 22,
@@ -162,6 +246,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b17068d_32a57ca2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-16T05:23:57Z",
+      "side": 1,
+      "message": "Yes, accepted socket has same regId with listen socket. When the accepted socket is reported as connected, we want to add the connection to the server application entry.",
+      "parentUuid": "0103b2c0_92e57322",
+      "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea32a30e_455e4e1d",
@@ -175,6 +277,24 @@
       "writtenOn": "2024-09-13T21:29:48Z",
       "side": 1,
       "message": "Guess we need to remove this app entry only when there are no associated connections with this regId ?",
+      "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0943c102_2c0672d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-16T05:23:57Z",
+      "side": 1,
+      "message": "Thanks for the comments. Introduced removeAppIfNeeded() for that.",
+      "parentUuid": "ea32a30e_455e4e1d",
       "revId": "bc9993d4d48a40e53616afa3c8a2d3421e487865",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
