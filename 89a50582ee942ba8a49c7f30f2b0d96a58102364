@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d34cc64_67f91832",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-09-16T20:43:25Z",
+      "side": 1,
+      "message": "did you mean `hfp_disconnecting_state`?",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "89a50582ee942ba8a49c7f30f2b0d96a58102364",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c5bd0de7_42964f96",
