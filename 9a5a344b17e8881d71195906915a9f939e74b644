@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0920af21_63c08b50",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-16T03:55:01Z",
+      "side": 1,
+      "message": "Hi @apusaka@google.com, could you please help verify the CTSV test? Thanks!",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "9a5a344b17e8881d71195906915a9f939e74b644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
