@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ffa7f1_763bd54b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-16T21:24:15Z",
+      "side": 1,
+      "message": "There is an implicit invariant that the connection_handle must be valid at the time the function is called. Because most callers will run the same check, I suggest validating the handle here:\n\n```\nauto it \u003d cs_trackers_.find(connection_handle); \nif (it \u003d\u003d cs_trackers_.end()) {\n  return;\n}\n\n// use it to reference the appropriate entry\n\ncs_trackers_.erase(it);\n```",
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d45fce_49a3afd6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-16T21:24:15Z",
+      "side": 1,
+      "message": "nit: The function name is included by default in the log message, this information is redundant",
+      "range": {
+        "startLine": 514,
+        "startChar": 15,
+        "endLine": 514,
+        "endChar": 42
+      },
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e42493_6ff76bef",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-16T21:24:15Z",
+      "side": 1,
+      "message": "Compare the saved address to the queried one for added safety: \n\n```\nif (connection_address.IsEmpty() ||\n    connection_address !\u003d address) {\n}\n```",
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea60d4a3_afcadb2e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-16T21:24:15Z",
+      "side": 1,
+      "message": "Both branches return, I suggest breaking the if / else and using early return pattern:\n\n```\nif (!complete_view.IsValid()) { \n  // ..\n  return;\n}\n\nuint16_t connection_handle \u003d complete_view.GetConnectionHandle();\nif (complete_view.GetStatus() !\u003d ErrorCode::SUCCESS) {\n  // ..\n  return;\n}\n\n// nothing to do on success\n```",
+      "range": {
+        "startLine": 587,
+        "startChar": 6,
+        "endLine": 587,
+        "endChar": 13
+      },
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
