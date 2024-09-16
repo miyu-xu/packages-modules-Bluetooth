@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f26e14_b2ad4050",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-09-16T20:44:39Z",
+      "side": 1,
+      "message": "I\u0027m not sure I follow this?  The flag seems to be a cancelled workflow for V.\n\nhttps://gantry.corp.google.com/changes/b53pjjs000001?stage_id\u003d0qodjjs000001\u0026build_unique_id\u003dFrontend%3A%20android_platform_bluetooth%2C%20Study%3A%20ComAndroidBluetoothFlagsKeyMissingBroadcastLaunch\n\nIf you want to make this hidden again, you\u0027ll need to remove @SystemApi.",
+      "range": {
+        "startLine": 316,
+        "startChar": 4,
+        "endLine": 316,
+        "endChar": 14
+      },
+      "revId": "5d8b9c2f85a605761f55f4b1990e0e122bb0eddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
