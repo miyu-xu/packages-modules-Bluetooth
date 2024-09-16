@@ -22,6 +22,30 @@
       },
       "revId": "b2a437d58b2c1bd6b5cfc27a135eaf13347e248b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad76530_2d535147",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-16T20:32:15Z",
+      "side": 1,
+      "message": "Maybe good to explain the story that we are using 0 as \"unclassified\", but BT spec says zero is misc",
+      "parentUuid": "78a5da22_9bbf25be",
+      "range": {
+        "startLine": 675,
+        "startChar": 36,
+        "endLine": 675,
+        "endChar": 53
+      },
+      "revId": "b2a437d58b2c1bd6b5cfc27a135eaf13347e248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
