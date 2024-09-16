@@ -671,6 +671,11 @@ void btif_update_remote_properties(const RawAddress& bdaddr, BD_NAME bd_name, DE
     cod = old_cod;
   }
 
+  if (cod == 0) {
+    log::info("CoD from storage was also unclassified");
+    cod = COD_UNCLASSIFIED;
+  }
+
   if (old_cod != cod) {
     log::info("{} CoD: 0x{:06x} -> 0x{:06x}", bdaddr, old_cod, cod);
   }
