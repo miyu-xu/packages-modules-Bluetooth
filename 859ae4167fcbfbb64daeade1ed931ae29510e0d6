@@ -238,6 +238,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "831033a1_80308a2e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-09-16T20:41:11Z",
+      "side": 1,
+      "message": "Okay, if there is already a setter then keeping consistent seems reasonable.",
+      "parentUuid": "1f4c450b_2a4be467",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 55
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8de52f8_35508c1b",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
         "patchSetId": 10
