@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d379569_bf45f2f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-09-16T19:18:52Z",
+      "side": 1,
+      "message": "If you\u0027re fine with this, you can Dr.No too 😊",
+      "revId": "3a7878e1e231784614ac807030b3a16072e79205",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
