@@ -70,6 +70,24 @@
       "parentUuid": "80ef9594_736b8f87",
       "revId": "8612573ee3a79f61e251c96b3e5b553731514395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "769f4907_3a08740c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-16T20:31:35Z",
+      "side": 1,
+      "message": "I am removing this CL.\n\nPlease simply upload a flag following the Bluetooth flag process.\n\nYou first need to create a bug in the bluetooth flag component (https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586) and use this one to track the release of the feature. (it is the bug you need to put in the aconfig flag)",
+      "parentUuid": "1fd25ffc_15efe360",
+      "revId": "8612573ee3a79f61e251c96b3e5b553731514395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
