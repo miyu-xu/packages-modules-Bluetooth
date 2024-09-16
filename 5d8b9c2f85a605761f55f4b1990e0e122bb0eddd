@@ -22,6 +22,30 @@
       },
       "revId": "5d8b9c2f85a605761f55f4b1990e0e122bb0eddd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe05dab_1bb51195",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-16T21:04:25Z",
+      "side": 1,
+      "message": "I believe Tyler that you are not on the correct link as this is enabled in nextfood:\n\nhttps://gantry.corp.google.com/changes/340jugs000001?build_unique_id\u003dFrontend%3A%20android_platform_bluetooth%2C%20Study%3A%20ComAndroidBluetoothFlagsKeyMissingBroadcastLaunch\n\nThe search indicate there is 2 result for this flag, I don\u0027t know why.\nhttps://gantry.corp.google.com/search?query\u003dComAndroidBluetoothFlagsKeyMissingBroadcastLaunch\u0026project_name\u003dandroid_platform_bluetooth",
+      "parentUuid": "c4f26e14_b2ad4050",
+      "range": {
+        "startLine": 316,
+        "startChar": 4,
+        "endLine": 316,
+        "endChar": 14
+      },
+      "revId": "5d8b9c2f85a605761f55f4b1990e0e122bb0eddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
