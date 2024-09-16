@@ -48,6 +48,7 @@ filegroup {
         "hci_backend_aidl.cc",
         "hci_backend_hidl.cc",
         "hci_hal_android.cc",
+        "mgmt.cc",
     ],
 }
 
