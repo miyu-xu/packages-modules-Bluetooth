@@ -22,6 +22,30 @@
       },
       "revId": "0291514f4823a5046067f69aa1e9f2318b7db1e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35fb20d1_e754e11f",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-17T18:25:14Z",
+      "side": 1,
+      "message": "Thanks. Added `is_exported: true`. `bt_socket_api_l2cap_cid` was to expose channel ID to app so that app can route the parameters to offload. We got requirements that more channel info parameters need to be exposed not through app but stack. That\u0027s why I created a new flag `bt_offload_socket_api`. Eventually, we would remove `bt_socket_api_l2cap_cid` API when `bt_offload_socket_api` is merged and verified before API freeze.",
+      "parentUuid": "5fe24681_91e93d91",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "0291514f4823a5046067f69aa1e9f2318b7db1e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
