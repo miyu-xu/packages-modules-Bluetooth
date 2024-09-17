@@ -3,5 +3,10 @@
     {
       "name": "bluetooth_test_gd_unit"
     }
+  ],
+  "postsubmit": [
+    {
+      "name": "bluetooth_test_gdx_unit_for_host"
+    }
   ]
 }
