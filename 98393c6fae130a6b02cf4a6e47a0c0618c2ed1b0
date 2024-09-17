@@ -46,6 +46,30 @@
       },
       "revId": "98393c6fae130a6b02cf4a6e47a0c0618c2ed1b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bebb01e_d2523372",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-17T18:14:43Z",
+      "side": 1,
+      "message": "Ack, let\u0027s discuss within our team at some point in time if we should have our own way of doing this and either way add to our own flag guidelines page.",
+      "parentUuid": "48dd29fa_a837f96b",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "98393c6fae130a6b02cf4a6e47a0c0618c2ed1b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
