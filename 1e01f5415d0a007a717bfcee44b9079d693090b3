@@ -22,6 +22,30 @@
       },
       "revId": "1e01f5415d0a007a717bfcee44b9079d693090b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3656564_c053035d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T23:40:06Z",
+      "side": 0,
+      "message": "Not according to Etienne in http://b/366301935\n\n\u003e We don\u0027t want to compare the mediaId in the equals method, as two same media can have different IDs.",
+      "parentUuid": "5e89da3b_6b1dc18e",
+      "range": {
+        "startLine": 91,
+        "startChar": 28,
+        "endLine": 91,
+        "endChar": 35
+      },
+      "revId": "1e01f5415d0a007a717bfcee44b9079d693090b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
