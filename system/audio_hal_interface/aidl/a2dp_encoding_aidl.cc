@@ -45,7 +45,10 @@ namespace audio {
 namespace aidl {
 namespace a2dp {
 
+using ::bluetooth::audio::a2dp::BluetoothAudioPort;
 using ::bluetooth::audio::a2dp::BluetoothAudioStatus;
+
+static BluetoothAudioPort null_audio_port;
 
 namespace {
 
@@ -223,6 +226,9 @@ void A2dpTransport::LogBytesRead(size_t bytes_read) {
 // delay reports from AVDTP is based on 1/10 ms (100us)
 void A2dpTransport::SetRemoteDelay(uint16_t delay_report) { remote_delay_report_ = delay_report; }
 
+// Configured audio port.
+BluetoothAudioPort const* bluetooth_audio_port = &null_audio_port;
+
 // Common interface to call-out into Bluetooth Audio HAL
 BluetoothAudioSinkClientInterface* software_hal_interface = nullptr;
 BluetoothAudioSinkClientInterface* offloading_hal_interface = nullptr;
@@ -387,11 +393,16 @@ static void delete_hal_interface(BluetoothAudioSinkClientInterface* hal_interfac
 }
 
 // Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* /*message_loop*/) {
+bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
+          BluetoothAudioPort const* audio_port) {
   log::info("");
 
   if (software_hal_interface != nullptr) {
     return true;
+  }
+
+  if (audio_port == nullptr) {
+    return false;
   }
 
   if (is_hal_force_disabled()) {
@@ -419,6 +430,7 @@ bool init(bluetooth::common::MessageLoopThread* /*message_loop*/) {
     }
   }
 
+  bluetooth_audio_port = audio_port;
   active_hal_interface =
           (offloading_hal_interface != nullptr ? offloading_hal_interface : software_hal_interface);
 
@@ -454,6 +466,7 @@ void cleanup() {
     delete a2dp_sink;
   }
 
+  bluetooth_audio_port = &null_audio_port;
   remote_delay = 0;
 }
 
