@@ -696,6 +696,7 @@ cc_test {
         ":TestMockBtaVc",
         ":TestMockBtcore",
         ":TestMockBtu",
+        ":TestMockFrameworks",
         ":TestMockHci",
         ":TestMockMainShim",
         ":TestMockMainShimDumpsys",
