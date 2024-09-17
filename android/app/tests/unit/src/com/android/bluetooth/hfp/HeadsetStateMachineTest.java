@@ -1288,7 +1288,6 @@ public class HeadsetStateMachineTest {
     /** A test to verify that we correctly send CIND response when a call is in progress */
     @Test
     public void testCindEventWhenCallIsInProgress() {
-        mSetFlagsRule.enableFlags(Flags.FLAG_PRETEND_NETWORK_SERVICE);
         when(mPhoneState.getCindService())
                 .thenReturn(HeadsetHalConstants.NETWORK_STATE_NOT_AVAILABLE);
         when(mHeadsetService.isVirtualCallStarted()).thenReturn(false);
