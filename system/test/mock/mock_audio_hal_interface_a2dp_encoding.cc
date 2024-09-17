@@ -123,9 +123,10 @@ std::optional<a2dp_configuration> bluetooth::audio::a2dp::provider::get_a2dp_con
   return test::mock::audio_hal_interface_a2dp_encoding::get_a2dp_configuration(
           peer_address, remote_seps, user_preferences);
 }
-bool init(bluetooth::common::MessageLoopThread* message_loop) {
+bool init(bluetooth::common::MessageLoopThread* message_loop,
+          bluetooth::audio::a2dp::BluetoothAudioPort const* audio_port) {
   inc_func_call_count(__func__);
-  return test::mock::audio_hal_interface_a2dp_encoding::init(message_loop);
+  return test::mock::audio_hal_interface_a2dp_encoding::init(message_loop, audio_port);
 }
 bool is_hal_enabled() {
   inc_func_call_count(__func__);
