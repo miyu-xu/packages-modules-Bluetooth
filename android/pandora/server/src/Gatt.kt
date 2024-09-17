@@ -282,7 +282,7 @@ class Gatt(private val context: Context) : GATTImplBase(), Closeable {
                 .setService(
                     GattService.newBuilder()
                         .setHandle(addedService.instanceId)
-                        .setServiceType(ServiceType.forNumber(addedService.type))
+                        .setAttributeType(AttributeType.forNumber(addedService.type))
                         .setUuid(addedService.uuid.toString().uppercase())
                         .addAllIncludedServices(generateServicesList(service.includedServices, 1))
                         .addAllCharacteristics(generateCharacteristicsList(service.characteristics))
@@ -396,7 +396,7 @@ class Gatt(private val context: Context) : GATTImplBase(), Closeable {
             val serviceBuilder =
                 GattService.newBuilder()
                     .setHandle(service.getInstanceId())
-                    .setServiceType(ServiceType.forNumber(service.type))
+                    .setAttributeType(AttributeType.forNumber(service.type))
                     .setUuid(service.getUuid().toString().uppercase())
                     .addAllIncludedServices(
                         generateServicesList(service.getIncludedServices(), dpth + 1)
