@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "624a0858_7dc695c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-09-17T18:58:42Z",
+      "side": 1,
+      "message": "ah, if the test tries to set flag values, then it should not use the read only mode flag lib.",
+      "parentUuid": "faa92a3e_97b693f2",
+      "range": {
+        "startLine": 11,
+        "startChar": 33,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "aa820eeb04ce8ed59683fc6243e82a8d3110ffe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64bd3af9_230bd1e2",
         "filename": "system/TEST_MAPPING",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-17T18:33:05Z",
       "side": 1,
       "message": "It is to my knowledge that host test are always \u0026 automatically picked up by the presubmit without needing to be added to TEST_MAPPING.\n\nBut I don\u0027t remember where I saw that so let me know if I am wrong",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "aa820eeb04ce8ed59683fc6243e82a8d3110ffe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3641bdce_68abcc72",
+        "filename": "system/TEST_MAPPING",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-09-17T18:58:42Z",
+      "side": 1,
+      "message": "no longer needed to change this. No need to fork test targets into two.",
+      "parentUuid": "64bd3af9_230bd1e2",
       "range": {
         "startLine": 7,
         "startChar": 2,
