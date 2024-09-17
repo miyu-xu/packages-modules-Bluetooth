@@ -22,6 +22,30 @@
       },
       "revId": "98393c6fae130a6b02cf4a6e47a0c0618c2ed1b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48dd29fa_a837f96b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-17T16:40:38Z",
+      "side": 1,
+      "message": "\u003e Bug fixes (see next section): Flag: EXEMPT bugfix\n\nhttps://g3doc.corp.google.com/company/teams/android-core-experiments/trunk-stable/policies/guidelines.md?cl\u003dhead#exceptions-anchor\n\nFlag stanza recommended for \"safe\" bug fixes.",
+      "parentUuid": "51edf9b5_8649c1b9",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "98393c6fae130a6b02cf4a6e47a0c0618c2ed1b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
