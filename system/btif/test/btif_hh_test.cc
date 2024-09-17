@@ -43,6 +43,10 @@ module_t gd_shim_module;
 module_t osi_module;
 module_t rust_module;
 
+bool bta_ag_is_sco_managed_by_audio() {
+  return false;
+}
+
 const tBTA_AG_RES_DATA tBTA_AG_RES_DATA::kEmpty = {};
 
 const bthh_interface_t* btif_hh_get_interface();
