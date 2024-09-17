@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa92a3e_97b693f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:33:05Z",
+      "side": 1,
+      "message": "Does that means that it is not possible to set the flag value in the host tests ?\n\nI am anticipating the change to be applied to other (all) host bluetooth tests, and I am worried about \n\nLike [broadcaster_test.cc](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster_test.cc;l\u003d1164;drc\u003d79acd643d295bbb2c4353c9183edc83100dc144c):\n```\nTEST_F(BroadcasterTest, AudioActiveState) {\n  com::android::bluetooth::flags::provider_-\u003eleaudio_big_depends_on_audio_state(true);\n```",
+      "range": {
+        "startLine": 11,
+        "startChar": 33,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "aa820eeb04ce8ed59683fc6243e82a8d3110ffe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64bd3af9_230bd1e2",
+        "filename": "system/TEST_MAPPING",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:33:05Z",
+      "side": 1,
+      "message": "It is to my knowledge that host test are always \u0026 automatically picked up by the presubmit without needing to be added to TEST_MAPPING.\n\nBut I don\u0027t remember where I saw that so let me know if I am wrong",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "aa820eeb04ce8ed59683fc6243e82a8d3110ffe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1805986_5b830f93",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:33:05Z",
+      "side": 1,
+      "message": "This file is not formatted.\n\nRun `prebuilts/build-tools/linux-x86/bin/bpfmt -s -w {filename}` to format the file, or apply the suggested fix.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "aa820eeb04ce8ed59683fc6243e82a8d3110ffe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aa61c87_03426101",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:33:05Z",
+      "side": 1,
+      "message": "Please do not add the trendy team. That will break the owner file system that is currently in place in the Bluetooth team.\n\nThere is on going bug to solve this",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "aa820eeb04ce8ed59683fc6243e82a8d3110ffe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
