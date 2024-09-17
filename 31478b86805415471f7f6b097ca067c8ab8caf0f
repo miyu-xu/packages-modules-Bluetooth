@@ -70,6 +70,30 @@
       },
       "revId": "31478b86805415471f7f6b097ca067c8ab8caf0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a80e8c3_8c7c0ea8",
+        "filename": "android/pandora/test/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T19:01:34Z",
+      "side": 1,
+      "message": "Yes we do have linter warning because we are not compliant with the trendy enforcement.\n\nThis is known sadly.\n\nWe do want to remove the line",
+      "parentUuid": "911ccff6_12322652",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "31478b86805415471f7f6b097ca067c8ab8caf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
