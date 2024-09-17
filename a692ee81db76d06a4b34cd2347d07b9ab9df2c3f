@@ -94,6 +94,30 @@
       },
       "revId": "a692ee81db76d06a4b34cd2347d07b9ab9df2c3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3bcd335_6ddac12e",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-17T23:36:19Z",
+      "side": 1,
+      "message": "But that\u0027s not correct, since the included service has its own service type.\nAnother thing you will want to be careful of: it is possible to have loops with included services, e.g. A (primary) includes B (secondary) includes C includes B.",
+      "parentUuid": "9bea73a5_cc946be8",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 15
+      },
+      "revId": "a692ee81db76d06a4b34cd2347d07b9ab9df2c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
