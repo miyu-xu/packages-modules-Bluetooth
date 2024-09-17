@@ -16,6 +16,24 @@
       "message": "Do we have a good way to validate this?",
       "revId": "8ac531bb3fe67a57f0413e599f24bf6ecfdaf509",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "178e3142_12035779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-17T00:54:34Z",
+      "side": 1,
+      "message": "I would do:\n- `bluetooth_AdaterCLHealth.all_floss` and `bluetooth_AdaterLEHealth.all_floss` for HID and BAS coverage\n- `bluetooth_AdaterAUHealth.all_floss` for media coverage\n- SmartLock, FastPair, and any Robot for GATT coverage\n- One real LE mouse for more BAS coverage",
+      "parentUuid": "9104a8db_e1ba3bd1",
+      "revId": "8ac531bb3fe67a57f0413e599f24bf6ecfdaf509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
