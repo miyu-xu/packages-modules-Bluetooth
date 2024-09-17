@@ -17,17 +17,21 @@ import grpc
 import logging
 
 from bumble.att import Attribute
-from bumble.core import ProtocolError
+from bumble.core import ProtocolError, UUID
 from bumble.device import Connection as BumbleConnection, Device, Peer
-from bumble.gatt import Characteristic, Descriptor, Service, GATT_PRIMARY_SERVICE_ATTRIBUTE_TYPE
+from bumble.gatt import (Characteristic, Descriptor, Service, GATT_PRIMARY_SERVICE_ATTRIBUTE_TYPE,
+                         GATT_SECONDARY_SERVICE_ATTRIBUTE_TYPE, GATT_INCLUDE_ATTRIBUTE_TYPE,
+                         GATT_CHARACTERISTIC_ATTRIBUTE_TYPE)
 from bumble.gatt_client import CharacteristicProxy, ServiceProxy
 from bumble.pandora import utils
 from pandora_experimental.gatt_grpc_aio import GATTServicer
 from pandora_experimental.gatt_pb2 import (
     ATTRIBUTE_NOT_FOUND,
     SUCCESS,
+    AttributeType,
     AttStatusCode,
     AttValue,
+    CHARACTERISTIC,
     ClearCacheRequest,
     ClearCacheResponse,
     DiscoverServiceByUuidRequest,
@@ -38,6 +42,7 @@ from pandora_experimental.gatt_pb2 import (
     GattCharacteristic,
     GattCharacteristicDescriptor,
     GattService,
+    INCLUDE as INCLUDE_ATTRIBUTE,
     IndicateOnCharacteristicRequest,
     IndicateOnCharacteristicResponse,
     NotifyOnCharacteristicRequest,
@@ -52,11 +57,10 @@ from pandora_experimental.gatt_pb2 import (
     RegisterServiceRequest,
     RegisterServiceResponse,
     SECONDARY as SECONDARY_SERVICE,
-    ServiceType,
     WriteRequest,
     WriteResponse,
 )
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 
 class GATTService(GATTServicer):
@@ -171,11 +175,23 @@ class GATTService(GATTServicer):
 
         await asyncio.gather(*(feed_service(service) for service in services))
 
+        def parse_attribute_type(attribute_type: UUID) -> Optional[AttributeType]:
+            match attribute_type:
+                case GATT_PRIMARY_SERVICE_ATTRIBUTE_TYPE:
+                    return PRIMARY_SERVICE
+                case GATT_SECONDARY_SERVICE_ATTRIBUTE_TYPE:
+                    return SECONDARY_SERVICE
+                case GATT_INCLUDE_ATTRIBUTE_TYPE:
+                    return INCLUDE_ATTRIBUTE
+                case GATT_CHARACTERISTIC_ATTRIBUTE_TYPE:
+                    return CHARACTERISTIC
+
+            return None
+
         return DiscoverServicesResponse(services=[
             GattService(
                 handle=service.handle,
-                service_type=PRIMARY_SERVICE if service.type ==
-                GATT_PRIMARY_SERVICE_ATTRIBUTE_TYPE else SECONDARY_SERVICE,
+                attribute_type=parse_attribute_type(service.type),
                 uuid=service.uuid.to_hex_str('-'),  # type: ignore
                 characteristics=[
                     GattCharacteristic(
