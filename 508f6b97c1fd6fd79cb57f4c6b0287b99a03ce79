@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6d685d7_e8784c85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:21:05Z",
+      "side": 1,
+      "message": "The removing of V2 but sometimes adding it is a bit confusing. :/",
+      "revId": "508f6b97c1fd6fd79cb57f4c6b0287b99a03ce79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
