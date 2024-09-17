@@ -31,6 +31,7 @@ import android.content.AttributionSource;
 import android.os.Binder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
+import android.util.Log;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -112,7 +113,7 @@ public final class DistanceMeasurementSession {
                     mDistanceMeasurementParams.getMethodId(),
                     mAttributionSource);
         } catch (RemoteException e) {
-            throw e.rethrowAsRuntimeException();
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
         }
     }
 
