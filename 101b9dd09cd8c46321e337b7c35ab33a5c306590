@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a724b3d_ca946d22",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-17T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf2e3538_59adc984",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 98
+      },
+      "revId": "101b9dd09cd8c46321e337b7c35ab33a5c306590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b4494b4_b819cd46",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-17T15:48:18Z",
       "side": 1,
       "message": "`base::Unretained(this)`",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 97
+      },
+      "revId": "101b9dd09cd8c46321e337b7c35ab33a5c306590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e30f6957_6d82a51f",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-17T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b4494b4_b819cd46",
       "range": {
         "startLine": 86,
         "startChar": 12,
