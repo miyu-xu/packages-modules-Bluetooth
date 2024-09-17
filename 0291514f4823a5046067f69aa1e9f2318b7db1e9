@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe24681_91e93d91",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:12:36Z",
+      "side": 1,
+      "message": "if this is targetting API, you need to put `is_exported: true` in the aconfig file.\n\n\nBut by the description I don\u0027t see what the difference between this flag and `bt_socket_api_l2cap_cid` just above",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "0291514f4823a5046067f69aa1e9f2318b7db1e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
