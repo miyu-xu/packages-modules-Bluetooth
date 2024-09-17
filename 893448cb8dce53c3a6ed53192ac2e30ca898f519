@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f2a5399_d206d177",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1547,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-17T18:07:40Z",
+      "side": 1,
+      "message": "This is a good catch, it was there for a while. Didn\u0027t this cause any issue with Unicast input device? fyi @rlukasz@google.com",
+      "revId": "893448cb8dce53c3a6ed53192ac2e30ca898f519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
