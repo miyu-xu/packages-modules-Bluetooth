@@ -354,6 +354,9 @@ cc_test {
             ],
         },
         host: {
+            srcs: [
+                ":TestMockFrameworks",
+            ],
             static_libs: [
                 "libbinder_ndk",
             ],
