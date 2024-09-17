@@ -70,6 +70,30 @@
       },
       "revId": "a692ee81db76d06a4b34cd2347d07b9ab9df2c3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bea73a5_cc946be8",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-17T22:12:43Z",
+      "side": 1,
+      "message": "An `included_service` within the `repeated GattService included_services \u003d 4;` field will have the `AttributeType attribute_type \u003d 2;` equal to `INCLUDE`",
+      "parentUuid": "ee5bed53_e06c8d76",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 15
+      },
+      "revId": "a692ee81db76d06a4b34cd2347d07b9ab9df2c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
