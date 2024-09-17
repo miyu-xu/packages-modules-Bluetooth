@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51edf9b5_8649c1b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-17T15:48:33Z",
+      "side": 1,
+      "message": "Please use a more descriptive exemption, as pretty much everything is a bug fix. Something like trivial or obvious bug fix that\u0027s been manually verified.",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "98393c6fae130a6b02cf4a6e47a0c0618c2ed1b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
