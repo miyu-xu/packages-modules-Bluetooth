@@ -31,13 +31,27 @@ namespace audio {
 namespace a2dp {
 
 /// Loosely copied after the definition from the Bluetooth Audio interface:
-/// hardware/interfaces/bluetooth/audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
+/// audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
 enum class BluetoothAudioStatus {
   SUCCESS = 0,
   UNKNOWN,
   UNSUPPORTED_CODEC_CONFIGURATION,
   FAILURE,
   PENDING,
+};
+
+/// Loosely copied after the definition from the Bluetooth Audio interface:
+/// audio/aidl/android/hardware/bluetooth/audio/IBluetoothAudioPort.aidl
+class BluetoothAudioPort {
+public:
+  virtual ~BluetoothAudioPort() {}
+  virtual BluetoothAudioStatus StartStream(bool /*low_latency*/) const {
+    return BluetoothAudioStatus::FAILURE;
+  }
+  virtual BluetoothAudioStatus SuspendStream() const { return BluetoothAudioStatus::FAILURE; }
+  virtual BluetoothAudioStatus SetLatencyMode(bool /*low_latency*/) const {
+    return BluetoothAudioStatus::FAILURE;
+  }
 };
 
 bool update_codec_offloading_capabilities(
@@ -51,7 +65,7 @@ bool is_hal_enabled();
 bool is_hal_offloading();
 
 // Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* message_loop);
+bool init(bluetooth::common::MessageLoopThread* message_loop, BluetoothAudioPort const* audio_port);
 
 // Clean up BluetoothAudio HAL
 void cleanup();
