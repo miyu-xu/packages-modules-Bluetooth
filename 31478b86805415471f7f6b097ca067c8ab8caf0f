@@ -22,6 +22,30 @@
       },
       "revId": "31478b86805415471f7f6b097ca067c8ab8caf0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63f1cda_a697389b",
+        "filename": "android/pandora/test/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-17T18:49:34Z",
+      "side": 1,
+      "message": "I had to do this otherwise I had a linter issue:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3236380/2?checksPatchset\u003d2\u0026tab\u003dchecks\n\n\u0026\u0026\n\ngo/new-android-ownership-model",
+      "parentUuid": "dac6402c_f08219a2",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "31478b86805415471f7f6b097ca067c8ab8caf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
