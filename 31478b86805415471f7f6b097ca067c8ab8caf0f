@@ -46,6 +46,30 @@
       },
       "revId": "31478b86805415471f7f6b097ca067c8ab8caf0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "911ccff6_12322652",
+        "filename": "android/pandora/test/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-17T18:49:48Z",
+      "side": 1,
+      "message": "Do we still want to remove this ?",
+      "parentUuid": "d63f1cda_a697389b",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "31478b86805415471f7f6b097ca067c8ab8caf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
