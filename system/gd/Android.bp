@@ -6,6 +6,7 @@ package {
     //   SPDX-license-identifier-Apache-2.0
     //   SPDX-license-identifier-BSD
     default_applicable_licenses: ["system_bt_license"],
+    default_team: "trendy_team_bluetooth",
 }
 
 cc_defaults {
@@ -527,11 +528,30 @@ cc_test {
     min_sdk_version: "Tiramisu",
 }
 
+cc_test_host {
+    name: "bluetooth_test_gdx_unit_for_host",
+    defaults: ["bluetooth_test_gdx_unit_defaults"],
+    static_libs: [
+        "bluetooth_flags_c_lib_ro",
+    ]
+}
+
 cc_test {
     name: "bluetooth_test_gdx_unit",
+    defaults: [
+        "bluetooth_test_gdx_unit_defaults",
+        "aconfig_lib_cc_shared_link.defaults",
+    ],
+    static_libs: [
+        "bluetooth_flags_c_lib_for_test",
+        "server_configurable_flags",
+    ]
+}
+
+cc_defaults {
+    name: "bluetooth_test_gdx_unit_defaults",
     test_suites: ["device-tests"],
     defaults: [
-        "aconfig_lib_cc_shared_link.defaults",
         "gd_defaults",
         "mts_defaults",
     ],
@@ -541,7 +561,6 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/types",
     ],
-    host_supported: true,
     srcs: [
         ":BluetoothDumpsysTestSources",
         ":BluetoothShimTestSources",
@@ -559,7 +578,6 @@ cc_test {
         "BluetoothGeneratedDumpsysTestData_h",
     ],
     static_libs: [
-        "bluetooth_flags_c_lib",
         "libbase",
         "libbluetooth-dumpsys",
         "libbluetooth-dumpsys-test",
@@ -578,7 +596,6 @@ cc_test {
         "libgmock",
         "liblog",
         "libosi",
-        "server_configurable_flags",
     ],
     sanitize: {
         address: true,

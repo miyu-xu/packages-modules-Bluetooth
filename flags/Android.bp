@@ -109,6 +109,17 @@ cc_aconfig_library {
     min_sdk_version: "Tiramisu",
 }
 
+cc_aconfig_library {
+    name: "bluetooth_flags_c_lib_ro",
+    aconfig_declarations: "bluetooth_aconfig_flags",
+    mode: "force-read-only",
+    host_supported: true,
+    visibility: [
+        "//packages/modules/Bluetooth/system:__subpackages__",
+    ],
+    min_sdk_version: "Tiramisu",
+}
+
 rust_aconfig_library {
     name: "libbluetooth_aconfig_flags_rust",
     host_supported: true,
