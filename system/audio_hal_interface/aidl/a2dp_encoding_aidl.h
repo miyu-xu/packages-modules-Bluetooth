@@ -52,7 +52,8 @@ bool is_hal_offloading();
 /***
  * Initialize BluetoothAudio HAL: openProvider
  ***/
-bool init(bluetooth::common::MessageLoopThread* message_loop);
+bool init(bluetooth::common::MessageLoopThread* message_loop,
+          bluetooth::audio::a2dp::BluetoothAudioPort const* audio_port);
 
 /***
  * Clean up BluetoothAudio HAL
