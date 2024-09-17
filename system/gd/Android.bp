@@ -542,6 +542,19 @@ cc_test {
         "packages/modules/Bluetooth/system/types",
     ],
     host_supported: true,
+    target: {
+        android: {
+            static_libs: [
+                "bluetooth_flags_c_lib_for_test",
+                "server_configurable_flags",
+            ],
+        },
+        host: {
+            static_libs: [
+                "bluetooth_flags_c_lib_ro",
+            ],
+        },
+    },
     srcs: [
         ":BluetoothDumpsysTestSources",
         ":BluetoothShimTestSources",
@@ -559,7 +572,6 @@ cc_test {
         "BluetoothGeneratedDumpsysTestData_h",
     ],
     static_libs: [
-        "bluetooth_flags_c_lib",
         "libbase",
         "libbluetooth-dumpsys",
         "libbluetooth-dumpsys-test",
@@ -578,7 +590,6 @@ cc_test {
         "libgmock",
         "liblog",
         "libosi",
-        "server_configurable_flags",
     ],
     sanitize: {
         address: true,

@@ -294,7 +294,6 @@ cc_test {
         "android.hardware.audio.common@5.0",
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
-        "bluetooth_flags_c_lib",
         "libFraunhoferAAC",
         "libbase",
         "libbluetooth-dumpsys",
@@ -351,11 +350,13 @@ cc_test {
                 "android.system.suspend-V1-ndk",
                 "android.system.suspend.control-V1-ndk",
                 "libaaudio",
+                "bluetooth_flags_c_lib_for_test",
             ],
         },
         host: {
             static_libs: [
                 "libbinder_ndk",
+                "bluetooth_flags_c_lib_ro",
             ],
         },
     },

@@ -304,7 +304,6 @@ cc_test {
         "android.hardware.common-V2-ndk",
         "android.hardware.common.fmq-V1-ndk",
         "avrcp-target-service",
-        "bluetooth_flags_c_lib",
         "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
@@ -327,6 +326,7 @@ cc_test {
         "libflagtest",
         "libfmq",
         "libgmock",
+        "bluetooth_flags_c_lib_for_test",
         "server_configurable_flags",
     ],
     data: [

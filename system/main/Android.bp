@@ -203,8 +203,19 @@ cc_test {
         "test/main_shim_stack_lifecycle_test.cc",
         "test/main_shim_test.cc",
     ],
+    target: {
+        android: {
+            static_libs: [
+                "bluetooth_flags_c_lib_for_test",
+            ],
+        },
+        host: {
+            static_libs: [
+                "bluetooth_flags_c_lib_ro",
+            ],
+        },
+    },
     static_libs: [
-        "bluetooth_flags_c_lib",
         "libbase",
         "libbluetooth-dumpsys",
         "libbluetooth-gdx",
