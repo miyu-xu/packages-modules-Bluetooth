@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42efb376_e65bdbde",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-17T22:31:45Z",
+      "side": 0,
+      "message": "This function is called through binder. If I remember well, when the list of BluetoothGattService is turned into parcelable, and then back into Object, included services don\u0027t refer to proper object, and that\u0027s what this code you delete here was fixing.\n\nIs it no longer needed ?",
+      "range": {
+        "startLine": 416,
+        "startChar": 28,
+        "endLine": 416,
+        "endChar": 44
+      },
+      "revId": "a692ee81db76d06a4b34cd2347d07b9ab9df2c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
