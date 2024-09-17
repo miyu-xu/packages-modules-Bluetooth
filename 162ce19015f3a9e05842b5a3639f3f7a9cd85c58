@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a869095_65ad44ca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-17T18:03:08Z",
+      "side": 1,
+      "message": "You can pass `this` as a parameter.\n\nThis way, in `BluetoothHciVendorSpecificNativeInterface` you can save the AdapterService as a class variable and no longer call AdapterService.getAdapterService and no longer check for null pointer in the callbacks.",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
