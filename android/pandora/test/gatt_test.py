@@ -19,6 +19,7 @@ import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
 from bumble import pandora as bumble_server
+from bumble.core import UUID
 from bumble.gatt import Characteristic, Service
 from bumble.l2cap import L2CAP_Control_Frame
 from bumble.pairing import PairingConfig
@@ -286,6 +287,27 @@ class GattTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         assert_equal(bytes(control_frame)[10], 0x05)  # All connections refused – insufficient authentication
         assert_true(await is_connected(self.ref, ref_dut), "Device is no longer connected")
+
+    def test_discover_included_service(self) -> None:
+        PRIMARY_SERVICE_UUID = UUID.from_16_bits(0x1843)
+        INCLUDED_SERVICE_UUID = UUID.from_16_bits(0x1844)
+        self.ref.device.add_service(Service(PRIMARY_SERVICE_UUID, [], included_services=[Service(INCLUDED_SERVICE_UUID, [], primary=False)]))  # type:ignore
+
+        advertise = self.ref.host.Advertise(legacy=True, connectable=True)
+        dut_ref_connection = self.dut.host.ConnectLE(public=self.ref.address, own_address_type=RANDOM).connection
+        assert dut_ref_connection
+        advertise.cancel()  # type: ignore
+
+        dut_gatt = GATT(self.dut.channel)  # type: ignore
+        services = dut_gatt.DiscoverServices(dut_ref_connection).services
+
+        filtered_services = [service for service in services if service.uuid == PRIMARY_SERVICE_UUID]
+        assert len(filtered_services) == 1
+        primary_service = filtered_services[0]
+
+        included_services_uuids = [included_service.uuid for included_service in primary_service.included_services]
+        assert_in(INCLUDED_SERVICE_UUID, included_services_uuids)
+
 
 
 async def is_connected(device: PandoraDevice, connection: Connection) -> bool:
