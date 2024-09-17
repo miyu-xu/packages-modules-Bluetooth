@@ -112,7 +112,7 @@ public final class DistanceMeasurementSession {
                     mDistanceMeasurementParams.getMethodId(),
                     mAttributionSource);
         } catch (RemoteException e) {
-            throw e.rethrowAsRuntimeException();
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
         }
     }
 
