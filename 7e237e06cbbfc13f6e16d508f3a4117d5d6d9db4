@@ -22,6 +22,30 @@
       },
       "revId": "7e237e06cbbfc13f6e16d508f3a4117d5d6d9db4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d19601f_ab397f03",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-17T14:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c00bee87_eddf3666",
+      "range": {
+        "startLine": 177,
+        "startChar": 5,
+        "endLine": 177,
+        "endChar": 16
+      },
+      "revId": "7e237e06cbbfc13f6e16d508f3a4117d5d6d9db4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
