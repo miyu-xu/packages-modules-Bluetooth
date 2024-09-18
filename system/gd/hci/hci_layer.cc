@@ -193,10 +193,14 @@ struct HciLayer::impl {
 
   template <typename TResponse>
   void handle_command_response(EventView event, std::string logging_id) {
+    log::info("debut de la fonction, waiting for {:04x}", waiting_command_);
     TResponse response_view = TResponse::Create(event);
+    log::info("on continue doucement");
     log::assert_that(response_view.IsValid(), "assert failed: response_view.IsValid()");
+    log::info("on en sait rien");
     command_credits_ = response_view.GetNumHciCommandPackets();
     OpCode op_code = response_view.GetCommandOpCode();
+    log::info("bon la on devrait etre bien");
     if (op_code == OpCode::NONE) {
       send_next_command();
       return;
@@ -234,11 +238,13 @@ struct HciLayer::impl {
               CommandCompleteView::Create(EventView::Create(PacketView<kLittleEndian>(complete)));
       log::assert_that(command_complete_view.IsValid(),
                        "assert failed: command_complete_view.IsValid()");
+      log::info("Return patched command complete for command op-code {:04x}", op_code);
       (*command_queue_.front().GetCallback<CommandCompleteView>())(command_complete_view);
     } else {
       log::assert_that(command_queue_.front().waiting_for_status_ == is_status,
                        "{} was not expecting {} event", OpCodeText(op_code), logging_id);
 
+      log::info("Return command status or complete for command op-code {:04x}", op_code);
       (*command_queue_.front().GetCallback<TResponse>())(std::move(response_view));
     }
 
@@ -260,6 +266,7 @@ struct HciLayer::impl {
     }
 #endif
 
+    log::info("command status or complete handled");
     command_queue_.pop_front();
     waiting_command_ = OpCode::NONE;
     if (hci_timeout_alarm_ != nullptr) {
@@ -321,6 +328,7 @@ struct HciLayer::impl {
     log_classic_pairing_command_status(command_queue_.front().command_view,
                                        ErrorCode::STATUS_UNKNOWN);
     waiting_command_ = op_code;
+    log::info("On envoit (ou plutot a envoye), et on attend l'opcode {:04x}", op_code);
     command_credits_ = 0;  // Only allow one outstanding command
     if (hci_timeout_alarm_ != nullptr) {
       hci_timeout_alarm_->Schedule(
