@@ -19,6 +19,7 @@
 #include "bind.h"
 #include "callback.h"
 #include "i_postable_context.h"
+#include <bluetooth/log.h>
 
 namespace bluetooth {
 namespace common {
@@ -31,7 +32,9 @@ template <typename R, typename... Args>
 class ContextualOnceCallback<R(Args...)> {
 public:
   ContextualOnceCallback(common::OnceCallback<R(Args...)>&& callback, IPostableContext* context)
-      : callback_(std::move(callback)), context_(context) {}
+      : callback_(std::move(callback)), context_(context) {
+          log::assert_that(context != nullptr, "Postable context cannot be null");
+      }
 
   constexpr ContextualOnceCallback() = default;
   ContextualOnceCallback(const ContextualOnceCallback&) = delete;

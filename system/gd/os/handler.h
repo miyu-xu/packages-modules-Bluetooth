@@ -77,6 +77,7 @@ private:
   std::unique_ptr<Reactor::Event> event_;
   Reactor::Reactable* reactable_;
   mutable std::mutex mutex_;
+  mutable std::mutex mutex_clear_;
   void handle_next_event();
 };
 

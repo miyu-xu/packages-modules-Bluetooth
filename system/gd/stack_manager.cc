@@ -33,6 +33,8 @@ using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
 using ::bluetooth::os::WakelockManager;
 
+extern std::string __bug_logs;
+
 namespace bluetooth {
 
 void StackManager::StartUp(ModuleList* modules, Thread* stack_thread) {
@@ -53,8 +55,8 @@ void StackManager::StartUp(ModuleList* modules, Thread* stack_thread) {
 
   log::info("init_status == {}", int(init_status));
 
-  log::assert_that(init_status == std::future_status::ready, "Can't start stack, last instance: {}",
-                   registry_.last_instance_);
+  log::assert_that(init_status == std::future_status::ready, "Can't start stack, last instance: {}, {}",
+                   registry_.last_instance_, __bug_logs);
 
   log::info("init complete");
 }
