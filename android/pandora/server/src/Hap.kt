@@ -54,7 +54,7 @@ class Hap(private val context: Context) : HAPImplBase(), Closeable {
                 IntentFilter().apply {
                     addAction(BluetoothHapClient.ACTION_HAP_CONNECTION_STATE_CHANGED)
                 },
-                scope
+                scope,
             )
             .shareIn(scope, SharingStarted.Eagerly)
 
@@ -62,9 +62,51 @@ class Hap(private val context: Context) : HAPImplBase(), Closeable {
         scope.cancel()
     }
 
+    companion object {
+        private fun toProtoPresetRecord(presetInfo: BluetoothHapPresetInfo): PresetRecord {
+            return PresetRecord.newBuilder()
+                .setIndex(presetInfo.getIndex())
+                .setName(presetInfo.getName())
+                .setIsWritable(presetInfo.isWritable())
+                .setIsAvailable(presetInfo.isAvailable())
+                .build()
+        }
+    }
+
+    override fun setActivePreset(
+        request: SetActivePresetRequest,
+        responseObserver: StreamObserver<Empty>,
+    ) {
+        val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+        Log.i(TAG, "SetActivePreset(${device}, ${request.index})")
+        grpcUnary<Empty>(scope, responseObserver) {
+            bluetoothHapClient.selectPreset(device, request.index)
+
+            Empty.getDefaultInstance()
+        }
+    }
+
+    override fun getActivePreset(
+        request: GetActivePresetRequest,
+        responseObserver: StreamObserver<GetActivePresetResponse>,
+    ) {
+        val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+        Log.i(TAG, "GetActivePreset(${device})")
+        grpcUnary<GetActivePresetResponse>(scope, responseObserver) {
+            val presetInfo = bluetoothHapClient.getActivePresetInfo(device)
+            if (presetInfo == null) {
+                GetActivePresetResponse.getDefaultInstance()
+            } else {
+                GetActivePresetResponse.newBuilder()
+                    .setPresetRecord(toProtoPresetRecord(presetInfo))
+                    .build()
+            }
+        }
+    }
+
     override fun getFeatures(
         request: GetFeaturesRequest,
-        responseObserver: StreamObserver<GetFeaturesResponse>
+        responseObserver: StreamObserver<GetFeaturesResponse>,
     ) {
         val device = request.connection.toBluetoothDevice(bluetoothAdapter)
         Log.i(TAG, "getFeatures(${device})")
@@ -77,24 +119,17 @@ class Hap(private val context: Context) : HAPImplBase(), Closeable {
 
     override fun getAllPresetsInfo(
         request: GetAllPresetsInfoRequest,
-        responseObserver: StreamObserver<GetAllPresetsInfoResponse>
+        responseObserver: StreamObserver<GetAllPresetsInfoResponse>,
     ) {
         val device = request.connection.toBluetoothDevice(bluetoothAdapter)
         Log.i(TAG, "getAllPresetsInfo(${device})")
         grpcUnary<GetAllPresetsInfoResponse>(scope, responseObserver) {
             GetAllPresetsInfoResponse.newBuilder()
-                .addAllPresetInfoList(
+                .addAllPresetRecordList(
                     bluetoothHapClient
                         .getAllPresetInfo(device)
                         .stream()
-                        .map { it: BluetoothHapPresetInfo ->
-                            PresetInfo.newBuilder()
-                                .setPresetIndex(it.getIndex())
-                                .setPresetName(it.getName())
-                                .setIsWritable(it.isWritable())
-                                .setIsAvailable(it.isAvailable())
-                                .build()
-                        }
+                        .map(Hap::toProtoPresetRecord)
                         .toList()
                 )
                 .build()
@@ -103,7 +138,7 @@ class Hap(private val context: Context) : HAPImplBase(), Closeable {
 
     override fun waitPeripheral(
         request: WaitPeripheralRequest,
-        responseObserver: StreamObserver<Empty>
+        responseObserver: StreamObserver<Empty>,
     ) {
         val device = request.connection.toBluetoothDevice(bluetoothAdapter)
         Log.i(TAG, "waitPeripheral(${device}")
