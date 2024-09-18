@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1020ab7_acb3a333",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-18T15:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48ffa7f1_763bd54b",
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1d45fce_49a3afd6",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-09-16T21:24:15Z",
       "side": 1,
       "message": "nit: The function name is included by default in the log message, this information is redundant",
+      "range": {
+        "startLine": 514,
+        "startChar": 15,
+        "endLine": 514,
+        "endChar": 42
+      },
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a21f3353_102c8e33",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-18T15:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1d45fce_49a3afd6",
       "range": {
         "startLine": 514,
         "startChar": 15,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5ad1e12_27805b95",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-18T15:53:30Z",
+      "side": 1,
+      "message": "The problem is the HACK_GetLeAddress can not always get the identity address in some conner case. I\u0027m going to remove this check as we are handling the disconnect event actively (handle_ras_disconnected_event)",
+      "parentUuid": "c0e42493_6ff76bef",
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea60d4a3_afcadb2e",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-09-16T21:24:15Z",
       "side": 1,
       "message": "Both branches return, I suggest breaking the if / else and using early return pattern:\n\n```\nif (!complete_view.IsValid()) { \n  // ..\n  return;\n}\n\nuint16_t connection_handle \u003d complete_view.GetConnectionHandle();\nif (complete_view.GetStatus() !\u003d ErrorCode::SUCCESS) {\n  // ..\n  return;\n}\n\n// nothing to do on success\n```",
+      "range": {
+        "startLine": 587,
+        "startChar": 6,
+        "endLine": 587,
+        "endChar": 13
+      },
+      "revId": "ebba67ee7242b5481992c46101cd83295519d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2aeb56_3f3204d0",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-18T15:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea60d4a3_afcadb2e",
       "range": {
         "startLine": 587,
         "startChar": 6,
