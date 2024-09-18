@@ -270,7 +270,9 @@ void SnoopLoggerSocket::SafeCloseSocket(int& fd) {
   log::debug("{}", fd);
   if (fd != -1) {
     syscall_if_->Close(fd);
-    syscall_if_->FDClr(fd, &save_sock_fds_);
+    if (fd != client_socket_) {
+        syscall_if_->FDClr(fd, &save_sock_fds_);
+    }
     fd = -1;
   }
 }
