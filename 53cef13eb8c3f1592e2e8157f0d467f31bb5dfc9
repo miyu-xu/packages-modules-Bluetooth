@@ -34,6 +34,24 @@
       "parentUuid": "951c0c35_dfc7786c",
       "revId": "53cef13eb8c3f1592e2e8157f0d467f31bb5dfc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcc2f01_12249c2d",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-18T21:29:06Z",
+      "side": 1,
+      "message": "Every incoming report creates a zero initialized `tBTA_HH_TO_UHID_EVT` object in `to_uhid_thread()`.\n\nWe can split the structure like this\n```\ntypedef struct {\n  tBTA_HH_UHID_INBOUND_EVT_TYPE type;\n  uint16_t size;\n  uint8_t* payload;\n} tBTA_HH_TO_UHID_EVT;\n```\nWe can serialize this structure when transferring it through the socket.\n```\nstatic bool to_uhid_thread(int fd, const tBTA_HH_TO_UHID_EVT\u0026 ev) {\n  if (fd \u003c 0) {\n    log::error(\"Cannot write to uhid thread: invalid fd\");\n    return false;\n  }\n\n  ssize_t ret;\n  OSI_NO_INTR(ret \u003d write(fd, \u0026ev, sizeof(ev)));\n\n  if (ret \u003c 0) {\n    log::error(\"Cannot write to uhid thread: {}\", strerror(errno));\n    return false;\n  } else if (ret !\u003d (ssize_t)sizeof(ev)) {\n    log::error(\"Wrong size written to uhid thread: {} !\u003d {}\", ret, sizeof(ev));\n    return false;\n  }\n  \n  if (ev.size !\u003d 0) {\n    OSI_NO_INTR(ret \u003d write(fd, ev.payload, ev.size));\n  }\n  \n  if (ret \u003c 0) {\n    log::error(\"Cannot write to uhid thread: {}\", strerror(errno));\n    return false;\n  } else if (ret !\u003d ev.size) {\n    log::error(\"Wrong size written to uhid thread: {} !\u003d {}\", ret, ev.size);\n    return false;\n  }\n\n  return true;\n}\n```\nThis would mean that the messages would have to be read in parts.\n```\nstatic int uhid_read_inbound_event(btif_hh_uhid_t* p_uhid) {\n  log::assert_that(p_uhid !\u003d nullptr, \"assert failed: p_uhid !\u003d nullptr\");\n\n  tBTA_HH_TO_UHID_EVT ev \u003d {};\n  ssize_t ret;\n  OSI_NO_INTR(ret \u003d read(p_uhid-\u003einternal_recv_fd, \u0026ev, sizeof(ev)));\n\n  if (ret \u003d\u003d 0) {\n    log::error(\"Read HUP on internal uhid-cdev {}\", strerror(errno));\n    return -EFAULT;\n  } else if (ret \u003c 0) {\n    log::error(\"Cannot read internal uhid-cdev: {}\", strerror(errno));\n    return -errno;\n  }\n\n  int res \u003d 0;\n  uint32_t* context;\n  switch (ev.type) {\n    case BTA_HH_UHID_INBOUND_INPUT_EVT: {\n      uhid_event input_report \u003d {};\n      input_report.type \u003d UHID_INPUT;\n      input_report.u.input.size \u003d ev.size;\n      OSI_NO_INTR(ret \u003d read(p_uhid-\u003einternal_recv_fd, \u0026input_report.u.input.data, len));\n      if (p_uhid-\u003eready_for_data) {\n        res \u003d uhid_write(p_uhid-\u003efd, \u0026input_report, sizeof(input_report));\n      } else {\n        uhid_queue_input(p_uhid, \u0026input_report, sizeof(input_report));\n      }\n      break;\n    }\n    ...\n```",
+      "parentUuid": "5021172b_3efba521",
+      "revId": "53cef13eb8c3f1592e2e8157f0d467f31bb5dfc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
