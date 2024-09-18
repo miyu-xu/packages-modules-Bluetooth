@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "576c4c90_4c5f6497",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-18T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05f48ffe_0a260f2c",
+      "range": {
+        "startLine": 154,
+        "startChar": 40,
+        "endLine": 154,
+        "endChar": 68
+      },
+      "revId": "7655d2e9eeea4b0529bbd1f670b0f6ee2b0f97ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ca5ab2b_46c640ca",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-18T23:23:10Z",
       "side": 1,
       "message": "Annotate with TODO for removal",
+      "range": {
+        "startLine": 1352,
+        "startChar": 16,
+        "endLine": 1352,
+        "endChar": 35
+      },
+      "revId": "7655d2e9eeea4b0529bbd1f670b0f6ee2b0f97ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b821a93d_1396d2d3",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-18T23:49:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ca5ab2b_46c640ca",
       "range": {
         "startLine": 1352,
         "startChar": 16,
