@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "908c0ad6_05b4fbec",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-18T23:36:31Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: cannot find symbol\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    cannot find symbol\n                            if (Flags.getNameAndAddressAsCallback() \u0026\u0026 Arrays.equals(mAddress, val)) {\n                                                                       ^\n      symbol:   variable Arrays\n      location: class AdapterProperties\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P81177171/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 991,
+        "startChar": 0,
+        "endLine": 991,
+        "endChar": 98
+      },
+      "revId": "3bfae8806fe68a607cf31265976d81119b902b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b26f8e7_e5608aa8",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
         "patchSetId": 3
