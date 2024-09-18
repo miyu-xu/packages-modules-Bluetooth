@@ -378,6 +378,10 @@ static void EnableDisableBtQualityReport(bool enable) {
 }
 
 void EnableBtQualityReport(common::PostableContext* to_bind) {
+  if (to_bind == nullptr) {
+      log::error("Bt Quality Report cannot be binded to null");
+      return;
+  }
   log::info("");
   to_bind_ = to_bind;
   EnableDisableBtQualityReport(true);
