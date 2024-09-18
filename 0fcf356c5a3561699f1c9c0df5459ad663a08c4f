@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8bb451_2f56a9fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-18T15:41:52Z",
+      "side": 1,
+      "message": "This CL makes large scale changes from the java binder down to the native layer, can you add a short description of these modifications please ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "0fcf356c5a3561699f1c9c0df5459ad663a08c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3bad851_4cb10eb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-18T15:41:52Z",
+      "side": 1,
+      "message": "nit: This is not a mechanical refactor, please use another justification.",
+      "range": {
+        "startLine": 10,
+        "startChar": 14,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "0fcf356c5a3561699f1c9c0df5459ad663a08c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
