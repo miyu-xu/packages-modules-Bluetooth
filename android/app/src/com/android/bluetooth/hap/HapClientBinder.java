@@ -251,6 +251,9 @@ class HapClientBinder extends IBluetoothHapClient.Stub
         }
 
         requireNonNull(device);
+        if (presetIndex == BluetoothHapClient.PRESET_INDEX_UNAVAILABLE) {
+            throw new IllegalArgumentException("Invalid preset index: " + presetIndex);
+        }
 
         return service.getPresetInfo(device, presetIndex);
     }

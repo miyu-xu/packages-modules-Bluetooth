@@ -21,13 +21,17 @@ import android.annotation.Nullable;
 import android.annotation.RequiresNoPermission;
 import android.os.Binder;
 import android.os.Parcel;
+import android.os.RemoteException;
 import android.os.UserHandle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /** @hide */
 public final class BluetoothUtils {
@@ -342,5 +346,51 @@ public final class BluetoothUtils {
                         Binder.restoreCallingIdentity(identity);
                     }
                 });
+    }
+
+    /**
+     * A {@link Consumer} that automatically log {@link RemoteException}
+     *
+     * @hide
+     */
+    @FunctionalInterface
+    @SuppressWarnings("FunctionalInterfaceMethodChanged")
+    public interface RemoteExceptionIgnoringConsumer<T> extends Consumer<T> {
+        /** Called by {@code accept}. */
+        void acceptOrThrow(T t) throws RemoteException;
+
+        @Override
+        @RequiresNoPermission
+        default void accept(T t) {
+            try {
+                acceptOrThrow(t);
+            } catch (RemoteException ex) {
+                logRemoteException(TAG, ex);
+            }
+        }
+    }
+
+    /**
+     * A {@link Function} that can throws a {@link RemoteException}
+     *
+     * @hide
+     */
+    @FunctionalInterface
+    public interface RemoteExceptionFunction<T, R> {
+        R apply(T t) throws RemoteException;
+    }
+
+    /**
+     * Gracefully print a RemoteException as warning on oneLine
+     *
+     * @hide
+     */
+    public static void logRemoteException(String tag, RemoteException ex) {
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(new Throwable().getStackTrace())
+                .skip(1)
+                .forEach(trace -> sb.append(" [at ").append(trace).append("]"));
+
+        Log.w(tag, ex.toString() + ": " + sb.toString());
     }
 }
