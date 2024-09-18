@@ -104,7 +104,8 @@ public class ScanNativeInterface {
     private native void gattClientMsftAdvMonitorAddNative(
             MsftAdvMonitor.Monitor msft_adv_monitor,
             MsftAdvMonitor.Pattern[] msft_adv_monitor_patterns,
-            MsftAdvMonitor.Address msft_adv_monitor_address);
+            MsftAdvMonitor.Address msft_adv_monitor_address,
+            int filter_index);
 
     private native void gattClientMsftAdvMonitorRemoveNative(int monitor_handle);
 
@@ -190,9 +191,10 @@ public class ScanNativeInterface {
     public void gattClientMsftAdvMonitorAdd(
             MsftAdvMonitor.Monitor msft_adv_monitor,
             MsftAdvMonitor.Pattern[] msft_adv_monitor_patterns,
-            MsftAdvMonitor.Address msft_adv_monitor_address) {
+            MsftAdvMonitor.Address msft_adv_monitor_address,
+            int filter_index) {
         gattClientMsftAdvMonitorAddNative(
-                msft_adv_monitor, msft_adv_monitor_patterns, msft_adv_monitor_address);
+                msft_adv_monitor, msft_adv_monitor_patterns, msft_adv_monitor_address, filter_index);
     }
 
     /** Remove a MSFT Advertisement Monitor */
@@ -408,12 +410,12 @@ public class ScanNativeInterface {
         mScanHelper.onScanParamSetupCompleted(status, scannerId);
     }
 
-    void onMsftAdvMonitorAdd(int monitor_handle, int status) {
+    void onMsftAdvMonitorAdd(int filter_index, int monitor_handle, int status) {
         if (mScanHelper == null) {
             Log.e(TAG, "Scan helper is null!");
             return;
         }
-        mScanHelper.onMsftAdvMonitorAdd(monitor_handle, status);
+        mScanHelper.onMsftAdvMonitorAdd(filter_index, monitor_handle, status);
     }
 
     void onMsftAdvMonitorRemove(int status) {

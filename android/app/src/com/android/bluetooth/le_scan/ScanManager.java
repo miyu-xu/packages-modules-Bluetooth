@@ -63,6 +63,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
@@ -130,6 +131,7 @@ public class ScanManager {
     private Set<ScanClient> mBatchClients;
     private Set<ScanClient> mSuspendedScanClients;
     private SparseIntArray mPriorityMap = new SparseIntArray();
+    //private HashMap<String, Integer> mAddressHandleMap = new HashMap<>();
 
     private DisplayManager mDm;
 
@@ -1154,6 +1156,11 @@ public class ScanManager {
             }
             if (isFilteringSupported()) {
                 configureScanFilters(client);
+            } else if (mNativeInterface.gattClientIsMsftSupported()) {
+                if (mFilterIndexStack.isEmpty() && mClientFilterIndexMap.isEmpty()) {
+                    initFilterIndexStack();
+                }
+                addFiltersMsft(client);
             }
             // Start scan native only for the first client.
             if (numRegularScanClients() == 1
@@ -1555,8 +1562,6 @@ public class ScanManager {
                 configureFilterParameter(
                         scannerId, client, ALL_PASS_FILTER_SELECTION, filterIndex, 0);
                 waitForCallback();
-            } else if (mNativeInterface.gattClientIsMsftSupported()) {
-
             } else {
                 Deque<Integer> clientFilterIndices = new ArrayDeque<Integer>();
                 for (ScanFilter filter : client.filters) {
@@ -1694,6 +1699,10 @@ public class ScanManager {
         private void initFilterIndexStack() {
             int maxFiltersSupported =
                     AdapterService.getAdapterService().getNumOfOffloadedScanFilterSupported();
+            if (mNativeInterface.gattClientIsMsftSupported()) {
+                // TODO: this is hard coded just for testing for now
+                maxFiltersSupported = 20;
+            }
             // Start from index 4 as:
             // index 0 is reserved for ALL_PASS filter in Settings app.
             // index 1 is reserved for ALL_PASS filter for regular scan apps.
@@ -1955,6 +1964,37 @@ public class ScanManager {
 
         private void unregisterScanner(int scannerId) {
             mNativeInterface.unregisterScanner(scannerId);
+        }
+
+        private void addFiltersMsft(ScanClient client) {
+            if (!mNativeInterface.gattClientIsMsftSupported()) {
+              return;
+            }
+
+            // set default scan_type if none
+            // configure scan_settings
+            // TODO(sarveshkalwit): Handle offloaded filtering + active scan on QCA
+
+            // int scanIntervalMs = getScanIntervalMillis(client.settings);
+            // int scanWindowMs = getScanWindowMillis(client.settings);
+
+            Deque<Integer> clientFilterIndices = new ArrayDeque<Integer>();
+            for (ScanFilter filter : client.filters) {
+                MsftAdvMonitor monitor = new MsftAdvMonitor(filter);
+                int filterIndex = mFilterIndexStack.pop();
+
+                resetCountDownLatch();
+                mNativeInterface.gattClientMsftAdvMonitorAdd(monitor.getMonitor(), monitor.getPatterns(), monitor.getAddress(), filterIndex);
+                waitForCallback();
+
+                clientFilterIndices.add(filterIndex);
+            }
+            mClientFilterIndexMap.put(client.scannerId, clientFilterIndices);
+
+            boolean hasStartedUnfilteredScanners = mRegularScanClients.stream().anyMatch(c -> c.started && c.filters.isEmpty());
+            resetCountDownLatch();
+            mNativeInterface.gattClientMsftAdvMonitorEnable(!hasStartedUnfilteredScanners);
+            waitForCallback();
         }
     }
 

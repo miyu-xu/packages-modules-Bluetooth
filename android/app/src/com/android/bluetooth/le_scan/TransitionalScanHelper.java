@@ -67,6 +67,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -142,6 +143,7 @@ public class TransitionalScanHelper {
     private AdapterService mAdapterService;
 
     private ScannerMap mScannerMap = new ScannerMap();
+    private HashMap<Integer, Integer> mFilterIndexToMsftAdvMonitorMap = new HashMap<>();
     private String mExposureNotificationPackage;
 
     public ScannerMap getScannerMap() {
@@ -1049,13 +1051,28 @@ public class TransitionalScanHelper {
     }
 
     // TODO(sarveshkalwit)
-    public void onMsftAdvMonitorAdd(int monitor_handle, int status) {
+    public void onMsftAdvMonitorAdd(int filter_index, int monitor_handle, int status) {
+        if (status != 0) {
+            Log.e(TAG, "Error adding advertisement monitor '" + monitor_handle + "'");
+            return;
+        }
+        if (mFilterIndexToMsftAdvMonitorMap.containsKey(filter_index)) {
+            Log.e(TAG, "Monitor with filter_index'" + filter_index + "' already added");
+            return;
+        }
+        mFilterIndexToMsftAdvMonitorMap.put(filter_index, monitor_handle);
     }
 
     public void onMsftAdvMonitorRemove(int status) {
+        if (status != 0) {
+            Log.e(TAG, "Error removing advertisement monitor");
+        }
     }
 
     public void onMsftAdvMonitorEnable(int status) {
+        if (status != 0) {
+            Log.e(TAG, "Error enabling advertisement monitor");
+        }
     }
 
     /**************************************************************************
