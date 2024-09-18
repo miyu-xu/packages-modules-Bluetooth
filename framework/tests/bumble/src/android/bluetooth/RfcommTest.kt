@@ -19,15 +19,18 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
@@ -40,6 +43,7 @@ import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.timeout
 import org.mockito.kotlin.verify
+import pandora.HostProto
 import pandora.RfcommProto
 import pandora.RfcommProto.ServerId
 import pandora.RfcommProto.StartServerRequest
@@ -188,95 +192,62 @@ class RfcommTest {
     }
 
     @Test
-    fun connectTwoInsecureClientsSimultaneously() {
-        startServer("ServerPort1", TEST_UUID) { serverId1 ->
-            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
-                val socket1 = createSocket(mRemoteDevice, isSecure = false, TEST_UUID)
-                val socket2 = createSocket(mRemoteDevice, isSecure = false, SERIAL_PORT_UUID)
+    fun clientConnectToOpenServerSocketBondedInsecure_PageTimeout() {
+        // Disable inquiry and page scan mode
+        Log.i(TAG, "Test start")
+        mBumble
+            .hostBlocking()
+            .setDiscoverabilityMode(
+                HostProto.SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(HostProto.DiscoverabilityMode.NOT_DISCOVERABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled inquiry scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.NOT_CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled page scan")
+        val socket = mRemoteDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+        Log.i(TAG, "Created socket object")
 
-                acceptSocket(serverId1)
-                Truth.assertThat(socket1.isConnected).isTrue()
-
-                acceptSocket(serverId2)
-                Truth.assertThat(socket2.isConnected).isTrue()
+        val t = thread {
+            Log.i(TAG, "Connecting to socket")
+            try {
+                socket.connect()
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket connection failure $e")
             }
+            Log.i(TAG, "Done connecting to socket")
         }
-    }
 
-    @Test
-    fun connectTwoInsecureClientsSequentially() {
-        startServer("ServerPort1", TEST_UUID) { serverId1 ->
-            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
-                val socket1 = createSocket(mRemoteDevice, isSecure = false, TEST_UUID)
-                acceptSocket(serverId1)
-                Truth.assertThat(socket1.isConnected).isTrue()
+        Log.i(TAG, "Waiting for 3 seconds")
+        Thread.sleep(3000)
+        Log.i(TAG, "Waited 3 seconds to cancel socket connection before page timeout at 5 seconds")
 
-                val socket2 = createSocket(mRemoteDevice, isSecure = false, SERIAL_PORT_UUID)
-                acceptSocket(serverId2)
-                Truth.assertThat(socket2.isConnected).isTrue()
-            }
-        }
-    }
+        Truth.assertThat(socket.isConnected).isFalse()
 
-    @Test
-    fun connectTwoSecureClientsSimultaneously() {
-        startServer("ServerPort1", TEST_UUID) { serverId1 ->
-            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
-                val socket2 = createSocket(mRemoteDevice, isSecure = true, SERIAL_PORT_UUID)
-                val socket1 = createSocket(mRemoteDevice, isSecure = true, TEST_UUID)
+        Log.i(TAG, "Close socket")
+        socket.close()
 
-                acceptSocket(serverId1)
-                Truth.assertThat(socket1.isConnected).isTrue()
+        Log.i(TAG, "Join the thread")
+        t.join()
 
-                acceptSocket(serverId2)
-                Truth.assertThat(socket2.isConnected).isTrue()
-            }
-        }
-    }
+        Log.i(TAG, "Enabling page scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Enabled page scan, reconnecting")
 
-    @Test
-    fun connectTwoSecureClientsSequentially() {
-        startServer("ServerPort1", TEST_UUID) { serverId1 ->
-            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
-                val socket1 = createSocket(mRemoteDevice, isSecure = true, TEST_UUID)
-                acceptSocket(serverId1)
-                Truth.assertThat(socket1.isConnected).isTrue()
-
-                val socket2 = createSocket(mRemoteDevice, isSecure = true, SERIAL_PORT_UUID)
-                acceptSocket(serverId2)
-                Truth.assertThat(socket2.isConnected).isTrue()
-            }
-        }
-    }
-
-    @Test
-    fun connectTwoMixedClientsInsecureThenSecure() {
-        startServer("ServerPort1", TEST_UUID) { serverId1 ->
-            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
-                val socket2 = createSocket(mRemoteDevice, isSecure = false, SERIAL_PORT_UUID)
-                acceptSocket(serverId2)
-                Truth.assertThat(socket2.isConnected).isTrue()
-
-                val socket1 = createSocket(mRemoteDevice, isSecure = true, TEST_UUID)
-                acceptSocket(serverId1)
-                Truth.assertThat(socket1.isConnected).isTrue()
-            }
-        }
-    }
-
-    @Test
-    fun connectTwoMixedClientsSecureThenInsecure() {
-        startServer("ServerPort1", TEST_UUID) { serverId1 ->
-            startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
-                val socket2 = createSocket(mRemoteDevice, isSecure = true, SERIAL_PORT_UUID)
-                acceptSocket(serverId2)
-                Truth.assertThat(socket2.isConnected).isTrue()
-
-                val socket1 = createSocket(mRemoteDevice, isSecure = false, TEST_UUID)
-                acceptSocket(serverId1)
-                Truth.assertThat(socket1.isConnected).isTrue()
-            }
-        }
+        startServer { serverId -> createConnectAcceptSocket(isSecure = false, serverId) }
+        Log.i(TAG, "Connected, test end")
     }
 
     private fun createConnectAcceptSocket(
