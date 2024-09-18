@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bcfdbf3_f980ab57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-18T21:33:23Z",
+      "side": 1,
+      "message": "As per discussion with folks, I\u0027m moving to use BTIF layer instead of adding the socket management on BluetoothSocketManagerBinder. I Will drop this CL but use BTIF socket structure in Android Framework API CL",
+      "parentUuid": "6f8bb451_2f56a9fe",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "0fcf356c5a3561699f1c9c0df5459ad663a08c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3bad851_4cb10eb6",
         "filename": "/COMMIT_MSG",
         "patchSetId": 10
