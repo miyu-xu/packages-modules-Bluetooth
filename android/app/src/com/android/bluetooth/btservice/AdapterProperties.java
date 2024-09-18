@@ -969,6 +969,9 @@ class AdapterProperties {
                 switch (type) {
                     case AbstractionLayer.BT_PROPERTY_BDNAME:
                         mName = new String(val);
+                        if (Flags.getNameAndAddressAsCallback()) {
+                            mService.updateAdapterName(mName);
+                        }
                         intent = new Intent(BluetoothAdapter.ACTION_LOCAL_NAME_CHANGED);
                         intent.putExtra(BluetoothAdapter.EXTRA_LOCAL_NAME, mName);
                         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
@@ -982,6 +985,11 @@ class AdapterProperties {
                     case AbstractionLayer.BT_PROPERTY_BDADDR:
                         mAddress = val;
                         String address = Utils.getAddressStringFromByte(mAddress);
+                        if (Flags.getNameAndAddressAsCallback()) {
+                            mService.updateAdapterName(address);
+                            // ACTION_BLUETOOTH_ADDRESS_CHANGED is not publicly accessible
+                            break;
+                        }
                         intent = new Intent(BluetoothAdapter.ACTION_BLUETOOTH_ADDRESS_CHANGED);
                         intent.putExtra(BluetoothAdapter.EXTRA_BLUETOOTH_ADDRESS, address);
                         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);

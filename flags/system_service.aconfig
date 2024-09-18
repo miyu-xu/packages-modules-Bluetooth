@@ -39,6 +39,13 @@ flag {
 }
 
 flag {
+    name: "get_name_and_address_as_callback"
+    namespace: "bluetooth"
+    description: "Remove supposedly dead code"
+    bug: ""
+}
+
+flag {
     name: "kill_instead_of_exit"
     namespace: "bluetooth"
     description: "There is no value in pretending we are exiting properly. This is a kill and we should express it this way when finishing the process"
