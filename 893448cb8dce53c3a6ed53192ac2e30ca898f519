@@ -34,6 +34,58 @@
       "parentUuid": "3f2a5399_d206d177",
       "revId": "893448cb8dce53c3a6ed53192ac2e30ca898f519",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e01e7f82_9bca74d5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1547,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-18T23:50:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ad4cd22d_bc9fe6ef",
+      "revId": "893448cb8dce53c3a6ed53192ac2e30ca898f519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66f0322f_3d5c91ac",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1549,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-18T23:50:10Z",
+      "side": 1,
+      "message": "nit: log mActiveAudioInDevice instead of device",
+      "revId": "893448cb8dce53c3a6ed53192ac2e30ca898f519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c35b362_7769319c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1616,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-18T23:50:10Z",
+      "side": 1,
+      "message": "nit: log mActiveAudioOutDevice instead of device",
+      "revId": "893448cb8dce53c3a6ed53192ac2e30ca898f519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
