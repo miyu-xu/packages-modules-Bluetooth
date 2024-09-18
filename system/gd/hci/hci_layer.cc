@@ -39,6 +39,9 @@
 #include "packet/raw_builder.h"
 #include "storage/storage_module.h"
 
+static std::mutex life_cycle_guard_;
+static bool stopped_ = true;
+
 namespace bluetooth {
 namespace hci {
 using bluetooth::common::BindOn;
@@ -239,6 +242,7 @@ struct HciLayer::impl {
       log::assert_that(command_queue_.front().waiting_for_status_ == is_status,
                        "{} was not expecting {} event", OpCodeText(op_code), logging_id);
 
+      log::assert_that(command_queue_.front().GetCallback<TResponse>() != nullptr, "Hum, callback is null??");
       (*command_queue_.front().GetCallback<TResponse>())(std::move(response_view));
     }
 
@@ -531,6 +535,10 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   explicit hal_callbacks(HciLayer& module) : module_(module) {}
 
   void hciEventReceived(hal::HciPacket event_bytes) override {
+    std::unique_lock<std::mutex> lock(life_cycle_guard_);
+    if (stopped_) {
+        return;
+    }
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(event_bytes));
     EventView event = EventView::Create(packet);
@@ -538,6 +546,10 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void aclDataReceived(hal::HciPacket data_bytes) override {
+    std::unique_lock<std::mutex> lock(life_cycle_guard_);
+    if (stopped_) {
+        return;
+    }
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto acl = std::make_unique<AclView>(AclView::Create(packet));
@@ -545,6 +557,10 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void scoDataReceived(hal::HciPacket data_bytes) override {
+    std::unique_lock<std::mutex> lock(life_cycle_guard_);
+    if (stopped_) {
+        return;
+    }
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto sco = std::make_unique<ScoView>(ScoView::Create(packet));
@@ -552,6 +568,10 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void isoDataReceived(hal::HciPacket data_bytes) override {
+    std::unique_lock<std::mutex> lock(life_cycle_guard_);
+    if (stopped_) {
+        return;
+    }
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto iso = std::make_unique<IsoView>(IsoView::Create(packet));
@@ -579,39 +599,71 @@ common::BidiQueueEnd<IsoBuilder, IsoView>* HciLayer::GetIsoQueueEnd() {
 
 void HciLayer::EnqueueCommand(unique_ptr<CommandBuilder> command,
                               ContextualOnceCallback<void(CommandCompleteView)> on_complete) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::enqueue_command<CommandCompleteView>, std::move(command),
          std::move(on_complete));
 }
 
 void HciLayer::EnqueueCommand(unique_ptr<CommandBuilder> command,
                               ContextualOnceCallback<void(CommandStatusView)> on_status) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::enqueue_command<CommandStatusView>, std::move(command),
          std::move(on_status));
 }
 
 void HciLayer::RegisterEventHandler(EventCode event, ContextualCallback<void(EventView)> handler) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::register_event, event, handler);
 }
 
 void HciLayer::UnregisterEventHandler(EventCode event) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::unregister_event, event);
 }
 
 void HciLayer::RegisterLeEventHandler(SubeventCode event,
                                       ContextualCallback<void(LeMetaEventView)> handler) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::register_le_event, event, handler);
 }
 
 void HciLayer::UnregisterLeEventHandler(SubeventCode event) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::unregister_le_event, event);
 }
 
 void HciLayer::RegisterVendorSpecificEventHandler(
         VseSubeventCode event, ContextualCallback<void(VendorSpecificEventView)> handler) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::register_vs_event, event, handler);
 }
 
 void HciLayer::UnregisterVendorSpecificEventHandler(VseSubeventCode event) {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
+  if (stopped_) {
+      return;
+  }
   CallOn(impl_, &impl::unregister_vs_event, event);
 }
 
@@ -819,6 +871,7 @@ void HciLayer::ListDependencies(ModuleList* list) const {
 }
 
 void HciLayer::Start() {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
   auto hal = GetDependency<hal::HciHal>();
   impl_ = new impl(hal, *this);
   hal_callbacks_ = new hal_callbacks(*this);
@@ -833,6 +886,8 @@ void HciLayer::Start() {
   StartWithNoHalDependencies(handler);
   hal->registerIncomingPacketCallback(hal_callbacks_);
   EnqueueCommand(ResetBuilder::Create(), handler->BindOnce(&fail_if_reset_complete_not_success));
+
+  stopped_ = false;
 }
 
 // Initialize event handlers that don't depend on the HAL
@@ -849,6 +904,7 @@ void HciLayer::StartWithNoHalDependencies(Handler* handler) {
 }
 
 void HciLayer::Stop() {
+  std::unique_lock<std::mutex> lock(life_cycle_guard_);
   auto hal = GetDependency<hal::HciHal>();
   hal->unregisterIncomingPacketCallback();
   delete hal_callbacks_;
@@ -857,6 +913,8 @@ void HciLayer::Stop() {
   impl_->sco_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->iso_queue_.GetDownEnd()->UnregisterDequeue();
   delete impl_;
+
+  stopped_ = true;
 }
 
 }  // namespace hci
