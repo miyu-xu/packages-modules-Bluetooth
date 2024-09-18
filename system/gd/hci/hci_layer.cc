@@ -197,6 +197,7 @@ struct HciLayer::impl {
     log::assert_that(response_view.IsValid(), "assert failed: response_view.IsValid()");
     command_credits_ = response_view.GetNumHciCommandPackets();
     OpCode op_code = response_view.GetCommandOpCode();
+    log::info("handle command status or complete for op-code {:04x}", op_code);
     if (op_code == OpCode::NONE) {
       send_next_command();
       return;
@@ -234,11 +235,13 @@ struct HciLayer::impl {
               CommandCompleteView::Create(EventView::Create(PacketView<kLittleEndian>(complete)));
       log::assert_that(command_complete_view.IsValid(),
                        "assert failed: command_complete_view.IsValid()");
+      log::info("Return patched command complete for command op-code {:04x}", op_code);
       (*command_queue_.front().GetCallback<CommandCompleteView>())(command_complete_view);
     } else {
       log::assert_that(command_queue_.front().waiting_for_status_ == is_status,
                        "{} was not expecting {} event", OpCodeText(op_code), logging_id);
 
+      log::info("Return command status or complete for command op-code {:04x}", op_code);
       (*command_queue_.front().GetCallback<TResponse>())(std::move(response_view));
     }
 
@@ -260,6 +263,7 @@ struct HciLayer::impl {
     }
 #endif
 
+    log::info("command status or complete handled");
     command_queue_.pop_front();
     waiting_command_ = OpCode::NONE;
     if (hci_timeout_alarm_ != nullptr) {
