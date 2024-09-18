@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e1a0f3_a0756eaf",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-18T21:39:11Z",
+      "side": 1,
+      "message": "nit: should we rename it to something like UHID_READY_TIMEOUT",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9189160_0858c5d8",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-18T21:39:11Z",
+      "side": 1,
+      "message": "Why do we want to start this timer when uhid has been closed? Should we be cancelling the timer if it was scheduled?",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
