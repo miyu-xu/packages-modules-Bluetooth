@@ -39,6 +39,9 @@
 #include "packet/raw_builder.h"
 #include "storage/storage_module.h"
 
+static bool __started = true;
+static std::mutex stop_guard_;
+
 namespace bluetooth {
 namespace hci {
 using bluetooth::common::BindOn;
@@ -391,7 +394,9 @@ struct HciLayer::impl {
   }
 
   void on_hci_event(EventView event) {
+    std::unique_lock<std::mutex> lock(stop_guard_);
     log::assert_that(event.IsValid(), "assert failed: event.IsValid()");
+    log::assert_that(__started, "assert failed: Not started");
     if (command_queue_.empty()) {
       auto event_code = event.GetEventCode();
       // BT Core spec 5.2 (Volume 4, Part E section 4.4) allows anytime
@@ -458,6 +463,7 @@ struct HciLayer::impl {
           event_handlers_[event_code](event);
         }
     }
+    log::assert_that(__started, "assert failed: Not started");
   }
 
   void on_hardware_error(EventView event) {
@@ -830,6 +836,7 @@ void HciLayer::Start() {
                                                   BindOn(impl_, &impl::on_outbound_sco_ready));
   impl_->iso_queue_.GetDownEnd()->RegisterDequeue(handler,
                                                   BindOn(impl_, &impl::on_outbound_iso_ready));
+__started = true;
   StartWithNoHalDependencies(handler);
   hal->registerIncomingPacketCallback(hal_callbacks_);
   EnqueueCommand(ResetBuilder::Create(), handler->BindOnce(&fail_if_reset_complete_not_success));
@@ -849,10 +856,12 @@ void HciLayer::StartWithNoHalDependencies(Handler* handler) {
 }
 
 void HciLayer::Stop() {
+  std::unique_lock<std::mutex> lock(stop_guard_);
   auto hal = GetDependency<hal::HciHal>();
   hal->unregisterIncomingPacketCallback();
   delete hal_callbacks_;
 
+__started = false;
   impl_->acl_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->sco_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->iso_queue_.GetDownEnd()->UnregisterDequeue();

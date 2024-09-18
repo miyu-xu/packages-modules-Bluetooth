@@ -54,6 +54,7 @@ void Handler::Post(OnceClosure closure) {
 }
 
 void Handler::Clear() {
+  std::lock_guard<std::mutex> lock(mutex_clear_);
   std::queue<OnceClosure>* tmp = nullptr;
   {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -75,6 +76,7 @@ void Handler::WaitUntilStopped(std::chrono::milliseconds timeout) {
 }
 
 void Handler::handle_next_event() {
+  std::lock_guard<std::mutex> lock(mutex_clear_);
   common::OnceClosure closure;
   {
     std::lock_guard<std::mutex> lock(mutex_);
