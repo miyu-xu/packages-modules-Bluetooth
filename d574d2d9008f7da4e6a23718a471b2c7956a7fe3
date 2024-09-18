@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8083828_ca956462",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1735,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-18T18:20:00Z",
+      "side": 1,
+      "message": "There is a incoming refactor for remoteException logs, in order to be more homgeneous. So i\u0027ll let this one untouched :)",
+      "parentUuid": "522655ff_7a0fbe75",
+      "range": {
+        "startLine": 1735,
+        "startChar": 16,
+        "endLine": 1735,
+        "endChar": 34
+      },
+      "revId": "d574d2d9008f7da4e6a23718a471b2c7956a7fe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22c1435f_7d2c5006",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-18T18:06:23Z",
       "side": 1,
       "message": "`public @NonNull`",
+      "range": {
+        "startLine": 605,
+        "startChar": 4,
+        "endLine": 606,
+        "endChar": 10
+      },
+      "revId": "d574d2d9008f7da4e6a23718a471b2c7956a7fe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d10623_75ce8111",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-18T18:20:00Z",
+      "side": 1,
+      "message": "Doesn\u0027t fit on one-line :/",
+      "parentUuid": "22c1435f_7d2c5006",
       "range": {
         "startLine": 605,
         "startChar": 4,
