@@ -16,17 +16,21 @@
 package android.bluetooth
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
@@ -34,10 +38,17 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.timeout
+import org.mockito.kotlin.verify
+import pandora.HostProto
 import pandora.RfcommProto
 import pandora.RfcommProto.ServerId
 import pandora.RfcommProto.StartServerRequest
 
+@SuppressLint("MissingPermission")
 @RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
 class RfcommTest {
@@ -52,7 +63,8 @@ class RfcommTest {
         AdoptShellPermissionsRule(
             InstrumentationRegistry.getInstrumentation().getUiAutomation(),
             Manifest.permission.BLUETOOTH_CONNECT,
-            Manifest.permission.BLUETOOTH_PRIVILEGED
+            Manifest.permission.BLUETOOTH_PRIVILEGED,
+            Manifest.permission.MODIFY_PHONE_STATE,
         )
 
     // Set up a Bumble Pandora device for the duration of the test.
@@ -63,12 +75,34 @@ class RfcommTest {
     private lateinit var mBumbleDevice: BluetoothDevice
     private lateinit var host: Host
     private var mConnectionCounter = 1
+    private var mProfileServiceListener = mock<BluetoothProfile.ServiceListener>()
 
     @Before
     fun setUp() {
         mBumbleDevice = mBumble.remoteDevice
         host = Host(mContext)
+        val bluetoothA2dp = getProfileProxy(mContext, BluetoothProfile.A2DP) as BluetoothA2dp
+        bluetoothA2dp.setConnectionPolicy(
+            mBumbleDevice,
+            BluetoothProfile.CONNECTION_POLICY_FORBIDDEN,
+        )
+        val bluetoothHfp = getProfileProxy(mContext, BluetoothProfile.HEADSET) as BluetoothHeadset
+        bluetoothHfp.setConnectionPolicy(
+            mBumbleDevice,
+            BluetoothProfile.CONNECTION_POLICY_FORBIDDEN,
+        )
+        val bluetoothHidHost =
+            getProfileProxy(mContext, BluetoothProfile.HID_HOST) as BluetoothHidHost
+        bluetoothHidHost.setConnectionPolicy(
+            mBumbleDevice,
+            BluetoothProfile.CONNECTION_POLICY_FORBIDDEN,
+        )
         host.createBondAndVerify(mBumbleDevice)
+        if (mBumbleDevice.isConnected) {
+            Log.i(TAG, "Disconnecting device $mBumbleDevice")
+            host.disconnectAndVerify(mBumbleDevice)
+            Log.i(TAG, "Disconnected device $mBumbleDevice")
+        }
     }
 
     @After
@@ -159,10 +193,69 @@ class RfcommTest {
         }
     }
 
+    @Test
+    fun clientConnectToOpenServerSocketBondedInsecure_PageTimeout() {
+        // Disable inquiry and page scan mode
+        Log.i(TAG, "Test start")
+        mBumble
+            .hostBlocking()
+            .setDiscoverabilityMode(
+                HostProto.SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(HostProto.DiscoverabilityMode.NOT_DISCOVERABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled inquiry scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.NOT_CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled page scan")
+        val socket = mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+        Log.i(TAG, "Created socket object")
+
+        val t = thread {
+            Log.i(TAG, "Connecting to socket")
+            try {
+                socket.connect()
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket connection failure $e")
+            }
+            Log.i(TAG, "Done connecting to socket")
+        }
+
+        Log.i(TAG, "Waiting for 3 seconds")
+        Thread.sleep(3000)
+        Log.i(TAG, "Waited 3 seconds to cancel socket connection before page timeout at 5 seconds")
+
+        Truth.assertThat(socket.isConnected).isFalse()
+
+        Log.i(TAG, "Close socket")
+        socket.close()
+
+        Log.i(TAG, "Join the thread")
+        t.join()
+
+        Log.i(TAG, "Enabling page scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Enabled page scan, reconnecting")
+
+        startServer { serverId -> createConnectAcceptSocket(isSecure = false, serverId) }
+        Log.i(TAG, "Connected, test end")
+    }
+
     private fun createConnectAcceptSocket(
         isSecure: Boolean,
         server: ServerId,
-        uuid: String = TEST_UUID
+        uuid: String = TEST_UUID,
     ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
         val socket = createSocket(mBumbleDevice, isSecure, uuid)
 
@@ -175,7 +268,7 @@ class RfcommTest {
     private fun createSocket(
         device: BluetoothDevice,
         isSecure: Boolean,
-        uuid: String
+        uuid: String,
     ): BluetoothSocket {
         val socket =
             if (isSecure) {
@@ -204,7 +297,7 @@ class RfcommTest {
     private fun startServer(
         name: String = TEST_SERVER_NAME,
         uuid: String = TEST_UUID,
-        block: (ServerId) -> Unit
+        block: (ServerId) -> Unit,
     ) {
         val request = StartServerRequest.newBuilder().setName(name).setUuid(uuid).build()
         val response = mBumble.rfcommBlocking().startServer(request)
@@ -219,6 +312,14 @@ class RfcommTest {
                     RfcommProto.StopServerRequest.newBuilder().setServer(response.server).build()
                 )
         }
+    }
+
+    private fun getProfileProxy(context: Context, profile: Int): BluetoothProfile {
+        mAdapter.getProfileProxy(context, mProfileServiceListener, profile)
+        val proxyCaptor = argumentCaptor<BluetoothProfile>()
+        verify(mProfileServiceListener, timeout(GRPC_TIMEOUT.toMillis()))
+            .onServiceConnected(eq(profile), proxyCaptor.capture())
+        return proxyCaptor.lastValue
     }
 
     companion object {
