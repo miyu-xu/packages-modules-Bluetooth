@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4754320a_e5a62893",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-18T10:13:59Z",
+      "side": 1,
+      "message": "Try to reduce this to 3 seconds \u003c 5 seconds page timeout to see if cancelling socket connection during SDP will trigger this issue.",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 38
+      },
+      "revId": "829b128a2ff6cfd3ba89b7cb6376c8d5af50dfe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
