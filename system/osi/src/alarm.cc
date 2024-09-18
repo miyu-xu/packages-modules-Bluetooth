@@ -255,7 +255,7 @@ void alarm_cancel(alarm_t* alarm) {
 // Internal implementation of canceling an alarm.
 // The caller must hold the |alarms_mutex|
 static void alarm_cancel_internal(alarm_t* alarm) {
-  bool needs_reschedule = (!list_is_empty(alarms) && list_front(alarms) == alarm);
+  bool needs_reschedule = (alarms != NULL && !list_is_empty(alarms) && list_front(alarms) == alarm);
 
   remove_pending_alarm(alarm);
 
