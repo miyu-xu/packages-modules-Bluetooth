@@ -26,6 +26,7 @@ import gatt_test
 import hfpclient_test
 from pairing import _test_class_list as _pairing_test_class_list
 import sdp_test
+import l2cap_tests
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
@@ -38,6 +39,7 @@ _TEST_CLASSES_LIST = [
     gatt_test.GattTest,
     asha_test.AshaTest,
     hfpclient_test.HfpClientTest,
+    l2cap_tests.L2capClientTest,
 ] + _pairing_test_class_list
 
 
