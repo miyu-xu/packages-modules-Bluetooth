@@ -346,7 +346,7 @@ static void delete_hal_interface(BluetoothAudioSinkClientInterface* hal_interfac
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
-          BluetoothAudioPort const* audio_port) {
+          BluetoothAudioPort const* audio_port, bool offload_enabled) {
   log::info("");
   log::assert_that(audio_port != nullptr, "audio_port != nullptr");
 
@@ -364,7 +364,7 @@ bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
     return false;
   }
 
-  if (btif_av_is_a2dp_offload_enabled() && offloading_hal_interface == nullptr) {
+  if (offload_enabled && offloading_hal_interface == nullptr) {
     offloading_hal_interface =
             new_hal_interface(SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
     if (offloading_hal_interface == nullptr) {
