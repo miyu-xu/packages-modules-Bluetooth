@@ -52,6 +52,24 @@
       "parentUuid": "5021172b_3efba521",
       "revId": "53cef13eb8c3f1592e2e8157f0d467f31bb5dfc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b779f26_fa90bc89",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-19T05:17:11Z",
+      "side": 1,
+      "message": "\u003e ensure that we are not allocating 4k for every input report\n\nBy allocation, do you mean (1) the dynamic allocation (e.g. by malloc), or (2) the allocation in stack because we have a 4K array as a local variable?\n\nIf you mean (1), I think the current implementation is already not doing that (except when queuing the input, which I address in this CL).\n\nIf you mean (2), we would still have it in your code snippet since you declare `uhid_event` as a local variable. Except you want me to allocate that dynamically - but I wonder whether that is what you mean, since we will be having more malloc calls as the result + have to deserialize the event. I wonder if that\u0027s a good trade for this case.",
+      "parentUuid": "5bcc2f01_12249c2d",
+      "revId": "53cef13eb8c3f1592e2e8157f0d467f31bb5dfc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
