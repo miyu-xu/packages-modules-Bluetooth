@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea93ee75_62e0ae9f",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-19T05:27:58Z",
+      "side": 1,
+      "message": "Yeah we could rename it but I don\u0027t think UHID_READY_TIMEOUT is a good name because we have another timer in aosp/3179659 that fires some time after the UHID is ready to flush the input queue.\nDo you have other alternative?",
+      "parentUuid": "49e1a0f3_a0756eaf",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9189160_0858c5d8",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-18T21:39:11Z",
       "side": 1,
       "message": "Why do we want to start this timer when uhid has been closed? Should we be cancelling the timer if it was scheduled?",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c412c1b4_16739e38",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-19T05:27:58Z",
+      "side": 1,
+      "message": "The purpose of the timer is to disconnect the device when we are waiting too long for \"UHID open\".\nWhen UHID is closed, we are essentially waiting for UHID open, so we start the timer.\n\nWe only cancel the timer when\n(1) UHID is open, or\n(2) The device is disconnected - done implicitly by freeing the timer.",
+      "parentUuid": "c9189160_0858c5d8",
       "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
