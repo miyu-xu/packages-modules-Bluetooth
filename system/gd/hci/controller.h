@@ -224,9 +224,6 @@ protected:
 
   std::string ToString() const override;
 
-  DumpsysDataFinisher GetDumpsysData(
-          flatbuffers::FlatBufferBuilder* builder) const override;  // Module
-
 private:
   virtual uint64_t GetLocalFeatures(uint8_t page_number) const;
   virtual uint64_t GetLocalLeFeatures() const;

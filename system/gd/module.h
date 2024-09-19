@@ -17,7 +17,6 @@
 #pragma once
 
 #include <bluetooth/log.h>
-#include <flatbuffers/flatbuffers.h>
 
 #include <chrono>
 #include <functional>
@@ -120,8 +119,6 @@ protected:
   void CallOn(T* obj, Functor&& functor, Args&&... args) {
     GetHandler()->CallOn(obj, std::forward<Functor>(functor), std::forward<Args>(args)...);
   }
-
-  virtual DumpsysDataFinisher GetDumpsysData(flatbuffers::FlatBufferBuilder* builder) const;
 
 private:
   Module* GetDependency(const ModuleFactory* module) const;

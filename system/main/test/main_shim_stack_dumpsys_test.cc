@@ -372,7 +372,6 @@ protected:
     StackManager()->AddModule<TestStackDumpsys1>();
     StackManager()->AddModule<TestStackDumpsys2>();
     StackManager()->AddModule<TestStackDumpsys3>();
-    StackManager()->AddModule<bluetooth::shim::Dumpsys>();
     StackManager()->Start();
     ASSERT_EQ(4U, StackManager()->NumModules());
 
@@ -553,9 +552,6 @@ TEST_F(MainShimStackDumpsysWithClientsTest, all_clients_check_stack_running) {
                   },
   };
 
-  // Ensure the dumpsys instance is included within the stack
-  ASSERT_NE(nullptr, bluetooth::shim::GetDumpsys());
-
   for (auto& c : client_group_.clients_) {
     c->Post(base::BindOnce(
             [](StackRunningData stack_running_data) {
@@ -577,9 +573,6 @@ TEST_F(MainShimStackDumpsysWithClientsTest, all_clients_check_stack_running_with
                   },
   };
 
-  // Ensure the dumpsys instance is included within the stack
-  ASSERT_NE(nullptr, bluetooth::shim::GetDumpsys());
-
   for (int i = 0; i < 2; i++) {
     log::info("Iteration:{}", i);
     for (auto& c : client_group_.clients_) {
@@ -593,39 +586,6 @@ TEST_F(MainShimStackDumpsysWithClientsTest, all_clients_check_stack_running_with
               stack_running_data));
     }
   }
-}
-
-TEST_F(MainShimStackDumpsysWithClientsTest, dumpsys_single_client) {
-  // Ensure the dumpsys instance is included within the stack
-  ASSERT_NE(nullptr, bluetooth::shim::GetDumpsys());
-
-  const int fd = 1;
-  client_group_.clients_[0]->Post(
-          base::BindOnce([](int fd) { bluetooth::shim::Dump(fd, nullptr); }, fd));
-}
-
-TEST_F(MainShimStackDumpsysWithClientsTest, dumpsys_single_client_with_running_check) {
-  StackRunningData stack_running_data = {
-          .cb =
-                  [](bool is_stack_running) {
-                    log::info("Stack is running:{}", (is_stack_running) ? 'T' : 'F');
-                  },
-  };
-
-  // Ensure the dumpsys instance is included within the stack
-  ASSERT_NE(nullptr, bluetooth::shim::GetDumpsys());
-
-  const int fd = 1;
-  client_group_.clients_[0]->Post(base::BindOnce(
-          [](StackRunningData stack_running_data) {
-            bluetooth::shim::Stack::GetInstance()
-                    ->GetStackManager()
-                    ->GetInstance<TestStackDumpsys1>()
-                    ->IsStackRunning(stack_running_data);
-          },
-          stack_running_data));
-  client_group_.clients_[0]->Post(
-          base::BindOnce([](int fd) { bluetooth::shim::Dump(fd, nullptr); }, fd));
 }
 
 TEST_F(MainShimStackDumpsysWithClientsTest, dumpsys_many_clients) {

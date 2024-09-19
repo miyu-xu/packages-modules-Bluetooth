@@ -277,7 +277,6 @@ protected:
   void ListDependencies(ModuleList* list) const override;
   void Start() override;
   void Stop() override;
-  DumpsysDataFinisher GetDumpsysData(flatbuffers::FlatBufferBuilder* builder) const override;
   std::string ToString() const override { return std::string("SnoopLogger"); }
 
   SnoopLogger(std::string snoop_log_path, std::string snooz_log_path, size_t max_packets_per_file,

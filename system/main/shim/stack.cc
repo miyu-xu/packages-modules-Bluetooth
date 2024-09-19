@@ -81,7 +81,6 @@ void Stack::StartEverything() {
   modules.add<hal::HciHal>();
   modules.add<hci::HciLayer>();
   modules.add<storage::StorageModule>();
-  modules.add<shim::Dumpsys>();
 
   modules.add<hci::Controller>();
   modules.add<hci::acl_manager::AclScheduler>();
@@ -99,8 +98,6 @@ void Stack::StartEverything() {
   log::assert_that(stack_manager_.GetInstance<storage::StorageModule>() != nullptr,
                    "assert failed: stack_manager_.GetInstance<storage::StorageModule>() != "
                    "nullptr");
-  log::assert_that(stack_manager_.GetInstance<shim::Dumpsys>() != nullptr,
-                   "assert failed: stack_manager_.GetInstance<shim::Dumpsys>() != nullptr");
   if (stack_manager_.IsStarted<hci::Controller>()) {
     pimpl_->acl_ =
             new Acl(stack_handler_, GetAclInterface(), GetController()->GetLeFilterAcceptListSize(),
@@ -196,19 +193,6 @@ os::Handler* Stack::GetHandler() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   log::assert_that(is_running_, "assert failed: is_running_");
   return stack_handler_;
-}
-
-bool Stack::IsDumpsysModuleStarted() const {
-  std::lock_guard<std::recursive_mutex> lock(mutex_);
-  return GetStackManager()->IsStarted<Dumpsys>();
-}
-
-bool Stack::LockForDumpsys(std::function<void()> dumpsys_callback) {
-  std::lock_guard<std::recursive_mutex> lock(mutex_);
-  if (is_running_) {
-    dumpsys_callback();
-  }
-  return is_running_;
 }
 
 }  // namespace shim

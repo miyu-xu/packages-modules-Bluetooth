@@ -146,9 +146,6 @@ protected:
 
   std::string ToString() const override;
 
-  DumpsysDataFinisher GetDumpsysData(
-          flatbuffers::FlatBufferBuilder* builder) const override;  // Module
-
 private:
   virtual uint16_t HACK_GetHandle(const Address address);
   virtual uint16_t HACK_GetLeHandle(const Address address);

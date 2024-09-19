@@ -66,7 +66,6 @@ class Dumpsys;
 os::Handler* GetGdShimHandler();
 hci::LeAdvertisingManager* GetAdvertising();
 bluetooth::hci::ControllerInterface* GetController();
-Dumpsys* GetDumpsys();
 hci::HciInterface* GetHciLayer();
 hci::RemoteNameRequestModule* GetRemoteNameRequest();
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager();

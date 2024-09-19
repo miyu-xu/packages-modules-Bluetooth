@@ -46,7 +46,7 @@ void bluetooth::shim::UnregisterDumpsysFunction(const void* token) {
   dumpsys_functions_.erase(token);
 }
 
-void bluetooth::shim::Dump(int fd, const char** args) {
+void bluetooth::shim::Dump(int fd, const char**) {
   if (dumpsys_functions_.empty()) {
     dprintf(fd, "%s No registered dumpsys shim legacy targets\n", kModuleName);
   } else {
@@ -54,16 +54,5 @@ void bluetooth::shim::Dump(int fd, const char** args) {
     for (auto& dumpsys : dumpsys_functions_) {
       dumpsys.second(fd);
     }
-  }
-  std::promise<void> promise;
-  std::future future = promise.get_future();
-  if (bluetooth::shim::Stack::GetInstance()->CallOnModule<shim::Dumpsys>(
-              [&promise, fd, args](shim::Dumpsys* mod) {
-                mod->Dump(fd, args, std::move(promise));
-              })) {
-    log::assert_that(future.wait_for(std::chrono::seconds(1)) == std::future_status::ready,
-                     "Timed out waiting for dumpsys to complete");
-  } else {
-    dprintf(fd, "%s NOTE: gd dumpsys module not loaded or started\n", kModuleName);
   }
 }

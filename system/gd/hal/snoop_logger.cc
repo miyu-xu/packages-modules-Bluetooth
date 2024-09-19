@@ -1304,12 +1304,6 @@ void SnoopLogger::Stop() {
   }
 }
 
-DumpsysDataFinisher SnoopLogger::GetDumpsysData(
-        flatbuffers::FlatBufferBuilder* /* builder */) const {
-  DumpSnoozLogToFile(btsnooz_buffer_.Pull());
-  return EmptyDumpsysDataFinisher;
-}
-
 size_t SnoopLogger::GetMaxPacketsPerFile() {
   // Allow override max packet per file via system property
   auto max_packets_per_file = kDefaultBtSnoopMaxPacketsPerFile;
