@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b0fcedf_1a56666c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-19T07:46:33Z",
+      "side": 1,
+      "message": "Epic, you can\u0027t build the mock.\n```\nFAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/btif/net_test_btif/linux_glibc_x86_64/obj/packages/modules/Bluetooth/system/test/mock/mock_frameworks_libaudio.o\n...luetooth/system/btif/net_test_btif/linux_glibc_x86_64/obj/packages/modules/Bluetooth/system/test/mock/mock_frameworks_libaudio.o packages/modules/Bluetooth/system/test/mock/mock_frameworks_libaudio.cc\npackages/modules/Bluetooth/system/test/mock/mock_frameworks_libaudio.cc:28:10: fatal error: \u0027aaudio/AAudio.h\u0027 file not found\n   28 | #include \u003caaudio/AAudio.h\u003e\n      |          ^~~~~~~~~~~~~~~~~\n1 error generated.\n```\n\n\n`¯\\_(ツ)_/¯`",
+      "revId": "766e69b5d693a60764119de026e97c16d2fabd49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
