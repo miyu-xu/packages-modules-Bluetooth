@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc9c200a_8520944f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-09-19T10:54:53Z",
+      "side": 1,
+      "message": "In case we want the stored vid/pid information from users running on in a non-dev image, this might be helpful.",
+      "revId": "7f5f7162243a99fafbc95faf46d0129c75d36b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
