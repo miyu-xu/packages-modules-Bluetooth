@@ -22,6 +22,30 @@
       },
       "revId": "42e7b1abae306fe5fdc49cacfc081ff72fff66c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb771499_5e366a77",
+        "filename": "pandora/interfaces/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-19T21:14:18Z",
+      "side": 1,
+      "message": "Nope, since the pandora_experimental still exists: https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/pandora/interfaces/pandora_experimental/\n\nand `pandora-protos` linked to the stable protos. This is why the naming was confusing.",
+      "parentUuid": "6cbeeb10_a1fb0d96",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "42e7b1abae306fe5fdc49cacfc081ff72fff66c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
