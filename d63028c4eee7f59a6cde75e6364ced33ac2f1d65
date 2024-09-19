@@ -22,6 +22,30 @@
       },
       "revId": "d63028c4eee7f59a6cde75e6364ced33ac2f1d65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9ccc69_7416238e",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-19T18:05:33Z",
+      "side": 0,
+      "message": "I agree and at the same time, that looks to be too late for a lot of other flags.\n\nWe already removed a bunch of other exported flag there and there… most of them where systemApi so that should have not been an issue but still :/\n\nIn this case, since it is about a constant representing an error code. I am pretty sure nobody ever look into this flag. But still, we should probably follow policy",
+      "parentUuid": "ca131d0d_71c870f1",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 20
+      },
+      "revId": "d63028c4eee7f59a6cde75e6364ced33ac2f1d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
