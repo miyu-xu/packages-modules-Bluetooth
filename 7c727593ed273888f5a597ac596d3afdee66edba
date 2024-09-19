@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf38b380_4f145322",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-19T21:56:33Z",
+      "side": 1,
+      "message": "UHID_OPEN_TIMEOUT?",
+      "parentUuid": "ea93ee75_62e0ae9f",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9189160_0858c5d8",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 2
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "The purpose of the timer is to disconnect the device when we are waiting too long for \"UHID open\".\nWhen UHID is closed, we are essentially waiting for UHID open, so we start the timer.\n\nWe only cancel the timer when\n(1) UHID is open, or\n(2) The device is disconnected - done implicitly by freeing the timer.",
       "parentUuid": "c9189160_0858c5d8",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb7794c3_a255c17e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-19T21:56:33Z",
+      "side": 1,
+      "message": "\u003e When UHID is closed, we are essentially waiting for UHID open, so we start the timer.\nDo we expect `UHID_OPEN` to arrive after `UHID_CLOSE`? If uhid is already closed, we can just wrap it up.",
+      "parentUuid": "c412c1b4_16739e38",
       "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
