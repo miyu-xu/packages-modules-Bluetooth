@@ -16,12 +16,15 @@
 
 package com.android.bluetooth.map;
 
+import static android.content.pm.PackageManager.FEATURE_TELEPHONY_MESSAGING;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
@@ -66,6 +69,9 @@ public class BluetoothMapSmsPduTest {
 
     @Before
     public void setUp() throws Exception {
+        PackageManager packageManager =
+                InstrumentationRegistry.getTargetContext().getPackageManager();
+        assumeTrue(packageManager.isPackageAvailable(FEATURE_TELEPHONY_MESSAGING));
         when(mTargetContext.getSystemServiceName(TelephonyManager.class))
                 .thenReturn("TELEPHONY_SERVICE");
         when(mTargetContext.getSystemService("TELEPHONY_SERVICE")).thenReturn(mTelephonyManager);
