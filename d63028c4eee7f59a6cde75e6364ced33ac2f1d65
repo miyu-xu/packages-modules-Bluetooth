@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca131d0d_71c870f1",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-09-19T17:54:10Z",
+      "side": 0,
+      "message": "go/android-flags-guidelines#launched-flags - it looks like the flag definition is supposed to remain?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 20
+      },
+      "revId": "d63028c4eee7f59a6cde75e6364ced33ac2f1d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

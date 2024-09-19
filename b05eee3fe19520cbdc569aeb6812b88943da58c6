@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cde9947c_f1ab7ab8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-09-19T17:54:10Z",
+      "side": 1,
+      "message": "In general from go/android-flags-guidelines#launched-flags:\n\n```\nPlatform features (including API changes), high-risk bug fixes and large refactors: the flag can only be removed after the first Android Quarterly Platform Release (QPR) that has the flag enabled by default is rolled out to public. See go/android-releases-by-month to determine when a release rolls out to public devices.\n```",
+      "revId": "b05eee3fe19520cbdc569aeb6812b88943da58c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
