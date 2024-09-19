@@ -22,6 +22,30 @@
       },
       "revId": "2256094a11f3be95b05719eb943cd83ecb6f086c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03770498_2077327e",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-19T17:51:00Z",
+      "side": 1,
+      "message": "Yes, we have enforced framework erroprone module, mainly to benefit from the `AndroidFrameworkRequiresPermission`",
+      "parentUuid": "324273eb_bac7c4de",
+      "range": {
+        "startLine": 223,
+        "startChar": 16,
+        "endLine": 223,
+        "endChar": 52
+      },
+      "revId": "2256094a11f3be95b05719eb943cd83ecb6f086c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
