@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cbeeb10_a1fb0d96",
+        "filename": "pandora/interfaces/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-19T20:46:51Z",
+      "side": 1,
+      "message": "should this be renamed too ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "42e7b1abae306fe5fdc49cacfc081ff72fff66c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
