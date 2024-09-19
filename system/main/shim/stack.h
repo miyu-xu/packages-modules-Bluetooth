@@ -47,7 +47,6 @@ public:
 
   void Stop();
   bool IsRunning();
-  bool IsDumpsysModuleStarted() const;
 
   StackManager* GetStackManager();
   const StackManager* GetStackManager() const;
@@ -55,8 +54,6 @@ public:
   Acl* GetAcl();
 
   os::Handler* GetHandler();
-
-  bool LockForDumpsys(std::function<void()> dumpsys_callback);
 
   // Start the list of modules with the given stack manager thread
   void StartModuleStack(const ModuleList* modules, const os::Thread* thread);

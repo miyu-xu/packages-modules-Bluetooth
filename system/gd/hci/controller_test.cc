@@ -29,7 +29,6 @@
 #include "common/bind.h"
 #include "hci/address.h"
 #include "hci/hci_layer_fake.h"
-#include "module_dumper.h"
 #include "os/thread.h"
 #include "packet/raw_builder.h"
 
@@ -626,16 +625,6 @@ TEST_F(ControllerTest, leRandTest) {
 
   ASSERT_EQ(std::future_status::ready, le_rand_set_future.wait_for(2s));
   ASSERT_EQ(kRandomNumber, le_rand_set_future.get());
-}
-
-TEST_F(ControllerTest, Dumpsys) {
-  ModuleDumper dumper(STDOUT_FILENO, fake_registry_, title);
-
-  std::string output;
-  std::ostringstream oss;
-  dumper.DumpState(&output, oss);
-
-  ASSERT_TRUE(output.find("Hci Controller Dumpsys") != std::string::npos);
 }
 
 }  // namespace hci

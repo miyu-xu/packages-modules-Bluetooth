@@ -18,14 +18,11 @@
 
 #pragma once
 
-#include <flatbuffers/flatbuffers.h>
-
 #include <memory>
 #include <mutex>
 #include <string>
 
 #include "handler.h"
-#include "wakelock_manager_generated.h"
 
 namespace bluetooth {
 namespace os {
@@ -72,10 +69,6 @@ public:
   // Cleanup the wakelock internal runtime state.
   // This will NOT clean up the callouts
   void CleanUp();
-
-  // Dump wakelock-related debug info to a flat buffer defined in wakelock_manager.fbs
-  flatbuffers::Offset<WakelockManagerData> GetDumpsysData(
-          flatbuffers::FlatBufferBuilder* fb_builder);
 
   ~WakelockManager();
 

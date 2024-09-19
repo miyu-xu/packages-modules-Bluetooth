@@ -28,7 +28,6 @@
 
 #include "common/bidi_queue.h"
 #include "common/byte_array.h"
-#include "dumpsys_data_generated.h"
 #include "hci/acl_manager/acl_scheduler.h"
 #include "hci/acl_manager/classic_impl.h"
 #include "hci/acl_manager/le_acceptlist_callbacks.h"
@@ -38,7 +37,6 @@
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/remote_name_request.h"
-#include "hci_acl_manager_generated.h"
 #include "storage/config_keys.h"
 #include "storage/storage_module.h"
 
@@ -183,9 +181,6 @@ struct AclManager::impl {
     unknown_acl_alarm_->Schedule(BindOnce(&on_unknown_acl_timer, common::Unretained(this)),
                                  kWaitBeforeDroppingUnknownAcl);
   }
-
-  void Dump(std::promise<flatbuffers::Offset<AclManagerData>> promise,
-            flatbuffers::FlatBufferBuilder* fb_builder) const;
 
   const AclManager& acl_manager_;
 
@@ -411,55 +406,6 @@ std::string AclManager::ToString() const { return "Acl Manager"; }
 const ModuleFactory AclManager::Factory = ModuleFactory([]() { return new AclManager(); });
 
 AclManager::~AclManager() = default;
-
-void AclManager::impl::Dump(std::promise<flatbuffers::Offset<AclManagerData>> promise,
-                            flatbuffers::FlatBufferBuilder* fb_builder) const {
-  const std::lock_guard<std::mutex> lock(dumpsys_mutex_);
-  const auto accept_list =
-          (le_impl_ != nullptr) ? le_impl_->accept_list : std::unordered_set<AddressWithType>();
-  const auto le_connectability_state_text =
-          (le_impl_ != nullptr) ? connectability_state_machine_text(le_impl_->connectability_state_)
-                                : "INDETERMINATE";
-  const auto le_create_connection_timeout_alarms_count =
-          (le_impl_ != nullptr)
-                  ? static_cast<int>(le_impl_->create_connection_timeout_alarms_.size())
-                  : 0;
-
-  auto title = fb_builder->CreateString("----- Acl Manager Dumpsys -----");
-  auto le_connectability_state = fb_builder->CreateString(le_connectability_state_text);
-
-  flatbuffers::Offset<flatbuffers::String> strings[accept_list.size()];
-
-  size_t cnt = 0;
-  for (const auto& it : accept_list) {
-    strings[cnt++] = fb_builder->CreateString(it.ToString());
-  }
-  auto vecofstrings = fb_builder->CreateVector(strings, accept_list.size());
-
-  AclManagerDataBuilder builder(*fb_builder);
-  builder.add_title(title);
-  builder.add_le_filter_accept_list_count(accept_list.size());
-  builder.add_le_filter_accept_list(vecofstrings);
-  builder.add_le_connectability_state(le_connectability_state);
-  builder.add_le_create_connection_timeout_alarms_count(le_create_connection_timeout_alarms_count);
-
-  flatbuffers::Offset<AclManagerData> dumpsys_data = builder.Finish();
-  promise.set_value(dumpsys_data);
-}
-
-DumpsysDataFinisher AclManager::GetDumpsysData(flatbuffers::FlatBufferBuilder* fb_builder) const {
-  log::assert_that(fb_builder != nullptr, "assert failed: fb_builder != nullptr");
-
-  std::promise<flatbuffers::Offset<AclManagerData>> promise;
-  auto future = promise.get_future();
-  pimpl_->Dump(std::move(promise), fb_builder);
-
-  auto dumpsys_data = future.get();
-
-  return [dumpsys_data](DumpsysDataBuilder* dumpsys_builder) {
-    dumpsys_builder->add_hci_acl_manager_dumpsys_data(dumpsys_data);
-  };
-}
 
 }  // namespace hci
 }  // namespace bluetooth

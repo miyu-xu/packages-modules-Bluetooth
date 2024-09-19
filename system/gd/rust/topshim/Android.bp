@@ -56,7 +56,6 @@ cc_library_static {
         "vc/vc_shim.cc",
     ],
     generated_headers: [
-        "BluetoothGeneratedDumpsysDataSchema_h",
         "cxx-bridge-header",
         "libbt_init_flags_bridge_header",
         "libbt_topshim_bridge_header",
