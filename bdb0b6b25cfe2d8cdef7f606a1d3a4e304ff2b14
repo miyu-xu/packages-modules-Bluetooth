@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5972b028_96421e00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-19T20:27:29Z",
+      "side": 1,
+      "message": "With multi read there is no extra cost I would keep it, if it will hurt us we can think otherwise.",
+      "parentUuid": "a8a988eb_26c8e7f2",
+      "revId": "bdb0b6b25cfe2d8cdef7f606a1d3a4e304ff2b14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5dab880e_cbf31aec",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2024-09-19T20:12:48Z",
       "side": 1,
       "message": "You want to keep that ? Or was it just for development ?",
+      "range": {
+        "startLine": 2244,
+        "startChar": 3,
+        "endLine": 2244,
+        "endChar": 45
+      },
+      "revId": "bdb0b6b25cfe2d8cdef7f606a1d3a4e304ff2b14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c2e46bb_d7e5b2de",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2244,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-19T20:27:29Z",
+      "side": 1,
+      "message": "I can make it debug.",
+      "parentUuid": "5dab880e_cbf31aec",
       "range": {
         "startLine": 2244,
         "startChar": 3,
