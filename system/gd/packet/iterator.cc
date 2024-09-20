@@ -23,22 +23,11 @@ namespace bluetooth {
 namespace packet {
 
 template <bool little_endian>
-Iterator<little_endian>::Iterator(const std::forward_list<View>& data, size_t offset) {
-  data_ = data;
-  index_ = offset;
-  begin_ = 0;
-  end_ = 0;
-  for (auto& view : data) {
-    end_ += view.size();
-  }
-}
-
-template <bool little_endian>
-Iterator<little_endian>::Iterator(std::shared_ptr<std::vector<uint8_t>> data) {
-  data_.emplace_front(data, 0, data->size());
-  index_ = 0;
-  begin_ = 0;
-  end_ = data_.front().size();
+Iterator<little_endian>::Iterator(std::shared_ptr<const std::vector<uint8_t>> data, size_t begin, size_t end, size_t index) {
+  data_ = std::move(data);
+  begin_ = begin;
+  end_ = end;
+  index_ = index;
 }
 
 template <bool little_endian>
@@ -131,19 +120,8 @@ bool Iterator<little_endian>::operator>=(const Iterator<little_endian>& itr) con
 
 template <bool little_endian>
 uint8_t Iterator<little_endian>::operator*() const {
-  assert(NumBytesRemaining() > 0);
-  size_t index = index_;
-
-  for (auto view : data_) {
-    if (index < view.size()) {
-      return view[index];
-    }
-    index -= view.size();
-  }
-
-  // Out of fragments searching for index.
-  std::abort();
-  return 0;
+  assert(index_ >= begin_ && index_ < end_);
+  return data_->at(index_);
 }
 
 template <bool little_endian>
@@ -156,18 +134,7 @@ size_t Iterator<little_endian>::NumBytesRemaining() const {
 
 template <bool little_endian>
 Iterator<little_endian> Iterator<little_endian>::Subrange(size_t index, size_t length) const {
-  Iterator<little_endian> to_return(*this);
-  if (to_return.NumBytesRemaining() > index) {
-    to_return.index_ = to_return.index_ + index;
-    to_return.begin_ = to_return.index_;
-    if (to_return.NumBytesRemaining() >= length) {
-      to_return.end_ = to_return.index_ + length;
-    }
-  } else {
-    to_return.end_ = 0;
-  }
-
-  return to_return;
+  return Iterator<little_endian>(data_, index_ + index, index_ + index + length);
 }
 
 // Explicit instantiations for both types of Iterators.

@@ -23,7 +23,6 @@ source_set("BluetoothPacketSources") {
     "iterator.cc",
     "packet_view.cc",
     "raw_builder.cc",
-    "view.cc",
   ]
 
   include_dirs = [ "//bt/system/gd" ]
