@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0697c3_0d3d14ed",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-20T02:19:05Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3c8ebc8d_ce077055",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger_socket.cc",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"exiting from listen_fn_ thread\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5ff5fbc6703cfbc7f77574e57812e8e40434183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
