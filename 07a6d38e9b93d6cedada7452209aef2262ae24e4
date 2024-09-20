@@ -52,6 +52,24 @@
       "parentUuid": "5f79b641_8f1fc21e",
       "revId": "07a6d38e9b93d6cedada7452209aef2262ae24e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e28b205_01c8383e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-20T22:24:26Z",
+      "side": 1,
+      "message": "synced offline: There are specifics scenarios when RFCOMM is living without these profiles. Approving the CL.",
+      "parentUuid": "dd77988c_265948a3",
+      "revId": "07a6d38e9b93d6cedada7452209aef2262ae24e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
