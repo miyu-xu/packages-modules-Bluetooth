@@ -219,7 +219,7 @@ void port_release_port(tPORT* p_port) {
 
   p_port->state = PORT_CONNECTION_STATE_CLOSED;
 
-  if (p_port->rfc.state == RFC_STATE_CLOSED) {
+  if (p_port->rfc.sm_cb.state == RFC_STATE_CLOSED) {
     if (p_port->rfc.p_mcb) {
       p_port->rfc.p_mcb->port_handles[p_port->dlci] = 0;
 
