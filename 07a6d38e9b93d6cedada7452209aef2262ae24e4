@@ -34,6 +34,24 @@
       "parentUuid": "f23f2c46_e3b620f4",
       "revId": "07a6d38e9b93d6cedada7452209aef2262ae24e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd77988c_265948a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-20T18:07:24Z",
+      "side": 1,
+      "message": "HFP and RFCOMM are tight together, right ? Then if HFP is interfering with RFCOMM this sounds like an issue.\n\nI think we should fix the real reason of the flakiness instead of doing a workaround. Here we are just avoiding the real problem by doing this and loosing the real value of the tests.",
+      "parentUuid": "5f79b641_8f1fc21e",
+      "revId": "07a6d38e9b93d6cedada7452209aef2262ae24e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
