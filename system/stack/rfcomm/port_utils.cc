@@ -199,7 +199,7 @@ void port_select_mtu(tPORT* p_port) {
  *
  ******************************************************************************/
 void port_release_port(tPORT* p_port) {
-  log::verbose("p_port: {} state: {} keep_handle: {}", fmt::ptr(p_port), p_port->rfc.state,
+  log::verbose("p_port: {} state: {} keep_handle: {}", fmt::ptr(p_port), p_port->rfc.sm_cb.state,
                p_port->keep_port_handle);
 
   mutex_global_lock();
@@ -219,7 +219,7 @@ void port_release_port(tPORT* p_port) {
 
   p_port->state = PORT_CONNECTION_STATE_CLOSED;
 
-  if (p_port->rfc.state == RFC_STATE_CLOSED) {
+  if (p_port->rfc.sm_cb.state == RFC_STATE_CLOSED) {
     if (p_port->rfc.p_mcb) {
       p_port->rfc.p_mcb->port_handles[p_port->dlci] = 0;
 
