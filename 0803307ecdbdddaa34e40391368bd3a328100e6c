@@ -33,6 +33,67 @@
       "message": "Can this cause potential privacy hole? thinking it loud!\nIt may be fine considering dumpsys is something pulled out only when usb is connected.",
       "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d9dc7d_33efdb05",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-20T23:34:33Z",
+      "side": 1,
+      "message": "Please do not add global variables, but instead store it in appropriate control blocks",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "37ff5567_24beec6b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_addr.cc",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_ble_addr.cc",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "    p_dev_rec-\u003eble.cur_rand_addr \u003d rpa;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_ble_addr.cc",
+              "range": {
+                "startLine": 286,
+                "startChar": 0,
+                "endLine": 287,
+                "endChar": 0
+              },
+              "replacement": "  dprintf(fd, \"  %s\\n\", btm_cb.ble_random_address.ToString().c_str());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
