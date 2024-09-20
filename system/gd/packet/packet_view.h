@@ -17,11 +17,10 @@
 #pragma once
 
 #include <cstdint>
-#include <forward_list>
+#include <memory>
 #include <vector>
 
 #include "packet/iterator.h"
-#include "packet/view.h"
 
 namespace bluetooth {
 namespace packet {
@@ -34,8 +33,8 @@ static const bool kLittleEndian = true;
 template <bool little_endian>
 class PacketView {
 public:
-  explicit PacketView(std::forward_list<View> fragments);
   explicit PacketView(std::shared_ptr<const std::vector<uint8_t>> packet);
+  explicit PacketView(std::shared_ptr<const std::vector<uint8_t>> packet, size_t begin, size_t end);
   PacketView(const PacketView& PacketView) = default;
   PacketView<little_endian>() = delete;
   virtual ~PacketView() = default;
@@ -51,14 +50,10 @@ public:
   PacketView<true> GetLittleEndianSubview(size_t begin, size_t end) const;
   PacketView<false> GetBigEndianSubview(size_t begin, size_t end) const;
 
-protected:
-  void Append(PacketView to_add);
-
 private:
-  std::forward_list<View> fragments_;
-  size_t length_;
-
-  std::forward_list<View> GetSubviewList(size_t begin, size_t end) const;
+  std::shared_ptr<const std::vector<uint8_t>> data_;
+  size_t begin_;
+  size_t end_;
 };
 
 }  // namespace packet

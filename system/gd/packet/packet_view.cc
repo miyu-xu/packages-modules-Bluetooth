@@ -24,98 +24,47 @@ namespace bluetooth {
 namespace packet {
 
 template <bool little_endian>
-PacketView<little_endian>::PacketView(const std::forward_list<class View> fragments)
-    : fragments_(fragments), length_(0) {
-  for (auto fragment : fragments_) {
-    length_ += fragment.size();
-  }
-}
+PacketView<little_endian>::PacketView(std::shared_ptr<const std::vector<uint8_t>> packet)
+    : data_(std::move(packet)), begin_(0), end_(data_->size()) {}
 
 template <bool little_endian>
-PacketView<little_endian>::PacketView(std::shared_ptr<const std::vector<uint8_t>> packet)
-    : fragments_({View(packet, 0, packet->size())}), length_(packet->size()) {}
+PacketView<little_endian>::PacketView(std::shared_ptr<const std::vector<uint8_t>> packet,
+                                      size_t begin, size_t end)
+    : data_(std::move(packet)), begin_(begin), end_(end) {}
 
 template <bool little_endian>
 Iterator<little_endian> PacketView<little_endian>::begin() const {
-  return Iterator<little_endian>(this->fragments_, 0);
+  return Iterator<little_endian>(data_, begin_, end_, begin_);
 }
 
 template <bool little_endian>
 Iterator<little_endian> PacketView<little_endian>::end() const {
-  return Iterator<little_endian>(this->fragments_, size());
+  return Iterator<little_endian>(data_, begin_, end_, end_);
 }
 
 template <bool little_endian>
 uint8_t PacketView<little_endian>::operator[](size_t index) const {
-  return at(index);
+  return at(begin_ + index);
 }
 
 template <bool little_endian>
 uint8_t PacketView<little_endian>::at(size_t index) const {
-  assert(index < length_);
-  for (const auto& fragment : fragments_) {
-    if (index < fragment.size()) {
-      return fragment[index];
-    }
-    index -= fragment.size();
-  }
-  // Out of fragments searching for index.
-  std::abort();
-  return 0;
+  return data_->at(begin_ + index);
 }
 
 template <bool little_endian>
 size_t PacketView<little_endian>::size() const {
-  return length_;
-}
-
-template <bool little_endian>
-std::forward_list<View> PacketView<little_endian>::GetSubviewList(size_t begin, size_t end) const {
-  assert(begin <= end);
-  assert(end <= length_);
-
-  std::forward_list<View> view_list;
-  std::forward_list<View>::iterator it = view_list.before_begin();
-  size_t length = end - begin;
-  for (const auto& fragment : fragments_) {
-    if (begin >= fragment.size()) {
-      begin -= fragment.size();
-    } else {
-      View view(fragment, begin, begin + std::min(length, fragment.size() - begin));
-      length -= view.size();
-      it = view_list.insert_after(it, view);
-      begin = 0;
-    }
-  }
-  return view_list;
+  return end_ - begin_;
 }
 
 template <bool little_endian>
 PacketView<true> PacketView<little_endian>::GetLittleEndianSubview(size_t begin, size_t end) const {
-  return PacketView<true>(GetSubviewList(begin, end));
+  return PacketView<true>(data_, begin_ + begin, begin_ + end);
 }
 
 template <bool little_endian>
 PacketView<false> PacketView<little_endian>::GetBigEndianSubview(size_t begin, size_t end) const {
-  return PacketView<false>(GetSubviewList(begin, end));
-}
-
-template <bool little_endian>
-void PacketView<little_endian>::Append(PacketView to_add) {
-  auto insertion_point = fragments_.begin();
-  size_t remaining_length = length_;
-  while (remaining_length > 0) {
-    remaining_length -= insertion_point->size();
-    if (remaining_length > 0) {
-      insertion_point++;
-    }
-  }
-  assert(insertion_point != fragments_.end());
-  for (const auto& fragment : to_add.fragments_) {
-    fragments_.insert_after(insertion_point, fragment);
-    insertion_point++;
-  }
-  length_ += to_add.length_;
+  return PacketView<false>(data_, begin_ + begin, begin_ + end);
 }
 
 // Explicit instantiations for both types of PacketViews.

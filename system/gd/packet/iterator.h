@@ -17,12 +17,11 @@
 #pragma once
 
 #include <cstdint>
-#include <forward_list>
 #include <memory>
 #include <type_traits>
+#include <vector>
 
 #include "packet/custom_field_fixed_size_interface.h"
-#include "packet/view.h"
 
 namespace bluetooth {
 namespace packet {
@@ -45,8 +44,8 @@ struct IteratorTraits : public std::iterator<std::random_access_iterator_tag, ui
 template <bool little_endian>
 class Iterator : public IteratorTraits {
 public:
-  Iterator(const std::forward_list<View>& data, size_t offset);
-  Iterator(std::shared_ptr<std::vector<uint8_t>> data);
+  Iterator(std::shared_ptr<const std::vector<uint8_t>> data, size_t begin, size_t end, size_t index);
+  Iterator(std::shared_ptr<const std::vector<uint8_t>> data);
   Iterator(const Iterator& itr) = default;
   virtual ~Iterator() = default;
 
@@ -106,10 +105,10 @@ public:
   }
 
 private:
-  std::forward_list<View> data_;
-  size_t index_;
+  std::shared_ptr<const std::vector<uint8_t>> data_;
   size_t begin_;
   size_t end_;
+  size_t index_;
 };
 
 }  // namespace packet
