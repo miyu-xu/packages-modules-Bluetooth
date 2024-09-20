@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastResyncHelper;
 
 import android.annotation.Nullable;
 import android.annotation.SuppressLint;
@@ -968,6 +969,12 @@ public class BassClientStateMachine extends StateMachine {
         mBroadcastSyncStats.clear();
     }
 
+    private boolean isSourceAbsent(BluetoothLeBroadcastReceiveState recvState) {
+        String emptyBluetoothDevice = "00:00:00:00:00:00";
+        return recvState.getSourceDevice() == null
+                || recvState.getSourceDevice().getAddress().equals(emptyBluetoothDevice);
+    }
+
     private void checkAndUpdateBroadcastCode(BluetoothLeBroadcastReceiveState recvState) {
         log("checkAndUpdateBroadcastCode");
         // Whenever receive state indicated code requested, assistant should set the broadcast code
@@ -1149,14 +1156,21 @@ public class BassClientStateMachine extends StateMachine {
                 return;
             }
             mBluetoothLeBroadcastReceiveStates.put(characteristic.getInstanceId(), recvState);
-            checkAndUpdateBroadcastCode(recvState);
-            processPASyncState(recvState);
+            if (isSourceAbsent(recvState)) {
+                if (mPendingSourceToAdd != null) {
+                    Message message = obtainMessage(ADD_BCAST_SOURCE);
+                    message.obj = mPendingSourceToAdd;
+                    sendMessage(message);
+                    mPendingSourceToAdd = null;
+                }
+            } else {
+                checkAndUpdateBroadcastCode(recvState);
+                processPASyncState(recvState);
+            }
         } else {
             log("Updated receiver state: " + recvState);
             mBluetoothLeBroadcastReceiveStates.replace(characteristic.getInstanceId(), recvState);
-            String emptyBluetoothDevice = "00:00:00:00:00:00";
-            if (oldRecvState.getSourceDevice() == null
-                    || oldRecvState.getSourceDevice().getAddress().equals(emptyBluetoothDevice)) {
+            if (isSourceAbsent(oldRecvState)) {
                 log("New Source Addition");
                 removeMessages(CANCEL_PENDING_SOURCE_OPERATION);
                 mService.getCallbacks()
@@ -1170,8 +1184,7 @@ public class BassClientStateMachine extends StateMachine {
                 processPASyncState(recvState);
                 processSyncStateChangeStats(recvState);
             } else {
-                if (recvState.getSourceDevice() == null
-                        || recvState.getSourceDevice().getAddress().equals(emptyBluetoothDevice)) {
+                if (isSourceAbsent(recvState)) {
                     BluetoothDevice removedDevice = oldRecvState.getSourceDevice();
                     log("sourceInfo removal " + removedDevice);
                     int prevSourceId = oldRecvState.getSourceId();
@@ -1289,6 +1302,14 @@ public class BassClientStateMachine extends StateMachine {
                                     + status
                                     + "mBluetoothGatt"
                                     + mBluetoothGatt);
+                    if (mPendingSourceToAdd != null) {
+                        mService.getCallbacks()
+                                .notifySourceAddFailed(
+                                        mDevice,
+                                        mPendingSourceToAdd,
+                                        BluetoothStatusCodes.ERROR_GATT_WRITE_REQUEST_BUSY);
+                        mPendingSourceToAdd = null;
+                    }
                 }
             } else {
                 log("remote initiated callback");
@@ -1350,6 +1371,16 @@ public class BassClientStateMachine extends StateMachine {
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 Log.d(TAG, "mtu: " + mtu);
                 mMaxSingleAttributeWriteValueLen = mtu - ATT_WRITE_CMD_HDR_LEN;
+            } else {
+                log("onMtuChanged error status: " + status);
+                if (mPendingSourceToAdd != null) {
+                    mService.getCallbacks()
+                            .notifySourceAddFailed(
+                                    mDevice,
+                                    mPendingSourceToAdd,
+                                    BluetoothStatusCodes.ERROR_GATT_WRITE_REQUEST_BUSY);
+                    mPendingSourceToAdd = null;
+                }
             }
         }
 
@@ -2181,6 +2212,12 @@ public class BassClientStateMachine extends StateMachine {
                             }
                             break;
                         }
+                    }
+
+                    if (leaudioBroadcastResyncHelper() && getAllSources().isEmpty()) {
+                        log("Adding source queued for BASS state ready");
+                        mPendingSourceToAdd = metaData;
+                        break;
                     }
 
                     byte[] addSourceInfo = convertMetadataToAddSourceByteArray(metaData);

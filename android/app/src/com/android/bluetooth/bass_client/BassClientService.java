@@ -1402,6 +1402,30 @@ public class BassClientService extends ProfileService {
                     break;
                 }
             }
+        } else if (leaudioBroadcastResyncHelper()) {
+            // Handle device newly connected and its peer device still has active source
+            // This only applies to unintentional disconnection when metadata is not cleared
+            BluetoothLeBroadcastMetadata metadata = mBroadcastMetadataMap.get(device);
+            if (metadata == null) {
+                Log.d(TAG, "connectionStateChanged: no metadata available");
+                return;
+            }
+            for (BluetoothDevice groupDevice : getTargetDeviceList(device, true)) {
+                if (!groupDevice.equals(device)) {
+                    // Check peer device
+                    Optional<BluetoothLeBroadcastReceiveState> receiver =
+                            getOrCreateStateMachine(groupDevice).getAllSources().stream()
+                                    .filter(e -> e.getBroadcastId() == metadata.getBroadcastId())
+                                    .findAny();
+                    if (receiver.isPresent()) {
+                        Log.d(
+                                TAG,
+                                "connectionStateChanged: restore the source for device: " + device);
+                        addSource(device, metadata, false);
+                    }
+                    break;
+                }
+            }
         }
     }
 
@@ -2777,7 +2801,8 @@ public class BassClientService extends ProfileService {
                         device, sourceMetadata, BluetoothStatusCodes.ERROR_ALREADY_IN_TARGET_STATE);
                 continue;
             }
-            if (!hasRoomForBroadcastSourceAddition(device)) {
+            if ((!leaudioBroadcastResyncHelper() || !stateMachine.getAllSources().isEmpty())
+                    && !hasRoomForBroadcastSourceAddition(device)) {
                 log("addSource: device has no room");
                 Integer sourceId = getSourceIdToRemove(device);
                 if (sourceId != BassConstants.INVALID_SOURCE_ID) {

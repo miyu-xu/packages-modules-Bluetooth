@@ -6626,6 +6626,62 @@ public class BassClientServiceTest {
         verifyAllGroupMembersGettingUpdateOrAddSource(createBroadcastMetadata(TEST_BROADCAST_ID));
     }
 
+    /**
+     * Test add source will be triggered if new device connected and its peer is synced to broadcast
+     * source
+     */
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void sinkReconnect_addSourceIfPeerDeviceSynced() {
+        /* Imitate broadcast being active */
+        doReturn(true).when(mLeAudioService).isPlaying(TEST_BROADCAST_ID);
+
+        prepareTwoSynchronizedDevicesForLocalBroadcast();
+        // Disconnect one device
+        doReturn(BluetoothProfile.STATE_DISCONNECTED)
+                .when(mStateMachines.get(mCurrentDevice))
+                .getConnectionState();
+        doReturn(false).when(mStateMachines.get(mCurrentDevice)).isConnected();
+        mBassClientService.connectionStateChanged(
+                mCurrentDevice,
+                BluetoothProfile.STATE_CONNECTED,
+                BluetoothProfile.STATE_DISCONNECTED);
+
+        // Reconnect this device
+        doReturn(BluetoothProfile.STATE_CONNECTED)
+                .when(mStateMachines.get(mCurrentDevice))
+                .getConnectionState();
+        doReturn(true).when(mStateMachines.get(mCurrentDevice)).isConnected();
+        doReturn(new ArrayList<>()).when(mStateMachines.get(mCurrentDevice)).getAllSources();
+        mBassClientService.connectionStateChanged(
+                mCurrentDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
+
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            if (sm.getDevice().equals(mCurrentDevice1)) {
+                verify(sm, never()).sendMessage(any());
+            } else if (sm.getDevice().equals(mCurrentDevice)) {
+                ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+                verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+                Message msg =
+                        messageCaptor.getAllValues().stream()
+                                .filter(m -> (m.what == BassClientStateMachine.ADD_BCAST_SOURCE))
+                                .findFirst()
+                                .orElse(null);
+                assertThat(msg).isNotNull();
+                clearInvocations(sm);
+            } else {
+                throw new AssertionError("Unexpected device");
+            }
+        }
+    }
+
     @Test
     @EnableFlags({
         Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
