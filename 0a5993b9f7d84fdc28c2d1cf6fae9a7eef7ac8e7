@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6405dabb_6ec75fe7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-20T07:45:05Z",
+      "side": 1,
+      "message": "Hi, PTAL, thanks!\n(I have some verbose comments which I will remove later after verifying with the reporter)",
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
