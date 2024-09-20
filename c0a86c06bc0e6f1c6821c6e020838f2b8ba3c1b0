@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1882c94_c5914cbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-20T11:05:32Z",
+      "side": 1,
+      "message": "I would expect only state_machine.cc  changes according to the commit message. I think that device_groups.cc should belong to some other change.",
+      "revId": "c0a86c06bc0e6f1c6821c6e020838f2b8ba3c1b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffad40e_1971902c",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-20T11:05:32Z",
+      "side": 1,
+      "message": "this seems to be not related to the patch.",
+      "revId": "c0a86c06bc0e6f1c6821c6e020838f2b8ba3c1b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
