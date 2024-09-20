@@ -670,6 +670,13 @@ void l2c_lcc_proc_pdu(tL2C_CCB* p_ccb, BT_HDR* p_buf) {
   uint8_t* p = (uint8_t*)(p_buf + 1) + p_buf->offset;
   uint16_t sdu_length;
   BT_HDR* p_data = NULL;
+  
+  uint16_t local_mps = p_ccb->local_conn_cfg.mps;
+  if (p_ccb->is_first_seg) {
+     //for the first k-frame, dont consider sdu_length
+     //as part of the information payload
+     local_mps = p_ccb->local_conn_cfg.mps + size(sdu_length);
+  }
 
   /* Buffer length should not exceed local mps */
   if (p_buf->len > p_ccb->local_conn_cfg.mps) {
