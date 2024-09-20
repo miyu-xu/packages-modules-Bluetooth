@@ -29,14 +29,16 @@
  */
 
 #define LOG_TAG "bt_btif_storage"
-
 #include "btif/include/btif_storage.h"
 
 #include <alloca.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
+#include <cutils/multiuser.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 #include <unordered_set>
 #include <vector>
@@ -107,8 +109,12 @@ static bool btif_has_ble_keys(const std::string& bdstr);
 static void btif_storage_set_mode(RawAddress* remote_bd_addr) {
   std::string bdstr = remote_bd_addr->ToString();
   if (GetInterfaceToProfiles()->config->isRestrictedMode()) {
+    int user_id = 1;
+    if (com::android::bluetooth::flags::guest_mode_bond()) {
+      user_id = multiuser_get_user_id(getuid());
+    }
     log::info("{} will be removed exiting restricted mode", *remote_bd_addr);
-    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_RESTRICTED, 1);
+    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_RESTRICTED, user_id);
   }
 }
 
