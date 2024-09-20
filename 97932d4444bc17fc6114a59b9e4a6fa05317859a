@@ -16,6 +16,63 @@
       "message": "Please run a formatting pass on the files to address lint warnings",
       "revId": "97932d4444bc17fc6114a59b9e4a6fa05317859a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2994eca5_751412c3",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-20T20:53:36Z",
+      "side": 1,
+      "message": "`hci::EventCode::LE_META_EVT`",
+      "range": {
+        "startLine": 1419,
+        "startChar": 24,
+        "endLine": 1419,
+        "endChar": 28
+      },
+      "revId": "97932d4444bc17fc6114a59b9e4a6fa05317859a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "266206ff_684259f5",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-20T20:53:36Z",
+      "side": 1,
+      "message": "Please add handling for vendor specific events (`evt_code \u003d\u003d EventCode::VENDOR_SPECIFIC`): same as LE meta events, but the subevent code is typed `VseSubeventCode`",
+      "revId": "97932d4444bc17fc6114a59b9e4a6fa05317859a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c3f453_b86531b2",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-20T20:53:36Z",
+      "side": 1,
+      "message": "The handle is only 12 bits, the top 4 bits need to be masked off",
+      "revId": "97932d4444bc17fc6114a59b9e4a6fa05317859a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
