@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1064ce98_d2f6481e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-20T12:22:58Z",
+      "side": 1,
+      "message": "Magically, this causes my test DUT to always fail the `advmon_condition_device_count_tests` test. Will look out why next week.",
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a3d91bf_e2d4e58d",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
