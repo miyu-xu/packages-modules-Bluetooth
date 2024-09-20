@@ -19,6 +19,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -277,6 +278,24 @@ class RfcommTest {
                 Truth.assertThat(socket1.isConnected).isTrue()
             }
         }
+    }
+
+    @Test
+    fun serverConnectOverSecureSocket() {
+        val socket =
+            mAdapter.listenUsingRfcommWithServiceRecord(
+                TEST_SERVER_NAME,
+                UUID.fromString(SERIAL_PORT_UUID),
+            )
+        val address: ByteString = ByteString.copyFromUtf8("DA:4C:10:DE:17:00")
+        Log.i(TAG, "asdf address is : " + address)
+        val connectRequest =
+            RfcommProto.ConnectionRequest.newBuilder()
+                .setAddress(address)
+                .setUuid(SERIAL_PORT_UUID)
+                .build()
+        mBumble.rfcommBlocking().connectToServer(connectRequest)
+        socket.accept()
     }
 
     private fun createConnectAcceptSocket(
