@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dc5906e_44037cb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-20T09:07:36Z",
+      "side": 1,
+      "message": "+1 per existing CL in https://r.android.com/2516077",
+      "revId": "e084f23981f7597b0cbac3dfe779617e98c0d61a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
