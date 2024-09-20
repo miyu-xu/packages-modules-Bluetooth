@@ -37,19 +37,17 @@ namespace audio {
 namespace aidl {
 namespace a2dp {
 
-std::ostream& operator<<(std::ostream& os, const BluetoothAudioCtrlAck& ack) {
+std::ostream& operator<<(std::ostream& os, const BluetoothAudioStatus& ack) {
   switch (ack) {
-    case BluetoothAudioCtrlAck::SUCCESS_FINISHED:
-      return os << "SUCCESS_FINISHED";
-    case BluetoothAudioCtrlAck::PENDING:
+    case BluetoothAudioStatus::SUCCESS:
+      return os << "SUCCESS";
+    case BluetoothAudioStatus::PENDING:
       return os << "PENDING";
-    case BluetoothAudioCtrlAck::FAILURE_UNSUPPORTED:
-      return os << "FAILURE_UNSUPPORTED";
-    case BluetoothAudioCtrlAck::FAILURE_BUSY:
-      return os << "FAILURE_BUSY";
-    case BluetoothAudioCtrlAck::FAILURE_DISCONNECTING:
-      return os << "FAILURE_DISCONNECTING";
-    case BluetoothAudioCtrlAck::FAILURE:
+    case BluetoothAudioStatus::UNSUPPORTED_CODEC_CONFIGURATION:
+      return os << "UNSUPPORTED_CODEC_CONFIGURATION";
+    case BluetoothAudioStatus::UNKNOWN:
+      return os << "UNKNOWN";
+    case BluetoothAudioStatus::FAILURE:
       return os << "FAILURE";
     default:
       return os << "UNDEFINED " << static_cast<int8_t>(ack);
@@ -431,17 +429,17 @@ int BluetoothAudioClientInterface::StartSession() {
   }
 }
 
-void BluetoothAudioClientInterface::StreamStarted(const BluetoothAudioCtrlAck& ack) {
+void BluetoothAudioClientInterface::StreamStarted(const BluetoothAudioStatus& ack) {
   if (provider_ == nullptr) {
     log::error("BluetoothAudioHal nullptr");
     return;
   }
-  if (ack == BluetoothAudioCtrlAck::PENDING) {
+  if (ack == BluetoothAudioStatus::PENDING) {
     log::info("{} ignored", ack);
     return;
   }
 
-  auto status = BluetoothAudioCtrlAckToHalStatus(ack);
+  auto status = BluetoothAudioStatusToHalStatus(ack);
   auto aidl_retval = provider_->streamStarted(status);
 
   if (!aidl_retval.isOk()) {
@@ -449,17 +447,17 @@ void BluetoothAudioClientInterface::StreamStarted(const BluetoothAudioCtrlAck& a
   }
 }
 
-void BluetoothAudioClientInterface::StreamSuspended(const BluetoothAudioCtrlAck& ack) {
+void BluetoothAudioClientInterface::StreamSuspended(const BluetoothAudioStatus& ack) {
   if (provider_ == nullptr) {
     log::error("BluetoothAudioHal nullptr");
     return;
   }
-  if (ack == BluetoothAudioCtrlAck::PENDING) {
+  if (ack == BluetoothAudioStatus::PENDING) {
     log::info("{} ignored", ack);
     return;
   }
 
-  auto status = BluetoothAudioCtrlAckToHalStatus(ack);
+  auto status = BluetoothAudioStatusToHalStatus(ack);
   auto aidl_retval = provider_->streamSuspended(status);
 
   if (!aidl_retval.isOk()) {
