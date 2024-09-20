@@ -19,15 +19,18 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
@@ -64,9 +67,13 @@ class RfcommTest {
         )
 
     // Set up a Bumble Pandora device for the duration of the test.
-    @Rule(order = 1) @JvmField val mBumble = PandoraDevice()
+    @Rule(order = 1)
+    @JvmField
+    val mBumble = PandoraDevice()
 
-    @Rule(order = 2) @JvmField val enableBluetoothRule = EnableBluetoothRule(false, true)
+    @Rule(order = 2)
+    @JvmField
+    val enableBluetoothRule = EnableBluetoothRule(false, true)
 
     private lateinit var mRemoteDevice: BluetoothDevice
     private lateinit var host: Host
@@ -379,6 +386,40 @@ class RfcommTest {
                 Truth.assertThat(socket1.isConnected).isTrue()
             }
         }
+    }
+
+    /*
+       Test Steps:
+       1. Create secure server socket
+       2. Remote device connects to server socket
+       3. Accept and verify connection
+     */
+    @Test
+    fun serverConnectOverSecureSocket() {
+        val address: ByteString = ByteString.copyFromUtf8("DA:4C:10:DE:17:00")
+
+        val connectRequest =
+            RfcommProto.ConnectionRequest.newBuilder()
+                .setAddress(address)
+                .setUuid(SERIAL_PORT_UUID)
+                .build()
+        val t = thread {
+            Log.i(TAG, "asdf calling connectToServer")
+            mBumble.rfcommBlocking().connectToServer(connectRequest)
+        }
+        val timeout = 10000 // 10 seconds
+        val socket =
+            mAdapter.listenUsingRfcommWithServiceRecord(
+                TEST_SERVER_NAME,
+                UUID.fromString(SERIAL_PORT_UUID),
+            )
+
+        try {
+            socket.accept(timeout)
+        } catch (e: IOException) {
+            Log.e(TAG, "asdf RFCOMM Unexpected IOException: $e")
+        }
+        t.join()
     }
 
     private fun createConnectAcceptSocket(
