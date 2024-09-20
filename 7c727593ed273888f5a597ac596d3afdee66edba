@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "885fce5c_196e11c3",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-20T04:45:20Z",
+      "side": 1,
+      "message": "I\u0027m afraid it\u0027s not better. There\u0027s already the function `uhid_open_timeout`.\nWhat is the concern of renaming in the first place? Maybe we can just use longer names to address your concern instead of choosing a replacement of the same length.",
+      "parentUuid": "cf38b380_4f145322",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9189160_0858c5d8",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 2
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "\u003e When UHID is closed, we are essentially waiting for UHID open, so we start the timer.\nDo we expect `UHID_OPEN` to arrive after `UHID_CLOSE`? If uhid is already closed, we can just wrap it up.",
       "parentUuid": "c412c1b4_16739e38",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34c97516_474dae6a",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-20T04:45:20Z",
+      "side": 1,
+      "message": "\u003e Do we expect UHID_OPEN to arrive after UHID_CLOSE?\n\nI know that it\u0027s a possible sequence of events because I witnessed it firsthand (forgot with what peripheral though). But I don\u0027t know whether it\u0027s expected.\nWe receive OPEN, CLOSE, and OPEN again, in that sequence.",
+      "parentUuid": "fb7794c3_a255c17e",
       "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
