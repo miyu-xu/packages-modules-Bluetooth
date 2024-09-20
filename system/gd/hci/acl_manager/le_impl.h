@@ -27,12 +27,10 @@
 #include <vector>
 
 #include "common/bind.h"
-#include "hci/acl_manager/assembler.h"
 #include "hci/acl_manager/le_acceptlist_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
 #include "hci/acl_manager/le_connection_callbacks.h"
 #include "hci/acl_manager/le_connection_management_callbacks.h"
-#include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
@@ -112,24 +110,18 @@ inline std::string connectability_state_machine_text(const ConnectabilityState& 
 
 struct le_acl_connection {
   le_acl_connection(AddressWithType remote_address,
-                    std::unique_ptr<LeAclConnection> pending_connection,
-                    AclConnection::QueueDownEnd* queue_down_end, os::Handler* handler)
-      : remote_address_(remote_address),
-        pending_connection_(std::move(pending_connection)),
-        assembler_(new acl_manager::assembler(remote_address, queue_down_end, handler)) {}
-  ~le_acl_connection() { delete assembler_; }
+                    std::unique_ptr<LeAclConnection> pending_connection)
+      : remote_address_(remote_address), pending_connection_(std::move(pending_connection)) {}
+  ~le_acl_connection() {}
   AddressWithType remote_address_;
   std::unique_ptr<LeAclConnection> pending_connection_;
-  acl_manager::assembler* assembler_;
   LeConnectionManagementCallbacks* le_connection_management_callbacks_ = nullptr;
 };
 
 struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   le_impl(HciLayer* hci_layer, Controller* controller, os::Handler* handler,
-          RoundRobinScheduler* round_robin_scheduler, bool crash_on_unknown_handle)
-      : hci_layer_(hci_layer),
-        controller_(controller),
-        round_robin_scheduler_(round_robin_scheduler) {
+          bool crash_on_unknown_handle)
+      : hci_layer_(hci_layer), controller_(controller) {
     hci_layer_ = hci_layer;
     controller_ = controller;
     handler_ = handler;
@@ -234,24 +226,13 @@ private:
         remove(handle);
       }
     }
-    bool send_packet_upward(uint16_t handle,
-                            std::function<void(struct acl_manager::assembler* assembler)> cb) {
-      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
-      auto connection = le_acl_connections_.find(handle);
-      if (connection != le_acl_connections_.end()) {
-        cb(connection->second.assembler_);
-      }
-      return connection != le_acl_connections_.end();
-    }
     void add(uint16_t handle, const AddressWithType& remote_address,
              std::unique_ptr<LeAclConnection> pending_connection,
-             AclConnection::QueueDownEnd* queue_end, os::Handler* handler,
              LeConnectionManagementCallbacks* le_connection_management_callbacks) {
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       auto emplace_pair = le_acl_connections_.emplace(
               std::piecewise_construct, std::forward_as_tuple(handle),
-              std::forward_as_tuple(remote_address, std::move(pending_connection), queue_end,
-                                    handler));
+              std::forward_as_tuple(remote_address, std::move(pending_connection)));
       log::assert_that(emplace_pair.second,
                        "assert failed: emplace_pair.second");  // Make sure the connection is unique
       emplace_pair.first->second.le_connection_management_callbacks_ =
@@ -306,11 +287,6 @@ public:
     hci_layer_->EnqueueCommand(std::move(command_packet),
                                handler_->BindOnce(&LeAddressManager::OnCommandComplete,
                                                   common::Unretained(le_address_manager_)));
-  }
-
-  bool send_packet_upward(uint16_t handle,
-                          std::function<void(struct acl_manager::assembler* assembler)> cb) {
-    return connections.send_packet_upward(handle, cb);
   }
 
   void report_le_connection_failure(AddressWithType address, ErrorCode status) {
@@ -469,8 +445,6 @@ public:
     }
     auto role_specific_data = initialize_role_specific_data(role);
     auto queue = std::make_shared<AclConnection::Queue>(10);
-    auto queue_down_end = queue->GetDownEnd();
-    round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::LE, handle, queue);
     std::unique_ptr<LeAclConnection> connection(
             new LeAclConnection(std::move(queue), le_acl_connection_interface_, handle,
                                 role_specific_data, remote_address));
@@ -499,11 +473,9 @@ public:
       // the OnLeConnectSuccess event will be sent after receiving the On Advertising Set Terminated
       // event, since we need it to know what local_address / advertising set the peer connected to.
       // In the meantime, we store it as a pending_connection.
-      connections.add(handle, remote_address, std::move(connection), queue_down_end, handler_,
-                      connection_callbacks);
+      connections.add(handle, remote_address, std::move(connection), connection_callbacks);
     } else {
-      connections.add(handle, remote_address, nullptr, queue_down_end, handler_,
-                      connection_callbacks);
+      connections.add(handle, remote_address, nullptr, connection_callbacks);
       le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
                                                 common::Unretained(le_client_callbacks_),
                                                 remote_address, std::move(connection)));
@@ -539,10 +511,7 @@ public:
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
             handle,
-            [=, this](LeConnectionManagementCallbacks* callbacks) {
-              round_robin_scheduler_->Unregister(handle);
-              callbacks->OnDisconnection(reason);
-            },
+            [=](LeConnectionManagementCallbacks* callbacks) { callbacks->OnDisconnection(reason); },
             kRemoveConnectionAfterwards);
     if (le_acceptlist_callbacks_ != nullptr) {
       le_acceptlist_callbacks_->OnLeDisconnection(remote_address);
@@ -1216,7 +1185,6 @@ public:
   HciLayer* hci_layer_ = nullptr;
   Controller* controller_ = nullptr;
   os::Handler* handler_ = nullptr;
-  RoundRobinScheduler* round_robin_scheduler_ = nullptr;
   LeAddressManager* le_address_manager_ = nullptr;
   LeAclConnectionInterface* le_acl_connection_interface_ = nullptr;
   LeConnectionCallbacks* le_client_callbacks_ = nullptr;

@@ -245,11 +245,9 @@ protected:
     controller_ = new TestController();
     hci_layer_ = new HciLayerFake();
 
-    round_robin_scheduler_ = new RoundRobinScheduler(handler_, controller_, hci_queue_.GetUpEnd());
     hci_queue_.GetDownEnd()->RegisterDequeue(
             handler_, common::Bind(&LeImplTest::HciDownEndDequeue, common::Unretained(this)));
-    le_impl_ = new le_impl(hci_layer_, controller_, handler_, round_robin_scheduler_,
-                           kCrashOnUnknownHandle);
+    le_impl_ = new le_impl(hci_layer_, controller_, handler_, kCrashOnUnknownHandle);
     le_impl_->handle_register_le_callbacks(&mock_le_connection_callbacks_, handler_);
 
     Address address;
@@ -455,7 +453,6 @@ protected:
     hci_queue_.GetDownEnd()->UnregisterDequeue();
 
     delete hci_layer_;
-    delete round_robin_scheduler_;
     delete controller_;
 
     handler_->Clear();
@@ -513,7 +510,6 @@ protected:
   Handler* handler_;
   HciLayerFake* hci_layer_{nullptr};
   TestController* controller_;
-  RoundRobinScheduler* round_robin_scheduler_{nullptr};
 
   MockLeConnectionCallbacks mock_le_connection_callbacks_;
   MockLeConnectionManagementCallbacks connection_management_callbacks_;
