@@ -34,7 +34,6 @@
 #include "hci/acl_manager/le_acceptlist_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
 #include "hci/acl_manager/le_impl.h"
-#include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/remote_name_request.h"
@@ -48,20 +47,14 @@ namespace hci {
 constexpr uint16_t kQualcommDebugHandle = 0xedc;
 constexpr uint16_t kSamsungDebugHandle = 0xeef;
 
-using acl_manager::AclConnection;
-using common::Bind;
 using common::BindOnce;
 
 using acl_manager::classic_impl;
-using acl_manager::ClassicAclConnection;
 using acl_manager::ConnectionCallbacks;
 
 using acl_manager::le_impl;
 using acl_manager::LeAcceptlistCallbacks;
-using acl_manager::LeAclConnection;
 using acl_manager::LeConnectionCallbacks;
-
-using acl_manager::RoundRobinScheduler;
 
 using acl_manager::AclScheduler;
 
@@ -72,8 +65,6 @@ struct AclManager::impl {
     hci_layer_ = acl_manager_.GetDependency<HciLayer>();
     handler_ = acl_manager_.GetHandler();
     controller_ = acl_manager_.GetDependency<Controller>();
-    round_robin_scheduler_ =
-            new RoundRobinScheduler(handler_, controller_, hci_layer_->GetAclQueueEnd());
     acl_scheduler_ = acl_manager_.GetDependency<AclScheduler>();
 
     remote_name_request_module_ = acl_manager_.GetDependency<RemoteNameRequestModule>();
@@ -81,25 +72,13 @@ struct AclManager::impl {
     bool crash_on_unknown_handle = false;
     {
       const std::lock_guard<std::mutex> lock(dumpsys_mutex_);
-      classic_impl_ = new classic_impl(hci_layer_, controller_, handler_, round_robin_scheduler_,
-                                       crash_on_unknown_handle, acl_scheduler_,
-                                       remote_name_request_module_);
-      le_impl_ = new le_impl(hci_layer_, controller_, handler_, round_robin_scheduler_,
-                             crash_on_unknown_handle);
+      classic_impl_ = new classic_impl(hci_layer_, controller_, handler_, crash_on_unknown_handle,
+                                       acl_scheduler_, remote_name_request_module_);
+      le_impl_ = new le_impl(hci_layer_, controller_, handler_, crash_on_unknown_handle);
     }
-
-    hci_queue_end_ = hci_layer_->GetAclQueueEnd();
-    hci_queue_end_->RegisterDequeue(handler_,
-                                    common::Bind(&impl::dequeue_and_route_acl_packet_to_connection,
-                                                 common::Unretained(this)));
   }
 
   void Stop() {
-    hci_queue_end_->UnregisterDequeue();
-    if (enqueue_registered_.exchange(false)) {
-      hci_queue_end_->UnregisterEnqueue();
-    }
-
     {
       const std::lock_guard<std::mutex> lock(dumpsys_mutex_);
       delete le_impl_;
@@ -111,8 +90,6 @@ struct AclManager::impl {
     unknown_acl_alarm_.reset();
     waiting_packets_.clear();
 
-    delete round_robin_scheduler_;
-    hci_queue_end_ = nullptr;
     handler_ = nullptr;
     hci_layer_ = nullptr;
     acl_scheduler_ = nullptr;
@@ -146,44 +123,6 @@ struct AclManager::impl {
     impl->unknown_acl_alarm_.reset();
   }
 
-  // Invoked from some external Queue Reactable context 2
-  void dequeue_and_route_acl_packet_to_connection() {
-    // Retry any waiting packets first
-    if (!waiting_packets_.empty()) {
-      retry_unknown_acl(/* timed_out = */ false);
-    }
-
-    auto packet = hci_queue_end_->TryDequeue();
-    log::assert_that(packet != nullptr, "assert failed: packet != nullptr");
-    if (!packet->IsValid()) {
-      log::info("Dropping invalid packet of size {}", packet->size());
-      return;
-    }
-    uint16_t handle = packet->GetHandle();
-    if (handle == kQualcommDebugHandle || handle == kSamsungDebugHandle) {
-      return;
-    }
-    if (classic_impl_->send_packet_upward(handle,
-                                          [&packet](struct acl_manager::assembler* assembler) {
-                                            assembler->on_incoming_packet(*packet);
-                                          })) {
-      return;
-    }
-    if (le_impl_->send_packet_upward(handle, [&packet](struct acl_manager::assembler* assembler) {
-          assembler->on_incoming_packet(*packet);
-        })) {
-      return;
-    }
-    if (unknown_acl_alarm_ == nullptr) {
-      unknown_acl_alarm_.reset(new os::Alarm(handler_));
-    }
-    waiting_packets_.push_back(*packet);
-    log::info("Saving packet of size {} to unknown connection 0x{:x}", packet->size(),
-              packet->GetHandle());
-    unknown_acl_alarm_->Schedule(BindOnce(&on_unknown_acl_timer, common::Unretained(this)),
-                                 kWaitBeforeDroppingUnknownAcl);
-  }
-
   void Dump(std::promise<flatbuffers::Offset<AclManagerData>> promise,
             flatbuffers::FlatBufferBuilder* fb_builder) const;
 
@@ -196,9 +135,7 @@ struct AclManager::impl {
   os::Handler* handler_ = nullptr;
   Controller* controller_ = nullptr;
   HciLayer* hci_layer_ = nullptr;
-  RoundRobinScheduler* round_robin_scheduler_ = nullptr;
   common::BidiQueueEnd<AclBuilder, AclView>* hci_queue_end_ = nullptr;
-  std::atomic_bool enqueue_registered_ = false;
   uint16_t default_link_policy_settings_ = 0xffff;
   mutable std::mutex dumpsys_mutex_;
   std::unique_ptr<os::Alarm> unknown_acl_alarm_;
@@ -389,10 +326,7 @@ Address AclManager::HACK_GetLeAddress(uint16_t connection_handle) {
   return pimpl_->le_impl_->HACK_get_address(connection_handle);
 }
 
-void AclManager::HACK_SetAclTxPriority(uint8_t handle, bool high_priority) {
-  CallOn(pimpl_->round_robin_scheduler_, &RoundRobinScheduler::SetLinkPriority, handle,
-         high_priority);
-}
+void AclManager::HACK_SetAclTxPriority(uint8_t, bool) {}
 
 void AclManager::ListDependencies(ModuleList* list) const {
   list->add<HciLayer>();

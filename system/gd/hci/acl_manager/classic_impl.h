@@ -25,7 +25,6 @@
 #include "hci/acl_manager/assembler.h"
 #include "hci/acl_manager/connection_callbacks.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
-#include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/class_of_device.h"
 #include "hci/controller.h"
 #include "hci/event_checkers.h"
@@ -51,11 +50,10 @@ struct acl_connection {
 
 struct classic_impl {
   classic_impl(HciLayer* hci_layer, Controller* controller, os::Handler* handler,
-               RoundRobinScheduler* round_robin_scheduler, bool crash_on_unknown_handle,
-               AclScheduler* acl_scheduler, RemoteNameRequestModule* remote_name_request_module)
+               bool crash_on_unknown_handle, AclScheduler* acl_scheduler,
+               RemoteNameRequestModule* remote_name_request_module)
       : hci_layer_(hci_layer),
         controller_(controller),
-        round_robin_scheduler_(round_robin_scheduler),
         acl_scheduler_(acl_scheduler),
         remote_name_request_module_(remote_name_request_module) {
     hci_layer_ = hci_layer;
@@ -347,7 +345,6 @@ public:
     uint16_t handle = connection_complete.GetConnectionHandle();
     auto queue = std::make_shared<AclConnection::Queue>(10);
     auto queue_down_end = queue->GetDownEnd();
-    round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::CLASSIC, handle, queue);
     std::unique_ptr<ClassicAclConnection> connection(
             new ClassicAclConnection(std::move(queue), acl_connection_interface_, handle, address));
     connection->locally_initiated_ = initiator == Initiator::LOCALLY_INITIATED;
@@ -420,10 +417,7 @@ public:
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
             handle,
-            [=, this](ConnectionManagementCallbacks* callbacks) {
-              round_robin_scheduler_->Unregister(handle);
-              callbacks->OnDisconnection(reason);
-            },
+            [=](ConnectionManagementCallbacks* callbacks) { callbacks->OnDisconnection(reason); },
             kRemoveConnectionAfterwards);
     connections.crash_on_unknown_handle_ = event_also_routes_to_other_receivers;
   }
@@ -736,7 +730,6 @@ public:
 
   HciLayer* hci_layer_ = nullptr;
   Controller* controller_ = nullptr;
-  RoundRobinScheduler* round_robin_scheduler_ = nullptr;
   AclScheduler* acl_scheduler_ = nullptr;
   RemoteNameRequestModule* remote_name_request_module_ = nullptr;
   AclConnectionInterface* acl_connection_interface_ = nullptr;

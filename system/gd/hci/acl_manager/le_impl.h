@@ -32,7 +32,6 @@
 #include "hci/acl_manager/le_acl_connection.h"
 #include "hci/acl_manager/le_connection_callbacks.h"
 #include "hci/acl_manager/le_connection_management_callbacks.h"
-#include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
@@ -126,10 +125,8 @@ struct le_acl_connection {
 
 struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   le_impl(HciLayer* hci_layer, Controller* controller, os::Handler* handler,
-          RoundRobinScheduler* round_robin_scheduler, bool crash_on_unknown_handle)
-      : hci_layer_(hci_layer),
-        controller_(controller),
-        round_robin_scheduler_(round_robin_scheduler) {
+          bool crash_on_unknown_handle)
+      : hci_layer_(hci_layer), controller_(controller) {
     hci_layer_ = hci_layer;
     controller_ = controller;
     handler_ = handler;
@@ -470,7 +467,6 @@ public:
     auto role_specific_data = initialize_role_specific_data(role);
     auto queue = std::make_shared<AclConnection::Queue>(10);
     auto queue_down_end = queue->GetDownEnd();
-    round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::LE, handle, queue);
     std::unique_ptr<LeAclConnection> connection(
             new LeAclConnection(std::move(queue), le_acl_connection_interface_, handle,
                                 role_specific_data, remote_address));
@@ -539,10 +535,7 @@ public:
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
             handle,
-            [=, this](LeConnectionManagementCallbacks* callbacks) {
-              round_robin_scheduler_->Unregister(handle);
-              callbacks->OnDisconnection(reason);
-            },
+            [=](LeConnectionManagementCallbacks* callbacks) { callbacks->OnDisconnection(reason); },
             kRemoveConnectionAfterwards);
     if (le_acceptlist_callbacks_ != nullptr) {
       le_acceptlist_callbacks_->OnLeDisconnection(remote_address);
@@ -1216,7 +1209,6 @@ public:
   HciLayer* hci_layer_ = nullptr;
   Controller* controller_ = nullptr;
   os::Handler* handler_ = nullptr;
-  RoundRobinScheduler* round_robin_scheduler_ = nullptr;
   LeAddressManager* le_address_manager_ = nullptr;
   LeAclConnectionInterface* le_acl_connection_interface_ = nullptr;
   LeConnectionCallbacks* le_client_callbacks_ = nullptr;
