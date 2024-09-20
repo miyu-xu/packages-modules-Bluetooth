@@ -26,6 +26,8 @@
 #include <functional>
 #include <optional>
 
+#include <base/functional/callback.h>
+
 // Original included files, if any
 #include "stack/btm/btm_ble_sec.h"
 #include "stack/include/bt_device_type.h"

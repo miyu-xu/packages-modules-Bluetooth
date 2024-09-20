@@ -22,6 +22,8 @@
 #include <cstdint>
 #include <vector>
 
+#include <base/functional/callback.h>
+
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_ble_int_types.h"
 #include "stack/include/bt_dev_class.h"

@@ -19,9 +19,10 @@
  *   Functions generated:6
  */
 
-#include <base/functional/bind.h>
-
 #include <memory>
+
+#include <base/functional/bind.h>
+#include <base/functional/callback.h>
 
 #include "stack/btm/btm_ble_int.h"
 #include "stack/include/btm_ble_api.h"

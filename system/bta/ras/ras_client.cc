@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #include <base/functional/bind.h>
+#include <base/functional/callback.h>
 
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_ras_api.h"
