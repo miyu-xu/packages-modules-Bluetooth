@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a97bd589_9be57f09",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-20T18:29:49Z",
+      "side": 1,
+      "message": "do you need debug print to know the reason why alarm is not scheduled?",
+      "range": {
+        "startLine": 258,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 41
+      },
+      "revId": "9aa166250f37996a12a753d768942ba5857260ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
