@@ -1494,12 +1494,6 @@ TEST_F(SnoopLoggerModuleTest, custom_socket_profiles_filtered_hfp_hf_test) {
   ASSERT_EQ(bytes_read, static_cast<int>(expected_data_size));
   ASSERT_TRUE(std::memcmp(recv_buf3, kExpectedPhoneNumber.data(), expected_data_size) == 0);
 
-  ASSERT_TRUE(bluetooth::os::SetSystemProperty(SnoopLogger::kBtSnoopLogFilterProfileMapModeProperty,
-                                               SnoopLogger::kBtSnoopLogFilterProfileModeDisabled));
-  ASSERT_TRUE(
-          bluetooth::os::SetSystemProperty(SnoopLogger::kBtSnoopLogFilterProfilePbapModeProperty,
-                                           SnoopLogger::kBtSnoopLogFilterProfileModeDisabled));
-
   test_registry->StopAll();
   close(socket_fd);
 }
