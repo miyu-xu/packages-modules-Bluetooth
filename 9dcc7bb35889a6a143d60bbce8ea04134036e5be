@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ddd3cc_d60cc2fa",
+        "filename": "system/gd/hal/snoop_logger_socket.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-20T21:57:31Z",
+      "side": 1,
+      "message": "this is a strange usage of enum, normally you would expect enum to be capitalized or constants to be defined as numbers. \n\nWhat is the reason to use enum like this here?",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 4
+      },
+      "revId": "9dcc7bb35889a6a143d60bbce8ea04134036e5be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
