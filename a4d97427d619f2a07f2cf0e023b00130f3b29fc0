@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2d4379c_15c4528b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-20T08:16:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de43049b_d0207fcf",
+      "revId": "a4d97427d619f2a07f2cf0e023b00130f3b29fc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fffb3605_15649284",
@@ -66,6 +84,30 @@
       "writtenOn": "2024-09-20T07:07:02Z",
       "side": 1,
       "message": "nit: Would this work?\n```\n        return Arrays.stream(mDisplayManager.getDisplays())\n                .anyMatch(display -\u003e display.getState() \u003d\u003d Display.STATE_ON);\n```",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 66
+      },
+      "revId": "a4d97427d619f2a07f2cf0e023b00130f3b29fc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0838f527_f0c5fb26",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-20T08:16:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fffb3605_15649284",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -137,6 +179,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59253981_c1ce0af5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-20T08:16:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3654835_e3d8cb78",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "a4d97427d619f2a07f2cf0e023b00130f3b29fc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f915d38b_2d501de7",
@@ -184,6 +250,30 @@
           ]
         }
       ],
+      "revId": "a4d97427d619f2a07f2cf0e023b00130f3b29fc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4a3e35_f238d1df",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-20T08:16:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f915d38b_2d501de7",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 32
+      },
       "revId": "a4d97427d619f2a07f2cf0e023b00130f3b29fc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
