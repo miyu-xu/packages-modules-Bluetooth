@@ -22,6 +22,30 @@
       },
       "revId": "e67113cea3504165cf508442dd181bcb91df3aa3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ca7c829_b76ede35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-09-20T03:49:06Z",
+      "side": 1,
+      "message": "I think collecting some feedback report is sufficient to investigate the issue because the issue could be not only related to BT state but also some other module like USB.\n\nWith metrics or even structured metrics we can better detect the regression and the percentage of long delay but we can only relate a few information like board/BT state to the issue, so it might not be the best way to tackle the issue, while with the feedback report, we can see all the syslog and even contact with the reporter to get more information.",
+      "parentUuid": "0f1ed041_3e12320d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "e67113cea3504165cf508442dd181bcb91df3aa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
