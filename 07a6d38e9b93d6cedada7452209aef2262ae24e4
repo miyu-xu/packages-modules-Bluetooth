@@ -16,6 +16,24 @@
       "message": "What is the reason of doing that ?",
       "revId": "07a6d38e9b93d6cedada7452209aef2262ae24e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f79b641_8f1fc21e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-09-20T17:52:15Z",
+      "side": 1,
+      "message": "Disabling the other profiles will prevent them from interfering the the tests.  HFP specifically is connecting and sometimes not fully finishing the connection before the test ends, which is contributing to some of the flakiness in the tests.  @siyuanh@google.com am I missing anything in this explanation?",
+      "parentUuid": "f23f2c46_e3b620f4",
+      "revId": "07a6d38e9b93d6cedada7452209aef2262ae24e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
