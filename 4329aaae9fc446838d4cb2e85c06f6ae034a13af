@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "268f9ef3_3b005088",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-20T22:01:05Z",
+      "side": 1,
+      "message": "The round robin scheduler is actually being used and deleting it would break multiplexing for ACL",
+      "revId": "4329aaae9fc446838d4cb2e85c06f6ae034a13af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
