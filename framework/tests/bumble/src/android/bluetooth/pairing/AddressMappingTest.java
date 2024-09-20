@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-package android.bluetooth;
+package android.bluetooth.pairing;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.Host;
+import android.bluetooth.PandoraDevice;
+import android.bluetooth.cts.EnableBluetoothRule;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +37,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
-import com.google.common.util.concurrent.SettableFuture;
 import com.google.protobuf.Empty;
 
 import org.junit.After;
@@ -47,16 +52,18 @@ import pandora.HostProto.OwnAddressType;
 import pandora.HostProto.SetDiscoverabilityModeRequest;
 
 import java.time.Duration;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /** Test cases for {@link Hid Host}. */
 @RunWith(AndroidJUnit4.class)
 public class AddressMappingTest {
     private static final String TAG = AddressMappingTest.class.getSimpleName();
     private static final String BUMBLE_DEVICE_NAME = "Bumble";
-    private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
-
-    private SettableFuture<Boolean> mDeviceFoundIntent, mDiscoveryStarted;
-    private BluetoothDevice mDevice, mDeviceFirst, mDeviceSecond;
+    private static final Duration INTENT_TIMEOUT = Duration.ofSeconds(10);
+    private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
+    private CompletableFuture<BluetoothDevice> mDeviceFound;
+    private BluetoothDevice mDevice;
     private final Context mContext = ApplicationProvider.getApplicationContext();
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
@@ -71,36 +78,24 @@ public class AddressMappingTest {
     @Rule(order = 2)
     public final PandoraDevice mBumble = new PandoraDevice();
 
+    @Rule(order = 3)
+    public final EnableBluetoothRule enableBluetoothRule = new EnableBluetoothRule(false, true);
+
     private BroadcastReceiver mStateReceiver =
             new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    switch (intent.getAction()) {
-                        case BluetoothDevice.ACTION_FOUND:
-                            BluetoothDevice device =
-                                    intent.getParcelableExtra(
-                                            BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
-                            String deviceName =
-                                    String.valueOf(
-                                            intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
-                            Log.i(
-                                    TAG,
-                                    "Discovered device: " + device + " with name: " + deviceName);
+                    if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
+                        BluetoothDevice device =
+                                intent.getParcelableExtra(
+                                        BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                        String deviceName =
+                                String.valueOf(intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                        Log.i(TAG, "Discovered device: " + device + " with name: " + deviceName);
 
-                            if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
-                                if (mDeviceFoundIntent != null) {
-                                    mDevice = device;
-                                    mDeviceFoundIntent.set(true);
-                                }
-                            }
-                            break;
-                        case BluetoothAdapter.ACTION_DISCOVERY_STARTED:
-                            if (mDiscoveryStarted != null) {
-                                mDiscoveryStarted.set(true);
-                            }
-                            break;
-                        default:
-                            break;
+                        if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
+                            mDeviceFound.complete(device);
+                        }
                     }
                 }
             };
@@ -150,8 +145,10 @@ public class AddressMappingTest {
     @Test
     public void testLePairing_whenRpaRotates() throws Exception {
         pairAndConnect();
-        mDeviceFirst = mDevice;
-        assertThat(mDeviceFirst.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
+        String firstDevAddr = mDevice.getAddress();
+        String firstDevIdAddr = mDevice.getIdentityAddress();
+
+        assertThat(mDevice.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
         mDevice.disconnect();
         // Forget the device
         if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
@@ -160,11 +157,12 @@ public class AddressMappingTest {
         // Reset remote device
         mBumble.hostBlocking().factoryReset(Empty.getDefaultInstance());
         pairAndConnect();
-        mDeviceSecond = mDevice;
-        assertThat(mDeviceSecond.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
-        // Verify RPA rotated and Identity address same
-        assertThat(mDeviceFirst.getAddress()).isNotEqualTo(mDeviceSecond.getAddress());
-        assertThat(mDeviceFirst.getIdentityAddress()).isEqualTo(mDeviceSecond.getIdentityAddress());
+        String secondDevAddr = mDevice.getAddress();
+        String secondDevIdAddr = mDevice.getIdentityAddress();
+        assertThat(mDevice.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
+        // Verify RPA rotated address is not same and Identity address is same
+        assertThat(firstDevAddr).isNotEqualTo(secondDevAddr);
+        assertThat(firstDevIdAddr).isEqualTo(secondDevIdAddr);
     }
 
     private void pairAndConnect() throws Exception {
@@ -188,14 +186,14 @@ public class AddressMappingTest {
                                 .setOwnAddressType(OwnAddressType.RANDOM)
                                 .setData(dataTypeBuilder.build())
                                 .build());
-        mDiscoveryStarted = SettableFuture.create();
-        mDeviceFoundIntent = SettableFuture.create();
-        // Start Discovery
-        assertThat(mAdapter.startDiscovery()).isTrue();
-        assertThat(mDiscoveryStarted.get()).isTrue();
-        assertThat(mDeviceFoundIntent.get()).isTrue();
-        assertThat(mAdapter.cancelDiscovery()).isTrue();
 
+        // Start Discovery
+        mDeviceFound = new CompletableFuture<>();
+        assertThat(mAdapter.startDiscovery()).isTrue();
+        mDevice =
+                mDeviceFound
+                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
         // Start pairing
         mHost.createBondAndVerify(mDevice);
         Log.i(
