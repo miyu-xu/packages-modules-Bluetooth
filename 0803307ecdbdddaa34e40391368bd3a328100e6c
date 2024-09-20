@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16f46739_eefa38ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-20T23:36:28Z",
+      "side": 1,
+      "message": "One should be able to get the Android device\u0027s current RPA from btsnoop or btsnooz log, why is it necessary to log in dumpsys?",
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43d9dc7d_33efdb05",
         "filename": "system/stack/btm/btm_ble_addr.cc",
         "patchSetId": 5
