@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e372967_cde02851",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-20T19:02:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b596787b_4410be4f",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "47f80292a2de7bc5e09287619ac962450ce58362",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ac8bc33_894473fe",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-20T18:53:45Z",
       "side": 1,
       "message": "There isn\u0027t any concept of `ref` in this function since it is the `device` passed as parameter that is advertising, we can rename it to `advertise_hap` instead.",
+      "range": {
+        "startLine": 81,
+        "startChar": 14,
+        "endLine": 81,
+        "endChar": 31
+      },
+      "revId": "47f80292a2de7bc5e09287619ac962450ce58362",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c952f3_3cdf1e26",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-20T19:02:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac8bc33_894473fe",
       "range": {
         "startLine": 81,
         "startChar": 14,
