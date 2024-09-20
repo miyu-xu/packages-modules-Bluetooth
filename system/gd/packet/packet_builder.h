@@ -38,9 +38,6 @@ public:
   PacketBuilder() = default;
   virtual ~PacketBuilder() = default;
 
-  // Classes which need fragmentation should define a function like this:
-  // std::forward_list<DerivedBuilder>& Fragment(size_t max_size);
-
   // Serialize the packet to a byte vector.
   std::vector<uint8_t> SerializeToBytes() const {
     std::vector<uint8_t> output;
