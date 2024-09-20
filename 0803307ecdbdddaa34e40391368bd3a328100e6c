@@ -16,6 +16,23 @@
       "message": "Can I please get a follow-up review on this? Thanks.",
       "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa9bb4fb_11a20d1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-09-20T18:40:16Z",
+      "side": 1,
+      "message": "Can this cause potential privacy hole? thinking it loud!\nIt may be fine considering dumpsys is something pulled out only when usb is connected.",
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
