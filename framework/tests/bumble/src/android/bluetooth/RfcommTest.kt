@@ -19,15 +19,18 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
@@ -381,6 +384,35 @@ class RfcommTest {
         }
     }
 
+    /*
+      Test Steps:
+      1. Create listening socket and connect
+      2. Disconnect RFCOMM from remote device
+    */
+    @Test
+    fun serverSecureConnectThenRemoteDisconnect() {
+        // connect
+        val (serverSock, connection) = connectRemoteToListeningSocket()
+        val disconnectRequest =
+            RfcommProto.DisconnectionRequest.newBuilder().setConnection(connection).build()
+        // disconnect from remote
+        mBumble.rfcommBlocking().disconnect(disconnectRequest)
+        Truth.assertThat(serverSock.channel).isEqualTo(-1) // ensure disconnected at RFCOMM Layer
+    }
+
+    /*
+      Test Steps:
+      1. Create listening socket and connect
+      2. Disconnect RFCOMM from local device
+    */
+    @Test
+    fun serverSecureConnectThenLocalDisconnect() {
+        // connect
+        val (serverSock, _) = connectRemoteToListeningSocket()
+        serverSock.close()
+        Truth.assertThat(serverSock.channel).isEqualTo(-1) // ensure disconnected at RFCOMM Layer
+    }
+
     private fun createConnectAcceptSocket(
         isSecure: Boolean,
         server: ServerId,
@@ -443,6 +475,33 @@ class RfcommTest {
         }
     }
 
+    private fun connectRemoteToListeningSocket(
+        name: String = TEST_SERVER_NAME,
+        uuid: String = TEST_UUID,
+    ): Pair<BluetoothServerSocket, RfcommProto.RfcommConnection> {
+        var connection: RfcommProto.RfcommConnection? = null
+        val connectRequest =
+            RfcommProto.ConnectionRequest.newBuilder()
+                .setAddress(bdAddrStringToByteString(LOCAL_ADDR_STRING))
+                .setUuid(uuid)
+                .build()
+        val t = thread {
+            val connectResponse = mBumble.rfcommBlocking().connectToServer(connectRequest)
+            connection = connectResponse.connection
+        }
+        val socket = mAdapter.listenUsingRfcommWithServiceRecord(name, UUID.fromString(uuid))
+
+        try {
+            socket.accept(3000) // 3 second timeout
+        } catch (e: IOException) {
+            Log.e(TAG, "Unexpected IOException: $e")
+        }
+        t.join()
+        Truth.assertThat(connection).isNotNull()
+
+        return Pair(socket, connection!!)
+    }
+
     private fun getProfileProxy(context: Context, profile: Int): BluetoothProfile {
         mAdapter.getProfileProxy(context, mProfileServiceListener, profile)
         val proxyCaptor = argumentCaptor<BluetoothProfile>()
@@ -451,9 +510,30 @@ class RfcommTest {
         return proxyCaptor.lastValue
     }
 
+    private fun bdAddrStringToByteString(bdAddr: String): ByteString {
+        // Assumes "XX:XX:XX:XX:XX:XX" format
+        assert(bdAddr.length == 17)
+        var i: Int = 0
+        var nextEntryString: String
+        var nextEntryInt: Int
+        var nextEntryBytes: Byte
+        var bdAddrByteArray: ByteArray = byteArrayOf()
+
+        repeat(6) {
+            nextEntryString = bdAddr.substring(i, i + 2)
+            nextEntryInt = nextEntryString.toInt(16)
+            nextEntryBytes = nextEntryInt.toByte()
+            bdAddrByteArray = bdAddrByteArray + nextEntryBytes
+            i += 3
+        }
+
+        return ByteString.copyFrom(bdAddrByteArray)
+    }
+
     companion object {
         private val TAG = RfcommTest::class.java.getSimpleName()
         private val GRPC_TIMEOUT = Duration.ofSeconds(10)
+        private val LOCAL_ADDR_STRING: String = "DA:4C:10:DE:17:00"
         private const val TEST_UUID = "2ac5d8f1-f58d-48ac-a16b-cdeba0892d65"
         private const val SERIAL_PORT_UUID = "00001101-0000-1000-8000-00805F9B34FB"
         private const val TEST_SERVER_NAME = "RFCOMM Server"
