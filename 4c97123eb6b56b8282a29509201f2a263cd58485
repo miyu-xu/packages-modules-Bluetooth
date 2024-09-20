@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f94ee68_d77191d5",
+        "filename": "flags/system_service.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-20T18:57:14Z",
+      "side": 1,
+      "message": "FYI:\nThere is no code involved that is in the system_service of the bluetooth.(`packages/modules/Bluetooth/service`).\n\nBut since there is not yet a appropriate aconfig file..",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "4c97123eb6b56b8282a29509201f2a263cd58485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
