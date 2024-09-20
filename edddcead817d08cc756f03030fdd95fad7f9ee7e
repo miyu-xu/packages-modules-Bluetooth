@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fb49439_b6e0bc13",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-20T06:49:06Z",
+      "side": 1,
+      "message": "nit: prefer to factor out `is_interactive` like we do with `is_restricted`",
+      "range": {
+        "startLine": 424,
+        "startChar": 12,
+        "endLine": 424,
+        "endChar": 30
+      },
+      "revId": "edddcead817d08cc756f03030fdd95fad7f9ee7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
