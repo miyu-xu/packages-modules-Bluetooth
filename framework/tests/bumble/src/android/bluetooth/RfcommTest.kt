@@ -19,15 +19,18 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
@@ -72,6 +75,12 @@ class RfcommTest {
     private lateinit var host: Host
     private var mConnectionCounter = 1
     private var mProfileServiceListener = mock<BluetoothProfile.ServiceListener>()
+
+    @OptIn(ExperimentalStdlibApi::class)
+    private val bdAddrFormat = HexFormat { bytes { byteSeparator = ":" } }
+    @OptIn(ExperimentalStdlibApi::class)
+    private val mLocalAddress: ByteString =
+        ByteString.copyFrom("DA:4C:10:DE:17:00".hexToByteArray(bdAddrFormat))
 
     /*
         Setup:
@@ -381,6 +390,35 @@ class RfcommTest {
         }
     }
 
+    /*
+      Test Steps:
+      1. Create listening socket and connect
+      2. Disconnect RFCOMM from remote device
+    */
+    @Test
+    fun serverSecureConnectThenRemoteDisconnect() {
+        // connect
+        val (serverSock, connection) = connectRemoteToListeningSocket()
+        val disconnectRequest =
+            RfcommProto.DisconnectionRequest.newBuilder().setConnection(connection).build()
+        // disconnect from remote
+        mBumble.rfcommBlocking().disconnect(disconnectRequest)
+        Truth.assertThat(serverSock.channel).isEqualTo(-1) // ensure disconnected at RFCOMM Layer
+    }
+
+    /*
+      Test Steps:
+      1. Create listening socket and connect
+      2. Disconnect RFCOMM from local device
+    */
+    @Test
+    fun serverSecureConnectThenLocalDisconnect() {
+        // connect
+        val (serverSock, _) = connectRemoteToListeningSocket()
+        serverSock.close()
+        Truth.assertThat(serverSock.channel).isEqualTo(-1) // ensure disconnected at RFCOMM Layer
+    }
+
     private fun createConnectAcceptSocket(
         isSecure: Boolean,
         server: ServerId,
@@ -443,6 +481,33 @@ class RfcommTest {
         }
     }
 
+    private fun connectRemoteToListeningSocket(
+        name: String = TEST_SERVER_NAME,
+        uuid: String = TEST_UUID,
+    ): Pair<BluetoothServerSocket, RfcommProto.RfcommConnection> {
+        var connection: RfcommProto.RfcommConnection? = null
+        val connectRequest =
+            RfcommProto.ConnectionRequest.newBuilder()
+                .setAddress(mLocalAddress)
+                .setUuid(uuid)
+                .build()
+        val t = thread {
+            val connectResponse = mBumble.rfcommBlocking().connectToServer(connectRequest)
+            connection = connectResponse.connection
+        }
+        val socket = mAdapter.listenUsingRfcommWithServiceRecord(name, UUID.fromString(uuid))
+
+        try {
+            socket.accept(3000) // 3 second timeout
+        } catch (e: IOException) {
+            Log.e(TAG, "Unexpected IOException: $e")
+        }
+        t.join()
+        Truth.assertThat(connection).isNotNull()
+
+        return Pair(socket, connection!!)
+    }
+
     private fun getProfileProxy(context: Context, profile: Int): BluetoothProfile {
         mAdapter.getProfileProxy(context, mProfileServiceListener, profile)
         val proxyCaptor = argumentCaptor<BluetoothProfile>()
@@ -452,6 +517,7 @@ class RfcommTest {
     }
 
     companion object {
+
         private val TAG = RfcommTest::class.java.getSimpleName()
         private val GRPC_TIMEOUT = Duration.ofSeconds(10)
         private const val TEST_UUID = "2ac5d8f1-f58d-48ac-a16b-cdeba0892d65"
