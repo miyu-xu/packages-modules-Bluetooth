@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63c1ed9_2f60713f",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-09-21T22:09:54Z",
+      "side": 1,
+      "message": "This comment isn\u0027t entirely correct, as the tracker wasn\u0027t used as a reflector. We can still enter this if statement.",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
