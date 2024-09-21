@@ -189,8 +189,8 @@ public:
               (override));
 
 private:
-  BluetoothAudioClientInterface* bluetooth_audio_clientif_;
-  bluetooth::common::MessageLoopThread* message_loop_;
+  [[maybe_unused]] BluetoothAudioClientInterface* bluetooth_audio_clientif_;
+  [[maybe_unused]] bluetooth::common::MessageLoopThread* message_loop_;
 };
 
 BluetoothAudioClientInterface::BluetoothAudioClientInterface(
