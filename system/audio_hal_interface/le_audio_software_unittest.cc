@@ -31,6 +31,9 @@
 #include "gmock/gmock.h"
 #include "hidl/le_audio_software_hidl.h"
 
+// TODO(b/369381361) Enfore -Wmissing-prototypes
+#pragma GCC diagnostic ignored "-Wmissing-prototypes"
+
 using testing::Return;
 using testing::Test;
 
@@ -189,8 +192,8 @@ public:
               (override));
 
 private:
-  BluetoothAudioClientInterface* bluetooth_audio_clientif_;
-  bluetooth::common::MessageLoopThread* message_loop_;
+  [[maybe_unused]] BluetoothAudioClientInterface* bluetooth_audio_clientif_;
+  [[maybe_unused]] bluetooth::common::MessageLoopThread* message_loop_;
 };
 
 BluetoothAudioClientInterface::BluetoothAudioClientInterface(
