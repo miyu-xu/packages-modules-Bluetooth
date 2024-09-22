@@ -22,6 +22,30 @@
       },
       "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72754860_d2b3457a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-22T02:55:21Z",
+      "side": 1,
+      "message": "what\u0027s your mean \u0027 as the tracker wasn\u0027t used as a reflector\u0027. how did your save the info for a reflector ? per my understanding it was initiated when the reflector handles the capability or vendor specific requesting implicitly? am I wrong ? (although I think it\u0027s better to initiate the tracker for reflector in a explicit way, may change it later.)\nanyway, I mean if the tracker was initiated as reflector before as initiator, your original code caused crash as the alarm wasn\u0027t initiated.",
+      "parentUuid": "e63c1ed9_2f60713f",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
