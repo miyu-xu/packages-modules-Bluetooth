@@ -45,6 +45,31 @@ std::map<bt_status_t, BluetoothAudioCtrlAck> status_to_ack_map = {
         {BT_STATUS_UNSUPPORTED, BluetoothAudioCtrlAck::FAILURE_UNSUPPORTED},
 };
 
+std::string command_to_text(tHFP_CTRL_CMD cmd){
+    switch (cmd) {
+        case HFP_CTRL_CMD_NONE:
+            return "none";
+        case HFP_CTRL_CMD_CHECK_READY:
+            return "check ready";
+        case HFP_CTRL_CMD_START:
+            return "start";
+        case HFP_CTRL_CMD_STOP:
+            return "stop";
+        case HFP_CTRL_CMD_SUSPEND:
+            return "suspend";
+        case HFP_CTRL_GET_INPUT_AUDIO_CONFIG:
+            return "get input audio config";
+        case HFP_CTRL_GET_OUTPUT_AUDIO_CONFIG:
+            return "get output audio config";
+        case HFP_CTRL_SET_OUTPUT_AUDIO_CONFIG:
+            return "set output audio config";
+        case HFP_CTRL_GET_PRESENTATION_POSITION:
+            return "get presentation position";
+        default:
+            return "undefined";
+    }
+}
+
 tBTA_AG_SCB* get_hfp_active_device_callback() {
   const RawAddress& addr = bta_ag_get_active_device();
   if (addr.IsEmpty()) {
@@ -74,10 +99,11 @@ HfpTransport::HfpTransport() { hfp_pending_cmd_ = HFP_CTRL_CMD_NONE; }
 
 BluetoothAudioCtrlAck HfpTransport::StartRequest() {
   if (hfp_pending_cmd_ == HFP_CTRL_CMD_START) {
+      // TODO should allow start retry, otherwise, stuck in starting
     log::info("HFP_CTRL_CMD_START in progress");
     return BluetoothAudioCtrlAck::PENDING;
   } else if (hfp_pending_cmd_ != HFP_CTRL_CMD_NONE) {
-    log::warn("busy in pending_cmd={}", hfp_pending_cmd_);
+    log::warn("busy in pending_cmd={}, {}", hfp_pending_cmd_, command_to_text(hfp_pending_cmd_));
     return BluetoothAudioCtrlAck::FAILURE_BUSY;
   }
 
@@ -93,16 +119,25 @@ BluetoothAudioCtrlAck HfpTransport::StartRequest() {
 
   /* Post start SCO event and wait for sco to open */
   hfp_pending_cmd_ = HFP_CTRL_CMD_START;
-  // as ConnectAudio only queues the command into main thread, keep PENDING
-  // status
+  bool isCallIdle=bluetooth::headset::IsCallIdle();
+  bool isDuringVR = bluetooth::headset::IsDuringVoiceRecognition(&(cb->peer_addr));
+    if(bluetooth::headset::IsCallIdle()&&!isDuringVR){
+        log::warn("Call ongoing={}, voice recognition ongoing={}, wait for retry",!isCallIdle,isDuringVR);
+        hfp_pending_cmd_ = HFP_CTRL_CMD_NONE;
+        return BluetoothAudioCtrlAck::PENDING;
+    }
+    // as ConnectAudio only queues the command into main thread, keep PENDING
+    // status
   auto status = bluetooth::headset::GetInterface()->ConnectAudio(&cb->peer_addr, 0);
   log::info("ConnectAudio status = {} - {}", status, bt_status_text(status));
   auto ctrl_ack = status_to_ack_map.find(status);
   if (ctrl_ack == status_to_ack_map.end()) {
     log::warn("Unmapped status={}", status);
+      hfp_pending_cmd_ = HFP_CTRL_CMD_NONE;
     return BluetoothAudioCtrlAck::FAILURE;
   }
   if (ctrl_ack->second != BluetoothAudioCtrlAck::SUCCESS_FINISHED) {
+      hfp_pending_cmd_ = HFP_CTRL_CMD_NONE;
     return ctrl_ack->second;
   }
   return BluetoothAudioCtrlAck::PENDING;
@@ -132,7 +167,7 @@ void HfpTransport::LogBytesProcessed(size_t bytes_read) {}
 BluetoothAudioCtrlAck HfpTransport::SuspendRequest() {
   log::info("handling");
   if (hfp_pending_cmd_ != HFP_CTRL_CMD_NONE) {
-    log::warn("busy in pending_cmd={}", hfp_pending_cmd_);
+    log::warn("busy in pending_cmd={}, {}", hfp_pending_cmd_, command_to_text(hfp_pending_cmd_));
     return BluetoothAudioCtrlAck::FAILURE_BUSY;
   }
 
@@ -150,8 +185,14 @@ BluetoothAudioCtrlAck HfpTransport::SuspendRequest() {
   }
   auto status = instance->DisconnectAudio(&addr);
   log::info("DisconnectAudio status = {} - {}", status, bt_status_text(status));
-  return status == BT_STATUS_SUCCESS ? BluetoothAudioCtrlAck::SUCCESS_FINISHED
-                                     : BluetoothAudioCtrlAck::FAILURE;
+    // once disconnect audio is queued, not waiting on that
+    // because disconnect audio request can come when audio is disconnected
+    hfp_pending_cmd_ = HFP_CTRL_CMD_NONE;
+  if(status == BT_STATUS_SUCCESS){
+      return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+  }else{
+      return BluetoothAudioCtrlAck::FAILURE;
+  }
 }
 
 void HfpTransport::SetLatencyMode(LatencyMode latency_mode) {}
