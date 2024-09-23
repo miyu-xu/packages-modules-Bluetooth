@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f8a0f0c_dc95519e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-23T10:19:21Z",
+      "side": 1,
+      "message": "False alarm. It doesn\u0027t repro today.\nLooking at last week\u0027s log, it seems there is a third device that connects to my raspi and messes up with the advertisements of the raspi.",
+      "parentUuid": "1064ce98_d2f6481e",
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a3d91bf_e2d4e58d",
