@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57cc4b2c_f2c19c98",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-23T16:03:10Z",
+      "side": 1,
+      "message": "nit: no need for inline here",
+      "range": {
+        "startLine": 559,
+        "startChar": 9,
+        "endLine": 559,
+        "endChar": 15
+      },
+      "revId": "3c3ab989af82eca8f5017e38eeb3f68617dec476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0065db4a_4e290bc1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-23T16:03:10Z",
+      "side": 1,
+      "message": "The opcode in the command status is already validate in the HCI layer; what you are doing parsing the specialized command status is unnecessary since you are only validating the opcode once more.\n\nThis function should be simplified as:\n\n```\n  void on_cs_setup_command_status_cb(uint16_t connection_handle, CommandStatusView status_view) {\n    ErrorCode status \u003d status_view.GetStatus();\n    OpCode op_code \u003d status_view.GetCommandOpCode();\n    if (status !\u003d ErrorCode::SUCCESS) {\n      log::error(\"Error code {}, opcode {} for connection-{}\", ErrorCodeText(status),\n                 OpCodeText(op_code), connection_handle);\n      handle_cs_setup_failure(connection_handle, REASON_INTERNAL_ERROR);\n    }\n  }\n```\n\nRemoving the templating and view validating parts.",
+      "range": {
+        "startLine": 601,
+        "startChar": 0,
+        "endLine": 614,
+        "endChar": 5
+      },
+      "revId": "3c3ab989af82eca8f5017e38eeb3f68617dec476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d58209a_f37e60aa",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-23T16:03:10Z",
+      "side": 1,
+      "message": "Please use `else` branch here",
+      "range": {
+        "startLine": 789,
+        "startChar": 4,
+        "endLine": 790,
+        "endChar": 52
+      },
+      "revId": "3c3ab989af82eca8f5017e38eeb3f68617dec476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
