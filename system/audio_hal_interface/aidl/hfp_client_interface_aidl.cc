@@ -93,6 +93,14 @@ BluetoothAudioCtrlAck HfpTransport::StartRequest() {
 
   /* Post start SCO event and wait for sco to open */
   hfp_pending_cmd_ = HFP_CTRL_CMD_START;
+  bool isCallIdle = bluetooth::headset::IsCallIdle();
+  bool isDuringVR = bluetooth::headset::IsDuringVoiceRecognition(&(cb->peer_addr));
+  if (bluetooth::headset::IsCallIdle() && !isDuringVR) {
+    log::warn("Call ongoing={}, voice recognition ongoing={}, wait for retry", !isCallIdle,
+              isDuringVR);
+    hfp_pending_cmd_ = HFP_CTRL_CMD_NONE;
+    return BluetoothAudioCtrlAck::PENDING;
+  }
   // as ConnectAudio only queues the command into main thread, keep PENDING
   // status
   auto status = bluetooth::headset::GetInterface()->ConnectAudio(&cb->peer_addr, 0);
