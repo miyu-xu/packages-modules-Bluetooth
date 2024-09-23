@@ -70,6 +70,30 @@
       },
       "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "364af511_2a149739",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-23T14:26:15Z",
+      "side": 1,
+      "message": "change the comment to avoid the confusion.",
+      "parentUuid": "a77f8216_6f8cbe0b",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
