@@ -945,8 +945,37 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         return setHearingAidActiveDevice(device, false);
     }
 
+    private BluetoothDevice getFallbackDevice() {
+        List<BluetoothDevice> connectedHearingAidDevices = new ArrayList<>();
+        synchronized (mLock) {
+            if (!mHearingAidConnectedDevices.isEmpty()) {
+                connectedHearingAidDevices.addAll(mHearingAidConnectedDevices);
+            }
+            if (!mLeHearingAidConnectedDevices.isEmpty()) {
+                connectedHearingAidDevices.addAll(mLeHearingAidConnectedDevices);
+            }
+        }
+        return mDbManager != null
+                ? mDbManager.getMostRecentlyConnectedDevicesInList(connectedHearingAidDevices)
+                : null;
+    }
+
     private boolean setHearingAidActiveDevice(
             @Nullable BluetoothDevice device, boolean hasFallbackDevice) {
+        BluetoothDevice fallbackDevice = getFallbackDevice();
+        BluetoothDevice recentA2dpDevice = mDbManager.getMostRecentlyConnectedA2dpDevice();
+        boolean stopAudio = false;
+
+        /* Stop audio playback if there was a switch between ASHA and LE Audio, there is a switch
+         * betweeen ASHA devices or there is no new playback device.
+         */
+        synchronized (mLock) {
+            // Last active device was ASHA and we're switching to LE Audio
+            if ((recentA2dpDevice != null && mLeHearingAidConnectedDevices.contains(fallbackDevice))
+                    || (mHearingAidConnectedDevices.contains(fallbackDevice))
+                    || fallbackDevice == null) {
+                stopAudio = true;
+            }
         Log.d(
                 TAG,
                 "setHearingAidActiveDevice("
@@ -954,14 +983,13 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                         + ")"
                         + (device == null ? " hasFallbackDevice=" + hasFallbackDevice : ""));
 
-        final HearingAidService hearingAidService = mFactory.getHearingAidService();
-        if (hearingAidService == null) {
-            return false;
-        }
+            final HearingAidService hearingAidService = mFactory.getHearingAidService();
+            if (hearingAidService == null) {
+                return false;
+            }
 
-        synchronized (mLock) {
             if (device == null) {
-                if (!hearingAidService.removeActiveDevice(!hasFallbackDevice)) {
+                if (!hearingAidService.removeActiveDevice(stopAudio)) {
                     return false;
                 }
                 mHearingAidActiveDevices.clear();
