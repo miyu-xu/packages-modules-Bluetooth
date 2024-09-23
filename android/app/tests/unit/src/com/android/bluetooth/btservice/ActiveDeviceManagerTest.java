@@ -1056,6 +1056,38 @@ public class ActiveDeviceManagerTest {
     }
 
     /**
+     * An A2DP device connected and set to active. Same device connected as a LE Audio device. A2DP
+     * disconnects with no fallback and LE Audio is set to active. New LE Audio device is connected
+     * and selected as active. First LE Audio device disconnects with fallback to new one.
+     */
+    @Test
+    public void sameDeviceAsA2dpAndLeAudio_noFallbackOnSwitch() {
+        // Turn off the dual mode audio flag
+        Utils.setDualModeAudioStateForTesting(false);
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_NORMAL);
+
+        /* Connect first device as A2DP */
+        a2dpConnected(mDualModeAudioDevice, false);
+        mTestLooper.dispatchAll();
+        verify(mA2dpService).setActiveDevice(mDualModeAudioDevice);
+
+        /* Connect first device as LE Audio */
+        leAudioConnected(mDualModeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).setActiveDevice(mDualModeAudioDevice);
+        verify(mA2dpService).removeActiveDevice(false);
+
+        /* Connect second device as LE Audio. First device is disconnected with fallback to
+         * new one
+         */
+        leAudioConnected(mLeAudioDevice);
+        leAudioDisconnected(mDualModeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).removeActiveDevice(true);
+        verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+    }
+
+    /**
      * Two Hearing Aid are connected and the current active is then disconnected. Should then set
      * active device to fallback device.
      */
