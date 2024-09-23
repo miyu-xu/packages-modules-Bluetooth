@@ -46,6 +46,30 @@
       },
       "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a77f8216_6f8cbe0b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-09-23T02:08:58Z",
+      "side": 1,
+      "message": "Yes, I know the issue you want to handled. Your comment fit the change.\nbut put it in line 302 feel like if we enter line 303 it means \"the tracker was used as reflector\" but it not 100% correct. \nWe can enter line 303 when:\n1. the tracker was used as reflector\n2. the tracker never be used before",
+      "parentUuid": "72754860_d2b3457a",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "00ccec961f119f2abd9ce8d5b3d88c0839eb7708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
