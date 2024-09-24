@@ -94,6 +94,7 @@ public class BassClientStateMachine extends StateMachine {
     private static final byte OPCODE_SET_BCAST_PIN = 0x04;
     private static final byte OPCODE_REMOVE_SOURCE = 0x05;
     private static final int UPDATE_SOURCE_FIXED_LENGTH = 6;
+    private static final long CODEC_ID_LC3 = 0x6L;
 
     static final int CONNECT = 1;
     static final int DISCONNECT = 2;
@@ -1156,6 +1157,13 @@ public class BassClientStateMachine extends StateMachine {
             }
             mBluetoothLeBroadcastReceiveStates.put(characteristic.getInstanceId(), recvState);
             if (!isSourceAbsent(recvState)) {
+                BluetoothLeBroadcastMetadata metaData =
+                        getCurrentBroadcastMetadata(recvState.getSourceId());
+                if (metaData == null) {
+                    setCurrentBroadcastMetadata(
+                            recvState.getSourceId(),
+                            convertRecvStateToBroadcastMetadata(recvState));
+                }
                 checkAndUpdateBroadcastCode(recvState);
                 processPASyncState(recvState);
             }
@@ -1972,6 +1980,68 @@ public class BassClientStateMachine extends StateMachine {
             BassUtils.printByteArray(res);
         }
         return res;
+    }
+
+    private BluetoothLeBroadcastMetadata convertRecvStateToBroadcastMetadata(
+            BluetoothLeBroadcastReceiveState receiveState) {
+        BluetoothLeBroadcastMetadata.Builder metaData = new BluetoothLeBroadcastMetadata.Builder();
+
+        metaData.setSourceDevice(
+                receiveState.getSourceDevice(), receiveState.getSourceAddressType());
+        metaData.setSourceAdvertisingSid(receiveState.getSourceAdvertisingSid());
+        metaData.setBroadcastId(receiveState.getBroadcastId());
+
+        // The rest fields are not mandatory for BASS operations, put placeholder values
+        metaData.setPresentationDelayMicros(BluetoothLeBroadcastMetadata.PA_SYNC_INTERVAL_UNKNOWN);
+        metaData.setBroadcastName(null);
+        metaData.setEncrypted(false);
+        metaData.setBroadcastCode(null);
+        metaData.setPublicBroadcast(false);
+        metaData.setAudioConfigQuality(BluetoothLeBroadcastMetadata.AUDIO_CONFIG_QUALITY_NONE);
+        metaData.setPublicBroadcastMetadata(null);
+        metaData.setRssi(BluetoothLeBroadcastMetadata.RSSI_UNKNOWN);
+
+        // In case metadata is parsed from receive state,
+        // assistant can't manage PAST for channels, generate a placeholder channel
+        BluetoothLeBroadcastChannel channel =
+                new BluetoothLeBroadcastChannel.Builder()
+                        .setSelected(false)
+                        .setChannelIndex(0)
+                        .setCodecMetadata(
+                                BluetoothLeAudioCodecConfigMetadata.fromRawBytes(new byte[0]))
+                        .build();
+
+        for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
+            BluetoothLeBroadcastSubgroup.Builder subGroup =
+                    new BluetoothLeBroadcastSubgroup.Builder();
+            BluetoothLeAudioContentMetadata contentMetaData =
+                    receiveState.getSubgroupMetadata().get(i);
+
+            subGroup.setCodecId(CODEC_ID_LC3);
+            subGroup.setContentMetadata(
+                    contentMetaData != null
+                            ? contentMetaData
+                            : BluetoothLeAudioContentMetadata.fromRawBytes(new byte[0]));
+            subGroup.setCodecSpecificConfig(
+                    BluetoothLeAudioCodecConfigMetadata.fromRawBytes(new byte[0]));
+            subGroup.addChannel(channel);
+
+            metaData.addSubgroup(subGroup.build());
+        }
+
+        // Add a default subgroup if there are no subgroups in receiveState
+        if (receiveState.getNumSubgroups() == 0) {
+            BluetoothLeBroadcastSubgroup.Builder subGroup =
+                    new BluetoothLeBroadcastSubgroup.Builder();
+            subGroup.setCodecId(CODEC_ID_LC3);
+            subGroup.setContentMetadata(BluetoothLeAudioContentMetadata.fromRawBytes(new byte[0]));
+            subGroup.setCodecSpecificConfig(
+                    BluetoothLeAudioCodecConfigMetadata.fromRawBytes(new byte[0]));
+            subGroup.addChannel(channel);
+
+            metaData.addSubgroup(subGroup.build());
+        }
+        return metaData.build();
     }
 
     private boolean isItRightTimeToUpdateBroadcastPin(byte sourceId) {
