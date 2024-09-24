@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7519708_a87cfda6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-24T16:52:55Z",
+      "side": 1,
+      "message": "yes, it should work for both local and external broadcast.",
+      "parentUuid": "1f90bfff_6eacf42d",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0404e4ca_fbac68c2",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 1
@@ -70,6 +88,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95e17103_ecf4b175",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2804,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-24T16:52:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0404e4ca_fbac68c2",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91af7601_8ba0d214",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2804,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-24T16:52:55Z",
+      "side": 1,
+      "message": "Could you help to elaborate a bit why do you prefer to move this from SM to service? Like the pros and cons with current solution. Add source and read bass are all SM\u0027s specific operations. I don\u0027t see much value of moving this to service.",
+      "parentUuid": "848ccc43_8847c2ab",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d32b83a2_c75defaf",
@@ -115,6 +169,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f970a75f_ae24af13",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-24T16:52:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d32b83a2_c75defaf",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "079adf67_c0565a27",
@@ -128,6 +200,24 @@
       "writtenOn": "2024-09-24T10:10:54Z",
       "side": 1,
       "message": ".equals(\"00:00:00:00:00:00\") ?",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "213e1bc5_5d3223b9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-24T16:52:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "079adf67_c0565a27",
       "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
