@@ -98,7 +98,11 @@ public:
   void ClearResolvingList();
   void OnCommandComplete(CommandCompleteView view);
   std::chrono::milliseconds GetNextPrivateAddressIntervalMs();
-  PrivateAddressIntervalRange GetNextPrivateAddressIntervalRange();
+  PrivateAddressIntervalRange GetNextPrivateAddressIntervalRange(std::string client_name);
+  void CheckAddressRotationHappenedInExpectedTimeInterval(
+          std::chrono::time_point<std::chrono::system_clock> interval_min,
+          std::chrono::time_point<std::chrono::system_clock> interval_max,
+          std::chrono::time_point<std::chrono::system_clock> event_time, std::string client_name);
 
   // Unsynchronized check for testing purposes
   size_t NumberCachedCommands() const { return cached_commands_.size(); }
@@ -177,6 +181,10 @@ private:
   uint8_t resolving_list_size_;
   std::queue<Command> cached_commands_;
   bool supports_ble_privacy_{false};
+
+  // Only used for logging error in address rotation time.
+  std::optional<std::chrono::time_point<std::chrono::system_clock>> address_rotation_interval_min;
+  std::optional<std::chrono::time_point<std::chrono::system_clock>> address_rotation_interval_max;
 };
 
 }  // namespace hci
