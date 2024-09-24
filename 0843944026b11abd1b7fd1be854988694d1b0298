@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f192851e_4bea4d56",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-24T17:33:31Z",
+      "side": 1,
+      "message": "`[[fallthrough]]`",
+      "range": {
+        "startLine": 506,
+        "startChar": 6,
+        "endLine": 506,
+        "endChar": 26
+      },
+      "revId": "0843944026b11abd1b7fd1be854988694d1b0298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
