@@ -1299,6 +1299,32 @@ public:
     active_group_id_ = bluetooth::groups::kGroupUnknown;
   }
 
+  void PrepareStreamForAConversational(LeAudioDeviceGroup* group) {
+    if (!com::android::bluetooth::flags::leaudio_improve_switch_during_phone_call()) {
+      log::info("Flag le_audio_improve_switch_during_phone_call is not enabled");
+      return;
+    }
+
+    log::debug("group_id: {}", group->group_id_);
+
+    auto remote_direction = bluetooth::le_audio::types::kLeAudioDirectionSink;
+    ReconfigureOrUpdateRemote(group, remote_direction);
+
+    if (configuration_context_type_ != LeAudioContextType::CONVERSATIONAL) {
+      log::error("Something went wrong {} != {} ", ToString(configuration_context_type_),
+                 ToString(LeAudioContextType::CONVERSATIONAL));
+      return;
+    }
+
+    BidirectionalPair<std::vector<uint8_t>> ccids = {
+            .sink = ContentControlIdKeeper::GetInstance()->GetAllCcids(
+                    local_metadata_context_types_.sink),
+            .source = ContentControlIdKeeper::GetInstance()->GetAllCcids(
+                    local_metadata_context_types_.source)};
+    groupStateMachine_->ConfigureStream(group, configuration_context_type_,
+                                        local_metadata_context_types_, ccids, true);
+  }
+
   void GroupSetActive(const int group_id) override {
     log::info("group_id: {}", group_id);
 
@@ -1414,6 +1440,13 @@ public:
     } else {
       callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
       SendAudioGroupSelectableCodecConfigChanged(group);
+    }
+
+    /* If group become active while phone call, let's configure it right away,
+     * so when audio framework resumes the stream, it will be almost there.
+     */
+    if (IsInCall()) {
+      PrepareStreamForAConversational(group);
     }
   }
 
