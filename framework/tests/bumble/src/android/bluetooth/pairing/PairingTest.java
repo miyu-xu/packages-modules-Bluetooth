@@ -170,6 +170,15 @@ public class PairingTest {
         mHidService = (BluetoothHidHost) getProfileProxy(BluetoothProfile.HID_HOST);
         mHfpService = (BluetoothHeadset) getProfileProxy(BluetoothProfile.HEADSET);
 
+<<<<<<< PATCH SET (f7b46e Remove all bonded devices in test setup)
+        for (BluetoothDevice device : sAdapter.getBondedDevices()) {
+            removeBond(device);
+||||||| BASE
+        mBumbleDevice = mBumble.getRemoteDevice();
+        Set<BluetoothDevice> bondedDevices = sAdapter.getBondedDevices();
+        if (bondedDevices.contains(mBumbleDevice)) {
+            removeBond(mBumbleDevice);
+=======
         mBumbleDevice = mBumble.getRemoteDevice();
         mRemoteLeDevice =
                 sAdapter.getRemoteLeDevice(
@@ -177,10 +186,16 @@ public class PairingTest {
         Set<BluetoothDevice> bondedDevices = sAdapter.getBondedDevices();
         if (bondedDevices.contains(mBumbleDevice)) {
             removeBond(mBumbleDevice);
+>>>>>>> BASE      (e1536c Add permission check for directed advertising)
         }
+<<<<<<< PATCH SET (f7b46e Remove all bonded devices in test setup)
+        mBumbleDevice = mBumble.getRemoteDevice();
+||||||| BASE
+=======
         if (bondedDevices.contains(mRemoteLeDevice)) {
             removeBond(mRemoteLeDevice);
         }
+>>>>>>> BASE      (e1536c Add permission check for directed advertising)
     }
 
     @After
