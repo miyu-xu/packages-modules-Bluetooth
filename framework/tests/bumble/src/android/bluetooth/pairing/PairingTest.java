@@ -158,11 +158,10 @@ public class PairingTest {
         mHidService = (BluetoothHidHost) getProfileProxy(BluetoothProfile.HID_HOST);
         mHfpService = (BluetoothHeadset) getProfileProxy(BluetoothProfile.HEADSET);
 
-        mBumbleDevice = mBumble.getRemoteDevice();
-        Set<BluetoothDevice> bondedDevices = sAdapter.getBondedDevices();
-        if (bondedDevices.contains(mBumbleDevice)) {
-            removeBond(mBumbleDevice);
+        for (BluetoothDevice device : sAdapter.getBondedDevices()) {
+            removeBond(device);
         }
+        mBumbleDevice = mBumble.getRemoteDevice();
     }
 
     @After
