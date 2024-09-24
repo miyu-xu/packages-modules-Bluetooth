@@ -72,6 +72,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc66e455_87017fb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-24T04:47:22Z",
+      "side": 1,
+      "message": "Current status: waiting verification in b/352632969. Then I\u0027ll fix the comments by Hsin-chen, and remove/change the verbose logs.",
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a3d91bf_e2d4e58d",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
