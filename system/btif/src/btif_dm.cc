@@ -1632,10 +1632,19 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
    * capable of a2dp, and both sides can do LE Audio, and it haven't
    * finished GATT over LE yet, then wait for LE service discovery to finish
    * before before passing services to upper layers. */
-  if (results_for_bonding_device && a2dp_sink_capable &&
+  if (com::android::bluetooth::flags::wait_for_lea_disc_on_le_acl_stat()) {
+    if (results_for_bonding_device && a2dp_sink_capable &&
+      get_btm_client_interface().peer.BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE) &&
       pairing_cb.gatt_over_le != btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED &&
       is_le_audio_capable_during_service_discovery(bd_addr)) {
-    skip_reporting_wait_for_le = true;
+      skip_reporting_wait_for_le = true;
+    }
+  } else {
+    if (results_for_bonding_device && a2dp_sink_capable &&
+      pairing_cb.gatt_over_le != btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED &&
+      is_le_audio_capable_during_service_discovery(bd_addr)) {
+      skip_reporting_wait_for_le = true;
+    }
   }
 
   /* onUuidChanged requires getBondedDevices to be populated.
