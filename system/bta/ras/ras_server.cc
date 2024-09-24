@@ -72,6 +72,7 @@ public:
     PendingWriteResponse pending_write_response_;
     uint16_t last_ready_procedure_ = 0;
     uint16_t last_overwritten_procedure_ = 0;
+    bool got_client_request = false;
   };
 
   void Initialize() {
@@ -224,11 +225,23 @@ public:
   }
 
   void OnGattDisconnect(tBTA_GATTS* p_data) {
-    auto address = p_data->conn.remote_bda;
-    log::info("Address: {}, conn_id:{}", address, p_data->conn.conn_id);
-    if (trackers_.find(address) != trackers_.end()) {
-      trackers_.erase(address);
+    auto remote_bda = p_data->conn.remote_bda;
+    log::info("Address: {}, conn_id:{}", remote_bda, p_data->conn.conn_id);
+    if (trackers_.find(remote_bda) != trackers_.end()) {
+      if (trackers_[remote_bda].got_client_request) {
+        NotifyRasServerDisconnected(remote_bda);
+      }
+      trackers_.erase(remote_bda);
     }
+  }
+
+  void NotifyRasServerDisconnected(const RawAddress& remote_bda) {
+    tBLE_BD_ADDR ble_identity_bd_addr;
+    ble_identity_bd_addr.bda = remote_bda;
+    ble_identity_bd_addr.type = BLE_ADDR_RANDOM;
+    btm_random_pseudo_to_identity_addr(&ble_identity_bd_addr.bda, &ble_identity_bd_addr.type);
+
+    callbacks_->OnRasServerDisconnected(ble_identity_bd_addr.bda);
   }
 
   void OnGattServerRegister(tBTA_GATTS* p_data) {
@@ -554,7 +567,20 @@ public:
     trackers_[remote_bda].ccc_values_[characteristic->uuid_] = ccc_value;
     log::info("Write CCC for {}, conn_id:{}, value:0x{:04x}", getUuidName(characteristic->uuid_),
               conn_id, ccc_value);
+    if (characteristic->uuid_ == kRasControlPointCharacteristic) {
+      trackers_[remote_bda].got_client_request = true;
+      NotifyRasServerGettingRequest(remote_bda);
+    }
     BTA_GATTS_SendRsp(conn_id, p_data->req_data.trans_id, GATT_SUCCESS, &p_msg);
+  }
+
+  void NotifyRasServerGettingRequest(const RawAddress& remote_bda) {
+    tBLE_BD_ADDR ble_identity_bd_addr;
+    ble_identity_bd_addr.bda = remote_bda;
+    ble_identity_bd_addr.type = BLE_ADDR_RANDOM;
+    btm_random_pseudo_to_identity_addr(&ble_identity_bd_addr.bda, &ble_identity_bd_addr.type);
+
+    callbacks_->OnRasServerGettingRequest(ble_identity_bd_addr.bda);
   }
 
   void HandleControlPoint(ClientTracker* tracker, tGATT_WRITE_REQ* write_req) {
