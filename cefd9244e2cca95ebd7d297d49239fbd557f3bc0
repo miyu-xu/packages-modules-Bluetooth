@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "920dba5b_6bab745a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/service_discovery/LeAudioServiceDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-24T20:28:40Z",
+      "side": 1,
+      "message": "Nit: Do you mean LE Audio services?",
+      "fixSuggestions": [
+        {
+          "fixId": "8f2fc5a1_75f7b9d3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/service_discovery/LeAudioServiceDiscoveryTest.java",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 193,
+                "endChar": 0
+              },
+              "replacement": "     *   \u003cli\u003eBumble has LE Audio services in addition to GAP and GATT services\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cefd9244e2cca95ebd7d297d49239fbd557f3bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
