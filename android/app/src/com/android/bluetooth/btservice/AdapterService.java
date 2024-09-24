@@ -87,7 +87,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.hardware.display.DisplayManager;
 import android.os.AsyncTask;
 import android.os.BatteryStatsManager;
 import android.os.Binder;
@@ -281,7 +280,6 @@ public class AdapterService extends Service {
     private AdapterState mAdapterStateMachine;
     private BondStateMachine mBondStateMachine;
     private RemoteDevices mRemoteDevices;
-    private AdapterSuspend mAdapterSuspend;
 
     /* TODO: Consider to remove the search API from this class, if changed to use call-back */
     private SdpManager mSdpManager = null;
@@ -755,12 +753,6 @@ public class AdapterService extends Service {
         mBtCompanionManager = new CompanionManager(this, new ServiceFactory());
 
         mBluetoothSocketManagerBinder = new BluetoothSocketManagerBinder(this);
-
-        if (Flags.adapterSuspendMgmt()) {
-            mAdapterSuspend =
-                    new AdapterSuspend(
-                            mNativeInterface, mLooper, getSystemService(DisplayManager.class));
-        }
 
         if (!Flags.fastBindToApp()) {
             setAdapterService(this);
@@ -1487,11 +1479,6 @@ public class AdapterService extends Service {
         if (mBluetoothSocketManagerBinder != null) {
             mBluetoothSocketManagerBinder.cleanUp();
             mBluetoothSocketManagerBinder = null;
-        }
-
-        if (mAdapterSuspend != null) {
-            mAdapterSuspend.cleanup();
-            mAdapterSuspend = null;
         }
 
         mPreferredAudioProfilesCallbacks.kill();
