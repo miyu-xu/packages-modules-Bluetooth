@@ -130,6 +130,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d6bd156_8a5d5f85",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1969,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-24T22:41:06Z",
+      "side": 1,
+      "message": "Do you have any suggestions on what to otherwise? As it stands, it will log in case of failure and then timeout and transition to disconnected",
+      "parentUuid": "9cf94998_94c6cc79",
+      "range": {
+        "startLine": 1969,
+        "startChar": 0,
+        "endLine": 1969,
+        "endChar": 90
+      },
+      "revId": "f352c31c5318c9a810f7095a88a04deaf24fe355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "65c59c16_9f455599",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 14
@@ -164,6 +188,30 @@
       "writtenOn": "2024-09-17T21:13:24Z",
       "side": 1,
       "message": "redundant logging as all the swtich ar already logging all possibilities",
+      "range": {
+        "startLine": 1999,
+        "startChar": 0,
+        "endLine": 1999,
+        "endChar": 70
+      },
+      "revId": "f352c31c5318c9a810f7095a88a04deaf24fe355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8090e7b_872c5282",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1999,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-09-24T22:41:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ea7c0c_9413830e",
       "range": {
         "startLine": 1999,
         "startChar": 0,
