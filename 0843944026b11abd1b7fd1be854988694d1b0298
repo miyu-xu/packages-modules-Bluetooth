@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7904cf8_1c2b174a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-24T17:38:41Z",
+      "side": 1,
+      "message": "Should only contain the flag declaration",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 116
+      },
+      "revId": "0843944026b11abd1b7fd1be854988694d1b0298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f192851e_4bea4d56",
         "filename": "system/audio_hal_interface/hfp_client_interface.cc",
         "patchSetId": 2
