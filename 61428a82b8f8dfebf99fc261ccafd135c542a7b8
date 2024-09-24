@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f90bfff_6eacf42d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-24T10:10:54Z",
+      "side": 1,
+      "message": "Is this a case also for private broadcast ?",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0404e4ca_fbac68c2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2804,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-24T10:10:54Z",
+      "side": 1,
+      "message": "how it\u0027s possible to have no Sources for device ?",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848ccc43_8847c2ab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2804,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-24T10:10:54Z",
+      "side": 1,
+      "message": "I think I may know the reason - please correct me if I\u0027m wrong.\n\nAfter re-connection but BEFORE reading all receive states this could happen.\n\nIf my case is right, I think we may need consider a bit different solution which is implemented in other services. The proposed solution is to \"wait\" until all attributes would be read and then call a callback \"Broadcast Delegator Ready\" - and handle this case then.",
+      "fixSuggestions": [
+        {
+          "fixId": "6018a509_f07aea64",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2804,
+                "startChar": 0,
+                "endLine": 2806,
+                "endChar": 0
+              },
+              "replacement": "            if (!hasRoomForBroadcastSourceAddition(device)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32b83a2_c75defaf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-24T10:10:54Z",
+      "side": 1,
+      "message": "what about isEmpty(BluetoothLeBroadcastReceiveState recvState) ?",
+      "fixSuggestions": [
+        {
+          "fixId": "7fdfbd59_15acafb5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+              "range": {
+                "startLine": 973,
+                "startChar": 0,
+                "endLine": 974,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+              "range": {
+                "startLine": 975,
+                "startChar": 0,
+                "endLine": 976,
+                "endChar": 0
+              },
+              "replacement": "                || recvState.getSourceDevice().getAddress().equals(BluetoothDevice.EMPTY_ADDRESS);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "079adf67_c0565a27",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-09-24T10:10:54Z",
+      "side": 1,
+      "message": ".equals(\"00:00:00:00:00:00\") ?",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
