@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d56f8893_3c1e179f",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-24T22:23:15Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [FlaggedApi] Method `getMethodId()` is a flagged API and should be inside an `if (Flags.channelSounding25q2Apis())` check (or annotate the surrounding method `equals` with `@FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS) to transfer requ...\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[FlaggedApi] Method `getMethodId()` is a flagged API and should be inside an `if (Flags.channelSounding25q2Apis())` check (or annotate the surrounding method `equals` with `@FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS) to transfer requirement to caller`)\n\n            if (mId !\u003d u.getMethodId()) {\n                       ~~~~~~~~~~~~~~~\n\nThis lint check looks for accesses of APIs marked with `@FlaggedApi(X)` without a guarding `if (Flags.X)` check. See go/android-flagged-apis.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 180,
+        "startChar": 20,
+        "endLine": 180,
+        "endChar": 37
+      },
+      "revId": "1eed4429033b22ff2336e6505a21def56f9f30fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
