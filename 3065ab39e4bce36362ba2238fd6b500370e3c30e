@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aab5202_70de91df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-09-24T06:02:35Z",
+      "side": 1,
+      "message": "com::android::bluetooth::flags::hfp_software_datapath",
+      "range": {
+        "startLine": 20,
+        "startChar": 66,
+        "endLine": 20,
+        "endChar": 69
+      },
+      "revId": "3065ab39e4bce36362ba2238fd6b500370e3c30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "900387d6_1719f2c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-09-24T06:02:35Z",
+      "side": 1,
+      "message": "Thanks for identifying this and provide the fix!",
+      "revId": "3065ab39e4bce36362ba2238fd6b500370e3c30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
