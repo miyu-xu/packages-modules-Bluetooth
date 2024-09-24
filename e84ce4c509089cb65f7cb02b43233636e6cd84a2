@@ -16,6 +16,24 @@
       "message": "I assume this wants to fix the case lie below:\n - encoder calls SuspendRequest()\n - bta_ag_sco triggers CancelStreamingRequest() for both encode and decode\n - decoder calls SuspendRequest() // where missed the ack\n \nShould we as well fix this in ConfirmStreamingRequest() symmetrically?",
       "revId": "e84ce4c509089cb65f7cb02b43233636e6cd84a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a7db325_2817d8b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-09-24T15:02:02Z",
+      "side": 1,
+      "message": "Updated, thanks!",
+      "parentUuid": "64c35266_fe9546d5",
+      "revId": "e84ce4c509089cb65f7cb02b43233636e6cd84a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
