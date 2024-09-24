@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "194db064_c185f1c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-24T16:44:21Z",
+      "side": 1,
+      "message": "add bluetooth manager owner to review",
+      "revId": "261ddd70fa36303d97638c810a97cf3fd5e40b38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
