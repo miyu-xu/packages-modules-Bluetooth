@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "532f1334_3367acfd",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T08:12:41Z",
+      "side": 1,
+      "message": "I changed the original `uhid_open_timeout` to `uhid_delayed_ready_cback`. The similar method for the disconnection timeout is now `uhid_ready_disconn_timeout`.\n\nI think even though that\u0027s a little verbose, hopefully it conveys the meaning without any misunderstanding.",
+      "parentUuid": "f80543c5_caa02d09",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9189160_0858c5d8",
@@ -175,6 +193,24 @@
       "side": 1,
       "message": "HID sync: Archie has seen from peripherals that have OPEN and CLOSE multiple times before the UHID stopped. Currently we queue up the event and wait until UHID stops.\n\nHimanshu: add comment why we need to do this thing.",
       "parentUuid": "34c97516_474dae6a",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6558411a_db40e31e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T08:12:41Z",
+      "side": 1,
+      "message": "Comment added.\nBtw I also change the timer here to be a different timer than the initial connection, because I think we can wait for shorter duration here.",
+      "parentUuid": "9deb1c2e_89ee1205",
       "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
