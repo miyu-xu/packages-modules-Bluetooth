@@ -32,19 +32,51 @@ import java.util.UUID;
  * and Client socket channel creation.
  */
 @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
-//@FlaggedApi(Flags.FLAG_BT_SOCKET_SETTINGS_API)
+//@FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
 public final class BluetoothSocketSettings {
 
+    @IntDef(
+            prefix = {"SOCKET_SEC_"},
+            value = {
+		    SOCKET_SEC_LEVEL_INSECURE,
+		    SOCKET_SEC_LEVEL_ENCRYPTION_NO_AUTHENTICATION,
+		    SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUHENTICATION})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface SocketSecurityLevel {}
+
     /** For Sockets with NO security requirements */
-    public static final int BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE = 0;
+    public static final int SOCKET_SEC_LEVEL_INSECURE = 0;
 
     /** For Sockets with only ENCRYPTION as requirement */
-    public static final int BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_NO_AUTHENTICATION = 1;
+    public static final int SOCKET_SEC_LEVEL_ENCRYPTION_NO_AUTHENTICATION = 1;
 
     /**
      * For Sockets with both ENCRYPTION and AUTHENTICATION as requirement
      */
-    public static final int BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION = 2;
+    public static final int SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUTHENTICATION = 2;
+
+    /** Non-offload data path where app's socket data flows through the Bluetooth stack. */
+    public static final int DATA_PATH_OFFLOAD_OFF = 0;
+
+    /** Software offload data path where app's socket data flows through the vendor process. */
+    public static final int DATA_PATH_SOFTWARE_OFFLOAD = 1;
+
+    /** Hardware offload data path where app's socket data flows through the low power processor. */
+    public static final int DATA_PATH_HARDWARE_OFFLOAD = 2;
+
+    /**
+     * Indicates that the hub ID is invalid.
+     *
+     * @hide
+     */
+    public static final long INVALID_HUB_ID = 0;
+
+    /**
+     * Indicates that the hub endpint ID is invalid.
+     *
+     * @hide
+     */
+    public static final long INVALID_ENDPOINT_ID = 0;
 
     /**
      * Type of the socket, {@link BluetoothSocket#TYPE_RFCOMM}, {@link BluetoothSocket#TYPE_L2CAP},
@@ -63,6 +95,24 @@ public final class BluetoothSocketSettings {
 
     /** Service Uuid for the Sdp Record. */
     private UUID mUuid;
+
+    /** Socket data path. */
+    private int mDataPath;
+
+    /** Descriptive socket name. */
+    private String mSocketName;
+
+    /** The ID of the Hub to which the end point belongs. */
+    private long mHubId;
+
+    /** The ID of the Hub end point. */
+    private long mEndPointId;
+
+    /**
+     * Flag to indicate if data path will be switched to offload end point when connection is
+     * completed.
+     */
+    private boolean mAutoDataPathSwitch;
 
     /**
      * Return the bluetooth socket type this socket will be created for.
@@ -117,6 +167,77 @@ public final class BluetoothSocketSettings {
     }
 
     /**
+     * Get the socket data path.
+     *
+     * @return the socket data path
+     * @hide
+     */
+    @SystemApi
+    @NonNull
+    @RequiresNoPermission
+    public int getDataPath() {
+        return mDataPath;
+    }
+
+    /**
+     * Get the descriptive socket name.
+     *
+     * @return the socket name
+     * @hide
+     */
+    @SystemApi
+    @NonNull
+    @RequiresNoPermission
+    public String getSocketName() {
+        return mSocketName;
+    }
+
+    /**
+     * Get the hub ID.
+     *
+     * @return The ID of the Hub to which the end point belongs
+     * @hide
+     */
+    @SystemApi
+    @NonNull
+    @RequiresNoPermission
+    public long getHubId() {
+        if (mDataPath != DATA_PATH_HARDWARE_OFFLOAD) {
+            return INVALID_HUB_ID;
+        }
+        return mHubId;
+    }
+
+    /**
+     * Get the hub end point ID.
+     *
+     * @return The ID of the Hub end point
+     * @hide
+     */
+    @SystemApi
+    @NonNull
+    @RequiresNoPermission
+    public long getEndPointId() {
+        if (mDataPath != DATA_PATH_HARDWARE_OFFLOAD) {
+            return INVALID_ENDPOINT_ID;
+        }
+        return mEndPointId;
+    }
+
+    /**
+     * Check if the auto data path switching flag is enabled.
+     *
+     * @return true, if the flag is enabled
+     * @hide
+     */
+    @SystemApi
+    @NonNull
+    @RequiresNoPermission
+    public boolean isAutoDataPathSwitch() {
+        return mAutoDataPathSwitch;
+    }
+
+    /**
      * Returns a {@link String} that describes each BluetoothSocketSettings parameter current value.
      */
     @Override
@@ -133,7 +254,17 @@ public final class BluetoothSocketSettings {
                 + '\''
                 + ", mUuid="
                 + mUuid
+                + ", mDataPath="
+                + mDataPath
+                + ", mSocketName='"
+                + mSocketName
                 + '\''
+                + ", mHubId="
+                + mHubId
+                + ", mEndPointId="
+                + mEndPointId
+                + ", mAutoDataPathSwitch="
+                + mAutoDataPathSwitch
                 + '}';
     }
 
@@ -142,21 +273,36 @@ public final class BluetoothSocketSettings {
             int channel,
             int securityLevel,
             String serviceName,
-            UUID uuid) {
+            UUID uuid,
+            int dataPath,
+            String socketName,
+            long hubId,
+            long endPointId,
+            boolean autoSwitch) {
         mSocketType = socketType;
         mChannel = channel;
         mSecurityLevel = securityLevel;
         mUuid = uuid;
         mServiceName = serviceName;
+        mDataPath = dataPath;
+        mSocketName = socketName;
+        mHubId = hubId;
+        mEndPointId = endPointId;
+        mAutoDataPathSwitch = autoSwitch;
     }
 
     /** Builder for {@link BluetoothSocketSettings}. */
     public static final class Builder {
         private int mSocketType = BluetoothSocket.TYPE_RFCOMM;
         private int mChannel = -1;
-        private int mSecurityLevel = BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE;
+        private int mSecurityLevel = SOCKET_SEC_LEVEL_INSECURE;
         private String mServiceName = "DEF_SERVICE_NAME";
         private UUID mUuid = null;
+        private int mDataPath = DATA_PATH_OFFLOAD_OFF;
+        private String mSocketName = "DEF_SOCKET_NAME";
+        private long mHubId = INVALID_HUB_ID;
+        private long mEndPointId = INVALID_ENDPOINT_ID;
+        private boolean mAutoDataPathSwitch = true;
 
         /**
          * Set socket Type. This can be of type BluetoothDevice.TYPE_RFCOMM,
@@ -195,10 +341,10 @@ public final class BluetoothSocketSettings {
          * Set Security level for Bluetoth connection.
          *
          * @param securityLevel desired security level, could be either {@link
-         *  BluetoothSocketSettings#BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE} or {@link
-         *  BluetoothSocketSettings#BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_NO_AUTHENTICATION}
-	 *  Or {@link
-         *  BluetoothSocketSettings#BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION}
+         *  BluetoothSocketSettings#SOCKET_SEC_LEVEL_INSECURE} or {@link
+         *  BluetoothSocketSettings#SOCKET_SEC_LEVEL_ENCRYPTION_NO_AUTHENTICATION}
+         *  Or {@link
+         *  BluetoothSocketSettings#SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUTHENTICATION}
          * @return @Nonnull
          * @throws IllegalArgumentException If the {@code securityLevel} is invalid.
          * @hide
@@ -207,8 +353,8 @@ public final class BluetoothSocketSettings {
         @NonNull
         @RequiresNoPermission
         public Builder setSecurityLevel(int securityLevel) {
-            if (securityLevel < BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE
-               || securityLevel > BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {
+            if (securityLevel < SOCKET_SEC_LEVEL_INSECURE
+               || securityLevel > SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {
                 throw new IllegalArgumentException("invalid securityLevel - " + securityLevel);
             }
             mSecurityLevel = securityLevel;
@@ -240,6 +386,82 @@ public final class BluetoothSocketSettings {
         }
 
         /**
+         * Set the socket data path. If used to set data path anything other than {@link
+         * BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}, then it will require BLUETOOTH_PRIVILEGED
+         * permission and will be checked at the time of creating socket connection or channel.
+         *
+         * @param dataPath The socket data path
+         * @throws IllegalArgumentException If the {@code dataPath} is invalid.
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        @RequiresNoPermission
+        public Builder setDataPath(int dataPath) {
+            if (dataPath < DATA_PATH_OFFLOAD_OFF || dataPath > DATA_PATH_HARDWARE_OFFLOAD) {
+                throw new IllegalArgumentException("invalid dataPath - " + dataPath);
+            }
+            mDataPath = dataPath;
+            return this;
+        }
+
+        /**
+         * Set the socket name.
+         *
+         * @param socketName The descriptive socket name
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        @RequiresNoPermission
+        public Builder setSocketName(@NonNull String socketName) {
+            mSocketName = socketName;
+            return this;
+        }
+
+        /**
+         * Set the hub ID.
+         *
+         * @param hubId The ID of the Hub to which the end point belongs.
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        @RequiresNoPermission
+        public Builder setHubId(long hubId) {
+            mHubId = hubId;
+            return this;
+        }
+
+        /**
+         * Set the hub end point ID.
+         *
+         * @param endPointId The ID of the Hub end point.
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        @RequiresNoPermission
+        public Builder setEndPointId(long endPointId) {
+            mEndPointId = endPointId;
+            return this;
+        }
+
+        /**
+         * Set if the auto data path switch option is enabled.
+         *
+         * @param autoSwitch If the auto data path switch option is enabled
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        @RequiresNoPermission
+        public Builder setAutoDataPathSwitch(boolean autoSwitch) {
+            mAutoDataPathSwitch = autoSwitch;
+            return this;
+        }
+
+        /**
          * Build {@link BluetoothSocketSettings}.
          *
          * @throws IllegalArgumentException if the settings cannot be built.
@@ -260,12 +482,30 @@ public final class BluetoothSocketSettings {
                     throw new IllegalArgumentException("Invalid L2CAP channel: " + mChannel);
                 }
             }
+            
+            if (mDataPath != DATA_PATH_OFFLOAD_OFF
+                    && mSocketType != BluetoothSocket.TYPE_L2CAP_LE) {
+                throw new IllegalArgumentException(
+                        "Socket type is not supported for offload mode: " + mSocketType);
+            }
+            
+            if (mDataPath == DATA_PATH_HARDWARE_OFFLOAD
+                    && (mHubId == INVALID_HUB_ID || mEndPointId == INVALID_ENDPOINT_ID)) {
+                throw new IllegalArgumentException(
+                        "Hub ID and end point ID should be set for hardware offload mode");
+            }
+
             return new BluetoothSocketSettings(
                     mSocketType,
                     mChannel,
                     mSecurityLevel,
                     mServiceName,
-                    mUuid);
+                    mUuid,
+                    mDataPath,
+                    mSocketName,
+                    mHubId,
+                    mEndPointId,
+                    mAutoDataPathSwitch);
         }
     }
 }

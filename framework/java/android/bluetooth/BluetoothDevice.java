@@ -3211,7 +3211,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
-    //@FlaggedApi(Flags.FLAG_BT_SOCKET_SETTINGS_API)
+    //@FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
     @SuppressLint("AndroidFrameworkRequiresPermission")
     public @NonNull BluetoothSocket createClientSocket(@NonNull BluetoothSocketSettings settings)
             throws IOException {
@@ -3224,13 +3224,16 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         }
         boolean auth, encrypt;
         int securityLevel = settings.getSecurityLevel();
-        if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE) {
+
+        if (securityLevel == BluetoothSocketSettings.SOCKET_SEC_LEVEL_INSECURE) {
             auth = false;
             encrypt = false;
-        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_NO_AUTHENTICATION) {
+        } else if (securityLevel ==
+          BluetoothSocketSettings.SOCKET_SEC_LEVEL_ENCRYPTION_NO_AUTHENTICATION) {
             auth = false;
             encrypt = true;
-        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {
+        } else if (securityLevel ==
+          BluetoothSocketSettings.SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {
             auth = true;
             encrypt = true;
         } else {
@@ -3244,7 +3247,12 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 settings.getChannel(),
                 new ParcelUuid(settings.getUuid()),
                 false,
-                false);
+                false,
+                settings.getDataPath(),
+                settings.getSocketName(),
+                settings.getHubId(),
+                settings.getEndPointId(),
+                settings.isAutoDataPathSwitch());
     }
 
     /**
