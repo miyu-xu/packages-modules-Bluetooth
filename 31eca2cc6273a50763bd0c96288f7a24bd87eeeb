@@ -16,6 +16,23 @@
       "message": "Thanks for the review!",
       "revId": "31eca2cc6273a50763bd0c96288f7a24bd87eeeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9794794c_5f7749cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-09-25T09:38:28Z",
+      "side": 1,
+      "message": "Still LGTM. Thanks for the fix!",
+      "revId": "31eca2cc6273a50763bd0c96288f7a24bd87eeeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
