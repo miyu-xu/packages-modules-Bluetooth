@@ -87,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7f5b47a_4b33b9b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc66e455_87017fb8",
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a3d91bf_e2d4e58d",
@@ -100,6 +118,30 @@
       "writtenOn": "2024-09-20T10:45:57Z",
       "side": 1,
       "message": "`RawAddress` implements `Copy` trait, so no need to clone. Same below",
+      "range": {
+        "startLine": 1145,
+        "startChar": 34,
+        "endLine": 1145,
+        "endChar": 42
+      },
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4e0177_68a911c3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3d91bf_e2d4e58d",
       "range": {
         "startLine": 1145,
         "startChar": 34,
@@ -133,6 +175,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d248c2a2_fee6609b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1bdd6f_fa4fb03a",
+      "range": {
+        "startLine": 1302,
+        "startChar": 0,
+        "endLine": 1305,
+        "endChar": 9
+      },
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d93f57d_54ee12c2",
@@ -146,6 +212,30 @@
       "writtenOn": "2024-09-20T10:45:57Z",
       "side": 1,
       "message": "The outer curly braces seem redundant?\n\n```suggestion\n        let mut new_uuids \u003d vec![];\n        for prop in properties.iter() {\n            if let BluetoothProperty::Uuids(value) \u003d prop {\n                new_uuids.extend(value);\n                break;\n            }\n        }\n```",
+      "range": {
+        "startLine": 1308,
+        "startChar": 0,
+        "endLine": 1320,
+        "endChar": 10
+      },
+      "revId": "0a5993b9f7d84fdc28c2d1cf6fae9a7eef7ac8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f858ae1_8d156e38",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:27:42Z",
+      "side": 1,
+      "message": "Done, but I discard the `break` out of fear that the properties are not merged in libbluetooth.\nEmbarassingly, the reason `break` was there in the first place is because I was thinking of C++ breaking out of a switch statement.",
+      "parentUuid": "4d93f57d_54ee12c2",
       "range": {
         "startLine": 1308,
         "startChar": 0,
