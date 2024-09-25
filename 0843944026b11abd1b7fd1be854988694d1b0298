@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be005a56_69d1c4b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-25T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7904cf8_1c2b174a",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 116
+      },
+      "revId": "0843944026b11abd1b7fd1be854988694d1b0298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f192851e_4bea4d56",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-24T17:33:31Z",
       "side": 1,
       "message": "`[[fallthrough]]`",
+      "range": {
+        "startLine": 506,
+        "startChar": 6,
+        "endLine": 506,
+        "endChar": 26
+      },
+      "revId": "0843944026b11abd1b7fd1be854988694d1b0298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7214d72c_88b16bc4",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-25T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f192851e_4bea4d56",
       "range": {
         "startLine": 506,
         "startChar": 6,
