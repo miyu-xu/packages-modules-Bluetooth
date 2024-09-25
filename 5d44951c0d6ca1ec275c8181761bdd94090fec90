@@ -16,6 +16,52 @@
       "message": "Updated CL",
       "revId": "5d44951c0d6ca1ec275c8181761bdd94090fec90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d80db40_9866735f",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-09-25T17:51:22Z",
+      "side": 1,
+      "message": "Sorry, it should be just\n```\nsetDbg(Log.isLoggable(BT_LOG_TAG, Log.DEBUG));\n```\ni.e., `Log.isLoggable(BT_LOG_TAG, Log.DEBUG)` returns `true` for both levels `Log.VERBOSE` and `Log.DEBUG`.",
+      "range": {
+        "startLine": 239,
+        "startChar": 15,
+        "endLine": 239,
+        "endChar": 95
+      },
+      "revId": "5d44951c0d6ca1ec275c8181761bdd94090fec90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a90bf2e1_3865562d",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-09-25T17:51:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 255,
+        "startChar": 15,
+        "endLine": 255,
+        "endChar": 95
+      },
+      "revId": "5d44951c0d6ca1ec275c8181761bdd94090fec90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
