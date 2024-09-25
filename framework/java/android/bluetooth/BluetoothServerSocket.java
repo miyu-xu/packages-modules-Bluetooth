@@ -100,14 +100,7 @@ public final class BluetoothServerSocket implements Closeable {
      */
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, int port)
             throws IOException {
-        mSocketCreationTimeMillis = System.currentTimeMillis();
-        mType = type;
-        mChannel = port;
-        mSocket = new BluetoothSocket(type, auth, encrypt, null, port, null);
-        if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
-            mSocket.setExcludeSdp(true);
-        }
-        mSocketCreationLatencyMillis = System.currentTimeMillis() - mSocketCreationTimeMillis;
+        this(type, auth, encrypt, port, false, false);
     }
 
     /**
@@ -124,14 +117,7 @@ public final class BluetoothServerSocket implements Closeable {
     /*package*/ BluetoothServerSocket(
             int type, boolean auth, boolean encrypt, int port, boolean mitm, boolean min16DigitPin)
             throws IOException {
-        mSocketCreationTimeMillis = System.currentTimeMillis();
-        mType = type;
-        mChannel = port;
-        mSocket = new BluetoothSocket(type, auth, encrypt, null, port, null, mitm, min16DigitPin);
-        if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
-            mSocket.setExcludeSdp(true);
-        }
-        mSocketCreationLatencyMillis = System.currentTimeMillis() - mSocketCreationTimeMillis;
+        this(type, auth, encrypt, port, null, mitm, min16DigitPin);
     }
 
     /**
@@ -145,11 +131,97 @@ public final class BluetoothServerSocket implements Closeable {
      */
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, ParcelUuid uuid)
             throws IOException {
+        this(type, auth, encrypt, -1, uuid, false, false);
+    }
+
+    /**
+     * Construct a socket for incoming connections.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param port remote port
+     * @param uuid uuid
+     * @param mitm enforce person-in-the-middle protection for authentication.
+     * @param min16DigitPin enforce a minimum length of 16 digits for a sec mode 2 connection
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    /*package*/ BluetoothServerSocket(
+            int type,
+            boolean auth,
+            boolean encrypt,
+            int port,
+            ParcelUuid uuid,
+            boolean mitm,
+            boolean min16DigitPin)
+            throws IOException {
+        this(
+                type,
+                auth,
+                encrypt,
+                port,
+                uuid,
+                mitm,
+                min16DigitPin,
+                BluetoothSocketSettings.DATA_PATH_OFFLOAD_OFF,
+                null,
+                -1,
+                -1,
+                false);
+    }
+
+    /**
+     * Construct a socket for incoming connections.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param port remote port
+     * @param uuid uuid
+     * @param mitm enforce person-in-the-middle protection for authentication.
+     * @param min16DigitPin enforce a minimum length of 16 digits for a sec mode 2 connection
+     * @param dataPath socket data path
+     * @param socketName descriptive socket name
+     * @param hubId ID of the hub to which the end point belongs
+     * @param endPointId ID of the hub end point
+     * @param autoSwitch Flag for auto data path switch
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    /*package*/ BluetoothServerSocket(
+            int type,
+            boolean auth,
+            boolean encrypt,
+            int port,
+            ParcelUuid uuid,
+            boolean mitm,
+            boolean min16DigitPin,
+            int dataPath,
+            String socketName,
+            int hubId,
+            int endPointId,
+            boolean autoSwitch)
+            throws IOException {
         mSocketCreationTimeMillis = System.currentTimeMillis();
         mType = type;
-        mSocket = new BluetoothSocket(type, auth, encrypt, null, -1, uuid);
-        // TODO: This is the same as mChannel = -1 - is this intentional?
-        mChannel = mSocket.getPort();
+        mChannel = port;
+        mSocket =
+                new BluetoothSocket(
+                        type,
+                        auth,
+                        encrypt,
+                        null,
+                        port,
+                        uuid,
+                        mitm,
+                        min16DigitPin,
+                        dataPath,
+                        socketName,
+                        hubId,
+                        endPointId,
+                        autoSwitch);
+        if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
+            mSocket.setExcludeSdp(true);
+        }
         mSocketCreationLatencyMillis = System.currentTimeMillis() - mSocketCreationTimeMillis;
     }
 
