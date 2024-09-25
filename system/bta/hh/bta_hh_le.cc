@@ -1787,6 +1787,23 @@ void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb) {
 
 /*******************************************************************************
  *
+ * Function         send_read_report_reply
+ *
+ * Description      send GET_REPORT_EVT to application with the report data
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void send_read_report_reply(uint8_t hid_handle, tBTA_HH_STATUS status, BT_HDR* rpt_data) {
+  tBTA_HH_HSDATA hs_data = {};
+  hs_data.handle = hid_handle;
+  hs_data.status = status;
+  hs_data.rsp_data.p_rpt_data = rpt_data;
+  (*bta_hh_cb.p_cback)(BTA_HH_GET_RPT_EVT, (tBTA_HH*)&hs_data);
+}
+
+/*******************************************************************************
+ *
  * Function         read_report_cb
  *
  * Description      Process the Read report complete, send GET_REPORT_EVT to
@@ -1795,17 +1812,27 @@ void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb) {
  * Parameters:
  *
  ******************************************************************************/
-static void read_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
-                           uint8_t* value, void* data) {
+static void read_report_cb(tCONN_ID conn_id, tGATT_STATUS gatt_status, uint16_t handle,
+                           uint16_t len, uint8_t* value, void* data) {
   tBTA_HH_DEV_CB* p_dev_cb = (tBTA_HH_DEV_CB*)data;
   if (p_dev_cb->w4_evt != BTA_HH_GET_RPT_EVT) {
     log::warn("Unexpected Read response, w4_evt={}", bta_hh_event_text(p_dev_cb->w4_evt));
     return;
   }
+  if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+    p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
+  }
+
+  uint8_t hid_handle = p_dev_cb->hid_handle;
+  tBTA_HH_STATUS read_status = BTA_HH_ERR;
+  BT_HDR* rpt_data = NULL;
 
   const gatt::Characteristic* p_char = BTA_GATTC_GetCharacteristic(conn_id, handle);
   if (p_char == nullptr) {
     log::error("Unknown handle");
+    if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+      send_read_report_reply(hid_handle, read_status, rpt_data);
+    }
     return;
   }
 
@@ -1819,13 +1846,13 @@ static void read_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handl
       break;
     default:
       log::error("Unexpected Read UUID: {}", p_char->uuid.ToString());
+      if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+        send_read_report_reply(hid_handle, read_status, rpt_data);
+      }
       return;
   }
 
-  tBTA_HH_HSDATA hs_data = {};
-  hs_data.status = BTA_HH_ERR;
-  hs_data.handle = p_dev_cb->hid_handle;
-  if (status == GATT_SUCCESS) {
+  if (gatt_status == GATT_SUCCESS) {
     tBTA_HH_LE_RPT* p_rpt;
     const gatt::Service* p_svc = BTA_GATTC_GetOwningService(conn_id, p_char->value_handle);
 
@@ -1833,7 +1860,7 @@ static void read_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handl
     if (p_rpt != nullptr && len) {
       BT_HDR* p_buf = (BT_HDR*)osi_malloc(sizeof(BT_HDR) + len + 1);
       /* pack data send to app */
-      hs_data.status = BTA_HH_OK;
+      read_status = BTA_HH_OK;
       p_buf->len = len + 1;
       p_buf->layer_specific = 0;
       p_buf->offset = 0;
@@ -1844,13 +1871,15 @@ static void read_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handl
       UINT8_TO_STREAM(pp, p_rpt->rpt_id);
       memcpy(pp, value, len);
 
-      hs_data.rsp_data.p_rpt_data = p_buf;
+      rpt_data = p_buf;
     }
   }
 
-  p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
-  (*bta_hh_cb.p_cback)(BTA_HH_GET_RPT_EVT, (tBTA_HH*)&hs_data);
-  osi_free(hs_data.rsp_data.p_rpt_data);
+  if (!com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+    p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
+  }
+  send_read_report_reply(hid_handle, read_status, rpt_data);
+  osi_free(rpt_data);
 }
 
 /*******************************************************************************
@@ -1868,6 +1897,9 @@ static void bta_hh_le_get_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type, uin
 
   if (p_rpt == NULL) {
     log::error("no matching report");
+    if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+      send_read_report_reply(p_cb->hid_handle, BTA_HH_ERR, NULL);
+    }
     return;
   }
 
@@ -1875,9 +1907,33 @@ static void bta_hh_le_get_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type, uin
   BtaGattQueue::ReadCharacteristic(p_cb->conn_id, p_rpt->char_inst_id, read_report_cb, p_cb);
 }
 
-static void write_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
-                            const uint8_t* value, void* data) {
+/*******************************************************************************
+ *
+ * Function         send_write_report_reply
+ *
+ * Description      send SET_REPORT_EVT to application with the report data
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void send_write_report_reply(uint8_t hid_handle, tBTA_HH_STATUS status, uint16_t event) {
   tBTA_HH_CBDATA cback_data;
+  cback_data.handle = hid_handle;
+  cback_data.status = status;
+  (*bta_hh_cb.p_cback)(event, (tBTA_HH*)&cback_data);
+}
+
+/*******************************************************************************
+ *
+ * Function         write_report_cb
+ *
+ * Description      Process the Write report complete.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void write_report_cb(tCONN_ID conn_id, tGATT_STATUS gatt_status, uint16_t handle,
+                            uint16_t len, const uint8_t* value, void* data) {
   tBTA_HH_DEV_CB* p_dev_cb = (tBTA_HH_DEV_CB*)data;
   uint16_t cb_evt = p_dev_cb->w4_evt;
   if (cb_evt == BTA_HH_EMPTY_EVT) {
@@ -1885,10 +1941,19 @@ static void write_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t hand
   }
 
   log::verbose("w4_evt:{}", bta_hh_event_text(p_dev_cb->w4_evt));
+  if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+    p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
+  }
+
+  uint8_t hid_handle = p_dev_cb->hid_handle;
+  tBTA_HH_STATUS write_status = BTA_HH_ERR;
 
   const gatt::Characteristic* p_char = BTA_GATTC_GetCharacteristic(conn_id, handle);
   if (p_char == nullptr) {
     log::error("Unknown characteristic handle: {}", handle);
+    if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+      send_write_report_reply(hid_handle, write_status, cb_evt);
+    }
     return;
   }
 
@@ -1896,14 +1961,21 @@ static void write_report_cb(tCONN_ID conn_id, tGATT_STATUS status, uint16_t hand
   if (uuid16 != GATT_UUID_HID_REPORT && uuid16 != GATT_UUID_HID_BT_KB_INPUT &&
       uuid16 != GATT_UUID_HID_BT_MOUSE_INPUT && uuid16 != GATT_UUID_HID_BT_KB_OUTPUT) {
     log::error("Unexpected characteristic UUID: {}", p_char->uuid.ToString());
+    if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+      send_write_report_reply(hid_handle, write_status, cb_evt);
+    }
     return;
   }
 
   /* Set Report finished */
-  cback_data.handle = p_dev_cb->hid_handle;
-  cback_data.status = (status == GATT_SUCCESS) ? BTA_HH_OK : BTA_HH_ERR;
-  p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
-  (*bta_hh_cb.p_cback)(cb_evt, (tBTA_HH*)&cback_data);
+  if (!com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+    p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
+  }
+
+  if (gatt_status == GATT_SUCCESS) {
+    write_status = BTA_HH_OK;
+  }
+  send_write_report_reply(hid_handle, write_status, cb_evt);
 }
 /*******************************************************************************
  *
@@ -1921,6 +1993,9 @@ static void bta_hh_le_write_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type, B
 
   if (p_buf == NULL || p_buf->len == 0) {
     log::error("Illegal data");
+    if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+      send_write_report_reply(p_cb->hid_handle, BTA_HH_ERR, w4_evt);
+    }
     return;
   }
 
@@ -1932,6 +2007,9 @@ static void bta_hh_le_write_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type, B
   p_rpt = bta_hh_le_find_rpt_by_idtype(p_cb->hid_srvc.report, p_cb->mode, r_type, rpt_id);
   if (p_rpt == NULL) {
     log::error("no matching report");
+    if (com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {
+      send_write_report_reply(p_cb->hid_handle, BTA_HH_ERR, w4_evt);
+    }
     osi_free(p_buf);
     return;
   }
