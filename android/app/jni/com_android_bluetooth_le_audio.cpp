@@ -1394,15 +1394,6 @@ static void UpdateMetadataNative(JNIEnv* env, jobject /* object */, jint broadca
   }
 }
 
-static void StartBroadcastNative(JNIEnv* /* env */, jobject /* object */, jint broadcast_id) {
-  log::info("");
-  std::shared_lock<std::shared_timed_mutex> lock(sBroadcasterInterfaceMutex);
-  if (!sLeAudioBroadcasterInterface) {
-    return;
-  }
-  sLeAudioBroadcasterInterface->StartBroadcast(broadcast_id);
-}
-
 static void StopBroadcastNative(JNIEnv* /* env */, jobject /* object */, jint broadcast_id) {
   log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(sBroadcasterInterfaceMutex);
@@ -1447,7 +1438,6 @@ static int register_com_android_bluetooth_le_audio_broadcaster(JNIEnv* env) {
           {"createBroadcastNative", "(ZLjava/lang/String;[B[B[I[[B)V",
            (void*)CreateBroadcastNative},
           {"updateMetadataNative", "(ILjava/lang/String;[B[[B)V", (void*)UpdateMetadataNative},
-          {"startBroadcastNative", "(I)V", (void*)StartBroadcastNative},
           {"stopBroadcastNative", "(I)V", (void*)StopBroadcastNative},
           {"pauseBroadcastNative", "(I)V", (void*)PauseBroadcastNative},
           {"destroyBroadcastNative", "(I)V", (void*)DestroyBroadcastNative},
