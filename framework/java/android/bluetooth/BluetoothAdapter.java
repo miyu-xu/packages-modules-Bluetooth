@@ -4540,6 +4540,45 @@ public final class BluetoothAdapter {
     }
 
     /**
+     * Creates Listening Server Channel with given Socket Settings
+     *
+     * <p>Use {@link BluetoothServerSocket#accept} to retrieve incoming connections from a listening
+     * {@link BluetoothServerSocket}.
+     *
+     * <p>The system will assign a dynamic PSM value. This PSM value can be read from the {@link
+     * BluetoothServerSocket#getPsm()} and this value will be released when this server socket is
+     * closed, Bluetooth is turned off, or the application exits unexpectedly.
+     *
+     * <p>The mechanism of disclosing the assigned dynamic PSM value to the initiating peer is
+     * defined and performed by the application.
+     *
+     * <p>Use {@link BluetoothDevice#createEncryptedL2capChannel(int)} to connect to this server socket from
+     * another Android device that is given the PSM value.
+     *
+     * @return an L2CAP CoC BluetoothServerSocket
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions, or unable to start this CoC
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    public @NonNull BluetoothServerSocket createListeningChannel(BluetoothSocketSettings settings) throws IOException {
+        BluetoothServerSocket socket =
+            new BluetoothServerSocket(
+                BluetoothSocket.TYPE_L2CAP_LE,
+                true,
+                false,
+                SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                false,
+                false);
+        int errno = socket.mSocket.bindListen();
+        if (errno != 0) {
+            throw new IOException("Error: " + errno);
+        }
+        return socket;
+    }
+
+    /**
      * Register a {@link #OnMetadataChangedListener} to receive update about metadata changes for
      * this {@link BluetoothDevice}. Registration must be done when Bluetooth is ON and will last
      * until {@link #removeOnMetadataChangedListener(BluetoothDevice)} is called, even when
