@@ -138,7 +138,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
             handler_->BindOn(this, &le_impl::on_le_event),
             handler_->BindOn(this, &le_impl::on_le_disconnect),
             handler_->BindOn(this, &le_impl::on_le_read_remote_version_information));
-    le_address_manager_ = new LeAddressManager(
+    le_address_manager_ = std::make_unique<LeAddressManager>(
             common::Bind(&le_impl::enqueue_command, common::Unretained(this)), handler_,
             controller->GetMacAddress(), controller->GetLeFilterAcceptListSize(),
             controller->GetLeResolvingListSize());
@@ -148,7 +148,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     if (address_manager_registered) {
       le_address_manager_->UnregisterSync(this);
     }
-    delete le_address_manager_;
+    le_address_manager_.reset();
     hci_layer_->PutLeAclConnectionInterface();
     connections.reset();
   }
@@ -305,7 +305,7 @@ public:
   void enqueue_command(std::unique_ptr<CommandBuilder> command_packet) {
     hci_layer_->EnqueueCommand(std::move(command_packet),
                                handler_->BindOnce(&LeAddressManager::OnCommandComplete,
-                                                  common::Unretained(le_address_manager_)));
+                                                  common::Unretained(le_address_manager_.get())));
   }
 
   bool send_packet_upward(uint16_t handle,
@@ -1217,7 +1217,7 @@ public:
   Controller* controller_ = nullptr;
   os::Handler* handler_ = nullptr;
   RoundRobinScheduler* round_robin_scheduler_ = nullptr;
-  LeAddressManager* le_address_manager_ = nullptr;
+  std::unique_ptr<LeAddressManager> le_address_manager_ = nullptr;
   LeAclConnectionInterface* le_acl_connection_interface_ = nullptr;
   LeConnectionCallbacks* le_client_callbacks_ = nullptr;
   os::Handler* le_client_handler_ = nullptr;
