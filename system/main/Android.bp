@@ -57,6 +57,9 @@ cc_library_static {
         "libbt-platform-protos-lite",
         "libcom.android.sysprop.bluetooth.wrapped",
     ],
+    shared_libs: [
+        "libPlatformProperties",
+    ],
     header_libs: ["libbluetooth_headers"],
 }
 
@@ -166,6 +169,7 @@ cc_test {
         ":BluetoothOsSources_host",
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
+        ":TestFakeOsi",
         ":TestMockBta",
         ":TestMockBtif",
         ":TestMockBtu",
