@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f443b6_8ca5109f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-25T18:27:44Z",
+      "side": 1,
+      "message": "Your change affects the flow control and now this statement is executed for `audioDeviceInfo.isPresent()`; is it expected ?",
+      "range": {
+        "startLine": 1189,
+        "startChar": 8,
+        "endLine": 1189,
+        "endChar": 22
+      },
+      "revId": "48dced21693a69911efba24cd6ea3161d56decb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb9464da_37c15767",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1235,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-25T18:27:44Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 1235,
+        "startChar": 8,
+        "endLine": 1235,
+        "endChar": 22
+      },
+      "revId": "48dced21693a69911efba24cd6ea3161d56decb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "704ce0eb_1a73093d",
+        "filename": "system/audio_hal_interface/aidl/hfp_client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-25T18:27:44Z",
+      "side": 1,
+      "message": "is_call_idle",
+      "range": {
+        "startLine": 98,
+        "startChar": 6,
+        "endLine": 98,
+        "endChar": 38
+      },
+      "revId": "48dced21693a69911efba24cd6ea3161d56decb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
