@@ -3248,7 +3248,12 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 settings.getChannel(),
                 new ParcelUuid(settings.getUuid()),
                 false,
-                false);
+                false,
+                settings.getDataPath(),
+                settings.getSocketName(),
+                settings.getHubId(),
+                settings.getEndPointId(),
+                settings.isAutoDataPathSwitch());
     }
 
     /**
