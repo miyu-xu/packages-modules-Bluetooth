@@ -9,7 +9,7 @@ use num_traits::cast::ToPrimitive;
 use std::ffi::CString;
 use std::os::raw::c_char;
 
-#[derive(ToPrimitive)]
+#[derive(ToPrimitive, Debug, Clone, Copy)]
 #[repr(u8)]
 /// Android framework log priority levels.
 /// They are defined in system/logging/liblog/include/android/log.h by

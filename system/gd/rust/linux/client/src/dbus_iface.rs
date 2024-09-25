@@ -52,6 +52,7 @@ use btstack::socket_manager::{
 };
 use btstack::{RPCProxy, SuspendMode};
 
+use btstack::bluetooth_logging::IBluetoothLogging;
 use btstack::suspend::{ISuspend, ISuspendCallback, SuspendType};
 
 use dbus::arg::RefArg;
@@ -3073,4 +3074,57 @@ impl RPCProxy for IBatteryManagerCallbackDBus {}
 impl IBatteryManagerCallback for IBatteryManagerCallbackDBus {
     #[dbus_method("OnBatteryInfoUpdated")]
     fn on_battery_info_updated(&mut self, remote_address: RawAddress, battery_set: BatterySet) {}
+}
+
+#[derive(Clone)]
+pub(crate) struct BluetoothLoggingDBusRPC {
+    client_proxy: ClientDBusProxy,
+}
+
+pub(crate) struct BluetoothLoggingDBus {
+    client_proxy: ClientDBusProxy,
+    pub rpc: BluetoothLoggingDBusRPC,
+}
+
+impl BluetoothLoggingDBus {
+    fn make_client_proxy(conn: Arc<SyncConnection>, index: i32) -> ClientDBusProxy {
+        ClientDBusProxy::new(
+            conn.clone(),
+            String::from("org.chromium.bluetooth"),
+            make_object_path(index, "logging"),
+            String::from("org.chromium.bluetooth.Logging"),
+        )
+    }
+
+    pub(crate) fn new(conn: Arc<SyncConnection>, index: i32) -> BluetoothLoggingDBus {
+        BluetoothLoggingDBus {
+            client_proxy: Self::make_client_proxy(conn.clone(), index),
+            rpc: BluetoothLoggingDBusRPC {
+                client_proxy: Self::make_client_proxy(conn.clone(), index),
+            },
+        }
+    }
+}
+
+#[generate_dbus_interface_client(BluetoothLoggingDBusRPC)]
+impl IBluetoothLogging for BluetoothLoggingDBus {
+    #[dbus_method("IsDebugEnabled")]
+    fn is_debug_enabled(&self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("IsVerboseFlagEnabled")]
+    fn is_verbose_flag_enabled(&self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetDebugLogging")]
+    fn set_debug_logging(&mut self, enabled: bool) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetVerboseFlag")]
+    fn set_verbose_flag(&mut self, enabled: bool) {
+        dbus_generated!()
+    }
 }

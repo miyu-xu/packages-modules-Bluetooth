@@ -15,8 +15,14 @@ pub trait IBluetoothLogging {
     /// Check whether debug logging is enabled.
     fn is_debug_enabled(&self) -> bool;
 
+    /// Check whether verbose flag is enabled
+    fn is_verbose_flag_enabled(&self) -> bool;
+
     /// Change whether debug logging is enabled.
     fn set_debug_logging(&mut self, enabled: bool);
+
+    /// Change whether the verbose flag is enabled.
+    fn set_verbose_flag(&mut self, enabled: bool);
 }
 
 /// Logging related implementation.
@@ -26,7 +32,7 @@ pub struct BluetoothLogging {
 
     /// If this flag is not set, we will not emit debug logs for all tags.
     /// `VERBOSE_ONLY_LOG_TAGS` will be set to emit up to `INFO` only. This
-    /// can only be configured in the constructor (not modifiable at runtime).
+    /// can be configured via |set_verbose_flag| at runtime.
     is_verbose_debug: bool,
 
     /// Log to stderr?
@@ -101,6 +107,10 @@ impl IBluetoothLogging for BluetoothLogging {
         self.is_initialized && self.is_debug
     }
 
+    fn is_verbose_flag_enabled(&self) -> bool {
+        self.is_initialized && self.is_verbose_debug
+    }
+
     fn set_debug_logging(&mut self, enabled: bool) {
         if !self.is_initialized {
             return;
@@ -121,6 +131,15 @@ impl IBluetoothLogging for BluetoothLogging {
             log::debug!("Debug logging successfully enabled!");
         }
 
-        log::info!("Setting debug logging to {}", self.is_debug);
+        log::info!("Setting log level to {:?}", level);
+    }
+
+    fn set_verbose_flag(&mut self, enabled: bool) {
+        if !self.is_initialized {
+            return;
+        }
+
+        self.is_verbose_debug = enabled;
+        log::info!("Setting verbose flag to {}", self.is_verbose_debug);
     }
 }
