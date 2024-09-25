@@ -760,7 +760,10 @@ public class AdapterService extends Service {
         if (Flags.adapterSuspendMgmt()) {
             mAdapterSuspend =
                     new AdapterSuspend(
-                            mNativeInterface, mLooper, getSystemService(DisplayManager.class));
+                            mNativeInterface,
+                            mLooper,
+                            getSystemService(DisplayManager.class),
+                            mPowerManager);
         }
 
         if (!Flags.fastBindToApp()) {
