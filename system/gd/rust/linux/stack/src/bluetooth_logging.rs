@@ -15,8 +15,14 @@ pub trait IBluetoothLogging {
     /// Check whether debug logging is enabled.
     fn is_debug_enabled(&self) -> bool;
 
+    /// Check whether verbose flag is enabled
+    fn is_verbose_flag_enabled(&self) -> bool;
+
     /// Change whether debug logging is enabled.
     fn set_debug_logging(&mut self, enabled: bool);
+
+    /// Change whether the verbose flag is enabled.
+    fn set_verbose_flag(&mut self, enabled: bool);
 }
 
 /// Logging related implementation.
@@ -101,6 +107,10 @@ impl IBluetoothLogging for BluetoothLogging {
         self.is_initialized && self.is_debug
     }
 
+    fn is_verbose_flag_enabled(&self) -> bool {
+        self.is_initialized && self.is_verbose_debug
+    }
+
     fn set_debug_logging(&mut self, enabled: bool) {
         if !self.is_initialized {
             return;
@@ -114,13 +124,22 @@ impl IBluetoothLogging for BluetoothLogging {
 
         // Update log level in libbluetooth.
         let level = self.get_libbluetooth_level();
-        set_default_log_level(level);
+        set_default_log_level(level.clone());
 
         // Mark the start of debug logging with a debug print.
         if self.is_debug {
             log::debug!("Debug logging successfully enabled!");
         }
 
-        log::info!("Setting debug logging to {}", self.is_debug);
+        log::info!("Setting log level to {:?}", level);
+    }
+
+    fn set_verbose_flag(&mut self, enabled: bool) {
+        if !self.is_initialized {
+            return;
+        }
+
+        self.is_verbose_debug = enabled;
+        log::info!("Setting verbose flag to {}", self.is_verbose_debug);
     }
 }

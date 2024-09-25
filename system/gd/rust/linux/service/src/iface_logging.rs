@@ -14,8 +14,18 @@ impl IBluetoothLogging for IBluetoothLoggingDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("IsVerboseFlagEnabled")]
+    fn is_verbose_flag_enabled(&self) -> bool {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetDebugLogging")]
     fn set_debug_logging(&mut self, enabled: bool) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetVerboseFlag")]
+    fn set_verbose_flag(&mut self, enabled: bool) {
         dbus_generated!()
     }
 }
