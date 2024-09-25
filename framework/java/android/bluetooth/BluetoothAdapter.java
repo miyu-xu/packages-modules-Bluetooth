@@ -29,6 +29,7 @@ import static java.util.Objects.requireNonNull;
 
 import android.annotation.BroadcastBehavior;
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -3123,6 +3124,9 @@ public final class BluetoothAdapter {
      *
      * <p>Valid RFCOMM channels are in range 1 to 30.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param channel RFCOMM channel to listen on
      * @return a listening RFCOMM BluetoothServerSocket
      * @throws IOException on error, for example Bluetooth not available, or insufficient
@@ -3131,7 +3135,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingRfcommOn(int channel) throws IOException {
         return listenUsingRfcommOn(channel, false, false);
     }
@@ -3150,6 +3156,9 @@ public final class BluetoothAdapter {
      * <p>To auto assign a channel without creating a SDP record use {@link
      * #SOCKET_CHANNEL_AUTO_STATIC_NO_SDP} as channel number.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param channel RFCOMM channel to listen on
      * @param mitm enforce person-in-the-middle protection for authentication.
      * @param min16DigitPin enforce a pin key length og minimum 16 digit for sec mode 2 connections.
@@ -3161,7 +3170,9 @@ public final class BluetoothAdapter {
     @UnsupportedAppUsage
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingRfcommOn(
             int channel, boolean mitm, boolean min16DigitPin) throws IOException {
         BluetoothServerSocket socket =
@@ -3200,6 +3211,9 @@ public final class BluetoothAdapter {
      * <p>Use {@link BluetoothDevice#createRfcommSocketToServiceRecord} to connect to this socket
      * from another device using the same {@link UUID}.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param name service name for SDP record
      * @param uuid uuid for SDP record
      * @return a listening RFCOMM BluetoothServerSocket
@@ -3208,7 +3222,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
         return createNewRfcommSocketAndRecord(name, uuid, true, true);
@@ -3381,6 +3397,9 @@ public final class BluetoothAdapter {
      * <p>Use {@link BluetoothDevice#createInsecureRfcommSocketToServiceRecord} to connect to this
      * socket from another device using the same {@link UUID}.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param name service name for SDP record
      * @param uuid uuid for SDP record
      * @return a listening RFCOMM BluetoothServerSocket
@@ -3389,7 +3408,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingInsecureRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
         return createNewRfcommSocketAndRecord(name, uuid, false, false);
@@ -3424,6 +3445,9 @@ public final class BluetoothAdapter {
      * <p>Use {@link BluetoothDevice#createRfcommSocketToServiceRecord} to connect to this socket
      * from another device using the same {@link UUID}.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param name service name for SDP record
      * @param uuid uuid for SDP record
      * @return a listening RFCOMM BluetoothServerSocket
@@ -3434,14 +3458,18 @@ public final class BluetoothAdapter {
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingEncryptedRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
         return createNewRfcommSocketAndRecord(name, uuid, false, true);
     }
 
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     private BluetoothServerSocket createNewRfcommSocketAndRecord(
             String name, UUID uuid, boolean auth, boolean encrypt) throws IOException {
         BluetoothServerSocket socket;
@@ -3469,7 +3497,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingInsecureRfcommOn(int port) throws IOException {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(BluetoothSocket.TYPE_RFCOMM, false, false, port);
@@ -3493,6 +3523,9 @@ public final class BluetoothAdapter {
      * <p>To auto assign a port without creating a SDP record use {@link
      * #SOCKET_CHANNEL_AUTO_STATIC_NO_SDP} as port number.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param port the PSM to listen on
      * @param mitm enforce person-in-the-middle protection for authentication.
      * @param min16DigitPin enforce a pin key length og minimum 16 digit for sec mode 2 connections.
@@ -3502,7 +3535,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingL2capOn(int port, boolean mitm, boolean min16DigitPin)
             throws IOException {
         BluetoothServerSocket socket =
@@ -3530,6 +3565,9 @@ public final class BluetoothAdapter {
      * <p>To auto assign a port without creating a SDP record use {@link
      * #SOCKET_CHANNEL_AUTO_STATIC_NO_SDP} as port number.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param port the PSM to listen on
      * @return An L2CAP BluetoothServerSocket
      * @throws IOException On error, for example Bluetooth not available, or insufficient
@@ -3537,7 +3575,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingL2capOn(int port) throws IOException {
         return listenUsingL2capOn(port, false, false);
     }
@@ -3549,6 +3589,9 @@ public final class BluetoothAdapter {
      * <p>To auto assign a port without creating a SDP record use {@link
      * #SOCKET_CHANNEL_AUTO_STATIC_NO_SDP} as port number.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @param port the PSM to listen on
      * @return An L2CAP BluetoothServerSocket
      * @throws IOException On error, for example Bluetooth not available, or insufficient
@@ -3556,7 +3599,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingInsecureL2capOn(int port) throws IOException {
         Log.d(TAG, "listenUsingInsecureL2capOn: port=" + port);
         BluetoothServerSocket socket =
@@ -4450,13 +4495,18 @@ public final class BluetoothAdapter {
      * <p>Use {@link BluetoothDevice#createL2capChannel(int)} to connect to this server socket from
      * another Android device that is given the PSM value.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @return an L2CAP CoC BluetoothServerSocket
      * @throws IOException on error, for example Bluetooth not available, or insufficient
      *     permissions, or unable to start this CoC
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public @NonNull BluetoothServerSocket listenUsingL2capChannel() throws IOException {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(
@@ -4506,13 +4556,18 @@ public final class BluetoothAdapter {
      * <p>Use {@link BluetoothDevice#createInsecureL2capChannel(int)} to connect to this server
      * socket from another Android device that is given the PSM value.
      *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * data path is different from {@link BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
      * @return an L2CAP CoC BluetoothServerSocket
      * @throws IOException on error, for example Bluetooth not available, or insufficient
      *     permissions, or unable to start this CoC
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public @NonNull BluetoothServerSocket listenUsingInsecureL2capChannel() throws IOException {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(
@@ -4536,6 +4591,74 @@ public final class BluetoothAdapter {
         }
         socket.setChannel(assignedPsm);
 
+        return socket;
+    }
+
+    /**
+     * Creates Listening Server Channel with given Socket Settings
+     *
+     * <p>Use {@link BluetoothServerSocket#accept} to retrieve incoming connections from a listening
+     * {@link BluetoothServerSocket}.
+     *
+     * <p>If socket is of BluetoothSocket#TYPE_L2CAP The system will assign a dynamic PSM value.
+     * This PSM value can be read from the {@link BluetoothServerSocket#getPsm()} and this value
+     * will be released when this server socket is closed, Bluetooth is turned off, or the
+     * application exits unexpectedly.
+     *
+     * <p>The mechanism of disclosing the assigned dynamic PSM value to the initiating peer is
+     * defined and performed by the application.
+     *
+     * <p>Use {@link BluetoothDevice#createClientConnection(BluetoothSocketSettings)} to connect to
+     * this server socket from another Android device that is given the PSM value.
+     *
+     * <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only when
+     * {@code settings.getDataPath()} is different from {@link
+     * BluetoothSocketSettings#DATA_PATH_OFFLOAD_OFF}.
+     *
+     * @return a {@link BluetoothServerSocket}
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions, or unable to start this CoC
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    public @NonNull BluetoothServerSocket createListeningChannel(
+            @NonNull BluetoothSocketSettings settings) throws IOException {
+        boolean auth, encrypt;
+        int securityLevel = settings.getSecurityLevel();
+        if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_0) {
+            auth = false;
+            encrypt = false;
+        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_1) {
+            auth = false;
+            encrypt = true;
+        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_2) {
+            auth = true;
+            encrypt = true;
+        } else {
+            throw new IOException("invalid securityLevel - " + securityLevel);
+        }
+        BluetoothServerSocket socket =
+                new BluetoothServerSocket(
+                        settings.getSocketType(),
+                        auth,
+                        encrypt,
+                        SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                        new ParcelUuid(settings.getUuid()),
+                        false,
+                        false,
+                        settings.getDataPath(),
+                        settings.getSocketName(),
+                        settings.getHubId(),
+                        settings.getEndPointId(),
+                        settings.isAutoDataPathSwitch());
+        int errno = socket.mSocket.bindListen();
+        if (errno != 0) {
+            throw new IOException("Error: " + errno);
+        }
         return socket;
     }
 
