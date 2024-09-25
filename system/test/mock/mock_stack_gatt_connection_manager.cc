@@ -19,6 +19,8 @@
  *   Functions generated:16
  */
 
+#include "test/mock/mock_stack_gatt_connection_manager.h"
+
 #include <set>
 
 #include "stack/gatt/connection_manager.h"
@@ -79,4 +81,9 @@ void connection_manager::reset(bool /* after_reset */) { inc_func_call_count(__f
 bool connection_manager::is_background_connection(const RawAddress& /* address */) {
   inc_func_call_count(__func__);
   return false;
+}
+
+void alarm_set_closure(const base::Location& /* posted_from*/, alarm_t* /* alarm */,
+                       uint64_t /* interval_ms */, base::OnceClosure /* user_task */) {
+  inc_func_call_count(__func__);
 }
