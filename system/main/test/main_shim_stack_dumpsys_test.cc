@@ -32,6 +32,7 @@
 #include "main/shim/stack.h"
 #include "module.h"
 #include "os/thread.h"
+// #include "osi/include/alarm.h"
 #include "shim/dumpsys.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec_cb.h"
@@ -45,6 +46,8 @@ using namespace testing;
 
 tBTM_CB btm_cb{};          // main::shim::le_scanning_manager
 tBTM_SEC_CB btm_sec_cb{};  // main::shim::acl
+
+// void alarm_set_closure(const base::Location&, alarm_t*, uint64_t, base::OnceClosure) {}
 
 const packet_fragmenter_t* packet_fragmenter_get_interface() {
   return nullptr;

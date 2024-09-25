@@ -57,6 +57,8 @@
 #include "main/shim/stack.h"
 #include "metrics/bluetooth_event.h"
 #include "os/handler.h"
+#include "os/wakelock_manager.h"
+#include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_int_types.h"
@@ -72,6 +74,10 @@
 extern tBTM_CB btm_cb;
 
 using namespace bluetooth;
+using ::bluetooth::os::WakelockManager;
+
+void alarm_set_closure(const base::Location& posted_from, alarm_t* alarm, uint64_t interval_ms,
+                       base::OnceClosure user_task);
 
 class ConnectAddressWithType : public bluetooth::common::IRedactableLoggable {
 public:
@@ -131,6 +137,19 @@ struct formatter<ConnectAddressWithType> : formatter<std::string> {
 }  // namespace fmt
 
 namespace {
+
+// Control block for wakelock alarm
+struct wakelock_alarm_control {
+  alarm_t* timeout;
+  ~wakelock_alarm_control() {
+    if (timeout) {
+      alarm_free(timeout);
+    }
+  }
+
+} wakelock_alarm_cb;
+
+constexpr int kWakelockTimeout = 5000;  // ms
 
 constexpr uint32_t kRunicBjarkan = 0x0016D2;
 constexpr uint32_t kRunicHagall = 0x0016BC;
@@ -834,6 +853,8 @@ struct shim::Acl::impl {
   ShadowAcceptlist shadow_acceptlist_;
   ShadowAddressResolutionList shadow_address_resolution_list_;
 
+  bool system_suspend_ = false;
+
   bool IsClassicAcl(HciHandle handle) {
     return handle_to_classic_connection_map_.find(handle) !=
            handle_to_classic_connection_map_.end();
@@ -1436,6 +1457,22 @@ void shim::Acl::OnLeLinkDisconnected(HciHandle handle, hci::ErrorCode reason) {
           reason));
 }
 
+void wakelock_release_cb() { WakelockManager::Get().Release(); }
+
+void acquire_wakelock_with_alarm_cb() {
+  if (!wakelock_alarm_cb.timeout) {
+    wakelock_alarm_cb.timeout = alarm_new("wakelock_release_timeout");
+  }
+  alarm_t* alarm = wakelock_alarm_cb.timeout;
+  if (!alarm_is_scheduled(alarm)) {
+    WakelockManager::Get().Acquire();
+  } else {
+    // cancel existing alarm and callback
+    alarm_cancel(alarm);
+  }
+  alarm_set_closure(FROM_HERE, alarm, kWakelockTimeout, base::BindOnce(&wakelock_release_cb));
+}
+
 void shim::Acl::OnConnectSuccess(
         std::unique_ptr<hci::acl_manager::ClassicAclConnection> connection) {
   log::assert_that(connection != nullptr, "assert failed: connection != nullptr");
@@ -1443,6 +1480,12 @@ void shim::Acl::OnConnectSuccess(
   bool locally_initiated = connection->locally_initiated_;
   const hci::Address remote_address = connection->GetAddress();
   const RawAddress bd_addr = ToRawAddress(remote_address);
+
+  if (com::android::bluetooth::flags::adapter_suspend_mgmt()) {
+    if (pimpl_->system_suspend_) {
+      acquire_wakelock_with_alarm_cb();
+    }
+  }
 
   pimpl_->handle_to_classic_connection_map_.emplace(
           handle, std::make_unique<ClassicShimAclConnection>(
@@ -1489,6 +1532,12 @@ void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
                                    std::unique_ptr<hci::acl_manager::LeAclConnection> connection) {
   log::assert_that(connection != nullptr, "assert failed: connection != nullptr");
   auto handle = connection->GetHandle();
+
+  if (com::android::bluetooth::flags::adapter_suspend_mgmt()) {
+    if (pimpl_->system_suspend_) {
+      acquire_wakelock_with_alarm_cb();
+    }
+  }
 
   // Save the peer address, if any
   hci::AddressWithType peer_address_with_type = connection->peer_address_with_type_;
@@ -1686,5 +1735,8 @@ void shim::Acl::ClearAddressResolution() {
 }
 
 void shim::Acl::SetSystemSuspendState(bool suspended) {
+  if (com::android::bluetooth::flags::adapter_suspend_mgmt()) {
+    pimpl_->system_suspend_ = suspended;
+  }
   handler_->CallOn(pimpl_.get(), &Acl::impl::SetSystemSuspendState, suspended);
 }
