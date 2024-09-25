@@ -3195,6 +3195,42 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     }
 
     /**
+     * Create Client Connection to the remote Server hosted using BluetoothAdapter#createListeningChannel
+     * Use BluetoothSocket Settings as paramter
+     *
+     * <p>Use {@link BluetoothSocket#connect} to initiate the outgoing connection.
+     *
+     * <p>Application using this API is responsible for obtaining PSM value from remote device.
+     *
+     *
+     * @param settings settings for the socket
+     * @return a CoC #BluetoothSocket ready for an outgoing connection
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    @FlaggedApi(Flags.FLAG_BT_SOCKET_API_L2CAP_CID)
+    @SuppressLint("AndroidFrameworkRequiresPermission")
+    public @NonNull BluetoothSocket createClientConnection(
+        @NonNull BluetoothSocketSettings settings) throws IOException {
+        if (!isBluetoothEnabled()) {
+            Log.e(TAG, "createInsecureL2capChannel: Bluetooth is not enabled");
+            throw new IOException();
+        }
+        if (DBG) {
+            Log.d(TAG, "createInsecureL2capChannel: =" + settings.getChannel());
+        }
+        /*
+          TODO: Parse the socket settings and call appropriate BluetoothSocket with required params
+         */
+        return new BluetoothSocket(
+            BluetoothSocket.TYPE_L2CAP_LE, false, false, this, settings.getChannel(), null);
+    }
+
+
+    /**
      * Set a keyed metadata of this {@link BluetoothDevice} to a {@link String} value. Only bonded
      * devices's metadata will be persisted across Bluetooth restart. Metadata will be removed when
      * the device's bond state is moved to {@link #BOND_NONE}.
