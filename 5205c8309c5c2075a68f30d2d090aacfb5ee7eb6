@@ -16,6 +16,86 @@
       "message": "PTAL, thanks!",
       "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d4bcdf_0d75e860",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:15:00Z",
+      "side": 1,
+      "message": "Cool feature, thanks!",
+      "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88ee92f7_03376335",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:15:00Z",
+      "side": 1,
+      "message": "nit: Update this comment, now we can modify at runtime.",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 78
+      },
+      "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "919a4397_533ca1ef",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:15:00Z",
+      "side": 1,
+      "message": "Maybe just derive the Copy trait? We can avoid the clone this way.\nhttps://doc.rust-lang.org/stable/std/marker/trait.Copy.html",
+      "range": {
+        "startLine": 127,
+        "startChar": 35,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c6e0ae1_3196f095",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-25T09:15:00Z",
+      "side": 1,
+      "message": "Should we set debug log to true if verbose flag is set to true? \nOtherwise we might have a funky state where debug is not enabled but verbose is enabled.\n\nSimilarly, should we disable verbose flag when we set debug log off?",
+      "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
