@@ -3224,6 +3224,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         }
         boolean auth, encrypt;
         int securityLevel = settings.getSecurityLevel();
+
         if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE) {
             auth = false;
             encrypt = false;
@@ -3244,7 +3245,12 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 settings.getChannel(),
                 new ParcelUuid(settings.getUuid()),
                 false,
-                false);
+                false,
+                settings.getDataPath(),
+                settings.getSocketName(),
+                settings.getHubId(),
+                settings.getEndPointId(),
+                settings.isAutoDataPathSwitch());
     }
 
     /**

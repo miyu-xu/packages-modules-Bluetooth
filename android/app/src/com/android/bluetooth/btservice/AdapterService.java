@@ -2039,7 +2039,9 @@ public class AdapterService extends Service {
     }
 
     @BluetoothAdapter.RfcommListenerResult
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     private int startRfcommListener(
             String name, ParcelUuid uuid, PendingIntent pendingIntent, AttributionSource source) {
         if (mBluetoothServerSockets.containsKey(uuid.getUuid())) {
@@ -2111,7 +2113,9 @@ public class AdapterService extends Service {
         return socketInfo;
     }
 
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     private void handleIncomingRfcommConnections(UUID uuid) {
         RfcommListenerData listenerData = mBluetoothServerSockets.get(uuid);
         while (true) {
@@ -2147,7 +2151,9 @@ public class AdapterService extends Service {
     }
 
     // Tries to restart the rfcomm listener for the given UUID
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     private void restartRfcommListener(RfcommListenerData listenerData, UUID uuid) {
         listenerData.closeServerAndPendingSockets(mHandler);
         try {
@@ -2176,7 +2182,9 @@ public class AdapterService extends Service {
         }
     }
 
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     private void startRfcommListenerInternal(
             String name, UUID uuid, PendingIntent intent, AttributionSource source)
             throws IOException {
