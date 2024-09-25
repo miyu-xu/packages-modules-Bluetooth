@@ -29,6 +29,7 @@ import static java.util.Objects.requireNonNull;
 
 import android.annotation.BroadcastBehavior;
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -4536,6 +4537,68 @@ public final class BluetoothAdapter {
         }
         socket.setChannel(assignedPsm);
 
+        return socket;
+    }
+
+    /**
+     * Creates Listening Server Channel with given Socket Settings
+     *
+     * <p>Use {@link BluetoothServerSocket#accept} to retrieve incoming connections from a listening
+     * {@link BluetoothServerSocket}.
+     *
+     * <p>If socket is of BluetoothSocket#TYPE_L2CAP The system will assign a dynamic PSM value.
+     * This PSM value can be read from the {@link BluetoothServerSocket#getPsm()} and this value
+     * will be released when this server socket is closed, Bluetooth is turned off, or the
+     * application exits unexpectedly.
+     *
+     * <p>The mechanism of disclosing the assigned dynamic PSM value to the initiating peer is
+     * defined and performed by the application.
+     *
+     * <p>Use {@link BluetoothDevice#createClientConnection(BluetoothSocketSettings)} to connect to
+     * this server socket from another Android device that is given the PSM value.
+     *
+     * @return a {@link BluetoothServerSocket}
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions, or unable to start this CoC
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    @FlaggedApi(Flags.FLAG_BT_SOCKET_API_L2CAP_CID)
+    public @NonNull BluetoothServerSocket createListeningChannel(
+            @NonNull BluetoothSocketSettings settings) throws IOException {
+        boolean auth, encrypt;
+        int securityLevel = settings.getSecurityLevel();
+        if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_0) {
+            auth = false;
+            encrypt = false;
+        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_1) {
+            auth = false;
+            encrypt = true;
+        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_2) {
+            auth = true;
+            encrypt = true;
+        } else {
+            throw new IOException("invalid securityLevel - " + securityLevel);
+        }
+        BluetoothServerSocket socket =
+                new BluetoothServerSocket(
+                        settings.getSocketType(),
+                        auth,
+                        encrypt,
+                        SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                        new ParcelUuid(settings.getUuid()),
+                        false,
+                        false,
+                        settings.getDataMode(),
+                        settings.getSocketName(),
+                        settings.getHubId(),
+                        settings.getEndPointId(),
+                        settings.isAutoDataPathSwitch());
+        int errno = socket.mSocket.bindListen();
+        if (errno != 0) {
+            throw new IOException("Error: " + errno);
+        }
         return socket;
     }
 
