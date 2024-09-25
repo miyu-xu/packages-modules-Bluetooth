@@ -43,7 +43,7 @@ class L2CAPService(l2cap_grpc_aio.L2CAPServicer):
     def __init__(self, bluetooth: bluetooth_module.Bluetooth):
         self.bluetooth = bluetooth
 
-        # key = connection_value, val = (socket_id, [stream])
+      # key = connection_value, val = (socket_id, [stream])
         self.incoming_connections = dict()
 
         # key = connection_value, val = current_index
