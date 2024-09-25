@@ -118,6 +118,9 @@ public class LeAudioService extends ProfileService {
     // Timeout for state machine thread join, to prevent potential ANR.
     private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1000;
 
+    /* 5 seconds timeout for Broadcast streaming state transition */
+    private static final int CREATE_BROADCAST_TIMEOUT_MS = 5000;
+
     private static LeAudioService sLeAudioService;
 
     /** Indicates group audio support for none direction */
@@ -152,9 +155,6 @@ public class LeAudioService extends ProfileService {
                     .setSampleRate(BluetoothLeAudioCodecConfig.SAMPLE_RATE_48000)
                     .build();
 
-    /* 5 seconds timeout for Broadcast streaming state transition */
-    private static final int DIALING_OUT_TIMEOUT_MS = 5000;
-
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
@@ -166,6 +166,8 @@ public class LeAudioService extends ProfileService {
     private final ReentrantReadWriteLock mGroupReadWriteLock = new ReentrantReadWriteLock();
     private final Lock mGroupReadLock = mGroupReadWriteLock.readLock();
     private final Lock mGroupWriteLock = mGroupReadWriteLock.writeLock();
+    private CreateBroadcastTimeoutEvent mCreateBroadcastTimeoutEvent;
+
     ServiceFactory mServiceFactory = new ServiceFactory();
 
     private final LeAudioNativeInterface mNativeInterface;
@@ -183,7 +185,6 @@ public class LeAudioService extends ProfileService {
     BluetoothDevice mLeAudioDeviceInactivatedForHfpHandover = null;
 
     LeAudioBroadcasterNativeInterface mLeAudioBroadcasterNativeInterface = null;
-    private DialingOutTimeoutEvent mDialingOutTimeoutEvent = null;
     @VisibleForTesting AudioManager mAudioManager;
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
@@ -645,7 +646,8 @@ public class LeAudioService extends ProfileService {
         mIsSinkStreamMonitorModeEnabled = false;
         mIsBroadcastPausedFromOutside = false;
 
-        clearBroadcastTimeoutCallback();
+        mHandler.removeCallbacks(mCreateBroadcastTimeoutEvent);
+        mCreateBroadcastTimeoutEvent = null;
 
         if (!Flags.leaudioSynchronizeStart()) {
             mHandler.removeCallbacks(this::init);
@@ -1140,33 +1142,24 @@ public class LeAudioService extends ProfileService {
         return LE_AUDIO_GROUP_ID_INVALID;
     }
 
-    /**
-     * Creates LeAudio Broadcast instance with BluetoothLeBroadcastSettings.
-     *
-     * @param broadcastSettings broadcast settings for this broadcast source
-     */
-    public void createBroadcast(BluetoothLeBroadcastSettings broadcastSettings) {
+    private boolean canBroadcastBeCreated(BluetoothLeBroadcastSettings broadcastSettings) {
         if (mBroadcastDescriptors.size() >= getMaximumNumberOfBroadcasts()) {
             Log.w(
                     TAG,
                     "createBroadcast reached maximum allowed broadcasts number: "
                             + getMaximumNumberOfBroadcasts());
-            mHandler.post(
-                    () ->
-                            notifyBroadcastStartFailed(
-                                    BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES));
-            return;
+            return false;
         }
 
         if (mLeAudioBroadcasterNativeInterface == null) {
             Log.w(TAG, "Native interface not available.");
-            return;
+            return false;
         }
 
         if (mAwaitingBroadcastCreateResponse) {
             mCreateBroadcastQueue.add(broadcastSettings);
             Log.i(TAG, "Broadcast creation queued due to waiting for a previous request response.");
-            return;
+            return false;
         }
 
         if (!leaudioBigDependsOnAudioState()) {
@@ -1182,25 +1175,40 @@ public class LeAudioService extends ProfileService {
                 }
                 removeActiveDevice(true);
 
-                return;
+                return false;
             }
         }
 
         byte[] broadcastCode = broadcastSettings.getBroadcastCode();
-        boolean isEncrypted = (broadcastCode != null) && (broadcastCode.length != 0);
-        if (isEncrypted) {
-            if ((broadcastCode.length > 16) || (broadcastCode.length < 4)) {
-                Log.e(TAG, "Invalid broadcast code length. Should be from 4 to 16 octets long.");
-                return;
-            }
+        if (broadcastCode != null && ((broadcastCode.length > 16) || (broadcastCode.length < 4))) {
+            Log.e(TAG, "Invalid broadcast code length. Should be from 4 to 16 octets long.");
+            return false;
         }
 
         List<BluetoothLeBroadcastSubgroupSettings> settingsList =
                 broadcastSettings.getSubgroupSettings();
         if (settingsList == null || settingsList.size() < 1) {
             Log.d(TAG, "subgroup settings is not valid value");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Creates LeAudio Broadcast instance with BluetoothLeBroadcastSettings.
+     *
+     * @param broadcastSettings broadcast settings for this broadcast source
+     */
+    public void createBroadcast(BluetoothLeBroadcastSettings broadcastSettings) {
+        if (!canBroadcastBeCreated(broadcastSettings)) {
+            mHandler.post(
+                    () ->
+                            notifyBroadcastStartFailed(
+                                    BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES));
             return;
         }
+
         mBroadcastSessionStats.put(
                 INVALID_BROADCAST_ID,
                 new LeAudioBroadcastSessionStats(broadcastSettings, SystemClock.elapsedRealtime()));
@@ -1208,19 +1216,35 @@ public class LeAudioService extends ProfileService {
         BluetoothLeAudioContentMetadata publicMetadata =
                 broadcastSettings.getPublicBroadcastMetadata();
 
-        Log.i(TAG, "createBroadcast: isEncrypted=" + (isEncrypted ? "true" : "false"));
+        byte[] broadcastCode = broadcastSettings.getBroadcastCode();
+        Log.i(
+                TAG,
+                "createBroadcast: isEncrypted="
+                        + (((broadcastCode != null) && (broadcastCode.length != 0))
+                                ? "true"
+                                : "false"));
 
         mAwaitingBroadcastCreateResponse = true;
         if (leaudioBigDependsOnAudioState()) {
             mCreateBroadcastQueue.add(broadcastSettings);
         }
+
+        /* Start timeout to recover from stucked/error create Broadcast operation */
+        if (mCreateBroadcastTimeoutEvent != null) {
+            Log.w(TAG, "CreateBroadcastTimeoutEvent already scheduled");
+        } else {
+            mCreateBroadcastTimeoutEvent = new CreateBroadcastTimeoutEvent();
+            mHandler.postDelayed(mCreateBroadcastTimeoutEvent, CREATE_BROADCAST_TIMEOUT_MS);
+        }
+
         mLeAudioBroadcasterNativeInterface.createBroadcast(
                 broadcastSettings.isPublicBroadcast(),
                 broadcastSettings.getBroadcastName(),
                 broadcastCode,
                 publicMetadata == null ? null : publicMetadata.getRawMetadata(),
-                getBroadcastAudioQualityPerSinkCapabilities(settingsList),
-                settingsList.stream()
+                getBroadcastAudioQualityPerSinkCapabilities(
+                        broadcastSettings.getSubgroupSettings()),
+                broadcastSettings.getSubgroupSettings().stream()
                         .map(s -> s.getContentMetadata().getRawMetadata())
                         .toArray(byte[][]::new));
     }
@@ -1258,26 +1282,6 @@ public class LeAudioService extends ProfileService {
             }
         }
         return preferredQualityArray;
-    }
-
-    /**
-     * Start LeAudio Broadcast instance.
-     *
-     * @param broadcastId broadcast instance identifier
-     */
-    public void startBroadcast(int broadcastId) {
-        if (mLeAudioBroadcasterNativeInterface == null) {
-            Log.w(TAG, "Native interface not available.");
-            return;
-        }
-
-        Log.d(TAG, "startBroadcast");
-
-        /* Start timeout to recover from stucked/error start Broadcast operation */
-        mDialingOutTimeoutEvent = new DialingOutTimeoutEvent(broadcastId);
-        mHandler.postDelayed(mDialingOutTimeoutEvent, DIALING_OUT_TIMEOUT_MS);
-
-        mLeAudioBroadcasterNativeInterface.startBroadcast(broadcastId);
     }
 
     /**
@@ -3170,21 +3174,6 @@ public class LeAudioService extends ProfileService {
         setActiveDevice(unicastDevice);
     }
 
-    void clearBroadcastTimeoutCallback() {
-        if (mHandler == null) {
-            Log.e(TAG, "No callback handler");
-            return;
-        }
-
-        /* Timeout callback already cleared */
-        if (mDialingOutTimeoutEvent == null) {
-            return;
-        }
-
-        mHandler.removeCallbacks(mDialingOutTimeoutEvent);
-        mDialingOutTimeoutEvent = null;
-    }
-
     void notifyAudioFrameworkForCodecConfigUpdate(
             int groupId,
             LeAudioGroupDescriptor descriptor,
@@ -3658,7 +3647,6 @@ public class LeAudioService extends ProfileService {
                                 if (!leaudioUseAudioModeListener()) {
                                     mQueuedInCallValue = Optional.empty();
                                 }
-                                startBroadcast(mBroadcastIdDeactivatedForUnicastTransition.get());
                                 mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
                             }
 
@@ -3718,9 +3706,12 @@ public class LeAudioService extends ProfileService {
                     mBroadcastSessionStats.put(broadcastId, sessionStats);
                 }
 
-                // Start sending the actual stream
-                startBroadcast(broadcastId);
-
+                if (mCreateBroadcastTimeoutEvent == null) {
+                    Log.w(TAG, "CreateBroadcastTimeoutEvent was not scheduled");
+                    return;
+                }
+                mHandler.removeCallbacks(mCreateBroadcastTimeoutEvent);
+                mCreateBroadcastTimeoutEvent = null;
             } else {
                 // TODO: Improve reason reporting or extend the native stack event with reason code
                 Log.e(
@@ -3733,7 +3724,8 @@ public class LeAudioService extends ProfileService {
                 if ((mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID)
                         && mCreateBroadcastQueue.isEmpty()
                         && (!Objects.equals(device, mActiveBroadcastAudioDevice))) {
-                    clearBroadcastTimeoutCallback();
+                    mHandler.removeCallbacks(mCreateBroadcastTimeoutEvent);
+                    mCreateBroadcastTimeoutEvent = null;
                     updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
                 }
 
@@ -3871,8 +3863,6 @@ public class LeAudioService extends ProfileService {
                                         .BROADCAST_AUDIO_SESSION_REPORTED__SESSION_SETUP_STATUS__SETUP_STATUS_STREAMING);
                         sessionStats.updateSessionStreamingTime(SystemClock.elapsedRealtime());
                     }
-
-                    clearBroadcastTimeoutCallback();
 
                     if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
                         if (bassClientService != null) {
@@ -5276,46 +5266,22 @@ public class LeAudioService extends ProfileService {
         return audioFrameworkCalls;
     }
 
-    class DialingOutTimeoutEvent implements Runnable {
-        Integer mBroadcastId;
-
-        DialingOutTimeoutEvent(Integer broadcastId) {
-            mBroadcastId = broadcastId;
-        }
-
+    private class CreateBroadcastTimeoutEvent implements Runnable {
         @Override
         public void run() {
-            Log.w(TAG, "Failed to start Broadcast in time: " + mBroadcastId);
-
-            mDialingOutTimeoutEvent = null;
+            Log.w(TAG, "Failed to start Broadcast in time");
 
             if (getLeAudioService() == null) {
-                Log.e(TAG, "DialingOutTimeoutEvent: No LE Audio service");
+                Log.e(TAG, "CreateBroadcastTimeoutEvent: No LE Audio service");
                 return;
             }
 
-            if (Flags.leaudioBroadcastDestroyAfterTimeout()) {
-                LeAudioBroadcastSessionStats sessionStats =
-                        mBroadcastSessionStats.get(mBroadcastId);
-                if (sessionStats != null) {
-                    sessionStats.updateSessionStatus(
-                            BluetoothStatsLog
-                                    .BROADCAST_AUDIO_SESSION_REPORTED__SESSION_SETUP_STATUS__SETUP_STATUS_STREAMING_FAILED);
-                    // log once destroyed
-                }
-                transitionFromBroadcastToUnicast();
-                destroyBroadcast(mBroadcastId);
-            } else {
-                if (mActiveBroadcastAudioDevice != null) {
-                    updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
-                }
-
-                mHandler.post(() -> notifyBroadcastStartFailed(BluetoothStatusCodes.ERROR_TIMEOUT));
-                logBroadcastSessionStatsWithStatus(
-                        mBroadcastId,
-                        BluetoothStatsLog
-                                .BROADCAST_AUDIO_SESSION_REPORTED__SESSION_SETUP_STATUS__SETUP_STATUS_STREAMING_FAILED);
+            if (sLeAudioService.mHandler == null) {
+                Log.w(TAG, "CreateBroadcastTimeoutEvent: No handler");
+                return;
             }
+
+            mHandler.post(() -> notifyBroadcastStartFailed(BluetoothStatusCodes.ERROR_TIMEOUT));
         }
     }
 

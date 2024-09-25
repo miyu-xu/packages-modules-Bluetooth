@@ -44,7 +44,6 @@ public:
           const std::vector<uint8_t>& public_metadata, const std::vector<uint8_t>& subgroup_quality,
           const std::vector<std::vector<uint8_t>>& subgroup_metadata) = 0;
   virtual void SuspendAudioBroadcast(uint32_t broadcast_id) = 0;
-  virtual void StartAudioBroadcast(uint32_t broadcast_id) = 0;
   virtual void StopAudioBroadcast(uint32_t broadcast_id) = 0;
   virtual void DestroyAudioBroadcast(uint32_t broadcast_id) = 0;
   virtual void GetBroadcastMetadata(uint32_t broadcast_id) = 0;

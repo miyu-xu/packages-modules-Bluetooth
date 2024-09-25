@@ -67,11 +67,6 @@ class LeAudioBroadcasterInterfaceImpl : public LeAudioBroadcasterInterface,
                            std::move(public_metadata), std::move(subgroup_metadata)));
   }
 
-  void StartBroadcast(uint32_t broadcast_id) override {
-    do_in_main_thread(Bind(&LeAudioBroadcaster::StartAudioBroadcast,
-                           Unretained(LeAudioBroadcaster::Get()), broadcast_id));
-  }
-
   void StopBroadcast(uint32_t broadcast_id) override {
     do_in_main_thread(Bind(&LeAudioBroadcaster::StopAudioBroadcast,
                            Unretained(LeAudioBroadcaster::Get()), broadcast_id));

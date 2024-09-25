@@ -141,7 +141,6 @@ public:
       IsoManager::GetInstance()->Stop();
     }
 
-    queued_start_broadcast_request_ = std::nullopt;
     queued_create_broadcast_request_ = std::nullopt;
 
     if (le_audio_source_hal_client_) {
@@ -715,44 +714,6 @@ public:
     return iter != instance->broadcasts_.cend();
   }
 
-  void StartAudioBroadcast(uint32_t broadcast_id) override {
-    log::info("Starting broadcast_id={}", broadcast_id);
-
-    if (queued_start_broadcast_request_) {
-      log::error("Not processed yet start broadcast request");
-      return;
-    }
-
-    if (is_iso_running_) {
-      queued_start_broadcast_request_ = broadcast_id;
-      return;
-    }
-
-    if (IsAnyoneStreaming()) {
-      log::error("Stop the other broadcast first!");
-      return;
-    }
-
-    if (broadcasts_.count(broadcast_id) != 0) {
-      if (!le_audio_source_hal_client_) {
-        le_audio_source_hal_client_ = LeAudioSourceAudioHalClient::AcquireBroadcast();
-        if (!le_audio_source_hal_client_) {
-          log::error("Could not acquire le audio");
-          return;
-        }
-
-        auto result = CodecManager::GetInstance()->UpdateActiveBroadcastAudioHalClient(
-                le_audio_source_hal_client_.get(), true);
-        log::assert_that(result, "Could not update session in codec manager");
-      }
-
-      broadcasts_[broadcast_id]->ProcessMessage(BroadcastStateMachine::Message::START, nullptr);
-      bluetooth::le_audio::MetricsCollector::Get()->OnBroadcastStateChanged(true);
-    } else {
-      log::error("No such broadcast_id={}", broadcast_id);
-    }
-  }
-
   void StopAudioBroadcast(uint32_t broadcast_id) override {
     if (broadcasts_.count(broadcast_id) == 0) {
       log::error("no such broadcast_id={}", broadcast_id);
@@ -913,13 +874,6 @@ public:
     is_iso_running_ = is_active;
     log::info("is_iso_running: {}", is_iso_running_);
     if (!is_iso_running_) {
-      if (queued_start_broadcast_request_) {
-        auto broadcast_id = *queued_start_broadcast_request_;
-        queued_start_broadcast_request_ = std::nullopt;
-
-        log::info("Start queued broadcast.");
-        StartAudioBroadcast(broadcast_id);
-      }
       if (queued_create_broadcast_request_) {
         auto broadcast_msg = std::move(*queued_create_broadcast_request_);
         queued_create_broadcast_request_ = std::nullopt;
@@ -1388,7 +1342,6 @@ private:
   std::map<uint32_t, std::unique_ptr<BroadcastStateMachine>> broadcasts_;
   std::vector<std::unique_ptr<BroadcastStateMachine>> pending_broadcasts_;
   std::optional<BroadcastStateMachineConfig> queued_create_broadcast_request_;
-  std::optional<uint32_t> queued_start_broadcast_request_;
 
   /* Some BIG params are set globally */
   uint8_t current_phy_;
