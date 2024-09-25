@@ -21,6 +21,7 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.LOCAL_MAC_ADDRESS;
 
 import android.annotation.FlaggedApi;
+import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SystemApi;
@@ -141,6 +142,11 @@ public final class BluetoothSocket implements Closeable {
     private final BluetoothInputStream mInputStream;
     private final BluetoothOutputStream mOutputStream;
     private final ParcelUuid mUuid;
+    private final int mDataPath;
+    private final String mSocketName;
+    private final int mHubId;
+    private final int mEndPointId;
+    private final boolean mAutoSwitch;
 
     /** when true no SPP SDP record will be created */
     private boolean mExcludeSdp = false;
@@ -230,6 +236,56 @@ public final class BluetoothSocket implements Closeable {
             boolean mitm,
             boolean min16DigitPin)
             throws IOException {
+        this(
+                type,
+                auth,
+                encrypt,
+                device,
+                port,
+                uuid,
+                mitm,
+                min16DigitPin,
+                BluetoothSocketSettings.DATA_PATH_OFFLOAD_OFF,
+                null,
+                -1,
+                -1,
+                false);
+    }
+
+    /**
+     * Construct a BluetoothSocket.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param device remote device that this socket can connect to
+     * @param port remote port
+     * @param uuid SDP uuid
+     * @param mitm enforce person-in-the-middle protection.
+     * @param min16DigitPin enforce a minimum length of 16 digits for a sec mode 2 connection
+     * @param dataPath socket data path
+     * @param socketName descriptive socket name
+     * @param hubId ID of the hub to which the end point belongs
+     * @param endPointId ID of the hub end point
+     * @param autoSwitch Flag for auto data path switch
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, LOCAL_MAC_ADDRESS})
+    /*package*/ BluetoothSocket(
+            int type,
+            boolean auth,
+            boolean encrypt,
+            BluetoothDevice device,
+            int port,
+            ParcelUuid uuid,
+            boolean mitm,
+            boolean min16DigitPin,
+            int dataPath,
+            String socketName,
+            int hubId,
+            int endPointId,
+            boolean autoSwitch)
+            throws IOException {
         if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
         mSocketCreationTimeNanos = System.nanoTime();
         if (type == BluetoothSocket.TYPE_RFCOMM
@@ -251,6 +307,11 @@ public final class BluetoothSocket implements Closeable {
         mEncrypt = encrypt;
         mDevice = device;
         mPort = port;
+        mDataPath = dataPath;
+        mSocketName = socketName;
+        mHubId = hubId;
+        mEndPointId = endPointId;
+        mAutoSwitch = autoSwitch;
 
         mSocketState = SocketState.INIT;
 
@@ -312,6 +373,11 @@ public final class BluetoothSocket implements Closeable {
         mMin16DigitPin = s.mMin16DigitPin;
         mSocketCreationTimeNanos = s.mSocketCreationTimeNanos;
         mSocketCreationLatencyNanos = s.mSocketCreationLatencyNanos;
+        mDataPath = s.mDataPath;
+        mSocketName = s.mSocketName;
+        mHubId = s.mHubId;
+        mEndPointId = s.mEndPointId;
+        mAutoSwitch = s.mAutoSwitch;
     }
 
     private BluetoothSocket acceptSocket(String remoteAddr) throws IOException {
@@ -926,6 +992,24 @@ public final class BluetoothSocket implements Closeable {
             throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
         }
         return cid;
+    }
+
+    /**
+     * Returns the connection UUID associated to this socket.
+     *
+     * @return the socket connection UUID.
+     * @throws BluetoothSocketException in case of failure, with the corresponding error code.
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    @RequiresNoPermission
+    public @NonNull UUID getConnectionUuid() throws IOException {
+        if (mSocketState != SocketState.CONNECTED || mConnectionUuid == null ||
+            mConnectionUuid.getUuid() == null) {
+            throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
+        }
+        return mConnectionUuid.getUuid();
     }
 
     /** @hide */

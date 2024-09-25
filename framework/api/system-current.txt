@@ -1016,8 +1016,26 @@ package android.bluetooth {
   }
 
   public final class BluetoothSocket implements java.io.Closeable {
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public java.util.UUID getConnectionUuid() throws java.io.IOException;
     method @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getL2capLocalChannelId() throws java.io.IOException;
     method @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getL2capRemoteChannelId() throws java.io.IOException;
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public final class BluetoothSocketSettings {
+    method @NonNull public int getDataPath();
+    method @NonNull public int getEndPointId();
+    method @NonNull public int getHubId();
+    method @NonNull public String getSocketName();
+    method @NonNull public boolean isAutoDataPathSwitch();
+  }
+
+  public static final class BluetoothSocketSettings.Builder {
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setAutoDataPathSwitch(boolean);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setDataPath(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setEndPointId(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setHubId(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSecurityLevel(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketName(@NonNull String);
   }
 
   public final class BluetoothStatusCodes {
