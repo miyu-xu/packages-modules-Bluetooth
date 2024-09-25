@@ -3211,7 +3211,10 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+<<<<<<< HEAD
     //@FlaggedApi(Flags.FLAG_BT_SOCKET_SETTINGS_API)
+=======
+>>>>>>> 72bfcd9ce8 (Add Bluetooth socket settings)
     @SuppressLint("AndroidFrameworkRequiresPermission")
     public @NonNull BluetoothSocket createClientSocket(@NonNull BluetoothSocketSettings settings)
             throws IOException {
@@ -3224,6 +3227,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         }
         boolean auth, encrypt;
         int securityLevel = settings.getSecurityLevel();
+<<<<<<< HEAD
         if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE) {
             auth = false;
             encrypt = false;
@@ -3231,6 +3235,15 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             auth = false;
             encrypt = true;
         } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {
+=======
+        if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_0) {
+            auth = false;
+            encrypt = false;
+        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_1) {
+            auth = false;
+            encrypt = true;
+        } else if (securityLevel == BluetoothSocketSettings.BLUETOOTH_SOCKET_SECURITY_LEVEL_2) {
+>>>>>>> 72bfcd9ce8 (Add Bluetooth socket settings)
             auth = true;
             encrypt = true;
         } else {
@@ -3244,7 +3257,16 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 settings.getChannel(),
                 new ParcelUuid(settings.getUuid()),
                 false,
+<<<<<<< HEAD
                 false);
+=======
+                false,
+                settings.getDataPath(),
+                settings.getSocketName(),
+                settings.getHubId(),
+                settings.getEndPointId(),
+                settings.isAutoDataPathSwitch());
+>>>>>>> 72bfcd9ce8 (Add Bluetooth socket settings)
     }
 
     /**
