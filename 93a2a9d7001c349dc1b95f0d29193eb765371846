@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76ec9193_c9199a86",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-25T11:31:50Z",
+      "side": 1,
+      "message": "this comment can be removed now, right?",
+      "fixSuggestions": [
+        {
+          "fixId": "9c9ab82c_30614680",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/codec_manager.cc",
+              "range": {
+                "startLine": 928,
+                "startChar": 0,
+                "endLine": 930,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "93a2a9d7001c349dc1b95f0d29193eb765371846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
