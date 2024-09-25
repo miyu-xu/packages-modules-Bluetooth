@@ -22,6 +22,30 @@
       },
       "revId": "abb93dc23a83fdd2d433d431efcd646e1a7715e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a21fe4c_1230ecb1",
+        "filename": "system/audio_hal_interface/aidl/hfp_client_interface_aidl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-25T01:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ed79cca_a22f5dd5",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 83
+      },
+      "revId": "abb93dc23a83fdd2d433d431efcd646e1a7715e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
