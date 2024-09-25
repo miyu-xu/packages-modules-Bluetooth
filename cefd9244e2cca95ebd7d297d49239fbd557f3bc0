@@ -34,6 +34,24 @@
       ],
       "revId": "cefd9244e2cca95ebd7d297d49239fbd557f3bc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "037442ef_0488791d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/service_discovery/LeAudioServiceDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-09-25T02:50:51Z",
+      "side": 1,
+      "message": "I will address it as part of next discovery test case",
+      "parentUuid": "920dba5b_6bab745a",
+      "revId": "cefd9244e2cca95ebd7d297d49239fbd557f3bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
