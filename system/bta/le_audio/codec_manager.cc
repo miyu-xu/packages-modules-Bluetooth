@@ -934,7 +934,8 @@ private:
                                   : btle_audio_codec_index_t::LE_AUDIO_CODEC_INDEX_SOURCE_INVALID,
                   .sample_rate = utils::translateToBtLeAudioCodecConfigSampleRate(
                           conf.codec.GetSamplingFrequencyHz()),
-                  .bits_per_sample = utils::translateToBtLeAudioCodecConfigBitPerSample(16),
+                  .bits_per_sample = utils::translateToBtLeAudioCodecConfigBitPerSample(
+                          conf.codec.GetBitsPerSample()),
                   .channel_count = utils::translateToBtLeAudioCodecConfigChannelCount(
                           conf.codec.GetChannelCountPerIsoStream()),
                   .frame_duration = utils::translateToBtLeAudioCodecConfigFrameDuration(
