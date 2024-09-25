@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "933130f9_84e79467",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-25T06:03:23Z",
+      "side": 1,
+      "message": "Based on b/369432234#comment9, the test failure is irrelevant to Bluetooth Adapter changes.",
+      "revId": "3af9f642e3af9be45035e5935c7c71c2450dfa02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
