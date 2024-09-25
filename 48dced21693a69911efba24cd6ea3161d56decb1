@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d71078f_eb297cf9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-25T18:39:00Z",
+      "side": 1,
+      "message": "I think I did not change the flow, because 2 reasons:\n1. original code does not ensure the order\noriginal order is, first add message `connectAudio ` to statemachine handler, then call `enableSwbCodec`. \nAs statemachine handler thread is different from this thread, the order is uncertain. usually `connectAudio ` will be later\nNow I put setCommunicationDevice into main handler thread, so the result is same. \n\n2. `enableSwbCodec ` is just changing a variable value, https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/ag/bta_ag_swb_aptx.cc;l\u003d73;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;bpv\u003d1;bpt\u003d1, does not rely on connectAudio",
+      "parentUuid": "96f443b6_8ca5109f",
+      "range": {
+        "startLine": 1189,
+        "startChar": 8,
+        "endLine": 1189,
+        "endChar": 22
+      },
+      "revId": "48dced21693a69911efba24cd6ea3161d56decb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb9464da_37c15767",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-25T18:27:44Z",
       "side": 1,
       "message": "Same here",
+      "range": {
+        "startLine": 1235,
+        "startChar": 8,
+        "endLine": 1235,
+        "endChar": 22
+      },
+      "revId": "48dced21693a69911efba24cd6ea3161d56decb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5fd777d_99f21241",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1235,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-25T18:39:00Z",
+      "side": 1,
+      "message": "same reason as above",
+      "parentUuid": "fb9464da_37c15767",
       "range": {
         "startLine": 1235,
         "startChar": 8,
