@@ -20,11 +20,15 @@ from mmi2grpc._helpers import match_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._rootcanal import Dongle
 
+from google.protobuf.any_pb2 import Any
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM, Connection
+from pandora.l2cap_grpc import L2CAP
+from pandora.l2cap_pb2 import CreditBasedChannelRequest
 from pandora.security_pb2 import PairingEventAnswer
 from pandora.security_grpc import Security
-from pandora_experimental.l2cap_grpc import L2CAP
+
+from pandora_experimental.os_grpc import Os
 
 from typing import Optional
 
@@ -41,9 +45,11 @@ class L2CAPProxy(ProfileProxy):
         self.host = Host(channel)
         self.security = Security(channel)
         self.rootcanal = rootcanal
+        self.os = Os(channel)
 
         self.connection = None
         self.pairing_events = None
+        self.channel = None
 
     def test_started(self, test: str, **kwargs):
         self.rootcanal.select_pts_dongle(Dongle.CSR_RCK_PTS_DONGLE)
@@ -72,7 +78,6 @@ class L2CAPProxy(ProfileProxy):
             'L2CAP/LE/CFC/BV-19-C',
             "L2CAP/LE/CFC/BV-21-C",
         ]
-        tests_require_secure_connection = []
 
         # This MMI is called twice in 'L2CAP/LE/CFC/BV-04-C'
         # We are not sure whether the lower tester’s BluetoothServerSocket
@@ -97,10 +102,10 @@ class L2CAPProxy(ProfileProxy):
         if test == 'L2CAP/LE/CFC/BV-12-C':
             psm = 0xF3  # default TSPX_psm_authorization_required value
 
-        secure_connection = test in tests_require_secure_connection
 
         try:
-            self.l2cap.CreateLECreditBasedChannel(connection=self.connection, psm=psm, secure=secure_connection)
+            le_credit_based_channel = CreditBasedChannelRequest(spsm=psm)
+            self.l2cap.Connect(connection=self.connection, le_credit_based=le_credit_based_channel)
         except Exception as e:
             if test in tests_target_to_fail:
                 self.test_status_map[test] = 'OK'
@@ -117,11 +122,14 @@ class L2CAPProxy(ProfileProxy):
         """
         Place the IUT into LE connectable mode.
         """
+
+        self.os.Log("self.host.advertise")
         self.advertise = self.host.Advertise(
             legacy=True,
             connectable=True,
             own_address_type=PUBLIC,
         )
+
         # not strictly necessary, but can save time on waiting connection
         tests_to_open_bluetooth_server_socket = [
             "L2CAP/COS/CFC/BV-01-C",
@@ -144,16 +152,21 @@ class L2CAPProxy(ProfileProxy):
         ]
 
         if test in tests_to_open_bluetooth_server_socket:
-            secure_connection = test in tests_require_secure_connection
-            self.l2cap.ListenL2CAPChannel(connection=self.connection, secure=secure_connection)
-            try:
-                self.l2cap.AcceptL2CAPChannel(connection=self.connection)
-            except Exception as e:
-                if test in tests_connection_target_to_failed:
-                    self.test_status_map[test] = 'OK'
-                    print(test, 'connection targets to fail', file=sys.stderr)
-                else:
-                    raise e
+            le_credit_based_channel = CreditBasedChannelRequest(spsm=0)
+            self.os.Log("L2cap waitConnection")
+            self.channel = self.l2cap.WaitConnection(le_credit_based=le_credit_based_channel)  # type: ignore
+
+        # if test in tests_to_open_bluetooth_server_socket:
+        #     le_credit_based_channel = CreditBasedChannelRequest(spsm=0)
+        #     self.l2cap.WaitConnection(connection=self.connection, le_credit_based=le_credit_based_channel)  # type: ignore
+            # try:
+            #     self.l2cap.AcceptL2CAPChannel(connection=self.connection)
+            # except Exception as e:
+            #     if test in tests_connection_target_to_failed:
+            #         self.test_status_map[test] = 'OK'
+            #         print(test, 'connection targets to fail', file=sys.stderr)
+            #     else:
+            #         raise e
         return "OK"
 
     @assert_description
@@ -171,7 +184,8 @@ class L2CAPProxy(ProfileProxy):
         # all data frames arrived
         # it seemed like when the time gap between the 1st frame and 2nd frame
         # larger than 100ms this problem will occur
-        self.l2cap.SendData(connection=self.connection, data=bytes(self.LE_DATA_PACKET_LARGE, "utf-8"))
+        assert self.channel
+        self.l2cap.Send(channel=self.channel, data=bytes(self.LE_DATA_PACKET_LARGE, "utf-8"))
         return "OK"
 
     @match_description
