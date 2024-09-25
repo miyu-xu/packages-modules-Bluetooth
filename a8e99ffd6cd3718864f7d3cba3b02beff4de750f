@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72559f5f_265a2dfa",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-25T20:45:42Z",
+      "side": 1,
+      "message": "This will change the RFCOMM mux channel requirements for everyone. This means that socket applications may mess with each other if they try to connect around the same time.",
+      "revId": "a8e99ffd6cd3718864f7d3cba3b02beff4de750f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
