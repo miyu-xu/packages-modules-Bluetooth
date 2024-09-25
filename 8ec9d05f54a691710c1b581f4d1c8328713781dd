@@ -22,6 +22,70 @@
       },
       "revId": "8ec9d05f54a691710c1b581f4d1c8328713781dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a69f91a4_c6f355fe",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1302,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-25T12:38:51Z",
+      "side": 1,
+      "message": "let\u0027s keep it just for conversational now and if needed it will be easy to extend.",
+      "parentUuid": "33b04a64_6a70849e",
+      "range": {
+        "startLine": 1302,
+        "startChar": 7,
+        "endLine": 1302,
+        "endChar": 38
+      },
+      "revId": "8ec9d05f54a691710c1b581f4d1c8328713781dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc0a8b1_d9583cf2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-25T12:38:51Z",
+      "side": 1,
+      "message": "typo  leaudio",
+      "range": {
+        "startLine": 1304,
+        "startChar": 22,
+        "endLine": 1304,
+        "endChar": 63
+      },
+      "revId": "8ec9d05f54a691710c1b581f4d1c8328713781dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f3711d_b72e21af",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-25T12:38:51Z",
+      "side": 1,
+      "message": "todo: handle failing case.",
+      "revId": "8ec9d05f54a691710c1b581f4d1c8328713781dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
