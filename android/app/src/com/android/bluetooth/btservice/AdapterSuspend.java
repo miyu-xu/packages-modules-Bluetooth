@@ -24,6 +24,7 @@ import static java.util.Objects.requireNonNull;
 import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.Display;
 
@@ -59,14 +60,17 @@ public class AdapterSuspend {
                     }
                 }
             };
+    private final PowerManager mPowerManager;
 
     public AdapterSuspend(
             AdapterNativeInterface adapterNativeInterface,
             Looper looper,
-            DisplayManager displayManager) {
+            DisplayManager displayManager,
+            PowerManager powerManager) {
         mAdapterNativeInterface = requireNonNull(adapterNativeInterface);
         mLooper = requireNonNull(looper);
         mDisplayManager = requireNonNull(displayManager);
+        mPowerManager = requireNonNull(powerManager);
 
         mDisplayManager.registerDisplayListener(mDisplayListener, new Handler(mLooper));
     }
@@ -98,7 +102,9 @@ public class AdapterSuspend {
         mAdapterNativeInterface.clearEventFilter();
         mAdapterNativeInterface.clearFilterAcceptList();
         mAdapterNativeInterface.disconnectAllAcls();
-        mAdapterNativeInterface.allowWakeByHid();
+        if (mPowerManager.getLastSleepReason() != mPowerManager.GO_TO_SLEEP_REASON_LID_SWITCH) {
+            mAdapterNativeInterface.allowWakeByHid();
+        }
         Log.i(TAG, "ready to suspend");
     }
 
