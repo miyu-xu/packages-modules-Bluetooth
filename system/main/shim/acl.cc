@@ -57,6 +57,8 @@
 #include "main/shim/stack.h"
 #include "metrics/bluetooth_event.h"
 #include "os/handler.h"
+#include "os/wakelock_manager.h"
+#include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_int_types.h"
@@ -72,6 +74,7 @@
 extern tBTM_CB btm_cb;
 
 using namespace bluetooth;
+using ::bluetooth::os::WakelockManager;
 
 class ConnectAddressWithType : public bluetooth::common::IRedactableLoggable {
 public:
@@ -131,6 +134,18 @@ struct formatter<ConnectAddressWithType> : formatter<std::string> {
 }  // namespace fmt
 
 namespace {
+
+// Control block for wakelock alarm
+struct wakelock_alarm_control {
+  alarm_t* timeout;
+  ~wakelock_alarm_control() {
+    if (timeout) {
+      alarm_free(timeout);
+    }
+  }
+};
+
+constexpr int kwakelocktimeout = 5000;  // ms
 
 constexpr uint32_t kRunicBjarkan = 0x0016D2;
 constexpr uint32_t kRunicHagall = 0x0016BC;
@@ -834,6 +849,9 @@ struct shim::Acl::impl {
   ShadowAcceptlist shadow_acceptlist_;
   ShadowAddressResolutionList shadow_address_resolution_list_;
 
+  struct wakelock_alarm_control wakelock_alarm_cb_;
+  bool system_suspend_ = false;
+
   bool IsClassicAcl(HciHandle handle) {
     return handle_to_classic_connection_map_.find(handle) !=
            handle_to_classic_connection_map_.end();
@@ -1434,6 +1452,38 @@ void shim::Acl::OnLeLinkDisconnected(HciHandle handle, hci::ErrorCode reason) {
           reason));
 }
 
+static void wakelock_release_cb(void*) {
+  log::debug("Wakelock released on timeout");
+  WakelockManager::Get().Release();
+}
+
+static void clear_resume_wakelock_alarm(wakelock_alarm_control& alarm_cb) {
+  if (!alarm_cb.timeout) {
+    return;
+  }
+  alarm_t* alarm = alarm_cb.timeout;
+  if (alarm_is_scheduled(alarm)) {
+    log::debug("Wakelock released on resume");
+    alarm_cancel(alarm);
+    WakelockManager::Get().Release();
+  }
+}
+
+static void acquire_wakelock_with_alarm_cb(wakelock_alarm_control& alarm_cb) {
+  if (!alarm_cb.timeout) {
+    alarm_cb.timeout = alarm_new("wakelock_release_timeout");
+  }
+  alarm_t* alarm = alarm_cb.timeout;
+  if (!alarm_is_scheduled(alarm)) {
+    WakelockManager::Get().Acquire();
+  } else {
+    // cancel existing alarm and callback
+    alarm_cancel(alarm);
+  }
+  log::debug("Wakelock acquired");
+  alarm_set_on_mloop(alarm, kWakelockTimeout, wakelock_release_cb, nullptr);
+}
+
 void shim::Acl::OnConnectSuccess(
         std::unique_ptr<hci::acl_manager::ClassicAclConnection> connection) {
   log::assert_that(connection != nullptr, "assert failed: connection != nullptr");
@@ -1465,6 +1515,12 @@ void shim::Acl::OnConnectRequest(hci::Address address, hci::ClassOfDevice cod) {
   const RawAddress bd_addr = ToRawAddress(address);
   const DEV_CLASS dev_class = ToDevClass(cod);
 
+  if (com::android::bluetooth::flags::adapter_suspend_mgmt()) {
+    if (pimpl_->system_suspend_) {
+      acquire_wakelock_with_alarm_cb(pimpl_->wakelock_alarm_cb_);
+    }
+  }
+
   TRY_POSTING_ON_MAIN(acl_interface_.connection.classic.on_connect_request, bd_addr, cod);
   log::debug("Received connect request remote:{} gd_cod:{} legacy_dev_class:{}", address,
              cod.ToString(), dev_class_text(dev_class));
@@ -1487,6 +1543,12 @@ void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
                                    std::unique_ptr<hci::acl_manager::LeAclConnection> connection) {
   log::assert_that(connection != nullptr, "assert failed: connection != nullptr");
   auto handle = connection->GetHandle();
+
+  if (com::android::bluetooth::flags::adapter_suspend_mgmt()) {
+    if (pimpl_->system_suspend_) {
+      acquire_wakelock_with_alarm_cb(pimpl_->wakelock_alarm_cb_);
+    }
+  }
 
   // Save the peer address, if any
   hci::AddressWithType peer_address_with_type = connection->peer_address_with_type_;
@@ -1684,5 +1746,11 @@ void shim::Acl::ClearAddressResolution() {
 }
 
 void shim::Acl::SetSystemSuspendState(bool suspended) {
+  if (com::android::bluetooth::flags::adapter_suspend_mgmt()) {
+    pimpl_->system_suspend_ = suspended;
+    if (!suspended) {
+      clear_resume_wakelock_alarm(pimpl_->wakelock_alarm_cb_);
+    }
+  }
   handler_->CallOn(pimpl_.get(), &Acl::impl::SetSystemSuspendState, suspended);
 }
