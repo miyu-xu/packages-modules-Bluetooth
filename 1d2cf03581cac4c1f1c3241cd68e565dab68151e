@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec287660_557129bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-09-25T01:13:37Z",
+      "side": 1,
+      "message": "You need `\"//bt/sysprop:libcom.android.sysprop.bluetooth\",` in your `BUILD.gn` for `system/gd/hci/`\n\nI verified locally with docker build that this will fix the build issue.",
+      "revId": "1d2cf03581cac4c1f1c3241cd68e565dab68151e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
