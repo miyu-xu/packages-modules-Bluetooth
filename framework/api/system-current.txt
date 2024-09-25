@@ -1020,6 +1020,23 @@ package android.bluetooth {
     method @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getL2capRemoteChannelId() throws java.io.IOException;
   }
 
+  @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") public final class BluetoothSocketSettings {
+    method @NonNull public int getDataMode();
+    method @NonNull public int getEndPointId();
+    method @NonNull public int getHubId();
+    method @NonNull public String getSocketName();
+    method @NonNull public boolean isAutoDataPathSwitch();
+  }
+
+  public static final class BluetoothSocketSettings.Builder {
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setAutoDataPathSwitch(boolean);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setDataMode(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setEndPointId(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setHubId(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSecurityLevel(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketName(@NonNull String);
+  }
+
   public final class BluetoothStatusCodes {
     field public static final int ALLOWED = 400; // 0x190
     field public static final int ERROR_ALREADY_IN_TARGET_STATE = 26; // 0x1a
