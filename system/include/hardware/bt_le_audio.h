@@ -533,8 +533,6 @@ public:
                               std::vector<uint8_t> public_metadata,
                               std::vector<std::vector<uint8_t>> subgroup_metadata) = 0;
 
-  /* Start the existing Broadcast stream */
-  virtual void StartBroadcast(uint32_t broadcast_id) = 0;
   /* Pause the ongoing Broadcast stream */
   virtual void PauseBroadcast(uint32_t broadcast_id) = 0;
   /* Stop the Broadcast (no stream, no periodic advertisements */
