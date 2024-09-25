@@ -34,6 +34,24 @@
       ],
       "revId": "93a2a9d7001c349dc1b95f0d29193eb765371846",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e623cc0_4d3ff6d5",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-09-25T14:09:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76ec9193_c9199a86",
+      "revId": "93a2a9d7001c349dc1b95f0d29193eb765371846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
