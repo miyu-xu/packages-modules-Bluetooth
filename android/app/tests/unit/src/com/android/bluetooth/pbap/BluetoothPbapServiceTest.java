@@ -18,6 +18,7 @@ package com.android.bluetooth.pbap;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assume.assumeTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -30,6 +31,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Message;
 import android.os.test.TestLooper;
 
@@ -74,6 +76,9 @@ public class BluetoothPbapServiceTest {
     @Before
     public void setUp() throws Exception {
         Context targetContext = InstrumentationRegistry.getTargetContext();
+        PackageManager pm = targetContext.getPackageManager();
+        assumeTrue(pm != null && pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_SUBSCRIPTION));
+
         mTestLooper = new TestLooper();
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
         doReturn(mTestLooper.getLooper()).when(mMethodProxy).handlerThreadGetLooper(any());
