@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da692e9b_a053ec37",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-26T13:26:53Z",
+      "side": 1,
+      "message": "Please put comment here, what we are trying to achieve.\n\nalso should\u0027n it be `Flags.admVerifyActiveFallbackDevice()`  ?",
+      "range": {
+        "startLine": 1065,
+        "startChar": 26,
+        "endLine": 1065,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c0bd1483_c052ff14",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1064,
+                "startChar": 0,
+                "endLine": 1064,
+                "endChar": 0
+              },
+              "replacement": "                // If the recently removed device is the only connected hearing aid device,\n                // we should not set it as fallback device.\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1065,
+                "startChar": 0,
+                "endLine": 1066,
+                "endChar": 0
+              },
+              "replacement": "                        !(Flags.admVerifyActiveFallbackDevice()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3634d26c30472bb26faeff52a6f24b9466765679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8e8bbcf_0f73214e",
         "filename": "flags/active_device_manager.aconfig",
         "patchSetId": 3
