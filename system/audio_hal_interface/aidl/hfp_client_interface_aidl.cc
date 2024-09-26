@@ -31,9 +31,6 @@
 #include "provider_info.h"
 #include "types/raw_address.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
-
 namespace bluetooth {
 namespace audio {
 namespace aidl {
@@ -48,7 +45,7 @@ std::map<bt_status_t, BluetoothAudioCtrlAck> status_to_ack_map = {
         {BT_STATUS_UNSUPPORTED, BluetoothAudioCtrlAck::FAILURE_UNSUPPORTED},
 };
 
-tBTA_AG_SCB* get_hfp_active_device_callback() {
+static tBTA_AG_SCB* get_hfp_active_device_callback() {
   const RawAddress& addr = bta_ag_get_active_device();
   if (addr.IsEmpty()) {
     log::error("No active device found");
