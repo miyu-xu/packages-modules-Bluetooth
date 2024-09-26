@@ -1,0 +1,128 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a05814bf_e91344ba",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-26T17:19:45Z",
+      "side": 1,
+      "message": "can we keep everything as std::unique_ptr rather than raw pointer ?\n\nI don\u0027t see \"delete\" called anywhere in this patch, where is it taken care of ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 10
+      },
+      "revId": "9fa299d9b9f2baf7a6a46e3d507bb465b6a7afd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac25da86_c86b4f27",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-26T17:19:45Z",
+      "side": 1,
+      "message": "std::make_unique\u003cDumpsys\u003e() and make_unique for all those lines around.",
+      "range": {
+        "startLine": 100,
+        "startChar": 13,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "36e81616_7885a734",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 27,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": "#include \u003cmemory\u003e\n"
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 100,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "  dumpsys_ \u003d std::make_unique\u003cDumpsys\u003e();\n  sysprops_ \u003d std::make_unique\u003csysprops::SyspropsModule\u003e();\n  counter_metrics_ \u003d std::make_unique\u003cmetrics::CounterMetrics\u003e();\n  storage_ \u003d std::make_unique\u003cstorage::StorageModule\u003e(counter_metrics_.get());\n  acl_scheduler_ \u003d std::make_unique\u003chci::acl_manager::AclScheduler\u003e();\n"
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "  hci_hal_ \u003d std::make_unique\u003chal::HciHal\u003e();\n  hci_layer_ \u003d std::make_unique\u003chal::HciLayer\u003e(hci_hal_.get(), storage_.get());\n  controller_ \u003d std::make_unique\u003chci::Controller\u003e(hci_layer_.get(), sysprops_.get());\n  vendor_specific_event_manager_ \u003d std::make_unique\u003chci::VendorSpecificEventManager\u003e(hci_layer_.get(), controller_.get());\n  remote_name_request_ \u003d std::make_unique\u003chci::RemoteNameRequestModule\u003e(hci_layer_.get(), acl_scheduler_.get());\n  acl_manager_ \u003d std::make_unique\u003chci::AclManager\u003e(\n"
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "  le_advertising_manager_ \u003d std::make_unique\u003chci::LeAdvertisingManager\u003e(\n      hci_layer_.get(), controller_.get(), acl_manager_.get(), vendor_specific_event_manager_.get());\n  le_scanning_manager_ \u003d std::make_unique\u003chci::LeScanningManager\u003e(\n      hci_layer_.get(), controller_.get(), acl_manager_.get(), vendor_specific_event_manager_.get(),\n      storage_.get());\n  distance_measurement_manager_ \u003d std::make_unique\u003chci::DistanceMeasurementManager\u003e(\n      hci_layer_.get(), acl_manager_.get());\n"
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 121,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "  msft_extension_manager_ \u003d std::make_unique\u003chci::MsftExtensionManager\u003e(\n      hci_hal_.get(), hci_layer_.get(), vendor_specific_event_manager_.get());\n"
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 145,
+                "startChar": 0,
+                "endLine": 146,
+                "endChar": 0
+              },
+              "replacement": "  acl_ \u003d std::make_unique\u003clegacy::Acl\u003e(handler_, legacy::GetAclInterface(),\n"
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 194,
+                "endChar": 0
+              },
+              "replacement": "    pimpl_-\u003eacl_.reset();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9fa299d9b9f2baf7a6a46e3d507bb465b6a7afd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
