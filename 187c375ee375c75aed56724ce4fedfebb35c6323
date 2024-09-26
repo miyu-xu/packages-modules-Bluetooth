@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "159bd6ba_749a69a2",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-26T17:39:45Z",
+      "side": 1,
+      "message": "Add a comment here on why we need this",
+      "range": {
+        "startLine": 352,
+        "startChar": 39,
+        "endLine": 352,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "db99f650_4023965e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_int.h",
+              "range": {
+                "startLine": 352,
+                "startChar": 0,
+                "endLine": 352,
+                "endChar": 0
+              },
+              "replacement": "  // This is used to track CLCBs that are pending deallocation. This is needed\n  // because the deallocation of CLCBs is asynchronous and we need to track\n  // which CLCBs are pending deallocation.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "187c375ee375c75aed56724ce4fedfebb35c6323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90b2c5a2_937a4519",
         "filename": "system/bta/gatt/bta_gattc_utils.cc",
         "patchSetId": 2
