@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2689489_96f7b77d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-26T16:33:42Z",
+      "side": 1,
+      "message": "Existing HID/HOGP test cases have to be updated?",
+      "revId": "7b0425863f292db6de541ead2a83179bb38b4d39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
