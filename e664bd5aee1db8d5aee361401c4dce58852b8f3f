@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1b24f0d_4b8dfed4",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1930,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-09-26T16:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d3ff3bc_1b48e3f3",
+      "range": {
+        "startLine": 1930,
+        "startChar": 96,
+        "endLine": 1930,
+        "endChar": 97
+      },
+      "revId": "e664bd5aee1db8d5aee361401c4dce58852b8f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ceb006d0_7dfe9359",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-20T05:54:25Z",
       "side": 1,
       "message": "This is vector with zero size. You cant just assign. \n\n`native_msft_adv_monitor_pattern.pattern.push_back(patternBytes[j]);`",
+      "range": {
+        "startLine": 1986,
+        "startChar": 40,
+        "endLine": 1986,
+        "endChar": 47
+      },
+      "revId": "e664bd5aee1db8d5aee361401c4dce58852b8f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da6f756f_ebd1a52e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-09-26T16:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceb006d0_7dfe9359",
       "range": {
         "startLine": 1986,
         "startChar": 40,
