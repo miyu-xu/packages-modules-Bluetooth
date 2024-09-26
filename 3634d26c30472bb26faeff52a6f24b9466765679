@@ -16,6 +16,24 @@
       "message": "flag needs to be in separate patch.\nAlso flag should have separate issue created for the flag. Please follow  https://g3doc.corp.google.com/company/teams/android-bluetooth/general-guides/flag-cheat-sheet.md?cl\u003dhead\n\n\nexample: aosp/3279113",
       "revId": "3634d26c30472bb26faeff52a6f24b9466765679",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fdc53c2_04daed80",
+        "filename": "flags/active_device_manager.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-09-26T12:52:38Z",
+      "side": 1,
+      "message": "I will move it to new CL once the issue is created",
+      "parentUuid": "d8e8bbcf_0f73214e",
+      "revId": "3634d26c30472bb26faeff52a6f24b9466765679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
