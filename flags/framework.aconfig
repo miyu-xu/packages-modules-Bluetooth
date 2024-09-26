@@ -61,3 +61,10 @@ flag {
     description: "Enhanced Bluetooth Framework Support for Accessing Bluetooth Quality Report v6 Information"
     bug: "364517559"
 }
+
+flag {
+    name: "encryption_change_broadcast"
+    namespace: "bluetooth"
+    description: "Broadcast when remote device encryption changes"
+    bug: "369753860"
+}
