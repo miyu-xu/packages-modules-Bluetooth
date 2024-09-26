@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64dff923_647fd05d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-09-26T11:41:33Z",
+      "side": 1,
+      "message": "added adm_verify_active_fallback_device",
+      "parentUuid": "b641ba9a_b74622af",
+      "revId": "31a04ae3fb923a7e5e2048ccc8d49041ccd655c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d274059_0698db99",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-26T08:26:21Z",
       "side": 1,
       "message": "Can We have same for Asha-\u003eLeAudio?",
+      "revId": "31a04ae3fb923a7e5e2048ccc8d49041ccd655c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "560999d3_8d26e748",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-09-26T11:41:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d274059_0698db99",
       "revId": "31a04ae3fb923a7e5e2048ccc8d49041ccd655c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
