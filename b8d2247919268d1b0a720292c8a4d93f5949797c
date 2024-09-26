@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bfeb764_b52a0298",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-09-26T16:33:22Z",
+      "side": 1,
+      "message": "You don\u0027t need an exemption anymore. We have the flag",
+      "revId": "b8d2247919268d1b0a720292c8a4d93f5949797c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89488bd7_b332989e",
+        "filename": "system/gd/hal/mgmt.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-09-26T16:33:22Z",
+      "side": 1,
+      "message": "This file doesn\u0027t need to be modified if it builds",
+      "revId": "b8d2247919268d1b0a720292c8a4d93f5949797c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
