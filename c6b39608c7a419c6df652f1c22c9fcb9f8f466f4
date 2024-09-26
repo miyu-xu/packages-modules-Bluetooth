@@ -133,6 +133,30 @@
       },
       "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70317da1_382e5e5b",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-26T21:32:46Z",
+      "side": 1,
+      "message": "check btm_random_pseudo_to_identity_addr again.\nis it better to keep it as \u0027RANDOM\u0027, it means the input is a \u0027random\u0027 address.\nbut the output is identity.",
+      "parentUuid": "8e20dec7_266f209f",
+      "range": {
+        "startLine": 241,
+        "startChar": 3,
+        "endLine": 241,
+        "endChar": 48
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
