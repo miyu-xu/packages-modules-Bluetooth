@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56978e5e_c2238623",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3198,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-26T20:49:48Z",
+      "side": 1,
+      "message": "We are creating socket not connection at this moment. `Socket` would be better than `Connection`",
+      "range": {
+        "startLine": 3198,
+        "startChar": 21,
+        "endLine": 3198,
+        "endChar": 31
+      },
+      "revId": "7992a384588bbe5e4e3a8786663c92218689450a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0fc76d8_b71ca25c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-26T20:49:48Z",
+      "side": 1,
+      "message": "channel could be validated in build() according to socket type",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 184,
+        "endChar": 16
+      },
+      "revId": "7992a384588bbe5e4e3a8786663c92218689450a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
