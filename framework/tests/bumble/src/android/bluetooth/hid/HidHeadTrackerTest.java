@@ -16,6 +16,7 @@
 
 package android.bluetooth.hid;
 
+import static android.bluetooth.BluetoothDevice.TRANSPORT_BREDR;
 import static android.bluetooth.BluetoothDevice.TRANSPORT_LE;
 import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
 import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
@@ -289,6 +290,66 @@ public class HidHeadTrackerTest {
                 BluetoothDevice.ACTION_FOUND);
     }
 
+    /**
+     * Ensure that successful HID connection over BREDR Transport.
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble has Android Headtracker Service
+     *   <li>Bumble supports only HID but not HOGP
+     *   <li>Bummble is connectable over LE
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Android pairs with Bumble
+     *   <li>Android Bluetooth reports HID host connection
+     *   <li>Change the prefered transport to LE
+     *   <li>Android Bluetooth reports HID host connection over LE
+     * </ol>
+     *
+     * Expectation: successful HID connection over BREDR Transport and Prefered transport selection
+     * success
+     */
+    @SuppressLint("MissingPermission")
+    @Test
+    @RequiresFlagsEnabled({
+        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
+        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
+    })
+    public void connectWithHidServiceTest() {
+
+        registerIntentActions(
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_UUID,
+                BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED,
+                BluetoothDevice.ACTION_FOUND);
+
+        pairAndConnect();
+
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_UUID),
+                hasExtra(BluetoothDevice.EXTRA_UUID, Matchers.hasItemInArray(HEADTRACKER_UUID)));
+
+        verifyConnectionState(mBumbleDevice, equalTo(TRANSPORT_BREDR), equalTo(STATE_CONNECTED));
+        // Switch to LE Transport
+        mHidService.setPreferredTransport(mBumbleDevice, TRANSPORT_LE);
+        // As order of connection change event not fixed . hence verifying final connection state
+        verifyIntentReceivedUnorderedAtLeast(
+                1,
+                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, TRANSPORT_LE),
+                hasExtra(BluetoothProfile.EXTRA_STATE, STATE_CONNECTED));
+
+        unregisterIntentActions(
+                BluetoothDevice.ACTION_UUID,
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_FOUND);
+    }
+
     private void pairAndConnect() {
         // Register Head tracker services on Bumble
         mBumble.gattBlocking()
@@ -329,6 +390,12 @@ public class HidHeadTrackerTest {
     @SafeVarargs
     private void verifyIntentReceived(Matcher<Intent>... matchers) {
         mInOrder.verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))
+                .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
+    }
+
+    @SafeVarargs
+    private void verifyIntentReceivedUnorderedAtLeast(int atLeast, Matcher<Intent>... matchers) {
+        verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()).atLeast(atLeast))
                 .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
     }
 
