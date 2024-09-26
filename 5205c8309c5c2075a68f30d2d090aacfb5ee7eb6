@@ -180,6 +180,24 @@
       "parentUuid": "7064b943_469fde6b",
       "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f6860e2_885edf38",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-09-26T07:25:25Z",
+      "side": 1,
+      "message": "Good idea. Decided to do some refactoring as well",
+      "parentUuid": "df0b8f18_c1a5c4b8",
+      "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
