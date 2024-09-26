@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef92aab_311058c0",
+        "filename": "flags/active_device_manager.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-26T14:28:01Z",
+      "side": 1,
+      "message": "here we need bug id for the flag not the issue we are fixing.",
+      "revId": "8226998197db8335216d50110bf691d5f67a0cc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
