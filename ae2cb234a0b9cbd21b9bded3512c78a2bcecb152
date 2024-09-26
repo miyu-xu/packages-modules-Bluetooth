@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6907bda_34a0f238",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5720,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-09-26T06:25:19Z",
+      "side": 1,
+      "message": "How about `callingUid\u003d`?",
+      "range": {
+        "startLine": 5720,
+        "startChar": 29,
+        "endLine": 5720,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "10686747_ec629688",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 5721,
+                "startChar": 0,
+                "endLine": 5721,
+                "endChar": 0
+              },
+              "replacement": "                        + Binder.getCallingUid()\n                        + \", uid\u003d\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae2cb234a0b9cbd21b9bded3512c78a2bcecb152",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
