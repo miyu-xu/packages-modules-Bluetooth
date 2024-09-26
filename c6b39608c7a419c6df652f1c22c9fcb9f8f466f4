@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9c158ea_1ce439d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-26T21:38:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "287ab59d_4d628301",
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0116668e_f86ce8f9",
@@ -78,6 +96,30 @@
       "writtenOn": "2024-09-26T21:13:05Z",
       "side": 1,
       "message": "nit: `got_client_request_` to conform to naming scheme",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 75,
+        "endChar": 27
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc161c11_6e321a20",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-09-26T21:38:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6159ac2_4381cd6c",
       "range": {
         "startLine": 75,
         "startChar": 9,
