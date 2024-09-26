@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31608bb4_5f67d013",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-26T15:26:05Z",
+      "side": 1,
+      "message": "That\u0027s quite a log spam. is that intended ?",
+      "range": {
+        "startLine": 249,
+        "startChar": 9,
+        "endLine": 249,
+        "endChar": 35
+      },
+      "revId": "c23ae230e7b6df978747932c6b1f1c26853d78db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c527b2b1_27dbbc0b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-09-26T15:26:05Z",
+      "side": 1,
+      "message": "Should you log current device bdaddr/group, or the newly connected device address ? Seems it would make debugging easier.",
+      "revId": "c23ae230e7b6df978747932c6b1f1c26853d78db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
