@@ -89,3 +89,10 @@ flag {
     description: "Add a new API to BluetoothDevice to retrieve Identity Address Type"
     bug: "377171798"
 }
+
+flag {
+    name: "encryption_change_broadcast"
+    namespace: "bluetooth"
+    description: "Broadcast when remote device encryption changes"
+    bug: "369753860"
+}
