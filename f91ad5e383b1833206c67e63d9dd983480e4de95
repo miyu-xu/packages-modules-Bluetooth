@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "854a5b97_e7e627b8",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1466,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-26T23:30:49Z",
+      "side": 1,
+      "message": "10s is an empirical value. The time from receiving connection complete to full wakeup is roughly 3s. I think 5 seconds is enough.",
+      "parentUuid": "a26ac668_896cc626",
+      "range": {
+        "startLine": 1466,
+        "startChar": 38,
+        "endLine": 1466,
+        "endChar": 43
+      },
+      "revId": "f91ad5e383b1833206c67e63d9dd983480e4de95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80785b0f_7a051f51",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 3
@@ -37,6 +61,24 @@
       "writtenOn": "2024-09-26T22:43:34Z",
       "side": 1,
       "message": "Limit this action to a single occurrence when suspending with HID bonded",
+      "revId": "f91ad5e383b1833206c67e63d9dd983480e4de95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd4ee783_5ca40238",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-26T23:30:49Z",
+      "side": 1,
+      "message": "OK. This probably needs to introduce a new variable in native code and set it from AdapterSuspend service.",
+      "parentUuid": "80785b0f_7a051f51",
       "revId": "f91ad5e383b1833206c67e63d9dd983480e4de95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
