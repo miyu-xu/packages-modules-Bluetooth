@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2875b4d_05f4d757",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4518,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-09-26T20:18:26Z",
+      "side": 1,
+      "message": "For auth(false) and encrypt(true), `false, true` is correct?",
+      "range": {
+        "startLine": 4517,
+        "startChar": 23,
+        "endLine": 4518,
+        "endChar": 30
+      },
+      "revId": "f90f5e87603c5e2f4bf754a32aba3cdc2be3708a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
