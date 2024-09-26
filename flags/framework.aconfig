@@ -71,3 +71,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "encryption_change_broadcast"
+    namespace: "bluetooth"
+    description: "Broadcast when remote device encryption changes"
+    bug: "369753860"
+}

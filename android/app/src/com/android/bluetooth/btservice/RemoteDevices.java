@@ -1426,6 +1426,22 @@ public class RemoteDevices {
                         + secureConnection
                         + ", keySize: "
                         + keySize);
+
+        Intent intent =
+                new Intent(BluetoothDevice.ACTION_ENCRYPTION_CHANGE)
+                        .putExtra(BluetoothDevice.EXTRA_DEVICE, bluetoothDevice)
+                        .putExtra(BluetoothDevice.EXTRA_TRANSPORT, transport)
+                        .putExtra(BluetoothDevice.EXTRA_ENCRYPTION_STATUS, status)
+                        .putExtra(BluetoothDevice.EXTRA_ENCRYPTION_ENABLED, encryptionEnable)
+                        .putExtra(BluetoothDevice.EXTRA_SECURE_CONNECTION, secureConnection)
+                        .putExtra(BluetoothDevice.EXTRA_KEY_SIZE, keySize)
+                        .addFlags(
+                                Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                                        | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+
+        if (isAtLeastV() /*&& android.os.Flags.encryptionChangeBroadcast()*/) {
+            mAdapterService.sendBroadcast(intent, BLUETOOTH_CONNECT);
+        }
     }
 
     void fetchUuids(BluetoothDevice device, int transport) {
