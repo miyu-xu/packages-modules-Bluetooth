@@ -22,6 +22,7 @@
 #include <grp.h>
 #include <sys/stat.h>
 
+#include "audio_hal_interface/hal_version_manager.h"
 #include "audio_hal_interface/le_audio_software.h"
 #include "audio_hal_interface/le_audio_software_host_transport.h"
 #include "bta/include/bta_le_audio_api.h"
@@ -32,9 +33,6 @@
 #define LEA_HOST_DATA_PATH "/var/run/bluetooth/audio/.lea_data"
 // TODO(b/198260375): Make LEA data owner group configurable.
 #define LEA_HOST_DATA_GROUP "bluetooth-audio"
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using namespace bluetooth;
 
@@ -193,8 +191,6 @@ OffloadCapabilities get_offload_capabilities() {
   return {std::vector<bluetooth::le_audio::set_configurations::AudioSetConfiguration>(0),
           std::vector<bluetooth::le_audio::set_configurations::AudioSetConfiguration>(0)};
 }
-
-int GetAidlInterfaceVersion() { return 0; }
 
 void LeAudioClientInterface::Sink::Cleanup() {
   log::info("");
