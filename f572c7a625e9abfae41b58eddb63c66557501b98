@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15f762b_be031dac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-09-26T19:20:26Z",
+      "side": 1,
+      "message": "Same comment here. We have a flag and we are not looking for an exemption",
+      "revId": "f572c7a625e9abfae41b58eddb63c66557501b98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eab15ac_c124a28b",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-09-26T19:20:26Z",
+      "side": 1,
+      "message": "This file is not part of JNI so maybe move into its own CL?",
+      "revId": "f572c7a625e9abfae41b58eddb63c66557501b98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
