@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d7a6912_443096b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-27T22:31:17Z",
+      "side": 1,
+      "message": "Feel free to create your own folder with an OWNER file dedicated to your team if you want to organize your tests.",
+      "revId": "83707a2119e6f2ff112d3b062dcb109a52cba7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
