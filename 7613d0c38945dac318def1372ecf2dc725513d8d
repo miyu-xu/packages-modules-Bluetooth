@@ -16,6 +16,47 @@
       "message": "Omair to +2",
       "revId": "7613d0c38945dac318def1372ecf2dc725513d8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f056367_d04f2ba6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-27T21:57:34Z",
+      "side": 1,
+      "message": "Any way we can get rid of this magic number here and other places below?",
+      "range": {
+        "startLine": 144,
+        "startChar": 65,
+        "endLine": 144,
+        "endChar": 66
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "45399ce2_4210cd6c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 144,
+                "startChar": 0,
+                "endLine": 145,
+                "endChar": 0
+              },
+              "replacement": "                                 BT_TRANSPORT_LE, opportunistic,\n                                 /*direct_conn_flag\u003d*/1, preferred_mtu);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7613d0c38945dac318def1372ecf2dc725513d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
