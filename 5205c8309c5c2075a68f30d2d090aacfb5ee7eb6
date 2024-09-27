@@ -198,6 +198,24 @@
       "parentUuid": "df0b8f18_c1a5c4b8",
       "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c630f37b_cbcd9b8d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-27T06:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f6860e2_885edf38",
+      "revId": "5205c8309c5c2075a68f30d2d090aacfb5ee7eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

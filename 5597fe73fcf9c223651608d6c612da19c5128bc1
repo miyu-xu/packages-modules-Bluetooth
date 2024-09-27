@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08bddf06_cfde2b66",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-09-27T06:22:25Z",
+      "side": 1,
+      "message": "Could you double check this part?\n\nIn the original code, I understand it as this:\nthere are some log tags that are exceedingly noisy on the DEBUG level. Therefore, even when we set the overall level to DEBUG, we want these tags to stay at INFO. However, if we want VERBOSE, then so be it.\n\nSo, would the correct implementation be something like this?\n```\n        let level \u003d match self.log_level {\n            Level::Debug \u003d\u003e Level::info,\n            _ \u003d\u003e self.log_level,\n        };\n        for tag in VERBOSE_ONLY_LOG_TAGS {\n            set_log_level_for_tag(tag, level);\n        }\n```",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 9
+      },
+      "revId": "5597fe73fcf9c223651608d6c612da19c5128bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
