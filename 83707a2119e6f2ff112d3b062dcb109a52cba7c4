@@ -16,6 +16,87 @@
       "message": "Feel free to create your own folder with an OWNER file dedicated to your team if you want to organize your tests.",
       "revId": "83707a2119e6f2ff112d3b062dcb109a52cba7c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c8075f9_6adf532c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-09-27T22:37:09Z",
+      "side": 1,
+      "message": "You can also use enableBluetoothRule from test utils that let you reboot the Bluetooth between each tests:\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/util/src/android/bluetooth/test_utils/EnableBluetoothRule.java;l\u003d70?q\u003dEnableBluetoothRule\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nThis is what we do in some tests:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/RfcommTest.kt;l\u003d69\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java;l\u003d120?q\u003denableBluetoothRule\u0026ss\u003dh%2Fandroid%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2FBluetooth%2Fframework%2Ftests%2Fbumble%2Fsrc%2F\n\n\nBut since your tests is playing around specific state, I am not sure this is suitable for your case.",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 92,
+        "endChar": 70
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "80273bf9_c5087a34",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 34,
+                "endChar": 0
+              },
+              "replacement": "import android.bluetooth.test_utils.EnableBluetoothRule;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "    public final EnableBluetoothRule mEnableBluetoothRule \u003d new EnableBluetoothRule();\n\n    @Rule(order \u003d 3)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+              "range": {
+                "startLine": 83,
+                "startChar": 0,
+                "endLine": 85,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "83707a2119e6f2ff112d3b062dcb109a52cba7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
