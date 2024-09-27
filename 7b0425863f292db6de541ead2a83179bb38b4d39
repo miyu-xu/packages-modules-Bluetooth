@@ -16,6 +16,24 @@
       "message": "Existing HID/HOGP test cases have to be updated?",
       "revId": "7b0425863f292db6de541ead2a83179bb38b4d39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f2d5bed_5b6c2d82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-09-27T14:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2689489_96f7b77d",
+      "revId": "7b0425863f292db6de541ead2a83179bb38b4d39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
