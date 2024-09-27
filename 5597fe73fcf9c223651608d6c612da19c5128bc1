@@ -22,6 +22,30 @@
       },
       "revId": "5597fe73fcf9c223651608d6c612da19c5128bc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f0ff42_718bd1d7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_logging.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-09-27T06:59:29Z",
+      "side": 1,
+      "message": "Nice catch. Thanks!",
+      "parentUuid": "08bddf06_cfde2b66",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 9
+      },
+      "revId": "5597fe73fcf9c223651608d6c612da19c5128bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
