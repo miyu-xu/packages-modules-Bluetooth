@@ -16,6 +16,24 @@
       "message": "I believe there should be flag use somewhere here.",
       "revId": "18c8425ecfced3c223efbd5a5f148fa4af33e074",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6861e968_a69e462d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-09-27T06:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a550702_ba376f1d",
+      "revId": "18c8425ecfced3c223efbd5a5f148fa4af33e074",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
