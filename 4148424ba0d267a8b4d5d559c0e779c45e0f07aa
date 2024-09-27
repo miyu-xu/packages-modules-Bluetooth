@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2fb1649_6781de44",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2161,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-09-27T22:21:54Z",
+      "side": 1,
+      "message": "This is nullable, let\u0027s add a null check just in case.",
+      "range": {
+        "startLine": 2161,
+        "startChar": 47,
+        "endLine": 2161,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e83ae115_0606fe42",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 2161,
+                "startChar": 0,
+                "endLine": 2162,
+                "endChar": 0
+              },
+              "replacement": "        String packageName \u003d attributionSource.getPackageName() !\u003d null ? attributionSource.getPackageName() : \"\";\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4148424ba0d267a8b4d5d559c0e779c45e0f07aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
