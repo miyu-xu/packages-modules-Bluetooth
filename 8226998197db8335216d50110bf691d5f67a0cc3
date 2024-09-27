@@ -16,6 +16,24 @@
       "message": "here we need bug id for the flag not the issue we are fixing.",
       "revId": "8226998197db8335216d50110bf691d5f67a0cc3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66ae8d48_e464c096",
+        "filename": "flags/active_device_manager.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-09-27T08:51:40Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "cef92aab_311058c0",
+      "revId": "8226998197db8335216d50110bf691d5f67a0cc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
