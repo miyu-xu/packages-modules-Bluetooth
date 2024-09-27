@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ee45c7a_28c027cc",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1466,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-27T03:31:35Z",
+      "side": 1,
+      "message": "Reduce to 5s. Please let me know if this is OK.",
+      "parentUuid": "854a5b97_e7e627b8",
+      "range": {
+        "startLine": 1466,
+        "startChar": 38,
+        "endLine": 1466,
+        "endChar": 43
+      },
+      "revId": "f91ad5e383b1833206c67e63d9dd983480e4de95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80785b0f_7a051f51",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "OK. This probably needs to introduce a new variable in native code and set it from AdapterSuspend service.",
       "parentUuid": "80785b0f_7a051f51",
+      "revId": "f91ad5e383b1833206c67e63d9dd983480e4de95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9381344c_37d9879b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-27T03:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd4ee783_5ca40238",
       "revId": "f91ad5e383b1833206c67e63d9dd983480e4de95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
