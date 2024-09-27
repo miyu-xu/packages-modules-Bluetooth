@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723d00d2_f3e1fd08",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-09-27T22:47:07Z",
+      "side": 1,
+      "message": "This is not necessary as it should be done in L1390 or L1392.",
+      "range": {
+        "startLine": 1357,
+        "startChar": 2,
+        "endLine": 1357,
+        "endChar": 27
+      },
+      "revId": "5c4a8be2fc7615e116abcd46c5ca2062bbd6ce8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

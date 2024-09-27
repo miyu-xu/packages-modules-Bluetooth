@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ebacf3_b39475f1",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-09-27T22:47:07Z",
+      "side": 1,
+      "message": "Q) Can\u0027t we use std::map\u003cRawAddress, uint16_t\u003e instead?",
+      "range": {
+        "startLine": 202,
+        "startChar": 7,
+        "endLine": 202,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "326f8f84_9c2ba4d2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_int.h",
+              "range": {
+                "startLine": 202,
+                "startChar": 0,
+                "endLine": 203,
+                "endChar": 0
+              },
+              "replacement": "  std::map\u003cRawAddress, uint16_t\u003e mtu_prefs;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e77fd5684512e2556ab010273e64c74e06438867",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea55f0b_2213537a",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-09-27T22:47:07Z",
+      "side": 1,
+      "message": "(Not related to this CL)\n\nI think this test can be removed.\n\nThe test is added in aosp/1698158 to ensure if \n`*p_reg \u003d {}` behaves in the same way with `memset(p_reg, 0, sizeof(tGATT_REG))`.\n\nNow, we don\u0027t actually `memset` so this test seems to be against the actual code.",
+      "range": {
+        "startLine": 100,
+        "startChar": 22,
+        "endLine": 100,
+        "endChar": 41
+      },
+      "revId": "e77fd5684512e2556ab010273e64c74e06438867",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
