@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b7f6647_0290e41a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-27T21:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7519708_a87cfda6",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0404e4ca_fbac68c2",
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "The problem here is that without suggested change source would be add without knowing the real value of Receive State characteristic (before reading this characteristic).\n\nThis is the first case (re-connection) that triggers such case: do an action before knowing reference state of Receive State.\n\nProposed change steps:\n1. Connect device (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1572)\n2. Connect GATT (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1678)\n3. GATT connected (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1241)\n4. Discover all services (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1253)\n5. Request MTU (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1283)\n6. Request read of all characteristics (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1344)\n7. Read responses for all characteristics (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;drc\u003d784c18b551ad67eb711bf139c6a8ecec4febb2de;l\u003d1299)\n8. Use some callback mechanism to inform service that all of characteristics have already been read.\n9. DEVICE IS READY TO PERFORM ANY OPERATION.\n10. Check if device is part of coordinated set\n11. Check if other device/s were requested to synchronize to some broadcast by this broadcast assistant.\n12. Check if this connecting device is not synchronized by its own to broadcast handled by this Broadcast Assistant\n 12.1. If yes - add source\n 12.2. If no - do nothing",
       "parentUuid": "91af7601_8ba0d214",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e843edf_74cbad95",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2804,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-27T21:24:08Z",
+      "side": 1,
+      "message": "Acknowledged.\nThe flow makes sense, updated for those.\nOnly the last step, in case new bud has some existing source, but if its peer bud is listening to some broadcast, I think we should switch anyways to make sure both buds are always listening to the same source.",
+      "parentUuid": "9aa45ce5_7c5ffe33",
       "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
