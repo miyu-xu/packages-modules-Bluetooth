@@ -22,6 +22,30 @@
       },
       "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc9e489_dedcb17a",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-09-27T20:54:35Z",
+      "side": 1,
+      "message": "based on https://docs.google.com/presentation/d/1YgZQh6TxwOzUiZL4kySuffMQ4tROoLNXIiciOJhxB1Q/edit#slide\u003did.g84f3641132_0_85, I feel this won\u0027t impact existing targets",
+      "parentUuid": "553564d3_dfea91a7",
+      "range": {
+        "startLine": 188,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 19
+      },
+      "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
