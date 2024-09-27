@@ -528,13 +528,13 @@ void HfpClientInterface::Offload::ConfirmStreamingRequest() {
   auto instance = aidl::hfp::HfpEncodingTransport::instance_;
   auto pending_cmd = instance->GetPendingCmd();
   switch (pending_cmd) {
+    case aidl::hfp::HFP_CTRL_CMD_NONE:
+      log::warn("no pending start stream request");
+      [[fallthrough]];
     case aidl::hfp::HFP_CTRL_CMD_START:
       aidl::hfp::HfpEncodingTransport::offloading_hal_interface->StreamStarted(
               aidl::BluetoothAudioCtrlAck::SUCCESS_FINISHED);
       instance->ResetPendingCmd();
-      return;
-    case aidl::hfp::HFP_CTRL_CMD_NONE:
-      log::warn("no pending start stream request");
       return;
     default:
       log::warn("Invalid state, {}", pending_cmd);
@@ -551,7 +551,7 @@ void HfpClientInterface::Offload::CancelStreamingRequest() {
       instance->ResetPendingCmd();
       return;
     case aidl::hfp::HFP_CTRL_CMD_NONE:
-      log::info("no pending start stream request");
+      log::warn("no pending start stream request");
       [[fallthrough]];
     case aidl::hfp::HFP_CTRL_CMD_SUSPEND:
       log::info("suspends");
