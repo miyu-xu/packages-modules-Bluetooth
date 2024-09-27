@@ -98,6 +98,9 @@ public class ScanNativeInterface {
 
     private native void gattClientScanFilterEnableNative(int clientIf, boolean enable);
 
+    /************************** MSFT scan related native methods *****************************/
+    private native boolean gattClientIsMsftSupportedNative();
+
     /************************** Batch related native methods *********************************/
     private native void gattClientConfigBatchScanStorageNative(
             int clientIf,
@@ -167,6 +170,11 @@ public class ScanNativeInterface {
     /** Enable/disable BLE scan filter */
     public void gattClientScanFilterEnable(int clientIf, boolean enable) {
         gattClientScanFilterEnableNative(clientIf, enable);
+    }
+
+    /** Check if MSFT HCI extension is supported */
+    public boolean gattClientIsMsftSupported() {
+        return gattClientIsMsftSupportedNative();
     }
 
     /** Configure BLE batch scan storage */
@@ -371,4 +379,10 @@ public class ScanNativeInterface {
         }
         mScanHelper.onScanParamSetupCompleted(status, scannerId);
     }
+
+    void onMsftAdvMonitorAdd(int filter_index, int monitor_handle, int status) {}
+
+    void onMsftAdvMonitorRemove(int filter_index, int status) {}
+
+    void onMsftAdvMonitorEnable(int status) {}
 }
