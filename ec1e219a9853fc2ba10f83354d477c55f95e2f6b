@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "58323755_b665fd3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-27T11:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "129c526b_c128d20e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a7e77e60_fdbd21e5",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 10
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-24T07:28:30Z",
       "side": 1,
       "message": "Please fix this WARNING reported by AndroidLint: [UniqueConstants] Constants `AUDIO_LOCATION_MONO` and `AUDIO_LOCATION_INVALID` specify the same exact value (0); this is usually a cut \u0026 paste or merge error\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[UniqueConstants] Constants `AUDIO_LOCATION_MONO` and `AUDIO_LOCATION_INVALID` specify the same exact value (0); this is usually a cut \u0026 paste or merge error\n\n                    AUDIO_LOCATION_MONO,\n                    ~~~~~~~~~~~~~~~~~~~\n\nThe `@IntDef` annotation allows you to create a light-weight \"enum\" or type definition. However, it\u0027s possible to accidentally specify the same value for two or more of the values, which can lead to hard-to-detect bugs. This check looks for this scenario and flags any repeated constants.\n\nIn some cases, the repeated constant is intentional (for example, renaming a constant to a more intuitive name, and leaving the old name in place for compatibility purposes).  In that case, simply suppress this check by adding a `@SuppressLint(\"UniqueConstants\")` annotation.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 590,
+        "startChar": 17,
+        "endLine": 590,
+        "endChar": 36
+      },
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e143c768_22c39215",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-27T11:40:10Z",
+      "side": 1,
+      "message": "this is intended.",
+      "parentUuid": "124650f5_036038a1",
       "range": {
         "startLine": 590,
         "startChar": 17,
@@ -113,6 +161,24 @@
       "side": 1,
       "message": "Check out go/android-api-guidelines#behavior which goes into how to use the compat framework.",
       "parentUuid": "5fa5b3aa_aac2a6d7",
+      "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb70202c_2ef23204",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-09-27T11:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36f010aa_42198354",
       "revId": "ec1e219a9853fc2ba10f83354d477c55f95e2f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
