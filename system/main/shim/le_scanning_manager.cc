@@ -21,6 +21,7 @@
 #include <base/functional/bind.h>
 #include <base/threading/thread.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <hardware/bluetooth.h>
 
 #include "btif/include/btif_common.h"
@@ -33,6 +34,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/le_scanning_manager.h"
 #include "main/shim/shim.h"
+#include "osi/include/properties.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/advertise_data_parser.h"
 #include "stack/include/bt_dev_class.h"
@@ -48,6 +50,13 @@
 using namespace bluetooth;
 
 extern tBTM_CB btm_cb;
+
+static const char kPropertyMsftHciExtEnabled[] = "bluetooth.core.le.use_msft_hci_ext";
+
+static bool msft_hci_ext_enabled() {
+  return com::android::bluetooth::flags::le_scan_msft_support() &&
+         osi_property_get_bool(kPropertyMsftHciExtEnabled, false);
+}
 
 namespace {
 constexpr char kBtmLogTag[] = "SCAN";
@@ -287,13 +296,21 @@ void BleScannerInterfaceImpl::MsftAdvMonitorEnable(bool enable, MsftAdvMonitorEn
 void BleScannerInterfaceImpl::OnMsftAdvMonitorAdd(uint8_t monitor_handle,
                                                   bluetooth::hci::ErrorCode status) {
   log::info("in shim layer");
-  msft_callbacks_.Add.Run(monitor_handle, (uint8_t)status);
+  if (msft_hci_ext_enabled()) {
+    do_in_jni_thread(base::BindOnce(msft_callbacks_.Add, monitor_handle, (uint8_t)status));
+  } else {
+    msft_callbacks_.Add.Run(monitor_handle, (uint8_t)status);
+  }
 }
 
 /** Callback of removing MSFT filter */
 void BleScannerInterfaceImpl::OnMsftAdvMonitorRemove(bluetooth::hci::ErrorCode status) {
   log::info("in shim layer");
-  msft_callbacks_.Remove.Run((uint8_t)status);
+  if (msft_hci_ext_enabled()) {
+    do_in_jni_thread(base::BindOnce(msft_callbacks_.Remove, (uint8_t)status));
+  } else {
+    msft_callbacks_.Remove.Run((uint8_t)status);
+  }
 }
 
 /** Callback of enabling / disabling MSFT scan filter */
@@ -307,7 +324,11 @@ void BleScannerInterfaceImpl::OnMsftAdvMonitorEnable(bool enable,
                    : bluetooth::hci::LeScanningFilterPolicy::ACCEPT_ALL);
   }
 
-  msft_callbacks_.Enable.Run((uint8_t)status);
+  if (msft_hci_ext_enabled()) {
+    do_in_jni_thread(base::BindOnce(msft_callbacks_.Enable, (uint8_t)status));
+  } else {
+    msft_callbacks_.Enable.Run((uint8_t)status);
+  }
 }
 
 /** Sets the LE scan interval and window in units of N*0.625 msec */
