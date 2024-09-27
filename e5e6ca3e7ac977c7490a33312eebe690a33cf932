@@ -16,6 +16,29 @@
       "message": "add flag when deprecating API",
       "revId": "e5e6ca3e7ac977c7490a33312eebe690a33cf932",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75dfbf4_34499272",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-09-27T14:25:19Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothLeAudio.AUDIO_LOCATION_INVALID (ErrorWhenNew) [UnflaggedApi]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    Changes from not deprecated to deprecated must be flagged with @FlaggedApi: field android.bluetooth.BluetoothLeAudio.AUDIO_LOCATION_INVALID (ErrorWhenNew) [UnflaggedApi]\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P81699996/targets/cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 366,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 78
+      },
+      "revId": "e5e6ca3e7ac977c7490a33312eebe690a33cf932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
