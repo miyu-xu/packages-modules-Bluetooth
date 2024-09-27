@@ -57,6 +57,30 @@
       ],
       "revId": "7613d0c38945dac318def1372ecf2dc725513d8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f09450_46866761",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-09-27T21:59:49Z",
+      "side": 1,
+      "message": "aosp/3286080 replaces it with a new identifier defined in gatt_api.h",
+      "parentUuid": "0f056367_d04f2ba6",
+      "range": {
+        "startLine": 144,
+        "startChar": 65,
+        "endLine": 144,
+        "endChar": 66
+      },
+      "revId": "7613d0c38945dac318def1372ecf2dc725513d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
