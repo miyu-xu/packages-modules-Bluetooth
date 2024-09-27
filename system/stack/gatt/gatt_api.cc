@@ -1354,6 +1354,8 @@ void GATT_Deregister(tGATT_IF gatt_if) {
   /* free all services db buffers if owned by this application */
   gatt_free_srvc_db_buffer_app_id(p_reg->app_uuid128);
 
+  p_reg->mtu_prefs.clear();
+
   /* When an application deregisters, check remove the link associated with the
    * app */
   tGATT_TCB* p_tcb;
@@ -1457,7 +1459,7 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, tBTM_BLE_CONN_TYP
 
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                   tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport, bool opportunistic,
-                  uint8_t initiating_phys, uint16_t /* preferred_mtu */) {
+                  uint8_t initiating_phys, uint16_t preferred_mtu) {
   /* Make sure app is registered */
   tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
   if (!p_reg) {
@@ -1541,6 +1543,15 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, tBLE_ADDR_TYPE ad
     }
     if (!ret) {
       log::debug("Previous step returned false");
+    }
+  }
+
+  if (ret) {
+    // Save the current MTU preference for this app
+    gatt_remove_mtu_pref(p_reg, bd_addr);
+    if (preferred_mtu > GATT_DEF_BLE_MTU_SIZE) {
+      log::verbose("Saving MTU preference from app {} for {}", gatt_if, bd_addr);
+      p_reg->mtu_prefs.push_back({bd_addr, preferred_mtu});
     }
   }
 
