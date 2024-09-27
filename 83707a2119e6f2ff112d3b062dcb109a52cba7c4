@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c4bf51_71a55afc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-09-27T22:40:21Z",
+      "side": 1,
+      "message": "That\u0027s a good suggestion. Thank you. I checked with Omair as well and since for now we only require this test, I\u0027d like to keep it here. If and when I\u0027m adding more tests with similar logic, I\u0027ll be sure to bundle them up in a dedicated folder with the appropriate OWNER file. Thank you!",
+      "parentUuid": "7d7a6912_443096b0",
+      "revId": "83707a2119e6f2ff112d3b062dcb109a52cba7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c8075f9_6adf532c",
@@ -95,6 +113,30 @@
           ]
         }
       ],
+      "revId": "83707a2119e6f2ff112d3b062dcb109a52cba7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8b20dd_46cbba8c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/BleOnStateTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-09-27T22:40:21Z",
+      "side": 1,
+      "message": "Yeah I saw `enableBluetoothRule` and thought about that but like you said, we require in between specific states and since it wasn\u0027t covered there, I had 2 options. 1) Add it specifically to this test. 2) Extend `enableBluetoothRule` to be configurable for a between state (BLE_ON) as well. I went with 1 for now but additional reply to your command, if and when we do have additional tests, I\u0027ll be sure to extract it out to its own logic within `enableBluetoothRule` or a separate rule. Thank you.",
+      "parentUuid": "3c8075f9_6adf532c",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 92,
+        "endChar": 70
+      },
       "revId": "83707a2119e6f2ff112d3b062dcb109a52cba7c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
