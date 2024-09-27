@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553564d3_dfea91a7",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-09-27T18:17:49Z",
+      "side": 1,
+      "message": "would this be applied globally and affect other android build targets?",
+      "range": {
+        "startLine": 188,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 19
+      },
+      "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
