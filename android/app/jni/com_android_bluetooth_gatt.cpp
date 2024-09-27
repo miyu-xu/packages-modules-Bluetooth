@@ -180,6 +180,9 @@ static jmethodID method_onBatchScanThresholdCrossed;
 static jmethodID method_createOnTrackAdvFoundLostObject;
 static jmethodID method_onTrackAdvFoundLost;
 static jmethodID method_onScanParamSetupCompleted;
+static jmethodID method_onMsftAdvMonitorAdd;
+static jmethodID method_onMsftAdvMonitorRemove;
+static jmethodID method_onMsftAdvMonitorEnable;
 
 /**
  * Periodic scanner callback methods
@@ -1873,6 +1876,142 @@ static void gattClientScanFilterEnableNative(JNIEnv* /* env */, jobject /* objec
     return;
   }
   sScanner->ScanFilterEnable(enable, base::Bind(&scan_enable_cb, client_if));
+}
+
+void msft_monitor_add_cb(int filter_index, uint8_t monitor_handle, uint8_t status) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mScanCallbacksObj) {
+    return;
+  }
+  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorAdd, filter_index,
+                               monitor_handle, status);
+}
+
+void msft_monitor_remove_cb(int filter_index, uint8_t status) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mScanCallbacksObj) {
+    return;
+  }
+  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorRemove, filter_index,
+                               status);
+}
+
+void msft_monitor_enable_cb(uint8_t status) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mScanCallbacksObj) {
+    return;
+  }
+  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorEnable, status);
+}
+
+static bool gattClientIsMsftSupportedNative(JNIEnv* /* env */, jobject /* object */) {
+  return sScanner && sScanner->IsMsftSupported();
+}
+
+static void gattClientMsftAdvMonitorAddNative(JNIEnv* env, jobject /* object*/,
+                                              jobject msft_adv_monitor,
+                                              jobjectArray msft_adv_monitor_patterns,
+                                              jobject msft_adv_monitor_address, jint filter_index) {
+  if (!sScanner) {
+    return;
+  }
+
+  jclass msftAdvMonitorClazz = env->GetObjectClass(msft_adv_monitor);
+  jfieldID rssiThresholdHighFid = env->GetFieldID(msftAdvMonitorClazz, "rssi_threshold_high", "B");
+  jfieldID rssiThresholdLowFid = env->GetFieldID(msftAdvMonitorClazz, "rssi_threshold_low", "B");
+  jfieldID rssiThresholdLowTimeIntervalFid =
+          env->GetFieldID(msftAdvMonitorClazz, "rssi_threshold_low_time_interval", "B");
+  jfieldID rssiSamplingPeriodFid =
+          env->GetFieldID(msftAdvMonitorClazz, "rssi_sampling_period", "B");
+  jfieldID conditionTypeFid = env->GetFieldID(msftAdvMonitorClazz, "condition_type", "B");
+
+  jclass msftAdvMonitorAddressClazz = env->GetObjectClass(msft_adv_monitor_address);
+  jfieldID addrTypeFid = env->GetFieldID(msftAdvMonitorAddressClazz, "addr_type", "B");
+  jfieldID bdAddrFid = env->GetFieldID(msftAdvMonitorAddressClazz, "bd_addr", "Ljava/lang/String;");
+
+  MsftAdvMonitor native_msft_adv_monitor{};
+  ScopedLocalRef<jobject> msft_adv_monitor_object(env, msft_adv_monitor);
+  native_msft_adv_monitor.rssi_threshold_high =
+          env->GetByteField(msft_adv_monitor_object.get(), rssiThresholdHighFid);
+  native_msft_adv_monitor.rssi_threshold_low =
+          env->GetByteField(msft_adv_monitor_object.get(), rssiThresholdLowFid);
+  native_msft_adv_monitor.rssi_threshold_low_time_interval =
+          env->GetByteField(msft_adv_monitor_object.get(), rssiThresholdLowTimeIntervalFid);
+  native_msft_adv_monitor.rssi_sampling_period =
+          env->GetByteField(msft_adv_monitor_object.get(), rssiSamplingPeriodFid);
+  native_msft_adv_monitor.condition_type =
+          env->GetByteField(msft_adv_monitor_object.get(), conditionTypeFid);
+
+  MsftAdvMonitorAddress native_msft_adv_monitor_address{};
+  ScopedLocalRef<jobject> msft_adv_monitor_address_object(env, msftAdvMonitorAddressClazz);
+  native_msft_adv_monitor_address.addr_type =
+          env->GetByteField(msft_adv_monitor_address_object.get(), addrTypeFid);
+  native_msft_adv_monitor_address.bd_addr = str2addr(
+          env, (jstring)env->GetObjectField(msft_adv_monitor_address_object.get(), bdAddrFid));
+  native_msft_adv_monitor.addr_info = native_msft_adv_monitor_address;
+
+  int numPatterns = env->GetArrayLength(msft_adv_monitor_patterns);
+  if (numPatterns == 0) {
+    sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor),
+                                base::Bind(&msft_monitor_add_cb, filter_index));
+    return;
+  }
+
+  jclass msftAdvMonitorPatternClazz =
+          env->GetObjectClass(env->GetObjectArrayElement(msft_adv_monitor_patterns, 0));
+  jfieldID adTypeFid = env->GetFieldID(msftAdvMonitorPatternClazz, "ad_type", "B");
+  jfieldID startByteFid = env->GetFieldID(msftAdvMonitorPatternClazz, "start_byte", "B");
+  jfieldID patternFid = env->GetFieldID(msftAdvMonitorPatternClazz, "pattern", "[B");
+
+  std::vector<MsftAdvMonitorPattern> patterns;
+  for (int i = 0; i < numPatterns; i++) {
+    MsftAdvMonitorPattern native_msft_adv_monitor_pattern{};
+    ScopedLocalRef<jobject> msft_adv_monitor_pattern_object(
+            env, env->GetObjectArrayElement(msft_adv_monitor_patterns, i));
+    native_msft_adv_monitor_pattern.ad_type =
+            env->GetByteField(msft_adv_monitor_pattern_object.get(), adTypeFid);
+    native_msft_adv_monitor_pattern.start_byte =
+            env->GetByteField(msft_adv_monitor_pattern_object.get(), startByteFid);
+
+    ScopedLocalRef<jbyteArray> patternByteArray(
+            env,
+            (jbyteArray)env->GetObjectField(msft_adv_monitor_pattern_object.get(), patternFid));
+    if (patternByteArray.get() != nullptr) {
+      jbyte* patternBytes = env->GetByteArrayElements(patternByteArray.get(), NULL);
+      if (patternBytes == NULL) {
+        jniThrowIOException(env, EINVAL);
+        return;
+      }
+      for (int j = 0; j < env->GetArrayLength(patternByteArray.get()); j++) {
+        native_msft_adv_monitor_pattern.pattern.push_back(patternBytes[j]);
+      }
+    }
+
+    patterns.push_back(native_msft_adv_monitor_pattern);
+  }
+  native_msft_adv_monitor.patterns = patterns;
+
+  sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor),
+                              base::Bind(&msft_monitor_add_cb, filter_index));
+}
+
+static void gattClientMsftAdvMonitorRemoveNative(JNIEnv* /* env */, jobject /* object */,
+                                                 int filter_index, int monitor_handle) {
+  if (!sScanner) {
+    return;
+  }
+  sScanner->MsftAdvMonitorRemove(monitor_handle, base::Bind(&msft_monitor_remove_cb, filter_index));
+}
+
+static void gattClientMsftAdvMonitorEnableNative(JNIEnv* /* env */, jobject /* object */,
+                                                 jboolean enable) {
+  if (!sScanner) {
+    return;
+  }
+  sScanner->MsftAdvMonitorEnable(enable, base::Bind(&msft_monitor_enable_cb));
 }
 
 static void gattClientConfigureMTUNative(JNIEnv* /* env */, jobject /* object */, jint conn_id,
