@@ -73,7 +73,8 @@ typedef struct {
    */
   bt_status_t (*listen)(btsock_type_t type, const char* service_name,
                         const bluetooth::Uuid* service_uuid, int channel, int* sock_fd, int flags,
-                        int callingUid);
+                        int callingUid, int data_path, const char* socket_name, int hub_id,
+                        int endpoint_id, bool auto_switch);
 
   /**
    * Connect to a RFCOMM UUID channel of remote device, It returns the socket fd
@@ -83,7 +84,8 @@ typedef struct {
    * purposes.
    */
   bt_status_t (*connect)(const RawAddress* bd_addr, btsock_type_t type, const bluetooth::Uuid* uuid,
-                         int channel, int* sock_fd, int flags, int callingUid);
+                         int channel, int* sock_fd, int flags, int callingUid, int data_path,
+                         const char* socket_name, int hub_id, int endpoint_id, bool auto_switch);
 
   /**
    * Set the LE Data Length value to this connected peer to the
