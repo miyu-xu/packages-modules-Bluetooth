@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ade909_0f47fe8c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-28T20:33:23Z",
+      "side": 1,
+      "message": "TODO should reference a bug, TODO(b/xyz): abc",
+      "range": {
+        "startLine": 625,
+        "startChar": 15,
+        "endLine": 625,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e4ae5842_0384594d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+              "range": {
+                "startLine": 625,
+                "startChar": 0,
+                "endLine": 626,
+                "endChar": 0
+              },
+              "replacement": "            // TODO(b/324355496): disconnect from the remote\n"
+            }
+          ]
+        }
+      ],
+      "revId": "83529d028f899001467273cde9c9ef1fcf12391d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4e1c04_6fe7470b",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-09-28T20:33:23Z",
+      "side": 1,
+      "message": "Does it make sense to do \u003c\u003d here? Otherwise to_send will end up as 0 below.",
+      "range": {
+        "startLine": 348,
+        "startChar": 19,
+        "endLine": 348,
+        "endChar": 20
+      },
+      "revId": "83529d028f899001467273cde9c9ef1fcf12391d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
