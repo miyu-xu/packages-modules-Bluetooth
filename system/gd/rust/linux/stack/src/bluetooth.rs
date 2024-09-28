@@ -1238,6 +1238,14 @@ impl Bluetooth {
         BtStatus::Success
     }
 
+    /// Start discovery until timeout if there are wake allowed devices bonded.
+    /// TODO(b:361797255): revert after the fw is fixed.
+    pub fn trigger_le_scan_by_discovery(&mut self) {
+        if self.get_wake_allowed_device_bonded() {
+            self.start_discovery();
+        }
+    }
+
     /// Temporarily stop the discovery process and mark it as paused so that clients cannot restart
     /// it.
     fn pause_discovery(&mut self) {
