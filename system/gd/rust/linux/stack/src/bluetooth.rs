@@ -1238,6 +1238,10 @@ impl Bluetooth {
         BtStatus::Success
     }
 
+    pub fn start_discovery_once(&mut self) {
+        self.start_discovery();
+    }
+
     /// Temporarily stop the discovery process and mark it as paused so that clients cannot restart
     /// it.
     fn pause_discovery(&mut self) {
@@ -1256,7 +1260,7 @@ impl Bluetooth {
     }
 
     /// Return if there are wake-allowed device in bonded status.
-    fn get_wake_allowed_device_bonded(&self) -> bool {
+    pub(crate) fn get_wake_allowed_device_bonded(&self) -> bool {
         self.get_bonded_devices().into_iter().any(|d| self.get_remote_wake_allowed(d))
     }
 
