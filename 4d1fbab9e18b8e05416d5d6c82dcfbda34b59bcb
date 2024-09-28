@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89ef2cd_51ac3fc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-09-28T05:05:35Z",
+      "side": 1,
+      "message": "Workaround the suspend issue, in case the Intel fix takes long time.",
+      "revId": "4d1fbab9e18b8e05416d5d6c82dcfbda34b59bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
