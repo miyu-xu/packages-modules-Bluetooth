@@ -46,6 +46,30 @@
       },
       "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae14e7e_0431e38e",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-28T00:36:54Z",
+      "side": 1,
+      "message": "Other Android build targets leave the soong config unset. As the original CL has been in the downstream branch for some time and no issues reported, I think it works as expected for other Android build targets.",
+      "parentUuid": "4cc9e489_dedcb17a",
+      "range": {
+        "startLine": 188,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 19
+      },
+      "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
