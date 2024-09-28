@@ -836,7 +836,9 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
 
 static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAddress* addr,
                                                   int channel, int* sock_fd, int flags, char listen,
-                                                  int app_uid) {
+                                                  int app_uid, int /*data_mode*/,
+                                                  const char* /*socket_name*/, int /*hub_id*/,
+                                                  int /*endpoint_id*/, bool /*auto_switch*/) {
   if (!is_inited()) {
     return BT_STATUS_NOT_READY;
   }
@@ -908,14 +910,18 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   return BT_STATUS_SUCCESS;
 }
 
-bt_status_t btsock_l2cap_listen(const char* name, int channel, int* sock_fd, int flags,
-                                int app_uid) {
-  return btsock_l2cap_listen_or_connect(name, NULL, channel, sock_fd, flags, 1, app_uid);
+bt_status_t btsock_l2cap_listen(const char* name, int channel, int* sock_fd, int flags, int app_uid,
+                                int data_mode, const char* socket_name, int hub_id, int endpoint_id,
+                                bool auto_switch) {
+  return btsock_l2cap_listen_or_connect(name, NULL, channel, sock_fd, flags, 1, app_uid, data_mode,
+                                        socket_name, hub_id, endpoint_id, auto_switch);
 }
 
 bt_status_t btsock_l2cap_connect(const RawAddress* bd_addr, int channel, int* sock_fd, int flags,
-                                 int app_uid) {
-  return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags, 0, app_uid);
+                                 int app_uid, int data_mode, const char* socket_name, int hub_id,
+                                 int endpoint_id, bool auto_switch) {
+  return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags, 0, app_uid,
+                                        data_mode, socket_name, hub_id, endpoint_id, auto_switch);
 }
 
 /* return true if we have more to send and should wait for user readiness, false
