@@ -1795,11 +1795,14 @@ static jboolean setBufferLengthMillisNative(JNIEnv* /* env */, jobject /* obj */
 }
 
 static jint connectSocketNative(JNIEnv* env, jobject /* obj */, jbyteArray address, jint type,
-                                jbyteArray uuid, jint port, jint flag, jint callingUid) {
+                                jbyteArray uuid, jint port, jint flag, jint callingUid,
+                                jint dataPath, jstring socketName, jint hubId, jint endPointId,
+                                jboolean autoSwitch) {
   int socket_fd = INVALID_FD;
   jbyte* addr = nullptr;
   jbyte* uuidBytes = nullptr;
   Uuid btUuid;
+  const char* nativeSocketName = nullptr;
 
   if (!sBluetoothSocketInterface) {
     goto done;
@@ -1810,11 +1813,15 @@ static jint connectSocketNative(JNIEnv* env, jobject /* obj */, jbyteArray addre
     jniThrowIOException(env, EINVAL);
     goto done;
   }
-
   btUuid = Uuid::From128BitBE(reinterpret_cast<uint8_t*>(uuidBytes));
+  if (socketName != nullptr) {
+    nativeSocketName = env->GetStringUTFChars(socketName, nullptr);
+  }
+
   if (sBluetoothSocketInterface->connect(reinterpret_cast<RawAddress*>(addr), (btsock_type_t)type,
-                                         &btUuid, port, &socket_fd, flag,
-                                         callingUid) != BT_STATUS_SUCCESS) {
+                                         &btUuid, port, &socket_fd, flag, callingUid, dataPath,
+                                         nativeSocketName, hubId, endPointId,
+                                         autoSwitch) != BT_STATUS_SUCCESS) {
     socket_fd = INVALID_FD;
   }
 
@@ -1825,16 +1832,21 @@ done:
   if (uuidBytes) {
     env->ReleaseByteArrayElements(uuid, uuidBytes, 0);
   }
+  if (nativeSocketName) {
+    env->ReleaseStringUTFChars(socketName, nativeSocketName);
+  }
   return socket_fd;
 }
 
 static jint createSocketChannelNative(JNIEnv* env, jobject /* obj */, jint type,
                                       jstring serviceName, jbyteArray uuid, jint port, jint flag,
-                                      jint callingUid) {
+                                      jint callingUid, jint dataPath, jstring socketName,
+                                      jint hubId, jint endPointId, jboolean autoSwitch) {
   int socket_fd = INVALID_FD;
   jbyte* uuidBytes = nullptr;
   Uuid btUuid;
   const char* nativeServiceName = nullptr;
+  const char* nativeSocketName = nullptr;
 
   if (!sBluetoothSocketInterface) {
     goto done;
@@ -1848,9 +1860,13 @@ static jint createSocketChannelNative(JNIEnv* env, jobject /* obj */, jint type,
     goto done;
   }
   btUuid = Uuid::From128BitBE(reinterpret_cast<uint8_t*>(uuidBytes));
+  if (socketName != nullptr) {
+    nativeSocketName = env->GetStringUTFChars(socketName, nullptr);
+  }
 
   if (sBluetoothSocketInterface->listen((btsock_type_t)type, nativeServiceName, &btUuid, port,
-                                        &socket_fd, flag, callingUid) != BT_STATUS_SUCCESS) {
+                                        &socket_fd, flag, callingUid, dataPath, nativeSocketName,
+                                        hubId, endPointId, autoSwitch) != BT_STATUS_SUCCESS) {
     socket_fd = INVALID_FD;
   }
 
@@ -1860,6 +1876,9 @@ done:
   }
   if (nativeServiceName) {
     env->ReleaseStringUTFChars(serviceName, nativeServiceName);
+  }
+  if (nativeSocketName) {
+    env->ReleaseStringUTFChars(socketName, nativeSocketName);
   }
   return socket_fd;
 }
@@ -2281,8 +2300,9 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
           {"setBufferLengthMillisNative", "(II)Z",
            reinterpret_cast<void*>(setBufferLengthMillisNative)},
           {"getMetricIdNative", "([B)I", reinterpret_cast<void*>(getMetricIdNative)},
-          {"connectSocketNative", "([BI[BIII)I", reinterpret_cast<void*>(connectSocketNative)},
-          {"createSocketChannelNative", "(ILjava/lang/String;[BIII)I",
+          {"connectSocketNative", "([BI[BIIIILjava/lang/String;IIZ)I",
+           reinterpret_cast<void*>(connectSocketNative)},
+          {"createSocketChannelNative", "(ILjava/lang/String;[BIIIILjava/lang/String;IIZ)I",
            reinterpret_cast<void*>(createSocketChannelNative)},
           {"requestMaximumTxDataLengthNative", "([B)V",
            reinterpret_cast<void*>(requestMaximumTxDataLengthNative)},
