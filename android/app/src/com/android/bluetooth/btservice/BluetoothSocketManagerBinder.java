@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.bluetooth.BluetoothSocketSettings;
 import android.bluetooth.IBluetoothSocketManager;
 import android.content.AttributionSource;
 import android.os.Binder;
@@ -49,12 +50,25 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
 
     @Override
     public ParcelFileDescriptor connectSocket(
-            BluetoothDevice device, int type, ParcelUuid uuid, int port, int flag) {
+            BluetoothDevice device,
+            int type,
+            ParcelUuid uuid,
+            int port,
+            int flag,
+            int dataPath,
+            String socketName,
+            int hubId,
+            int endPointId,
+            boolean autoSwitch) {
 
         enforceActiveUser();
 
         if (!Utils.checkConnectPermissionForPreflight(mService)) {
             return null;
+        }
+
+        if (dataPath != BluetoothSocketSettings.DATA_PATH_OFFLOAD_OFF) {
+            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
         }
 
         String brEdrAddress =
@@ -72,6 +86,16 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", dataPath="
+                        + dataPath
+                        + ", socketName="
+                        + socketName
+                        + ", hubId="
+                        + hubId
+                        + ", endPointId="
+                        + endPointId
+                        + ", autoSwitch="
+                        + autoSwitch
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -86,17 +110,35 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                Binder.getCallingUid(),
+                                dataPath,
+                                socketName,
+                                hubId,
+                                endPointId,
+                                autoSwitch));
     }
 
     @Override
     public ParcelFileDescriptor createSocketChannel(
-            int type, String serviceName, ParcelUuid uuid, int port, int flag) {
+            int type,
+            String serviceName,
+            ParcelUuid uuid,
+            int port,
+            int flag,
+            int dataPath,
+            String socketName,
+            int hubId,
+            int endPointId,
+            boolean autoSwitch) {
 
         enforceActiveUser();
 
         if (!Utils.checkConnectPermissionForPreflight(mService)) {
             return null;
+        }
+
+        if (dataPath != BluetoothSocketSettings.DATA_PATH_OFFLOAD_OFF) {
+            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
         }
 
         Log.i(
@@ -109,6 +151,16 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", dataPath="
+                        + dataPath
+                        + ", socketName="
+                        + socketName
+                        + ", hubId="
+                        + hubId
+                        + ", endPointId="
+                        + endPointId
+                        + ", autoSwitch="
+                        + autoSwitch
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -120,7 +172,12 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                Binder.getCallingUid(),
+                                dataPath,
+                                socketName,
+                                hubId,
+                                endPointId,
+                                autoSwitch));
     }
 
     @Override

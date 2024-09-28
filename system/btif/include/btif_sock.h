@@ -43,6 +43,12 @@ enum {
   SOCKET_ROLE_CONNECTION,
 };
 
+enum {
+  SOCKET_DATA_PATH_OFFLOAD_OFF,
+  SOCKET_DATA_PATH_SOFTWARE_OFFLOAD,
+  SOCKET_DATA_PATH_HARDWARE_OFFLOAD,
+};
+
 const btsock_interface_t* btif_sock_get_interface(void);
 
 bt_status_t btif_sock_init(uid_set_t* uid_set);
