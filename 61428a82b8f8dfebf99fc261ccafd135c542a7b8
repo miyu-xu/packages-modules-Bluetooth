@@ -178,6 +178,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e66bf6a_0dd953fd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2804,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-09-28T03:48:35Z",
+      "side": 1,
+      "message": "And we\u0027d still need to handle the potential operation before BASS ready case, in case UI will start adding source very quick after connection.\nLet\u0027s plan that separately after this, and we can leverage the bass ready info we added here.",
+      "parentUuid": "1e843edf_74cbad95",
+      "revId": "61428a82b8f8dfebf99fc261ccafd135c542a7b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d32b83a2_c75defaf",
