@@ -81,9 +81,15 @@ typedef struct l2cap_socket {
   int64_t tx_bytes;
   // Cumulative number of bytes received on this socket
   int64_t rx_bytes;
-  uint16_t local_cid;   // The local CID
-  uint16_t remote_cid;  // The remote CID
-  Uuid conn_uuid;       // The connection uuid
+  uint16_t local_cid;     // The local CID
+  uint16_t remote_cid;    // The remote CID
+  Uuid conn_uuid;         // The connection uuid
+  int data_path;          // socket data path requested
+  int data_path_in_use;   // socket data path in use
+  char socket_name[128];  // descriptive socket name
+  int hub_id;             // ID of the hub to which the end point belongs
+  int endpoint_id;        // ID of the hub end point
+  bool is_auto_switch;    // will data path be switched when connected?
 } l2cap_socket;
 
 static void btsock_l2cap_server_listen(l2cap_socket* sock);
@@ -338,6 +344,12 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
   sock->handle = 0;
   sock->server_psm_sent = false;
   sock->app_uid = -1;
+  sock->conn_uuid = Uuid::kEmpty;
+  sock->data_path = SOCKET_DATA_PATH_OFFLOAD_OFF;
+  sock->data_path_in_use = SOCKET_DATA_PATH_OFFLOAD_OFF;
+  sock->hub_id = -1;
+  sock->endpoint_id = -1;
+  sock->is_auto_switch = false;
 
   if (name) {
     strncpy(sock->name, name, sizeof(sock->name) - 1);
@@ -543,6 +555,11 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
   accept_rs->remote_cid = p_open->remote_cid;
   Uuid uuid = Uuid::From128BitBE(bluetooth::os::GenerateRandom<Uuid::kNumBytes128>());
   accept_rs->conn_uuid = uuid;
+  accept_rs->data_path = sock->data_path;
+  strncpy(accept_rs->socket_name, sock->socket_name, sizeof(accept_rs->socket_name));
+  accept_rs->hub_id = sock->hub_id;
+  accept_rs->endpoint_id = sock->endpoint_id;
+  accept_rs->is_auto_switch = sock->is_auto_switch;
 
   /* Swap IDs to hand over the GAP connection to the accepted socket, and start
      a new server on the newly create socket ID. */
@@ -836,7 +853,9 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
 
 static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAddress* addr,
                                                   int channel, int* sock_fd, int flags, char listen,
-                                                  int app_uid) {
+                                                  int app_uid, int data_path,
+                                                  const char* socket_name, int hub_id,
+                                                  int endpoint_id, bool auto_switch) {
   if (!is_inited()) {
     return BT_STATUS_NOT_READY;
   }
@@ -875,6 +894,13 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   sock->app_uid = app_uid;
   sock->is_le_coc = is_le_coc;
   sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
+  sock->data_path = data_path;
+  if (socket_name) {
+    strncpy(sock->socket_name, socket_name, sizeof(sock->socket_name));
+  }
+  sock->hub_id = hub_id;
+  sock->endpoint_id = endpoint_id;
+  sock->is_auto_switch = auto_switch;
 
   /* "role" is never initialized in rfcomm code */
   if (listen) {
@@ -908,14 +934,18 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   return BT_STATUS_SUCCESS;
 }
 
-bt_status_t btsock_l2cap_listen(const char* name, int channel, int* sock_fd, int flags,
-                                int app_uid) {
-  return btsock_l2cap_listen_or_connect(name, NULL, channel, sock_fd, flags, 1, app_uid);
+bt_status_t btsock_l2cap_listen(const char* name, int channel, int* sock_fd, int flags, int app_uid,
+                                int data_path, const char* socket_name, int hub_id, int endpoint_id,
+                                bool auto_switch) {
+  return btsock_l2cap_listen_or_connect(name, NULL, channel, sock_fd, flags, 1, app_uid, data_path,
+                                        socket_name, hub_id, endpoint_id, auto_switch);
 }
 
 bt_status_t btsock_l2cap_connect(const RawAddress* bd_addr, int channel, int* sock_fd, int flags,
-                                 int app_uid) {
-  return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags, 0, app_uid);
+                                 int app_uid, int data_path, const char* socket_name, int hub_id,
+                                 int endpoint_id, bool auto_switch) {
+  return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags, 0, app_uid,
+                                        data_path, socket_name, hub_id, endpoint_id, auto_switch);
 }
 
 /* return true if we have more to send and should wait for user readiness, false
