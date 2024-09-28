@@ -49,7 +49,16 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
 
     @Override
     public ParcelFileDescriptor connectSocket(
-            BluetoothDevice device, int type, ParcelUuid uuid, int port, int flag) {
+            BluetoothDevice device,
+            int type,
+            ParcelUuid uuid,
+            int port,
+            int flag,
+            int dataPath,
+            String socketName,
+            int hubId,
+            int endPointId,
+            boolean autoSwitch) {
 
         enforceActiveUser();
 
@@ -72,6 +81,16 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", dataPath="
+                        + dataPath
+                        + ", socketName="
+                        + socketName
+                        + ", hubId="
+                        + hubId
+                        + ", endPointId="
+                        + endPointId
+                        + ", autoSwitch="
+                        + autoSwitch
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -86,12 +105,26 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                Binder.getCallingUid(),
+                                dataPath,
+                                socketName,
+                                hubId,
+                                endPointId,
+                                autoSwitch));
     }
 
     @Override
     public ParcelFileDescriptor createSocketChannel(
-            int type, String serviceName, ParcelUuid uuid, int port, int flag) {
+            int type,
+            String serviceName,
+            ParcelUuid uuid,
+            int port,
+            int flag,
+            int dataPath,
+            String socketName,
+            int hubId,
+            int endPointId,
+            boolean autoSwitch) {
 
         enforceActiveUser();
 
@@ -109,6 +142,16 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", dataPath="
+                        + dataPath
+                        + ", socketName="
+                        + socketName
+                        + ", hubId="
+                        + hubId
+                        + ", endPointId="
+                        + endPointId
+                        + ", autoSwitch="
+                        + autoSwitch
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -120,7 +163,12 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                Binder.getCallingUid(),
+                                dataPath,
+                                socketName,
+                                hubId,
+                                endPointId,
+                                autoSwitch));
     }
 
     @Override
