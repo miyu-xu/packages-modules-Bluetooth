@@ -99,7 +99,7 @@ fn notify_suspend_state(hci_index: u16, suspended: bool) {
     }
 }
 
-#[derive(Debug, FromPrimitive, ToPrimitive)]
+#[derive(Debug, FromPrimitive, ToPrimitive, Clone)]
 #[repr(u32)]
 pub enum SuspendType {
     NoWakesAllowed,
@@ -143,6 +143,7 @@ pub struct Suspend {
 
     suspend_timeout_joinhandle: Option<tokio::task::JoinHandle<()>>,
     suspend_state: Arc<Mutex<SuspendState>>,
+    last_suspend_type: SuspendType,
 }
 
 impl Suspend {
@@ -164,6 +165,7 @@ impl Suspend {
             audio_reconnect_joinhandle: None,
             suspend_timeout_joinhandle: None,
             suspend_state: Arc::new(Mutex::new(SuspendState::new())),
+            last_suspend_type: SuspendType::Other,
         }
     }
 
@@ -224,6 +226,7 @@ impl ISuspend for Suspend {
     fn suspend(&mut self, suspend_type: SuspendType, suspend_id: i32) {
         // Set suspend state as true, prevent an early resume.
         self.suspend_state.lock().unwrap().suspend_expected = true;
+        self.last_suspend_type = suspend_type.clone();
         // Set suspend event mask
         self.intf.lock().unwrap().set_default_event_mask_except(MASKED_EVENTS_FOR_SUSPEND, 0u64);
 
@@ -370,6 +373,17 @@ impl ISuspend for Suspend {
                 let _result = tx.send(Message::ResumeReady(suspend_id)).await;
             });
         }));
+
+        // TODO Workaround for b:361797255. Remove after the bug is fixed.
+        match self.last_suspend_type {
+            SuspendType::NoWakesAllowed => {
+                log::info!("Toggle discovery to make sure LE scan starts.");
+                if self.bt.lock().unwrap().get_wake_allowed_device_bonded() {
+                    self.bt.lock().unwrap().start_discovery_once();
+                }
+            }
+            _ => {}
+        }
 
         // Call LE Rand at the end of resume. The callback of LE Rand will reset the
         // resume state and send resume ready signal.
