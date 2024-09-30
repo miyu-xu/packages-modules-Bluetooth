@@ -70,6 +70,29 @@
       },
       "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e79b462_ba230d1d",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-30T17:47:40Z",
+      "side": 1,
+      "message": "Nit: Should this be removed ?\nThere is already `conditions_defaults` in the `soong_config_variables`",
+      "range": {
+        "startLine": 190,
+        "startChar": 9,
+        "endLine": 190,
+        "endChar": 24
+      },
+      "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
