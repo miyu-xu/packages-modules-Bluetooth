@@ -320,7 +320,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         boolean isLeAudioOnly = isLeAudioOnlyDevice(device, uuids);
         boolean shouldEnableHapByDefault = shouldEnableHapByDefault(device, uuids);
         boolean isLeAudioProfileAllowed =
-                (leAudioService != null)
+                ((leAudioService != null)
                         && Utils.arrayContains(uuids, BluetoothUuid.LE_AUDIO)
                         && (leAudioService.getConnectionPolicy(device)
                                 != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)
@@ -328,7 +328,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
                         && (isBypassLeAudioAllowlist
                                 || shouldEnableHapByDefault
                                 || mAdapterService.isLeAudioAllowed(device)
-                                || isLeAudioOnly);
+                                || isLeAudioOnly)) || Utils.isPtsTestMode();
         debugLog(
                 "mLeAudioEnabledByDefault: "
                         + mLeAudioEnabledByDefault
@@ -343,7 +343,9 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
                         + ", isLeAudioOnly: "
                         + isLeAudioOnly
                         + ", shouldEnableHapByDefault: "
-                        + shouldEnableHapByDefault);
+                        + shouldEnableHapByDefault
+                        + ", isPtsTestMode: "
+                        + Utils.isPtsTestMode());
 
         // Set profile priorities only for the profiles discovered on the remote device.
         // This avoids needless auto-connect attempts to profiles non-existent on the remote device

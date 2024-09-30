@@ -1144,21 +1144,7 @@
     "SM/PER/SCPK/BI-04-C",
     "SM/PER/SCPK/BV-03-C",
     "SM/PER/SIE/BV-01-C",
-    "SM/PER/SIP/BV-01-C",
-    "VCP/VC/CGGIT/CHA/BV-01-C",
-    "VCP/VC/CGGIT/CHA/BV-02-C",
-    "VCP/VC/CGGIT/CHA/BV-03-C",
-    "VCP/VC/CGGIT/CHA/BV-04-C",
-    "VCP/VC/CGGIT/SER/BV-01-C",
-    "VCP/VC/CGGIT/SER/BV-02-C",
-    "VCP/VC/SPE/BI-05-C",
-    "VCP/VC/SPE/BI-06-C",
-    "VCP/VC/SPE/BI-13-C",
-    "VCP/VC/SPE/BI-15-C",
-    "VCP/VC/SPE/BI-16-C",
-    "VCP/VC/VCCP/BV-05-C",
-    "VCP/VC/VCCP/BV-06-C",
-    "VCP/VC/VOCP/BV-01-C"
+    "SM/PER/SIP/BV-01-C"
   ],
   "ics": {
     "TSPC_4.0HCI_1_1": true,
@@ -3168,7 +3154,8 @@
     "SM": {},
     "SPP": {},
     "SUM ICS": {},
-    "VCP": {}
+    "VCP": {
+    }
   },
   "flags": [
     {
@@ -3187,6 +3174,15 @@
       ],
       "tests": [
         "HAP"
+      ]
+    },
+    {
+      "flags": [
+        "leaudio_allow_leaudio_only_devices",
+        "pts"
+      ],
+      "tests": [
+        "VCP"
       ]
     }
   ]
