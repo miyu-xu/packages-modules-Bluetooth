@@ -34,7 +34,7 @@ class VCPProxy(ProfileProxy):
         self.le_audio = LeAudio(channel)
         self.rootcanal = rootcanal
         self.connection = None
-        self.pairing_stream = None
+        self.pairing_stream = self.security.OnPairing()
 
     def test_started(self, test: str, description: str, pts_addr: bytes):
         self.rootcanal.select_pts_dongle(Dongle.LAIRD_BL654)
@@ -51,7 +51,6 @@ class VCPProxy(ProfileProxy):
         to the PTS.
         """
         self.connection = self.host.ConnectLE(own_address_type=RANDOM, public=pts_addr).connection
-        self.pairing_stream = self.security.OnPairing()
 
         def secure():
             self.security.Secure(connection=self.connection, le=LE_LEVEL3)
@@ -81,7 +80,7 @@ class VCPProxy(ProfileProxy):
         """
         Please take action to discover the
         (Volume Control Point|Volume State|Volume Flags|Offset State|Volume Offset Control Point)
-        characteristic from the Volume (Offset)? Control. Discover the primary service if needed.
+        characteristic from the Volume (Offset )?Control. Discover the primary service if needed.
         Description: Verify that the Implementation Under Test \(IUT\) can send
         Discover All Characteristics command.
         """
@@ -95,11 +94,11 @@ class VCPProxy(ProfileProxy):
         """
         return "OK"
 
-    @assert_description
-    def USER_CONFIRM_SUPPORTED_CHARACTERISTIC(self, characteristics: str, **kwargs):
+    @match_description
+    def USER_CONFIRM_SUPPORTED_CHARACTERISTIC(self, body: str, **kwargs):
         """
         Please verify that for each supported characteristic, attribute
-        handle/UUID pair(s) is returned to the upper tester.(?P<characteristics>(.|\n)*)
+        handle/UUID pair\(s\) is returned to the (.*)\.(?P<body>.*)
         """
 
         return "OK"
