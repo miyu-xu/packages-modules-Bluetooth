@@ -893,8 +893,8 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   sock->channel = channel;
   sock->app_uid = app_uid;
   sock->is_le_coc = is_le_coc;
-  sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
   sock->data_path = data_path;
+  sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
   if (socket_name) {
     strncpy(sock->socket_name, socket_name, sizeof(sock->socket_name));
   }
