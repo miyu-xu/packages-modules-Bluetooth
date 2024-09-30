@@ -61,6 +61,7 @@ source_set("LibBluetoothShimSources") {
     "hci_layer.cc",
     "le_advertising_manager.cc",
     "le_scanning_manager.cc",
+    "lpp_offload_manager.cc",
     "metric_id_api.cc",
     "metrics_api.cc",
     "shim.cc",
