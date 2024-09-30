@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e8e4bb1_a09bdb89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-09-30T22:36:45Z",
+      "side": 1,
+      "message": "I am wary of having a wakelock held for an arbitrary amount of time as you are doing. There are multiple point which I would like to address:\n\n1. how is the 10s determined ? Idealistically on what even would you release the wakelock ? \n2. there is no traceability / accountability for the wakelock here; either through tracepoints or logs. It is going to make inspecting the logic very difficult in the future.",
+      "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
