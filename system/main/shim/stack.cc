@@ -34,6 +34,7 @@
 #include "hci/hci_layer.h"
 #include "hci/le_advertising_manager.h"
 #include "hci/le_scanning_manager.h"
+#include "hci/lpp_offload_manager.h"
 #include "hci/msft.h"
 #include "hci/remote_name_request.h"
 #include "main/shim/acl.h"
@@ -43,6 +44,7 @@
 #include "main/shim/hci_layer.h"
 #include "main/shim/le_advertising_manager.h"
 #include "main/shim/le_scanning_manager.h"
+#include "main/shim/lpp_offload_manager.h"
 #include "metrics/counter_metrics.h"
 #include "shim/dumpsys.h"
 #include "storage/storage_module.h"
@@ -89,6 +91,7 @@ void Stack::StartEverything() {
   modules.add<hci::MsftExtensionManager>();
   modules.add<hci::LeScanningManager>();
   modules.add<hci::DistanceMeasurementManager>();
+  modules.add<hci::LppOffloadManager>();
   Start(&modules);
   is_running_ = true;
   // Make sure the leaf modules are started
@@ -109,6 +112,7 @@ void Stack::StartEverything() {
   bluetooth::shim::init_advertising_manager();
   bluetooth::shim::init_scanning_manager();
   bluetooth::shim::init_distance_measurement_manager();
+  bluetooth::shim::init_lpp_offload_manager();
 }
 
 void Stack::StartModuleStack(const ModuleList* modules, const os::Thread* thread) {
