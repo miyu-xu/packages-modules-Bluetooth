@@ -98,11 +98,14 @@ bool VolumeControlDevice::set_volume_control_service_handles(const gatt::Service
     if (chrc.uuid == kVolumeControlStateUuid) {
       state_handle = chrc.value_handle;
       state_ccc_handle = find_ccc_handle(chrc.value_handle);
+      log::debug("{}, state handle={:#x}, ccc {:#x}", address, state_handle, state_ccc_handle);
     } else if (chrc.uuid == kVolumeControlPointUuid) {
       control_point_handle = chrc.value_handle;
+      log::debug("{}, control_point handle={:#x}", address, control_point_handle);
     } else if (chrc.uuid == kVolumeFlagsUuid) {
       flags_handle = chrc.value_handle;
       flags_ccc_handle = find_ccc_handle(chrc.value_handle);
+      log::debug("{}, flags handle={:#x}, ccc {:#x}", address, flags_handle, flags_ccc_handle);
     } else {
       log::warn("unknown characteristic={}", chrc.uuid);
     }
