@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "140aa13a_497fe693",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-30T23:27:38Z",
+      "side": 1,
+      "message": "Nit: TODO should mention a bug in order to be assigned \u0026 tracked (go/todo-style)",
+      "range": {
+        "startLine": 602,
+        "startChar": 5,
+        "endLine": 602,
+        "endChar": 9
+      },
+      "revId": "cc53561d4ec107b0d1ed354ccdda8270c542b0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
