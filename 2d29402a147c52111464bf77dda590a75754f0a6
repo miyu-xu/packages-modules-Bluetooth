@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fdd7cb0_d88c459e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2024-09-30T20:17:38Z",
+      "side": 1,
+      "message": "Creating a separate CL for just the flag change",
+      "revId": "2d29402a147c52111464bf77dda590a75754f0a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
