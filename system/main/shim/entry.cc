@@ -24,6 +24,7 @@
 #include "hci/hci_layer.h"
 #include "hci/le_advertising_manager.h"
 #include "hci/le_scanning_manager.h"
+#include "hci/lpp_offload_manager.h"
 #if TARGET_FLOSS
 #include "hci/msft.h"
 #endif
@@ -63,6 +64,10 @@ hci::LeScanningManager* GetScanning() {
 
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager() {
   return Stack::GetInstance()->GetStackManager()->GetInstance<hci::DistanceMeasurementManager>();
+}
+
+hci::LppOffloadInterface* GetLppOffloadManager() {
+  return Stack::GetInstance()->GetStackManager()->GetInstance<hci::LppOffloadManager>();
 }
 
 hal::SnoopLogger* GetSnoopLogger() {
