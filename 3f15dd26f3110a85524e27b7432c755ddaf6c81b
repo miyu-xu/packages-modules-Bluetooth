@@ -16,6 +16,24 @@
       "message": "Please move the flag declaration to a separate CL, and squash the changes to snooop_logger with the parent CL",
       "revId": "3f15dd26f3110a85524e27b7432c755ddaf6c81b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e67cfd63_9518c64b",
+        "filename": "flags/hal.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2024-09-30T16:11:13Z",
+      "side": 1,
+      "message": "Thanks! Didn\u0027t mean to upload the others along with this CL. I\u0027ll change the CLs as suggested. I\u0027ll update when I resolve this.",
+      "parentUuid": "8ab7ac32_a314d09d",
+      "revId": "3f15dd26f3110a85524e27b7432c755ddaf6c81b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
