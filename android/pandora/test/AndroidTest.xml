@@ -35,6 +35,10 @@
         <option name="dep-module" value="numpy" />
         <option name="dep-module" value="pytruth" />
     </target_preparer>
+    <target_preparer class="com.android.tradefed.targetprep.FeatureFlagTargetPreparer">
+        <option name="flag-value"
+            value="bluetooth/com.android.bluetooth.flags.avdt_handle_suspend_cfm_bad_state=true"/>
+    </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.DeviceSetup">
          <option name="set-property" key="persist.log.tag.bluetooth" value="VERBOSE"/>
          <option name="restore-properties" value="true"/>
