@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ef2bc7a_c48cdedb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-09-30T08:17:08Z",
+      "side": 1,
+      "message": "We can check current RPA instantly without the need of parsing btsnoop log (as the author suggested). What do you think?",
+      "parentUuid": "16f46739_eefa38ea",
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43d9dc7d_33efdb05",
         "filename": "system/stack/btm/btm_ble_addr.cc",
         "patchSetId": 5
