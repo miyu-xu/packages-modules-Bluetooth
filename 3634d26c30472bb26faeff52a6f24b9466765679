@@ -127,6 +127,24 @@
       "parentUuid": "9fdc53c2_04daed80",
       "revId": "3634d26c30472bb26faeff52a6f24b9466765679",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "948b848e_b008c017",
+        "filename": "flags/active_device_manager.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-09-30T05:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33450714_731a8783",
+      "revId": "3634d26c30472bb26faeff52a6f24b9466765679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
