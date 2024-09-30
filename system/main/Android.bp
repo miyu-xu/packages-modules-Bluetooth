@@ -193,6 +193,7 @@ cc_test {
         "shim/hci_layer.cc",
         "shim/le_advertising_manager.cc",
         "shim/le_scanning_manager.cc",
+        "shim/lpp_offload_manager.cc",
         "shim/metric_id_api.cc",
         "shim/metrics_api.cc",
         "shim/shim.cc",
