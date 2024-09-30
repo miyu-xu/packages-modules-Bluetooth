@@ -193,6 +193,8 @@ class A2dp(val context: Context) : A2DPImplBase(), Closeable {
     ) {
         grpcUnary<SuspendResponse>(scope, responseObserver) {
             val device = bluetoothAdapter.getRemoteDevice(request.source.cookie.toString("UTF-8"))
+            val timeoutMillis: Long = 5_000L // milliseconds
+
             Log.i(TAG, "suspend: device=$device")
 
             if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
@@ -210,7 +212,9 @@ class A2dp(val context: Context) : A2DPImplBase(), Closeable {
                     .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
             audioTrack!!.pause()
-            a2dpPlayingStateFlow.filter { it == BluetoothA2dp.STATE_NOT_PLAYING }.first()
+            withTimeoutOrNull(timeoutMillis) {
+                a2dpPlayingStateFlow.filter { it == BluetoothA2dp.STATE_NOT_PLAYING }.first()
+            }
             SuspendResponse.getDefaultInstance()
         }
     }
