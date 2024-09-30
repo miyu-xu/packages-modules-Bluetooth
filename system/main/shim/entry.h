@@ -45,6 +45,7 @@ class RemoteNameRequestModule;
 class DistanceMeasurementManager;
 class LeAdvertisingManager;
 class LeScanningManager;
+class LppOffloadInterface;
 class MsftExtensionManager;
 }  // namespace hci
 
@@ -69,6 +70,7 @@ hci::HciInterface* GetHciLayer();
 hci::RemoteNameRequestModule* GetRemoteNameRequest();
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager();
 hci::LeScanningManager* GetScanning();
+hci::LppOffloadInterface* GetLppOffloadManager();
 hal::SnoopLogger* GetSnoopLogger();
 storage::StorageModule* GetStorage();
 hci::AclManager* GetAclManager();
