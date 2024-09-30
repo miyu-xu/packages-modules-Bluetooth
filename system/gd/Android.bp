@@ -666,6 +666,11 @@ cc_fuzz {
     fuzz_config: {
         cc: ["android-bluetooth-security@google.com"],
         componentid: 27441,
+        description: "The fuzzer targets the APIs of libbluetooth_gd_fuzzing",
+        vector: "remote",
+        service_privilege: "privileged",
+        users: "multi_user",
+        fuzzed_code_usage: "experimental",
     },
 }
 
@@ -676,6 +681,15 @@ cc_fuzz {
         ":BluetoothHalFuzzSources",
         "hci/fuzz/hci_layer_fuzz_test.cc",
     ],
+    fuzz_config: {
+        cc: ["android-bluetooth-security@google.com"],
+        componentid: 27441,
+        description: "The fuzzer targets the APIs of libbluetooth_gd_fuzzing",
+        vector: "local_privileges_required",
+        service_privilege: "privileged",
+        users: "single_user",
+        fuzzed_code_usage: "shipped",
+    },
 }
 
 cc_fuzz {
@@ -687,6 +701,11 @@ cc_fuzz {
     fuzz_config: {
         cc: ["android-bluetooth-security@google.com"],
         componentid: 27441,
+        description: "The fuzzer targets the APIs of libbluetooth_gd_fuzzing",
+        vector: "local_privileges_required",
+        service_privilege: "privileged",
+        users: "multi_user",
+        fuzzed_code_usage: "shipped",
     },
 }
 
