@@ -492,12 +492,13 @@ public class VolumeControlService extends ProfileService {
             Log.e(TAG, "leAudioService not available");
             return;
         }
+
         int groupId = leAudioService.getGroupId(device);
         if (groupId == IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID) {
             Log.e(TAG, "Device not a part of a group");
             return;
         }
-
+    
         if (isGroupOp) {
             setGroupVolume(groupId, volume);
         } else {
