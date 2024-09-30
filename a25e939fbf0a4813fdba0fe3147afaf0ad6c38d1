@@ -16,6 +16,29 @@
       "message": "Hi, PTAL. Thanks!",
       "revId": "a25e939fbf0a4813fdba0fe3147afaf0ad6c38d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48872dc7_21a7e0cb",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1855,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-30T21:43:55Z",
+      "side": 1,
+      "message": "Some changes here are unflagged.\n\nif the status is not sucess, previously this was called:\n\n```\n  p_dev_cb-\u003ew4_evt \u003d BTA_HH_EMPTY_EVT;\n  (*bta_hh_cb.p_cback)(BTA_HH_GET_RPT_EVT, (tBTA_HH*)\u0026hs_data);\n  osi_free(hs_data.rsp_data.p_rpt_data);\n```\n\nnow, when the flag is disabled, this is no longer called",
+      "range": {
+        "startLine": 1849,
+        "startChar": 1,
+        "endLine": 1855,
+        "endChar": 30
+      },
+      "revId": "a25e939fbf0a4813fdba0fe3147afaf0ad6c38d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
