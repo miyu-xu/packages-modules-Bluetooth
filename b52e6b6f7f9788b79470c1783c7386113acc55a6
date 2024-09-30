@@ -93,6 +93,30 @@
       },
       "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa0aea5_618360e2",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-09-30T23:36:29Z",
+      "side": 1,
+      "message": "This enables non-USB transport products to explicitly choose their preferred implementation, while most desktop scenarios opt for the Android Desktop routes.",
+      "parentUuid": "2e79b462_ba230d1d",
+      "range": {
+        "startLine": 190,
+        "startChar": 9,
+        "endLine": 190,
+        "endChar": 24
+      },
+      "revId": "b52e6b6f7f9788b79470c1783c7386113acc55a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
