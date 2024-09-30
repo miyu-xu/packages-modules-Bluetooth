@@ -68,14 +68,6 @@ flag {
 }
 
 flag {
-    name: "leaudio_multiple_vocs_instances_api"
-    is_exported: true
-    namespace: "bluetooth"
-    description: "Support multiple audio outputs for volume offset"
-    bug: "323156655"
-}
-
-flag {
     name: "run_ble_audio_ticks_in_worker_thread"
     namespace: "bluetooth"
     description: "Fix thread ownership issue in ble_audio_ticks"
