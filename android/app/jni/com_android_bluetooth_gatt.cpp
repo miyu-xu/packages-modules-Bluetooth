@@ -1878,23 +1878,24 @@ static void gattClientScanFilterEnableNative(JNIEnv* /* env */, jobject /* objec
   sScanner->ScanFilterEnable(enable, base::Bind(&scan_enable_cb, client_if));
 }
 
-void msft_monitor_add_cb(uint8_t monitor_handle, uint8_t status) {
+void msft_monitor_add_cb(int filter_index, uint8_t monitor_handle, uint8_t status) {
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mScanCallbacksObj) {
     return;
   }
-  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorAdd, monitor_handle,
-                               status);
+  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorAdd, filter_index,
+                               monitor_handle, status);
 }
 
-void msft_monitor_remove_cb(uint8_t status) {
+void msft_monitor_remove_cb(int filter_index, uint8_t status) {
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mScanCallbacksObj) {
     return;
   }
-  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorRemove, status);
+  sCallbackEnv->CallVoidMethod(mScanCallbacksObj, method_onMsftAdvMonitorRemove, filter_index,
+                               status);
 }
 
 void msft_monitor_enable_cb(uint8_t status) {
@@ -1913,7 +1914,7 @@ static bool gattClientIsMsftSupportedNative(JNIEnv* /* env */, jobject /* object
 static void gattClientMsftAdvMonitorAddNative(JNIEnv* env, jobject /* object*/,
                                               jobject msft_adv_monitor,
                                               jobjectArray msft_adv_monitor_patterns,
-                                              jobject msft_adv_monitor_address) {
+                                              jobject msft_adv_monitor_address, jint filter_index) {
   if (!sScanner) {
     return;
   }
@@ -1955,7 +1956,7 @@ static void gattClientMsftAdvMonitorAddNative(JNIEnv* env, jobject /* object*/,
   int numPatterns = env->GetArrayLength(msft_adv_monitor_patterns);
   if (numPatterns == 0) {
     sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor),
-                                base::Bind(&msft_monitor_add_cb));
+                                base::Bind(&msft_monitor_add_cb, filter_index));
     return;
   }
 
@@ -1993,15 +1994,16 @@ static void gattClientMsftAdvMonitorAddNative(JNIEnv* env, jobject /* object*/,
   }
   native_msft_adv_monitor.patterns = patterns;
 
-  sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor), base::Bind(&msft_monitor_add_cb));
+  sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor),
+                              base::Bind(&msft_monitor_add_cb, filter_index));
 }
 
 static void gattClientMsftAdvMonitorRemoveNative(JNIEnv* /* env */, jobject /* object */,
-                                                 int monitor_handle) {
+                                                 int filter_index, int monitor_handle) {
   if (!sScanner) {
     return;
   }
-  sScanner->MsftAdvMonitorRemove(monitor_handle, base::Bind(&msft_monitor_remove_cb));
+  sScanner->MsftAdvMonitorRemove(monitor_handle, base::Bind(&msft_monitor_remove_cb, filter_index));
 }
 
 static void gattClientMsftAdvMonitorEnableNative(JNIEnv* /* env */, jobject /* object */,
@@ -2838,9 +2840,9 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
           {"gattClientIsMsftSupportedNative", "()Z", (bool*)gattClientIsMsftSupportedNative},
           {"gattClientMsftAdvMonitorAddNative",
            "(Lcom/android/bluetooth/le_scan/MsftAdvMonitor$Monitor;[Lcom/android/bluetooth/le_scan/"
-           "MsftAdvMonitor$Pattern;Lcom/android/bluetooth/le_scan/MsftAdvMonitor$Address)V",
+           "MsftAdvMonitor$Pattern;Lcom/android/bluetooth/le_scan/MsftAdvMonitor$Address;I)V",
            (void*)gattClientMsftAdvMonitorAddNative},
-          {"gattClientMsftAdvMonitorRemoveNative", "(I)V",
+          {"gattClientMsftAdvMonitorRemoveNative", "(II)V",
            (void*)gattClientMsftAdvMonitorRemoveNative},
           {"gattClientMsftAdvMonitorEnableNative", "(Z)V",
            (void*)gattClientMsftAdvMonitorEnableNative},
@@ -2870,8 +2872,8 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
           {"onTrackAdvFoundLost", "(Lcom/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfo;)V",
            &method_onTrackAdvFoundLost},
           {"onScanParamSetupCompleted", "(II)V", &method_onScanParamSetupCompleted},
-          {"onMsftAdvMonitorAdd", "(II)V", &method_onMsftAdvMonitorAdd},
-          {"onMsftAdvMonitorRemove", "(I)V", &method_onMsftAdvMonitorRemove},
+          {"onMsftAdvMonitorAdd", "(III)V", &method_onMsftAdvMonitorAdd},
+          {"onMsftAdvMonitorRemove", "(II)V", &method_onMsftAdvMonitorRemove},
           {"onMsftAdvMonitorEnable", "(I)V", &method_onMsftAdvMonitorEnable},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/le_scan/ScanNativeInterface", javaMethods);
