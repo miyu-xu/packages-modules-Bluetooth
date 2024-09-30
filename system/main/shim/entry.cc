@@ -24,6 +24,7 @@
 #include "hci/hci_layer.h"
 #include "hci/le_advertising_manager.h"
 #include "hci/le_scanning_manager.h"
+#include "hci/lpp_offload_manager.h"
 #include "hci/msft.h"
 #include "hci/remote_name_request.h"
 #include "main/shim/stack.h"
@@ -61,6 +62,10 @@ hci::LeScanningManager* GetScanning() {
 
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager() {
   return Stack::GetInstance()->GetStackManager()->GetInstance<hci::DistanceMeasurementManager>();
+}
+
+hci::LppOffloadInterface* GetLppOffloadManager() {
+  return Stack::GetInstance()->GetStackManager()->GetInstance<hci::LppOffloadManager>();
 }
 
 hal::SnoopLogger* GetSnoopLogger() {
