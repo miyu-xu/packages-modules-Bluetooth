@@ -18,11 +18,14 @@
 
 #include "hal/snoop_logger.h"
 
+#include <android/log.h>
 #include <arpa/inet.h>
 #include <bluetooth/log.h>
-#include <sys/stat.h>
+#include <com_android_bluetooth_flags.h>
+#ifdef __ANDROID__
 #include <cutils/trace.h>
-#include <android/log.h>
+#endif // __ANDROID__
+#include <sys/stat.h>
 
 #include <algorithm>
 #include <bitset>
@@ -32,11 +35,11 @@
 #include "common/circular_buffer.h"
 #include "common/strings.h"
 #include "hal/snoop_logger_common.h"
+#include "hci/hci_packets.h"
 #include "module_dumper_flatbuffer.h"
 #include "os/files.h"
 #include "os/parameter_provider.h"
 #include "os/system_properties.h"
-#include "hci/hci_packets.h"
 
 #ifdef USE_FAKE_TIMERS
 #include "os/fake_timer/fake_timerfd.h"
@@ -1128,7 +1131,12 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
   HciPacket mutable_packet(immutable_packet);
   HciPacket& packet = mutable_packet;
   //////////////////////////////////////////////////////////////////////////
-  LogTracePoint(packet, direction, type);
+
+  #ifdef __ANDROID__
+  if (com::android::bluetooth::flags::snoop_logger_tracing()) {
+    LogTracePoint(packet, direction, type);
+  }
+  #endif // __ANDROID__
 
   uint64_t timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(
                                   std::chrono::system_clock::now().time_since_epoch())
@@ -1408,75 +1416,62 @@ const ModuleFactory SnoopLogger::Factory = ModuleFactory([]() {
                          IsBtSnoopLogPersisted());
 });
 
-void SnoopLogger::LogTracePoint(const HciPacket& packet, Direction direction,
-                                PacketType type) {
+#ifdef __ANDROID__
+void SnoopLogger::LogTracePoint(const HciPacket& packet, Direction direction, PacketType type) {
   switch (type) {
-    case PacketType::EVT:
-      {
-        uint8_t evt_code = packet[0];
-        uint8_t packet_length = packet[1];
+    case PacketType::EVT: {
+      uint8_t evt_code = packet[0];
+      uint8_t packet_length = packet[1];
 
-        if (evt_code == 0x3e) {
-          uint8_t subevt_code = packet[2];
-          std::string message = fmt::format("type:EVT direction:{} length:{} evt_code:{} subevt_code:{}",
-                              static_cast<uint8_t>(direction), packet.size(),
-                              hci::EventCodeText(static_cast<hci::EventCode>(evt_code)),
-                              hci::SubeventCodeText(static_cast<hci::SubeventCode>(subevt_code)));
+      if (evt_code == static_cast<uint8_t>(hci::EventCode::LE_META_EVENT) ||
+          evt_code == static_cast<uint8_t>(hci::EventCode::VENDOR_SPECIFIC)) {
+        uint8_t subevt_code = packet[2];
+        std::string message =
+                fmt::format("BTSL:{}/{}/{}/{:02x}/{:02x}", static_cast<uint8_t>(type),
+                            static_cast<uint8_t>(direction), packet.size(), evt_code, subevt_code);
 
-          ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
-        }
-        else {
-          std::string message = fmt::format("type:EVT direction:{} length:{} evt_code:{}",
-                    static_cast<uint8_t>(direction), packet.size(),
-                    hci::EventCodeText(static_cast<hci::EventCode>(evt_code)));
-
-          ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
-        }
-      }
-      break;
-    case PacketType::CMD:
-      {
-        uint16_t op_code = packet[0] | (packet[1] << 8);
-        uint8_t packet_length = packet[2];
-
-        std::string message = fmt::format("type:CMD direction:{} length:{} op_code:{}",
-                            static_cast<uint8_t>(direction), packet.size(),
-                            hci::OpCodeText(static_cast<hci::OpCode>(op_code)));
+        ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
+      } else {
+        std::string message = fmt::format("BTSL:{}/{}/{}/{:02x}", static_cast<uint8_t>(type),
+                                          static_cast<uint8_t>(direction), packet.size(), evt_code);
 
         ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
       }
-      break;
-    case PacketType::ACL:
-      {
-        uint16_t handle = packet[0] | ((packet[1] & 0x0f) << 8);
-        uint8_t pb_flag = (packet[1] & 0x30) >> 4;
-        uint16_t data_length = packet[2] | (packet[3] << 8);
+    } break;
+    case PacketType::CMD: {
+      uint16_t op_code = packet[0] | (packet[1] << 8);
+      uint8_t packet_length = packet[2];
 
-        std::string message = fmt::format("type:ACL direction:{} length:{} handle:{} pb_flag:{} data_length:{}",
-                            static_cast<uint8_t>(direction), packet.size(),
-                            handle, pb_flag, data_length);
+      std::string message = fmt::format("BTSL:{}/{}/{}/{:04x}", static_cast<uint8_t>(type),
+                                        static_cast<uint8_t>(direction), packet.size(), op_code);
 
-        ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
-      }
-      break;
-    case PacketType::ISO:
-      {
-        std::string message = fmt::format("type:ISO direction:{} length:{}",
-                            static_cast<uint8_t>(direction), packet.size());
+      ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
+    } break;
+    case PacketType::ACL: {
+      uint16_t handle = (packet[0] | (packet[1] << 8)) & 0x0fff;
+      uint8_t pb_flag = (packet[1] & 0x30) >> 4;
 
-        ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
-      }
-      break;
-    case PacketType::SCO:
-      {
-        std::string message = fmt::format("type:SCO direction:{} length:{}",
-                            static_cast<uint8_t>(direction), packet.size());
+      std::string message = fmt::format("BTSL:{}/{}/{}/{}/{}", static_cast<uint8_t>(type),
+                                        static_cast<uint8_t>(direction), packet.size(), handle,
+                                        pb_flag);
 
-        ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
-      }
-      break;
+      ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
+    } break;
+    case PacketType::ISO: {
+      std::string message = fmt::format("BTSL:{}/{}/{}", static_cast<uint8_t>(type),
+                                        static_cast<uint8_t>(direction), packet.size());
+
+      ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
+    } break;
+    case PacketType::SCO: {
+      std::string message = fmt::format("BTSL:{}/{}/{}", static_cast<uint8_t>(type),
+                                        static_cast<uint8_t>(direction), packet.size());
+
+      ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
+    } break;
   }
 }
+#endif // __ANDROID__
 
 }  // namespace hal
 }  // namespace bluetooth
