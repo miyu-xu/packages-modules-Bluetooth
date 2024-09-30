@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c480cf86_8c45d501",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-09-30T22:10:57Z",
+      "side": 1,
+      "message": "```suggestion\n        if (mPowerManager.getLastSleepReason() !\u003d PowerManager.GO_TO_SLEEP_REASON_LID_SWITCH) {\n```",
+      "range": {
+        "startLine": 105,
+        "startChar": 50,
+        "endLine": 105,
+        "endChar": 63
+      },
+      "revId": "90fa675d03d4a1662afdde6386caf53834e408e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
