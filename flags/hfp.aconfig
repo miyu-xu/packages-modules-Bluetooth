@@ -148,3 +148,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "check_call_termination_during_init"
+    namespace: "bluetooth"
+    description: "Flag to fix null ptr crash caused by dereferencing object, that set to null by call termination."
+    bug: "370680068"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
