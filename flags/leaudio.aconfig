@@ -10,14 +10,6 @@ flag {
 }
 
 flag {
-    name: "leaudio_broadcast_volume_control_for_connected_devices"
-    is_exported: true
-    namespace: "bluetooth"
-    description: "Allow volume control for connected devices"
-    bug: "307408418"
-}
-
-flag {
     name: "leaudio_broadcast_audio_handover_policies"
     namespace: "bluetooth"
     description: "Support le audio broadcast audio routing policies"
