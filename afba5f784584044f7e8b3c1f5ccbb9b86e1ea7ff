@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebf73fa0_db6fef24",
+        "filename": "flags/ranging.aconfig",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-01T18:39:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f387454_5df56bbb",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "revId": "afba5f784584044f7e8b3c1f5ccbb9b86e1ea7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e61d8ec0_f87e7b07",
@@ -88,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f93422d7_98fd8fa4",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-01T18:39:22Z",
+      "side": 1,
+      "message": "\u003e It\u0027s weird that you need to add a flaggedApi annotation for an already existing API.\n\u003e \n\u003e Are you sure that this is the process ?\nchanged it as this per the lint error.",
+      "parentUuid": "e61d8ec0_f87e7b07",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "afba5f784584044f7e8b3c1f5ccbb9b86e1ea7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21b7419a_12e45094",
@@ -101,6 +149,30 @@
       "writtenOn": "2024-09-30T22:51:40Z",
       "side": 1,
       "message": "simply use the internal object:\n```suggestion\n        return mId \u003d\u003d u.mId;\n```",
+      "range": {
+        "startLine": 179,
+        "startChar": 3,
+        "endLine": 183,
+        "endChar": 9
+      },
+      "revId": "afba5f784584044f7e8b3c1f5ccbb9b86e1ea7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c90faec5_39735664",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-01T18:39:22Z",
+      "side": 1,
+      "message": "good point.",
+      "parentUuid": "21b7419a_12e45094",
       "range": {
         "startLine": 179,
         "startChar": 3,
