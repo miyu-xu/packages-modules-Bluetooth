@@ -1,0 +1,83 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8456ec9_b3bc602a",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-01T19:10:29Z",
+      "side": 1,
+      "message": "Can we move the JNI changes to the JNI CL?",
+      "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "283795f8_28862933",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-01T19:10:29Z",
+      "side": 1,
+      "message": "Can you swap the logic if this so we check `isFilteringSupported` first since we prefer APCF and then fall back to MSFT",
+      "fixSuggestions": [
+        {
+          "fixId": "e00eacd8_57562028",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1162,
+                "startChar": 0,
+                "endLine": 1163,
+                "endChar": 0
+              },
+              "replacement": "            if (isFilteringSupported()) {\n                configureScanFilters(client);\n            } else if (isMsftEnabled()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1167,
+                "startChar": 0,
+                "endLine": 1169,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "226af0b6_4b6025e7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-01T19:10:29Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
