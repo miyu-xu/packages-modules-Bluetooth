@@ -1086,7 +1086,7 @@ class AVRCPProxy(ProfileProxy):
         """
          Please accept the l2cap channel connection for an OBEX connection.
         """
-    
+
         return "OK"
 
     @assert_description
@@ -1094,7 +1094,7 @@ class AVRCPProxy(ProfileProxy):
         """
          Please accept the OBEX CONNECT REQ.
         """
-    
+
         return "OK"
 
 
@@ -1105,7 +1105,7 @@ class AVRCPProxy(ProfileProxy):
         ready.
         """
         self.mediaplayer.Play()
-    
+
         return "OK"
 
     @assert_description
@@ -1113,7 +1113,7 @@ class AVRCPProxy(ProfileProxy):
         """
         Take action to reject the invalid 'get-img' request sent by the tester.
         """
-    
+
         return "OK"
 
     @assert_description
@@ -1121,7 +1121,7 @@ class AVRCPProxy(ProfileProxy):
         """
          Take action to accept the GetImgProperties operation from the tester.
         """
-    
+
         return "OK"
 
     @assert_description
@@ -1129,7 +1129,7 @@ class AVRCPProxy(ProfileProxy):
         """
          Take action to accept the GetImg operation from the tester.
         """
-    
+
         return "OK"
 
     @assert_description
@@ -1137,7 +1137,7 @@ class AVRCPProxy(ProfileProxy):
         """
          Was the currently displayed file or folder sent by the IUT?
         """
-    
+
         return "OK"
 
     @assert_description
@@ -1148,5 +1148,5 @@ class AVRCPProxy(ProfileProxy):
         """
         self.mediaplayer.UpdateQueue()
         self.mediaplayer.PlayUpdated()
-    
+
         return "OK"

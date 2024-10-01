@@ -32,13 +32,13 @@ import android.media.browse.MediaBrowser.MediaItem;
 import android.media.session.MediaSession.QueueItem;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.test.mock.MockContentProvider;
 import android.test.mock.MockContentResolver;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
@@ -60,7 +60,6 @@ public class MetadataTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     private @Mock Context mMockContext;
-    private @Mock Resources mMockResources;
     private Resources mTestResources;
     private MockContentResolver mTestContentResolver;
 
@@ -112,8 +111,7 @@ public class MetadataTest {
                 });
 
         when(mMockContext.getContentResolver()).thenReturn(mTestContentResolver);
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
-        when(mMockContext.getResources()).thenReturn(mMockResources);
+        Util.sUriImagesSupport = true;
 
         mSongImage = new Image(mMockContext, mTestBitmap);
     }
@@ -126,6 +124,7 @@ public class MetadataTest {
         mTestResources = null;
         mTargetContext = null;
         mMockContext = null;
+        Util.sUriImagesSupport = false;
     }
 
     private Bitmap loadImage(int resId) {
@@ -428,7 +427,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromMediaMetadataWithUriAndUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        Util.sUriImagesSupport = false;
         MediaMetadata m = getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_ART_URI, IMAGE_URI_1);
         Metadata metadata =
                 new Metadata.Builder().useContext(mMockContext).fromMediaMetadata(m).build();
@@ -738,7 +737,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromBundleWithUriAndUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        Util.sUriImagesSupport = false;
         Bundle bundle = getBundleWithUri(MediaMetadata.METADATA_KEY_DISPLAY_ICON_URI, IMAGE_URI_1);
         Metadata metadata =
                 new Metadata.Builder().useContext(mMockContext).fromBundle(bundle).build();
@@ -853,7 +852,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromMediaItemWithIconUriAndUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        Util.sUriImagesSupport = false;
         MediaDescription description = getMediaDescription(null, IMAGE_URI_1, null);
         MediaItem item = getMediaItem(description);
         Metadata metadata =
@@ -981,7 +980,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromQueueItemWithIconUriandUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        Util.sUriImagesSupport = false;
         MediaDescription description = getMediaDescription(null, IMAGE_URI_1, null);
         QueueItem queueItem = getQueueItem(description);
         Metadata metadata =

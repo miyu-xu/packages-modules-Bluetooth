@@ -29,6 +29,7 @@ import android.media.MediaMetadata;
 import android.media.session.MediaSession;
 import android.media.session.PlaybackState;
 import android.os.HandlerThread;
+import android.os.SystemProperties;
 import android.os.TestLooperManager;
 import android.util.Log;
 
@@ -36,7 +37,6 @@ import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.Assert;
@@ -76,7 +76,6 @@ public class MediaPlayerWrapperTest {
     @Mock MediaController mMockController;
     @Mock MediaPlayerWrapper.Callback mTestCbs;
     @Mock Context mMockContext;
-    @Mock Resources mMockResources;
 
     List<MediaSession.QueueItem> getQueueFromDescriptions(
             List<MediaDescription.Builder> descriptions) {
@@ -99,8 +98,7 @@ public class MediaPlayerWrapperTest {
                         InstrumentationRegistry.getInstrumentation().getTargetContext());
         mTestBitmap = loadImage(com.android.bluetooth.tests.R.raw.image_200_200);
 
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
-        when(mMockContext.getResources()).thenReturn(mMockResources);
+        Util.sUriImagesSupport = true;
 
         // Set failure handler to capture Log.wtf messages
         Log.setWtfHandler(mFailHandler);
@@ -159,6 +157,14 @@ public class MediaPlayerWrapperTest {
         // Enable testing flag which enables Log.wtf statements. Some tests test against improper
         // behaviour and the TerribleFailureListener is a good way to ensure that the error occurred
         MediaPlayerWrapper.sTesting = true;
+    }
+
+    @After
+    public void tearDown() {
+        if (mThread != null) {
+            mThread.quitSafely();
+        }
+        Util.sUriImagesSupport = false;
     }
 
     private Bitmap loadImage(int resId) {

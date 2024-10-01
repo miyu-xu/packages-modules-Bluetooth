@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.SystemProperties;
 import android.test.mock.MockContentProvider;
 import android.test.mock.MockContentResolver;
 
@@ -38,7 +39,6 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
@@ -74,7 +74,6 @@ public class BrowserPlayerWrapperTest {
     private HandlerThread mThread;
 
     @Mock Context mMockContext;
-    @Mock Resources mMockResources;
     private Context mTargetContext;
     private Resources mTestResources;
     private MockContentResolver mTestContentResolver;
@@ -115,8 +114,7 @@ public class BrowserPlayerWrapperTest {
                 });
 
         when(mMockContext.getContentResolver()).thenReturn(mTestContentResolver);
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
-        when(mMockContext.getResources()).thenReturn(mMockResources);
+        Util.sUriImagesSupport = true;
 
         // Set up Looper thread for the timeout handler
         mThread = new HandlerThread("MediaPlayerWrapperTestThread");
@@ -137,6 +135,7 @@ public class BrowserPlayerWrapperTest {
         mTestBitmap = null;
         mTestResources = null;
         mTargetContext = null;
+        Util.sUriImagesSupport = false;
     }
 
     private Bitmap loadImage(int resId) {
