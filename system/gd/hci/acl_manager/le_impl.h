@@ -1032,8 +1032,15 @@ public:
 
   void cancel_connect(AddressWithType address_with_type) {
     direct_connect_remove(address_with_type);
-    // the connection will be canceled by LeAddressManager.OnPause()
-    remove_device_from_accept_list(address_with_type);
+
+    if (com::android::bluetooth::flags::le_cancel_direct_maintain_background() &&
+        background_connections_.contains(address_with_type)) {
+      // it will connect with a different connect parameters
+      disarm_connectability();
+    } else {
+      // the connection will be canceled by LeAddressManager.OnPause()
+      remove_device_from_accept_list(address_with_type);
+    }
   }
 
   void set_le_suggested_default_data_parameters(uint16_t length, uint16_t time) {

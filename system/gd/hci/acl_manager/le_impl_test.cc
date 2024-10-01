@@ -355,6 +355,79 @@ protected:
     ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
   }
 
+  void test_direct_connection_canceled_after_background_connection() {
+    set_random_device_address_policy();
+
+    hci::AddressWithType address({0x21, 0x22, 0x23, 0x24, 0x25, 0x26},
+                                 AddressType::PUBLIC_DEVICE_ADDRESS);
+
+    // arrange: Create background connection. Remember that acl_manager adds device background list
+    le_impl_->add_device_to_background_connection_list(address);
+    le_impl_->create_le_connection(address, true, /* is_direct */ false);
+    hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
+    hci_layer_->IncomingEvent(
+            LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
+    auto raw_bg_create_connection = hci_layer_->GetCommand(OpCode::LE_CREATE_CONNECTION);
+    hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
+    sync_handler();
+
+    // act: Create direct connection
+    le_impl_->create_le_connection(address, true, /* is_direct */ true);
+    auto cancel_connection = hci_layer_->GetCommand(OpCode::LE_CREATE_CONNECTION_CANCEL);
+    if (cancel_connection.IsValid()) {
+      hci_layer_->IncomingEvent(
+              LeCreateConnectionCancelCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
+      hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
+              ErrorCode::UNKNOWN_CONNECTION, kHciHandle, Role::CENTRAL,
+              AddressType::PUBLIC_DEVICE_ADDRESS, Address::kEmpty, 0x0000, 0x0000, 0x0000,
+              ClockAccuracy::PPM_30));
+    }
+    auto raw_direct_create_connection = hci_layer_->GetCommand(OpCode::LE_CREATE_CONNECTION);
+
+    // assert
+    auto bg_create_connection =
+            LeCreateConnectionView::Create(LeConnectionManagementCommandView::Create(
+                    AclCommandView::Create(raw_bg_create_connection)));
+    EXPECT_TRUE(bg_create_connection.IsValid());
+    auto direct_create_connection =
+            LeCreateConnectionView::Create(LeConnectionManagementCommandView::Create(
+                    AclCommandView::Create(raw_direct_create_connection)));
+    EXPECT_TRUE(direct_create_connection.IsValid());
+    log::info("Scan Interval {}", direct_create_connection.GetLeScanInterval());
+    ASSERT_NE(direct_create_connection.GetLeScanInterval(),
+              bg_create_connection.GetLeScanInterval());
+
+    hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
+    sync_handler();
+
+    // Check state is ARMED
+    ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+
+    // Cancel the direct connection
+    le_impl_->cancel_connect(address);
+    sync_handler();
+
+    cancel_connection = hci_layer_->GetCommand(OpCode::LE_CREATE_CONNECTION_CANCEL);
+    hci_layer_->IncomingEvent(
+            LeCreateConnectionCancelCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
+    hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
+            ErrorCode::UNKNOWN_CONNECTION, kHciHandle, Role::CENTRAL,
+            AddressType::PUBLIC_DEVICE_ADDRESS, Address::kEmpty, 0x0000, 0x0000, 0x0000,
+            ClockAccuracy::PPM_30));
+    EXPECT_TRUE(cancel_connection.IsValid());
+    raw_bg_create_connection = hci_layer_->GetCommand(OpCode::LE_CREATE_CONNECTION);
+    bg_create_connection = LeCreateConnectionView::Create(LeConnectionManagementCommandView::Create(
+            AclCommandView::Create(raw_bg_create_connection)));
+    EXPECT_TRUE(bg_create_connection.IsValid());
+    sync_handler();
+    ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
+
+    hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
+    sync_handler();
+    // Check state is ARMED
+    ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  }
+
   void test_direct_connect_after_direct_connect() {
     set_random_device_address_policy();
 
@@ -1585,6 +1658,11 @@ TEST_F(LeImplTest, direct_connection_after_background_connection) {
   com::android::bluetooth::flags::provider_
           ->improve_create_connection_for_already_connecting_device(false);
   test_direct_connection_after_background_connection();
+}
+
+TEST_F(LeImplTest, direct_connection_canceled_after_background_connection) {
+  com::android::bluetooth::flags::provider_->le_cancel_direct_maintain_background(true);
+  test_direct_connection_canceled_after_background_connection();
 }
 
 TEST_F(LeImplTest, direct_connection_after_background_connection_with_improvement) {
