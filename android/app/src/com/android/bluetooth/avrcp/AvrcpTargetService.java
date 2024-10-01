@@ -493,7 +493,7 @@ public class AvrcpTargetService extends ProfileService {
 
     /** See {@link MediaPlayerList#getFolderItems}. */
     void getFolderItems(int playerId, String mediaId, MediaPlayerList.GetFolderItemsCallback cb) {
-        mMediaPlayerList.getFolderItems(playerId, mediaId, cb);
+        mMediaPlayerList.getFolderItems(playerId, mediaId, cb, mAvrcpCoverArtService);
     }
 
     /** See {@link MediaPlayerList#playItem}. */
