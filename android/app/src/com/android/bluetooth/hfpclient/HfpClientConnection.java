@@ -24,6 +24,8 @@ import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -85,6 +87,9 @@ public class HfpClientConnection extends Connection {
 
     void finishInitializing() {
         setAudioModeIsVoip(false);
+        if (Flags.checkCallTerminationDuringInit() && mClosed) {
+            return;
+        }
         Uri number = Uri.fromParts(PhoneAccount.SCHEME_TEL, mCurrentCall.getNumber(), null);
         setAddress(number, TelecomManager.PRESENTATION_ALLOWED);
         setConnectionCapabilities(
