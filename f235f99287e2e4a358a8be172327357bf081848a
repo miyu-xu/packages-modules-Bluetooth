@@ -1,0 +1,441 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a39615_852aef8f",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "It might be better to make the `setDbg` logging into its own CL, e.g., \"Set StateMachine logging to same level as Bluetooth logging\".\n\nWe\u0027d like to keep the scope of each CL as narrow as possible; this one is just about the timeout-based verify in tests.\n\nWith a separate CL, you can also expand it to include the state machines of other profiles as well; I think `setDbg` is hard-coded to `true` in some profiles, missing in others.",
+      "range": {
+        "startLine": 239,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 54
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf837495_bf1854ba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "`MceStateMachine` constructor sets the initial state to `STATE_CONNECTING`.\n\nSo instead of `initToConnectingState` below, we can add right after this line:\n```\nAssert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());\n```",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 47
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d897d2e_420b5541",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "Why use this one instead of `waitForLooperToBeIdle`?",
+      "range": {
+        "startLine": 299,
+        "startChar": 18,
+        "endLine": 299,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c0f6d5_684e627c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 339,
+        "startChar": 18,
+        "endLine": 339,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842c3b30_422d395b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "E.g.,\n```\nassertCurrentStateOnIdle(BluetoothProfile.STATE_CONNECTED);\n```\nSee below",
+      "range": {
+        "startLine": 372,
+        "startChar": 8,
+        "endLine": 373,
+        "endChar": 91
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61b33046_56326d67",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto: we\u0027re going to have to address this in a future CL.",
+      "range": {
+        "startLine": 423,
+        "startChar": 8,
+        "endLine": 427,
+        "endChar": 53
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b31c8b7_cef4c73d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 656,
+        "startChar": 18,
+        "endLine": 656,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f059e8a5_1e26e77a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 698,
+        "startChar": 18,
+        "endLine": 698,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf27f284_bb9d8f66",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 742,
+        "startChar": 18,
+        "endLine": 742,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73550bbe_45effda7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 789,
+        "startChar": 18,
+        "endLine": 789,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b22ed7_19b567f3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 839,
+        "startChar": 18,
+        "endLine": 839,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691e5196_80121d16",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 920,
+        "startChar": 18,
+        "endLine": 920,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1274eea_cd202281",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 967,
+        "startChar": 18,
+        "endLine": 967,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f3c3c1f_2006af0b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be deleted?",
+      "range": {
+        "startLine": 985,
+        "startChar": 8,
+        "endLine": 989,
+        "endChar": 53
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc6f65ed_9f1040b5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "ditto: typo",
+      "range": {
+        "startLine": 1002,
+        "startChar": 72,
+        "endLine": 1002,
+        "endChar": 75
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8c441b_2bc8ce65",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "E.g.,\n```\nassertCurrentStateOnIdle(BluetoothProfile.STATE_DISCONNECTING);\n```\nSee below",
+      "range": {
+        "startLine": 1009,
+        "startChar": 8,
+        "endLine": 1010,
+        "endChar": 96
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddec4b1_920c28c5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "we can fix the typo since we\u0027re touching the test: we\u0027re asserting disconnectING, not disconnectED",
+      "range": {
+        "startLine": 1014,
+        "startChar": 53,
+        "endLine": 1014,
+        "endChar": 56
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c6244f_42f2cbba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "E.g.,\n```\nassertCurrentStateOnIdle(BluetoothProfile.STATE_CONNECTING);\n```\nSee below",
+      "range": {
+        "startLine": 1195,
+        "startChar": 8,
+        "endLine": 1195,
+        "endChar": 32
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf4f839_94760dbd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "We\u0027re not actually initializing anything here, we\u0027re simply verifying the current state after the state machine has \"settled down\", i.e., looper has become idle.\n\nIn fact, I think you can replace a lot of the above patterns with a slight modification of your function, as follows:\n```\nprivate void assertCurrentStateOnIdle(int expectedState) {\n    TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());\n    Assert.assertEquals(expectedState, mMceStateMachine.getState());\n}\n```",
+      "range": {
+        "startLine": 1202,
+        "startChar": 17,
+        "endLine": 1202,
+        "endChar": 38
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

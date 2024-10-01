@@ -110,6 +110,29 @@
       },
       "revId": "5d44951c0d6ca1ec275c8181761bdd94090fec90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9817952_315de571",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-01T16:04:57Z",
+      "side": 1,
+      "message": "We\u0027re going to have to address this in a future CL. I don\u0027t think this is the best pattern to use for testing state machine disconnected before DISCONNECT_TIMEOUT, but I agree we can\u0027t use waitForLooperToBeIdle in this case.",
+      "range": {
+        "startLine": 400,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 53
+      },
+      "revId": "5d44951c0d6ca1ec275c8181761bdd94090fec90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
