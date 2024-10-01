@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e0aaf15_eaa0bbb2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3397,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-01T18:11:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b3145e_b062253f",
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a65378a_c445e54d",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c087e76_fd8e6093",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3403,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-01T18:11:58Z",
+      "side": 1,
+      "message": "No, this is for both local and external. getAllSources is not only for local source. mBroadcastMetadataMap is updated for both as well. did I miss anything? Marking this as resolved considering the code explained well.",
+      "parentUuid": "8a65378a_c445e54d",
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5061e4ba_3a4c47d1",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-10-01T13:20:50Z",
       "side": 1,
       "message": "maybe it could be somehow unified with https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3273124/3/android/app/src/com/android/bluetooth/bass_client/BassClientService.java#4125:~:text\u003dsService.-,localNotifyReceiveStateChanged,-private%20void%20localNotifyReceiveStateChanged ? I think this is something similar.",
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9173ae57_4515d01f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4166,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-01T18:11:58Z",
+      "side": 1,
+      "message": "In general I think we should avoid duplicated parsing logics, and better design should be only SM do the parsing work and notify service with clear actions. \nBut if you have better ideas to unify this, let\u0027s plan as an separate refactor effort.",
+      "parentUuid": "5061e4ba_3a4c47d1",
       "revId": "8727cd91aac860d77126f469647e3860a067c570",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -83,6 +137,24 @@
           ]
         }
       ],
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9c8843_abb7c1d3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1164,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-01T18:11:58Z",
+      "side": 1,
+      "message": "This is a good point to consider, but I don\u0027t feel that will affect our flow here, the 1st receive state remote notified to our side.\nIf this is with empty source, we proceed with adding the source.\nIf this is with existing source, we will switch the source to make sure both buds are syncing to the same.\nIf remote has multiple receive states, we can let the remote decide to accept or reject.\nI\u0027d say let\u0027s proceed with this first and keep an eye on this considering we have some unkowns about muti-state on remotes.",
+      "parentUuid": "a8c203d1_e0ba4fc5",
       "revId": "8727cd91aac860d77126f469647e3860a067c570",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
