@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb1c26f_e6930bb3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "this is redundant with the method declaration and doesn\u0027t provide additional information, I would remove this",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 6
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e6c406_743f62e5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "idem, remove",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 6
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "984fb8a8_e2af05ed",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "idem, remove",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 6
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76e6b858_57a9659e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "What is the purpose of this line ? this repeat the function name",
+      "range": {
+        "startLine": 453,
+        "startChar": 8,
+        "endLine": 453,
+        "endChar": 19
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b43dd3_86b6725c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "Not a parameter of the method",
+      "range": {
+        "startLine": 456,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 63
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2247c0b_c8f5edde",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "Idem",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 457,
+        "endChar": 46
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8fc1587_a01fb0a6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "This method doesn\u0027t return anything ?",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 80
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1b8868a_2cb1f5c4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:54:57Z",
+      "side": 1,
+      "message": "Idem, remove",
+      "range": {
+        "startLine": 453,
+        "startChar": 4,
+        "endLine": 461,
+        "endChar": 6
+      },
+      "revId": "0014bdd17353920d19e8040c749cf6ffee5c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
