@@ -51,6 +51,24 @@
       "message": "nit: give comment to be consistent with the other functions",
       "revId": "6f5c2eb59e002464ec3e54eac20d0cd7899e8ef3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd69dba6_09d5274d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-01T21:08:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5be56c2_2b4c1f3e",
+      "revId": "6f5c2eb59e002464ec3e54eac20d0cd7899e8ef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
