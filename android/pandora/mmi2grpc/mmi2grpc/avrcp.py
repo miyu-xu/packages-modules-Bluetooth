@@ -1080,3 +1080,29 @@ class AVRCPProxy(ProfileProxy):
         """
 
         return "OK"
+
+    @assert_description
+    def TSC_OBEX_MMI_iut_accept_slc_connect_l2cap(self, **kwargs):
+        """
+         Please accept the l2cap channel connection for an OBEX connection.
+        """
+    
+        return "OK"
+
+    @assert_description
+    def TSC_OBEX_MMI_iut_accept_connect(self, **kwargs):
+        """
+         Please accept the OBEX CONNECT REQ.
+        """
+    
+        return "OK"
+
+
+    @assert_description
+    def TSC_AVRCP_mmi_user_queue_cover_art_element(self, **kwargs):
+        """
+        Take action to play a media element with cover art.  Press 'Ok' when
+        ready.
+        """
+    
+        return "OK"

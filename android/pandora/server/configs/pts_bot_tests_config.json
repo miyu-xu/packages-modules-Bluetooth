@@ -132,6 +132,7 @@
     "AVRCP/CT/CEC/BV-02-I",
     "AVRCP/CT/CRC/BV-02-I",
     "AVRCP/TG/CEC/BV-01-I",
+    "AVRCP/TG/CA/BV-06-C",
     "AVRCP/TG/CFG/BI-01-C",
     "AVRCP/TG/CFG/BV-02-C",
     "AVRCP/TG/CON/BV-04-C",
@@ -1544,6 +1545,7 @@
     "TSPC_AVRCP_7_64": true,
     "TSPC_AVRCP_7_65": true,
     "TSPC_AVRCP_7_66": true,
+    "TSPC_AVRCP_7_67": true,
     "TSPC_AVRCP_7b_4": true,
     "TSPC_AVRCP_8_19": true,
     "TSPC_AVRCP_8_20": true,
@@ -3179,6 +3181,15 @@
       "tests": [
         "A2DP/SNK/AVP",
         "A2DP/SRC/AVP"
+      ]
+    },
+    {
+      "flags": [
+        "set_addressed_player",
+        "browsing_refactor"
+      ],
+      "tests": [
+        "AVRCP/TG/CA/BV-06-C"
       ]
     },
     {
