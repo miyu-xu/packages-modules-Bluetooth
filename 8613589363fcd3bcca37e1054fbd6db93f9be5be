@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6fc9421_561f5137",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-01T06:08:06Z",
+      "side": 1,
+      "message": "@rlukasz@google.com added same for disconnect",
+      "revId": "8613589363fcd3bcca37e1054fbd6db93f9be5be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
