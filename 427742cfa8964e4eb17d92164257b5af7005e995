@@ -1,0 +1,66 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab74523d_0bd8c1aa",
+        "filename": "system/gd/hal/mgmt.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-01T19:02:02Z",
+      "side": 1,
+      "message": "Oh I didn\u0027t realize that `hci` is not even used. Can you remove it instead of commenting it out",
+      "revId": "427742cfa8964e4eb17d92164257b5af7005e995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6375a5c7_4a5c29b8",
+        "filename": "system/gd/hal/mgmt.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-01T19:02:02Z",
+      "side": 1,
+      "message": "This should also be \n```\n  cp-\u003evendor_specification \u003d vendor_specification;\n```\nThat must be why this was not building in Android. And then you can leave the argument to this function as is.",
+      "fixSuggestions": [
+        {
+          "fixId": "a45e8cbd_aab3afe1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/mgmt.cc",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 86,
+                "endChar": 0
+              },
+              "replacement": "uint16_t Mgmt::get_vs_opcode(uint16_t vendor_specification) {\n"
+            },
+            {
+              "path": "system/gd/hal/mgmt.cc",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "  cp-\u003evendor_specification \u003d vendor_specification;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "427742cfa8964e4eb17d92164257b5af7005e995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
