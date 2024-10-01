@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda6b979_0f9c6ce4",
+        "filename": "flags/hap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T17:41:22Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be created as a bugfix flag ?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "4eea49802bf8afa6172a4b68bd883bb4ba9840ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
