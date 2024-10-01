@@ -115,7 +115,7 @@ public class BrowserPlayerWrapperTest {
                 });
 
         when(mMockContext.getContentResolver()).thenReturn(mTestContentResolver);
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(true);
         when(mMockContext.getResources()).thenReturn(mMockResources);
 
         // Set up Looper thread for the timeout handler

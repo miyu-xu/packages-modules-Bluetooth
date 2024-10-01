@@ -99,9 +99,12 @@ public class AvrcpTargetService extends ProfileService {
     private static AvrcpTargetService sInstance = null;
     private final AdapterService mAdapterService;
 
+    private final boolean mIsVfsCoverArtEnabled;
+
     public AvrcpTargetService(AdapterService adapterService) {
         super(adapterService);
         mAdapterService = adapterService;
+        mIsVfsCoverArtEnabled = getResources().getBoolean(R.bool.avrcp_target_enable_vfs_cover_art);
     }
 
     /** Checks for profile enabled state in Bluetooth sysprops. */
@@ -225,17 +228,15 @@ public class AvrcpTargetService extends ProfileService {
             mMediaPlayerList.init(new ListCallback());
         }
 
-        if (getResources().getBoolean(R.bool.avrcp_target_enable_cover_art)) {
-            if (mAvrcpVersion.isAtleastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {
-                mAvrcpCoverArtService = new AvrcpCoverArtService();
-                boolean started = mAvrcpCoverArtService.start();
-                if (!started) {
-                    Log.e(TAG, "Failed to start cover art service");
-                    mAvrcpCoverArtService = null;
-                }
-            } else {
-                Log.e(TAG, "Please use AVRCP version 1.6 to enable cover art");
+        if (mAvrcpVersion.isAtleastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {
+            mAvrcpCoverArtService = new AvrcpCoverArtService();
+            boolean started = mAvrcpCoverArtService.start();
+            if (!started) {
+                Log.e(TAG, "Failed to start cover art service");
+                mAvrcpCoverArtService = null;
             }
+        } else {
+            Log.d(TAG, "Cover Art not enabled as AVRCP version is less than 1.6");
         }
 
         mReceiver = new AvrcpBroadcastReceiver();
@@ -493,7 +494,8 @@ public class AvrcpTargetService extends ProfileService {
 
     /** See {@link MediaPlayerList#getFolderItems}. */
     void getFolderItems(int playerId, String mediaId, MediaPlayerList.GetFolderItemsCallback cb) {
-        mMediaPlayerList.getFolderItems(playerId, mediaId, cb);
+        mMediaPlayerList.getFolderItems(playerId, mediaId, cb,
+                mIsVfsCoverArtEnabled ? mAvrcpCoverArtService : null);
     }
 
     /** See {@link MediaPlayerList#playItem}. */

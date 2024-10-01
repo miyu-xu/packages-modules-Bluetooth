@@ -55,7 +55,7 @@ class Util {
      */
     public static boolean areUriImagesSupported(Context context) {
         if (context == null) return false;
-        return context.getResources().getBoolean(R.bool.avrcp_target_cover_art_uri_images);
+        return context.getResources().getBoolean(R.bool.avrcp_target_enable_vfs_cover_art);
     }
 
     /** Translate a MediaItem to audio_util's Metadata */

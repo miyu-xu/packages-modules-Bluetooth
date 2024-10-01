@@ -112,7 +112,7 @@ public class MetadataTest {
                 });
 
         when(mMockContext.getContentResolver()).thenReturn(mTestContentResolver);
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(true);
         when(mMockContext.getResources()).thenReturn(mMockResources);
 
         mSongImage = new Image(mMockContext, mTestBitmap);
@@ -428,7 +428,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromMediaMetadataWithUriAndUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(false);
         MediaMetadata m = getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_ART_URI, IMAGE_URI_1);
         Metadata metadata =
                 new Metadata.Builder().useContext(mMockContext).fromMediaMetadata(m).build();
@@ -738,7 +738,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromBundleWithUriAndUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(false);
         Bundle bundle = getBundleWithUri(MediaMetadata.METADATA_KEY_DISPLAY_ICON_URI, IMAGE_URI_1);
         Metadata metadata =
                 new Metadata.Builder().useContext(mMockContext).fromBundle(bundle).build();
@@ -853,7 +853,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromMediaItemWithIconUriAndUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(false);
         MediaDescription description = getMediaDescription(null, IMAGE_URI_1, null);
         MediaItem item = getMediaItem(description);
         Metadata metadata =
@@ -981,7 +981,7 @@ public class MetadataTest {
      */
     @Test
     public void testBuildMetadataFromQueueItemWithIconUriandUrisDisabled() {
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(false);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(false);
         MediaDescription description = getMediaDescription(null, IMAGE_URI_1, null);
         QueueItem queueItem = getQueueItem(description);
         Metadata metadata =

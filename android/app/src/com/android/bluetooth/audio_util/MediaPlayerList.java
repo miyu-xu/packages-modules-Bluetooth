@@ -39,6 +39,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.android.bluetooth.BluetoothEventLogger;
+import com.android.bluetooth.avrcp.AvrcpCoverArtService;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.avrcp.AvrcpPassthrough;
 import com.android.bluetooth.flags.Flags;
@@ -689,7 +690,8 @@ public class MediaPlayerList {
      * <p>If {@code mediaId} corresponds to a known {@link MediaBrowserWrapper}, {@code cb} will be
      * called with the folder items list of the {@link MediaBrowserWrapper}.
      */
-    public void getFolderItems(int playerId, String mediaId, GetFolderItemsCallback cb) {
+    public void getFolderItems(int playerId, String mediaId, GetFolderItemsCallback cb,
+            AvrcpCoverArtService coverArtService) {
         Log.d(TAG, "getFolderItems(): playerId=" + playerId + ", mediaId=" + mediaId);
 
         if (!Flags.browsingRefactor() && Utils.isPtsTestMode()) {
@@ -726,6 +728,18 @@ public class MediaPlayerList {
                 wrapper.getFolderItems(
                         mediaId,
                         (id, results) -> {
+                            if (coverArtService != null) {
+                                for (ListItem item : results) {
+                                    if (item != null && item.song != null
+                                            && item.song.image != null) {
+                                        String imageHandle =
+                                                coverArtService.storeImage(item.song.image);
+                                        if (imageHandle != null) {
+                                            item.song.image.setImageHandle(imageHandle);
+                                        }
+                                    }
+                                }
+                            }
                             cb.run(mediaId, results);
                         });
             } else {
