@@ -37,6 +37,7 @@ import android.view.KeyEvent;
 import com.android.bluetooth.BluetoothEventLogger;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.audio_util.ListItem;
 import com.android.bluetooth.audio_util.MediaData;
 import com.android.bluetooth.audio_util.MediaPlayerList;
 import com.android.bluetooth.audio_util.MediaPlayerWrapper;
@@ -98,6 +99,8 @@ public class AvrcpTargetService extends ProfileService {
 
     private static AvrcpTargetService sInstance = null;
 
+    private final boolean mIsVfsCoverArtEnabled;
+
     public AvrcpTargetService(AdapterService adapterService) {
         super(requireNonNull(adapterService));
         mAdapterService = adapterService;
@@ -137,6 +140,8 @@ public class AvrcpTargetService extends ProfileService {
                 mAvrcpCoverArtService = null;
             }
         }
+
+        mIsVfsCoverArtEnabled = mMediaPlayerList.isVfsCoverArtEnabled();
 
         mReceiver = new AvrcpBroadcastReceiver();
         IntentFilter filter = new IntentFilter();
@@ -471,7 +476,23 @@ public class AvrcpTargetService extends ProfileService {
 
     /** See {@link MediaPlayerList#getFolderItems}. */
     void getFolderItems(int playerId, String mediaId, MediaPlayerList.GetFolderItemsCallback cb) {
-        mMediaPlayerList.getFolderItems(playerId, mediaId, cb);
+        mMediaPlayerList.getFolderItems(
+                playerId,
+                mediaId,
+                (id, results) -> {
+                    if (mIsVfsCoverArtEnabled && mAvrcpCoverArtService != null) {
+                        for (ListItem item : results) {
+                            if (item != null && item.song != null && item.song.image != null) {
+                                String imageHandle =
+                                        mAvrcpCoverArtService.storeImage(item.song.image);
+                                if (imageHandle != null) {
+                                    item.song.image.setImageHandle(imageHandle);
+                                }
+                            }
+                        }
+                    }
+                    cb.run(id, results);
+                });
     }
 
     /** See {@link MediaPlayerList#playItem}. */

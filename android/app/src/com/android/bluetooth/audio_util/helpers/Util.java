@@ -21,15 +21,18 @@ import android.content.pm.PackageManager;
 import android.media.MediaMetadata;
 import android.media.browse.MediaBrowser.MediaItem;
 import android.media.session.MediaSession;
+import android.os.SystemProperties;
 import android.util.Log;
-
-import com.android.bluetooth.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class Util {
     public static String TAG = "audio_util.Util";
+
+    static final String VFS_COVER_ART_ENABLED_PROPERTY =
+            "bluetooth.profile.avrcp.target.vfs_coverart.enabled";
+    private static Boolean sUriImagesSupport = null;
 
     // TODO (apanicke): Remove this prefix later, for now it makes debugging easier.
     public static final String NOW_PLAYING_PREFIX = "NowPlayingId";
@@ -49,13 +52,19 @@ class Util {
     }
 
     /**
-     * Get whether or not Bluetooth is configured to support URI images or not.
+     * Get whether or not Bluetooth is configured to support URI images.
      *
      * <p>Note that creating URI images will dramatically increase memory usage.
      */
     public static boolean areUriImagesSupported(Context context) {
         if (context == null) return false;
-        return context.getResources().getBoolean(R.bool.avrcp_target_cover_art_uri_images);
+
+        if (sUriImagesSupport == null) {
+            sUriImagesSupport =
+                    new Boolean(SystemProperties.getBoolean(VFS_COVER_ART_ENABLED_PROPERTY, false));
+        }
+
+        return sUriImagesSupport.booleanValue();
     }
 
     /** Translate a MediaItem to audio_util's Metadata */
