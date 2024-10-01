@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622d4751_33ccfca4",
+        "filename": "sysprop/gap.sysprop",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-01T22:21:11Z",
+      "side": 1,
+      "message": "nit: extra empty lines should be removed, ok for a subsequent CL",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
