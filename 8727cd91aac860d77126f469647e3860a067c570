@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b3145e_b062253f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3397,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-01T13:20:50Z",
+      "side": 1,
+      "message": "what do you think about reduce of one indention ?\n\nif (groupDevice.equals(sink)) {\n    continue;\n}",
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a65378a_c445e54d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3403,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-01T13:20:50Z",
+      "side": 1,
+      "message": "Do I understand good this part is only for Local broadcast ? Here is a check for local sources and match with devices broadcastId ?\n\nShould we care here albo about external broadcast which were controlled by this assistant ?",
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5061e4ba_3a4c47d1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4166,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-01T13:20:50Z",
+      "side": 1,
+      "message": "maybe it could be somehow unified with https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3273124/3/android/app/src/com/android/bluetooth/bass_client/BassClientService.java#4125:~:text\u003dsService.-,localNotifyReceiveStateChanged,-private%20void%20localNotifyReceiveStateChanged ? I think this is something similar.",
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c203d1_e0ba4fc5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1164,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-01T13:20:50Z",
+      "side": 1,
+      "message": "Is it known in this place that this is the last receive state of device ?\n\nThere could be possibility that device will have more than one receive state and no 1st can be the synced/syncing.",
+      "fixSuggestions": [
+        {
+          "fixId": "f9ce9cbd_bb5d115c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1164,
+                "startChar": 0,
+                "endLine": 1164,
+                "endChar": 0
+              },
+              "replacement": "                // This is the last receive state of the device\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8727cd91aac860d77126f469647e3860a067c570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
