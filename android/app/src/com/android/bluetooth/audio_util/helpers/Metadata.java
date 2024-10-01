@@ -201,7 +201,7 @@ public class Metadata implements Cloneable {
                 mMetadata.duration = "" + data.getLong(MediaMetadata.METADATA_KEY_DURATION);
             }
             if ((mContext != null
-                            && Util.areUriImagesSupported(mContext)
+                            && Util.areUriImagesSupported()
                             && (data.containsKey(MediaMetadata.METADATA_KEY_ART_URI)
                                     || data.containsKey(MediaMetadata.METADATA_KEY_ALBUM_ART_URI)
                                     || data.containsKey(
@@ -233,7 +233,7 @@ public class Metadata implements Cloneable {
             if (desc.getIconBitmap() != null) {
                 mMetadata.image = new Image(mContext, desc.getIconBitmap());
             } else if (mContext != null
-                    && Util.areUriImagesSupported(mContext)
+                    && Util.areUriImagesSupported()
                     && desc.getIconUri() != null) {
                 mMetadata.image = new Image(mContext, desc.getIconUri());
             }
@@ -281,7 +281,7 @@ public class Metadata implements Cloneable {
                 mMetadata.duration = "" + bundle.getLong(MediaMetadata.METADATA_KEY_DURATION);
             }
             if ((mContext != null
-                            && Util.areUriImagesSupported(mContext)
+                            && Util.areUriImagesSupported()
                             && (bundle.containsKey(MediaMetadata.METADATA_KEY_ART_URI)
                                     || bundle.containsKey(MediaMetadata.METADATA_KEY_ALBUM_ART_URI)
                                     || bundle.containsKey(
