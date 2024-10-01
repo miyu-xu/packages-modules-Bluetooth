@@ -64,6 +64,30 @@
       },
       "revId": "84f3b3a08282014896fdaa2bd22e721c830efe9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be3790a_fc9d324f",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T17:38:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ed8fdc11_6874fe3d",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 25
+      },
+      "revId": "84f3b3a08282014896fdaa2bd22e721c830efe9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
