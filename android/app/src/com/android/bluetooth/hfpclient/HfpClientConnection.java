@@ -58,6 +58,10 @@ public class HfpClientConnection extends Connection {
         mCurrentCall = Objects.requireNonNull(call);
 
         handleCallChanged();
+        if (mClosed) {
+            debug("Call already terminated");
+            return;
+        }
         finishInitializing();
     }
 
