@@ -294,6 +294,11 @@ void init() {
     bluetooth::log::info("Successfully queried SCO codec capabilities.");
   }
 
+  // If hfp software path is not enabled, fallback to offload path.
+  if (!osi_property_get_bool("bluetooth.hfp.software_datapath.enabled", true)) {
+    enable_offload(true);
+  }
+
   close(fd);
 }
 
