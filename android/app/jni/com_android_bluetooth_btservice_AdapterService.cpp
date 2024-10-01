@@ -1020,8 +1020,7 @@ int hal_util_load_bt_library(const bt_interface_t** interface) {
 }
 
 static bool initNative(JNIEnv* env, jobject obj, jboolean isGuest, jboolean isCommonCriteriaMode,
-                       int configCompareResult, jobjectArray initFlags, jboolean isAtvDevice,
-                       jstring userDataDirectory) {
+                       int configCompareResult, jboolean isAtvDevice, jstring userDataDirectory) {
   std::unique_lock<std::shared_timed_mutex> lock(jniObjMutex);
 
   log::verbose("");
@@ -1036,33 +1035,14 @@ static bool initNative(JNIEnv* env, jobject obj, jboolean isGuest, jboolean isCo
     return JNI_FALSE;
   }
 
-  int flagCount = env->GetArrayLength(initFlags);
-  jstring* flagObjs = new jstring[flagCount];
-  const char** flags = nullptr;
-  if (flagCount > 0) {
-    flags = new const char*[flagCount + 1];
-    flags[flagCount] = nullptr;
-  }
-
-  for (int i = 0; i < flagCount; i++) {
-    flagObjs[i] = (jstring)env->GetObjectArrayElement(initFlags, i);
-    flags[i] = env->GetStringUTFChars(flagObjs[i], NULL);
-  }
-
   const char* user_data_directory = env->GetStringUTFChars(userDataDirectory, NULL);
 
-  int ret = sBluetoothInterface->init(&sBluetoothCallbacks, isGuest == JNI_TRUE ? 1 : 0,
-                                      isCommonCriteriaMode == JNI_TRUE ? 1 : 0, configCompareResult,
-                                      flags, isAtvDevice == JNI_TRUE ? 1 : 0, user_data_directory);
+  int ret =
+          sBluetoothInterface->init(&sBluetoothCallbacks, isGuest == JNI_TRUE ? 1 : 0,
+                                    isCommonCriteriaMode == JNI_TRUE ? 1 : 0, configCompareResult,
+                                    nullptr, isAtvDevice == JNI_TRUE ? 1 : 0, user_data_directory);
 
   env->ReleaseStringUTFChars(userDataDirectory, user_data_directory);
-
-  for (int i = 0; i < flagCount; i++) {
-    env->ReleaseStringUTFChars(flagObjs[i], flags[i]);
-  }
-
-  delete[] flags;
-  delete[] flagObjs;
 
   if (ret != BT_STATUS_SUCCESS) {
     log::error("Error while setting the callbacks: {}", ret);
