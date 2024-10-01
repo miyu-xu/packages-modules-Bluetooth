@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12797de8_5761fbd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-01T00:14:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "194db064_c185f1c3",
+      "revId": "261ddd70fa36303d97638c810a97cf3fd5e40b38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "543dce21_5127f20f",
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bfba343_e8586427",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-01T00:14:26Z",
+      "side": 1,
+      "message": "DisplayManager is a final class, preventing direct mocking. We can revisit this again as we\u0027re likely interface with PowerManager in a different way.",
+      "parentUuid": "543dce21_5127f20f",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 42
+      },
+      "revId": "261ddd70fa36303d97638c810a97cf3fd5e40b38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95571cc6_0030e2de",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
         "patchSetId": 2
@@ -54,6 +96,30 @@
       "writtenOn": "2024-09-30T21:24:37Z",
       "side": 1,
       "message": "We don\u0027t want to do reflection from our test to our own code.\n\nI suggest updating `AdapterSuspend.handleSuspend` \u0026 `AdapterSuspend.handleResume` to be package private instead of private, with the annotation `@VisibleForTesting`\n\nBut before doing that, please investigate using the displaymaanger instead",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "261ddd70fa36303d97638c810a97cf3fd5e40b38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa1e7e6a_f1d4779c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-01T00:14:26Z",
+      "side": 1,
+      "message": "Thanks for the tips, will do.",
+      "parentUuid": "95571cc6_0030e2de",
       "range": {
         "startLine": 67,
         "startChar": 4,
