@@ -39,6 +39,30 @@
       },
       "revId": "a25e939fbf0a4813fdba0fe3147afaf0ad6c38d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c979c80_ad53fe15",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1855,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-01T07:57:47Z",
+      "side": 1,
+      "message": "Thanks, you\u0027re right. \nI modified the patch so now the guard is in the caller of `send_*_report_reply` (previously `*_report_failure`) instead of inside the function.\nThis needs plenty of guards, but I think once the guards are obsoleted the end result looks more natural.",
+      "parentUuid": "48872dc7_21a7e0cb",
+      "range": {
+        "startLine": 1849,
+        "startChar": 1,
+        "endLine": 1855,
+        "endChar": 30
+      },
+      "revId": "a25e939fbf0a4813fdba0fe3147afaf0ad6c38d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
