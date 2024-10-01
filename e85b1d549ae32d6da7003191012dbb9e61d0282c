@@ -22,6 +22,30 @@
       },
       "revId": "e85b1d549ae32d6da7003191012dbb9e61d0282c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "569ef7db_bef9c952",
+        "filename": "system/audio_hal_interface/a2dp_encoding.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-01T22:34:05Z",
+      "side": 1,
+      "message": "Will do as if I never read this comment",
+      "parentUuid": "65eda6a3_825ac290",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 41
+      },
+      "revId": "e85b1d549ae32d6da7003191012dbb9e61d0282c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
