@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6018fb63_e8337af3",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-01T15:59:49Z",
+      "side": 0,
+      "message": "I see we must have some dead code here 😊\n\nI find it very strange anytime a profile has a `setConnectionPolicy()` and doesn\u0027t have a corresponding `getConnectionPolicy()`. It implies we may not be checking the policy value before we accept an incoming connection. It also implies that Settings, or whoever, is probably partaking some sort of shenanigans to determine the policy state when they should just be able to ask for the value. \n\nI would probably suggest we ask the content owners _why_ this isn\u0027t used when almost all other profiles have one (I have a few guesses, but I don\u0027t like any of those reasons). We may want to add it and update Settings and others to use it.\n\nAdmittedly a nit, but if we do want to remove it in the interim, I would break it into its own change so its simple to revert if/when we decide we want it.",
+      "range": {
+        "startLine": 672,
+        "startChar": 15,
+        "endLine": 672,
+        "endChar": 34
+      },
+      "revId": "e7a55e261394d68a3ebc4d05d9de4be31d0686b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

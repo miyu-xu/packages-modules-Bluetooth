@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99206533_05887471",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-01T15:59:49Z",
+      "side": 1,
+      "message": "This is a waaaay better pattern 😊\n\nI had one comment/nit on the dead code connection policy stuff, but do with it as you wish. I don\u0027t have owners over this part of PBAP, only on the client side.",
+      "revId": "7e5da88990947f910d641983466b53a784cd8b1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
