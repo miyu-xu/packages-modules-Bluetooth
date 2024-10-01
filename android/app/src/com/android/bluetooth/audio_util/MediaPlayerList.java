@@ -786,6 +786,10 @@ public class MediaPlayerList {
         }
     }
 
+    public boolean isVfsCoverArtEnabled() {
+        return Util.areUriImagesSupported();
+    }
+
     /**
      * Adds a {@link MediaController} to the {@link #mMediaPlayers} map and returns its ID.
      *
