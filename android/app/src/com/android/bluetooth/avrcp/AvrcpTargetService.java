@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Looper;
+import android.os.SystemProperties;
 import android.os.UserManager;
 import android.sysprop.BluetoothProperties;
 import android.text.TextUtils;
@@ -34,8 +35,8 @@ import android.view.KeyEvent;
 
 import com.android.bluetooth.BluetoothEventLogger;
 import com.android.bluetooth.BluetoothMetricsProto;
-import com.android.bluetooth.R;
 import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.audio_util.ListItem;
 import com.android.bluetooth.audio_util.MediaData;
 import com.android.bluetooth.audio_util.MediaPlayerList;
 import com.android.bluetooth.audio_util.MediaPlayerWrapper;
@@ -59,6 +60,8 @@ public class AvrcpTargetService extends ProfileService {
 
     private static final int MEDIA_KEY_EVENT_LOGGER_SIZE = 20;
     private static final String MEDIA_KEY_EVENT_LOGGER_TITLE = "BTAudio Media Key Events";
+    private static final String VFS_COVER_ART_ENABLED_PROPERTY =
+            "bluetooth.profile.avrcp.target.vfs_coverart.enabled";
     private final BluetoothEventLogger mMediaKeyEventLogger =
             new BluetoothEventLogger(MEDIA_KEY_EVENT_LOGGER_SIZE, MEDIA_KEY_EVENT_LOGGER_TITLE);
 
@@ -99,9 +102,12 @@ public class AvrcpTargetService extends ProfileService {
     private static AvrcpTargetService sInstance = null;
     private final AdapterService mAdapterService;
 
+    private final boolean mIsVfsCoverArtEnabled;
+
     public AvrcpTargetService(AdapterService adapterService) {
         super(adapterService);
         mAdapterService = adapterService;
+        mIsVfsCoverArtEnabled = SystemProperties.getBoolean(VFS_COVER_ART_ENABLED_PROPERTY, false);
     }
 
     /** Checks for profile enabled state in Bluetooth sysprops. */
@@ -225,17 +231,15 @@ public class AvrcpTargetService extends ProfileService {
             mMediaPlayerList.init(new ListCallback());
         }
 
-        if (getResources().getBoolean(R.bool.avrcp_target_enable_cover_art)) {
-            if (mAvrcpVersion.isAtleastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {
-                mAvrcpCoverArtService = new AvrcpCoverArtService();
-                boolean started = mAvrcpCoverArtService.start();
-                if (!started) {
-                    Log.e(TAG, "Failed to start cover art service");
-                    mAvrcpCoverArtService = null;
-                }
-            } else {
-                Log.e(TAG, "Please use AVRCP version 1.6 to enable cover art");
+        if (mAvrcpVersion.isAtleastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {
+            mAvrcpCoverArtService = new AvrcpCoverArtService();
+            boolean started = mAvrcpCoverArtService.start();
+            if (!started) {
+                Log.e(TAG, "Failed to start cover art service");
+                mAvrcpCoverArtService = null;
             }
+        } else {
+            Log.d(TAG, "Cover Art not enabled as AVRCP version is less than 1.6");
         }
 
         mReceiver = new AvrcpBroadcastReceiver();
@@ -493,7 +497,23 @@ public class AvrcpTargetService extends ProfileService {
 
     /** See {@link MediaPlayerList#getFolderItems}. */
     void getFolderItems(int playerId, String mediaId, MediaPlayerList.GetFolderItemsCallback cb) {
-        mMediaPlayerList.getFolderItems(playerId, mediaId, cb);
+        mMediaPlayerList.getFolderItems(
+                playerId,
+                mediaId,
+                (id, results) -> {
+                    if (mIsVfsCoverArtEnabled && mAvrcpCoverArtService != null) {
+                        for (ListItem item : results) {
+                            if (item != null && item.song != null && item.song.image != null) {
+                                String imageHandle =
+                                        mAvrcpCoverArtService.storeImage(item.song.image);
+                                if (imageHandle != null) {
+                                    item.song.image.setImageHandle(imageHandle);
+                                }
+                            }
+                        }
+                    }
+                    cb.run(id, results);
+                });
     }
 
     /** See {@link MediaPlayerList#playItem}. */
