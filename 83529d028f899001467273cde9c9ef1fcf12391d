@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8545b7e8_9a88f8a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-01T21:21:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0ade909_0f47fe8c",
+      "range": {
+        "startLine": 625,
+        "startChar": 15,
+        "endLine": 625,
+        "endChar": 19
+      },
+      "revId": "83529d028f899001467273cde9c9ef1fcf12391d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd4e1c04_6fe7470b",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-09-28T20:33:23Z",
       "side": 1,
       "message": "Does it make sense to do \u003c\u003d here? Otherwise to_send will end up as 0 below.",
+      "range": {
+        "startLine": 348,
+        "startChar": 19,
+        "endLine": 348,
+        "endChar": 20
+      },
+      "revId": "83529d028f899001467273cde9c9ef1fcf12391d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2b56303_88906081",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-01T21:21:32Z",
+      "side": 1,
+      "message": "\u003c\u003d makes more sense. Although the core spec allows sending 0 length value, this could lead to an infinite loop.",
+      "parentUuid": "bd4e1c04_6fe7470b",
       "range": {
         "startLine": 348,
         "startChar": 19,
