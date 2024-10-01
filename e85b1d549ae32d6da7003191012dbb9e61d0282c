@@ -46,6 +46,30 @@
       },
       "revId": "e85b1d549ae32d6da7003191012dbb9e61d0282c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7bfa3c6_ace57c41",
+        "filename": "system/audio_hal_interface/a2dp_encoding.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T22:55:51Z",
+      "side": 1,
+      "message": "And I, as I never wrote it",
+      "parentUuid": "569ef7db_bef9c952",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 41
+      },
+      "revId": "e85b1d549ae32d6da7003191012dbb9e61d0282c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
