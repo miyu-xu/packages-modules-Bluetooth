@@ -34,6 +34,24 @@
       "parentUuid": "7426a30c_56540865",
       "revId": "3bf0f6d6b4385ea28bcdde54807d6dbbba1452cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "549350ea_06ed4497",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-01T02:32:54Z",
+      "side": 1,
+      "message": "This crash was probably introduced by  https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/test/pairing/br_edr/legacy/tests.py . This crash is intended behavior from BT stack. please find the root cause details in b/366643930#comment4. No BT stack fix needed here",
+      "parentUuid": "e7ba609f_a96ba661",
+      "revId": "3bf0f6d6b4385ea28bcdde54807d6dbbba1452cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
