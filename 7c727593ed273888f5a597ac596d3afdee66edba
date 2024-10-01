@@ -213,6 +213,24 @@
       "parentUuid": "9deb1c2e_89ee1205",
       "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab16a95e_39025394",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-01T01:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6558411a_db40e31e",
+      "revId": "7c727593ed273888f5a597ac596d3afdee66edba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
