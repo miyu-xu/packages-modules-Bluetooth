@@ -40,6 +40,30 @@
       ],
       "revId": "84f3b3a08282014896fdaa2bd22e721c830efe9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8fdc11_6874fe3d",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-01T17:35:40Z",
+      "side": 1,
+      "message": "Nice catch! I\u0027ll add this in a following CL. Thanks.",
+      "parentUuid": "99decf12_0116d837",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 25
+      },
+      "revId": "84f3b3a08282014896fdaa2bd22e721c830efe9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
