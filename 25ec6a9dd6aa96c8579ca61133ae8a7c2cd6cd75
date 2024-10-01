@@ -34,6 +34,24 @@
       "parentUuid": "6e8e4bb1_a09bdb89",
       "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e995d12b_88b9b016",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-01T03:43:35Z",
+      "side": 1,
+      "message": "Add a clear alarm step in `SetSystemSuspendState` to make sure the alarm is disarmed at resume and the wakelock is released.",
+      "parentUuid": "d1e22026_2baa3eff",
+      "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
