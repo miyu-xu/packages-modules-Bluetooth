@@ -61,6 +61,7 @@ import org.mockito.kotlin.verify
 import pandora.BumbleConfigProto
 import pandora.HostProto
 import pandora.RfcommProto
+import pandora.RfcommProto.RfcommConnection
 import pandora.RfcommProto.ServerId
 
 @SuppressLint("MissingPermission")
@@ -84,6 +85,7 @@ class RfcommTest {
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_PRIVILEGED,
             Manifest.permission.MODIFY_PHONE_STATE,
+            Manifest.permission.WRITE_SECURE_SETTINGS,
         )
 
     // Set up a Bumble Pandora device for the duration of the test.
@@ -463,16 +465,93 @@ class RfcommTest {
         Truth.assertThat(serverSock.channel).isEqualTo(-1) // ensure disconnected at RFCOMM Layer
     }
 
+    /*
+       Test Steps:
+       1. Disable inquiry and page scan
+       2. Create RFCOMM socket
+       3. Attempt to connect to socket: expect not connected
+       4. Wait 3 seconds
+       5. Before page timeout of 5 seconds, close the socket
+       6. Enable page scan
+       7. Create and connect to an RFCOMM socket - verify proper connection
+    */
+    @RequiresFlagsEnabled(Flags.FLAG_RFCOMM_CANCEL_ONGOING_SDP_ON_CLOSE)
+    @Test
+    fun clientConnectToOpenServerSocketAfterPageTimeout() {
+        // 1. Disable inquiry and page scan
+        mBumble
+            .hostBlocking()
+            .setDiscoverabilityMode(
+                HostProto.SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(HostProto.DiscoverabilityMode.NOT_DISCOVERABLE)
+                    .build()
+            )
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.NOT_CONNECTABLE)
+                    .build()
+            )
+        // 2. Create RFCOMM socket
+        val socket = mRemoteDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+
+        // 3. Attempt to connect to socket: expect not connected
+        val t = thread {
+            try {
+                socket.connect()
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket connection failure $e")
+            }
+            Log.i(TAG, "Done connecting to socket")
+        }
+        // 4. Wait 3 seconds
+        Thread.sleep(3000)
+
+        Truth.assertThat(socket.isConnected).isFalse()
+        // 5. Before page timeout of 5 seconds, close the socket
+        socket.close()
+
+        t.join()
+
+        // 6. Enable page scan
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.CONNECTABLE)
+                    .build()
+            )
+        // 7. Create and connect to an RFCOMM socket - verify proper connection
+        startServer { serverId -> createConnectAcceptSocket(isSecure = false, serverId) }
+    }
+
     private fun createConnectAcceptSocket(
         isSecure: Boolean,
         server: ServerId,
         uuid: String = TEST_UUID,
-    ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
+    ): Pair<BluetoothSocket, RfcommConnection> {
         val socket = createSocket(mRemoteDevice, isSecure, uuid)
-        val connection = acceptSocket(server)
         Truth.assertThat(socket.isConnected).isTrue()
+        val connection = acceptSocket(server)
 
         return Pair(socket, connection)
+    }
+
+    private fun createConnectAcceptSocketWithoutVerification(
+        isSecure: Boolean,
+        server: ServerId,
+        uuid: String = TEST_UUID,
+    ): Pair<BluetoothSocket, RfcommConnection> {
+        val socket = createSocketAsync(mRemoteDevice, isSecure, uuid)
+
+        if (socket.isConnected) {
+            Log.i(TAG, "socket connected")
+            return Pair(socket, acceptSocketWithoutVerification(server))
+        } else {
+            Log.i(TAG, "socket not connected")
+            return Pair(socket, RfcommConnection.newBuilder().setId(0).build())
+        }
     }
 
     private fun createSocket(
@@ -507,7 +586,42 @@ class RfcommTest {
         return socket
     }
 
-    private fun acceptSocket(server: ServerId): RfcommProto.RfcommConnection {
+    private fun createSocketAsync(
+        device: BluetoothDevice,
+        isSecure: Boolean,
+        uuid: String,
+    ): BluetoothSocket {
+        val socket =
+            if (isSecure) {
+                device.createRfcommSocketToServiceRecord(UUID.fromString(uuid))
+            } else {
+                device.createInsecureRfcommSocketToServiceRecord(UUID.fromString(uuid))
+            }
+
+        val t = thread {
+            Log.i(TAG, "Connecting to socket")
+            try {
+                socket.connect()
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket connection failure $e")
+            }
+            Log.i(TAG, "Done connecting to socket")
+        }
+        Log.i(TAG, "Waiting for 7 seconds for page timeout")
+        Thread.sleep(6000)
+        Log.i(TAG, "Waited 7 seconds to cancel socket connection after page timeout")
+
+        Log.i(TAG, "Close socket if not connected")
+        if (!socket.isConnected) {
+            socket.close()
+        }
+
+        Log.i(TAG, "Join the thread")
+        t.join()
+        return socket
+    }
+
+    private fun acceptSocket(server: ServerId): RfcommConnection {
         val connectionResponse =
             mBumble
                 .rfcommBlocking()
@@ -521,6 +635,19 @@ class RfcommTest {
         return connectionResponse.connection
     }
 
+    private fun acceptSocketWithoutVerification(server: ServerId): RfcommConnection {
+        val connectionResponse =
+            mBumble
+                .rfcommBlocking()
+                .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .acceptConnection(
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(server).build()
+                )
+
+        mConnectionCounter += 1
+        return connectionResponse.connection
+    }
+
     private fun startServer(
         name: String = TEST_SERVER_NAME,
         uuid: String = TEST_UUID,
@@ -528,6 +655,9 @@ class RfcommTest {
     ) {
         val request =
             RfcommProto.StartServerRequest.newBuilder().setName(name).setUuid(uuid).build()
+        Truth.assertThat(request).isNotNull()
+        Truth.assertThat(request.uuid).isNotNull()
+        Truth.assertThat(request.uuid).isNotEmpty()
         val response = mBumble.rfcommBlocking().startServer(request)
 
         try {
