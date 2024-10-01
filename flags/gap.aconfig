@@ -252,3 +252,14 @@ flag {
     description: "Support MSFT HCI extension for LE Scanning. go/bt-msft-aosp-dd"
     bug: "365787977"
 }
+
+flag {
+    name: "le_cancel_direct_maintain_background"
+    namespace: "bluetooth"
+    description: "Cancelling direct connection shouldn't remove device if background connection exists"
+    bug: "370819095"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
