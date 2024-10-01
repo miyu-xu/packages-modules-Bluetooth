@@ -99,7 +99,7 @@ public class MediaPlayerWrapperTest {
                         InstrumentationRegistry.getInstrumentation().getTargetContext());
         mTestBitmap = loadImage(com.android.bluetooth.tests.R.raw.image_200_200);
 
-        when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
+        when(mMockResources.getBoolean(R.bool.avrcp_target_enable_vfs_cover_art)).thenReturn(true);
         when(mMockContext.getResources()).thenReturn(mMockResources);
 
         // Set failure handler to capture Log.wtf messages
