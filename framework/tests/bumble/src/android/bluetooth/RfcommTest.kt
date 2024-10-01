@@ -19,15 +19,18 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.test_utils.EnableBluetoothRule
 import android.content.Context
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 import org.junit.After
@@ -40,6 +43,7 @@ import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.timeout
 import org.mockito.kotlin.verify
+import pandora.HostProto
 import pandora.RfcommProto
 import pandora.RfcommProto.ServerId
 import pandora.RfcommProto.StartServerRequest
@@ -277,6 +281,124 @@ class RfcommTest {
                 Truth.assertThat(socket1.isConnected).isTrue()
             }
         }
+    }
+
+    @Test
+    fun clientConnectToOpenServerSocketBondedInsecurePageTimeout() {
+        // Disable inquiry and page scan mode
+        Log.i(TAG, "Test start")
+        mBumble
+            .hostBlocking()
+            .setDiscoverabilityMode(
+                HostProto.SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(HostProto.DiscoverabilityMode.NOT_DISCOVERABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled inquiry scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.NOT_CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled page scan")
+        val socket = mRemoteDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+        Log.i(TAG, "Created socket object")
+
+        val t = thread {
+            Log.i(TAG, "Connecting to socket")
+            try {
+                socket.connect()
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket connection failure $e")
+            }
+            Log.i(TAG, "Done connecting to socket")
+        }
+
+        Log.i(TAG, "Waiting for 7 seconds after page timeout of 5 seconds")
+        Thread.sleep(7000)
+        Log.i(TAG, "Waited 3 seconds to cancel socket connection before page timeout at 5 seconds")
+
+        Truth.assertThat(socket.isConnected).isFalse()
+
+        Log.i(TAG, "Close socket")
+        socket.close()
+
+        Log.i(TAG, "Join the thread")
+        t.join()
+
+        Log.i(TAG, "Enabling page scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Enabled page scan, reconnecting")
+
+        startServer { serverId -> createConnectAcceptSocket(isSecure = false, serverId) }
+        Log.i(TAG, "Connected, test end")
+    }
+
+    @Test
+    fun clientConnectToOpenServerSocketBondedInsecurePrematureClosure() {
+        // Disable inquiry and page scan mode
+        Log.i(TAG, "Test start")
+        mBumble
+            .hostBlocking()
+            .setDiscoverabilityMode(
+                HostProto.SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(HostProto.DiscoverabilityMode.NOT_DISCOVERABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled inquiry scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.NOT_CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Disabled page scan")
+        val socket = mRemoteDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+        Log.i(TAG, "Created socket object")
+
+        val t = thread {
+            Log.i(TAG, "Connecting to socket")
+            try {
+                socket.connect()
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket connection failure $e")
+            }
+            Log.i(TAG, "Done connecting to socket")
+        }
+
+        Log.i(TAG, "Waiting for 3 seconds before page timeout")
+        Thread.sleep(3000)
+        Log.i(TAG, "Waited 3 seconds to cancel socket connection before page timeout at 5 seconds")
+
+        Truth.assertThat(socket.isConnected).isFalse()
+
+        Log.i(TAG, "Close socket")
+        socket.close()
+
+        Log.i(TAG, "Join the thread")
+        t.join()
+
+        Log.i(TAG, "Enabling page scan")
+        mBumble
+            .hostBlocking()
+            .setConnectabilityMode(
+                HostProto.SetConnectabilityModeRequest.newBuilder()
+                    .setMode(HostProto.ConnectabilityMode.CONNECTABLE)
+                    .build()
+            )
+        Log.i(TAG, "Enabled page scan, reconnecting")
+
+        startServer { serverId -> createConnectAcceptSocket(isSecure = false, serverId) }
+        Log.i(TAG, "Connected, test end")
     }
 
     private fun createConnectAcceptSocket(
