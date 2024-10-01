@@ -85,6 +85,10 @@ public class HfpClientConnection extends Connection {
 
     void finishInitializing() {
         setAudioModeIsVoip(false);
+        if (mClosed) {
+            Log.w(TAG, "Call already terminated");
+            return;
+        }
         Uri number = Uri.fromParts(PhoneAccount.SCHEME_TEL, mCurrentCall.getNumber(), null);
         setAddress(number, TelecomManager.PRESENTATION_ALLOWED);
         setConnectionCapabilities(
