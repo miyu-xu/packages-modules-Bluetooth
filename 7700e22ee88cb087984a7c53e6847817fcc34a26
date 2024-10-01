@@ -22,6 +22,30 @@
       },
       "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "475b3fec_8cd3bbd8",
+        "filename": "sysprop/gap.sysprop",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-01T22:53:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "622d4751_33ccfca4",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
