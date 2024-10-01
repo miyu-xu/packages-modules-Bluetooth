@@ -87,6 +87,7 @@ public class VolumeControlServiceTest {
     private static final int MEDIA_MAX_VOL = 25;
     private static final int CALL_MIN_VOL = 1;
     private static final int CALL_MAX_VOL = 8;
+    private static final int TEST_GROUP_ID = 1;
 
     private BroadcastReceiver mVolumeControlIntentReceiver;
 
@@ -569,7 +570,7 @@ public class VolumeControlServiceTest {
                 new VolumeControlStackEvent(
                         VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED);
         stackEvent.device = null;
-        stackEvent.valueInt1 = 1; // groupId
+        stackEvent.valueInt1 = TEST_GROUP_ID; // groupId
         stackEvent.valueBool1 = false; // isMuted
         stackEvent.valueBool2 = true; // isAutonomous
 
@@ -590,10 +591,9 @@ public class VolumeControlServiceTest {
 
     @Test
     public void testAutonomousVolumeStateChange() {
-        // TODO: b/329163385 - This test should be modified to run without having to set the flag to
-        // a specific value
-        mSetFlagsRule.disableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
+        // Make device Active now. This will trigger setting volume to AF
+        when(mLeAudioService.getActiveGroupId()).thenReturn(TEST_GROUP_ID);
+
         doReturn(AudioManager.MODE_IN_CALL).when(mAudioManager).getMode();
         testVolumeCalculations(AudioManager.STREAM_VOICE_CALL, CALL_MIN_VOL, CALL_MAX_VOL);
 
@@ -604,25 +604,23 @@ public class VolumeControlServiceTest {
     /** Test if autonomous Mute/Unmute propagates the event to audio manager. */
     @Test
     public void testAutonomousMuteUnmute() {
-        // TODO: b/329163385 - This test should be modified to run without having to set the flag to
-        // a specific value
-        mSetFlagsRule.disableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
         int streamType = AudioManager.STREAM_MUSIC;
         int streamVol = getLeAudioVolume(19, MEDIA_MIN_VOL, MEDIA_MAX_VOL, streamType);
 
         doReturn(false).when(mAudioManager).isStreamMute(eq(AudioManager.STREAM_MUSIC));
 
         // Verify that muting LeAudio device, sets the mute state on the audio device
+        // Make device Active now. This will trigger setting volume to AF
+        when(mLeAudioService.getActiveGroupId()).thenReturn(TEST_GROUP_ID);
 
-        generateVolumeStateChanged(null, 1, streamVol, 0, true, true);
+        generateVolumeStateChanged(null, TEST_GROUP_ID, streamVol, 0, true, true);
         verify(mAudioManager, times(1))
                 .adjustStreamVolume(eq(streamType), eq(AudioManager.ADJUST_MUTE), anyInt());
 
         doReturn(true).when(mAudioManager).isStreamMute(eq(AudioManager.STREAM_MUSIC));
 
         // Verify that unmuting LeAudio device, unsets the mute state on the audio device
-        generateVolumeStateChanged(null, 1, streamVol, 0, false, true);
+        generateVolumeStateChanged(null, TEST_GROUP_ID, streamVol, 0, false, true);
         verify(mAudioManager, times(1))
                 .adjustStreamVolume(eq(streamType), eq(AudioManager.ADJUST_UNMUTE), anyInt());
     }
@@ -649,10 +647,6 @@ public class VolumeControlServiceTest {
     /** Test Active Group change */
     @Test
     public void testActiveGroupChange() throws Exception {
-        // TODO: b/329163385 - This test should be modified to run without having to set the flag to
-        // a specific value
-        mSetFlagsRule.disableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
         int groupId_1 = 1;
         int volume_groupId_1 = 6;
 
@@ -665,6 +659,8 @@ public class VolumeControlServiceTest {
 
         mServiceBinder.setGroupVolume(groupId_2, volume_groupId_2, mAttributionSource);
 
+        // Make device Active now. This will trigger setting volume to AF
+        when(mLeAudioService.getActiveGroupId()).thenReturn(groupId_1);
         mServiceBinder.setGroupActive(groupId_1, true, mAttributionSource);
 
         // Expected index for STREAM_MUSIC
@@ -672,6 +668,8 @@ public class VolumeControlServiceTest {
                 (int) Math.round((double) (volume_groupId_1 * MEDIA_MAX_VOL) / BT_LE_AUDIO_MAX_VOL);
         verify(mAudioManager, times(1)).setStreamVolume(anyInt(), eq(expectedVol), anyInt());
 
+        // Make device Active now. This will trigger setting volume to AF
+        when(mLeAudioService.getActiveGroupId()).thenReturn(groupId_2);
         mServiceBinder.setGroupActive(groupId_2, true, mAttributionSource);
 
         expectedVol =
@@ -750,10 +748,7 @@ public class VolumeControlServiceTest {
 
     /** Test if phone will set volume which is read from the buds */
     @Test
-    @EnableFlags({
-        Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES,
-        Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_PRIMARY_GROUP_ONLY
-    })
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_PRIMARY_GROUP_ONLY)
     public void testConnectedDeviceWithUserPersistFlagSet() throws Exception {
         int groupId = 1;
         int volumeDevice = 56;
@@ -1117,9 +1112,6 @@ public class VolumeControlServiceTest {
 
     @Test
     public void testServiceBinderSetDeviceVolumeMethods() throws Exception {
-        mSetFlagsRule.enableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
-
         int groupId = 1;
         int groupVolume = 56;
         int deviceOneVolume = 46;
@@ -1268,8 +1260,6 @@ public class VolumeControlServiceTest {
     @Test
     public void testServiceBinderRegisterVolumeChangedCallbackWhenDeviceAlreadyConnected()
             throws Exception {
-        mSetFlagsRule.enableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
         int groupId = 1;
         int deviceOneVolume = 46;
         int deviceTwoVolume = 36;
@@ -1322,8 +1312,6 @@ public class VolumeControlServiceTest {
 
     @Test
     public void testServiceBinderTestNotifyNewRegisteredCallback() throws Exception {
-        mSetFlagsRule.enableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
         int groupId = 1;
         int deviceOneVolume = 46;
         int deviceTwoVolume = 36;
@@ -1419,9 +1407,6 @@ public class VolumeControlServiceTest {
     /** Test Volume Control changed callback. */
     @Test
     public void testVolumeControlChangedCallback() throws Exception {
-        mSetFlagsRule.enableFlags(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
-
         int groupId = 1;
         int groupVolume = 56;
         int deviceOneVolume = 46;
@@ -1466,10 +1451,7 @@ public class VolumeControlServiceTest {
 
     /** Test Volume Control changed for broadcast primary group. */
     @Test
-    @EnableFlags({
-        Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES,
-        Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_PRIMARY_GROUP_ONLY
-    })
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_PRIMARY_GROUP_ONLY)
     public void testVolumeControlChangedForBroadcastPrimaryGroup() throws Exception {
         int groupId = 1;
         int groupVolume = 30;
