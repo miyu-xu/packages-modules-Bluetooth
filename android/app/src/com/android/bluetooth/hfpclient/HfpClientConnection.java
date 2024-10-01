@@ -80,6 +80,10 @@ public class HfpClientConnection extends Connection {
 
         setInitializing();
         setDialing();
+        if (mClosed) {
+            debug("Call already terminated");
+            return;
+        }
         finishInitializing();
     }
 
