@@ -22,6 +22,30 @@
       },
       "revId": "e7a55e261394d68a3ebc4d05d9de4be31d0686b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fc897dd_ad68f1a7",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T18:14:39Z",
+      "side": 0,
+      "message": "Fine by me, I don\u0027t need to remove this, just saw it and poof rm it before I think twice 😊\n\n\nI believe that nobody ever call th setConnectionPolicy outside of Bluetooth anyway. For me both the get and set are useless here, but one is exposed as an API so we have to keep it.",
+      "parentUuid": "6018fb63_e8337af3",
+      "range": {
+        "startLine": 672,
+        "startChar": 15,
+        "endLine": 672,
+        "endChar": 34
+      },
+      "revId": "e7a55e261394d68a3ebc4d05d9de4be31d0686b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
