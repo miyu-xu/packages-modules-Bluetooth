@@ -334,7 +334,13 @@ public:
                                       address_with_type, (uint16_t)event_view.GetAdvertiserPhy(),
                                       event_view.GetPeriodicAdvertisingInterval());
 
+<<<<<<< HEAD   (da3d8f Update parcelable interface implementation to match tests fo)
     if (com::android::bluetooth::flags::leaudio_broadcast_feature_support()) {
+||||||| BASE
+      if (com::android::bluetooth::flags::leaudio_broadcast_feature_support()) {
+        if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+=======
+>>>>>>> CHANGE (8c49b3 Remove leaudio_broadcast_feature_support flag)
       if (event_view.GetStatus() != ErrorCode::SUCCESS) {
         periodic_syncs_.erase(periodic_sync);
       }
