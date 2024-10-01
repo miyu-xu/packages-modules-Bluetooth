@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2161d938_20bf5db3",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1801,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T18:33:35Z",
+      "side": 1,
+      "message": "```suggestion\n  tBTA_HH_HSDATA hs_data \u003d {\n    .handle \u003d hid_handle,\n    .status \u003d status,\n    .rsp_data.p_rpt_data \u003d rpt_data,\n  };\n```",
+      "range": {
+        "startLine": 1798,
+        "startChar": 1,
+        "endLine": 1801,
+        "endChar": 41
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee16f22_b6d799d6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1834,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T18:33:35Z",
+      "side": 1,
+      "message": "```suggestion\n      send_read_report_reply(hid_handle, BTA_HH_ERR, nullptr);\n```",
+      "range": {
+        "startLine": 1834,
+        "startChar": 54,
+        "endLine": 1834,
+        "endChar": 62
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9573f08b_3058d88d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1850,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T18:33:35Z",
+      "side": 1,
+      "message": "```suggestion\n        send_read_report_reply(hid_handle, BTA_HH_ERR, nullptr);\n```",
+      "range": {
+        "startLine": 1850,
+        "startChar": 56,
+        "endLine": 1850,
+        "endChar": 64
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b78f715_7f19132b",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1883,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T18:33:35Z",
+      "side": 1,
+      "message": "I would reversed the if condition and return for early error, so you don\u0027t have to wonder what the value of read_status / rpt_data everytime\n\n```suggestion\n  if (!com::android::bluetooth::flags::forward_get_set_report_failure_to_uhid()) {\n    p_dev_cb-\u003ew4_evt \u003d BTA_HH_EMPTY_EVT;\n  }\n  \n  if (gatt_status !\u003d GATT_SUCCESS) {\n    send_read_report_reply(hid_handle, BTA_HH_ERR, nullptr);\n    return;\n  }\n  const gatt::Service* p_svc \u003d BTA_GATTC_GetOwningService(conn_id, p_char-\u003evalue_handle);\n\n  tBTA_HH_LE_RPT* p_rpt \u003d bta_hh_le_find_report_entry(p_dev_cb, p_svc-\u003ehandle, char_uuid, p_char-\u003evalue_handle);\n  if (p_rpt \u003d\u003d nullptr || len \u003d\u003d 0) {\n    send_read_report_reply(hid_handle, BTA_HH_ERR, nullptr);\n    return;\n  }\n  \n  BT_HDR* p_buf \u003d (BT_HDR*)osi_malloc(sizeof(BT_HDR) + len + 1);\n  /* pack data send to app */\n  p_buf-\u003elen \u003d len + 1;\n  p_buf-\u003elayer_specific \u003d 0;\n  p_buf-\u003eoffset \u003d 0;\n\n  uint8_t* pp \u003d (uint8_t*)(p_buf + 1);\n  /* attach report ID as the first byte of the report before sending it to\n   * USB HID driver */\n  UINT8_TO_STREAM(pp, p_rpt-\u003erpt_id);\n  memcpy(pp, value, len);\n\n  send_read_report_reply(hid_handle, BTA_HH_OK, p_buf);\n  osi_free(p_buf);\n}\n```",
+      "range": {
+        "startLine": 1855,
+        "startChar": 0,
+        "endLine": 1883,
+        "endChar": 1
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dacbb926_2921b248",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1922,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-01T18:33:35Z",
+      "side": 1,
+      "message": "Use brace initializer to make sure everything is properly null initialized in tBTA_HH_CBDATA\n```suggestion\n  tBTA_HH_CBDATA cback_data \u003d {\n    .handle \u003d hid_handle,\n    .status \u003d status,\n  };\n```",
+      "range": {
+        "startLine": 1920,
+        "startChar": 2,
+        "endLine": 1922,
+        "endChar": 29
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
