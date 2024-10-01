@@ -50,7 +50,6 @@ group("gd_default_deps") {
     "//bt/system:libbt-platform-protos-lite",
     "//bt/system/gd:BluetoothGeneratedDumpsysDataSchema_h",
     "//bt/system/gd/dumpsys:libbluetooth-dumpsys",
-    "//bt/system/gd/rust/shim:init_flags_bridge_header",
     "//bt/system/pdl:BluetoothGeneratedPackets_h",
   ]
 }
