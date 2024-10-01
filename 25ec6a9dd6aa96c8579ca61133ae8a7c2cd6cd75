@@ -16,6 +16,24 @@
       "message": "I am wary of having a wakelock held for an arbitrary amount of time as you are doing. There are multiple point which I would like to address:\n\n1. how is the 10s determined ? Idealistically on what even would you release the wakelock ? \n2. there is no traceability / accountability for the wakelock here; either through tracepoints or logs. It is going to make inspecting the logic very difficult in the future.",
       "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e22026_2baa3eff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-01T02:07:19Z",
+      "side": 1,
+      "message": "Thanks for the comment. These are very good questions. (1) The time for Bluetooth initiate connection to system start display is around 3s. I changed the time to 5s to give some buffer time. The wakelock should be released when the system resumes, or if the connection fails, and there are no input events, the wakelock should be released on timeout. (2) The wakelock is tracked by WakelockManager class and stats are saved as well. If there is a failure or duplicate lock acquire/release, they are also logged. I can add additional Bluetooth log when the lock is acqurie/release.",
+      "parentUuid": "6e8e4bb1_a09bdb89",
+      "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
