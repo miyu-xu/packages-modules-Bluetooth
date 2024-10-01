@@ -52,6 +52,24 @@
       "parentUuid": "d1e22026_2baa3eff",
       "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a275b2f_673e3d6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-01T17:09:25Z",
+      "side": 1,
+      "message": "When you say: \"so the bluetooth device has time to send input events\", do you mean the remote device sending HID events ? From what I understand there is already a wakelock held by the BT HAL / kernel driver when ACL packets are received that ensures that the stack has time to process the data; is that insufficient for your purpose ?",
+      "parentUuid": "e995d12b_88b9b016",
+      "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
