@@ -37,13 +37,14 @@
 #include <cstdlib>
 #include <string>
 
-#include "bta/include/bta_api.h"
-#include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_sec_api.h"
-#include "btif/include/btif_common.h"
-#include "btif/include/btif_config.h"
-#include "btif/include/btif_gatt.h"
-#include "btif/include/btif_gatt_util.h"
+#include "bta_api.h"
+#include "bta_gatt_api.h"
+#include "btif_common.h"
+#include "btif_config.h"
+#include "btif_gatt.h"
+#include "btif_gatt_util.h"
+#include "gatt_api.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bte_appl.h"
 #include "main/shim/entry.h"
@@ -52,7 +53,6 @@
 #include "stack/include/acl_api_types.h"
 #include "stack/include/btm_ble_sec_api.h"
 #include "stack/include/btm_client_interface.h"
-#include "stack/include/gatt_api.h"
 #include "stack/include/main_thread.h"
 #include "storage/config_keys.h"
 #include "types/ble_address_with_type.h"
@@ -118,21 +118,6 @@ static btif_test_cb_t test_cb;
   } while (0)
 
 namespace {
-
-tBT_TRANSPORT to_bt_transport(int val) {
-  switch (val) {
-    case 0:
-      return BT_TRANSPORT_AUTO;
-    case 1:
-      return BT_TRANSPORT_BR_EDR;
-    case 2:
-      return BT_TRANSPORT_LE;
-    default:
-      break;
-  }
-  log::warn("Passed unexpected transport value:{}", val);
-  return BT_TRANSPORT_AUTO;
-}
 
 uint8_t rssi_request_client_if;
 
@@ -293,9 +278,10 @@ static bt_status_t btif_gattc_unregister_app(int client_if) {
 }
 
 void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr_type,
-                          bool is_direct, tBT_TRANSPORT transport, bool opportunistic,
+                          bool is_direct, int transport_p, bool opportunistic,
                           int initiating_phys) {
   int device_type = BT_DEVICE_TYPE_UNKNOWN;
+  tBT_TRANSPORT transport = (tBT_TRANSPORT)BT_TRANSPORT_LE;
 
   if (addr_type == BLE_ADDR_RANDOM) {
     device_type = BT_DEVICE_TYPE_BLE;
@@ -326,7 +312,9 @@ void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr
   }
 
   // Determine transport
-  if (transport == BT_TRANSPORT_AUTO) {
+  if (transport_p != BT_TRANSPORT_AUTO) {
+    transport = transport_p;
+  } else {
     switch (device_type) {
       case BT_DEVICE_TYPE_BREDR:
         transport = BT_TRANSPORT_BR_EDR;
@@ -337,18 +325,21 @@ void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr
         break;
 
       case BT_DEVICE_TYPE_DUMO:
-        transport = (addr_type == BLE_ADDR_RANDOM) ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
+        if (addr_type == BLE_ADDR_RANDOM) {
+          transport = BT_TRANSPORT_LE;
+        } else {
+          transport = BT_TRANSPORT_BR_EDR;
+        }
         break;
-
       default:
-        log::error("Unknown device type {}", DeviceTypeText(device_type));
+        log::error("Unknown device type {}", device_type);
         break;
     }
   }
 
   // Connect!
-  log::info("Transport={}, device type={}, address type ={}, phy={}", bt_transport_text(transport),
-            DeviceTypeText(device_type), addr_type, initiating_phys);
+  log::info("Transport={}, device type={}, address type ={}, phy={}", transport, device_type,
+            addr_type, initiating_phys);
   tBTM_BLE_CONN_TYPE type = is_direct ? BTM_BLE_DIRECT_CONNECTION : BTM_BLE_BKG_CONNECT_ALLOW_LIST;
   BTA_GATTC_Open(client_if, address, addr_type, type, transport, opportunistic, initiating_phys);
 }
@@ -359,7 +350,7 @@ static bt_status_t btif_gattc_open(int client_if, const RawAddress& bd_addr, uin
   CHECK_BTGATT_INIT();
   // Closure will own this value and free it.
   return do_in_jni_thread(Bind(&btif_gattc_open_impl, client_if, bd_addr, addr_type, is_direct,
-                               to_bt_transport(transport), opportunistic, initiating_phys));
+                               transport, opportunistic, initiating_phys));
 }
 
 void btif_gattc_close_impl(int client_if, RawAddress address, int conn_id) {
