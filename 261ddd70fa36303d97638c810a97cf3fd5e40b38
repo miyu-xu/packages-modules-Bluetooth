@@ -109,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "892f798a_c6e76032",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-02T12:20:43Z",
+      "side": 1,
+      "message": "The AdapterSuspend class takes any active display as \"screen on\". This means adding a virtual display won\u0027t influence the logic as intended. \nWhile manually calling suspend and resume functions isn\u0027t an ideal test, it can at least verify the core functionality of AdapterSuspend. \n\nPerhaps we can land this change initially, then refactor AdapterSuspend with a new SuspendState wrapper to enhance testability in another CL?",
+      "parentUuid": "aaaa931b_e38b10e4",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 42
+      },
+      "revId": "261ddd70fa36303d97638c810a97cf3fd5e40b38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95571cc6_0030e2de",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
         "patchSetId": 2
