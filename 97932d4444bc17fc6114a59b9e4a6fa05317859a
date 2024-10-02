@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8a7ab22_99608740",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2024-10-02T17:49:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ad4ecf29_dd499914",
+      "revId": "97932d4444bc17fc6114a59b9e4a6fa05317859a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2994eca5_751412c3",
@@ -78,6 +96,30 @@
       "writtenOn": "2024-09-23T11:44:26Z",
       "side": 1,
       "message": "As mentioned in the doc comments, we need to have a consistent prefix for these messages, and it would probably be a good idea to cut down on their size as much as possible.",
+      "range": {
+        "startLine": 1421,
+        "startChar": 45,
+        "endLine": 1421,
+        "endChar": 49
+      },
+      "revId": "97932d4444bc17fc6114a59b9e4a6fa05317859a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b22398_da6bef52",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2024-10-02T17:49:46Z",
+      "side": 1,
+      "message": "Updated to add prefix and shorten the string",
+      "parentUuid": "6b8c8a04_a6b4e9cb",
       "range": {
         "startLine": 1421,
         "startChar": 45,
