@@ -141,6 +141,24 @@
       "parentUuid": "bbbe0165_3c339c33",
       "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a82404_34e22069",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T04:06:54Z",
+      "side": 1,
+      "message": "I think that is a good workaround !\nlgtm",
+      "parentUuid": "92b592e6_a90518af",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
