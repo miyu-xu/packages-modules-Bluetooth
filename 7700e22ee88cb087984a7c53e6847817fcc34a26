@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a62b6a0_0a60f602",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T17:23:33Z",
+      "side": 1,
+      "message": "Ok, make sense. Thanks for the explanation",
+      "parentUuid": "27b85170_3b5f4bef",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 43
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "557a9a90_d29bccbe",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "QA has verified the change.\n\nCurrently pts-bot skips this test case https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;drc\u003dc720d2f3e3ffb542bc5fa242b2fddde7fb179ebe;l\u003d819",
       "parentUuid": "557a9a90_d29bccbe",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e790a72_5e6e4d04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T17:23:33Z",
+      "side": 1,
+      "message": "Should we enable it ? since this CL is fixing it ?",
+      "parentUuid": "5612fbdb_ae0940ac",
       "range": {
         "startLine": 13,
         "startChar": 0,
