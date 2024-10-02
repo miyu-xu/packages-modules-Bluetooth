@@ -736,6 +736,23 @@ public:
   virtual bool L2CA_GetRemoteChannelId(uint16_t cid, uint16_t* rcid) = 0;
 
   /*******************************************************************************
+   *
+   *  Function        L2CA_GetAclHandle
+   *
+   *  Description     Given a local channel identifier, |lcid|, this function
+   *                  returns the bound ACL handle, |acl_handle|. If |acl_handle|
+   *                  is not known or is invalid, this function returns false and
+   *                  does not modify the value pointed at by |acl_handle|.
+   *
+   *  Parameters:     lcid: Local CID
+   *                  rcid: Pointer to ACL handle must NOT be nullptr
+   *
+   *  Return value:   true if acl_handle lookup was successful
+   *
+   ******************************************************************************/
+  virtual bool L2CA_GetAclHandle(uint16_t lcid, uint16_t* acl_handle);
+
+  /*******************************************************************************
    **
    ** Function         L2CA_FlushChannel
    **
