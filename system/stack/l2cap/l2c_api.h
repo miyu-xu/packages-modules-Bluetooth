@@ -62,6 +62,7 @@ public:
   [[nodiscard]] bool L2CA_SetIdleTimeoutByBdAddr(const RawAddress& bd_addr, uint16_t timeout,
                                                  tBT_TRANSPORT transport) override;
   [[nodiscard]] bool L2CA_GetRemoteChannelId(uint16_t lcid, uint16_t* rcid) override;
+  [[nodiscard]] bool L2CA_GetAclHandle(uint16_t lcid, uint16_t* acl_handle) override;
 
   // Connection methods to configure and connect to peer over BR/EDR ACL
   [[nodiscard]] uint16_t L2CA_ConnectReq(uint16_t psm, const RawAddress& bd_addr) override;
