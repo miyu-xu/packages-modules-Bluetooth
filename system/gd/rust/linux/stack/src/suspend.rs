@@ -11,6 +11,7 @@ use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
+use bt_utils::chip_info::read_wlan_chipset;
 use bt_utils::socket::{BtSocket, HciChannels, MgmtCommand, HCI_DEV_NONE};
 
 /// Defines the Suspend/Resume API.
@@ -64,6 +65,8 @@ const MASKED_EVENTS_FOR_SUSPEND: u64 = (1u64 << 4) | (1u64 << 19);
 /// However, we will need to delay a few seconds to avoid co-ex issues with Wi-Fi reconnection.
 const RECONNECT_AUDIO_ON_RESUME_DELAY_MS: u64 = 3000;
 
+const DISCOVERY_ON_RESUME_DURATION_MS: u64 = 2000;
+
 /// TODO(b/286268874) Remove after the synchronization issue is resolved.
 /// Delay sending suspend ready signal by some time.
 const LE_RAND_CB_SUSPEND_READY_DELAY_MS: u64 = 100;
@@ -99,7 +102,7 @@ fn notify_suspend_state(hci_index: u16, suspended: bool) {
     }
 }
 
-#[derive(Debug, FromPrimitive, ToPrimitive)]
+#[derive(Debug, FromPrimitive, ToPrimitive, Clone)]
 #[repr(u32)]
 pub enum SuspendType {
     NoWakesAllowed,
@@ -143,6 +146,7 @@ pub struct Suspend {
 
     suspend_timeout_joinhandle: Option<tokio::task::JoinHandle<()>>,
     suspend_state: Arc<Mutex<SuspendState>>,
+    last_suspend_type: SuspendType,
 }
 
 impl Suspend {
@@ -164,6 +168,7 @@ impl Suspend {
             audio_reconnect_joinhandle: None,
             suspend_timeout_joinhandle: None,
             suspend_state: Arc::new(Mutex::new(SuspendState::new())),
+            last_suspend_type: SuspendType::Other,
         }
     }
 
@@ -224,6 +229,7 @@ impl ISuspend for Suspend {
     fn suspend(&mut self, suspend_type: SuspendType, suspend_id: i32) {
         // Set suspend state as true, prevent an early resume.
         self.suspend_state.lock().unwrap().suspend_expected = true;
+        self.last_suspend_type = suspend_type.clone();
         // Set suspend event mask
         self.intf.lock().unwrap().set_default_event_mask_except(MASKED_EVENTS_FOR_SUSPEND, 0u64);
 
@@ -374,6 +380,36 @@ impl ISuspend for Suspend {
         // Call LE Rand at the end of resume. The callback of LE Rand will reset the
         // resume state and send resume ready signal.
         self.bt.lock().unwrap().le_rand();
+
+        let chip_name = match read_wlan_chipset() {
+            Ok(v) => v,
+            Err(_) => "Unknown".to_string(),
+        };
+
+        // TODO(b:361797255): Revert after the bug is fixed.
+        if chip_name == "AX211".to_string() {
+            match self.last_suspend_type {
+                SuspendType::NoWakesAllowed => {
+                    let tx = self.tx.clone();
+                    if self.bt.lock().unwrap().trigger_le_scan_by_discovery() {
+                        log::debug!("Trigger le scan by discovery.");
+                        tokio::spawn(async move {
+                            tokio::time::sleep(tokio::time::Duration::from_millis(
+                                DISCOVERY_ON_RESUME_DURATION_MS,
+                            ))
+                            .await;
+                            log::debug!("Timeout cancel discovery.");
+                            let _ = tx
+                                .send(Message::DelayedAdapterActions(
+                                    DelayedActions::CancelDiscovery,
+                                ))
+                                .await;
+                        });
+                    }
+                }
+                _ => {}
+            }
+        }
 
         true
     }

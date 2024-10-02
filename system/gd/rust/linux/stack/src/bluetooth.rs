@@ -330,6 +330,9 @@ pub enum DelayedActions {
 
     /// Create bond to the device stored in |pending_create_bond|.
     CreateBond,
+
+    /// Cancel discovery
+    CancelDiscovery,
 }
 
 /// Serializable device used in various apis.
@@ -1176,6 +1179,10 @@ impl Bluetooth {
                     }
                 }
             }
+
+            DelayedActions::CancelDiscovery => {
+                self.cancel_discovery();
+            }
         }
     }
 
@@ -1236,6 +1243,16 @@ impl Bluetooth {
         self.set_discovery_suspend_mode(SuspendMode::Normal);
 
         BtStatus::Success
+    }
+
+    /// Start discovery if there are wake allowed devices bonded.
+    /// TODO(b:361797255): revert after the fw is fixed.
+    pub fn trigger_le_scan_by_discovery(&mut self) -> bool {
+        if self.get_wake_allowed_device_bonded() {
+            self.start_discovery();
+            return true;
+        }
+        return false;
     }
 
     /// Temporarily stop the discovery process and mark it as paused so that clients cannot restart
