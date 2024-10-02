@@ -28,7 +28,9 @@
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
 #include "hci/hci_layer.h"
+#include "hci/lpp_offload_interface.h"
 #include "hci_controller_generated.h"
+#include "main/shim/entry.h"
 #include "os/metrics.h"
 #include "os/system_properties.h"
 #include "stack/include/hcidefs.h"
@@ -419,6 +421,18 @@ struct Controller::impl {
       acl_buffers_ -= le_buffer_size_.total_num_le_packets_;
       le_buffer_size_.le_data_packet_length_ = acl_buffer_length_;
     }
+    // Share LE ACL data credits with low power processor if configured.
+    auto lpp_total_num_le_packets =
+            os::GetSystemPropertyUint32("persist.bluetooth.lpp_offload.total_num_le_packets", 0);
+    if (lpp_total_num_le_packets > 0 &&
+        lpp_total_num_le_packets < le_buffer_size_.total_num_le_packets_) {
+      if (bluetooth::shim::GetLppOffloadManager()->SetAclCreditsForSockets(
+                  AclLinkType::LT_LE, lpp_total_num_le_packets)) {
+        le_buffer_size_.total_num_le_packets_ -= lpp_total_num_le_packets;
+        log::info("total_num_le_packets: {} lpp_total_num_le_packets: {}",
+                  le_buffer_size_.total_num_le_packets_, lpp_total_num_le_packets);
+      }
+    }
   }
 
   void read_local_supported_codecs_v1_handler(CommandCompleteView view) {
@@ -452,6 +466,18 @@ struct Controller::impl {
       le_buffer_size_.total_num_le_packets_ = acl_buffers_ / 2;
       acl_buffers_ -= le_buffer_size_.total_num_le_packets_;
       le_buffer_size_.le_data_packet_length_ = acl_buffer_length_;
+    }
+    // Share LE ACL data credits with low power processor if configured.
+    auto lpp_total_num_le_packets =
+            os::GetSystemPropertyUint32("persist.bluetooth.lpp_offload.total_num_le_packets", 0);
+    if (lpp_total_num_le_packets > 0 &&
+        lpp_total_num_le_packets < le_buffer_size_.total_num_le_packets_) {
+      if (bluetooth::shim::GetLppOffloadManager()->SetAclCreditsForSockets(
+                  AclLinkType::LT_LE, lpp_total_num_le_packets)) {
+        le_buffer_size_.total_num_le_packets_ -= lpp_total_num_le_packets;
+        log::info("total_num_le_packets: {} lpp_total_num_le_packets: {}",
+                  le_buffer_size_.total_num_le_packets_, lpp_total_num_le_packets);
+      }
     }
   }
 
