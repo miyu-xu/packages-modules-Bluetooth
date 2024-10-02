@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b85170_3b5f4bef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-02T16:01:18Z",
+      "side": 1,
+      "message": "Spec allows it to be between 7 to 16 octets. Platforms may want to set it to a specific value.\nSome remote devices may not support 16 octet keys so we cannot hardcode it to 16 in our stack.",
+      "parentUuid": "9d1180d7_52e893ba",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 43
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "557a9a90_d29bccbe",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-02T04:18:32Z",
       "side": 1,
       "message": "Shouldn\u0027t we run GAP/SEC/SEM/BI-04-C and make sure it pass with pts-bot since this is the reason for the bug ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5612fbdb_ae0940ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-02T16:01:18Z",
+      "side": 1,
+      "message": "QA has verified the change.\n\nCurrently pts-bot skips this test case https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;drc\u003dc720d2f3e3ffb542bc5fa242b2fddde7fb179ebe;l\u003d819",
+      "parentUuid": "557a9a90_d29bccbe",
       "range": {
         "startLine": 13,
         "startChar": 0,
