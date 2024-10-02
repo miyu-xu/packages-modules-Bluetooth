@@ -76,6 +76,7 @@ struct L2CA_SetMediaStreamChannel L2CA_SetMediaStreamChannel;
 struct L2CA_isMediaChannel L2CA_isMediaChannel;
 struct L2CA_LeCreditDefault L2CA_LeCreditDefault;
 struct L2CA_LeCreditThreshold L2CA_LeCreditThreshold;
+struct L2CA_GetAclHandle L2CA_GetAclHandle;
 
 }  // namespace stack_l2cap_api
 }  // namespace mock
@@ -254,6 +255,11 @@ uint16_t L2CA_LeCreditDefault() {
 uint16_t L2CA_LeCreditThreshold() {
   inc_func_call_count(__func__);
   return test::mock::stack_l2cap_api::L2CA_LeCreditThreshold();
+}
+
+bool L2CA_GetAclHandle() {
+  inc_func_call_count(__func__);
+  return test::mock::stack_l2cap_api::L2CA_GetAclHandle();
 }
 
 // END mockcify generation
