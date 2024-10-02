@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08ac52d_84b2963d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3914,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-02T16:41:10Z",
+      "side": 1,
+      "message": "Reading this condition, the behavior is closest to what previously existed when the flag is on, which is weird",
+      "range": {
+        "startLine": 3914,
+        "startChar": 24,
+        "endLine": 3914,
+        "endChar": 49
+      },
+      "revId": "4c74ba3fc236ddeb6f0077405ef4a5c7c18d0e7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
