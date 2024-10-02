@@ -22,6 +22,30 @@
       },
       "revId": "4eea49802bf8afa6172a4b68bd883bb4ba9840ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6017d252_eb8ac00b",
+        "filename": "flags/hap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-02T06:25:39Z",
+      "side": 1,
+      "message": "added metadata with PURPOSE_BUGFIX",
+      "parentUuid": "cda6b979_0f9c6ce4",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "4eea49802bf8afa6172a4b68bd883bb4ba9840ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
