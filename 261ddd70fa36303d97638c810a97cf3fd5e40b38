@@ -131,6 +131,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1140e2b_36528a51",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T17:28:33Z",
+      "side": 1,
+      "message": "My only concern was that this is a poor change detector test.\n\nwe have a method that does:\n```\nfoo() {\n  native.doStuff()\n}\n```\nand the test is : \n```\ntest_foo() {\n  foo();\n  verify(native).doStuff();\n}\n```\n\nBut I understand that without fine controller on the DisplayManager, it is hard (is it even possible) to make a test that interact with the whole code.\n\nClosing this comment, a simple unit test coverage is the best we will have here",
+      "parentUuid": "892f798a_c6e76032",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 42
+      },
+      "revId": "261ddd70fa36303d97638c810a97cf3fd5e40b38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95571cc6_0030e2de",
