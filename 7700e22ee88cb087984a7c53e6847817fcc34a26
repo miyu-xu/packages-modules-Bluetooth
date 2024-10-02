@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d1180d7_52e893ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T04:18:32Z",
+      "side": 1,
+      "message": "My comment may be irrelevant but... Why do we want this to be configurable ?\n\nif GAP/SEC/SEM/BI-04-C require a encryption key of 16, can\u0027t we simply use 16 everytime as a min encryption size ? and not let it configurable?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 43
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "557a9a90_d29bccbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T04:18:32Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we run GAP/SEC/SEM/BI-04-C and make sure it pass with pts-bot since this is the reason for the bug ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "7700e22ee88cb087984a7c53e6847817fcc34a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "622d4751_33ccfca4",
         "filename": "sysprop/gap.sysprop",
         "patchSetId": 2
