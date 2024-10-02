@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b09a5b5_0dcdc6b1",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-02T17:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3233695d_1fdb1c25",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63d05885_dc7bbc1b",
@@ -166,6 +184,24 @@
       "side": 1,
       "message": "Maybe the intention is that with this API the Host stack wants to say to GmapClient if GMAP is supported, is that correct?\n\nAnd this could be supported either with offloader or SW path - so maybe it should be `SetGmapHostSupport()` ?",
       "parentUuid": "f9fb63a8_46ebeba4",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ce2aee_9532b509",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-02T17:17:52Z",
+      "side": 1,
+      "message": "I changed it to `UpdateGmapOffloaderSupport`, its value will be used in  `IsGmapClientEnabled`",
+      "parentUuid": "81443469_e36d9aa0",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -287,6 +323,24 @@
       "side": 1,
       "message": "I think I\u0027m missing something to understand on how that API should work, \nWe should wait for the implementation which will prove API is working.\n\n\nActually in my head I had following idea, let me share.\n1. We could have API which allows to set characteristic Uuids and corresponding handles\n\ne.g. bool setCharacteristicInformations(address, \u003cuuid, handle\u003e);\n\nThis would be called in client.cc od OnServiceSearchComplete\n\n2. Then we could have API that can handle data read responses\n\ne.g. bool handleCharacteristicValueHandle(address, handle, len, value, is_notification);\n\n3. then API which verifies that GMAP is ready, which means that all characteristics are read, and then all the needed getters for different values.\n\n\nAnyways, for sure we need to have and address as a context either in each API or we can have different GmapClient instances per address (then we need some instance getter or constructor).",
       "parentUuid": "8ec94c4b_78685e20",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8164ac86_757b859e",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-02T17:17:52Z",
+      "side": 1,
+      "message": "updated, please take a look :)",
+      "parentUuid": "0ad9682d_daea2994",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -457,6 +511,24 @@
       "side": 1,
       "message": "yes",
       "parentUuid": "79b375f1_dd6941db",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c1ea46f_f9b8c0d6",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-02T17:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1795811e_b2165519",
       "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
