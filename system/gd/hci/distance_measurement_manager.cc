@@ -983,6 +983,23 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     }
   }
 
+  void handle_remote_data_timeout(const Address address, uint16_t connection_handle) {
+    log::warn("address:{}, connection_handle 0x{:04x}", address.ToString(), connection_handle);
+    auto it = cs_trackers_.find(connection_handle);
+    if (it == cs_trackers_.end()) {
+      log::debug("no cs tracker is found for connection - {}", connection_handle);
+      return;
+    }
+
+    if (it->second.measurement_ongoing && it->second.local_start) {
+      cs_trackers_[connection_handle].repeating_alarm->Cancel();
+      send_le_cs_procedure_enable(connection_handle, Enable::DISABLED);
+      distance_measurement_callbacks_->OnDistanceMeasurementStopped(
+              it->second.address, REASON_INTERNAL_ERROR, METHOD_CS);
+    }
+    reset_tracker_on_stopped(&(it->second));
+  }
+
   void parse_ras_segments(RangingHeader ranging_header, PacketViewForRecombination& segment_data,
                           uint16_t connection_handle) {
     log::debug("Data size {}, Ranging_header {}", segment_data.size(), ranging_header.ToString());
@@ -1575,6 +1592,11 @@ void DistanceMeasurementManager::HandleRemoteData(const Address& address,
                                                   uint16_t connection_handle,
                                                   const std::vector<uint8_t>& raw_data) {
   CallOn(pimpl_.get(), &impl::handle_remote_data, address, connection_handle, raw_data);
+}
+
+void DistanceMeasurementManager::HandleRemoteDataTimeout(const Address& address,
+                                                         uint16_t connection_handle) {
+  CallOn(pimpl_.get(), &impl::handle_remote_data_timeout, address, connection_handle);
 }
 
 }  // namespace hci
