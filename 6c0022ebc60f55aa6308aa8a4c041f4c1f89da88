@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3bdaeb_c0be55ea",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2213,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-02T17:12:54Z",
+      "side": 1,
+      "message": "Wondering why this was not captured by unit tests? Could we add some tests to cover this?",
+      "revId": "6c0022ebc60f55aa6308aa8a4c041f4c1f89da88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
