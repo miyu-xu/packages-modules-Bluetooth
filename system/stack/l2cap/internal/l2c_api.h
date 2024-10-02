@@ -777,3 +777,20 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status);
 **
 *******************************************************************************/
 [[nodiscard]] bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_local_cid);
+
+/*******************************************************************************
+ *
+ *  Function        L2CA_GetAclHandle
+ *
+ *  Description     Given a local channel identifier, |lcid|, this function
+ *                  returns the bound ACL handle, |acl_handle|. If |acl_handle|
+ *                  is not known or is invalid, this function returns false and
+ *                  does not modify the value pointed at by |acl_handle|.
+ *
+ *  Parameters:     lcid: Local CID
+ *                  rcid: Pointer to ACL handle must NOT be nullptr
+ *
+ *  Return value:   true if acl_handle lookup was successful
+ *
+ ******************************************************************************/
+[[nodiscard]] bool L2CA_GetAclHandle(uint16_t lcid, uint16_t* acl_handle);
