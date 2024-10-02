@@ -123,6 +123,24 @@
       "parentUuid": "532ed233_51721b1c",
       "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92b592e6_a90518af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-02T02:08:26Z",
+      "side": 1,
+      "message": "Updated the design to now save the guest user ID. Restarting BT within the same guest user does not remove the device. However switching the guest user does remove the device.",
+      "parentUuid": "bbbe0165_3c339c33",
+      "revId": "78f203a51f13392c9fd3b468877e6a5233431cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
