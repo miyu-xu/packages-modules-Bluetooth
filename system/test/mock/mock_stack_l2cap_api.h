@@ -468,6 +468,13 @@ struct L2CA_LeCreditThreshold {
 };
 extern struct L2CA_LeCreditThreshold L2CA_LeCreditThreshold;
 
+struct L2CA_GetAclHandle {
+  std::function<bool(uint16_t lcid, uint16_t* acl_handle)> body{
+          [](uint16_t /* lcid */, uint16_t* /* acl_handle */) { return false; }};
+  bool operator()(uint16_t lcid, uint16_t* acl_handle) { return body(lcid, acl_handle); }
+};
+extern struct L2CA_GetAclHandle L2CA_GetAclHandle;
+
 }  // namespace stack_l2cap_api
 }  // namespace mock
 }  // namespace test
