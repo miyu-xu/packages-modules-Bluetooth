@@ -16,11 +16,11 @@
  */
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 #include <cstring>
@@ -34,8 +34,10 @@
 #include "btif/include/btif_sock_util.h"
 #include "btif/include/btif_uid.h"
 #include "gd/os/rand.h"
+#include "hci/lpp_offload_interface.h"
 #include "include/hardware/bluetooth.h"
 #include "internal_include/bt_target.h"
+#include "main/shim/entry.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
@@ -259,6 +261,22 @@ static void btsock_l2cap_free_l(l2cap_socket* sock) {
           SOCKET_CONNECTION_STATE_DISCONNECTED,
           sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->app_uid, sock->channel,
           sock->tx_bytes, sock->rx_bytes, sock->name);
+
+  if (sock->data_path_in_use == SOCKET_DATA_PATH_SOFTWARE_OFFLOAD ||
+      sock->data_path_in_use == SOCKET_DATA_PATH_HARDWARE_OFFLOAD) {
+    bluetooth::hci::SocketContext socket_context = {
+            .socketId = sock->conn_uuid,
+            .state = bluetooth::hci::ConnectionState::ST_DISCONNECTED,
+            .dataPath = static_cast<bluetooth::hci::SocketDataPath>(sock->data_path_in_use),
+            .endpointInfo.hubId = sock->hub_id,
+            .endpointInfo.endpointId = sock->endpoint_id,
+    };
+    if (!bluetooth::shim::GetLppOffloadManager()->NotifySocketConnectionStateChange(
+                socket_context)) {
+      log::info("Failed NotifySocketConnectionStateChange for conn_uuid {}", sock->conn_uuid);
+    }
+  }
+
   if (sock->next) {
     sock->next->prev = sock->prev;
   }
@@ -551,6 +569,7 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
   sock->handle = -1; /* We should no longer associate this handle with the server socket */
   accept_rs->is_le_coc = sock->is_le_coc;
   accept_rs->tx_mtu = sock->tx_mtu = p_open->tx_mtu;
+  accept_rs->rx_mtu = sock->rx_mtu;
   accept_rs->local_cid = p_open->local_cid;
   accept_rs->remote_cid = p_open->remote_cid;
   Uuid uuid = Uuid::From128BitBE(bluetooth::os::GenerateRandom<Uuid::kNumBytes128>());
@@ -576,6 +595,41 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
                               SOCKET_CONNECTION_STATE_CONNECTED,
                               accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
                               accept_rs->app_uid, accept_rs->channel, 0, 0, accept_rs->name);
+
+  if (accept_rs->data_path == SOCKET_DATA_PATH_SOFTWARE_OFFLOAD ||
+      accept_rs->data_path == SOCKET_DATA_PATH_HARDWARE_OFFLOAD) {
+    if (accept_rs->is_auto_switch) {
+      bluetooth::hci::SocketContext socket_context = {
+              .socketId = accept_rs->conn_uuid,
+              .state = bluetooth::hci::ConnectionState::ST_CONNECTED,
+              .name = accept_rs->socket_name,
+              .aclHandle = p_open->acl_handle,
+              .dataPath = static_cast<bluetooth::hci::SocketDataPath>(accept_rs->data_path),
+              .protocol = bluetooth::hci::SocketProtocol::LE_COC,
+              .channelInfo.leCocChannelInfo.localL2capCid = p_open->local_cid,
+              .channelInfo.leCocChannelInfo.remoteL2capCid = p_open->remote_cid,
+              .channelInfo.leCocChannelInfo.psm = accept_rs->channel,
+              .channelInfo.leCocChannelInfo.localMtu = accept_rs->rx_mtu,
+              .channelInfo.leCocChannelInfo.remoteMtu = accept_rs->tx_mtu,
+              .channelInfo.leCocChannelInfo.localMps = p_open->local_coc_mps,
+              .channelInfo.leCocChannelInfo.remoteMps = p_open->remote_coc_mps,
+              .channelInfo.leCocChannelInfo.localCredit = p_open->local_coc_credit,
+              .channelInfo.leCocChannelInfo.remoteCredit = p_open->remote_coc_credit,
+              .endpointInfo.hubId = accept_rs->hub_id,
+              .endpointInfo.endpointId = accept_rs->endpoint_id,
+      };
+
+      if (bluetooth::shim::GetLppOffloadManager()->NotifySocketConnectionStateChange(
+                  socket_context)) {
+        accept_rs->data_path_in_use = accept_rs->data_path;
+        log::info("Data path was switched to {} for conn_uuid {}", accept_rs->data_path_in_use,
+                  accept_rs->conn_uuid);
+      } else {
+        log::error("Failed NotifySocketConnectionStateChange for conn_uuid {}",
+                   accept_rs->conn_uuid);
+      }
+    }
+  }
 
   // start monitor the socket
   btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_EXCEPTION, sock->id);
@@ -616,6 +670,39 @@ static void on_cl_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket* 
                               SOCKET_CONNECTION_STATE_CONNECTED,
                               sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
                               sock->app_uid, sock->channel, 0, 0, sock->name);
+
+  if (sock->data_path == SOCKET_DATA_PATH_SOFTWARE_OFFLOAD ||
+      sock->data_path == SOCKET_DATA_PATH_HARDWARE_OFFLOAD) {
+    if (sock->is_auto_switch) {
+      bluetooth::hci::SocketContext socket_context = {
+              .socketId = sock->conn_uuid,
+              .state = bluetooth::hci::ConnectionState::ST_CONNECTED,
+              .name = sock->socket_name,
+              .aclHandle = p_open->acl_handle,
+              .dataPath = static_cast<bluetooth::hci::SocketDataPath>(sock->data_path),
+              .protocol = bluetooth::hci::SocketProtocol::LE_COC,
+              .channelInfo.leCocChannelInfo.localL2capCid = p_open->local_cid,
+              .channelInfo.leCocChannelInfo.remoteL2capCid = p_open->remote_cid,
+              .channelInfo.leCocChannelInfo.psm = sock->channel,
+              .channelInfo.leCocChannelInfo.localMtu = sock->rx_mtu,
+              .channelInfo.leCocChannelInfo.remoteMtu = sock->tx_mtu,
+              .channelInfo.leCocChannelInfo.localMps = p_open->local_coc_mps,
+              .channelInfo.leCocChannelInfo.remoteMps = p_open->remote_coc_mps,
+              .channelInfo.leCocChannelInfo.localCredit = p_open->local_coc_credit,
+              .channelInfo.leCocChannelInfo.remoteCredit = p_open->remote_coc_credit,
+              .endpointInfo.hubId = sock->hub_id,
+              .endpointInfo.endpointId = sock->endpoint_id,
+      };
+      if (bluetooth::shim::GetLppOffloadManager()->NotifySocketConnectionStateChange(
+                  socket_context)) {
+        sock->data_path_in_use = sock->data_path;
+        log::info("Data path was switched to {} for conn_uuid {}", sock->data_path_in_use,
+                  sock->conn_uuid);
+      } else {
+        log::error("Failed NotifySocketConnectionStateChange for conn_uuid {}", sock->conn_uuid);
+      }
+    }
+  }
 
   // start monitoring the socketpair to get call back when app writing data
   btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_RD, sock->id);
