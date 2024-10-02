@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5714fda2_a7aa2f59",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-02T20:03:23Z",
+      "side": 1,
+      "message": "nit: can we update the name to be something specific like mSyncFailureCounter",
+      "revId": "46728d322e525c48f4824590cc1e5e7572cc69f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b540bc5d_9a8877d9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2049,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-02T20:03:23Z",
+      "side": 1,
+      "message": "in case of synced, do we need to remove this id from the counter map?",
+      "revId": "46728d322e525c48f4824590cc1e5e7572cc69f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
