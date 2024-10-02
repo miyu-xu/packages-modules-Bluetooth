@@ -1,0 +1,178 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ea36a0_ee8bb533",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-02T15:52:03Z",
+      "side": 1,
+      "message": "LE Audio MCP uses audio_util and `MediaPlayerList`, doesn\u0027t it? It feels a bit weird to pass the AVRCP specific cover art service over here.\n\nI always thought the intent of this package was to communicate data back to AvcrpTargetService and the MCP implementation via callbacks, and the profile specific stuff (like storing cover art) was supposed to be done in the profile services themselves. This seems to cross those responsibilities a bit.\n\nI think what I might do is wrap the callback (or really, just make your own and change the function signature since all it does it call the native response function) used in AvrcpTargetService to inspect the items before passing them on.\n\nI\u0027ll leave a comment with the idea in the right place too",
+      "range": {
+        "startLine": 694,
+        "startChar": 12,
+        "endLine": 694,
+        "endChar": 48
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78f38874_74e0a026",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-02T15:52:03Z",
+      "side": 1,
+      "message": "I think we still want a separate thing for URI images, since I think we use that in a few places to determine if we want to make bitmap copies of things at a URI or not.\n\nIMO, its still valid to have VFS cover art, but not URI images. It might just lower the number of apps we interoperate with. That\u0027s a product decision though.\n\nSo, I\u0027d split the new VFS artwork config from the existing URI config.",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 91
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "86c53e11_40d0dd01",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 59,
+                "endChar": 0
+              },
+              "replacement": "        return context.getResources().getBoolean(R.bool.avrcp_target_enable_uri_cover_art);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "912e0330_d3856ae0",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-02T15:52:03Z",
+      "side": 1,
+      "message": "Do you intend for this to be controllable by a partner without patches?\n\nAFAIK, build-time ROs like this can\u0027t be updated by partners since we\u0027re an APEX. The constants left in the file are effectively fixed unless we change them to some other mechanism that is accessible.\n\nSystem properties, or full-blown sysprops when we want to commit to things, are the way we\u0027ve been going in the stack. So that\u0027s what I\u0027d recommend, based on your needs.\n\nI wouldn\u0027t use a forever trunk stable flag, nor this build-time RO, nor an RRO.",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 100
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df2dd414_f03317e4",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-02T15:52:03Z",
+      "side": 1,
+      "message": "Yesssss 😄",
+      "range": {
+        "startLine": 231,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b972b684_1d83ebf8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+              "range": {
+                "startLine": 231,
+                "startChar": 0,
+                "endLine": 232,
+                "endChar": 0
+              },
+              "replacement": "        if (mAvrcpVersion.isAtLeastVersion(AvrcpVersion.AVRCP_VERSION_1_6)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3913583e_eb6af2ca",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-02T15:52:03Z",
+      "side": 1,
+      "message": "I would rework this function such that it doesn\u0027t take a callback, and I would make my own. You can probably do it without a flag too. Something like:\n```\nvoid getFolderItems(int playerId, String mediaId) {\n    // Or, just make an multi-line lambda, but I couldn\u0027t remember the syntax!\n    mMediaPlayerList.getFolderItems(\n            playerId, mediaId, (a, b) -\u003e handleFolderItemsResponse(a, b));\n}\n\nvoid handleFolderItemsResponse(String mediaId, ArrayList\u003cListItem\u003e items) {\n    // Step 1: store artwork if version 1.6 AND VFS art is enabled\n    // The cover art logic needs a flag probably\n    if (mAvrcpCoverArtService !\u003d null \u0026\u0026 mIsVfsCoverArtEnabled) {\n        for (ListItem item : items) {\n            if (item !\u003d null \u0026\u0026 item.song !\u003d null \u0026\u0026 item.song.image !\u003d null) {\n                String imageHandle \u003d \n                        mAvrcpCoverArtService.storeImage(item.song.image);\n                if (imageHandle !\u003d null) {\n                    item.song.image.setImageHandle(imageHandle);\n                }\n            }\n        }\n    }\n\n    // Step 2: Send the items back down the native stack\n    mNativeInterface.getFolderItemsResponse(mediaId, items);\n}\n```\n\nThis would then require you to change AvrcpNativeInterface to no longer pass the simple callback it sends. Minus the cover art, this is a mechanical refactor in my mind. It doesn\u0027t mess with the abstraction at all, and keeps all the AVRCP logic in AVRCP. The tests need updated after though 😞",
+      "range": {
+        "startLine": 496,
+        "startChar": 4,
+        "endLine": 499,
+        "endChar": 5
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e384d976_29f99f05",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/helpers/AvrcpVersion.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-02T15:52:03Z",
+      "side": 1,
+      "message": "As much as I _really_ want this to happen, you\u0027ll probably want to make this part (and the constant in `avrc_api.h`) a separate patch so it doesn\u0027t interfere with the other good work you\u0027re trying to do here. I\u0027d hate someone to take issue and make you revert all of this.",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 96
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
