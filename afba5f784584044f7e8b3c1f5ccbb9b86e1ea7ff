@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed1ce01_f8fd7796",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-02T15:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01786399_766f0ec9",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "afba5f784584044f7e8b3c1f5ccbb9b86e1ea7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f387454_5df56bbb",
@@ -196,6 +220,30 @@
       "writtenOn": "2024-09-30T22:51:40Z",
       "side": 1,
       "message": "I would remove `in.dataAvail() \u003e\u003d Long.BYTES` since the read is protected by the flag.\n\nBut it appear that the data is always written into the parcel, without flag. \nSo I would not flag anything at all here and simply have:\n\n```\nreturn new Builder(in.readDouble(), in.readDouble())\n                            .setAzimuthAngle(in.readDouble())\n                            .setErrorAzimuthAngle(in.readDouble())\n                            .setAltitudeAngle(in.readDouble())\n                            .setErrorAltitudeAngle(in.readDouble())\n                            .setDelaySpreadMeters(in.readDouble())\n                            .setConfidenceLevel(in.readDouble())\n                            .setDetectedAttackLevel(in.readInt())\n                            .setVelocityMetersPerSecond(in.readDouble())\n                            .setMeasurementTimestampNanos(in.readLong());\n                            .build();\n```\n\nand add a suppress warning for the FlaggedApi that will result by using the api",
+      "range": {
+        "startLine": 408,
+        "startChar": 9,
+        "endLine": 411,
+        "endChar": 43
+      },
+      "revId": "afba5f784584044f7e8b3c1f5ccbb9b86e1ea7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "476833c3_377063f4",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-02T15:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bda1e16_75477b3f",
       "range": {
         "startLine": 408,
         "startChar": 9,
