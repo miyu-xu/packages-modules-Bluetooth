@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9871fb7_e88f8381",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1801,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-02T07:24:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2161d938_20bf5db3",
+      "range": {
+        "startLine": 1798,
+        "startChar": 1,
+        "endLine": 1801,
+        "endChar": 41
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ee16f22_b6d799d6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-01T18:33:35Z",
       "side": 1,
       "message": "```suggestion\n      send_read_report_reply(hid_handle, BTA_HH_ERR, nullptr);\n```",
+      "range": {
+        "startLine": 1834,
+        "startChar": 54,
+        "endLine": 1834,
+        "endChar": 62
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dae11d0_12e991ff",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1834,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-02T07:24:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ee16f22_b6d799d6",
       "range": {
         "startLine": 1834,
         "startChar": 54,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0840e7c0_66c865e6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1850,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-02T07:24:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9573f08b_3058d88d",
+      "range": {
+        "startLine": 1850,
+        "startChar": 56,
+        "endLine": 1850,
+        "endChar": 64
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b78f715_7f19132b",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0192226e_a0f16340",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1883,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-02T07:24:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b78f715_7f19132b",
+      "range": {
+        "startLine": 1855,
+        "startChar": 0,
+        "endLine": 1883,
+        "endChar": 1
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dacbb926_2921b248",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-10-01T18:33:35Z",
       "side": 1,
       "message": "Use brace initializer to make sure everything is properly null initialized in tBTA_HH_CBDATA\n```suggestion\n  tBTA_HH_CBDATA cback_data \u003d {\n    .handle \u003d hid_handle,\n    .status \u003d status,\n  };\n```",
+      "range": {
+        "startLine": 1920,
+        "startChar": 2,
+        "endLine": 1922,
+        "endChar": 29
+      },
+      "revId": "8965df10d5f308c793077997b51ae84a77d41463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afcbabb3_1c2959d5",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1922,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-02T07:24:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dacbb926_2921b248",
       "range": {
         "startLine": 1920,
         "startChar": 2,
