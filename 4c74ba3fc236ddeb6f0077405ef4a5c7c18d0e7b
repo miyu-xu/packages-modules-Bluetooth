@@ -22,6 +22,30 @@
       },
       "revId": "4c74ba3fc236ddeb6f0077405ef4a5c7c18d0e7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a066f476_62260933",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3914,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-02T18:02:17Z",
+      "side": 1,
+      "message": "If flag is off, we run on the mainHandler, if flag is on we run on binder thread.\n\nThe `synchronized (sProfileLock) {` is no-op in case of flag off as the code is alwasy run on mainHandler",
+      "parentUuid": "b08ac52d_84b2963d",
+      "range": {
+        "startLine": 3914,
+        "startChar": 24,
+        "endLine": 3914,
+        "endChar": 49
+      },
+      "revId": "4c74ba3fc236ddeb6f0077405ef4a5c7c18d0e7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
