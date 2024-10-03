@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a72e246_104a14d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-03T11:20:13Z",
+      "side": 1,
+      "message": "Zhengping, please let me know if this refactor is compatible the upcoming pnp solution.",
+      "revId": "a23aaf6284a9cb4593360c12ee5ad6be1d6efc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
