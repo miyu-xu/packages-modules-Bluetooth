@@ -189,6 +189,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97142803_e9b32dff",
+        "filename": "system/bta/gmap/gmap_client_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T17:22:14Z",
+      "side": 1,
+      "message": "working on that",
+      "parentUuid": "16108392_08ad0aff",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca9328a4_fcb3e9ff",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 11
