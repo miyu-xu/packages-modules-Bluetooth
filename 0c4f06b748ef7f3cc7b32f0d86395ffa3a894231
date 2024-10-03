@@ -16,6 +16,24 @@
       "message": "I know that there is some deadlock possible when informing the audiomanager within a synchronized of the mStateMachine.\n\nYuyang uploaded a fix recently.",
       "revId": "0c4f06b748ef7f3cc7b32f0d86395ffa3a894231",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "922b4ed5_cbb3aa15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T18:37:42Z",
+      "side": 1,
+      "message": "this won\u0027t has deadlock because when Audio Manager `handleBluetoothActiveDeviceChanged` received this, it won\u0027t check Bluetooth Audio state. For example, ASHA\u0027s `handleBluetoothActiveDeviceChanged` is also inside synchronized keyword",
+      "parentUuid": "9b2f97ff_6f1b6595",
+      "revId": "0c4f06b748ef7f3cc7b32f0d86395ffa3a894231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
