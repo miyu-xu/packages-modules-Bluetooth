@@ -18,7 +18,7 @@
 
 #include "test/headless/read/read.h"
 
-#include "os/log.h"  // android log only
+// android log only
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
 #include "test/headless/read/name.h"
