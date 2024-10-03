@@ -31,7 +31,12 @@ class BluetoothService(context: Context) : SystemService(context) {
     init {
         mHandlerThread = HandlerThread("BluetoothManagerService")
         mHandlerThread.start()
-        mBluetoothManagerService = BluetoothManagerService(context, mHandlerThread.getLooper())
+        mBluetoothManagerService =
+            BluetoothManagerService(
+                context,
+                mHandlerThread.getLooper(),
+                Storage(context, "bluetooth_preference_storage"),
+            )
     }
 
     private fun initialize(user: TargetUser) {
@@ -47,7 +52,7 @@ class BluetoothService(context: Context) : SystemService(context) {
         if (phase == SystemService.PHASE_SYSTEM_SERVICES_READY) {
             publishBinderService(
                 BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE,
-                mBluetoothManagerService.getBinder()
+                mBluetoothManagerService.getBinder(),
             )
         }
     }

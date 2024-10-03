@@ -29,6 +29,13 @@ rm -rf ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip/com/android/server/blue
 rm -rf ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip/com/android/server/bluetooth/'BluetoothAdapterState$waitForState$3$invokeSuspend$$inlined$filter$1$2.class'
 rm -rf ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip/com/android/server/bluetooth/R.class
 
+# shellcheck disable=SC2016
+rm -rf ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip/com/android/server/bluetooth/'Storage$getAddress$1$invokeSuspend$$inlined$map$1$2.class'
+# shellcheck disable=SC2016
+rm -rf ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip/com/android/server/bluetooth/'Storage$getName$1$invokeSuspend$$inlined$map$1$2.class'
+# shellcheck disable=SC2016
+rm -rf ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip/com/android/server/bluetooth/'Storage$nameAndAddressMigrated$1$invokeSuspend$$inlined$map$1$2.class'
+
 # Generate report:
 # You may want to run "m jacoco-cli" if above command failed
 java -jar "${ANDROID_BUILD_TOP}"/out/host/linux-x86/framework/jacoco-cli.jar report "${COVERAGE_COLLECTED}"/log/invocation_*/inv_*/coverage_*.ec --classfiles ${COVERAGE_TMP_FOLDER}/ServiceBluetoothRobo_unzip --html ${COVERAGE_TMP_FOLDER}/coverage --name coverage.html --sourcefiles ${COVERAGE_TMP_FOLDER}
