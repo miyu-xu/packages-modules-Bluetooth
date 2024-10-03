@@ -938,6 +938,21 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
                          sock->rx_mtu, std::move(cfg), btsock_l2cap_cbk, sock->id);
 }
 
+static bool get_rx_mtu_for_le_coc_offload(hci::SocketDataPath data_path, uint16_t* rx_mtu) {
+  hci::SocketProperties socket_prop;
+  if (!bluetooth::shim::GetLppOffloadManager()->GetSocketProperties(
+              static_cast<hci::SocketDataPath>(data_path), &socket_prop)) {
+    return false;
+  }
+  for (const auto& prop : socket_prop.protocolProperties_) {
+    if (prop.protocol == hci::SocketProtocol::LE_COC) {
+      *rx_mtu = prop.protocolSpec.leCocSpec.mtu;
+      return true;
+    }
+  }
+  return false;
+}
+
 static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAddress* addr,
                                                   int channel, int* sock_fd, int flags, char listen,
                                                   int app_uid, int data_path,
@@ -980,8 +995,16 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   sock->channel = channel;
   sock->app_uid = app_uid;
   sock->is_le_coc = is_le_coc;
-  sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
   sock->data_path = data_path;
+  if (sock->data_path == SOCKET_DATA_PATH_OFFLOAD_OFF) {
+    sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
+  } else {
+    uint16_t rx_mtu;
+    if (!get_rx_mtu_for_le_coc_offload(static_cast<hci::SocketDataPath>(data_path), &rx_mtu)) {
+      return BT_STATUS_UNSUPPORTED;
+    }
+    sock->rx_mtu = rx_mtu;
+  }
   if (socket_name) {
     strncpy(sock->socket_name, socket_name, sizeof(sock->socket_name));
   }
