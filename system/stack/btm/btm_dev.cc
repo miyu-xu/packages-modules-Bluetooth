@@ -28,6 +28,7 @@
 
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
+#include <fmt/ranges.h>
 
 #include <string>
 
