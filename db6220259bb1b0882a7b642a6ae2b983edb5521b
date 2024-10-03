@@ -1,0 +1,178 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a07a431b_b7f3e3dc",
+        "filename": "system/btif/src/btif_profile_queue.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T23:14:52Z",
+      "side": 1,
+      "message": "Very nice",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 81
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d3f2c377_3b72966f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_profile_queue.cc",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": "    return fmt::format(\"address\u003d{} UUID\u003d{:04X} busy\u003d{}\", address_.ToString(), uuid_, busy_);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f7d974_f9a056a3",
+        "filename": "system/gd/common/audit_log.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T23:14:52Z",
+      "side": 1,
+      "message": "What is this for? I know it is comming from the inlining of os/log.h but I don\u0027t know the related code",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed9db14e_f38e6275",
+        "filename": "system/test/headless/discovery/discovery.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T23:14:52Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "be61edaf_f22d8063",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/test/headless/discovery/discovery.cc",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1e07fba_7b518f3c",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T23:14:52Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "011272e8_f9a3755e",
+        "filename": "system/test/headless/nop/nop.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T23:14:52Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 19
+      },
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5da4b4a_1f303820",
+        "filename": "system/test/headless/read/read.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T23:14:52Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
