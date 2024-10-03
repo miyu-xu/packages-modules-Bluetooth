@@ -20,8 +20,10 @@ import static android.bluetooth.BluetoothAdapter.SCAN_MODE_NONE;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.clearInvocations;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 
 import android.content.Context;
@@ -43,34 +45,48 @@ import org.mockito.junit.MockitoRule;
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class AdapterSuspendTest {
-    private TestLooper mTestLooper;
-    private DisplayManager mDisplayManager;
     private AdapterSuspend mAdapterSuspend;
+    private AdapterSuspend.SuspendListener mSuspendListener;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock private AdapterNativeInterface mAdapterNativeInterface;
+    @Mock private AdapterSuspend.DisplaySuspendObserver mDisplaySuspendObserver;
 
     @Before
     public void setUp() throws Exception {
-        Context context = InstrumentationRegistry.getTargetContext();
-        mTestLooper = new TestLooper();
-        mDisplayManager = context.getSystemService(DisplayManager.class);
+        doAnswer(
+                        invocation -> {
+                            mSuspendListener = invocation.getArgument(0);
+                            return null;
+                        })
+                .when(mDisplaySuspendObserver)
+                .registerListener(any(AdapterSuspend.SuspendListener.class));
 
-        mAdapterSuspend =
-                new AdapterSuspend(
-                        mAdapterNativeInterface, mTestLooper.getLooper(), mDisplayManager);
+        mAdapterSuspend = new AdapterSuspend(mAdapterNativeInterface, mDisplaySuspendObserver);
     }
 
     private void triggerSuspend() throws Exception {
-        mAdapterSuspend.handleSuspend();
+        mSuspendListener.onSuspend();
     }
 
     private void triggerResume() throws Exception {
-        mAdapterSuspend.handleResume();
+        mSuspendListener.onResume();
     }
 
     private boolean isSuspended() throws Exception {
         return mAdapterSuspend.isSuspended();
+    }
+
+    @Test
+    public void testSuspendObserverFactory() throws Exception {
+        Context context = InstrumentationRegistry.getTargetContext();
+        TestLooper testLooper = new TestLooper();
+        DisplayManager displayManager = context.getSystemService(DisplayManager.class);
+
+        AdapterSuspend.SuspendObserver suspendObserver =
+                AdapterSuspend.SuspendObserverFactory.createDisplaySuspendObserver(
+                        testLooper.getLooper(), displayManager);
+        assertThat(suspendObserver instanceof AdapterSuspend.DisplaySuspendObserver).isTrue();
     }
 
     @Test

@@ -41,40 +41,31 @@ public class AdapterSuspend {
 
     private boolean mSuspended = false;
 
+    private final SuspendObserver mSuspendObserver;
     private final AdapterNativeInterface mAdapterNativeInterface;
-    private final Looper mLooper;
-    private final DisplayManager mDisplayManager;
-    private final DisplayManager.DisplayListener mDisplayListener =
-            new DisplayManager.DisplayListener() {
+    private final SuspendListener mSuspendListener =
+            new SuspendListener() {
                 @Override
-                public void onDisplayAdded(int displayId) {}
+                public void onSuspend() {
+                    handleSuspend();
+                }
 
                 @Override
-                public void onDisplayRemoved(int displayId) {}
-
-                @Override
-                public void onDisplayChanged(int displayId) {
-                    if (isScreenOn()) {
-                        handleResume();
-                    } else {
-                        handleSuspend();
-                    }
+                public void onResume() {
+                    handleResume();
                 }
             };
 
     public AdapterSuspend(
-            AdapterNativeInterface adapterNativeInterface,
-            Looper looper,
-            DisplayManager displayManager) {
+            AdapterNativeInterface adapterNativeInterface, SuspendObserver suspendObserver) {
         mAdapterNativeInterface = requireNonNull(adapterNativeInterface);
-        mLooper = requireNonNull(looper);
-        mDisplayManager = requireNonNull(displayManager);
+        mSuspendObserver = requireNonNull(suspendObserver);
 
-        mDisplayManager.registerDisplayListener(mDisplayListener, new Handler(mLooper));
+        mSuspendObserver.registerListener(mSuspendListener);
     }
 
     void cleanup() {
-        mDisplayManager.unregisterDisplayListener(mDisplayListener);
+        mSuspendObserver.cleanup();
     }
 
     @VisibleForTesting
@@ -82,13 +73,7 @@ public class AdapterSuspend {
         return mSuspended;
     }
 
-    private boolean isScreenOn() {
-        return Arrays.stream(mDisplayManager.getDisplays())
-                .anyMatch(display -> display.getState() == Display.STATE_ON);
-    }
-
-    @VisibleForTesting
-    void handleSuspend() {
+    private void handleSuspend() {
         if (mSuspended) {
             return;
         }
@@ -110,8 +95,7 @@ public class AdapterSuspend {
         Log.i(TAG, "ready to suspend");
     }
 
-    @VisibleForTesting
-    void handleResume() {
+    private void handleResume() {
         if (!mSuspended) {
             return;
         }
@@ -125,5 +109,76 @@ public class AdapterSuspend {
         mAdapterNativeInterface.setScanMode(
                 AdapterService.convertScanModeToHal(SCAN_MODE_CONNECTABLE));
         Log.i(TAG, "resumed");
+    }
+
+    interface SuspendObserver {
+        void registerListener(SuspendListener listener);
+
+        void cleanup();
+    }
+
+    interface SuspendListener {
+        void onSuspend();
+
+        void onResume();
+    }
+
+    static class SuspendObserverFactory {
+        static SuspendObserver createDisplaySuspendObserver(
+                Looper looper, DisplayManager displayManager) {
+            return new DisplaySuspendObserver(looper, displayManager);
+        }
+    }
+
+    static class DisplaySuspendObserver implements SuspendObserver {
+        private SuspendListener mSuspendListener;
+
+        private final Looper mLooper;
+        private final DisplayManager mDisplayManager;
+        private final DisplayManager.DisplayListener mDisplayListener =
+                new DisplayManager.DisplayListener() {
+                    @Override
+                    public void onDisplayAdded(int displayId) {}
+
+                    @Override
+                    public void onDisplayRemoved(int displayId) {}
+
+                    @Override
+                    public void onDisplayChanged(int displayId) {
+                        update();
+                    }
+                };
+
+        DisplaySuspendObserver(Looper looper, DisplayManager displayManager) {
+            mLooper = requireNonNull(looper);
+            mDisplayManager = requireNonNull(displayManager);
+        }
+
+        @Override
+        public void registerListener(SuspendListener suspendListener) {
+            mSuspendListener = requireNonNull(suspendListener);
+            mDisplayManager.registerDisplayListener(mDisplayListener, new Handler(mLooper));
+        }
+
+        @Override
+        public void cleanup() {
+            if (mSuspendListener != null) {
+                mDisplayManager.unregisterDisplayListener(mDisplayListener);
+                mSuspendListener = null;
+            }
+        }
+
+        private boolean isScreenOn() {
+            return Arrays.stream(mDisplayManager.getDisplays())
+                    .anyMatch(display -> display.getState() == Display.STATE_ON);
+        }
+
+        private void update() {
+            if (isScreenOn()) {
+                mSuspendListener.onResume();
+            } else {
+                mSuspendListener.onSuspend();
+            }
+        }
     }
 }

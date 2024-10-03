@@ -758,9 +758,10 @@ public class AdapterService extends Service {
         mBluetoothSocketManagerBinder = new BluetoothSocketManagerBinder(this);
 
         if (Flags.adapterSuspendMgmt()) {
-            mAdapterSuspend =
-                    new AdapterSuspend(
-                            mNativeInterface, mLooper, getSystemService(DisplayManager.class));
+            AdapterSuspend.SuspendObserver suspendObserver =
+                    AdapterSuspend.SuspendObserverFactory.createDisplaySuspendObserver(
+                            mLooper, getSystemService(DisplayManager.class));
+            mAdapterSuspend = new AdapterSuspend(mNativeInterface, suspendObserver);
         }
 
         if (!Flags.fastBindToApp()) {
