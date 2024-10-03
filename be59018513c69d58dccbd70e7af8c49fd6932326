@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b670fc89_0ac56405",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-03T10:49:16Z",
+      "side": 1,
+      "message": "LGTM, but it may need to be revised soon as we\u0027re currently working on removing TARGET_FLOSS. Please keep this in mind for future updates.",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 20
+      },
+      "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
