@@ -93,6 +93,30 @@
       },
       "revId": "777948708d5781679429f0150b9a288bd6035e2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39f64df6_97985509",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-03T16:51:25Z",
+      "side": 1,
+      "message": "I\u0027m saying we\u0027ll never get to this part of the code because the slot is already cleaned up.  https://screenshot.googleplex.com/4bGb2VZNjVvSnp7.png\n\nthat\u0027s why I\u0027m suggesting for `BTA_JvCancelDiscovery` to be called before `cleanup_rfc_slot`",
+      "parentUuid": "0d5022a2_a634683d",
+      "range": {
+        "startLine": 968,
+        "startChar": 10,
+        "endLine": 968,
+        "endChar": 14
+      },
+      "revId": "777948708d5781679429f0150b9a288bd6035e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
