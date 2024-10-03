@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d026f02_4244c6cd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-03T16:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad9db47e_055e92a0",
+      "range": {
+        "startLine": 34,
+        "startChar": 34,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "681fb11595dc7d10307d8b3a0e889b7a80ff1118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60f9239f_3b5e077a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-03T16:12:45Z",
       "side": 1,
       "message": "nit: inline the value",
+      "range": {
+        "startLine": 100,
+        "startChar": 94,
+        "endLine": 100,
+        "endChar": 117
+      },
+      "revId": "681fb11595dc7d10307d8b3a0e889b7a80ff1118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "072a3191_1654fa7d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-03T16:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60f9239f_3b5e077a",
       "range": {
         "startLine": 100,
         "startChar": 94,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6f23eef_e62aec85",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-03T16:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd24fe6_d176542c",
+      "range": {
+        "startLine": 143,
+        "startChar": 81,
+        "endLine": 143,
+        "endChar": 104
+      },
+      "revId": "681fb11595dc7d10307d8b3a0e889b7a80ff1118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72c5af18_896f8412",
@@ -105,6 +177,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "560fca0e_a3cb4105",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-03T16:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72c5af18_896f8412",
+      "revId": "681fb11595dc7d10307d8b3a0e889b7a80ff1118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c37e15ce_80f2423c",
@@ -118,6 +208,30 @@
       "writtenOn": "2024-10-03T16:12:45Z",
       "side": 1,
       "message": "nit: `getNewChannelId` ? fetch sounds weird",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 25
+      },
+      "revId": "681fb11595dc7d10307d8b3a0e889b7a80ff1118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b61880_401709f3",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-03T16:52:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c37e15ce_80f2423c",
       "range": {
         "startLine": 162,
         "startChar": 8,
