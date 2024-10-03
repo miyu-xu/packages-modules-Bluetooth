@@ -39,6 +39,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -130,6 +131,7 @@ public class ScanManager {
     private Set<ScanClient> mBatchClients;
     private Set<ScanClient> mSuspendedScanClients;
     private SparseIntArray mPriorityMap = new SparseIntArray();
+    // private HashMap<String, Integer> mAddressHandleMap = new HashMap<>();
 
     private DisplayManager mDisplayManager;
 
@@ -1005,6 +1007,10 @@ public class ScanManager {
         // The logic is AND for each filter field.
         private static final int LIST_LOGIC_TYPE = 0x1111111;
         private static final int FILTER_LOGIC_TYPE = 1;
+
+        // MSFT-based hardware scan offload sysprop
+        private static final String MSFT_HCI_EXT_ENABLED = "bluetooth.core.le.use_msft_hci_ext";
+
         // Filter indices that are available to user. It's sad we need to maintain filter index.
         private final Deque<Integer> mFilterIndexStack;
         // Map of scannerId and Filter indices used by client.
@@ -1152,9 +1158,16 @@ public class ScanManager {
                     && mClientFilterIndexMap.isEmpty()) {
                 initFilterIndexStack();
             }
+
             if (isFilteringSupported()) {
                 configureScanFilters(client);
+            } else if (isMsftEnabled()) {
+                if (mFilterIndexStack.isEmpty() && mClientFilterIndexMap.isEmpty()) {
+                    initFilterIndexStack();
+                }
+                addFiltersMsft(client);
             }
+
             // Start scan native only for the first client.
             if (numRegularScanClients() == 1
                     && client.settings != null
@@ -1402,7 +1415,12 @@ public class ScanManager {
                     Log.w(TAG, "There is no scan radio to stop");
                 }
             }
-            removeScanFilters(client.scannerId);
+
+            if (!isMsftEnabled()) {
+                removeScanFilters(client.scannerId);
+            } else {
+                removeFiltersMsft(client);
+            }
         }
 
         void regularScanTimeout(ScanClient client) {
@@ -1511,6 +1529,11 @@ public class ScanManager {
                 mContext.unregisterReceiver(receiver);
             }
             mNativeInterface.cleanup();
+        }
+
+        boolean isMsftEnabled() {
+            return SystemProperties.getBoolean(MSFT_HCI_EXT_ENABLED, false)
+                    && mNativeInterface.gattClientIsMsftSupported();
         }
 
         private long getBatchTriggerIntervalMillis() {
@@ -1953,6 +1976,51 @@ public class ScanManager {
 
         private void unregisterScanner(int scannerId) {
             mNativeInterface.unregisterScanner(scannerId);
+        }
+
+        private void addFiltersMsft(ScanClient client) {
+            if (!isMsftEnabled()) {
+                return;
+            }
+
+            Deque<Integer> clientFilterIndices = new ArrayDeque<Integer>();
+            for (ScanFilter filter : client.filters) {
+                MsftAdvMonitor monitor = new MsftAdvMonitor(filter);
+                int filterIndex = mFilterIndexStack.pop();
+
+                resetCountDownLatch();
+                mNativeInterface.gattClientMsftAdvMonitorAdd(
+                        monitor.getMonitor(),
+                        monitor.getPatterns(),
+                        monitor.getAddress(),
+                        filterIndex);
+                waitForCallback();
+
+                clientFilterIndices.add(filterIndex);
+            }
+            mClientFilterIndexMap.put(client.scannerId, clientFilterIndices);
+
+            boolean hasStartedUnfilteredScanners =
+                    mRegularScanClients.stream().anyMatch(c -> c.started && c.filters.isEmpty());
+            resetCountDownLatch();
+            mNativeInterface.gattClientMsftAdvMonitorEnable(!hasStartedUnfilteredScanners);
+            waitForCallback();
+        }
+
+        private void removeFiltersMsft(ScanClient client) {
+            if (!isMsftEnabled()) {
+                return;
+            }
+
+            Deque<Integer> clientFilterIndices = mClientFilterIndexMap.remove(client.scannerId);
+            if (clientFilterIndices != null) {
+                mFilterIndexStack.addAll(clientFilterIndices);
+                for (int filterIndex : clientFilterIndices) {
+                    resetCountDownLatch();
+                    mNativeInterface.gattClientMsftAdvMonitorRemove(filterIndex);
+                    waitForCallback();
+                }
+            }
         }
     }
 

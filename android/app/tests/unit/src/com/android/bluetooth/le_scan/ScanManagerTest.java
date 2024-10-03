@@ -36,6 +36,7 @@ import static com.android.bluetooth.le_scan.ScanManager.SCAN_MODE_SCREEN_OFF_LOW
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -2144,5 +2145,30 @@ public class ScanManagerTest {
             verify(mScanNativeInterface, atLeastOnce())
                     .gattSetScanParameters(anyInt(), anyInt(), anyInt(), eq(expectedPhy));
         }
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_LE_SCAN_MSFT_SUPPORT)
+    public void testMsftScan() {
+        final boolean isFiltered = true;
+        final boolean isEmptyFilter = false;
+
+        when(mScanNativeInterface.gattClientIsMsftSupported()).thenReturn(true);
+
+        // Turn on screen
+        sendMessageWaitForProcessed(createScreenOnOffMessage(true));
+        // Create scan client
+        ScanClient client = createScanClient(0, isFiltered, isEmptyFilter, SCAN_MODE_LOW_POWER);
+        // Start scan
+        sendMessageWaitForProcessed(createStartStopScanMessage(true, client));
+
+        // Verify MSFT APIs
+        verify(mScanNativeInterface, atLeastOnce())
+                .gattClientMsftAdvMonitorAdd(
+                        any(MsftAdvMonitor.Monitor.class),
+                        any(MsftAdvMonitor.Pattern[].class),
+                        any(MsftAdvMonitor.Address.class),
+                        anyInt());
+        verify(mScanNativeInterface, atLeastOnce()).gattClientMsftAdvMonitorEnable(eq(true));
     }
 }
