@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "252373e3_be81f93d",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-03T22:00:34Z",
+      "side": 1,
+      "message": "From what I am reading, it is called when the CCC descriptor is written for the CP characteristic. Don\u0027t you mean to invoke this callback from OnWriteCharacteristic instead ?\n\nIn any case I think the naming should be changed to more accurately reflect the context.",
+      "parentUuid": "11c5fa76_044ecb11",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6159ac2_4381cd6c",
         "filename": "system/bta/ras/ras_server.cc",
         "patchSetId": 2
@@ -191,6 +215,30 @@
       "side": 1,
       "message": "check btm_random_pseudo_to_identity_addr again.\nis it better to keep it as \u0027RANDOM\u0027, it means the input is a \u0027random\u0027 address.\nbut the output is identity.",
       "parentUuid": "8e20dec7_266f209f",
+      "range": {
+        "startLine": 241,
+        "startChar": 3,
+        "endLine": 241,
+        "endChar": 48
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "557b6b37_6e18fb57",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-03T22:00:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "70317da1_382e5e5b",
       "range": {
         "startLine": 241,
         "startChar": 3,
