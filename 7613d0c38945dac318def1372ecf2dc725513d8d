@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf83d0e7_5efd4b3e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1391,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-03T07:30:59Z",
+      "side": 1,
+      "message": "Instead of all of this we should simply start MTU Exchange procedure just after connection. Especially that preferred_mtu does not have any influence on the MTU which is Android exposing to remote device.",
+      "revId": "7613d0c38945dac318def1372ecf2dc725513d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f056367_d04f2ba6",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 2
