@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "020d9cc9_575b87a4",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-03T09:21:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c6060e6_34966650",
+      "range": {
+        "startLine": 694,
+        "startChar": 12,
+        "endLine": 694,
+        "endChar": 48
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78f38874_74e0a026",
@@ -113,6 +137,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "865cd327_5de6ea06",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-03T09:21:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba59415d_ad994c05",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 91
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "912e0330_d3856ae0",
@@ -150,6 +198,30 @@
       "side": 1,
       "message": "I\u0027ve discussed this with William too and I\u0027ll change it for a system property yes!\n\nHowever, I\u0027m testing the change by building the apex and installing it on the device, and it applies the config change so I guess that\u0027s something usable with mainline!",
       "parentUuid": "912e0330_d3856ae0",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 100
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a205a0_f0938930",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-03T09:21:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58c459e2_ff72f65c",
       "range": {
         "startLine": 107,
         "startChar": 8,
@@ -248,6 +320,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afbe7e82_af8e0472",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-03T09:21:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79cffdf2_4241a8a5",
+      "range": {
+        "startLine": 496,
+        "startChar": 4,
+        "endLine": 499,
+        "endChar": 5
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e384d976_29f99f05",
@@ -285,6 +381,30 @@
       "side": 1,
       "message": "Yup, sounds good",
       "parentUuid": "e384d976_29f99f05",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 96
+      },
+      "revId": "4d06ed95604b137fc71525f602d4664bff861a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0358574_07aeb409",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/helpers/AvrcpVersion.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-03T09:21:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed23e7c9_9ea3ebd1",
       "range": {
         "startLine": 40,
         "startChar": 7,
