@@ -345,6 +345,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9275bb8c_0f67403d",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-03T08:19:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8164ac86_757b859e",
+      "revId": "994b821ebd2e8656a2c70caae2e4c60d66473e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d81dec29_07904efc",
