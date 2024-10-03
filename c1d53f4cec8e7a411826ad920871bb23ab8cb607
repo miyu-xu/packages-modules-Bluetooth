@@ -16,6 +16,24 @@
       "message": "Please modify OWNER to include a per-file rule for json. And add OWNERS_build plus anybody that may be usefull here.\n\nThat will facilitate the review later on",
       "revId": "c1d53f4cec8e7a411826ad920871bb23ab8cb607",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98bba527_ccdd678c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-03T21:24:52Z",
+      "side": 1,
+      "message": "I have added it with the current files owned by OWNERS_build.",
+      "parentUuid": "113b9c5d_d6296b64",
+      "revId": "c1d53f4cec8e7a411826ad920871bb23ab8cb607",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
