@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a11f19e2_5a96ad3b",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-10-03T20:16:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92a39615_852aef8f",
+      "range": {
+        "startLine": 239,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 54
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf837495_bf1854ba",
@@ -96,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f36a1c4_ba1af39e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-10-03T20:16:04Z",
+      "side": 1,
+      "message": "The two tests where I have left ```waitForLooperToFinishScheduledTask``` are on transitions to the disconnected state. Both leave behind messages on the message queue for example a ```RequestGetMessagesListingForOwnNumber```. And so the looper never reaches an idle state and these tests time out. Fixing the leftover message was out of scope for this CL so I can revert this test to use a verify or use ```waitForLooperToFinishScheduledTask```. Let me know your thoughts.",
+      "parentUuid": "3d897d2e_420b5541",
+      "range": {
+        "startLine": 299,
+        "startChar": 18,
+        "endLine": 299,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9c0f6d5_684e627c",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
         "patchSetId": 4
@@ -107,6 +155,30 @@
       "writtenOn": "2024-10-01T16:04:57Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 339,
+        "startChar": 18,
+        "endLine": 339,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e835831_b9c5db3d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-10-03T20:16:04Z",
+      "side": 1,
+      "message": "see https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3260546/comment/3d897d2e_420b5541/",
+      "parentUuid": "e9c0f6d5_684e627c",
       "range": {
         "startLine": 339,
         "startChar": 18,
