@@ -561,16 +561,23 @@ class BluetoothManagerService {
                                         .sendToTarget();
                             }
                         }
-                    } else if (action.equals(Intent.ACTION_SHUTDOWN)) {
-                        Log.i(TAG, "Device is shutting down.");
-                        mShutdownInProgress = true;
-                        mEnable = false;
-                        mEnableExternal = false;
-                        if (mState.oneOf(STATE_BLE_ON)) {
-                            bleOnToOff();
-                        } else if (mState.oneOf(STATE_ON)) {
-                            onToBleOn();
-                        }
+                    } else if (Intent.ACTION_SHUTDOWN.equals(action)) {
+                        // The receiver is already running on the handler, but posting allow to
+                        // return from onReceive faster and limit the time it take to the system to
+                        // send the broadcast to everyone.
+                        // Posting at front of queue as this should be the highest priority
+                        mHandler.postAtFrontOfQueue(
+                                () -> {
+                                    Log.i(TAG, "Device is shutting down.");
+                                    mShutdownInProgress = true;
+                                    mEnable = false;
+                                    mEnableExternal = false;
+                                    if (mState.oneOf(STATE_BLE_ON)) {
+                                        bleOnToOff();
+                                    } else if (mState.oneOf(STATE_ON)) {
+                                        onToBleOn();
+                                    }
+                                });
                     }
                 }
             };
