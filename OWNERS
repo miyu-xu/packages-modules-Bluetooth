@@ -15,3 +15,6 @@ per-file PREUPLOAD.cfg,TEST_MAPPING,*.bp,*.xml=file:/OWNERS_build
 # - *.gn is for GN build rules
 # - Cargo.toml is for Rust build rules
 per-file build.py,*.gn,Cargo.toml=file:/OWNERS_chromeos
+
+# Python linter file
+per-file pyrightconfig.json=file:/OWNERS_build
