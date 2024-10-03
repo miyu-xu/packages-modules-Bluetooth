@@ -16,6 +16,24 @@
       "message": "Wondering why this was not captured by unit tests? Could we add some tests to cover this?",
       "revId": "6c0022ebc60f55aa6308aa8a4c041f4c1f89da88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daab2baa_6b15a981",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2213,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-03T11:50:02Z",
+      "side": 1,
+      "message": "Because there was no check against message queuing when sendMessageDelayed was used. I added such check for CANCEL_PENDING_SOURCE_OPERATION. There is still lack of checking GATT_TXN_TIMEOUT, but I do not want to add it in the same commit.",
+      "parentUuid": "ec3bdaeb_c0be55ea",
+      "revId": "6c0022ebc60f55aa6308aa8a4c041f4c1f89da88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
