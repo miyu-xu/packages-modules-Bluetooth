@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74957519_1e764cc9",
+        "filename": "system/gd/hal/mgmt.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-03T16:45:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab74523d_0bd8c1aa",
+      "revId": "427742cfa8964e4eb17d92164257b5af7005e995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6375a5c7_4a5c29b8",
@@ -59,6 +77,24 @@
           ]
         }
       ],
+      "revId": "427742cfa8964e4eb17d92164257b5af7005e995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5387d924_ca4bf4eb",
+        "filename": "system/gd/hal/mgmt.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-03T16:45:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6375a5c7_4a5c29b8",
       "revId": "427742cfa8964e4eb17d92164257b5af7005e995",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
