@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2f97ff_6f1b6595",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-03T02:35:44Z",
+      "side": 1,
+      "message": "I know that there is some deadlock possible when informing the audiomanager within a synchronized of the mStateMachine.\n\nYuyang uploaded a fix recently.",
+      "revId": "0c4f06b748ef7f3cc7b32f0d86395ffa3a894231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
