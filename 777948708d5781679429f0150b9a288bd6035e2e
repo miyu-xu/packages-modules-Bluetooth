@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdab9bf7_7f246398",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-03T00:18:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6fc2efd_c8e9b84e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "777948708d5781679429f0150b9a288bd6035e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2468b37_fa18b8d2",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-02T17:17:25Z",
       "side": 1,
       "message": "In the failure/busy case, we clean up the slot before we call btsock_rfc_signaled. \n\nWe should cancel discovery before this cleanup as well: https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_sock_rfc.cc;drc\u003d22f5e11b2ef10ec011d7c290ddda8f9550abe648;l\u003d837",
+      "range": {
+        "startLine": 968,
+        "startChar": 10,
+        "endLine": 968,
+        "endChar": 14
+      },
+      "revId": "777948708d5781679429f0150b9a288bd6035e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5022a2_a634683d",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-03T00:18:30Z",
+      "side": 1,
+      "message": "The BTA Jv should have cleaned itself up as long as it fires a complete event to btif, so there\u0027s no need to add BTA_JvCancelDiscovery in handle_discovery_comp.",
+      "parentUuid": "f2468b37_fa18b8d2",
       "range": {
         "startLine": 968,
         "startChar": 10,
