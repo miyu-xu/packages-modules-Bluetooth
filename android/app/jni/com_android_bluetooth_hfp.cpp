@@ -24,7 +24,6 @@
 #include "hardware/bluetooth_headset_callbacks.h"
 #include "hardware/bluetooth_headset_interface.h"
 #include "hardware/bt_hf.h"
-#include "os/log.h"
 
 namespace android {
 

@@ -25,7 +25,6 @@
 #include "bta_groups.h"
 #include "gatt_api.h"
 #include "le_audio_types.h"
-#include "os/log.h"
 #include "osi/include/alarm.h"
 #include "raw_address.h"
 
