@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6985cdb4_c50b7aca",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-03T14:56:08Z",
+      "side": 1,
+      "message": "define it as a constant or give it a meaningful name",
+      "revId": "84df6e37587a60bfd572dd2458d63a85cc0ffd8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b62435dc_d57ce185",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-03T14:56:08Z",
+      "side": 1,
+      "message": "call the stop_distance_measurement?",
+      "revId": "84df6e37587a60bfd572dd2458d63a85cc0ffd8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
