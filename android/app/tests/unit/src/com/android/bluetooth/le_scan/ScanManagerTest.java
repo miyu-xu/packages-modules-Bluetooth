@@ -36,6 +36,7 @@ import static com.android.bluetooth.le_scan.ScanManager.SCAN_MODE_SCREEN_OFF_LOW
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -64,6 +65,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.os.WorkSource;
 import android.os.test.TestLooper;
 import android.platform.test.annotations.EnableFlags;
@@ -127,6 +129,9 @@ public class ScanManagerTest {
     private static final int TEST_SCAN_QUOTA_COUNT = 5;
     private static final String TEST_APP_NAME = "Test";
     private static final String TEST_PACKAGE_NAME = "com.test.package";
+
+    // MSFT-based hardware scan offload sysprop
+    private static final String MSFT_HCI_EXT_ENABLED = "bluetooth.core.le.use_msft_hci_ext";
 
     private Context mTargetContext;
     private ScanManager mScanManager;
@@ -2144,5 +2149,31 @@ public class ScanManagerTest {
             verify(mScanNativeInterface, atLeastOnce())
                     .gattSetScanParameters(anyInt(), anyInt(), anyInt(), eq(expectedPhy));
         }
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_LE_SCAN_MSFT_SUPPORT)
+    public void testMsftScan() {
+        final boolean isFiltered = true;
+        final boolean isEmptyFilter = false;
+
+        SystemProperties.set(MSFT_HCI_EXT_ENABLED, Boolean.toString(true));
+        when(mScanNativeInterface.gattClientIsMsftSupported()).thenReturn(true);
+
+        // Turn on screen
+        sendMessageWaitForProcessed(createScreenOnOffMessage(true));
+        // Create scan client
+        ScanClient client = createScanClient(0, isFiltered, isEmptyFilter, SCAN_MODE_LOW_POWER);
+        // Start scan
+        sendMessageWaitForProcessed(createStartStopScanMessage(true, client));
+
+        // Verify MSFT APIs
+        verify(mScanNativeInterface, atLeastOnce())
+                .gattClientMsftAdvMonitorAdd(
+                        any(MsftAdvMonitor.Monitor.class),
+                        any(MsftAdvMonitor.Pattern[].class),
+                        any(MsftAdvMonitor.Address.class),
+                        anyInt());
+        verify(mScanNativeInterface, atLeastOnce()).gattClientMsftAdvMonitorEnable(eq(true));
     }
 }
