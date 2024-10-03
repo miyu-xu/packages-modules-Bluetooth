@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7910626f_9325cedd",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T17:21:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0817b013_00a2fd8f",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb62d83f_9464dc86",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c593a8b_f8a3fc07",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T17:21:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fb62d83f_9464dc86",
       "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -116,6 +152,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9164518e_c0081ef0",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T17:21:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "10586cc3_7d0887b6",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16108392_08ad0aff",
@@ -152,6 +206,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f57d76f9_c5faf46b",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T17:21:50Z",
+      "side": 1,
+      "message": "yes, it is mostly used by LeAudioClient class, but take `DebugDump` as example, if we put the code directly into `devices.cc#Dump`, then devices.cc would have logic association with GmapClient. \nI feel `devices.cc` just call `gmap_client_.DebugDump()` would set the boundary between gmapclient and devices more clearly",
+      "parentUuid": "ca9328a4_fcb3e9ff",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "870b2eea_6da036e0",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 11
@@ -163,6 +235,30 @@
       "writtenOn": "2024-10-03T08:19:39Z",
       "side": 1,
       "message": "if this is not a static function, why addr is needed here?",
+      "range": {
+        "startLine": 24,
+        "startChar": 28,
+        "endLine": 24,
+        "endChar": 45
+      },
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7804199_fc38dd44",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T17:21:50Z",
+      "side": 1,
+      "message": "going to remove it",
+      "parentUuid": "870b2eea_6da036e0",
       "range": {
         "startLine": 24,
         "startChar": 28,
