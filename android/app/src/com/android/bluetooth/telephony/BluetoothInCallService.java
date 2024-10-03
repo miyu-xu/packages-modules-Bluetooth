@@ -624,6 +624,7 @@ public class BluetoothInCallService extends InCallService {
 
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, MODIFY_PHONE_STATE})
     public void onCallAdded(BluetoothCall call) {
+        synchronized (LOCK) {
         if (call.isExternalCall()) {
             Log.d(TAG, "onCallAdded: external call");
             return;
@@ -646,6 +647,7 @@ public class BluetoothInCallService extends InCallService {
             }
         } else {
             Log.i(TAG, "onCallAdded: call already exists");
+        }
         }
     }
 
@@ -694,6 +696,7 @@ public class BluetoothInCallService extends InCallService {
      */
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, MODIFY_PHONE_STATE})
     public void onCallRemoved(BluetoothCall call, boolean forceRemoveCallback) {
+        synchronized (LOCK) {
         Log.i(TAG, "onCallRemoved, forceRemoveCallback=" + forceRemoveCallback);
         CallStateCallback callback = getCallback(call);
         if (callback != null && (forceRemoveCallback || !call.isExternalCall())) {
@@ -751,6 +754,7 @@ public class BluetoothInCallService extends InCallService {
         if (mBluetoothLeCallControl != null) {
             mBluetoothLeCallControl.onCallRemoved(
                     call.getTbsCallId(), getTbsTerminationReason(call));
+        }
         }
     }
 
