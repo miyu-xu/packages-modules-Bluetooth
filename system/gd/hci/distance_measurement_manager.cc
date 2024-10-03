@@ -48,7 +48,6 @@ static constexpr uint8_t kTxPowerNotAvailable = 0xfe;
 static constexpr int8_t kRSSIDropOffAt1M = 41;
 static constexpr uint8_t kCsMaxTxPower = 10;  // 10 dBm
 static constexpr CsSyncAntennaSelection kCsSyncAntennaSelection = CsSyncAntennaSelection::ANTENNA_2;
-static constexpr uint8_t kConfigId = 0x01;  // Use 0x01 to create config and enable procedure
 static constexpr uint8_t kMinMainModeSteps = 0x02;
 static constexpr uint8_t kMaxMainModeSteps = 0x05;
 static constexpr uint8_t kMainModeRepetition = 0x00;  // No repetition
@@ -68,6 +67,10 @@ static constexpr uint8_t kProcedureDataBufferSize = 0x10;  // Buffer size of Pro
 static constexpr uint16_t kMtuForRasData = 507;            // 512 - 5
 static constexpr uint16_t kRangingCounterMask = 0x0FFF;
 static constexpr uint8_t kInvalidConfigId = 0xFF;
+static constexpr uint8_t kMinConfigId = 0;
+static constexpr uint8_t kMaxConfigId = 3;
+static constexpr uint8_t kReqConfigIdMask = 0x01;
+static constexpr uint8_t kResConfigIdMask = 0x10;
 static constexpr uint16_t kDefaultIntervalMs = 1000;  // 1s
 static constexpr uint8_t kPreferredPeerAntennaValue = 0x01;  // Use first ordered antenna element
 
@@ -165,13 +168,13 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     bool measurement_ongoing = false;
     bool ras_connected = false;
     bool setup_complete = false;
-    bool config_set = false;
     uint16_t n_procedure_count = 0;
     CsMainModeType main_mode_type = CsMainModeType::MODE_2;
     CsSubModeType sub_mode_type = CsSubModeType::UNUSED;
     CsRttType rtt_type = CsRttType::RTT_AA_ONLY;
     bool remote_support_phase_based_ranging = false;
-    uint8_t config_id = kInvalidConfigId;
+    uint8_t requesting_config_id = kInvalidConfigId;  // only valid for requester
+    uint8_t assigned_config_id = kInvalidConfigId;
     uint8_t selected_tx_power = 0;
     std::vector<CsProcedureData> procedure_data_list = {};
     uint16_t interval_ms = kDefaultIntervalMs;
@@ -181,6 +184,44 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     RangingHeader ranging_header_;
     PacketViewForRecombination segment_data_;
   };
+
+  uint8_t get_free_config_id(uint16_t connection_handle) {
+    if (config_id_marks_.find(connection_handle) == config_id_marks_.end()) {
+      return kMinConfigId;
+    }
+    for (auto i = kMinConfigId; i <= kMaxConfigId; i++) {
+      if ((config_id_marks_[connection_handle] & (kReqConfigIdMask << (i * 2))) == 0 &&
+          (config_id_marks_[connection_handle] & (kResConfigIdMask << (i * 2))) == 0) {
+        return i;
+      }
+    }
+    log::warn("config ids are used up. take min config id.");
+    return kMinConfigId;
+  }
+
+  void mark_config_id_usage(uint16_t connection_handle, uint8_t config_id, bool is_requester) {
+    if (config_id > kMaxConfigId) {
+      log::error("should never happened.");
+      return;
+    }
+    // init it here as the responder only gets it from the requester
+    if (config_id_marks_.find(connection_handle) == config_id_marks_.end()) {
+      config_id_marks_[connection_handle] = 0;
+    }
+    uint8_t mask = is_requester ? kReqConfigIdMask : kResConfigIdMask;
+    config_id_marks_[connection_handle] |= (mask << (config_id * 2));
+  }
+
+  void unmark_all_config_id(uint16_t connection_handle, bool is_requester) {
+    auto it = config_id_marks_.find(connection_handle);
+    if (it == config_id_marks_.end()) {
+      return;
+    }
+    uint8_t mask = is_requester ? kReqConfigIdMask : kResConfigIdMask;
+    for (int i = kMinConfigId; i <= kMaxConfigId; i++) {
+      config_id_marks_[connection_handle] &= ~(mask << (i * 2));
+    }
+  }
 
   void OnOpened(
           uint16_t connection_handle,
@@ -329,13 +370,15 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (it->second.repeating_alarm == nullptr) {
       it->second.repeating_alarm = std::make_unique<os::RepeatingAlarm>(handler_);
     }
+    if (it->second.assigned_config_id == kInvalidConfigId) {
+      it->second.requesting_config_id = get_free_config_id(connection_handle);
+    }
     it->second.state = CsTrackerState::INIT;
     it->second.interval_ms = interval;
     it->second.local_start = true;
     it->second.measurement_ongoing = true;
     it->second.waiting_for_start_callback = true;
     it->second.local_hci_role = local_hci_role;
-    it->second.config_id = kConfigId;
   }
 
   void start_distance_measurement_with_cs(const Address& cs_remote_address,
@@ -357,9 +400,9 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       send_le_cs_read_remote_supported_capabilities(connection_handle);
       return;
     }
-    if (!cs_requester_trackers_[connection_handle].config_set) {
+    if (cs_requester_trackers_[connection_handle].assigned_config_id == kInvalidConfigId) {
       send_le_cs_create_config(connection_handle,
-                               cs_requester_trackers_[connection_handle].config_id);
+                               cs_requester_trackers_[connection_handle].requesting_config_id);
       return;
     }
     log::info("enable cs procedure regularly with interval: {} ms",
@@ -442,6 +485,9 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         }
         distance_measurement_callbacks_->OnDistanceMeasurementStopped(
                 address, REASON_NO_LE_CONNECTION, METHOD_CS);
+        if (config_id_marks_.find(it->first) != config_id_marks_.end()) {
+          config_id_marks_.erase(it->first);
+        }
         it = cs_requester_trackers_.erase(it);  // erase and get the next iterator
       } else {
         ++it;
@@ -499,7 +545,9 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
                 it->second.address, identity_address);
       return;
     }
-
+    if (config_id_marks_.find(connection_handle) != config_id_marks_.end()) {
+      config_id_marks_.erase(connection_handle);
+    }
     cs_responder_trackers_.erase(connection_handle);
   }
 
@@ -688,7 +736,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     }
 
     hci_layer_->EnqueueCommand(
-            LeCsProcedureEnableBuilder::Create(connection_handle, it->second.config_id, enable),
+            LeCsProcedureEnableBuilder::Create(connection_handle, it->second.assigned_config_id,
+                                               enable),
             handler_->BindOnceOn(this, &impl::on_cs_procedure_enable_command_status_cb,
                                  connection_handle, enable));
   }
@@ -758,9 +807,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
               event_view.GetOptionalSubfeaturesSupported().phase_based_ranging_ == 0x01;
       req_it->second.setup_complete = true;
       log::info("Setup phase complete, connection_handle: {}, address: {}", connection_handle,
-                cs_requester_trackers_[connection_handle].address);
-      send_le_cs_create_config(connection_handle,
-                               cs_requester_trackers_[connection_handle].config_id);
+                req_it->second.address);
+      send_le_cs_create_config(connection_handle, req_it->second.requesting_config_id);
     }
     log::info(
             "connection_handle:{}, num_antennas_supported:{}, max_antenna_paths_supported:{}, "
@@ -798,11 +846,9 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       return;
     }
     auto req_it = cs_requester_trackers_.find(connection_handle);
-    if (req_it != cs_requester_trackers_.end() && req_it->second.measurement_ongoing &&
-        !req_it->second.config_set) {
-      req_it->second.config_set = true;
+    if (req_it != cs_requester_trackers_.end() && req_it->second.measurement_ongoing) {
       send_le_cs_set_procedure_parameters(event_view.GetConnectionHandle(),
-                                          req_it->second.config_id);
+                                          req_it->second.assigned_config_id);
     }
     auto res_it = cs_responder_trackers_.find(connection_handle);
     if (res_it != cs_responder_trackers_.end() &&
@@ -824,6 +870,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       return;
     }
     uint8_t config_id = event_view.GetConfigId();
+    if (event_view.GetAction() == CsAction::CONFIG_REMOVED) {
+      on_cs_config_removed(connection_handle, config_id);
+      return;
+    }
     check_and_handle_conflict(connection_handle, config_id,
                               CsTrackerState::WAIT_FOR_CONFIG_COMPLETE);
     uint8_t valid_requester_states = static_cast<uint8_t>(CsTrackerState::WAIT_FOR_CONFIG_COMPLETE);
@@ -836,11 +886,11 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       log::warn("Can't find cs tracker for connection_handle {}", connection_handle);
       return;
     }
-    // assign the config_id, as this may be the 1st time to get the config_id from responder.
-    live_tracker->config_id = config_id;
-    if (event_view.GetAction() == CsAction::CONFIG_REMOVED) {
-      return;
-    }
+
+    // suppose it only has 1 requester and  1 responder for the same ACL.
+    unmark_all_config_id(connection_handle, live_tracker->local_start);
+    live_tracker->assigned_config_id = config_id;
+    mark_config_id_usage(connection_handle, config_id, live_tracker->local_start);
     log::info("Get {}", event_view.ToString());
     live_tracker->role = event_view.GetRole();
     live_tracker->main_mode_type = event_view.GetMainModeType();
@@ -854,6 +904,18 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (!live_tracker->local_start) {
       live_tracker->state = CsTrackerState::WAIT_FOR_SECURITY_ENABLED;
     }
+  }
+
+  void on_cs_config_removed(uint16_t connection_handle, uint8_t config_id) {
+    // suppose it only has 1 requester and 1 responder per ACL.
+    auto it = cs_requester_trackers_.find(connection_handle);
+    if (it != cs_requester_trackers_.end()) {
+      if (it->second.assigned_config_id == config_id) {
+        it->second.assigned_config_id = kInvalidConfigId;
+        unmark_all_config_id(connection_handle, /*is_requester=*/true);
+      }
+    }
+    unmark_all_config_id(connection_handle, /*is_requester=*/false);
   }
 
   void on_cs_set_procedure_parameters(CommandCompleteView view) {
@@ -891,17 +953,23 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     // CAVEAT: if the remote is sending request with the same config id, the behavior is undefined.
     auto req_it = cs_requester_trackers_.find(connection_handle);
     if (req_it != cs_requester_trackers_.end() && req_it->second.state != CsTrackerState::STOPPED &&
-        req_it->second.config_id == config_id &&
         (valid_requester_states & static_cast<uint8_t>(req_it->second.state)) != 0) {
-      return &cs_requester_trackers_[connection_handle];
+      uint8_t req_config_id = req_it->second.assigned_config_id;
+      if (req_it->second.state == CsTrackerState::WAIT_FOR_CONFIG_COMPLETE) {
+        req_config_id = req_it->second.requesting_config_id;
+      }
+      if (req_config_id == config_id) {
+        return &(req_it->second);
+      }
     }
 
     auto res_it = cs_responder_trackers_.find(connection_handle);
     if (res_it != cs_responder_trackers_.end() &&
-        (res_it->second.config_id == kInvalidConfigId || res_it->second.config_id == config_id) &&
+        (res_it->second.assigned_config_id == kInvalidConfigId ||
+         res_it->second.assigned_config_id == config_id) &&
         (valid_responder_states == static_cast<uint8_t>(CsTrackerState::UNSPECIFIED) ||
          (valid_responder_states & static_cast<uint8_t>(res_it->second.state)) != 0)) {
-      return &cs_responder_trackers_[connection_handle];
+      return &(res_it->second);
     }
     log::error("no valid tracker to handle the event.");
     return nullptr;
@@ -916,14 +984,15 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (it == cs_requester_trackers_.end()) {
       return;
     }
-    if (event_config_id != it->second.config_id) {
+    if (event_config_id != it->second.assigned_config_id) {
       return;
     }
     if (it->second.state == expected_requester_state) {
       return;
     }
     log::warn("unexpected request from remote, which is conflict with the local measurement.");
-    it->second.config_set = false;
+    it->second.assigned_config_id = kInvalidConfigId;
+    unmark_all_config_id(connection_handle, /*is_request=*/true);
     if (it->second.state != CsTrackerState::STOPPED) {
       stop_distance_measurement(it->second.address, connection_handle,
                                 DistanceMeasurementMethod::METHOD_CS);
@@ -962,10 +1031,13 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         log::error("no tracker is available for {}", connection_handle);
         return;
       }
+      if (live_tracker->assigned_config_id != config_id) {
+        log::warn("config_id {} doesn't match the assigned one {}.", config_id,
+                  live_tracker->assigned_config_id);
+        return;
+      }
       log::debug("Procedure enabled, {}", event_view.ToString());
       live_tracker->state = CsTrackerState::STARTED;
-      // assign the config_id, as this is may be the 1st time to get it for responder;
-      live_tracker->config_id = config_id;
       live_tracker->selected_tx_power = event_view.GetSelectedTxPower();
       live_tracker->n_procedure_count = event_view.GetProcedureCount();
 
@@ -1383,7 +1455,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       }
     }
     log::info("Create data for procedure_counter: {}", procedure_counter);
-    data_list.emplace_back(procedure_counter, num_antenna_paths, live_tracker->config_id,
+    data_list.emplace_back(procedure_counter, num_antenna_paths, live_tracker->assigned_config_id,
                            live_tracker->selected_tx_power);
 
     // Append ranging header raw data
@@ -1746,6 +1818,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   hci::AclManager* acl_manager_;
   hci::DistanceMeasurementInterface* distance_measurement_interface_;
   std::unordered_map<Address, RSSITracker> rssi_trackers;
+  std::unordered_map<uint16_t, uint8_t> config_id_marks_;
   std::unordered_map<uint16_t, CsTracker> cs_requester_trackers_;
   std::unordered_map<uint16_t, CsTracker> cs_responder_trackers_;
   DistanceMeasurementCallbacks* distance_measurement_callbacks_;
