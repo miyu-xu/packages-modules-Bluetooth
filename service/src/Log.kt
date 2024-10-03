@@ -52,4 +52,15 @@ object Log {
         DateTimeFormatter.ofPattern("MM-dd HH:mm:ss.SSS")
             .withZone(ZoneId.systemDefault())
             .format(Instant.ofEpochMilli(timestamp))
+
+    @JvmStatic
+    fun addressToString(address: String?): String {
+        if (address == null) {
+            return "[address is null]"
+        }
+        if (address.length != 17) {
+            return "[address invalid]"
+        }
+        return "XX:XX:XX:XX:" + address.substring(address.length - 5)
+    }
 }

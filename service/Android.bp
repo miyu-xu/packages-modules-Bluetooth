@@ -56,6 +56,7 @@ java_library {
         "src/BluetoothService.kt",
         "src/Log.kt",
         "src/RadioModeListener.kt",
+        "src/Storage.kt",
         "src/airplane/ModeListener.kt",
         "src/satellite/ModeListener.kt",
     ],
@@ -72,6 +73,7 @@ java_library {
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat",
+        "androidx.datastore_datastore-preferences",
         "bluetooth-manager-service-proto-java-gen",
         "bluetooth-nano-protos",
         "bluetooth-proto-enums-java-gen",
@@ -168,6 +170,8 @@ android_robolectric_test {
         "src/LogTest.kt",
         "src/RadioModeListener.kt",
         "src/RadioModeListenerTest.kt",
+        "src/Storage.kt",
+        "src/StorageTest.kt",
         "src/airplane/ModeListener.kt",
         "src/airplane/ModeListenerTest.kt",
         "src/satellite/ModeListener.kt",
@@ -177,6 +181,7 @@ android_robolectric_test {
     jarjar_rules: ":bluetooth-jarjar-rules",
 
     static_libs: [
+        "androidx.datastore_datastore-preferences",
         "androidx.test.core",
         "androidx.test.ext.truth",
         "bluetooth-manager-service-proto-java-gen",

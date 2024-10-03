@@ -71,6 +71,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -87,6 +88,7 @@ import java.util.stream.IntStream;
 public class BluetoothManagerServiceTest {
 
     @Rule public final SetFlagsRule mSetFlagsRule;
+    @Rule public final TestName testName = new TestName();
 
     @Parameters(name = "{0}")
     public static List<FlagsParameterization> getParams() {
@@ -203,7 +205,16 @@ public class BluetoothManagerServiceTest {
 
         mLooper = new TestLooper();
 
-        mManagerService = new BluetoothManagerService(mContext, mLooper.getLooper());
+        // Using a hashCode to prevent a too long name (due to flag parameterized)
+        Storage storage =
+                new Storage(mContext, String.valueOf(testName.getMethodName().hashCode()));
+
+        // Skip the migration during test
+        storage.updateNameFromJava("Such a wonderful name");
+        storage.updateAddressFromJava("FF:EE:DD:CC:BB:AA");
+        storage.updatenameAndAddressMigratedFromJava();
+
+        mManagerService = new BluetoothManagerService(mContext, mLooper.getLooper(), storage);
         mManagerService.initialize(mUserHandle);
 
         mManagerService.registerAdapter(mManagerCallback);

@@ -188,6 +188,7 @@ class BluetoothManagerService {
     private final Context mContext;
     private final Looper mLooper;
     private final UserManager mUserManager;
+    private final Storage mStorage;
 
     private final boolean mIsHearingAidProfileSupported;
 
@@ -233,7 +234,7 @@ class BluetoothManagerService {
                         throw new IllegalArgumentException("Invalid Empty name");
                     }
                     Log.d(TAG, "IBluetoothCallback.onAdapterNameChange: " + name);
-                    mHandler.post(() -> storeName(name));
+                    mStorage.updateNameFromJava(name);
                 }
 
                 @Override
@@ -243,33 +244,9 @@ class BluetoothManagerService {
                         throw new IllegalArgumentException("Invalid address");
                     }
                     Log.d(TAG, "IBluetoothCallback.onAdapterAddressChange: " + logAddress(address));
-                    mHandler.post(() -> storeAddress(address));
+                    mStorage.updateAddressFromJava(address);
                 }
             };
-
-    private void storeName(String name) {
-        if (!Settings.Secure.putString(mContentResolver, Settings.Secure.BLUETOOTH_NAME, name)) {
-            Log.e(TAG, "storeName(" + name + "): Failed. Name is still " + mName);
-            return;
-        }
-        mName = name;
-        Log.v(TAG, "storeName(" + mName + "): Success");
-    }
-
-    private void storeAddress(String address) {
-        if (!Settings.Secure.putString(
-                mContentResolver, Settings.Secure.BLUETOOTH_ADDRESS, address)) {
-            Log.e(
-                    TAG,
-                    "storeAddress("
-                            + logAddress(address)
-                            + "): Failed. Address is still "
-                            + logAddress(mAddress));
-            return;
-        }
-        mAddress = address;
-        Log.v(TAG, "storeAddress(" + logAddress(mAddress) + "): Success");
-    }
 
     public void onUserRestrictionsChanged(UserHandle userHandle) {
         final boolean newBluetoothDisallowed =
@@ -579,10 +556,12 @@ class BluetoothManagerService {
             new Histogram(
                     "bluetooth.value_shutdown_latency", new Histogram.UniformOptions(50, 0, 3000));
 
-    BluetoothManagerService(@NonNull Context context, @NonNull Looper looper) {
-        mContext = requireNonNull(context, "Context cannot be null");
-        mContentResolver = requireNonNull(mContext.getContentResolver(), "Resolver cannot be null");
-        mLooper = requireNonNull(looper, "Looper cannot be null");
+    BluetoothManagerService(
+            @NonNull Context context, @NonNull Looper looper, @NonNull Storage storage) {
+        mContext = requireNonNull(context);
+        mContentResolver = requireNonNull(mContext.getContentResolver());
+        mLooper = requireNonNull(looper);
+        mStorage = requireNonNull(storage);
 
         mUserManager =
                 requireNonNull(
@@ -654,16 +633,13 @@ class BluetoothManagerService {
                 mHandler);
 
         if (Flags.getNameAndAddressAsCallback()) {
-            mName =
-                    BluetoothServerProxy.getInstance()
-                            .settingsSecureGetString(
-                                    mContentResolver, Settings.Secure.BLUETOOTH_NAME);
-            mAddress =
-                    BluetoothServerProxy.getInstance()
-                            .settingsSecureGetString(
-                                    mContentResolver, Settings.Secure.BLUETOOTH_ADDRESS);
-
-            Log.d(TAG, "Local adapter: Name=" + mName + ", Address=" + logAddress(mAddress));
+            mStorage.migrateNameAndAddressIfNeeded(mContentResolver);
+            Log.d(
+                    TAG,
+                    "Local adapter: Name="
+                            + mStorage.getName()
+                            + ", Address="
+                            + logAddress(mStorage.getAddress()));
         } else {
             loadStoredNameAndAddress();
         }
@@ -742,6 +718,9 @@ class BluetoothManagerService {
 
     /** Returns true if the Bluetooth Adapter's name and address is locally cached */
     private boolean isNameAndAddressSet() {
+        if (Flags.getNameAndAddressAsCallback()) {
+            return true;
+        }
         return mName != null && mAddress != null && mName.length() > 0 && mAddress.length() > 0;
     }
 
@@ -764,7 +743,7 @@ class BluetoothManagerService {
         Log.d(TAG, "loadStoredNameAndAddress: Name=" + mName + ", Address=" + logAddress(mAddress));
     }
 
-    private String logAddress(String address) {
+    static String logAddress(String address) {
         if (address == null) {
             return "[address is null]";
         }
@@ -1362,7 +1341,7 @@ class BluetoothManagerService {
     // Called from unsafe binder thread
     String getName() {
         if (Flags.getNameAndAddressAsCallback()) {
-            return mName;
+            return mStorage.getName();
         }
         // Copy to local variable to avoid race condition when checking for null
         AdapterBinder adapter = mAdapter;
@@ -2224,8 +2203,14 @@ class BluetoothManagerService {
         writer.println("Bluetooth Status");
         writer.println("  enabled: " + isEnabled());
         writer.println("  state: " + mState);
-        writer.println("  address: " + logAddress(mAddress));
-        writer.println("  name: " + mName);
+        if (Flags.getNameAndAddressAsCallback()) {
+            writer.println("  name: " + mStorage.getName());
+            writer.println("  address: " + logAddress(mStorage.getAddress()));
+        } else {
+            writer.println("  address: " + logAddress(mAddress));
+            writer.println("  name: " + mName);
+        }
+
         if (mEnable) {
             long onDuration = SystemClock.elapsedRealtime() - mLastEnabledTime;
             String onDurationString =
@@ -2314,8 +2299,14 @@ class BluetoothManagerService {
         proto.write(BluetoothManagerServiceDumpProto.ENABLED, isEnabled());
         proto.write(BluetoothManagerServiceDumpProto.STATE, mState.get());
         proto.write(BluetoothManagerServiceDumpProto.STATE_NAME, nameForState(mState.get()));
-        proto.write(BluetoothManagerServiceDumpProto.ADDRESS, logAddress(mAddress));
-        proto.write(BluetoothManagerServiceDumpProto.NAME, mName);
+        if (Flags.getNameAndAddressAsCallback()) {
+            proto.write(
+                    BluetoothManagerServiceDumpProto.ADDRESS, logAddress(mStorage.getAddress()));
+            proto.write(BluetoothManagerServiceDumpProto.NAME, mStorage.getName());
+        } else {
+            proto.write(BluetoothManagerServiceDumpProto.ADDRESS, logAddress(mAddress));
+            proto.write(BluetoothManagerServiceDumpProto.NAME, mName);
+        }
         if (mEnable) {
             proto.write(BluetoothManagerServiceDumpProto.LAST_ENABLED_TIME_MS, mLastEnabledTime);
         }
