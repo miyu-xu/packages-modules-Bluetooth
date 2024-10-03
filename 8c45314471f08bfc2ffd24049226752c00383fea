@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b820441d_1e227d5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-03T22:42:15Z",
+      "side": 1,
+      "message": "As discussed offline, the LE ACL data credit management does not need to be included in the initial design. The recommendation is for the MCU / BT HAL to reserve credits for the offload sockets if required.",
+      "revId": "8c45314471f08bfc2ffd24049226752c00383fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
