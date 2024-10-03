@@ -82,6 +82,7 @@ class AdapterProperties {
             "ro.bluetooth.a2dp_offload.supported";
     private static final String A2DP_OFFLOAD_DISABLED_PROPERTY =
             "persist.bluetooth.a2dp_offload.disabled";
+    private static final String MSFT_HCI_EXT_ENABLED = "bluetooth.core.le.use_msft_hci_ext";
 
     private static final long DEFAULT_DISCOVERY_TIMEOUT_MS = 12800;
     @VisibleForTesting static final int BLUETOOTH_NAME_MAX_LENGTH_BYTES = 248;
@@ -412,7 +413,12 @@ class AdapterProperties {
      * @return the mNumOfOffloadedScanFilterSupported
      */
     int getNumOfOffloadedScanFilterSupported() {
-        return mNumOfOffloadedScanFilterSupported;
+        if (SystemProperties.getBoolean(MSFT_HCI_EXT_ENABLED, false) && Flags.leScanMsftSupport())
+            // Hardcoded minimum number of hardware adv monitor slots
+            return 20;
+        else {
+            return mNumOfOffloadedScanFilterSupported;
+        }
     }
 
     /**
