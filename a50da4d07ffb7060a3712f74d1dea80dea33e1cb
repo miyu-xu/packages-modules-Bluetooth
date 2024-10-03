@@ -205,6 +205,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a939bec_3ad3bdd4",
+        "filename": "system/bta/gmap/gmap_client_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T18:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97142803_e9b32dff",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca9328a4_fcb3e9ff",
@@ -277,6 +295,30 @@
       "side": 1,
       "message": "going to remove it",
       "parentUuid": "870b2eea_6da036e0",
+      "range": {
+        "startLine": 24,
+        "startChar": 28,
+        "endLine": 24,
+        "endChar": 45
+      },
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "939c92c9_d03f432f",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-03T18:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7804199_fc38dd44",
       "range": {
         "startLine": 24,
         "startChar": 28,
