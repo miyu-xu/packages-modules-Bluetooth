@@ -2836,6 +2836,16 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
           {"gattClientScanFilterClearNative", "(II)V", (void*)gattClientScanFilterClearNative},
           {"gattClientScanFilterEnableNative", "(IZ)V", (void*)gattClientScanFilterEnableNative},
           {"gattSetScanParametersNative", "(IIII)V", (void*)gattSetScanParametersNative},
+          // MSFT HCI Extension functions.
+          {"gattClientIsMsftSupportedNative", "()Z", (void*)gattClientIsMsftSupportedNative},
+          {"gattClientMsftAdvMonitorAddNative",
+           "(Lcom/android/bluetooth/le_scan/MsftAdvMonitor$Monitor;[Lcom/android/bluetooth/le_scan/"
+           "MsftAdvMonitor$Pattern;Lcom/android/bluetooth/le_scan/MsftAdvMonitor$Address;I)V",
+           (void*)gattClientMsftAdvMonitorAddNative},
+          {"gattClientMsftAdvMonitorRemoveNative", "(II)V",
+           (void*)gattClientMsftAdvMonitorRemoveNative},
+          {"gattClientMsftAdvMonitorEnableNative", "(Z)V",
+           (void*)gattClientMsftAdvMonitorEnableNative},
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/le_scan/ScanNativeInterface", methods);
@@ -2862,6 +2872,9 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
           {"onTrackAdvFoundLost", "(Lcom/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfo;)V",
            &method_onTrackAdvFoundLost},
           {"onScanParamSetupCompleted", "(II)V", &method_onScanParamSetupCompleted},
+          {"onMsftAdvMonitorAdd", "(III)V", &method_onMsftAdvMonitorAdd},
+          {"onMsftAdvMonitorRemove", "(II)V", &method_onMsftAdvMonitorRemove},
+          {"onMsftAdvMonitorEnable", "(I)V", &method_onMsftAdvMonitorEnable},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/le_scan/ScanNativeInterface", javaMethods);
   return 0;
