@@ -34,7 +34,6 @@
 #include "hci/controller_interface.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
-#include "os/log.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"

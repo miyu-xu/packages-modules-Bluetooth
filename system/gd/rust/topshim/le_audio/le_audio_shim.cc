@@ -22,7 +22,6 @@
 #include <vector>
 
 #include "bta/le_audio/le_audio_types.h"
-#include "os/log.h"
 #include "src/profiles/le_audio.rs.h"
 #include "types/raw_address.h"
 

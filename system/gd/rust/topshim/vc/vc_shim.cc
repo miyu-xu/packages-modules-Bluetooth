@@ -21,7 +21,6 @@
 
 #include <string>
 
-#include "os/log.h"
 #include "src/profiles/vc.rs.h"
 #include "types/raw_address.h"
 

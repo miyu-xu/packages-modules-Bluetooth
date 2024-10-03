@@ -36,8 +36,6 @@
 #undef LOG_DEBUG
 #undef LOG_INFO
 
-#include "os/log.h"
-
 // Save the os/log.h definitions
 #pragma push_macro("LOG_DEBUG")
 #pragma push_macro("LOG_INFO")

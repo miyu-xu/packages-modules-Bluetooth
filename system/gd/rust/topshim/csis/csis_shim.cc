@@ -21,7 +21,6 @@
 
 #include <string>
 
-#include "os/log.h"
 #include "src/profiles/csis.rs.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"

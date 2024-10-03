@@ -18,7 +18,6 @@
 
 #include "common/strings.h"
 #include "hci/hci_packets.h"
-#include "os/log.h"
 
 namespace {
 #if defined(__ANDROID__) && !defined(FUZZ_TARGET)
