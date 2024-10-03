@@ -22,6 +22,30 @@
       },
       "revId": "cc53561d4ec107b0d1ed354ccdda8270c542b0ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b29c66_575dfc78",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-03T07:17:42Z",
+      "side": 1,
+      "message": "actually we cannot depend on the application pereference here, because we never know if at given point we are looking at all applications or not. There is always a possibility that another application will register for the same device and as you know MTU Exchange can happen only once on the link.\n\nThis is why our current MTU policy is to have one fix value, no matter what application is requesting.\n\nHaving that said, `gatt_get_apps_preferred_mtu` seems to be not needed.\n\nWHat we could consider here is when preffered_mtu was provided during connect, we probably should trigger MTU Exchange procedure after connection and not wait for the MTU request on the application side.",
+      "parentUuid": "140aa13a_497fe693",
+      "range": {
+        "startLine": 602,
+        "startChar": 5,
+        "endLine": 602,
+        "endChar": 9
+      },
+      "revId": "cc53561d4ec107b0d1ed354ccdda8270c542b0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
