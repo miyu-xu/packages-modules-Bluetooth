@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0800fdb3_d8f65010",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-03T09:56:14Z",
+      "side": 1,
+      "message": "why A2DP and not HearingAid?",
+      "range": {
+        "startLine": 1065,
+        "startChar": 16,
+        "endLine": 1065,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "860b1f16_1d94f1f0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1065,
+                "startChar": 0,
+                "endLine": 1066,
+                "endChar": 0
+              },
+              "replacement": "    public void sameDeviceAsHearingAidAndLeAudio_noFallbackOnSwitch() {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1071,
+                "startChar": 0,
+                "endLine": 1072,
+                "endChar": 0
+              },
+              "replacement": "        hearingAidConnected(mDualModeAudioDevice);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1098,
+                "startChar": 0,
+                "endLine": 1099,
+                "endChar": 0
+              },
+              "replacement": "    public void sameDeviceAsLeAudioAndHearingAid_noFallbackOnSwitch() {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 1109,
+                "startChar": 0,
+                "endLine": 1110,
+                "endChar": 0
+              },
+              "replacement": "        hearingAidConnected(mDualModeAudioDevice);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5bde95ee9fdfb793e1cdb5433d363e22b82d6890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
