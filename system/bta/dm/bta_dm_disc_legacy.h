@@ -21,6 +21,10 @@
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
+// TODO: Remove this file after flag separate_service_and_device_discovery rolls
+// out
+namespace bta_dm_disc_legacy {
+
 // Bta module start and stop entry points
 void bta_dm_disc_start(bool delay_close_gatt);
 void bta_dm_disc_stop();
@@ -34,17 +38,13 @@ void bta_dm_disc_start_service_discovery(service_discovery_callbacks cbacks,
                                          const RawAddress& bd_addr, tBT_TRANSPORT transport);
 
 // Bta subsystem entrypoint and lifecycle
-// Remove when separate_service_and_device_discovery rolls out
 void bta_dm_disc_disable_search_and_disc();
-void bta_dm_disc_disable_disc();
-void bta_dm_disc_disable_search();
 // Indication that an acl has gone down and to examine the current
 // service discovery procedure, if any.
 void bta_dm_disc_acl_down(const RawAddress& bd_addr, tBT_TRANSPORT transport);
 
-// LE observe and scan interface
-void bta_dm_ble_scan(bool start, uint8_t duration_sec);
-void bta_dm_ble_csis_observe(bool observe, tBTA_DM_SEARCH_CBACK* p_cback);
+// Return most recent remote name
+const char* bta_dm_get_remname(void);
 
 // Checks if there is a device discovery request queued
 bool bta_dm_is_search_request_queued();
@@ -62,3 +62,5 @@ void bta_dm_disc_remove_device(const RawAddress& bd_addr);
 
 // Provide data for the dumpsys procedure
 void DumpsysBtaDmDisc(int fd);
+
+}  // namespace bta_dm_disc_legacy
