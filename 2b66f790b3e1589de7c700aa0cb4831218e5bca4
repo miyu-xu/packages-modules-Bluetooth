@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45731455_372d4190",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T17:39:20Z",
+      "side": 1,
+      "message": "Grzegorz, you got the point. Agreed with you there is actually no need to maintain metadata for BASS operations.\n\nUnfortunately this was the original design(wrong design IMO) from long time ago, we\u0027re mixing use Metadata for both source and assistant. Now this metadata class has been used for all the places and tied to APIs. I realized it would be large effort to decouple this and refactor the flow, and even not that feasible in some place due to released APIs. tbh I don\u0027t see a good reason to use metadata for adding/modifying source APIs at all. \nAny ideas are welcomed, even it might require larger scope of changes.",
+      "parentUuid": "cde4f79f_f52689d4",
+      "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "985e52f0_72733e5b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 7
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db0f2607_69b7d7ef",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1985,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T17:39:20Z",
+      "side": 1,
+      "message": "Hope this got explained by above. Basically we should not use metadata for such cases, but we\u0027d need to evaluate how to refactor the whole flow. This CL is not scoped for that, so we have to still use metadata(and fake some fields).",
+      "parentUuid": "985e52f0_72733e5b",
+      "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b3a8c97_4fda9110",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 7
@@ -48,6 +84,24 @@
       "writtenOn": "2024-10-04T12:26:16Z",
       "side": 1,
       "message": "This is just guessing.",
+      "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a6ee47b_6dc932f1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T17:39:20Z",
+      "side": 1,
+      "message": "this is the dummy field, won\u0027t take any effect. see my above comments.",
+      "parentUuid": "9b3a8c97_4fda9110",
       "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
