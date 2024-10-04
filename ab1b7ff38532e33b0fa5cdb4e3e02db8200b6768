@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec9ec0f_23419eb7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T16:57:29Z",
+      "side": 1,
+      "message": "could you help to elaborate a bit of monitoring broadcaster? and why 30s is picked here?\ndidn\u0027t get a clear idea from the commit message.",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddeb19b_4ce6812d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T16:57:29Z",
+      "side": 1,
+      "message": "this flag is released, and I\u0027m removing this very soon aosp/3286760. let\u0027s remove this.",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b5c4fb_e4ab77d1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T16:57:29Z",
+      "side": 1,
+      "message": "If we triggered notifySourceLost, this source will be removed from UI\u0027s page, and user will consider this as source is gone. Is this what we want here?\nIn this case, I feel 30s might be too aggressive?",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01cd82a9_1eba37d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T16:57:29Z",
+      "side": 1,
+      "message": "there is no break from the last log, removing this unnecessary log?",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acb38f47_ac5f6db5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T16:57:29Z",
+      "side": 1,
+      "message": "same as above, I\u0027d suggest to remove this. but if this is really something you\u0027d like to log, consider to use verbose instead.",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
