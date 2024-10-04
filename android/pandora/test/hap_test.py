@@ -18,6 +18,7 @@ from bumble.gatt import GATT_HEARING_ACCESS_SERVICE, GATT_AUDIO_STREAM_CONTROL_S
 from bumble.profiles import hap
 from bumble.profiles.hap import DynamicPresets, HearingAccessService, HearingAidFeatures, HearingAidType, IndependentPresets, PresetRecord, PresetSynchronizationSupport, WritablePresetsSupport
 
+from pandora_experimental.os_grpc_aio import Os as OsAio
 from pandora_experimental.gatt_grpc_aio import GATT
 from pandora_experimental.hap_grpc_aio import HAP
 from pandora_experimental.hap_pb2 import PresetRecord as grpcPresetRecord  # type: ignore
@@ -162,6 +163,8 @@ class HapTest(base_test.BaseTestClass):
 
     @asynchronous
     async def test_get_features(self) -> None:
+        logcat = OsAio(channel=self.dut.aio.channel)
+        await logcat.Log("hello from python")
         dut_connection_to_ref = await self.setupHapConnection()
 
         features = hap.HearingAidFeatures_from_bytes(
