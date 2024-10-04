@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23b7ce7_ec1314b6",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-04T23:46:23Z",
+      "side": 1,
+      "message": "nit: recommend to add a debug log before return so it would easier to check whether the fix is effective or not",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 18
+      },
+      "revId": "de78be1cc08a780aad8eab63024e26ecb6aa6d90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
