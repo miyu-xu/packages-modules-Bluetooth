@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a6b697e_2182c408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-04T13:14:40Z",
+      "side": 1,
+      "message": "Thanks for the fix! Indeed a hard language issue...",
+      "revId": "489fd5097145d30d146f2d61c539e8310192c86f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
