@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b8add4_43ad6b6e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-04T18:33:59Z",
+      "side": 1,
+      "message": "The current best practice should be to use `Truth`\u0027s `assertThat` instead of using `Assert`. (I think I saw you already use `assertThat` elsewhere).",
+      "range": {
+        "startLine": 1184,
+        "startChar": 8,
+        "endLine": 1184,
+        "endChar": 14
+      },
+      "revId": "37351a1df561808a95daddc24693518d0440b3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
