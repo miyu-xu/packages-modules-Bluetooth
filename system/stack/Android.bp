@@ -497,6 +497,7 @@ cc_fuzz {
         "libbluetooth_l2cap_pdl",
         "libbluetooth_log",
         "libbluetooth_smp_pdl",
+        "libbt-common",
         "libbt-platform-protos-lite",
     ],
 }
@@ -1639,6 +1640,7 @@ cc_test {
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
+        "libaconfig_storage_read_api_cc",
         "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
@@ -1655,7 +1657,6 @@ cc_test {
         "libprotobuf-cpp-lite",
         "libstatslog_bt",
         "server_configurable_flags",
-        "libaconfig_storage_read_api_cc",
     ],
     target: {
         android: {
@@ -1964,6 +1965,7 @@ cc_test {
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
+        "libaconfig_storage_read_api_cc",
         "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
@@ -1979,7 +1981,6 @@ cc_test {
         "liblog",
         "libosi",
         "server_configurable_flags",
-        "libaconfig_storage_read_api_cc",
     ],
     aidl: {
         libs: ["bluetooth_constants"],
