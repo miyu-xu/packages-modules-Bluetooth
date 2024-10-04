@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "940fa7da_710e9f2e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-04T07:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d29732_4d718b8f",
+      "range": {
+        "startLine": 1255,
+        "startChar": 8,
+        "endLine": 1255,
+        "endChar": 21
+      },
+      "revId": "81da90f0603165675500e58907be1329cddeba73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d631aea_abb6f32b",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-04T01:59:56Z",
       "side": 1,
       "message": "nit\n```suggestion\n        if chip_name \u003d\u003d \"AX211\".to_string() \u0026\u0026 matches!(self.last_suspend_type, SuspendType::NoWakesAllowed) {\n```",
+      "range": {
+        "startLine": 390,
+        "startChar": 0,
+        "endLine": 392,
+        "endChar": 48
+      },
+      "revId": "81da90f0603165675500e58907be1329cddeba73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbda50f_bfe12f3c",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-04T07:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d631aea_abb6f32b",
       "range": {
         "startLine": 390,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ac8199_b81381d7",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-04T07:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee76f3ea_b089fe10",
+      "revId": "81da90f0603165675500e58907be1329cddeba73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d95dd83_1708a994",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-10-04T01:59:56Z",
       "side": 1,
       "message": "Perhaps `\u0026\u0027static str` so we don\u0027t need the verbose conversion of `to_string`?",
+      "range": {
+        "startLine": 5,
+        "startChar": 46,
+        "endLine": 5,
+        "endChar": 52
+      },
+      "revId": "81da90f0603165675500e58907be1329cddeba73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb8c5bb6_60afcd12",
+        "filename": "system/gd/rust/linux/utils/src/chip_info.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-04T07:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d95dd83_1708a994",
       "range": {
         "startLine": 5,
         "startChar": 46,
