@@ -27,6 +27,7 @@ from bumble_experimental.rfcomm import RFCOMMService
 from bumble_experimental.avrcp import AvrcpService
 from bumble_experimental.hid import HIDService
 from bumble_experimental.oob import OOBService
+from bumble_experimental.config import ConfigService
 
 from pandora_experimental.asha_grpc_aio import add_AshaServicer_to_server
 from pandora_experimental.dck_grpc_aio import add_DckServicer_to_server
@@ -35,6 +36,7 @@ from pandora_experimental.rfcomm_grpc_aio import add_RFCOMMServicer_to_server
 from pandora_experimental.avrcp_grpc_aio import add_AVRCPServicer_to_server
 from pandora_experimental.hid_grpc_aio import add_HIDServicer_to_server
 from pandora_experimental.oob_grpc_aio import add_OOBServicer_to_server
+from pandora_experimental.config_grpc_aio import add_ConfigServicer_to_server
 
 from typing import Any, Dict
 
@@ -89,6 +91,8 @@ def register_experimental_services() -> None:
         lambda bumble, _, server: add_HIDServicer_to_server(HIDService(bumble.device), server))
     bumble_server.register_servicer_hook(
         lambda bumble, _, server: add_OOBServicer_to_server(OOBService(bumble.device), server))
+    bumble_server.register_servicer_hook(
+        lambda bumble, config, server: add_ConfigServicer_to_server(ConfigService(bumble.device, config), server))
 
 
 def retrieve_config(config: str) -> Dict[str, Any]:
