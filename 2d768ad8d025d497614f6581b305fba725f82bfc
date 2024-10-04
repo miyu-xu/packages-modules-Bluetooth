@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634026fd_ad19ef5c",
+        "filename": "system/bta/test/common/bta_gatt_api_mock.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-04T23:50:11Z",
+      "side": 1,
+      "message": "I use name `BtaGattServerInterface` because functions such as `AppRegister` have same name as the one in `BtaGattInterface`",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 28
+      },
+      "revId": "2d768ad8d025d497614f6581b305fba725f82bfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
