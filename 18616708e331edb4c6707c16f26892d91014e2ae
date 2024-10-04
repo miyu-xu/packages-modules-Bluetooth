@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1da3a1dd_83150240",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1023,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T04:01:38Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: unused parameter \u0027userDataDirectory\u0027 [-Werror,-Wunused-parameter]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    unused parameter \u0027userDataDirectory\u0027 [-Werror,-Wunused-parameter]\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P82121216/targets/cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 1023,
+        "startChar": 78,
+        "endLine": 1023,
+        "endChar": 78
+      },
+      "revId": "18616708e331edb4c6707c16f26892d91014e2ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
