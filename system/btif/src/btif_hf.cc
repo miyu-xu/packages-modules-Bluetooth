@@ -27,8 +27,6 @@
 
 #define LOG_TAG "bt_btif_hf"
 
-#include "btif/include/btif_hf.h"
-
 #include <android_bluetooth_sysprop.h>
 #include <base/functional/callback.h>
 #include <bluetooth/log.h>
@@ -57,11 +55,15 @@
 #include "stack/include/btm_log_history.h"
 #include "types/raw_address.h"
 
+// TODO(b/369381361) Enfore -Wmissing-prototypes
+#pragma GCC diagnostic ignored "-Wmissing-prototypes"
+
 namespace {
 constexpr char kBtmLogTag[] = "HFP";
 }
 
-namespace bluetooth::headset {
+namespace bluetooth {
+namespace headset {
 
 /*******************************************************************************
  *  Constants & Macros
@@ -269,7 +271,7 @@ static bool is_nth_bit_enabled(uint32_t value, int n) {
   return (value & (static_cast<uint32_t>(1) << n)) != 0;
 }
 
-static void clear_phone_state_multihf(btif_hf_cb_t* hf_cb) {
+void clear_phone_state_multihf(btif_hf_cb_t* hf_cb) {
   hf_cb->call_setup_state = BTHF_CALL_STATE_IDLE;
   hf_cb->num_active = 0;
   hf_cb->num_held = 0;
@@ -1620,4 +1622,5 @@ Interface* GetInterface() {
   return HeadsetInterface::GetInstance();
 }
 
-}  // namespace bluetooth::headset
+}  // namespace headset
+}  // namespace bluetooth
