@@ -22,6 +22,30 @@
       },
       "revId": "3a89c6be3fb82b3aacd311b2b34298193e4ffae2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a8b4d0_80687c8d",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-04T00:08:26Z",
+      "side": 1,
+      "message": "It is called delay because it is used in a delayed action to cancel discovery. I am OK to change it to duration.",
+      "parentUuid": "4d32becb_a0525bd9",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "3a89c6be3fb82b3aacd311b2b34298193e4ffae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
