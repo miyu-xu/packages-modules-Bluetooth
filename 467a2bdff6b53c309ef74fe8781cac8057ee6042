@@ -1,0 +1,155 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c7e95ea_f5acc309",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T23:43:55Z",
+      "side": 1,
+      "message": "I know this is not yet commonly used in the stack but since we are here and updating the struct name I believe:\n* `t` should not be used as a prefix as this is coming from old c style code and indicate a typedef (which this is not anymore)\n* case should not be all caps but follow PascalCase\n```\nGoogle C++ Style Guide:\nPascalCase (also known as UpperCamelCase): Start each word with a capital letter, no spaces.\nExample: struct MyStructure { /* ... */ };\n```",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b67cd8dd_cf3bdeeb",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T23:43:55Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 578,
+        "startChar": 16,
+        "endLine": 578,
+        "endChar": 32
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd2a499b_c86218c8",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T23:43:55Z",
+      "side": 1,
+      "message": "The func name is already included in the log, you can remove it",
+      "range": {
+        "startLine": 593,
+        "startChar": 16,
+        "endLine": 593,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "19bc5d44_69537a98",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 593,
+                "startChar": 0,
+                "endLine": 594,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"handle:{} FC_TYPE:0x{:x}\", handle, p_settings-\u003efc_type);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ce4f2c_1a70d23a",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T23:43:55Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "31d220ea_564f414c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 618,
+                "startChar": 0,
+                "endLine": 619,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"PORT_GetSettings() handle:{} p_settings:{}\", handle,\n               fmt::ptr(p_settings));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bb2f30e_955606ea",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T23:43:55Z",
+      "side": 1,
+      "message": "```suggestion\n  tPORT_SETTINGS port_settings \u003d {};\n  tPORT* p_port;\n\n  p_port \u003d port_find_mcb_dlci_port(p_mcb, p_frame-\u003edlci);\n  if (p_port \u003d\u003d nullptr) {\n    /* This is the first command on the port */\n    if (is_command) {\n```",
+      "range": {
+        "startLine": 675,
+        "startChar": 0,
+        "endLine": 682,
+        "endChar": 56
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
