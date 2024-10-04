@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14c802d7_854017bc",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T19:17:52Z",
+      "side": 1,
+      "message": "Possible we would also remove the stop in the future?",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89774ed7_4bb4c8cc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T19:17:52Z",
+      "side": 1,
+      "message": "canBroadcastBeCreated is checking the invalid parameters, but we\u0027re reporting the error code all as ERROR_LOCAL_NOT_ENOUGH_RESOURCES.\n\nCan we pass propagate the error code or invoke callback in canBroadcastBeCreated?\n \nnit naming, canBroadcastBeCreated -\u003e isCreateBroadcastAllowed or isValidCreateBroadcastRequest?",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9855123d_84dbda43",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3176,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T19:17:52Z",
+      "side": 1,
+      "message": "We have 3 places for this, why don\u0027t we keep the clearBroadcastTimeoutCallback and make it private helper func for those 2 lines?\n\n        mHandler.removeCallbacks(mCreateBroadcastTimeoutEvent);\n        mCreateBroadcastTimeoutEvent \u003d null;",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8cde409_1216e8e0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3710,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T19:17:52Z",
+      "side": 1,
+      "message": "just curious, is this even possible?",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "775222bb_3286aac8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3730,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-04T19:17:52Z",
+      "side": 1,
+      "message": "should we move this out of this check? or apply for both success and fail cases?\n\n```suggestion\n                if ((mUnicastGroupIdDeactivatedForBroadcastTransition !\u003d LE_AUDIO_GROUP_ID_INVALID)\n                        \u0026\u0026 mCreateBroadcastQueue.isEmpty()\n                        \u0026\u0026 (!Objects.equals(device, mActiveBroadcastAudioDevice))) {\n                    updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);\n                }\n                mHandler.removeCallbacks(mCreateBroadcastTimeoutEvent);\n                mCreateBroadcastTimeoutEvent \u003d null;\n```",
+      "range": {
+        "startLine": 3724,
+        "startChar": 0,
+        "endLine": 3730,
+        "endChar": 17
+      },
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
