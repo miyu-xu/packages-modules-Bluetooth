@@ -16,6 +16,64 @@
       "message": "Zhengping, please let me know if this refactor is compatible the upcoming pnp solution.",
       "revId": "a23aaf6284a9cb4593360c12ee5ad6be1d6efc49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b30693a5_95fdaeed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T03:29:00Z",
+      "side": 1,
+      "message": "I understand the idea behind this CL (as I believe I was complaining a bit about how DisplayManager make it hard to test the behavior).\n\nBut I believe that this CL will simply move the logic from the AdapterSuspend to the observerFactory. This is a lot of code for not solving the problem that it try to fix. (Since there is still no control on the DisplayManager).\n\nBut maybe you have other futur idea in mind that I am not aware of",
+      "revId": "a23aaf6284a9cb4593360c12ee5ad6be1d6efc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f1e3a54_2ba9833e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T03:29:00Z",
+      "side": 1,
+      "message": "FYI:\n\n`assertThat(foo).isInstanceOf(Foo)`",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 94
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b1600a28_311dae32",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(suspendObserver).isInstanceOf(AdapterSuspend.DisplaySuspendObserver.class);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a23aaf6284a9cb4593360c12ee5ad6be1d6efc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
