@@ -46,6 +46,30 @@
       },
       "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2abeba11_72fe37cd",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-10-04T02:17:43Z",
+      "side": 1,
+      "message": "In Floss case the offload path is toggled by CRAS through sending the preferred codec, is that right?\nIn a later CL, we could turn on hfp_software_datapath for Floss so enable_offload() doesn\u0027t get called during init but is configured when CRAS says so. With that we can remove TARGET_FLOSS safely.",
+      "parentUuid": "4f4f4289_4770829c",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 20
+      },
+      "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
