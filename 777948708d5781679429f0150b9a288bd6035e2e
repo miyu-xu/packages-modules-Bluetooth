@@ -117,6 +117,30 @@
       },
       "revId": "777948708d5781679429f0150b9a288bd6035e2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e647793_e0c3c9eb",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-04T05:40:52Z",
+      "side": 1,
+      "message": "`handle_discovery_comp` is only called when we got a `BTA_JV_DISCOVERY_COMP_EVT` from Jv. We don\u0027t need (or actually shouldn\u0027t) call `BTA_JvCancelDiscovery` in that.\n\n`BTA_JV_DISCOVERY_COMP_EVT` could come from 3 places:\n* 1 place in `bta_jv_start_discovery_cback`: We don\u0027t need to call cancel as this cback is exactly called when the discovery is done\n* 2 places in `bta_jv_start_discovery`: These are the failure cases. If we failed on the `sdp_active` check, then we SHOULD NOT cancel the discovery because that\u0027s scheduled by somebody else and should be cleaned up when they is closed. If we failed on the `SDP_ServiceSearchAttributeRequest2` call, then Jv should have cleaned up the state and we don\u0027t need to cancel either\n\nSo this is why I said we just shouldn\u0027t call cancel in handle_discovery_comp.\n\nThe conclusion keeps in the perspective of the API design. When the low layer (Jv) has told us a request has \"completed\", I don\u0027t see any reason to explicitly \"cancel\" the request.",
+      "parentUuid": "39f64df6_97985509",
+      "range": {
+        "startLine": 968,
+        "startChar": 10,
+        "endLine": 968,
+        "endChar": 14
+      },
+      "revId": "777948708d5781679429f0150b9a288bd6035e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
