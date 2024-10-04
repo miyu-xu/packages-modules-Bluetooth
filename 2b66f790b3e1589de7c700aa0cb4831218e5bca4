@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cde4f79f_f52689d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-04T12:26:16Z",
+      "side": 1,
+      "message": "I don\u0027t get clear a reason why Assistant should care about filling metadata to some read/notified ReceiveState. Looks like the update of mPendingMetadata value is done while adding/modifying source.",
+      "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "985e52f0_72733e5b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1985,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-04T12:26:16Z",
+      "side": 1,
+      "message": "This seems to be a bit of impossible operation - to tell what is the matadata from Receive State characteristic without metadata. This value should be get from add/modify source context. Could you please explain me a motivation for such change ?",
+      "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3a8c97_4fda9110",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-04T12:26:16Z",
+      "side": 1,
+      "message": "This is just guessing.",
+      "revId": "2b66f790b3e1589de7c700aa0cb4831218e5bca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
