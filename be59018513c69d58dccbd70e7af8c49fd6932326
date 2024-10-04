@@ -70,6 +70,30 @@
       },
       "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27be51f_58404b1b",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-04T02:18:58Z",
+      "side": 1,
+      "message": "Thanks for the info!",
+      "parentUuid": "2abeba11_72fe37cd",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 20
+      },
+      "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
