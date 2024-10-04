@@ -28,8 +28,6 @@
 
 #define LOG_TAG "bt_btif_sdp"
 
-#include "btif/include/btif_sdp.h"
-
 #include <bluetooth/log.h>
 #include <hardware/bluetooth.h>
 #include <hardware/bt_sdp.h>
@@ -41,6 +39,9 @@
 #include "btif_common.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+
+// TODO(b/369381361) Enfore -Wmissing-prototypes
+#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using bluetooth::Uuid;
 using namespace bluetooth;
