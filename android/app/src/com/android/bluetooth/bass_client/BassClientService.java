@@ -3079,7 +3079,7 @@ public class BassClientService extends ProfileService {
         return stateMachine.getMaximumSourceCapacity();
     }
 
-    private boolean isLocalBroadcast(int sourceAdvertisingSid) {
+    private boolean isLocalBroadcast(BluetoothDevice device) {
         LeAudioService leAudioService = mServiceFactory.getLeAudioService();
         if (leAudioService == null) {
             return false;
@@ -3089,7 +3089,7 @@ public class BassClientService extends ProfileService {
                 leAudioService.getAllBroadcastMetadata().stream()
                         .anyMatch(
                                 meta -> {
-                                    return meta.getSourceAdvertisingSid() == sourceAdvertisingSid;
+                                    return meta.getSourceDevice().equals(device);
                                 });
         log("isLocalBroadcast=" + wasFound);
         return wasFound;
@@ -3100,7 +3100,7 @@ public class BassClientService extends ProfileService {
             return false;
         }
 
-        return isLocalBroadcast(metaData.getSourceAdvertisingSid());
+        return isLocalBroadcast(metaData.getSourceDevice());
     }
 
     boolean isLocalBroadcast(BluetoothLeBroadcastReceiveState receiveState) {
@@ -3108,7 +3108,7 @@ public class BassClientService extends ProfileService {
             return false;
         }
 
-        return isLocalBroadcast(receiveState.getSourceAdvertisingSid());
+        return isLocalBroadcast(receiveState.getSourceDevice());
     }
 
     static void log(String msg) {
