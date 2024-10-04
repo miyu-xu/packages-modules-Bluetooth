@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c13ead_e0f25906",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-04T22:00:44Z",
+      "side": 1,
+      "message": "If you\u0027re wondering, \"Why not just change the comment to match the function?\", it\u0027s because I plan to introduce a function with a name along the lines of `rfc_set_state` that\u0027ll update the current state.",
+      "revId": "1c3c20b80322a0ddc379baee276f9e4fff9faacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
