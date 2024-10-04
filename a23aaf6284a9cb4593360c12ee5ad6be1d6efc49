@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfdefe0b_8a52ccae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-04T05:21:48Z",
+      "side": 1,
+      "message": "Indeed, this patch doesn\u0027t fix the testability with DisplayManger.\n\nWe are likely to receive the power state changes from services other than the DisplayManager. It can be PowerManager or a new service only available to some Android devices. In the latter case, there\u0027ll be multiple SuspendObserver implementations, and DisplaySuspendObserver becomes a default one for Android devices without the new service.",
+      "parentUuid": "b30693a5_95fdaeed",
+      "revId": "a23aaf6284a9cb4593360c12ee5ad6be1d6efc49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f1e3a54_2ba9833e",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterSuspendTest.java",
         "patchSetId": 1
