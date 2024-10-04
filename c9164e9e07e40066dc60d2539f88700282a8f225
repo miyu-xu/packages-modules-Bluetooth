@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a585d707_e9982607",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-04T22:17:12Z",
+      "side": 0,
+      "message": "These are removed on purpose since there was no previous reference to INTEROP_DISABLE_LE_CONN_PREFERRED_PARAMS in non-test code prior to this CL. So removing the entries preserves the existing behavior for these devices.",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 19
+      },
+      "revId": "c9164e9e07e40066dc60d2539f88700282a8f225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
