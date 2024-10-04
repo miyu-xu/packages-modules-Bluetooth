@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966c21a8_9adaaff3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-04T17:32:41Z",
+      "side": 1,
+      "message": "Abandon this CL and land as Chromium on ToT.",
+      "revId": "521cacd226292674507c591a46475d664fd19a67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
