@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d18eab8_ac424f78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T03:58:01Z",
+      "side": 1,
+      "message": "adding 1 MB to the jar seems excessive. Need to try other linkage",
+      "revId": "e136be3005e16d944641848131ab3165477c5d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
