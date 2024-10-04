@@ -16,6 +16,24 @@
       "message": "Unit tests I will deliver after my OOO.\nWe should decide if 30s is not so small, especially for OOR case. Maybe we should create some API to give possibility to UI to control that.",
       "revId": "ca12aa9ede837a8e4bba14335d14fd343376caef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f933dac_9ec48632",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-04T12:23:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "359e0f38_63c554e9",
+      "revId": "ca12aa9ede837a8e4bba14335d14fd343376caef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
