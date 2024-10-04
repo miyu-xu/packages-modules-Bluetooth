@@ -59,6 +59,16 @@ class BluetoothService(context: Context) : SystemService(context) {
                     .getBoolean(
                         Resources.getSystem()
                             .getIdentifier("config_bootToHeadlessSystemUser", "bool", "android")
+                    ) ||
+                Resources.getSystem()
+                    .getBoolean(
+                        Resources.getSystem()
+                            .getIdentifier(
+                                "config_canSwitchToHeadlessSystemUser",
+                                "bool",
+                                "android"
+                            )
+                    )
                     )
         ) {
             initialize(user)
