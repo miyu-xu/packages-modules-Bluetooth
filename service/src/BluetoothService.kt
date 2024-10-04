@@ -47,7 +47,7 @@ class BluetoothService(context: Context) : SystemService(context) {
         if (phase == SystemService.PHASE_SYSTEM_SERVICES_READY) {
             publishBinderService(
                 BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE,
-                mBluetoothManagerService.getBinder()
+                mBluetoothManagerService.getBinder(),
             )
         }
     }
@@ -59,6 +59,15 @@ class BluetoothService(context: Context) : SystemService(context) {
                     .getBoolean(
                         Resources.getSystem()
                             .getIdentifier("config_bootToHeadlessSystemUser", "bool", "android")
+                    ) ||
+                Resources.getSystem()
+                    .getBoolean(
+                        Resources.getSystem()
+                            .getIdentifier(
+                                "config_canSwitchToHeadlessSystemUser",
+                                "bool",
+                                "android",
+                            )
                     )
         ) {
             initialize(user)
