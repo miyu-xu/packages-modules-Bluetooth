@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "170fc7ea_71ee7489",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-04T09:12:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5714fda2_a7aa2f59",
+      "revId": "46728d322e525c48f4824590cc1e5e7572cc69f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b540bc5d_9a8877d9",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-02T20:03:23Z",
       "side": 1,
       "message": "in case of synced, do we need to remove this id from the counter map?",
+      "revId": "46728d322e525c48f4824590cc1e5e7572cc69f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcf43f26_6874ea5f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2049,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-04T09:12:15Z",
+      "side": 1,
+      "message": "I thought about this and decide to remove it only on stopSearchingForSources.\n\nRemoving it here can cause an issue in situation when two or more broadcasters consequently sync and immediately sync lost... Ohh I notice that we should increase a failureCounter on syncLost too to prevent from block by two such of them.\n\nI added clearing on startSearchingForSources beacause when scanner is disabled it still can try to sync by addSource, on start we want to have clear page.",
+      "parentUuid": "b540bc5d_9a8877d9",
       "revId": "46728d322e525c48f4824590cc1e5e7572cc69f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
