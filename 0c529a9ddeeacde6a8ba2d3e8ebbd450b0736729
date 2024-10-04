@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98465a1_62d343b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T09:15:07Z",
+      "side": 1,
+      "message": "If we want to take this CL back, we will need to remove the flag and keep the code like if the flag was disabled (since the flag is enabled in next)",
+      "revId": "0c529a9ddeeacde6a8ba2d3e8ebbd450b0736729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
