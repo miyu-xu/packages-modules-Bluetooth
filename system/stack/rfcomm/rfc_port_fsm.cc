@@ -61,7 +61,7 @@ static void rfc_port_sm_disc_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event, void*
 
 static void rfc_port_uplink_data(tPORT* p_port, BT_HDR* p_buf);
 
-static void rfc_set_port_state(tPORT_STATE* port_pars, MX_FRAME* p_frame);
+static void rfc_set_port_pars(tPORT_STATE* port_pars, MX_FRAME* p_frame);
 
 /*******************************************************************************
  *
@@ -680,7 +680,7 @@ void rfc_process_rpn(tRFC_MCB* p_mcb, bool is_command, bool is_request, MX_FRAME
     /* This is the first command on the port */
     if (is_command) {
       memset(&port_pars, 0, sizeof(tPORT_STATE));
-      rfc_set_port_state(&port_pars, p_frame);
+      rfc_set_port_pars(&port_pars, p_frame);
 
       PORT_PortNegInd(p_mcb, p_frame->dlci, &port_pars, p_frame->u.rpn.param_mask);
     }
@@ -695,7 +695,7 @@ void rfc_process_rpn(tRFC_MCB* p_mcb, bool is_command, bool is_request, MX_FRAME
 
   port_pars = p_port->peer_port_pars;
 
-  rfc_set_port_state(&port_pars, p_frame);
+  rfc_set_port_pars(&port_pars, p_frame);
 
   if (is_command) {
     PORT_PortNegInd(p_mcb, p_frame->dlci, &port_pars, p_frame->u.rpn.param_mask);
@@ -954,7 +954,7 @@ void rfc_process_l2cap_congestion(tRFC_MCB* p_mcb, bool is_congested) {
  *
  ******************************************************************************/
 
-void rfc_set_port_state(tPORT_STATE* port_pars, MX_FRAME* p_frame) {
+void rfc_set_port_pars(tPORT_STATE* port_pars, MX_FRAME* p_frame) {
   if (p_frame->u.rpn.param_mask & RFCOMM_RPN_PM_BIT_RATE) {
     port_pars->baud_rate = p_frame->u.rpn.baud_rate;
   }
