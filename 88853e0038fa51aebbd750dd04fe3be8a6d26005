@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b71334_97f11208",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-04T17:09:33Z",
+      "side": 1,
+      "message": "failure on aosp-main-future only. There is a mismatch in downstream branch",
+      "revId": "88853e0038fa51aebbd750dd04fe3be8a6d26005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
