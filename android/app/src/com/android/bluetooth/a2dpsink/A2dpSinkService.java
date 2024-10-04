@@ -397,7 +397,7 @@ public class A2dpSinkService extends ProfileService {
         return getDevicesMatchingConnectionStates(new int[] {BluetoothAdapter.STATE_CONNECTED});
     }
 
-    protected A2dpSinkStateMachine getOrCreateStateMachine(BluetoothDevice device) {
+    protected synchronized A2dpSinkStateMachine getOrCreateStateMachine(BluetoothDevice device) {
         A2dpSinkStateMachine newStateMachine =
                 new A2dpSinkStateMachine(mLooper, device, this, mNativeInterface);
         A2dpSinkStateMachine existingStateMachine =
