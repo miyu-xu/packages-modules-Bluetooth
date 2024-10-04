@@ -16,6 +16,23 @@
       "message": "Hi @quic_zhenchao@quicinc.com, thanks. can we add/update some unit tests for this in LeAudioBroadcastServiceTest?",
       "revId": "235b9a72d25c8c73ac6d3654c5acbc3c08b22670",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d74da15_4eab0510",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-04T10:58:58Z",
+      "side": 1,
+      "message": "Thank you Zhenchao for pointing to this. This is valid fix, would be nice to have test cases as Rongxuan said.",
+      "revId": "235b9a72d25c8c73ac6d3654c5acbc3c08b22670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
