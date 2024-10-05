@@ -1566,7 +1566,14 @@ private:
 
     /* Get the active preset value */
     auto* pp = value;
-    STREAM_TO_UINT8(device->currently_active_preset, pp);
+    uint8_t active_preset_received;
+    STREAM_TO_UINT8(active_preset_received, pp);
+    if (device->isGattServiceValid() && !device->has_presets.contains(active_preset_received)) {
+      log::error("Unknown preset {}. Active preset change is discarded", active_preset_received);
+      device->has_journal_.Append(HasJournalRecord(active_preset_received, false));
+      return;
+    }
+    device->currently_active_preset = active_preset_received;
 
     if (device->isGattServiceValid()) {
       btif_storage_set_leaudio_has_active_preset(device->addr, device->currently_active_preset);
@@ -1579,7 +1586,9 @@ private:
     MarkDeviceValidIfInInitialDiscovery(*device);
 
     if (device->isGattServiceValid()) {
-      if (!pending_group_operation_timeouts_.empty()) {
+      if (pending_group_operation_timeouts_.empty()) {
+        callbacks_->OnActivePresetSelected(device->addr, device->currently_active_preset);
+      } else {
         for (auto it = pending_group_operation_timeouts_.rbegin();
              it != pending_group_operation_timeouts_.rend(); ++it) {
           auto& group_op_coordinator = it->second;
@@ -1615,9 +1624,6 @@ private:
             break;
           }
         }
-
-      } else {
-        callbacks_->OnActivePresetSelected(device->addr, device->currently_active_preset);
       }
     }
   }
