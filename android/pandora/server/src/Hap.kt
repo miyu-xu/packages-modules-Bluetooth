@@ -157,7 +157,7 @@ class Hap(val context: Context) : HAPImplBase(), Closeable {
         grpcUnary<GetPresetRecordResponse>(scope, responseObserver) {
             val device = request.connection.toBluetoothDevice(bluetoothAdapter)
 
-            Log.i(TAG, "getPresetRecord device=${device.address} index=${request.index}")
+            Log.i(TAG, "getPresetRecord device=${device} index=${request.index}")
 
             val presetInfo: BluetoothHapPresetInfo? =
                 bluetoothHapClient.getPresetInfo(device, request.index)
