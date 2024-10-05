@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc6dea8_0b2a3ed3",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-05T00:23:10Z",
+      "side": 0,
+      "message": "Why removing these two? Can we keep this and if you do want to remove them, do it in a separate CL?",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 19
+      },
+      "revId": "a02e60fa15b7743ea6dcac015c12eba770ee05ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2166cef9_257bcf8c",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-05T00:23:10Z",
+      "side": 0,
+      "message": "same as above",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 89
+      },
+      "revId": "a02e60fa15b7743ea6dcac015c12eba770ee05ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
