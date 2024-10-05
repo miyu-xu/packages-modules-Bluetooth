@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f02de37e_ca08341e",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-05T00:54:53Z",
+      "side": 0,
+      "message": "Discussed offline, OK to keep these in",
+      "parentUuid": "bfc6dea8_0b2a3ed3",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 19
+      },
+      "revId": "a02e60fa15b7743ea6dcac015c12eba770ee05ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2166cef9_257bcf8c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-05T00:23:10Z",
       "side": 0,
       "message": "same as above",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 89
+      },
+      "revId": "a02e60fa15b7743ea6dcac015c12eba770ee05ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a91b5535_991acfcc",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-05T00:54:53Z",
+      "side": 0,
+      "message": "Acknowledged, but I\u0027d like to keep the tests focused on the devices we are targeting here.",
+      "parentUuid": "2166cef9_257bcf8c",
       "range": {
         "startLine": 367,
         "startChar": 0,
