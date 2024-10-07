@@ -1,0 +1,98 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa104568_005cc1ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:48:12Z",
+      "side": 1,
+      "message": "Commit message is ambiguous, I did not understand you were adding a test",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "9f89b37710ec1893dd12361c6d02bc155549e300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc2013bd_dc547da4",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:48:12Z",
+      "side": 1,
+      "message": "C\u0027est quoi ce naming ? `Identical` ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "70de5cc5_3226f3f4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/hap_test.py",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "    async def assertIdenticalPresetInDutAndRef(self, dut_connection_to_ref: Connection):\n"
+            },
+            {
+              "path": "android/pandora/test/hap_test.py",
+              "range": {
+                "startLine": 180,
+                "startChar": 0,
+                "endLine": 181,
+                "endChar": 0
+              },
+              "replacement": "        await self.assertIdenticalPresetInDutAndRef(dut_connection_to_ref)\n"
+            },
+            {
+              "path": "android/pandora/test/hap_test.py",
+              "range": {
+                "startLine": 187,
+                "startChar": 0,
+                "endLine": 188,
+                "endChar": 0
+              },
+              "replacement": "        await self.assertIdenticalPresetInDutAndRef(dut_connection_to_ref)\n"
+            },
+            {
+              "path": "android/pandora/test/hap_test.py",
+              "range": {
+                "startLine": 193,
+                "startChar": 0,
+                "endLine": 194,
+                "endChar": 0
+              },
+              "replacement": "        await self.assertIdenticalPresetInDutAndRef(dut_connection_to_ref)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f89b37710ec1893dd12361c6d02bc155549e300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
