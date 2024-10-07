@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19df54da_dc5cfc27",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:54:19Z",
+      "side": 1,
+      "message": "Please document that this method is checking that the bluetooth process hasn\u0027t crashed.",
+      "revId": "b196d1438d8f17cda26215e74ee2253163473ec6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5055d502_44686baf",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:54:19Z",
+      "side": 1,
+      "message": "Comment does not match",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "b196d1438d8f17cda26215e74ee2253163473ec6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76b8bb7_f55a500c",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:54:19Z",
+      "side": 1,
+      "message": "Should it be the preset index to match SetActivePreset ?\nOr should SetActivePreset input a PresetRecord ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 17,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "b196d1438d8f17cda26215e74ee2253163473ec6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
