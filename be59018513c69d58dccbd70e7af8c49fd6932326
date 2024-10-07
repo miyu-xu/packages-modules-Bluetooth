@@ -142,6 +142,30 @@
       },
       "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92a4eb19_360919a3",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-10-07T09:04:45Z",
+      "side": 1,
+      "message": "Good catch. sysprops should be consistent about its default value. Let go with the Floss build flag. And in a later CL, we could turn on `hfp_software_datapath` for Floss",
+      "parentUuid": "46f11c3c_7581a4d0",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 20
+      },
+      "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
