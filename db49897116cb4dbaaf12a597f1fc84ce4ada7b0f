@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8aea8c_ad4aba11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-07T06:06:53Z",
+      "side": 1,
+      "message": "Hey Himanshu,\n\nFor b/332761737 I will need a IoP like this CL describe to avoid open up GATT attribution size limit. Any suggestion on how to implement this?",
+      "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
