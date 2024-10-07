@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7835cd3e_51d53aef",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-07T20:21:32Z",
+      "side": 1,
+      "message": "This should be a separate cl under a flag.",
+      "parentUuid": "36e66fa8_3288e8bb",
+      "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "faf11d9e_e94d1071",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 1
