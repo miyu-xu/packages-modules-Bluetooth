@@ -22,6 +22,30 @@
       },
       "revId": "8189e07cc0c3331e6f47ffe26f4c1ec2818a70e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7e4f4f_bb104d57",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5015,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-07T17:59:45Z",
+      "side": 1,
+      "message": "all values are conditional, and the spec didn\u0027t define a \u0027not applied\u0027 value.\nC.1: A device that supports SNR output control shall support at least one output index/level listed in\nTable 3.2.",
+      "parentUuid": "55d7db9c_643c51aa",
+      "range": {
+        "startLine": 5015,
+        "startChar": 2,
+        "endLine": 5015,
+        "endChar": 28
+      },
+      "revId": "8189e07cc0c3331e6f47ffe26f4c1ec2818a70e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
