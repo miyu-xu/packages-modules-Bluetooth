@@ -118,6 +118,30 @@
       },
       "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46f11c3c_7581a4d0",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-07T06:35:46Z",
+      "side": 1,
+      "message": "No strong opinion from BT team though, make sure to keep this sysprops usage consistent: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/ag/bta_ag_sco.cc;l\u003d1678;drc\u003da56cd183914bd28652b21d28fb126ee605bd4d0f",
+      "parentUuid": "437c82c6_ae0d03f9",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 20
+      },
+      "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
