@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bfb3d3c_6d873725",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T18:00:20Z",
+      "side": 1,
+      "message": "Got it, so after 1 minute, we will notify source lost and remove this source from sinks.",
+      "parentUuid": "c0f8a2b6_f17557d1",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ddeb19b_4ce6812d",

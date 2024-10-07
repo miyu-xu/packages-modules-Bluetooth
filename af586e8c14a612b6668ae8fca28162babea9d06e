@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec2a3170_4e7edaaa",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T18:00:20Z",
+      "side": 1,
+      "message": "Update this 30s to 1min?\nAlso can we add more details here about those 2 timeout sBigMonitorTimeout and sBroadcasterMonitorTimeout? like what you explained in the other comment.",
+      "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30732619_d5d5cb6f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T18:00:20Z",
+      "side": 1,
+      "message": "A follow-up question here, if sinks are still able to sync to this source, then should we keep this source?\n\nI think maybe we should also check the sinks receive state here. Only remove it when both assistant and buds can\u0027t sync, in this way, we can avoid bad user experience since if buds unsynced user will always notice first.",
+      "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
