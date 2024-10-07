@@ -52,6 +52,24 @@
       "parentUuid": "2601d92d_e7e10b77",
       "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8c0459_2fc8f36b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-07T23:41:00Z",
+      "side": 1,
+      "message": "I think that the beauty of the CL I linked initially is being able to never look the config and trust the build to do the correct thing.\n\nThat would be something like aosp/3298151 if we were to extrapolate to here",
+      "parentUuid": "2f79f7cf_879c1899",
+      "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
