@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d499217e_ae02fa66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-07T15:09:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e4e1b9_4a72d416",
+      "revId": "65cd11e1f54e5801f69cbf356a8a5d81f9bfae94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a62c4030_fb2bc8c4",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-26T16:36:03Z",
       "side": 1,
       "message": "I think this was added on accident?",
+      "revId": "65cd11e1f54e5801f69cbf356a8a5d81f9bfae94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d69513_a5ff7a8f",
+        "filename": "system/main/shim/entry.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-07T15:09:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a62c4030_fb2bc8c4",
       "revId": "65cd11e1f54e5801f69cbf356a8a5d81f9bfae94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
