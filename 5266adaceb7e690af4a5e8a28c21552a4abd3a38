@@ -1,0 +1,109 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbf7aa28_14955645",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:38:37Z",
+      "side": 1,
+      "message": "closing",
+      "range": {
+        "startLine": 145,
+        "startChar": 56,
+        "endLine": 145,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c41d32c6_d5836ede",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/L2cap.kt",
+              "range": {
+                "startLine": 145,
+                "startChar": 0,
+                "endLine": 146,
+                "endChar": 0
+              },
+              "replacement": "                Log.e(TAG, \"disconnect: exception while closing the socket: $e\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5266adaceb7e690af4a5e8a28c21552a4abd3a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e5a8df_0c207a72",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:38:37Z",
+      "side": 1,
+      "message": "Not really appropriate is it ?",
+      "range": {
+        "startLine": 148,
+        "startChar": 55,
+        "endLine": 148,
+        "endChar": 83
+      },
+      "revId": "5266adaceb7e690af4a5e8a28c21552a4abd3a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d60a209_8b5f715c",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T18:38:37Z",
+      "side": 1,
+      "message": "this.id()",
+      "range": {
+        "startLine": 198,
+        "startChar": 26,
+        "endLine": 198,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "abcd31a0_f908b373",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/L2cap.kt",
+              "range": {
+                "startLine": 198,
+                "startChar": 0,
+                "endLine": 199,
+                "endChar": 0
+              },
+              "replacement": "        channels.get(this.id())!!\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5266adaceb7e690af4a5e8a28c21552a4abd3a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
