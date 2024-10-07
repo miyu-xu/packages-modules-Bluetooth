@@ -16,6 +16,40 @@
       "message": "Hey Himanshu,\n\nFor b/332761737 I will need a IoP like this CL describe to avoid open up GATT attribution size limit. Any suggestion on how to implement this?",
       "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e66fa8_3288e8bb",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-07T20:20:50Z",
+      "side": 1,
+      "message": "It may be better to do this while handling `BTA_GATTC_OPEN_EVT`.\n\nAlso we can use `GATT_MAX_MTU_SIZE` instead of the literal value.",
+      "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faf11d9e_e94d1071",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-07T20:20:50Z",
+      "side": 1,
+      "message": "Add an IOP config for this.\n\nAdd some description about the IOP issue. Also since this is a device specific issue, it would be better to move this IOP logic to an entirely separate function.\n\n```\nif (is_iop_issue(addr)) {\n  get_iop_device_rpt_map(\u0026rpt_map, \u0026len);\n}\n// use updated rpt_map and len\n```",
+      "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
