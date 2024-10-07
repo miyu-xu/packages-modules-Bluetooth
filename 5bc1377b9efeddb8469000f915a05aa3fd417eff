@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26aeae57_17114cd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T22:49:57Z",
+      "side": 1,
+      "message": "In terms of uniqueness I still feel broadcast id is a better fit here. And in the context of broadcast metadata and receive state, broadcastId also looks better to me.\n\nAny advantage from device over broadcastId?",
+      "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
