@@ -16,6 +16,24 @@
       "message": "Can you document how this config will impact the Security service ?\nShould this method be attached to the security module instead ?\n\nThe way it is presented, it appears to be a bumble specific requirement...",
       "revId": "808d921787064683883ef7c7349ad165fb5ef50a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba735880_4e5d89f9",
+        "filename": "pandora/interfaces/pandora_experimental/config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-07T17:47:52Z",
+      "side": 1,
+      "message": "\u003e Can you document how this config will impact the Security service ?\n\nYes, I will add some documentation. Indeed this is not clear enough like this.\n\n\u003e Should this method be attached to the security module instead ?\n\nThat could be a good idea, however this override logic shall be used only by BumbleBluetoothTests, since with Avatar for example, we can override the config whenever it is desired. I don\u0027t plan moving this interface into the stable Pandora APIs. Having it on the side is \"desired\".  The documentation will be enough.",
+      "parentUuid": "7da46646_e62e1eee",
+      "revId": "808d921787064683883ef7c7349ad165fb5ef50a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
