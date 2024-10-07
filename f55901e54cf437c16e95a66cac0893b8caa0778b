@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd5be40_077f6cda",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-07T15:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8456ec9_b3bc602a",
+      "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "283795f8_28862933",
@@ -63,6 +81,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea1f49f4_be4f28ab",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-07T15:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "283795f8_28862933",
+      "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "226af0b6_4b6025e7",
@@ -76,6 +112,24 @@
       "writtenOn": "2024-10-01T19:10:29Z",
       "side": 1,
       "message": "Same here",
+      "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9df98e0_b5b990cf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-07T15:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "226af0b6_4b6025e7",
       "revId": "f55901e54cf437c16e95a66cac0893b8caa0778b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
