@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65420c02_c007d4cf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T21:49:26Z",
+      "side": 1,
+      "message": "Agreed with the comment in the other CL, we might need to be more careful of removing source without user\u0027s intention. Maybe starting with larger timeout is a good choice.",
+      "revId": "8f93840a6f28120824c9e7442a6bc84109595e6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
