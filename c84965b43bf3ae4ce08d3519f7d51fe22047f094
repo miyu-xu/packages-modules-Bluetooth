@@ -22,6 +22,30 @@
       },
       "revId": "c84965b43bf3ae4ce08d3519f7d51fe22047f094",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab6aef3c_d4ca16dd",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-07T20:43:47Z",
+      "side": 1,
+      "message": "Indeed 😄\n\n@bhaktha@google.com Could you plan to broadcast an intent when a L2cap socket is close ? That would be really nice to have.",
+      "parentUuid": "acb0e11f_d5670d7d",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 67
+      },
+      "revId": "c84965b43bf3ae4ce08d3519f7d51fe22047f094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
