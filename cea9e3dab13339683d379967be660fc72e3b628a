@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c133e89d_12c5e5f3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:42:42Z",
+      "side": 1,
+      "message": "Maybe we should add a note that we only support pattern filtering for now",
+      "revId": "cea9e3dab13339683d379967be660fc72e3b628a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b85540b0_7776f9b3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:42:42Z",
+      "side": 1,
+      "message": "Do we still need these initial values? I think we thought this would fix an issue but it turned out to be something else. Can you double check?",
+      "fixSuggestions": [
+        {
+          "fixId": "f45cb49c_5e9aabe2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": "        byte addr_type;\n        String bd_addr;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cea9e3dab13339683d379967be660fc72e3b628a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12276548_cd106a27",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:42:42Z",
+      "side": 1,
+      "message": "Can you add a comment at the top that these hard coded values are taken from CrOS defaults?",
+      "revId": "cea9e3dab13339683d379967be660fc72e3b628a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "332c2419_dbc6d580",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:42:42Z",
+      "side": 1,
+      "message": "Lot of magic numbers in this block of code. Can you add a comment of what you\u0027re doing?",
+      "revId": "cea9e3dab13339683d379967be660fc72e3b628a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
