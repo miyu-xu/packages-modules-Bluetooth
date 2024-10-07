@@ -157,6 +157,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ec253ea_4422f25f",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-07T17:56:28Z",
+      "side": 1,
+      "message": "\u0027reconnection\u0027, you didn\u0027t mean the the ACL, right? for each time an ACL is connected, this is supposed to be triggered once only; that\u0027s expected.",
+      "parentUuid": "f1b462fb_cd2a396d",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6159ac2_4381cd6c",
         "filename": "system/bta/ras/ras_server.cc",
         "patchSetId": 2
