@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b905decb_64de940e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T21:36:29Z",
+      "side": 1,
+      "message": "One general question, wouldn\u0027t this change have dependency on aosp/3139473 and big feature flag? will this work if big flag is disabled?\nIf there is dependency, we might consider to use that flag to guard this.",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e3505f_8b4e9c13",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T21:36:29Z",
+      "side": 1,
+      "message": "I feel this is also not needed to invoke callback. what do you think of moving those 3 errors out of this function and not invoking callback? suggested change as below.",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bfb4d9f_5e68e588",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T21:36:29Z",
+      "side": 1,
+      "message": "Same as below, we might not want to invoke callback?",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "778d394a_d8221a97",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T21:36:29Z",
+      "side": 1,
+      "message": "I think this twice.\nIn this case, it\u0027s an internal process, should we skip the callback? otherwise, UI might pop-up error dialog here and not proceed with adding the source, so this might break the audio sharing if leaudioBigDependsOnAudioState is not enabled.",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51077e10_390a3300",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-07T21:36:29Z",
+      "side": 1,
+      "message": "Like this?\n```suggestion\n        if (mLeAudioBroadcasterNativeInterface \u003d\u003d null) {\n            Log.w(TAG, \"Native interface not available.\");\n            return;\n        }\n\n        int canBroadcastBeCreatedReturnCode \u003d canBroadcastBeCreated(broadcastSettings);\n        if (canBroadcastBeCreatedReturnCode !\u003d BluetoothStatusCodes.SUCCESS) {\n            mHandler.post(() -\u003e notifyBroadcastStartFailed(canBroadcastBeCreatedReturnCode));\n            return;\n        }\n\n        if (mAwaitingBroadcastCreateResponse) {\n            mCreateBroadcastQueue.add(broadcastSettings);\n            Log.i(TAG, \"Broadcast creation queued due to waiting for a previous request response.\");\n            return;\n        }\n\n        if (!leaudioBigDependsOnAudioState()) {\n            if (!areAllGroupsInNotActiveState()) {\n                /* Broadcast will be created once unicast group became inactive */\n                Log.i(\n                        TAG,\n                        \"Unicast group is active, queueing Broadcast creation, while the Unicast\"\n                                + \" group is deactivated.\");\n                mCreateBroadcastQueue.add(broadcastSettings);\n                mNativeInterface.setUnicastMonitorMode(LeAudioStackEvent.DIRECTION_SINK, true);\n                removeActiveDevice(true);\n\n                return;\n            }\n        }\n```",
+      "range": {
+        "startLine": 1199,
+        "startChar": 0,
+        "endLine": 1203,
+        "endChar": 9
+      },
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
