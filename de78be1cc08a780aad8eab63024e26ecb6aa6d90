@@ -46,6 +46,30 @@
       },
       "revId": "de78be1cc08a780aad8eab63024e26ecb6aa6d90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4621199_5c89c265",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-10-07T07:18:54Z",
+      "side": 1,
+      "message": "Added the log.\nFlag details from commit message has been removed. Flag is not added as it is single line change.",
+      "parentUuid": "61e48820_229912f5",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 18
+      },
+      "revId": "de78be1cc08a780aad8eab63024e26ecb6aa6d90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
