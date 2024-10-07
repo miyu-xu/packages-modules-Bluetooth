@@ -20,6 +20,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88f5e0bb_6c127c37",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-07T23:52:05Z",
+      "side": 1,
+      "message": "There is some formatting issue.\n\nPlease run the `repo upload` and follow recommandation to apply formatting",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 419,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "23db5fdc_7da03e3f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 416,
+                "startChar": 0,
+                "endLine": 417,
+                "endChar": 0
+              },
+              "replacement": "        if (SystemProperties.getBoolean(MSFT_HCI_EXT_ENABLED, false)) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 419,
+                "startChar": 0,
+                "endLine": 420,
+                "endChar": 0
+              },
+              "replacement": "        } else {\n            return mNumOfOffloadedScanFilterSupported;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30c3319c_bc039822",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 10
@@ -65,6 +116,29 @@
       "writtenOn": "2024-10-07T18:38:46Z",
       "side": 1,
       "message": "Can you add the flag check here too",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25deb05f_f7ff3ff7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1997,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-07T23:52:05Z",
+      "side": 1,
+      "message": "First time I notice this pattern....\nThis is evil ^^\n\nI can\u0027t ask you to do something differently as the whole scanManager is implemented with it, but I feel like this can wait any callback....",
+      "range": {
+        "startLine": 1997,
+        "startChar": 16,
+        "endLine": 1997,
+        "endChar": 31
+      },
       "revId": "d082f850228150b5cc405328e00c39143f834f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
