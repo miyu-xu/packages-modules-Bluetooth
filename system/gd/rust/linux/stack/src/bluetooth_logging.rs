@@ -17,19 +17,17 @@ pub trait IBluetoothLogging {
 
     /// Change whether debug logging is enabled.
     fn set_debug_logging(&mut self, enabled: bool);
-
-    /// Set the log level.
-    fn set_log_level(&mut self, level: Level);
-
-    /// Get the log level.
-    fn get_log_level(&self) -> Level;
 }
 
 /// Logging related implementation.
 pub struct BluetoothLogging {
-    /// Current log level
-    /// If the level is not verbose, `VERBOSE_ONLY_LOG_TAGS` will be set to emit up to `INFO` only.
-    log_level: Level,
+    /// Should debug logs be emitted?
+    is_debug: bool,
+
+    /// If this flag is not set, we will not emit debug logs for all tags.
+    /// `VERBOSE_ONLY_LOG_TAGS` will be set to emit up to `INFO` only. This
+    /// can only be configured in the constructor (not modifiable at runtime).
+    is_verbose_debug: bool,
 
     /// Log to stderr?
     is_stderr: bool,
@@ -50,19 +48,14 @@ const VERBOSE_ONLY_LOG_TAGS: &[&str] = &[
 impl BluetoothLogging {
     pub fn new(is_debug: bool, is_verbose_debug: bool, log_output: &str) -> Self {
         let is_stderr = log_output == "stderr";
-
-        let log_level = match (is_debug, is_verbose_debug) {
-            (true, true) => Level::Verbose,
-            (true, false) => Level::Debug,
-            _ => Level::Info,
-        };
-
-        Self { log_level, is_stderr, is_initialized: false }
+        Self { is_debug, is_verbose_debug, is_stderr, is_initialized: false }
     }
 
     pub fn initialize(&mut self) -> Result<(), Error> {
+        let level = if self.is_debug { LevelFilter::Debug } else { LevelFilter::Info };
+
         if self.is_stderr {
-            env_logger::Builder::new().filter(None, self.get_log_level_filter()).init();
+            env_logger::Builder::new().filter(None, level).init();
         } else {
             let formatter = Formatter3164 {
                 facility: Facility::LOG_USER,
@@ -73,85 +66,61 @@ impl BluetoothLogging {
 
             let logger = syslog::unix(formatter)?;
             let _ = log::set_boxed_logger(Box::new(BasicLogger::new(logger)))
-                .map(|()| self.apply_linux_log_level());
+                .map(|()| log::set_max_level(level));
             log_panics::init();
         }
 
         // Set initial log levels and filter out tags if not verbose debug.
-        self.apply_libbluetooth_log_level();
+        set_default_log_level(self.get_libbluetooth_level());
+        if self.is_debug && !self.is_verbose_debug {
+            for tag in VERBOSE_ONLY_LOG_TAGS {
+                set_log_level_for_tag(tag, Level::Info);
+            }
+        }
 
         // Initialize the underlying system as well.
         self.is_initialized = true;
         Ok(())
     }
 
-    fn get_log_level_filter(&self) -> LevelFilter {
-        match self.is_debug_enabled() {
-            true => LevelFilter::Debug,
-            false => LevelFilter::Info,
-        }
-    }
-
-    fn apply_linux_log_level(&self) {
-        log::set_max_level(self.get_log_level_filter());
-    }
-
-    fn apply_libbluetooth_log_level(&self) {
-        set_default_log_level(self.log_level);
-        // Levels for verbose-only tags.
-        let level = match self.log_level {
-            Level::Verbose => Level::Verbose,
-            _ => Level::Info,
-        };
-        for tag in VERBOSE_ONLY_LOG_TAGS {
-            log::info!("Setting log level for tag {} to {:?}", tag, level);
-            set_log_level_for_tag(tag, level);
+    fn get_libbluetooth_level(&self) -> Level {
+        if self.is_debug {
+            if self.is_verbose_debug {
+                Level::Verbose
+            } else {
+                Level::Debug
+            }
+        } else {
+            Level::Info
         }
     }
 }
 
 impl IBluetoothLogging for BluetoothLogging {
     fn is_debug_enabled(&self) -> bool {
-        self.is_initialized && (self.log_level == Level::Debug || self.log_level == Level::Verbose)
+        self.is_initialized && self.is_debug
     }
 
     fn set_debug_logging(&mut self, enabled: bool) {
-        if enabled {
-            match self.log_level {
-                Level::Verbose => {
-                    self.set_log_level(Level::Verbose);
-                }
-                _ => {
-                    self.set_log_level(Level::Debug);
-                }
-            }
-        } else {
-            self.set_log_level(Level::Info);
-        }
-    }
-
-    fn set_log_level(&mut self, level: Level) {
         if !self.is_initialized {
             return;
         }
 
-        self.log_level = level;
+        self.is_debug = enabled;
 
         // Update log level in Linux stack.
-        self.apply_linux_log_level();
+        let level = if self.is_debug { LevelFilter::Debug } else { LevelFilter::Info };
+        log::set_max_level(level);
 
         // Update log level in libbluetooth.
-        self.apply_libbluetooth_log_level();
+        let level = self.get_libbluetooth_level();
+        set_default_log_level(level);
 
         // Mark the start of debug logging with a debug print.
-        if self.is_debug_enabled() {
+        if self.is_debug {
             log::debug!("Debug logging successfully enabled!");
         }
 
-        log::info!("Setting log level to {:?}", level);
-    }
-
-    fn get_log_level(&self) -> Level {
-        self.log_level
+        log::info!("Setting debug logging to {}", self.is_debug);
     }
 }
