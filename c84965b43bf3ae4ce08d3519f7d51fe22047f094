@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb0e11f_d5670d7d",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T20:42:33Z",
+      "side": 1,
+      "message": "So sad 😞",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 67
+      },
+      "revId": "c84965b43bf3ae4ce08d3519f7d51fe22047f094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
