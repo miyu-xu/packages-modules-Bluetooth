@@ -177,7 +177,7 @@ filegroup {
 soong_config_module_type {
     name: "hfp_hal_cc_defaults",
     module_type: "cc_defaults",
-    config_namespace: "hfp_hal",
+    config_namespace: "bluetooth",
     variables: ["vertical"],
     properties: ["srcs"],
 }
@@ -185,7 +185,6 @@ soong_config_module_type {
 soong_config_string_variable {
     name: "vertical",
     values: [
-        "android_default",
         "android_desktop",
     ],
 }
@@ -196,9 +195,6 @@ hfp_hal_cc_defaults {
         vertical: {
             android_desktop: {
                 srcs: ["btm/btm_sco_hfp_hal_linux.cc"],
-            },
-            android_default: {
-                srcs: ["btm/btm_sco_hfp_hal.cc"],
             },
             conditions_default: {
                 srcs: ["btm/btm_sco_hfp_hal.cc"],

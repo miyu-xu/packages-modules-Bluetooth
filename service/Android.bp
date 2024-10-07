@@ -40,10 +40,42 @@ java_defaults {
     defaults_visibility: [":__subpackages__"],
 }
 
+soong_config_module_type {
+    name: "service_bluetooth_headless",
+    module_type: "java_defaults",
+    config_namespace: "bluetooth",
+    variables: ["vertical"],
+    properties: ["srcs"],
+}
+
+soong_config_string_variable {
+    name: "vertical",
+    values: [
+        "android_desktop",
+    ],
+}
+
+service_bluetooth_headless {
+    name: "service_bluetooth_headless_defaults",
+    soong_config_variables: {
+        vertical: {
+            android_desktop: {
+                srcs: ["src/BluetoothServiceHeadless.kt"],
+            },
+            conditions_default: {
+                srcs: ["src/BluetoothService.kt"],
+            },
+        },
+    },
+}
+
 // pre-jarjar version of service-bluetooth that builds against pre-jarjar version of framework-bluetooth
 java_library {
     name: "service-bluetooth-pre-jarjar",
-    defaults: ["service-bluetooth-buildflags"],
+    defaults: [
+        "service-bluetooth-buildflags",
+        "service_bluetooth_headless_defaults",
+    ],
     installable: false,
     srcs: [
         ":statslog-bluetooth-java-gen",
@@ -53,7 +85,6 @@ java_library {
         "src/AdapterState.kt",
         "src/AutoOnFeature.kt",
         "src/BleScanSettingListener.kt",
-        "src/BluetoothService.kt",
         "src/Log.kt",
         "src/RadioModeListener.kt",
         "src/airplane/ModeListener.kt",
