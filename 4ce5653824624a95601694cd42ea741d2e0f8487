@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc693e65_85bb29e4",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T21:36:52Z",
+      "side": 1,
+      "message": "Are you certain that the cid will be unique accross all active BT connections ?",
+      "revId": "4ce5653824624a95601694cd42ea741d2e0f8487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
