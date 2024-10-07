@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57c92881_54903194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-07T18:00:43Z",
+      "side": 1,
+      "message": "It may better to just set `security.BTM_SetSecurityLevel` field in [`default_btm_client_interface`](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/test/mock/mock_stack_btm_interface.cc?q\u003dsymbol%3A%5Cbdefault_btm_client_interface%5Cb%20case%3Ayes)",
+      "revId": "e214ccb3276f17875370b7ba1df7bb4f7806a179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
