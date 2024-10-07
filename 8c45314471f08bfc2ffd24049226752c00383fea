@@ -16,6 +16,24 @@
       "message": "As discussed offline, the LE ACL data credit management does not need to be included in the initial design. The recommendation is for the MCU / BT HAL to reserve credits for the offload sockets if required.",
       "revId": "8c45314471f08bfc2ffd24049226752c00383fea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c2bb4f3_50e74dbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-07T14:46:37Z",
+      "side": 1,
+      "message": "Socket HAL could be implemented in different process than BT HCI HAL for hardware offload path. Then, Socket HAL doesn\u0027t have direct access to HCI and some IPC between Socket HAL and BT HCI HAL is required. Is it aligned with your recommendation?",
+      "parentUuid": "b820441d_1e227d5c",
+      "revId": "8c45314471f08bfc2ffd24049226752c00383fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
