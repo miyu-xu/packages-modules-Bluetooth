@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0f8a2b6_f17557d1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-07T08:34:25Z",
+      "side": 1,
+      "message": "As from the beginning:\n```\nWe should decide if 30s is not so small, especially for OOR case. Maybe we should create some API to give possibility to UI to control that.\n```\n\nProblem is that if broadcaster is OOO and user go to `Find an audio stream`, i.e. to remove the source there will be no such broadcaster at all in the list.\n\"x\" on the UMO does not work too.\n\nWithout that change when broadcaster was turned off or out of range, music never come back and UMO was showed forever so that 30s is much better then nothing:)\nFor now I will set 60 seconds.\n\nI am wondering about sBigMonitorTimeout too. In simplified version aosp/3256618 we have only unintentional, i.e. for music pause (big destroyed) if PA unsync, we always remove source and user will no be informed about that. Maybe it should be much higher timeout. In android broadcaster there is 30 minutes to stop it, if there is no music so maybe here should be the same?",
+      "parentUuid": "7ec9ec0f_23419eb7",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ddeb19b_4ce6812d",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-04T16:57:29Z",
       "side": 1,
       "message": "this flag is released, and I\u0027m removing this very soon aosp/3286760. let\u0027s remove this.",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4e85515_a051763d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-07T08:34:25Z",
+      "side": 1,
+      "message": "Ok, I can, as the flag is at the such stage. Nevertheless, you will probably have merge conflict in `public void onSyncLost(int syncHandle) {` anyway.",
+      "parentUuid": "5ddeb19b_4ce6812d",
       "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b420c7_8ff2dc0c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-07T08:34:25Z",
+      "side": 1,
+      "message": "Yes, this is for out of range scenario or broadcaster turn off so we want to inform UI about lost. We even remove source from remote (if unintentional and always in next patch b/3256618).\n\n30s was our first thought and yes, maybe it it to aggressive, more in above comment.",
+      "parentUuid": "f2b5c4fb_e4ab77d1",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01cd82a9_1eba37d4",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99eaea95_2e45d416",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-07T08:34:25Z",
+      "side": 1,
+      "message": "I wanted to log every timeouted message. In next patch aosp/3256618 it is not there anymore anyway.",
+      "parentUuid": "01cd82a9_1eba37d4",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acb38f47_ac5f6db5",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-10-04T16:57:29Z",
       "side": 1,
       "message": "same as above, I\u0027d suggest to remove this. but if this is really something you\u0027d like to log, consider to use verbose instead.",
+      "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8818d961_6b799998",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-07T08:34:25Z",
+      "side": 1,
+      "message": "I wanted to log every timeouted message. In next patch aosp/3256618 it is not there anymore anyway.",
+      "parentUuid": "acb38f47_ac5f6db5",
       "revId": "ab1b7ff38532e33b0fa5cdb4e3e02db8200b6768",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
