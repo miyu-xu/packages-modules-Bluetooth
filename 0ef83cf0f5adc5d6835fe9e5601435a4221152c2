@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2601d92d_e7e10b77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-07T22:59:25Z",
+      "side": 1,
+      "message": "I don\u0027t like having an increasing list of config to check.\n\nWould you be open to something like aosp/3283066 ? \nThis would remove any conditional at runtime to move it to build time for target that define the variable",
+      "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
