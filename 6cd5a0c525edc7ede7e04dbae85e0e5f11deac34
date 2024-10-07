@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65171e4f_f1ca27fd",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-07T14:01:03Z",
+      "side": 1,
+      "message": "yeah, this should be the next step to keep:\n- Create / Destroy \n\nRemove\n- Start / Stop",
+      "parentUuid": "14c802d7_854017bc",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89774ed7_4bb4c8cc",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-04T19:17:52Z",
       "side": 1,
       "message": "canBroadcastBeCreated is checking the invalid parameters, but we\u0027re reporting the error code all as ERROR_LOCAL_NOT_ENOUGH_RESOURCES.\n\nCan we pass propagate the error code or invoke callback in canBroadcastBeCreated?\n \nnit naming, canBroadcastBeCreated -\u003e isCreateBroadcastAllowed or isValidCreateBroadcastRequest?",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0414ac_cf61673b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-07T14:01:03Z",
+      "side": 1,
+      "message": "Please check recent solution, returned error from canBroadadcastBeCreated.",
+      "parentUuid": "89774ed7_4bb4c8cc",
       "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cd4e89_ecc0dba6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3176,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-07T14:01:03Z",
+      "side": 1,
+      "message": "Thank You! make sense.",
+      "parentUuid": "9855123d_84dbda43",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8cde409_1216e8e0",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ed89089_760e3a98",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3710,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-07T14:01:03Z",
+      "side": 1,
+      "message": "yes, it\u0027s possible especially when controller issue happens (start advertising).",
+      "parentUuid": "b8cde409_1216e8e0",
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "775222bb_3286aac8",
@@ -82,6 +154,30 @@
       "writtenOn": "2024-10-04T19:17:52Z",
       "side": 1,
       "message": "should we move this out of this check? or apply for both success and fail cases?\n\n```suggestion\n                if ((mUnicastGroupIdDeactivatedForBroadcastTransition !\u003d LE_AUDIO_GROUP_ID_INVALID)\n                        \u0026\u0026 mCreateBroadcastQueue.isEmpty()\n                        \u0026\u0026 (!Objects.equals(device, mActiveBroadcastAudioDevice))) {\n                    updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);\n                }\n                mHandler.removeCallbacks(mCreateBroadcastTimeoutEvent);\n                mCreateBroadcastTimeoutEvent \u003d null;\n```",
+      "range": {
+        "startLine": 3724,
+        "startChar": 0,
+        "endLine": 3730,
+        "endChar": 17
+      },
+      "revId": "6cd5a0c525edc7ede7e04dbae85e0e5f11deac34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "525b7cc1_020da8a2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3730,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-07T14:01:03Z",
+      "side": 1,
+      "message": "Yeah, we can do that... make sense. If it was scheduled let remove it - if it wasn\u0027t scheduled there is a log from cancel function.",
+      "parentUuid": "775222bb_3286aac8",
       "range": {
         "startLine": 3724,
         "startChar": 0,
