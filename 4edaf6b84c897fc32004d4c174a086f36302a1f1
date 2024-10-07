@@ -22,6 +22,30 @@
       },
       "revId": "4edaf6b84c897fc32004d4c174a086f36302a1f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ff7710_05b43f5f",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-07T20:10:05Z",
+      "side": 1,
+      "message": "thanks for the suggestion, added",
+      "parentUuid": "0138f1d1_6c169895",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 78
+      },
+      "revId": "4edaf6b84c897fc32004d4c174a086f36302a1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
