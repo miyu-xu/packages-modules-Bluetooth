@@ -16,6 +16,24 @@
       "message": "In order to remove the visibility for libbluetooth_hci_pdl: \n`vendor/google/tools/bluetooth/hci_loopback` needs to be updated.",
       "revId": "9394ae8b87056ef500b4f46e2d392bbbcab1350a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4334e7d5_e8367d67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-07T16:45:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7b18b3b2_238834a9",
+      "revId": "9394ae8b87056ef500b4f46e2d392bbbcab1350a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
