@@ -16,6 +16,24 @@
       "message": "I don\u0027t like having an increasing list of config to check.\n\nWould you be open to something like aosp/3283066 ? \nThis would remove any conditional at runtime to move it to build time for target that define the variable",
       "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f79f7cf_879c1899",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-07T23:14:51Z",
+      "side": 1,
+      "message": "IMO, the more configs we add, the more we really should be defining a proper abstraction with the correct backing APIs.\n\nAre there really configurations where your device won\u0027t have the first config anymore, and now we need the OR conditional for the second config?",
+      "parentUuid": "2601d92d_e7e10b77",
+      "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
