@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0138f1d1_6c169895",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-10-07T13:35:06Z",
+      "side": 1,
+      "message": "nit: Would be nice to have a remote device context (address) visible to the `GmapClient` instance for logging. Otherwise we might have difficulties matching these logs to a particular remote device.",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 78
+      },
+      "revId": "4edaf6b84c897fc32004d4c174a086f36302a1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
