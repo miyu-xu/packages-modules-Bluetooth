@@ -68,6 +68,24 @@
       "message": "Add an IOP config for this.\n\nAdd some description about the IOP issue. Also since this is a device specific issue, it would be better to move this IOP logic to an entirely separate function.\n\n```\nif (is_iop_issue(addr)) {\n  get_iop_device_rpt_map(\u0026rpt_map, \u0026len);\n}\n// use updated rpt_map and len\n```",
       "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa136b3_27251e74",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-07T20:24:11Z",
+      "side": 1,
+      "message": "We should also trigger the IOP fox only if the `len` is exactly 512 octet.",
+      "parentUuid": "faf11d9e_e94d1071",
+      "revId": "db49897116cb4dbaaf12a597f1fc84ce4ada7b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
