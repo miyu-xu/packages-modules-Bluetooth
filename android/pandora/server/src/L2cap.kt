@@ -26,7 +26,6 @@ import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.io.Closeable
 import java.io.IOException
-import java.util.concurrent.atomic.AtomicLong
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -39,13 +38,12 @@ class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
     private val TAG = "PandoraL2cap"
     private val scope: CoroutineScope
     private val BLUETOOTH_SERVER_SOCKET_TIMEOUT: Int = 10000
-    private val channelIdCounter = AtomicLong(1)
     private val BUFFER_SIZE = 512
 
     private val bluetoothManager =
         context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     private val bluetoothAdapter = bluetoothManager.adapter
-    private val channels: HashMap<Long, BluetoothSocket> = hashMapOf()
+    private val channels: HashMap<Int, BluetoothSocket> = hashMapOf()
 
     init {
         // Init the CoroutineScope
@@ -75,11 +73,11 @@ class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
 
             val bluetoothSocket = device.createInsecureL2capChannel(psm)
             bluetoothSocket.connect()
-            val channelId = getNewChannelId()
-            channels.put(channelId, bluetoothSocket)
+            val cid = bluetoothSocket.getL2capLocalChannelId()
+            channels.put(cid, bluetoothSocket)
 
-            Log.d(TAG, "connect: channelId=$channelId")
-            ConnectResponse.newBuilder().setChannel(craftChannel(channelId)).build()
+            Log.d(TAG, "connect: cid=$cid")
+            ConnectResponse.newBuilder().setChannel(craftChannel(cid)).build()
         }
     }
 
@@ -121,11 +119,11 @@ class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
                 break
             }
 
-            val channelId = getNewChannelId()
-            channels.put(channelId, bluetoothSocket!!)
+            val cid = bluetoothSocket!!.getL2capLocalChannelId()
+            channels.put(cid, bluetoothSocket)
 
-            Log.d(TAG, "waitConnection: channelId=$channelId")
-            WaitConnectionResponse.newBuilder().setChannel(craftChannel(channelId)).build()
+            Log.d(TAG, "waitConnection: cid=$cid")
+            WaitConnectionResponse.newBuilder().setChannel(craftChannel(cid)).build()
         }
     }
 
@@ -198,16 +196,14 @@ class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
         }
     }
 
-    fun getNewChannelId(): Long = channelIdCounter.getAndIncrement()
-
-    fun craftChannel(id: Long): Channel {
+    fun craftChannel(id: Int): Channel {
         val cookie = Any.newBuilder().setValue(ByteString.copyFromUtf8(id.toString())).build()
         val channel = Channel.newBuilder().setCookie(cookie).build()
         return channel
     }
 
-    fun Channel.id(): Long = this.cookie.value.toStringUtf8().toLong()
+    fun Channel.id(): Int = this.cookie.value.toStringUtf8().toInt()
 
-    fun Channel.toBluetoothSocket(channels: HashMap<Long, BluetoothSocket>): BluetoothSocket =
+    fun Channel.toBluetoothSocket(channels: HashMap<Int, BluetoothSocket>): BluetoothSocket =
         channels.get(this.id())!!
 }
