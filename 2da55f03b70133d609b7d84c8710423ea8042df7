@@ -16,6 +16,24 @@
       "message": "What misconfiguration? Can you add some more explanation on the crash?",
       "revId": "2da55f03b70133d609b7d84c8710423ea8042df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "564434da_9f230893",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-10-07T17:47:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfaeb654_7f00d309",
+      "revId": "2da55f03b70133d609b7d84c8710423ea8042df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
