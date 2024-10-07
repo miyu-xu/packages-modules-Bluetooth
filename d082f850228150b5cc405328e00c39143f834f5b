@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0876b8ca_c6c5654d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "Can you add flag check here too",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30c3319c_bc039822",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "Remove this if unused",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23cf374_f28ae056",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "Remove this",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc957b4_65c11727",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "Can you add the flag check here too",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e207715_5b509220",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2006,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "We don\u0027t need to send this command every time we add a new filter. Let\u0027s keep track of this state in a local variable and check if we need to update it before calling this",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a027c0_9ffdc668",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2023,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "We should also check if we need to disable MSFT if there are no more filters left.",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7781db_871b8457",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanNativeInterface.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-07T18:38:46Z",
+      "side": 1,
+      "message": "Remove?",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
