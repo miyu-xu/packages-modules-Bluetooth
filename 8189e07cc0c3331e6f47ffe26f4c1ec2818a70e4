@@ -70,6 +70,30 @@
       },
       "revId": "8189e07cc0c3331e6f47ffe26f4c1ec2818a70e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7bccf8c_34e26724",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5015,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-07T18:44:06Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll create a bug to track this. may correct them altogether.",
+      "parentUuid": "741ae4f1_775f1142",
+      "range": {
+        "startLine": 5015,
+        "startChar": 2,
+        "endLine": 5015,
+        "endChar": 28
+      },
+      "revId": "8189e07cc0c3331e6f47ffe26f4c1ec2818a70e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
