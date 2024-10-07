@@ -70,6 +70,24 @@
       "parentUuid": "2f79f7cf_879c1899",
       "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292184e9_3bc9dcb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1894495
+      },
+      "writtenOn": "2024-10-07T23:47:37Z",
+      "side": 1,
+      "message": "@wescande@google.com My personal opinion would be to avoid duplicating a source file for just 1-2 lines of difference (unless we plan to put in more differences for long term, which I am not sure is the case).\n\nLike I mentioned, we can bear with the small inconvenience of having to flip the two flags together, which is a smaller price than duplicating a cpp file.",
+      "parentUuid": "6c8c0459_2fc8f36b",
+      "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
