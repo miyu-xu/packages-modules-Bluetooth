@@ -141,6 +141,30 @@
       },
       "revId": "777948708d5781679429f0150b9a288bd6035e2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d1e089_8b3158c4",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-07T16:31:15Z",
+      "side": 1,
+      "message": "It was my understanding that `btsock_rfc_signaled` was called after the socket is disconnected?  Would that mean that we shouldn\u0027t be calling `cleanup_rfc_slot()` in handle_discovery_comp?  Otherwise, how do we make sure the slot_id is still active when we call `btsock_rfc_signaled`, so we can actually cancel discovery?",
+      "parentUuid": "7e647793_e0c3c9eb",
+      "range": {
+        "startLine": 968,
+        "startChar": 10,
+        "endLine": 968,
+        "endChar": 14
+      },
+      "revId": "777948708d5781679429f0150b9a288bd6035e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
