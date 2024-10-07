@@ -94,6 +94,30 @@
       },
       "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "437c82c6_ae0d03f9",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-10-07T05:51:05Z",
+      "side": 1,
+      "message": "How about I change the default value to `true` and remove the Floss build flag?\n\nThe rationale is no matter client is CrOS or desktop. We should prefer software path. We consider the offload path as a fallback path for hfp.\n\nSince `bluetooth.hfp.software_datapath.enabled` is recently introduced and we have never set this flag on CrOS so the default value always `true`. The `enable_offload` will not be run on CrOS. So this should not alter any behaviour on CrOS.",
+      "parentUuid": "f27be51f_58404b1b",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 20
+      },
+      "revId": "be59018513c69d58dccbd70e7af8c49fd6932326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
