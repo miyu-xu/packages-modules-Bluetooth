@@ -135,6 +135,8 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
   if (provider_ != nullptr) {
     log::warn("refetch");
   }
+  // Prevent other access to the AIDL if currently fetching new service
+  std::lock_guard<std::mutex> guard(internal_mutex_);
   // Retry if audioserver restarts in the middle of fetching.
   // When audioserver restarts, IBluetoothAudioProviderFactory service is also
   // re-registered, so we need to re-fetch the service.
@@ -168,6 +170,13 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
       log::error("BluetoothAudioHal::openProvider failure: {}, retry number {}",
                  aidl_retval.getDescription(), retry_no + 1);
     } else {
+      if (provider_ == nullptr) {
+        // Allow retry when provider is null.
+        // This can happens when AIDL is unable to complete the transaction, but status is still ok.
+        log::error("BluetoothAudioHal::openProvider failure: null provider!, retry number {}",
+                   retry_no + 1);
+        continue;
+      }
       provider_factory_ = std::move(provider_factory);
       break;
     }
@@ -220,6 +229,7 @@ void BluetoothAudioClientInterface::binderDiedCallbackAidl(void* ptr) {
 }
 
 bool BluetoothAudioClientInterface::UpdateAudioConfig(const AudioConfiguration& audio_config) {
+  std::lock_guard<std::mutex> guard(internal_mutex_);
   bool is_software_session =
           (transport_->GetSessionType() == SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH ||
            transport_->GetSessionType() == SessionType::HEARING_AID_SOFTWARE_ENCODING_DATAPATH ||
@@ -603,6 +613,7 @@ BluetoothAudioClientInterface::GetLeAudioAseConfiguration(
                 std::vector<std::optional<IBluetoothAudioProvider::LeAudioDeviceCapabilities>>>&
                 remoteSourceAudioCapabilities,
         std::vector<IBluetoothAudioProvider::LeAudioConfigurationRequirement>& requirements) {
+  std::lock_guard<std::mutex> guard(internal_mutex_);
   log::assert_that(provider_ != nullptr, "assert failed: provider_ != nullptr");
 
   std::vector<IBluetoothAudioProvider::LeAudioAseConfigurationSetting> configurations;
@@ -670,6 +681,7 @@ BluetoothAudioClientInterface::getLeAudioBroadcastConfiguration(
                 std::vector<std::optional<IBluetoothAudioProvider::LeAudioDeviceCapabilities>>>&
                 remoteSinkAudioCapabilities,
         const IBluetoothAudioProvider::LeAudioBroadcastConfigurationRequirement& requirement) {
+  std::lock_guard<std::mutex> guard(internal_mutex_);
   log::assert_that(provider_ != nullptr, "assert failed: provider_ != nullptr");
 
   IBluetoothAudioProvider::LeAudioBroadcastConfigurationSetting setting;
