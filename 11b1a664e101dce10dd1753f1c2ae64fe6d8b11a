@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b98c9c1_4b46f64c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-07T17:05:20Z",
+      "side": 1,
+      "message": "Is there a specific reason why this is not a rule anymore ?",
+      "range": {
+        "startLine": 134,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 48
+      },
+      "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98993d4b_a8a02855",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-07T17:05:20Z",
+      "side": 1,
+      "message": "nit: Rename it `remoteDevice` or `remoteLeDevice` instead of `mBumbleLeDevice` to avoid any confusion with `mBumble`.",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 23
+      },
+      "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06fe82ec_9254e321",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-07T17:05:20Z",
+      "side": 1,
+      "message": "Can this be added in `Host.kt` instead ? It might be useful to others. Example for classic pairing: \nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/Host.kt;l\u003d68?q\u003dremoveBondAndVerify\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main",
+      "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
