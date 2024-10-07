@@ -34,6 +34,24 @@
       "parentUuid": "2601d92d_e7e10b77",
       "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7fa8b95_30acad78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1894495
+      },
+      "writtenOn": "2024-10-07T23:39:00Z",
+      "side": 1,
+      "message": "I believe we can flip the two flags together as to avoid adding this additional check here. For this reason, this CL would be no longer needed.",
+      "parentUuid": "2601d92d_e7e10b77",
+      "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
