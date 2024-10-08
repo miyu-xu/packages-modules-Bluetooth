@@ -106,6 +106,24 @@
       "parentUuid": "292184e9_3bc9dcb5",
       "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bef72690_bf7f934d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T01:09:25Z",
+      "side": 1,
+      "message": "I understand.\nWe could imagine doing that for a separate file that provide \"config\".\n\nBut only if actually reading the config on disk is noticed as a regression.\nI am closing this comment as it server no purposes to talk about \"ifs\" when there is an easier solution already accepted",
+      "parentUuid": "4edf4e5c_7d2d4fd6",
+      "revId": "0ef83cf0f5adc5d6835fe9e5601435a4221152c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
