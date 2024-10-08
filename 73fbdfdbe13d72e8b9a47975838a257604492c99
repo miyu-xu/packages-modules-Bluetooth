@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc19b0fb_0e117c58",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-10-08T21:05:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb0e4ac8_3c27e734",
+      "range": {
+        "startLine": 336,
+        "startChar": 24,
+        "endLine": 336,
+        "endChar": 38
+      },
+      "revId": "73fbdfdbe13d72e8b9a47975838a257604492c99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad92a348_e2a81510",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-26T22:01:15Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Build Warnings: unnecessary non-null assertion (!!) on a non-null receiver of type BluetoothCodecConfig\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    unnecessary non-null assertion (!!) on a non-null receiver of type BluetoothCodecConfig\n                bluetoothA2dp.setCodecConfigPreference(device, newCodecConfig!!)\n                                                                             ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P81545277/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 393,
+        "startChar": 73,
+        "endLine": 393,
+        "endChar": 76
+      },
+      "revId": "73fbdfdbe13d72e8b9a47975838a257604492c99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68d35a2a_df748586",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-10-08T21:05:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad92a348_e2a81510",
       "range": {
         "startLine": 393,
         "startChar": 73,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72610410_c94c66bd",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-10-08T21:05:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c6b9a71_ea2e5e68",
+      "range": {
+        "startLine": 427,
+        "startChar": 29,
+        "endLine": 427,
+        "endChar": 30
+      },
+      "revId": "73fbdfdbe13d72e8b9a47975838a257604492c99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c29f0f01_77d4264e",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-09-26T22:01:15Z",
       "side": 1,
       "message": "`codecConfig.getExtendedCodecType()?.getCodecId()` should return the same information",
+      "range": {
+        "startLine": 465,
+        "startChar": 29,
+        "endLine": 465,
+        "endChar": 61
+      },
+      "revId": "73fbdfdbe13d72e8b9a47975838a257604492c99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20b780e3_841088c8",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-10-08T21:05:51Z",
+      "side": 1,
+      "message": "yes, but it\u0027s just a double check. Also I check for null there",
+      "parentUuid": "c29f0f01_77d4264e",
       "range": {
         "startLine": 465,
         "startChar": 29,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b137f7_54423b6d",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-10-08T21:05:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e464cd24_c4c2fe4d",
+      "range": {
+        "startLine": 430,
+        "startChar": 14,
+        "endLine": 430,
+        "endChar": 40
+      },
+      "revId": "73fbdfdbe13d72e8b9a47975838a257604492c99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20844eab_00c42c5e",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-09-26T22:09:27Z",
       "side": 1,
       "message": "Would this work ?\n\n```\n         Configuration(\n            id\u003dCodecId(sbc\u003d()),\n            parameters\u003dCodecParameters(\n                sampling_frequency_hz\u003d44100,\n                bit_depth\u003d16,\n                channel_mode\u003dSTEREO,\n            ),\n        )\n```",
+      "range": {
+        "startLine": 454,
+        "startChar": 28,
+        "endLine": 458,
+        "endChar": 58
+      },
+      "revId": "73fbdfdbe13d72e8b9a47975838a257604492c99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f007fb7b_b55cf1fb",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-10-08T21:05:51Z",
+      "side": 1,
+      "message": "unfortunately no :(",
+      "parentUuid": "20844eab_00c42c5e",
       "range": {
         "startLine": 454,
         "startChar": 28,
