@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e507104_99ef7851",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T17:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c7e95ea_f5acc309",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b67cd8dd_cf3bdeeb",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-04T23:43:55Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 578,
+        "startChar": 16,
+        "endLine": 578,
+        "endChar": 32
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a15fec83_dbae0f02",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T17:56:36Z",
+      "side": 1,
+      "message": "Done in aosp/3299277",
+      "parentUuid": "b67cd8dd_cf3bdeeb",
       "range": {
         "startLine": 578,
         "startChar": 16,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce0d44a0_e5aa037b",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T17:56:36Z",
+      "side": 1,
+      "message": "Done in aosp/3299277",
+      "parentUuid": "bd2a499b_c86218c8",
+      "range": {
+        "startLine": 593,
+        "startChar": 16,
+        "endLine": 593,
+        "endChar": 32
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68ce4f2c_1a70d23a",
@@ -129,6 +201,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "410c88e1_a5041781",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T17:56:36Z",
+      "side": 1,
+      "message": "Done in aosp/3299277",
+      "parentUuid": "68ce4f2c_1a70d23a",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bb2f30e_955606ea",
@@ -142,6 +238,30 @@
       "writtenOn": "2024-10-04T23:43:55Z",
       "side": 1,
       "message": "```suggestion\n  tPORT_SETTINGS port_settings \u003d {};\n  tPORT* p_port;\n\n  p_port \u003d port_find_mcb_dlci_port(p_mcb, p_frame-\u003edlci);\n  if (p_port \u003d\u003d nullptr) {\n    /* This is the first command on the port */\n    if (is_command) {\n```",
+      "range": {
+        "startLine": 675,
+        "startChar": 0,
+        "endLine": 682,
+        "endChar": 56
+      },
+      "revId": "467a2bdff6b53c309ef74fe8781cac8057ee6042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15874449_8f1bf6cc",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T17:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bb2f30e_955606ea",
       "range": {
         "startLine": 675,
         "startChar": 0,
