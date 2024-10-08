@@ -16,6 +16,24 @@
       "message": "CL looks good, but we can squash it with next CL, as this is a place where this code is used.",
       "revId": "0a62a040931a3b3b57fdc7adc30bdd7051f0472b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e155039_3f24fd59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-08T16:31:56Z",
+      "side": 1,
+      "message": "lets keep it open for consideration",
+      "parentUuid": "d3643f60_d26b87ae",
+      "revId": "0a62a040931a3b3b57fdc7adc30bdd7051f0472b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
