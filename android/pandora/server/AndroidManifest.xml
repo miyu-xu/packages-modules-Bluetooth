@@ -43,6 +43,7 @@
         </activity>
     </application>
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <instrumentation android:name="com.android.pandora.Main"
