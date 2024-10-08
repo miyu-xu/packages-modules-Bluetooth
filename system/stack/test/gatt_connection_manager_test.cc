@@ -50,20 +50,24 @@ constexpr tAPP_ID CLIENT2 = 2;
 constexpr tAPP_ID CLIENT3 = 3;
 constexpr tAPP_ID CLIENT10 = 10;
 
-// Implementation of btm_ble_bgconn.h API for test.
-bool BTM_AcceptlistAdd(const RawAddress& address) {
-  return localAcceptlistMock->AcceptlistAdd(address);
+const tBLE_BD_ADDR BTM_Sec_GetAddressWithType(const RawAddress& bd_addr) {
+  return tBLE_BD_ADDR{.type = BLE_ADDR_PUBLIC, .bda = bd_addr};
 }
 
-bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
-  return localAcceptlistMock->AcceptlistAdd(address, is_direct);
+namespace bluetooth {
+namespace shim {
+
+bool ACL_AcceptLeConnectionFrom(const tBLE_BD_ADDR& address, bool /* is_direct */) {
+  return localAcceptlistMock->AcceptlistAdd(address.bda);
+}
+void ACL_IgnoreLeConnectionFrom(const tBLE_BD_ADDR& address) {
+  return localAcceptlistMock->AcceptlistRemove(address.bda);
 }
 
-void BTM_AcceptlistRemove(const RawAddress& address) {
-  return localAcceptlistMock->AcceptlistRemove(address);
-}
+void ACL_IgnoreAllLeConnections() { return localAcceptlistMock->AcceptlistClear(); }
 
-void BTM_AcceptlistClear() { return localAcceptlistMock->AcceptlistClear(); }
+}  // namespace shim
+}  // namespace bluetooth
 
 void BTM_BleTargetAnnouncementObserve(bool enable, tBTM_INQ_RESULTS_CB* p_results_cb) {
   localAcceptlistMock->EnableTargetedAnnouncements(enable, p_results_cb);
