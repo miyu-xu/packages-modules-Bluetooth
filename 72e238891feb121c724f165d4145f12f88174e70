@@ -16,6 +16,24 @@
       "message": "We need to check if there are still remaining filter indices before we pop this",
       "revId": "72e238891feb121c724f165d4145f12f88174e70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83a4c6ce_9e7dd571",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1990,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T21:25:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85c9a033_b7732e46",
+      "revId": "72e238891feb121c724f165d4145f12f88174e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
