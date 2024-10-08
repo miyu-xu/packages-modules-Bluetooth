@@ -1,0 +1,160 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a1e706_c7c22e44",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T18:59:17Z",
+      "side": 1,
+      "message": "Nit: this is not the case anymore",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4ebb076_f90c89b9",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T18:59:17Z",
+      "side": 1,
+      "message": "remove `;` ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "223e10b7_09d5d8d0",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T18:59:17Z",
+      "side": 1,
+      "message": "this will print twice the function name",
+      "range": {
+        "startLine": 578,
+        "startChar": 16,
+        "endLine": 578,
+        "endChar": 32
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bc66a61_2b44af36",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T18:59:17Z",
+      "side": 1,
+      "message": "this will print twice the function name",
+      "range": {
+        "startLine": 593,
+        "startChar": 16,
+        "endLine": 593,
+        "endChar": 32
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1a9543_db2c6397",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T18:59:17Z",
+      "side": 1,
+      "message": "this will print twice the function name",
+      "range": {
+        "startLine": 618,
+        "startChar": 16,
+        "endLine": 618,
+        "endChar": 32
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1b0ea9_ea3c84a9",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T18:59:17Z",
+      "side": 1,
+      "message": "Does this should be `peer` ?",
+      "range": {
+        "startLine": 176,
+        "startChar": 58,
+        "endLine": 176,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8c6e8838_7b3b9b25",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_int.h",
+              "range": {
+                "startLine": 176,
+                "startChar": 0,
+                "endLine": 177,
+                "endChar": 0
+              },
+              "replacement": "  PortSettings peer_port_settings; /* Port parameters for peer connection */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
