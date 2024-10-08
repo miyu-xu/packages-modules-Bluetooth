@@ -301,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c0443cb_105f1618",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-08T16:35:05Z",
+      "side": 1,
+      "message": "it\u0027s a chicken egg problem. the drawback is that the memory may be wasted, as the measurement may never happen. it may be optimized, if we can get the ACL information within the GD layer reliably, then we don\u0027t need to get the ACL information from the main stack; the HACK_ APIs seems problematic in some corner case and the current HACK_ APIs are not enough.",
+      "parentUuid": "0976e7ba_5e0ceaf7",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6159ac2_4381cd6c",
         "filename": "system/bta/ras/ras_server.cc",
         "patchSetId": 2
