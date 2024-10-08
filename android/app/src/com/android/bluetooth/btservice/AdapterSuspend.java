@@ -39,6 +39,13 @@ public class AdapterSuspend {
     private static final long MASK_DISCONNECT_CMPLT = 1 << 4;
     private static final long MASK_MODE_CHANGE = 1 << 19;
 
+    // Sleep reasons
+    private static final int SLEEP_DISPLAY_LAPTOP = 0;
+    private static final int SLEEP_LID_SWITCH_LAPTOP = 3;
+
+    // Wake reasons
+    private static final int WAKE_DISPLAY_LAPTOP = 0;
+
     private boolean mSuspended = false;
 
     private final AdapterNativeInterface mAdapterNativeInterface;
@@ -55,9 +62,9 @@ public class AdapterSuspend {
                 @Override
                 public void onDisplayChanged(int displayId) {
                     if (isScreenOn()) {
-                        handleResume();
+                        handleResumeInternal(WAKE_DISPLAY_LAPTOP);
                     } else {
-                        handleSuspend();
+                        handleSuspendInternal(SLEEP_DISPLAY_LAPTOP);
                     }
                 }
             };
@@ -87,8 +94,14 @@ public class AdapterSuspend {
                 .anyMatch(display -> display.getState() == Display.STATE_ON);
     }
 
+    /** Handle suspend preparetion. */
+    public void handleSuspend(int reason) {
+        handleSuspendInternal(reason);
+        Log.i(TAG, "[API] ready to suspend " + reason);
+    }
+
     @VisibleForTesting
-    void handleSuspend() {
+    void handleSuspendInternal(int reason) {
         if (mSuspended) {
             return;
         }
@@ -106,12 +119,22 @@ public class AdapterSuspend {
         mAdapterNativeInterface.clearEventFilter();
         mAdapterNativeInterface.clearFilterAcceptList();
         mAdapterNativeInterface.disconnectAllAcls();
-        mAdapterNativeInterface.allowWakeByHid();
+
+        if (reason != SLEEP_LID_SWITCH_LAPTOP) {
+            mAdapterNativeInterface.allowWakeByHid();
+            Log.i(TAG, "configure wake by hid");
+        }
         Log.i(TAG, "ready to suspend");
     }
 
+    /** Handle resume preparation. */
+    public void handleResume(int reason) {
+        handleResumeInternal(reason);
+        Log.i(TAG, "[API] ready to resume " + reason);
+    }
+
     @VisibleForTesting
-    void handleResume() {
+    void handleResumeInternal(int reason) {
         if (!mSuspended) {
             return;
         }
