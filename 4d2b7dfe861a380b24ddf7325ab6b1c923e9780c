@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ae7d3e0_a3957529",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-08T11:11:43Z",
+      "side": 1,
+      "message": "broadcast",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 45
+      },
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b905decb_64de940e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -105,6 +128,23 @@
         "endLine": 1203,
         "endChar": 9
       },
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b3508c1_ff18ebfd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 5254,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-08T11:11:43Z",
+      "side": 1,
+      "message": "I like that it is simplified but we have be sure that broadcast was not created at all (or destroyed on lower layers) or upper layer should destroy broadcast on this notification. How it behaves?",
       "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
