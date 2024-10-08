@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "57ec6ea4_bc5a3b32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-08T11:50:38Z",
+      "side": 1,
+      "message": "Archie\u0027s patch https://r.android.com/3299015 includes them. Let me just revert these 2 files. Could you please +2 again?",
+      "parentUuid": "c135d27a_6f1ad598",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "c72f803944180ae8aff8e1a526812d23237f19ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ef101454_d7efc857",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
