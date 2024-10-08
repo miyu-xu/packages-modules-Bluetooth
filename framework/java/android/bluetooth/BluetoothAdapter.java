@@ -20,6 +20,7 @@ package android.bluetooth;
 import static android.Manifest.permission.BLUETOOTH;
 import static android.Manifest.permission.BLUETOOTH_ADVERTISE;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_POWER;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 import static android.Manifest.permission.LOCAL_MAC_ADDRESS;
@@ -31,6 +32,7 @@ import static java.util.Objects.requireNonNull;
 
 import android.annotation.BroadcastBehavior;
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -47,6 +49,7 @@ import android.bluetooth.BluetoothProfile.ConnectionPolicy;
 import android.bluetooth.annotations.RequiresBluetoothAdvertisePermission;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
+import android.bluetooth.annotations.RequiresBluetoothPowerPermission;
 import android.bluetooth.annotations.RequiresBluetoothScanPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -1406,6 +1409,50 @@ public final class BluetoothAdapter {
             Log.e(TAG, "", e);
         }
         return false;
+    }
+
+    /**
+     * Prepare Bluetooth stack for sleep.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_BT_SUSPEND_RESUME_APIS)
+    @RequiresBluetoothPowerPermission
+    @RequiresPermission(BLUETOOTH_POWER)
+    @SystemApi
+    public void handleSuspend(int reason) {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                mService.handleSuspend(reason);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+    }
+
+    /**
+     * Prepare Bluetooth stack for resume.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_BT_SUSPEND_RESUME_APIS)
+    @RequiresBluetoothPowerPermission
+    @RequiresPermission(BLUETOOTH_POWER)
+    @SystemApi
+    public void handleResume(int reason) {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                mService.handleResume(reason);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
     }
 
     /**

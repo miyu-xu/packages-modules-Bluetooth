@@ -20,6 +20,7 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.BLUETOOTH_ADVERTISE;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_POWER;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 import static android.Manifest.permission.NETWORK_SETTINGS;
@@ -600,6 +601,32 @@ public final class Utils {
             Context context, AttributionSource attributionSource, String message) {
         return checkPermissionForDataDelivery(
                 context, BLUETOOTH_CONNECT, attributionSource, message);
+    }
+
+    /**
+     * Returns true if the BLUETOOTH_POWER permission is granted for the calling app. Returns false
+     * if the result is a soft denial. Throws SecurityException if the result is a hard denial.
+     *
+     * <p>Should be used in situations where the app op should not be noted.
+     */
+    @SuppressLint("AndroidFrameworkRequiresPermission") // This method enforce the permission
+    @RequiresPermission(BLUETOOTH_POWER)
+    public static boolean checkPowerPermissionForPreflight(Context context) {
+        return checkPermissionForPreflight(context, BLUETOOTH_POWER);
+    }
+
+    /**
+     * Returns true if the BLUETOOTH_POWER permission is granted for the calling app. Returns false
+     * if the result is a soft denial. Throws SecurityException if the result is a hard denial.
+     *
+     * <p>Should be used in situations where data will be delivered and hence the app op should be
+     * noted.
+     */
+    @SuppressLint("AndroidFrameworkRequiresPermission") // This method enforce the permission
+    @RequiresPermission(BLUETOOTH_POWER)
+    public static boolean checkPowerPermissionForDataDelivery(
+            Context context, AttributionSource attributionSource, String message) {
+        return checkPermissionForDataDelivery(context, BLUETOOTH_POWER, attributionSource, message);
     }
 
     /**

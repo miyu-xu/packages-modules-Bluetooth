@@ -2291,6 +2291,30 @@ public class AdapterService extends Service {
     public static class AdapterServiceBinder extends IBluetooth.Stub {
         private final AdapterService mService;
 
+        @Override
+        public void handleSuspend(int reason) {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "handleSuspend")
+                    || !Utils.checkPowerPermissionForDataDelivery(
+                            service, Utils.getCallingAttributionSource(mService), TAG)) {
+                return;
+            }
+            service.handleSuspend(reason);
+        }
+
+        @Override
+        public void handleResume(int reason) {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "handleResume")
+                    || !Utils.checkPowerPermissionForDataDelivery(
+                            service, Utils.getCallingAttributionSource(mService), TAG)) {
+                return;
+            }
+            service.handleResume(reason);
+        }
+
         AdapterServiceBinder(AdapterService svc) {
             mService = svc;
             if (Flags.getStateFromSystemServer()) {
@@ -4674,6 +4698,24 @@ public class AdapterService extends Service {
             return mAdapterProperties.getState();
         }
         return BluetoothAdapter.STATE_OFF;
+    }
+
+    /**
+     * Prepare for suspend.
+     *
+     * @param reason sleep reason.
+     */
+    public void handleSuspend(int reason) {
+        mAdapterSuspend.handleSuspend(reason);
+    }
+
+    /**
+     * Restore state at resume.
+     *
+     * @param reason wakeup reason.
+     */
+    public void handleResume(int reason) {
+        mAdapterSuspend.handleResume(reason);
     }
 
     public synchronized void offToBleOn(boolean quietMode) {
