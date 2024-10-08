@@ -1414,6 +1414,54 @@ public final class BluetoothAdapter {
     }
 
     /**
+     * Prepare Bluetooth stack for sleep.
+     *
+     * @hide
+     */
+    @SuppressLint({
+        "UnflaggedApi",
+        "AndroidFrameworkRequiresPermission",
+        "AndroidFrameworkBluetoothPermission"
+    })
+    @SystemApi
+    public void handleSuspend(int reason) {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                mService.handleSuspend(reason);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+    }
+
+    /**
+     * Prepare Bluetooth stack for resume.
+     *
+     * @hide
+     */
+    @SuppressLint({
+        "UnflaggedApi",
+        "AndroidFrameworkRequiresPermission",
+        "AndroidFrameworkBluetoothPermission"
+    })
+    @SystemApi
+    public void handleResume(int reason) {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                mService.handleResume(reason);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+    }
+
+    /**
      * Applications who want to only use Bluetooth Low Energy (BLE) can call enableBLE.
      *
      * <p>enableBLE registers the existence of an app using only LE functions.
