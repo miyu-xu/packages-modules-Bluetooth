@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2a3dadf_940246e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-10-08T22:56:24Z",
+      "side": 1,
+      "message": "My change was reverted, that is why the tests are green -- but the change needs to go in, hence this fix :)",
+      "parentUuid": "1b5393a5_059b8eea",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "f24b5be15d9d5e7d560419e7fed44777153344a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e908f5f4_cb88a496",
