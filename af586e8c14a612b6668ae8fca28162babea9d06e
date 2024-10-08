@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a2538eb_4a140828",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-08T08:13:55Z",
+      "side": 1,
+      "message": "I changed the commit message.",
+      "parentUuid": "ec2a3170_4e7edaaa",
+      "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30732619_d5d5cb6f",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-07T18:00:20Z",
       "side": 1,
       "message": "A follow-up question here, if sinks are still able to sync to this source, then should we keep this source?\n\nI think maybe we should also check the sinks receive state here. Only remove it when both assistant and buds can\u0027t sync, in this way, we can avoid bad user experience since if buds unsynced user will always notice first.",
+      "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5681db27_920e485b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-08T08:13:55Z",
+      "side": 1,
+      "message": "With next CL it will work in this way.\nMESSAGE_BROADCAST_MONITOR_TIMEOUT is set only during sink pause so when PA and BIS is unsynced and removed when bass synced to the broadcast or in every stopBigMonitoring so in localNotifyReceiveStateChanged too.\n\nWe can think about some other mechanism to not notifySourceLost in onSyncLost immediately (completely another CL). Right now we can observe that on some weak broadcaster we sync and lost very often and then on list it shows/appears consequently. I.e. in `Pair new device` they are shown forever even if they do not advertise, but in broadcaster list I think that\u0027s not a good idea.",
+      "parentUuid": "30732619_d5d5cb6f",
       "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
