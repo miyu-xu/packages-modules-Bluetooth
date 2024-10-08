@@ -260,6 +260,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acb2be50_de3286eb",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-08T16:25:47Z",
+      "side": 1,
+      "message": "I\u0027m talking about APIs over BTA. \nLooks like still `gmap_client_.DebugDump()` is called under `LeAudioClient.DebugDump()`\n\nWhat I\u0027m trying to say that we could change this file to be a private header le_audio/gmap_client.h  and then we need could just add those two\n```\n  static bool IsGmapClientEnabled();\n\n  static void UpdateGmapOffloaderSupport(bool value);\n```\n\ninto LeAudioClient (bta_le_audio_api.h)",
+      "parentUuid": "f57d76f9_c5faf46b",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "870b2eea_6da036e0",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 11
