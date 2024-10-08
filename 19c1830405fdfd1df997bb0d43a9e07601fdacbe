@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49719093_d1b51a5a",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-08T20:56:11Z",
+      "side": 1,
+      "message": "You are not actually using this value, just referencing the fields.",
+      "range": {
+        "startLine": 225,
+        "startChar": 17,
+        "endLine": 225,
+        "endChar": 37
+      },
+      "revId": "19c1830405fdfd1df997bb0d43a9e07601fdacbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
