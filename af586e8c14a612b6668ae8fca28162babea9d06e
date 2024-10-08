@@ -69,6 +69,24 @@
       "parentUuid": "30732619_d5d5cb6f",
       "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17a26a03_4e4f5e1a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-08T12:18:04Z",
+      "side": 1,
+      "message": "From the other hand after 4 synced broadcasters we stop monitoring the most first so even if it is out of range we still show them. Maybe we should go for the same mechanism as in `Pair new device` and once synced broadcaster should be shown till scan restart...",
+      "parentUuid": "5681db27_920e485b",
+      "revId": "af586e8c14a612b6668ae8fca28162babea9d06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
