@@ -2291,6 +2291,26 @@ public class AdapterService extends Service {
     public static class AdapterServiceBinder extends IBluetooth.Stub {
         private final AdapterService mService;
 
+        @Override
+        @SuppressLint("AndroidFrameworkRequiresPermission")
+        public void handleSuspend(int reason) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.handleSuspend(reason);
+        }
+
+        @Override
+        @SuppressLint("AndroidFrameworkRequiresPermission")
+        public void handleResume(int reason) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.handleResume(reason);
+        }
+
         AdapterServiceBinder(AdapterService svc) {
             mService = svc;
             if (Flags.getStateFromSystemServer()) {
@@ -4674,6 +4694,16 @@ public class AdapterService extends Service {
             return mAdapterProperties.getState();
         }
         return BluetoothAdapter.STATE_OFF;
+    }
+
+    /** Handle suspend preparation. */
+    public void handleSuspend(int reason) {
+        mAdapterSuspend.handleSuspend(reason);
+    }
+
+    /** Handle resume preparation. */
+    public void handleResume(int reason) {
+        mAdapterSuspend.handleResume(reason);
     }
 
     public synchronized void offToBleOn(boolean quietMode) {
