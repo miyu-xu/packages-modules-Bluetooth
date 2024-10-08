@@ -253,6 +253,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15a46b3b_92ec1416",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-08T16:20:26Z",
+      "side": 1,
+      "message": "I think you just helped us find a potential IOP problem. thanks.\nand think it further, if the persistent is supported, when should they be loaded form disk? it seems the only way is to load it once the GATT/ACL is connected, as there is no other reliable entry point. I would change the entry point to ACL connection event.",
+      "parentUuid": "db6222da_ba05736d",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "c6b39608c7a419c6df652f1c22c9fcb9f8f466f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6159ac2_4381cd6c",
         "filename": "system/bta/ras/ras_server.cc",
         "patchSetId": 2
