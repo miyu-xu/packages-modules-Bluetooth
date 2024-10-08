@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28703fee_f9a6b5a3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-08T14:13:21Z",
+      "side": 1,
+      "message": "nit: \"Extract the 16-bit UUID (third and fourth bytes) from the 128-bit UUID in reverse endianness\"",
+      "revId": "852d3eb4010eb1b3f1398a8dbbc162976929f98a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d811f121_ed772940",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-08T14:13:21Z",
+      "side": 1,
+      "message": "Why do you need both lines 81 and 82?",
+      "revId": "852d3eb4010eb1b3f1398a8dbbc162976929f98a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
