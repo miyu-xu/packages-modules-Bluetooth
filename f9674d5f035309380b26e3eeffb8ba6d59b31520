@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97e0f913_ca46d729",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-08T22:12:26Z",
+      "side": 1,
+      "message": "This logic is not right. We need to move this to ScanManager.java or `isFilteringSupported` will return true.",
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b84ce5a_1cf68653",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
         "patchSetId": 13
@@ -140,6 +157,23 @@
         "endLine": 1537,
         "endChar": 68
       },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34fe5a1_46c2a77e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-08T22:12:26Z",
+      "side": 1,
+      "message": "Here we want to add\n```\n// Hardcoded minimum number of hardware adv monitor slots since this value cannot\n// be queried from the controller for MSFT enabled devices\nif (isMsftEnabled()) {\n    maxFiltersSupported \u003d 20; \n}\n```",
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
