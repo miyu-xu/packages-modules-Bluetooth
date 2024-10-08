@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71deabd_06e5b363",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-08T17:25:19Z",
+      "side": 1,
+      "message": "Got it, we\u0027ll leave it to a future CL to clean these up a bit more.",
+      "parentUuid": "7f36a1c4_ba1af39e",
+      "range": {
+        "startLine": 299,
+        "startChar": 18,
+        "endLine": 299,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9c0f6d5_684e627c",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "see https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3260546/comment/3d897d2e_420b5541/",
       "parentUuid": "e9c0f6d5_684e627c",
+      "range": {
+        "startLine": 339,
+        "startChar": 18,
+        "endLine": 339,
+        "endChar": 52
+      },
+      "revId": "f235f99287e2e4a358a8be172327357bf081848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7c4824c_4a2ff454",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-08T17:25:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4e835831_b9c5db3d",
       "range": {
         "startLine": 339,
         "startChar": 18,
