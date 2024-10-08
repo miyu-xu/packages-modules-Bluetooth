@@ -34,6 +34,23 @@
       "parentUuid": "26aeae57_17114cd4",
       "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba3508e9_47baadb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2024-10-08T09:23:10Z",
+      "side": 1,
+      "message": "Hi @Grzegorz Kolodziejczyk,\n\nI use broadcast id in my original change because I remember that the random address will change every several minutes for broadcast source on non-gd stack, but broadcast id is always unchanged in the life time of broadcast source. So I feel broadcast id is a bit better than address.",
+      "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
