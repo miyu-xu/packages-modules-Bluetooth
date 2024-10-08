@@ -51,6 +51,24 @@
       "message": "Hi @Grzegorz Kolodziejczyk,\n\nI use broadcast id in my original change because I remember that the random address will change every several minutes for broadcast source on non-gd stack, but broadcast id is always unchanged in the life time of broadcast source. So I feel broadcast id is a bit better than address.",
       "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ae240f0_c2fa49d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-08T16:09:45Z",
+      "side": 1,
+      "message": "I think this is a valid point.\nBAP - 6.1.3. Device address recommendations for Broadcast Sources\n\nUsing the same address through BIG lifetime is recommended by SIG, but not mandatory. Our stack was also refreshing broadcaster addresses from the very beginning.",
+      "parentUuid": "ba3508e9_47baadb0",
+      "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
