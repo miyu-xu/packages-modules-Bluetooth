@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e0a7e02_99d979df",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1829,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2024-10-08T20:51:54Z",
+      "side": 1,
+      "message": "This is probably an API change, you will need to regenerate system-current.txt file.",
+      "range": {
+        "startLine": 1829,
+        "startChar": 0,
+        "endLine": 1829,
+        "endChar": 74
+      },
+      "revId": "049babc1d632aeb1eeefd44835aec39ef6c3510f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "344bb7f6_c2af08b0",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 2
