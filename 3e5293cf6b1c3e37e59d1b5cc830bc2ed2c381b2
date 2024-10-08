@@ -22,6 +22,30 @@
       },
       "revId": "3e5293cf6b1c3e37e59d1b5cc830bc2ed2c381b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da045a92_264b9086",
+        "filename": "service/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T00:53:28Z",
+      "side": 1,
+      "message": "First a disclaimer, I am not sure this change works as is since the BluetoothService is loaded by the [systemServer.java](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/java/com/android/server/SystemServer.java;l\u003d1686;drc\u003d73840ba107efc6a5e66e4844982b80fab21abc7b) and it rely on a class name.\nSo probably I would have to re-jarjar BluetoothServiceHeadless into BluetoothService.\n\nThen, about using interface/subclass:\n* the SystemServer knows only how to load one jar \u0026 one entry point. I would like as much as possible not to have to do any modification in this file.\n* I find it pleasant to not have to check ever again the config, and being able to know for sure the behavior. For me the earlier the check, the better we are (and there is nothing earlier than build time)\n\n\n\u003e I feel like the later is more versatile, especially for verticals that may not have some formal type associated with them.\n\nI am fine having the bluetooth system server code not versatile at all. I would like to have no option / no configuration and just one implementation and only one way to work with, no compromise.\n\n\u003e code is way easier to understand than bp files and the soong build system.\n\nThis is the argument that I am the most sensible of. I agree 100%. bp override per target make sense and is commonly understood when going to call the hal, it will not be the case for here.",
+      "parentUuid": "73c58596_5059d149",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "3e5293cf6b1c3e37e59d1b5cc830bc2ed2c381b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
