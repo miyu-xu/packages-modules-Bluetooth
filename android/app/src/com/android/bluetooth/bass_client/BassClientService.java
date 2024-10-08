@@ -2003,7 +2003,6 @@ public class BassClientService extends ProfileService {
         mSyncHandleToDeviceMap.clear();
         mSyncHandleToBaseDataMap.clear();
         mSyncHandleToBroadcastIdMap.clear();
-        mPeriodicAdvertisementResultMap.clear();
     }
 
     /**
@@ -2261,12 +2260,6 @@ public class BassClientService extends ProfileService {
         mSyncHandleToDeviceMap.remove(syncHandle);
         int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
         mSyncHandleToBroadcastIdMap.remove(syncHandle);
-        if (srcDevice != null) {
-            mPeriodicAdvertisementResultMap.get(srcDevice).remove(broadcastId);
-            if (mPeriodicAdvertisementResultMap.get(srcDevice).isEmpty()) {
-                mPeriodicAdvertisementResultMap.remove(srcDevice);
-            }
-        }
     }
 
     private BluetoothLeBroadcastMetadata getBroadcastMetadataFromBaseData(
