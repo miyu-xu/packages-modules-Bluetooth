@@ -19,7 +19,6 @@
 
 #include <algorithm>
 #include <deque>
-#include <memory>
 
 #include "os/logging/log_adapter.h"
 #include "stack/gatt/gatt_int.h"
@@ -85,7 +84,7 @@ public:
   void EattChannelSetState(EattChannelState state) {
     if (state_ == EattChannelState::EATT_CHANNEL_PENDING) {
       if (state == EattChannelState::EATT_CHANNEL_OPENED) {
-        server_outstanding_cmd_ = tGATT_SR_CMD{};
+        memset(&server_outstanding_cmd_, 0, sizeof(tGATT_SR_CMD));
         char name[64];
         sprintf(name, "eatt_ind_ack_timer_%s_cid_0x%04x", ADDRESS_TO_LOGGABLE_CSTR(bda_), cid_);
         ind_ack_timer_ = alarm_new(name);
