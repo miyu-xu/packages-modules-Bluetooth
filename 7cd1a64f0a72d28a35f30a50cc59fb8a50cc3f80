@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f5c1ab_ceca616d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T20:23:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22a1e706_c7c22e44",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4ebb076_f90c89b9",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-08T18:59:17Z",
       "side": 1,
       "message": "remove `;` ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aebea31_a403f794",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T20:23:02Z",
+      "side": 1,
+      "message": "no that\u0027s needed",
+      "parentUuid": "e4ebb076_f90c89b9",
       "range": {
         "startLine": 73,
         "startChar": 1,
@@ -225,6 +273,30 @@
           ]
         }
       ],
+      "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1ccca5_2ea83fe5",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-08T20:23:02Z",
+      "side": 1,
+      "message": "yes, fixed",
+      "parentUuid": "8a1b0ea9_ea3c84a9",
+      "range": {
+        "startLine": 176,
+        "startChar": 58,
+        "endLine": 176,
+        "endChar": 62
+      },
       "revId": "7cd1a64f0a72d28a35f30a50cc59fb8a50cc3f80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
