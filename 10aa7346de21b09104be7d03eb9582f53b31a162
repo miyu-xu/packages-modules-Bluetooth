@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db25be50_d137682d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-08T05:35:59Z",
+      "side": 1,
+      "message": "Done, and yes, I\u0027m checking exactly that",
+      "parentUuid": "9027d5e6_aff42194",
+      "range": {
+        "startLine": 414,
+        "startChar": 16,
+        "endLine": 417,
+        "endChar": 88
+      },
+      "revId": "10aa7346de21b09104be7d03eb9582f53b31a162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ad58102_e0b6d832",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae4d6d1_2f504927",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-08T05:35:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ad58102_e0b6d832",
+      "range": {
+        "startLine": 1064,
+        "startChar": 77,
+        "endLine": 1064,
+        "endChar": 85
+      },
+      "revId": "10aa7346de21b09104be7d03eb9582f53b31a162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f4c26e3_c57b8342",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-10-07T17:43:15Z",
       "side": 1,
       "message": "This is also not convenient for reading. Could you extract the flag value from the logic condition please ?",
+      "range": {
+        "startLine": 1068,
+        "startChar": 19,
+        "endLine": 1073,
+        "endChar": 75
+      },
+      "revId": "10aa7346de21b09104be7d03eb9582f53b31a162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb37429_43108e66",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-08T05:35:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f4c26e3_c57b8342",
       "range": {
         "startLine": 1068,
         "startChar": 19,
