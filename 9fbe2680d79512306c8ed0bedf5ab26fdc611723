@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ca4179_43234675",
+        "filename": "system/gd/hal/hci_hal_msft.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:24:29Z",
+      "side": 1,
+      "message": "Flag should be checked first",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "revId": "9fbe2680d79512306c8ed0bedf5ab26fdc611723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
