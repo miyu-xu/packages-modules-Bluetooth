@@ -34,6 +34,24 @@
       ],
       "revId": "55e3304a4e2534c3106484f67d947191fd02d0d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6bd95c8_b99b3229",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-08T16:21:30Z",
+      "side": 1,
+      "message": "Yes, it doesn\u0027t matter.\nI don\u0027t feel this will lead to any confusion, and this is necessary to make it the same as other test cases.\nThis original issue was not captured because we used STANDARD for both input and output. I intended to use different configs in this test case.\nSo I\u0027d prefer to keep this.",
+      "parentUuid": "64b5bb26_4ce71081",
+      "revId": "55e3304a4e2534c3106484f67d947191fd02d0d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
