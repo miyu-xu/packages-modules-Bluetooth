@@ -80,6 +80,24 @@
       "message": "The PandoraServer already get all the permission at runtime:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/src/Main.kt;l\u003d\n\nIs this really necessary ?",
       "revId": "f24b5be15d9d5e7d560419e7fed44777153344a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4914f228_3c6e88c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-10-08T23:00:49Z",
+      "side": 1,
+      "message": "Hm, adopting shell permissions should work. I\u0027ll need to repro to see what fails, then",
+      "parentUuid": "e908f5f4_cb88a496",
+      "revId": "f24b5be15d9d5e7d560419e7fed44777153344a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
