@@ -1,0 +1,308 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a5b46bd_9e6d6f3b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "Please add braces in both code path.\n\nAlso please check the flag first",
+      "range": {
+        "startLine": 416,
+        "startChar": 9,
+        "endLine": 419,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dd892e86_97e2e6be",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 416,
+                "startChar": 0,
+                "endLine": 417,
+                "endChar": 0
+              },
+              "replacement": "        if (SystemProperties.getBoolean(MSFT_HCI_EXT_ENABLED, false)\n                \u0026\u0026 Flags.leScanMsftSupport()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 419,
+                "startChar": 0,
+                "endLine": 420,
+                "endChar": 0
+              },
+              "replacement": "        } else {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b84ce5a_1cf68653",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "The check to return 20 is not the same as `isMsftEnabled`. The second one also call the native code.\n\nDo we want to centralize the code and also call `mNativeInterface.gattClientIsMsftSupported()` here ?\n\nWhich lead to my second question, if the native can tell if msft is supported, why are we checking a systemProperties at all ? Can we entirely trust the native for that ?",
+      "range": {
+        "startLine": 415,
+        "startChar": 3,
+        "endLine": 422,
+        "endChar": 5
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec3fb60_92ed94a7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "I have a light preference to write it like this. Pro we have a unique call to initFilterIndexStack in the flow, and this is more symetrical between the two. con we are calling twice isMsftEnabled. \n\n```suggestion\n            if ((isFilteringSupported() || isMsftEnabled())\n                    \u0026\u0026 mFilterIndexStack.isEmpty()\n                    \u0026\u0026 mClientFilterIndexMap.isEmpty()) {\n                initFilterIndexStack();\n            }\n            if (isFilteringSupported()) {\n                configureScanFilters(client);\n            } else if (isMsftEnabled()) {\n                addFiltersMsft(client);\n            }\n```",
+      "range": {
+        "startLine": 1157,
+        "startChar": 0,
+        "endLine": 1169,
+        "endChar": 13
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c310fdf3_97c5b7cb",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "Should this be check only once and save in a local variable ? that way, we ensure that the value does not change at runtime and it require at least a bluetooth restart",
+      "range": {
+        "startLine": 1535,
+        "startChar": 7,
+        "endLine": 1537,
+        "endChar": 68
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f64a2968_c79bd44a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "Flag should be checked first",
+      "range": {
+        "startLine": 1535,
+        "startChar": 8,
+        "endLine": 1537,
+        "endChar": 68
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc6b8765_1f0cd195",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "No need to specify Integer twice\n```suggestion\n            Deque\u003cInteger\u003e clientFilterIndices \u003d new ArrayDeque\u003c\u003e();\n```",
+      "range": {
+        "startLine": 1987,
+        "startChar": 64,
+        "endLine": 1987,
+        "endChar": 71
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d8f251_6b32da94",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "I believe the filter can be [null](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/ScanClient.java;l\u003d53;drc\u003d2290f7c58cb5a9f14963e6b9d6a7ea3843af24cd) ?\n\nIf this is indedd the case, this will crash",
+      "range": {
+        "startLine": 1988,
+        "startChar": 37,
+        "endLine": 1988,
+        "endChar": 51
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c5c60ba_8aa7b655",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "Is this really an error ?\n\nDo you want to prevent any action in case this doesn\u0027t match ? something that you could do prior to iterating entirely on this code ?\n\n```\nif (client.filters.size() !\u003d mFilterIndexStack.size()) {\n Log.e(TAG, \"Size of filter doesn\u0027t match size of client\");\n return;\n}\nfor (ScanFilter filter : client.filters) {\n[...]\n```\n\nNote that I don\u0027t know how the logic involved here behave, I am juste commenting base on these few lines of code.",
+      "range": {
+        "startLine": 1991,
+        "startChar": 0,
+        "endLine": 1991,
+        "endChar": 62
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2180cda4_edd52c34",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "No need to construct MsftAdvMonitor if you return due to an empty mFilterIndexStack\n\n```suggestion\n                if (mFilterIndexStack.isEmpty()) {\n                    Log.e(TAG, \"Filter index stack is empty\");\n                    return;\n                }\n                int filterIndex \u003d mFilterIndexStack.pop();\n                MsftAdvMonitor monitor \u003d new MsftAdvMonitor(filter);\n```",
+      "range": {
+        "startLine": 1989,
+        "startChar": 15,
+        "endLine": 1994,
+        "endChar": 58
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4841f830_1a5d593d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2014,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "This is already check outside of this method.",
+      "range": {
+        "startLine": 2012,
+        "startChar": 0,
+        "endLine": 2014,
+        "endChar": 13
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d0f5312_4f1412c6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "I am confused, you are adding the indice to  `mFilterIndexStack` when removing the filters ? is this intended ? What does `mFilterIndexStack` represent ?",
+      "range": {
+        "startLine": 2018,
+        "startChar": 0,
+        "endLine": 2018,
+        "endChar": 60
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "337d33fe_85909786",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:12:22Z",
+      "side": 1,
+      "message": "Do you need to be in java for this ? I feel like this is callback from native, intended for the native only.\n\nIs the only caller gattClientMsftAdvMonitorRemove ?\n\nAre you aware that the callback from native are not called on the same thread as the java is calling the native ?",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
