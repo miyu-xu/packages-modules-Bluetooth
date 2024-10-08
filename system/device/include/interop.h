@@ -356,6 +356,9 @@ typedef enum {
   // Peer can request proper latency based on its power state later.
   INTEROP_HID_PREF_CONN_ZERO_LATENCY,
 
+  // Some HID devices have report longer than GATT attribute limit 512 bytes.
+  INTEROP_HID_LONG_REPORT,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
