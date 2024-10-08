@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85588b52_573532bf",
+        "filename": "pandora/server/bumble_experimental/bumble_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-08T03:32:08Z",
+      "side": 1,
+      "message": "nit: pairing configuration logging would be helpful for debugging",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 23
+      },
+      "revId": "1a277f647e82085d6d179034e268e6e54085ee2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
