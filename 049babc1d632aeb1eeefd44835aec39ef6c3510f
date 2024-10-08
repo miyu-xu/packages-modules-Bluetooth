@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "344bb7f6_c2af08b0",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1840,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-08T20:43:19Z",
+      "side": 1,
+      "message": "we should remove this line since private method doesn\u0027t need annotation",
+      "range": {
+        "startLine": 1840,
+        "startChar": 5,
+        "endLine": 1840,
+        "endChar": 42
+      },
+      "revId": "049babc1d632aeb1eeefd44835aec39ef6c3510f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
