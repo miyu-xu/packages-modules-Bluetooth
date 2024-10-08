@@ -16,6 +16,23 @@
       "message": "You would need `atest pts-bot` to satisfy the linter",
       "revId": "f24b5be15d9d5e7d560419e7fed44777153344a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e908f5f4_cb88a496",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-08T19:20:57Z",
+      "side": 1,
+      "message": "The PandoraServer already get all the permission at runtime:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/src/Main.kt;l\u003d\n\nIs this really necessary ?",
+      "revId": "f24b5be15d9d5e7d560419e7fed44777153344a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
