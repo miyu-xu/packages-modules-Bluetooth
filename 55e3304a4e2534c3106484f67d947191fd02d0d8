@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64b5bb26_4ce71081",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-08T07:03:58Z",
+      "side": 1,
+      "message": "As this is local input so it does not matter in this test, right? If so please change it to INPUT_SELECTABLE_CONFIG_STANDARD as in above test to not make confusion.",
+      "fixSuggestions": [
+        {
+          "fixId": "b42952ea_2f22cf0e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+              "range": {
+                "startLine": 599,
+                "startChar": 0,
+                "endLine": 600,
+                "endChar": 0
+              },
+              "replacement": "                groupId, INPUT_SELECTABLE_CONFIG_STANDARD, OUTPUT_SELECTABLE_CONFIG_STANDARD);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "55e3304a4e2534c3106484f67d947191fd02d0d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
