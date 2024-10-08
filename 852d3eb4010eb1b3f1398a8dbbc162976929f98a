@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "346515b9_77fcb2ae",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-08T14:20:10Z",
+      "side": 0,
+      "message": "I think you removed this on accident",
+      "revId": "852d3eb4010eb1b3f1398a8dbbc162976929f98a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
