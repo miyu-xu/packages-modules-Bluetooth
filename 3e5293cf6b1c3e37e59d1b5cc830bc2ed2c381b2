@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c58596_5059d149",
+        "filename": "service/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-08T00:00:26Z",
+      "side": 1,
+      "message": "If we _had_ to do this, why do build magic like this compared to interface and/or subclasses in code, with a policy to select the implementation to use? I feel like the later is more versatile, especially for verticals that may not have some formal type associated with them. Plus, code is way easier to understand than bp files and the soong build system.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "3e5293cf6b1c3e37e59d1b5cc830bc2ed2c381b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
