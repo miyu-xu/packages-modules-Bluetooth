@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8d1644_efb1d1dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-08T16:29:25Z",
+      "side": 1,
+      "message": "You would need `atest pts-bot` to satisfy the linter",
+      "revId": "f24b5be15d9d5e7d560419e7fed44777153344a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
