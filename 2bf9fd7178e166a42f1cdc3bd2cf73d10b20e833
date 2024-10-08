@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac0cc2ee_fb1e3327",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-08T18:54:20Z",
+      "side": 1,
+      "message": "We should make it a map of the remaining report map for all such devices.",
+      "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3750b0_d685864e",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-08T18:54:20Z",
+      "side": 1,
+      "message": "Some HOGP devices have the report map longer than the maximum GATT attribute value length (512 bytes).",
+      "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b80faee_04be2d7d",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-08T18:54:20Z",
+      "side": 1,
+      "message": "INTEROP_HOGP_LONG_REPORT_MAP",
+      "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
