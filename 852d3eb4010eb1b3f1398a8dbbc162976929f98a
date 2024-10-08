@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d49dce_45e1ac67",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T17:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28703fee_f9a6b5a3",
+      "revId": "852d3eb4010eb1b3f1398a8dbbc162976929f98a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d811f121_ed772940",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-08T14:13:21Z",
       "side": 1,
       "message": "Why do you need both lines 81 and 82?",
+      "revId": "852d3eb4010eb1b3f1398a8dbbc162976929f98a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa55684_f506a05a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T17:36:40Z",
+      "side": 1,
+      "message": "It is the standard method of converting a UUID to a byte array (https://stackoverflow.com/a/29836273).",
+      "parentUuid": "d811f121_ed772940",
       "revId": "852d3eb4010eb1b3f1398a8dbbc162976929f98a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
