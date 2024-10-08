@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c135d27a_6f1ad598",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-08T11:25:45Z",
+      "side": 1,
+      "message": "Probably rename it as `Minor cleanup in bluetooth_admin and topshim` because it\u0027s not just remove the marcro?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "c72f803944180ae8aff8e1a526812d23237f19ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef101454_d7efc857",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-08T11:25:45Z",
+      "side": 1,
+      "message": "LGTM with one nit. Thanks for the cleanup!",
+      "revId": "c72f803944180ae8aff8e1a526812d23237f19ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
