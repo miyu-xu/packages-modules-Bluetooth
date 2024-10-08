@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6741cd00_5a8decd9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0876b8ca_c6c5654d",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88f5e0bb_6c127c37",
@@ -69,6 +87,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1946f02_055830ea",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "I had something like the suggested fix here before, but `repo upload` is what recommended the current format.",
+      "parentUuid": "88f5e0bb_6c127c37",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 419,
+        "endChar": 55
+      },
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30c3319c_bc039822",
@@ -82,6 +124,24 @@
       "writtenOn": "2024-10-07T18:38:46Z",
       "side": 1,
       "message": "Remove this if unused",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43e2c5a_7862a183",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30c3319c_bc039822",
       "revId": "d082f850228150b5cc405328e00c39143f834f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +163,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef53b4c_ff09aeb6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23cf374_f28ae056",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e938f538_e539b08b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23cf374_f28ae056",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecc957b4_65c11727",
@@ -116,6 +212,24 @@
       "writtenOn": "2024-10-07T18:38:46Z",
       "side": 1,
       "message": "Can you add the flag check here too",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f38921_457ce591",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecc957b4_65c11727",
       "revId": "d082f850228150b5cc405328e00c39143f834f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -160,6 +274,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0792a7e7_0ab9c9d4",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2006,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e207715_5b509220",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2a027c0_9ffdc668",
@@ -177,6 +309,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "803c2806_2580b9ea",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2023,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2a027c0_9ffdc668",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d7781db_871b8457",
@@ -190,6 +340,24 @@
       "writtenOn": "2024-10-07T18:38:46Z",
       "side": 1,
       "message": "Remove?",
+      "revId": "d082f850228150b5cc405328e00c39143f834f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba587332_07fe7ee4",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanNativeInterface.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-08T06:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d7781db_871b8457",
       "revId": "d082f850228150b5cc405328e00c39143f834f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
