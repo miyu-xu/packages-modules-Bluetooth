@@ -51,19 +51,19 @@ constexpr tAPP_ID CLIENT3 = 3;
 constexpr tAPP_ID CLIENT10 = 10;
 
 // Implementation of btm_ble_bgconn.h API for test.
-bool BTM_AcceptlistAdd(const RawAddress& address) {
-  return localAcceptlistMock->AcceptlistAdd(address);
-}
+// bool BTM_AcceptlistAdd(const RawAddress& address) {
+//   return localAcceptlistMock->AcceptlistAdd(address);
+// }
 
-bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
-  return localAcceptlistMock->AcceptlistAdd(address, is_direct);
-}
+// bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
+//   return localAcceptlistMock->AcceptlistAdd(address, is_direct);
+// }
 
-void BTM_AcceptlistRemove(const RawAddress& address) {
-  return localAcceptlistMock->AcceptlistRemove(address);
-}
+// void BTM_AcceptlistRemove(const RawAddress& address) {
+//   return localAcceptlistMock->AcceptlistRemove(address);
+// }
 
-void BTM_AcceptlistClear() { return localAcceptlistMock->AcceptlistClear(); }
+// void BTM_AcceptlistClear() { return localAcceptlistMock->AcceptlistClear(); }
 
 void BTM_BleTargetAnnouncementObserve(bool enable, tBTM_INQ_RESULTS_CB* p_results_cb) {
   localAcceptlistMock->EnableTargetedAnnouncements(enable, p_results_cb);
