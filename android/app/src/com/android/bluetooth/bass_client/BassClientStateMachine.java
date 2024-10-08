@@ -1643,17 +1643,10 @@ public class BassClientStateMachine extends StateMachine {
             clearCharsCache();
             mNextSourceId = 0;
             removeDeferredMessages(DISCONNECT);
-            if (mLastConnectionState == -1) {
+            if (mLastConnectionState != -1) {
                 log("no Broadcast of initial profile state ");
-            } else {
                 broadcastConnectionState(
                         mDevice, mLastConnectionState, BluetoothProfile.STATE_DISCONNECTED);
-                if (mLastConnectionState != BluetoothProfile.STATE_DISCONNECTED) {
-                    // Reconnect in background if not disallowed by the service
-                    if (mService.okToConnect(mDevice) && mAllowReconnect) {
-                        connectGatt(true);
-                    }
-                }
             }
         }
 
