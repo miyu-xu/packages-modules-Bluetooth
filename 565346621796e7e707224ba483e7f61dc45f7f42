@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ed19b04_a3a68cd3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:22:19Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 13
+      },
+      "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53455ca_a54ef501",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:22:19Z",
+      "side": 1,
+      "message": "consider moving the variable to final and instanciate them directly during declaration",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fe3ff592_5ab8bc0d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "    private final Monitor mMonitor \u003d new Monitor();\n    private final ArrayList\u003cPattern\u003e mPatterns \u003d new ArrayList\u003c\u003e();\n    private final Address mAddress \u003d new Address();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d5b89bc_5b890d95",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:22:19Z",
+      "side": 1,
+      "message": "It\u0027s a bit confusing that 500 ms is 0x05, but 40ms is 0x28.\nSince it seems it doesn\u0027t make sense to use a `Duration` type here, can we specify the unit type in the name ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 68
+      },
+      "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85192e8d_34efd1a9",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-08T22:22:19Z",
+      "side": 1,
+      "message": "Can this be package private instead of public ?",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
