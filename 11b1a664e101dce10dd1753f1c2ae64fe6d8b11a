@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "332114f9_cc305348",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-08T03:39:04Z",
+      "side": 1,
+      "message": "Yes. It doesn\u0027t work since we are using TestParameterInjector.\n\nTestParameterInjector creates threads to run the tests so the process uid got granted permissions is different from the process uid that\u0027s running the tests.",
+      "parentUuid": "3b98c9c1_4b46f64c",
+      "range": {
+        "startLine": 134,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 48
+      },
+      "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98993d4b_a8a02855",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb6a4893_35f13d60",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-08T03:39:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98993d4b_a8a02855",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 23
+      },
+      "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06fe82ec_9254e321",
@@ -60,6 +108,24 @@
       "writtenOn": "2024-10-07T17:05:20Z",
       "side": 1,
       "message": "Can this be added in `Host.kt` instead ? It might be useful to others. Example for classic pairing: \nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/Host.kt;l\u003d68?q\u003dremoveBondAndVerify\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main",
+      "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "986373fd_1fb158f2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-08T03:39:04Z",
+      "side": 1,
+      "message": "Using the same method works. Thanks for pointing out this.",
+      "parentUuid": "06fe82ec_9254e321",
       "revId": "11b1a664e101dce10dd1753f1c2ae64fe6d8b11a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
