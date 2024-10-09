@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa42f208_f6a47c0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T05:30:32Z",
+      "side": 1,
+      "message": "This change is unrelated to the build failure. \n\naosp/3298032 is the culprit.",
+      "revId": "56a8b19c0b0158983f9699d40e1eb18d8775c748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
