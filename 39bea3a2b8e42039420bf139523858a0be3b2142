@@ -52,6 +52,24 @@
       "parentUuid": "3ee89f05_16d941f5",
       "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0261e9e9_2d6e2817",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T17:38:09Z",
+      "side": 1,
+      "message": "I am supportive. But this device needs MTU for every connection not only the paring time to work.",
+      "parentUuid": "e9a7baec_58cef3e0",
+      "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
