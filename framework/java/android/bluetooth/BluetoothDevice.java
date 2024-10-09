@@ -1837,7 +1837,6 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         return createBondInternal(transport, remoteP192Data, remoteP256Data);
     }
 
-    @RequiresPermission(BLUETOOTH_CONNECT)
     private boolean createBondInternal(
             int transport, @Nullable OobData remoteP192Data, @Nullable OobData remoteP256Data) {
         if (DBG) log("createBondInternal()");
