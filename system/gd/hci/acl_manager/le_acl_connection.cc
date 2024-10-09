@@ -230,6 +230,7 @@ LeConnectionManagementCallbacks* LeAclConnection::GetEventCallbacks(
 bool LeAclConnection::LeConnectionUpdate(uint16_t conn_interval_min, uint16_t conn_interval_max,
                                          uint16_t conn_latency, uint16_t supervision_timeout,
                                          uint16_t min_ce_length, uint16_t max_ce_length) {
+  conn_latency = 0;
   if (!check_connection_parameters(conn_interval_min, conn_interval_max, conn_latency,
                                    supervision_timeout)) {
     log::error("Invalid parameter");
