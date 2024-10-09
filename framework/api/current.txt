@@ -18,7 +18,7 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN) public boolean cancelDiscovery();
     method public static boolean checkBluetoothAddress(String);
     method public void closeProfileProxy(int, android.bluetooth.BluetoothProfile);
-    method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean disable();
+    method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) @com.google.errorprone.annotations.InlineMe(replacement="this.disable(true)") public boolean disable();
     method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean enable();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.LOCAL_MAC_ADDRESS}) public String getAddress();
     method public android.bluetooth.le.BluetoothLeAdvertiser getBluetoothLeAdvertiser();
@@ -597,7 +597,7 @@ package android.bluetooth {
 
   public final class BluetoothGatt implements android.bluetooth.BluetoothProfile {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void abortReliableWrite();
-    method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void abortReliableWrite(android.bluetooth.BluetoothDevice);
+    method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) @com.google.errorprone.annotations.InlineMe(replacement="this.abortReliableWrite()") public void abortReliableWrite(android.bluetooth.BluetoothDevice);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean beginReliableWrite();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void close();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean connect();
@@ -842,9 +842,9 @@ package android.bluetooth {
 
   @Deprecated public final class BluetoothHealthAppConfiguration implements android.os.Parcelable {
     method @Deprecated public int describeContents();
-    method @Deprecated public int getDataType();
-    method @Deprecated public String getName();
-    method @Deprecated public int getRole();
+    method @Deprecated @com.google.errorprone.annotations.InlineMe(replacement="0") public int getDataType();
+    method @Deprecated @com.google.errorprone.annotations.InlineMe(replacement="null") public String getName();
+    method @Deprecated @com.google.errorprone.annotations.InlineMe(replacement="0") public int getRole();
     method @Deprecated public void writeToParcel(android.os.Parcel, int);
     field @Deprecated @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothHealthAppConfiguration> CREATOR;
   }

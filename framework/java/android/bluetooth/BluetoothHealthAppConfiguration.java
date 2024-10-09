@@ -20,6 +20,8 @@ import android.annotation.NonNull;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.errorprone.annotations.InlineMe;
+
 /**
  * The Bluetooth Health Application Configuration that is used in conjunction with the {@link
  * BluetoothHealth} class. This class represents an application configuration that the Bluetooth
@@ -56,6 +58,7 @@ public final class BluetoothHealthAppConfiguration implements Parcelable {
      *     BluetoothDevice#createL2capChannel(int)}
      */
     @Deprecated
+    @InlineMe(replacement = "0")
     public int getDataType() {
         return 0;
     }
@@ -70,6 +73,7 @@ public final class BluetoothHealthAppConfiguration implements Parcelable {
      *     BluetoothDevice#createL2capChannel(int)}
      */
     @Deprecated
+    @InlineMe(replacement = "null")
     public String getName() {
         return null;
     }
@@ -84,6 +88,7 @@ public final class BluetoothHealthAppConfiguration implements Parcelable {
      *     BluetoothDevice#createL2capChannel(int)}
      */
     @Deprecated
+    @InlineMe(replacement = "0")
     public int getRole() {
         return 0;
     }
