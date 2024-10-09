@@ -46,6 +46,7 @@
 #include "devices.h"
 #include "gatt_api.h"
 #include "gmap_client.h"
+#include "gmap_server.h"
 #include "hci/controller_interface.h"
 #include "include/hardware/bt_gmap.h"
 #include "internal_include/stack_config.h"
@@ -6151,6 +6152,19 @@ void LeAudioClient::Initialize(
   auto cm = CodecManager::GetInstance();
   callbacks_->OnAudioLocalCodecCapabilities(cm->GetLocalAudioInputCodecCapa(),
                                             cm->GetLocalAudioOutputCodecCapa());
+
+  if (GmapServer::IsGmapServerEnabled()) {
+    auto capabilities = cm->GetLocalAudioOutputCodecCapa();
+    std::bitset<8> UGG_feature = GmapServer::GetUGGFeature();
+    for (auto& capa : capabilities) {
+      if (capa.sample_rate == bluetooth::le_audio::LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ) {
+        UGG_feature |= static_cast<uint8_t>(
+                bluetooth::gmap::UGGFeatureBitMask::NinetySixKbpsSourceFeatureSupport);
+        break;
+      }
+    }
+    GmapServer::Initialize(UGG_feature);
+  }
 }
 
 void LeAudioClient::DebugDump(int fd) {
