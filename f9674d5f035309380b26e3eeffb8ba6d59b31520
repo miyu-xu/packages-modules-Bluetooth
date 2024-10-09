@@ -318,6 +318,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3de3bf2b_ac667f45",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2036,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-09T03:12:50Z",
+      "side": 1,
+      "message": "We need to restart LE scan here because the filter policy would be changed\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/main/shim/le_scanning_manager.cc;l\u003d310;drc\u003d4e233a67abc2421be8b7f82a4e4a2fe324a3b29b",
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "337d33fe_85909786",
         "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
         "patchSetId": 13
