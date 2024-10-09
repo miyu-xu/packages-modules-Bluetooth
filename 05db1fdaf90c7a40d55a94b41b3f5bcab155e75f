@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79e2d706_b87798ee",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T16:56:21Z",
+      "side": 1,
+      "message": "Nack. \nIn line: 1298: the updated len is used `p_srvc-\u003edescriptor.dl_len \u003d len;` we either need to update len in this function or in the main logic.\n\nAnd we cant really avoid using `GATT_MAX_ATTR_LEN` right. We are filling `rpt_map[GATT_MAX_ATTR_LEN : GATT_MAX_ATTR_LEN + sizeof(remaining_report) - 1]`. We need point the memcpy to `rpt_map[512]`;",
+      "parentUuid": "6e9dd71a_2e943c31",
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00cb5b62_780fbb18",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 2
