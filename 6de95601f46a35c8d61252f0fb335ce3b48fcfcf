@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cfc33ba_28de4517",
+        "filename": "system/stack/btm/btm_ble_bgconn.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-09T01:10:42Z",
+      "side": 0,
+      "message": "surprisingly this is not used anywhere 😞",
+      "range": {
+        "startLine": 67,
+        "startChar": 72,
+        "endLine": 67,
+        "endChar": 94
+      },
+      "revId": "6de95601f46a35c8d61252f0fb335ce3b48fcfcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
