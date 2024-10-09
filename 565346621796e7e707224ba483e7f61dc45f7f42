@@ -215,6 +215,30 @@
       },
       "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fac9afdb_176181ee",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T20:56:29Z",
+      "side": 1,
+      "message": "I see that they are called from `ScanManager` only that is in the same package. Is there another place calling them ?",
+      "parentUuid": "1aaf1004_41f37c50",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
