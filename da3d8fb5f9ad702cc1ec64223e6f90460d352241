@@ -51,6 +51,42 @@
       "parentUuid": "d134304a_d5c5ec65",
       "revId": "da3d8fb5f9ad702cc1ec64223e6f90460d352241",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47333866_08383be1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T22:55:47Z",
+      "side": 1,
+      "message": "I read it while thinking this CL was reverting the modification in the cts. But no, you are actually updating the bluetooth code in the apex here. Hence why I was very confused.\n\nNow that make sense.",
+      "parentUuid": "906cd654_5447057a",
+      "revId": "da3d8fb5f9ad702cc1ec64223e6f90460d352241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "765c393a_51407ea4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T22:55:47Z",
+      "side": 1,
+      "message": "I was looking at the automerger, but this repo \"doesn\u0027t exist\"... \n\nI agree, let\u0027s see what happens and eventually there will be a merge conflict cl somewhere that will be \"skiped\".\n\nOr pre-emptively we could add\n```\nMerged-In: I8e8bc355c006536de00f7de304f527769946c82f\n```",
+      "parentUuid": "4dc2055a_35f487ab",
+      "revId": "da3d8fb5f9ad702cc1ec64223e6f90460d352241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
