@@ -16,6 +16,24 @@
       "message": "Missing changes to ScanNativeInterface.java, and that\u0027s why the presubmits are failing.\n\nI believe you need to add method declarations similar to the ones here: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/ScanNativeInterface.java;l\u003d87;drc\u003dfe2c86b638cc53f84c242d7a7856d6a4bc7d699d\n\nAlso callback methods similar to the ones here (can be a no-op for now): https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/ScanNativeInterface.java;l\u003d272;drc\u003dfe2c86b638cc53f84c242d7a7856d6a4bc7d699d",
       "revId": "a116cee59c585e3e82aa6706dda732281077498c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a9dd173_22300395",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T18:29:48Z",
+      "side": 1,
+      "message": "Thanks for catching this!",
+      "parentUuid": "97c03dcf_e67863e6",
+      "revId": "a116cee59c585e3e82aa6706dda732281077498c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
