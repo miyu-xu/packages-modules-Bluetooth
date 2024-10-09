@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf9f06e2_b4f0ca91",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 2840,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-09T20:48:54Z",
+      "side": 1,
+      "message": "Why is this changed to void?",
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2c1b41_34854b3a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-09T20:48:54Z",
+      "side": 1,
+      "message": "Should we just replace all instances of this func with the var and remove this function?",
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed4b907_3283617d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-09T20:48:54Z",
+      "side": 1,
+      "message": "This is just going to add the filter all over again. Instead, you should either use the `mNativeInterface.gattClientScan(true);` here or just add a `if (isMsftEnabled())` statement in `startRegularScan` to stop scan first",
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
