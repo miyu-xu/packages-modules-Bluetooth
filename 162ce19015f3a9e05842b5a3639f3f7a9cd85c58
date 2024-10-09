@@ -16,6 +16,23 @@
       "message": "You can pass `this` as a parameter.\n\nThis way, in `BluetoothHciVendorSpecificNativeInterface` you can save the AdapterService as a class variable and no longer call AdapterService.getAdapterService and no longer check for null pointer in the callbacks.",
       "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df715a86_f4ee49a5",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5720,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-10-09T13:09:53Z",
+      "side": 1,
+      "message": "will below usecases be supported with current implementation? \n- Calling this interface from multiple concurrent system applications should be allowed.\n- The same event can be unmasked by different system applications.\n\nincase if above usecase are not supported with current implementation. Can we add multiple system app support(eg. oem app, vendor app) for sendBluetoothHciVendorSpecificCommand API \u0026 callback, similar to bqr feature https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2301027/31/framework/java/android/bluetooth/BluetoothAdapter.java",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
