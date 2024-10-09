@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73ab7246_b4422cb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-09T18:47:07Z",
+      "side": 1,
+      "message": "Checked the history of this part of change, @tyszkowski@google.com could you also help to share some context why this was needed?",
+      "revId": "52656bd10680c140fb5b8ef32b61056522bab004",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
