@@ -132,3 +132,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "hogp_max_mtu_exchange"
+    namespace: "bluetooth"
+    description: "Initiate MTU exchange with max allowed MTU size for HOGP"
+    bug: "372520967"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
