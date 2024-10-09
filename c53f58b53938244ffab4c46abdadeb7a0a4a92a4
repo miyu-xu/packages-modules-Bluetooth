@@ -22,6 +22,30 @@
       },
       "revId": "c53f58b53938244ffab4c46abdadeb7a0a4a92a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb54071_c5beead5",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T22:56:32Z",
+      "side": 1,
+      "message": "That just mean the bluetooth is off. It should not be a warning in my opinion",
+      "parentUuid": "969ec1f9_df646512",
+      "range": {
+        "startLine": 691,
+        "startChar": 16,
+        "endLine": 691,
+        "endChar": 17
+      },
+      "revId": "c53f58b53938244ffab4c46abdadeb7a0a4a92a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
