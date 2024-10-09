@@ -6385,6 +6385,7 @@ public class AdapterService extends Service {
         }
         mSilenceDeviceManager.dump(fd, writer, args);
         mDatabaseManager.dump(writer);
+        mRemoteDevices.dump(writer);
 
         writer.write(sb.toString());
         writer.flush();
