@@ -1,0 +1,305 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b390d9ff_f6658207",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 4611,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "createClientSocket",
+      "fixSuggestions": [
+        {
+          "fixId": "06fabe7e_da7cef28",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothAdapter.java",
+              "range": {
+                "startLine": 4611,
+                "startChar": 0,
+                "endLine": 4613,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eUse {@link BluetoothDevice#createClientConnection(BluetoothSocketSettings)} to connect\n     * to this server socket from another Android device that is given the PSM value.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aee0a9f_851381ad",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3204,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "and build BluetoothSocketSettings with required parameters",
+      "range": {
+        "startLine": 3204,
+        "startChar": 81,
+        "endLine": 3204,
+        "endChar": 87
+      },
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a20eb5e_05f5b522",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3219,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "update to reflect API name",
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a8e7ca9_272c6221",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3223,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 3223,
+        "startChar": 24,
+        "endLine": 3223,
+        "endChar": 50
+      },
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66264baa_624d9f3d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "need to update the doc with new API name",
+      "fixSuggestions": [
+        {
+          "fixId": "060943ff_ea68f90c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": " * The {@link BluetoothSocketSettings} are passed to {@link BluetoothAdapter#createListeningChannel},\n * {@link BluetoothDevice#createListeningChannel} and {@link BluetoothSocket#create} to define the\n * parameters for the Bluetooth Server and Client socket channel creation.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e9535a7_822f3faf",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "can we have an INVALID_HUBID incase if It is not relevant for non-offload sockets",
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94eb3987_bec426b6",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "What are the allowed values here? Can we have an INVALID_ENDPOINT_ID here as well\n?",
+      "fixSuggestions": [
+        {
+          "fixId": "e1006586_6c33b4f4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 85,
+                "endChar": 0
+              },
+              "replacement": "    /** Invalid hub ID. */\n    private static final int INVALID_HUB_ID \u003d -1;\n\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    /** Invalid end point ID. */\n    private static final int INVALID_END_POINT_ID \u003d -1;\n\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 243,
+                "startChar": 0,
+                "endLine": 245,
+                "endChar": 0
+              },
+              "replacement": "        private int mHubId \u003d INVALID_HUB_ID;\n        private int mEndPointId \u003d INVALID_END_POINT_ID;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 418,
+                "startChar": 0,
+                "endLine": 419,
+                "endChar": 0
+              },
+              "replacement": "            if (mDataPath \u003d\u003d DATA_PATH_HARDWARE_OFFLOAD\n                    \u0026\u0026 (mHubId \u003d\u003d INVALID_HUB_ID || mEndPointId \u003d\u003d INVALID_END_POINT_ID)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2caee3_c1eee2da",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "please define INVALID_HUBID and INVALID_ENDPOINT_ID for these",
+      "fixSuggestions": [
+        {
+          "fixId": "2ec49ac8_a3f2c784",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 243,
+                "startChar": 0,
+                "endLine": 245,
+                "endChar": 0
+              },
+              "replacement": "        private int mHubId \u003d BluetoothSocket.INVALID_HUB_ID;\n        private int mEndPointId \u003d BluetoothSocket.INVALID_END_POINT_ID;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 418,
+                "startChar": 0,
+                "endLine": 419,
+                "endChar": 0
+              },
+              "replacement": "            if (mDataPath \u003d\u003d DATA_PATH_HARDWARE_OFFLOAD\n                    \u0026\u0026 (mHubId \u003d\u003d BluetoothSocket.INVALID_HUB_ID\n                            || mEndPointId \u003d\u003d BluetoothSocket.INVALID_END_POINT_ID)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489316e1_c7b64f36",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:03:21Z",
+      "side": 1,
+      "message": "we may need toString() kind of function to print the SocketSettings?",
+      "range": {
+        "startLine": 410,
+        "startChar": 15,
+        "endLine": 410,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a88875eb_bfb5b99a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 210,
+                "startChar": 0,
+                "endLine": 210,
+                "endChar": 0
+              },
+              "replacement": "\n    @Override\n    public String toString() {\n        return \"BluetoothSocketSettings{\"\n                + \"mSocketType\u003d\"\n                + mSocketType\n                + \", mChannel\u003d\"\n                + mChannel\n                + \", mSecurityLevel\u003d\"\n                + mSecurityLevel\n                + \", mServiceName\u003d\u0027\"\n                + mServiceName\n                + \u0027\\\u0027\u0027\n                + \", mUuid\u003d\"\n                + mUuid\n                + \", mDataPath\u003d\"\n                + mDataPath\n                + \", mSocketName\u003d\u0027\"\n                + mSocketName\n                + \u0027\\\u0027\u0027\n                + \", mHubId\u003d\"\n                + mHubId\n                + \", mEndPointId\u003d\"\n                + mEndPointId\n                + \", mAutoDataPathSwitch\u003d\"\n                + mAutoDataPathSwitch\n                + \u0027}\u0027;\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4678b472907a69d736929488f62ef875ab7cb6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
