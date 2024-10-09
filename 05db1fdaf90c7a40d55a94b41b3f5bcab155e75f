@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e9dd71a_2e943c31",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T16:48:28Z",
+      "side": 1,
+      "message": "We don\u0027t really need the `len` here since it is a fixed value and we treat it as such in this function.\n\nEither we should ignore any special significance of `len` in this function and remove usage of `GATT_MAX_ATTR_LEN` in this function.\nOr we assume that `desc` is exactly `GATT_MAX_ATTR_LEN` and the `len` does not need to be included.\n\nI would prefer the first approach.",
+      "fixSuggestions": [
+        {
+          "fixId": "ad4b92f0_4958c7f1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_le.cc",
+              "range": {
+                "startLine": 1274,
+                "startChar": 0,
+                "endLine": 1275,
+                "endChar": 0
+              },
+              "replacement": "  memcpy(\u0026(p_srvc-\u003erpt_map[*len]), remaining_report, sizeof(remaining_report));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00cb5b62_780fbb18",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T16:48:28Z",
+      "side": 1,
+      "message": "residual_report_map?",
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
