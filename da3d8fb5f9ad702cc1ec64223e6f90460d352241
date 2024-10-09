@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc2055a_35f487ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-09T22:07:21Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure I might need some commit message magic to restrict automerge, but lets see what happens.",
+      "revId": "da3d8fb5f9ad702cc1ec64223e6f90460d352241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
