@@ -69,6 +69,24 @@
       "parentUuid": "ba3508e9_47baadb0",
       "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dec4448_0c9426de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-09T09:19:12Z",
+      "side": 1,
+      "message": "Thank you for review.\n\n@quic_zhenchao@quicinc.com `random address will change every several minutes for broadcast source` it is possible but this is what would be exposed in AdvA of advertisements.\n\n@rongxuan@google.com `Using the same address through BIG lifetime is recommended by SIG, but not mandatory.` I think this is not strictly related to this case.\n\nMetadata for local broadcast is update with set advertising data initiated by broadcaster. `https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster.cc;drc\u003d0f13cf920e58438c245f5928434a609e445c3481;l\u003d821`\n\nSource on receive state doesn\u0027t have to \"update\" Advertiser_Address when it changes. So it means that it should match, otherwise receive state should follow updated address (and update it) or every address change native would inform service about update.\n\n\"If the Advertiser_Address_Type value written by the client is 0x01, the Advertiser_Address value written by the client might not match the AdvA field in ADV_EXT_IND PDUs transmitted by the Broadcast Source\" BASS 1.0, 3.1.1.4 Add Source operation\n\nBut I think that broadcastId (Zhenchao CL) is fair enough and would not cause concerns for reviewers.",
+      "parentUuid": "4ae240f0_c2fa49d8",
+      "revId": "5bc1377b9efeddb8469000f915a05aa3fd417eff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
