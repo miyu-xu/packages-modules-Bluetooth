@@ -278,6 +278,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a546c755_10987e98",
+        "filename": "system/bta/include/bta_gmap_client_api.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-09T06:31:20Z",
+      "side": 1,
+      "message": "`gmap_client_.DebugDump()` is called under `LeAudioDevice`, not `LeAudioClient` :) \nSo what I need is just to move the `bta_gmap_client_api.h ` to `le_audio/` folder and rename as `gmap_client.h`?\n\nI will do that",
+      "parentUuid": "acb2be50_de3286eb",
+      "revId": "a50da4d07ffb7060a3712f74d1dea80dea33e1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "870b2eea_6da036e0",
         "filename": "system/bta/include/bta_gmap_client_api.h",
         "patchSetId": 11
