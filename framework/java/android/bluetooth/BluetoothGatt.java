@@ -38,6 +38,8 @@ import android.util.Log;
 
 import com.android.bluetooth.flags.Flags;
 
+import com.google.errorprone.annotations.InlineMe;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -1864,6 +1866,7 @@ public final class BluetoothGatt implements BluetoothProfile {
     @Deprecated
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
+    @InlineMe(replacement = "this.abortReliableWrite()")
     public void abortReliableWrite(BluetoothDevice mDevice) {
         abortReliableWrite();
     }

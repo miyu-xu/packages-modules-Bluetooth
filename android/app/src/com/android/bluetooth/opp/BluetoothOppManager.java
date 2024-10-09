@@ -326,7 +326,7 @@ public class BluetoothOppManager {
     @SuppressLint("AndroidFrameworkRequiresPermission") // re-entrant call
     public void disableBluetooth() {
         if (mAdapter != null) {
-            mAdapter.disable();
+            mAdapter.disable(true);
         }
     }
 

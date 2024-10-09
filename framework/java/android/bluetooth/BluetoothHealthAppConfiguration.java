@@ -17,6 +17,7 @@
 package android.bluetooth;
 
 import android.annotation.NonNull;
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -32,6 +33,7 @@ import android.os.Parcelable;
  *     BluetoothDevice#createL2capChannel(int)}
  */
 @Deprecated
+@SuppressLint("InlineMeSuggester")
 public final class BluetoothHealthAppConfiguration implements Parcelable {
 
     /**

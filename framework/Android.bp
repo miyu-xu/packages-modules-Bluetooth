@@ -48,6 +48,7 @@ java_library {
     defaults: ["framework-bluetooth-defaults"],
     sdk_version: "module_current",
     libs: ["framework-annotations-lib"],
+    static_libs: ["error_prone_annotations"],
     installable: false,
 }
 
@@ -95,6 +96,9 @@ java_sdk_library {
         strict_updatability_linting: true,
         baseline_filename: "lint-baseline.xml",
     },
+    stub_only_libs: [
+        "error_prone_annotations",
+    ],
 }
 
 // defaults for tests that need to build against framework-bluetooths's @hide APIs
