@@ -22,38 +22,32 @@ import static org.mockito.Mockito.*;
 import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 
-import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.flags.Flags;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@MediumTest
+@SmallTest
 @RunWith(AndroidJUnit4.class)
 public class VolumeControlInputDescriptorTest {
 
     @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
+    private VolumeControlInputDescriptor mDescriptor;
+
     @Before
     public void setUp() throws Exception {
-        // placeholder
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        // placeholder
+        mDescriptor = new VolumeControlInputDescriptor();
     }
 
     @Test
     @EnableFlags(Flags.FLAG_LEAUDIO_ADD_AICS_SUPPORT)
     public void testVolumeControlInputDescriptorInvalidIdOperations() throws Exception {
-        VolumeControlInputDescriptor descriptor = new VolumeControlInputDescriptor();
-
         int invalidId = 1;
         int testGainValue = 100;
         int testGainMode = 1;
