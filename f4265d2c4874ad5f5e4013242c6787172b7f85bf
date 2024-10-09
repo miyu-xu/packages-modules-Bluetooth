@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8c8606b8_a74a7866",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T22:21:14Z",
+      "side": 1,
+      "message": "It seems we dont need this profile handle as we just wait for A2dp connection to happen. Do we need to keep this for future purpose?",
+      "range": {
+        "startLine": 125,
+        "startChar": 26,
+        "endLine": 125,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fb03a498_d40ab6c5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 193,
+                "endChar": 0
+              },
+              "replacement": "                            // Do nothing\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f4265d2c4874ad5f5e4013242c6787172b7f85bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d88196c_b96bed66",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 4
