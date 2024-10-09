@@ -88,6 +88,24 @@
       "parentUuid": "0261e9e9_2d6e2817",
       "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d8f6a4_5aced077",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T17:40:43Z",
+      "side": 1,
+      "message": "SGTM. But this sounds pretty fundamental, let\u0027s get a flag?",
+      "parentUuid": "4a02a7a2_50d19ae6",
+      "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
