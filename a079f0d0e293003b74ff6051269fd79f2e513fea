@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1855b65a_8e8b565b",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T17:43:45Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 29
+      },
+      "revId": "a079f0d0e293003b74ff6051269fd79f2e513fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
