@@ -12,6 +12,9 @@ filegroup {
     name: "Bluetooth-binder-aidl",
     srcs: [
         ":framework-bluetooth-updatable-exported-aidl-sources",
+        "android/bluetooth/AudioInputControl.aidl",
+        "android/bluetooth/AudioInputStatus.aidl",
+        "android/bluetooth/AudioInputType.aidl",
         "android/bluetooth/IBluetooth.aidl",
         "android/bluetooth/IBluetoothA2dp.aidl",
         "android/bluetooth/IBluetoothA2dpSink.aidl",

@@ -17,6 +17,7 @@
 
 package android.bluetooth;
 
+import android.bluetooth.AudioInputControl;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.IBluetoothVolumeControlCallback;
 import android.content.AttributionSource;
@@ -72,4 +73,11 @@ interface IBluetoothVolumeControl {
     void unregisterCallback(in IBluetoothVolumeControlCallback callback, in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     void notifyNewRegisteredCallback(in IBluetoothVolumeControlCallback callback, in AttributionSource attributionSource);
+
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    List<AudioInputControl.AudioInputControlParcel> getAudioInputControlPoints(in AttributionSource attributionSource, in BluetoothDevice device);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    int getAudioInputType(in AttributionSource attributionSource, in AudioInputControl.AudioInputControlParcel controlParcel);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    int getAudioInputStatus(in AttributionSource attributionSource, in AudioInputControl.AudioInputControlParcel controlParcel);
 }
