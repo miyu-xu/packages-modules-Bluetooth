@@ -52,6 +52,24 @@
       "parentUuid": "0ba49f73_0a488d38",
       "revId": "4ce5653824624a95601694cd42ea741d2e0f8487",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdea99f1_1a5b790a",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-09T21:17:01Z",
+      "side": 1,
+      "message": "I see, then it\u0027s better to keep a specific atomic int in that case. Let\u0027s behave like the specification.",
+      "parentUuid": "d09c6f57_4cd3ab11",
+      "revId": "4ce5653824624a95601694cd42ea741d2e0f8487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
