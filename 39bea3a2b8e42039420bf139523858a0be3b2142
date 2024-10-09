@@ -16,6 +16,24 @@
       "message": "It may be better to do this while handling `BTA_GATTC_OPEN_EVT`.",
       "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee89f05_16d941f5",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T17:10:21Z",
+      "side": 1,
+      "message": "Tried. VID/PID wont be ready at that time.",
+      "parentUuid": "964a9f82_fa9266fe",
+      "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
