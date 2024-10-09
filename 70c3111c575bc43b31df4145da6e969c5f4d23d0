@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd8c113_dcc08839",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:38:29Z",
+      "side": 1,
+      "message": "We should not need to start advertising. It gets started as part of generateLocalOobData() API",
+      "revId": "70c3111c575bc43b31df4145da6e969c5f4d23d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
