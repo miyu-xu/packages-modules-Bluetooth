@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3ad8a45_9fae157c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T20:50:54Z",
+      "side": 1,
+      "message": "Can you add a unit test that verify that for one known ScanFilter it output the expected data ?\n\nThis kind of test seems a bit \"poor\" when we are writing them, but they are very handy to prevent unwanted regression in the futur",
+      "revId": "131f8d591a411be2ac7ea52938ae370f0b84ec55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
