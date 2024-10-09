@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acfdca25_244fb46b",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-09T17:00:56Z",
+      "side": 1,
+      "message": "`std::move(raw_data)`",
+      "range": {
+        "startLine": 141,
+        "startChar": 37,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "120ac208005e0efe8e263b2b448662d8d805046f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63f20bb1_bb610f41",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-09T17:00:56Z",
+      "side": 1,
+      "message": "`std::move`",
+      "range": {
+        "startLine": 156,
+        "startChar": 37,
+        "endLine": 156,
+        "endChar": 72
+      },
+      "revId": "120ac208005e0efe8e263b2b448662d8d805046f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32475fc6_f84ff18f",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-09T17:00:56Z",
+      "side": 1,
+      "message": "`std::move`",
+      "range": {
+        "startLine": 173,
+        "startChar": 37,
+        "endLine": 173,
+        "endChar": 72
+      },
+      "revId": "120ac208005e0efe8e263b2b448662d8d805046f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
