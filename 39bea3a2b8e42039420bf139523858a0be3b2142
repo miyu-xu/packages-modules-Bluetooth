@@ -106,6 +106,24 @@
       "parentUuid": "4a02a7a2_50d19ae6",
       "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9397736_af0f75eb",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T17:41:45Z",
+      "side": 1,
+      "message": "Yeah, it should be under a flag.",
+      "parentUuid": "13d8f6a4_5aced077",
+      "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
