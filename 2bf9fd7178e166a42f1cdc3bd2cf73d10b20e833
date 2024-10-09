@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14c02b56_fa5be17a",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T03:48:46Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nAs this is one device for now creating a map is an overkill. Let\u0027s do a map if more devices are revealed that need this interop quirk. WDYT?",
+      "parentUuid": "ac0cc2ee_fb1e3327",
+      "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec3750b0_d685864e",
         "filename": "system/conf/interop_database.conf",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-08T18:54:20Z",
       "side": 1,
       "message": "Some HOGP devices have the report map longer than the maximum GATT attribute value length (512 bytes).",
+      "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93789444_f41ef3ac",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T03:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec3750b0_d685864e",
       "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2024-10-08T18:54:20Z",
       "side": 1,
       "message": "INTEROP_HOGP_LONG_REPORT_MAP",
+      "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b8ecc2e_34e7c97c",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-09T03:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b80faee_04be2d7d",
       "revId": "2bf9fd7178e166a42f1cdc3bd2cf73d10b20e833",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
