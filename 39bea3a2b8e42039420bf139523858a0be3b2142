@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964a9f82_fa9266fe",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T16:57:43Z",
+      "side": 1,
+      "message": "It may be better to do this while handling `BTA_GATTC_OPEN_EVT`.",
+      "revId": "39bea3a2b8e42039420bf139523858a0be3b2142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
