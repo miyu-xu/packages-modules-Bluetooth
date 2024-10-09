@@ -52,6 +52,7 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -1331,28 +1332,35 @@ public class RemoteDevices {
 
     private void removeAddressMapping(String address) {
         if (Flags.temporaryPairingDeviceProperties()) {
+            String pseudoAddress;
             DeviceProperties deviceProperties = mDevices.get(address);
             if (deviceProperties != null) {
-                String pseudoAddress = mDualDevicesMap.get(address);
+                pseudoAddress = mDualDevicesMap.get(address);
                 if (pseudoAddress != null) {
-                    deviceProperties = mDevices.get(pseudoAddress);
+                deviceProperties = mDevices.get(pseudoAddress);
                 }
             }
 
             if (deviceProperties != null) {
-                int leConnectionHandle =
-                        deviceProperties.getConnectionHandle(BluetoothDevice.TRANSPORT_LE);
+                int leConnectionHandle = deviceProperties.getConnectionHandle(BluetoothDevice.TRANSPORT_LE);
                 int bredrConnectionHandle =
-                        deviceProperties.getConnectionHandle(BluetoothDevice.TRANSPORT_BREDR);
+                    deviceProperties.getConnectionHandle(BluetoothDevice.TRANSPORT_BREDR);
                 if (leConnectionHandle != BluetoothDevice.ERROR
-                        || bredrConnectionHandle != BluetoothDevice.ERROR) {
-                    // Device still connected, wait for disconnection to remove the properties
-                    return;
+                    || bredrConnectionHandle != BluetoothDevice.ERROR) {
+                // Device still connected, wait for disconnection to remove the properties
+                return;
                 }
             }
+            Log.d(
+                TAG,
+                "removeAddressMapping: "
+                    + Utils.getRedactedAddressString(address)
+                    + " -> "
+                    + Utils.getRedactedAddressString(pseudoAddress));
         }
 
         synchronized (mDevices) {
+            pseudoAddress = mDualDevicesMap.get(address);
             mDevices.remove(address);
             mDeviceQueue.remove(address); // Remove from LRU cache
 
@@ -1720,5 +1728,28 @@ public class RemoteDevices {
 
     private static void warnLog(String msg) {
         Log.w(TAG, msg);
+    }
+
+    /**
+     * Dump database info to a PrintWriter
+     *
+     * @param writer the PrintWriter to write log
+     */
+    public void dump(PrintWriter writer) {
+        writer.println("\n" + TAG + ":");
+        writer.println("  Address map: " + mDualDevicesMap.size());
+        for (String address : mDualDevicesMap.keySet()) {
+            String pseudoAddress = mDualDevicesMap.get(address);
+            writer.println(
+                    "    "
+                            + Utils.getRedactedAddressString(address)
+                            + " -> "
+                            + Utils.getRedactedAddressString(pseudoAddress));
+        }
+
+        writer.println("  SDP tracker: " + mSdpTracker.size());
+        for (BluetoothDevice device : mSdpTracker) {
+            writer.println("    " + device);
+        }
     }
 }

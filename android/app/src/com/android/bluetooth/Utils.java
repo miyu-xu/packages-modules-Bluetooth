@@ -112,6 +112,10 @@ public final class Utils {
     private static final String KEY_TEMP_ALLOW_LIST_DURATION_MS = "temp_allow_list_duration_ms";
     private static final long DEFAULT_TEMP_ALLOW_LIST_DURATION_MS = 20_000;
 
+    private static final String EMPTY_ADDRESS_STRING = "00:00:00:00:00:00";
+
+    private static final String ADDRESS_STRING_MASK = "XX:XX:XX:XX:";
+
     static final int BD_ADDR_LEN = 6; // bytes
     static final int BD_UUID_LEN = 16; // bytes
 
@@ -209,9 +213,9 @@ public final class Utils {
 
     public static String getLoggableAddress(@Nullable BluetoothDevice device) {
         if (device == null) {
-            return "00:00:00:00:00:00";
+            return EMPTY_ADDRESS_STRING;
         } else {
-            return "xx:xx:xx:xx:" + device.toString().substring(12);
+            return ADDRESS_STRING_MASK + device.toString().substring(12);
         }
     }
 
@@ -230,7 +234,21 @@ public final class Utils {
             return null;
         }
 
-        return String.format("XX:XX:XX:XX:%02X:%02X", address[4], address[5]);
+        return String.format(ADDRESS_STRING_MASK + "%02X:%02X", address[4], address[5]);
+    }
+
+    /**
+     * Returns redacted address string
+     *
+     * @param address
+     * @return redacted address string if the address is valid, otherwise empty address string
+     */
+    public static String getRedactedAddressString(String address) {
+        if (address != null || address.length() != EMPTY_ADDRESS_STRING.length()) {
+            return EMPTY_ADDRESS_STRING;
+        }
+
+        return ADDRESS_STRING_MASK.concat(address.substring(12));
     }
 
     /**
