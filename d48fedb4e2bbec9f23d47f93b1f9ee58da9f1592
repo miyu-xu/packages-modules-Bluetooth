@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa15e9f_c0bb39aa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:11:15Z",
+      "side": 1,
+      "message": "Verify following state transitions:\nBR/EDR disconnecting\nBR/EDR disconnected\nLE connecting\nLE connected",
+      "fixSuggestions": [
+        {
+          "fixId": "6a1e5976_51b7e04c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+              "range": {
+                "startLine": 347,
+                "startChar": 0,
+                "endLine": 348,
+                "endChar": 0
+              },
+              "replacement": "        // As order of connection change event not fixed . hence verifying final connection state.\n        // BR/EDR disconnecting\n        verifyIntentReceivedUnorderedAtLeast(\n                1,\n                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, TRANSPORT_BREDR),\n                hasExtra(BluetoothProfile.EXTRA_STATE, STATE_DISCONNECTING));\n        // LE connecting\n        verifyIntentReceivedUnorderedAtLeast(\n                1,\n                hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, TRANSPORT_LE),\n                hasExtra(BluetoothProfile.EXTRA_STATE, STATE_CONNECTING));\n        // LE connected\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d48fedb4e2bbec9f23d47f93b1f9ee58da9f1592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
