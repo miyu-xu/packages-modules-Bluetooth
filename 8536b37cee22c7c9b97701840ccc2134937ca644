@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9c99743_93fd4687",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1058860
+      },
+      "writtenOn": "2024-10-09T05:55:40Z",
+      "side": 1,
+      "message": "Global approval as this is a simple change code change to header files.",
+      "revId": "8536b37cee22c7c9b97701840ccc2134937ca644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
