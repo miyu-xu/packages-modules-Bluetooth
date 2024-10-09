@@ -48,6 +48,7 @@ java_library {
     defaults: ["framework-bluetooth-defaults"],
     sdk_version: "module_current",
     libs: ["framework-annotations-lib"],
+    static_libs: ["error_prone_annotations"],
     installable: false,
 }
 

@@ -80,6 +80,8 @@ import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.modules.expresslog.Counter;
 
+import com.google.errorprone.annotations.InlineMe;
+
 import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1722,6 +1724,7 @@ public final class BluetoothAdapter {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     @SuppressLint("AndroidFrameworkRequiresPermission") // See disable(boolean) for reason
+    @InlineMe(replacement = "this.disable(true)")
     public boolean disable() {
         return disable(true);
     }

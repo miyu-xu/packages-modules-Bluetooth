@@ -77,6 +77,7 @@ cc_defaults {
 
 java_defaults {
     name: "bluetooth_errorprone_rules",
+    static_libs: ["error_prone_annotations"],
     errorprone: {
         enabled: true,
         javacflags: [
@@ -102,6 +103,7 @@ java_defaults {
             "-Xep:InconsistentHashCode:ERROR",
             "-Xep:InlineFormatString:ERROR",
             "-Xep:InlineMeInliner:ERROR",
+            "-Xep:InlineMeSuggester:ERROR",
             "-Xep:InvalidBlockTag:ERROR",
             "-Xep:InvalidInlineTag:ERROR",
             "-Xep:InvalidParam:ERROR",
@@ -146,9 +148,6 @@ java_defaults {
 
             // Exclude generated files
             "-XepExcludedPaths:.*/srcjars/.*",
-
-            // The @InlineMe annotation is not available
-            // "-Xep:InlineMeSuggester:OFF",
         ],
     },
 }
