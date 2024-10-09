@@ -1127,7 +1127,7 @@ public class BassClientServiceTest {
         checkMessage(message);
         mBassClientService.mHandler.removeMessages(message);
         Message newMsg = mBassClientService.mHandler.obtainMessage(message);
-        newMsg.arg1 = broadcastId;
+        newMsg.obj = broadcastId;
         mBassClientService.mHandler.dispatchMessage(newMsg);
     }
 
