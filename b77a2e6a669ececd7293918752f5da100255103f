@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "502369d2_c2bc1a80",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-09T23:05:34Z",
+      "side": 1,
+      "message": "We need to handle RFCOMM offload sockets as well. new API can pass RFCOMM as type",
+      "range": {
+        "startLine": 223,
+        "startChar": 15,
+        "endLine": 223,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "33b4c6fa_c9a1dfb1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock.cc",
+              "range": {
+                "startLine": 223,
+                "startChar": 0,
+                "endLine": 223,
+                "endChar": 0
+              },
+              "replacement": "      // TODO(siyuanh): We are assuming that the uuid is a RFCOMM UUID.\n      // This is not always true.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b77a2e6a669ececd7293918752f5da100255103f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
