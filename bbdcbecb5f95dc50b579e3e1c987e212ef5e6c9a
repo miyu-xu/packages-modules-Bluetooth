@@ -16,6 +16,74 @@
       "message": "*for unrelated device",
       "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692eccc8_ffc28b1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:30:44Z",
+      "side": 1,
+      "message": "Flag: com.android.bluetooth.flags.ignore_bond_cancel_by_unintended_device",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a06b8a_1344adc5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:30:44Z",
+      "side": 1,
+      "message": "Use 315241296 instead",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8011d9e7_969b897c",
+        "filename": "flags/btif_dm.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:30:44Z",
+      "side": 1,
+      "message": "ignore_unrelated_cancel_bond",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44da38e8_3af83f2c",
+        "filename": "flags/btif_dm.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:30:44Z",
+      "side": 1,
+      "message": "Accept the cancelBond request only for the currently pairing device",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
