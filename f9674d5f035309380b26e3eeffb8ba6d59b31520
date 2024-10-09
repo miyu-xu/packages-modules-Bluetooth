@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fabe15d_2023165b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5b46bd_9e6d6f3b",
+      "range": {
+        "startLine": 416,
+        "startChar": 9,
+        "endLine": 419,
+        "endChar": 9
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97e0f913_ca46d729",
@@ -65,6 +89,24 @@
       "writtenOn": "2024-10-08T22:12:26Z",
       "side": 1,
       "message": "This logic is not right. We need to move this to ScanManager.java or `isFilteringSupported` will return true.",
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3148304_7f3cb73a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97e0f913_ca46d729",
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +134,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "753ebb5a_c5992a51",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "This was in the wrong location. After moving the check to ScanManager, the logic should now make sense.",
+      "parentUuid": "0b84ce5a_1cf68653",
+      "range": {
+        "startLine": 415,
+        "startChar": 3,
+        "endLine": 422,
+        "endChar": 5
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fec3fb60_92ed94a7",
@@ -105,6 +171,30 @@
       "writtenOn": "2024-10-08T22:12:22Z",
       "side": 1,
       "message": "I have a light preference to write it like this. Pro we have a unique call to initFilterIndexStack in the flow, and this is more symetrical between the two. con we are calling twice isMsftEnabled. \n\n```suggestion\n            if ((isFilteringSupported() || isMsftEnabled())\n                    \u0026\u0026 mFilterIndexStack.isEmpty()\n                    \u0026\u0026 mClientFilterIndexMap.isEmpty()) {\n                initFilterIndexStack();\n            }\n            if (isFilteringSupported()) {\n                configureScanFilters(client);\n            } else if (isMsftEnabled()) {\n                addFiltersMsft(client);\n            }\n```",
+      "range": {
+        "startLine": 1157,
+        "startChar": 0,
+        "endLine": 1169,
+        "endChar": 13
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5fc8ef_c8732617",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "I like this as well. I\u0027ll change it to this.",
+      "parentUuid": "fec3fb60_92ed94a7",
       "range": {
         "startLine": 1157,
         "startChar": 0,
@@ -161,6 +251,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61ebca8_0b748a7e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f64a2968_c79bd44a",
+      "range": {
+        "startLine": 1535,
+        "startChar": 8,
+        "endLine": 1537,
+        "endChar": 68
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b82053_adcab481",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c310fdf3_97c5b7cb",
+      "range": {
+        "startLine": 1535,
+        "startChar": 7,
+        "endLine": 1537,
+        "endChar": 68
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d34fe5a1_46c2a77e",
@@ -178,6 +316,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "485decf6_19c107a3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d34fe5a1_46c2a77e",
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc6b8765_1f0cd195",
@@ -191,6 +347,30 @@
       "writtenOn": "2024-10-08T22:12:22Z",
       "side": 1,
       "message": "No need to specify Integer twice\n```suggestion\n            Deque\u003cInteger\u003e clientFilterIndices \u003d new ArrayDeque\u003c\u003e();\n```",
+      "range": {
+        "startLine": 1987,
+        "startChar": 64,
+        "endLine": 1987,
+        "endChar": 71
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4db161fc_92cffd19",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc6b8765_1f0cd195",
       "range": {
         "startLine": 1987,
         "startChar": 64,
@@ -224,6 +404,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15e09562_ff733642",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8d8f251_6b32da94",
+      "range": {
+        "startLine": 1988,
+        "startChar": 37,
+        "endLine": 1988,
+        "endChar": 51
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c5c60ba_8aa7b655",
@@ -237,6 +441,30 @@
       "writtenOn": "2024-10-08T22:12:22Z",
       "side": 1,
       "message": "Is this really an error ?\n\nDo you want to prevent any action in case this doesn\u0027t match ? something that you could do prior to iterating entirely on this code ?\n\n```\nif (client.filters.size() !\u003d mFilterIndexStack.size()) {\n Log.e(TAG, \"Size of filter doesn\u0027t match size of client\");\n return;\n}\nfor (ScanFilter filter : client.filters) {\n[...]\n```\n\nNote that I don\u0027t know how the logic involved here behave, I am juste commenting base on these few lines of code.",
+      "range": {
+        "startLine": 1991,
+        "startChar": 0,
+        "endLine": 1991,
+        "endChar": 62
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebf7e635_d9c02721",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c5c60ba_8aa7b655",
       "range": {
         "startLine": 1991,
         "startChar": 0,
@@ -270,6 +498,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e22137c6_6f4ae658",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2180cda4_edd52c34",
+      "range": {
+        "startLine": 1989,
+        "startChar": 15,
+        "endLine": 1994,
+        "endChar": 58
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4841f830_1a5d593d",
@@ -283,6 +535,30 @@
       "writtenOn": "2024-10-08T22:12:22Z",
       "side": 1,
       "message": "This is already check outside of this method.",
+      "range": {
+        "startLine": 2012,
+        "startChar": 0,
+        "endLine": 2014,
+        "endChar": 13
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce335591_d0ebcf33",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2014,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4841f830_1a5d593d",
       "range": {
         "startLine": 2012,
         "startChar": 0,
@@ -316,6 +592,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92b37320_94e72761",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Yes, this is intended. `mFilterIndexStack` represents the available filter slots of the controller. As a result, they are claimed when adding new monitors, and released back into the available list when removing monitors.",
+      "parentUuid": "4d0f5312_4f1412c6",
+      "range": {
+        "startLine": 2018,
+        "startChar": 0,
+        "endLine": 2018,
+        "endChar": 60
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3de3bf2b_ac667f45",
@@ -333,6 +633,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8681326_182c5417",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2036,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3de3bf2b_ac667f45",
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "337d33fe_85909786",
@@ -346,6 +664,30 @@
       "writtenOn": "2024-10-08T22:12:22Z",
       "side": 1,
       "message": "Do you need to be in java for this ? I feel like this is callback from native, intended for the native only.\n\nIs the only caller gattClientMsftAdvMonitorRemove ?\n\nAre you aware that the callback from native are not called on the same thread as the java is calling the native ?",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6209302d_1c23d785",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-09T20:38:10Z",
+      "side": 1,
+      "message": "Yes, I believe this is necessary. There is no other way to receive information about the success/failure status of an operation, and to store the `filter_index` and `monitor_handle` mappings for subsequent use.",
+      "parentUuid": "337d33fe_85909786",
       "range": {
         "startLine": 1053,
         "startChar": 3,
