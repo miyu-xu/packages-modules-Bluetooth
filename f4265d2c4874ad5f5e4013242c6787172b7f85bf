@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d88196c_b96bed66",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-09T21:38:44Z",
+      "side": 1,
+      "message": "this can be handled by the mock",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0aff1da2_709b4515",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 157,
+                "endChar": 0
+              },
+              "replacement": "                sTargetContext, this.mBluetoothProfileServiceListener, BluetoothProfile.HID_HOST);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "                sTargetContext, this.mBluetoothProfileServiceListener, BluetoothProfile.A2DP);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "                sTargetContext, this.mBluetoothProfileServiceListener, BluetoothProfile.HEADSET);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 182,
+                "startChar": 0,
+                "endLine": 183,
+                "endChar": 0
+              },
+              "replacement": "    private final BluetoothProfile.ServiceListener this.mBluetoothProfileServiceListener \u003d\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f4265d2c4874ad5f5e4013242c6787172b7f85bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
