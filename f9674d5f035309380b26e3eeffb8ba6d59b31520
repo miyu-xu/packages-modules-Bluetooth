@@ -696,6 +696,30 @@
       },
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d94b73a9_a462162f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-09T21:13:34Z",
+      "side": 1,
+      "message": "I believe it would be more direct to store the link between filter_index and monitor_handle directly in a map in native.\n\nIn both case you will need these 3 methods:\n* `gattClientMsftAdvMonitorAddNative`\n* `gattClientMsftAdvMonitorRemoveNative`\n* `gattClientMsftAdvMonitorEnableNative`\n\nBut in the second case you don\u0027t need any of (not in the nativeinterface, not in the jni, not in the transitionalScanHelper)\n* `onMsftAdvMonitorAdd`\n* `onMsftAdvMonitorRemove`\n* `onMsftAdvMonitorEnable`\n\nThat are just used to access the map \u0026 logging method.\n\nThe only logical difference would be the map being stored in native instead of java.",
+      "parentUuid": "6209302d_1c23d785",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
