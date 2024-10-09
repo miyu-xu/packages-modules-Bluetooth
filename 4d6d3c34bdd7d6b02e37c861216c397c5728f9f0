@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791352b0_eb3001c0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:08:24Z",
+      "side": 1,
+      "message": "This should device disconnection",
+      "fixSuggestions": [
+        {
+          "fixId": "f41f6a8d_3962aeb1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+              "range": {
+                "startLine": 279,
+                "startChar": 0,
+                "endLine": 280,
+                "endChar": 0
+              },
+              "replacement": "        mHidService.disconnect(mBumbleDevice); // A\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d6d3c34bdd7d6b02e37c861216c397c5728f9f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be120c8_f21f7a97",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-09T03:08:24Z",
+      "side": 1,
+      "message": "This should be device connection",
+      "revId": "4d6d3c34bdd7d6b02e37c861216c397c5728f9f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
