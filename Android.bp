@@ -148,7 +148,7 @@ java_defaults {
             "-XepExcludedPaths:.*/srcjars/.*",
 
             // The @InlineMe annotation is not available
-            // "-Xep:InlineMeSuggester:OFF",
+            "-Xep:InlineMeSuggester:OFF",
         ],
     },
 }
