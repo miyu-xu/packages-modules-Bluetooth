@@ -239,6 +239,30 @@
       },
       "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6b156e6_ddfb58d9",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-10T08:29:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fac9afdb_176181ee",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "565346621796e7e707224ba483e7f61dc45f7f42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
