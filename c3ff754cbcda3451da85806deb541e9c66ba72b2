@@ -103,6 +103,24 @@
       "parentUuid": "e5d7def2_008403eb",
       "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edab076b_9ccbfd87",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:14:03Z",
+      "side": 1,
+      "message": "If we still need the property in java at the end, we could copy the way the aptx property is set.\nBut this is not pretty to see :/\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java;l\u003d1923;drc\u003d3889393e5be01554830946f8a82bbca4a9d58faf",
+      "parentUuid": "ab0334c7_fdd078a0",
+      "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
