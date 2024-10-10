@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46affc2b_8d5d4601",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-10T06:47:22Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 705,
+        "startChar": 55,
+        "endLine": 705,
+        "endChar": 57
+      },
+      "revId": "4222cba16c0e6965c1c9049420004b82f7197329",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
