@@ -68,6 +68,23 @@
       ],
       "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5d7def2_008403eb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-10T14:23:24Z",
+      "side": 1,
+      "message": "This test also needs the sysprop enabled for it to work. @wescande@google.com is there a way to set a sysprop for test?",
+      "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
