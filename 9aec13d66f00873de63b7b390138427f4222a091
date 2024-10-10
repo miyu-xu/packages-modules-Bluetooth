@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7033d94b_2790769c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1395785
+      },
+      "writtenOn": "2024-10-10T22:24:47Z",
+      "side": 1,
+      "message": "I\u0027m still getting bugs coming in for BLUETOOTH_CONNECT although they come in more variety and less frequently than what we saw before. I\u0027d like to make this error message more actionable for the appops side of things",
+      "revId": "9aec13d66f00873de63b7b390138427f4222a091",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
