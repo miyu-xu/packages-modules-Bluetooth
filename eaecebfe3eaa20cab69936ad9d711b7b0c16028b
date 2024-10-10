@@ -111,6 +111,98 @@
       ],
       "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8926bf68_f556b968",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:11:16Z",
+      "side": 1,
+      "message": "nit 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec232c4b_816fb532",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:11:16Z",
+      "side": 1,
+      "message": "nit: This looks nice, can we put that into MsftAdvMonitor.java  as well instead of having them as magic number in the middle of the code ?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 74
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1ae873_1e3ada47",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:11:16Z",
+      "side": 1,
+      "message": "```suggestion\n        assertThat(monitor.getPatterns()).hasLength(1);\n```\n\nThis will give a better error message",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "643c23b8_62701ec5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:11:16Z",
+      "side": 1,
+      "message": "I am not sure about the need to cast to byte or not.\nBut you can have better message by checking the data as an array\n\n```suggestion\n        assertThat(mPattern.pattern).containsExactly((byte) 0x2c, (byte) 0xfe);\n```\n\nFeel free to try without the `(byte)` as I expect this to not be needed",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 86
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
