@@ -22,6 +22,30 @@
       },
       "revId": "da45d74f52a8aa3955c2ac7fa8852dfebc0d7786",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c236192_f8bd99c5",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-10T06:21:41Z",
+      "side": 1,
+      "message": "this is handled here:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/l2cap/l2c_utils.cc;l\u003d2059?q\u003dl2c_ut\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain\n\nThis function is called before configuration_request is sent out to peer",
+      "parentUuid": "d4d1d378_3dc11874",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "da45d74f52a8aa3955c2ac7fa8852dfebc0d7786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
