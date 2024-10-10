@@ -874,7 +874,9 @@ package android.bluetooth {
     field public static final int QUALITY_REPORT_ID_A2DP_CHOPPY = 3; // 0x3
     field public static final int QUALITY_REPORT_ID_APPROACH_LSTO = 2; // 0x2
     field public static final int QUALITY_REPORT_ID_CONN_FAIL = 8; // 0x8
+    field @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public static final int QUALITY_REPORT_ID_ENERGY_MONITOR = 6; // 0x6
     field public static final int QUALITY_REPORT_ID_MONITOR = 1; // 0x1
+    field @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public static final int QUALITY_REPORT_ID_RF_STATS = 9; // 0x9
     field public static final int QUALITY_REPORT_ID_SCO_CHOPPY = 4; // 0x4
   }
 
@@ -883,8 +885,10 @@ package android.bluetooth {
     method public int describeContents();
     method public int getAfhSelectUnidealChannelCount();
     method public int getCalFailedItemCount();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public int getCoexInfoMask();
     method public int getConnectionHandle();
     method public int getConnectionRole();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getCrcErrorPackets();
     method public long getFlowOffCount();
     method public long getLastFlowOnTimestamp();
     method public long getLastTxAckTimestamp();
@@ -896,8 +900,14 @@ package android.bluetooth {
     method public long getPiconetClock();
     method public long getRetransmissionCount();
     method public int getRssi();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getRxDupPackets();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getRxUnRecvPackets();
     method public int getSnr();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getTxFlushPackets();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getTxLastSubeventPackets();
     method public int getTxPowerLevel();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getTxTotalPackets();
+    method @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public long getTxUnackPackets();
     method public long getUnderflowCount();
     method public int getUnusedAfhChannelCount();
     method @Nullable public static String packetTypeToString(int);
@@ -918,6 +928,13 @@ package android.bluetooth {
     field public static final int CONNECT_FAIL_ID_NO_ERROR = 0; // 0x0
     field public static final int CONNECT_FAIL_ID_PAGE_TIMEOUT = 4; // 0x4
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrConnectFail> CREATOR;
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.support_bluetooth_quality_report_v6") public static final class BluetoothQualityReport.BqrEnergyMonitor implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getAvgCurrentConsume();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrEnergyMonitor> CREATOR;
   }
 
   public static final class BluetoothQualityReport.BqrVsA2dpChoppy implements android.os.Parcelable {

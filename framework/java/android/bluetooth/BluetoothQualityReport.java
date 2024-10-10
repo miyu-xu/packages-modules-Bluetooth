@@ -17,6 +17,7 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -24,6 +25,8 @@ import android.annotation.SystemApi;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -89,11 +92,29 @@ public final class BluetoothQualityReport implements Parcelable {
     @SystemApi public static final int QUALITY_REPORT_ID_SCO_CHOPPY = 0x04;
 
     /**
+     * Quality report ID: Energy Monitor.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final int QUALITY_REPORT_ID_ENERGY_MONITOR = 0x06;
+
+    /**
      * Quality report ID: Connect Fail.
      *
      * @hide
      */
     @SystemApi public static final int QUALITY_REPORT_ID_CONN_FAIL = 0x08;
+
+    /**
+     * Quality report ID: Advance RF Stats.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final int QUALITY_REPORT_ID_RF_STATS = 0x09;
 
     /** @hide */
     @Retention(RetentionPolicy.SOURCE)
@@ -120,6 +141,7 @@ public final class BluetoothQualityReport implements Parcelable {
     private BqrVsA2dpChoppy mBqrVsA2dpChoppy;
     private BqrVsScoChoppy mBqrVsScoChoppy;
     private BqrConnectFail mBqrConnectFail;
+    private BqrEnergyMonitor mBqrEnergyMonitor;
 
     enum PacketType {
         INVALID,
@@ -263,6 +285,8 @@ public final class BluetoothQualityReport implements Parcelable {
             mBqrVsScoChoppy = new BqrVsScoChoppy(rawData, vsPartOffset);
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             mBqrConnectFail = new BqrConnectFail(rawData, vsPartOffset);
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            mBqrEnergyMonitor = new BqrEnergyMonitor(rawData, vsPartOffset);
         } else {
             throw new IllegalArgumentException(TAG + ": unknown quality report id:" + id);
         }
@@ -286,6 +310,8 @@ public final class BluetoothQualityReport implements Parcelable {
             mBqrVsScoChoppy = new BqrVsScoChoppy(in);
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             mBqrConnectFail = new BqrConnectFail(in);
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            mBqrEnergyMonitor = new BqrEnergyMonitor(in);
         }
     }
 
@@ -419,6 +445,8 @@ public final class BluetoothQualityReport implements Parcelable {
                 return mBqrVsScoChoppy;
             case QUALITY_REPORT_ID_CONN_FAIL:
                 return mBqrConnectFail;
+            case QUALITY_REPORT_ID_ENERGY_MONITOR:
+                return mBqrEnergyMonitor;
             default:
                 return null;
         }
@@ -471,6 +499,8 @@ public final class BluetoothQualityReport implements Parcelable {
             mBqrVsScoChoppy.writeToParcel(out, flags);
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             mBqrConnectFail.writeToParcel(out, flags);
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            mBqrEnergyMonitor.writeToParcel(out, flags);
         }
     }
 
@@ -500,6 +530,8 @@ public final class BluetoothQualityReport implements Parcelable {
             str = str + mBqrVsScoChoppy + "\n}";
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             str = str + mBqrConnectFail + "\n}";
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            str = str + mBqrEnergyMonitor + "\n}";
         } else if (id == QUALITY_REPORT_ID_MONITOR) {
             str = str + "}";
         }
@@ -659,7 +691,7 @@ public final class BluetoothQualityReport implements Parcelable {
     @SystemApi
     public static final class BqrCommon implements Parcelable {
         private static final String TAG = BluetoothQualityReport.TAG + ".BqrCommon";
-        static final int BQR_COMMON_LEN = 55;
+        static final int BQR_COMMON_LEN = 85; // 55;
 
         private int mQualityReportId;
         private int mPacketType;
@@ -682,6 +714,14 @@ public final class BluetoothQualityReport implements Parcelable {
         private long mUnderflowCount;
         private String mAddr;
         private int mCalFailedItemCount;
+        private long mTxTotalPackets;
+        private long mTxUnackPackets;
+        private long mTxFlushPackets;
+        private long mTxLastSubeventPackets;
+        private long mCrcErrorPackets;
+        private long mRxDupPackets;
+        private long mRxUnRecvPackets;
+        private int mCoexInfoMask;
 
         private BqrCommon(byte[] rawData, int offset) {
             if (rawData == null || rawData.length < offset + BQR_COMMON_LEN) {
@@ -723,6 +763,14 @@ public final class BluetoothQualityReport implements Parcelable {
                             bqrBuf.get(currentOffset + 0));
             bqrBuf.position(currentOffset + 6);
             mCalFailedItemCount = bqrBuf.get() & 0xFF;
+            mTxTotalPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxUnackPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxFlushPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxLastSubeventPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mCrcErrorPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRxDupPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRxUnRecvPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mCoexInfoMask = bqrBuf.getShort() & 0xFFFF;
         }
 
         private BqrCommon(Parcel in) {
@@ -747,6 +795,14 @@ public final class BluetoothQualityReport implements Parcelable {
             mUnderflowCount = in.readLong();
             mAddr = in.readString();
             mCalFailedItemCount = in.readInt();
+            mTxTotalPackets = in.readLong();
+            mTxUnackPackets = in.readLong();
+            mTxFlushPackets = in.readLong();
+            mTxLastSubeventPackets = in.readLong();
+            mCrcErrorPackets = in.readLong();
+            mRxDupPackets = in.readLong();
+            mRxUnRecvPackets = in.readLong();
+            mCoexInfoMask = in.readInt();
         }
 
         int getQualityReportId() {
@@ -765,6 +821,10 @@ public final class BluetoothQualityReport implements Parcelable {
                     return "SCO choppy";
                 case QUALITY_REPORT_ID_CONN_FAIL:
                     return "Connect fail";
+                case QUALITY_REPORT_ID_ENERGY_MONITOR:
+                    return "Energy Monitor";
+                case QUALITY_REPORT_ID_RF_STATS:
+                    return "RF Stats";
                 default:
                     return "INVALID";
             }
@@ -1039,6 +1099,108 @@ public final class BluetoothQualityReport implements Parcelable {
         }
 
         /**
+         * Get the number of packets that are sent out.
+         *
+         * @return the number of packets that are sent out.
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxTotalPackets() {
+            return mTxTotalPackets;
+        }
+
+        /**
+         * Get the number of packets that don't receive an acknowledgment.
+         *
+         * @return the number of packets that don't receive an acknowledgment
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxUnackPackets() {
+            return mTxUnackPackets;
+        }
+
+        /**
+         * Get the number of packets that are not sent out by its flush point.
+         *
+         * @return the number of packets that are not sent out by its flush point
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxFlushPackets() {
+            return mTxFlushPackets;
+        }
+
+        /**
+         * Get the number of packets that Link Layer transmits a CIS Data PDU in the last subevent
+         * of a CIS event.
+         *
+         * @return the number of packets that Link Layer transmits a CIS Data PDU in the last
+         *     subevent
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxLastSubeventPackets() {
+            return mTxLastSubeventPackets;
+        }
+
+        /**
+         * Get The number of received packages with CRC error since the last event.
+         *
+         * @return the number of received packages with CRC error since the last event
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getCrcErrorPackets() {
+            return mCrcErrorPackets;
+        }
+
+        /**
+         * Get the number of duplicate(retransmission) packages that are received since the last
+         * event.
+         *
+         * @return the number of duplicate(retransmission) packages that are received since the last
+         *     event
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getRxDupPackets() {
+            return mRxDupPackets;
+        }
+
+        /**
+         * Get the number of unreceived packets is the same as the parameter of LE Read ISO Link
+         * Quality command.
+         *
+         * @return the number of unreceived packets is the same as the parameter of LE Read ISO Link
+         *     Quality command
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getRxUnRecvPackets() {
+            return mRxUnRecvPackets;
+        }
+
+        /**
+         * Get the Coex Information Mask
+         *
+         * @return the coex information of mask
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public int getCoexInfoMask() {
+            return mCoexInfoMask;
+        }
+
+        /**
          * Describe contents.
          *
          * @return 0
@@ -1077,6 +1239,14 @@ public final class BluetoothQualityReport implements Parcelable {
             dest.writeLong(mUnderflowCount);
             BluetoothUtils.writeStringToParcel(dest, mAddr);
             dest.writeInt(mCalFailedItemCount);
+            dest.writeLong(mTxTotalPackets);
+            dest.writeLong(mTxUnackPackets);
+            dest.writeLong(mTxFlushPackets);
+            dest.writeLong(mTxLastSubeventPackets);
+            dest.writeLong(mCrcErrorPackets);
+            dest.writeLong(mRxDupPackets);
+            dest.writeLong(mRxUnRecvPackets);
+            dest.writeInt(mCoexInfoMask);
         }
 
         /** @hide */
@@ -2140,6 +2310,100 @@ public final class BluetoothQualityReport implements Parcelable {
                             + " ("
                             + String.format("0x%02X", mFailReason)
                             + ")"
+                            + "\n  }";
+
+            return str;
+        }
+    }
+
+    /**
+     * This class provides the System APIs to access the BQR Energy Monitoring event event.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final class BqrEnergyMonitor implements Parcelable {
+        private static final String TAG = BluetoothQualityReport.TAG + ".BqrEnergyMonitor";
+
+        private int mAvgCurrentConsume;
+
+        private BqrEnergyMonitor(byte[] rawData, int offset) {
+            if (rawData == null || rawData.length <= offset) {
+                throw new IllegalArgumentException(
+                        TAG + ": BQR EnergyMonitor raw data length is abnormal.");
+            }
+
+            ByteBuffer bqrBuf =
+                    ByteBuffer.wrap(rawData, offset, rawData.length - offset).asReadOnlyBuffer();
+            bqrBuf.order(ByteOrder.LITTLE_ENDIAN);
+
+            mAvgCurrentConsume = bqrBuf.getShort() & 0xFFFF;
+            // mLastTxAckTimestamp = bqrBuf.getInt() & 0xFFFFFFFFL;
+        }
+
+        private BqrEnergyMonitor(Parcel in) {
+            mAvgCurrentConsume = in.readInt();
+            // mLastTxAckTimestamp = in.readLong();
+        }
+
+        /**
+         * Get the average current consumption of all activities consumed by the controller
+         *
+         * @return the average current consumption of all activities consumed by the controller
+         * @hide
+         */
+        @SystemApi
+        public int getAvgCurrentConsume() {
+            return mAvgCurrentConsume;
+        }
+
+        /**
+         * Describe contents.
+         *
+         * @return 0
+         * @hide
+         */
+        public int describeContents() {
+            return 0;
+        }
+
+        /**
+         * Write BqrEnergyMonitor to parcel.
+         *
+         * @hide
+         */
+        @SystemApi
+        @Override
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
+            dest.writeInt(mAvgCurrentConsume);
+            // dest.writeLong(mLastTxAckTimestamp);
+        }
+
+        /** @hide */
+        @SystemApi
+        public static final @NonNull Parcelable.Creator<BqrEnergyMonitor> CREATOR =
+                new Parcelable.Creator<BqrEnergyMonitor>() {
+                    public BqrEnergyMonitor createFromParcel(Parcel in) {
+                        return new BqrEnergyMonitor(in);
+                    }
+
+                    public BqrEnergyMonitor[] newArray(int size) {
+                        return new BqrEnergyMonitor[size];
+                    }
+                };
+
+        /** BqrVsLsto to String. */
+        @Override
+        @NonNull
+        public String toString() {
+            String str;
+            str =
+                    "  BqrEnergyMonitor: {\n"
+                            + "    AvgCurrentConsume: "
+                            + String.format("0x%04X", mAvgCurrentConsume)
+                            // + ", mLastTxAckTimestamp: "
+                            // + String.format("0x%08X", mLastTxAckTimestamp)
                             + "\n  }";
 
             return str;
