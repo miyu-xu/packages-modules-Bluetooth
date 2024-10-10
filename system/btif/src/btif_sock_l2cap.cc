@@ -931,18 +931,12 @@ static bool flush_incoming_que_on_wr_signal_l(l2cap_socket* sock) {
     OSI_NO_INTR(sent = send(sock->our_fd, buf, len, MSG_DONTWAIT));
     int saved_errno = errno;
 
-    if (sent == (signed)len) {
-      osi_free(buf);
-    } else if (sent >= 0) {
-      packet_put_head_l(sock, buf + sent, len - sent);
-      osi_free(buf);
-      if (!sent) { /* special case if other end not keeping up */
-        return true;
-      }
-    } else {
+    if (sent == -1) {
       packet_put_head_l(sock, buf, len);
       osi_free(buf);
       return saved_errno == EWOULDBLOCK || saved_errno == EAGAIN;
+    } else {
+      osi_free(buf);
     }
   }
 
