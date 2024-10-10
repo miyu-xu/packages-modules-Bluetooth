@@ -1130,7 +1130,7 @@ TEST_F(AvrcpDeviceTest, setBrowsedPlayerTest) {
 
   test_device->RegisterInterfaces(&interface, &a2dp_interface, nullptr, nullptr);
 
-  EXPECT_CALL(interface, SetBrowsedPlayer(_, _))
+  EXPECT_CALL(interface, SetBrowsedPlayer(_, "", _))
           .Times(3)
           .WillOnce(InvokeCb<1>(true, "", 0))
           .WillOnce(InvokeCb<1>(false, "", 0))
