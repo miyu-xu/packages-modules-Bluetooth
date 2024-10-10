@@ -75,6 +75,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "146edf13_04dd08df",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-10T12:31:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "60e3505f_8b4e9c13",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bfb4d9f_5e68e588",
@@ -88,6 +106,24 @@
       "writtenOn": "2024-10-07T21:36:29Z",
       "side": 1,
       "message": "Same as below, we might not want to invoke callback?",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c2928a_7c5cafeb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-10T12:31:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0bfb4d9f_5e68e588",
       "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -109,6 +145,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efc018f5_bb60eac8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-10T12:31:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "778d394a_d8221a97",
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51077e10_390a3300",
@@ -122,6 +176,30 @@
       "writtenOn": "2024-10-07T21:36:29Z",
       "side": 1,
       "message": "Like this?\n```suggestion\n        if (mLeAudioBroadcasterNativeInterface \u003d\u003d null) {\n            Log.w(TAG, \"Native interface not available.\");\n            return;\n        }\n\n        int canBroadcastBeCreatedReturnCode \u003d canBroadcastBeCreated(broadcastSettings);\n        if (canBroadcastBeCreatedReturnCode !\u003d BluetoothStatusCodes.SUCCESS) {\n            mHandler.post(() -\u003e notifyBroadcastStartFailed(canBroadcastBeCreatedReturnCode));\n            return;\n        }\n\n        if (mAwaitingBroadcastCreateResponse) {\n            mCreateBroadcastQueue.add(broadcastSettings);\n            Log.i(TAG, \"Broadcast creation queued due to waiting for a previous request response.\");\n            return;\n        }\n\n        if (!leaudioBigDependsOnAudioState()) {\n            if (!areAllGroupsInNotActiveState()) {\n                /* Broadcast will be created once unicast group became inactive */\n                Log.i(\n                        TAG,\n                        \"Unicast group is active, queueing Broadcast creation, while the Unicast\"\n                                + \" group is deactivated.\");\n                mCreateBroadcastQueue.add(broadcastSettings);\n                mNativeInterface.setUnicastMonitorMode(LeAudioStackEvent.DIRECTION_SINK, true);\n                removeActiveDevice(true);\n\n                return;\n            }\n        }\n```",
+      "range": {
+        "startLine": 1199,
+        "startChar": 0,
+        "endLine": 1203,
+        "endChar": 9
+      },
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13def200_3ea77d7c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-10T12:31:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "51077e10_390a3300",
       "range": {
         "startLine": 1199,
         "startChar": 0,
