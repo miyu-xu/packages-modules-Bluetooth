@@ -16,6 +16,24 @@
       "message": "nit: please add `leaudio:` prefix",
       "revId": "e22e60a105392d022654fddc1697948c1a3fdd2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc38a9c1_ab0ac851",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-10T17:53:42Z",
+      "side": 1,
+      "message": "this file is within gatt namespace :)",
+      "parentUuid": "f9b4aa70_18772ce8",
+      "revId": "e22e60a105392d022654fddc1697948c1a3fdd2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
