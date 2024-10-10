@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf1828b2_964b5f6a",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 2840,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-10T14:18:16Z",
+      "side": 1,
+      "message": "This should probably go back in the JNI CL",
+      "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab609a1_2cc272c6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-10T14:18:16Z",
+      "side": 1,
+      "message": "These 2 variables sound exactly the same. Maybe rename this one to `mIsMsftSupported` since it\u0027s more if the controller can do MSFT.\n\nAdd a comment to the var `scanEnabledMsft` below like \"Controller state of MSFT\"",
+      "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2246fbbe_ba5b79de",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 20
