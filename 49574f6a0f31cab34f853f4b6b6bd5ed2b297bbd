@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b30bdb8_ba08715e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:04:07Z",
+      "side": 1,
+      "message": "But Native code is depending on\n```\n  bool supports_msft_extensions() {\n    if (msft_.opcode.has_value()) {\n      return true;\n    }\n\n    uint16_t opcode \u003d hal_-\u003egetMsftOpcode();\n    if (opcode \u003d\u003d 0) {\n      return false;\n    }\n\n    msft_.opcode \u003d opcode;\n    log::info(\"MSFT opcode 0x{:04x}\", msft_.opcode.value());\n    return true;\n  }\n```\n\nI am not sure about the whole chain of call here, is it possible the native call  supports_msft_extensions, and it return true, while the SystemProperties isn\u0027t set ?\nIf we update `supports_msft_extensions` in native to check for the sysprop, wouldn\u0027t it be better ? (that what I mean by one source of truth)",
+      "parentUuid": "a2ba9252_e8b2250a",
+      "range": {
+        "startLine": 1067,
+        "startChar": 28,
+        "endLine": 1068,
+        "endChar": 76
+      },
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca2c1b41_34854b3a",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 16

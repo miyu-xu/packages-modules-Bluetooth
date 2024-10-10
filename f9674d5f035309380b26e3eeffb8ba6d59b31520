@@ -744,6 +744,30 @@
       },
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56df09ee_62641f33",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:04:07Z",
+      "side": 1,
+      "message": "This is exactly my point.\nWith current code, you need to have 3 JNI callbacks and you have logic when calling the \"native interface\" as it need to fetch from a map prior to call the native. Plus you have race condition as the callback and the call going downward are on different thread\nWhen I mention storing the map in native, I mean to store this before hitting the JNI altogether.",
+      "parentUuid": "c71b854c_f83b13a7",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
