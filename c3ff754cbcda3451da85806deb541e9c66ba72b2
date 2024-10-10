@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2246fbbe_ba5b79de",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-10T14:08:05Z",
+      "side": 1,
+      "message": "This needs to be replaced with ` mNativeInterface.gattClientScan(false);` as well or you\u0027re going to remove the filter you just added",
+      "fixSuggestions": [
+        {
+          "fixId": "0ab78d42_1580d1e3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2038,
+                "startChar": 0,
+                "endLine": 2039,
+                "endChar": 0
+              },
+              "replacement": "                 mNativeInterface.gattClientScan(false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
