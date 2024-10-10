@@ -1,0 +1,116 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a6147ac_ac10963f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-10T18:12:44Z",
+      "side": 1,
+      "message": "Is a partial UUID match supported? The framework API allows setting a UUID filter with or without a mask, where the mask is used for partial matches. I think either the mask should be used if the underlying stack supports it for MSFT, or service UUID filters that specify a mask should be ignored.",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f6d8f317_d49f7266",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": "import android.bluetooth.le.ScanFilter;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 68,
+                "startChar": 0,
+                "endLine": 69,
+                "endChar": 0
+              },
+              "replacement": "        if (filter.getServiceDataUuid() !\u003d null \u0026\u0026 filter.getServiceDataMask() \u003d\u003d null) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 81,
+                "endChar": 0
+              },
+              "replacement": "            mPatterns.add(pattern);\n        } else if (filter.getServiceDataUuid() !\u003d null \u0026\u0026 filter.getServiceDataMask() !\u003d null) {\n            Mask mask \u003d filter.getServiceDataMask();\n            Pattern pattern \u003d new Pattern();\n            pattern.ad_type \u003d (byte) 0x16; // Bluetooth Core Spec Part A, Section 1\n            pattern.start_byte \u003d FILTER_PATTERN_START_POSITION;\n\n            // Extract the 16-bit UUID (third and fourth bytes) from the 128-bit\n            // UUID in reverse endianness\n            UUID uuid \u003d filter.getServiceDataUuid().getUuid();\n            ByteBuffer bb \u003d ByteBuffer.allocate(16); // 16 byte (128 bit) UUID\n            bb.putLong(uuid.getMostSignificantBits());\n            bb.putLong(uuid.getLeastSignificantBits());\n            byte[] pattern_bytes \u003d new byte[] {bb.get(3), bb.get(2)};\n\n            // Apply the mask to the pattern\n            for (int i \u003d 0; i \u003c pattern_bytes.length; i++) {\n                pattern_bytes[i] \u003d (byte) (pattern_bytes[i] \u0026 mask.getServiceData(i));\n            }\n            pattern.pattern \u003d pattern_bytes;\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02e7ce7b_e73bf95c",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-10T18:12:44Z",
+      "side": 1,
+      "message": "Data mask also applies here.",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 82,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "77cc9a28_062e2a7b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 82,
+                "startChar": 0,
+                "endLine": 83,
+                "endChar": 0
+              },
+              "replacement": "        } else if (filter.getAdvertisingData() !\u003d null\n                \u0026\u0026 filter.getAdvertisingData().length !\u003d 0\n                \u0026\u0026 filter.getAdvertisingDataMask() !\u003d null\n                \u0026\u0026 filter.getAdvertisingDataMask().length !\u003d 0) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "            pattern.pattern \u003d filter.getAdvertisingDataMask();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
