@@ -87,6 +87,24 @@
       "parentUuid": "4dc2055a_35f487ab",
       "revId": "da3d8fb5f9ad702cc1ec64223e6f90460d352241",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66999166_f0db2a7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-10T16:55:54Z",
+      "side": 1,
+      "message": "The Automerger linter claims this change won\u0027t be automerged anywhere, so we\u0027re probably okay (for now at least).\n\nThat merged in would prevent your entire errorprone-updated change from going in, which I\u0027m not sure we should do yet.\n\nI think the worst case is we get a conflict down the line if they try to use the contents of this branch for a future tests branch, and try to apply the full change on top. I\u0027m not sure how real a fear that is, as I don\u0027t know the branching strategy here.",
+      "parentUuid": "765c393a_51407ea4",
+      "revId": "da3d8fb5f9ad702cc1ec64223e6f90460d352241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
