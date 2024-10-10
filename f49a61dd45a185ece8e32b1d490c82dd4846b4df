@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5586f8d2_5bbd2e70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-10T22:20:04Z",
+      "side": 1,
+      "message": "Thank you for adding the flag. Let\u0027s plan some follow-up cleanups after big flag is rolled out in 25Q1. \n\nOverall lgtm.\nStill one presubmit test failure to address here. Maybe some flag needed for case?",
+      "revId": "f49a61dd45a185ece8e32b1d490c82dd4846b4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd14ae9_01d9c280",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-10T22:20:04Z",
+      "side": 1,
+      "message": "this has been checked, we can remove this here.",
+      "revId": "f49a61dd45a185ece8e32b1d490c82dd4846b4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
