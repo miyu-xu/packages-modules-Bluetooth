@@ -720,6 +720,30 @@
       },
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71b854c_f83b13a7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-10T08:30:07Z",
+      "side": 1,
+      "message": "This is true, but unless you strongly feel otherwise, we would prefer to keep the JNI layer as thin and with as little logic as possible.",
+      "parentUuid": "d94b73a9_a462162f",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

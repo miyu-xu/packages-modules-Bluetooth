@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c9085a4_57bd6bb7",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 2840,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-10T08:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf9f06e2_b4f0ca91",
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1197fd34_e459e182",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-09T21:13:34Z",
       "side": 1,
       "message": "If the native knows about support or not, can we not check the systemProperty here ?\n\nI believe it would be beneficial to have the logic to enable only in one place, to only have one source of truth.",
+      "range": {
+        "startLine": 1067,
+        "startChar": 28,
+        "endLine": 1068,
+        "endChar": 76
+      },
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ba9252_e8b2250a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-10T08:30:07Z",
+      "side": 1,
+      "message": "As I have just removed the check in `le_scanning_manager`, this check within `ScanManager` is now the single source of truth.",
+      "parentUuid": "1197fd34_e459e182",
       "range": {
         "startLine": 1067,
         "startChar": 28,
@@ -72,6 +114,24 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "ca2c1b41_34854b3a",
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b16f749_30f82838",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-10T08:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e445e629_65da0b11",
       "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
