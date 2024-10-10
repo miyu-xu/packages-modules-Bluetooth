@@ -1,0 +1,133 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dc54215_4b561ad5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:44:49Z",
+      "side": 1,
+      "message": "mHandler \u003d new Handler(mLooper",
+      "fixSuggestions": [
+        {
+          "fixId": "60793d32_41917fb3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "    private final Handler mHandler;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 78,
+                "endChar": 0
+              },
+              "replacement": "        mHandler \u003d new Handler(requireNonNull(looper));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 80,
+                "startChar": 0,
+                "endLine": 81,
+                "endChar": 0
+              },
+              "replacement": "        mDisplayManager.registerDisplayListener(mDisplayListener, mHandler);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6b3ff8945ccd90c3ca3ea4e7c898bced253ab01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c599745f_ce3aa749",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:44:49Z",
+      "side": 1,
+      "message": "mHandler.post(() -\u003e handleSuspendInternal(reason));",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a0a6d640_ac628c0f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "        new Handler(mLooper).post(() -\u003e handleSuspendInternal(reason));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 132,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "        new Handler(mLooper).post(() -\u003e handleResumeInternal(reason));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6b3ff8945ccd90c3ca3ea4e7c898bced253ab01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e52002a_a2acd5b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T21:44:49Z",
+      "side": 1,
+      "message": "What if you are already suspended, but the reason has changed and you can now call allowWakeByHid ? or the opposite ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 22
+      },
+      "revId": "6b3ff8945ccd90c3ca3ea4e7c898bced253ab01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
