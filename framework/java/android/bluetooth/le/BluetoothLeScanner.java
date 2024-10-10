@@ -378,7 +378,7 @@ public final class BluetoothLeScanner {
     /**
      * Start truncated scan.
      *
-     * @deprecated this is not used anywhere
+     * @removed this is not used anywhere
      * @hide
      */
     @Deprecated
