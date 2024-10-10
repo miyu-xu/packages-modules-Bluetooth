@@ -16,6 +16,24 @@
       "message": "Do you think this is a good change to have ?",
       "revId": "469048d8a222c2e118d42ef48779ff962526d60f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a904c068_c48a9971",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-10T15:51:46Z",
+      "side": 1,
+      "message": "InlineMe suggestions on deprecated APIs are interesting, but might be redundant with other checks.\n\nThe changes in framework/java/android/bluetooth/BluetoothHealthAppConfiguration.java are pretty useless though.. not something we want to suggest.",
+      "parentUuid": "09e3d276_905d3e89",
+      "revId": "469048d8a222c2e118d42ef48779ff962526d60f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
