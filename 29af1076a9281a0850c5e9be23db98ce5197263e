@@ -22,6 +22,30 @@
       },
       "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e2ba0e2_10f0c101",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-10T20:58:43Z",
+      "side": 1,
+      "message": "Ack. I can follow up with Ying on this if we want to remove this in both places.",
+      "parentUuid": "b3c592c6_a5359742",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 26
+      },
+      "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
