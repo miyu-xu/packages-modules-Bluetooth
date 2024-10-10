@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3c592c6_a5359742",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-10T20:53:15Z",
+      "side": 1,
+      "message": "I still don\u0027t understand why we are exposing a \"android_default\" value that is redundant with the value not being set.\nI know that this is a copy of the hal_sco rule but...",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 26
+      },
+      "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
