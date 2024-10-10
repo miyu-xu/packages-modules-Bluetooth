@@ -18,7 +18,9 @@
  * Vendor Specific A2DP Codecs Support
  */
 
-#define LOG_TAG "a2dp_vendor"
+#define LOG_TAG "bluetooth-a2dp"
+
+#include <bluetooth/log.h>
 
 #include "a2dp_vendor.h"
 
@@ -26,7 +28,6 @@
 #include "a2dp_vendor_aptx_hd.h"
 #include "a2dp_vendor_ldac.h"
 #include "a2dp_vendor_opus.h"
-#include "internal_include/bt_trace.h"
 #include "stack/include/bt_hdr.h"
 
 bool A2DP_IsVendorSourceCodecValid(const uint8_t* p_codec_info) {
@@ -707,5 +708,5 @@ std::string A2DP_VendorCodecInfoString(const uint8_t* p_codec_info) {
 
   // Add checks based on <vendor_id, codec_id>
 
-  return "Unsupported codec vendor_id: " + loghex(vendor_id) + " codec_id: " + loghex(codec_id);
+  return fmt::format("Unsupported codec vendor_id: 0x{:x} codec_id: 0x{:x}", vendor_id, codec_id);
 }
