@@ -16,6 +16,24 @@
       "message": "Hi Zhenchao,\nWe got all votes from our side here.\nCould you get the QC review vote and merge this?",
       "revId": "e8218e30acea4f74676ce0808363876a1f843397",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a252ec_541b7c06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2024-10-10T05:20:08Z",
+      "side": 1,
+      "message": "Thanks Rongxuan, \nI will request QC review vote.",
+      "parentUuid": "1056cf6c_b3e3633b",
+      "revId": "e8218e30acea4f74676ce0808363876a1f843397",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
