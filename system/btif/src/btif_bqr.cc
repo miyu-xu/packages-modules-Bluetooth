@@ -241,6 +241,10 @@ static std::string QualityReportIdToString(uint8_t quality_report_id) {
       return "LE Audio Choppy";
     case QUALITY_REPORT_ID_CONNECT_FAIL:
       return "Connect Fail";
+    case QUALITY_REPORT_ID_ENERGY_MONITOR:
+      return "Energy Monitor";
+    case QUALITY_REPORT_ID_RF_STATS:
+      return "RF Stats";
     default:
       return "Invalid";
   }

@@ -17,6 +17,7 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -24,6 +25,8 @@ import android.annotation.SystemApi;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -52,6 +55,9 @@ import java.util.Objects;
  *   <li>For Connect fail event, you can call {@link #getBqrCommon} to get a {@link
  *       BluetoothQualityReport.BqrCommon} object, and call {@link #getBqrEvent} to get a {@link
  *       BluetoothQualityReport.BqrConnectFail} object.
+ *   <li>For Energy monitor event, you can call {@link #getBqrCommon} to get a {@link
+ *       BluetoothQualityReport.BqrCommon} object, and call {@link #getBqrEvent} to get a {@link
+ *       BluetoothQualityReport.BqrEnergyMonitor} object.
  * </ul>
  *
  * @hide
@@ -89,11 +95,29 @@ public final class BluetoothQualityReport implements Parcelable {
     @SystemApi public static final int QUALITY_REPORT_ID_SCO_CHOPPY = 0x04;
 
     /**
+     * Quality report ID: Energy Monitor.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final int QUALITY_REPORT_ID_ENERGY_MONITOR = 0x06;
+
+    /**
      * Quality report ID: Connect Fail.
      *
      * @hide
      */
     @SystemApi public static final int QUALITY_REPORT_ID_CONN_FAIL = 0x08;
+
+    /**
+     * Quality report ID: Advance RF Stats.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final int QUALITY_REPORT_ID_RF_STATS = 0x09;
 
     /** @hide */
     @Retention(RetentionPolicy.SOURCE)
@@ -120,6 +144,8 @@ public final class BluetoothQualityReport implements Parcelable {
     private BqrVsA2dpChoppy mBqrVsA2dpChoppy;
     private BqrVsScoChoppy mBqrVsScoChoppy;
     private BqrConnectFail mBqrConnectFail;
+    private BqrEnergyMonitor mBqrEnergyMonitor;
+    private BqrRfStats mBqrRfStats;
 
     enum PacketType {
         INVALID,
@@ -263,6 +289,10 @@ public final class BluetoothQualityReport implements Parcelable {
             mBqrVsScoChoppy = new BqrVsScoChoppy(rawData, vsPartOffset);
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             mBqrConnectFail = new BqrConnectFail(rawData, vsPartOffset);
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            mBqrEnergyMonitor = new BqrEnergyMonitor(rawData, vsPartOffset);
+        } else if (id == QUALITY_REPORT_ID_RF_STATS) {
+            mBqrRfStats = new BqrRfStats(rawData, vsPartOffset);
         } else {
             throw new IllegalArgumentException(TAG + ": unknown quality report id:" + id);
         }
@@ -286,6 +316,10 @@ public final class BluetoothQualityReport implements Parcelable {
             mBqrVsScoChoppy = new BqrVsScoChoppy(in);
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             mBqrConnectFail = new BqrConnectFail(in);
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            mBqrEnergyMonitor = new BqrEnergyMonitor(in);
+        } else if (id == QUALITY_REPORT_ID_RF_STATS) {
+            mBqrRfStats = new BqrRfStats(in);
         }
     }
 
@@ -419,6 +453,10 @@ public final class BluetoothQualityReport implements Parcelable {
                 return mBqrVsScoChoppy;
             case QUALITY_REPORT_ID_CONN_FAIL:
                 return mBqrConnectFail;
+            case QUALITY_REPORT_ID_ENERGY_MONITOR:
+                return mBqrEnergyMonitor;
+            case QUALITY_REPORT_ID_RF_STATS:
+                return mBqrRfStats;
             default:
                 return null;
         }
@@ -471,6 +509,10 @@ public final class BluetoothQualityReport implements Parcelable {
             mBqrVsScoChoppy.writeToParcel(out, flags);
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             mBqrConnectFail.writeToParcel(out, flags);
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            mBqrEnergyMonitor.writeToParcel(out, flags);
+        } else if (id == QUALITY_REPORT_ID_RF_STATS) {
+            mBqrRfStats.writeToParcel(out, flags);
         }
     }
 
@@ -500,6 +542,10 @@ public final class BluetoothQualityReport implements Parcelable {
             str = str + mBqrVsScoChoppy + "\n}";
         } else if (id == QUALITY_REPORT_ID_CONN_FAIL) {
             str = str + mBqrConnectFail + "\n}";
+        } else if (id == QUALITY_REPORT_ID_ENERGY_MONITOR) {
+            str = str + mBqrEnergyMonitor + "\n}";
+        } else if (id == QUALITY_REPORT_ID_RF_STATS) {
+            str = str + mBqrRfStats + "\n}";
         } else if (id == QUALITY_REPORT_ID_MONITOR) {
             str = str + "}";
         }
@@ -659,7 +705,7 @@ public final class BluetoothQualityReport implements Parcelable {
     @SystemApi
     public static final class BqrCommon implements Parcelable {
         private static final String TAG = BluetoothQualityReport.TAG + ".BqrCommon";
-        static final int BQR_COMMON_LEN = 55;
+        static final int BQR_COMMON_LEN = 85; // 55;
 
         private int mQualityReportId;
         private int mPacketType;
@@ -682,6 +728,14 @@ public final class BluetoothQualityReport implements Parcelable {
         private long mUnderflowCount;
         private String mAddr;
         private int mCalFailedItemCount;
+        private long mTxTotalPackets;
+        private long mTxUnackPackets;
+        private long mTxFlushPackets;
+        private long mTxLastSubeventPackets;
+        private long mCrcErrorPackets;
+        private long mRxDupPackets;
+        private long mRxUnRecvPackets;
+        private int mCoexInfoMask;
 
         private BqrCommon(byte[] rawData, int offset) {
             if (rawData == null || rawData.length < offset + BQR_COMMON_LEN) {
@@ -723,6 +777,14 @@ public final class BluetoothQualityReport implements Parcelable {
                             bqrBuf.get(currentOffset + 0));
             bqrBuf.position(currentOffset + 6);
             mCalFailedItemCount = bqrBuf.get() & 0xFF;
+            mTxTotalPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxUnackPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxFlushPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxLastSubeventPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mCrcErrorPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRxDupPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRxUnRecvPackets = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mCoexInfoMask = bqrBuf.getShort() & 0xFFFF;
         }
 
         private BqrCommon(Parcel in) {
@@ -747,6 +809,14 @@ public final class BluetoothQualityReport implements Parcelable {
             mUnderflowCount = in.readLong();
             mAddr = in.readString();
             mCalFailedItemCount = in.readInt();
+            mTxTotalPackets = in.readLong();
+            mTxUnackPackets = in.readLong();
+            mTxFlushPackets = in.readLong();
+            mTxLastSubeventPackets = in.readLong();
+            mCrcErrorPackets = in.readLong();
+            mRxDupPackets = in.readLong();
+            mRxUnRecvPackets = in.readLong();
+            mCoexInfoMask = in.readInt();
         }
 
         int getQualityReportId() {
@@ -765,6 +835,10 @@ public final class BluetoothQualityReport implements Parcelable {
                     return "SCO choppy";
                 case QUALITY_REPORT_ID_CONN_FAIL:
                     return "Connect fail";
+                case QUALITY_REPORT_ID_ENERGY_MONITOR:
+                    return "Energy Monitor";
+                case QUALITY_REPORT_ID_RF_STATS:
+                    return "RF Stats";
                 default:
                     return "INVALID";
             }
@@ -1039,6 +1113,108 @@ public final class BluetoothQualityReport implements Parcelable {
         }
 
         /**
+         * Get the number of packets that are sent out.
+         *
+         * @return the number of packets that are sent out.
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxTotalPackets() {
+            return mTxTotalPackets;
+        }
+
+        /**
+         * Get the number of packets that don't receive an acknowledgment.
+         *
+         * @return the number of packets that don't receive an acknowledgment
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxUnackPackets() {
+            return mTxUnackPackets;
+        }
+
+        /**
+         * Get the number of packets that are not sent out by its flush point.
+         *
+         * @return the number of packets that are not sent out by its flush point
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxFlushPackets() {
+            return mTxFlushPackets;
+        }
+
+        /**
+         * Get the number of packets that Link Layer transmits a CIS Data PDU in the last subevent
+         * of a CIS event.
+         *
+         * @return the number of packets that Link Layer transmits a CIS Data PDU in the last
+         *     subevent
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getTxLastSubeventPackets() {
+            return mTxLastSubeventPackets;
+        }
+
+        /**
+         * Get The number of received packages with CRC error since the last event.
+         *
+         * @return the number of received packages with CRC error since the last event
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getCrcErrorPackets() {
+            return mCrcErrorPackets;
+        }
+
+        /**
+         * Get the number of duplicate(retransmission) packages that are received since the last
+         * event.
+         *
+         * @return the number of duplicate(retransmission) packages that are received since the last
+         *     event
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getRxDupPackets() {
+            return mRxDupPackets;
+        }
+
+        /**
+         * Get the number of unreceived packets is the same as the parameter of LE Read ISO Link
+         * Quality command.
+         *
+         * @return the number of unreceived packets is the same as the parameter of LE Read ISO Link
+         *     Quality command
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public long getRxUnRecvPackets() {
+            return mRxUnRecvPackets;
+        }
+
+        /**
+         * Get the Coex Information Mask
+         *
+         * @return the coex information of mask
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+        @SystemApi
+        public int getCoexInfoMask() {
+            return mCoexInfoMask;
+        }
+
+        /**
          * Describe contents.
          *
          * @return 0
@@ -1077,6 +1253,14 @@ public final class BluetoothQualityReport implements Parcelable {
             dest.writeLong(mUnderflowCount);
             BluetoothUtils.writeStringToParcel(dest, mAddr);
             dest.writeInt(mCalFailedItemCount);
+            dest.writeLong(mTxTotalPackets);
+            dest.writeLong(mTxUnackPackets);
+            dest.writeLong(mTxFlushPackets);
+            dest.writeLong(mTxLastSubeventPackets);
+            dest.writeLong(mCrcErrorPackets);
+            dest.writeLong(mRxDupPackets);
+            dest.writeLong(mRxUnRecvPackets);
+            dest.writeInt(mCoexInfoMask);
         }
 
         /** @hide */
@@ -1152,6 +1336,23 @@ public final class BluetoothQualityReport implements Parcelable {
                             + mAddr
                             + ", mCalFailedItemCount: "
                             + mCalFailedItemCount
+                            + ",\n"
+                            + ", mTxTotalPackets: "
+                            + mTxTotalPackets
+                            + ", mTxUnackPackets: "
+                            + mTxUnackPackets
+                            + ", mTxFlushPackets: "
+                            + mTxFlushPackets
+                            + ", mTxLastSubeventPackets: "
+                            + mTxLastSubeventPackets
+                            + ", mCrcErrorPackets: "
+                            + mCrcErrorPackets
+                            + ", mRxDupPackets: "
+                            + mRxDupPackets
+                            + ", mRxUnRecvPackets: "
+                            + mRxUnRecvPackets
+                            + ", mCoexInfoMask: "
+                            + mCoexInfoMask
                             + "\n  }";
 
             return str;
@@ -2140,6 +2341,868 @@ public final class BluetoothQualityReport implements Parcelable {
                             + " ("
                             + String.format("0x%02X", mFailReason)
                             + ")"
+                            + "\n  }";
+
+            return str;
+        }
+    }
+
+    /**
+     * This class provides the System APIs to access the BQR Energy Monitoring event event.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final class BqrEnergyMonitor implements Parcelable {
+        private static final String TAG = BluetoothQualityReport.TAG + ".BqrEnergyMonitor";
+
+        private int mAvgCurrentConsume;
+        private long mIdleTotalTime;
+        private long mIdleStateEnterCount;
+        private long mActiveTotalTime;
+        private long mActiveStateEnterCount;
+        private long mBredrTxTotalTime;
+        private long mBredrTxStateEnterCount;
+        private int mBredrTxAvgPowerLevel;
+        private long mBredrRxTotalTime;
+        private long mBredrRxStateEnterCount;
+        private long mLeTxTotalTime;
+        private long mLeTxStateEnterCount;
+        private int mLeTxAvgPowerLevel;
+        private long mLeRxTotalTime;
+        private long mLeRxStateEnterCount;
+        private long mReportTotalTime;
+        private long mRxActiveOneChainTime;
+        private long mRxActiveTwoChainTime;
+        private long mTxiPaActiveOneChainTime;
+        private long mTxiPaActiveTwoChainTime;
+        private long mTxePaActiveOneChainTime;
+        private long mTxePaActiveTwoChainTime;
+
+        private BqrEnergyMonitor(byte[] rawData, int offset) {
+            if (rawData == null || rawData.length <= offset) {
+                throw new IllegalArgumentException(
+                        TAG + ": BQR EnergyMonitor raw data length is abnormal.");
+            }
+
+            ByteBuffer bqrBuf =
+                    ByteBuffer.wrap(rawData, offset, rawData.length - offset).asReadOnlyBuffer();
+            bqrBuf.order(ByteOrder.LITTLE_ENDIAN);
+
+            mAvgCurrentConsume = bqrBuf.getShort() & 0xFFFF;
+            mIdleTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mIdleStateEnterCount = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mActiveTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mActiveStateEnterCount = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mBredrTxTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mBredrTxStateEnterCount = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mBredrTxAvgPowerLevel = bqrBuf.get() & 0xFF;
+            mBredrRxTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mBredrRxStateEnterCount = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mLeTxTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mLeTxStateEnterCount = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mLeTxAvgPowerLevel = bqrBuf.get() & 0xFF;
+            mLeRxTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mLeRxStateEnterCount = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mReportTotalTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRxActiveOneChainTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRxActiveTwoChainTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxiPaActiveOneChainTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxiPaActiveTwoChainTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxePaActiveOneChainTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxePaActiveTwoChainTime = bqrBuf.getInt() & 0xFFFFFFFFL;
+        }
+
+        private BqrEnergyMonitor(Parcel in) {
+            mAvgCurrentConsume = in.readInt();
+            mIdleTotalTime = in.readLong();
+            mIdleStateEnterCount = in.readLong();
+            mActiveTotalTime = in.readLong();
+            mActiveStateEnterCount = in.readLong();
+            mBredrTxTotalTime = in.readLong();
+            mBredrTxStateEnterCount = in.readLong();
+            mBredrTxAvgPowerLevel = in.readInt();
+            mBredrRxTotalTime = in.readLong();
+            mBredrRxStateEnterCount = in.readLong();
+            mLeTxTotalTime = in.readLong();
+            mLeTxStateEnterCount = in.readLong();
+            mLeTxAvgPowerLevel = in.readInt();
+            mLeRxTotalTime = in.readLong();
+            mLeRxStateEnterCount = in.readLong();
+            mReportTotalTime = in.readLong();
+            mRxActiveOneChainTime = in.readLong();
+            mRxActiveTwoChainTime = in.readLong();
+            mTxiPaActiveOneChainTime = in.readLong();
+            mTxiPaActiveTwoChainTime = in.readLong();
+            mTxePaActiveOneChainTime = in.readLong();
+            mTxePaActiveTwoChainTime = in.readLong();
+        }
+
+        /**
+         * Get the average current consumption of all activities consumed by the controller
+         *
+         * @return the average current consumption of all activities consumed by the controller
+         * @hide
+         */
+        @SystemApi
+        public int getAvgCurrentConsume() {
+            return mAvgCurrentConsume;
+        }
+
+        /**
+         * Get Total time in the idle (low power states, sleep) state. (milliseconds)
+         *
+         * @return the Total time in the idle state
+         * @hide
+         */
+        @SystemApi
+        public long getIdleTotalTime() {
+            return mIdleTotalTime;
+        }
+
+        /**
+         * Indicates how many times the controller enters the idle state
+         *
+         * @return Indicates how many times the controller enters the idle state
+         * @hide
+         */
+        @SystemApi
+        public long getIdleStateEnterCount() {
+            return mIdleStateEnterCount;
+        }
+
+        /**
+         * Total time in the active (inquiring, paging, ACL/SCO/eSCO/BIS/CIS traffic, processing any
+         * task) state. (milliseconds)
+         *
+         * @return how many times the controller enters the idle state
+         * @hide
+         */
+        @SystemApi
+        public long getActiveTotalTime() {
+            return mActiveTotalTime;
+        }
+
+        /**
+         * Indicates how many times the controller enters the active states.
+         *
+         * @return how many times the controller enters the active states.
+         * @hide
+         */
+        @SystemApi
+        public long getActiveStateEnterCount() {
+            return mActiveStateEnterCount;
+        }
+
+        /**
+         * Total time in the BR/EDR specific Tx(Transmitting for ACL/SCO/eSCO traffic)state.
+         *
+         * @return the total time in the BR/EDR specific Tx state
+         * @hide
+         */
+        @SystemApi
+        public long getBredrTxTotalTime() {
+            return mBredrTxTotalTime;
+        }
+
+        /**
+         * Indicates how many times the controller enters the BR/EDR specific Tx state.
+         *
+         * @return how many times the controller enters the BR/EDR specific Tx state
+         * @hide
+         */
+        @SystemApi
+        public long getBredrTxStateEnterCount() {
+            return mBredrTxStateEnterCount;
+        }
+
+        /**
+         * Average Tx power level of all the BR/EDR link(s) (in dBm)
+         *
+         * @return the average Tx power level of all the BR/EDR link(s) (in dBm)
+         * @hide
+         */
+        @SystemApi
+        public int getBredrTxAvgPowerLevel() {
+            return mBredrTxAvgPowerLevel;
+        }
+
+        /**
+         * Total time in the BR/EDR specific Rx (Receiving from ACL/SCO/eSCO traffic) state.
+         * (milliseconds)
+         *
+         * @return the total time in the BR/EDR specific Rx state.
+         * @hide
+         */
+        @SystemApi
+        public long getBredrRxTotalTime() {
+            return mBredrRxTotalTime;
+        }
+
+        /**
+         * Indicates how many times the controller enters the BR/EDR specific Rx state.
+         *
+         * @return how many times the controller enters the BR/EDR specific Rx state.
+         * @hide
+         */
+        @SystemApi
+        public long getBredrRxStateEnterCount() {
+            return mBredrRxStateEnterCount;
+        }
+
+        /**
+         * Total time in the LE specific Tx (Transmitting for either ACL/BIS/CIS or LE advertising
+         * traffic) state. (milliseconds)
+         *
+         * @return Total time in the LE specific Tx state.
+         * @hide
+         */
+        @SystemApi
+        public long getLeTxTotalTime() {
+            return mLeTxTotalTime;
+        }
+
+        /**
+         * Indicates how many times the controller enters the LE specific Tx state.
+         *
+         * @return Total time in the LE specific Tx state.
+         * @hide
+         */
+        @SystemApi
+        public long getLeTxStateEnterCount() {
+            return mLeTxStateEnterCount;
+        }
+
+        /**
+         * Average Tx power level of all the LE link(s). (in dBm)
+         *
+         * @return the average Tx power level of all the LE link(s)
+         * @hide
+         */
+        @SystemApi
+        public int getLeTxAvgPowerLevel() {
+            return mLeTxAvgPowerLevel;
+        }
+
+        /**
+         * Total time in the LE specific Rx (Receiving from either ACL/BIS/CIS or LE scanning
+         * traffic) state. (milliseconds)
+         *
+         * @return the total time in the LE specific Rx state.
+         * @hide
+         */
+        @SystemApi
+        public long getLeRxTotalTime() {
+            return mLeRxTotalTime;
+        }
+
+        /**
+         * Indicates how many times the controller enters the LE specific Rx state
+         *
+         * @return how many times the controller enters the LE specific Rx state
+         * @hide
+         */
+        @SystemApi
+        public long getLeRxStateEnterCount() {
+            return mLeRxStateEnterCount;
+        }
+
+        /**
+         * The total time duration to collect power related information. (milliseconds)
+         *
+         * @return the total time duration to collect power related information.
+         * @hide
+         */
+        @SystemApi
+        public long getReportTotalTime() {
+            return mReportTotalTime;
+        }
+
+        /**
+         * The time duration of RX active in one chain. (milliseconds)
+         *
+         * @return the time duration of RX active in one chain
+         * @hide
+         */
+        @SystemApi
+        public long getRxActiveOneChainTime() {
+            return mRxActiveOneChainTime;
+        }
+
+        /**
+         * The time duration of RX active in two chain. (milliseconds)
+         *
+         * @return the time duration of RX active in two chain
+         * @hide
+         */
+        @SystemApi
+        public long getRxActiveTwoChainTime() {
+            return mRxActiveTwoChainTime;
+        }
+
+        /**
+         * The time duration of internal TX active in one chain. (milliseconds)
+         *
+         * @return the time duration of internal TX active in one chain
+         * @hide
+         */
+        @SystemApi
+        public long getTxiPaActiveOneChainTime() {
+            return mTxiPaActiveOneChainTime;
+        }
+
+        /**
+         * The time duration of internal TX active in two chain. (milliseconds)
+         *
+         * @return the time duration of internal TX active in two chain
+         * @hide
+         */
+        @SystemApi
+        public long getTxiPaActiveTwoChainTime() {
+            return mTxiPaActiveTwoChainTime;
+        }
+
+        /**
+         * The time duration of external TX active in one chain. (milliseconds)
+         *
+         * @return the time duration of external TX active in one chain
+         * @hide
+         */
+        @SystemApi
+        public long getTxePaActiveOneChainTime() {
+            return mTxePaActiveOneChainTime;
+        }
+
+        /**
+         * The time duration of external TX active in two chain. (milliseconds)
+         *
+         * @return the time duration of external TX active in two chain
+         * @hide
+         */
+        @SystemApi
+        public long getTxePaActiveTwoChainTime() {
+            return mTxePaActiveTwoChainTime;
+        }
+
+        /**
+         * Describe contents.
+         *
+         * @return 0
+         * @hide
+         */
+        public int describeContents() {
+            return 0;
+        }
+
+        /**
+         * Write BqrEnergyMonitor to parcel.
+         *
+         * @hide
+         */
+        @SystemApi
+        @Override
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
+            dest.writeInt(mAvgCurrentConsume);
+            dest.writeLong(mIdleTotalTime);
+            dest.writeLong(mIdleStateEnterCount);
+            dest.writeLong(mActiveTotalTime);
+            dest.writeLong(mActiveStateEnterCount);
+            dest.writeLong(mBredrTxTotalTime);
+            dest.writeLong(mBredrTxStateEnterCount);
+            dest.writeInt(mBredrTxAvgPowerLevel);
+            dest.writeLong(mBredrRxTotalTime);
+            dest.writeLong(mBredrRxStateEnterCount);
+            dest.writeLong(mLeTxTotalTime);
+            dest.writeLong(mLeTxStateEnterCount);
+            dest.writeInt(mLeTxAvgPowerLevel);
+            dest.writeLong(mLeRxTotalTime);
+            dest.writeLong(mLeRxStateEnterCount);
+            dest.writeLong(mReportTotalTime);
+            dest.writeLong(mRxActiveOneChainTime);
+            dest.writeLong(mRxActiveTwoChainTime);
+            dest.writeLong(mTxiPaActiveOneChainTime);
+            dest.writeLong(mTxiPaActiveTwoChainTime);
+            dest.writeLong(mTxePaActiveOneChainTime);
+            dest.writeLong(mTxePaActiveTwoChainTime);
+        }
+
+        /** @hide */
+        @SystemApi
+        public static final @NonNull Parcelable.Creator<BqrEnergyMonitor> CREATOR =
+                new Parcelable.Creator<BqrEnergyMonitor>() {
+                    public BqrEnergyMonitor createFromParcel(Parcel in) {
+                        return new BqrEnergyMonitor(in);
+                    }
+
+                    public BqrEnergyMonitor[] newArray(int size) {
+                        return new BqrEnergyMonitor[size];
+                    }
+                };
+
+        /** BqrVsLsto to String. */
+        @Override
+        @NonNull
+        public String toString() {
+            String str;
+            str =
+                    "  BqrEnergyMonitor: {\n"
+                            + " AvgCurrentConsume: "
+                            + mAvgCurrentConsume
+                            + "  mIdleTotalTime: "
+                            + mIdleTotalTime
+                            + ", mIdleStateEnterCount: "
+                            + mIdleStateEnterCount
+                            + ", mActiveTotalTime: "
+                            + mActiveTotalTime
+                            + ", mActiveStateEnterCount: "
+                            + mActiveStateEnterCount
+                            + ",\n"
+                            + ", mBredrTxTotalTime: "
+                            + mBredrTxTotalTime
+                            + ", mBredrTxStateEnterCount: "
+                            + mBredrTxStateEnterCount
+                            + ", mBredrTxAvgPowerLevel: "
+                            + mBredrTxAvgPowerLevel
+                            + ", mBredrRxTotalTime: "
+                            + mBredrRxTotalTime
+                            + ", mBredrRxStateEnterCount: "
+                            + mBredrRxStateEnterCount
+                            + ", mLeTxTotalTime: "
+                            + mLeTxTotalTime
+                            + ", mLeTxStateEnterCount: "
+                            + mLeTxStateEnterCount
+                            + ", mLeTxAvgPowerLevel: "
+                            + mLeTxAvgPowerLevel
+                            + ", mLeRxTotalTime: "
+                            + mLeRxTotalTime
+                            + ", mLeRxStateEnterCount: "
+                            + mLeRxStateEnterCount
+                            + ", mReportTotalTime: "
+                            + mReportTotalTime
+                            + ", mRxActiveOneChainTime: "
+                            + mRxActiveOneChainTime
+                            + ", mRxActiveTwoChainTime: "
+                            + mRxActiveTwoChainTime
+                            + ", mTxiPaActiveOneChainTime: "
+                            + mTxiPaActiveOneChainTime
+                            + ", mTxiPaActiveTwoChainTime: "
+                            + mTxiPaActiveTwoChainTime
+                            + ", mTxePaActiveOneChainTime: "
+                            + mTxePaActiveOneChainTime
+                            + ", mTxePaActiveTwoChainTime: "
+                            + mTxePaActiveTwoChainTime
+                            + "\n  }";
+            return str;
+        }
+    }
+
+    /**
+     * This class provides the System APIs to access the BQR RF Stats event event.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
+    @SystemApi
+    public static final class BqrRfStats implements Parcelable {
+        private static final String TAG = BluetoothQualityReport.TAG + ".BqrRfStats";
+
+        private int mExtensionInfo;
+        private long mReportTimePeriod;
+        private long mTxPoweriPaBf;
+        private long mTxPowerePaBf;
+        private long mTxPoweriPaDiv;
+        private long mTxPowerePaDiv;
+        private long mRssiChainOver50;
+        private long mRssiChain50To55;
+        private long mRssiChain55To60;
+        private long mRssiChain60To65;
+        private long mRssiChain65To70;
+        private long mRssiChain70To75;
+        private long mRssiChain75To80;
+        private long mRssiChain80To85;
+        private long mRssiChain85To90;
+        private long mRssiChainUnder90;
+        private long mRssiDeltaUnder2;
+        private long mRssiDelta2To5;
+        private long mRssiDelta5To8;
+        private long mRssiDelta8To11;
+        private long mRssiDeltaOver11;
+
+        private BqrRfStats(byte[] rawData, int offset) {
+            if (rawData == null || rawData.length <= offset) {
+                throw new IllegalArgumentException(
+                        TAG + ": BQR RF Stats raw data length is abnormal.");
+            }
+
+            ByteBuffer bqrBuf =
+                    ByteBuffer.wrap(rawData, offset, rawData.length - offset).asReadOnlyBuffer();
+            bqrBuf.order(ByteOrder.LITTLE_ENDIAN);
+
+            mExtensionInfo = bqrBuf.get() & 0xFF;
+            mReportTimePeriod = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxPoweriPaBf = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxPowerePaBf = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxPoweriPaDiv = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mTxPowerePaDiv = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChainOver50 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain50To55 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain55To60 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain60To65 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain65To70 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain70To75 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain75To80 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain80To85 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChain85To90 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiChainUnder90 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiDeltaUnder2 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiDelta2To5 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiDelta5To8 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiDelta8To11 = bqrBuf.getInt() & 0xFFFFFFFFL;
+            mRssiDeltaOver11 = bqrBuf.getInt() & 0xFFFFFFFFL;
+        }
+
+        private BqrRfStats(Parcel in) {
+            mExtensionInfo = in.readInt();
+            // mLastTxAckTimestamp = in.readLong();
+        }
+
+        /**
+         * Get the extension Info for RF stats event
+         *
+         * @return the extension Info for RF stats event
+         * @hide
+         */
+        @SystemApi
+        public int getExtensionInfo() {
+            return mExtensionInfo;
+        }
+
+        /**
+         * Get the time period to collect performance information (millisecond)
+         *
+         * @return the time period to collect performance information
+         * @hide
+         */
+        @SystemApi
+        public long getReportTimePeriod() {
+            return mReportTimePeriod;
+        }
+
+        /**
+         * Get the Packet counter of iPA BF
+         *
+         * @return the Packet counter of iPA BF
+         * @hide
+         */
+        @SystemApi
+        public long getTxPoweriPaBf() {
+            return mTxPoweriPaBf;
+        }
+
+        /**
+         * Get the Packet counter of ePA BF
+         *
+         * @return the Packet counter of ePA BF
+         * @hide
+         */
+        @SystemApi
+        public long getTxPowerePaBf() {
+            return mTxPowerePaBf;
+        }
+
+        /**
+         * Get the Packet counter of iPA Div
+         *
+         * @return the Packet counter of iPA Div
+         * @hide
+         */
+        @SystemApi
+        public long getTxPoweriPaDiv() {
+            return mTxPoweriPaDiv;
+        }
+
+        /**
+         * Get the Packet counter of ePA Div
+         *
+         * @return the Packet counter of ePA Div
+         * @hide
+         */
+        @SystemApi
+        public long getTxPowerePaDiv() {
+            return mTxPowerePaDiv;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain > -50 dBm
+         *
+         * @return the packet counter of RSSI chain > -50 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChainOver50() {
+            return mRssiChainOver50;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -50 dBm ~ >-55 dBm
+         *
+         * @return the packet counter of RSSI chain between -50 dBm ~ >-55 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain50To55() {
+            return mRssiChain50To55;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -55 dBm ~ >-60 dBm
+         *
+         * @return the packet counter of RSSI chain between -55 dBm ~ >-60 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain55To60() {
+            return mRssiChain55To60;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -60 dBm ~ >-65 dBm
+         *
+         * @return the packet counter of RSSI chain between -60 dBm ~ >-65 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain60To65() {
+            return mRssiChain60To65;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -65 dBm ~ >-70 dBm
+         *
+         * @return the packet counter of RSSI chain between -65 dBm ~ >-70 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain65To70() {
+            return mRssiChain65To70;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -70 dBm ~ >-75 dBm
+         *
+         * @return the packet counter of RSSI chain between -70 dBm ~ >-75 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain70To75() {
+            return mRssiChain70To75;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -75 dBm ~ >-80 dBm
+         *
+         * @return the packet counter of RSSI chain between -75 dBm ~ >-80 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain75To80() {
+            return mRssiChain75To80;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -80 dBm ~ >-85 dBm
+         *
+         * @return the packet counter of RSSI chain between -80 dBm ~ >-85 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain80To85() {
+            return mRssiChain80To85;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain between -85 dBm ~ >-90 dBm
+         *
+         * @return the packet counter of RSSI chain between -85 dBm ~ >-90 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChain85To90() {
+            return mRssiChain85To90;
+        }
+
+        /**
+         * Get the Packet counter of RSSI chain < -90 dBm
+         *
+         * @return the packet counter of RSSI chain < -90 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiChainUnder90() {
+            return mRssiChainUnder90;
+        }
+
+        /**
+         * Get the Packet counter of RSSI delta < 2 dBm
+         *
+         * @return the packet counter of RSSI delta < 2 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiDeltaUnder2() {
+            return mRssiDeltaUnder2;
+        }
+
+        /**
+         * Get the Packet counter of RSSI delta between 2 dBm ~ 5 dBm
+         *
+         * @return the packet counter of RSSI delta between 2 dBm ~ 5 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiDelta2To5() {
+            return mRssiDelta2To5;
+        }
+
+        /**
+         * Get the Packet counter of RSSI delta between 5 dBm ~ 8 dBm
+         *
+         * @return the packet counter of RSSI delta between 5 dBm ~ 8 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiDelta5To8() {
+            return mRssiDelta5To8;
+        }
+
+        /**
+         * Get the Packet counter of RSSI delta between 8 dBm ~ 11 dBm
+         *
+         * @return the packet counter of RSSI delta between 8 dBm ~ 11 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiDelta8To11() {
+            return mRssiDelta8To11;
+        }
+
+        /**
+         * Get the Packet counter of RSSI delta > 11 dBm
+         *
+         * @return the packet counter of RSSI delta > 11 dBm
+         * @hide
+         */
+        @SystemApi
+        public long getRssiDeltaOver11() {
+            return mRssiDeltaOver11;
+        }
+
+        /**
+         * Describe contents.
+         *
+         * @return 0
+         * @hide
+         */
+        public int describeContents() {
+            return 0;
+        }
+
+        /**
+         * Write BqrRfStats to parcel.
+         *
+         * @hide
+         */
+        @SystemApi
+        @Override
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
+            dest.writeInt(mExtensionInfo);
+            dest.writeLong(mReportTimePeriod);
+            dest.writeLong(mTxPoweriPaBf);
+            dest.writeLong(mTxPowerePaBf);
+            dest.writeLong(mTxPoweriPaDiv);
+            dest.writeLong(mTxPowerePaDiv);
+            dest.writeLong(mRssiChainOver50);
+            dest.writeLong(mRssiChain50To55);
+            dest.writeLong(mRssiChain55To60);
+            dest.writeLong(mRssiChain60To65);
+            dest.writeLong(mRssiChain65To70);
+            dest.writeLong(mRssiChain70To75);
+            dest.writeLong(mRssiChain75To80);
+            dest.writeLong(mRssiChain80To85);
+            dest.writeLong(mRssiChain85To90);
+            dest.writeLong(mRssiChainUnder90);
+            dest.writeLong(mRssiDeltaUnder2);
+            dest.writeLong(mRssiDelta2To5);
+            dest.writeLong(mRssiDelta5To8);
+            dest.writeLong(mRssiDelta8To11);
+            dest.writeLong(mRssiDeltaOver11);
+        }
+
+        /** @hide */
+        @SystemApi
+        public static final @NonNull Parcelable.Creator<BqrRfStats> CREATOR =
+                new Parcelable.Creator<BqrRfStats>() {
+                    public BqrRfStats createFromParcel(Parcel in) {
+                        return new BqrRfStats(in);
+                    }
+
+                    public BqrRfStats[] newArray(int size) {
+                        return new BqrRfStats[size];
+                    }
+                };
+
+        /** BqrVsLsto to String. */
+        @Override
+        @NonNull
+        public String toString() {
+            String str;
+            str =
+                    "  BqrRfStats: {\n"
+                            + "    mExtensionInfo: "
+                            + mExtensionInfo
+                            + " mReportTimePeriod: "
+                            + mReportTimePeriod
+                            + " mTxPoweriPaBf: "
+                            + mTxPoweriPaBf
+                            + " mTxPowerePaBf: "
+                            + mTxPowerePaBf
+                            + " mTxPoweriPaDiv: "
+                            + mTxPoweriPaDiv
+                            + " mTxPowerePaDiv: "
+                            + mTxPowerePaDiv
+                            + ",\n"
+                            + "    mRssiChainOver50: "
+                            + mRssiChainOver50
+                            + " mRssiChain50To55: "
+                            + mRssiChain50To55
+                            + " mRssiChain55To60: "
+                            + mRssiChain55To60
+                            + " mRssiChain60To65: "
+                            + mRssiChain60To65
+                            + " mRssiChain65To70: "
+                            + mRssiChain65To70
+                            + " mRssiChain70To75: "
+                            + mRssiChain70To75
+                            + " mRssiChain75To80: "
+                            + mRssiChain75To80
+                            + " mRssiChain80To85: "
+                            + mRssiChain80To85
+                            + " mRssiChain85To90: "
+                            + mRssiChain85To90
+                            + " mRssiChainUnder90: "
+                            + mRssiChainUnder90
+                            + ",\n"
+                            + "    mRssiDeltaUnder2: "
+                            + mRssiDeltaUnder2
+                            + " mRssiDelta2To5: "
+                            + mRssiDelta2To5
+                            + " mRssiDelta5To8: "
+                            + mRssiDelta5To8
+                            + " mRssiDelta8To11: "
+                            + mRssiDelta8To11
+                            + " mRssiDeltaOver11: "
+                            + mRssiDeltaOver11
                             + "\n  }";
 
             return str;
