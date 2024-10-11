@@ -1093,6 +1093,60 @@ public class DatabaseManager {
     }
 
     /**
+     * Sets the microphone for calls enable status for this device. See {@link
+     * BluetoothDevice#getMicrophoneForCallEnabled()} for more details.
+     *
+     * @param device is the remote device for which we set the microphone for calls enable status
+     * @param enabled {@code true} to enable the microphone for calls
+     * @return {@code true} if the microphone for call enable status was set properly
+     */
+    public boolean setMicrophoneForCallEnabled(BluetoothDevice device, boolean enabled) {
+        synchronized (mMetadataCache) {
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return false;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+            Log.i(
+                    TAG,
+                    "Updating setMicrophoneForCallEnabled for "
+                            + "device "
+                            + device
+                            + " to: "
+                            + enabled);
+            metadata.is_microphone_for_call_enabled = enabled;
+
+            updateDatabase(metadata);
+        }
+        return true;
+    }
+
+    /**
+     * Gets the microphone for calls enable status for this device. See {@link
+     * BluetoothDevice#getMicrophoneForCallEnabled()} for more details.
+     *
+     * @param device is the remote device for which we get the microphone for calls enable status
+     * @return {@code true} if the microphone is enabled for calls
+     */
+    public boolean getMicrophoneForCallEnabled(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return true;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+
+            return metadata.is_microphone_for_call_enabled;
+        }
+    }
+
+    /**
      * Get the {@link Looper} for the handler thread. This is used in testing and helper objects
      *
      * @return {@link Looper} for the handler thread
