@@ -70,6 +70,9 @@ class Metadata {
     /** This is used to indicate whether device's active audio policy */
     public int active_audio_device_policy;
 
+    /** This is used to indicate whether device's microphone prefer to use during calls */
+    public boolean is_preferred_microphone_for_calls;
+
     Metadata(String address) {
         this(address, false, false);
     }
@@ -88,6 +91,7 @@ class Metadata {
         preferred_output_only_profile = 0;
         preferred_duplex_profile = 0;
         active_audio_device_policy = BluetoothDevice.ACTIVE_AUDIO_DEVICE_POLICY_DEFAULT;
+        is_preferred_microphone_for_calls = true;
     }
 
     static final class Builder {
@@ -464,6 +468,8 @@ class Metadata {
                 .append(publicMetadata)
                 .append("), hfp client audio policy(")
                 .append(audioPolicyMetadata)
+                .append("), is_preferred_microphone_for_calls(")
+                .append(is_preferred_microphone_for_calls)
                 .append(")}");
 
         return builder.toString();
