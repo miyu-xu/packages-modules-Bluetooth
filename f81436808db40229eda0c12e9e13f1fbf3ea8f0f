@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb98a336_c10fe999",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-11T06:22:22Z",
+      "side": 1,
+      "message": "If device is indeed LE Audio capable, it should advertise on LE transport and we should be able to establish connection.\n\nIf it\u0027s not LE capable, it shouldn\u0027t have bit 14 in CoD set to true.\n\nDo I correctly understand logic in this patch:\nThe devices that incorrectly had CoD set to LE Audio, but are Classic only, will be able to pair.\n\nIf you merge this patch, you will introduce a race condition for proper LE Audio devices. If they establish LE connection before SDP finishes, they will discovery LE profiles and bond properly.\nIf they don\u0027t establish LE connection before SDP finishes, they will report just SDP services.",
+      "revId": "f81436808db40229eda0c12e9e13f1fbf3ea8f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
