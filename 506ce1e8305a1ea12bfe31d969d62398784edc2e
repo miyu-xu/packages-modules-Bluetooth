@@ -111,6 +111,30 @@
       },
       "revId": "506ce1e8305a1ea12bfe31d969d62398784edc2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d0e0d14_c245ee58",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-10-11T01:19:38Z",
+      "side": 1,
+      "message": "My bad I forgot to commit before pushing the patch. Should be fixed in the latest version now, thanks!",
+      "parentUuid": "af5f3040_dd9f25cb",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 27
+      },
+      "revId": "506ce1e8305a1ea12bfe31d969d62398784edc2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
