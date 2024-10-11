@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05ea2f7_901459be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-11T21:56:32Z",
+      "side": 1,
+      "message": "In change description, can we clarify which LE APIs are recorded with the attribution tag like LE scan/advertising not GATT client/server?",
+      "revId": "bb17446bfcbdcd7cd718a8c11cd02b1c0b943682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
