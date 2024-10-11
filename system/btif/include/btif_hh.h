@@ -29,11 +29,14 @@
 #include <list>
 
 #include "bta/include/bta_hh_api.h"
+#include "common/journal.h"
 #include "macros.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
+
+using Journal = bluetooth::common::Journal;
 
 /*******************************************************************************
  *  Constants & Macros
@@ -57,6 +60,8 @@
 #define ENABLE_UHID_SET_REPORT 0
 #endif
 #endif
+
+#define BTIF_HH_UHID_HISTORY_SIZE 32
 
 /*******************************************************************************
  *  Type definitions and return values
@@ -134,6 +139,8 @@ typedef struct {
   bool service_dereg_active;
 
   std::list<tAclLinkSpec> pending_connections;
+
+  Journal uhid_history{"UHID", BTIF_HH_UHID_HISTORY_SIZE};
 } btif_hh_cb_t;
 
 /*******************************************************************************

@@ -30,9 +30,11 @@
 #include <cstdint>
 
 #include "bta/hh/bta_hh_int.h"
+#include "common/strings.h"
 #include "main/shim/dumpsys.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
+#include "osi/include/properties.h"
 #include "stack/include/bt_hdr.h"
 
 // TODO(b/369381361) Enfore -Wmissing-prototypes
@@ -321,6 +323,9 @@ void bta_hh_sm_execute(tBTA_HH_DEV_CB* p_cb, tBTA_HH_INT_EVT event, const tBTA_H
     log::debug("State Change: [{}] -> [{}] after Event [{}]", bta_hh_state_code(in_state),
                bta_hh_state_code(p_cb->state), bta_hh_evt_code(event));
   }
+  bta_hh_cb.state_history.record(p_cb->link_spec, bta_hh_evt_code(event),
+                                 base::StringPrintf("%-32s -> %-32s", bta_hh_state_code(in_state),
+                                                    bta_hh_state_code(p_cb->state)));
 }
 
 /*******************************************************************************
@@ -431,6 +436,7 @@ bool bta_hh_hdl_event(const BT_HDR_RIGID* p_msg) {
 }
 
 #define DUMPSYS_TAG "shim::legacy::hid"
+const std::string kTimeFormat("%Y-%m-%d %H:%M:%S");
 void bta_hh_dump(int fd) {
   for (auto dev : bta_hh_cb.kdev) {
     if (dev.in_use) {
@@ -439,5 +445,8 @@ void bta_hh_dump(int fd) {
                   bta_hh_state_code(dev.state), dev.sub_class);
     }
   }
+
+  LOG_DUMPSYS(fd, " State transition history");
+  bta_hh_cb.state_history.dump(fd);
 }
 #undef DUMPSYS_TAG
