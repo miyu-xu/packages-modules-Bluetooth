@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b476acd_74ac6421",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T16:36:57Z",
+      "side": 1,
+      "message": "This CL is mixing changes with different purposes; can you please split off the requester / responder split from the other logical changes ?",
+      "revId": "a0bbf217d2b899aa5d2921d16179baf22af7b972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f5eeca_c11e3210",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T16:36:57Z",
+      "side": 1,
+      "message": "`auto\u0026` otherwise the elements will be copied during iteration.",
+      "range": {
+        "startLine": 1362,
+        "startChar": 9,
+        "endLine": 1362,
+        "endChar": 13
+      },
+      "revId": "a0bbf217d2b899aa5d2921d16179baf22af7b972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
