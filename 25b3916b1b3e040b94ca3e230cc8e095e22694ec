@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fdd7bec_c7e3f83b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4285,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T17:50:35Z",
+      "side": 1,
+      "message": "I would do a `requireNonNull(device)` as first line of this method to prevent a crash a couple line later",
+      "range": {
+        "startLine": 4285,
+        "startChar": 32,
+        "endLine": 4285,
+        "endChar": 38
+      },
+      "revId": "25b3916b1b3e040b94ca3e230cc8e095e22694ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e564516a_a468fbe1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4301,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T17:50:35Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 4301,
+        "startChar": 32,
+        "endLine": 4301,
+        "endChar": 38
+      },
+      "revId": "25b3916b1b3e040b94ca3e230cc8e095e22694ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14203661_961f3f76",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T17:50:35Z",
+      "side": 1,
+      "message": "nit, we could have a shorter one line log here\n```suggestion\n            Log.i(TAG, \"setMicrophoneForCallEnabled(\" + device + \", \" + enabled + \")\");\n```",
+      "range": {
+        "startLine": 1113,
+        "startChar": 0,
+        "endLine": 1119,
+        "endChar": 39
+      },
+      "revId": "25b3916b1b3e040b94ca3e230cc8e095e22694ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2060d96c_c8ace08f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T17:50:35Z",
+      "side": 1,
+      "message": "Mmmm... Should this be false ? I have to admit I don\u0027t know what to return here... Should we throw a illegal state exception ?\n\nOR are you returning true based on the behavior prior to this feature that assume it was enabled everytime ?",
+      "range": {
+        "startLine": 1140,
+        "startChar": 23,
+        "endLine": 1140,
+        "endChar": 27
+      },
+      "revId": "25b3916b1b3e040b94ca3e230cc8e095e22694ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49bc40ac_9adf078d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3563,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T17:50:35Z",
+      "side": 1,
+      "message": "Should it be `isMicrophoneForCallEnabled` instead of `get...` ? an alternative could be `hasMicrophoneForCall` ? \n\napaprently the api guideline recommend to use is\ngo/android-api-guidelines#boolean-methods\n\n\u003e Methods that toggle behaviors or features may use the is prefix and Enabled suffix:",
+      "range": {
+        "startLine": 3563,
+        "startChar": 19,
+        "endLine": 3563,
+        "endChar": 46
+      },
+      "revId": "25b3916b1b3e040b94ca3e230cc8e095e22694ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
