@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "768ceaa7_f186ec8c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3750,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-11T22:14:07Z",
+      "side": 1,
+      "message": "How about adding the flag?\n\n```suggestion\n                        \u0026\u0026 (!Objects.equals(device, mActiveBroadcastAudioDevice))) {\n                        if (!leaudioBigDependsOnAudioState()) {\n                            clearCreateBroadcastTimeoutCallback();\n                        }\n```",
+      "revId": "0f3417632614558c623512494bc226bb1ab6a346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad9359a_694ebbf3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3764,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-11T22:14:07Z",
+      "side": 1,
+      "message": "To better protect this, should we do this?\nOtherwise, with the flag disabled, the logic got changed.\nAnd I feel we should always clear this flag here.\n```suggestion\n            if (leaudioBigDependsOnAudioState()) {\n                clearCreateBroadcastTimeoutCallback();\n            }\n            mAwaitingBroadcastCreateResponse \u003d false;\n```",
+      "range": {
+        "startLine": 3761,
+        "startChar": 0,
+        "endLine": 3764,
+        "endChar": 13
+      },
+      "revId": "0f3417632614558c623512494bc226bb1ab6a346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
