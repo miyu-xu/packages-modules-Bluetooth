@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eee9e6b_0cb33053",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T15:50:36Z",
+      "side": 1,
+      "message": "Please document the range of values somewhere.\nFrom the java code I can infer the value is -1 when unavailable, or 0-100 otherwise, but this should be made explicit",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "ef9567e41a9462af8221b8a78b2d91627168a692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028d2dff_abe4c500",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T15:50:36Z",
+      "side": 1,
+      "message": "nit: \n```\nhal::RangingResult ranging_result \u003d {\n    .result_meters_ \u003d in_result.resultMeters,\n    .confidence_level_ \u003d in_result.confidenceLevel,\n};\n```",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 65
+      },
+      "revId": "ef9567e41a9462af8221b8a78b2d91627168a692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
