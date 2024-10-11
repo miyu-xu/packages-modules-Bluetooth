@@ -163,6 +163,95 @@ inline std::string bt_status_text(const bt_status_t& status) {
 /** Corresponding to [Vol 2] Part D, "Error Codes" of Core_v5.1 specs */
 typedef uint8_t bt_hci_error_code_t;
 
+inline bt_status_t hci_error_to_bt_status(bt_hci_error_code_t hci_error) {
+  switch (hci_error) {
+    case 0x00:  // HCI_SUCCESS
+      return BT_STATUS_SUCCESS;
+    case 0x01:  // HCI_ERR_ILLEGAL_COMMAND
+      return BT_STATUS_UNSUPPORTED;
+    case 0x02:  // HCI_ERR_NO_CONNECTION
+      return BT_STATUS_NOT_READY;
+    case 0x03:  // HCI_ERR_HW_FAILURE
+      return BT_STATUS_FAIL;
+    case 0x04:  // HCI_ERR_PAGE_TIMEOUT
+      return BT_STATUS_TIMEOUT;
+    case 0x05:  // HCI_ERR_AUTH_FAILURE
+      return BT_STATUS_AUTH_FAILURE;
+    case 0x06:  // HCI_ERR_KEY_MISSING
+      return BT_STATUS_AUTH_FAILURE;
+    case 0x07:  // HCI_ERR_MEMORY_FULL
+      return BT_STATUS_NOMEM;
+    case 0x08:  // HCI_ERR_CONNECTION_TOUT
+      return BT_STATUS_TIMEOUT;
+    case 0x09:  // HCI_ERR_MAX_NUM_OF_CONNECTIONS
+      return BT_STATUS_FAIL;
+    case 0x0A:  // HCI_ERR_MAX_NUM_OF_SCOS
+      return BT_STATUS_FAIL;
+    case 0x0B:  // HCI_ERR_CONNECTION_EXISTS
+      return BT_STATUS_BUSY;
+    case 0x0C:  // HCI_ERR_COMMAND_DISALLOWED
+      return BT_STATUS_UNSUPPORTED;
+    case 0x0D:  // HCI_ERR_HOST_REJECT_RESOURCES
+      return BT_STATUS_BUSY;
+    case 0x0E:  // HCI_ERR_HOST_REJECT_SECURITY
+      return BT_STATUS_AUTH_REJECTED;
+    case 0x0F:  // HCI_ERR_HOST_REJECT_DEVICE
+      return BT_STATUS_AUTH_REJECTED;
+    case 0x10:  // HCI_ERR_HOST_TIMEOUT
+      return BT_STATUS_TIMEOUT;
+    case 0x12:  // HCI_ERR_ILLEGAL_PARAMETER_FMT
+      return BT_STATUS_PARM_INVALID;
+    case 0x13:  // HCI_ERR_PEER_USER
+      return BT_STATUS_RMT_DEV_DOWN;
+    case 0x14:  // HCI_ERR_REMOTE_LOW_RESOURCE
+      return BT_STATUS_RMT_DEV_DOWN;
+    case 0x15:  // HCI_ERR_REMOTE_POWER_OFF
+      return BT_STATUS_RMT_DEV_DOWN;
+    case 0x16:  // HCI_ERR_CONN_CAUSE_LOCAL_HOST
+      return BT_STATUS_DONE;
+    case 0x17:  // HCI_ERR_REPEATED_ATTEMPTS
+      return BT_STATUS_FAIL;
+    case 0x18:  // HCI_ERR_PAIRING_NOT_ALLOWED
+      return BT_STATUS_AUTH_REJECTED;
+    case 0x1A:  // HCI_ERR_UNSUPPORTED_REM_FEATURE
+      return BT_STATUS_UNSUPPORTED;
+    case 0x1F:  // HCI_ERR_UNSPECIFIED
+      return BT_STATUS_FAIL;
+    case 0x22:  // HCI_ERR_LMP_RESPONSE_TIMEOUT
+      return BT_STATUS_TIMEOUT;
+    case 0x23:  // HCI_ERR_LMP_ERR_TRANS_COLLISION
+      return BT_STATUS_FAIL;
+    case 0x25:  // HCI_ERR_ENCRY_MODE_NOT_ACCEPTABLE
+      return BT_STATUS_AUTH_REJECTED;
+    case 0x26:  // HCI_ERR_UNIT_KEY_USED
+      return BT_STATUS_AUTH_FAILURE;
+    case 0x29:  // HCI_ERR_PAIRING_WITH_UNIT_KEY_NOT_SUPPORTED
+      return BT_STATUS_UNSUPPORTED;
+    case 0x2A:  // HCI_ERR_DIFF_TRANSACTION_COLLISION
+      return BT_STATUS_FAIL;
+    case 0x2F:  // HCI_ERR_INSUFFCIENT_SECURITY
+      return BT_STATUS_AUTH_REJECTED;
+    case 0x32:  // HCI_ERR_ROLE_SWITCH_PENDING
+      return BT_STATUS_BUSY;
+    case 0x35:  // HCI_ERR_ROLE_SWITCH_FAILED
+      return BT_STATUS_FAIL;
+    case 0x38:  // HCI_ERR_HOST_BUSY_PAIRING
+      return BT_STATUS_BUSY;
+    case 0x3B:  // HCI_ERR_UNACCEPT_CONN_INTERVAL
+      return BT_STATUS_PARM_INVALID;
+    case 0x3C:  // HCI_ERR_ADVERTISING_TIMEOUT
+      return BT_STATUS_TIMEOUT;
+    case 0x3E:  // HCI_ERR_CONN_FAILED_ESTABLISHMENT
+      return BT_STATUS_FAIL;
+    case 0x43:  // HCI_ERR_LIMIT_REACHED
+      return BT_STATUS_FAIL;
+    case 0x44:  // HCI_ERR_CANCELLED_BY_LOCAL_HOST
+      return BT_STATUS_DONE;
+    default:
+      return BT_STATUS_FAIL;
+  }
+}
+
 /** Bluetooth PinKey Code */
 typedef struct {
   uint8_t pin[16];
