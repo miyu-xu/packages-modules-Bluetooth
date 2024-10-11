@@ -29,11 +29,14 @@
 #include <list>
 
 #include "bta/include/bta_hh_api.h"
+#include "common/journal.h"
 #include "macros.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
+
+using Journal = bluetooth::common::Journal;
 
 /*******************************************************************************
  *  Constants & Macros
@@ -57,6 +60,8 @@
 #define ENABLE_UHID_SET_REPORT 0
 #endif
 #endif
+
+#define BTIF_HH_UHID_HISTORY_SIZE 32
 
 /*******************************************************************************
  *  Type definitions and return values
@@ -122,53 +127,56 @@ typedef struct {
   bool reconnect_allowed;  // Connection policy
 } btif_hh_added_device_t;
 
-/**
- * BTIF-HH control block to maintain added devices and currently
- * connected hid devices
- */
-typedef struct {
-  BTIF_HH_STATUS status;
-  btif_hh_device_t devices[BTIF_HH_MAX_HID];
-  uint32_t device_num;
-  btif_hh_added_device_t added_devices[BTIF_HH_MAX_ADDED_DEV];
-  bool service_dereg_active;
 
-  std::list<tAclLinkSpec> pending_connections;
-} btif_hh_cb_t;
+  /**
+   * BTIF-HH control block to maintain added devices and currently
+   * connected hid devices
+   */
+  typedef struct {
+    BTIF_HH_STATUS status;
+    btif_hh_device_t devices[BTIF_HH_MAX_HID];
+    uint32_t device_num;
+    btif_hh_added_device_t added_devices[BTIF_HH_MAX_ADDED_DEV];
+    bool service_dereg_active;
 
-/*******************************************************************************
- *  Functions
- ******************************************************************************/
+    std::list<tAclLinkSpec> pending_connections;
 
-extern btif_hh_cb_t btif_hh_cb;
+    Journal uhid_history{"UHID", BTIF_HH_UHID_HISTORY_SIZE};
+  } btif_hh_cb_t;
 
-btif_hh_device_t* btif_hh_find_connected_dev_by_handle(uint8_t handle);
-btif_hh_device_t* btif_hh_find_dev_by_handle(uint8_t handle);
-btif_hh_device_t* btif_hh_find_empty_dev(void);
-bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec);
-void btif_hh_remove_device(const tAclLinkSpec& link_spec);
-void btif_hh_setreport(btif_hh_uhid_t* p_uhid, bthh_report_type_t r_type, uint16_t size,
-                       uint8_t* report);
-void btif_hh_senddata(btif_hh_uhid_t* p_uhid, uint16_t size, uint8_t* report);
-void btif_hh_getreport(btif_hh_uhid_t* p_uhid, bthh_report_type_t r_type, uint8_t reportId,
-                       uint16_t bufferSize);
-void btif_hh_service_registration(bool enable);
+  /*******************************************************************************
+   *  Functions
+   ******************************************************************************/
 
-void btif_hh_load_bonded_dev(const tAclLinkSpec& link_spec, tBTA_HH_ATTR_MASK attr_mask,
-                             uint8_t sub_class, uint8_t app_id, tBTA_HH_DEV_DSCP_INFO dscp_info,
-                             bool reconnect_allowed);
+  extern btif_hh_cb_t btif_hh_cb;
 
-int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len);
-void bta_hh_co_close(btif_hh_device_t* p_dev);
-void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name, uint16_t vendor_id,
-                             uint16_t product_id, uint16_t version, uint8_t ctry_code,
-                             uint16_t dscp_len, uint8_t* p_dscp);
+  btif_hh_device_t* btif_hh_find_connected_dev_by_handle(uint8_t handle);
+  btif_hh_device_t* btif_hh_find_dev_by_handle(uint8_t handle);
+  btif_hh_device_t* btif_hh_find_empty_dev(void);
+  bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec);
+  void btif_hh_remove_device(const tAclLinkSpec& link_spec);
+  void btif_hh_setreport(btif_hh_uhid_t* p_uhid, bthh_report_type_t r_type, uint16_t size,
+                         uint8_t* report);
+  void btif_hh_senddata(btif_hh_uhid_t* p_uhid, uint16_t size, uint8_t* report);
+  void btif_hh_getreport(btif_hh_uhid_t* p_uhid, bthh_report_type_t r_type, uint8_t reportId,
+                         uint16_t bufferSize);
+  void btif_hh_service_registration(bool enable);
 
-void DumpsysHid(int fd);
+  void btif_hh_load_bonded_dev(const tAclLinkSpec& link_spec, tBTA_HH_ATTR_MASK attr_mask,
+                               uint8_t sub_class, uint8_t app_id, tBTA_HH_DEV_DSCP_INFO dscp_info,
+                               bool reconnect_allowed);
 
-namespace fmt {
-template <>
-struct formatter<BTIF_HH_STATUS> : enum_formatter<BTIF_HH_STATUS> {};
-}  // namespace fmt
+  int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len);
+  void bta_hh_co_close(btif_hh_device_t* p_dev);
+  void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name, uint16_t vendor_id,
+                               uint16_t product_id, uint16_t version, uint8_t ctry_code,
+                               uint16_t dscp_len, uint8_t* p_dscp);
+
+  void DumpsysHid(int fd);
+
+  namespace fmt {
+  template <>
+  struct formatter<BTIF_HH_STATUS> : enum_formatter<BTIF_HH_STATUS> {};
+  }  // namespace fmt
 
 #endif
