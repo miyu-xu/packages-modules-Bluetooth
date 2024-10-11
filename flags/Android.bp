@@ -8,6 +8,7 @@ aconfig_declarations {
     package: "com.android.bluetooth.flags",
     container: "com.android.btservices",
     visibility: [
+        "//frameworks/base/packages/SettingsLib",
         "//packages/modules/Bluetooth/framework",
     ],
     // LINT.IfChange
