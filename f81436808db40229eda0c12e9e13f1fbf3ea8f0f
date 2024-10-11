@@ -16,6 +16,24 @@
       "message": "If device is indeed LE Audio capable, it should advertise on LE transport and we should be able to establish connection.\n\nIf it\u0027s not LE capable, it shouldn\u0027t have bit 14 in CoD set to true.\n\nDo I correctly understand logic in this patch:\nThe devices that incorrectly had CoD set to LE Audio, but are Classic only, will be able to pair.\n\nIf you merge this patch, you will introduce a race condition for proper LE Audio devices. If they establish LE connection before SDP finishes, they will discovery LE profiles and bond properly.\nIf they don\u0027t establish LE connection before SDP finishes, they will report just SDP services.",
       "revId": "f81436808db40229eda0c12e9e13f1fbf3ea8f0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129da549_b8d3cd36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-11T16:48:24Z",
+      "side": 1,
+      "message": "Ok,Thanks for the details. What If the LE connection fails for some reason? How do we reset this flag in those cases?",
+      "parentUuid": "eb98a336_c10fe999",
+      "revId": "f81436808db40229eda0c12e9e13f1fbf3ea8f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
