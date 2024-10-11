@@ -198,6 +198,7 @@ package android.bluetooth {
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public String getIdentityAddress();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getMessageAccessPermission();
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public byte[] getMetadata(int);
+    method @FlaggedApi("com.android.bluetooth.flags.metadata_api_microphone_for_call_enabled") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean isMicrophoneForCallEnabled();
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public String getPackageNameOfBondingApplication();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getPhonebookAccessPermission();
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothSinkAudioPolicy getRequestedAudioPolicyAsSink();
@@ -214,6 +215,7 @@ package android.bluetooth {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setLowLatencyAudioAllowed(boolean);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMessageAccessPermission(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMetadata(int, @NonNull byte[]);
+    method @FlaggedApi("com.android.bluetooth.flags.metadata_api_microphone_for_call_enabled") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMicrophoneForCallEnabled(boolean);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setPhonebookAccessPermission(int);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean setPin(@NonNull String);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setSilenceMode(boolean);
