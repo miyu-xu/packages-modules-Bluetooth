@@ -62,6 +62,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f3ca7b0_50a8c126",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:53:49Z",
+      "side": 1,
+      "message": "No, MSFT does not support this.",
+      "parentUuid": "6a6147ac_ac10963f",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 37
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02e7ce7b_e73bf95c",
@@ -113,6 +137,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff5cd4d_a2b8e3cb",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitor.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02e7ce7b_e73bf95c",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 82,
+        "endChar": 44
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8926bf68_f556b968",
@@ -126,6 +174,30 @@
       "writtenOn": "2024-10-10T21:11:16Z",
       "side": 1,
       "message": "nit 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c293cff_149f3560",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8926bf68_f556b968",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -159,6 +231,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a008480f_0c1d8c0f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec232c4b_816fb532",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 74
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c1ae873_1e3ada47",
@@ -182,6 +278,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc712df4_b5be7f19",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c1ae873_1e3ada47",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "643c23b8_62701ec5",
@@ -195,6 +315,30 @@
       "writtenOn": "2024-10-10T21:11:16Z",
       "side": 1,
       "message": "I am not sure about the need to cast to byte or not.\nBut you can have better message by checking the data as an array\n\n```suggestion\n        assertThat(mPattern.pattern).containsExactly((byte) 0x2c, (byte) 0xfe);\n```\n\nFeel free to try without the `(byte)` as I expect this to not be needed",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 86
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8d3204_dd2aa4d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:53:49Z",
+      "side": 1,
+      "message": "`containsExactly` doesn\u0027t seem to work on primitive arrays, and it turns out `(byte)` is needed!",
+      "parentUuid": "643c23b8_62701ec5",
       "range": {
         "startLine": 65,
         "startChar": 0,
