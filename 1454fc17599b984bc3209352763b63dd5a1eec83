@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed67035e_8a6c62f4",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-11T00:01:47Z",
+      "side": 1,
+      "message": "In `GATT Scanner Map`, are we printing only one attribution tag for the shared uid but `Registered App` shows all attribution tags?",
+      "range": {
+        "startLine": 1162,
+        "startChar": 32,
+        "endLine": 1162,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a5e0e792_d490cf29",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+              "range": {
+                "startLine": 1160,
+                "startChar": 0,
+                "endLine": 1163,
+                "endChar": 0
+              },
+              "replacement": "            if (appEntry.mAttributionTags !\u003d null) {\n                for (String tag : appEntry.mAttributionTags) {\n                    sb.append(\"\\n  Tag:                               : \").append(tag);\n                }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
