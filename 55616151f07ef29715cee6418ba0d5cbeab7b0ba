@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a13354a_a92abcb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T20:15:16Z",
+      "side": 1,
+      "message": "FYI as I am working on this every time I got the chance.\nI will split this to move no-op refactor in smaller atomic CLs.",
+      "revId": "55616151f07ef29715cee6418ba0d5cbeab7b0ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
