@@ -40,6 +40,30 @@
       ],
       "revId": "b77a2e6a669ececd7293918752f5da100255103f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d3036b_79c52baf",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-11T23:56:17Z",
+      "side": 1,
+      "message": "RFCOMM offload socket is not allowed from new API for now. When allowing it in the new API, we can update BTIF together.",
+      "parentUuid": "502369d2_c2bc1a80",
+      "range": {
+        "startLine": 223,
+        "startChar": 15,
+        "endLine": 223,
+        "endChar": 33
+      },
+      "revId": "b77a2e6a669ececd7293918752f5da100255103f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
