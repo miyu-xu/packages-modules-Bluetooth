@@ -196,7 +196,8 @@ public class DistanceMeasurementManagerTest {
                 -1,
                 -1,
                 -1,
-                1000L,
+                1000L
+                -1,
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         ArgumentCaptor<DistanceMeasurementResult> result =
                 ArgumentCaptor.forClass(DistanceMeasurementResult.class);
@@ -234,7 +235,8 @@ public class DistanceMeasurementManagerTest {
                 -1,
                 -1,
                 -1,
-                1000L,
+                1000L
+                -1,
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         DistanceMeasurementResult result =
                 new DistanceMeasurementResult.Builder(1.00, 1.00).build();

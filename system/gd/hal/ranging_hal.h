@@ -39,6 +39,7 @@ struct ChannelSoundingRawData {
 
 struct RangingResult {
   double result_meters_;
+  int8_t confidence_level_;
 };
 
 class RangingHalCallback {
