@@ -117,6 +117,30 @@
       },
       "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5cdc502_91352615",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-11T18:12:09Z",
+      "side": 1,
+      "message": "Please do this migration as a follow-up.",
+      "parentUuid": "df36f77f_b496c733",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 89
+      },
+      "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
