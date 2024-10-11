@@ -46,6 +46,29 @@
       },
       "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d60b7a72_6f028d4e",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-11T00:25:46Z",
+      "side": 1,
+      "message": "I just noticed \"hal/mgmt.h\"\n\nwhere it says:\n\n```\n// This class provides an interface to interact with the kernel.\nclass Mgmt {\npublic:\n  uint16_t get_vs_opcode(uint16_t vendor_specification);\n};\n```\n\nThis is not the intended design of GD. Instead, OS-specific abstraction should stay in `packages/modules/Bluetooth/system/gd/os/` such as `packages/modules/Bluetooth/system/gd/os/rand.h` and each operating system\u0027s abstraction should be implemented in sub-directories like `linux_generic`\n\nand methods should be defined there. In this case, Mgmt() should be spelled out fully as something like `Management()` or more specific with singleton pattern like `Management::getInstance().getVendorSpecificCode(int)` instead of creating a new instance each time. \n\nCould we move `gd/hal/mgmt.h` to `gd/os` first before start using them in critical files like `hci_hal_android.cc`?\n\nThanks",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 89
+      },
+      "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
