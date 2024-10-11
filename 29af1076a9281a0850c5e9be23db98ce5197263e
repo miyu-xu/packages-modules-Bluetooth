@@ -93,6 +93,30 @@
       },
       "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df36f77f_b496c733",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-11T15:23:22Z",
+      "side": 1,
+      "message": "Agreed with William. Would you be OK with merging this change as is if I create a bug and add a TODO link to that bug to follow up on this? We can work on this very soon after.",
+      "parentUuid": "dc11dc02_eee88c86",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 89
+      },
+      "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
