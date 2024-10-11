@@ -40,6 +40,30 @@
       ],
       "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca02c567_366f8c6d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-11T05:06:21Z",
+      "side": 1,
+      "message": "Updated this to get all entries that match the app name, and to print the \"app ID\" (scanner ID), UUID, and tag for each of those.",
+      "parentUuid": "ed67035e_8a6c62f4",
+      "range": {
+        "startLine": 1162,
+        "startChar": 32,
+        "endLine": 1162,
+        "endChar": 56
+      },
+      "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
