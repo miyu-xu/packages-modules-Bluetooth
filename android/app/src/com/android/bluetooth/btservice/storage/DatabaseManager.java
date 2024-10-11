@@ -1093,6 +1093,54 @@ public class DatabaseManager {
     }
 
     /**
+     * Sets the microphone for calls enable status for this device. See {@link
+     * BluetoothDevice#setMicrophoneForCallEnabled()} for more details.
+     *
+     * @param device is the remote device for which we set the microphone for calls enable status
+     * @param enabled {@code true} to enable the microphone for calls
+     * @return whether the microphone for call enable status was set properly
+     */
+    public int setMicrophoneForCallEnabled(BluetoothDevice device, boolean enabled) {
+        synchronized (mMetadataCache) {
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+            Log.i(TAG, "setMicrophoneForCallEnabled(" + device + ", " + enabled + ")");
+            metadata.is_microphone_for_call_enabled = enabled;
+
+            updateDatabase(metadata);
+        }
+        return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**
+     * Gets the microphone for calls enable status for this device. See {@link
+     * BluetoothDevice#isMicrophoneForCallEnabled()} for more details.
+     *
+     * @param device is the remote device for which we get the microphone for calls enable status
+     * @return {@code true} if the microphone is enabled for calls
+     */
+    public boolean isMicrophoneForCallEnabled(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return true;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+
+            return metadata.is_microphone_for_call_enabled;
+        }
+    }
+
+    /**
      * Get the {@link Looper} for the handler thread. This is used in testing and helper objects
      *
      * @return {@link Looper} for the handler thread

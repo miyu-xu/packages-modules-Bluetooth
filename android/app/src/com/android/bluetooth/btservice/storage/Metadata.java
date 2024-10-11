@@ -73,6 +73,9 @@ public class Metadata {
     /** This is used to indicate whether device's active audio policy */
     public int active_audio_device_policy;
 
+    /** This is used to indicate whether device's microphone should be used during calls */
+    public boolean is_microphone_for_call_enabled;
+
     Metadata(String address) {
         this(address, false, false);
     }
@@ -91,6 +94,7 @@ public class Metadata {
         preferred_output_only_profile = 0;
         preferred_duplex_profile = 0;
         active_audio_device_policy = BluetoothDevice.ACTIVE_AUDIO_DEVICE_POLICY_DEFAULT;
+        is_microphone_for_call_enabled = true;
     }
 
     static final class Builder {
