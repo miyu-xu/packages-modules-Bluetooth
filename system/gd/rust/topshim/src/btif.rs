@@ -1262,7 +1262,9 @@ impl BluetoothInterface {
             guest_mode,
             is_common_criteria_mode,
             config_compare_result,
-            is_atv
+            std::ptr::null_mut(),
+            is_atv,
+            std::ptr::null()
         );
 
         self.is_init = init == 0;

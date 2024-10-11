@@ -1020,7 +1020,7 @@ int hal_util_load_bt_library(const bt_interface_t** interface) {
 }
 
 static bool initNative(JNIEnv* env, jobject obj, jboolean isGuest, jboolean isCommonCriteriaMode,
-                       int configCompareResult, jboolean isAtvDevice) {
+                       int configCompareResult, jboolean isAtvDevice, jstring userDataDirectory) {
   std::unique_lock<std::shared_timed_mutex> lock(jniObjMutex);
 
   log::verbose("");
@@ -1035,10 +1035,14 @@ static bool initNative(JNIEnv* env, jobject obj, jboolean isGuest, jboolean isCo
     return JNI_FALSE;
   }
 
+  const char* user_data_directory = env->GetStringUTFChars(userDataDirectory, NULL);
+
   int ret =
           sBluetoothInterface->init(&sBluetoothCallbacks, isGuest == JNI_TRUE ? 1 : 0,
                                     isCommonCriteriaMode == JNI_TRUE ? 1 : 0, configCompareResult,
-                                    isAtvDevice == JNI_TRUE ? 1 : 0);
+                                    nullptr, isAtvDevice == JNI_TRUE ? 1 : 0, user_data_directory);
+
+  env->ReleaseStringUTFChars(userDataDirectory, user_data_directory);
 
   if (ret != BT_STATUS_SUCCESS) {
     log::error("Error while setting the callbacks: {}", ret);
@@ -2221,7 +2225,7 @@ static jboolean restoreFilterAcceptListNative(JNIEnv* /* env */, jobject /* obj 
 
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
   const JNINativeMethod methods[] = {
-          {"initNative", "(ZZIZ)Z", reinterpret_cast<void*>(initNative)},
+          {"initNative", "(ZZIZLjava/lang/String;)Z", reinterpret_cast<void*>(initNative)},
           {"cleanupNative", "()V", reinterpret_cast<void*>(cleanupNative)},
           {"enableNative", "()Z", reinterpret_cast<void*>(enableNative)},
           {"disableNative", "()Z", reinterpret_cast<void*>(disableNative)},
