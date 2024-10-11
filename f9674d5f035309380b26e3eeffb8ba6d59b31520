@@ -792,6 +792,30 @@
       },
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba79d9fe_5b14fcc3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T06:12:27Z",
+      "side": 1,
+      "message": "Talk offline, this can wait further java/native alignement and nothing here looks critical.\nAck",
+      "parentUuid": "7e791958_35cfb0f8",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
