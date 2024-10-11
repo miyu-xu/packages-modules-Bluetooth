@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22fa0fe8_e0cde6c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-11T11:28:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7ae7d3e0_a3957529",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 45
+      },
+      "revId": "4d2b7dfe861a380b24ddf7325ab6b1c923e9780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b905decb_64de940e",
