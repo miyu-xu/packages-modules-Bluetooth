@@ -1,0 +1,10 @@
+# Uncomment the branches to upload:
+#
+# project packages/modules/Bluetooth/:
+#  branch iopfix ( 2 commits, Fri Oct 11 04:26:00 2024 +0000) to remote branch main:
+#         6e1cd2ae btif: add support to convert HCI error codes into bt_status
+#         9b2ff319 btif: fix btif_dm lint error
+#
+  branch error_code ( 2 commits, Wed Oct 9 23:30:56 2024 +0000) to remote branch main:
+#         cb0ad066 interop: extended truncated report map for specific device
+#         50a82dcc interop: force a MTU exchange for certain keyboards
