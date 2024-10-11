@@ -576,6 +576,27 @@ public class LeAudioBroadcastServiceTest {
     }
 
     @Test
+    public void testStopService_stopBroadcastSessions() {
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+
+        synchronized (mService.mBroadcastCallbacks) {
+            mService.mBroadcastCallbacks.register(mCallbacks);
+        }
+
+        BluetoothLeAudioContentMetadata.Builder meta_builder =
+                new BluetoothLeAudioContentMetadata.Builder();
+        meta_builder.setLanguage("deu");
+        meta_builder.setProgramInfo("Subgroup broadcast info");
+        BluetoothLeAudioContentMetadata meta = meta_builder.build();
+
+        verifyBroadcastStarted(broadcastId, buildBroadcastSettingsFromMetadata(meta, code, 1));
+        mService.stop();
+        verify(mLeAudioBroadcasterNativeInterface, times(1)).stopBroadcast(eq(broadcastId));
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+    }
+
+    @Test
     public void testStartStopBroadcastNative() {
         int broadcastId = 243;
         byte[] code = {0x00, 0x01, 0x00, 0x02};

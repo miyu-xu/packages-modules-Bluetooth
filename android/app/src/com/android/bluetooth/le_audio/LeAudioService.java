@@ -636,7 +636,7 @@ public class LeAudioService extends ProfileService {
         if (leaudioUseAudioModeListener()) {
             mAudioManager.removeOnModeChangedListener(mAudioModeChangeListener);
         }
-
+        stopAllBroadcastSessions();
         mCreateBroadcastQueue.clear();
         mAwaitingBroadcastCreateResponse = false;
         mIsSourceStreamMonitorModeEnabled = false;
@@ -2918,6 +2918,19 @@ public class LeAudioService extends ProfileService {
         groupDescriptor.updateAllowedContexts(sinkContextTypes, sourceContextTypes);
 
         mNativeInterface.setGroupAllowedContextMask(groupId, sinkContextTypes, sourceContextTypes);
+    }
+
+    private void stopAllBroadcastSessions() {
+        if (mBroadcastDescriptors == null) {
+            return;
+        }
+
+        for (Map.Entry<Integer, LeAudioBroadcastDescriptor> entry :
+                mBroadcastDescriptors.entrySet()) {
+            if (!entry.getValue().mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED)) {
+                stopBroadcast(entry.getKey());
+            }
+        }
     }
 
     @VisibleForTesting
