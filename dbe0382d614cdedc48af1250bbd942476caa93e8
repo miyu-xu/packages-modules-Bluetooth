@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd2675a_db7a7436",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T22:21:55Z",
+      "side": 1,
+      "message": "Extend the condition to avoid sending Disable when the session is stopped ?\n\n`(enable \u003d\u003d Enable::ENABLED) \u003d\u003d cs_trackers_[connection_handle].measurement_ongoing`",
+      "range": {
+        "startLine": 638,
+        "startChar": 8,
+        "endLine": 638,
+        "endChar": 89
+      },
+      "revId": "dbe0382d614cdedc48af1250bbd942476caa93e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf534491_e11fb4ce",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T22:21:55Z",
+      "side": 1,
+      "message": "is this caused by a race with an event which the controller would have sent on ending the session ? (don\u0027t know enough about the CS HCI commands 😄)",
+      "revId": "dbe0382d614cdedc48af1250bbd942476caa93e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4179c794_551c070c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-11T22:21:55Z",
+      "side": 1,
+      "message": "Please move the else branch outside the check, or remove the return statement.",
+      "range": {
+        "startLine": 663,
+        "startChar": 5,
+        "endLine": 663,
+        "endChar": 12
+      },
+      "revId": "dbe0382d614cdedc48af1250bbd942476caa93e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
