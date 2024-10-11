@@ -371,6 +371,30 @@
       },
       "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dacdcd85_40fac8c0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/MsftAdvMonitorTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T17:04:54Z",
+      "side": 1,
+      "message": "Oh, that is sad ! Thanks for the info.",
+      "parentUuid": "01d5ad06_ff9e3a95",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 86
+      },
+      "revId": "eaecebfe3eaa20cab69936ad9d711b7b0c16028b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
