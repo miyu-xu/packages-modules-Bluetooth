@@ -58,6 +58,9 @@ aconfig_declarations {
     ],
     // LINT.ThenChange(/flags/BUILD.gn)
     exportable: true,
+    visibility: [
+        "//frameworks/base/packages/SettingsLib",
+    ],
 }
 
 java_aconfig_library {
