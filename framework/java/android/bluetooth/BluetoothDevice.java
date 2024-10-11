@@ -3512,6 +3512,82 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         return ACTIVE_AUDIO_DEVICE_POLICY_DEFAULT;
     }
 
+    /** @hide */
+    @IntDef(
+            value = {
+                BluetoothStatusCodes.SUCCESS,
+                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED,
+                BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION,
+                BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED
+            })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface SetMicrophonePreferredForCallsReturnValues {}
+
+    /**
+     * Sets the preferred microphone for calls enable status for this {@link BluetoothDevice}.
+     *
+     * <p>This API allows the user to specify whether they prefer to use the microphone of this
+     * Bluetooth device during calls.
+     *
+     * @param enabled {@code true} to enable the preferred microphone for calls
+     * @return whether preferred microphone for call enable status was set properly
+     * @throws IllegalArgumentException if the {@link BluetoothDevice} object has an invalid address
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_METADATA_API_MICROPHONE_FOR_CALL_ENABLED)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @SetMicrophonePreferredForCallsReturnValues int setMicrophonePreferredForCalls(
+            boolean enabled) {
+        if (DBG) log("setMicrophonePreferredForCalls(" + enabled + ")");
+        if (!BluetoothAdapter.checkBluetoothAddress(getAddress())) {
+            throw new IllegalArgumentException("device cannot have an invalid address");
+        }
+
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth is not enabled. Cannot set microphone for call enabled state.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                return service.setMicrophonePreferredForCalls(this, enabled, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+    }
+
+    /**
+     * Gets the preferred microphone for calls enable status for this {@link BluetoothDevice}.
+     *
+     * <p>This API allows users to check if the preferred microphone of this Bluetooth device is
+     * currently enabled for calls.
+     *
+     * @return {@code true} if the preferred microphone is enabled for calls.
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_METADATA_API_MICROPHONE_FOR_CALL_ENABLED)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public boolean isMicrophonePreferredForCalls() {
+        if (DBG) log("isMicrophoneForCallEnabled");
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth is not enabled. Cannot get microphone for call enabled state.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                return service.isMicrophonePreferredForCalls(this, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return true;
+    }
+
     private static void log(String msg) {
         Log.d(TAG, msg);
     }
