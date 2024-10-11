@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9f3c8b4_ae93f140",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 2840,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T20:15:28Z",
+      "side": 1,
+      "message": "I\u0027ll actually keep this fix here, since the JNI CL was already submitted.",
+      "parentUuid": "ce0b8871_7dacba14",
+      "revId": "c3ff754cbcda3451da85806deb541e9c66ba72b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ab609a1_2cc272c6",
