@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d072b3c_27e9146c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-11T06:58:55Z",
+      "side": 1,
+      "message": "LGTM. Need AOSP maintainer to approve!",
+      "revId": "ee61f7e64ad4dde7e2b5c261cffad9b20f95d7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
