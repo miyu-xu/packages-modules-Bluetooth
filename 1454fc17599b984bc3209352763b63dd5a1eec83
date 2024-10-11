@@ -112,6 +112,30 @@
       },
       "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4076d342_9e491aeb",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-11T21:48:30Z",
+      "side": 1,
+      "message": "Added now with 2 scanners registered.",
+      "parentUuid": "050d0294_c8876f90",
+      "range": {
+        "startLine": 1162,
+        "startChar": 32,
+        "endLine": 1162,
+        "endChar": 56
+      },
+      "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
