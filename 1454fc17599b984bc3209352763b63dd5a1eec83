@@ -64,6 +64,30 @@
       },
       "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f86a432_9db871b1",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-11T05:41:51Z",
+      "side": 1,
+      "message": "Thanks. Please share the updated dumpsys example in the bug.",
+      "parentUuid": "ca02c567_366f8c6d",
+      "range": {
+        "startLine": 1162,
+        "startChar": 32,
+        "endLine": 1162,
+        "endChar": 56
+      },
+      "revId": "1454fc17599b984bc3209352763b63dd5a1eec83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
