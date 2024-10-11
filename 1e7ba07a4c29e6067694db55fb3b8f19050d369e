@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3b23750_4ca077e7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-11T23:14:12Z",
+      "side": 1,
+      "message": "I think this should be !isFilteringSupported() \u0026\u0026 mIsMsftSupported. Otherwise if both are enabled you will get the msft behavior.",
+      "range": {
+        "startLine": 1718,
+        "startChar": 16,
+        "endLine": 1718,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9a7504cd_98b396f0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1718,
+                "startChar": 0,
+                "endLine": 1719,
+                "endChar": 0
+              },
+              "replacement": "            if (mIsMsftSupported \u0026\u0026 maxFiltersSupported \u003e 20) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3962253c_5aadec0b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-11T23:14:12Z",
+      "side": 1,
+      "message": "Please replace this magic number with a constant.",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
