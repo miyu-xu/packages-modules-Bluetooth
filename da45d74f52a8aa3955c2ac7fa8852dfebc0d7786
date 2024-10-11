@@ -70,6 +70,30 @@
       },
       "revId": "da45d74f52a8aa3955c2ac7fa8852dfebc0d7786",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a90b0225_8d53a00c",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-11T06:57:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b67b4ae6_1d12437c",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "da45d74f52a8aa3955c2ac7fa8852dfebc0d7786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
