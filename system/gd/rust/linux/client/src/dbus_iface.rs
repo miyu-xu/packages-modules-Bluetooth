@@ -677,6 +677,9 @@ impl IBluetoothConnectionCallback for IBluetoothConnectionCallbackDBus {
 
     #[dbus_method("OnDeviceDisconnected", DBusLog::Disable)]
     fn on_device_disconnected(&mut self, remote_device: BluetoothDevice) {}
+
+    #[dbus_method("OnDeviceConnectionFailed", DBusLog::Disable)]
+    fn on_device_connection_failed(&mut self, address: RawAddress, status: BtStatus) {}
 }
 
 #[allow(dead_code)]
