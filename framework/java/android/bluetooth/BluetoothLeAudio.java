@@ -367,7 +367,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
      *     with a meaning MONO.
      * @hide
      */
-    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA)
+    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA_API)
     @Deprecated
     @SystemApi
     public static final int AUDIO_LOCATION_INVALID = 0;
@@ -377,7 +377,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
      *
      * @hide
      */
-    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA)
+    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA_API)
     @SystemApi
     public static final int AUDIO_LOCATION_MONO = 0;
 
@@ -386,7 +386,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
      *
      * @hide
      */
-    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA)
+    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA_API)
     @SystemApi
     public static final int AUDIO_LOCATION_UNKNOWN = 0x01 << 31;
 
