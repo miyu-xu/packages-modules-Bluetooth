@@ -768,6 +768,30 @@
       },
       "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e791958_35cfb0f8",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:54:19Z",
+      "side": 1,
+      "message": "You\u0027re correct that we could store the map below JNI, near the `le_scanning_manager` logic. However, along that same thought process, all of the translation logic for MSFT-based scanning in ScanManager could be pushed down into that layer, and it\u0027s difficult to draw the line as to how much information should be moved down there.\n\nWe considered an alternate implementation to MSFT-based scanning where all the translation logic was in the shim layer, but we ultimately decided not to go down that route and leave all the logic handling in the Java layer.",
+      "parentUuid": "56df09ee_62641f33",
+      "range": {
+        "startLine": 1053,
+        "startChar": 3,
+        "endLine": 1089,
+        "endChar": 0
+      },
+      "revId": "f9674d5f035309380b26e3eeffb8ba6d59b31520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

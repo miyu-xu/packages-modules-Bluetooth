@@ -109,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de4cacdb_9ae65f54",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:54:19Z",
+      "side": 1,
+      "message": "Yes, this is possible, but there are certain controllers that support both APCF and MSFT, so it is alright if the native call returns true and we choose to keep the sysprop disabled.\n\nAs for your other point, updating the native call to handle the sysprop adds complexity for current Floss code, because now we have to add additional logic to have the sysprop enabled for all Floss devices, whereas this works as is.",
+      "parentUuid": "3b30bdb8_ba08715e",
+      "range": {
+        "startLine": 1067,
+        "startChar": 28,
+        "endLine": 1068,
+        "endChar": 76
+      },
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca2c1b41_34854b3a",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 16
@@ -173,6 +197,24 @@
       "writtenOn": "2024-10-09T20:48:54Z",
       "side": 1,
       "message": "This is just going to add the filter all over again. Instead, you should either use the `mNativeInterface.gattClientScan(true);` here or just add a `if (isMsftEnabled())` statement in `startRegularScan` to stop scan first",
+      "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31f52b71_1c36eb6b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-11T03:54:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ed4b907_3283617d",
       "revId": "49574f6a0f31cab34f853f4b6b6bd5ed2b297bbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
