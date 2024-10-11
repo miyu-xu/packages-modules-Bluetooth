@@ -3806,7 +3806,9 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason, std::string comme
   }
 
   /* clear unused flags */
-  p_dev_rec->sm4 &= BTM_SM4_TRUE;
+  log::debug("before: SM4 flag :0x{:04x}", p_dev_rec->sm4);
+  p_dev_rec->sm4 &= ~BTM_SM4_TRUE;
+  log::debug("clear SM4 flag :0x{:04x}", p_dev_rec->sm4);
 
   if (com::android::bluetooth::flags::clear_auth_collision_state_on_pairing_complete()) {
     if (btm_sec_cb.p_collided_dev_rec &&
