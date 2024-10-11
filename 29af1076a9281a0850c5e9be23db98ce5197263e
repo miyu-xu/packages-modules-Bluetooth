@@ -69,6 +69,30 @@
       },
       "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc11dc02_eee88c86",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-11T00:37:02Z",
+      "side": 1,
+      "message": "Should this be applied to hci_hal_android/hci_hal_host that are not in gd/os ?\n\nI believe the migration should be done independently of this change, as it looks like there are more change to move",
+      "parentUuid": "d60b7a72_6f028d4e",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 89
+      },
+      "revId": "29af1076a9281a0850c5e9be23db98ce5197263e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
