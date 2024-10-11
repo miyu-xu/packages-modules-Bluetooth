@@ -4279,6 +4279,40 @@ public class AdapterService extends Service {
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.mDatabaseManager.getActiveAudioDevicePolicy(device);
         }
+
+        @Override
+        public boolean setMicrophoneForCallEnabled(
+                BluetoothDevice device, boolean enabled, AttributionSource source) {
+            requireNonNull(device);
+            // don't check caller, may be called from system UI
+            AdapterService service = getService();
+            if (service == null
+                    || !BluetoothAdapter.checkBluetoothAddress(device.getAddress())
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service, source, "AdapterService setMicrophoneForCallEnabled")) {
+                return false;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.setMicrophoneForCallEnabled(device, enabled);
+        }
+
+        @Override
+        public boolean isMicrophoneForCallEnabled(
+                BluetoothDevice device, AttributionSource source) {
+            requireNonNull(device);
+            // don't check caller, may be called from system UI
+            AdapterService service = getService();
+            if (service == null
+                    || !BluetoothAdapter.checkBluetoothAddress(device.getAddress())
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service, source, "AdapterService getMicrophoneForCallEnabled")) {
+                return true;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.isMicrophoneForCallEnabled(device);
+        }
     }
 
     /**
