@@ -4279,6 +4279,44 @@ public class AdapterService extends Service {
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.mDatabaseManager.getActiveAudioDevicePolicy(device);
         }
+
+        @Override
+        public int setMicrophoneForCallEnabled(
+                BluetoothDevice device, boolean enabled, AttributionSource source) {
+            requireNonNull(device);
+            // don't check caller, may be called from system UI
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
+                throw new IllegalArgumentException("device cannot have an invalid address");
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, source, "AdapterService setMicrophoneForCallEnabled")) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.setMicrophoneForCallEnabled(device, enabled);
+        }
+
+        @Override
+        public boolean isMicrophoneForCallEnabled(
+                BluetoothDevice device, AttributionSource source) {
+            requireNonNull(device);
+            // don't check caller, may be called from system UI
+            AdapterService service = getService();
+            if (service == null
+                    || !BluetoothAdapter.checkBluetoothAddress(device.getAddress())
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service, source, "AdapterService getMicrophoneForCallEnabled")) {
+                return true;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.isMicrophoneForCallEnabled(device);
+        }
     }
 
     /**
