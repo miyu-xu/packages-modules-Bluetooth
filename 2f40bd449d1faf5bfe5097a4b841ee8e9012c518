@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b35260a7_f6b3f548",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-11T04:51:45Z",
+      "side": 1,
+      "message": "Probably breaks ChromeOS. Unless you have tested with ChromeOS please don\u0027t merge.\nThe original CL won\u0027t affect Android\u0027s Java API.\nIf SOCK_STREAM is wrong probably just update the comment saying so.",
+      "revId": "2f40bd449d1faf5bfe5097a4b841ee8e9012c518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
