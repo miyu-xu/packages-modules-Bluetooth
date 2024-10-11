@@ -59,7 +59,6 @@
 #include "btif_api.h"
 #include "btif_bqr.h"
 #include "btif_config.h"
-#include "btif_dm.h"
 #include "btif_metrics_logging.h"
 #include "btif_sdp.h"
 #include "btif_storage.h"
@@ -472,7 +471,7 @@ static bool get_cached_remote_name(const RawAddress& bd_addr, uint8_t* p_remote_
   BTIF_STORAGE_FILL_PROPERTY(&prop_name, BT_PROPERTY_BDNAME, sizeof(bt_bdname_t), &bdname);
   if (btif_storage_get_remote_device_property(&bd_addr, &prop_name) == BT_STATUS_SUCCESS) {
     if (p_remote_name && p_remote_name_len) {
-      strcpy((char*)p_remote_name, (char*)bdname.name);
+      snprintf(p_remote_name, sizeof(p_remote_name), "%s", bdname.name);
       *p_remote_name_len = strlen((char*)p_remote_name);
     }
     return true;
@@ -3129,35 +3128,35 @@ bool btif_dm_get_smp_config(tBTE_APPL_CFG* p_cfg) {
   strncpy(conf, recv->c_str(), 64);
   conf[63] = 0;  // null terminate
 
-  pch = strtok(conf, ",");
+  pch = strtok_r(conf, ",");
   if (pch != NULL) {
     p_cfg->ble_auth_req = (uint8_t)strtoul(pch, &endptr, 16);
   } else {
     return false;
   }
 
-  pch = strtok(NULL, ",");
+  pch = strtok_r(NULL, ",");
   if (pch != NULL) {
     p_cfg->ble_io_cap = (uint8_t)strtoul(pch, &endptr, 16);
   } else {
     return false;
   }
 
-  pch = strtok(NULL, ",");
+  pch = strtok_r(NULL, ",");
   if (pch != NULL) {
     p_cfg->ble_init_key = (uint8_t)strtoul(pch, &endptr, 16);
   } else {
     return false;
   }
 
-  pch = strtok(NULL, ",");
+  pch = strtok_r(NULL, ",");
   if (pch != NULL) {
     p_cfg->ble_resp_key = (uint8_t)strtoul(pch, &endptr, 16);
   } else {
     return false;
   }
 
-  pch = strtok(NULL, ",");
+  pch = strtok_r(NULL, ",");
   if (pch != NULL) {
     p_cfg->ble_max_key_size = (uint8_t)strtoul(pch, &endptr, 16);
   } else {
@@ -3770,7 +3769,7 @@ void btif_debug_bond_event_dump(int fd) {
 
     char eventtime[20];
     char temptime[20];
-    struct tm* tstamp = localtime(&event->timestamp.tv_sec);
+    struct tm* tstamp = localtime_r(&event->timestamp.tv_sec);
     strftime(temptime, sizeof(temptime), "%H:%M:%S", tstamp);
     snprintf(eventtime, sizeof(eventtime), "%s.%03ld", temptime,
              event->timestamp.tv_nsec / 1000000);
