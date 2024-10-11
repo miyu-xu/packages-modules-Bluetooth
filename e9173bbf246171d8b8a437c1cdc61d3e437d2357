@@ -22,6 +22,30 @@
       },
       "revId": "e9173bbf246171d8b8a437c1cdc61d3e437d2357",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f524e236_94563cd8",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-11T21:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a01e0a64_8743c283",
+      "range": {
+        "startLine": 443,
+        "startChar": 5,
+        "endLine": 443,
+        "endChar": 26
+      },
+      "revId": "e9173bbf246171d8b8a437c1cdc61d3e437d2357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
