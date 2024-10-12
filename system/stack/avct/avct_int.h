@@ -24,7 +24,10 @@
 #ifndef AVCT_INT_H
 #define AVCT_INT_H
 
+#include <string>
+
 #include "avct_api.h"
+#include "include/macros.h"
 #include "internal_include/bt_target.h"
 #include "osi/include/fixed_queue.h"
 #include "stack/include/bt_hdr.h"
@@ -48,10 +51,22 @@ enum {
 };
 
 /* "states" used for L2CAP channel */
-#define AVCT_CH_IDLE 0 /* No connection */
-#define AVCT_CH_CONN 1 /* Waiting for connection confirm */
-#define AVCT_CH_CFG 2  /* Waiting for configuration complete */
-#define AVCT_CH_OPEN 3 /* Channel opened */
+enum {
+  AVCT_CH_IDLE = 0, /* No connection */
+  AVCT_CH_CONN = 1, /* Waiting for connection confirm */
+  AVCT_CH_CFG = 2,  /* Waiting for configuration complete */
+  AVCT_CH_OPEN = 3, /* Channel opened */
+};
+
+inline std::string avct_ch_state_text(const int& state) {
+  switch (state) {
+    CASE_RETURN_STRING(AVCT_CH_IDLE);
+    CASE_RETURN_STRING(AVCT_CH_CONN);
+    CASE_RETURN_STRING(AVCT_CH_CFG);
+    CASE_RETURN_STRING(AVCT_CH_OPEN);
+  }
+  RETURN_UNKNOWN_TYPE_STRING(int, state);
+}
 
 /* "no event" indicator used by ccb dealloc */
 #define AVCT_NO_EVT 0xFF
@@ -59,16 +74,6 @@ enum {
 /*****************************************************************************
  * data types
  ****************************************************************************/
-/* sub control block type - common data members for tAVCT_LCB and tAVCT_BCB */
-typedef struct {
-  uint16_t peer_mtu;  /* peer l2c mtu */
-  uint16_t ch_result; /* L2CAP connection result value */
-  uint16_t ch_lcid;   /* L2CAP channel LCID */
-  uint8_t allocated;  /* 0, not allocated. index+1, otherwise. */
-  uint8_t state;      /* The state machine state */
-  uint8_t ch_state;   /* L2CAP channel state */
-} tAVCT_SCB;
-
 /* link control block type */
 typedef struct {
   uint16_t peer_mtu;      /* peer l2c mtu */
@@ -89,7 +94,7 @@ typedef struct {
   uint16_t peer_mtu;      /* peer l2c mtu */
   uint16_t ch_result;     /* L2CAP connection result value */
   uint16_t ch_lcid;       /* L2CAP channel LCID */
-  uint8_t allocated;      /* 0, not allocated. index+1, otherwise. */
+  uint8_t allocated;      // 0: no link allocated. otherwise link index+1, otherwise
   uint8_t state;          /* The state machine state */
   uint8_t ch_state;       /* L2CAP channel state */
   uint16_t conflict_lcid; /* L2CAP channel LCID */
@@ -202,6 +207,8 @@ tAVCT_CCB* avct_ccb_by_idx(uint8_t idx);
 
 extern bool avct_msg_ind_for_src_sink_coexist(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data,
                                               uint8_t label, uint8_t cr_ipid, uint16_t pid);
+
+std::string avct_sm_state_text(const int& state);
 
 /*****************************************************************************
  * global data
