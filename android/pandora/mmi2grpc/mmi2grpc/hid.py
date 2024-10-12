@@ -17,6 +17,7 @@ from time import sleep
 
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 from pandora.host_grpc import Host
 from pandora_experimental.hid_grpc import HID
 from pandora_experimental.hid_pb2 import HID_REPORT_TYPE_OUTPUT
@@ -30,6 +31,10 @@ class HIDProxy(ProfileProxy):
         self.host = Host(channel)
         self.rootcanal = rootcanal
         self.connection = None
+
+    def test_started(self, test: str, description: str, pts_addr: bytes):
+        self.rootcanal.select_pts_dongle(Dongle.INTEL_BE200)
+        return "OK"
 
     @assert_description
     def TSC_MMI_iut_enable_connection(self, pts_addr: bytes, **kwargs):
@@ -65,10 +70,10 @@ class HIDProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
-    def TSC_MMI_iut_disable_connection(self, pts_addr: bytes, **kwargs):
+    @match_description
+    def TSC_MMI_iut_disable_connection(self, test: str, pts_addr: bytes, **kwargs):
         """
-        Disable the connection using the Implementation UnderTest (IUT).
+        Disable the connection using the Implementation UnderTest ?\(IUT\).
 
         Note:
         The IUT may either disconnect the Interupt Control Channels or send a
@@ -76,8 +81,13 @@ class HIDProxy(ProfileProxy):
         the channels.
         """
 
-        self.host.Disconnect(connection=self.connection)
-        self.connection = None
+        if test in ["HID/HOS/HCR/BV-03-C"]:
+            # For the tests listed above, the PTS expects a virtual cable
+            # unplug event.
+            self.hid.VirtualCableUnplugHost(address=pts_addr)
+        else:
+            self.host.Disconnect(connection=self.connection)
+            self.connection = None
 
         return "OK"
 
@@ -178,11 +188,7 @@ class HIDProxy(ProfileProxy):
         either the PTS or IUT in an RF sheild box.
         """
 
-        def disconnect():
-            sleep(2)
-            self.rootcanal.move_out_of_range()
-
-        Thread(target=disconnect).start()
+        self.rootcanal.move_out_of_range()
 
         return "OK"
 
@@ -199,5 +205,81 @@ class HIDProxy(ProfileProxy):
             self.connection = self.host.Connect(address=pts_addr).connection
 
         Thread(target=connect).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_delete_pairing_iut(self, **kwargs):
+        """
+        Delete the pairing with the PTS using the Implementation Under Test
+        (IUT), then click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_tester_disable_connection(self, **kwargs):
+        """
+        Place the Implementation Under Test (IUT) in a state which will allow
+        the PTS to perform an HID disconnect, then click Ok.
+
+        Note:  If the IUT
+        supports a Virtual Cable, the PTS weill send a Virtual Cable Unplug
+        (VCU) and wait for the IUT to disconnect the channels.  If the IUT does
+        not support Virtual Cables, then the PTS will disconnect both channels.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_iut_boot_mode_enable(self, **kwargs):
+        """
+        Click Ok, then enable boot mode on the Implementation Under Test (IUT).
+        """
+
+        return "OK"
+
+    @assert_description
+    def _mmi_20120(self, pts_addr: bytes, **kwargs):
+        """
+        Please initiate a GATT connection over BR/EDR to the PTS.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can initiate GATT
+        connect request over BR/EDR to PTS.
+        """
+
+        self.rootcanal.move_in_range()
+        self.connection = self.host.Connect(address=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def _mmi_20000(self, pts_addr: bytes, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept GATT connect
+        request from PTS.
+        """
+
+        def wait_connection():
+            self.rootcanal.move_in_range()
+            self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        Thread(target=wait_connection).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_iut_virtual_unplug_connection(self, pts_addr: bytes, **kwargs):
+        """
+        Click Ok, then send a Virtual Cable Unplug (VCU) from the Implementation
+        Under Test (IUT), and wait for the PTS to disconnect the Interrrupt and
+        then the control channels.
+        """
+
+        self.hid.VirtualCableUnplugHost(address=pts_addr)
 
         return "OK"

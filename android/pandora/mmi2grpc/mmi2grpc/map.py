@@ -15,7 +15,7 @@
 
 from typing import Optional
 
-from mmi2grpc._helpers import assert_description
+from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 from pandora.host_grpc import Host
 from pandora.host_pb2 import Connection
@@ -74,14 +74,14 @@ class MAPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
-    def TSC_OBEX_MMI_iut_initiate_slc_connect(self, **kwargs):
+    @match_description
+    def TSC_OBEX_MMI_iut_initiate_slc_connect(self, pts_addr: bytes, **kwargs):
         """
         Take action to create an l2cap channel or rfcomm channel for an OBEX
         connection.
 
         Note:
-        Service Name: MAP-MNS
+        (Service Name: MAP-MNS|MASInstanceID: 0)
         """
 
         return "OK"
@@ -187,3 +187,32 @@ class MAPProxy(ProfileProxy):
         min_sms_count = 2  # Few test cases requires minimum 2 sms to pass
         for _ in range(min_sms_count):
             self.map_profile.SendSMS()
+
+    @assert_description
+    def TSC_OBEX_MMI_iut_accept_slc_connect_rfcomm(self, test: str, pts_addr: bytes, **kwargs):
+        """
+         Please accept the rfcomm channel connection for an OBEX connection.
+        """
+
+        if test in [
+            "MAP/MSE/GOEP/BC/BV-01-C",
+            "MAP/MSE/GOEP/BC/BV-03-C",
+            #"MAP/MSE/MMN/BV-02-I",
+        ]:
+            if self.connection is None:
+                self.os.SetAccessPermission(address=pts_addr, access_type=ACCESS_MESSAGE)
+                self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def _mmi_20000(self, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept GATT connect
+        request from PTS.
+        """
+
+        return "OK"

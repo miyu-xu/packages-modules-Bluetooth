@@ -18,8 +18,9 @@ from typing import Optional
 
 from grpc import RpcError
 from mmi2grpc._audio import AudioSignal
-from mmi2grpc._helpers import assert_description
+from mmi2grpc._helpers import normalize, assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 from pandora.a2dp_grpc import A2DP
 from pandora.a2dp_pb2 import Sink, Source
 from pandora.host_grpc import Host
@@ -39,13 +40,17 @@ class AVRCPProxy(ProfileProxy):
     sink: Optional[Sink] = None
     source: Optional[Source] = None
 
-    def __init__(self, channel):
+    def __init__(self, channel, rootcanal):
         super().__init__(channel)
 
         self.host = Host(channel)
         self.a2dp = A2DP(channel)
         self.avrcp = AVRCP(channel)
         self.mediaplayer = MediaPlayer(channel)
+        self.rootcanal = rootcanal
+
+        print("Selecting the INTEL_BE200 dongle")
+        self.rootcanal.select_pts_dongle(Dongle.INTEL_BE200)
 
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
@@ -61,7 +66,9 @@ class AVRCPProxy(ProfileProxy):
         the IUT connects to PTS to establish pairing.
 
         """
-        self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        self.connection = self.connection or self.host.WaitConnection(address=pts_addr).connection
+
         if ("TG" in test and "TG/VLH" not in test) or "CT/VLH" in test:
             try:
                 self.source = self.a2dp.WaitSource(connection=self.connection).source
@@ -177,7 +184,9 @@ class AVRCPProxy(ProfileProxy):
         still having problems pairing with PTS, try running a test case where
         the IUT connects to PTS to establish pairing.
         """
-        self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        self.connection = self.connection or self.host.WaitConnection(address=pts_addr).connection
+
         try:
             self.sink = self.a2dp.WaitSink(connection=self.connection).sink
         except RpcError:
@@ -345,22 +354,38 @@ class AVRCPProxy(ProfileProxy):
         """
         return "OK"
 
-    @assert_description
-    def TSC_AVCTP_mmi_register_MessageInd_CB_TG(self, **kwargs):
-        """
-        Using the Upper Tester register the function MessageInd_CBTest_System
-        for callback on the AVCT_MessageRec_Ind event by sending an
-        AVCT_EventRegistration command to the IUT with the following parameter
-        values:
-           * Event = AVCT_MessageRec_Ind
-           * Callback =
-        MessageInd_CBTest_System
-           * PID = PIDTest_System
+    def TSC_AVCTP_mmi_register_MessageInd_CB_TG(self, description: str, pts_addr: bytes, **kwargs):
+        # The meaning of this MMI has fully changed between
+        # versions 8.4 and 8.7 of the PTS tool.
 
-        Press 'OK' to
-        continue once the IUT has responded.
-        """
-        #TODO: Remove trailing space post "values:" from docstring description
+        if normalize(description) == normalize(
+            """
+            Using the Upper Tester register the function MessageInd_CBTest_System
+            for callback on the AVCT_MessageRec_Ind event by sending an
+            AVCT_EventRegistration command to the IUT with the following parameter
+            values:
+               * Event = AVCT_MessageRec_Ind
+               * Callback = MessageInd_CBTest_System
+               * PID = PIDTest_System
+
+            Press 'OK' to
+            continue once the IUT has responded.
+            """
+        ):
+            pass
+
+        elif normalize(description) == normalize(
+            """
+            Action: Place the IUT in connectable mode.
+
+            Description : PTS requires that the IUT be in connectable mode.The PTS
+            will attempt to establish an ACL connection.
+            """
+        ):
+            self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        else:
+          assert False, f"unmatched description: {normalize(description)}"
 
         return "OK"
 
@@ -372,8 +397,14 @@ class AVRCPProxy(ProfileProxy):
         Action: Create an audio or video
         connection with PTS.
         """
-        self.connection = self.host.Connect(address=pts_addr).connection
-        if ("TG" in test and "TG/VLH" not in test) or "CT/VLH" in test:
+
+        self.connection = self.connection or self.host.Connect(address=pts_addr).connection
+
+        if test in [
+            "AVRCP/CT/CGSIT/SFC/BV-01-C",
+        ]:
+            self.source = self.a2dp.OpenSource(connection=self.connection).source
+        elif ("TG" in test and "TG/VLH" not in test) or "CT/VLH" in test:
             self.source = self.a2dp.OpenSource(connection=self.connection).source
 
         return "OK"
@@ -748,14 +779,26 @@ class AVRCPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
-    def TSC_AVRCP_mmi_iut_reject_get_item_attributes_invalid_uid_counter(self, **kwargs):
-        """
-        PTS has sent a Get Item Attributes command with an invalid UID Counter.
-        The IUT must respond with the error code: UID Changed (0x05).
-        Description: Verify that the IUT can properly reject a Get Item
-        Attributes command that contains an invalid UID Counter.
-        """
+    def TSC_AVRCP_mmi_iut_reject_get_item_attributes_invalid_uid_counter(self, description: str, **kwargs):
+        if normalize(description) == normalize(
+            """
+            PTS has sent a Get Item Attributes command with an invalid UID Counter.
+            The IUT must respond with the error code: UID Changed (0x05).
+            Description: Verify that the IUT can properly reject a Get Item
+            Attributes command that contains an invalid UID Counter.
+            """
+        ):
+            pass
+
+        elif normalize(description) == normalize(
+            """
+            Take action if necessary to initiate a Delay Reporting command.
+            """
+        ):
+            pass
+
+        else:
+          assert False, f"unmatched description: {description}"
 
         return "OK"
 
@@ -820,14 +863,32 @@ class AVRCPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
-    def TSC_AVRCP_mmi_iut_reject_register_notification_notify_invalid_event_id(self, **kwargs):
-        """
-        PTS has sent a Register Notification command with an invalid Event Id.
-        The IUT must respond with the error code: Invalid Parameter (0x01).
-        Description: Verify that the IUT can properly reject a Register
-        Notification command that contains an invalid event Id.
-        """
+    def TSC_AVRCP_mmi_iut_reject_register_notification_notify_invalid_event_id(self, description: str, pts_addr: bytes, **kwargs):
+        # The meaning of this MMI has fully changed between
+        # versions 8.4 and 8.7 of the PTS tool.
+
+        if normalize(description) == normalize(
+            """
+            PTS has sent a Register Notification command with an invalid Event Id.
+            The IUT must respond with the error code: Invalid Parameter (0x01).
+            Description: Verify that the IUT can properly reject a Register
+            Notification command that contains an invalid event Id.
+            """
+        ):
+            pass
+
+        elif normalize(description) == normalize(
+            """
+            Action: Place the IUT in connectable mode.
+
+            Description : PTS requires that the IUT be in connectable mode.The PTS
+            will attempt to establish an ACL connection.
+            """
+        ):
+            self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        else:
+            assert False, f"unmatched description: {description}"
 
         return "OK"
 
@@ -1110,14 +1171,6 @@ class AVRCPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
-    def TSC_AVRCP_mmi_iut_reject_invalid_get_img(self, **kwargs):
-        """
-        Take action to reject the invalid 'get-img' request sent by the tester.
-        """
-
-        return "OK"
-
-    @assert_description
     def TSC_BIP_MMI_iut_accept_get_img_properties(self, **kwargs):
         """
          Take action to accept the GetImgProperties operation from the tester.
@@ -1149,5 +1202,129 @@ class AVRCPProxy(ProfileProxy):
         """
         self.mediaplayer.UpdateQueue()
         self.mediaplayer.PlayUpdated()
+
+        return "OK"
+
+    def TSC_AVRCP_mmi_iut_reject_invalid_get_img(self, description: str, pts_addr: bytes, **kwargs):
+        # The meaning of this MMI has fully changed between
+        # versions 8.4 and 8.7 of the PTS tool.
+
+        if normalize(description) == normalize(
+            """
+            Take action to reject the invalid 'get-img' request sent by the tester.
+            """
+        ):
+            pass
+
+        elif normalize(description) == normalize(
+            """
+            Using the Implementation Under Test(IUT), initiate ACL Create Connection
+            Request to the PTS.
+
+            Description : The Implementation Under Test(IUT)
+            should create ACL connection request to PTS.
+            """
+        ):
+            self.connection = self.connection or self.host.Connect(address=pts_addr).connection
+
+        else:
+            assert False, f"unmatched description: {description}"
+
+        return "OK"
+
+    @assert_description
+    def _mmi_20000(self, pts_addr: bytes, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept GATT connect
+        request from PTS.
+        """
+
+        self.connection = self.connection or self.host.WaitConnection(address=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def _mmi_49(self, pts_addr: bytes, **kwargs):
+        """
+        Using the Implementation Under Test(IUT), initiate ACL Create Connection
+        Request to the PTS.
+
+        Description : The Implementation Under Test(IUT)
+        should create ACL connection request to PTS.
+        """
+
+        self.connection = self.host.Connect(address=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVCTP_mmi_TC_CT_CCM_BI_01_C(self, **kwargs):
+        """
+        Take action if necessary to accept the Delay Reportl command from the
+        tester.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVCTP_mmi_iut_initiate_connect_control(self, **kwargs):
+        """
+        Take action to initiate a control channel connection by sending a
+        connection request to the PTS from the IUT.
+
+        Description: The Implementation Under Test (IUT) should initiate
+        a connection setup by sending a connection request to PTS.
+        """
+
+        return "OK"
+
+    @assert_description
+    def _mmi_83(self, **kwargs):
+        """
+        Delete the link key with PTS on the Implementation Under Test (IUT), and
+        then click OK to continue...
+
+        Description: For end product, this can be
+        achieved by forgetting PTS from the IUT.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_user_delete_link_key(self, **kwargs):
+        """
+        Is the IUT capable of establishing connection to an unpaired device?
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVCTP_mmi_iut_initiate_disconnect_control(self, **kwargs):
+        """
+        Take action to disconnect the AVCTP control channel.
+
+        Description:
+        Disable the Bluetooth connection to PTS, turn off Bluetooth, or turn off
+        the IUT (Implementation Under Test).
+        """
+
+        if self.source:
+            self.a2dp.Close(source=self.source)
+            self.source = None
+
+        self.host.Disconnect(connection=self.connection)
+        self.connection = None
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_accept_register_notification_uids_changed_database_aware(self, **kwargs):
+        """
+        Take action if necessary to accept the Delay Reportl command from the
+        tester.
+        """
 
         return "OK"
