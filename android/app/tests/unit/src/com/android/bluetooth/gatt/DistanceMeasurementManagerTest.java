@@ -147,10 +147,6 @@ public class DistanceMeasurementManagerTest {
                         IDENTITY_ADDRESS,
                         RSSI_FREQUENCY_LOW,
                         DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
-        mDistanceMeasurementManager.onDistanceMeasurementStartFail(
-                IDENTITY_ADDRESS,
-                BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL,
-                DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         verify(mCallback)
                 .onStartFail(mDevice, BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL);
     }
