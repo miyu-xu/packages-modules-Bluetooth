@@ -100,11 +100,16 @@ class SMProxy(ProfileProxy):
         """
         Action: Place the IUT in connectable mode
         """
-        self.advertise = self.host.Advertise(
-            legacy=True,
-            connectable=True,
-            own_address_type=PUBLIC,
-        )
+
+        def advertise():
+            self.advertise = self.host.Advertise(
+                legacy=True,
+                connectable=True,
+                own_address_type=PUBLIC,
+            )
+            self.connection = self.advertise.next().connection
+
+        Thread(target=advertise).start()
 
         return "OK"
 
@@ -205,15 +210,26 @@ class SMProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
+    @match_description
     def _mmi_20117(self, **kwargs):
         """
-        Please start encryption using previously distributed key.
+        (Please start encryption using previously distributed key.|Please start encryption. Use previously distributed key if available.)
 
         Description:
-        Verify that the Implementation Under Test (IUT) can successfully start
-        and complete encryption with previously distributed key.
+        Verify that the Implementation Under Test \(IUT\) can successfully start
+        and complete encryption( with previously distributed key)?.
         """
+
+        return "OK"
+
+    @assert_description
+    def MMI_ASK_IUT_SEND_SECURITY_REQUEST(self, **kwargs):
+        """
+        Please send security request with MITM set to 0.
+        """
+
+        if self.connection:
+            self.security.Secure(connection=self.connection, le=LE_LEVEL3)
 
         return "OK"
 

@@ -306,13 +306,18 @@ class GATTProxy(ProfileProxy):
         services match one of these.
         """
         all_matches = re.findall("'([a0-Z9]*)'O", description)
+
+        print("YAYA all matches: " + ' || '.join(all_matches))
+
         found_services = 0
         for service in self.services:
+            print(f"YAYA service: {service}")
             for i in range(0, len(all_matches), 4):
                 if compareIncludedServices(service,\
                         (stringHandleToInt(all_matches[i])),\
                         stringHandleToInt(all_matches[i + 1]),\
                         formatUuid(all_matches[i + 3])):
+                    print("YAYA found 1")
                     found_services += 1
         assert found_services == (len(all_matches) / 4)
         return "Yes"

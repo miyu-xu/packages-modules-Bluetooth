@@ -22,7 +22,7 @@ from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._rootcanal import Dongle
 from pandora.host_grpc import Host
-from pandora.host_pb2 import RANDOM
+from pandora.host_pb2 import PUBLIC, RANDOM
 from pandora.security_grpc import Security
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
 from pandora_experimental.gatt_grpc import GATT
@@ -333,3 +333,39 @@ class HOGPProxy(ProfileProxy):
                 return str(event.passkey_entry_notification)
 
         assert False
+
+    @assert_description
+    def IUT_ACCEPT_CONNECTION(self, pts_addr: bytes, **kwargs):
+        """
+        Please prepare IUT into a connectable mode.
+
+        Description: Verify that
+        the Implementation Under Test (IUT) can accept GATT connect request from
+        PTS.
+        """
+
+        self.advertise = self.host.Advertise(legacy=True, connectable=True, own_address_type=PUBLIC)
+
+        return "OK"
+
+    @match_description
+    def IUT_INITIATE_DISCOVER_CHARACTERISTIC(self, **kwargs):
+        """
+        Please take action to discover the (Report Map|HID Information|HID Control Point|Battery Level|PnP ID) characteristic from the
+        (Human Interface Device|Battery Service|Device Information). Discover the primary service if needed.
+        Description: Verify that the Implementation Under Test \(IUT\) can send
+        Discover All Characteristics command.
+        """
+
+        return "OK"
+
+    @match_description
+    def USER_CONFIRM_SUPPORTED_CHARACTERISTIC(self, **kwargs):
+        """
+        Please verify that for each supported characteristic, attribute
+        handle/UUID pair\(s\) is returned to the upper tester..*
+        """
+
+        # TODO: Validate the characteristics listed in the test description.
+
+        return "OK"
