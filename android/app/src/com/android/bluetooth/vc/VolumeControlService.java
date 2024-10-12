@@ -32,9 +32,12 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElseGet;
 
 import android.annotation.RequiresPermission;
+import android.bluetooth.AudioInputControl;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
+import android.bluetooth.IAudioInputCallback;
 import android.bluetooth.IBluetoothCsipSetCoordinator;
 import android.bluetooth.IBluetoothLeAudio;
 import android.bluetooth.IBluetoothVolumeControl;
@@ -74,11 +77,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.function.Function;
 
 public class VolumeControlService extends ProfileService {
     private static final String TAG = VolumeControlService.class.getSimpleName();
@@ -107,7 +112,8 @@ public class VolumeControlService extends ProfileService {
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
             new HashMap<>();
-    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs = new HashMap<>();
+    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs =
+            new ConcurrentHashMap<>();
     private final Map<Integer, Integer> mGroupVolumeCache = new HashMap<>();
     private final Map<Integer, Boolean> mGroupMuteCache = new HashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceVolumeCache = new HashMap<>();
@@ -1693,6 +1699,20 @@ public class VolumeControlService extends ProfileService {
         }
 
         @Override
+        public void unregisterCallback(
+                IBluetoothVolumeControlCallback callback, AttributionSource source) {
+            requireNonNull(callback);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            postAndWait(service.mHandler, () -> service.unregisterCallback(callback));
+        }
+
+        @Override
         public void notifyNewRegisteredCallback(
                 IBluetoothVolumeControlCallback callback, AttributionSource source) {
             requireNonNull(callback);
@@ -1706,10 +1726,45 @@ public class VolumeControlService extends ProfileService {
             postAndWait(service.mHandler, () -> service.notifyNewRegisteredCallback(callback));
         }
 
+        private void validateBluetoothDevice(BluetoothDevice device) {
+            requireNonNull(device);
+            String address = device.getAddress();
+            if (!BluetoothAdapter.checkBluetoothAddress(address)) {
+                throw new IllegalArgumentException("Invalid address: " + address);
+            }
+        }
+
         @Override
-        public void unregisterCallback(
-                IBluetoothVolumeControlCallback callback, AttributionSource source) {
+        public List<AudioInputControl.Descriptor> getAudioInputControlPoints(
+                AttributionSource source, BluetoothDevice device) {
+            validateBluetoothDevice(device);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return Collections.emptyList();
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(device);
+            if (inputs == null) {
+                return Collections.emptyList();
+            }
+            return inputs.toAudioInputControlDescriptor(device);
+        }
+
+        private void validateAudioInputControlDescriptor(AudioInputControl.Descriptor descriptor) {
+            requireNonNull(descriptor);
+            validateBluetoothDevice(descriptor.mDevice);
+        }
+
+        @Override
+        public void registerAudioInputControlCallback(
+                IAudioInputCallback callback,
+                AudioInputControl.Descriptor descriptor,
+                AttributionSource source) {
             requireNonNull(callback);
+            validateAudioInputControlDescriptor(descriptor);
 
             VolumeControlService service = getService(source);
             if (service == null) {
@@ -1717,7 +1772,124 @@ public class VolumeControlService extends ProfileService {
             }
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            postAndWait(service.mHandler, () -> service.unregisterCallback(callback));
+
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(descriptor.mDevice);
+            if (inputs == null) {
+                return;
+            }
+
+            inputs.registerCallback(descriptor.mInstanceId, callback);
+        }
+
+        @Override
+        public void unregisterAudioInputControlCallback(
+                IAudioInputCallback callback,
+                AudioInputControl.Descriptor descriptor,
+                AttributionSource source) {
+            requireNonNull(callback);
+            validateAudioInputControlDescriptor(descriptor);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(descriptor.mDevice);
+            if (inputs == null) {
+                return;
+            }
+
+            inputs.unregisterCallback(descriptor.mInstanceId, callback);
+        }
+
+        @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+        private <R> R aics_getter(
+                AudioInputControl.Descriptor descriptor,
+                AttributionSource source,
+                Function<VolumeControlInputDescriptor, R> fn,
+                R defaultValue) {
+            validateAudioInputControlDescriptor(descriptor);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return defaultValue;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(descriptor.mDevice);
+            if (inputs == null) {
+                return defaultValue;
+            }
+
+            return fn.apply(inputs);
+        }
+
+        @Override
+        public int getAudioInputType(
+                AudioInputControl.Descriptor descriptor, AttributionSource source) {
+            return aics_getter(
+                    descriptor,
+                    source,
+                    i -> i.getType(descriptor.mInstanceId),
+                    AudioInputType.UNSPECIFIED);
+        }
+
+        @Override
+        public int getAudioInputStatus(
+                AudioInputControl.Descriptor descriptor, AttributionSource source) {
+            return aics_getter(
+                    descriptor,
+                    source,
+                    i -> i.getStatus(descriptor.mInstanceId),
+                    (int) AudioInputStatus.INACTIVE);
+        }
+
+        @Override
+        public int getAudioInputGainSettingUnit(
+                AudioInputControl.Descriptor descriptor, AttributionSource source) {
+            return aics_getter(
+                    descriptor, source, i -> i.getGainSettingUnit(descriptor.mInstanceId), 0);
+        }
+
+        @Override
+        public int getAudioInputGainSettingMin(
+                AudioInputControl.Descriptor descriptor, AttributionSource source) {
+            return aics_getter(
+                    descriptor, source, i -> i.getGainSettingMax(descriptor.mInstanceId), 0);
+        }
+
+        @Override
+        public int getAudioInputGainSettingMax(
+                AudioInputControl.Descriptor descriptor, AttributionSource source) {
+            return aics_getter(
+                    descriptor, source, i -> i.getGainSettingMin(descriptor.mInstanceId), 0);
+        }
+
+        @Override
+        public String getAudioInputDescription(
+                AudioInputControl.Descriptor descriptor, AttributionSource source) {
+            return aics_getter(
+                    descriptor, source, i -> i.getDescription(descriptor.mInstanceId), "");
+        }
+
+        @Override
+        public boolean setAudioInputDescription(
+                AudioInputControl.Descriptor descriptor,
+                AttributionSource source,
+                String description) {
+            requireNonNull(description);
+            // TODO implement
+            return aics_getter(
+                    descriptor,
+                    source,
+                    i -> {
+                        i.setDescription(descriptor.mInstanceId, description);
+                        return false;
+                    },
+                    false);
         }
     }
 
