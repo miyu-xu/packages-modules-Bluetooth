@@ -256,3 +256,26 @@ class PANProxy(ProfileProxy):
         """
 
         return "OK"
+
+    @assert_description
+    def _mmi_20000(self, pts_addr: bytes, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept GATT connect
+        request from PTS.
+        """
+
+        self.connection = self.host.WaitConnection(address=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def TSC_PAN_mmi_tester1_initiate_general_ethernet_packets_FILTER_BV_12_C(self, **kwargs):
+        """
+        Please take acition to forward the general ethernet packet from the
+        device with address matched to TSPX_Tester2_address
+        """
+
+        return "OK"
