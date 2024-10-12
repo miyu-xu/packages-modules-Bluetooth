@@ -30,16 +30,16 @@ class VolumeControlInputDescriptor {
     VolumeControlInputDescriptor(int numberOfExternalInputs) {
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         for (int i = 0; i < numberOfExternalInputs; i++) {
-            mVolumeInputs[i] = new Descriptor();
+            mVolumeInputs[i] = new Descriptor(i);
         }
     }
 
     private static class Descriptor {
-        int mStatus = AudioInputStatus.INACTIVE;
+        // int mStatus = AudioInputStatus.INACTIVE;
 
-        int mType = AudioInputType.UNSPECIFIED;
+        // int mType = AudioInputType.UNSPECIFIED;
 
-        int mGainValue = 0;
+        // int mGainValue = 0;
 
         /* See AICS 1.0 - 3.1.3. Gain_Mode field
          * The Gain_Mode field shall be set to a value that reflects whether gain modes are manual
@@ -65,6 +65,20 @@ class VolumeControlInputDescriptor {
         int mGainSettingsMinSetting = 0;
 
         String mDescription = "";
+
+        final int mIndex;
+
+        Descriptor(int index) {
+            mIndex = index;
+        }
+
+    }
+
+    List<AudioInputControlParcel> toAudioInputControlParcel() {
+                    // return IntStream.range(0, inputs.size())
+            //         .mapToObj(i -> new AudioInputControlParcel(device, i))
+            //         .collect(Collectors.toList());
+
     }
 
     int size() {
