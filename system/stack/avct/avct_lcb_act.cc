@@ -33,7 +33,9 @@
 #include "internal_include/bt_target.h"
 #include "osi/include/allocator.h"
 #include "stack/avct/avct_defs.h"
+#include "stack/include/avct_api.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/l2cap_interface.h"
 
@@ -190,10 +192,10 @@ void avct_lcb_chnl_open(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* /* p_data */) {
   p_lcb->ch_state = AVCT_CH_CONN;
   if (com::android::bluetooth::flags::use_encrypt_req_for_av()) {
     p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
-            AVCT_PSM, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
+            BT_PSM_AVCTP, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
   } else {
     p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
-            AVCT_PSM, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE);
+            BT_PSM_AVCTP, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE);
   }
   if (p_lcb->ch_lcid == 0) {
     /* if connect req failed, send ourselves close event */
@@ -239,7 +241,7 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
     bool is_originater = false;
 
     for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
-      if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb) && p_ccb->cc.role == AVCT_INT) {
+      if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb) && p_ccb->cc.role == AVCT_ROLE_INITIATOR) {
         log::verbose("find int handle {}", i);
         is_originater = true;
       }
@@ -250,11 +252,11 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
       /* if ccb allocated and */
       /** M: to avoid avctp collision, make sure the collision can be checked @{
        */
-      log::verbose("{} ccb to lcb, alloc {}, lcb {}, role {}, pid 0x{:x}", i, p_ccb->allocated,
-                   fmt::ptr(p_ccb->p_lcb), p_ccb->cc.role, p_ccb->cc.pid);
+      log::verbose("{} ccb to lcb, alloc {}, lcb {}, role {}, pid 0x{:04x}", i, p_ccb->allocated,
+                   fmt::ptr(p_ccb->p_lcb), avct_role_text(p_ccb->cc.role), p_ccb->cc.pid);
       if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
         /* if bound to this lcb send connect confirm event */
-        if (p_ccb->cc.role == AVCT_INT) {
+        if (p_ccb->cc.role == AVCT_ROLE_INITIATOR) {
           /** @} */
           bind = true;
           if (!stack::l2cap::get_interface().L2CA_SetTxPriority(p_lcb->ch_lcid,
@@ -269,7 +271,7 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
          */
         /** M: to avoid avctp collision, make sure the collision can be checked
            @{ */
-        else if ((p_ccb->cc.role == AVCT_ACP) && avct_lcb_has_pid(p_lcb, p_ccb->cc.pid)) {
+        else if ((p_ccb->cc.role == AVCT_ROLE_ACCEPTOR) && avct_lcb_has_pid(p_lcb, p_ccb->cc.pid)) {
           /* bind ccb to lcb and send connect ind event  */
           if (is_originater) {
             log::error("int exist, unbind acp handle:{}", i);
@@ -305,7 +307,7 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
         }
         /* if unbound acceptor and lcb doesn't already have a ccb for this PID
          */
-        else if ((p_ccb->p_lcb == NULL) && (p_ccb->cc.role == AVCT_ACP) &&
+        else if ((p_ccb->p_lcb == NULL) && (p_ccb->cc.role == AVCT_ROLE_ACCEPTOR) &&
                  (avct_lcb_has_pid(p_lcb, p_ccb->cc.pid) == NULL)) {
           /* bind ccb to lcb and send connect ind event */
           bind = true;
@@ -369,7 +371,7 @@ void avct_lcb_close_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* /* p_data */) {
 
   for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
     if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
-      if (p_ccb->cc.role == AVCT_INT) {
+      if (p_ccb->cc.role == AVCT_ROLE_INITIATOR) {
         avct_ccb_dealloc(p_ccb, AVCT_DISCONNECT_IND_EVT, 0, &p_lcb->peer_addr);
       } else {
         p_ccb->p_lcb = NULL;
@@ -406,7 +408,7 @@ void avct_lcb_close_cfm(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
         event = AVCT_DISCONNECT_IND_EVT;
       }
 
-      if (p_ccb->cc.role == AVCT_INT) {
+      if (p_ccb->cc.role == AVCT_ROLE_INITIATOR) {
         avct_ccb_dealloc(p_ccb, event, p_data->result, &p_lcb->peer_addr);
       } else {
         p_ccb->p_lcb = NULL;
@@ -714,7 +716,7 @@ void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   }
 
   /* PID not found; drop message */
-  log::warn("No ccb for PID={:x}", pid);
+  log::warn("No ccb for PID=0x{:04x}", pid);
   osi_free_and_reset((void**)&p_data->p_buf);
 
   /* if command send reject */

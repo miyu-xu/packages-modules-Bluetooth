@@ -23,18 +23,15 @@
  *
  ******************************************************************************/
 
-#define LOG_TAG "avctp"
-
 #include <bluetooth/log.h>
 #include <string.h>
 
 #include "avct_api.h"
 #include "avct_int.h"
 #include "device/include/device_iot_config.h"
+#include "include/macros.h"
 #include "internal_include/bt_target.h"
-#include "os/log.h"
 #include "osi/include/allocator.h"
-#include "osi/include/osi.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -54,6 +51,16 @@ const char* const avct_lcb_evt_str[] = {"UL_BIND_EVT",   "UL_UNBIND_EVT", "UL_MS
 
 /* lcb state machine states */
 enum { AVCT_LCB_IDLE_ST, AVCT_LCB_OPENING_ST, AVCT_LCB_OPEN_ST, AVCT_LCB_CLOSING_ST };
+
+std::string avct_sm_state_text(const int& state) {
+  switch (state) {
+    CASE_RETURN_STRING(AVCT_LCB_IDLE_ST);
+    CASE_RETURN_STRING(AVCT_LCB_OPENING_ST);
+    CASE_RETURN_STRING(AVCT_LCB_OPEN_ST);
+    CASE_RETURN_STRING(AVCT_LCB_CLOSING_ST);
+  }
+  RETURN_UNKNOWN_TYPE_STRING(int, state);
+}
 
 /* state machine action enumeration list */
 enum {
@@ -198,22 +205,18 @@ void avct_lcb_event(tAVCT_LCB* p_lcb, uint8_t event, tAVCT_LCB_EVT* p_data) {
  *
  ******************************************************************************/
 void avct_bcb_event(tAVCT_BCB* p_bcb, uint8_t event, tAVCT_LCB_EVT* p_data) {
-  tAVCT_LCB_ST_TBL state_table;
-  uint8_t action;
-  int i;
-
-  log::verbose("BCB lcb={} event={} state={}", p_bcb->allocated, avct_lcb_evt_str[event],
-               avct_lcb_st_str[p_bcb->state]);
+  log::info("BCB p_bcb_allocated={} event={} state={}", p_bcb->allocated, avct_lcb_evt_str[event],
+            avct_lcb_st_str[p_bcb->state]);
 
   /* look up the state table for the current state */
-  state_table = avct_lcb_st_tbl[p_bcb->state];
+  tAVCT_LCB_ST_TBL state_table = avct_lcb_st_tbl[p_bcb->state];
 
   /* set next state */
   p_bcb->state = state_table[event][AVCT_LCB_NEXT_STATE];
 
   /* execute action functions */
-  for (i = 0; i < AVCT_LCB_ACTIONS; i++) {
-    action = state_table[event][i];
+  for (int i = 0; i < AVCT_LCB_ACTIONS; i++) {
+    uint8_t action = state_table[event][i];
     if (action != AVCT_LCB_IGNORE) {
       (*avct_bcb_action[action])(p_bcb, p_data);
     } else {

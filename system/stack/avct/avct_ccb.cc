@@ -23,8 +23,6 @@
  *
  ******************************************************************************/
 
-#define LOG_TAG "avctp"
-
 #include <bluetooth/log.h>
 #include <string.h>
 
