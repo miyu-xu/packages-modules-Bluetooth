@@ -747,6 +747,28 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         }
     }
 
+    /**
+     * @return The list of {@code AudioInputControl} associated with a device
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_AICS_API)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @NonNull List<AudioInputControl> getAudioInputControlPoints(
+            @NonNull BluetoothDevice device) {
+        requireNonNull(device);
+        Log.d(TAG, "getAudioInputControlPoints(" + device + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.d(TAG, "Proxy not attached to service" + Log.getStackTraceString(new Throwable()));
+        } else if (mAdapter.isEnabled() && isValidDevice(device)) {
+            return AudioInputControl.getAudioInputControlPoints(
+                    service, mAttributionSource, device);
+        }
+        return Collections.emptyList();
+    }
+
     private static boolean isValidDevice(@Nullable BluetoothDevice device) {
         return device != null && BluetoothAdapter.checkBluetoothAddress(device.getAddress());
     }
