@@ -16,12 +16,15 @@
 
 package com.android.bluetooth.vc;
 
+import android.bluetooth.AudioInputControl;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
 
 import bluetooth.constants.AudioInputType;
 import bluetooth.constants.aics.AudioInputStatus;
+
+import java.util.List;
 
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
@@ -31,7 +34,7 @@ class VolumeControlInputDescriptor {
     VolumeControlInputDescriptor(int numberOfExternalInputs) {
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         for (int i = 0; i < numberOfExternalInputs; i++) {
-            mVolumeInputs[i] = new Descriptor();
+            mVolumeInputs[i] = new Descriptor(i);
         }
     }
 
@@ -66,6 +69,21 @@ class VolumeControlInputDescriptor {
         int mGainSettingsMinSetting = 0;
 
         String mDescription = "";
+
+        final int mIndex;
+
+        Descriptor(int index) {
+            mIndex = index;
+            Log.e(TAG, "index=" + mIndex);
+        }
+    }
+
+    List<AudioInputControl.Descriptor> toAudioInputControlDescriptor() {
+        return null;
+        // return IntStream.range(0, inputs.size())
+        //         .mapToObj(i -> new AudioInputControlParcel(device, i))
+        //         .collect(Collectors.toList());
+
     }
 
     int size() {

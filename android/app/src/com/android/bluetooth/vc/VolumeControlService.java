@@ -31,6 +31,8 @@ import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.RequiresPermission;
+import android.bluetooth.AudioInputControl;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
@@ -73,6 +75,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -106,7 +109,8 @@ public class VolumeControlService extends ProfileService {
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
             new HashMap<>();
-    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs = new HashMap<>();
+    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs =
+            new ConcurrentHashMap<>();
     private final Map<Integer, Integer> mGroupVolumeCache = new HashMap<>();
     private final Map<Integer, Boolean> mGroupMuteCache = new HashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceVolumeCache = new HashMap<>();
@@ -1685,6 +1689,74 @@ public class VolumeControlService extends ProfileService {
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             postAndWait(service.mHandler, () -> service.notifyNewRegisteredCallback(callback));
+        }
+
+        private void validateBluetoothDevice(BluetoothDevice device) {
+            requireNonNull(device);
+            String address = device.getAddress();
+            if (!BluetoothAdapter.checkBluetoothAddress(address)) {
+                throw new IllegalArgumentException("Invalid address: " + address);
+            }
+        }
+
+        @Override
+        public List<AudioInputControl.Descriptor> getAudioInputControlPoints(
+                AttributionSource source, BluetoothDevice device) {
+            requireNonNull(device);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return Collections.emptyList();
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(device);
+            if (inputs == null) {
+                return Collections.emptyList();
+            }
+            return inputs.toAudioInputControlDescriptor();
+        }
+
+        private void validateAudioInputControlDescriptor(AudioInputControl.Descriptor descriptor) {
+            requireNonNull(descriptor);
+            validateBluetoothDevice(descriptor.mDevice);
+        }
+
+        @Override
+        public int getAudioInputType(
+                AttributionSource source, AudioInputControl.Descriptor descriptor) {
+            validateAudioInputControlDescriptor(descriptor);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return AudioInputType.UNSPECIFIED;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(descriptor.mDevice);
+            if (inputs == null) {
+                return AudioInputType.UNSPECIFIED;
+            }
+            return inputs.getType(descriptor.mInstanceId);
+        }
+
+        @Override
+        public int getAudioInputStatus(
+                AttributionSource source, AudioInputControl.Descriptor descriptor) {
+            validateAudioInputControlDescriptor(descriptor);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return AudioInputStatus.INACTIVE;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            VolumeControlInputDescriptor inputs = service.mAudioInputs.get(descriptor.mDevice);
+            if (inputs == null) {
+                return AudioInputStatus.INACTIVE;
+            }
+            return inputs.getStatus(descriptor.mInstanceId);
         }
 
         @Override
