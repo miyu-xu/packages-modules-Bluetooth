@@ -16,14 +16,24 @@
 
 package com.android.bluetooth.vc;
 
+import static com.android.bluetooth.Utils.RemoteExceptionIgnoringConsumer;
+
+import android.bluetooth.AudioInputControl;
+import android.bluetooth.AudioInputControl.GainMode;
+import android.bluetooth.AudioInputControl.Mute;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.IAudioInputCallback;
+import android.os.RemoteCallbackList;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
 
 import bluetooth.constants.AudioInputType;
 import bluetooth.constants.aics.AudioInputStatus;
-import bluetooth.constants.aics.GainMode;
-import bluetooth.constants.aics.Mute;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
@@ -34,20 +44,20 @@ class VolumeControlInputDescriptor {
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         // Stack delivers us number of audio inputs. ids are countinous from [0;n[
         for (int i = 0; i < numberOfExternalInputs; i++) {
-            mVolumeInputs[i] = new Descriptor();
+            mVolumeInputs[i] = new Descriptor(i);
         }
     }
 
     private static class Descriptor {
-        int mStatus = AudioInputStatus.INACTIVE;
+        @AudioInputControl.Status int mStatus = AudioInputStatus.INACTIVE;
 
-        int mType = AudioInputType.UNSPECIFIED;
+        @AudioInputControl.Type int mType = AudioInputType.UNSPECIFIED;
 
         int mGainSetting = 0;
 
-        int mGainMode = GainMode.MANUAL_ONLY;
+        @GainMode int mGainMode = bluetooth.constants.aics.GainMode.MANUAL_ONLY;
 
-        int mMute = Mute.DISABLED;
+        @Mute int mMute = bluetooth.constants.aics.Mute.DISABLED;
 
         /* See AICS 1.0
          * The Gain_Setting (mGainSetting) field is a signed value for which a single increment or
@@ -57,10 +67,58 @@ class VolumeControlInputDescriptor {
          */
         int mGainSettingsUnits = 0;
 
-        int mGainSettingsMaxSetting = 0;
-        int mGainSettingsMinSetting = 0;
+        int mGainSettingsMax = 0;
+        int mGainSettingsMin = 0;
 
         String mDescription = "";
+
+        final int mIndex;
+
+        private final RemoteCallbackList<IAudioInputCallback> mCallbacks =
+                new RemoteCallbackList<>();
+
+        Descriptor(int index) {
+            mIndex = index;
+        }
+
+        void registerCallback(IAudioInputCallback callback) {
+            mCallbacks.register(callback);
+        }
+
+        void unregisterCallback(IAudioInputCallback callback) {
+            mCallbacks.unregister(callback);
+        }
+
+        // need to be synchronized to prevent calling beginBroadcast while the first is not finished
+        synchronized void broadcast(
+                String logAction, RemoteExceptionIgnoringConsumer<IAudioInputCallback> action) {
+            final int itemCount = mCallbacks.beginBroadcast();
+            Log.d(TAG, "Broadcasting " + logAction + "() to " + itemCount + " receivers.");
+            for (int i = 0; i < itemCount; i++) {
+                action.accept(mCallbacks.getBroadcastItem(i));
+            }
+            mCallbacks.finishBroadcast();
+        }
+    }
+
+    List<AudioInputControl.Descriptor> toAudioInputControlDescriptor(BluetoothDevice device) {
+        return Arrays.stream(mVolumeInputs)
+                .map(
+                        i ->
+                                new AudioInputControl.Descriptor(
+                                        device,
+                                        i.mIndex
+                                        // i.mDescription,
+                                        // i.mType,
+                                        // i.mStatus,
+                                        // new AudioInputControl.Descriptor.AudioInputState(
+                                        //         i.mGainSetting, i.mMute, i.mGainMode),
+                                        // new AudioInputControl.Descriptor.GainSettingProperties(
+                                        //         i.mGainSettingsUnits,
+                                        //         i.mGainSettingsMin,
+                                        //         i.mGainSettingsMax)
+                                        ))
+                .collect(Collectors.toList());
     }
 
     int size() {
@@ -75,9 +133,20 @@ class VolumeControlInputDescriptor {
         return true;
     }
 
+    void registerCallback(int id, IAudioInputCallback callback) {
+        if (!isValidId(id)) return;
+        mVolumeInputs[id].registerCallback(callback);
+    }
+
+    void unregisterCallback(int id, IAudioInputCallback callback) {
+        if (!isValidId(id)) return;
+        mVolumeInputs[id].unregisterCallback(callback);
+    }
+
     void setStatus(int id, int status) {
         if (!isValidId(id)) return;
         mVolumeInputs[id].mStatus = status;
+        mVolumeInputs[id].broadcast("onGainStatus", (c) -> c.onStatusChanged(status));
     }
 
     int getStatus(int id) {
@@ -88,6 +157,7 @@ class VolumeControlInputDescriptor {
     void setDescription(int id, String description) {
         if (!isValidId(id)) return;
         mVolumeInputs[id].mDescription = description;
+        mVolumeInputs[id].broadcast("onDescription", (c) -> c.onDescriptionChanged(description));
     }
 
     String getDescription(int id) {
@@ -111,7 +181,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getMute(int id) {
-        if (!isValidId(id)) return Mute.DISABLED;
+        if (!isValidId(id)) return bluetooth.constants.aics.Mute.DISABLED;
         return mVolumeInputs[id].mMute;
     }
 
@@ -119,8 +189,21 @@ class VolumeControlInputDescriptor {
         if (!isValidId(id)) return;
 
         mVolumeInputs[id].mGainSettingsUnits = gainUnit;
-        mVolumeInputs[id].mGainSettingsMinSetting = gainMin;
-        mVolumeInputs[id].mGainSettingsMaxSetting = gainMax;
+        mVolumeInputs[id].mGainSettingsMin = gainMin;
+        mVolumeInputs[id].mGainSettingsMax = gainMax;
+    }
+
+    int getGainSettingUnit(int id) {
+        if (!isValidId(id)) return 0;
+        return mVolumeInputs[id].mGainSettingsUnits;
+    }
+    int getGainSettingMin(int id) {
+        if (!isValidId(id)) return 0;
+        return mVolumeInputs[id].mGainSettingsMin;
+    }
+    int getGainSettingMax(int id) {
+        if (!isValidId(id)) return 0;
+        return mVolumeInputs[id].mGainSettingsMax;
     }
 
     void setState(int id, int gainSetting, int mute, int gainMode) {
@@ -128,8 +211,8 @@ class VolumeControlInputDescriptor {
 
         Descriptor desc = mVolumeInputs[id];
 
-        if (gainSetting > desc.mGainSettingsMaxSetting
-                || gainSetting < desc.mGainSettingsMinSetting) {
+        if (gainSetting > desc.mGainSettingsMax
+                || gainSetting < desc.mGainSettingsMin) {
             Log.e(TAG, "Request fail. Illegal gainSetting argument: " + gainSetting);
             return;
         }
@@ -137,6 +220,13 @@ class VolumeControlInputDescriptor {
         desc.mGainSetting = gainSetting;
         desc.mGainMode = gainMode;
         desc.mMute = mute;
+
+        mVolumeInputs[id].broadcast(
+                "onAudioInputStateChanged",
+                (c) ->
+                        c.onAudioInputStateChanged(
+                                new AudioInputControl.AudioInputState(
+                                        gainSetting, mute, gainMode)));
     }
 
     void dump(StringBuilder sb) {
@@ -150,8 +240,8 @@ class VolumeControlInputDescriptor {
             ProfileService.println(sb, "        gainMode: " + desc.mGainMode);
             ProfileService.println(sb, "        mute: " + desc.mMute);
             ProfileService.println(sb, "        units:" + desc.mGainSettingsUnits);
-            ProfileService.println(sb, "        minGain:" + desc.mGainSettingsMinSetting);
-            ProfileService.println(sb, "        maxGain:" + desc.mGainSettingsMaxSetting);
+            ProfileService.println(sb, "        minGain:" + desc.mGainSettingsMin);
+            ProfileService.println(sb, "        maxGain:" + desc.mGainSettingsMax);
         }
     }
 }
