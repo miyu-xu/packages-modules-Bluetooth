@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "496675e0_2c326bbe",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-12T14:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cd2675a_db7a7436",
+      "range": {
+        "startLine": 638,
+        "startChar": 8,
+        "endLine": 638,
+        "endChar": 89
+      },
+      "revId": "dbe0382d614cdedc48af1250bbd942476caa93e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf534491_e11fb4ce",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "487668e1_83a0b8a5",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-12T14:16:53Z",
+      "side": 1,
+      "message": "not race, the spec is not clear about this, some controller will return \u0027DISALLOW\u0027, if the procedure had been done. we are trying to convince them to return \u0027SUCCESS\u0027, but we may not reach to all vendors. so this is a work around to ignore the unexpected error (I don\u0027t want to check the procedure state, which is error-prone, as the controller knows the procedure state, it should be the only source of the procedure state).",
+      "parentUuid": "bf534491_e11fb4ce",
+      "revId": "dbe0382d614cdedc48af1250bbd942476caa93e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4179c794_551c070c",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-10-11T22:21:55Z",
       "side": 1,
       "message": "Please move the else branch outside the check, or remove the return statement.",
+      "range": {
+        "startLine": 663,
+        "startChar": 5,
+        "endLine": 663,
+        "endChar": 12
+      },
+      "revId": "dbe0382d614cdedc48af1250bbd942476caa93e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a69064e4_83c0da67",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-12T14:16:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4179c794_551c070c",
       "range": {
         "startLine": 663,
         "startChar": 5,
