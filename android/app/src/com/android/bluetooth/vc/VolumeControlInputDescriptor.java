@@ -16,13 +16,22 @@
 
 package com.android.bluetooth.vc;
 
+import android.bluetooth.AudioInputControl;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.IAudioInputCallback;
+import android.os.RemoteCallbackList;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
 
 import bluetooth.constants.AudioInputType;
 import bluetooth.constants.aics.AudioInputStatus;
+import bluetooth.constants.aics.GainModeField;
 import bluetooth.constants.aics.MuteField;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
@@ -32,14 +41,14 @@ class VolumeControlInputDescriptor {
     VolumeControlInputDescriptor(int numberOfExternalInputs) {
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         for (int i = 0; i < numberOfExternalInputs; i++) {
-            mVolumeInputs[i] = new Descriptor();
+            mVolumeInputs[i] = new Descriptor(i);
         }
     }
 
     private static class Descriptor {
-        int mStatus = AudioInputStatus.INACTIVE;
+        @AudioInputControl.Status int mStatus = AudioInputStatus.INACTIVE;
 
-        int mType = AudioInputType.UNSPECIFIED;
+        @AudioInputControl.Type int mType = AudioInputType.UNSPECIFIED;
 
         int mGainValue = 0;
 
@@ -51,9 +60,9 @@ class VolumeControlInputDescriptor {
          *
          * For all other Gain_Mode field values, the server allows switchable automatic/manual gain.
          */
-        int mGainMode = 0;
+        @AudioInputControl.GainMode int mGainMode = GainModeField.MANUAL_ONLY;
 
-        int mMute = MuteField.DISABLED;
+        @AudioInputControl.Mute int mMute = MuteField.DISABLED;
 
         /* See AICS 1.0
          * The Gain_Setting (mGainValue) field is a signed value for which a single increment or
@@ -67,6 +76,40 @@ class VolumeControlInputDescriptor {
         int mGainSettingsMinSetting = 0;
 
         String mDescription = "";
+
+        final int mIndex;
+
+        final RemoteCallbackList<IAudioInputCallback> mCallbacks = new RemoteCallbackList<>();
+
+        Descriptor(int index) {
+            mIndex = index;
+        }
+
+        void registerCallback(IAudioInputCallback callback) {
+            mCallbacks.register(callback);
+        }
+
+        void unregisterCallback(IAudioInputCallback callback) {
+            mCallbacks.unregister(callback);
+        }
+    }
+
+    List<AudioInputControl.Descriptor> toAudioInputControlDescriptor(BluetoothDevice device) {
+        return Arrays.stream(mVolumeInputs)
+                .map(
+                        i ->
+                                new AudioInputControl.Descriptor(
+                                        device,
+                                        i.mIndex,
+                                        i.mType,
+                                        i.mStatus,
+                                        new AudioInputControl.Descriptor.AudioInputState(
+                                                i.mGainValue, i.mMute, i.mGainMode),
+                                        new AudioInputControl.Descriptor.GainSettingProperties(
+                                                i.mGainSettingsUnits,
+                                                i.mGainSettingsMinSetting,
+                                                i.mGainSettingsMaxSetting)))
+                .collect(Collectors.toList());
     }
 
     int size() {
@@ -79,6 +122,16 @@ class VolumeControlInputDescriptor {
             return false;
         }
         return true;
+    }
+
+    void registerCallback(int id, IAudioInputCallback callback) {
+        if (!validateId(id)) return;
+        mVolumeInputs[id].registerCallback(callback);
+    }
+
+    void unregisterCallback(int id, IAudioInputCallback callback) {
+        if (!validateId(id)) return;
+        mVolumeInputs[id].unregisterCallback(callback);
     }
 
     void setStatus(int id, int status) {
