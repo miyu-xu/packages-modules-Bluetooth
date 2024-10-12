@@ -370,6 +370,7 @@ enum OpCode : 16 {
   // VENDOR_SPECIFIC
   // MSFT_OPCODE_xxxx below is needed for the tests.
   MSFT_OPCODE_INTEL = 0xFC1E,
+  INTEL_DDC_CONFIG_WRITE = 0xFC8B,
   LE_GET_VENDOR_CAPABILITIES = 0xFD53,
   LE_BATCH_SCAN = 0xFD56,
   LE_APCF = 0xFD57,
@@ -2589,6 +2590,7 @@ enum HciVersion : 8 {
   V_5_2 = 0x0b,
   V_5_3 = 0x0c,
   V_5_4 = 0x0d,
+  V_6_0 = 0x0e,
 }
 
 enum LmpVersion : 8 {
@@ -2606,6 +2608,7 @@ enum LmpVersion : 8 {
   V_5_2 = 0x0b,
   V_5_3 = 0x0c,
   V_5_4 = 0x0d,
+  V_6_0 = 0x0e,
 }
 
 struct LocalVersionInformation {
