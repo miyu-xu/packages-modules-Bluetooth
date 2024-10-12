@@ -58,7 +58,7 @@ uint16_t AVRC_Open(uint8_t* /* p_handle */, tAVRC_CONN_CB* /* p_ccb */,
   inc_func_call_count(__func__);
   return 0;
 }
-uint16_t AVRC_OpenBrowse(uint8_t /* handle */, uint8_t /* conn_role */) {
+uint16_t AVRC_OpenBrowse(uint8_t /* handle */, tAVCT_ROLE /* conn_role */) {
   inc_func_call_count(__func__);
   return 0;
 }
@@ -84,3 +84,4 @@ void avrc_send_next_vendor_cmd(uint8_t /* handle */) { inc_func_call_count(__fun
 void avrc_start_cmd_timer(uint8_t /* handle */, uint8_t /* label */, uint8_t /* msg_mask */) {
   inc_func_call_count(__func__);
 }
+void AVRC_Dumpsys(int /* fd */) { inc_func_call_count(__func__); }
