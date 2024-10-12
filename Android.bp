@@ -119,6 +119,7 @@ java_defaults {
             "-Xep:FallThrough:ERROR",
             "-Xep:Finalize:ERROR",
             "-Xep:FutureReturnValueIgnored:ERROR",
+            "-Xep:GetterSetterNullability:ERROR",
             "-Xep:GuardedBy:ERROR",
             "-Xep:HidingField:ERROR",
             "-Xep:InconsistentHashCode:ERROR",
