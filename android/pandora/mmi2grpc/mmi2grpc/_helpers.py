@@ -38,11 +38,13 @@ def assert_description(f):
             description.
     """
 
+    def normalize(desc):
+        return re.sub('\s+', ' ', desc).strip()
+
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
-        description = textwrap.fill(kwargs['description'], DOCSTRING_WIDTH, replace_whitespace=False)
-        description = ('\n'.join(map(lambda line: line.rstrip(), description.split('\n')))).strip()
-        docstring = textwrap.dedent(f.__doc__ or '').strip()
+        docstring = normalize(textwrap.dedent(f.__doc__))
+        description = normalize(kwargs['description'])
 
         if docstring != description:
             print(f'Expected description of {f.__name__}:')

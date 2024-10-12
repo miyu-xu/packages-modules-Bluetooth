@@ -18,8 +18,9 @@ from typing import Optional
 
 from grpc import RpcError
 from mmi2grpc._audio import AudioSignal
-from mmi2grpc._helpers import assert_description
+from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 from pandora.a2dp_grpc import A2DP
 from pandora.a2dp_pb2 import Sink, Source
 from pandora.host_grpc import Host
@@ -39,13 +40,17 @@ class AVRCPProxy(ProfileProxy):
     sink: Optional[Sink] = None
     source: Optional[Source] = None
 
-    def __init__(self, channel):
+    def __init__(self, channel, rootcanal):
         super().__init__(channel)
 
         self.host = Host(channel)
         self.a2dp = A2DP(channel)
         self.avrcp = AVRCP(channel)
         self.mediaplayer = MediaPlayer(channel)
+        self.rootcanal = rootcanal
+
+        print("Selecting the INTEL_BE200 dongle")
+        self.rootcanal.select_pts_dongle(Dongle.INTEL_BE200)
 
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
@@ -820,15 +825,26 @@ class AVRCPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
-    def TSC_AVRCP_mmi_iut_reject_register_notification_notify_invalid_event_id(self, **kwargs):
+    @match_description
+    def TSC_AVRCP_mmi_iut_reject_register_notification_notify_invalid_event_id(self, pts_addr: bytes, **kwargs):
         """
+        (
         PTS has sent a Register Notification command with an invalid Event Id.
-        The IUT must respond with the error code: Invalid Parameter (0x01).
+        The IUT must respond with the error code: Invalid Parameter \(0x01\).
         Description: Verify that the IUT can properly reject a Register
         Notification command that contains an invalid event Id.
+        |
+        Message Action: Place the IUT in connectable mode.
+
+        Description : PTS requires that the IUT be in connectable mode.
+        The PTS will attempt to establish an ACL connection.
+        )
         """
 
+        # TODO: The meaning of this MMI has fully changed between
+        # versions 8.4 and 8.7 of the PTS tool.
+
+        self.connection = self.host.WaitConnection(address=pts_addr)
         return "OK"
 
     @assert_description
@@ -1150,4 +1166,29 @@ class AVRCPProxy(ProfileProxy):
         self.mediaplayer.UpdateQueue()
         self.mediaplayer.PlayUpdated()
 
+        return "OK"
+
+    def TSC_AVRCP_mmi_iut_reject_invalid_get_img(self, pts_addr: bytes, **kwargs):
+        """
+        Using the Implementation Under Test(IUT), initiate ACL Create Connection
+        Request to the PTS.
+
+        Description : The Implementation Under Test(IUT)
+        should create ACL connection request to PTS.
+        """
+
+        self.connection = self.connection or self.host.Connect(address=pts_addr)
+        return "OK"
+
+    @assert_description
+    def _mmi_20000(self, pts_addr: bytes, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept GATT connect
+        request from PTS.
+        """
+
+        self.connection = self.connection or self.host.WaitConnection(address=pts_addr)
         return "OK"

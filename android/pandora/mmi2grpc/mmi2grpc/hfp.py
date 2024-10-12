@@ -60,7 +60,10 @@ class HFPProxy(ProfileProxy):
         th.start()
 
     def test_started(self, test: str, pts_addr: bytes, **kwargs):
-        if test not in ("HFP/AG/SLC/BV-02-C", "HFP/AG/SLC/BV-04-C"):
+        if test not in [
+            "HFP/AG/SLC/BV-02-C",
+            "HFP/AG/SLC/BV-04-C",
+        ]:
             self.asyncWaitConnection(pts_addr)
 
         return "OK"
@@ -995,10 +998,10 @@ class HFPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
+    @match_description
     def TSC_hf_disable_ecnr(self, **kwargs):
         """
-        Using the Implemenation Under Test (IUT), disable  EC/NR, then click Ok.
+        (Using the Implemenation Under Test \(IUT\), disable  EC/NR, then click Ok.|Click Ok, then disable  EC/NR using the Implemenation Under Test \(IUT\).)
         """
 
         return "OK"
@@ -1034,3 +1037,90 @@ class HFPProxy(ProfileProxy):
                         pairing_events.send(PairingEventAnswer(event=event, confirm=True))
 
         threading.Thread(target=task).start()
+
+    @assert_description
+    def TSC_iut_enable_audio_using_codec_WBS(self, **kwargs):
+        """
+        Click OK, then initiate an audio connection with WBS codec using the
+        Codec Connection Setup procedure.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_slc_disable_tester(self, **kwargs):
+        """
+        Set the Implementation Under Test (IUT) in a state that will allow the
+        PTS to initiate a service level disconnection, then click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_audio_disable_tester(self, **kwargs):
+        """
+        Set the Implementation Under Test (IUT) in a state which will allow the
+        PTS to disconnect the audio (SCO), then click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def _mmi_561(self, **kwargs):
+        """
+        Verify that service level connection exists between the lower tester and
+        IUT, then click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_iopt_iut_able_to_pair(self, **kwargs):
+        """
+        Is the IUT capable of establishing connection to an unpaired device?
+        """
+
+        return "OK"
+
+    @assert_description
+    def _mmi_233(self, **kwargs):
+        """
+        Please confirm the IUT stops alerting when the incoming call process is
+        interrupted.
+
+        Click Ok if IUT successfully stoped the alerting otherwise
+        click Cancel.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_calling_line_identification_enable(self, **kwargs):
+        """
+        Enable calling line identification using the HF (send AT+CLIP=1 to the
+        PTS-AG), then Click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_hf_iut_call_swap(self, **kwargs):
+        """
+        Click Ok, then make the held call active which will result in the active
+        call being placed on hold.
+        """
+
+        self.hfp.SwapActiveCall()
+
+        return "OK"
+
+    @assert_description
+    def _mmi_223(self, **kwargs):
+        """
+        Verify IUT ignores unkown or unexpected indication code.
+
+        Click Ok if
+        IUT successfully ignored it otherwise click Cancel.
+        """
+
+        return "OK"

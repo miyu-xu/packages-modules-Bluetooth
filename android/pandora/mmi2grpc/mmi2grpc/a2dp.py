@@ -20,6 +20,7 @@ from grpc import RpcError
 from mmi2grpc._audio import AudioSignal
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 from pandora.a2dp_grpc import A2DP
 from pandora.a2dp_pb2 import PlaybackAudioRequest, Sink, Source
 from pandora.host_grpc import Host
@@ -52,6 +53,9 @@ class A2DPProxy(ProfileProxy):
         self.audio = AudioSignal(lambda frames: self.a2dp.PlaybackAudio(map(convert_frame, frames)),
                                  AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
 
+        print("Selecting the INTEL_BE200 dongle")
+        self.rootcanal.select_pts_dongle(Dongle.INTEL_BE200)
+
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
         """
@@ -66,7 +70,19 @@ class A2DPProxy(ProfileProxy):
         the IUT connects to PTS to establish pairing.
         """
 
-        if "A2DP/SRC/AVP" in test or "A2DP/SNK/AVP" in test:
+        if test in [
+              "A2DP/SRC/CC/BV-09-C",
+              "A2DP/SRC/CC/BV-10-C",
+              "A2DP/SRC/SET/BV-02-C",
+              "A2DP/SRC/SET/BV-04-C",
+              "A2DP/SRC/SET/BV-06-C",
+        ]:
+            # This MMI is called twice for the above listed tests resulting
+            # in a connection timeout the second time around.
+            self.connection = self.connection or self.host.WaitConnection(address=pts_addr).connection
+            self.source = self.source or self.a2dp.WaitSource(connection=self.connection).source
+
+        elif "A2DP/SRC/AVP" in test or "A2DP/SNK/AVP" in test:
             # WaitSource is blocking and cannot be invoked in these tests
             # because Android will initiate the AVDTP connection after a
             # timeout if the remote device is inactive.
@@ -81,12 +97,14 @@ class A2DPProxy(ProfileProxy):
                     self.source = self.a2dp.WaitSource(connection=self.connection).source
             except RpcError:
                 pass
+
         else:
-            self.connection = self.host.WaitConnection(address=pts_addr).connection
+            self.connection = self.connection or self.host.WaitConnection(address=pts_addr).connection
             try:
                 self.sink = self.a2dp.WaitSink(connection=self.connection).sink
             except RpcError:
                 pass
+
         return "OK"
 
     @assert_description
@@ -140,7 +158,7 @@ class A2DPProxy(ProfileProxy):
         if "SRC" in test:
             self.a2dp.Suspend(source=self.source)
         else:
-            assert False
+            self.a2dp.Suspend(sink=self.sink)
         return "OK"
 
     @assert_description
@@ -170,6 +188,9 @@ class A2DPProxy(ProfileProxy):
          """
 
         self.rootcanal.move_out_of_range()
+        self.connection = None
+        self.source = None
+        self.sink = None
 
         return "OK"
 
@@ -656,3 +677,81 @@ class A2DPProxy(ProfileProxy):
 
         # TODO
         return "OK"
+
+    @assert_description
+    def _mmi_33(self, test: str, pts_addr: bytes, **kwargs):
+        """
+        Please make IUT general discoverable.
+        """
+
+        if test in ["A2DP/SRC/SET/BV-06-C"]:
+            # The PTS is immediatly attempting an HCI connection for the above
+            # listed tests and the phone needs to be made connectable as well.
+            self.connection = self.connection or self.host.WaitConnection(address=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def TSC_A2DP_mmi_wait_delay_reporting(self, **kwargs):
+        """
+        Please wait while the tester periodically adjusts the delay reporting
+        during the stream ...
+
+        Note: This will take approximately 30 seconds.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_A2DP_mmi_sbc_playback_is_correct(self, **kwargs):
+        """
+        Take action if necessary to accept the Delay Reportl command from the
+        tester.
+        """
+
+        # TODO This MMI has an inconsistent name and message?
+        return "OK"
+
+    @assert_description
+    def _mmi_20000(self, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept GATT connect
+        request from PTS.
+        """
+
+        # TODO This MMI has an inconsistent name and message?
+        return "OK"
+
+    @assert_description
+    def TSC_A2DP_mmi_user_delete_link_key(self, **kwargs):
+        """
+        Delete the link key with PTS on the Implementation Under Test (IUT), and
+        then click OK to continue.
+
+        Description: For end product, this can be
+        achieved by forgetting PTS from the IUT.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_A2DP_mmi_iopt_iut_able_to_pair(self, **kwargs):
+        """
+        Is the IUT capable of establishing connection to an unpaired device?
+        """
+
+        return "OK"
+
+    @assert_description
+    def _mmi_102(self, pts_addr: bytes, **kwargs):
+        """
+        Please send an HCI connect request to establish a basic rate connection
+        after the IUT discovers the Lower Tester over BR and LE.
+        """
+
+        self.connection = self.host.Connect(address=pts_addr).connection
+        return "OK"
+

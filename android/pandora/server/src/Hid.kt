@@ -20,6 +20,8 @@ import android.bluetooth.BluetoothHidHost
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
+import android.util.Log
+import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
 import java.io.Closeable
 import kotlinx.coroutines.CoroutineScope
@@ -28,6 +30,7 @@ import kotlinx.coroutines.cancel
 import pandora.HIDGrpc.HIDImplBase
 import pandora.HidProto.SendHostReportRequest
 import pandora.HidProto.SendHostReportResponse
+import pandora.HidProto.VirtualCableUnplugHostRequest
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Hid(val context: Context) : HIDImplBase(), Closeable {
@@ -51,12 +54,23 @@ class Hid(val context: Context) : HIDImplBase(), Closeable {
         responseObserver: StreamObserver<SendHostReportResponse>,
     ) {
         grpcUnary(scope, responseObserver) {
+            Log.i(TAG, "sendHostReport")
+
             bluetoothHidHost.setReport(
                 request.address.toBluetoothDevice(bluetoothAdapter),
                 request.reportType.number.toByte(),
                 request.report
             )
             SendHostReportResponse.getDefaultInstance()
+        }
+    }
+
+    override fun virtualCableUnplugHost(request: VirtualCableUnplugHostRequest, responseObserver: StreamObserver<Empty>) {
+        grpcUnary(scope, responseObserver) {
+            Log.i(TAG, "virtualCableUnplug")
+
+            bluetoothHidHost.virtualUnplug(request.address.toBluetoothDevice(bluetoothAdapter))
+            Empty.getDefaultInstance()
         }
     }
 }

@@ -23,7 +23,7 @@ from typing import List
 import grpc
 from mmi2grpc._helpers import format_proxy
 from mmi2grpc._modem import Modem
-from mmi2grpc._rootcanal import RootCanal
+from mmi2grpc._rootcanal import RootCanal, Dongle
 from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.avrcp import AVRCPProxy
 from mmi2grpc.gap import GAPProxy
@@ -96,7 +96,6 @@ class IUT:
         """Resets the IUT when starting a PTS test."""
         self.rootcanal = RootCanal(port=self.rootcanal_control_port)
         self.rootcanal.move_in_range()
-
         self.modem = Modem(port=self.modem_simulator_port)
 
         # Note: we don't keep a single gRPC channel instance in the IUT class
@@ -190,6 +189,15 @@ class IUT:
         """
         print(f"{profile} mmi: {interaction}", file=sys.stderr)
 
+        # Error found in v8.7.4 with MMI 223,HFP/HF/HFI/BI-01-C
+        if profile == "_PROFILE_":
+            if test.startswith("HFP"):
+                profile = "HFP"
+
+        if interaction == "test_started":
+            if profile in ["HFP", "PAN"]:
+                self.rootcanal.select_pts_dongle(Dongle.INTEL_BE200)
+
         # Handles A2DP and AVDTP MMIs.
         if profile in ("A2DP", "AVDTP"):
             if not self._a2dp:
@@ -201,7 +209,7 @@ class IUT:
         # Handles AVRCP and AVCTP MMIs.
         if profile in ("AVRCP", "AVCTP"):
             if not self._avrcp:
-                self._avrcp = AVRCPProxy(grpc.insecure_channel(f"localhost:{self.pandora_server_port}"))
+                self._avrcp = AVRCPProxy(grpc.insecure_channel(f"localhost:{self.pandora_server_port}"), self.rootcanal)
             return self._avrcp.interact(test, interaction, description, pts_address)
         # Handles GATT MMIs.
         if profile in ("GATT"):
