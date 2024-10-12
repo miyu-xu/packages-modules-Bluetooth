@@ -27,6 +27,7 @@ filegroup {
         "android/bluetooth/aics/AudioInputStatus.aidl",
         "android/bluetooth/aics/MuteField.aidl",
         "android/bluetooth/aics/GainMode.aidl",
+        "android/bluetooth/AudioInputControl.aidl",
         "android/bluetooth/AudioInputType.aidl",
         "android/bluetooth/IBluetooth.aidl",
         "android/bluetooth/IBluetoothA2dp.aidl",
