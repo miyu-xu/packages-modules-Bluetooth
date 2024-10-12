@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3960926_e523fdbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3317776
+      },
+      "writtenOn": "2024-10-12T01:43:22Z",
+      "side": 1,
+      "message": "3306387: AdapterProperties use correct looper | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3306387",
+      "revId": "517daa1290544c20310d3b0fa7562cc2a9cd9789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
