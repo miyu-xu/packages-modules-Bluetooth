@@ -16,14 +16,24 @@
 
 package com.android.bluetooth.vc;
 
+import static com.android.bluetooth.Utils.RemoteExceptionIgnoringConsumer;
+
+import android.bluetooth.AudioInputControl;
+import android.bluetooth.AudioInputControl.GainMode;
+import android.bluetooth.AudioInputControl.Mute;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.IAudioInputCallback;
+import android.os.RemoteCallbackList;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
 
 import bluetooth.constants.AudioInputType;
 import bluetooth.constants.aics.AudioInputStatus;
-import bluetooth.constants.aics.GainMode;
-import bluetooth.constants.aics.Mute;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
@@ -34,20 +44,20 @@ class VolumeControlInputDescriptor {
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         // Stack delivers us number of audio inputs. ids are countinous from [0;n[
         for (int i = 0; i < numberOfExternalInputs; i++) {
-            mVolumeInputs[i] = new Descriptor();
+            mVolumeInputs[i] = new Descriptor(i);
         }
     }
 
     private static class Descriptor {
-        int mStatus = AudioInputStatus.INACTIVE;
+        @AudioInputControl.Status int mStatus = AudioInputStatus.INACTIVE;
 
-        int mType = AudioInputType.UNSPECIFIED;
+        @AudioInputControl.Type int mType = AudioInputType.UNSPECIFIED;
 
         int mGainSetting = 0;
 
-        int mGainMode = GainMode.MANUAL_ONLY;
+        @GainMode int mGainMode = bluetooth.constants.aics.GainMode.MANUAL_ONLY;
 
-        int mMute = Mute.DISABLED;
+        @Mute int mMute = bluetooth.constants.aics.Mute.DISABLED;
 
         /* See AICS 1.0
          * The Gain_Setting (mGainSetting) field is a signed value for which a single increment or
@@ -61,6 +71,53 @@ class VolumeControlInputDescriptor {
         int mGainSettingsMinSetting = 0;
 
         String mDescription = "";
+
+        final int mIndex;
+
+        private final RemoteCallbackList<IAudioInputCallback> mCallbacks =
+                new RemoteCallbackList<>();
+
+        Descriptor(int index) {
+            mIndex = index;
+        }
+
+        void registerCallback(IAudioInputCallback callback) {
+            mCallbacks.register(callback);
+        }
+
+        void unregisterCallback(IAudioInputCallback callback) {
+            mCallbacks.unregister(callback);
+        }
+
+        // need to be synchronized to prevent calling beginBroadcast while the first is not finished
+        synchronized void broadcast(
+                String logAction, RemoteExceptionIgnoringConsumer<IAudioInputCallback> action) {
+            final int itemCount = mCallbacks.beginBroadcast();
+            Log.d(TAG, "Broadcasting " + logAction + "() to " + itemCount + " receivers.");
+            for (int i = 0; i < itemCount; i++) {
+                action.accept(mCallbacks.getBroadcastItem(i));
+            }
+            mCallbacks.finishBroadcast();
+        }
+    }
+
+    List<AudioInputControl.Descriptor> toAudioInputControlDescriptor(BluetoothDevice device) {
+        return Arrays.stream(mVolumeInputs)
+                .map(
+                        i ->
+                                new AudioInputControl.Descriptor(
+                                        device,
+                                        i.mIndex,
+                                        i.mDescription,
+                                        i.mType,
+                                        i.mStatus,
+                                        new AudioInputControl.Descriptor.AudioInputState(
+                                                i.mGainSetting, i.mMute, i.mGainMode),
+                                        new AudioInputControl.Descriptor.GainSettingProperties(
+                                                i.mGainSettingsUnits,
+                                                i.mGainSettingsMinSetting,
+                                                i.mGainSettingsMaxSetting)))
+                .collect(Collectors.toList());
     }
 
     int size() {
@@ -75,9 +132,20 @@ class VolumeControlInputDescriptor {
         return true;
     }
 
+    void registerCallback(int id, IAudioInputCallback callback) {
+        if (!isValidId(id)) return;
+        mVolumeInputs[id].registerCallback(callback);
+    }
+
+    void unregisterCallback(int id, IAudioInputCallback callback) {
+        if (!isValidId(id)) return;
+        mVolumeInputs[id].unregisterCallback(callback);
+    }
+
     void setStatus(int id, int status) {
         if (!isValidId(id)) return;
         mVolumeInputs[id].mStatus = status;
+        mVolumeInputs[id].broadcast("onGainStatus", (c) -> c.onGainStatusChanged(status));
     }
 
     int getStatus(int id) {
@@ -88,6 +156,7 @@ class VolumeControlInputDescriptor {
     void setDescription(int id, String description) {
         if (!isValidId(id)) return;
         mVolumeInputs[id].mDescription = description;
+        mVolumeInputs[id].broadcast("onDescription", (c) -> c.onDescriptionChanged(description));
     }
 
     String getDescription(int id) {
@@ -111,7 +180,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getMute(int id) {
-        if (!isValidId(id)) return Mute.DISABLED;
+        if (!isValidId(id)) return bluetooth.constants.aics.Mute.DISABLED;
         return mVolumeInputs[id].mMute;
     }
 
@@ -134,9 +203,27 @@ class VolumeControlInputDescriptor {
             return;
         }
 
-        desc.mGainSetting = gainSetting;
-        desc.mGainMode = gainMode;
-        desc.mMute = mute;
+        boolean broadcast = false;
+        if (desc.mGainSetting != gainSetting) {
+            desc.mGainSetting = gainSetting;
+            broadcast = true;
+        }
+        if (desc.mGainMode != gainMode) {
+            desc.mGainMode = gainMode;
+            broadcast = true;
+        }
+        if (desc.mMute != mute) {
+            desc.mMute = mute;
+            broadcast = true;
+        }
+        if (broadcast) {
+            mVolumeInputs[id].broadcast(
+                    "onAudioInputStateChanged",
+                    (c) ->
+                            c.onAudioInputStateChanged(
+                                    new AudioInputControl.Descriptor.AudioInputState(
+                                            gainSetting, mute, gainMode)));
+        }
     }
 
     void dump(StringBuilder sb) {
