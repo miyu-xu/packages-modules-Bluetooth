@@ -30,7 +30,7 @@ class VolumeControlInputDescriptor {
     VolumeControlInputDescriptor(int numberOfExternalInputs) {
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         for (int i = 0; i < numberOfExternalInputs; i++) {
-            mVolumeInputs[i] = new Descriptor();
+            mVolumeInputs[i] = new Descriptor(i);
         }
     }
 
@@ -65,6 +65,20 @@ class VolumeControlInputDescriptor {
         int mGainSettingsMinSetting = 0;
 
         String mDescription = "";
+
+        final int mIndex;
+
+        Descriptor(int index) {
+            mIndex = index;
+        }
+
+    }
+
+    List<AudioInputControlParcel> toAudioInputControlParcel() {
+                    // return IntStream.range(0, inputs.size())
+            //         .mapToObj(i -> new AudioInputControlParcel(device, i))
+            //         .collect(Collectors.toList());
+
     }
 
     int size() {
