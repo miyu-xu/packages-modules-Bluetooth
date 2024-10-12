@@ -20,6 +20,7 @@ from grpc import RpcError
 from mmi2grpc._audio import AudioSignal
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 from pandora.a2dp_grpc import A2DP
 from pandora.a2dp_pb2 import PlaybackAudioRequest, Sink, Source
 from pandora.host_grpc import Host
@@ -51,6 +52,7 @@ class A2DPProxy(ProfileProxy):
 
         self.audio = AudioSignal(lambda frames: self.a2dp.PlaybackAudio(map(convert_frame, frames)),
                                  AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
+        self.rootcanal.select_pts_dongle(Dongle.INTEL_BE200)
 
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
