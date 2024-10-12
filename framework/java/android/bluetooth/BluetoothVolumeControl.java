@@ -25,6 +25,7 @@ import static android.bluetooth.BluetoothUtils.executeFromBinder;
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -42,6 +43,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 
 import java.util.Arrays;
@@ -396,7 +398,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      *
      * @param executor an {@link Executor} to execute given callback
      * @param callback user implementation of the {@link Callback}
-     * @throws IllegalArgumentException if a null executor, sink, or callback is given
+     * @throws IllegalArgumentException if a null executor, or callback is given
      * @hide
      */
     @SystemApi
@@ -702,6 +704,28 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                 mAdapter,
                 this::getService,
                 s -> s.setDeviceVolume(device, volume, isGroupOperation, mAttributionSource));
+    }
+
+    /**
+     * @return The list of {@code AudioInputControl} associated with a device
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_AICS_API)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @NonNull List<AudioInputControl> getAudioInputControlPoints(
+            @NonNull BluetoothDevice device) {
+        requireNonNull(device);
+        Log.d(TAG, "getAudioInputControlPoints(" + device + ")");
+        if (!isValidDevice(device)) {
+            throw new IllegalArgumentException("Invalid device " + device);
+        }
+        return callServiceIfEnabled(
+                mAdapter,
+                this::getService,
+                s -> AudioInputControl.getAudioInputControlPoints(s, mAttributionSource, device),
+                Collections.emptyList());
     }
 
     private static boolean isValidDevice(@Nullable BluetoothDevice device) {
