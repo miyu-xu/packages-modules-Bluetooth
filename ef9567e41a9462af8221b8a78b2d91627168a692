@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "958506d1_cc369715",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-10-13T01:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9eee9e6b_0cb33053",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "ef9567e41a9462af8221b8a78b2d91627168a692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "028d2dff_abe4c500",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-11T15:50:36Z",
       "side": 1,
       "message": "nit: \n```\nhal::RangingResult ranging_result \u003d {\n    .result_meters_ \u003d in_result.resultMeters,\n    .confidence_level_ \u003d in_result.confidenceLevel,\n};\n```",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 65
+      },
+      "revId": "ef9567e41a9462af8221b8a78b2d91627168a692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ceddc86_2ec89685",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-10-13T01:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "028d2dff_abe4c500",
       "range": {
         "startLine": 78,
         "startChar": 4,
