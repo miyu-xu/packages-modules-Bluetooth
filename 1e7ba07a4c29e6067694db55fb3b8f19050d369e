@@ -80,6 +80,23 @@
       "message": "Please replace this magic number with a constant.",
       "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8573ef_e7a6e478",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-13T01:07:07Z",
+      "side": 1,
+      "message": "Would `updateScanMsft` be called when the scan is off? We shouldn\u0027t call this when it\u0027s off.",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
