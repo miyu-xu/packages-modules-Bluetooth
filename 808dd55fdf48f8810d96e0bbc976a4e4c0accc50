@@ -80,6 +80,52 @@
       ],
       "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "815f665d_96e84fad",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T17:44:25Z",
+      "side": 1,
+      "message": "I think this should be `tHCI_ERROR_CODE` and the switch should be make on the enum values and not on \"magic\" number.\n\nas defined in packages/modules/Bluetooth/system/stack/include/hci_error_code.h\n\nIdeally, we should delete `typedef uint8_t bt_hci_error_code_t` as it is redundant",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 61
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6520e374_6a85393a",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T17:44:25Z",
+      "side": 1,
+      "message": "const ?",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 71
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
