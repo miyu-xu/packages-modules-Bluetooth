@@ -52,6 +52,24 @@
       "parentUuid": "d9902e95_7d17611f",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f95ccca_9b5bb865",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T21:30:14Z",
+      "side": 0,
+      "message": "Yes that correct, in case anybody depend on it.\n\nBut because this is a system api and there is no usage of these API outside of CTS, I figured that we didn\u0027t need to keep it.\n\nFor public API we can\u0027t predict who is using it.",
+      "parentUuid": "ba1ddc89_e55a70a6",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
