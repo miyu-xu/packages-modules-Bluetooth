@@ -34,6 +34,24 @@
       "parentUuid": "922f4ea4_81732e7c",
       "revId": "bd66c8ea55ea1d69fbadf477604f22dbcea16f1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99a254f9_fad73ac4",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-14T20:50:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5ed33851_b5db7fd2",
+      "revId": "bd66c8ea55ea1d69fbadf477604f22dbcea16f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
