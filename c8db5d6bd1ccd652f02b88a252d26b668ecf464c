@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1b1964d_d8752c5c",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-14T20:57:37Z",
+      "side": 0,
+      "message": "`p_ccb-\u003ecc.role \u003d\u003d AVCT_ACP` I think this is advisory and should not prevent connection given the other conditions are valid.",
+      "fixSuggestions": [
+        {
+          "fixId": "cb85efb8_abdff2e0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avct/avct_bcb_act.cc",
+              "range": {
+                "startLine": 175,
+                "startChar": 0,
+                "endLine": 176,
+                "endChar": 0
+              },
+              "replacement": "               p_bcb-\u003epeer_addr \u003d\u003d p_ccb-\u003ep_lcb-\u003epeer_addr \u0026\u0026\n               p_ccb-\u003ecc.role \u003d\u003d AVCT_ROLE_INITIATOR) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c8db5d6bd1ccd652f02b88a252d26b668ecf464c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
