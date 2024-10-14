@@ -217,6 +217,24 @@
       "parentUuid": "cf3903f8_4b6724c6",
       "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f33b8d67_ee3ae353",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-14T23:56:57Z",
+      "side": 1,
+      "message": "Ah actually I didn\u0027t mean to check `scanEnabledMsft`. I meant the case when this is called by `stopRegularScan` -\u003e `removeFiltersMsft` -\u003e `updateScanMsft`.\n\nIf at this point we have no unfiltered scan, then `scanEnabledMsft` would be true. However, we don\u0027t want to enable the scan at the end, right? Because the user wants disable.",
+      "parentUuid": "73cf897a_97e4c656",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
