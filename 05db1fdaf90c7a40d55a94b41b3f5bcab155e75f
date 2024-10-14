@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38d3ed91_f61a5225",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-14T18:52:40Z",
+      "side": 1,
+      "message": "I mean either this function knows about `GATT_MAX_ATTR_LEN` or not.\n\nIf it knows, then it does not need `len` as a parameter. It is already understood to be `GATT_MAX_ATTR_LEN`.\n\nIf it does not know, then it must not use `GATT_MAX_ATTR_LEN` at all.",
+      "parentUuid": "79e2d706_b87798ee",
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00cb5b62_780fbb18",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 2
