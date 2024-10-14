@@ -3566,6 +3566,17 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
       /* always clear the pending flag */
       p_dev_rec->sm4 &= ~BTM_SM4_CONN_PEND;
     }
+    /* Trigger RNR only during remote device reconnect. Ignore duplicate RNR
+     * in all other cases. */
+    if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_IDLE &&
+        p_dev_rec->sec_rec.classic_link != tSECURITY_STATE::GETTING_NAME &&
+        strlen((const char*)p_dev_rec->sec_bd_name)) {
+      log::debug("%s BTM_ReadRemoteDeviceName during reconnect", __func__);
+      if (get_stack_rnr_interface().BTM_ReadRemoteDeviceName(
+                  p_dev_rec->bd_addr, NULL, BT_TRANSPORT_BR_EDR) != tBTM_STATUS::BTM_CMD_STARTED) {
+        log::error("%s BTM_ReadRemoteDeviceName failed", __func__);
+      }
+    }
   }
 
   p_dev_rec->device_type |= BT_DEVICE_TYPE_BREDR;
