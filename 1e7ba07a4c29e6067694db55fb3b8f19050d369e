@@ -181,6 +181,24 @@
       "parentUuid": "6c8573ef_e7a6e478",
       "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf3903f8_4b6724c6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-14T15:00:01Z",
+      "side": 1,
+      "message": "Hsin-chen makes a good point. You don\u0027t want scanning to start if a client just called `stopRegularScan`. You just need to check `scanEnabledMsft` to guard the restarting of scanning.\n\n```\nif (scanEnabledMsft) {\n                Log.d(TAG, \"Restarting MSFT scan\");\n                mNativeInterface.gattClientScan(false);\n                mNativeInterface.gattClientScan(true);\n}\n```",
+      "parentUuid": "4717a74a_804c440d",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
