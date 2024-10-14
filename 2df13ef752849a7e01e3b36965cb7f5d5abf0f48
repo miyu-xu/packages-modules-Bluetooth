@@ -34,6 +34,24 @@
       "parentUuid": "77286638_073a1c41",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1ddc89_e55a70a6",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-14T20:12:19Z",
+      "side": 0,
+      "message": "That\u0027s correct. The flag definition, that is. You can remove the annotations.",
+      "parentUuid": "d9902e95_7d17611f",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
