@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f24adaa_62b7057e",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:49:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19df54da_dc5cfc27",
+      "revId": "b196d1438d8f17cda26215e74ee2253163473ec6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5055d502_44686baf",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7963bd15_b2578072",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:49:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5055d502_44686baf",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "b196d1438d8f17cda26215e74ee2253163473ec6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d76b8bb7_f55a500c",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-10-07T18:54:19Z",
       "side": 1,
       "message": "Should it be the preset index to match SetActivePreset ?\nOr should SetActivePreset input a PresetRecord ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 17,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "b196d1438d8f17cda26215e74ee2253163473ec6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e57d338_908b7fe8",
+        "filename": "pandora/interfaces/pandora_experimental/hap.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:49:51Z",
+      "side": 1,
+      "message": "I have updated the message name to indicate that the preset record is wanted and not just the index.\n\nWe could return the index only, but this is not what I want to test here",
+      "parentUuid": "d76b8bb7_f55a500c",
       "range": {
         "startLine": 78,
         "startChar": 17,
