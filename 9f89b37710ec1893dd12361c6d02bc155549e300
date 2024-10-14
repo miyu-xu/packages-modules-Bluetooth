@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f033e4f_7f367847",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:39:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa104568_005cc1ce",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "9f89b37710ec1893dd12361c6d02bc155549e300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc2013bd_dc547da4",
@@ -91,6 +115,30 @@
           ]
         }
       ],
+      "revId": "9f89b37710ec1893dd12361c6d02bc155549e300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e451720d_264620c7",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:39:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc2013bd_dc547da4",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 44
+      },
       "revId": "9f89b37710ec1893dd12361c6d02bc155549e300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
