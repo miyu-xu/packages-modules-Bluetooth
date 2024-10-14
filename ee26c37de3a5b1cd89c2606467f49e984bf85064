@@ -16,6 +16,24 @@
       "message": "Do any of the other `GattStatus` make more sense?",
       "revId": "ee26c37de3a5b1cd89c2606467f49e984bf85064",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b68ef4_55c2f06b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2527,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-14T23:26:40Z",
+      "side": 1,
+      "message": "I think `Success` is good because the `conn_parameter_update` call would really take effect in the LibBluetooth although we don\u0027t receive a callback.",
+      "parentUuid": "e2731dfa_ce770265",
+      "revId": "ee26c37de3a5b1cd89c2606467f49e984bf85064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
