@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9150ca00_1775fa4d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T20:49:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38d3ed91_f61a5225",
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00cb5b62_780fbb18",
