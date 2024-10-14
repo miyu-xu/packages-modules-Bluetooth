@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cadc9cab_c181c251",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4287,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:19:09Z",
+      "side": 1,
+      "message": "Remove ? (same below).\n\nEven system UI is being checked for appropriate permission",
+      "range": {
+        "startLine": 4287,
+        "startChar": 0,
+        "endLine": 4287,
+        "endChar": 63
+      },
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6716d5d6_60821392",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4309,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:19:09Z",
+      "side": 1,
+      "message": "nit `isMicrophoneForCallEnabled`",
+      "range": {
+        "startLine": 4309,
+        "startChar": 61,
+        "endLine": 4309,
+        "endChar": 88
+      },
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e925f380_83a5ce82",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:19:09Z",
+      "side": 1,
+      "message": "Can we add the microphone value in this toString ?",
+      "range": {
+        "startLine": 460,
+        "startChar": 3,
+        "endLine": 477,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7ac16403_b7c4cf13",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+              "range": {
+                "startLine": 477,
+                "startChar": 0,
+                "endLine": 477,
+                "endChar": 0
+              },
+              "replacement": "                .append(\"), is_microphone_for_call_enabled(\")\n                .append(is_microphone_for_call_enabled)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8794f589_6b67641c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3529,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:19:09Z",
+      "side": 1,
+      "message": "Genuine question:\nDoes it make sense to also ask for `MODIFY_PHONE_STATE` permission ?\nI would assume that since this involve the audio routing while in phone call, we need to require it, but I don\u0027t know the exact scope of this permission",
+      "range": {
+        "startLine": 3529,
+        "startChar": 0,
+        "endLine": 3529,
+        "endChar": 74
+      },
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -189,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad8500f5_2a8a46d9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T18:19:09Z",
+      "side": 1,
+      "message": "Make sense, unless asked otherwise by the user, we will assume the mic is used.",
+      "parentUuid": "8617b3bb_d1495eba",
+      "range": {
+        "startLine": 1140,
+        "startChar": 23,
+        "endLine": 1140,
+        "endChar": 27
+      },
+      "revId": "25b3916b1b3e040b94ca3e230cc8e095e22694ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49bc40ac_9adf078d",
