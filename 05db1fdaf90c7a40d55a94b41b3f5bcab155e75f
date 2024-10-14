@@ -141,6 +141,24 @@
       "parentUuid": "056cfdc3_2cee872f",
       "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "651c1c90_75ebf24f",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T20:59:44Z",
+      "side": 1,
+      "message": "Good catch and sorry rebase error happened when sync between CrOS and AOSP. \n\nFixed.",
+      "parentUuid": "68fb050b_9be45151",
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
