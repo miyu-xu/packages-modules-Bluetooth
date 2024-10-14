@@ -406,7 +406,7 @@ void gatt_process_exec_write_req(tGATT_TCB& tcb, uint16_t cid, uint8_t op_code, 
     if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
       auto prep_cnt_it = tcb.prep_cnt_map.begin();
       while (prep_cnt_it != tcb.prep_cnt_map.end()) {
-        gatt_if = i;
+        gatt_if = prep_cnt_it->first;
         conn_id = gatt_create_conn_id(tcb.tcb_idx, gatt_if);
         tGATTS_DATA gatts_data;
         gatts_data.exec_write = flag;

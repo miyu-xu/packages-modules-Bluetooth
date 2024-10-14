@@ -266,7 +266,7 @@ public:
   std::shared_ptr<LeAudioDevice> GetByAddress(const RawAddress& address) const;
   LeAudioDevice* FindByConnId(tCONN_ID conn_id) const;
   LeAudioDevice* FindByCisConnHdl(uint8_t cig_id, uint16_t conn_hdl) const;
-  void SetInitialGroupAutoconnectState(int group_id, int gatt_if,
+  void SetInitialGroupAutoconnectState(int group_id, tGATT_IF gatt_if,
                                        tBTM_BLE_CONN_TYPE reconnection_mode,
                                        bool current_dev_autoconnect_flag);
   size_t Size(void) const;

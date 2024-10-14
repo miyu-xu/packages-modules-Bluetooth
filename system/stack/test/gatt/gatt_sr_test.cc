@@ -53,8 +53,8 @@ TestMutables test_state_;
 }  // namespace
 
 namespace connection_manager {
-bool background_connect_remove(uint8_t /*app_id*/, const RawAddress& /*address*/) { return false; }
-bool direct_connect_remove(uint8_t /*app_id*/, const RawAddress& /*address*/,
+bool background_connect_remove(tGATT_IF /*app_id*/, const RawAddress& /*address*/) { return false; }
+bool direct_connect_remove(tGATT_IF /*app_id*/, const RawAddress& /*address*/,
                            bool /*connection_timeout*/) {
   return false;
 }
@@ -153,7 +153,7 @@ protected:
 
     tcb_.trans_id = 0x12345677;
     tcb_.att_lcid = L2CAP_ATT_CID;
-    el_.gatt_if = 1;
+    el_.gatt_if = static_cast<tGATT_IF>(1);
 
     if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
       gatt_cb.cl_rcb_map.emplace(el_.gatt_if, std::make_unique<tGATT_REG>());

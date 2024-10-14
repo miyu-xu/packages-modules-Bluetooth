@@ -1295,7 +1295,7 @@ LeAudioDevice* LeAudioDevices::FindByCisConnHdl(uint8_t cig_id, uint16_t conn_hd
   return iter->get();
 }
 
-void LeAudioDevices::SetInitialGroupAutoconnectState(int group_id, int gatt_if,
+void LeAudioDevices::SetInitialGroupAutoconnectState(int group_id, tGATT_IF gatt_if,
                                                      tBTM_BLE_CONN_TYPE /*reconnection_mode*/,
                                                      bool current_dev_autoconnect_flag) {
   if (!current_dev_autoconnect_flag) {

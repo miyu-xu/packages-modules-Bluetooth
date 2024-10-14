@@ -125,7 +125,7 @@ public:
               }
             },
             base::Bind(
-                    [](Closure initCb, uint8_t client_id, uint8_t status) {
+                    [](Closure initCb, tGATT_IF client_id, uint8_t status) {
                       if (status != GATT_SUCCESS) {
                         log::error(
                                 "Can't start Coordinated Set Service client profile - no "
@@ -2268,7 +2268,7 @@ private:
     device->SetPairingSirkReadFlag(true);
   }
 
-  uint8_t gatt_if_;
+  tGATT_IF gatt_if_;
   bluetooth::csis::CsisClientCallbacks* callbacks_;
   std::list<std::shared_ptr<CsisDevice>> devices_;
   std::list<std::shared_ptr<CsisGroup>> csis_groups_;

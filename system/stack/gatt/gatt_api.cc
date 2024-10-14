@@ -1233,12 +1233,12 @@ tGATT_IF GATT_Register(const Uuid& app_uuid128, const std::string& name, tGATT_C
   }
   tGATT_REG* p_reg;
   uint8_t i_gatt_if = 0;
-  tGATT_IF gatt_if = 0;
+  tGATT_IF gatt_if = INVALID_GATT_IF;
 
   for (i_gatt_if = 0, p_reg = gatt_cb.cl_rcb; i_gatt_if < GATT_MAX_APPS; i_gatt_if++, p_reg++) {
     if (p_reg->in_use && p_reg->app_uuid128 == app_uuid128) {
       log::error("Application already registered, uuid={}", app_uuid128.ToString());
-      return 0;
+      return INVALID_GATT_IF;
     }
   }
 
@@ -1264,7 +1264,7 @@ tGATT_IF GATT_Register(const Uuid& app_uuid128, const std::string& name, tGATT_C
   }
 
   log::error("Unable to register GATT client, MAX client reached: {}", GATT_MAX_APPS);
-  return 0;
+  return INVALID_GATT_IF;
 }
 
 static tGATT_IF GATT_Register_Dynamic(const Uuid& app_uuid128, const std::string& name,
@@ -1272,7 +1272,7 @@ static tGATT_IF GATT_Register_Dynamic(const Uuid& app_uuid128, const std::string
   for (auto& [gatt_if, p_reg] : gatt_cb.cl_rcb_map) {
     if (p_reg->app_uuid128 == app_uuid128) {
       log::error("Application already registered, uuid={}", app_uuid128.ToString());
-      return 0;
+      return INVALID_GATT_IF;
     }
   }
 
@@ -1283,16 +1283,16 @@ static tGATT_IF GATT_Register_Dynamic(const Uuid& app_uuid128, const std::string
 
   if (gatt_cb.cl_rcb_map.size() >= GATT_CL_RCB_MAX) {
     log::error("Unable to register GATT client, MAX client reached: {}", gatt_cb.cl_rcb_map.size());
-    return 0;
+    return INVALID_GATT_IF;
   }
 
-  uint8_t i_gatt_if = gatt_cb.next_gatt_if;
+  tGATT_IF gatt_if = gatt_cb.next_gatt_if;
   for (int i = 0; i < GATT_CL_RCB_MAX; i++) {
-    if (gatt_cb.cl_rcb_map.find(static_cast<tGATT_IF>(i_gatt_if)) == gatt_cb.cl_rcb_map.end()) {
-      gatt_cb.cl_rcb_map.emplace(i_gatt_if, std::make_unique<tGATT_REG>());
-      tGATT_REG* p_reg = gatt_cb.cl_rcb_map[i_gatt_if].get();
+    if (gatt_cb.cl_rcb_map.find(gatt_if) == gatt_cb.cl_rcb_map.end()) {
+      gatt_cb.cl_rcb_map.emplace(gatt_if, std::make_unique<tGATT_REG>());
+      tGATT_REG* p_reg = gatt_cb.cl_rcb_map[gatt_if].get();
       p_reg->app_uuid128 = app_uuid128;
-      p_reg->gatt_if = (tGATT_IF)i_gatt_if;
+      p_reg->gatt_if = gatt_if;
       p_reg->app_cb = *p_cb_info;
       p_reg->in_use = true;
       p_reg->eatt_support = eatt_support;
@@ -1300,20 +1300,20 @@ static tGATT_IF GATT_Register_Dynamic(const Uuid& app_uuid128, const std::string
       log::info("Allocated name:{} uuid:{} gatt_if:{} eatt_support:{}", name,
                 app_uuid128.ToString(), p_reg->gatt_if, eatt_support);
 
-      gatt_cb.next_gatt_if = (tGATT_IF)(i_gatt_if + 1);
-      if (gatt_cb.next_gatt_if == 0) {
-        gatt_cb.next_gatt_if = 1;
+      gatt_cb.next_gatt_if = static_cast<tGATT_IF>(gatt_if + 1);
+      if (gatt_cb.next_gatt_if > GATT_MAX_GATT_IF) {
+        gatt_cb.next_gatt_if = static_cast<tGATT_IF>(1);
       }
       return p_reg->gatt_if;
     }
-    i_gatt_if++;
-    if (i_gatt_if == 0) {
-      i_gatt_if = 1;
+    ++gatt_if;
+    if (gatt_if > GATT_MAX_GATT_IF) {
+      gatt_if = static_cast<tGATT_IF>(1);
     }
   }
 
   log::error("Unable to register GATT client, MAX client reached: {}", gatt_cb.cl_rcb_map.size());
-  return 0;
+  return INVALID_GATT_IF;
 }
 
 /*******************************************************************************

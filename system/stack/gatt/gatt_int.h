@@ -40,6 +40,10 @@
 #include "types/raw_address.h"
 
 #define GATT_TRANS_ID_MAX 0x0fffffff /* 4 MSB is reserved */
+
+inline constexpr tGATT_IF GATT_MAX_GATT_IF = static_cast<tGATT_IF>(0xf0);
+inline constexpr tGATT_IF GATT_IF_L2CAP = static_cast<tGATT_IF>(0xf1);
+
 #define GATT_CL_RCB_MAX 255          /* Maximum number of cl_rcb */
 
 /* security action for GATT write and read request */

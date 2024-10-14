@@ -139,7 +139,7 @@ TEST_F(VolumeControlDevicesTest, test_disconnect) {
   devices_->Add(test_address_1, true);
   VolumeControlDevice* test_device_0 = devices_->FindByAddress(test_address_0);
   test_device_0->connection_id = 0x0005;
-  tGATT_IF gatt_if = 8;
+  tGATT_IF gatt_if = static_cast<tGATT_IF>(8);
   EXPECT_CALL(gatt_interface, Close(test_device_0->connection_id));
   devices_->Disconnect(gatt_if);
 }
@@ -575,7 +575,7 @@ TEST_F(VolumeControlDeviceTest, test_services_changed) {
 TEST_F(VolumeControlDeviceTest, test_enqueue_initial_requests) {
   SetSampleDatabase1();
 
-  tGATT_IF gatt_if = 0x0001;
+  tGATT_IF gatt_if = static_cast<tGATT_IF>(0x01);
   std::vector<uint8_t> register_for_notification_data({0x01, 0x00});
 
   std::map<uint16_t, uint16_t> expected_subscribtions{
@@ -632,7 +632,8 @@ TEST_F(VolumeControlDeviceTest, test_device_ready) {
                          uint16_t /*len*/, uint8_t* /*value*/, void* /*data*/) {};
   auto cccd_write_cb = [](uint16_t /*conn_id*/, tGATT_STATUS /*status*/, uint16_t /*handle*/,
                           uint16_t /*len*/, const uint8_t* /*value*/, void* /*data*/) {};
-  ASSERT_EQ(true, device->EnqueueInitialRequests(0x0001, chrc_read_cb, cccd_write_cb));
+  ASSERT_EQ(true, device->EnqueueInitialRequests(static_cast<tGATT_IF>(0x01), chrc_read_cb,
+                                                 cccd_write_cb));
   ASSERT_NE((size_t)0, requested_handles.size());
 
   // indicate non-pending requests
@@ -652,7 +653,7 @@ TEST_F(VolumeControlDeviceTest, test_enqueue_remaining_requests) {
 
   SetSampleDatabase1();
 
-  tGATT_IF gatt_if = 0x0001;
+  tGATT_IF gatt_if = static_cast<tGATT_IF>(0x01);
 
   std::vector<uint16_t> expected_to_read{
           0x0022 /* audio input state 1 */,        0x0025 /* gain setting properties 1 */,
@@ -688,7 +689,7 @@ TEST_F(VolumeControlDeviceTest, test_enqueue_remaining_requests_multiread) {
 
   SetSampleDatabase1();
 
-  tGATT_IF gatt_if = 0x0001;
+  tGATT_IF gatt_if = static_cast<tGATT_IF>(0x01);
   std::vector<uint8_t> register_for_notification_data({0x01, 0x00});
 
   tBTA_GATTC_MULTI expected_to_read_part_1 = {

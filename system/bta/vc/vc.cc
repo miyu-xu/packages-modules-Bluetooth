@@ -105,7 +105,7 @@ public:
     BTA_GATTC_AppRegister(
             gattc_callback_static,
             base::Bind(
-                    [](const base::Closure& initCb, uint8_t client_id, uint8_t status) {
+                    [](const base::Closure& initCb, tGATT_IF client_id, uint8_t status) {
                       if (status != GATT_SUCCESS) {
                         bluetooth::log::error(
                                 "Can't start Volume Control profile - no gatt clients "
@@ -780,7 +780,7 @@ public:
   }
 
   void Dump(int fd) {
-    dprintf(fd, "APP ID: %d\n", gatt_if_);
+    dprintf(fd, "APP ID: %d\n", static_cast<int>(gatt_if_));
     volume_control_devices_.DebugDump(fd);
   }
 

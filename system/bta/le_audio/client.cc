@@ -272,7 +272,7 @@ public:
     BTA_GATTC_AppRegister(
             le_audio_gattc_callback,
             base::Bind(
-                    [](base::Closure initCb, uint8_t client_id, uint8_t status) {
+                    [](base::Closure initCb, tGATT_IF client_id, uint8_t status) {
                       if (status != GATT_SUCCESS) {
                         log::error("Can't start LeAudio profile - no gatt clients left!");
                         return;
@@ -3839,7 +3839,7 @@ public:
   }
 
   void Dump(int fd) {
-    dprintf(fd, "  APP ID: %d \n", gatt_if_);
+    dprintf(fd, "  APP ID: %d \n", static_cast<int>(gatt_if_));
     dprintf(fd, "  Active group: %d\n", active_group_id_);
     dprintf(fd, "  reconnection mode: %s \n",
             (reconnection_mode_ == BTM_BLE_BKG_CONNECT_ALLOW_LIST ? "Allow List"

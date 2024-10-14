@@ -150,7 +150,7 @@ static void btapp_gatts_handle_cback(uint16_t event, char* p_param) {
   switch (event) {
     case BTA_GATTS_REG_EVT: {
       HAL_CBACK(callbacks, server->register_server_cb, p_data->reg_oper.status,
-                p_data->reg_oper.server_if, p_data->reg_oper.uuid);
+                static_cast<int>(p_data->reg_oper.server_if), p_data->reg_oper.uuid);
       break;
     }
 
@@ -161,24 +161,24 @@ static void btapp_gatts_handle_cback(uint16_t event, char* p_param) {
       btif_gatt_check_encrypted_link(p_data->conn.remote_bda, p_data->conn.transport);
 
       HAL_CBACK(callbacks, server->connection_cb, static_cast<int>(p_data->conn.conn_id),
-                p_data->conn.server_if, true, p_data->conn.remote_bda);
+                static_cast<int>(p_data->conn.server_if), true, p_data->conn.remote_bda);
       break;
     }
 
     case BTA_GATTS_DISCONNECT_EVT: {
       HAL_CBACK(callbacks, server->connection_cb, static_cast<int>(p_data->conn.conn_id),
-                p_data->conn.server_if, false, p_data->conn.remote_bda);
+                static_cast<int>(p_data->conn.server_if), false, p_data->conn.remote_bda);
       break;
     }
 
     case BTA_GATTS_STOP_EVT:
       HAL_CBACK(callbacks, server->service_stopped_cb, p_data->srvc_oper.status,
-                p_data->srvc_oper.server_if, p_data->srvc_oper.service_id);
+                static_cast<int>(p_data->srvc_oper.server_if), p_data->srvc_oper.service_id);
       break;
 
     case BTA_GATTS_DELETE_EVT:
       HAL_CBACK(callbacks, server->service_deleted_cb, p_data->srvc_oper.status,
-                p_data->srvc_oper.server_if, p_data->srvc_oper.service_id);
+                static_cast<int>(p_data->srvc_oper.server_if), p_data->srvc_oper.service_id);
       break;
 
     case BTA_GATTS_READ_CHARACTERISTIC_EVT: {
@@ -289,7 +289,7 @@ static bt_status_t btif_gatts_register_app(const Uuid& bt_uuid, bool eatt_suppor
 
 static bt_status_t btif_gatts_unregister_app(int server_if) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&BTA_GATTS_AppDeregister, server_if));
+  return do_in_jni_thread(Bind(&BTA_GATTS_AppDeregister, static_cast<tGATT_IF>(server_if)));
 }
 
 static void btif_gatts_open_impl(int server_if, const RawAddress& address, bool is_direct,
@@ -327,7 +327,7 @@ static void btif_gatts_open_impl(int server_if, const RawAddress& address, bool 
   }
 
   // Connect!
-  BTA_GATTS_Open(server_if, address, BLE_ADDR_PUBLIC, is_direct, transport);
+  BTA_GATTS_Open(static_cast<tGATT_IF>(server_if), address, BLE_ADDR_PUBLIC, is_direct, transport);
 }
 
 // Used instead of btif_gatts_open_impl if the flag
@@ -362,7 +362,7 @@ static void btif_gatts_open_impl_use_address_type(int server_if, const RawAddres
   }
 
   log::info("addr_type:{}, transport:{}", addr_type, bt_transport_text(transport));
-  BTA_GATTS_Open(server_if, address, addr_type, is_direct, transport);
+  BTA_GATTS_Open(static_cast<tGATT_IF>(server_if), address, addr_type, is_direct, transport);
 }
 
 static bt_status_t btif_gatts_open(int server_if, const RawAddress& bd_addr, uint8_t addr_type,
@@ -383,11 +383,11 @@ static void btif_gatts_close_impl(int server_if, const RawAddress& address, int 
   if (conn_id != 0) {
     BTA_GATTS_Close(static_cast<tCONN_ID>(conn_id));
   } else {
-    BTA_GATTS_CancelOpen(server_if, address, true);
+    BTA_GATTS_CancelOpen(static_cast<tGATT_IF>(server_if), address, true);
   }
 
   // Cancel pending background connections
-  BTA_GATTS_CancelOpen(server_if, address, false);
+  BTA_GATTS_CancelOpen(static_cast<tGATT_IF>(server_if), address, false);
 }
 
 static bt_status_t btif_gatts_close(int server_if, const RawAddress& bd_addr, int conn_id) {
@@ -395,10 +395,11 @@ static bt_status_t btif_gatts_close(int server_if, const RawAddress& bd_addr, in
   return do_in_jni_thread(Bind(&btif_gatts_close_impl, server_if, bd_addr, conn_id));
 }
 
-static void on_service_added_cb(tGATT_STATUS status, int server_if,
+static void on_service_added_cb(tGATT_STATUS status, tGATT_IF server_if,
                                 vector<btgatt_db_element_t> service) {
   auto callbacks = bt_gatt_callbacks;
-  HAL_CBACK(callbacks, server->service_added_cb, status, server_if, service.data(), service.size());
+  HAL_CBACK(callbacks, server->service_added_cb, status, static_cast<int>(server_if),
+            service.data(), service.size());
 }
 
 static void add_service_impl(int server_if, vector<btgatt_db_element_t> service) {
@@ -414,7 +415,8 @@ static void add_service_impl(int server_if, vector<btgatt_db_element_t> service)
     return;
   }
 
-  BTA_GATTS_AddService(server_if, service, jni_thread_wrapper(base::Bind(&on_service_added_cb)));
+  BTA_GATTS_AddService(static_cast<tGATT_IF>(server_if), service,
+                       jni_thread_wrapper(base::Bind(&on_service_added_cb)));
 }
 
 static bt_status_t btif_gatts_add_service(int server_if, const btgatt_db_element_t* service,

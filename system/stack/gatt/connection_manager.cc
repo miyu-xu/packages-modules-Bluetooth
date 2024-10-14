@@ -150,7 +150,7 @@ bool IsTargetedAnnouncement(const uint8_t* p_eir, uint16_t eir_len) {
   return false;
 }
 
-static void schedule_direct_connect_add(uint8_t app_id, const RawAddress& address);
+static void schedule_direct_connect_add(tAPP_ID app_id, const RawAddress& address);
 
 static void target_announcement_observe_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
                                                    uint16_t eir_len) {
@@ -248,7 +248,7 @@ bool background_connect_targeted_announcement_add(tAPP_ID app_id, const RawAddre
 
 /** Add a device from the background connection list.  Returns true if device
  * added to the list, or already in list, false otherwise */
-bool background_connect_add(uint8_t app_id, const RawAddress& address) {
+bool background_connect_add(tAPP_ID app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id), address);
   auto it = bgconn_dev.find(address);
   bool in_acceptlist = false;
@@ -310,7 +310,7 @@ bool remove_unconditional(const RawAddress& address) {
 /** Remove device from the background connection device list or listening to
  * advertising list.  Returns true if device was on the list and was
  * successfully removed */
-bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
+bool background_connect_remove(tAPP_ID app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id), address);
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
@@ -380,7 +380,7 @@ bool is_background_connection(const RawAddress& address) {
 }
 
 /** deregister all related background connetion device. */
-void on_app_deregistered(uint8_t app_id) {
+void on_app_deregistered(tAPP_ID app_id) {
   log::debug("app_id={}", static_cast<int>(app_id));
   auto it = bgconn_dev.begin();
   auto end = bgconn_dev.end();
@@ -404,7 +404,7 @@ static void remove_all_clients_with_pending_connections(const RawAddress& addres
   log::debug("address={}", address);
   auto it = bgconn_dev.find(address);
   while (it != bgconn_dev.end() && !it->second.doing_direct_conn.empty()) {
-    uint8_t app_id = it->second.doing_direct_conn.begin()->first;
+    tAPP_ID app_id = it->second.doing_direct_conn.begin()->first;
     direct_connect_remove(app_id, address);
     it = bgconn_dev.find(address);
   }
@@ -418,7 +418,7 @@ void on_connection_complete(const RawAddress& address) {
 
 void on_connection_timed_out_from_shim(const RawAddress& address) {
   log::info("Connection failed {}", address);
-  on_connection_timed_out(0x00, address);
+  on_connection_timed_out(static_cast<tAPP_ID>(0x00), address);
 }
 
 /** Reset bg device list. If called after controller reset, set |after_reset|
@@ -431,7 +431,7 @@ void reset(bool after_reset) {
   }
 }
 
-void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
+void wl_direct_connect_timeout_cb(tAPP_ID app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id), address);
   on_connection_timed_out(app_id, address);
 
@@ -442,7 +442,7 @@ void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
 
 /** Add a device to the direct connection list. Returns true if device
  * added to the list, false otherwise */
-bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
+bool direct_connect_add(tAPP_ID app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id), address);
   bool in_acceptlist = false;
   auto it = bgconn_dev.find(address);
@@ -479,11 +479,11 @@ bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
   return true;
 }
 
-static void schedule_direct_connect_add(uint8_t app_id, const RawAddress& address) {
+static void schedule_direct_connect_add(tAPP_ID app_id, const RawAddress& address) {
   direct_connect_add(app_id, address);
 }
 
-bool direct_connect_remove(uint8_t app_id, const RawAddress& address, bool connection_timeout) {
+bool direct_connect_remove(tAPP_ID app_id, const RawAddress& address, bool connection_timeout) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id), address);
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
@@ -544,20 +544,20 @@ void dump(int fd) {
     if (!entry.second.doing_direct_conn.empty()) {
       dprintf(fd, "\n\t\tapps doing direct connect: ");
       for (const auto& id : entry.second.doing_direct_conn) {
-        dprintf(fd, "%d, ", id.first);
+        dprintf(fd, "%d, ", static_cast<int>(id.first));
       }
     }
 
     if (!entry.second.doing_bg_conn.empty()) {
       dprintf(fd, "\n\t\tapps doing background connect: ");
       for (const auto& id : entry.second.doing_bg_conn) {
-        dprintf(fd, "%d, ", id);
+        dprintf(fd, "%d, ", static_cast<int>(id));
       }
     }
     if (!entry.second.doing_targeted_announcements_conn.empty()) {
       dprintf(fd, "\n\t\tapps doing cap announcement connect: ");
       for (const auto& id : entry.second.doing_targeted_announcements_conn) {
-        dprintf(fd, "%d, ", id);
+        dprintf(fd, "%d, ", static_cast<int>(id));
       }
     }
     dprintf(fd, "\n\t\t is in the allow list: %s",

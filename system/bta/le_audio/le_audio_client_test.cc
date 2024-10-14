@@ -2687,7 +2687,7 @@ protected:
   NiceMock<gatt::MockBtaGattInterface> mock_gatt_interface_;
   NiceMock<gatt::MockBtaGattQueue> mock_gatt_queue_;
   tBTA_GATTC_CBACK* gatt_callback;
-  const uint8_t gatt_if = 0xfe;
+  const tGATT_IF gatt_if = static_cast<tGATT_IF>(0xfe);
   uint16_t global_conn_id = 1;
   bluetooth::le_audio::LeAudioGroupStateMachine::Callbacks* state_machine_callbacks_;
   std::map<int, LeAudioDeviceGroup*> streaming_groups;

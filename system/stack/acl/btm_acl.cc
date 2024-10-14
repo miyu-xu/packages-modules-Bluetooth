@@ -2462,7 +2462,7 @@ void acl_write_automatic_flush_timeout(const RawAddress& bd_addr, uint16_t flush
   btsnd_hcic_write_auto_flush_tout(p_acl->hci_handle, flush_timeout_in_ticks);
 }
 
-bool acl_create_le_connection_with_id(uint8_t /* id */, const RawAddress& bd_addr,
+bool acl_create_le_connection_with_id(tGATT_IF /* id */, const RawAddress& bd_addr,
                                       tBLE_ADDR_TYPE addr_type) {
   tBLE_BD_ADDR address_with_type{
           .type = addr_type,

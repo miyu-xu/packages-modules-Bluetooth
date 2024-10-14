@@ -744,7 +744,7 @@ protected:
   gatt::MockBtaGattInterface gatt_interface;
   gatt::MockBtaGattQueue gatt_queue;
   tBTA_GATTC_CBACK* gatt_callback;
-  const uint8_t gatt_if = 0xff;
+  const tGATT_IF gatt_if = static_cast<tGATT_IF>(0xff);
   std::map<uint16_t, std::list<gatt::Service>> services_map;
 };
 

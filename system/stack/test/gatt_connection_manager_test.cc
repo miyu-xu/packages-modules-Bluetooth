@@ -31,7 +31,7 @@ public:
   MOCK_METHOD2(AcceptlistAdd, bool(const RawAddress&, bool is_direct));
   MOCK_METHOD1(AcceptlistRemove, void(const RawAddress&));
   MOCK_METHOD0(AcceptlistClear, void());
-  MOCK_METHOD2(OnConnectionTimedOut, void(uint8_t, const RawAddress&));
+  MOCK_METHOD2(OnConnectionTimedOut, void(tAPP_ID, const RawAddress&));
 
   /* Not really accept list related, btui still BTM - just for testing put it
    * here. */
@@ -44,10 +44,10 @@ std::unique_ptr<AcceptlistMock> localAcceptlistMock;
 RawAddress address1{{0x01, 0x01, 0x01, 0x01, 0x01, 0x01}};
 RawAddress address2{{0x22, 0x22, 0x02, 0x22, 0x33, 0x22}};
 
-constexpr tAPP_ID CLIENT1 = 1;
-constexpr tAPP_ID CLIENT2 = 2;
-constexpr tAPP_ID CLIENT3 = 3;
-constexpr tAPP_ID CLIENT10 = 10;
+constexpr tAPP_ID CLIENT1 = static_cast<tAPP_ID>(1);
+constexpr tAPP_ID CLIENT2 = static_cast<tAPP_ID>(2);
+constexpr tAPP_ID CLIENT3 = static_cast<tAPP_ID>(3);
+constexpr tAPP_ID CLIENT10 = static_cast<tAPP_ID>(10);
 
 const tBLE_BD_ADDR BTM_Sec_GetAddressWithType(const RawAddress& bd_addr) {
   return tBLE_BD_ADDR{.type = BLE_ADDR_PUBLIC, .bda = bd_addr};
@@ -109,7 +109,7 @@ class BleConnectionManager : public testing::Test {
   }
 };
 
-void on_connection_timed_out(uint8_t app_id, const RawAddress& address) {
+void on_connection_timed_out(tAPP_ID app_id, const RawAddress& address) {
   localAcceptlistMock->OnConnectionTimedOut(app_id, address);
 }
 

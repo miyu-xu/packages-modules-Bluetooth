@@ -348,7 +348,7 @@ public:
     }
 
     BTA_GATTS_AddService(server_if_, service,
-                         base::BindRepeating([](tGATT_STATUS status, int server_if,
+                         base::BindRepeating([](tGATT_STATUS status, tGATT_IF server_if,
                                                 std::vector<btgatt_db_element_t> service) {
                            if (instance) {
                              instance->OnServiceAdded(status, server_if, service);
@@ -759,7 +759,7 @@ public:
 
 private:
   bluetooth::Uuid app_uuid_;
-  uint16_t server_if_;
+  tGATT_IF server_if_;
   // A map to associate characteristics with handles
   std::unordered_map<uint16_t, RasCharacteristic> characteristics_;
   // A map to client trackers with address

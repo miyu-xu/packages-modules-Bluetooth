@@ -328,7 +328,7 @@ inline std::string gatt_server_event_text(const tBTA_GATTS_EVT& event) {
 
 #define BTA_GATTS_INVALID_APP 0xff
 
-#define BTA_GATTS_INVALID_IF 0
+#define BTA_GATTS_INVALID_IF (static_cast<tGATT_IF>(0))
 
 #ifndef BTA_GATTC_CHAR_DESCR_MAX
 #define BTA_GATTC_CHAR_DESCR_MAX 7
@@ -460,7 +460,7 @@ typedef void(tBTA_GATTS_CBACK)(tBTA_GATTS_EVT event, tBTA_GATTS* p_data);
  ******************************************************************************/
 void BTA_GATTC_Disable(void);
 
-using BtaAppRegisterCallback = base::Callback<void(uint8_t /* app_id */, uint8_t /* status */)>;
+using BtaAppRegisterCallback = base::Callback<void(tGATT_IF /* app_id */, uint8_t /* status */)>;
 
 /**
  * This function is called to register application callbacks with BTA GATTC
@@ -923,7 +923,7 @@ void BTA_GATTS_AppDeregister(tGATT_IF server_if);
  *                  service cannot be added.
  *
  ******************************************************************************/
-typedef base::Callback<void(tGATT_STATUS status, int server_if,
+typedef base::Callback<void(tGATT_STATUS status, tGATT_IF server_if,
                             std::vector<btgatt_db_element_t> service)>
         BTA_GATTS_AddServiceCb;
 

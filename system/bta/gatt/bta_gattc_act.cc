@@ -171,7 +171,7 @@ void bta_gattc_disable() {
 }
 
 /** start an application interface */
-static void bta_gattc_start_if(uint8_t client_if) {
+static void bta_gattc_start_if(tGATT_IF client_if) {
   log::debug("client_if={}", client_if);
   if (!bta_gattc_cl_get_regcb(client_if)) {
     log::error("Unable to start app.: Unknown client_if={}", client_if);
@@ -185,7 +185,7 @@ static void bta_gattc_start_if(uint8_t client_if) {
 void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback, BtaAppRegisterCallback cb,
                         bool eatt_support) {
   tGATT_STATUS status = GATT_NO_RESOURCES;
-  uint8_t client_if = 0;
+  tGATT_IF client_if = INVALID_GATT_IF;
   log::debug("state: {}, uuid={}", bta_gattc_cb.state, app_uuid.ToString());
 
   /* check if  GATTC module is already enabled . Else enable */
@@ -196,7 +196,7 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback, BtaAppR
 
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     client_if = GATT_Register(app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_support);
-    if (client_if == 0) {
+    if (client_if == INVALID_GATT_IF) {
       log::error("Register with GATT stack failed");
       status = GATT_ERROR;
     } else {
@@ -220,7 +220,7 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback, BtaAppR
       if (!bta_gattc_cb.cl_rcb[i].in_use) {
         bta_gattc_cb.cl_rcb[i].client_if =
                 GATT_Register(app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_support);
-        if (bta_gattc_cb.cl_rcb[i].client_if == 0) {
+        if (bta_gattc_cb.cl_rcb[i].client_if == INVALID_GATT_IF) {
           log::error("Register with GATT stack failed with index {}, trying next index", i);
           status = GATT_ERROR;
         } else {

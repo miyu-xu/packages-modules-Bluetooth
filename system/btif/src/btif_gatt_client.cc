@@ -177,7 +177,8 @@ static void btif_gattc_upstreams_evt(uint16_t event, char* p_param) {
     case BTA_GATTC_OPEN_EVT: {
       log::debug("BTA_GATTC_OPEN_EVT {}", p_data->open.remote_bda);
       HAL_CBACK(callbacks, client->open_cb, static_cast<int>(p_data->open.conn_id),
-                p_data->open.status, p_data->open.client_if, p_data->open.remote_bda);
+                p_data->open.status, static_cast<int>(p_data->open.client_if),
+                p_data->open.remote_bda);
 
       if (GATT_DEF_BLE_MTU_SIZE != p_data->open.mtu && p_data->open.mtu) {
         HAL_CBACK(callbacks, client->configure_mtu_cb, static_cast<int>(p_data->open.conn_id),
@@ -193,7 +194,8 @@ static void btif_gattc_upstreams_evt(uint16_t event, char* p_param) {
     case BTA_GATTC_CLOSE_EVT: {
       log::debug("BTA_GATTC_CLOSE_EVT {}", p_data->close.remote_bda);
       HAL_CBACK(callbacks, client->close_cb, static_cast<int>(p_data->close.conn_id),
-                p_data->close.status, p_data->close.client_if, p_data->close.remote_bda);
+                p_data->close.status, static_cast<int>(p_data->close.client_if),
+                p_data->close.remote_bda);
       break;
     }
 
@@ -274,12 +276,12 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid, bool eatt_support) 
             BTA_GATTC_AppRegister(
                     bta_gattc_cback,
                     base::Bind(
-                            [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
+                            [](const Uuid& uuid, tGATT_IF client_id, uint8_t status) {
                               do_in_jni_thread(Bind(
-                                      [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
+                                      [](const Uuid& uuid, tGATT_IF client_id, uint8_t status) {
                                         auto callbacks = bt_gatt_callbacks;
                                         HAL_CBACK(callbacks, client->register_client_cb, status,
-                                                  client_id, uuid);
+                                                  static_cast<int>(client_id), uuid);
                                       },
                                       uuid, client_id, status));
                             },
@@ -289,7 +291,9 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid, bool eatt_support) 
           uuid, eatt_support));
 }
 
-static void btif_gattc_unregister_app_impl(int client_if) { BTA_GATTC_AppDeregister(client_if); }
+static void btif_gattc_unregister_app_impl(int client_if) {
+  BTA_GATTC_AppDeregister(static_cast<tGATT_IF>(client_if));
+}
 
 static bt_status_t btif_gattc_unregister_app(int client_if) {
   CHECK_BTGATT_INIT();
@@ -358,8 +362,8 @@ void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr
             bt_transport_text(transport), DeviceTypeText(device_type),
             address, addr_type, initiating_phys);
   tBTM_BLE_CONN_TYPE type = is_direct ? BTM_BLE_DIRECT_CONNECTION : BTM_BLE_BKG_CONNECT_ALLOW_LIST;
-  BTA_GATTC_Open(client_if, address, addr_type, type, transport, opportunistic, initiating_phys,
-                 preferred_mtu);
+  BTA_GATTC_Open(static_cast<tGATT_IF>(client_if), address, addr_type, type, transport,
+                 opportunistic, initiating_phys, preferred_mtu);
 }
 
 static bt_status_t btif_gattc_open(int client_if, const RawAddress& bd_addr, uint8_t addr_type,
@@ -378,11 +382,11 @@ void btif_gattc_close_impl(int client_if, RawAddress address, int conn_id) {
   if (conn_id != 0) {
     BTA_GATTC_Close(static_cast<tCONN_ID>(conn_id));
   } else {
-    BTA_GATTC_CancelOpen(client_if, address, true);
+    BTA_GATTC_CancelOpen(static_cast<tGATT_IF>(client_if), address, true);
   }
 
   // Cancel pending background connections (remove from acceptlist)
-  BTA_GATTC_CancelOpen(client_if, address, false);
+  BTA_GATTC_CancelOpen(static_cast<tGATT_IF>(client_if), address, false);
 }
 
 static bt_status_t btif_gattc_close(int client_if, const RawAddress& bd_addr, int conn_id) {
@@ -555,9 +559,10 @@ static bt_status_t btif_gattc_execute_write(int conn_id, int execute) {
           Bind(&BTA_GATTC_ExecuteWrite, static_cast<tCONN_ID>(conn_id), (uint8_t)execute));
 }
 
-static void btif_gattc_reg_for_notification_impl(tGATT_IF client_if, const RawAddress& bda,
+static void btif_gattc_reg_for_notification_impl(int client_if, const RawAddress& bda,
                                                  uint16_t handle) {
-  tGATT_STATUS status = BTA_GATTC_RegisterForNotifications(client_if, bda, handle);
+  tGATT_STATUS status =
+          BTA_GATTC_RegisterForNotifications(static_cast<tGATT_IF>(client_if), bda, handle);
 
   // TODO(jpawlowski): conn_id is currently unused
   auto callbacks = bt_gatt_callbacks;
@@ -573,9 +578,10 @@ bt_status_t btif_gattc_reg_for_notification(int client_if, const RawAddress& bd_
                                bd_addr, handle));
 }
 
-static void btif_gattc_dereg_for_notification_impl(tGATT_IF client_if, const RawAddress& bda,
+static void btif_gattc_dereg_for_notification_impl(int client_if, const RawAddress& bda,
                                                    uint16_t handle) {
-  tGATT_STATUS status = BTA_GATTC_DeregisterForNotifications(client_if, bda, handle);
+  tGATT_STATUS status =
+          BTA_GATTC_DeregisterForNotifications(static_cast<tGATT_IF>(client_if), bda, handle);
 
   // TODO(jpawlowski): conn_id is currently unused
   auto callbacks = bt_gatt_callbacks;
@@ -791,7 +797,7 @@ static bt_status_t btif_gattc_test_command_impl(int command, const btgatt_test_p
         GATT_StartIf(test_cb.gatt_if);
       } else {
         GATT_Deregister(test_cb.gatt_if);
-        test_cb.gatt_if = 0;
+        test_cb.gatt_if = INVALID_GATT_IF;
       }
       break;
     }

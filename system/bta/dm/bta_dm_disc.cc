@@ -154,7 +154,7 @@ gatt_interface_t& get_gatt_interface() { return *gatt_interface; }
 }  // namespace
 
 void bta_dm_disc_gatt_cancel_open(const RawAddress& bd_addr) {
-  get_gatt_interface().BTA_GATTC_CancelOpen(0, bd_addr, false);
+  get_gatt_interface().BTA_GATTC_CancelOpen(static_cast<tGATT_IF>(0), bd_addr, false);
   if (com::android::bluetooth::flags::cancel_open_discovery_client() &&
       bta_dm_discovery_cb.client_if != BTA_GATTS_INVALID_IF) {
     get_gatt_interface().BTA_GATTC_CancelOpen(bta_dm_discovery_cb.client_if, bd_addr, true);
@@ -468,7 +468,7 @@ void bta_dm_disc_gattc_register(void) {
     return;
   }
   get_gatt_interface().BTA_GATTC_AppRegister(
-          bta_dm_gattc_callback, base::Bind([](uint8_t client_id, uint8_t status) {
+          bta_dm_gattc_callback, base::Bind([](tGATT_IF client_id, uint8_t status) {
             tGATT_STATUS gatt_status = static_cast<tGATT_STATUS>(status);
             if (static_cast<tGATT_STATUS>(status) == GATT_SUCCESS) {
               log::info("Registered device discovery search gatt client tGATT_IF:{}", client_id);

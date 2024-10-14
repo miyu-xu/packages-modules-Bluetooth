@@ -128,7 +128,7 @@ public:
               }
             },
             base::Bind(
-                    [](base::Closure initCb, uint8_t client_id, uint8_t status) {
+                    [](base::Closure initCb, tGATT_IF client_id, uint8_t status) {
                       if (status != GATT_SUCCESS) {
                         log::error(
                                 "Can't start Hearing Aid Service client profile - no gatt "
@@ -240,7 +240,7 @@ public:
       }
 
       /* Removes all registrations for connection. */
-      BTA_GATTC_CancelOpen(0, addr, false);
+      BTA_GATTC_CancelOpen(INVALID_GATT_IF, addr, false);
     }
   }
 
@@ -2152,7 +2152,7 @@ private:
             HasGattOpContext(HasGattOpContext::kContextFlagsEnableNotification));
   }
 
-  uint8_t gatt_if_;
+  tGATT_IF gatt_if_;
   bluetooth::has::HasClientCallbacks* callbacks_;
   std::list<HasDevice> devices_;
   std::list<HasCtpOp> pending_operations_;

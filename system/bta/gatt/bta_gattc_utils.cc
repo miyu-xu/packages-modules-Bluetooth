@@ -60,7 +60,7 @@ static uint8_t ble_acceptlist_size() {
  * Returns          pointer to the regcb
  *
  ******************************************************************************/
-tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if) {
+tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(tGATT_IF client_if) {
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     auto it = bta_gattc_cb.cl_rcb_map.find(client_if);
     if (it == bta_gattc_cb.cl_rcb_map.end()) {
@@ -112,7 +112,7 @@ uint8_t bta_gattc_num_reg_app(void) {
  * Returns          pointer to the clcb
  *
  ******************************************************************************/
-tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(uint8_t client_if, const RawAddress& remote_bda,
+tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(tGATT_IF client_if, const RawAddress& remote_bda,
                                             tBT_TRANSPORT transport) {
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& p_clcb : bta_gattc_cb.clcb_set) {

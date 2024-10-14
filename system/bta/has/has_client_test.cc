@@ -1117,7 +1117,7 @@ protected:
   gatt::MockBtaGattQueue gatt_queue;
   MockCsisClient mock_csis_client_module_;
   tBTA_GATTC_CBACK* gatt_callback;
-  const uint8_t gatt_if = 0xfe;
+  const tGATT_IF gatt_if = static_cast<tGATT_IF>(0xfe);
   std::map<uint8_t, RawAddress> connected_devices;
   std::map<uint16_t, std::list<gatt::Service>> services_map;
   bool encryption_result;

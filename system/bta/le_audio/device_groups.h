@@ -232,10 +232,10 @@ public:
   void InvalidateCachedConfigurations(void);
   void SetPendingConfiguration(void);
   void ClearPendingConfiguration(void);
-  void AddToAllowListNotConnectedGroupMembers(int gatt_if);
-  void ApplyReconnectionMode(int gatt_if, tBTM_BLE_CONN_TYPE reconnection_mode);
-  void Disable(int gatt_if);
-  void Enable(int gatt_if, tBTM_BLE_CONN_TYPE reconnection_mode);
+  void AddToAllowListNotConnectedGroupMembers(tGATT_IF gatt_if);
+  void ApplyReconnectionMode(tGATT_IF gatt_if, tBTM_BLE_CONN_TYPE reconnection_mode);
+  void Disable(tGATT_IF gatt_if);
+  void Enable(tGATT_IF gatt_if, tBTM_BLE_CONN_TYPE reconnection_mode);
   bool IsEnabled(void) const;
   LeAudioCodecConfiguration GetAudioSessionCodecConfigForDirection(
           types::LeAudioContextType group_context_type, uint8_t direction) const;

@@ -306,7 +306,7 @@ public:
     BTA_GATTC_AppRegister(
             hearingaid_gattc_callback,
             base::Bind(
-                    [](Closure initCb, uint8_t client_id, uint8_t status) {
+                    [](Closure initCb, tGATT_IF client_id, uint8_t status) {
                       if (status != GATT_SUCCESS) {
                         log::error("Can't start Hearing Aid profile - no gatt clients left!");
                         return;
@@ -1737,7 +1737,7 @@ public:
     }
 
     // Removes all registrations for connection.
-    BTA_GATTC_CancelOpen(0, address, false);
+    BTA_GATTC_CancelOpen(INVALID_GATT_IF, address, false);
 
     // Inform the other side (if any) of this disconnection
     std::vector<uint8_t> inform_disconn_state(
@@ -1885,7 +1885,7 @@ public:
   }
 
 private:
-  uint8_t gatt_if;
+  tGATT_IF gatt_if;
   uint8_t seq_counter;
   /* current volume gain for the hearing aids*/
   int8_t current_volume;

@@ -418,7 +418,7 @@ void bta_gattc_listen(tBTA_GATTC_DATA* p_msg);
 void bta_gattc_broadcast(tBTA_GATTC_DATA* p_msg);
 
 /* utility functions */
-tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(uint8_t client_if, const RawAddress& remote_bda,
+tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(tGATT_IF client_if, const RawAddress& remote_bda,
                                             tBT_TRANSPORT transport);
 tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_conn_id(tCONN_ID conn_id);
 tBTA_GATTC_CLCB* bta_gattc_clcb_alloc(tGATT_IF client_if, const RawAddress& remote_bda,
@@ -428,7 +428,7 @@ void bta_gattc_cleanup_clcb();
 void bta_gattc_server_disconnected(tBTA_GATTC_SERV* p_srcb);
 tBTA_GATTC_CLCB* bta_gattc_find_alloc_clcb(tGATT_IF client_if, const RawAddress& remote_bda,
                                            tBT_TRANSPORT transport);
-tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if);
+tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(tGATT_IF client_if);
 tBTA_GATTC_SERV* bta_gattc_find_srcb(const RawAddress& bda);
 tBTA_GATTC_SERV* bta_gattc_srcb_alloc(const RawAddress& bda);
 tBTA_GATTC_SERV* bta_gattc_find_scb_by_cid(tCONN_ID conn_id);

@@ -98,7 +98,7 @@ bool GATT_Connect::return_value = false;
 tGATT_STATUS GATT_Disconnect::return_value = GATT_SUCCESS;
 bool GATT_GetConnIdIfConnected::return_value = false;
 bool GATT_GetConnectionInfor::return_value = false;
-tGATT_IF GATT_Register::return_value = 0;
+tGATT_IF GATT_Register::return_value = static_cast<tGATT_IF>(0);
 // tGATT_HDL_LIST_ELEM gatt_add_an_item_to_list::return_value = { .svc_db = {},
 // .asgn_range = {}};
 bool is_active_service::return_value = false;

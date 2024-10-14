@@ -20,6 +20,7 @@
 
 #include <set>
 
+#include "stack/include/btm_ble_api_types.h"
 #include "types/raw_address.h"
 
 /* connection_manager takes care of all the low-level details of LE connection
@@ -34,7 +35,7 @@
  */
 namespace connection_manager {
 
-using tAPP_ID = uint8_t;
+using tAPP_ID = tGATT_IF;
 
 /* for background connection */
 bool background_connect_targeted_announcement_add(tAPP_ID app_id, const RawAddress& address);
@@ -57,7 +58,7 @@ void dump(int fd);
 
 /* This callback will be executed when direct connect attempt fails due to
  * timeout. It must be implemented by users of connection_manager */
-void on_connection_timed_out(uint8_t app_id, const RawAddress& address);
+void on_connection_timed_out(tAPP_ID app_id, const RawAddress& address);
 void on_connection_timed_out_from_shim(const RawAddress& address);
 
 bool is_background_connection(const RawAddress& address);

@@ -34,7 +34,7 @@
 #include "test/mock/mock_stack_gatt_api.h"
 #include "test/mock/mock_stack_rnr_interface.h"
 
-constexpr tGATT_IF kGattRegisteredIf = 5;
+constexpr tGATT_IF kGattRegisteredIf = static_cast<tGATT_IF>(5);
 
 void BTA_dm_on_hw_on();
 void BTA_dm_on_hw_off();

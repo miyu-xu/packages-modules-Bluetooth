@@ -486,7 +486,7 @@ static void bta_dm_remove_device_(const RawAddress& bd_addr) {
         peer_device.conn_state = tBTA_DM_CONN_STATE::BTA_DM_UNPAIRING;
 
         /* Make sure device is not in acceptlist before we disconnect */
-        if (!GATT_CancelConnect(0, bd_addr, false)) {
+        if (!GATT_CancelConnect(INVALID_GATT_IF, bd_addr, false)) {
           log::warn("Unable to cancel GATT connect peer:{} is_direct:{}", bd_addr, false);
         }
 
@@ -539,7 +539,7 @@ static void bta_dm_remove_device_(const RawAddress& bd_addr) {
         log::info("Remove ACL of address {}", other_address);
 
         /* Make sure device is not in acceptlist before we disconnect */
-        if (!GATT_CancelConnect(0, bd_addr, false)) {
+        if (!GATT_CancelConnect(INVALID_GATT_IF, bd_addr, false)) {
           log::warn("Unable to cancel GATT connect peer:{} is_direct:{}", bd_addr, false);
         }
 
@@ -594,8 +594,9 @@ void bta_dm_remove_device(const RawAddress& target) {
   }
 
   // Remove from LE allowlist
-  if (!GATT_CancelConnect(0, pseudo_addr, false)) {
-    if (identity_addr != pseudo_addr && !GATT_CancelConnect(0, identity_addr, false)) {
+  if (!GATT_CancelConnect(INVALID_GATT_IF, pseudo_addr, false)) {
+    if (identity_addr != pseudo_addr &&
+        !GATT_CancelConnect(INVALID_GATT_IF, identity_addr, false)) {
       log::warn("Unable to cancel GATT connect peer:{}", pseudo_addr);
     }
   }

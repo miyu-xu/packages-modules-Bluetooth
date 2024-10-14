@@ -147,12 +147,12 @@ public:
 
 }  // namespace
 
-static uint16_t s_ConnId;
+static tCONN_ID s_ConnId;
 static tGATT_IF s_AppIf;
 
 static void GattInit() {
-  s_ConnId = 0;
-  s_AppIf = 0;
+  s_ConnId = static_cast<tCONN_ID>(0);
+  s_AppIf = static_cast<tGATT_IF>(0);
 
   gatt_init();
 
