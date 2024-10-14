@@ -126,6 +126,54 @@
       },
       "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4595cf9_18d199a5",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T19:21:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6520e374_6a85393a",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 71
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5869dc9_30125939",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T19:21:18Z",
+      "side": 1,
+      "message": "Done. \n\nTo remove `typedef uint8_t bt_hci_error_code_t` better to be in a separate follow up CL as it changes the exported function definition.\n\nWill do that in a different CL.",
+      "parentUuid": "815f665d_96e84fad",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 61
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
