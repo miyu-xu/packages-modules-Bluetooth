@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fcab276_6db40027",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T17:33:04Z",
+      "side": 1,
+      "message": "This will return the size of a `uint8_t *`, and not the size of the data allocated to p_remote_name.\n\nI would update the data type of the parameter to be a `bt_bdname_t*`, and do `sizeof(p_remote_name-\u003ename)` that is currently defined as a  `uint8_t [249]`",
+      "range": {
+        "startLine": 474,
+        "startChar": 36,
+        "endLine": 474,
+        "endChar": 57
+      },
+      "revId": "787d3584870435bda46a0fcd13e3faa6be59bc64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59025447_81414121",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T17:33:04Z",
+      "side": 1,
+      "message": "snprintf is better than strcpy to prevent overflow, but it can truncate.\nCan this code be run on non ascii char ? like UTF-8 ? In this case the remaining string can cut mid way.\n\nBut this can be done in a different change, I just wanted to raised the issue here to validate on how much of an issue this could be",
+      "range": {
+        "startLine": 474,
+        "startChar": 6,
+        "endLine": 474,
+        "endChar": 14
+      },
+      "revId": "787d3584870435bda46a0fcd13e3faa6be59bc64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
