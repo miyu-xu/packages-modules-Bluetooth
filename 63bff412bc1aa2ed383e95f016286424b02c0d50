@@ -52,6 +52,24 @@
       "parentUuid": "36104078_aa0baf7b",
       "revId": "63bff412bc1aa2ed383e95f016286424b02c0d50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f2cb57_751c31a1",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-14T23:42:54Z",
+      "side": 1,
+      "message": "But you can still create a new device like `BluetoothDevice::new(addr, String::from(\"\"))` and send that. This makes more sense to me too since in `ConnectAllEnabledProfiles`, we also receive `BluetoothDevice`",
+      "parentUuid": "8091533f_88fca940",
+      "revId": "63bff412bc1aa2ed383e95f016286424b02c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
