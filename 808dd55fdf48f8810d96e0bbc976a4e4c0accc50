@@ -246,6 +246,30 @@
       },
       "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8c97e0_2195fed9",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T23:29:56Z",
+      "side": 1,
+      "message": "does this work if hci_error_to_bt_status is done into hci_error_code.h ?",
+      "parentUuid": "7e7f368a_1b1e0d9f",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 61
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
