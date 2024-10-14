@@ -16,6 +16,24 @@
       "message": "FYI, `del` and `None` are two different behaviors.\n\nNone is assigning the value `None` to the given key. Meaning the key still exists and the value None is associated to it.\n\nWhile `del` is deleting the key and the value from the key.\n\nIs `del` what you want to do here ?",
       "revId": "bd66c8ea55ea1d69fbadf477604f22dbcea16f1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ed33851_b5db7fd2",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-14T18:04:01Z",
+      "side": 1,
+      "message": "If we wanted to open a server after closing one, we currently create new ones instead of reuse old server ports.  `del` is what we want here.",
+      "parentUuid": "922f4ea4_81732e7c",
+      "revId": "bd66c8ea55ea1d69fbadf477604f22dbcea16f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
