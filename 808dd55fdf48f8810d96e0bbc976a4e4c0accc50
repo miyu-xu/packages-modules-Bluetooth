@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e824d6b_c5373286",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T17:18:27Z",
+      "side": 1,
+      "message": "The list can be shorten by aggregate those with BT_STATUS_FAIL into default.",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0b4d51d5_85b64ee2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 190,
+                "startChar": 0,
+                "endLine": 192,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 210,
+                "startChar": 0,
+                "endLine": 212,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 232,
+                "startChar": 0,
+                "endLine": 234,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 246,
+                "startChar": 0,
+                "endLine": 248,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
