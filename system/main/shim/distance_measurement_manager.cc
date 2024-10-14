@@ -16,8 +16,11 @@
 
 #include "distance_measurement_manager.h"
 
+#include <com_android_bluetooth_flags.h>
+
 #include "bta/include/bta_ras_api.h"
 #include "btif/include/btif_common.h"
+#include "hci/controller_interface.h"
 #include "hci/distance_measurement_manager.h"
 #include "hci/hci_packets.h"
 #include "main/shim/entry.h"
@@ -258,6 +261,11 @@ private:
 DistanceMeasurementInterfaceImpl* distance_measurement_instance = nullptr;
 
 void bluetooth::shim::init_distance_measurement_manager() {
+  auto controller = bluetooth::shim::GetController();
+  if (controller == nullptr || !controller->SupportsBleChannelSounding() ||
+      !com::android::bluetooth::flags::channel_sounding_in_stack()) {
+    return;
+  }
   static_cast<DistanceMeasurementInterfaceImpl*>(
           bluetooth::shim::get_distance_measurement_instance())
           ->Init();
