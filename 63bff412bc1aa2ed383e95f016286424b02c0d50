@@ -16,6 +16,24 @@
       "message": "I didn\u0027t notice this until I looked at the browser code, but why not mirror the `OnDeviceDisconnected` callbacks and send the remove_device instead of a `RawAddress`?",
       "revId": "63bff412bc1aa2ed383e95f016286424b02c0d50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36104078_aa0baf7b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T21:51:55Z",
+      "side": 1,
+      "message": "I believe it just because we don\u0027t need the additional information from the device struct. But I agree, to be consist with other callback seems more reaonsable.",
+      "parentUuid": "1d7a1415_67a08dd8",
+      "revId": "63bff412bc1aa2ed383e95f016286424b02c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
