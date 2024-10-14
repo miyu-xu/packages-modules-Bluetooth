@@ -101,6 +101,9 @@ import platform.test.runner.parameterized.Parameters;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -1032,5 +1035,28 @@ public class AdapterServiceTest {
         doReturn(new byte[0]).when(mNativeInterface).dumpMetrics();
         mAdapterService.dump(fd, writer, new String[] {"--proto-bin"});
         mAdapterService.dump(fd, writer, new String[] {"random", "arguments"});
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_GATT_CLEAR_CACHE_ON_FACTORY_RESET)
+    public void testClearGattCacheAndHash() throws Exception {
+        final Path testCachePath = Paths.get("/data/misc/bluetooth/gatt_cache_a475b9a23d72");
+        final Path testHashPath =
+                Paths.get("/data/misc/bluetooth/gatt_hash_400D017CB2563A6FB62A2DC4C2AEFD6F");
+        try {
+            Files.createFile(testCachePath);
+            Files.createFile(testHashPath);
+
+            assertThat(Files.exists(testCachePath)).isTrue();
+            assertThat(Files.exists(testHashPath)).isTrue();
+
+            mAdapterService.clearGattCacheAndHash();
+
+            assertThat(Files.exists(testCachePath)).isFalse();
+            assertThat(Files.exists(testHashPath)).isFalse();
+        } finally {
+            Files.deleteIfExists(testCachePath);
+            Files.deleteIfExists(testHashPath);
+        }
     }
 }
