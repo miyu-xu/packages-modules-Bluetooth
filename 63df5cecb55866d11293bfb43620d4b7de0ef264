@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9356aa0_0e324eb8",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-14T16:42:00Z",
+      "side": 1,
+      "message": "I see, thanks! Talking about using SetBrowsedPlayer to retrieve the number of items, you might want to check out this change too https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3304935/3/system/profile/avrcp/device.cc",
+      "parentUuid": "e1a4b9c4_53484257",
+      "range": {
+        "startLine": 1129,
+        "startChar": 13,
+        "endLine": 1129,
+        "endChar": 45
+      },
+      "revId": "63df5cecb55866d11293bfb43620d4b7de0ef264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2121fbe_4b315451",
@@ -61,6 +85,24 @@
       "writtenOn": "2024-10-14T12:31:04Z",
       "side": 1,
       "message": "@salsavage@google.com Does AA call this after having set the addressed player?",
+      "revId": "63df5cecb55866d11293bfb43620d4b7de0ef264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4aa6b5c_ce241f8c",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-14T16:42:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2121fbe_4b315451",
       "revId": "63df5cecb55866d11293bfb43620d4b7de0ef264",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
