@@ -25,12 +25,9 @@
 
 #include <memory>
 
-#include "bta/dm/bta_dm_sec_int.h"
+#include "bta/dm/bta_dm_ci.h"
 #include "stack/include/main_thread.h"
 #include "types/raw_address.h"
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 /*******************************************************************************
  *

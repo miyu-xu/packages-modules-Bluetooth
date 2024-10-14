@@ -202,8 +202,6 @@ void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p);
 
 tBT_TRANSPORT bta_dm_determine_discovery_transport(const RawAddress& remote_bd_addr);
 
-tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data);
-
 void BTA_dm_on_hw_on();
 
 }  // namespace testing
@@ -267,9 +265,6 @@ TEST_F(BtaDmTest, bta_dm_set_encryption) {
 
   BTA_DM_ENCRYPT_CBACK_queue = {};
 }
-
-void bta_dm_encrypt_cback(RawAddress bd_addr, tBT_TRANSPORT transport, void* /* p_ref_data */,
-                          tBTM_STATUS result);
 
 TEST_F(BtaDmTest, bta_dm_encrypt_cback) {
   const tBT_TRANSPORT transport{BT_TRANSPORT_LE};

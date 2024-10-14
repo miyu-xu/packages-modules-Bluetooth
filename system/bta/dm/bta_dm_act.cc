@@ -55,6 +55,7 @@
 #include "osi/include/properties.h"
 #include "stack/connection_manager/connection_manager.h"
 #include "stack/include/acl_api.h"
+#include "stack/include/ble_scanner.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
@@ -67,19 +68,15 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
-
 using bluetooth::Uuid;
 using namespace bluetooth;
 
-bool ble_vnd_is_included();
-void btm_ble_scanner_init(void);
+static bool ble_vnd_is_included() {
+  // replace build time config BLE_VND_INCLUDED with runtime
+  return android::sysprop::bluetooth::Ble::vnd_included().value_or(true);
+}
 
 static void bta_dm_check_av();
-
-void BTA_dm_update_policy(tBTA_SYS_CONN_STATUS status, uint8_t id, uint8_t app_id,
-                          const RawAddress& peer_addr);
 
 /* Extended Inquiry Response */
 static void bta_dm_set_eir(char* local_name);
@@ -88,7 +85,6 @@ static void bta_dm_disable_conn_down_timer_cback(void* data);
 static void bta_dm_rm_cback(tBTA_SYS_CONN_STATUS status, tBTA_SYS_ID id, uint8_t app_id,
                             const RawAddress& peer_addr);
 static void bta_dm_adjust_roles(bool delay_role_switch);
-tBTM_CONTRL_STATE bta_dm_pm_obtain_controller_state(void);
 static void bta_dm_ctrl_features_rd_cmpl_cback(tHCI_STATUS result);
 
 static const char kPropertySniffOffloadEnabled[] = "persist.bluetooth.sniff_offload.enabled";

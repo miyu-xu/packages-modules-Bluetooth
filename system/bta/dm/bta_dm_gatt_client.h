@@ -56,13 +56,7 @@ void gatt_history_callback(const std::string& entry);
 //
 void DumpsysBtaDmGattClient(int fd);
 
-namespace bluetooth {
-namespace testing {
-
-//
-// TESTING: Sets a specialzed GATT client interface implementation for testing
-//
+namespace bluetooth::testing {
 void set_gatt_interface(const gatt_interface_t& interface);
-
-}  // namespace testing
-}  // namespace bluetooth
+std::vector<bluetooth::common::TimestampedEntry<std::string>> PullCopyOfGattHistory();
+}  // namespace bluetooth::testing
