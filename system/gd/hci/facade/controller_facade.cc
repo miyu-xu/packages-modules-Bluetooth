@@ -147,6 +147,7 @@ public:
   SUPPORTED_API(SupportsBlePowerChangeIndication)
   SUPPORTED_API(SupportsBlePathLossMonitoring)
   SUPPORTED_API(SupportsBlePeriodicAdvertisingAdi)
+  SUPPORTED_API(SupportsBleChannelSounding)
 
   ::grpc::Status GetLeNumberOfSupportedAdvertisingSets(
           ::grpc::ServerContext* /* context */, const ::google::protobuf::Empty* /* request */,
