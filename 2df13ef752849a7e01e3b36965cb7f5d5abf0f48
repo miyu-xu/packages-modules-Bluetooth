@@ -88,6 +88,24 @@
       "parentUuid": "0f95ccca_9b5bb865",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e48b74e_b29a0253",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T21:37:42Z",
+      "side": 0,
+      "message": "Not yet, good call !\n\nLooking at everything, it seems there is nothing referencing the flag:\nhttps://source.corp.google.com/search?q\u003d(leaudiobroadcastmonitorsourcesyncstatus%20OR%20leaudio_broadcast_monitor_source_sync_status)%20-f:textproto%20-f:cts%2Ftest%20-f:packages%2Fmodules%2Fbluetooth%20-f:prebuilts",
+      "parentUuid": "b509ed13_34a2b22f",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
