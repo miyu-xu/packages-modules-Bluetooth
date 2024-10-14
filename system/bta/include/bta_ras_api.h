@@ -38,6 +38,7 @@ public:
           const RawAddress& address,
           const std::vector<VendorSpecificCharacteristic>& vendor_specific_reply) = 0;
   virtual void OnRasServerConnected(const RawAddress& identity_address) = 0;
+  virtual void OnMtuSizeChanged(const RawAddress& identity_address, uint16_t mtu_size) = 0;
   virtual void OnRasServerDisconnected(const RawAddress& identity_address) = 0;
 };
 

@@ -94,6 +94,8 @@ public:
           const std::vector<hal::VendorSpecificCharacteristic>& vendor_specific_reply);
   void HandleRasServerConnected(const Address& identity_address, uint16_t connection_handle,
                                 hci::Role local_hci_role);
+  void HandleMtuSizeChanged(const Address& identity_address, uint16_t connection_handle,
+                            uint16_t mtu_size);
   void HandleRasServerDisconnected(const Address& identity_address, uint16_t connection_handle);
   void HandleVendorSpecificReplyComplete(const Address& address, uint16_t connection_handle,
                                          bool success);

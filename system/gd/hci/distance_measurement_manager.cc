@@ -66,9 +66,9 @@ static constexpr uint32_t kMaxSubeventLen = 0x3d0900;         // 4s
 static constexpr uint8_t kToneAntennaConfigSelection = 0x00;  // 1x1
 static constexpr uint8_t kTxPwrDelta = 0x00;
 static constexpr uint8_t kProcedureDataBufferSize = 0x10;  // Buffer size of Procedure data
-static constexpr uint16_t kMtuForRasData = 507;            // 512 - 5
 static constexpr uint16_t kRangingCounterMask = 0x0FFF;
 static constexpr uint8_t kInvalidConfigId = 0xFF;
+static constexpr uint16_t kDefaultGattMtuSize = 23;
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsProcedureData {
@@ -144,6 +144,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsTracker {
     Address address;
     hci::Role local_hci_role;
+    uint16_t mtu_size = kDefaultGattMtuSize;
     uint16_t procedure_counter;
     CsRole role;
     bool local_start = false;  // If the CS was started by the local device.
@@ -462,6 +463,22 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     cs_trackers_[connection_handle].address = identity_address;
     cs_trackers_[connection_handle].local_start = false;
     cs_trackers_[connection_handle].local_hci_role = local_hci_role;
+  }
+
+  void handle_mtu_size_changed(const Address& identity_address, uint16_t connection_handle,
+                               uint16_t mtu_size) {
+    // responder only
+    if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
+      log::info("no CS tracker available.");
+      return;
+    }
+    if (cs_trackers_[connection_handle].address != identity_address) {
+      log::info("cs tracker connection is associated with device {}, not device {}",
+                cs_trackers_[connection_handle].address, identity_address);
+      return;
+    }
+
+    cs_trackers_[connection_handle].mtu_size = mtu_size;
   }
 
   void handle_ras_server_disconnected(const Address& identity_address, uint16_t connection_handle) {
@@ -944,24 +961,25 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       append_vector(procedure_data->ras_raw_data_, subevent_raw);
       // erase buffer
       procedure_data->ras_subevent_data_.clear();
-      send_on_demand_data(cs_trackers_[connection_handle].address, procedure_data);
+      send_on_demand_data(cs_trackers_[connection_handle].address, procedure_data,
+                          cs_trackers_[connection_handle].mtu_size);
     }
   }
 
-  void send_on_demand_data(Address address, CsProcedureData* procedure_data) {
+  void send_on_demand_data(Address address, CsProcedureData* procedure_data, uint16_t mtu_size) {
     // Check is last segment or not.
     uint16_t unsent_data_size =
             procedure_data->ras_raw_data_.size() - procedure_data->ras_raw_data_index_;
     if (procedure_data->local_status != CsProcedureDoneStatus::PARTIAL_RESULTS &&
-        unsent_data_size <= kMtuForRasData) {
+        unsent_data_size <= mtu_size) {
       procedure_data->segmentation_header_.last_segment_ = 1;
-    } else if (unsent_data_size < kMtuForRasData) {
+    } else if (unsent_data_size < mtu_size) {
       log::verbose("waiting for more data, current unsent data size {}", unsent_data_size);
       return;
     }
 
     // Create raw data for segment_data;
-    uint16_t copy_size = unsent_data_size < kMtuForRasData ? unsent_data_size : kMtuForRasData;
+    uint16_t copy_size = unsent_data_size < mtu_size ? unsent_data_size : mtu_size;
     auto copy_start = procedure_data->ras_raw_data_.begin() + procedure_data->ras_raw_data_index_;
     auto copy_end = copy_start + copy_size;
     std::vector<uint8_t> subevent_data(copy_start, copy_end);
@@ -982,8 +1000,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (procedure_data->segmentation_header_.last_segment_) {
       // last segment sent, clear buffer
       procedure_data->ras_raw_data_.clear();
-    } else if (unsent_data_size > kMtuForRasData) {
-      send_on_demand_data(address, procedure_data);
+    } else if (unsent_data_size > mtu_size) {
+      send_on_demand_data(address, procedure_data, mtu_size);
     }
   }
 
@@ -1640,6 +1658,13 @@ void DistanceMeasurementManager::HandleRasServerConnected(const Address& identit
                                                           hci::Role local_hci_role) {
   CallOn(pimpl_.get(), &impl::handle_ras_server_connected, identity_address, connection_handle,
          local_hci_role);
+}
+
+void DistanceMeasurementManager::HandleMtuSizeChanged(const Address& identity_address,
+                                                      uint16_t connection_handle,
+                                                      uint16_t mtu_size) {
+  CallOn(pimpl_.get(), &impl::handle_mtu_size_changed, identity_address, connection_handle,
+         mtu_size);
 }
 
 void DistanceMeasurementManager::HandleRasServerDisconnected(

@@ -47,6 +47,8 @@ static constexpr uint16_t kInvalidGattHandle = 0x0000;
 static constexpr uint16_t kFirstSegmentRangingDataTimeoutMs = 5000;
 static constexpr uint16_t kFollowingSegmentTimeoutMs = 1000;
 static constexpr uint16_t kRangingDataReadyTimeoutMs = 5000;
+// TODO: may adjust the MTU according to the requested periordic interval.
+static constexpr uint16_t kMinimumRasMtuSize = 247;  // 4.1 Maximum transmission unit of RAP 1.0
 
 class RasClientImpl : public bluetooth::ras::RasClient {
 public:
@@ -87,6 +89,7 @@ public:
     alarm_t* ranging_data_timeout_timer_ = nullptr;
     RangingType ranging_type_ = RANGING_TYPE_NONE;
     TimeoutType timeout_type_ = TIMEOUT_NONE;
+    uint16_t mtu_size = kDefaultGattMtuSize;
 
     const gatt::Characteristic* FindCharacteristicByUuid(Uuid uuid) {
       for (auto& characteristic : service_->characteristics) {
@@ -209,6 +212,9 @@ public:
       case BTA_GATTC_SEARCH_CMPL_EVT: {
         OnGattServiceSearchComplete(p_data->search_cmpl);
       } break;
+      case BTA_GATTC_CFG_MTU_EVT: {
+        OnGattConfigMtu(p_data->cfg_mtu);
+      } break;
       case BTA_GATTC_NOTIF_EVT: {
         OnGattNotification(p_data->notify);
       } break;
@@ -240,6 +246,7 @@ public:
     }
     tracker->conn_id_ = evt.conn_id;
     tracker->is_connected_ = true;
+    tracker->mtu_size = evt.mtu;
     log::info("Search service");
     BTA_GATTC_ServiceSearchRequest(tracker->conn_id_, kRangingService);
   }
@@ -274,6 +281,10 @@ public:
         service_found = true;
         break;
       }
+    }
+    if (service_found && tracker->mtu_size < kMinimumRasMtuSize) {
+      log::info("config the MTU size as RAP minimum value {}", kMinimumRasMtuSize);
+      BTA_GATTC_ConfigureMTU(evt.conn_id, kMinimumRasMtuSize);
     }
 
     if (tracker->service_search_complete_) {
@@ -324,6 +335,19 @@ public:
               &gatt_read_callback_data_);
 
       SubscribeCharacteristic(tracker, kRasControlPointCharacteristic);
+    }
+  }
+
+  void OnGattConfigMtu(const tBTA_GATTC_CFG_MTU& evt) {
+    if (evt.status != GATT_SUCCESS) {
+      log::warn("Failed to config to MTU size:{}", evt.mtu);
+      // TODO: should stop the measurement if the MTU size is too low?
+      return;
+    }
+    log::info("conn_id=0x{:04x}, status:{}, mtu:{}", evt.conn_id, evt.status, evt.mtu);
+    auto tracker = FindTrackerByHandle(evt.conn_id);
+    if (tracker != nullptr) {
+      tracker->mtu_size = evt.mtu;
     }
   }
 
