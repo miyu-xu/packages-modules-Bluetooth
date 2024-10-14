@@ -42,10 +42,14 @@ import com.android.bluetooth.util.GsmAlphabet;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 /** Helper for managing phonebook presentation over AT commands */
 public class AtPhonebook {
     private static final String TAG = "BluetoothAtPhonebook";
+
+    private static final Pattern EQUAL = Pattern.compile("=");
+    private static final Pattern COMMA = Pattern.compile(",");
 
     /**
      * The projection to use when querying the call log database in response to AT+CPBR for the MC,
@@ -177,12 +181,12 @@ public class AtPhonebook {
                 break;
             case TYPE_SET: // Set
                 Log.d(TAG, "handleCscsCommand - Set Command");
-                String[] args = atString.split("=");
+                String[] args = EQUAL.split(atString);
                 if (args.length < 2 || args[1] == null) {
                     mNativeInterface.atResponseCode(device, atCommandResult, atCommandErrorCode);
                     break;
                 }
-                String characterSet = ((atString.split("="))[1]);
+                String characterSet = args[1];
                 characterSet = characterSet.replace("\"", "");
                 if (characterSet.equals("GSM")
                         || characterSet.equals("IRA")
@@ -244,7 +248,7 @@ public class AtPhonebook {
                 break;
             case TYPE_SET: // Set
                 Log.d(TAG, "handleCpbsCommand - set command");
-                String[] args = atString.split("=");
+                String[] args = EQUAL.split(atString);
                 // Select phonebook memory
                 if (args.length < 2 || args[1] == null) {
                     atCommandErrorCode = BluetoothCmeError.OPERATION_NOT_SUPPORTED;
@@ -330,13 +334,14 @@ public class AtPhonebook {
                 // Parse indexes
                 int index1;
                 int index2;
-                if ((atString.split("=")).length < 2) {
+                String[] args = EQUAL.split(atString);
+                if (args.length < 2) {
                     mNativeInterface.atResponseCode(
                             remoteDevice, atCommandResult, atCommandErrorCode);
                     break;
                 }
-                String atCommand = (atString.split("="))[1];
-                String[] indices = atCommand.split(",");
+                String atCommand = args[1];
+                String[] indices = COMMA.split(atCommand);
                 // replace AT command separator ';' from the index if any
                 for (int i = 0; i < indices.length; i++) {
                     indices[i] = indices[i].replace(';', ' ').trim();
