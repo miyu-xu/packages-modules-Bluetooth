@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c79fa3_cacf3d59",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-14T23:54:05Z",
+      "side": 1,
+      "message": "nit: you can add a bug number here",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 49
+      },
+      "revId": "23395d785e4128eed456f2438398ae25222f9377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
