@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e70923_cc9301bf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-14T06:17:46Z",
+      "side": 1,
+      "message": "No--batch scan is disabled on large-screen Android experiences, so batch scan will not be started in the first place.",
+      "parentUuid": "8b878276_8c5f8aa7",
+      "range": {
+        "startLine": 1206,
+        "startChar": 3,
+        "endLine": 1216,
+        "endChar": 9
+      },
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3b23750_4ca077e7",
@@ -82,6 +106,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb14def0_30f22807",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-14T06:17:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3962253c_5aadec0b",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a1b3a5a_37056152",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-14T06:17:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b23750_4ca077e7",
+      "range": {
+        "startLine": 1718,
+        "startChar": 16,
+        "endLine": 1718,
+        "endChar": 32
+      },
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c8573ef_e7a6e478",
@@ -95,6 +161,24 @@
       "writtenOn": "2024-10-13T01:07:07Z",
       "side": 1,
       "message": "Would `updateScanMsft` be called when the scan is off? We shouldn\u0027t call this when it\u0027s off.",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4717a74a_804c440d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-14T06:17:46Z",
+      "side": 1,
+      "message": "No--the call to toggle the scan goes directly to the native layer, so the `updateScanMsft` function can\u0027t be called again until scanning is re-enabled.",
+      "parentUuid": "6c8573ef_e7a6e478",
       "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
