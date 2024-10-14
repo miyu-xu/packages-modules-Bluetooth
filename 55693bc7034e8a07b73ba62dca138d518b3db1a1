@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c2cbdc_9ac6e7a9",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapVcardManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-14T21:45:55Z",
+      "side": 1,
+      "message": "SEPARATOR_PATTERN",
+      "range": {
+        "startLine": 92,
+        "startChar": 33,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "55693bc7034e8a07b73ba62dca138d518b3db1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
