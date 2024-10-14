@@ -21,7 +21,7 @@
 
 #include <set>
 
-#include "stack/gatt/connection_manager.h"
+#include "stack/conn_mgr/connection_manager.h"
 #include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
