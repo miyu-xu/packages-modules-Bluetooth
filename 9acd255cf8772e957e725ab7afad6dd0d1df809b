@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e98f93e1_5988b227",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1502,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-14T18:54:03Z",
+      "side": 1,
+      "message": "Our device will always carefully climb back to the root of a tree before switching players, so the expectation would be that each time we SetBrowsedPlayer() to a new player, we would return to the actual root of the player first. So, if this function is specific to the path of a given controller, then this should be fine.",
+      "range": {
+        "startLine": 1502,
+        "startChar": 57,
+        "endLine": 1502,
+        "endChar": 72
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c2f64927_64a91e76",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/profile/avrcp/device.cc",
+              "range": {
+                "startLine": 1502,
+                "startChar": 0,
+                "endLine": 1502,
+                "endChar": 0
+              },
+              "replacement": "  // Our device will always be the browsed player, so we can just pass in the\n  // current folder.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9acd255cf8772e957e725ab7afad6dd0d1df809b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
