@@ -222,6 +222,30 @@
       },
       "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7f368a_1b1e0d9f",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-14T23:01:41Z",
+      "side": 1,
+      "message": "Hmmm. Apparently, adding new include break the ARC++ build as it cannot find the packages/modules/Bluetooth/system/stack/include/hci_error_code.h. The header may need to be packed as a `cc_library_headers` and get included by the `libbluetooth_headers`. \n\nI suggest to revert and use `bt_hci_error_code_t`. WDYT?",
+      "parentUuid": "c6542784_6580d46d",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 61
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
