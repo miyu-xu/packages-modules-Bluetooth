@@ -124,6 +124,24 @@
       "parentUuid": "8e48b74e_b29a0253",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee50b359_c46cbe32",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-14T21:56:51Z",
+      "side": 0,
+      "message": "So, the safest thing is to just keep the aconfig around. You can remove all other code references to the flag. That\u0027s our general recommendation.\n\nIf you want to fully remove it, you\u0027re responsible if it ends up breaking someone.",
+      "parentUuid": "aa77f2dd_b82ee505",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
