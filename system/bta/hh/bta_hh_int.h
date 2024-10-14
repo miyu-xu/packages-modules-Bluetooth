@@ -33,8 +33,13 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_hh_api.h"
 #include "bta/sys/bta_sys.h"
+#include "common/journal.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
+
+using Journal = bluetooth::common::Journal;
+
+#define BTA_HH_STATE_HISTORY_SIZE 32
 
 #define ANDROID_HEADTRACKER_DATA_SIZE 13
 #define ANDROID_HEADTRACKER_REPORT_ID 1
@@ -238,8 +243,10 @@ typedef struct {
                                              handle */
   tGATT_IF gatt_if;
   tBTA_HH_CBACK* p_cback; /* Application callbacks */
-  uint8_t cnt_num; /* connected device number */
-  bool w4_disable; /* w4 disable flag */
+  uint8_t cnt_num;        /* connected device number */
+  bool w4_disable;        /* w4 disable flag */
+
+  Journal state_history{"bta_hh_state", BTA_HH_STATE_HISTORY_SIZE};
 } tBTA_HH_CB;
 
 extern tBTA_HH_CB bta_hh_cb;
