@@ -118,8 +118,8 @@ void gatt_init(void) {
   connection_manager::reset(true);
   memset(&fixed_reg, 0, sizeof(tL2CAP_FIXED_CHNL_REG));
 
-  // To catch a potential OOB.
-  gatt_cb.next_gatt_if = 40;
+  // To catch a potential OOB, 40>31 is used, any valid value (1 to GATT_IF_MAX) is okay.
+  gatt_cb.last_gatt_if = static_cast<tGATT_IF>(40);
 
   gatt_cb.sign_op_queue = fixed_queue_new(SIZE_MAX);
   gatt_cb.srv_chg_clt_q = fixed_queue_new(SIZE_MAX);
@@ -260,12 +260,12 @@ void gatt_cancel_connect(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   /* This shall be call only when device is not connected */
   log::debug("{}, transport {}", bd_addr, transport);
 
-  if (!connection_manager::direct_connect_remove(CONN_MGR_ID_L2CAP, bd_addr)) {
+  if (!connection_manager::direct_connect_remove(GATT_IF_L2CAP, bd_addr)) {
     bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(bd_addr));
     log::info(
             "GATT connection manager has no record but removed filter "
             "acceptlist gatt_if:{} peer:{}",
-            static_cast<uint8_t>(CONN_MGR_ID_L2CAP), bd_addr);
+            static_cast<uint8_t>(GATT_IF_L2CAP), bd_addr);
   }
 
   gatt_cleanup_upon_disc(bd_addr, GATT_CONN_TERMINATE_LOCAL_HOST, transport);
