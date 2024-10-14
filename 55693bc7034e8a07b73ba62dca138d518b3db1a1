@@ -22,6 +22,30 @@
       },
       "revId": "55693bc7034e8a07b73ba62dca138d518b3db1a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a64d34e_d2b5a8b5",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapVcardManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T21:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c2cbdc_9ac6e7a9",
+      "range": {
+        "startLine": 92,
+        "startChar": 33,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "55693bc7034e8a07b73ba62dca138d518b3db1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
