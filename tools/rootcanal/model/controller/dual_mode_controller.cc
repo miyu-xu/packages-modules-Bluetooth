@@ -2210,6 +2210,57 @@ void DualModeController::LeWriteSuggestedDefaultDataLength(CommandView command) 
           kNumCommandPackets, status));
 }
 
+static ErrorCode generateP256Key(uint8_t *key_x_coordinate, uint8_t *key_y_coordinate) {
+  auto ec_key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+  if (!ec_key) {
+    WARN(id_, "EC_KEY_new_by_curve_name(NID_X9_62_prime256v1) failed");
+    return ErrorCode::UNSPECIFIED_ERROR;
+  }
+
+  if (!EC_KEY_generate_key(ec_key)) {
+    WARN(id_, "EC_KEY_generate_key failed");
+    EC_KEY_free(ec_key);
+    return ErrorCode::UNSPECIFIED_ERROR;
+  }
+
+  uint8_t *out_buf = nullptr;
+  auto size = EC_KEY_key2buf(ec_key, POINT_CONVERSION_UNCOMPRESSED, &out_buf);
+  if (!out_buf) {
+    WARN(id_, "EC_KEY_key2buf failed");
+    EC_KEY_free(ec_key);
+    return ErrorCode::UNSPECIFIED_ERROR;
+  }
+
+  if (size != 65) {
+    WARN(id_, "unexpected size {}", size);
+  }
+
+  memcpy(key_x_coordinate, out_buf + 1, 32);
+  memcpy(key_y_coordinate, out_buf + 33, 32);
+
+  EC_KEY_free(ec_key);
+  OPENSSL_free(out_buf);
+  return ErrorCode::SUCCESS;
+}
+
+void DualModeController::LeReadLocalP256PublicKey(CommandView command) {
+  auto command_view = bluetooth::hci::LeReadLocalP256PublicKeyView::Create(command);
+  CHECK_PACKET_VIEW(command_view);
+
+  DEBUG(id_, "<< LE Read Local P-256 Public Key");
+
+  send_event_(bluetooth::hci::LeReadLocalP256PublicKeyStatusBuilder::Create(kNumCommandPackets,
+                                                                            ErrorCode::SUCCESS));
+
+  uint8_t key_x_coordinate[32] = {};
+  uint8_t key_y_coordinate[32] = {};
+  ErrorCode status = generateP256Key(key_x_coordinate, key_y_coordinate);
+
+  send_event_(bluetooth::hci::LeReadLocalP256PublicKeyCompleteBuilder::Create(status,
+                                                                              key_x_coordinate,
+                                                                              key_y_coordinate));
+}
+
 void DualModeController::LeAddDeviceToResolvingList(CommandView command) {
   auto command_view = bluetooth::hci::LeAddDeviceToResolvingListView::Create(command);
   CHECK_PACKET_VIEW(command_view);
@@ -3959,8 +4010,8 @@ const std::unordered_map<OpCode, DualModeController::CommandHandler>
                  &DualModeController::LeReadSuggestedDefaultDataLength},
                 {OpCode::LE_WRITE_SUGGESTED_DEFAULT_DATA_LENGTH,
                  &DualModeController::LeWriteSuggestedDefaultDataLength},
-                //{OpCode::LE_READ_LOCAL_P_256_PUBLIC_KEY,
-                //&DualModeController::LeReadLocalP256PublicKey},
+                {OpCode::LE_READ_LOCAL_P_256_PUBLIC_KEY,
+                 &DualModeController::LeReadLocalP256PublicKey},
                 //{OpCode::LE_GENERATE_DHKEY_V1,
                 //&DualModeController::LeGenerateDhkeyV1},
                 {OpCode::LE_ADD_DEVICE_TO_RESOLVING_LIST,
