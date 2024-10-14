@@ -106,6 +106,24 @@
       "parentUuid": "b509ed13_34a2b22f",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa77f2dd_b82ee505",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-14T21:45:04Z",
+      "side": 0,
+      "message": "Yes, I can also confirm we don\u0027t have G3 usage of this API(Actually we should remove this is_exported for this). In this case, is it safe to remove the flag here?",
+      "parentUuid": "8e48b74e_b29a0253",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
