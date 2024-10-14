@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77286638_073a1c41",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-14T18:58:59Z",
+      "side": 0,
+      "message": "Because the flag is exported, I think you need to keep it around.",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
