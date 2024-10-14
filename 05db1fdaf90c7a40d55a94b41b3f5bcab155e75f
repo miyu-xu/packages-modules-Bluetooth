@@ -123,6 +123,24 @@
       "parentUuid": "00cb5b62_780fbb18",
       "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68fb050b_9be45151",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-14T20:53:06Z",
+      "side": 1,
+      "message": "Did you forget to rename it or do you disagree with the suggestion.",
+      "parentUuid": "056cfdc3_2cee872f",
+      "revId": "05db1fdaf90c7a40d55a94b41b3f5bcab155e75f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
