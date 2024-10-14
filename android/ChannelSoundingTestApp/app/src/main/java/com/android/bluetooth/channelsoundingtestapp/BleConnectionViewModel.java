@@ -220,7 +220,8 @@ public class BleConnectionViewModel extends AndroidViewModel {
                     printLog("onConnectionStateChange status:" + status + ", newState:" + newState);
                     if (newState == BluetoothProfile.STATE_CONNECTED) {
                         printLog(gatt.getDevice().getName() + " is connected");
-                        gatt.requestMtu(GATT_MTU_SIZE);
+                        // gatt.requestMtu(GATT_MTU_SIZE);
+                        printLog("no MTU request");
                         mBluetoothGatt = gatt;
                         mGattState.postValue(mExpectedGattState);
                         mTargetDevice.postValue(gatt.getDevice());
