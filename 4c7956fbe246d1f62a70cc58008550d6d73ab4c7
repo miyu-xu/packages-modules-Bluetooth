@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d11ce6c_f2785c86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-14T22:26:24Z",
+      "side": 1,
+      "message": "Bug: 372775662 as well ?",
+      "revId": "4c7956fbe246d1f62a70cc58008550d6d73ab4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ea7cb94_dc30da2e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-14T22:26:24Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this be an issue here ?",
+      "range": {
+        "startLine": 659,
+        "startChar": 12,
+        "endLine": 659,
+        "endChar": 26
+      },
+      "revId": "4c7956fbe246d1f62a70cc58008550d6d73ab4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
