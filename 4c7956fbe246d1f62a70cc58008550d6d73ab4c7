@@ -39,6 +39,30 @@
       },
       "revId": "4c7956fbe246d1f62a70cc58008550d6d73ab4c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3909350d_d0f2e747",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-14T22:37:19Z",
+      "side": 1,
+      "message": "This is symmetrical and the redundancy only appear because of the fastBindToApp flag.\n\nif the flag is enabled, mRemoteDevices is created, then mAdapterProperties\nIf the flag is disabled, mRemoteDevices is created, then mAdapterProperties  (same)",
+      "parentUuid": "2ea7cb94_dc30da2e",
+      "range": {
+        "startLine": 659,
+        "startChar": 12,
+        "endLine": 659,
+        "endChar": 26
+      },
+      "revId": "4c7956fbe246d1f62a70cc58008550d6d73ab4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
