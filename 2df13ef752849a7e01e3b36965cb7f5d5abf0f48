@@ -16,6 +16,24 @@
       "message": "Because the flag is exported, I think you need to keep it around.",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9902e95_7d17611f",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-14T20:10:53Z",
+      "side": 0,
+      "message": "Thanks for the advice. \nJust want to confirm, even for released API, we should still keep the flag in AOSP if \u0027is_exported: true\u0027?\n\nfyi @wescande@google.com for visibility",
+      "parentUuid": "77286638_073a1c41",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
