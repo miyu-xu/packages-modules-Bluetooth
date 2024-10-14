@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41c327d_3350784d",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-14T12:31:04Z",
+      "side": 1,
+      "message": "@salsavage@google.com Does AA call this after having set the browsed player?",
+      "range": {
+        "startLine": 1129,
+        "startChar": 13,
+        "endLine": 1129,
+        "endChar": 45
+      },
+      "revId": "63df5cecb55866d11293bfb43620d4b7de0ef264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2121fbe_4b315451",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-14T12:31:04Z",
+      "side": 1,
+      "message": "@salsavage@google.com Does AA call this after having set the addressed player?",
+      "revId": "63df5cecb55866d11293bfb43620d4b7de0ef264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
