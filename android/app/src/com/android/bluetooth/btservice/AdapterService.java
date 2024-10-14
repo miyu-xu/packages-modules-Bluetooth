@@ -171,6 +171,10 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -5863,6 +5867,10 @@ public class AdapterService extends Service {
             mBtCompanionManager.factoryReset();
         }
 
+        if (Flags.gattClearCacheOnFactoryReset()) {
+            clearGattCacheAndHash();
+        }
+
         return mNativeInterface.factoryReset();
     }
 
@@ -6951,6 +6959,30 @@ public class AdapterService extends Service {
         }
         if (mPhonePolicy != null) {
             mPhonePolicy.onUuidsDiscovered(device, uuids);
+        }
+    }
+
+    /** Clear all GATT cache and hash files */
+    void clearGattCacheAndHash() {
+        // From packages/modules/Bluetooth/system/bta/gatt/bta_gattc_db_storage.cc
+        final String cachePathPrefix = "/data/misc/bluetooth/gatt_cache_";
+        final String hashPathPrefix = "/data/misc/bluetooth/gatt_hash_";
+
+        Path directoryPath = Paths.get("/data/misc/bluetooth/");
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
+            for (Path path : stream) {
+                if (!Files.isRegularFile(path)) {
+                    continue;
+                }
+
+                if (path.toString().startsWith(cachePathPrefix)
+                        || path.toString().startsWith(hashPathPrefix)) {
+                    Log.d(TAG, "Deleting GATT cache/hash: " + path);
+                    Files.deleteIfExists(path);
+                }
+            }
+        } catch (IOException ex) {
+            Log.e(TAG, "Exception happened while clearing GATT cache/hash", ex);
         }
     }
 }
