@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e101a3b4_a938c6e6",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-14T12:44:09Z",
+      "side": 1,
+      "message": "Should you have a method, i.e. FindNextFreeClRcbIndex instead ? Would look much cleaner than this for loop.",
+      "range": {
+        "startLine": 1289,
+        "startChar": 0,
+        "endLine": 1295,
+        "endChar": 48
+      },
+      "revId": "4ff4edc3f128dd3d9107680fa479ff12f83041cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799c6c41_dba681da",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-14T12:44:09Z",
+      "side": 1,
+      "message": "in the code below, \"index-1\" is changed to \"index\" when refering to elements of cback_cnt_map. Should this place also be updatd ?",
+      "range": {
+        "startLine": 1356,
+        "startChar": 31,
+        "endLine": 1356,
+        "endChar": 32
+      },
+      "revId": "4ff4edc3f128dd3d9107680fa479ff12f83041cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07901df_efda1cef",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-14T12:44:09Z",
+      "side": 1,
+      "message": "It used to be gatt_if - 1.\n\nAre all uses of cback_cnt_map updated ? Or you need to modify just this one ?",
+      "range": {
+        "startLine": 1551,
+        "startChar": 30,
+        "endLine": 1551,
+        "endChar": 37
+      },
+      "revId": "4ff4edc3f128dd3d9107680fa479ff12f83041cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21a7a919_ef272516",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-14T12:44:09Z",
+      "side": 1,
+      "message": "I liked CONN_MGR_ID_L2CAP more as constant name. Seems weird to use \"GATT\" anywhere in L2CAP layer",
+      "range": {
+        "startLine": 930,
+        "startChar": 40,
+        "endLine": 930,
+        "endChar": 53
+      },
+      "revId": "4ff4edc3f128dd3d9107680fa479ff12f83041cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
