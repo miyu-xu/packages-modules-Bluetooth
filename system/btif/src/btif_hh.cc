@@ -2314,6 +2314,7 @@ const bthh_interface_t* btif_hh_get_interface() {
 
 #define DUMPSYS_TAG "shim::legacy::hid"
 void DumpsysHid(int fd) {
+  dprintf(fd, "\n");
   LOG_DUMPSYS_TITLE(fd, DUMPSYS_TAG);
   LOG_DUMPSYS(fd, "status:%s num_devices:%u", btif_hh_status_text(btif_hh_cb.status).c_str(),
               btif_hh_cb.device_num);
@@ -2341,13 +2342,21 @@ void DumpsysHid(int fd) {
     }
   }
 
+<<<<<<< PATCH SET (c62010 Add state history to bta_hh and uhid_history to btif_hh)
+  LOG_DUMPSYS(fd, " UHID operations history");
+  btif_hh_cb.uhid_history.dump(fd);
+
+||||||| BASE
+=======
   if (com::android::bluetooth::flags::hid_report_queuing() &&
       !btif_hh_cb.pending_incoming_connection.link_spec.addrt.bda.IsEmpty()) {
     LOG_DUMPSYS(
             fd, "  Pending incoming connection: %s",
             btif_hh_cb.pending_incoming_connection.link_spec.ToRedactedStringForLogging().c_str());
   }
+>>>>>>> BASE      (82c621 Add a journal utility to log and dump events)
   BTA_HhDump(fd);
+  dprintf(fd, "\n");
 }
 
 namespace bluetooth {

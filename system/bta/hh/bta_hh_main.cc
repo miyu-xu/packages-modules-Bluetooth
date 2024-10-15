@@ -22,6 +22,7 @@
  *
  ******************************************************************************/
 
+#include <string>
 #define LOG_TAG "bt_bta_hh"
 
 #include <bluetooth/log.h>
@@ -29,10 +30,16 @@
 #include <cstdint>
 
 #include "bta/hh/bta_hh_int.h"
+<<<<<<< PATCH SET (c62010 Add state history to bta_hh and uhid_history to btif_hh)
+#include "common/strings.h"
+||||||| BASE
+=======
 #include "bta_hh_api.h"
 #include "hiddefs.h"
+>>>>>>> BASE      (82c621 Add a journal utility to log and dump events)
 #include "main/shim/dumpsys.h"
 #include "osi/include/allocator.h"
+#include "osi/include/properties.h"
 #include "stack/include/bt_hdr.h"
 
 using namespace bluetooth;
@@ -318,6 +325,9 @@ void bta_hh_sm_execute(tBTA_HH_DEV_CB* p_cb, tBTA_HH_INT_EVT event, const tBTA_H
     log::debug("State Change: [{}] -> [{}] after Event [{}]", bta_hh_state_code(in_state),
                bta_hh_state_code(p_cb->state), bta_hh_evt_code(event));
   }
+  bta_hh_cb.state_history.record(p_cb->link_spec, std::string(bta_hh_evt_code(event)),
+                                 base::StringPrintf("%-32s -> %-32s", bta_hh_state_code(in_state),
+                                                    bta_hh_state_code(p_cb->state)));
 }
 
 /*******************************************************************************
@@ -436,5 +446,8 @@ void bta_hh_dump(int fd) {
                   bta_hh_state_code(dev.state), dev.sub_class);
     }
   }
+
+  LOG_DUMPSYS(fd, " State transition history");
+  bta_hh_cb.state_history.dump(fd);
 }
 #undef DUMPSYS_TAG

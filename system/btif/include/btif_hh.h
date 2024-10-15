@@ -28,11 +28,14 @@
 #include <list>
 
 #include "bta/include/bta_hh_api.h"
+#include "common/journal.h"
 #include "macros.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
+
+using Journal = bluetooth::common::Journal;
 
 /*******************************************************************************
  *  Constants & Macros
@@ -56,6 +59,8 @@
 #define ENABLE_UHID_SET_REPORT 0
 #endif
 #endif
+
+#define BTIF_HH_UHID_HISTORY_SIZE 32
 
 /*******************************************************************************
  *  Type definitions and return values
@@ -132,10 +137,18 @@ typedef struct {
   btif_hh_added_device_t added_devices[BTIF_HH_MAX_ADDED_DEV];
   bool service_dereg_active;
 
+<<<<<<< PATCH SET (c62010 Add state history to bta_hh and uhid_history to btif_hh)
+  std::list<tAclLinkSpec> pending_connections;
+
+  Journal uhid_history{"UHID", BTIF_HH_UHID_HISTORY_SIZE};
+||||||| BASE
+  std::list<tAclLinkSpec> pending_connections;
+=======
   std::list<tAclLinkSpec> new_connection_requests;
 
   tBTA_HH_CONN pending_incoming_connection;  // Unexpected incoming connection request
   alarm_t* incoming_connection_timer;        // Timer to handle unexpected incoming connection
+>>>>>>> BASE      (82c621 Add a journal utility to log and dump events)
 } btif_hh_cb_t;
 
 /*******************************************************************************
