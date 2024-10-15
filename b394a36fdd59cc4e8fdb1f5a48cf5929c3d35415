@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "b394a36fdd59cc4e8fdb1f5a48cf5929c3d35415",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ca3ccb_f16ee2aa",
+        "filename": "system/bta/le_audio/gmap_client.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-10-15T13:51:49Z",
+      "side": 1,
+      "message": "We should strongly consider giving `role_handle_` and `UGT_feature_handle_` initial values here.  While it might be buggy for future code to call `getRoleHandle()` before calling `setRoleHandle()` on an instance, having a consistent value (instead of using uninitialized memory) will make it much easier to debug.",
+      "revId": "b394a36fdd59cc4e8fdb1f5a48cf5929c3d35415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
