@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b881ae_e84e4ecd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T23:24:48Z",
+      "side": 1,
+      "message": "This will not address the entirety of races in the A2dpSinkService module, but I am ok for merging it now, and process the rest later.",
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
