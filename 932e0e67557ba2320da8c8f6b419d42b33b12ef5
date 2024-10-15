@@ -16,6 +16,24 @@
       "message": "this is anyway verbose and not enabled always, trying to understand what is the issue here?",
       "revId": "932e0e67557ba2320da8c8f6b419d42b33b12ef5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7abba289_a5ef4367",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-15T23:55:24Z",
+      "side": 0,
+      "message": "I have a bugreport with verbose logging enabled, there are so many verbose logs that there aren\u0027t any logs at the issue timestamp.  I know that it could be that something about the phone was configured incorrectly, but in this particular bug report it printed ~2700 times a minute, which I thought was a little excessive.  \n\nIf you still don\u0027t see it as that big an issue I\u0027m fine with abandoning this",
+      "parentUuid": "de900793_7fa1777c",
+      "revId": "932e0e67557ba2320da8c8f6b419d42b33b12ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
