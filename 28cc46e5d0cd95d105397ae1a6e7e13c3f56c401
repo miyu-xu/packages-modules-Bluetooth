@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1726f700_07a2e7ab",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: Do we really want to replace the `/*` with `//`? I feel like it\u0027d be best to keep all comments formatting the same? If we do keep the `//` please remove `/*` 😊",
+      "range": {
+        "startLine": 531,
+        "startChar": 67,
+        "endLine": 531,
+        "endChar": 69
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97eeacd7_df58316c",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: maybe merge these comments :)",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 57
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc7a5ed4_512733ae",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "If I understand correctly, the `bind` boolean was useless as we can use `p_ccb_bind` value to check if the bcb was bound.\n\n`p_ccb` is never null here otherwise we would have a crash in the  `if (p_ccb-\u003ep_bcb \u003d\u003d p_bcb)` line 187, so the `|| !p_ccb_bind` condition line 201 in the previous version was never true because we were always going in the `if (!bind)` condition just above.\n\nSo, again if I understand correctly, this is way cleaner but doesn\u0027t change any behavior, right?",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 204,
+        "endChar": 27
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a7b05c_0d89ab5a",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: Should we add an indication that we are closing the bcb?",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e948c4d0_07c6c9de",
+        "filename": "system/stack/avct/avct_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit, remove the second otherwise",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92040974_8df0e2e8",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Good catch 😄 Do we also want to modify the comment above?",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621172de_2048676b",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: this one too?",
+      "fixSuggestions": [
+        {
+          "fixId": "76dcf5ea_292416d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avct/avct_l2c_br.cc",
+              "range": {
+                "startLine": 258,
+                "startChar": 0,
+                "endLine": 259,
+                "endChar": 0
+              },
+              "replacement": "  /* look up bcb for this channel */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b405a76_a083c1c5",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: this one too?",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2615a9_d1638776",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: this one too?",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67bc75c4_7a95a8ce",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: this one too?",
+      "range": {
+        "startLine": 333,
+        "startChar": 13,
+        "endLine": 333,
+        "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d521f7_5a6bedf1",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T10:15:24Z",
+      "side": 1,
+      "message": "Nit: this one too?",
+      "range": {
+        "startLine": 355,
+        "startChar": 13,
+        "endLine": 355,
+        "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
