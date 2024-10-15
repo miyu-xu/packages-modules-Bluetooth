@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3d45aa0_a3d51f44",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-15T17:51:23Z",
+      "side": 1,
+      "message": "nit: cases*",
+      "range": {
+        "startLine": 15,
+        "startChar": 67,
+        "endLine": 15,
+        "endChar": 71
+      },
+      "revId": "af1bead799699d822c986f96f1314a48ad127cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c7638cc_90921435",
         "filename": "system/internal_include/bt_target.h",
         "patchSetId": 5
@@ -23,6 +46,41 @@
       "fixSuggestions": [
         {
           "fixId": "0bc8e2d4_6c6e9074",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/internal_include/bt_target.h",
+              "range": {
+                "startLine": 315,
+                "startChar": 0,
+                "endLine": 316,
+                "endChar": 0
+              },
+              "replacement": " * For testcases L2CAP/FOC/BV-{04,05}-C there is need to set property\n"
+            }
+          ]
+        }
+      ],
+      "revId": "af1bead799699d822c986f96f1314a48ad127cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "204ab3ed_762815ac",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-15T17:51:23Z",
+      "side": 1,
+      "message": "needed*",
+      "fixSuggestions": [
+        {
+          "fixId": "13f13005_683560d6",
           "description": "prompt_to_edit API",
           "replacements": [
             {
