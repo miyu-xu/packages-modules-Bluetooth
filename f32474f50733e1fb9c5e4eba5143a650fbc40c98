@@ -1,5 +1,47 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4627ed8c_ba01d5a9",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-15T01:51:03Z",
+      "side": 1,
+      "message": "I think we still need a way to call createL2capChannel() to enable testing of secure sockets",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 67
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "deba61c0_fe790670",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/L2cap.kt",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "            val bluetoothSocket \u003d device.createInsecureL2capChannel(psm, true)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
