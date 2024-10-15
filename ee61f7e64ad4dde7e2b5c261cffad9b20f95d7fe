@@ -16,6 +16,23 @@
       "message": "LGTM. Need AOSP maintainer to approve!",
       "revId": "ee61f7e64ad4dde7e2b5c261cffad9b20f95d7fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e8816c8_b93c0160",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T03:43:39Z",
+      "side": 1,
+      "message": "Hi @yuyangh@google.com, friendly ping for review",
+      "revId": "ee61f7e64ad4dde7e2b5c261cffad9b20f95d7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
