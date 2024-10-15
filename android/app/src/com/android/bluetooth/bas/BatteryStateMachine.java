@@ -20,6 +20,9 @@ import static android.bluetooth.BluetoothDevice.BATTERY_LEVEL_UNKNOWN;
 import static android.bluetooth.BluetoothDevice.PHY_LE_1M_MASK;
 import static android.bluetooth.BluetoothDevice.PHY_LE_2M_MASK;
 import static android.bluetooth.BluetoothDevice.TRANSPORT_LE;
+import static android.bluetooth.BluetoothProfile.getConnectionStateName;
+
+import static java.util.Objects.requireNonNull;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
@@ -41,13 +44,13 @@ import com.android.internal.util.StateMachine;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.ref.WeakReference;
+import java.time.Duration;
 import java.util.Scanner;
 import java.util.UUID;
 
 /** It manages Battery service of a BLE device */
 public class BatteryStateMachine extends StateMachine {
-    private static final String TAG = "BatteryStateMachine";
+    private static final String TAG = BatteryStateMachine.class.getSimpleName();
 
     static final UUID GATT_BATTERY_SERVICE_UUID =
             UUID.fromString("0000180f-0000-1000-8000-00805f9b34fb");
@@ -56,13 +59,12 @@ public class BatteryStateMachine extends StateMachine {
     static final UUID CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID =
             UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
 
-    static final int CONNECT = 1;
-    static final int DISCONNECT = 2;
-    static final int CONNECTION_STATE_CHANGED = 3;
-    private static final int CONNECT_TIMEOUT = 201;
+    static final int MESSAGE_CONNECT = 1;
+    static final int MESSAGE_DISCONNECT = 2;
+    @VisibleForTesting static final int MESSAGE_CONNECTION_STATE_CHANGED = 3;
+    private static final int MESSAGE_CONNECT_TIMEOUT = 201;
 
-    // NOTE: the value is not "final" - it is modified in the unit tests
-    @VisibleForTesting static int sConnectTimeoutMs = 30000; // 30s
+    @VisibleForTesting static final Duration CONNECT_TIMEOUT = Duration.ofSeconds(30);
 
     private Disconnected mDisconnected;
     private Connecting mConnecting;
@@ -70,16 +72,16 @@ public class BatteryStateMachine extends StateMachine {
     private Disconnecting mDisconnecting;
     private int mLastConnectionState = BluetoothProfile.STATE_DISCONNECTED;
 
-    WeakReference<BatteryService> mServiceRef;
+    private final BatteryService mService;
 
     BluetoothGatt mBluetoothGatt;
-    GattCallback mGattCallback;
+    private final GattCallback mGattCallback = new GattCallback();
     final BluetoothDevice mDevice;
 
-    BatteryStateMachine(BluetoothDevice device, BatteryService service, Looper looper) {
+    BatteryStateMachine(BatteryService service, BluetoothDevice device, Looper looper) {
         super(TAG, looper);
+        mService = requireNonNull(service);
         mDevice = device;
-        mServiceRef = new WeakReference<>(service);
 
         mDisconnected = new Disconnected();
         mConnecting = new Connecting();
@@ -92,13 +94,7 @@ public class BatteryStateMachine extends StateMachine {
         addState(mConnected);
 
         setInitialState(mDisconnected);
-    }
-
-    static BatteryStateMachine make(BluetoothDevice device, BatteryService service, Looper looper) {
-        Log.i(TAG, "make for device " + device);
-        BatteryStateMachine sm = new BatteryStateMachine(device, service, looper);
-        sm.start();
-        return sm;
+        start();
     }
 
     /** Quits the state machine */
@@ -114,7 +110,6 @@ public class BatteryStateMachine extends StateMachine {
         if (mBluetoothGatt != null) {
             mBluetoothGatt.close();
             mBluetoothGatt = null;
-            mGattCallback = null;
         }
     }
 
@@ -127,35 +122,13 @@ public class BatteryStateMachine extends StateMachine {
     }
 
     private static String messageWhatToString(int what) {
-        switch (what) {
-            case CONNECT:
-                return "CONNECT";
-            case DISCONNECT:
-                return "DISCONNECT";
-            case CONNECTION_STATE_CHANGED:
-                return "CONNECTION_STATE_CHANGED";
-            case CONNECT_TIMEOUT:
-                return "CONNECT_TIMEOUT";
-            default:
-                break;
-        }
-        return Integer.toString(what);
-    }
-
-    private static String profileStateToString(int state) {
-        switch (state) {
-            case BluetoothProfile.STATE_DISCONNECTED:
-                return "DISCONNECTED";
-            case BluetoothProfile.STATE_CONNECTING:
-                return "CONNECTING";
-            case BluetoothProfile.STATE_CONNECTED:
-                return "CONNECTED";
-            case BluetoothProfile.STATE_DISCONNECTING:
-                return "DISCONNECTING";
-            default:
-                break;
-        }
-        return Integer.toString(state);
+        return switch (what) {
+            case MESSAGE_CONNECT -> "CONNECT";
+            case MESSAGE_DISCONNECT -> "DISCONNECT";
+            case MESSAGE_CONNECTION_STATE_CHANGED -> "CONNECTION_STATE_CHANGED";
+            case MESSAGE_CONNECT_TIMEOUT -> "CONNECT_TIMEOUT";
+            default -> Integer.toString(what);
+        };
     }
 
     /** Dumps battery state machine state. */
@@ -181,59 +154,36 @@ public class BatteryStateMachine extends StateMachine {
     @BluetoothProfile.BtProfileState
     int getConnectionState() {
         String currentState = getCurrentState().getName();
-        switch (currentState) {
-            case "Disconnected":
-                return BluetoothProfile.STATE_DISCONNECTED;
-            case "Connecting":
-                return BluetoothProfile.STATE_CONNECTING;
-            case "Connected":
-                return BluetoothProfile.STATE_CONNECTED;
-            case "Disconnecting":
-                return BluetoothProfile.STATE_DISCONNECTING;
-            default:
+        return switch (currentState) {
+            case "Disconnected" -> BluetoothProfile.STATE_DISCONNECTED;
+            case "Connecting" -> BluetoothProfile.STATE_CONNECTING;
+            case "Connected" -> BluetoothProfile.STATE_CONNECTED;
+            case "Disconnecting" -> BluetoothProfile.STATE_DISCONNECTING;
+            default -> {
                 Log.e(TAG, "Bad currentState: " + currentState);
-                return BluetoothProfile.STATE_DISCONNECTED;
-        }
+                yield BluetoothProfile.STATE_DISCONNECTED;
+            }
+        };
     }
 
-    void dispatchConnectionStateChanged(int fromState, int toState) {
+    void dispatchConnectionStateChanged(int toState) {
         log(
-                "Connection state "
+                "Connection state change "
                         + mDevice
                         + ": "
-                        + profileStateToString(fromState)
+                        + getConnectionStateName(mLastConnectionState)
                         + "->"
-                        + profileStateToString(toState));
+                        + getConnectionStateName(toState));
 
-        BatteryService service = mServiceRef.get();
-        if (service != null) {
-            service.handleConnectionStateChanged(this, fromState, toState);
-        }
+        mService.handleConnectionStateChanged(mDevice, mLastConnectionState, toState);
     }
 
-    /**
-     * Connects to the GATT server of the device.
-     *
-     * @return {@code true} if it successfully connects to the GATT server.
-     */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    @VisibleForTesting
     @SuppressLint("AndroidFrameworkRequiresPermission") // We should call internal gatt interface
-    public boolean connectGatt() {
-        BatteryService service = mServiceRef.get();
-        if (service == null) {
-            return false;
-        }
-
-        if (mGattCallback == null) {
-            mGattCallback = new GattCallback();
-        }
-        if (mBluetoothGatt != null) {
-            Log.w(TAG, "Trying connectGatt with existing BluetoothGatt instance.");
-            mBluetoothGatt.close();
-        }
+    boolean connectGatt() {
         mBluetoothGatt =
                 mDevice.connectGatt(
-                        service,
+                        mService,
                         /* autoConnect= */ false,
                         mGattCallback,
                         TRANSPORT_LE,
@@ -250,23 +200,12 @@ public class BatteryStateMachine extends StateMachine {
         }
         int batteryLevel = value[0] & 0xFF;
 
-        BatteryService service = mServiceRef.get();
-        if (service != null) {
-            service.handleBatteryChanged(mDevice, batteryLevel);
-        }
+        mService.handleBatteryChanged(mDevice, batteryLevel);
     }
 
     @VisibleForTesting
     void resetBatteryLevel() {
-        BatteryService service = mServiceRef.get();
-        if (service != null) {
-            service.handleBatteryChanged(mDevice, BATTERY_LEVEL_UNKNOWN);
-        }
-    }
-
-    @Override
-    protected void log(String msg) {
-        super.log(msg);
+        mService.handleBatteryChanged(mDevice, BATTERY_LEVEL_UNKNOWN);
     }
 
     static void log(String tag, String msg) {
@@ -288,26 +227,26 @@ public class BatteryStateMachine extends StateMachine {
 
             if (mLastConnectionState != BluetoothProfile.STATE_DISCONNECTED) {
                 // Don't broadcast during startup
-                dispatchConnectionStateChanged(
-                        mLastConnectionState, BluetoothProfile.STATE_DISCONNECTED);
+                dispatchConnectionStateChanged(BluetoothProfile.STATE_DISCONNECTED);
             }
+            mLastConnectionState = BluetoothProfile.STATE_DISCONNECTED;
         }
 
         @Override
         public void exit() {
             log(TAG, "Exit (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
-            mLastConnectionState = BluetoothProfile.STATE_DISCONNECTED;
         }
 
         @Override
         public boolean processMessage(Message message) {
             log(TAG, "Process message(" + mDevice + "): " + messageWhatToString(message.what));
 
-            BatteryService service = mServiceRef.get();
             switch (message.what) {
-                case CONNECT:
+                case MESSAGE_CONNECT -> {
                     log(TAG, "Connecting to " + mDevice);
-                    if (service != null && service.canConnect(mDevice)) {
+                    if (!mService.canConnect(mDevice)) {
+                        Log.w(TAG, "Battery connecting request rejected: " + mDevice);
+                    } else {
                         if (connectGatt()) {
                             transitionTo(mConnecting);
                         } else {
@@ -317,33 +256,14 @@ public class BatteryStateMachine extends StateMachine {
                                             + "GATT connection rejection: "
                                             + mDevice);
                         }
-                    } else {
-                        // Reject the request and stay in Disconnected state
-                        Log.w(TAG, "Battery connecting request rejected: " + mDevice);
                     }
-                    break;
-                case DISCONNECT:
-                    Log.w(TAG, "DISCONNECT ignored: " + mDevice);
-                    break;
-                case CONNECTION_STATE_CHANGED:
-                    processConnectionEvent(message.arg1);
-                    break;
-                default:
+                }
+                default -> {
+                    Log.e(TAG, "Unexpected message: " + messageWhatToString(message.what));
                     return NOT_HANDLED;
+                }
             }
             return HANDLED;
-        }
-
-        // in Disconnected state
-        private void processConnectionEvent(int state) {
-            switch (state) {
-                case BluetoothGatt.STATE_DISCONNECTED:
-                    Log.w(TAG, "Ignore Battery DISCONNECTED event: " + mDevice);
-                    break;
-                default:
-                    Log.e(TAG, "Incorrect state: " + state + " device: " + mDevice);
-                    break;
-            }
         }
     }
 
@@ -354,13 +274,13 @@ public class BatteryStateMachine extends StateMachine {
         @Override
         public void enter() {
             log(TAG, "Enter (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
-            dispatchConnectionStateChanged(mLastConnectionState, BluetoothProfile.STATE_CONNECTING);
+            dispatchConnectionStateChanged(BluetoothProfile.STATE_CONNECTING);
+            mLastConnectionState = BluetoothProfile.STATE_CONNECTING;
         }
 
         @Override
         public void exit() {
             log(TAG, "Exit (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
-            mLastConnectionState = BluetoothProfile.STATE_CONNECTING;
         }
 
         @Override
@@ -368,25 +288,20 @@ public class BatteryStateMachine extends StateMachine {
             log(TAG, "process message(" + mDevice + "): " + messageWhatToString(message.what));
 
             switch (message.what) {
-                case CONNECT:
-                    Log.w(TAG, "CONNECT ignored: " + mDevice);
-                    break;
-                case CONNECT_TIMEOUT:
-                    Log.e(TAG, "Connection timeout unexpected: " + mDevice);
-                    break;
-                case DISCONNECT:
+                case MESSAGE_DISCONNECT -> {
                     log(TAG, "Connection canceled to " + mDevice);
+                    // TODO remove null check as it is impossible to be null outside of test
                     if (mBluetoothGatt != null) {
                         mBluetoothGatt.disconnect();
                     }
                     // As we're not yet connected we don't need to wait for callbacks.
                     transitionTo(mDisconnected);
-                    break;
-                case CONNECTION_STATE_CHANGED:
-                    processConnectionEvent(message.arg1);
-                    break;
-                default:
+                }
+                case MESSAGE_CONNECTION_STATE_CHANGED -> processConnectionEvent(message.arg1);
+                default -> {
+                    Log.e(TAG, "Unexpected message: " + messageWhatToString(message.what));
                     return NOT_HANDLED;
+                }
             }
             return HANDLED;
         }
@@ -394,16 +309,12 @@ public class BatteryStateMachine extends StateMachine {
         // in Connecting state
         private void processConnectionEvent(int state) {
             switch (state) {
-                case BluetoothGatt.STATE_DISCONNECTED:
+                case BluetoothProfile.STATE_DISCONNECTED -> {
                     Log.w(TAG, "Device disconnected: " + mDevice);
                     transitionTo(mDisconnected);
-                    break;
-                case BluetoothGatt.STATE_CONNECTED:
-                    transitionTo(mConnected);
-                    break;
-                default:
-                    Log.e(TAG, "Incorrect state: " + state);
-                    break;
+                }
+                case BluetoothProfile.STATE_CONNECTED -> transitionTo(mConnected);
+                default -> Log.e(TAG, "Incorrect state: " + state);
             }
         }
     }
@@ -415,16 +326,15 @@ public class BatteryStateMachine extends StateMachine {
         @Override
         public void enter() {
             log(TAG, "Enter (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
-            sendMessageDelayed(CONNECT_TIMEOUT, sConnectTimeoutMs);
-            dispatchConnectionStateChanged(
-                    mLastConnectionState, BluetoothProfile.STATE_DISCONNECTING);
+            sendMessageDelayed(MESSAGE_CONNECT_TIMEOUT, CONNECT_TIMEOUT.toMillis());
+            dispatchConnectionStateChanged(BluetoothProfile.STATE_DISCONNECTING);
+            mLastConnectionState = BluetoothProfile.STATE_DISCONNECTING;
         }
 
         @Override
         public void exit() {
             log(TAG, "Exit (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
-            mLastConnectionState = BluetoothProfile.STATE_DISCONNECTING;
-            removeMessages(CONNECT_TIMEOUT);
+            removeMessages(MESSAGE_CONNECT_TIMEOUT);
         }
 
         @Override
@@ -433,22 +343,18 @@ public class BatteryStateMachine extends StateMachine {
 
             switch (message.what) {
                     // TODO: Check if connect while disconnecting is okay.
-                    // It is related to CONNECT_TIMEOUT as well.
-                case CONNECT:
-                    Log.w(TAG, "CONNECT ignored: " + mDevice);
-                    break;
-                case DISCONNECT:
-                    Log.w(TAG, "DISCONNECT ignored: " + mDevice);
-                    break;
-                case CONNECT_TIMEOUT:
+                    // It is related to MESSAGE_CONNECT_TIMEOUT as well.
+                case MESSAGE_CONNECT_TIMEOUT -> {
                     Log.w(TAG, "Connection timeout: " + mDevice);
                     transitionTo(mDisconnected);
-                    break;
-                case CONNECTION_STATE_CHANGED:
+                }
+                case MESSAGE_CONNECTION_STATE_CHANGED -> {
                     processConnectionEvent(message.arg1);
-                    break;
-                default:
+                }
+                default -> {
+                    Log.e(TAG, "Unexpected message: " + messageWhatToString(message.what));
                     return NOT_HANDLED;
+                }
             }
             return HANDLED;
         }
@@ -456,24 +362,23 @@ public class BatteryStateMachine extends StateMachine {
         // in Disconnecting state
         private void processConnectionEvent(int state) {
             switch (state) {
-                case BluetoothGatt.STATE_DISCONNECTED:
+                case BluetoothProfile.STATE_DISCONNECTED -> {
                     Log.i(TAG, "Disconnected: " + mDevice);
                     transitionTo(mDisconnected);
-                    break;
-                case BluetoothGatt.STATE_CONNECTED:
-                    {
-                        // Reject the connection and stay in Disconnecting state
-                        Log.w(TAG, "Incoming Battery connected request rejected: " + mDevice);
-                        if (mBluetoothGatt != null) {
-                            mBluetoothGatt.disconnect();
-                        } else {
-                            transitionTo(mDisconnected);
-                        }
-                        break;
+                }
+                case BluetoothProfile.STATE_CONNECTED -> {
+                    // Reject the connection and stay in Disconnecting state
+                    Log.w(TAG, "Incoming Battery connected request rejected: " + mDevice);
+                    // TODO remove null check as it is impossible to be null outside of test
+                    if (mBluetoothGatt != null) {
+                        mBluetoothGatt.disconnect();
+                    } else {
+                        transitionTo(mDisconnected);
                     }
-                default:
+                }
+                default -> {
                     Log.e(TAG, "Incorrect state: " + state);
-                    break;
+                }
             }
         }
     }
@@ -485,8 +390,10 @@ public class BatteryStateMachine extends StateMachine {
         @Override
         public void enter() {
             log(TAG, "Enter (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
-            dispatchConnectionStateChanged(mLastConnectionState, BluetoothProfile.STATE_CONNECTED);
+            dispatchConnectionStateChanged(BluetoothProfile.STATE_CONNECTED);
+            mLastConnectionState = BluetoothProfile.STATE_CONNECTED;
 
+            // TODO remove null check as it is impossible to be null outside of test
             if (mBluetoothGatt != null) {
                 mBluetoothGatt.discoverServices();
             }
@@ -497,7 +404,6 @@ public class BatteryStateMachine extends StateMachine {
             log(TAG, "Exit (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
             // Reset the battery level only after connected
             resetBatteryLevel();
-            mLastConnectionState = BluetoothProfile.STATE_CONNECTED;
         }
 
         @Override
@@ -505,23 +411,21 @@ public class BatteryStateMachine extends StateMachine {
             log(TAG, "Process message(" + mDevice + "): " + messageWhatToString(message.what));
 
             switch (message.what) {
-                case CONNECT:
-                    Log.w(TAG, "CONNECT ignored: " + mDevice);
-                    break;
-                case DISCONNECT:
+                case MESSAGE_DISCONNECT -> {
                     log(TAG, "Disconnecting from " + mDevice);
+                    // TODO remove null check as it is impossible to be null outside of test
                     if (mBluetoothGatt != null) {
                         mBluetoothGatt.disconnect();
-                        transitionTo(mDisconnecting);
-                    } else {
-                        transitionTo(mDisconnected);
                     }
-                    break;
-                case CONNECTION_STATE_CHANGED:
+                    transitionTo(mDisconnecting);
+                }
+                case MESSAGE_CONNECTION_STATE_CHANGED -> {
                     processConnectionEvent(message.arg1);
-                    break;
-                default:
+                }
+                default -> {
+                    Log.e(TAG, "Unexpected message: " + messageWhatToString(message.what));
                     return NOT_HANDLED;
+                }
             }
             return HANDLED;
         }
@@ -529,16 +433,13 @@ public class BatteryStateMachine extends StateMachine {
         // in Connected state
         private void processConnectionEvent(int state) {
             switch (state) {
-                case BluetoothGatt.STATE_DISCONNECTED:
+                case BluetoothProfile.STATE_DISCONNECTED -> {
                     Log.i(TAG, "Disconnected from " + mDevice);
                     transitionTo(mDisconnected);
-                    break;
-                case BluetoothGatt.STATE_CONNECTED:
-                    Log.w(TAG, "Ignore CONNECTED event: " + mDevice);
-                    break;
-                default:
+                }
+                default -> {
                     Log.e(TAG, "Connection State Device: " + mDevice + " bad state: " + state);
-                    break;
+                }
             }
         }
     }
@@ -546,7 +447,7 @@ public class BatteryStateMachine extends StateMachine {
     final class GattCallback extends BluetoothGattCallback {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-            sendMessage(CONNECTION_STATE_CHANGED, newState);
+            sendMessage(MESSAGE_CONNECTION_STATE_CHANGED, newState);
         }
 
         @Override
