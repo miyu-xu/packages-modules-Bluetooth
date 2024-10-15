@@ -36,6 +36,7 @@
 #include "main/shim/dumpsys.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
+#include "osi/include/wakelock.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
@@ -667,6 +668,7 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
   if (p_clcb->gatt_rsp_timer_ent == NULL) {
     p_clcb->gatt_rsp_timer_ent = alarm_new("gatt.gatt_rsp_timer_ent");
   }
+  wakelock_acquire();
   alarm_set_on_mloop(p_clcb->gatt_rsp_timer_ent, timeout_ms, gatt_rsp_timeout, p_clcb);
 }
 
@@ -679,7 +681,12 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
  * Returns          void
  *
  ******************************************************************************/
-void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb) { alarm_cancel(p_clcb->gatt_rsp_timer_ent); }
+void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb) {
+  if (alarm_is_scheduled(p_clcb->gatt_rsp_timer_ent)) {
+    alarm_cancel(p_clcb->gatt_rsp_timer_ent);
+    wakelock_release();
+  }
+}
 
 /*******************************************************************************
  *
