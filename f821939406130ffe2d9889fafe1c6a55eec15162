@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27ba3e3f_e37d87ea",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 2053,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T23:24:27Z",
+      "side": 1,
+      "message": "should we call `mNativeInterface.gattClientScan(false);` is there is no client ?",
+      "range": {
+        "startLine": 2053,
+        "startChar": 0,
+        "endLine": 2053,
+        "endChar": 51
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7339a474_e1ccb165",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T23:24:27Z",
+      "side": 1,
+      "message": "By putting this in the setup, you are activating the sysprop for all the tests when the flag is enabled.\n\nToday, this is only enabled because of the `@EnableFlags`, but very soon the flag will be in staging and it will activate it for each and every tests (I assume they will all fail and you will not be able to move the flag to staging).\n\nBecause the sysprop is only check when the scanManager is created, I see 2 options:\n\n1. recreate the mScanManager in the testMsftScan\n2. change mIsMsftSupported to no longer be final, and to be `private package` +  with a `@VisibleForTesting` annotation, and set it in beginning of the testMsftScan",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 0
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
