@@ -1,6 +1,92 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca0fa56c_3790710c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "t",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1bf3a9c_5d29d2a0",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "onCommandStatus ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 28
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2500c7d2_58139644",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "onCommandComplete",
+      "range": {
+        "startLine": 61,
+        "startChar": 7,
+        "endLine": 61,
+        "endChar": 30
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d0bde66_b8022e34",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothHciVendorSpecific.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "Should this method be static ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 29,
+        "endLine": 102,
+        "endChar": 41
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a869095_65ad44ca",
@@ -14,6 +100,150 @@
       "writtenOn": "2024-09-17T18:03:08Z",
       "side": 1,
       "message": "You can pass `this` as a parameter.\n\nThis way, in `BluetoothHciVendorSpecificNativeInterface` you can save the AdapterService as a class variable and no longer call AdapterService.getAdapterService and no longer check for null pointer in the callbacks.",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b275a48_56f9adad",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "You could also pass the dispatcher as parameter to mBluetoothHciVendorSpecificNativeInterface and skip the adapterService entirely when dispatching events.",
+      "parentUuid": "1a869095_65ad44ca",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4ffe715_40e71af3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "The naming keeps changing from the native layer up to here... I think we should settle on one, e.g.\n`onHciVendorSpecificCommandStatus`",
+      "range": {
+        "startLine": 1386,
+        "startChar": 16,
+        "endLine": 1386,
+        "endChar": 55
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19914e79_6e7e2185",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "dispatchCommandCompleteOrStatus ?",
+      "range": {
+        "startLine": 1387,
+        "startChar": 46,
+        "endLine": 1387,
+        "endChar": 67
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d8322f_1e0318b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4178,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "Missing corresponding tests in AdapterServiceTest",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17905bd6_b281f7f6",
+        "filename": "flags/vsc.aconfig",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "The flag should be merged in a separate CL",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2d1450_11920902",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 3856,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "This variable is declared final and cannot be null, the check can be removed.",
+      "range": {
+        "startLine": 3856,
+        "startChar": 28,
+        "endLine": 3856,
+        "endChar": 81
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f31ad8ee_d274f9d7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5573,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "`@IntRange(from \u003d 0x00, to \u003d 0xff)`",
+      "range": {
+        "startLine": 5573,
+        "startChar": 21,
+        "endLine": 5573,
+        "endChar": 24
+      },
       "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -67,6 +297,52 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "ff1ead2d_9a8d687c",
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da39321e_2535a5c1",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "You don\u0027t need to add a public interface for this I would say; you may directly call getBluetoothHciVendorSpecificInterface from the JNI code",
+      "range": {
+        "startLine": 1012,
+        "startChar": 2,
+        "endLine": 1015,
+        "endChar": 0
+      },
+      "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "143c504b_8cd8e13c",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T18:49:37Z",
+      "side": 1,
+      "message": "Unused include directives.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 21
+      },
       "revId": "162ce19015f3a9e05842b5a3639f3f7a9cd85c58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
