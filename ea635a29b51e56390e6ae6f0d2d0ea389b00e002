@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eea0275c_625e831e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T21:23:08Z",
+      "side": 1,
+      "message": "This change should be squashed with the previous CL",
+      "revId": "ea635a29b51e56390e6ae6f0d2d0ea389b00e002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
