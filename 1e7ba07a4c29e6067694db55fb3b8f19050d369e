@@ -253,6 +253,24 @@
       "parentUuid": "f33b8d67_ee3ae353",
       "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b1aa46_9c637809",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T02:08:42Z",
+      "side": 1,
+      "message": "Yes `numRegularScanClients() !\u003d 0` means the scan needs to be started eventually, thus we restart; Otherwise, the scan would be stopped by `stopRegularScan`",
+      "parentUuid": "f891c7b7_60d7ebaf",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "047315d2_786a45a8",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T02:08:42Z",
+      "side": 1,
+      "message": "This is called after `startRegularScan`. Would our MSFT update work as expected?",
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899ef01a_2816c2b1",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 2032,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T02:08:42Z",
+      "side": 1,
+      "message": "I think we should ignore `SCAN_MODE_OPPORTUNISTIC`. Per definition:\n\u003e A special Bluetooth LE scan mode. Applications using this scan mode will passively listen for other scan results without starting BLE scans themselves.\n\n```suggestion\n                    !mRegularScanClients.stream().anyMatch(c -\u003e c.started \u0026\u0026 c.filters.isEmpty() \u0026\u0026 !(client.settings !\u003d null \u0026\u0026 client.settings.getScanMode() !\u003d ScanSettings.SCAN_MODE_OPPORTUNISTIC));\n```",
+      "range": {
+        "startLine": 2032,
+        "startChar": 59,
+        "endLine": 2032,
+        "endChar": 96
+      },
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
