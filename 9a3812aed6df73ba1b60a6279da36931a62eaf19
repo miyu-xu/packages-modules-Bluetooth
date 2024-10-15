@@ -45,6 +45,30 @@
       },
       "revId": "9a3812aed6df73ba1b60a6279da36931a62eaf19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cbb9a9d_9a5dce0c",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-15T16:55:30Z",
+      "side": 1,
+      "message": "These tests should behave the same, and this is to make sure that new approach is working well as well as old one is intact until flag is removed. Then, test with flag disabled will be obsolete and should be removed",
+      "parentUuid": "b8da0b1f_8e1cc011",
+      "range": {
+        "startLine": 1219,
+        "startChar": 0,
+        "endLine": 1234,
+        "endChar": 1
+      },
+      "revId": "9a3812aed6df73ba1b60a6279da36931a62eaf19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
