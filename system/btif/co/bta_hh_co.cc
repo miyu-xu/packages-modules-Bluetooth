@@ -102,6 +102,8 @@ static bool uhid_get_report_req_handler(btif_hh_uhid_t* p_uhid, struct uhid_get_
     return false;
   }
 
+  btif_hh_cb.uhid_history.record(p_uhid->link_spec, std::string("UHID_GET_REPORT"),
+                                 base::StringPrintf("Type:%d, ID:%d", req.rtype, req.id));
   btif_hh_getreport(p_uhid, map_rtype_uhid_hh[req.rtype], req.rnum, 0);
   return true;
 }
@@ -129,6 +131,8 @@ static bool uhid_set_report_req_handler(btif_hh_uhid_t* p_uhid, struct uhid_set_
     return false;
   }
 
+  btif_hh_cb.uhid_history.record(p_uhid->link_spec, std::string("UHID_SET_REPORT"),
+                                 base::StringPrintf("Type:%d, ID:%d", req.rtype, req.id));
   btif_hh_setreport(p_uhid, map_rtype_uhid_hh[req.rtype], req.size, req.data);
   return true;
 }
@@ -281,6 +285,7 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
   switch (ev.type) {
     case UHID_START:
       log::verbose("UHID_START from uhid-dev\n");
+      btif_hh_cb.uhid_history.record(p_uhid->link_spec, "UHID_START", "");
       if (!com::android::bluetooth::flags::hid_report_queuing()) {
         // we can ignore START event, no one is ready to listen anyway.
         p_uhid->ready_for_data = true;
@@ -288,6 +293,7 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
       break;
     case UHID_STOP:
       log::verbose("UHID_STOP from uhid-dev\n");
+      btif_hh_cb.uhid_history.record(p_uhid->link_spec, "UHID_STOP", "");
       if (!com::android::bluetooth::flags::hid_report_queuing()) {
         // we can ignore STOP event, it needs to be closed first anyway.
         p_uhid->ready_for_data = false;
@@ -295,6 +301,7 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
       break;
     case UHID_OPEN:
       log::verbose("UHID_OPEN from uhid-dev\n");
+      btif_hh_cb.uhid_history.record(p_uhid->link_spec, "UHID_OPEN", "");
       if (com::android::bluetooth::flags::hid_report_queuing()) {
         uhid_on_open(p_uhid);
       } else {
@@ -303,6 +310,7 @@ static int uhid_read_outbound_event(btif_hh_uhid_t* p_uhid) {
       break;
     case UHID_CLOSE:
       log::verbose("UHID_CLOSE from uhid-dev\n");
+      btif_hh_cb.uhid_history.record(p_uhid->link_spec, "UHID_CLOSE", "");
       p_uhid->ready_for_data = false;
       if (com::android::bluetooth::flags::hid_report_queuing()) {
         if (alarm_is_scheduled(p_uhid->delayed_ready_timer)) {
@@ -471,6 +479,7 @@ static void uhid_fd_close(btif_hh_uhid_t* p_uhid) {
     ev.type = UHID_DESTROY;
     uhid_write(p_uhid->fd, &ev, uhid_calc_msg_len(&ev, 0));
     log::debug("Closing fd={}, addr:{}", p_uhid->fd, p_uhid->link_spec);
+    btif_hh_cb.uhid_history.record(p_uhid->link_spec, "UHID_DESTROY", "");
     close(p_uhid->fd);
     p_uhid->fd = -1;
 
@@ -971,6 +980,8 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name, uint
           "vendor_id = 0x{:04x}, product_id = 0x{:04x}, version= "
           "0x{:04x},ctry_code=0x{:02x}",
           vendor_id, product_id, version, ctry_code);
+  btif_hh_cb.uhid_history.record(p_dev->link_spec, std::string("UHID_CREATE2"),
+                                 base::StringPrintf("len: %d", dscp_len));
 
   // Create and send hid descriptor to kernel
   ev.type = UHID_CREATE2;
@@ -1047,6 +1058,7 @@ void bta_hh_co_set_rpt_rsp([[maybe_unused]] uint8_t dev_handle, [[maybe_unused]]
     return;
   }
 
+  btif_hh_cb.uhid_history.record(p_dev->link_spec, "UHID_SET_REPORT_REPLY", "");
   if (com::android::bluetooth::flags::hid_report_queuing()) {
     tBTA_HH_TO_UHID_EVT to_uhid = {};
     to_uhid.type = BTA_HH_UHID_INBOUND_SET_REPORT_EVT;
@@ -1121,6 +1133,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status, const uint8_t* p_
     return;
   }
 
+  btif_hh_cb.uhid_history.record(p_dev->link_spec, "UHID_GET_REPORT_REPLY", "");
   if (com::android::bluetooth::flags::hid_report_queuing()) {
     tBTA_HH_TO_UHID_EVT to_uhid = {};
     to_uhid.type = BTA_HH_UHID_INBOUND_GET_REPORT_EVT;

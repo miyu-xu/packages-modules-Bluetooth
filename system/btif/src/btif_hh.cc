@@ -2161,6 +2161,7 @@ const bthh_interface_t* btif_hh_get_interface() {
 
 #define DUMPSYS_TAG "shim::legacy::hid"
 void DumpsysHid(int fd) {
+  dprintf(fd, "\n");
   LOG_DUMPSYS_TITLE(fd, DUMPSYS_TAG);
   LOG_DUMPSYS(fd, "status:%s num_devices:%u", btif_hh_status_text(btif_hh_cb.status).c_str(),
               btif_hh_cb.device_num);
@@ -2187,7 +2188,12 @@ void DumpsysHid(int fd) {
                   p_dev->reconnect_allowed ? "T" : "F");
     }
   }
+
+  LOG_DUMPSYS(fd, " UHID operations history");
+  btif_hh_cb.uhid_history.dump(fd);
+
   BTA_HhDump(fd);
+  dprintf(fd, "\n");
 }
 
 namespace bluetooth {
