@@ -33,6 +33,24 @@
       "message": "Hi @yuyangh@google.com, friendly ping for review",
       "revId": "ee61f7e64ad4dde7e2b5c261cffad9b20f95d7fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d149d1ef_d498012e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-15T18:30:10Z",
+      "side": 1,
+      "message": "Hi Hsin-chen, I am no longer in this area, I suggest ask Henri to take a look",
+      "parentUuid": "4e8816c8_b93c0160",
+      "revId": "ee61f7e64ad4dde7e2b5c261cffad9b20f95d7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
