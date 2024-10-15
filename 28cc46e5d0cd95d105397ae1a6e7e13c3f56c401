@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ff6c09_ac938104",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "heh...so `cpplint` identfies the `and` as a non-comment b/c there no multi-line support for the regex check.  I will restore the previous comment style for now and remove the `and` to satisfy that check.",
+      "parentUuid": "1726f700_07a2e7ab",
+      "range": {
+        "startLine": 531,
+        "startChar": 67,
+        "endLine": 531,
+        "endChar": 69
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97eeacd7_df58316c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-15T10:15:24Z",
       "side": 1,
       "message": "Nit: maybe merge these comments :)",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 57
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5e93c1a_2e01bb42",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97eeacd7_df58316c",
       "range": {
         "startLine": 185,
         "startChar": 0,
@@ -96,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0512ad5_4190372b",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "That is correct.  The `bind` boolean and the null-ability of the p_ccb_bind pointer provided the same information and set at the same spots and was redundant.\n\nThe pointer obviously provided additional useful information, the control block, while the boolean was not, so I just kept the pointer to provide that information.\n\nThis would not change any behavior.",
+      "parentUuid": "96bfa1b4_c15860a3",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 204,
+        "endChar": 27
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22a7b05c_0d89ab5a",
         "filename": "system/stack/avct/avct_bcb_act.cc",
         "patchSetId": 8
@@ -107,6 +179,24 @@
       "writtenOn": "2024-10-15T10:15:24Z",
       "side": 1,
       "message": "Nit: Should we add an indication that we are closing the bcb?",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f922323d_bc9f5ca1",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22a7b05c_0d89ab5a",
       "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -128,6 +218,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f95146fe_214abfc4",
+        "filename": "system/stack/avct/avct_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e948c4d0_07c6c9de",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92040974_8df0e2e8",
@@ -141,6 +249,30 @@
       "writtenOn": "2024-10-15T10:15:24Z",
       "side": 1,
       "message": "Good catch 😄 Do we also want to modify the comment above?",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca812e1a_d07c5936",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done.\n\nAlso updated all the other comments related to this change",
+      "parentUuid": "92040974_8df0e2e8",
       "range": {
         "startLine": 232,
         "startChar": 15,
@@ -186,6 +318,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e439106_3d090834",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "621172de_2048676b",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b405a76_a083c1c5",
@@ -203,6 +353,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "292169f3_9a3a0855",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b405a76_a083c1c5",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b2615a9_d1638776",
@@ -216,6 +384,24 @@
       "writtenOn": "2024-10-15T10:15:24Z",
       "side": 1,
       "message": "Nit: this one too?",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09ab665e_05690923",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b2615a9_d1638776",
       "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -243,6 +429,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4aa0f0_4addfc9b",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67bc75c4_7a95a8ce",
+      "range": {
+        "startLine": 333,
+        "startChar": 13,
+        "endLine": 333,
+        "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12d521f7_5a6bedf1",
@@ -256,6 +466,30 @@
       "writtenOn": "2024-10-15T10:15:24Z",
       "side": 1,
       "message": "Nit: this one too?",
+      "range": {
+        "startLine": 355,
+        "startChar": 13,
+        "endLine": 355,
+        "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50cc8b3b_94d2182c",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-15T18:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12d521f7_5a6bedf1",
       "range": {
         "startLine": 355,
         "startChar": 13,
