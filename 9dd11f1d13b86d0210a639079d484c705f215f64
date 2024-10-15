@@ -46,6 +46,30 @@
       },
       "revId": "9dd11f1d13b86d0210a639079d484c705f215f64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b92ebff_457dd5ac",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-15T00:13:38Z",
+      "side": 1,
+      "message": "Like so: https://pl.kotl.in/xE5kHzO_m\n\nBut it is not necessarily clearer in this case",
+      "parentUuid": "04a074bc_4898a8cd",
+      "range": {
+        "startLine": 245,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "9dd11f1d13b86d0210a639079d484c705f215f64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
