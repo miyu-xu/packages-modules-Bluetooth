@@ -335,10 +335,12 @@ alarm_t* alarm_new_periodic(const char* name) {
   inc_func_call_count(__func__);
   return nullptr;
 }
+
 struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
+alarm_t* current_fake_alarm_;
 bool alarm_is_scheduled(const alarm_t* alarm) {
   inc_func_call_count(__func__);
-  return fake_osi_alarm_set_on_mloop_.cb != nullptr;
+  return fake_osi_alarm_set_on_mloop_.cb != nullptr && current_fake_alarm_ == alarm;
 }
 uint64_t alarm_get_remaining_ms(const alarm_t* alarm) {
   inc_func_call_count(__func__);
@@ -366,6 +368,7 @@ void alarm_set_on_mloop(alarm_t* alarm, uint64_t interval_ms, alarm_callback_t c
   fake_osi_alarm_set_on_mloop_.interval_ms = interval_ms;
   fake_osi_alarm_set_on_mloop_.cb = cb;
   fake_osi_alarm_set_on_mloop_.data = data;
+  current_fake_alarm_ = alarm;
 }
 
 bool socket_listen(const socket_t* socket, port_t port) {
