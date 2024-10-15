@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ded122c_5bb29b00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T02:54:46Z",
+      "side": 1,
+      "message": "Note: I tested on https://r.android.com/c/3268065/6 rather than the latest patchset because the latest revision passes even without this CL. I\u0027ve updated my findings on 3268065",
+      "revId": "3cde46542444baf734e420f0e893e3b9c96455d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
