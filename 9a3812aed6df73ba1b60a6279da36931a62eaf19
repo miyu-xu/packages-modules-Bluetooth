@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f009b0_94abb6df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T16:44:20Z",
+      "side": 1,
+      "message": "You should also add:\n```\nFlag: com.android.bluetooth.flags.hap_connect_only_requested_device\n```",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "9a3812aed6df73ba1b60a6279da36931a62eaf19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8da0b1f_8e1cc011",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T16:44:20Z",
+      "side": 1,
+      "message": "What the difference with `test_disconnect_connected` ?\n\nI see that the flag is set differently but the same behavior is expected",
+      "range": {
+        "startLine": 1219,
+        "startChar": 0,
+        "endLine": 1234,
+        "endChar": 1
+      },
+      "revId": "9a3812aed6df73ba1b60a6279da36931a62eaf19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
