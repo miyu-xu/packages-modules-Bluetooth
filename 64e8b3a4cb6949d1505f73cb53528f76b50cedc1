@@ -16,6 +16,24 @@
       "message": "Do you think it would be a good idea to clear all the storage upon BT \"factory reset\"?",
       "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d3251f_a4e68ff5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6966,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-10-15T05:39:54Z",
+      "side": 1,
+      "message": "Do you mean deleting all files in `/data/misc/bluetooth/`?\n\nUnder it there was a directory `logs/` and a file `devices_for_metrics_v3`, \nso I wasn\u0027t sure we can remove them.\n\nThat\u0027s why I only removed these GATT cache.",
+      "parentUuid": "f693dcf4_050882e8",
+      "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
