@@ -70,6 +70,24 @@
       "parentUuid": "8091533f_88fca940",
       "revId": "63bff412bc1aa2ed383e95f016286424b02c0d50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0853ceb_4012ad35",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-15T18:04:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5f2cb57_751c31a1",
+      "revId": "63bff412bc1aa2ed383e95f016286424b02c0d50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
