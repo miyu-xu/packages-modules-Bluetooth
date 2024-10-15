@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b95114_d99615fe",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-15T18:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bce0da5b_22209171",
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fabc4aa7_c9a165d5",
@@ -66,6 +84,24 @@
       "writtenOn": "2024-10-15T08:58:14Z",
       "side": 1,
       "message": "We still need to `updateScanMsft` when it\u0027s all-pass (see the case below). Also, why is it an error log? It seems to be a normal path in `configureScanFilters`.\n\nConsider this case:\n1. Call `startRegularScan` with filter -\u003e MSFT is enabled\n2. Call `startRegularScan` without filter -\u003e `updateScanMsft` is skipped so MSFT is still enabled",
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d41119b_2bc3155c",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-15T18:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fabc4aa7_c9a165d5",
       "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -107,6 +143,30 @@
       "side": 1,
       "message": "Besides the OPPORTUNISTIC case, the `.started` usage is incorrect here because the client we\u0027re currently handling would have started \u003d\u003d false. See `handleStartScan`, `.started` is set after `startRegularScan`.\n\nReading into the `startRegularScan` and `stopRegularScan` implementation, I think the below simply works: Both `startRegularScan` and `stopRegularScan` treat the non-OPPORTUNISTIC scans in `mRegularScanClients` as started, regardless of the `.started` value.\n\nAlso note the null filters case \u0026\u0026 the out-of-filter-index case. I think `mClientFilterIndexMap` handles it better because all and only the all-pass clients would be in the map.\n\n```suggestion\n                    !mRegularScanClients.stream().anyMatch(c -\u003e {\n                        if (c.settings !\u003d null \u0026\u0026 c.settings.getScanMode() \u003d\u003d ScanSettings.SCAN_MODE_OPPORTUNISTIC) {\n                            return false;\n                        }\n                        return !this.mClientFilterIndexMap.containsKey(c.scannerId)\n                    });\n```",
       "parentUuid": "899ef01a_2816c2b1",
+      "range": {
+        "startLine": 2032,
+        "startChar": 59,
+        "endLine": 2032,
+        "endChar": 96
+      },
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d31e4fcf_074989eb",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 2032,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-15T18:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0624d1b5_0db6aad5",
       "range": {
         "startLine": 2032,
         "startChar": 59,
