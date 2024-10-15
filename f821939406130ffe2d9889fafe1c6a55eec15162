@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77952dcf_a409a6cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T23:25:37Z",
+      "side": 1,
+      "message": "Also add:\n```\nFlag: com.android.bluetooth.flags.le_scan_msft_support\n```",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa11e18e_a73e1df0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T23:25:37Z",
+      "side": 1,
+      "message": "Test: atest BluetoothInstrumentationTests:ScanManagerTest",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27ba3e3f_e37d87ea",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 26
