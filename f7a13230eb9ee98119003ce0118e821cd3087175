@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dffe0d47_7f8206af",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T21:22:19Z",
+      "side": 1,
+      "message": "std::move",
+      "range": {
+        "startLine": 98,
+        "startChar": 86,
+        "endLine": 98,
+        "endChar": 96
+      },
+      "revId": "f7a13230eb9ee98119003ce0118e821cd3087175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
