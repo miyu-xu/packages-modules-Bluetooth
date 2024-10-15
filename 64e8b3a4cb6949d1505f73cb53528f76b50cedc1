@@ -34,6 +34,24 @@
       "parentUuid": "f693dcf4_050882e8",
       "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfbdd294_22d119ff",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6966,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-15T17:34:14Z",
+      "side": 1,
+      "message": "We also had data in `/data/misc/bluedroid`, is there anything to clean there too ?",
+      "parentUuid": "96d3251f_a4e68ff5",
+      "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
