@@ -142,6 +142,24 @@
       "parentUuid": "aa77f2dd_b82ee505",
       "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84d6c6a_cc1b68c4",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-15T22:36:34Z",
+      "side": 0,
+      "message": "Thank you both for the inputs. \nThen by following the best practices, I will keep this aconfig for now, and only remove the references.",
+      "parentUuid": "ee50b359_c46cbe32",
+      "revId": "2df13ef752849a7e01e3b36965cb7f5d5abf0f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
