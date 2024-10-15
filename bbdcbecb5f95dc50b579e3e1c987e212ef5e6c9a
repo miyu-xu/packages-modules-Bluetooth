@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea421c56_900b91d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-15T05:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdec9495_f7f264d1",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "692eccc8_ffc28b1e",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-09T03:30:44Z",
       "side": 1,
       "message": "Flag: com.android.bluetooth.flags.ignore_bond_cancel_by_unintended_device",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1522826e_dfc14057",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-15T05:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "692eccc8_ffc28b1e",
       "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9841f8c1_b84ab678",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-15T05:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a06b8a_1344adc5",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8011d9e7_969b897c",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "834b615c_2305591e",
+        "filename": "flags/btif_dm.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-15T05:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8011d9e7_969b897c",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44da38e8_3af83f2c",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-10-09T03:30:44Z",
       "side": 1,
       "message": "Accept the cancelBond request only for the currently pairing device",
+      "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e17e545e_6d6c6051",
+        "filename": "flags/btif_dm.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-15T05:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44da38e8_3af83f2c",
       "revId": "bbdcbecb5f95dc50b579e3e1c987e212ef5e6c9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
