@@ -64,6 +64,30 @@
       },
       "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ab24af_9d0946be",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-15T16:30:54Z",
+      "side": 1,
+      "message": "Yes, We need both. Can we extend ConnectRequest to take secure vs insecure as earlier?",
+      "parentUuid": "00fa3c87_8de194c2",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 67
+      },
+      "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
