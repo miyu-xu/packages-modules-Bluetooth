@@ -50,6 +50,63 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a272374_21068a8f",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T19:05:17Z",
+      "side": 1,
+      "message": "This is a functional change while everything else is no-op refactoring, please move this to a separate CL.",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae27548c_70dd5cb5",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T19:05:17Z",
+      "side": 1,
+      "message": "This is a functional change while everything else is no-op refactor, please move this to a 3rd CL. Please  update the TEST_MAPPING as well to make sure the test is run in presubmits.",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6cae52_91b7adbb",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T19:05:17Z",
+      "side": 1,
+      "message": "This is a functional change, should be moved to a separate CL.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97eeacd7_df58316c",
         "filename": "system/stack/avct/avct_bcb_act.cc",
         "patchSetId": 8
@@ -197,6 +254,46 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "22a7b05c_0d89ab5a",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f71c2e87_4adb95b1",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T19:05:17Z",
+      "side": 1,
+      "message": "nit: parentheses are not required here",
+      "range": {
+        "startLine": 304,
+        "startChar": 23,
+        "endLine": 304,
+        "endChar": 31
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74087e42_fef63b66",
+        "filename": "system/stack/avct/avct_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T19:05:17Z",
+      "side": 1,
+      "message": "nit: Please name this enum for stricter typing",
       "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -495,6 +592,29 @@
         "startChar": 13,
         "endLine": 355,
         "endChar": 16
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91fb50c2_ef000b47",
+        "filename": "system/stack/include/avct_api.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T19:05:17Z",
+      "side": 1,
+      "message": "Is the backing type actually required (i.e. is the role specified by the specification ?)",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 22
       },
       "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
