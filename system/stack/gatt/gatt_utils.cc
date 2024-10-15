@@ -23,6 +23,7 @@
  ******************************************************************************/
 #define LOG_TAG "gatt_utils"
 
+#include <android_bluetooth_sysprop.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
@@ -36,6 +37,7 @@
 #include "main/shim/dumpsys.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
+#include "osi/include/wakelock.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
@@ -657,6 +659,7 @@ bool gatt_parse_uuid_from_cmd(Uuid* p_uuid_rec, uint16_t uuid_size, uint8_t** p_
  ******************************************************************************/
 void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
   uint64_t timeout_ms = GATT_WAIT_FOR_RSP_TIMEOUT_MS;
+  bool wakeup_supported = android::sysprop::bluetooth::hardware::wakeup_supported().value_or(true);
 
   if (p_clcb->operation == GATTC_OPTYPE_DISCOVERY && p_clcb->op_subtype == GATT_DISC_SRVC_ALL) {
     timeout_ms = GATT_WAIT_FOR_DISC_RSP_TIMEOUT_MS;
@@ -666,6 +669,10 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
   // and then the timers can be allocated elsewhere.
   if (p_clcb->gatt_rsp_timer_ent == NULL) {
     p_clcb->gatt_rsp_timer_ent = alarm_new("gatt.gatt_rsp_timer_ent");
+  }
+
+  if (!wakeup_supported) {
+    wakelock_acquire();
   }
   alarm_set_on_mloop(p_clcb->gatt_rsp_timer_ent, timeout_ms, gatt_rsp_timeout, p_clcb);
 }
@@ -679,7 +686,16 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
  * Returns          void
  *
  ******************************************************************************/
-void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb) { alarm_cancel(p_clcb->gatt_rsp_timer_ent); }
+void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb) {
+  bool wakeup_supported = android::sysprop::bluetooth::hardware::wakeup_supported().value_or(true);
+
+  if (alarm_is_scheduled(p_clcb->gatt_rsp_timer_ent)) {
+    alarm_cancel(p_clcb->gatt_rsp_timer_ent);
+    if (!wakeup_supported) {
+      wakelock_release();
+    }
+  }
+}
 
 /*******************************************************************************
  *
