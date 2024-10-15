@@ -294,6 +294,30 @@
       },
       "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbdb8a65_5b208c08",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-15T16:12:38Z",
+      "side": 1,
+      "message": "I search showed that bt_status is used everywhere in the /stack. So you are right, put it in the hci_error_code.h works! Thanks.",
+      "parentUuid": "f85276cd_696d97fa",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 61
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
