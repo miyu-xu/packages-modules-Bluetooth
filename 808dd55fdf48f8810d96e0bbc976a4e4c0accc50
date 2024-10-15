@@ -270,6 +270,30 @@
       },
       "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f85276cd_696d97fa",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-10-15T00:29:44Z",
+      "side": 1,
+      "message": "It would be another hurdle to get btif include to the hci_error_code.h, as bt_status was not defined there.",
+      "parentUuid": "cf8c97e0_2195fed9",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 61
+      },
+      "revId": "808dd55fdf48f8810d96e0bbc976a4e4c0accc50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
