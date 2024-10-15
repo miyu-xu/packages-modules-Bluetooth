@@ -30,6 +30,7 @@ import io.grpc.okhttp.OkHttpChannelBuilder;
 
 import org.junit.rules.ExternalResource;
 
+import pandora.BumbleConfigGrpc;
 import pandora.DckGrpc;
 import pandora.GATTGrpc;
 import pandora.HIDGrpc;
@@ -232,5 +233,10 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora L2CAP blocking service */
     public L2CAPGrpc.L2CAPBlockingStub l2capBlocking() {
         return L2CAPGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora BumbleConfig blocking service */
+    public BumbleConfigGrpc.BumbleConfigBlockingStub bumbleconfigBlocking() {
+        return BumbleConfigGrpc.newBlockingStub(mChannel);
     }
 }

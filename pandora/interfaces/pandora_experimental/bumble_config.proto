@@ -45,16 +45,9 @@ enum IoCapability {
     KEYBOARD_DISPLAY = 0x04;
 }
 
-enum KeyDistribution {
-    ENCRYPTION_KEY = 0x00;
-    IDENTITY_KEY = 0x01;
-    SIGNING_KEY = 0x02;
-    LINK_KEY = 0x03;
-}
-
 message OverrideRequest {
     IoCapability io_capability = 1;
     PairingConfig pairing_config = 2;
-    KeyDistribution initiator_key_distribution = 3;
-    KeyDistribution responder_key_distribution = 4;
+    uint32 initiator_key_distribution = 3;
+    uint32 responder_key_distribution = 4;
 }
