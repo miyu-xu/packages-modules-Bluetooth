@@ -40,6 +40,30 @@
       ],
       "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00fa3c87_8de194c2",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-15T16:08:19Z",
+      "side": 1,
+      "message": "Yes, however the call to `insecure` is also needed. What would be the best way to identify if there is a need for insecure or secure channel then ? This is an android concept I guess ? From the interface we can\u0027t determine it directly. We could tweak the connection and store any information inside.",
+      "parentUuid": "4627ed8c_ba01d5a9",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 67
+      },
+      "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
