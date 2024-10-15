@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f693dcf4_050882e8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6966,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-15T05:21:28Z",
+      "side": 1,
+      "message": "Do you think it would be a good idea to clear all the storage upon BT \"factory reset\"?",
+      "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
