@@ -52,6 +52,24 @@
       "parentUuid": "150ebcd9_c1842819",
       "revId": "599edc5543fcb9ef0ab31c6a5629456a36315df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a81b754_8a346377",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-15T18:49:55Z",
+      "side": 1,
+      "message": "scanning/advertising/address manager are already implemented in GD, and that\u0027s where they will stay.\n\nthis connection manager, as I looks through the code, will get some changes, but due to the GD interface being fully anynchronous and switching threads, I might be forced to push it down into GD to avoid some race conditions.\n\nSo for now, for clarity, it stays in this folder, and later if I have to move it into GD, it would be clearer to extract than some piece of GATT.",
+      "parentUuid": "1becbe3a_212b223f",
+      "revId": "599edc5543fcb9ef0ab31c6a5629456a36315df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
