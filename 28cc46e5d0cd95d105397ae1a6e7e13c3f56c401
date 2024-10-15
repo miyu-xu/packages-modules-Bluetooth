@@ -223,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67d8e95_48b62d16",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-15T21:18:50Z",
+      "side": 1,
+      "message": "Looks good, thanks!",
+      "parentUuid": "e0512ad5_4190372b",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 204,
+        "endChar": 27
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22a7b05c_0d89ab5a",
