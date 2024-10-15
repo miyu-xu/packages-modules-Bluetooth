@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eb7e2b4_d6787640",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-15T17:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6f009b0_94abb6df",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "9a3812aed6df73ba1b60a6279da36931a62eaf19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8da0b1f_8e1cc011",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "These tests should behave the same, and this is to make sure that new approach is working well as well as old one is intact until flag is removed. Then, test with flag disabled will be obsolete and should be removed",
       "parentUuid": "b8da0b1f_8e1cc011",
+      "range": {
+        "startLine": 1219,
+        "startChar": 0,
+        "endLine": 1234,
+        "endChar": 1
+      },
+      "revId": "9a3812aed6df73ba1b60a6279da36931a62eaf19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6974a6f6_7feca01a",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-15T17:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cbb9a9d_9a5dce0c",
       "range": {
         "startLine": 1219,
         "startChar": 0,
