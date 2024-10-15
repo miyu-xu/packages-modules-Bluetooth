@@ -18,6 +18,58 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feb74107_d2b67eaf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T08:58:14Z",
+      "side": 1,
+      "message": "Closing this thread and I\u0027ve left another comment in `updateScanMsft`",
+      "parentUuid": "047315d2_786a45a8",
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce0da5b_22209171",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T08:58:14Z",
+      "side": 1,
+      "message": "Similar to `configureScanFilters`, we should early return if `isOpportunisticScanClient(client)`.",
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabc4aa7_c9a165d5",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T08:58:14Z",
+      "side": 1,
+      "message": "We still need to `updateScanMsft` when it\u0027s all-pass (see the case below). Also, why is it an error log? It seems to be a normal path in `configureScanFilters`.\n\nConsider this case:\n1. Call `startRegularScan` with filter -\u003e MSFT is enabled\n2. Call `startRegularScan` without filter -\u003e `updateScanMsft` is skipped so MSFT is still enabled",
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "899ef01a_2816c2b1",
@@ -31,6 +83,30 @@
       "writtenOn": "2024-10-15T02:08:42Z",
       "side": 1,
       "message": "I think we should ignore `SCAN_MODE_OPPORTUNISTIC`. Per definition:\n\u003e A special Bluetooth LE scan mode. Applications using this scan mode will passively listen for other scan results without starting BLE scans themselves.\n\n```suggestion\n                    !mRegularScanClients.stream().anyMatch(c -\u003e c.started \u0026\u0026 c.filters.isEmpty() \u0026\u0026 !(client.settings !\u003d null \u0026\u0026 client.settings.getScanMode() !\u003d ScanSettings.SCAN_MODE_OPPORTUNISTIC));\n```",
+      "range": {
+        "startLine": 2032,
+        "startChar": 59,
+        "endLine": 2032,
+        "endChar": 96
+      },
+      "revId": "e438b90db3283db14f8747ea63cb44f503535eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0624d1b5_0db6aad5",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 2032,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-15T08:58:14Z",
+      "side": 1,
+      "message": "Besides the OPPORTUNISTIC case, the `.started` usage is incorrect here because the client we\u0027re currently handling would have started \u003d\u003d false. See `handleStartScan`, `.started` is set after `startRegularScan`.\n\nReading into the `startRegularScan` and `stopRegularScan` implementation, I think the below simply works: Both `startRegularScan` and `stopRegularScan` treat the non-OPPORTUNISTIC scans in `mRegularScanClients` as started, regardless of the `.started` value.\n\nAlso note the null filters case \u0026\u0026 the out-of-filter-index case. I think `mClientFilterIndexMap` handles it better because all and only the all-pass clients would be in the map.\n\n```suggestion\n                    !mRegularScanClients.stream().anyMatch(c -\u003e {\n                        if (c.settings !\u003d null \u0026\u0026 c.settings.getScanMode() \u003d\u003d ScanSettings.SCAN_MODE_OPPORTUNISTIC) {\n                            return false;\n                        }\n                        return !this.mClientFilterIndexMap.containsKey(c.scannerId)\n                    });\n```",
+      "parentUuid": "899ef01a_2816c2b1",
       "range": {
         "startLine": 2032,
         "startChar": 59,
