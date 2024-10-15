@@ -4211,6 +4211,9 @@ public:
             if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
               if (IsDirectionAvailableForCurrentConfiguration(
                           group, bluetooth::le_audio::types::kLeAudioDirectionSink)) {
+                if (alarm_is_scheduled(suspend_timeout_)) {
+                  alarm_cancel(suspend_timeout_);
+                }
                 StartSendingAudio(active_group_id_);
               } else {
                 log::warn(
@@ -4278,8 +4281,6 @@ public:
                                             "r_state: " + ToString(audio_receiver_state_) +
                                                     ", s_state: " + ToString(audio_sender_state_));
 
-    StartVbcCloseTimeout();
-
     /* Note: This callback is from audio hal driver.
      * Bluetooth peer is a Source for Audio Framework.
      * e.g. Peer is microphone.
@@ -4304,6 +4305,8 @@ public:
     if ((audio_sender_state_ == AudioState::IDLE) ||
         (audio_sender_state_ == AudioState::READY_TO_RELEASE)) {
       OnAudioSuspend();
+    } else {
+      StartVbcCloseTimeout();
     }
 
     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
@@ -4430,6 +4433,9 @@ public:
             if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
               if (IsDirectionAvailableForCurrentConfiguration(
                           group, bluetooth::le_audio::types::kLeAudioDirectionSource)) {
+                if (alarm_is_scheduled(suspend_timeout_)) {
+                  alarm_cancel(suspend_timeout_);
+                }
                 StartReceivingAudio(active_group_id_);
               } else {
                 log::warn(
