@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4232db4_a43b080d",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-15T15:48:13Z",
+      "side": 1,
+      "message": "I\u0027d like to keep it for now. it is still used in some cases \u0027live_tracker\u0027, I\u0027ll clean up later if necessary.",
+      "parentUuid": "a6703247_5cc5d23a",
+      "range": {
+        "startLine": 149,
+        "startChar": 9,
+        "endLine": 149,
+        "endChar": 20
+      },
+      "revId": "f6fd72584d91e3e907c5b77b7b14c8e9ecb161a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f25f3d9_f1546331",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 6
@@ -37,6 +61,24 @@
       "writtenOn": "2024-10-15T02:05:32Z",
       "side": 1,
       "message": "Please default initialize to 0.\nYou should also add initializers to other field sin this struct, these are not set by default, if I am not wrong (https://en.cppreference.com/w/cpp/language/default_constructor).",
+      "revId": "f6fd72584d91e3e907c5b77b7b14c8e9ecb161a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d323eb6_f90d4ea2",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-15T15:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f25f3d9_f1546331",
       "revId": "f6fd72584d91e3e907c5b77b7b14c8e9ecb161a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +96,24 @@
       "writtenOn": "2024-10-15T02:05:32Z",
       "side": 1,
       "message": "It would be less error prone now to use an iterator on the element, rather than access the map for each field assignment: you could inadvertently access the other map. \n\n```\nauto it \u003d cs_requester_trackers_.find(connection_handle);\n\nif (it !\u003d cs_requester_trackers_.end() \u0026\u0026\n    it-\u003esecond.address !\u003d cs_remote_address) {\n    // ..\n}\n\nif (it \u003d\u003d cs_requester_trackers_.end()) {\n    it \u003d cs_requester_trackers_.emplace(connection_handle, CsTracker());\n    it-\u003esecond.address \u003d cs_remote_address;\n}\n\n// ..\n```",
+      "revId": "f6fd72584d91e3e907c5b77b7b14c8e9ecb161a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8839b0f9_e4cbb7a7",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-15T15:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5883ba3_b770cd57",
       "revId": "f6fd72584d91e3e907c5b77b7b14c8e9ecb161a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
