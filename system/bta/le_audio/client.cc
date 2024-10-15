@@ -4736,6 +4736,8 @@ public:
 
     local_metadata_context_types_.sink =
             ChooseMetadataContextType(local_metadata_context_types_.sink);
+    local_metadata_context_types_.source =
+            ChooseMetadataContextType(local_metadata_context_types_.source);
 
     /* Reconfigure or update only if the stream is already started
      * otherwise wait for the local sink to resume.
@@ -4782,25 +4784,20 @@ public:
       SetInVoipCall(false);
     }
 
-    BidirectionalPair<AudioContexts> remote_metadata = {
-            .sink = local_metadata_context_types_.source,
-            .source = local_metadata_context_types_.sink};
-
     /* Make sure we have CONVERSATIONAL when in a call and it is not mixed
      * with any other bidirectional context
      */
     if (IsInCall() || IsInVoipCall()) {
       log::debug("In Call preference used: {}, voip call: {}", IsInCall(), IsInVoipCall());
-      remote_metadata.sink.unset_all(kLeAudioContextAllBidir);
-      remote_metadata.source.unset_all(kLeAudioContextAllBidir);
-      remote_metadata.sink.set(LeAudioContextType::CONVERSATIONAL);
-      remote_metadata.source.set(LeAudioContextType::CONVERSATIONAL);
+      local_metadata_context_types_.sink.unset_all(kLeAudioContextAllBidir);
+      local_metadata_context_types_.source.unset_all(kLeAudioContextAllBidir);
+      local_metadata_context_types_.sink.set(LeAudioContextType::CONVERSATIONAL);
+      local_metadata_context_types_.source.set(LeAudioContextType::CONVERSATIONAL);
     }
 
-    if (!com::android::bluetooth::flags::leaudio_speed_up_reconfiguration_between_call()) {
-      local_metadata_context_types_.sink = remote_metadata.source;
-      local_metadata_context_types_.source = remote_metadata.sink;
-    }
+    BidirectionalPair<AudioContexts> remote_metadata = {
+            .sink = local_metadata_context_types_.source,
+            .source = local_metadata_context_types_.sink};
 
     if (IsInVoipCall()) {
       log::debug("Unsetting RINGTONE from remote sink");
