@@ -235,6 +235,24 @@
       "parentUuid": "73cf897a_97e4c656",
       "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f891c7b7_60d7ebaf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-10-15T02:01:31Z",
+      "side": 1,
+      "message": "I discussed this with Hsin-chen offline, and we just need to change line 2039 to this\n```\n-                if (scanEnabledMsft) {\n+                if (numRegularScanClients() !\u003d 0) {\n```",
+      "parentUuid": "f33b8d67_ee3ae353",
+      "revId": "1e7ba07a4c29e6067694db55fb3b8f19050d369e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
