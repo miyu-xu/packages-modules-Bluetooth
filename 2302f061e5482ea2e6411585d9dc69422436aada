@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f545d4_237d616b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4214,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-15T18:03:23Z",
+      "side": 1,
+      "message": "selfreview-\u003e consider moving it inside StartSendingAudio and StartReceivingAudio..",
+      "revId": "2302f061e5482ea2e6411585d9dc69422436aada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
