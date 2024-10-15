@@ -34,6 +34,24 @@
       "parentUuid": "a745ea84_7b0e5506",
       "revId": "599edc5543fcb9ef0ab31c6a5629456a36315df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1becbe3a_212b223f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-15T18:01:00Z",
+      "side": 1,
+      "message": "I would have preferred it to be something like `gap/le_initiator`. We can later add other GAP modules like scanning, advertising, address manager, etc under the gap folder.",
+      "parentUuid": "150ebcd9_c1842819",
+      "revId": "599edc5543fcb9ef0ab31c6a5629456a36315df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
