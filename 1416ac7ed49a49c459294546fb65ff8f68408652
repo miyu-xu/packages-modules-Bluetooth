@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0a8f016_2c5481ac",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T17:49:37Z",
+      "side": 1,
+      "message": "Please move this context to the pimpl_ object.",
+      "range": {
+        "startLine": 150,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 19
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f3f9f92_62922656",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T17:49:37Z",
+      "side": 1,
+      "message": "You don\u0027t actually need `alarm_set_closure` here, since your handler is not a closure:\n\n```\nalarm_set_on_mloop(alarm, kWakelockTimeout, wakelock_release_cb, nullptr);\n```",
+      "range": {
+        "startLine": 1487,
+        "startChar": 2,
+        "endLine": 1487,
+        "endChar": 19
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2789ca1d_682b339b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T17:49:37Z",
+      "side": 1,
+      "message": "This is for a classic connection request...",
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ab1ded_51d1c1cb",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-15T17:49:37Z",
+      "side": 1,
+      "message": "... while this one is for an LE connection.\nHID is over classic only, you shouldn\u0027t need the wakelock here.",
+      "range": {
+        "startLine": 1558,
+        "startChar": 6,
+        "endLine": 1558,
+        "endChar": 36
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
