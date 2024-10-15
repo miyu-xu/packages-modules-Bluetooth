@@ -189,6 +189,30 @@
       },
       "revId": "777948708d5781679429f0150b9a288bd6035e2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efacfe0e_ff0bfca1",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-15T01:46:29Z",
+      "side": 1,
+      "message": "My original concern was that we\u0027ll never run this code.  I have since realized that I was incorrect, and that btsock_rfc_signaled would still run the very first time with an active slot, so this works fine.  Marking as resolved.",
+      "parentUuid": "06fd43ec_31593b28",
+      "range": {
+        "startLine": 968,
+        "startChar": 10,
+        "endLine": 968,
+        "endChar": 14
+      },
+      "revId": "777948708d5781679429f0150b9a288bd6035e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

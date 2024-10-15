@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f953dfe_3c72be46",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-15T01:46:29Z",
+      "side": 1,
+      "message": "suggestion as discussed offline: remove else statement so we clean up the slot every time",
+      "range": {
+        "startLine": 971,
+        "startChar": 6,
+        "endLine": 971,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "27fc480d_68351155",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 971,
+                "startChar": 0,
+                "endLine": 973,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 974,
+                "startChar": 0,
+                "endLine": 974,
+                "endChar": 0
+              },
+              "replacement": "      cleanup_rfc_slot(slot);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2a3190a6cd6b6565bf09f69609e7f002b818bd6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
