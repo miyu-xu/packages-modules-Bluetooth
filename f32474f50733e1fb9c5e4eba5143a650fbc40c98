@@ -88,6 +88,30 @@
       },
       "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "101e20b2_1c337471",
+        "filename": "android/pandora/server/src/L2cap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-15T16:32:08Z",
+      "side": 1,
+      "message": "such API are Android specific right ? If so then they should not be within the interface.",
+      "parentUuid": "54ab24af_9d0946be",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 67
+      },
+      "revId": "f32474f50733e1fb9c5e4eba5143a650fbc40c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
