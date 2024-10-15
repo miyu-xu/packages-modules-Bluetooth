@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868790d6_b7ce792d",
+        "filename": "android/pandora/server/src/Hap.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-15T00:03:10Z",
+      "side": 1,
+      "message": "nit: There is a kotlin idomatic way to do this: https://kotlinlang.org/docs/idioms.html#if-not-null-else-shorthand\n\nNot really a nit, it\u0027s up to what you prefer.",
+      "range": {
+        "startLine": 245,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 13
+      },
+      "revId": "9dd11f1d13b86d0210a639079d484c705f215f64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
