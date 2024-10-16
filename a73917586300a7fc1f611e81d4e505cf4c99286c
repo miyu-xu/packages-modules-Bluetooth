@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ffca7cb_8f071f4f",
+        "filename": "pandora/interfaces/pandora_experimental/bumble_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-16T22:12:21Z",
+      "side": 0,
+      "message": "Why do you want to delete this enum ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "a73917586300a7fc1f611e81d4e505cf4c99286c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
