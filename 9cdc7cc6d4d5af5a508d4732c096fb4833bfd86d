@@ -101,6 +101,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b99b1bbb_32894206",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T16:10:37Z",
+      "side": 1,
+      "message": "You can lock on `mDeviceStateMap` rather than add a new lock; \nat the same time it would be appropriate to update all other accesses to synchronize the same way.\n\n```\nsynchronize (mDeviceStateMap) {\n   ..\n}\n```",
+      "parentUuid": "a0b4fd97_0f613b25",
+      "range": {
+        "startLine": 400,
+        "startChar": 14,
+        "endLine": 400,
+        "endChar": 26
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adf5286f_a8d0b01c",
         "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
         "patchSetId": 1
