@@ -1683,12 +1683,11 @@ public class RemoteDevices {
                     removeDeviceProperties(Utils.getAddressStringFromByte(address));
                 }
             }
-            if (state == BluetoothAdapter.STATE_ON || state == BluetoothAdapter.STATE_TURNING_OFF) {
+            if (transport == BluetoothDevice.TRANSPORT_BREDR) {
                 mAdapterService.notifyAclDisconnected(device, transport);
                 intent = new Intent(BluetoothDevice.ACTION_ACL_DISCONNECTED);
                 intent.putExtra(BluetoothDevice.EXTRA_TRANSPORT, transport);
-            } else if (state == BluetoothAdapter.STATE_BLE_ON
-                    || state == BluetoothAdapter.STATE_BLE_TURNING_OFF) {
+            } else if (transport == BluetoothDevice.TRANSPORT_LE) {
                 intent = new Intent(BluetoothAdapter.ACTION_BLE_ACL_DISCONNECTED);
             }
             // Reset battery level on complete disconnection
