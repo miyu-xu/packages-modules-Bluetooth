@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad1b6d4_4315a11d",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T17:13:31Z",
+      "side": 1,
+      "message": "Can you add a system property to control the duration of this timeout, and disable the wakelock altogether if the timeout is 0 ?",
+      "revId": "66216a93a26d7b8589948385f32fcbe68d01af26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1393d82b_3cca3151",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1522,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T17:13:31Z",
+      "side": 1,
+      "message": "You can make acquire_wakelock_with_alarm_cb a member of pimpl and rewrite:\n`pimpl_-\u003eacquire_wakelock_with_alarm_cb()`, same for `clear_resume_wakelock_alarm`",
+      "range": {
+        "startLine": 1522,
+        "startChar": 6,
+        "endLine": 1522,
+        "endChar": 65
+      },
+      "revId": "66216a93a26d7b8589948385f32fcbe68d01af26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
