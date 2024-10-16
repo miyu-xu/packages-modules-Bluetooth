@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a965731_eea58deb",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 2053,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-16T00:20:53Z",
+      "side": 1,
+      "message": "When `numRegularScanClients() \u003d\u003d 0` the scan shall be disabled by the existing code. But explicitly disable it here SGTM because it makes the result of this function more predicable.",
+      "parentUuid": "27ba3e3f_e37d87ea",
+      "range": {
+        "startLine": 2053,
+        "startChar": 0,
+        "endLine": 2053,
+        "endChar": 51
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7339a474_e1ccb165",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
         "patchSetId": 26
