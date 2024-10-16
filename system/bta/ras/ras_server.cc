@@ -232,6 +232,9 @@ public:
       log::warn("Create new tracker");
     }
     trackers_[address].conn_id_ = p_data->conn.conn_id;
+    if (cached_ccc_value_.find(address) != cached_ccc_value_.end()) {
+      trackers_[address].ccc_values_ = cached_ccc_value_[address];
+    }
 
     RawAddress identity_address = p_data->conn.remote_bda;
     tBLE_ADDR_TYPE address_type = BLE_ADDR_PUBLIC_ID;
@@ -245,6 +248,7 @@ public:
     log::info("Address: {}, conn_id:{}", remote_bda, p_data->conn.conn_id);
     if (trackers_.find(remote_bda) != trackers_.end()) {
       NotifyRasServerDisconnected(remote_bda);
+      cached_ccc_value_[remote_bda] = trackers_[remote_bda].ccc_values_;
       trackers_.erase(remote_bda);
     }
   }
@@ -767,6 +771,7 @@ private:
   bluetooth::ras::RasServerCallbacks* callbacks_;
   std::mutex on_demand_ranging_mutex_;
   std::vector<VendorSpecificCharacteristic> vendor_specific_characteristics_;
+  std::unordered_map<RawAddress, std::unordered_map<Uuid, uint16_t>> cached_ccc_value_;
 };
 
 }  // namespace
