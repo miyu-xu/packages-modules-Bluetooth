@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa8f2ca_53037d68",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T22:03:56Z",
+      "side": 1,
+      "message": "You might keep an enum definition to improve typing.",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 11
+      },
+      "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5562c15b_8c96693a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T22:03:56Z",
+      "side": 1,
+      "message": "Do you need to update the state when disabling the tracker, to bar any further update ?",
+      "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b38b04a_38cb5e67",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T22:03:56Z",
+      "side": 1,
+      "message": "Question on the side, can you have a requester and responder tracker running simultaneously ? The code to support this configuration looks tedious",
+      "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
