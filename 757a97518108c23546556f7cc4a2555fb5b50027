@@ -16,6 +16,24 @@
       "message": "According to description of this callback https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java;drc\u003da000bf9338fb69d7cd841c843f57f5b2ae7df68c;l\u003d447 \n\n\"\n        /**\n         * Callback invoked when the Broadcast Source is lost together with source broadcast id.\n         *\n         * \u003cp\u003eThis callback is to notify source lost due to periodic advertising sync lost. Callback\n         * client can know that the source notified by {@link\n         * Callback#onSourceFound(BluetoothLeBroadcastMetadata)} before is not available any more\n         * after this callback.\n         *\n         * @param broadcastId broadcast ID as defined in the BASS specification\n         * @hide\n         */\n\"\n\nI think this would be a hack that overuses and increases the level of complexity. IMHO best place do do such thing is a UI.",
       "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122c63f7_9b81c833",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-16T08:20:33Z",
+      "side": 1,
+      "message": "On UI side could be done only some hysteresis to disappear/appear broadcast on the list. Even that will not work correctly, as immediate removing cache on our side will block possibility of adding source. We cannot delay only removing cache as this blocks sync to this broadcast. Another problem with UI solution would be that we inform it on broadcast when we sync to it, which can take time if there are a lot of broadcasters in queue.\n\nAdditionally, this patch fixes the problem with not monitoring broadcasters unsynced because of max synced limit reached.\n\nFinally, with this solution we do not have to resync to broadcasters as we can monitor advertisings after first correct sync and unsync which decreases number of controller operations.",
+      "parentUuid": "b95ee7eb_b697fcd0",
+      "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
