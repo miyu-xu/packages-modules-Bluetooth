@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76481da9_2e00c305",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-16T15:52:10Z",
+      "side": 1,
+      "message": "Hi Grzegorz, thanks for working on those flag clean-up. \nBut those flags are 24Q4 flags, we\u0027re not ready to remove those at this moment. Please let me know if something I missed.",
+      "revId": "ad3b90324610054cff8d22cf5569df7665508898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
