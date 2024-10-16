@@ -33,6 +33,52 @@
       "message": "This will not address the entirety of races in the A2dpSinkService module, but I am ok for merging it now, and process the rest later.",
       "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae0925c1_6f05331d",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-16T01:27:36Z",
+      "side": 1,
+      "message": "I\u0027d prefer a generic member Object to act as a lock that we can synchronize on instead of this. This is a bigger hammer than we need. It\u0027ll also follow convention in the code of other lock objects.",
+      "range": {
+        "startLine": 400,
+        "startChar": 14,
+        "endLine": 400,
+        "endChar": 26
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adf5286f_a8d0b01c",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-16T01:27:36Z",
+      "side": 1,
+      "message": "Since the problem is getting an un-started state machine object, do we want to protect this getter as well? I think, technically, you could call this while the other synchronized function is still finishing and get an un-started state machine that way too.",
+      "range": {
+        "startLine": 417,
+        "startChar": 8,
+        "endLine": 417,
+        "endChar": 43
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
