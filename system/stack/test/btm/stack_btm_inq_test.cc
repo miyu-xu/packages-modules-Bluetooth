@@ -71,13 +71,6 @@ using testing::SaveArg;
 namespace {
 const Address kAddress = Address({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
 const Address kAddress2 = Address({0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc});
-const RawAddress kRawAddress = RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
-const RawAddress kRawAddress2 = RawAddress({0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc});
-const BD_NAME kBdName = {'A', ' ', 'B', 'd', ' ', 'N', 'a', 'm', 'e', '\0'};
-const BD_NAME kEmptyName = "";
-
-tBTM_REMOTE_DEV_NAME gBTM_REMOTE_DEV_NAME{};
-bool gBTM_REMOTE_DEV_NAME_sent{false};
 
 static constexpr uint8_t kNumCommandPackets = 1;
 
@@ -95,20 +88,7 @@ protected:
 
 class BtmInqActiveTest : public BtmInqTest {
 protected:
-  void SetUp() override {
-    BtmInqTest::SetUp();
-    gBTM_REMOTE_DEV_NAME = {};
-    gBTM_REMOTE_DEV_NAME_sent = false;
-
-    btm_cb.rnr.remname_active = true;
-    btm_cb.rnr.remname_bda = kRawAddress;
-    btm_cb.rnr.remname_dev_type = BT_DEVICE_TYPE_BREDR;
-    btm_cb.rnr.p_remname_cmpl_cb = [](const tBTM_REMOTE_DEV_NAME* name) {
-      gBTM_REMOTE_DEV_NAME = *name;
-      gBTM_REMOTE_DEV_NAME_sent = true;
-    };
-  }
-
+  void SetUp() override { BtmInqTest::SetUp(); }
   void TearDown() override { BtmInqTest::TearDown(); }
 };
 

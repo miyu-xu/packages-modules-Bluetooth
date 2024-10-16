@@ -69,6 +69,7 @@ protected:
     gBTM_REMOTE_DEV_NAME = {};
     gBTM_REMOTE_DEV_NAME_sent = false;
 
+    /*
     btm_cb.rnr.remname_active = true;
     btm_cb.rnr.remname_bda = kRawAddress;
     btm_cb.rnr.remname_dev_type = BT_DEVICE_TYPE_BREDR;
@@ -76,17 +77,32 @@ protected:
       gBTM_REMOTE_DEV_NAME = *name;
       gBTM_REMOTE_DEV_NAME_sent = true;
     };
+    */
+    btm_cb.rnr2.Init();
+    BTM_ReadRemoteDeviceName(
+            kRawAddress,
+            [](const tBTM_REMOTE_DEV_NAME* name) {
+              gBTM_REMOTE_DEV_NAME = *name;
+              gBTM_REMOTE_DEV_NAME_sent = true;
+            },
+            BT_TRANSPORT_BR_EDR);
   }
 
-  void TearDown() override { BtmRnrTest::TearDown(); }
+  void TearDown() override {
+    btm_cb.rnr2.Free();
+    BtmRnrTest::TearDown();
+  }
 };
 
 TEST_F(BtmRnrActiveTest, btm_process_remote_name__typical) {
   btm_process_remote_name(&kRawAddress, kBdName, 0, HCI_SUCCESS);
+  /*
   ASSERT_FALSE(btm_cb.rnr.p_remname_cmpl_cb);
   ASSERT_FALSE(btm_cb.rnr.remname_active);
   ASSERT_EQ(btm_cb.rnr.remname_bda, RawAddress::kEmpty);
   ASSERT_EQ(btm_cb.rnr.remname_dev_type, BT_DEVICE_TYPE_UNKNOWN);
+  */
+  ASSERT_TRUE(list_is_empty(btm_cb.rnr2.requests));
   ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
 
   ASSERT_TRUE(gBTM_REMOTE_DEV_NAME_sent);
@@ -98,10 +114,13 @@ TEST_F(BtmRnrActiveTest, btm_process_remote_name__typical) {
 
 TEST_F(BtmRnrActiveTest, btm_process_remote_name__no_name) {
   btm_process_remote_name(&kRawAddress, nullptr, 0, HCI_SUCCESS);
+  /*
   ASSERT_FALSE(btm_cb.rnr.p_remname_cmpl_cb);
   ASSERT_FALSE(btm_cb.rnr.remname_active);
   ASSERT_EQ(btm_cb.rnr.remname_bda, RawAddress::kEmpty);
   ASSERT_EQ(btm_cb.rnr.remname_dev_type, BT_DEVICE_TYPE_UNKNOWN);
+  */
+  ASSERT_TRUE(list_is_empty(btm_cb.rnr2.requests));
   ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
 
   ASSERT_TRUE(gBTM_REMOTE_DEV_NAME_sent);
@@ -113,10 +132,13 @@ TEST_F(BtmRnrActiveTest, btm_process_remote_name__no_name) {
 
 TEST_F(BtmRnrActiveTest, btm_process_remote_name__bad_status) {
   btm_process_remote_name(&kRawAddress, kBdName, 0, HCI_ERR_PAGE_TIMEOUT);
+  /*
   ASSERT_FALSE(btm_cb.rnr.p_remname_cmpl_cb);
   ASSERT_FALSE(btm_cb.rnr.remname_active);
   ASSERT_EQ(btm_cb.rnr.remname_bda, RawAddress::kEmpty);
   ASSERT_EQ(btm_cb.rnr.remname_dev_type, BT_DEVICE_TYPE_UNKNOWN);
+  */
+  ASSERT_TRUE(list_is_empty(btm_cb.rnr2.requests));
   ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
 
   ASSERT_TRUE(gBTM_REMOTE_DEV_NAME_sent);
@@ -126,13 +148,14 @@ TEST_F(BtmRnrActiveTest, btm_process_remote_name__bad_status) {
   ASSERT_STREQ((char*)kEmptyName, (char*)gBTM_REMOTE_DEV_NAME.remote_bd_name);
 }
 
+/*
+Impossible to receive nullptr after the flag
 TEST_F(BtmRnrActiveTest, btm_process_remote_name__no_address) {
   btm_process_remote_name(nullptr, kBdName, 0, HCI_SUCCESS);
   ASSERT_FALSE(btm_cb.rnr.p_remname_cmpl_cb);
   ASSERT_FALSE(btm_cb.rnr.remname_active);
   ASSERT_EQ(btm_cb.rnr.remname_bda, RawAddress::kEmpty);
   ASSERT_EQ(btm_cb.rnr.remname_dev_type, BT_DEVICE_TYPE_UNKNOWN);
-  ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
 
   ASSERT_TRUE(gBTM_REMOTE_DEV_NAME_sent);
   ASSERT_EQ(tBTM_STATUS::BTM_SUCCESS, gBTM_REMOTE_DEV_NAME.btm_status);
@@ -140,14 +163,18 @@ TEST_F(BtmRnrActiveTest, btm_process_remote_name__no_address) {
   ASSERT_EQ(RawAddress::kEmpty, gBTM_REMOTE_DEV_NAME.bd_addr);
   ASSERT_STREQ((char*)kBdName, (char*)gBTM_REMOTE_DEV_NAME.remote_bd_name);
 }
+*/
 
 TEST_F(BtmRnrActiveTest, btm_process_remote_name__different_address) {
-  btm_cb.rnr.remname_bda = kRawAddress2;
-  btm_process_remote_name(&kRawAddress, kBdName, 0, HCI_SUCCESS);
+  // btm_cb.rnr.remname_bda = kRawAddress2;
+  btm_process_remote_name(&kRawAddress2, kBdName, 0, HCI_SUCCESS);
+  /*
   ASSERT_TRUE(btm_cb.rnr.p_remname_cmpl_cb);
   ASSERT_TRUE(btm_cb.rnr.remname_active);
   ASSERT_NE(btm_cb.rnr.remname_bda, RawAddress::kEmpty);
   ASSERT_NE(btm_cb.rnr.remname_dev_type, BT_DEVICE_TYPE_UNKNOWN);
+  */
+  ASSERT_FALSE(list_is_empty(btm_cb.rnr2.requests));
   ASSERT_EQ(0, get_func_call_count("alarm_cancel"));
 
   ASSERT_FALSE(gBTM_REMOTE_DEV_NAME_sent);

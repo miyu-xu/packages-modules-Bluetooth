@@ -903,8 +903,15 @@ tBTM_STATUS BTM_SecBondCancel(const RawAddress& bd_addr) {
         return tBTM_STATUS::BTM_CMD_STARTED;
       }
       if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_GET_REM_NAME) {
-        if (get_stack_rnr_interface().BTM_CancelRemoteDeviceName() != tBTM_STATUS::BTM_SUCCESS) {
-          log::warn("Unable to cancel RNR");
+        if (true /*aflags*/) {
+          if (get_stack_rnr_interface().BTM_CancelRemoteDeviceNameAddress(bd_addr) !=
+              tBTM_STATUS::BTM_SUCCESS) {
+            log::warn("Unable to cancel RNR");
+          }
+        } else {
+          if (get_stack_rnr_interface().BTM_CancelRemoteDeviceName() != tBTM_STATUS::BTM_SUCCESS) {
+            log::warn("Unable to cancel RNR");
+          }
         }
         btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_WE_CANCEL_DD;
         return tBTM_STATUS::BTM_CMD_STARTED;
@@ -2114,6 +2121,13 @@ static void call_registered_rmt_name_callbacks(const RawAddress* p_bd_addr,
 
   /* Notify all clients waiting for name to be resolved even if not found so
    * clients can continue */
+  if (true /*aflags*/) {
+    if (btm_cb.rnr2.p_rmt_name_callback) {
+      (*btm_cb.rnr2.p_rmt_name_callback)(*p_bd_addr, dev_class, p_bd_name);
+    }
+    return;
+  }
+
   for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
     if (btm_cb.rnr.p_rmt_name_callback[i]) {
       (*btm_cb.rnr.p_rmt_name_callback[i])(*p_bd_addr, dev_class, p_bd_name);

@@ -1561,7 +1561,11 @@ void btm_ble_connection_established(const RawAddress& bda) {
   // Read device name if it is not known already, we may need it for pairing
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bda);
   if (p_dev_rec != nullptr && !p_dev_rec->sec_rec.is_name_known()) {
-    btm_ble_read_remote_name(bda, nullptr);
+    if (true /*aflags*/) {
+      BTM_ReadRemoteDeviceName(bda, nullptr, BT_TRANSPORT_LE);
+    } else {
+      btm_ble_read_remote_name(bda, nullptr);
+    }
   }
 
   if (com::android::bluetooth::flags::read_le_appearance() && p_dev_rec != nullptr &&

@@ -41,6 +41,7 @@ public:
   MOCK_METHOD(tBTM_STATUS, BTM_ReadRemoteDeviceName,
               (const RawAddress& bd_addr, tBTM_NAME_CMPL_CB* p_callback, tBT_TRANSPORT transport));
   MOCK_METHOD(tBTM_STATUS, BTM_CancelRemoteDeviceName, ());
+  MOCK_METHOD(tBTM_STATUS, BTM_CancelRemoteDeviceNameAddress, (const RawAddress& bd_addr));
   MOCK_METHOD(void, btm_process_remote_name,
               (const RawAddress* bd_addr, const BD_NAME bd_name, uint16_t evt_len,
                tHCI_STATUS hci_status));
