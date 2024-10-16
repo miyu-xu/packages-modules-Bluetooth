@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7d9fb0d_37260a97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-16T16:31:27Z",
+      "side": 1,
+      "message": "@Henri, @Chienyuan,\nPlease help me to understand the purpose of the \u0027persistent\u0027. it seems nothing to do if it only cached at server side.\n\nmy naive thought is that, the client and server both should be persisted on disk (in case they are out of sync); with the CS case, once some data is available to pass to the client, the server can sent the data to client directly without waiting for the \u0027subscribe(write CCCD)\u0027.",
+      "revId": "f7c1be88f7844153a5604729096f4a1950e11cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
