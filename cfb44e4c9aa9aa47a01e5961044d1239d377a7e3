@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3884b445_6472e63b",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T18:03:06Z",
+      "side": 1,
+      "message": "requireNonNull ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 13,
+        "endLine": 61,
+        "endChar": 27
+      },
+      "revId": "cfb44e4c9aa9aa47a01e5961044d1239d377a7e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add9cad7_119b9191",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T18:03:06Z",
+      "side": 1,
+      "message": "Should this check be removed as well ?",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 388,
+        "endChar": 9
+      },
+      "revId": "cfb44e4c9aa9aa47a01e5961044d1239d377a7e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "768df257_b1d1a76c",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T18:03:06Z",
+      "side": 1,
+      "message": "Incorrect indent",
+      "range": {
+        "startLine": 345,
+        "startChar": 20,
+        "endLine": 346,
+        "endChar": 72
+      },
+      "revId": "cfb44e4c9aa9aa47a01e5961044d1239d377a7e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9011518_ec2656aa",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T18:03:06Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be Disconnection timeout ?",
+      "range": {
+        "startLine": 348,
+        "startChar": 32,
+        "endLine": 348,
+        "endChar": 42
+      },
+      "revId": "cfb44e4c9aa9aa47a01e5961044d1239d377a7e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227945e8_1276d1e0",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T18:03:06Z",
+      "side": 1,
+      "message": "We should remain in the Disconnecting state here",
+      "range": {
+        "startLine": 376,
+        "startChar": 24,
+        "endLine": 376,
+        "endChar": 52
+      },
+      "revId": "cfb44e4c9aa9aa47a01e5961044d1239d377a7e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
