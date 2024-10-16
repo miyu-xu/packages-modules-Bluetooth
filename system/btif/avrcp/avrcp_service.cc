@@ -101,7 +101,7 @@ public:
   }
 
   uint16_t OpenBrowse(uint8_t handle, uint8_t conn_role) override {
-    return AVRC_OpenBrowse(handle, conn_role);
+    return AVRC_OpenBrowse(handle, static_cast<tAVCT_ROLE>(conn_role));
   }
 
   uint16_t GetPeerMtu(uint8_t handle) override { return AVCT_GetPeerMtu(handle); }
