@@ -34,6 +34,29 @@
       "parentUuid": "99dd7a53_a1d259eb",
       "revId": "c2627e7ba412378ae2e48b95cb3dcbe7e914e7eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98a22c00_580a2957",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T00:49:28Z",
+      "side": 1,
+      "message": "You might want to simply call `log::fatal()` here with an appropriate message.\nI am not sure that marking the controller as broken will change anything...\n\n```\nlog::fatal(\"HCI command timeout!\");\n```",
+      "range": {
+        "startLine": 284,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 11
+      },
+      "revId": "c2627e7ba412378ae2e48b95cb3dcbe7e914e7eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
