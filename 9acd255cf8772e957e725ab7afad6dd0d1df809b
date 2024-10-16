@@ -40,6 +40,30 @@
       ],
       "revId": "9acd255cf8772e957e725ab7afad6dd0d1df809b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "783a3d14_345c8dfd",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1502,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-16T07:08:48Z",
+      "side": 1,
+      "message": "The path is reset when selecting a new player, yes.\n\nIf SetBrowsedPlayer is called with the already selected browsable player as parameter, the response will include the current path (with DOWN/UP navigation taken into account) as well as the number of items in the current folder.\n\nIf you then call SetBrowsedPlayer with an other browsable player as parameter, the response will be the root path of the new player and its number of items.",
+      "parentUuid": "e98f93e1_5988b227",
+      "range": {
+        "startLine": 1502,
+        "startChar": 57,
+        "endLine": 1502,
+        "endChar": 72
+      },
+      "revId": "9acd255cf8772e957e725ab7afad6dd0d1df809b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
