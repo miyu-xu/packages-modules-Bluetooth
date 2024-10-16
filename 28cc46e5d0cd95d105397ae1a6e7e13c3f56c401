@@ -65,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c064ceb_0772869d",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a272374_21068a8f",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae27548c_70dd5cb5",
@@ -82,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e1019f0_d37c16e3",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae27548c_70dd5cb5",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be6cae52_91b7adbb",
@@ -95,6 +131,30 @@
       "writtenOn": "2024-10-15T19:05:17Z",
       "side": 1,
       "message": "This is a functional change, should be moved to a separate CL.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30323bb9_9c02604b",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be6cae52_91b7adbb",
       "range": {
         "startLine": 114,
         "startChar": 0,
@@ -305,6 +365,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ec67dd2_edfa4055",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f71c2e87_4adb95b1",
+      "range": {
+        "startLine": 304,
+        "startChar": 23,
+        "endLine": 304,
+        "endChar": 31
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74087e42_fef63b66",
@@ -318,6 +402,24 @@
       "writtenOn": "2024-10-15T19:05:17Z",
       "side": 1,
       "message": "nit: Please name this enum for stricter typing",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29030ca0_7cb834e9",
+        "filename": "system/stack/avct/avct_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74087e42_fef63b66",
       "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -634,6 +736,30 @@
       "writtenOn": "2024-10-15T19:05:17Z",
       "side": 1,
       "message": "Is the backing type actually required (i.e. is the role specified by the specification ?)",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ece0cf4_f566d914",
+        "filename": "system/stack/include/avct_api.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 1,
+      "message": "No this was the backing type previously used that just was forward propagated\n\nRemoved\n\nDone",
+      "parentUuid": "91fb50c2_ef000b47",
       "range": {
         "startLine": 69,
         "startChar": 15,

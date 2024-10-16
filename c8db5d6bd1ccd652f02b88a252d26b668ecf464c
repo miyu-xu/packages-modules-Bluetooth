@@ -52,6 +52,24 @@
       "parentUuid": "f1b1964d_d8752c5c",
       "revId": "c8db5d6bd1ccd652f02b88a252d26b668ecf464c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a34ef816_a9c1bf98",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-16T17:24:33Z",
+      "side": 0,
+      "message": "Portion moved to another CL",
+      "parentUuid": "1afc8fa8_3a4e3a42",
+      "revId": "c8db5d6bd1ccd652f02b88a252d26b668ecf464c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
