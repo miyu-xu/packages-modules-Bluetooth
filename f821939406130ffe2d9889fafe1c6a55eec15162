@@ -96,6 +96,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3df527c_4d583252",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-16T03:20:44Z",
+      "side": 1,
+      "message": "I think you\u0027d want to log the filter_index rather than monitor_handle. When HCI command failed, the returned handle was meaningless.",
+      "range": {
+        "startLine": 1063,
+        "startChar": 64,
+        "endLine": 1063,
+        "endChar": 78
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c37c5033_8fcdb237",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 1063,
+                "startChar": 0,
+                "endLine": 1064,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"Error adding advertisement monitor \u0027\" + filter_index + \"\u0027\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7339a474_e1ccb165",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
         "patchSetId": 26
