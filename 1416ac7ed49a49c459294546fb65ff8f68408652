@@ -132,6 +132,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36f42977_3bf99f3b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-16T02:36:18Z",
+      "side": 1,
+      "message": "Another case is, the user may move the classic mouse, the first connect request can fail, and holding the lock allows a second attempt.",
+      "parentUuid": "9df16a48_acdc5068",
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6ab1ded_51d1c1cb",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 10
