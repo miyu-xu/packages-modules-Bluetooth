@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842328db_55fde047",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothHciVendorSpecificNativeInterface.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T23:46:51Z",
+      "side": 1,
+      "message": "`private final BluetoothHciVendorSpecificDispatcher mDispatcher;`",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 59
+      },
+      "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
