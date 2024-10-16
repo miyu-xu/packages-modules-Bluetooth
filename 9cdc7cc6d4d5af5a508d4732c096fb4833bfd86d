@@ -125,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "147daf99_2fce285f",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-16T19:58:18Z",
+      "side": 1,
+      "message": "Using the map as a lock is totally fine. We do that in other objects in our code base as well!\n\nFor here, I think you\u0027re right. We\u0027ll want to lock pretty liberally. More or less the whole function, to make sure that receiving a state machine from the map implies that its started too.",
+      "parentUuid": "b99b1bbb_32894206",
+      "range": {
+        "startLine": 400,
+        "startChar": 14,
+        "endLine": 400,
+        "endChar": 26
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adf5286f_a8d0b01c",
         "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
         "patchSetId": 1
@@ -160,6 +184,30 @@
       "side": 1,
       "message": "Yes right there will be issue, as the StateMachine has not started yet. But we have not encountered this race condition during our testing. But better to put Object lock for mDeviceStateMap like followed in other lock in this file.",
       "parentUuid": "adf5286f_a8d0b01c",
+      "range": {
+        "startLine": 417,
+        "startChar": 8,
+        "endLine": 417,
+        "endChar": 43
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942f5c0b_de218fe3",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-16T19:58:18Z",
+      "side": 1,
+      "message": "Henri\u0027 recommendation above should suffice here too! \n```\nsynchronize (mDeviceStateMap) {\n   ..\n}\n```",
+      "parentUuid": "fae5fa8c_79b6b418",
       "range": {
         "startLine": 417,
         "startChar": 8,
