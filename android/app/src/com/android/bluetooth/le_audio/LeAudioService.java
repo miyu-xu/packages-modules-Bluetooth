@@ -25,7 +25,6 @@ import static com.android.bluetooth.bass_client.BassConstants.INVALID_BROADCAST_
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
-import static com.android.bluetooth.flags.Flags.leaudioUseAudioModeListener;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
 import android.annotation.RequiresPermission;
@@ -611,9 +610,7 @@ public class LeAudioService extends ProfileService {
         }
         mNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
 
-        if (leaudioUseAudioModeListener()) {
-            mAudioManager.addOnModeChangedListener(getMainExecutor(), mAudioModeChangeListener);
-        }
+        mAudioManager.addOnModeChangedListener(getMainExecutor(), mAudioModeChangeListener);
     }
 
     // TODO: b/341385684 -- Delete the init method as it has been inlined in start
@@ -629,9 +626,7 @@ public class LeAudioService extends ProfileService {
 
         mNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
 
-        if (leaudioUseAudioModeListener()) {
-            mAudioManager.addOnModeChangedListener(getMainExecutor(), mAudioModeChangeListener);
-        }
+        mAudioManager.addOnModeChangedListener(getMainExecutor(), mAudioModeChangeListener);
     }
 
     @Override
@@ -643,9 +638,7 @@ public class LeAudioService extends ProfileService {
         }
 
         mQueuedInCallValue = Optional.empty();
-        if (leaudioUseAudioModeListener()) {
-            mAudioManager.removeOnModeChangedListener(mAudioModeChangeListener);
-        }
+        mAudioManager.removeOnModeChangedListener(mAudioModeChangeListener);
 
         mCreateBroadcastQueue.clear();
         mAwaitingBroadcastCreateResponse = false;
@@ -3150,13 +3143,6 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        if (!leaudioUseAudioModeListener()) {
-            if (mQueuedInCallValue.isPresent()) {
-                mNativeInterface.setInCall(mQueuedInCallValue.get());
-                mQueuedInCallValue = Optional.empty();
-            }
-        }
-
         BluetoothDevice unicastDevice =
                 getLeadDeviceForTheGroup(mUnicastGroupIdDeactivatedForBroadcastTransition);
         if (unicastDevice == null) {
@@ -3666,9 +3652,6 @@ public class LeAudioService extends ProfileService {
                             /* Check if broadcast was deactivated due to unicast */
                             if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
                                 updateFallbackUnicastGroupIdForBroadcast(groupId);
-                                if (!leaudioUseAudioModeListener()) {
-                                    mQueuedInCallValue = Optional.empty();
-                                }
                                 startBroadcast(mBroadcastIdDeactivatedForUnicastTransition.get());
                                 mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
                             }
@@ -4294,29 +4277,7 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        if (!leaudioUseAudioModeListener()) {
-            /* For setting inCall mode */
-            if (inCall && !areBroadcastsAllStopped()) {
-                mQueuedInCallValue = Optional.of(true);
-
-                /* Request activation of unicast group */
-                handleUnicastStreamStatusChange(
-                        LeAudioStackEvent.DIRECTION_SINK,
-                        LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED);
-                return;
-            }
-        }
-
         mNativeInterface.setInCall(inCall);
-
-        if (!leaudioUseAudioModeListener()) {
-            /* For clearing inCall mode */
-            if (!inCall && mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
-                handleUnicastStreamStatusChange(
-                        LeAudioStackEvent.DIRECTION_SINK,
-                        LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED);
-            }
-        }
     }
 
     /**
