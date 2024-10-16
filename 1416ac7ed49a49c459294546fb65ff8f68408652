@@ -148,6 +148,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6e84be6_73154625",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T17:09:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "36f42977_3bf99f3b",
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6ab1ded_51d1c1cb",
@@ -185,6 +203,30 @@
       "side": 1,
       "message": "Hi Henri, We have both LE and Classic HID.",
       "parentUuid": "a6ab1ded_51d1c1cb",
+      "range": {
+        "startLine": 1558,
+        "startChar": 6,
+        "endLine": 1558,
+        "endChar": 36
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edb6461f_55498412",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-16T17:09:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "83547d13_b3961a78",
       "range": {
         "startLine": 1558,
         "startChar": 6,
