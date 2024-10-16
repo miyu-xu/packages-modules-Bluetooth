@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80274056_2704b6e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-16T11:18:41Z",
+      "side": 1,
+      "message": "Missed removing in:\n- leaudio.aconfig\n- BassClientServiceTests#testAddSourceForExternalBroadcast_triggerSetContextMask",
+      "revId": "019baca67d2da6ba35a422d4f73b91825652261b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
