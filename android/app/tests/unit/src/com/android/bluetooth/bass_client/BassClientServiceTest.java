@@ -3205,8 +3205,7 @@ public class BassClientServiceTest {
     @Test
     @EnableFlags({
         Flags.FLAG_LEAUDIO_ALLOWED_CONTEXT_MASK,
-        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE,
-        Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
     })
     public void testAddSourceForExternalBroadcast_triggerSetContextMask() {
         final int testGroupId = 1;
@@ -4071,20 +4070,15 @@ public class BassClientServiceTest {
         verifyAddSourceForGroup(meta);
         prepareRemoteSourceState(meta, true, false);
 
-        if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            injectRemoteSourceStateChanged(meta, true, true);
-            verify(mLeAudioService).activeBroadcastAssistantNotification(eq(true));
-            Mockito.clearInvocations(mLeAudioService);
+        injectRemoteSourceStateChanged(meta, true, true);
+        verify(mLeAudioService).activeBroadcastAssistantNotification(eq(true));
+        Mockito.clearInvocations(mLeAudioService);
 
-            /* Imitate broadcast source stop, sink notify about loosing BIS sync */
-            injectRemoteSourceStateChanged(meta, true, false);
+        /* Imitate broadcast source stop, sink notify about loosing BIS sync */
+        injectRemoteSourceStateChanged(meta, true, false);
 
-            /* Unicast would like to stream */
-            mBassClientService.cacheSuspendingSources(TEST_BROADCAST_ID);
-        } else {
-            mBassClientService.suspendAllReceiversSourceSynchronization();
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
+        /* Unicast would like to stream */
+        mBassClientService.cacheSuspendingSources(TEST_BROADCAST_ID);
 
         mBassClientService.resumeReceiversSourceSynchronization();
         handleHandoverSupport();
@@ -4113,12 +4107,8 @@ public class BassClientServiceTest {
         mBassClientService.handleUnicastSourceStreamStatusChange(
                 0 /* STATUS_LOCAL_STREAM_REQUESTED */);
 
-        if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            /* Imitate broadcast source stop, sink notify about loosing BIS sync */
-            injectRemoteSourceStateChanged(meta, true, false);
-        } else {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
+        /* Imitate broadcast source stop, sink notify about loosing BIS sync */
+        injectRemoteSourceStateChanged(meta, true, false);
 
         /* Unicast finished streaming */
         mBassClientService.handleUnicastSourceStreamStatusChange(
@@ -4134,7 +4124,6 @@ public class BassClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT)
     public void testHandleUnicastSourceStreamStatusChange_MultipleRequests() {
         prepareConnectedDeviceGroup();
         startSearchingForSources();
@@ -4318,7 +4307,6 @@ public class BassClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT)
     public void testLocalAddSourceWhenBroadcastIsPlaying() {
         doReturn(true).when(mLeAudioService).isPlaying(TEST_BROADCAST_ID);
         if (Flags.leaudioBigDependsOnAudioState()) {
@@ -4330,7 +4318,6 @@ public class BassClientServiceTest {
 
     @Test
     @EnableFlags({
-        Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT,
         Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE
     })
     public void testLocalAddSourceWhenBroadcastIsPaused() {
@@ -4341,7 +4328,6 @@ public class BassClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT)
     public void testLocalAddSourceWhenBroadcastIsStopped() {
         doReturn(false).when(mLeAudioService).isPlaying(TEST_BROADCAST_ID);
         if (Flags.leaudioBigDependsOnAudioState()) {
@@ -6188,9 +6174,6 @@ public class BassClientServiceTest {
         // Suspend receivers, HOST_INTENTIONAL
         mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
         checkNoSinkPause();
-        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
         checkResumeSynchronizationByHost();
     }
 
@@ -6205,9 +6188,6 @@ public class BassClientServiceTest {
         // Suspend receivers, HOST_INTENTIONAL
         mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
         checkNoSinkPause();
-        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
         checkResumeSynchronizationByHost();
     }
 
@@ -6222,9 +6202,6 @@ public class BassClientServiceTest {
         // Suspend all receivers, HOST_INTENTIONAL
         mBassClientService.suspendAllReceiversSourceSynchronization();
         checkNoSinkPause();
-        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
         checkResumeSynchronizationByHost();
     }
 
@@ -6239,9 +6216,6 @@ public class BassClientServiceTest {
         // Suspend all receivers, HOST_INTENTIONAL
         mBassClientService.suspendAllReceiversSourceSynchronization();
         checkNoSinkPause();
-        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
         checkResumeSynchronizationByHost();
     }
 
@@ -6257,9 +6231,6 @@ public class BassClientServiceTest {
         mBassClientService.handleUnicastSourceStreamStatusChange(
                 0 /* STATUS_LOCAL_STREAM_REQUESTED */);
         checkNoSinkPause();
-        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
 
         /* Unicast finished streaming */
         mBassClientService.handleUnicastSourceStreamStatusChange(
@@ -6280,9 +6251,6 @@ public class BassClientServiceTest {
         mBassClientService.handleUnicastSourceStreamStatusChange(
                 0 /* STATUS_LOCAL_STREAM_REQUESTED */);
         checkNoSinkPause();
-        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            verifyRemoveMessageAndInjectSourceRemoval();
-        }
 
         /* Unicast finished streaming */
         mBassClientService.handleUnicastSourceStreamStatusChange(
