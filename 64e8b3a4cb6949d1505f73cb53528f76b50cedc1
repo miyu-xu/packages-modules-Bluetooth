@@ -52,6 +52,24 @@
       "parentUuid": "96d3251f_a4e68ff5",
       "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af984ff5_1e74d961",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6966,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-10-16T03:05:22Z",
+      "side": 1,
+      "message": "I\u0027ve tested `ls -al` under `/data/misc/bluedroid`, and it seems the files there are removed/created on factory reset. \n\n(Caveat: In my test environment not all the files in this search result existed in the test:\nhttps://cs.android.com/search?q\u003dmisc%2Fbluedroid%2F%20-f:test\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain)\n\nAnyway I think factory reset should clean up all the storage.\nI think we can push the code, and see whether some side effects show up.\n\nI\u0027ll upload the new patch set which cleans up storage.",
+      "parentUuid": "bfbdd294_22d119ff",
+      "revId": "64e8b3a4cb6949d1505f73cb53528f76b50cedc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
