@@ -16,6 +16,8 @@
 #pragma once
 
 #include "osi/include/alarm.h"
+#include "osi/include/allocator.h"
+#include "osi/include/list.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_name.h"
 #include "stack/include/btm_status.h"
@@ -38,6 +40,43 @@ public:
           BT_DEVICE_TYPE_UNKNOWN}; /* Whether it's LE or BREDR name request */
 #define BTM_SEC_MAX_RMT_NAME_CALLBACKS 2
   tBTM_RMT_NAME_CALLBACK* p_rmt_name_callback[BTM_SEC_MAX_RMT_NAME_CALLBACKS]{nullptr, nullptr};
+};
+
+class RemoteNameRequest2Entry {
+public:
+  RawAddress address{};
+  tBT_DEVICE_TYPE dev_type{BT_DEVICE_TYPE_UNKNOWN};
+  list_t* callbacks{nullptr};  // of type tBTM_NAME_CMPL_CB
+  alarm_t* timer{nullptr};
+};
+
+class RemoteNameRequest2 {
+public:
+  list_t* requests{nullptr};       // of type RemoteNameRequest2Entry
+  list_t* unused_timers{nullptr};  // of type alarm_t*
+  tBTM_RMT_NAME_CALLBACK* p_rmt_name_callback;
+
+  void Init() {
+    requests = list_new(nullptr);
+    unused_timers = list_new(nullptr);
+  }
+  void Free() {
+    while (!list_is_empty(requests)) {
+      RemoteNameRequest2Entry* entry = (RemoteNameRequest2Entry*)list_front(requests);
+      list_remove(requests, entry);
+      list_free(entry->callbacks);
+      alarm_free(entry->timer);
+      osi_free(entry);
+    }
+    list_free(requests);
+
+    while (!list_is_empty(unused_timers)) {
+      alarm_t* timer = (alarm_t*)list_front(unused_timers);
+      list_remove(unused_timers, timer);
+      alarm_free(timer);
+    }
+    list_free(unused_timers);
+  }
 };
 
 }  // namespace rnr
@@ -166,6 +205,7 @@ public:
                                                      tBTM_NAME_CMPL_CB* p_cb,
                                                      tBT_TRANSPORT transport);
   [[nodiscard]] tBTM_STATUS BTM_CancelRemoteDeviceName(void);
+  [[nodiscard]] tBTM_STATUS BTM_CancelRemoteDeviceNameAddress(const RawAddress& remote_bda);
   void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn, uint16_t /* evt_len */,
                                tHCI_STATUS hci_status);
 };

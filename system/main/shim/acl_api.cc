@@ -195,23 +195,30 @@ void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr, uint8_t page
                   clock_offset & (~BTM_CLOCK_OFFSET_VALID),
                   (clock_offset & BTM_CLOCK_OFFSET_VALID) ? hci::ClockOffsetValid::VALID
                                                           : hci::ClockOffsetValid::INVALID),
-          GetGdShimHandler()->BindOnce([](hci::ErrorCode status) {
-            if (status != hci::ErrorCode::SUCCESS) {
-              do_in_main_thread(base::BindOnce(
-                      [](hci::ErrorCode status) {
-                        // NOTE: we intentionally don't supply the
-                        // address, to match the legacy behavior.
-                        // Callsites that want the address should use
-                        // StartRemoteNameRequest() directly, rather
-                        // than going through this shim.
-                        get_stack_rnr_interface().btm_process_remote_name(
-                                nullptr, nullptr, 0, static_cast<tHCI_STATUS>(status));
-                        btm_sec_rmt_name_request_complete(nullptr, nullptr,
-                                                          static_cast<tHCI_STATUS>(status));
-                      },
-                      status));
-            }
-          }),
+          GetGdShimHandler()->BindOnce(
+                  [](RawAddress addr, hci::ErrorCode status) {
+                    if (status != hci::ErrorCode::SUCCESS) {
+                      do_in_main_thread(base::BindOnce(
+                              [](RawAddress addr, hci::ErrorCode status) {
+                                if (true /*aflags*/) {
+                                  get_stack_rnr_interface().btm_process_remote_name(
+                                          &addr, nullptr, 0, static_cast<tHCI_STATUS>(status));
+                                } else {
+                                  // NOTE: we intentionally don't supply the
+                                  // address, to match the legacy behavior.
+                                  // Callsites that want the address should use
+                                  // StartRemoteNameRequest() directly, rather
+                                  // than going through this shim.
+                                  get_stack_rnr_interface().btm_process_remote_name(
+                                          nullptr, nullptr, 0, static_cast<tHCI_STATUS>(status));
+                                }
+                                btm_sec_rmt_name_request_complete(nullptr, nullptr,
+                                                                  static_cast<tHCI_STATUS>(status));
+                              },
+                              addr, status));
+                    }
+                  },
+                  addr),
           GetGdShimHandler()->BindOnce(
                   [](RawAddress addr, uint64_t features) {
                     static_assert(sizeof(features) == 8);

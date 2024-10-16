@@ -158,6 +158,7 @@ public:
   } neighbor;
 
   bluetooth::stack::rnr::RemoteNameRequest rnr;
+  bluetooth::stack::rnr::RemoteNameRequest2 rnr2;
 
   void Init() {
     memset(&devcb, 0, sizeof(devcb));
@@ -175,6 +176,7 @@ public:
     btm_inq_vars.Init(); /* Inquiry Database and Structures */
     sco_cb.Init();       /* SCO Database and Structures (If included) */
     devcb.Init();
+    rnr2.Init();
 
     history_ = std::make_shared<TimestampedStringCircularBuffer>(kBtmLogHistoryBufferSize);
     bluetooth::log::assert_that(history_ != nullptr, "assert failed: history_ != nullptr");
@@ -188,5 +190,6 @@ public:
     devcb.Free();
     sco_cb.Free();
     btm_inq_vars.Free();
+    rnr2.Free();
   }
 } tBTM_CB;

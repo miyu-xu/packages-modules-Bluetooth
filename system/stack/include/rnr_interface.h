@@ -134,6 +134,8 @@ public:
    ******************************************************************************/
   virtual tBTM_STATUS BTM_CancelRemoteDeviceName() = 0;
 
+  virtual tBTM_STATUS BTM_CancelRemoteDeviceNameAddress(const RawAddress& bd_addr) = 0;
+
   /*******************************************************************************
    *
    * Function         btm_process_remote_name

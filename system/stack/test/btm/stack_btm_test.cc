@@ -51,6 +51,10 @@ extern tBTM_CB btm_cb;
 tL2C_CB l2cb;
 
 void btm_inq_remote_name_timer_timeout(void*) {}
+tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& /*remote_bda*/, tBTM_NAME_CMPL_CB* /*p_cb*/,
+                                     tBT_TRANSPORT /*transport*/) {
+  return tBTM_STATUS::BTM_CMD_STARTED;
+}
 
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions("mock broadcast audio config options");
@@ -234,7 +238,8 @@ void BTM_RMT_NAME_CALLBACK(const RawAddress& bd_addr, DEV_CLASS dc, BD_NAME bd_n
 }  // namespace
 
 TEST_F(StackBtmWithInitFreeTest, btm_sec_rmt_name_request_complete) {
-  btm_cb.rnr.p_rmt_name_callback[0] = BTM_RMT_NAME_CALLBACK;
+  // btm_cb.rnr.p_rmt_name_callback[0] = BTM_RMT_NAME_CALLBACK;
+  btm_cb.rnr2.p_rmt_name_callback = BTM_RMT_NAME_CALLBACK;
 
   RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
   const uint8_t* p_bd_name = (const uint8_t*)"MyTestName";

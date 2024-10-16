@@ -946,8 +946,9 @@ void btm_inq_db_reset(void) {
   }
 
   /* Cancel a remote name request if active, and notify the caller (if waiting)
+   * But actually remname_active couldn't be true here since the stack has just started...
    */
-  if (btm_cb.rnr.remname_active) {
+  if (!true /*aflags*/ && btm_cb.rnr.remname_active) {
     alarm_cancel(btm_cb.rnr.remote_name_timer);
     btm_cb.rnr.remname_active = false;
     btm_cb.rnr.remname_bda = RawAddress::kEmpty;

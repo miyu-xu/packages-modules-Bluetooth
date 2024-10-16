@@ -107,6 +107,10 @@ FakeOsi::FakeOsi() {
     }
   };
 
+  test::mock::osi_alarm::alarm_is_scheduled.body = [](const alarm_t* alarm) {
+    return alarm && alarm->cb;
+  };
+
   test::mock::osi_allocator::osi_calloc.body = [](size_t size) { return calloc(1UL, size); };
   test::mock::osi_allocator::osi_free.body = [](void* ptr) { free(ptr); };
   test::mock::osi_allocator::osi_free_and_reset.body = [](void** ptr) {
@@ -245,7 +249,7 @@ FakeOsi::FakeOsi() {
   };
   test::mock::osi_list::list_end.body = [](const list_t* l) {
     log::assert_that(l != nullptr, "assert failed: l != nullptr");
-    return l->tail_;
+    return nullptr;
   };
   test::mock::osi_list::list_next.body = [](const list_node_t* node) {
     log::assert_that(node != nullptr, "assert failed: node != nullptr");

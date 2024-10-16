@@ -1622,7 +1622,7 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda, uint16_t 
  ******************************************************************************/
 tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda, tBTM_NAME_CMPL_CB* p_cb) {
   if (!bluetooth::shim::GetController()->SupportsBle()) {
-    return tBTM_STATUS::BTM_ERR_PROCESSING;
+    return tBTM_STATUS::BTM_WRONG_MODE;
   }
 
   tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
@@ -1631,15 +1631,21 @@ tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda, tBTM_NAME_CMP
     return tBTM_STATUS::BTM_ERR_PROCESSING;
   }
 
+  if (!true /*aflags*/) {
+    if (btm_cb.rnr.remname_active) {
+      log::warn("Unable to start GATT RNR procedure for peer:{} busy with peer:{}", remote_bda,
+                btm_cb.rnr.remname_bda);
+      return tBTM_STATUS::BTM_BUSY;
+    }
+  }
+
   /* read remote device name using GATT procedure */
-  if (btm_cb.rnr.remname_active) {
-    log::warn("Unable to start GATT RNR procedure for peer:{} busy with peer:{}", remote_bda,
-              btm_cb.rnr.remname_bda);
+  if (!GAP_BleReadPeerDevName(remote_bda, btm_ble_read_remote_name_cmpl)) {
     return tBTM_STATUS::BTM_BUSY;
   }
 
-  if (!GAP_BleReadPeerDevName(remote_bda, btm_ble_read_remote_name_cmpl)) {
-    return tBTM_STATUS::BTM_BUSY;
+  if (true /*aflags*/) {
+    return tBTM_STATUS::BTM_CMD_STARTED;
   }
 
   btm_cb.rnr.p_remname_cmpl_cb = p_cb;
