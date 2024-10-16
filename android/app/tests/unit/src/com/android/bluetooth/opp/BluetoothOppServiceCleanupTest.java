@@ -46,7 +46,7 @@ public class BluetoothOppServiceCleanupTest {
 
     @Test
     @UiThreadTest
-    public void testStopAndCleanup() {
+    public void testStopAndCleanup() throws Exception {
         AdapterService adapterService = new AdapterService(mTargetContext);
 
         // Don't need to disable again since it will be handled in OppService.stop
@@ -67,6 +67,10 @@ public class BluetoothOppServiceCleanupTest {
             service.stop();
             service.cleanup();
         } finally {
+            Thread updateNotificationThread = service.mNotifier.mUpdateNotificationThread;
+            if (updateNotificationThread != null) {
+                updateNotificationThread.join();
+            }
             mTargetContext.getContentResolver().delete(BluetoothShare.CONTENT_URI, null, null);
         }
     }
