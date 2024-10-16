@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0b4fd97_0f613b25",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 3449375
+      },
+      "writtenOn": "2024-10-16T16:03:11Z",
+      "side": 1,
+      "message": "newStateMachine.start() is taking some time to start its SM. By the time if we get another getOrCreateStateMachine() call, 2nd caller will get non null existingStateMachine and return it in line #412. And 2nd caller call\u0027s connect in line #341, but the SM has not started yet. This is the core issue.\n\nIf we need to put object lock, I suggest putting it for mDeviceStateMap object, where the SM object is populated. What do you think?\n\nsynchronized (mA2dpStateMachineLock) {\n        A2dpSinkStateMachine existingStateMachine \u003d\n                mDeviceStateMap.putIfAbsent(device, newStateMachine);\n        // Given null is not a valid value in our map, ConcurrentHashMap will return null if the\n        // key was absent and our new value was added. We should then start and return it. Else\n        // we quit the new one so we don\u0027t leak a thread\n        if (existingStateMachine \u003d\u003d null) {\n            newStateMachine.start();\n            return newStateMachine;\n        }\n}",
+      "parentUuid": "ae0925c1_6f05331d",
+      "range": {
+        "startLine": 400,
+        "startChar": 14,
+        "endLine": 400,
+        "endChar": 26
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adf5286f_a8d0b01c",
         "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2024-10-16T01:27:36Z",
       "side": 1,
       "message": "Since the problem is getting an un-started state machine object, do we want to protect this getter as well? I think, technically, you could call this while the other synchronized function is still finishing and get an un-started state machine that way too.",
+      "range": {
+        "startLine": 417,
+        "startChar": 8,
+        "endLine": 417,
+        "endChar": 43
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae5fa8c_79b6b418",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 3449375
+      },
+      "writtenOn": "2024-10-16T16:03:11Z",
+      "side": 1,
+      "message": "Yes right there will be issue, as the StateMachine has not started yet. But we have not encountered this race condition during our testing. But better to put Object lock for mDeviceStateMap like followed in other lock in this file.",
+      "parentUuid": "adf5286f_a8d0b01c",
       "range": {
         "startLine": 417,
         "startChar": 8,
