@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb06cd8_da37c710",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-16T17:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77952dcf_a409a6cd",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa11e18e_a73e1df0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-15T23:25:37Z",
       "side": 1,
       "message": "Test: atest BluetoothInstrumentationTests:ScanManagerTest",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85551be0_32a5a18c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-16T17:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa11e18e_a73e1df0",
       "range": {
         "startLine": 12,
         "startChar": 0,
@@ -94,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95be8ccd_cd7ac2d6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 2053,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-16T17:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a965731_eea58deb",
+      "range": {
+        "startLine": 2053,
+        "startChar": 0,
+        "endLine": 2053,
+        "endChar": 51
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3df527c_4d583252",
@@ -135,6 +207,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87399abc_004c258a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-16T17:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3df527c_4d583252",
+      "range": {
+        "startLine": 1063,
+        "startChar": 64,
+        "endLine": 1063,
+        "endChar": 78
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7339a474_e1ccb165",
@@ -148,6 +244,30 @@
       "writtenOn": "2024-10-15T23:24:27Z",
       "side": 1,
       "message": "By putting this in the setup, you are activating the sysprop for all the tests when the flag is enabled.\n\nToday, this is only enabled because of the `@EnableFlags`, but very soon the flag will be in staging and it will activate it for each and every tests (I assume they will all fail and you will not be able to move the flag to staging).\n\nBecause the sysprop is only check when the scanManager is created, I see 2 options:\n\n1. recreate the mScanManager in the testMsftScan\n2. change mIsMsftSupported to no longer be final, and to be `private package` +  with a `@VisibleForTesting` annotation, and set it in beginning of the testMsftScan",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 0
+      },
+      "revId": "f821939406130ffe2d9889fafe1c6a55eec15162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e64f9f66_475448b8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-16T17:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7339a474_e1ccb165",
       "range": {
         "startLine": 232,
         "startChar": 0,
