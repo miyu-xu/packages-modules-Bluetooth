@@ -21,7 +21,6 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
-import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
@@ -995,15 +994,12 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        if (leaudioAllowedContextMask()) {
-            /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
-            if (!mIsAllowedContextOfActiveGroupModified && isDevicePartOfActiveUnicastGroup(sink)) {
-                leAudioService.setActiveGroupAllowedContextMask(
-                        BluetoothLeAudio.CONTEXTS_ALL
-                                & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
-                        BluetoothLeAudio.CONTEXTS_ALL);
-                mIsAllowedContextOfActiveGroupModified = true;
-            }
+        /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
+        if (!mIsAllowedContextOfActiveGroupModified && isDevicePartOfActiveUnicastGroup(sink)) {
+            leAudioService.setActiveGroupAllowedContextMask(
+                    BluetoothLeAudio.CONTEXTS_ALL & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
+                    BluetoothLeAudio.CONTEXTS_ALL);
+            mIsAllowedContextOfActiveGroupModified = true;
         }
     }
 
@@ -1013,15 +1009,13 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        if (leaudioAllowedContextMask()) {
-            /* Restore allowed context mask for Unicast */
-            if (mIsAllowedContextOfActiveGroupModified
-                    && !hasAnyConnectedDeviceExternalBroadcastSource()
-                    && !isAnyConnectedDeviceSwitchingSource()) {
-                leAudioService.setActiveGroupAllowedContextMask(
-                        BluetoothLeAudio.CONTEXTS_ALL, BluetoothLeAudio.CONTEXTS_ALL);
-                mIsAllowedContextOfActiveGroupModified = false;
-            }
+        /* Restore allowed context mask for Unicast */
+        if (mIsAllowedContextOfActiveGroupModified
+                && !hasAnyConnectedDeviceExternalBroadcastSource()
+                && !isAnyConnectedDeviceSwitchingSource()) {
+            leAudioService.setActiveGroupAllowedContextMask(
+                    BluetoothLeAudio.CONTEXTS_ALL, BluetoothLeAudio.CONTEXTS_ALL);
+            mIsAllowedContextOfActiveGroupModified = false;
         }
     }
 
