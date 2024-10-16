@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0c736f7_2758bd5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-16T10:01:03Z",
+      "side": 1,
+      "message": "Please remove it from leaudio.aconfig as it is not exported to API.",
+      "revId": "d7283c6772d4e48ff48d7c9bc673a5b9efc2c13d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
