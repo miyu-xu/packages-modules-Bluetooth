@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c00762ae_69ba55b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-16T09:51:22Z",
+      "side": 1,
+      "message": "Please remove enabling flag in test:\n```\n    public void testSetAllowedContextsForActiveGroup() {\n        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_GETTING_ACTIVE_STATE_SUPPORT);\n```\n\nAnd flag itself from leaudio.aconfig as it is not exported to API.",
+      "revId": "3d6e814fb4b95264623f2c9fc41ba4fd4c9a62d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
