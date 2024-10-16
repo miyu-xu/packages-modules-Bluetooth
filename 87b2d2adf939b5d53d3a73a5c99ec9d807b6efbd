@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c658ab33_27dad362",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 2160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-16T18:46:25Z",
+      "side": 1,
+      "message": "nit:\n\nI don\u0027t know if it is necessary or not to restore the property to it\u0027s initial value:(since it also rely on `mScanNativeInterface.gattClientIsMsftSupported`\n\n```\nboolean isMsftEnabled \u003d SystemProperties.get(MSFT_HCI_EXT_ENABLED, false);\nSystemProperties.set(MSFT_HCI_EXT_ENABLED, Boolean.toString(true));\ntry {\n[...] the whole test\n} finally {\n    SystemProperties.set(MSFT_HCI_EXT_ENABLED, Boolean.toString(isMsftEnabled));\n}\n```",
+      "range": {
+        "startLine": 2160,
+        "startChar": 0,
+        "endLine": 2160,
+        "endChar": 75
+      },
+      "revId": "87b2d2adf939b5d53d3a73a5c99ec9d807b6efbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
