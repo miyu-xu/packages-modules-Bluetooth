@@ -394,6 +394,29 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @SystemApi public static final int BATTERY_LEVEL_BLUETOOTH_OFF = -100;
 
     /**
+     * Used as return value for {@link #getBtConnState(int)} to represent bluetooth
+     * connection state of all transport types.
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_LINK_STATUS_API)
+    public static final int BT_CONN_CONNECTED = 0;
+
+    /**
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_LINK_STATUS_API)
+    public static final int BT_CONN_DISCONNECTED = 1;
+
+    /**
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_LINK_STATUS_API)
+    public static final int BT_CONN_UNKNOWN = 2;
+
+    /**
      * Used as a Parcelable {@link BluetoothDevice} extra field in every intent broadcast by this
      * class. It contains the {@link BluetoothDevice} that the intent applies to.
      */
@@ -2030,6 +2053,35 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             }
         }
         return BATTERY_LEVEL_BLUETOOTH_OFF;
+    }
+
+    /**
+     * Get connection state of ALL transport types of this Bluetooth device
+     *
+     * @param transport for which connection state is requested
+     * @return int type connection state,
+     * 0x00 = BT_CONN_CONNECTED
+     * 0x01 = BT_CONN_DISCONNECTED
+     * 0x02 = BT_CONN_UNKNOWN
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    @FlaggedApi(Flags.FLAG_LINK_STATUS_API)
+    public int getBtConnState(int transport) {
+        if (DBG) log("getBtConnState()");
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth disabled. Cannot get remote device BR/EDR connection state.");
+            return BT_CONN_UNKNOWN;
+        }
+        try {
+            return service.getBtConnState(this, transport, mAttributionSource);
+        } catch (RemoteException e) {
+            Log.e(TAG, " ", e);
+        }
+        return BT_CONN_UNKNOWN;
     }
 
     /**

@@ -88,6 +88,7 @@ public class RemoteDevices {
     private final BluetoothAdapter mAdapter;
     private final ArrayList<BluetoothDevice> mSdpTracker;
     private final Object mObject = new Object();
+    private final Object mObjectRtData = new Object();
 
     private static final int UUID_INTENT_DELAY = 6000;
     private static final int MESSAGE_UUID_INTENT = 1;
@@ -98,6 +99,8 @@ public class RemoteDevices {
     private final LinkedHashMap<String, DeviceProperties> mDevices;
     private final HashMap<String, String> mAddressMap; // Identity address to pseudo address map
     private final WatchConnectionStateListener mWatchConnectionStateListener;
+    // The Running Time data of all devices
+    private HashMap<String, DeviceRTData> mRTDataOfDevices;
 
     /**
      * Bluetooth HFP v1.8 specifies the Battery Charge indicator of AG can take values from {@code
@@ -164,6 +167,7 @@ public class RemoteDevices {
         mDevices = new LinkedHashMap<>(MAX_DEVICE_QUEUE_SIZE);
         mAddressMap = new HashMap<>();
         mHandler = new RemoteDevicesHandler(looper);
+        mRTDataOfDevices = new HashMap<String, DeviceRTData>();
         mMainHandler = new Handler(Looper.getMainLooper());
         if (Flags.watchDeviceOverrideAirplaneMode()) {
             mWatchConnectionStateListener =
@@ -254,6 +258,10 @@ public class RemoteDevices {
         }
 
         mAddressMap.clear();
+
+        if (mRTDataOfDevices != null) {
+            mRTDataOfDevices.clear();
+        }
     }
 
     @Override
@@ -333,6 +341,13 @@ public class RemoteDevices {
         return null;
     }
 
+    @SuppressWarnings("SynchronizeOnNonFinalField")
+    DeviceRTData getDeviceRTData(BluetoothDevice device) {
+        synchronized (mRTDataOfDevices) {
+            return mRTDataOfDevices.get(device.getAddress());
+        }
+    }
+
     BluetoothDevice getDevice(byte[] address) {
         String addressString = Utils.getAddressStringFromByte(address);
         return getDevice(addressString);
@@ -388,6 +403,66 @@ public class RemoteDevices {
 
     DeviceProperties addDeviceProperties(byte[] address) {
         return addDeviceProperties(address, BluetoothDevice.ADDRESS_TYPE_PUBLIC);
+    }
+
+    @VisibleForTesting
+    @SuppressWarnings("SynchronizeOnNonFinalField")
+    DeviceRTData addDeviceRTData(BluetoothDevice device) {
+        synchronized (mRTDataOfDevices) {
+            DeviceRTData rtData = new DeviceRTData();
+            String key = device.getAddress();
+            mRTDataOfDevices.put(key, rtData);
+
+            return rtData;
+        }
+    }
+
+    // Running Time Data of Device
+    class DeviceRTData {
+        private int mBrEdrConnState;
+        private int mBleConnState;
+
+        DeviceRTData() {
+            mBrEdrConnState = BluetoothDevice.BT_CONN_UNKNOWN;
+            mBleConnState = BluetoothDevice.BT_CONN_UNKNOWN;
+        }
+
+        /**
+         * @return the BT connection state by transport type
+        */
+        int getConnState(int transport) {
+            synchronized (mObjectRtData) {
+              int state = BluetoothDevice.BT_CONN_UNKNOWN;
+              switch (transport) {
+                  case BluetoothDevice.TRANSPORT_BREDR -> {
+                      state = mBrEdrConnState;
+                  }
+                  case BluetoothDevice.TRANSPORT_LE -> {
+                      state = mBleConnState;
+                  }
+                  default -> Log.i(TAG, "unknown transport type: " + transport);
+                }
+              return state;
+            }
+        }
+
+        /**
+         * @param transport type of transport
+         * @param state of BT connection
+        */
+        void setConnState(int transport, int state) {
+            synchronized (mObjectRtData) {
+                switch (transport) {
+                  case BluetoothDevice.TRANSPORT_BREDR -> {
+                      mBrEdrConnState = state;
+                  }
+                  case BluetoothDevice.TRANSPORT_LE -> {
+                      mBleConnState = state;
+                  }
+                  default -> Log.i(TAG, "unknown transport type: " + transport);
+                }
+            }
+        }
     }
 
     class DeviceProperties {
@@ -1632,6 +1707,12 @@ public class RemoteDevices {
                                             + Utils.addressTypeToString(addressType));
                             return addDeviceProperties(address, addressType).getDevice();
                         });
+        DeviceRTData rtData;
+
+        rtData = getDeviceRTData(device);
+        if (rtData == null) {
+            rtData = addDeviceRTData(device);
+        }
 
         DeviceProperties deviceProperties = getDeviceProperties(device);
 
@@ -1660,6 +1741,8 @@ public class RemoteDevices {
             } else if (transport == BluetoothDevice.TRANSPORT_LE) {
                 intent = new Intent(BluetoothAdapter.ACTION_BLE_ACL_CONNECTED);
             }
+            rtData.setConnState(transport, BluetoothDevice.BT_CONN_CONNECTED);
+            Log.i(TAG, "Set device" + device + ", transport " + transport + ", as BT_CONN_CONNECTED.");
             mAdapterService
                     .getBatteryService()
                     .filter(battery -> transport == TRANSPORT_LE)
@@ -1690,6 +1773,8 @@ public class RemoteDevices {
             } else if (transport == BluetoothDevice.TRANSPORT_LE) {
                 intent = new Intent(BluetoothAdapter.ACTION_BLE_ACL_DISCONNECTED);
             }
+            rtData.setConnState(transport, BluetoothDevice.BT_CONN_DISCONNECTED);
+            Log.i(TAG, "Set device" + device + ", transport " + transport + ", as BT_CONN_DISCONNECTED.");
             // Reset battery level on complete disconnection
             if (mAdapterService.getConnectionState(device) == 0) {
                 mAdapterService

@@ -71,6 +71,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
+import com.android.bluetooth.btservice.RemoteDevices.DeviceRTData;
 import com.android.bluetooth.flags.Flags;
 
 import libcore.util.SneakyThrow;
@@ -1180,6 +1181,22 @@ class AdapterServiceBinder extends IBluetooth.Stub {
             return BluetoothDevice.BATTERY_LEVEL_UNKNOWN;
         }
         return deviceProp.getBatteryLevel();
+    }
+
+    public int getBtConnState(BluetoothDevice device, int transport, AttributionSource attributionSource) {
+        AdapterService service = getService();
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getBtConnState")
+                || !Utils.checkConnectPermissionForDataDelivery(
+                        service, attributionSource, "AdapterService getBtConnState")) {
+            return BluetoothDevice.BT_CONN_UNKNOWN;
+        }
+
+        DeviceRTData deviceRtData = service.getRemoteDevices().getDeviceRTData(device);
+        if (deviceRtData == null) {
+            return BluetoothDevice.BT_CONN_UNKNOWN;
+        }
+        return deviceRtData.getConnState(transport);
     }
 
     @Override

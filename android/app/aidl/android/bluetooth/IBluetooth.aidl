@@ -84,6 +84,9 @@ interface IBluetooth
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     long getDiscoveryEndMillis(in AttributionSource attributionSource);
 
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    int getBtConnState(in BluetoothDevice device, in int transport, in AttributionSource attributionSource);
+
     @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
     int getAdapterConnectionState();
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")

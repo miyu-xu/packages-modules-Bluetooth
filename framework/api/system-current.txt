@@ -253,6 +253,7 @@ package android.bluetooth {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getActiveAudioDevicePolicy();
     method @NonNull public String getAnonymizedAddress();
     method @IntRange(from=0xffffff9c, to=100) @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getBatteryLevel();
+    method @FlaggedApi("com.android.bluetooth.flags.link_status_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getBtConnState(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionHandle(int);
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public String getIdentityAddress();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getMessageAccessPermission();
@@ -296,6 +297,9 @@ package android.bluetooth {
     field public static final int ACTIVE_AUDIO_DEVICE_POLICY_DEFAULT = 0; // 0x0
     field public static final int BATTERY_LEVEL_BLUETOOTH_OFF = -100; // 0xffffff9c
     field public static final int BATTERY_LEVEL_UNKNOWN = -1; // 0xffffffff
+    field @FlaggedApi("com.android.bluetooth.flags.link_status_api") public static final int BT_CONN_CONNECTED = 0; // 0x0
+    field @FlaggedApi("com.android.bluetooth.flags.link_status_api") public static final int BT_CONN_DISCONNECTED = 1; // 0x1
+    field @FlaggedApi("com.android.bluetooth.flags.link_status_api") public static final int BT_CONN_UNKNOWN = 2; // 0x2
     field public static final int CONNECTION_ACCESS_NO = 2; // 0x2
     field public static final int CONNECTION_ACCESS_YES = 1; // 0x1
     field public static final String DEVICE_TYPE_CARKIT = "Carkit";
