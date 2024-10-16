@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b63aa9_82c039ab",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-16T02:32:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0a8f016_2c5481ac",
+      "range": {
+        "startLine": 150,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 19
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f3f9f92_62922656",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-15T17:49:37Z",
       "side": 1,
       "message": "You don\u0027t actually need `alarm_set_closure` here, since your handler is not a closure:\n\n```\nalarm_set_on_mloop(alarm, kWakelockTimeout, wakelock_release_cb, nullptr);\n```",
+      "range": {
+        "startLine": 1487,
+        "startChar": 2,
+        "endLine": 1487,
+        "endChar": 19
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed27a4c2_d1e5bb86",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-16T02:32:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f3f9f92_62922656",
       "range": {
         "startLine": 1487,
         "startChar": 2,
@@ -66,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9df16a48_acdc5068",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-16T02:32:34Z",
+      "side": 1,
+      "message": "Right. I noticed that for classic HID, the connection request will come first, and autosuspend can prevent the connection from being established. I think we can keep this and remove the lock acquired from OnConnectSuccess, which will extend the timer on connection success.",
+      "parentUuid": "2789ca1d_682b339b",
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6ab1ded_51d1c1cb",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 10
@@ -77,6 +143,30 @@
       "writtenOn": "2024-10-15T17:49:37Z",
       "side": 1,
       "message": "... while this one is for an LE connection.\nHID is over classic only, you shouldn\u0027t need the wakelock here.",
+      "range": {
+        "startLine": 1558,
+        "startChar": 6,
+        "endLine": 1558,
+        "endChar": 36
+      },
+      "revId": "1416ac7ed49a49c459294546fb65ff8f68408652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83547d13_b3961a78",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-16T02:32:34Z",
+      "side": 1,
+      "message": "Hi Henri, We have both LE and Classic HID.",
+      "parentUuid": "a6ab1ded_51d1c1cb",
       "range": {
         "startLine": 1558,
         "startChar": 6,
