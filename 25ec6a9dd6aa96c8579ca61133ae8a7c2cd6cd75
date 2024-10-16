@@ -70,6 +70,24 @@
       "parentUuid": "e995d12b_88b9b016",
       "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c29d2b9f_fee2c5c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-16T02:34:41Z",
+      "side": 1,
+      "message": "We will continue the discussion at go/al-bt-full-wakeup and b/369686962.",
+      "parentUuid": "5a275b2f_673e3d6b",
+      "revId": "25ec6a9dd6aa96c8579ca61133ae8a7c2cd6cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
