@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96e8f0d_2a70a079",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-16T18:36:44Z",
+      "side": 1,
+      "message": "Add:\n```\nBug: 315241296\n```\n\nFor DrNo when creating flag",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "41bcc413a0f7957abc9af8b20cc45b1eafc85966",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45dce425_b025e7f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-16T18:36:44Z",
+      "side": 1,
+      "message": "com.android.bluetooth.flags.hci_vendor_specific_extension",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "41bcc413a0f7957abc9af8b20cc45b1eafc85966",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
