@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c702f2c_8d7742b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-17T11:38:20Z",
+      "side": 1,
+      "message": "Hi, this is my proposal CL to queue the remote name request. PTAL, thanks!\n\nHere I opt to use an entirely new rnr control block that is not accessed by everyone. Only stack/rnr accesses the internals.\nSince there are already some RNR queue implementation in main/shim/acl_api, I think we just need the callback mapping here, so there is no queuing mechanism. A major part of this CL is just to eliminate the assumption of only one device can be inside the control block, e.g. now we cannot just stop RNR, the address must be specified.\n\nLet me know what concern you might have.\n\nI am not familiar with writing test with flag, so that part is still under development.",
+      "revId": "6ad7561e2d5bded261f8001e7673cd742f3a1cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
