@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "877e8cd4_dfe7575d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-17T19:48:06Z",
+      "side": 1,
+      "message": "Nit: typo",
+      "revId": "a1e99cc8966b0ddb7aa01504a573ca088a5e164e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
