@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f12084cd_c7696926",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-17T15:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fa8f2ca_53037d68",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 11
+      },
+      "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5562c15b_8c96693a",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5f8a6c_417f7aa7",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-17T15:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5562c15b_8c96693a",
+      "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b38b04a_38cb5e67",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-10-16T22:03:56Z",
       "side": 1,
       "message": "Question on the side, can you have a requester and responder tracker running simultaneously ? The code to support this configuration looks tedious",
+      "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec84f1ce_d8f1caeb",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-17T15:51:16Z",
+      "side": 1,
+      "message": "yes, with next cl, I\u0027ll introduce different config_id for requester and responder.",
+      "parentUuid": "6b38b04a_38cb5e67",
       "revId": "b809cc43c554dcf3e444f01f8bc1eef9222b3ac4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
