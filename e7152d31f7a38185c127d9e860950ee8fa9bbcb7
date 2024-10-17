@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ceb7ddc8_e1d3d4c2",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-10-17T02:19:17Z",
+      "side": 1,
+      "message": "To keep unified style.",
+      "parentUuid": "7edad0f8_b3668f57",
+      "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32275b4b_64320edd",
         "filename": "system/main/shim/acl.h",
         "patchSetId": 2
