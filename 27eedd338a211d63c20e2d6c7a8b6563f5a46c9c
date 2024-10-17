@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7445c2a7_d5098ce4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-17T01:19:45Z",
+      "side": 1,
+      "message": "There is no guarantee presubmit hooks are serialized and if more than one hook accesses the git lock it will lead to hook race conditions.",
+      "revId": "27eedd338a211d63c20e2d6c7a8b6563f5a46c9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
