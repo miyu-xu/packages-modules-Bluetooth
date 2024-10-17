@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7edad0f8_b3668f57",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-10-17T01:55:10Z",
+      "side": 1,
+      "message": "I referred to ACL_AcceptLeConnectionFrom() to refactor these APIs.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3308386/2/system/main/shim/acl_api.cc#58\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3308386/2/system/main/shim/acl.cc#1038",
+      "parentUuid": "fa6e89cc_2c3db9ed",
+      "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32275b4b_64320edd",
         "filename": "system/main/shim/acl.h",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-16T19:04:23Z",
       "side": 1,
       "message": "Can you confirm these accessors are the only one called from a different thread ?",
+      "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14c7e98f_127a40c8",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-10-17T01:55:10Z",
+      "side": 1,
+      "message": "Yes, they are mostly called by bt_main_thread, gd_stack_thread does not call them.",
+      "parentUuid": "32275b4b_64320edd",
       "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
