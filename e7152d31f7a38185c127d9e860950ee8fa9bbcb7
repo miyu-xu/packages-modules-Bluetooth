@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59851852_f0ebde14",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-17T18:35:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ceb7ddc8_e1d3d4c2",
+      "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32275b4b_64320edd",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "Yes, they are mostly called by bt_main_thread, gd_stack_thread does not call them.",
       "parentUuid": "32275b4b_64320edd",
+      "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3552b1_4ac7cf90",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-17T18:35:34Z",
+      "side": 1,
+      "message": "I meant, should other functions in the module be similarly modified ?",
+      "parentUuid": "14c7e98f_127a40c8",
       "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
