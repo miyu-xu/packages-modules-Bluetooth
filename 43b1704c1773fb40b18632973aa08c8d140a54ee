@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c609c56_2ede3204",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 3874,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-17T02:25:20Z",
+      "side": 1,
+      "message": "Revert your change here to keep a unique too longline.\n\nThe code in this should be rewrite to please the formatter, but not in your CL",
+      "range": {
+        "startLine": 3866,
+        "startChar": 54,
+        "endLine": 3874,
+        "endChar": 33
+      },
+      "revId": "43b1704c1773fb40b18632973aa08c8d140a54ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc5cd83a_34e2ced9",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 5589,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-17T02:25:20Z",
+      "side": 1,
+      "message": "to prevent race condition with reset:\n\n```suggestion\n            BluetoothHciVendorSpecificCallback callback \u003d mCallback;\n            if (callback \u003d\u003d null) {\n                return;\n            }\n            mExecutor.execute(() -\u003e consumer.accept(callback));\n```",
+      "range": {
+        "startLine": 5586,
+        "startChar": 0,
+        "endLine": 5589,
+        "endChar": 64
+      },
+      "revId": "43b1704c1773fb40b18632973aa08c8d140a54ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dba96edf_e4cae6fe",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 5589,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-17T02:25:20Z",
+      "side": 1,
+      "message": "Please rebase on top of aosp/3311664 and use executeFromBinder abstraction",
+      "range": {
+        "startLine": 5589,
+        "startChar": 11,
+        "endLine": 5589,
+        "endChar": 64
+      },
+      "revId": "43b1704c1773fb40b18632973aa08c8d140a54ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
