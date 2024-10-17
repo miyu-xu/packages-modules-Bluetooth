@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b2ddcc6_29109b20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-17T14:02:19Z",
+      "side": 1,
+      "message": "tested offline now, all tests are passing",
+      "parentUuid": "5a4fec09_f6ef961d",
+      "revId": "a2487b399338ab9684c463d7d3ab05ac49ab84ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fd4bfca_b60cb3d3",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-17T13:52:33Z",
       "side": 1,
       "message": "I guess this test should have \n\n`com::android::bluetooth::flags::provider_-\u003ehap_connect_only_requested_device(true)`",
+      "revId": "a2487b399338ab9684c463d7d3ab05ac49ab84ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "014993b5_b3278a6c",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1212,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-17T14:02:19Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "8fd4bfca_b60cb3d3",
       "revId": "a2487b399338ab9684c463d7d3ab05ac49ab84ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
