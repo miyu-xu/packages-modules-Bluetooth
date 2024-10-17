@@ -33,6 +33,24 @@
       "message": "Instead of having a local script for Bluetooth that will looks like a Bluetooth exception. Can we fix the way repo-upload is processing the hooks ?\n\nMaybe let repo run all the builtin hooks first, and then run the local hook script sequentially ?",
       "revId": "27eedd338a211d63c20e2d6c7a8b6563f5a46c9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a70021d_52136504",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-17T20:56:48Z",
+      "side": 1,
+      "message": "I dug in to that a bit, as that is the correct way to do it, but didn\u0027t find much so far.   I will keep looking, but this script has helped me out avoiding this issue.",
+      "parentUuid": "ec123d13_9e26e673",
+      "revId": "27eedd338a211d63c20e2d6c7a8b6563f5a46c9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
