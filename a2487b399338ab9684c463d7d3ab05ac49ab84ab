@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a4fec09_f6ef961d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-17T13:52:33Z",
+      "side": 1,
+      "message": "Just for testing, could you set `com::android::bluetooth::flags::provider_-\u003ehap_connect_only_requested_device(true)` in SetUp() call and make sure that all tests are good ?",
+      "revId": "a2487b399338ab9684c463d7d3ab05ac49ab84ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fd4bfca_b60cb3d3",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1212,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-17T13:52:33Z",
+      "side": 1,
+      "message": "I guess this test should have \n\n`com::android::bluetooth::flags::provider_-\u003ehap_connect_only_requested_device(true)`",
+      "revId": "a2487b399338ab9684c463d7d3ab05ac49ab84ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
