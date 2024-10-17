@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e260adfb_21ce49d6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1873,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-17T07:28:53Z",
+      "side": 1,
+      "message": "What about a comment that would explain that, in this case Android removes source which was not managed by BASS service (external manager/no source metadata) ?",
+      "revId": "828274b2381875c2b0f973e58d260837941396aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
