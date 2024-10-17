@@ -16,6 +16,24 @@
       "message": "Is it possible to quite the PTS issue here and add a comment saying - need to be removed once PTS issue is resolved.",
       "revId": "413bbdaa5f79d8e5ff0f83cad03a8cc57457bfd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d41589fa_4ec34f13",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-17T07:11:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a7402d0_6c86432f",
+      "revId": "413bbdaa5f79d8e5ff0f83cad03a8cc57457bfd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
