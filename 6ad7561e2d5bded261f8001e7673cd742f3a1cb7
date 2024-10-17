@@ -34,6 +34,24 @@
       "parentUuid": "0c702f2c_8d7742b1",
       "revId": "6ad7561e2d5bded261f8001e7673cd742f3a1cb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9cd343_8cb93a4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-17T21:16:45Z",
+      "side": 1,
+      "message": "At present the name discovery module has two clients: device discovery and pairing. Both of these modules can start and cancel name discovery independently. So it is possible for them to interfere with each other.\n\nThis problem can be avoided by using client ID or something similar in identifying the requests.\n```\nNameDiscoveryClientId NameDiscoveryRegister(tBTM_RMT_NAME_CALLBACK);\nvoid NameDiscoveryStart(NameDiscoveryClientId, const RawAddress\u0026, tBLE_ADDR_TYPE, tBT_TRANSPORT);\nvoid NameDiscoveryCancel(NameDiscoveryClientId, const RawAddress\u0026, tBLE_ADDR_TYPE, tBT_TRANSPORT);\n```\n\n\nAlternatively, we could just assign a unique ID for every name discovery request. Then the cancel API should use the same request ID.\n```\nNameDiscoveryRequestId NameDiscoveryStart(const RawAddress\u0026, tBLE_ADDR_TYPE, tBT_TRANSPORT, tBTM_RMT_NAME_CALLBACK);\ntBTM_STATUS NameDiscoveryCancel(NameDiscoveryRequestId);\n```",
+      "parentUuid": "67e52e11_14ba2f0b",
+      "revId": "6ad7561e2d5bded261f8001e7673cd742f3a1cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
