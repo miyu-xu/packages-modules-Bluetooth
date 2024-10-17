@@ -16,6 +16,23 @@
       "message": "Hi, please review this patch and let me know if any other changes are required.",
       "revId": "c2c44e88dfc58e5daf872450214d95833bdf6d7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "988ec45a_30e42aa1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-17T20:15:17Z",
+      "side": 1,
+      "message": "We don\u0027t normally expect the remote devices to change the name.\nI don\u0027t get why the user would want to know the updated remote device name? It may be confusing to the user if the name of the bonded remote device keeps changing. I would prefer that we keep the same name that we presented to the user at the time of pairing. Users must never be put in position to doubt the authenticity of their bonded devices.\nUsers can anyway change the local alias of the bonded devices which, if available, supersedes the actual remote device name.",
+      "revId": "c2c44e88dfc58e5daf872450214d95833bdf6d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
