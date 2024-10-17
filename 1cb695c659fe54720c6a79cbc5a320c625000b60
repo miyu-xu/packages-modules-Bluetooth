@@ -22,6 +22,30 @@
       },
       "revId": "1cb695c659fe54720c6a79cbc5a320c625000b60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15cb9c4d_30f0367e",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapbMessageMime.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-17T17:56:28Z",
+      "side": 1,
+      "message": "I found it more explicit as the pattern was \"simple enough\" to be a one word description.\n\nWhile boundary and charset are more unclear",
+      "parentUuid": "3a831b57_76567a5e",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 46
+      },
+      "revId": "1cb695c659fe54720c6a79cbc5a320c625000b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
