@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ac9f30_c871116b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceCleanupTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-10-17T05:23:48Z",
+      "side": 1,
+      "message": "How about putting this into `finally` to ensure cleanup is done?",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "83aa03b2_d4755b40",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceCleanupTest.java",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 69,
+                "endChar": 0
+              },
+              "replacement": "        } finally {\n            mTargetContext.getContentResolver().delete(BluetoothShare.CONTENT_URI, null, null);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceCleanupTest.java",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8776c87a10fe4420ac215e338c64b72d159cf26f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
