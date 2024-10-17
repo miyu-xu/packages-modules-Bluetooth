@@ -16,6 +16,23 @@
       "message": "There is no guarantee presubmit hooks are serialized and if more than one hook accesses the git lock it will lead to hook race conditions.",
       "revId": "27eedd338a211d63c20e2d6c7a8b6563f5a46c9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec123d13_9e26e673",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-17T01:53:51Z",
+      "side": 1,
+      "message": "Instead of having a local script for Bluetooth that will looks like a Bluetooth exception. Can we fix the way repo-upload is processing the hooks ?\n\nMaybe let repo run all the builtin hooks first, and then run the local hook script sequentially ?",
+      "revId": "27eedd338a211d63c20e2d6c7a8b6563f5a46c9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
