@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ec3b17_8b34daa0",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-17T12:57:58Z",
+      "side": 1,
+      "message": "that means that either we do not have test which would Disconnect not connected device or it is not tested when flag is enabled.\n\nCould you please make sure this case is covered with unit tests?",
+      "revId": "31b641678e5292932e246b9ddb98c55e1e701374",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
