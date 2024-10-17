@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad7e5073_c04450e2",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-17T22:31:30Z",
+      "side": 1,
+      "message": "Check is not necessary.",
+      "revId": "69220ca3d4a9814d75eb2b5ac6d53245cb9a37a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
