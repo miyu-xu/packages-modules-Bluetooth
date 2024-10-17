@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bea6a540_6adcb817",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3449375
+      },
+      "writtenOn": "2024-10-17T20:07:25Z",
+      "side": 1,
+      "message": "Hi, please review this patch and let me know if any other changes are required.",
+      "revId": "c2c44e88dfc58e5daf872450214d95833bdf6d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
