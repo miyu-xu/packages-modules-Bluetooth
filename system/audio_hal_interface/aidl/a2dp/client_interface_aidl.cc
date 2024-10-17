@@ -459,11 +459,28 @@ size_t BluetoothAudioClientInterface::ReadAudioData(uint8_t* p_buf, uint32_t len
     log::error("BluetoothAudioHal is not valid");
     return 0;
   }
+
   if (p_buf == nullptr || len == 0) {
     return 0;
   }
 
   std::lock_guard<std::mutex> guard(internal_mutex_);
+
+  if (com::android::bluetooth::flags::a2dp_fmq_read_blocking()) {
+    if (data_mq_ == nullptr || !data_mq_->isValid()) {
+      log::error("Invalid MQDescriptor");
+      return 0;
+    }
+
+    auto status = data_mq_->read(reinterpret_cast<int8_t*>(p_buf), len);
+    if (!status) {
+      log::warn("failed to read requested bytes ({}/{})", data_mq_->availableToRead(), len);
+      return 0;
+    }
+
+    transport_->LogBytesRead(len);
+    return len;
+  }
 
   size_t total_read = 0;
   int timeout_ms = kDefaultDataReadTimeoutMs;
