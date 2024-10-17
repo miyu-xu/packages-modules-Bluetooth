@@ -22,6 +22,30 @@
       },
       "revId": "a73917586300a7fc1f611e81d4e505cf4c99286c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb3f7334_2d077100",
+        "filename": "pandora/interfaces/pandora_experimental/bumble_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-17T03:43:49Z",
+      "side": 0,
+      "message": "Always we have to use combinations all these keys . It can not be single key at any time . so I think instead of using `enum` value `int` would be better . hence modified the logic accordingly",
+      "parentUuid": "8ffca7cb_8f071f4f",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "a73917586300a7fc1f611e81d4e505cf4c99286c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
