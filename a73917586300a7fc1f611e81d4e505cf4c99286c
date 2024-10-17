@@ -46,6 +46,30 @@
       },
       "revId": "a73917586300a7fc1f611e81d4e505cf4c99286c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b6b34d6_94378b47",
+        "filename": "pandora/interfaces/pandora_experimental/bumble_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-17T17:37:43Z",
+      "side": 0,
+      "message": "In this case you can use the `repeated` keyword: https://protobuf.dev/programming-guides/proto3/#field-labels",
+      "parentUuid": "cb3f7334_2d077100",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "a73917586300a7fc1f611e81d4e505cf4c99286c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
