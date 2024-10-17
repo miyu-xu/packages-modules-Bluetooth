@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "851d8037_567252b2",
+        "filename": "system/gd/common/audit_log.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-17T01:22:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9e819b22_66e93f4e",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "db6220259bb1b0882a7b642a6ae2b983edb5521b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed9db14e_f38e6275",
