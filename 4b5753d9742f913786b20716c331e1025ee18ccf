@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a0442a6_9884f972",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-17T19:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48b6fdfc_1a9efbbc",
+      "revId": "4b5753d9742f913786b20716c331e1025ee18ccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe37a562_3c94d83d",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-17T16:50:01Z",
       "side": 1,
       "message": "This is not necessary, lets keep to the version using osi_property_get_int32.",
+      "range": {
+        "startLine": 1152,
+        "startChar": 0,
+        "endLine": 1156,
+        "endChar": 5
+      },
+      "revId": "4b5753d9742f913786b20716c331e1025ee18ccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f8e4efe_ca9d7792",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-17T19:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe37a562_3c94d83d",
       "range": {
         "startLine": 1152,
         "startChar": 0,
@@ -64,6 +106,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6543e2d9_5f6a8505",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1158,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-17T19:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c91aae_3366f706",
+      "range": {
+        "startLine": 1158,
+        "startChar": 59,
+        "endLine": 1158,
+        "endChar": 84
+      },
+      "revId": "4b5753d9742f913786b20716c331e1025ee18ccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d57ef9_b8c16ea8",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1158,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-17T19:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c91aae_3366f706",
+      "range": {
+        "startLine": 1158,
+        "startChar": 59,
+        "endLine": 1158,
+        "endChar": 84
+      },
+      "revId": "4b5753d9742f913786b20716c331e1025ee18ccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb92d840_8af98976",
@@ -77,6 +167,24 @@
       "writtenOn": "2024-10-17T16:50:01Z",
       "side": 1,
       "message": "Do log the timeout value when set.",
+      "revId": "4b5753d9742f913786b20716c331e1025ee18ccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50f17991_459ede4a",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-17T19:39:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb92d840_8af98976",
       "revId": "4b5753d9742f913786b20716c331e1025ee18ccf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
