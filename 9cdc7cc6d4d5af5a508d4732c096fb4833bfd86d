@@ -147,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae261de_67c3bc37",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 3449375
+      },
+      "writtenOn": "2024-10-17T20:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "147daf99_2fce285f",
+      "range": {
+        "startLine": 400,
+        "startChar": 14,
+        "endLine": 400,
+        "endChar": 26
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adf5286f_a8d0b01c",
@@ -208,6 +232,30 @@
       "side": 1,
       "message": "Henri\u0027 recommendation above should suffice here too! \n```\nsynchronize (mDeviceStateMap) {\n   ..\n}\n```",
       "parentUuid": "fae5fa8c_79b6b418",
+      "range": {
+        "startLine": 417,
+        "startChar": 8,
+        "endLine": 417,
+        "endChar": 43
+      },
+      "revId": "9cdc7cc6d4d5af5a508d4732c096fb4833bfd86d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aeddf28_3d725ce2",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 3449375
+      },
+      "writtenOn": "2024-10-17T20:04:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "942f5c0b_de218fe3",
       "range": {
         "startLine": 417,
         "startChar": 8,
