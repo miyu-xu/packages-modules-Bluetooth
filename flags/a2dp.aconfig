@@ -157,3 +157,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "a2dp_fmq_read_blocking"
+    namespace: "bluetooth"
+    description: "Use MessageQueue::readBlocking for reading audio PCM bytes"
+    bug: "374166531"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
