@@ -20,6 +20,9 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.LOCAL_MAC_ADDRESS;
 
+import android.annotation.IntDef;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -112,6 +115,7 @@ public final class BluetoothSocket implements Closeable {
     /**
      * L2CAP socket on BR/EDR transport
      *
+     * To be removed once Flags.FLAG_SOCKET_SETTINGS_API is removed
      * @hide
      */
     public static final int TYPE_L2CAP_BREDR = TYPE_L2CAP;
@@ -119,9 +123,28 @@ public final class BluetoothSocket implements Closeable {
     /**
      * L2CAP socket on LE transport
      *
+     * To be removed once Flags.FLAG_SOCKET_SETTINGS_API is removed
      * @hide
      */
     public static final int TYPE_L2CAP_LE = 4;
+
+    /**
+     * L2CAP socket on LE transport
+     *
+     */
+    @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
+    public static final int TYPE_LE = 4;
+    /** @hide */
+    @IntDef(
+        prefix = {"BluetoothSocket.TYPE_"},
+        value = {
+            BluetoothSocket.TYPE_RFCOMM,
+            BluetoothSocket.TYPE_SCO,
+            BluetoothSocket.TYPE_L2CAP,
+            BluetoothSocket.TYPE_LE,
+        })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface SocketType {}
 
     /*package*/ static final int EBADFD = 77;
 
