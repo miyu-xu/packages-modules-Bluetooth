@@ -18,6 +18,8 @@ package com.android.bluetooth.avrcp;
 
 import android.os.SystemProperties;
 
+import com.android.bluetooth.flags.Flags;
+
 /** A class to represent an AVRCP version */
 final class AvrcpVersion {
     public static final AvrcpVersion AVRCP_VERSION_1_3 = new AvrcpVersion(1, 3);
@@ -37,7 +39,10 @@ final class AvrcpVersion {
 
     public static AvrcpVersion getCurrentSystemPropertiesValue() {
         // Make sure this default version agrees with avrc_api.h's "AVRC_DEFAULT_VERSION"
-        String version = SystemProperties.get(AVRCP_VERSION_PROPERTY, AVRCP_VERSION_1_5_STRING);
+
+        String defaultVersion = Flags.avrcp16Default() ? AVRCP_VERSION_1_6_STRING : AVRCP_VERSION_1_5_STRING;
+        String version = SystemProperties.get(AVRCP_VERSION_PROPERTY, defaultVersion);
+
         switch (version) {
             case AVRCP_VERSION_1_3_STRING:
                 return AVRCP_VERSION_1_3;

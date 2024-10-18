@@ -133,7 +133,8 @@ public class CoverArt {
         BipEncoding encoding = descriptor.getEncoding();
         BipPixel pixel = descriptor.getPixel();
 
-        if (encoding.getType() == BipEncoding.JPEG && PIXEL_THUMBNAIL.equals(pixel)) {
+        if ((encoding.getType() == BipEncoding.JPEG || encoding.getType() == BipEncoding.PNG)
+                && PIXEL_THUMBNAIL.equals(pixel)) {
             return true;
         }
         return false;
@@ -160,12 +161,15 @@ public class CoverArt {
             return null;
         }
         BipImageProperties.Builder builder = new BipImageProperties.Builder();
-        BipEncoding encoding = new BipEncoding(BipEncoding.JPEG);
         BipPixel pixel = BipPixel.createFixed(200, 200);
-        BipImageFormat format = BipImageFormat.createNative(encoding, pixel, -1);
+        BipImageFormat jpgFormat =
+                BipImageFormat.createNative(new BipEncoding(BipEncoding.JPEG), pixel, -1);
+        BipImageFormat pngFormat =
+                BipImageFormat.createNative(new BipEncoding(BipEncoding.PNG), pixel, -1);
 
         builder.setImageHandle(mImageHandle);
-        builder.addNativeFormat(format);
+        builder.addNativeFormat(jpgFormat);
+        builder.addVariantFormat(pngFormat);
 
         BipImageProperties properties = builder.build();
         return properties;
