@@ -87,6 +87,7 @@ public class ActiveDeviceManagerTest {
     private BluetoothDevice mHearingAidDevice;
     private BluetoothDevice mLeAudioDevice;
     private BluetoothDevice mLeAudioDevice2;
+    private BluetoothDevice mLeAudioDevice3;
     private BluetoothDevice mLeHearingAidDevice;
     private BluetoothDevice mSecondaryAudioDevice;
     private BluetoothDevice mDualModeAudioDevice;
@@ -146,6 +147,7 @@ public class ActiveDeviceManagerTest {
         mSecondaryAudioDevice = TestUtils.getTestDevice(mAdapter, 6);
         mDualModeAudioDevice = TestUtils.getTestDevice(mAdapter, 7);
         mLeAudioDevice2 = TestUtils.getTestDevice(mAdapter, 8);
+        mLeAudioDevice3 = TestUtils.getTestDevice(mAdapter, 9);
         mDeviceConnectionStack = new ArrayList<>();
         mMostRecentDevice = null;
         mOriginalDualModeAudioState = Utils.isDualModeAudioEnabled();
@@ -161,6 +163,7 @@ public class ActiveDeviceManagerTest {
 
         when(mLeAudioService.getLeadDevice(mLeAudioDevice)).thenReturn(mLeAudioDevice);
         when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice2);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice3)).thenReturn(mLeAudioDevice3);
         when(mLeAudioService.getLeadDevice(mDualModeAudioDevice)).thenReturn(mDualModeAudioDevice);
         when(mLeAudioService.getLeadDevice(mLeHearingAidDevice)).thenReturn(mLeHearingAidDevice);
 
@@ -837,6 +840,166 @@ public class ActiveDeviceManagerTest {
         leAudioDisconnected(mLeAudioDevice2);
         mTestLooper.dispatchAll();
         verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+    }
+
+    /**
+     * One LE Audio set, containing two buds, is connected. When one device got disconnected
+     * fallback device should not be set to true active device to fallback device.
+     */
+    @Test
+    @EnableFlags(Flags.FLAG_ADM_FIX_DISCONNECT_OF_SET_MEMBER)
+    public void leAudioSecondDeviceDisconnected_noFallbackDeviceActive_ModeNormal() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_NORMAL);
+
+        int groupId = 1;
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mLeAudioDevice);
+        groupDevices.add(mLeAudioDevice2);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice);
+
+        leAudioConnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice);
+
+        leAudioConnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(0)).setActiveDevice(mLeAudioDevice2);
+
+        when(mLeAudioService.getGroupId(any())).thenReturn(groupId);
+        when(mLeAudioService.getGroupDevices(groupId)).thenReturn(groupDevices);
+
+        leAudioDisconnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice);
+        verify(mLeAudioService, times(0)).setActiveDevice(mLeAudioDevice2);
+    }
+
+    /**
+     * One LE Audio set, containing two buds, is connected. When one device got disconnected
+     * fallback device should not be set to true active device to fallback device.
+     */
+    @Test
+    @EnableFlags(Flags.FLAG_ADM_FIX_DISCONNECT_OF_SET_MEMBER)
+    public void leAudioSecondDeviceDisconnected_noFallbackDeviceActive_ModeInCall() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
+
+        int groupId = 1;
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mLeAudioDevice);
+        groupDevices.add(mLeAudioDevice2);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice);
+
+        leAudioConnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice);
+
+        leAudioConnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(0)).setActiveDevice(mLeAudioDevice2);
+
+        when(mLeAudioService.getGroupId(any())).thenReturn(groupId);
+        when(mLeAudioService.getGroupDevices(groupId)).thenReturn(groupDevices);
+
+        leAudioDisconnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice);
+        verify(mLeAudioService, times(0)).setActiveDevice(mLeAudioDevice2);
+    }
+
+    /**
+     * One LE Audio set, containing two buds, is connected. When one device got disconnected
+     * fallback device should not be set to true active device to fallback device.
+     */
+    @Test
+    @EnableFlags(Flags.FLAG_ADM_FIX_DISCONNECT_OF_SET_MEMBER)
+    public void twoLeAudioSets_OneSetDisconnected_FallbackToAnotherOne_ModeNormal() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_NORMAL);
+
+        int groupId = 1;
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mLeAudioDevice);
+        groupDevices.add(mLeAudioDevice2);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice);
+        when(mLeAudioService.getGroupId(mLeAudioDevice)).thenReturn(groupId);
+        when(mLeAudioService.getGroupId(mLeAudioDevice2)).thenReturn(groupId);
+        when(mLeAudioService.getGroupDevices(groupId)).thenReturn(groupDevices);
+
+        int groupId2 = 2;
+        List<BluetoothDevice> groupDevicesId2 = new ArrayList<>();
+        groupDevicesId2.add(mLeAudioDevice3);
+
+        when(mLeAudioService.getGroupId(mLeAudioDevice3)).thenReturn(groupId2);
+        when(mLeAudioService.getGroupDevices(groupId2)).thenReturn(groupDevicesId2);
+
+        leAudioConnected(mLeAudioDevice3);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice3);
+
+        leAudioConnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+
+        leAudioConnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(0)).setActiveDevice(mLeAudioDevice2);
+
+        leAudioDisconnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        // Should not encrease a number of this call.
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice);
+
+        leAudioDisconnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        // This call should be done twice
+        verify(mLeAudioService, times(2)).setActiveDevice(mLeAudioDevice3);
+    }
+
+    /**
+     * One LE Audio set, containing two buds, is connected. When one device got disconnected
+     * fallback device should not be set to true active device to fallback device.
+     */
+    @Test
+    @EnableFlags(Flags.FLAG_ADM_FIX_DISCONNECT_OF_SET_MEMBER)
+    public void twoLeAudioSets_OneSetDisconnected_FallbackToAnotherOne_ModeInCall() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
+
+        int groupId = 1;
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mLeAudioDevice);
+        groupDevices.add(mLeAudioDevice2);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice);
+        when(mLeAudioService.getGroupId(mLeAudioDevice)).thenReturn(groupId);
+        when(mLeAudioService.getGroupId(mLeAudioDevice2)).thenReturn(groupId);
+        when(mLeAudioService.getGroupDevices(groupId)).thenReturn(groupDevices);
+
+        int groupId2 = 2;
+        List<BluetoothDevice> groupDevicesId2 = new ArrayList<>();
+        groupDevicesId2.add(mLeAudioDevice3);
+
+        when(mLeAudioService.getGroupId(mLeAudioDevice3)).thenReturn(groupId2);
+        when(mLeAudioService.getGroupDevices(groupId2)).thenReturn(groupDevicesId2);
+
+        leAudioConnected(mLeAudioDevice3);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).setActiveDevice(mLeAudioDevice3);
+
+        leAudioConnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+
+        leAudioConnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, times(0)).setActiveDevice(mLeAudioDevice2);
+
+        leAudioDisconnected(mLeAudioDevice2);
+        mTestLooper.dispatchAll();
+        // Should not encrease a number of this call.
+        verify(mLeAudioService, times(1)).setActiveDevice(mLeAudioDevice);
+
+        leAudioDisconnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        // This call should be done twice
+        verify(mLeAudioService, times(2)).setActiveDevice(mLeAudioDevice3);
     }
 
     /** A combo (A2DP + Headset) device is connected. Then an LE Audio is connected. */
