@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efdbcb07_e13327ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-18T09:02:51Z",
+      "side": 1,
+      "message": "It looks like I need to adjust the cleanup order of modules. Because gd is using osi_module, it should be shut down first.",
+      "revId": "f8220c540fbf2f37b94430044d80546f5db48e16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
