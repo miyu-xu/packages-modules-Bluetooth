@@ -22,6 +22,30 @@
       },
       "revId": "3f63aed379de1b9c7516e3fbc949b09f5b0b6ddc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73e2de90_cdfb5300",
+        "filename": "flags/avrcp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-18T12:33:59Z",
+      "side": 1,
+      "message": "I got my answer with presubmit -2 I guess",
+      "parentUuid": "6bb2067d_fb079b2f",
+      "range": {
+        "startLine": 60,
+        "startChar": 17,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "3f63aed379de1b9c7516e3fbc949b09f5b0b6ddc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
