@@ -42,7 +42,8 @@ public class AdapterSuspend {
     private boolean mSuspended = false;
 
     private final AdapterNativeInterface mAdapterNativeInterface;
-    private final Looper mLooper;
+    private final Handler mHandler;
+
     private final DisplayManager mDisplayManager;
     private final DisplayManager.DisplayListener mDisplayListener =
             new DisplayManager.DisplayListener() {
@@ -55,9 +56,9 @@ public class AdapterSuspend {
                 @Override
                 public void onDisplayChanged(int displayId) {
                     if (isScreenOn()) {
-                        handleResume();
+                        handleResume(0);
                     } else {
-                        handleSuspend();
+                        handleSuspend(0);
                     }
                 }
             };
@@ -67,10 +68,10 @@ public class AdapterSuspend {
             Looper looper,
             DisplayManager displayManager) {
         mAdapterNativeInterface = requireNonNull(adapterNativeInterface);
-        mLooper = requireNonNull(looper);
+        mHandler = new Handler(requireNonNull(looper));
         mDisplayManager = requireNonNull(displayManager);
 
-        mDisplayManager.registerDisplayListener(mDisplayListener, new Handler(mLooper));
+        mDisplayManager.registerDisplayListener(mDisplayListener, mHandler);
     }
 
     void cleanup() {
@@ -87,8 +88,18 @@ public class AdapterSuspend {
                 .anyMatch(display -> display.getState() == Display.STATE_ON);
     }
 
+    /**
+     * Determine if wake by BT is allowed according to suspend reason.
+     *
+     * @param reason sleep reason.
+     */
+    public void handleSuspend(int reason) {
+        // TODO determine if allowing BT wake here.
+        mHandler.post(() -> handleSuspendInternal(true));
+    }
+
     @VisibleForTesting
-    void handleSuspend() {
+    void handleSuspendInternal(boolean allowBtWake) {
         if (mSuspended) {
             return;
         }
@@ -106,12 +117,25 @@ public class AdapterSuspend {
         mAdapterNativeInterface.clearEventFilter();
         mAdapterNativeInterface.clearFilterAcceptList();
         mAdapterNativeInterface.disconnectAllAcls();
-        mAdapterNativeInterface.allowWakeByHid();
+
+        if (allowBtWake) {
+            mAdapterNativeInterface.allowWakeByHid();
+            Log.i(TAG, "configure wake by hid");
+        }
         Log.i(TAG, "ready to suspend");
     }
 
+    /**
+     * Prepare for resume.
+     *
+     * @param reason wakeup reason.
+     */
+    public void handleResume(int reason) {
+        mHandler.post(() -> handleResumeInternal());
+    }
+
     @VisibleForTesting
-    void handleResume() {
+    void handleResumeInternal() {
         if (!mSuspended) {
             return;
         }
