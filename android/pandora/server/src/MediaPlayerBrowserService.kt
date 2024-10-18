@@ -17,6 +17,7 @@
 package com.android.pandora
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.media.*
@@ -43,6 +44,7 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
     private var metadataItems = mutableMapOf<String, MediaMetadataCompat>()
     private var queue = mutableListOf<MediaSessionCompat.QueueItem>()
     private var currentTrack = -1
+    private val testIcon = Bitmap.createBitmap(16, 16, Bitmap.Config.ARGB_8888)
 
     override fun onCreate() {
         super.onCreate()
@@ -158,16 +160,17 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
             MediaMetadataCompat.Builder()
                 .putString(
                     MediaMetadataCompat.METADATA_KEY_MEDIA_ID,
-                    NOW_PLAYING_PREFIX + NEW_QUEUE_ITEM_INDEX
+                    NOW_PLAYING_PREFIX + NEW_QUEUE_ITEM_INDEX,
                 )
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, "Title" + NEW_QUEUE_ITEM_INDEX)
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, "Artist" + NEW_QUEUE_ITEM_INDEX)
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, "Album" + NEW_QUEUE_ITEM_INDEX)
                 .putLong(
                     MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER,
-                    NEW_QUEUE_ITEM_INDEX.toLong()
+                    NEW_QUEUE_ITEM_INDEX.toLong(),
                 )
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, NEW_QUEUE_ITEM_INDEX.toLong())
+                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, testIcon)
                 .build()
         val mediaItem = MediaItem(metaData.description, MediaItem.FLAG_PLAYABLE)
         queue.add(
@@ -253,14 +256,15 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
                     .putString(MediaMetadataCompat.METADATA_KEY_TITLE, "Title$item")
                     .putString(
                         MediaMetadataCompat.METADATA_KEY_ARTIST,
-                        if (item != QUEUE_SIZE) "Artist$item" else generateAlphanumericString(512)
+                        if (item != QUEUE_SIZE) "Artist$item" else generateAlphanumericString(512),
                     )
                     .putString(
                         MediaMetadataCompat.METADATA_KEY_ALBUM,
-                        if (item != QUEUE_SIZE) "Album$item" else generateAlphanumericString(512)
+                        if (item != QUEUE_SIZE) "Album$item" else generateAlphanumericString(512),
                     )
                     .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, item.toLong())
                     .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, QUEUE_SIZE.toLong())
+                    .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, testIcon)
                     .build()
             val mediaItem = MediaItem(metaData.description, MediaItem.FLAG_PLAYABLE)
             mediaItems.add(mediaItem)
@@ -285,7 +289,7 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, EMPTY_FOLDER)
                 .putLong(
                     MediaMetadataCompat.METADATA_KEY_BT_FOLDER_TYPE,
-                    MediaDescriptionCompat.BT_FOLDER_TYPE_PLAYLISTS
+                    MediaDescriptionCompat.BT_FOLDER_TYPE_PLAYLISTS,
                 )
                 .build()
         val emptyFolderMediaItem =
@@ -298,7 +302,7 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
                     putString(MediaMetadataCompat.METADATA_KEY_TITLE, NOW_PLAYING_PREFIX)
                     putLong(
                         MediaMetadataCompat.METADATA_KEY_BT_FOLDER_TYPE,
-                        MediaDescriptionCompat.BT_FOLDER_TYPE_PLAYLISTS
+                        MediaDescriptionCompat.BT_FOLDER_TYPE_PLAYLISTS,
                     )
                 }
                 .build()
