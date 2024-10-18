@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7208bbbb_b7eabaa3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T19:26:10Z",
+      "side": 1,
+      "message": "Errorprone complain:\n\n\u003e ```\nField AUDIO_LOCATION_INVALID is a flagged API and should be inside an if (Flags.leaudioMonoLocationErrataApi()) check (or annotate the surrounding method getAudioLocation with @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA_API) to transfer requirement to caller) [FlaggedApi]\n            return AUDIO_LOCATION_INVALID;\n                   ~~~~~~~~~~~~~~~~~~~~~~\n```\n\nI believe that this is not a new API but a new `deprecated` API.\n\nI recommend to simply suppress the warning by anontation the method\n\n```\n@SuppressWarnings(\"FlaggedApi\") // Due to deprecated AUDIO_LOCATION_INVALID\n```\n\nIdeally we should have a todo to remove this in the following next 3 years as system api can be removed.",
+      "range": {
+        "startLine": 1208,
+        "startChar": 0,
+        "endLine": 1208,
+        "endChar": 0
+      },
+      "revId": "6bbd748dee3f378ae7bf2a352afa75f21a97ff45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
