@@ -52,6 +52,24 @@
       "parentUuid": "122c63f7_9b81c833",
       "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd31404f_121284d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-18T07:54:52Z",
+      "side": 1,
+      "message": "I talked about that with @gkolodziejczyk@google.com, and we decide that it has sense. I updated the onSourceLost description to reflect actual behavior.\nLook at this:\nonSourceFound - inform upper layer that there is a source which can be used.\nonSourceLost - should inform about loosing it and for upper layer does not matter if this is because of PA lost or anything else. And this is crucial to not flood upper layer with sourceFound/sourceLost if there is still extended advertising for valid (we sync to it at least once) broadcast in the air.\n\nThe only thing which we can do to make this change less impactful is to decrease timer, but IMHO 5s is ok. Even if the broadcaster is far away, it will be enough to not blinks them on the list.",
+      "parentUuid": "c67ad71c_1e4ccd8e",
+      "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
