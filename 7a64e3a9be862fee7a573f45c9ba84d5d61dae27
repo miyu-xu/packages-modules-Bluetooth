@@ -38,6 +38,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49da1a59_49e4391f",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-18T11:10:06Z",
+      "side": 1,
+      "message": "this fix is for the controller limitation - I suggest to have here some property which can be configured.\n\nFrom Host point of view, there should  be no issue to configure both data paths independently",
+      "fixSuggestions": [
+        {
+          "fixId": "89a34a2a_63ac0604",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "    if (hci::IsoManager::GetInstance()-\u003eGetNumberOfActiveIso() \u003e\n        com::android::bluetooth::flags::a2dp_max_active_iso_channel()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7a64e3a9be862fee7a573f45c9ba84d5d61dae27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b18e9b3_87f01f4a",
         "filename": "system/stack/include/btm_iso_api.h",
         "patchSetId": 3
