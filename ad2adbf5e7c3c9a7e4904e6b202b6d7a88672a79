@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea982d76_bfa68a51",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 4218,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-18T21:38:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5cc6a7bc_622957f0",
+      "range": {
+        "startLine": 4218,
+        "startChar": 0,
+        "endLine": 4218,
+        "endChar": 81
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c74c119_05d6ac76",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-18T21:02:13Z",
       "side": 1,
       "message": "```\n    [ReturnFromVoid] Void methods should not have a @return tag.\n         * @return whether the callback was registered successfully\n           ^\n        (see https://errorprone.info/bugpattern/ReturnFromVoid)\n      Did you mean \u0027*\u0027?\n```\n\nPlease fix \u0026 add the `\"-Xep:ReturnFromVoid:ERROR\",` to packages/modules/Bluetooth/Android.bp  -- `bluetooth_errorprone_rules`",
+      "range": {
+        "startLine": 5633,
+        "startChar": 0,
+        "endLine": 5633,
+        "endChar": 63
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8322b6a_989ba245",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 5633,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-18T21:38:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0c74c119_05d6ac76",
       "range": {
         "startLine": 5633,
         "startChar": 0,
@@ -131,6 +179,30 @@
       "writtenOn": "2024-10-18T00:34:19Z",
       "side": 1,
       "message": "nit 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bfd6d57_2cfeb4df",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-18T21:38:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b6241ee4_1b5be27e",
       "range": {
         "startLine": 2,
         "startChar": 13,
