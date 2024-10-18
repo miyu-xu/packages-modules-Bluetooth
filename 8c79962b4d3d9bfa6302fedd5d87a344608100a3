@@ -70,6 +70,30 @@
       },
       "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce88a9ed_7941244d",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-18T23:36:15Z",
+      "side": 1,
+      "message": "sure, I can remove the bt_ and offload references from the description.\nwant to keep this as socket_settings_api as It is bringing the new interface for sockets. please check and let me know if that is fine",
+      "parentUuid": "2e18b615_9688cb5b",
+      "range": {
+        "startLine": 51,
+        "startChar": 63,
+        "endLine": 51,
+        "endChar": 126
+      },
+      "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
