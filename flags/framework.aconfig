@@ -63,3 +63,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "bt_suspend_resume_apis"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "APIs allow power manager to suspend and wakeup Bluetooth"
+    bug: "374372307"
+}
