@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22fb2c28_e81f6a88",
+        "filename": "flags/avrcp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-18T15:14:46Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be specified as a bug fix flag. Better to have a standard feature flag (even though we won\u0027t need an FR for that)",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "cde08e982471e0de807ece9d62607037663a5369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
