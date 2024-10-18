@@ -46,6 +46,30 @@
       },
       "revId": "6bbd748dee3f378ae7bf2a352afa75f21a97ff45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f444c666_561fc46a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-18T19:30:16Z",
+      "side": 1,
+      "message": "Can you file a bug using a link in the Build Warning comment? It seems like this is a lint error and I\u0027d rather us not have to suppress it if possible (and at least try and fix it for the long term).",
+      "parentUuid": "7208bbbb_b7eabaa3",
+      "range": {
+        "startLine": 1208,
+        "startChar": 0,
+        "endLine": 1208,
+        "endChar": 0
+      },
+      "revId": "6bbd748dee3f378ae7bf2a352afa75f21a97ff45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
