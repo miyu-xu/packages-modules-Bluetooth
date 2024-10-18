@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62c26854_cfadb651",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T23:29:56Z",
+      "side": 1,
+      "message": "Please create two flags:\n\none for socket offload and one for the 25Q2 socket improvement",
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "450816c5_826dc68b",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 23
