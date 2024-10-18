@@ -22,6 +22,30 @@
       },
       "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899172f6_c345bf6e",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-18T22:55:04Z",
+      "side": 1,
+      "message": "Yes,\nfor the offload sockets - we already have this bt_offload_socket_api and it is being tracked by Jayden\n\nand this new one is for bringing the new interface and allowing the security level part",
+      "parentUuid": "dffd5105_b1f42c31",
+      "range": {
+        "startLine": 51,
+        "startChar": 63,
+        "endLine": 51,
+        "endChar": 126
+      },
+      "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
