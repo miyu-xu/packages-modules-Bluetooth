@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bb2067d_fb079b2f",
+        "filename": "flags/avrcp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-18T11:34:21Z",
+      "side": 1,
+      "message": "Not sure about the purpose here? I set \"Other\" in the flag tracking bug, but can I do the same in the aconfig file?",
+      "range": {
+        "startLine": 60,
+        "startChar": 17,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "3f63aed379de1b9c7516e3fbc949b09f5b0b6ddc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
