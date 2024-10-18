@@ -94,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c98fb98_24ce3737",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 5670,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-18T21:03:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c221e771_8bce28d8",
+      "range": {
+        "startLine": 5663,
+        "startChar": 0,
+        "endLine": 5670,
+        "endChar": 17
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6241ee4_1b5be27e",
