@@ -37,6 +37,89 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca183f74_7b07271c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-18T19:22:52Z",
+      "side": 1,
+      "message": "yes, I added flag before pushing and forgot flag the code :)",
+      "parentUuid": "ea5859be_297fb32d",
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbbba513_810ea71c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-18T19:22:52Z",
+      "side": 1,
+      "message": "selfreview: Rename it to something like `DoesBelongToTheSameGroup()` and just compare the groupId from both",
+      "fixSuggestions": [
+        {
+          "fixId": "638e29ef_ccd3dc2a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1044,
+                "startChar": 0,
+                "endLine": 1045,
+                "endChar": 0
+              },
+              "replacement": "    private boolean isRecentlyRemovedAndFallbackDeviceFromSelfGroup(\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1101,
+                "startChar": 0,
+                "endLine": 1102,
+                "endChar": 0
+              },
+              "replacement": "                    if (isRecentlyRemovedAndFallbackDeviceFromSelfGroup(\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1178,
+                "startChar": 0,
+                "endLine": 1179,
+                "endChar": 0
+              },
+              "replacement": "                if (isRecentlyRemovedAndFallbackDeviceFromSelfGroup(\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1216,
+                "startChar": 0,
+                "endLine": 1217,
+                "endChar": 0
+              },
+              "replacement": "                if (isRecentlyRemovedAndFallbackDeviceFromSelfGroup(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f881309c_02f009d2",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 1
@@ -92,6 +175,30 @@
           ]
         }
       ],
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d04a6236_51c6b816",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-18T19:22:52Z",
+      "side": 1,
+      "message": "Thanks, will do",
+      "parentUuid": "f881309c_02f009d2",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1046,
+        "endChar": 27
+      },
       "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
