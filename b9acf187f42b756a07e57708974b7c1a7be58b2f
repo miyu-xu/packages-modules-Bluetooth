@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1371f557_5a6e45d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T18:06:08Z",
+      "side": 1,
+      "message": "Nit / General comment.\n\nanother way of checking a sequence of call is to use inOrder.\n\nfor example this:\n```\nverify(foo).setActive(dev1);\nverify(foo, never()).setActive(dev2);\nverify(foo).setActive(dev1);\nverify(foo).setActive(dev2);\nverify(foo, times(2)).setActive(dev1);\n```\n\ncan be wrote:\n```\nmInOrder \u003d inOrder(foo);\n[...]\n\nmInOrder.verify(foo).setActive(dev1);\nmInOrder.verify(foo, never()).setActive(dev2);\nmInOrder.verify(foo).setActive(dev2);\nmInOrder.verify(foo).setActive(dev1);\n// because checked in order, we assure that this is coming after the setActive(dev2)\n// and therefor this is the second time since the begining of the test that \n// setActive(dev1) is called, but we don\u0027t have to specify it\n```\n\nThis bring the advantage that you not only checking what call was made but in which order.\nThis works best when we also check that there is no other call to the method at the end of the test with \n```\nmInOrder.verify(foo, never()).setActive(any());\n```",
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fbc5948_3fee39c2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T18:06:08Z",
+      "side": 1,
+      "message": "```suggestion\n        List\u003cBluetoothDevice\u003e groupDevices \u003d List.of(mLeAudioDevice, mLeAudioDevice2);\n```",
+      "range": {
+        "startLine": 919,
+        "startChar": 6,
+        "endLine": 921,
+        "endChar": 42
+      },
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db7b557f_21cac5ae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T18:06:08Z",
+      "side": 1,
+      "message": "`times(1)` is the default and can simply be removed",
+      "range": {
+        "startLine": 936,
+        "startChar": 32,
+        "endLine": 936,
+        "endChar": 40
+      },
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1fa123_0deb956b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T18:06:08Z",
+      "side": 1,
+      "message": "prefer `never()` to clearly indicate that this is not happening",
+      "range": {
+        "startLine": 944,
+        "startChar": 33,
+        "endLine": 944,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "df9682cb_cbb18a95",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 866,
+                "startChar": 0,
+                "endLine": 867,
+                "endChar": 0
+              },
+              "replacement": "        verify(mLeAudioService, never()).setActiveDevice(mLeAudioDevice2);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 874,
+                "startChar": 0,
+                "endLine": 875,
+                "endChar": 0
+              },
+              "replacement": "        verify(mLeAudioService, never()).setActiveDevice(mLeAudioDevice2);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 898,
+                "startChar": 0,
+                "endLine": 899,
+                "endChar": 0
+              },
+              "replacement": "        verify(mLeAudioService, never()).setActiveDevice(mLeAudioDevice2);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 906,
+                "startChar": 0,
+                "endLine": 907,
+                "endChar": 0
+              },
+              "replacement": "        verify(mLeAudioService, never()).setActiveDevice(mLeAudioDevice2);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 944,
+                "startChar": 0,
+                "endLine": 945,
+                "endChar": 0
+              },
+              "replacement": "        verify(mLeAudioService, never()).setActiveDevice(mLeAudioDevice2);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 992,
+                "startChar": 0,
+                "endLine": 993,
+                "endChar": 0
+              },
+              "replacement": "        verify(mLeAudioService, never()).setActiveDevice(mLeAudioDevice2);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ec17cd_b21e687c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T18:06:08Z",
+      "side": 1,
+      "message": "increase ?",
+      "range": {
+        "startLine": 948,
+        "startChar": 22,
+        "endLine": 948,
+        "endChar": 30
+      },
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
