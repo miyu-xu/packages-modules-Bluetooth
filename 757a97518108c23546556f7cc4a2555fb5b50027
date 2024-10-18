@@ -34,6 +34,24 @@
       "parentUuid": "b95ee7eb_b697fcd0",
       "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c67ad71c_1e4ccd8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-18T01:14:53Z",
+      "side": 1,
+      "message": "+1 to Grzegorz, we might not want to repurpose released API. Some other applications might already have implemented their use cases with this.\n\nIf you really think API is needed, we can also consider to introduce new API.",
+      "parentUuid": "122c63f7_9b81c833",
+      "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
