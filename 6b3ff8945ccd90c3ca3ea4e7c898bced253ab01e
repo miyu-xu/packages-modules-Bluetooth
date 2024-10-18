@@ -56,6 +56,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8559e2f2_90215f26",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-18T21:50:42Z",
+      "side": 1,
+      "message": "Fixed in a separate CL.",
+      "parentUuid": "9dc54215_4b561ad5",
+      "revId": "6b3ff8945ccd90c3ca3ea4e7c898bced253ab01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c599745f_ce3aa749",
@@ -107,6 +125,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1566c2fb_56ce309d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-18T21:50:42Z",
+      "side": 1,
+      "message": "Fixed in a separate CL.",
+      "parentUuid": "c599745f_ce3aa749",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 29
+      },
+      "revId": "6b3ff8945ccd90c3ca3ea4e7c898bced253ab01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e52002a_a2acd5b0",
@@ -120,6 +162,30 @@
       "writtenOn": "2024-10-10T21:44:49Z",
       "side": 1,
       "message": "What if you are already suspended, but the reason has changed and you can now call allowWakeByHid ? or the opposite ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 22
+      },
+      "revId": "6b3ff8945ccd90c3ca3ea4e7c898bced253ab01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c9418db_b6a8a8f8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-18T21:50:42Z",
+      "side": 1,
+      "message": "We have assumed there is no transition between two suspend states. So any change of suspend reason should first resume, then suspend again with a new reason. This should be discussed with the power manager. Otherwise, I think we need new APIs to just cancel or set the wake-by-bt setting.",
+      "parentUuid": "5e52002a_a2acd5b0",
       "range": {
         "startLine": 105,
         "startChar": 12,
