@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4db2a47c_a751d937",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T22:03:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "840f1997_da1559e1",
+      "range": {
+        "startLine": 43,
+        "startChar": 64,
+        "endLine": 43,
+        "endChar": 69
+      },
+      "revId": "7b939dd8613c6dbf9c6772eff764fc4966c15456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5acd2750_4689d534",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Yep,the fuzzer don\u0027t work, and test nothing.\nI already committed some changes, and reverted, as Henri recommended me to bypass the Lint.",
       "parentUuid": "5acd2750_4689d534",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 43
+      },
+      "revId": "7b939dd8613c6dbf9c6772eff764fc4966c15456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb4bf9ad_cc9b3df4",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T22:03:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f1f18878_c28cdf5b",
       "range": {
         "startLine": 143,
         "startChar": 0,
