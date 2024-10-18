@@ -123,6 +123,24 @@
       "parentUuid": "14c7e98f_127a40c8",
       "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13942da0_e1fe9c8b",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-10-18T01:40:00Z",
+      "side": 1,
+      "message": "No, we just need modify these three APIs.",
+      "parentUuid": "8f3552b1_4ac7cf90",
+      "revId": "e7152d31f7a38185c127d9e860950ee8fa9bbcb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
