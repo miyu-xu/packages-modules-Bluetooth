@@ -29,6 +29,9 @@
 #include "internal_include/bt_target.h"
 #include "stack/include/bt_hdr.h"
 
+// TODO(b/369381361) Enfore -Wmissing-prototypes
+#pragma GCC diagnostic ignored "-Wmissing-prototypes"
+
 using namespace bluetooth;
 
 /*****************************************************************************
@@ -158,7 +161,7 @@ tBTA_PAN_SCB* bta_pan_scb_alloc(void) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_pan_sm_execute(tBTA_PAN_SCB* p_scb, uint16_t event, tBTA_PAN_DATA* p_data) {
+void bta_pan_sm_execute(tBTA_PAN_SCB* p_scb, uint16_t event, tBTA_PAN_DATA* p_data) {
   tBTA_PAN_ST_TBL state_table;
   uint8_t action;
   int i;
@@ -194,7 +197,7 @@ static void bta_pan_sm_execute(tBTA_PAN_SCB* p_scb, uint16_t event, tBTA_PAN_DAT
  * Returns          void
  *
  ******************************************************************************/
-static void bta_pan_api_enable(tBTA_PAN_DATA* p_data) {
+void bta_pan_api_enable(tBTA_PAN_DATA* p_data) {
   /* initialize control block */
   memset(&bta_pan_cb, 0, sizeof(bta_pan_cb));
 
@@ -213,7 +216,7 @@ static void bta_pan_api_enable(tBTA_PAN_DATA* p_data) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_pan_api_disable(tBTA_PAN_DATA* /* p_data */) { bta_pan_disable(); }
+void bta_pan_api_disable(tBTA_PAN_DATA* /* p_data */) { bta_pan_disable(); }
 
 /*******************************************************************************
  *
@@ -225,7 +228,7 @@ static void bta_pan_api_disable(tBTA_PAN_DATA* /* p_data */) { bta_pan_disable()
  * Returns          void
  *
  ******************************************************************************/
-static void bta_pan_api_open(tBTA_PAN_DATA* p_data) {
+void bta_pan_api_open(tBTA_PAN_DATA* p_data) {
   tBTA_PAN_SCB* p_scb;
   tBTA_PAN bta_pan;
 
