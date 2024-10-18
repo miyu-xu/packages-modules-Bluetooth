@@ -62,11 +62,11 @@ public class AdapterSuspendTest {
     }
 
     private void triggerSuspend() throws Exception {
-        mAdapterSuspend.handleSuspend();
+        mAdapterSuspend.handleSuspendInternal(true);
     }
 
     private void triggerResume() throws Exception {
-        mAdapterSuspend.handleResume();
+        mAdapterSuspend.handleResumeInternal();
     }
 
     private boolean isSuspended() throws Exception {
