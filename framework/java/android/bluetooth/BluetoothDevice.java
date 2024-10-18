@@ -3194,6 +3194,63 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     }
 
     /**
+     * Create Client Socket for the remote Server hosted using
+     * BluetoothAdapter#createListeningChannel. Use {@link BluetoothSocketSettings} to configure the
+     * settings of the socket as parameter.
+     *
+     * <p>Use {@link BluetoothSocket#connect} to initiate the outgoing connection.
+     *
+     * <p>Application using this API is responsible for obtaining PSM value from remote device.
+     *
+     * @param settings settings for the socket
+     * @return a {@link BluetoothSocket} ready for an outgoing connection
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
+    @SuppressLint("AndroidFrameworkRequiresPermission")
+    public @NonNull BluetoothSocket createClientSocket(@NonNull BluetoothSocketSettings settings)
+            throws IOException {
+        if (!isBluetoothEnabled()) {
+            Log.e(TAG, "createClientSocket: Bluetooth is not enabled");
+            throw new IOException();
+        }
+        if (DBG) {
+            Log.d(TAG, "createClientSocket: =" + settings.getChannel());
+        }
+        boolean auth, encrypt;
+        int securityLevel = settings.getSecurityLevel();
+        if (securityLevel == BluetoothSocketSettings.SOCKET_SEC_LEVEL_INSECURE) {
+            auth = false;
+            encrypt = false;
+        } else if (securityLevel
+                == BluetoothSocketSettings
+                        .SOCKET_SEC_LEVEL_ENCRYPTION_NO_AUTHENTICATION) {
+            auth = false;
+            encrypt = true;
+        } else if (securityLevel
+                == BluetoothSocketSettings
+                        .SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {
+            auth = true;
+            encrypt = true;
+        } else {
+            throw new IOException("invalid securityLevel - " + securityLevel);
+        }
+        return new BluetoothSocket(
+                settings.getSocketType(),
+                auth,
+                encrypt,
+                this,
+                settings.getChannel(),
+                new ParcelUuid(settings.getUuid()),
+                false,
+                false);
+    }
+
+    /**
      * Set a keyed metadata of this {@link BluetoothDevice} to a {@link String} value. Only bonded
      * devices's metadata will be persisted across Bluetooth restart. Metadata will be removed when
      * the device's bond state is moved to {@link #BOND_NONE}.
