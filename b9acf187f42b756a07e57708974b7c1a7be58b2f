@@ -37,6 +37,67 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f881309c_02f009d2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T18:11:15Z",
+      "side": 1,
+      "message": "Apparently you are only calling this method from setFallbackDeviceActiveLocked that already hold the lock.\n\n\nYou can remove this synchronized and annotate the method with a `@GuardedBy(\"mLock\")`\n\n(FYI this annotation is enforced at build time)",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1046,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "79244a34_44c3fd48",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1044,
+                "startChar": 0,
+                "endLine": 1044,
+                "endChar": 0
+              },
+              "replacement": "    @GuardedBy(\"mLock\")\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1046,
+                "startChar": 0,
+                "endLine": 1056,
+                "endChar": 0
+              },
+              "replacement": "        final LeAudioService leAudioService \u003d mFactory.getLeAudioService();\n        if (leAudioService \u003d\u003d null) {\n            return false;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 1057,
+                "startChar": 0,
+                "endLine": 1057,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cBluetoothDevice\u003e groupDevices \u003d\n                leAudioService.getGroupDevices(leAudioService.getGroupId(recentlyRemovedDevice));\n        return groupDevices.contains(fallbackDevice) \u0026\u0026 groupDevices.contains(recentlyRemovedDevice);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b9acf187f42b756a07e57708974b7c1a7be58b2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fbc5948_3fee39c2",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 1
