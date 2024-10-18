@@ -3218,6 +3218,59 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     }
 
     /**
+     * Creates a client socket to connect to a remote Bluetooth server with the given socket
+     * settings {@link BluetoothSocketSettings} This API is used to connect to a remote server
+     * hosted using {@link BluetoothAdapter#listenUsingSocketSettings}
+     *
+     * <p>This API supports BluetoothSocket#TYPE_RFCOMM and BluetoothSocket#TYPE_LE only.
+     *
+     * <p>For BluetoothSocket#TYPE_RFCOMM, It must provide the uuid using {@link
+     * BluetoothSocketSettings#setUuid()}. For BluetoothSocket#TYPE_LE must provide channel (PSM)
+     * value using {@link BluetoothSocketSettings#setChannel()}.
+     *
+     * <p>Application using this API is responsible for obtaining Channel (psm) value from remote
+     * device.
+     *
+     * <p>Use {@link BluetoothSocket#connect} to initiate the outgoing connection.
+     *
+     * @param settings settings for the socket
+     * @return a {@link BluetoothSocket} ready for an outgoing connection
+     * @throws IOException on error, for example Bluetooth not available, or insufficient
+     *     permissions
+     */
+    @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
+    public @NonNull BluetoothSocket createUsingSocketSettings(
+            @NonNull BluetoothSocketSettings settings) throws IOException {
+        if (!isBluetoothEnabled()) {
+            Log.e(TAG, "createUsingSocketSettings: Bluetooth is not enabled");
+            throw new IOException();
+        }
+        if (DBG) {
+            Log.d(TAG, "createUsingSocketSettings: =" + settings.getChannel());
+        }
+        ParcelUuid uuid = null;
+        int psm = -1;
+        if (settings.getSocketType() == BluetoothSocket.TYPE_RFCOMM) {
+            if (settings.getUuid() == null) {
+                throw new IOException("null uuid: " + settings.getUuid());
+            }
+            uuid = new ParcelUuid(settings.getUuid());
+        } else if (settings.getSocketType() == BluetoothSocket.TYPE_LE) {
+            if (settings.getChannel() < 0) {
+                throw new IOException("Invalid PSM/Channel value: " + settings.getChannel());
+            }
+            psm = settings.getChannel();
+        }
+        return new BluetoothSocket(
+                this,
+                settings.getSocketType(),
+                settings.isAuthenticationEnabled(),
+                settings.isEncryptionEnabled(),
+                psm,
+                uuid);
+    }
+
+    /**
      * Set a keyed metadata of this {@link BluetoothDevice} to a {@link String} value. Only bonded
      * devices's metadata will be persisted across Bluetooth restart. Metadata will be removed when
      * the device's bond state is moved to {@link #BOND_NONE}.
