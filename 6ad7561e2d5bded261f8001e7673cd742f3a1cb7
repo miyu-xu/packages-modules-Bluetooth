@@ -52,6 +52,24 @@
       "parentUuid": "67e52e11_14ba2f0b",
       "revId": "6ad7561e2d5bded261f8001e7673cd742f3a1cb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8955e504_8fb0fd2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-18T07:31:21Z",
+      "side": 1,
+      "message": "Let\u0027s discuss via GVC? I\u0027m not sure why this approach is better.",
+      "parentUuid": "6f9cd343_8cb93a4b",
+      "revId": "6ad7561e2d5bded261f8001e7673cd742f3a1cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
