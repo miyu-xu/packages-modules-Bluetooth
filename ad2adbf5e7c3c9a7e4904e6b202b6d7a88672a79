@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc6a7bc_622957f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 4218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T00:34:19Z",
+      "side": 1,
+      "message": "a simple return should be enough.\n\nThe Bluetooth may shutdown any time, including after the call to this method have been done. We don\u0027t want to crash the caller because of that (same for other method)",
+      "range": {
+        "startLine": 4218,
+        "startChar": 0,
+        "endLine": 4218,
+        "endChar": 81
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a055bdd_6a2cd486",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 5670,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T00:34:19Z",
+      "side": 1,
+      "message": "You can write it simplier:\n\n\n\n```suggestion\n                mHciVendorSpecificCallbackRegistration.registerToService(\n                            mService, mHciVendorSpecificCallbackStub, mAttributionSource);\n                mHciVendorSpecificCallbackRegistration.set(callback, eventCodeSet, executor);\n```",
+      "range": {
+        "startLine": 5663,
+        "startChar": 0,
+        "endLine": 5670,
+        "endChar": 17
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6241ee4_1b5be27e",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T00:34:19Z",
+      "side": 1,
+      "message": "nit 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "ad2adbf5e7c3c9a7e4904e6b202b6d7a88672a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
