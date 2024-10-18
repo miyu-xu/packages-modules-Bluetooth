@@ -17,6 +17,7 @@
 package com.android.pandora
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.media.*
@@ -43,6 +44,7 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
     private var metadataItems = mutableMapOf<String, MediaMetadataCompat>()
     private var queue = mutableListOf<MediaSessionCompat.QueueItem>()
     private var currentTrack = -1
+    private val testIcon = Bitmap.createBitmap(16, 16, Bitmap.Config.ARGB_8888)
 
     override fun onCreate() {
         super.onCreate()
@@ -168,6 +170,7 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
                     NEW_QUEUE_ITEM_INDEX.toLong()
                 )
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, NEW_QUEUE_ITEM_INDEX.toLong())
+                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, testIcon)
                 .build()
         val mediaItem = MediaItem(metaData.description, MediaItem.FLAG_PLAYABLE)
         queue.add(
@@ -261,6 +264,7 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
                     )
                     .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, item.toLong())
                     .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, QUEUE_SIZE.toLong())
+                    .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, testIcon)
                     .build()
             val mediaItem = MediaItem(metaData.description, MediaItem.FLAG_PLAYABLE)
             mediaItems.add(mediaItem)

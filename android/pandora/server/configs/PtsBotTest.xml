@@ -30,6 +30,7 @@
     <target_preparer class="com.android.tradefed.targetprep.RunCommandTargetPreparer">
         <option name="run-command" value="setprop persist.bluetooth.btsnooplogmode full" />
         <option name="run-command" value="setprop persist.bluetooth.btsnoopsize 0xfffffffffffffff" />
+        <option name="run-command" value="setprop bluetooth.profile.avrcp.target.vfs_coverart.enabled true" />
     </target_preparer>
 
     <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">
