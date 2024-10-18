@@ -1,0 +1,247 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "450816c5_826dc68b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "BLUETOOTH_SOCKET_SECURITY_LEVEL_INSECURE\n\nBLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTED_NO_AUTHENTICATION\n\nBLUETOOTH_SOCKET_SECURITY_LEVEL_ENCRYPTED_WITH_AUTHENTICATION",
+      "range": {
+        "startLine": 38,
+        "startChar": 28,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d7b2b91_11791123",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "maybe find a way so that it is easier to be understood by the developers",
+      "range": {
+        "startLine": 41,
+        "startChar": 54,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e2ac234_1948c2e6",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "DATA_PATH_NO_OFFLOAD",
+      "range": {
+        "startLine": 50,
+        "startChar": 28,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "767b3ac3_5f20c82a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "@Intdef??",
+      "range": {
+        "startLine": 308,
+        "startChar": 37,
+        "endLine": 308,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "eb15f1a7_d39111b7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 308,
+                "startChar": 0,
+                "endLine": 309,
+                "endChar": 0
+              },
+              "replacement": "        public Builder setSocketType(@BluetoothSocket.SocketType int socketType) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f73411d_95a13815",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "@Intdef",
+      "range": {
+        "startLine": 345,
+        "startChar": 40,
+        "endLine": 345,
+        "endChar": 43
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeff655a_f478d73f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "@Indef for the data path type",
+      "range": {
+        "startLine": 390,
+        "startChar": 35,
+        "endLine": 390,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9738b012_d9e3f5a3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 390,
+                "startChar": 0,
+                "endLine": 391,
+                "endChar": 0
+              },
+              "replacement": "        public Builder setDataPath(@DataPath int dataPath) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5598afb4_0f54eed7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "Why do we want to expose this to API callers? Can this be determined automatically in the stack? \n\nSince caller will have fewer idea on which context hub to choose",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 0
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7691a34c_c8e5585a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "Same as above, this might be too much information for the API caller to understand",
+      "range": {
+        "startLine": 426,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 9
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8b4159_ba75690d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-10-18T17:00:48Z",
+      "side": 1,
+      "message": "If we have this, don\u0027t we also need a callback or event to see when the switch happened? Otherwise, how does a general API caller know when the switch happens?",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 9
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
