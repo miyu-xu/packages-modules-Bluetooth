@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41d77ce1_92613a91",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T21:10:11Z",
+      "side": 1,
+      "message": "FYI: the \"jni_thread\" is not the java main thread, but a separate thread that comes from native to java.\n\nThe code running in onCommandStatus \u0026 other will still need to handle race condition access \u0026 stuff.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "3051a2a73b751963790c7b618a5368bd65cec41d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
