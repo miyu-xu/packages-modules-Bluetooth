@@ -94,6 +94,30 @@
       },
       "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c4463f0_90558c8c",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T23:47:46Z",
+      "side": 1,
+      "message": "perfectly fine !",
+      "parentUuid": "ce88a9ed_7941244d",
+      "range": {
+        "startLine": 51,
+        "startChar": 63,
+        "endLine": 51,
+        "endChar": 126
+      },
+      "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
