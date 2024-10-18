@@ -3352,6 +3352,7 @@ public class BluetoothMapContentObserver {
         return handle;
     }
 
+    @SuppressWarnings("EnumOrdinal") // remove entire usage of internal intent
     public long sendMmsMessage(
             String folder,
             String[] toAddress,
@@ -4091,9 +4092,14 @@ public class BluetoothMapContentObserver {
     }
 
     public static void actionMessageSentDisconnected(Context context, Intent intent, int result) {
-        TYPE type =
-                TYPE.fromOrdinal(
-                        intent.getIntExtra(EXTRA_MESSAGE_SENT_MSG_TYPE, TYPE.NONE.ordinal()));
+        int msgOrdinal = intent.getIntExtra(EXTRA_MESSAGE_SENT_MSG_TYPE, -1);
+        TYPE type;
+        if (msgOrdinal == -1) {
+            type = TYPE.NONE;
+        } else {
+            type = TYPE.fromOrdinal(msgOrdinal);
+        }
+
         if (type == TYPE.MMS) {
             actionMmsSent(context, intent, result, null);
         } else {
@@ -4278,9 +4284,14 @@ public class BluetoothMapContentObserver {
     }
 
     public boolean handleSmsSendIntent(Context context, Intent intent) {
-        TYPE type =
-                TYPE.fromOrdinal(
-                        intent.getIntExtra(EXTRA_MESSAGE_SENT_MSG_TYPE, TYPE.NONE.ordinal()));
+        int msgOrdinal = intent.getIntExtra(EXTRA_MESSAGE_SENT_MSG_TYPE, -1);
+        TYPE type;
+        if (msgOrdinal == -1) {
+            type = TYPE.NONE;
+        } else {
+            type = TYPE.fromOrdinal(msgOrdinal);
+        }
+
         if (type == TYPE.MMS) {
             return handleMmsSendIntent(context, intent);
         } else {
