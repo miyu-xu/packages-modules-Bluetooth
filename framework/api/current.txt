@@ -18,6 +18,7 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN) public boolean cancelDiscovery();
     method public static boolean checkBluetoothAddress(String);
     method public void closeProfileProxy(int, android.bluetooth.BluetoothProfile);
+    method @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") @NonNull @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothServerSocket createListeningChannel(@NonNull android.bluetooth.BluetoothSocketSettings) throws java.io.IOException;
     method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean disable();
     method @Deprecated @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean enable();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.LOCAL_MAC_ADDRESS}) public String getAddress();
@@ -527,6 +528,7 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothGatt connectGatt(android.content.Context, boolean, android.bluetooth.BluetoothGattCallback, int, int);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothGatt connectGatt(android.content.Context, boolean, android.bluetooth.BluetoothGattCallback, int, int, android.os.Handler);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean createBond();
+    method @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") @NonNull public android.bluetooth.BluetoothSocket createClientSocket(@NonNull android.bluetooth.BluetoothSocketSettings) throws java.io.IOException;
     method @NonNull @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothSocket createInsecureL2capChannel(int) throws java.io.IOException;
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothSocket createInsecureRfcommSocketToServiceRecord(java.util.UUID) throws java.io.IOException;
     method @NonNull @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothSocket createL2capChannel(int) throws java.io.IOException;
@@ -1080,6 +1082,7 @@ package android.bluetooth {
     method public android.bluetooth.BluetoothDevice getRemoteDevice();
     method public boolean isConnected();
     field public static final int TYPE_L2CAP = 3; // 0x3
+    field public static final int TYPE_L2CAP_LE = 4; // 0x4
     field public static final int TYPE_RFCOMM = 1; // 0x1
     field public static final int TYPE_SCO = 2; // 0x2
   }
@@ -1110,6 +1113,26 @@ package android.bluetooth {
     field public static final int SOCKET_MANAGER_FAILURE = 16; // 0x10
     field @FlaggedApi("com.android.bluetooth.flags.unix_file_socket_creation_failure") public static final int UNIX_FILE_SOCKET_CREATION_FAILURE = 21; // 0x15
     field public static final int UNSPECIFIED = 0; // 0x0
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public final class BluetoothSocketSettings {
+    method public int getChannel();
+    method @NonNull public String getServiceName();
+    method public int getSocketType();
+    method @Nullable public java.util.UUID getUuid();
+    method public boolean isAuthenticationEnabled();
+    method public boolean isEncryptionEnabled();
+  }
+
+  public static final class BluetoothSocketSettings.Builder {
+    ctor public BluetoothSocketSettings.Builder();
+    method @NonNull public android.bluetooth.BluetoothSocketSettings build();
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setAuthenticationEnabled(boolean);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setChannel(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setEncryptionEnabled(boolean);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setServiceName(@NonNull String);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketType(int);
+    method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setUuid(@NonNull java.util.UUID);
   }
 
   public final class BluetoothStatusCodes {
