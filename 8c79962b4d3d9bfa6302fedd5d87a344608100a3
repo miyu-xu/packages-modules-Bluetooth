@@ -46,6 +46,30 @@
       },
       "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e18b615_9688cb5b",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-18T23:10:11Z",
+      "side": 1,
+      "message": "Does that mean we should we rename the flag in `encryption_only_socket_api` ?\nand remove the offload from the description ?\n\n(I see that the name use `bt_` like a few other in this file, but the flag name is already com.android.bluetooth.flags.xxxx so we don\u0027t really need to repeat bt_)",
+      "parentUuid": "899172f6_c345bf6e",
+      "range": {
+        "startLine": 51,
+        "startChar": 63,
+        "endLine": 51,
+        "endChar": 126
+      },
+      "revId": "8c79962b4d3d9bfa6302fedd5d87a344608100a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
