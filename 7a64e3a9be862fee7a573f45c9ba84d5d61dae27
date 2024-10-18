@@ -34,6 +34,23 @@
       "parentUuid": "d5bcf128_26124650",
       "revId": "7a64e3a9be862fee7a573f45c9ba84d5d61dae27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b18e9b3_87f01f4a",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-18T11:02:43Z",
+      "side": 1,
+      "message": "Could you please add unit test for this ?",
+      "revId": "7a64e3a9be862fee7a573f45c9ba84d5d61dae27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
