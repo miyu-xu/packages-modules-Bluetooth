@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de575fc8_8fa87f1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-18T08:17:17Z",
+      "side": 1,
+      "message": "Hi Archie, PTAL, thanks!\n\nWithout this, Floss did\n```\nincoming connection -\u003e\nconnection status changed to connecting -\u003e\nFloss rejecting, filed a disconnect to the peer -\u003e\nconnection status changed to disconnected -\u003e\npeer disconnected\n```\n\nI guess with some timing it could cause a infinite loop but I didn\u0027t manage to repro.",
+      "revId": "a3faeff0df310a474b0b1d41bc402110e613e9c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
