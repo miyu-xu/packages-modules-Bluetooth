@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "086db6dd_efb7daef",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-19T00:51:44Z",
+      "side": 1,
+      "message": "Missing call to start() here.",
+      "revId": "c1571d8634653080758c06c67b06f1eacb31f21b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
