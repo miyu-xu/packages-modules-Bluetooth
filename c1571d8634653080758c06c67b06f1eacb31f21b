@@ -16,6 +16,24 @@
       "message": "Missing call to start() here.",
       "revId": "c1571d8634653080758c06c67b06f1eacb31f21b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af524699_389fda93",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-19T01:03:58Z",
+      "side": 1,
+      "message": "it is called from VolumeControlService.java.\n\nI agree that this is not uniformized.\n\nI\u0027ll do a follow-up to apply the same rules everywhere.",
+      "parentUuid": "086db6dd_efb7daef",
+      "revId": "c1571d8634653080758c06c67b06f1eacb31f21b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
