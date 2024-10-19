@@ -22,6 +22,30 @@
       },
       "revId": "3651da858a6a61b753e02fca3b7f08c970515cf5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d4aed45_8fbac8cb",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-10-19T13:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb70f051_11b3370f",
+      "range": {
+        "startLine": 604,
+        "startChar": 12,
+        "endLine": 604,
+        "endChar": 49
+      },
+      "revId": "3651da858a6a61b753e02fca3b7f08c970515cf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
