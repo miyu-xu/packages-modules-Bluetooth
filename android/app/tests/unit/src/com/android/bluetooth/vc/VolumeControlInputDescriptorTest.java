@@ -111,8 +111,8 @@ public class VolumeControlInputDescriptorTest {
     public void setState_withValidIdButIncorrectSettings_valueIsNotUpdated() {
         int newGainValue = 42;
         int newGainMode = 42;
-        boolean isMute = true;
-        mDescriptor.setState(VALID_ID, newGainMode, newGainMode, isMute);
+        int mute = 1;
+        mDescriptor.setState(VALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGain(VALID_ID)).isNotEqualTo(newGainValue);
         // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
@@ -128,8 +128,8 @@ public class VolumeControlInputDescriptorTest {
 
         int newGainValue = 42;
         int newGainMode = 42;
-        boolean isMute = true;
-        mDescriptor.setState(VALID_ID, newGainMode, newGainMode, isMute);
+        int mute = 1;
+        mDescriptor.setState(VALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGain(VALID_ID)).isEqualTo(newGainValue);
         // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
@@ -146,8 +146,8 @@ public class VolumeControlInputDescriptorTest {
 
         int newGainValue = 42;
         int newGainMode = 42;
-        boolean isMute = true;
-        mDescriptor.setState(INVALID_ID, newGainMode, newGainMode, isMute);
+        int mute = 1;
+        mDescriptor.setState(INVALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGain(INVALID_ID)).isNotEqualTo(newGainValue);
         // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
