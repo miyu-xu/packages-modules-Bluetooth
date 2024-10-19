@@ -1,0 +1,115 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b082e08d_bbf71932",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-19T04:39:25Z",
+      "side": 1,
+      "message": "Duplicated name convention. Better to use SECURITY_LEVEL_ENCRYPTION_NO_AUTHENTICATION.\nApply it in other places.",
+      "range": {
+        "startLine": 42,
+        "startChar": 28,
+        "endLine": 42,
+        "endChar": 88
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3d22f37d_c61c60fe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 40,
+                "endChar": 0
+              },
+              "replacement": "    public static final int SECURITY_LEVEL_INSECURE \u003d 0;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "    public static final int SECURITY_LEVEL_ENCRYPTION_NO_AUTHENTICATION \u003d 1;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "    public static final int SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION \u003d 2;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 151,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": "        private int mSecurityLevel \u003d SECURITY_LEVEL_INSECURE;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 194,
+                "endChar": 0
+              },
+              "replacement": "         *     BluetoothSocketSettings#SECURITY_LEVEL_INSECURE} or {@link\n         *     BluetoothSocketSettings#SECURITY_LEVEL_ENCRYPTION_NO_AUTHENTICATION}\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 195,
+                "startChar": 0,
+                "endLine": 196,
+                "endChar": 0
+              },
+              "replacement": "         *     BluetoothSocketSettings#SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION}\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": "            if (securityLevel \u003c SECURITY_LEVEL_INSECURE\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": "                            \u003e SECURITY_LEVEL_ENCRYPTION_WITH_AUTHENTICATION) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c6b796385d8430e359d41d64cb93710b07f4f0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
