@@ -150,6 +150,7 @@ cc_library_static {
         },
     },
     static_libs: [
+        "aics",
         "avrcp-target-service",
         "bluetooth_flags_c_lib",
         "lib-bt-packets",
@@ -164,6 +165,12 @@ cc_library_static {
         "libbt-stack-core",
         "libbtif-core",
         "libflatbuffers-cpp",
+    ],
+    aidl: {
+        libs: ["bluetooth-internal-aidl"],
+    },
+    shared_libs: [
+        "libbinder",
     ],
     apex_available: [
         "com.android.btservices",
@@ -244,9 +251,13 @@ cc_library_static {
         "libstatslog_bt",
     ],
     shared_libs: [
+        "libbinder",
         "libcrypto",
         "libcutils",
     ],
+    aidl: {
+        libs: ["bluetooth-internal-aidl"],
+    },
     cflags: [
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
         "-fvisibility=default",

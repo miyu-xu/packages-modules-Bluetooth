@@ -22,6 +22,7 @@
 #include <bluetooth/log.h>
 #include <hardware/bluetooth.h>
 #include <hardware/bt_vc.h>
+#include <aics/api.h>
 
 #include "bta/include/bta_vc_api.h"
 #include "btif/include/btif_common.h"
@@ -37,6 +38,7 @@ using base::Unretained;
 using bluetooth::vc::ConnectionState;
 using bluetooth::vc::VolumeControlCallbacks;
 using bluetooth::vc::VolumeControlInterface;
+using bluetooth::aics::MuteField;
 
 namespace {
 std::unique_ptr<VolumeControlInterface> vc_instance;
@@ -103,7 +105,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface, public VolumeC
 
   /* Callbacks for Audio Input Stream (AIS) - Extended Audio Inputs */
   void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id, int8_t gain_val,
-                                uint8_t gain_mode, bool mute) override {
+                                uint8_t gain_mode, MuteField mute) override {
     do_in_jni_thread(Bind(&VolumeControlCallbacks::OnExtAudioInStateChanged, Unretained(callbacks_),
                           address, ext_input_id, gain_val, gain_mode, mute));
   }

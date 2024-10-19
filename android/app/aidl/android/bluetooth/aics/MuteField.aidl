@@ -22,7 +22,7 @@ package android.bluetooth.aics;
  */
 @JavaDerive(toString = true)
 @Backing(type="byte")
-enum Mute {
+enum MuteField {
     NOT_MUTED = 0x00,
     MUTED = 0x01,
     DISABLED = 0x02,

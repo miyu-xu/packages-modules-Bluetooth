@@ -27,6 +27,9 @@ cc_defaults {
         "packages/modules/Bluetooth/system/udrv/include",
     ],
     header_libs: ["libbluetooth_headers"],
+    // aidl: {
+    //     libs: ["bluetooth-internal-aidl"],
+    // },
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
@@ -154,7 +157,11 @@ cc_library_static {
         "libcom.android.sysprop.bluetooth.wrapped",
         "liblc3",
     ],
+    aidl: {
+        libs: ["bluetooth-internal-aidl"],
+    },
     shared_libs: [
+        "libbinder",
         "libcrypto",
     ],
     generated_headers: [
