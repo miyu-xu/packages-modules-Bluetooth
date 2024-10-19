@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6485770_d4b714fd",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-19T00:35:21Z",
+      "side": 1,
+      "message": "Per what you explained in another comment, I think the original description is accurate even with your new changes. \nEven we start a timer, it will be kicked off after \u0027periodic advertising sync lost\u0027 for timeout, right? The only difference is if we resynced within timeout, application won\u0027t be notified by this callback.\nWe didn\u0027t say the callback is invoked immediately after sync lost. And all your new changes are the internal behaviors.\nSync lost will only be triggered by PA sync lost(just with a timer), not lack of EA.\nI\u0027m okay with the changes overall, only this description is not that clear to me. I will suggest to keep as it is.",
+      "revId": "365d46efcc3bc17e155b10071b50f2703a0c2360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
