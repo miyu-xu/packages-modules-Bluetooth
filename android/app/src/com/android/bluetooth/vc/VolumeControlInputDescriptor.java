@@ -51,7 +51,7 @@ class VolumeControlInputDescriptor {
          */
         int mGainMode = 0;
 
-        boolean mIsMute = false;
+        int mIsMute = 2; // TODO replace with DISABLED
 
         /* See AICS 1.0
          * The Gain_Setting (mGainValue) field is a signed value for which a single increment or
@@ -116,7 +116,7 @@ class VolumeControlInputDescriptor {
 
     boolean isMuted(int id) {
         if (!validateId(id)) return false;
-        return mVolumeInputs[id].mIsMute;
+        return mVolumeInputs[id].mIsMute != 0;
     }
 
     void setPropSettings(int id, int gainUnit, int gainMin, int gainMax) {
@@ -127,7 +127,7 @@ class VolumeControlInputDescriptor {
         mVolumeInputs[id].mGainSettingsMaxSetting = gainMax;
     }
 
-    void setState(int id, int gainValue, int gainMode, boolean mute) {
+    void setState(int id, int gainValue, int gainMode, int mute) {
         if (!validateId(id)) return;
 
         Descriptor desc = mVolumeInputs[id];

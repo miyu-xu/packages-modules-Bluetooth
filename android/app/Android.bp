@@ -73,6 +73,9 @@ cc_library_shared {
         "jni_headers",
         "libbluetooth_headers",
     ],
+    aidl: {
+        libs: ["bluetooth-internal-aidl"],
+    },
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
@@ -88,6 +91,7 @@ cc_library_shared {
     // is required to maintain FIPS compliance.
     stl: "libc++_static",
     static_libs: [
+        "aics",
         "android.hardware.audio.common@5.0",
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",

@@ -37,6 +37,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_status.h"
+#include "types.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -581,7 +582,14 @@ public:
 
     uint8_t* pp = value;
     STREAM_TO_INT8(input->gain_value, pp);
-    STREAM_TO_UINT8(input->mute, pp);
+    uint8_t mute;
+    STREAM_TO_UINT8(mute, pp);
+    if (!bluetooth::aics::isAudioInputMuteField(mute)) {
+      bluetooth::log::error("{} Invalid mute value: {:#x}", device->address, mute);
+      return;
+    }
+    input->mute = bluetooth::aics::parseMuteField(mute);
+
     STREAM_TO_UINT8(input->mode, pp);
     STREAM_TO_UINT8(input->change_counter, pp);
 
@@ -589,7 +597,7 @@ public:
     bluetooth::log::info(
             "{} id={:#x}gain_value {:#x}, mute: {:#x}, mode: {:#x}, "
             "change_counter: {}",
-            device->address, input->id, input->gain_value, input->mute, input->mode,
+            device->address, input->id, input->gain_value, mute, input->mode,
             input->change_counter);
 
     if (!device->device_ready) {
@@ -1503,7 +1511,7 @@ private:
 
       if (position + len >= total_len) {
         bluetooth::log::warn(
-                "Multi read was too long, value truncated conn_id: {:#x} handle: {:#x}, possition: "
+                "Multi read was too long, value truncated conn_id: {:#x} handle: {:#x}, position: "
                 "{:#x}, len: {:#x}, total_len: {:#x}, data: {}",
                 conn_id, hdl, position, len, total_len, base::HexEncode(value, total_len));
         break;

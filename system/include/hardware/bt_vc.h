@@ -19,7 +19,9 @@
 
 #include <hardware/bluetooth.h>
 #include <raw_address.h>
+#include <aics/api.h>
 
+#include <cstdint>
 #include <string>
 #include <variant>
 
@@ -43,6 +45,14 @@ enum class VolumeInputType : uint8_t {
 };
 
 enum class VolumeInputStatus : uint8_t { Inactive = 0x00, Active, RFU };
+
+// // AICS 1.0: 2.2.1. Audio Input State - 2.2.1.2. Mute field
+// // TODO move audio input in their own namespace
+// enum class AudioInputMute : uint8_t {
+//   NOT_MUTED = 0,
+//   MUTED = 1,
+//   DISABLED = 2,
+// };
 
 class VolumeControlCallbacks {
 public:
@@ -73,7 +83,8 @@ public:
 
   /* Callbacks for Audio Input Stream (AIS) - Extended Audio Inputs */
   virtual void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id,
-                                        int8_t gain_val, uint8_t gain_mode_auto, bool mute) = 0;
+                                        int8_t gain_val, uint8_t gain_mode_auto,
+                                        aics::MuteField mute) = 0;
 
   virtual void OnExtAudioInStatusChanged(const RawAddress& address, uint8_t ext_input_id,
                                          VolumeInputStatus status) = 0;
