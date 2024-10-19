@@ -136,7 +136,7 @@ struct GainSettings {
 
 struct VolumeAudioInput {
   uint8_t id;
-  bool mute;
+  AudioInputMute mute;
   int8_t gain_value;
   VolumeInputStatus status;
   VolumeInputType type;
@@ -158,7 +158,7 @@ struct VolumeAudioInput {
 
   explicit VolumeAudioInput(uint16_t service_handle)
       : id(0),
-        mute(false),
+        mute(AudioInputMute::DISABLED),
         gain_value(0),
         status(VolumeInputStatus::Inactive),
         type(VolumeInputType::Unspecified),
