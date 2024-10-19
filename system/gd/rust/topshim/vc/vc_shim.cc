@@ -140,7 +140,7 @@ public:
   }
 
   void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id, int8_t gain_val,
-                                uint8_t gain_mode_auto, bool mute) {
+                                uint8_t gain_mode_auto, bluetooth::vc::AudioInputMute mute) {
     log::info("address={}, ext_input_id={}, gain_val={}, gain_mode_auto={}, mute={}", address,
               ext_input_id, gain_val, gain_mode_auto, mute);
     log::info("Not implemented");
