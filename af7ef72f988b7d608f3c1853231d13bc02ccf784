@@ -3,6 +3,116 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddfba8e5_72f29231",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T18:13:41Z",
+      "side": 1,
+      "message": "I think we can directly do\n\n```suggestion\n            Log.i(TAG, \"setDeviceVolume(${device}, ${request.volume})\")\n```",
+      "range": {
+        "startLine": 86,
+        "startChar": 49,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ac1bd7_7d4c822d",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T18:13:41Z",
+      "side": 1,
+      "message": "typo → Volume Control ?",
+      "range": {
+        "startLine": 121,
+        "startChar": 37,
+        "endLine": 121,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3cd0cfad_a4d2a3cf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/Vcp.kt",
+              "range": {
+                "startLine": 121,
+                "startChar": 0,
+                "endLine": 122,
+                "endChar": 0
+              },
+              "replacement": "                Log.d(TAG, \"wait for bluetoothVolumeControl profile connection\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "005c219f_027ab25a",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T18:13:41Z",
+      "side": 1,
+      "message": "```suggestion\n                    .filter { it.getBluetoothDeviceExtra() \u003d\u003d device }\n```",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 21
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "056d2532_f58de2a8",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T18:13:41Z",
+      "side": 1,
+      "message": "Should this be an empty response ?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 55
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d55c9461_6d6679a0",
         "filename": "pandora/interfaces/pandora_experimental/vcp.proto",
         "patchSetId": 7
