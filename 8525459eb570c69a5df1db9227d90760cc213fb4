@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a4ea951_6898bd5a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4536,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T23:21:57Z",
+      "side": 1,
+      "message": "Closing to have the discussion only on one.",
+      "parentUuid": "5b56ed43_88ac4edc",
+      "range": {
+        "startLine": 4536,
+        "startChar": 0,
+        "endLine": 4536,
+        "endChar": 64
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9d689ce_32bb97b5",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "I think these APIs can be accessible to everyone. Could you please let us know if there are any reasons we need to restrict this to only system apps? - I am fine to restrict to system apps if there are concerns",
       "parentUuid": "515643c8_7ab45585",
+      "range": {
+        "startLine": 3216,
+        "startChar": 0,
+        "endLine": 3216,
+        "endChar": 54
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "761dc405_a4e6f4d0",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T23:21:57Z",
+      "side": 1,
+      "message": "Closing to have the discussion only on one.",
+      "parentUuid": "882059df_1c033f25",
       "range": {
         "startLine": 3216,
         "startChar": 0,
@@ -397,6 +445,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c769878d_d1397f3b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T23:21:57Z",
+      "side": 1,
+      "message": "I don\u0027t know the public usage of this.\nIn previous patchset I saw some method were system only and some were public, hence my comment.\n\nIf this is done for public usage in mind (like companion app for any headset bran) and not simply OEM (like socket offload), then public API should be good. If this is only intended for system usage, then system.",
+      "parentUuid": "17f3c50a_7d4dedd8",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cde1cd05_20f05a6f",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 9
@@ -432,6 +504,30 @@
       "side": 1,
       "message": "auth and encrypt used in internal functions today.\nCurrently there are two variants public apis, secure vs insecure - where secure sets both to true and insecure sets both flags to false.\nWe wanted to align with similar conventions at the SDK and introduce another level which allows \"encryption only\" sockets. Exposing those two flags directly might be too much information for the app developers and end up having more number of setters while building the SocketSettings data structure.\n\nI did have a short sync with Jack on last Friday and he was fine with this structure in general. please let me know if you have more concerns on this approach.",
       "parentUuid": "cde1cd05_20f05a6f",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 80
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "583cb9dd_e443b1e8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T23:21:57Z",
+      "side": 1,
+      "message": "I think the current implementation is more confusing, and the are name hard to read.\nBut that may be because I am not used to this code.\n\n\u003e Exposing those two flags directly might be too much information for the app developers\n\nThe two flag are still exposed with the current implementation as the enum is a joint mix of the two flags.\n\n\u003e more number of setters while building the SocketSettings data structure.\n\nI don\u0027t consider this to be an issue. It easier to have multiple simple purpose setter, than one setter that does hidden work.\n\n----\n\nIn the end, I don\u0027t own this code. You should be able to do as you think is best here.",
+      "parentUuid": "ff427a29_91690ca2",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -544,6 +640,30 @@
       "side": 1,
       "message": "Trying to use the existing constants defined here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003d8dd232daf4a4cf16df57be218d91c3bcc2107692;l\u003d103. Unfortunately there are no intdefs defined for this.\n\nDo I need to define new Intdef ? I was not sure if I can define new Intdef for @SocketType with existing constants. please let me know your thoughts",
       "parentUuid": "3cb3cb62_d1bbc403",
+      "range": {
+        "startLine": 60,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f72cd56_6d8eea70",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T23:21:57Z",
+      "side": 1,
+      "message": "Please yes, define a new intdef in this case. You will be able to use it in a couple places in this CL, maybe there are other place you can extend the usage in later CL too.\n\nIntDef are not part of the api surface but just for documentation purpose. We can add / edit / remove them anytime if needed.",
+      "parentUuid": "42134bdb_69e8c529",
       "range": {
         "startLine": 60,
         "startChar": 27,
@@ -824,6 +944,30 @@
       "side": 1,
       "message": "Trying to use the existing constants defined here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003d8dd232daf4a4cf16df57be218d91c3bcc2107692;l\u003d103. Unfortunately there are no intdefs defined for this.\n\nDo I need to define new Intdef ? I was not sure if I can define new Intdef for @SocketType with existing constants. please let me know your thoughts",
       "parentUuid": "c27bd7ed_48c34427",
+      "range": {
+        "startLine": 169,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d49d18_b55e2b26",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T23:21:57Z",
+      "side": 1,
+      "message": "Closing to have the discussion only on one.",
+      "parentUuid": "a99581ca_9436bdda",
       "range": {
         "startLine": 169,
         "startChar": 48,
