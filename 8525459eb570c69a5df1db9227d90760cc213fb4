@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4225fd6c_5ea89c24",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4535,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-21T17:04:58Z",
+      "side": 1,
+      "message": "If the new flag `FLAG_BT_SOCKET_SETTINGS_API` is ready, please replace `FLAG_BT_OFFLOAD_SOCKET_API` with it.",
+      "range": {
+        "startLine": 4535,
+        "startChar": 25,
+        "endLine": 4535,
+        "endChar": 52
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f17d1b6_af28e87e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3214,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-21T17:04:58Z",
+      "side": 1,
+      "message": "If the new flag `FLAG_BT_SOCKET_SETTINGS_API` is ready, please replace `FLAG_BT_OFFLOAD_SOCKET_API` with it.",
+      "range": {
+        "startLine": 3214,
+        "startChar": 25,
+        "endLine": 3214,
+        "endChar": 52
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f2d30a7_794f5c5e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-21T17:04:58Z",
+      "side": 1,
+      "message": "If the new flag `FLAG_BT_SOCKET_SETTINGS_API` is ready, please replace  `FLAG_BT_OFFLOAD_SOCKET_API` with it.",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ed8a898f_e6e30066",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 38,
+                "endChar": 0
+              },
+              "replacement": "@FlaggedApi(Flags.FLAG_BT_SOCKET_SETTINGS_API)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
