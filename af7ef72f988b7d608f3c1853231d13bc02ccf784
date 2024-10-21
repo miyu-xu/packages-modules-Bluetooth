@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d55c9461_6d6679a0",
+        "filename": "pandora/interfaces/pandora_experimental/vcp.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-21T17:09:34Z",
+      "side": 1,
+      "message": "Can we name it `waitConnect` and change the package name to `package pandora.vcp` instead ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ec4bc141_aac42381",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/vcp.proto",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": "  rpc WaitVcpConnect(WaitVcpConnectRequest) returns (google.protobuf.Empty);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/vcp.proto",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
