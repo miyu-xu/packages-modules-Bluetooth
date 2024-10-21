@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0438d525_7024c627",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T18:06:00Z",
+      "side": 1,
+      "message": "Put a comment and an empty line to prevent bpfmt for sorting the list",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 13
+      },
+      "revId": "2dfe1bcf2de0cace1e3e29ff9e4d4fdb12665dcc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
