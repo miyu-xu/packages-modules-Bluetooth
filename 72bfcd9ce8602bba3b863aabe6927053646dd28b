@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee3861a_208f313c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T16:48:38Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "62c26854_cfadb651",
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "450816c5_826dc68b",
@@ -124,6 +142,30 @@
           ]
         }
       ],
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc54f77_3e1e39fe",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T16:48:38Z",
+      "side": 1,
+      "message": "I am reusing the constants that is already defined in BluetoothSocket.java. I dont think we really need IntDef here? https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003d8dd232daf4a4cf16df57be218d91c3bcc2107692;l\u003d123",
+      "parentUuid": "767b3ac3_5f20c82a",
+      "range": {
+        "startLine": 308,
+        "startChar": 37,
+        "endLine": 308,
+        "endChar": 40
+      },
       "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
