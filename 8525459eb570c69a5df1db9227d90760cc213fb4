@@ -26,6 +26,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b56d5580_bd6ad21d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4536,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be a systemAPI ? Is it a public API on purpose ?",
+      "range": {
+        "startLine": 4536,
+        "startChar": 0,
+        "endLine": 4536,
+        "endChar": 64
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9d689ce_32bb97b5",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4554,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "Should this be a switch ?",
+      "range": {
+        "startLine": 4540,
+        "startChar": 8,
+        "endLine": 4554,
+        "endChar": 37
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f17d1b6_af28e87e",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 9
@@ -42,6 +88,52 @@
         "startChar": 25,
         "endLine": 3214,
         "endChar": 52
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "515643c8_7ab45585",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "SystemAPi ?",
+      "range": {
+        "startLine": 3216,
+        "startChar": 0,
+        "endLine": 3216,
+        "endChar": 54
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa6be5f_5ee89f8f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3242,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "This code is duplicated between the two methods. Should it be part of BluetoothSocketSettings ?",
+      "range": {
+        "startLine": 3226,
+        "startChar": 0,
+        "endLine": 3242,
+        "endChar": 9
       },
       "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -84,6 +176,364 @@
           ]
         }
       ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f3f917c_f59c8ee9",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "SystemAPI ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cde1cd05_20f05a6f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "I don\u0027t understand the usage of these\n\nYou are using them to configure encryption and authentication, but the security level is not used as one entity. The usage in the other file split it to `auth` and to `encrypt` before calling the BluetoothSocket manager.\n\nShould we simply have two boolean variable in BluetoothSocketSettings to represent encryption and authentication, and let the apps sets them as they want independently ?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 80
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8d9edc_503345ed",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "There is a tab here",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb3cb62_d1bbc403",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "annotate the variable with appropriate intdef",
+      "range": {
+        "startLine": 60,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e904b71b_36f296bd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 60,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "     * Type of the socket, {@link BluetoothSocket#TYPE_RFCOMM}, {@link BluetoothSocket#TYPE_L2CAP}\n     * or {@link BluetoothSocket#TYPE_L2CAP_LE}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d49f6eb_44ca01f5",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "The doc is saying twice the same thing.\n\nYou can one-line most of these docs",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "82ca9c6f_97c182a4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "     * Return the service name for SDP. This is used to create the SDP record.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "     * Return the service UUID for SDP. This is used to create the SDP record.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a467d48_3ebf3864",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "the whole toString is between double quote, and here it\u0027s a single quote that make you need to escape it.\nIf you replace with double quote you don\u0027t have this issue anymore",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "23257a93_7f4de14b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 144,
+                "startChar": 0,
+                "endLine": 145,
+                "endChar": 0
+              },
+              "replacement": "                + \"\u0027\"\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": "                + \"\u0027\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d041584_53380295",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "This doesn\u0027t match any previous quote",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d2d24120_26ff7c5e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c27bd7ed_48c34427",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "this would be repeating the intdef",
+      "range": {
+        "startLine": 169,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5cdbc174_330267ad",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 169,
+                "startChar": 0,
+                "endLine": 171,
+                "endChar": 0
+              },
+              "replacement": "         * Set socket Type. This can be of type BluetoothSocket.TYPE_RFCOMM,\n         * BluetoothSocket.TYPE_L2CAP or BluetoothSocket.TYPE_LE\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7fe8f4_03079a1a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "This doesn\u0027t match the check as you are allowing for TYPE_L2CAP_LE too.\nWe should use a IntDef instead.",
+      "range": {
+        "startLine": 172,
+        "startChar": 45,
+        "endLine": 173,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c1a8db68_717b7053",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 173,
+                "startChar": 0,
+                "endLine": 174,
+                "endChar": 0
+              },
+              "replacement": "         *     BluetoothSocket#TYPE_L2CAP} or {@link BluetoothSocket#TYPE_L2CAP_LE}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afecaf88_6e91a0d2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T17:41:52Z",
+      "side": 1,
+      "message": "This is already part of the @SocketSecurityLevel annotation",
+      "range": {
+        "startLine": 204,
+        "startChar": 72,
+        "endLine": 208,
+        "endChar": 87
+      },
       "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
