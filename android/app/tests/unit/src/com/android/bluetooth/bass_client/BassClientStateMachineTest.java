@@ -39,6 +39,7 @@ import static com.android.bluetooth.bass_client.BassClientStateMachine.REMOTE_SC
 import static com.android.bluetooth.bass_client.BassClientStateMachine.REMOTE_SCAN_STOP;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.REMOVE_BCAST_SOURCE;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.SELECT_BCAST_SOURCE;
+import static com.android.bluetooth.bass_client.BassClientStateMachine.SEND_PAST;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.SET_BCAST_CODE;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.START_SCAN_OFFLOAD;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.STOP_SCAN_OFFLOAD;
@@ -894,11 +895,22 @@ public class BassClientStateMachineTest {
         when(characteristic.getValue()).thenReturn(value);
         when(mBassClientService.getPeriodicAdvertisementResult(any(), anyInt()))
                 .thenReturn(paResult);
-        when(paResult.getSyncHandle()).thenReturn(100);
+        int syncHandle = 100;
+        when(paResult.getSyncHandle()).thenReturn(syncHandle);
 
         Mockito.clearInvocations(callbacks);
         cb.onCharacteristicRead(null, characteristic, GATT_SUCCESS);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        int serviceData = 0x000000FF & sourceId;
+        serviceData = serviceData << 8;
+        // advA matches EXT_ADV_ADDRESS
+        // also matches source address (as we would have written)
+        serviceData = serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_EXT_ADV_ADDRESS);
+        serviceData = serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_SOURCE_ADV_ADDRESS);
+        verify(mMethodProxy)
+                .periodicAdvertisingManagerTransferSync(
+                        any(), any(), eq(serviceData), eq(syncHandle));
 
         verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
@@ -1707,6 +1719,26 @@ public class BassClientStateMachineTest {
     }
 
     @Test
+    public void sendSendPastMessage_inConnectedState() {
+        initToConnectedState();
+        int syncHandle = 1234;
+        int sourceId = 4321;
+
+        mBassClientStateMachine.sendMessage(SEND_PAST, syncHandle, sourceId);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        int serviceData = 0x000000FF & sourceId;
+        serviceData = serviceData << 8;
+        // advA matches EXT_ADV_ADDRESS
+        // also matches source address (as we would have written)
+        serviceData = serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_EXT_ADV_ADDRESS);
+        serviceData = serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_SOURCE_ADV_ADDRESS);
+        verify(mMethodProxy)
+                .periodicAdvertisingManagerTransferSync(
+                        any(), any(), eq(serviceData), eq(syncHandle));
+    }
+
+    @Test
     public void sendConnectMessage_inConnectedProcessingState_doesNotChangeState() {
         initToConnectedProcessingState();
 
@@ -1906,6 +1938,10 @@ public class BassClientStateMachineTest {
         mBassClientStateMachine.sendMessage(SWITCH_BCAST_SOURCE);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         assertThat(mBassClientStateMachine.hasDeferredMessagesSuper(SWITCH_BCAST_SOURCE)).isTrue();
+
+        mBassClientStateMachine.sendMessage(SEND_PAST);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        assertThat(mBassClientStateMachine.hasDeferredMessagesSuper(SEND_PAST)).isTrue();
     }
 
     @Test
