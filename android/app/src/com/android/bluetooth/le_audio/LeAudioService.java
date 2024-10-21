@@ -1543,7 +1543,9 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        return descriptor.mGroupId == mUnicastGroupIdDeactivatedForBroadcastTransition;
+        return (descriptor.mGroupId == mUnicastGroupIdDeactivatedForBroadcastTransition)
+                || device.equals(mActiveAudioInDevice)
+                || device.equals(mActiveAudioOutDevice);
     }
 
     /** Return true if group is primary - is active or was active before switch to broadcast */
