@@ -4215,8 +4215,8 @@ public class BassClientServiceTest {
             verify(mLeAudioService).activeBroadcastAssistantNotification(eq(true));
             Mockito.clearInvocations(mLeAudioService);
 
-            /* Imitate broadcast source stop, sink notify about loosing BIS sync */
-            injectRemoteSourceStateChanged(meta, true, false);
+            /* Imitate broadcast source stop, sink notify about loosing PA and BIS sync */
+            injectRemoteSourceStateChanged(meta, false, false);
 
             /* Unicast would like to stream */
             mBassClientService.cacheSuspendingSources(TEST_BROADCAST_ID);
@@ -4253,8 +4253,8 @@ public class BassClientServiceTest {
                 0 /* STATUS_LOCAL_STREAM_REQUESTED */);
 
         if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            /* Imitate broadcast source stop, sink notify about loosing BIS sync */
-            injectRemoteSourceStateChanged(meta, true, false);
+            /* Imitate broadcast source stop, sink notify about loosing PA and BIS sync */
+            injectRemoteSourceStateChanged(meta, false, false);
         } else {
             verifyRemoveMessageAndInjectSourceRemoval();
         }
