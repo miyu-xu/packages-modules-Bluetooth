@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab9480c_c1b7393d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-21T19:09:40Z",
+      "side": 1,
+      "message": "is there situation where we need to compare more than 2 devices ? (should this take a list / iterable /...",
+      "range": {
+        "startLine": 1045,
+        "startChar": 20,
+        "endLine": 1045,
+        "endChar": 39
+      },
+      "revId": "3e0a34c701dcde83221e66f9cddd1f43e5600449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
