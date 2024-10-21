@@ -326,7 +326,7 @@ static bool lazy_initialize(void) {
   }
   timer_initialized = true;
 
-  if (!timer_create_internal(CLOCK_BOOTTIME_ALARM, &wakeup_timer)) {
+  if (!timer_create_internal(CLOCK_MONOTONIC, &wakeup_timer)) {
     if (!timer_create_internal(CLOCK_BOOTTIME, &wakeup_timer)) {
       goto error;
     }
