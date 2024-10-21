@@ -113,6 +113,7 @@ public class BassClientStateMachine extends StateMachine {
     static final int REACHED_MAX_SOURCE_LIMIT = 16;
     static final int SWITCH_BCAST_SOURCE = 17;
     static final int CANCEL_PENDING_SOURCE_OPERATION = 18;
+    static final int SEND_PAST = 19;
 
     // NOTE: the value is not "final" - it is modified in the unit tests
     @VisibleForTesting private int mConnectTimeoutMs;
@@ -823,29 +824,7 @@ public class BassClientStateMachine extends StateMachine {
                 int syncHandle = result.getSyncHandle();
                 log("processPASyncState: syncHandle " + result.getSyncHandle());
                 if (syncHandle != BassConstants.INVALID_SYNC_HANDLE) {
-                    serviceData = 0x000000FF & recvState.getSourceId();
-                    serviceData = serviceData << 8;
-                    // advA matches EXT_ADV_ADDRESS
-                    // also matches source address (as we would have written)
-                    serviceData =
-                            serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_EXT_ADV_ADDRESS);
-                    serviceData =
-                            serviceData
-                                    & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_SOURCE_ADV_ADDRESS);
-                    log(
-                            "Initiate PAST for: "
-                                    + mDevice
-                                    + ", syncHandle: "
-                                    + syncHandle
-                                    + "serviceData"
-                                    + serviceData);
-                    BluetoothMethodProxy.getInstance()
-                            .periodicAdvertisingManagerTransferSync(
-                                    BassClientPeriodicAdvertisingManager
-                                            .getPeriodicAdvertisingManager(),
-                                    mDevice,
-                                    serviceData,
-                                    syncHandle);
+                    sendPast(syncHandle, recvState.getSourceId());
                 }
             } else {
                 BluetoothLeBroadcastMetadata currentMetadata =
@@ -876,6 +855,31 @@ public class BassClientStateMachine extends StateMachine {
                     Log.e(TAG, "There is no valid sync handle for this Source");
                 }
             }
+        }
+    }
+
+    private void sendPast(int syncHandle, int sourceId) {
+        if (syncHandle != BassConstants.INVALID_SYNC_HANDLE) {
+            int serviceData = 0x000000FF & sourceId;
+            serviceData = serviceData << 8;
+            // advA matches EXT_ADV_ADDRESS
+            // also matches source address (as we would have written)
+            serviceData = serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_EXT_ADV_ADDRESS);
+            serviceData =
+                    serviceData & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_SOURCE_ADV_ADDRESS);
+            log(
+                    "Initiate PAST for: "
+                            + mDevice
+                            + ", syncHandle: "
+                            + syncHandle
+                            + ", serviceData: "
+                            + serviceData);
+            BluetoothMethodProxy.getInstance()
+                    .periodicAdvertisingManagerTransferSync(
+                            BassClientPeriodicAdvertisingManager.getPeriodicAdvertisingManager(),
+                            mDevice,
+                            serviceData,
+                            syncHandle);
         }
     }
 
@@ -2350,6 +2354,11 @@ public class BassClientStateMachine extends StateMachine {
                     int broadcastId = message.arg1;
                     cancelPendingSourceOperation(broadcastId);
                     break;
+                case SEND_PAST:
+                    int syncHandle = message.arg1;
+                    int sourceIdForPast = message.arg2;
+                    sendPast(syncHandle, sourceIdForPast);
+                    break;
                 default:
                     log("CONNECTED: not handled message:" + message.what);
                     return NOT_HANDLED;
@@ -2539,6 +2548,7 @@ public class BassClientStateMachine extends StateMachine {
                 case REACHED_MAX_SOURCE_LIMIT:
                 case SWITCH_BCAST_SOURCE:
                 case PSYNC_ACTIVE_TIMEOUT:
+                case SEND_PAST:
                     log(
                             "defer the message: "
                                     + messageWhatToString(message.what)
@@ -2646,6 +2656,8 @@ public class BassClientStateMachine extends StateMachine {
                 return "CONNECT_TIMEOUT";
             case CANCEL_PENDING_SOURCE_OPERATION:
                 return "CANCEL_PENDING_SOURCE_OPERATION";
+            case SEND_PAST:
+                return "SEND_PAST";
             default:
                 break;
         }
