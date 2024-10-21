@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fa780a9_ffba4d06",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4535,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4225fd6c_5ea89c24",
+      "range": {
+        "startLine": 4535,
+        "startChar": 25,
+        "endLine": 4535,
+        "endChar": 52
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b56d5580_bd6ad21d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-21T17:41:52Z",
       "side": 1,
       "message": "Shouldn\u0027t this be a systemAPI ? Is it a public API on purpose ?",
+      "range": {
+        "startLine": 4536,
+        "startChar": 0,
+        "endLine": 4536,
+        "endChar": 64
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b56ed43_88ac4edc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4536,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "I think these APIs can be accessible to everyone. Could you please let us know if there are any reasons we need to restrict this to only system apps? - I am fine to restrict to system apps if there are concerns",
+      "parentUuid": "b56d5580_bd6ad21d",
       "range": {
         "startLine": 4536,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e258bf8_1338bc6c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4554,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9d689ce_32bb97b5",
+      "range": {
+        "startLine": 4540,
+        "startChar": 8,
+        "endLine": 4554,
+        "endChar": 37
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f17d1b6_af28e87e",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-21T17:04:58Z",
       "side": 1,
       "message": "If the new flag `FLAG_BT_SOCKET_SETTINGS_API` is ready, please replace `FLAG_BT_OFFLOAD_SOCKET_API` with it.",
+      "range": {
+        "startLine": 3214,
+        "startChar": 25,
+        "endLine": 3214,
+        "endChar": 52
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ad1285c_2930dca7",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3214,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5f17d1b6_af28e87e",
       "range": {
         "startLine": 3214,
         "startChar": 25,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "882059df_1c033f25",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3216,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "I think these APIs can be accessible to everyone. Could you please let us know if there are any reasons we need to restrict this to only system apps? - I am fine to restrict to system apps if there are concerns",
+      "parentUuid": "515643c8_7ab45585",
+      "range": {
+        "startLine": 3216,
+        "startChar": 0,
+        "endLine": 3216,
+        "endChar": 54
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3aa6be5f_5ee89f8f",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 9
@@ -129,6 +249,30 @@
       "writtenOn": "2024-10-21T17:41:52Z",
       "side": 1,
       "message": "This code is duplicated between the two methods. Should it be part of BluetoothSocketSettings ?",
+      "range": {
+        "startLine": 3226,
+        "startChar": 0,
+        "endLine": 3242,
+        "endChar": 9
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb33496_600c5523",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3242,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aa6be5f_5ee89f8f",
       "range": {
         "startLine": 3226,
         "startChar": 0,
@@ -180,6 +324,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a24f645_2b85fc11",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f2d30a7_794f5c5e",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f3f917c_f59c8ee9",
@@ -193,6 +361,30 @@
       "writtenOn": "2024-10-21T17:41:52Z",
       "side": 1,
       "message": "SystemAPI ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17f3c50a_7d4dedd8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "I think these APIs can be accessible to everyone. Could you please let us know if there are any reasons we need to restrict this to only system apps? - I am fine to restrict to system apps if there are concerns",
+      "parentUuid": "6f3f917c_f59c8ee9",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -228,6 +420,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff427a29_91690ca2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "auth and encrypt used in internal functions today.\nCurrently there are two variants public apis, secure vs insecure - where secure sets both to true and insecure sets both flags to false.\nWe wanted to align with similar conventions at the SDK and introduce another level which allows \"encryption only\" sockets. Exposing those two flags directly might be too much information for the app developers and end up having more number of setters while building the SocketSettings data structure.\n\nI did have a short sync with Jack on last Friday and he was fine with this structure in general. please let me know if you have more concerns on this approach.",
+      "parentUuid": "cde1cd05_20f05a6f",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 80
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc8d9edc_503345ed",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 9
@@ -239,6 +455,30 @@
       "writtenOn": "2024-10-21T17:41:52Z",
       "side": 1,
       "message": "There is a tab here",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9bd0905_4718ebe6",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc8d9edc_503345ed",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -286,6 +526,30 @@
           ]
         }
       ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42134bdb_69e8c529",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Trying to use the existing constants defined here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003d8dd232daf4a4cf16df57be218d91c3bcc2107692;l\u003d103. Unfortunately there are no intdefs defined for this.\n\nDo I need to define new Intdef ? I was not sure if I can define new Intdef for @SocketType with existing constants. please let me know your thoughts",
+      "parentUuid": "3cb3cb62_d1bbc403",
+      "range": {
+        "startLine": 60,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 41
+      },
       "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -341,6 +605,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0265c212_c9ca9cf8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d49f6eb_44ca01f5",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 31
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a467d48_3ebf3864",
@@ -392,6 +680,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f7a62b_fbed704f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "I dont see a need of keeping serviceName within single quote. removing it.",
+      "parentUuid": "1a467d48_3ebf3864",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 22
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d041584_53380295",
@@ -429,6 +741,30 @@
           ]
         }
       ],
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14105cb5_21ec941a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d041584_53380295",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 22
+      },
       "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -476,6 +812,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a99581ca_9436bdda",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Trying to use the existing constants defined here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003d8dd232daf4a4cf16df57be218d91c3bcc2107692;l\u003d103. Unfortunately there are no intdefs defined for this.\n\nDo I need to define new Intdef ? I was not sure if I can define new Intdef for @SocketType with existing constants. please let me know your thoughts",
+      "parentUuid": "c27bd7ed_48c34427",
+      "range": {
+        "startLine": 169,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec7fe8f4_03079a1a",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 9
@@ -515,6 +875,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "521b8d5e_e03fa617",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec7fe8f4_03079a1a",
+      "range": {
+        "startLine": 172,
+        "startChar": 45,
+        "endLine": 173,
+        "endChar": 42
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afecaf88_6e91a0d2",
@@ -528,6 +912,30 @@
       "writtenOn": "2024-10-21T17:41:52Z",
       "side": 1,
       "message": "This is already part of the @SocketSecurityLevel annotation",
+      "range": {
+        "startLine": 204,
+        "startChar": 72,
+        "endLine": 208,
+        "endChar": 87
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad8bcfa_039d817f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-21T22:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afecaf88_6e91a0d2",
       "range": {
         "startLine": 204,
         "startChar": 72,
