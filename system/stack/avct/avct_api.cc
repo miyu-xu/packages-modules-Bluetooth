@@ -28,11 +28,14 @@
 #include <com_android_bluetooth_flags.h>
 #include <string.h>
 
-#include "avct_int.h"
 #include "bta/include/bta_sec_api.h"
 #include "internal_include/bt_target.h"
+#include "main/shim/dumpsys.h"
 #include "osi/include/allocator.h"
+#include "stack/avct/avct_int.h"
+#include "stack/include/avct_api.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/bt_psm_types.h"
 #include "stack/include/l2cap_interface.h"
 #include "types/raw_address.h"
 
@@ -103,10 +106,17 @@ void AVCT_Deregister(void) {
   log::verbose("AVCT_Deregister");
 
   /* deregister PSM with L2CAP */
-  stack::l2cap::get_interface().L2CA_Deregister(AVCT_PSM);
+  stack::l2cap::get_interface().L2CA_Deregister(BT_PSM_AVCTP);
 
   /* deregister AVCT_BR_PSM with L2CAP */
-  stack::l2cap::get_interface().L2CA_Deregister(AVCT_BR_PSM);
+  stack::l2cap::get_interface().L2CA_Deregister(BT_PSM_AVCTP_BROWSE);
+
+  // Clean up AVCTP data structures
+  for (int i = 0; i < AVCT_NUM_LINKS; i++) {
+    osi_free(avct_cb.lcb[i].p_rx_msg);
+    fixed_queue_free(avct_cb.lcb[i].tx_q, nullptr);
+    osi_free_and_reset((void**)&(avct_cb.bcb[i].p_tx_msg));
+  }
 }
 
 /*******************************************************************************
