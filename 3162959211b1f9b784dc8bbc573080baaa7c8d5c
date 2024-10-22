@@ -70,6 +70,30 @@
       },
       "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5b5efda_e4b22034",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-22T23:05:22Z",
+      "side": 1,
+      "message": "Ok, I am fine with L2CAP_LE as it anyways differentiate with classic l2cap.\n\nI dont think we support SCO based socket today. I just added it to Intdef for the completeness",
+      "parentUuid": "69e99325_46d55a8f",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
