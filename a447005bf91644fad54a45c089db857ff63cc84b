@@ -16,6 +16,24 @@
       "message": "Flag: com.android.bluetooth.flags.cleanup_le_only_device_type",
       "revId": "a447005bf91644fad54a45c089db857ff63cc84b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0ce66b_dfbaa2d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T16:54:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b921e2d5_ab99c58e",
+      "revId": "a447005bf91644fad54a45c089db857ff63cc84b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
