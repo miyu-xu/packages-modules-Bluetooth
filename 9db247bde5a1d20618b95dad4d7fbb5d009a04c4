@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec9a8d49_e3b17ada",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapbMessageSmsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-10-22T00:30:33Z",
+      "side": 1,
+      "message": "Thanks for fixing this. I thought this would return false when there SMS is not supported, but instead it crashes.",
+      "range": {
+        "startLine": 59,
+        "startChar": 26,
+        "endLine": 59,
+        "endChar": 57
+      },
+      "revId": "9db247bde5a1d20618b95dad4d7fbb5d009a04c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
