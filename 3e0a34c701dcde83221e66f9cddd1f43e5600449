@@ -22,6 +22,30 @@
       },
       "revId": "3e0a34c701dcde83221e66f9cddd1f43e5600449",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f496ba97_d1cc0171",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-22T06:53:32Z",
+      "side": 1,
+      "message": "In this particular scenario we disconnect single device and look into fallback device, so only two devices are here.\n\nIf ADM would like to check if more devices belongs to same group is another story, but someone told me once, \"we cross the bridge when we get there\",  - so I suggest to keep it like this and enhance when we need it.",
+      "parentUuid": "3ab9480c_c1b7393d",
+      "range": {
+        "startLine": 1045,
+        "startChar": 20,
+        "endLine": 1045,
+        "endChar": 39
+      },
+      "revId": "3e0a34c701dcde83221e66f9cddd1f43e5600449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
