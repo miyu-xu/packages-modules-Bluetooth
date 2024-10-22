@@ -22,6 +22,30 @@
       },
       "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4d81925_cf220de2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-22T18:03:46Z",
+      "side": 1,
+      "message": "reason why I did this is current TYPE_L2CAP_LE is restricted to system apps\n--\n    /**\n     * L2CAP socket on LE transport\n     *\n     * @hide\n     */\n    public static final int TYPE_L2CAP_LE \u003d 4;\n    --\n    I might need to make it public If I want this to be usable.\n    \n    Is it ok to remove @hide above and define Intdef for it?\n    And another q, should I ideally do that Intdef in BluetoothSocket.java?",
+      "parentUuid": "69e99325_46d55a8f",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
