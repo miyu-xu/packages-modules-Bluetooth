@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47af859a_c8b9bcd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-22T05:30:03Z",
+      "side": 1,
+      "message": "Now it looks okay to remove the flag.",
+      "revId": "c9b05fc53c3c9254421bb925baa29b2de524d5ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
