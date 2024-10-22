@@ -22,6 +22,30 @@
       },
       "revId": "826f3f4ff62e06d986ba7528ca97f738f2b27dbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8aec84f_1cd198b0",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-22T23:52:51Z",
+      "side": 1,
+      "message": "Yes, exactly.  The memchecker fails without this clean up.\n\nThere is no corresponding `teardown` for this profile that ensures all dynamically acquired memory is released.\n\nThe typical teardown is on a per-control block lifecycle; so if the APIs are not called properly, or the state machine is incorrect, orphaned blocks could accumulate.",
+      "parentUuid": "9db790c8_fccf8e19",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 3
+      },
+      "revId": "826f3f4ff62e06d986ba7528ca97f738f2b27dbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
