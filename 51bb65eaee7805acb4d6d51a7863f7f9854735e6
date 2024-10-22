@@ -160,6 +160,30 @@
       },
       "revId": "51bb65eaee7805acb4d6d51a7863f7f9854735e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a6653ad_f8364129",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-10-22T04:00:22Z",
+      "side": 1,
+      "message": "This CL is to address the recommendation from William, that is to run the suspend/resume from a handler to avoid race.",
+      "parentUuid": "e9f9d4a3_1409e29c",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 57
+      },
+      "revId": "51bb65eaee7805acb4d6d51a7863f7f9854735e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
