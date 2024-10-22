@@ -458,46 +458,46 @@ static void find_in_device_record(const RawAddress& bd_addr, tBLE_BD_ADDR* addre
   return;
 }
 
-bool create_le_connection(uint8_t /* id */, const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type) {
+/** Add a device to the direct connection list. Returns true if device
+ * added to the list, false otherwise */
+bool direct_connect_add(uint8_t app_id, const RawAddress& address, tBLE_ADDR_TYPE addr_type) {
   tBLE_BD_ADDR address_with_type{
           .type = addr_type,
-          .bda = bd_addr,
+          .bda = address,
   };
 
-  find_in_device_record(bd_addr, &address_with_type);
-
-  log::debug("Creating le direct connection to:{} type:{} (initial type: {})", address_with_type,
-             AddressTypeText(address_with_type.type), AddressTypeText(addr_type));
+  find_in_device_record(address, &address_with_type);
 
   if (address_with_type.type == BLE_ADDR_ANONYMOUS) {
-    log::warn(
-            "Creating le direct connection to:{}, address type 'anonymous' is "
-            "invalid",
-            address_with_type);
+    log::warn("Can't use anonymous address for connection: {}", address_with_type);
     return false;
   }
 
-  bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                              /* is_direct */ true);
-  return true;
-}
+  log::debug("app_id={}, address={} (initial type: {})", static_cast<int>(app_id),
+             address_with_type, AddressTypeText(addr_type));
 
-/** Add a device to the direct connection list. Returns true if device
- * added to the list, false otherwise */
-bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
-  log::debug("app_id={}, address={}", static_cast<int>(app_id), address);
   bool in_acceptlist = false;
   auto it = bgconn_dev.find(address);
   if (it != bgconn_dev.end()) {
+    const tAPPS_CONNECTING& info = it->second;
     // app already trying to connect to this particular device
-    if (it->second.doing_direct_conn.count(app_id)) {
-      log::info("direct connect attempt from app_id=0x{:x} already in progress", app_id);
+    if (info.doing_direct_conn.count(app_id)) {
+      log::info("direct connect attempt from app_id=0x{:x} to {} already in progress", app_id,
+                address_with_type);
       return false;
     }
 
+    // This is to match existing GD connection manager behavior - if multiple apps try direct
+    // connect at same time, only 1st request is fully processed
+    if (info.doing_direct_conn.size()) {
+      log::info("app_id=0x{:x}: direct connect from other app already in progress, will merge {}",
+                app_id, address_with_type);
+    }
+
     // are we already in the acceptlist ?
-    if (it->second.is_in_accept_list) {
-      log::warn("Background connection attempt already in progress app_id={:x}", app_id);
+    if (info.is_in_accept_list) {
+      log::warn("Background connection attempt already in progress app_id={:x} {}", app_id,
+                address_with_type);
       in_acceptlist = true;
     }
   }
@@ -509,6 +509,10 @@ bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
       return false;
     }
     bgconn_dev[address].is_in_accept_list = true;
+  } else {
+    // TODO(jpawlowski): if already in accept list, we should just bump parameters up for direct
+    // connection. There is no API for that yet, so just add to accept list
+    bluetooth::shim::ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address), true);
   }
 
   // Setup a timer
@@ -517,7 +521,6 @@ bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
                     base::BindOnce(&wl_direct_connect_timeout_cb, app_id, address));
 
   bgconn_dev[address].doing_direct_conn.emplace(app_id, unique_alarm_ptr(timeout, &alarm_free));
-
   return true;
 }
 
