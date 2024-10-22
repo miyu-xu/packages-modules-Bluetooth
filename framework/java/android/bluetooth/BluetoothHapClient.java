@@ -51,7 +51,7 @@ import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 
 /**
- * This class provides a public APIs to control the Bluetooth Hearing Access Profile client service.
+ * This class provides public APIs to control the Bluetooth Hearing Access Profile client service.
  *
  * <p>BluetoothHapClient is a proxy object for controlling the Bluetooth HAP Service client via IPC.
  * Use {@link BluetoothAdapter#getProfileProxy} to get the BluetoothHapClient proxy object.
@@ -62,7 +62,7 @@ import java.util.function.Consumer;
 public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable {
     private static final String TAG = BluetoothHapClient.class.getSimpleName();
 
-    private CloseGuard mCloseGuard;
+    private final CloseGuard mCloseGuard = new CloseGuard();
 
     /**
      * This class provides callbacks mechanism for the BluetoothHapClient profile.
@@ -329,9 +329,8 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     public static final String EXTRA_HAP_FEATURES = "android.bluetooth.extra.HAP_FEATURES";
 
     /**
-     * Represents an invalid index value. This is usually value returned in a currently active
-     * preset request for a device which is not connected. This value shouldn't be used in the API
-     * calls.
+     * Represents an invalid index value. This is usually returned in a currently active preset
+     * request for a device which is not connected. This value shouldn't be used in the API calls.
      *
      * @hide
      */
@@ -441,7 +440,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
 
-    private IBluetoothHapClient mService;
+    private IBluetoothHapClient mService = null;
 
     /**
      * Create a BluetoothHapClient proxy object for interacting with the local Bluetooth Hearing
@@ -451,7 +450,6 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     BluetoothHapClient(Context context, BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = mAdapter.getAttributionSource();
-        mService = null;
 
         Consumer<IBluetoothHapClient> registerConsumer =
                 (IBluetoothHapClient service) -> {
@@ -471,16 +469,13 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                 };
 
         mCallbackWrapper = new CallbackWrapper(registerConsumer, unregisterConsumer);
-        mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
 
     /** @hide */
     @SuppressWarnings("Finalize") // TODO(b/314811467)
     protected void finalize() {
-        if (mCloseGuard != null) {
-            mCloseGuard.warnIfOpen();
-        }
+        mCloseGuard.warnIfOpen();
         close();
     }
 
