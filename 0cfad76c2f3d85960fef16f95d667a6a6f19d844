@@ -39,6 +39,30 @@
       },
       "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3d55bf2_915a925a",
+        "filename": "flags/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1944425
+      },
+      "writtenOn": "2024-10-22T20:32:33Z",
+      "side": 1,
+      "message": "not it is supported. but to make it work correctly, it is a little complicated. I checked currently it is not used. Let me know when it is used, then we can set it up correctly",
+      "parentUuid": "48fae807_b16b8df7",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
