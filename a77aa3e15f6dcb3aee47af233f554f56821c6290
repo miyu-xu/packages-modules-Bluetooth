@@ -16,6 +16,24 @@
       "message": "Testing in teamfood seemed to tentatively resolve the issue for us.\n\nPer Himanshu, phones wouldn\u0027t encounter this issue as they\u0027d wake up upon receiving the GATT response. Some alternatives/amendments could be to make this configurable through a flag, or to use CLOCK_MONOTONIC in BT instead for some timers.",
       "revId": "a77aa3e15f6dcb3aee47af233f554f56821c6290",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b4dccb8_28f6aaea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3311688
+      },
+      "writtenOn": "2024-10-22T10:53:26Z",
+      "side": 1,
+      "message": "Putting this up now for thoughts on this change.",
+      "parentUuid": "f9454223_148120b6",
+      "revId": "a77aa3e15f6dcb3aee47af233f554f56821c6290",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
