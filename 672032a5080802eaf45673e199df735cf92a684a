@@ -22,6 +22,30 @@
       },
       "revId": "672032a5080802eaf45673e199df735cf92a684a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61596e30_39fb4cb3",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-22T22:31:41Z",
+      "side": 1,
+      "message": "That\u0027s already the case",
+      "parentUuid": "923257cc_92de145e",
+      "range": {
+        "startLine": 822,
+        "startChar": 0,
+        "endLine": 824,
+        "endChar": 47
+      },
+      "revId": "672032a5080802eaf45673e199df735cf92a684a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
