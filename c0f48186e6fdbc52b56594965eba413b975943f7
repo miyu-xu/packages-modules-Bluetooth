@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81dff87e_3e743ea6",
+        "filename": "system/include/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T00:22:05Z",
+      "side": 1,
+      "message": "remove too ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "c0f48186e6fdbc52b56594965eba413b975943f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
