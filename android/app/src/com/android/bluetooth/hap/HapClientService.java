@@ -58,6 +58,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /** Provides Bluetooth Hearing Access profile, as a service. */
 public class HapClientService extends ProfileService {
@@ -578,25 +580,27 @@ public class HapClientService extends ProfileService {
     }
 
     BluetoothHapPresetInfo getPresetInfo(BluetoothDevice device, int presetIndex) {
-        BluetoothHapPresetInfo defaultValue = null;
-        if (presetIndex == BluetoothHapClient.PRESET_INDEX_UNAVAILABLE) return defaultValue;
-
-        if (Utils.isPtsTestMode()) {
-            /* We want native to be called for PTS testing even we have all
-             * the data in the cache here
-             */
-            mHapClientNativeInterface.getPresetInfo(device, presetIndex);
+        CompletableFuture<BluetoothHapPresetInfo> future = new CompletableFuture<>();
+        mHapClientNativeInterface.getPresetInfo(device, presetIndex);
+        try {
+            BluetoothHapPresetInfo preset = future.get(1_000, TimeUnit.MILLISECONDS);
+            if (preset != null) {
+                return preset;
+            }
+        } catch (Exception e) {
+            // ignore exception
         }
+        // Fallback to cached preset in case the remote communication didn't complete
         List<BluetoothHapPresetInfo> current_presets = mPresetsMap.get(device);
         if (current_presets != null) {
-            for (BluetoothHapPresetInfo preset : current_presets) {
-                if (preset.getIndex() == presetIndex) {
-                    return preset;
+            for (BluetoothHapPresetInfo p : current_presets) {
+                if (p.getIndex() == presetIndex) {
+                    return p;
                 }
             }
         }
 
-        return defaultValue;
+        return null;
     }
 
     List<BluetoothHapPresetInfo> getAllPresetInfo(BluetoothDevice device) {
