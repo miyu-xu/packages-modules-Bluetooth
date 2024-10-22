@@ -103,6 +103,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "218eb1ac_56ef9382",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-22T18:10:10Z",
+      "side": 1,
+      "message": "ok I see.  The ask is to add the dumpsys to another CL.  Got it.",
+      "parentUuid": "3fc09772_079b6952",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae27548c_70dd5cb5",
         "filename": "system/stack/Android.bp",
         "patchSetId": 8
@@ -150,6 +168,24 @@
       "side": 1,
       "message": "Reopening as not done.",
       "parentUuid": "8e1019f0_d37c16e3",
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aae5a4d6_06e18eb1",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-22T18:10:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ebc2ebaa_989691bb",
       "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -215,6 +251,30 @@
       "side": 1,
       "message": "Reopening as not done.",
       "parentUuid": "30323bb9_9c02604b",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "28cc46e5d0cd95d105397ae1a6e7e13c3f56c401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a47f9fb_990efe9c",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-22T18:10:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9b66fd91_a070a219",
       "range": {
         "startLine": 114,
         "startChar": 0,
