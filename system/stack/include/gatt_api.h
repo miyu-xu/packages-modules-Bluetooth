@@ -311,7 +311,7 @@ constexpr uint8_t LE_PHY_CODED = (1 << LE_PHY_CODED_BIT);
 /* MAX GATT MTU size
  */
 #ifndef GATT_MAX_MTU_SIZE
-#define GATT_MAX_MTU_SIZE 517
+#define GATT_MAX_MTU_SIZE 498
 #endif
 
 /* default GATT MTU size over LE link

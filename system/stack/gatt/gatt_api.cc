@@ -707,8 +707,7 @@ tGATT_STATUS GATTC_ConfigureMTU(tCONN_ID conn_id, uint16_t mtu) {
   tGATT_TCB* p_tcb = gatt_get_tcb_by_idx(tcb_idx);
   tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
 
-  if ((p_tcb == NULL) || (p_reg == NULL) || (mtu < GATT_DEF_BLE_MTU_SIZE) ||
-      (mtu > GATT_MAX_MTU_SIZE)) {
+  if ((p_tcb == NULL) || (p_reg == NULL) || (mtu < GATT_DEF_BLE_MTU_SIZE)) {
     log::warn(
             "Unable to configure ATT mtu size illegal parameter conn_id:{} mtu:{} "
             "tcb:{} reg:{}",
