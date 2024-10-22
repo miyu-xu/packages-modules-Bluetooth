@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdd45924_77ec5dad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T22:02:55Z",
+      "side": 1,
+      "message": "Let me try an ab run first, but I remember I had trouble reproducing this locally too. (Actually I don\u0027t even remember successfully reproducing outside of automate post submit coverage run)",
+      "parentUuid": "0ca5cd6a_27a63c5d",
+      "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48fae807_b16b8df7",
@@ -97,6 +115,30 @@
       "side": 1,
       "message": "oh it has to have that, otherwise the build will fail. hmm..",
       "parentUuid": "d3d55bf2_915a925a",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97af105c_946dd405",
+        "filename": "flags/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T22:02:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fb4cfb86_4a8229ef",
       "range": {
         "startLine": 81,
         "startChar": 11,
