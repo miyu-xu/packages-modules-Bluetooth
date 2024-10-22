@@ -46,6 +46,30 @@
       },
       "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b94b3807_e5e3fae4",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T18:09:20Z",
+      "side": 1,
+      "message": "It would be better to remove the hide than to add 3 concurrent definition.\n\nYou can also rename TYPE_L2CAP_LE to the name that match the best what you are achieving here (i saw you wanted it to be called TYPE_LE.\nI would recommend doing the renaming in a previous CL (just a global search \u0026 replace) and only remove the @hide in this CL.\n\n\nFor the Intdef, I think having it in BluetoothSocket will make the most sense, but I noticed BluetoothSocket define TYPE_SCO and you didn\u0027t put it in SocketType.\n\nShould the IntDef be called DataSocketType and exclude the SCO ? OR is this a mistake and we want TYPE_SCO in the intdef ?",
+      "parentUuid": "e4d81925_cf220de2",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
