@@ -70,6 +70,24 @@
       "parentUuid": "c67ad71c_1e4ccd8e",
       "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff47c1c_61d93ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-22T07:09:53Z",
+      "side": 1,
+      "message": "Yeah, I was confused by this description of `onSourceLost` callback, but agree with the idea that it\u0027s good improvement to exposed that device is lost when is not visible at all for assistant - not only by PA.",
+      "parentUuid": "dd31404f_121284d3",
+      "revId": "757a97518108c23546556f7cc4a2555fb5b50027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
