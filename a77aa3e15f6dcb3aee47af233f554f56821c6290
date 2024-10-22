@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e38c3b_1476d5e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3311688
+      },
+      "writtenOn": "2024-10-22T19:30:58Z",
+      "side": 1,
+      "message": "I think if the HAL is able to receive the response then it\u0027s all good, but this issue manifests when we have a flow of:\n\nsend GATT command -\u003e start gatt_rsp_timer -\u003e system goes into AP sleep -\u003e GATT response is received, but not processed by stack due to AP sleep -\u003e more than 30 seconds pass -\u003e AP is woken up by happenstance -\u003e timer is now way past its expiration date and immediately fires, triggering the gatt_disconnect flow -\u003e remote is now disconnected until it\u0027s manually connected\n\nWhen TVs go to sleep (and the AP correspondingly goes to sleep), there is often no facility for the BT controller to wake up the AP due to hardware limitations. So if we hold a wakelock during the vulnerable timespan (during which we probably shouldn\u0027t be asleep anyways) we won\u0027t trigger that gatt_disconnect flow.",
+      "parentUuid": "25a24140_bfc40f5b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "a77aa3e15f6dcb3aee47af233f554f56821c6290",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f9454223_148120b6",
