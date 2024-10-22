@@ -16,6 +16,29 @@
       "message": "Is this a new architecture around flag and new way to use them ?",
       "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48fae807_b16b8df7",
+        "filename": "flags/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T20:26:36Z",
+      "side": 1,
+      "message": "Will this still be supported ? or do we need to replace it as well?",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
