@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a91b54_722c445b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4708,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-22T01:11:57Z",
+      "side": 1,
+      "message": "LGTM generally if design is finailized.",
+      "range": {
+        "startLine": 4708,
+        "startChar": 0,
+        "endLine": 4708,
+        "endChar": 29
+      },
+      "revId": "7aa2f6f1964c361995cfd0a5e204df83c286ebe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
