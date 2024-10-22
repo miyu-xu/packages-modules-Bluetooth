@@ -467,6 +467,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f19344_c7868cf0",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-22T02:18:03Z",
+      "side": 1,
+      "message": "This may be used by the companion app for Android wear support. We need to have this as public.\nyes, you are right one of the setter was marked as @systemApi, that was a typo. I fixed it",
+      "parentUuid": "c769878d_d1397f3b",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cde1cd05_20f05a6f",
@@ -528,6 +552,30 @@
       "side": 1,
       "message": "I think the current implementation is more confusing, and the are name hard to read.\nBut that may be because I am not used to this code.\n\n\u003e Exposing those two flags directly might be too much information for the app developers\n\nThe two flag are still exposed with the current implementation as the enum is a joint mix of the two flags.\n\n\u003e more number of setters while building the SocketSettings data structure.\n\nI don\u0027t consider this to be an issue. It easier to have multiple simple purpose setter, than one setter that does hidden work.\n\n----\n\nIn the end, I don\u0027t own this code. You should be able to do as you think is best here.",
       "parentUuid": "ff427a29_91690ca2",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 80
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a1b36ca_c3951038",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-22T02:18:03Z",
+      "side": 1,
+      "message": "Yes, Names are little confusion. Initially these were defined as LEVEL_0, _1 and _2. But later decided to have this to be descriptive.",
+      "parentUuid": "583cb9dd_e443b1e8",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -664,6 +712,30 @@
       "side": 1,
       "message": "Please yes, define a new intdef in this case. You will be able to use it in a couple places in this CL, maybe there are other place you can extend the usage in later CL too.\n\nIntDef are not part of the api surface but just for documentation purpose. We can add / edit / remove them anytime if needed.",
       "parentUuid": "42134bdb_69e8c529",
+      "range": {
+        "startLine": 60,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ce62dd_3363194c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-22T02:18:03Z",
+      "side": 1,
+      "message": "I have defined new IntDef now in SocketSettings. please check",
+      "parentUuid": "9f72cd56_6d8eea70",
       "range": {
         "startLine": 60,
         "startChar": 27,
