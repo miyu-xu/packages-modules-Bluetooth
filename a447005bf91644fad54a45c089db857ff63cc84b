@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b921e2d5_ab99c58e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-22T15:26:53Z",
+      "side": 1,
+      "message": "Flag: com.android.bluetooth.flags.cleanup_le_only_device_type",
+      "revId": "a447005bf91644fad54a45c089db857ff63cc84b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
