@@ -16,6 +16,29 @@
       "message": "Thanks William!",
       "revId": "c134953ac4ab7882f2f187813dc8c6d2f73ce656",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1535b27_5754d496",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-10-22T06:02:02Z",
+      "side": 1,
+      "message": "\"This call should be done twice\" is confusing as here it is `times(1)`",
+      "range": {
+        "startLine": 954,
+        "startChar": 38,
+        "endLine": 954,
+        "endChar": 46
+      },
+      "revId": "c134953ac4ab7882f2f187813dc8c6d2f73ce656",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
