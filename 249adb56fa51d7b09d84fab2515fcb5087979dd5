@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46538f4_6f788adc",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T21:34:11Z",
+      "side": 1,
+      "message": "Should this be flagged ?",
+      "range": {
+        "startLine": 926,
+        "startChar": 0,
+        "endLine": 926,
+        "endChar": 50
+      },
+      "revId": "249adb56fa51d7b09d84fab2515fcb5087979dd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
