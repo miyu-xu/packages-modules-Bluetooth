@@ -52,6 +52,24 @@
       "parentUuid": "f396212a_19d7b6e8",
       "revId": "365d46efcc3bc17e155b10071b50f2703a0c2360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36d4997_5efa6092",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-22T06:31:27Z",
+      "side": 1,
+      "message": "But that\u0027s not true. PA sync lost or unsync because of limit is not a reason to send callback onSourceLost. Then we only start monitoring extended advertisements and lack of them is a reason for onSourceLost. BASS sync/unsync is not the same as found/lost.\nIf we want to be such precise then we should update onSourceFound description too because now there is only information that: `Callback invoked when a new Broadcast Source is found`.\n\nI talked with Lukasz, and we think that there is no need to describe for user reason for found and lost. He should know only that after found this broadcaster is ready to synchronize with it and after lost, it is no longer available.",
+      "parentUuid": "9b115e2b_f6370aa0",
+      "revId": "365d46efcc3bc17e155b10071b50f2703a0c2360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
