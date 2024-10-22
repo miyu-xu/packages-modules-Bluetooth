@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b1b94ed_c8992b8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:30:16Z",
+      "side": 1,
+      "message": "Comment does not apply",
+      "range": {
+        "startLine": 910,
+        "startChar": 0,
+        "endLine": 910,
+        "endChar": 45
+      },
+      "revId": "47145dd78fc281eb0178989732b43ba54316deef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a5f9e63_22bac1de",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:30:16Z",
+      "side": 1,
+      "message": "assertThat can directly check that an array contains something (and the error message is quite amazing)\n\n```suggestion\n        assertThat(mService.getDevices()).contains(mDevice);\n```",
+      "range": {
+        "startLine": 916,
+        "startChar": 8,
+        "endLine": 916,
+        "endChar": 67
+      },
+      "revId": "47145dd78fc281eb0178989732b43ba54316deef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "484668bb_0b2c3455",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:30:16Z",
+      "side": 1,
+      "message": "This should be the other way around.\n\ndeviceVolume is your reference value and you want to assert that getDeviceVolume will be equal to it.",
+      "range": {
+        "startLine": 920,
+        "startChar": 0,
+        "endLine": 920,
+        "endChar": 78
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c702c8c3_4989d71f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+              "range": {
+                "startLine": 920,
+                "startChar": 0,
+                "endLine": 921,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mService.getDeviceVolume(mDevice)).isEqualTo(deviceVolume);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "47145dd78fc281eb0178989732b43ba54316deef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
