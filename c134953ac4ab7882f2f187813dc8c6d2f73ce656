@@ -39,6 +39,30 @@
       },
       "revId": "c134953ac4ab7882f2f187813dc8c6d2f73ce656",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a718d762_25e45e74",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:35:08Z",
+      "side": 1,
+      "message": "I would remove the `times(1)` everywhere are they are the default.\n\nI believe the confusion come because inOrder is not widely used, but it is actually pretty handy when you want to check a sequence of call. (see my other comment).\n\nFor exemple, when sending successive connection intent, you don\u0027t want to have to keep a track of how many intent you sent, just the different argument and transition in order.",
+      "parentUuid": "f1535b27_5754d496",
+      "range": {
+        "startLine": 954,
+        "startChar": 38,
+        "endLine": 954,
+        "endChar": 46
+      },
+      "revId": "c134953ac4ab7882f2f187813dc8c6d2f73ce656",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
