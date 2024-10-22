@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4c21e8_ae1ce102",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-22T07:18:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddfba8e5_72f29231",
+      "range": {
+        "startLine": 86,
+        "startChar": 49,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03ac1bd7_7d4c822d",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "427341be_2534df53",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-22T07:18:08Z",
+      "side": 1,
+      "message": "Yes 😊",
+      "parentUuid": "03ac1bd7_7d4c822d",
+      "range": {
+        "startLine": 121,
+        "startChar": 37,
+        "endLine": 121,
+        "endChar": 56
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "005c219f_027ab25a",
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "685dfe3a_31b6e2eb",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-22T07:18:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "005c219f_027ab25a",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 21
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "056d2532_f58de2a8",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-10-21T18:13:41Z",
       "side": 1,
       "message": "Should this be an empty response ?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 55
+      },
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dce0a30_4c7a70f3",
+        "filename": "android/pandora/server/src/Vcp.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-22T07:18:08Z",
+      "side": 1,
+      "message": "I guess it can",
+      "parentUuid": "056d2532_f58de2a8",
       "range": {
         "startLine": 132,
         "startChar": 0,
@@ -158,6 +254,30 @@
           ]
         }
       ],
+      "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d271c3_e0068385",
+        "filename": "pandora/interfaces/pandora_experimental/vcp.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-22T07:18:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d55c9461_6d6679a0",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 77
+      },
       "revId": "af7ef72f988b7d608f3c1853231d13bc02ccf784",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
