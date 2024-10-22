@@ -180,7 +180,6 @@ public:
   BtifA2dpSource()
       : tx_audio_queue(nullptr),
         tx_flush(false),
-        sw_audio_is_encoding(false),
         encoder_interface(nullptr),
         encoder_interval_ms(0),
         state_(kStateOff) {}
@@ -216,7 +215,6 @@ public:
 
   fixed_queue_t* tx_audio_queue;
   bool tx_flush; /* Discards any outgoing data when true */
-  bool sw_audio_is_encoding;
   RepeatingTimer media_alarm;
   const tA2DP_ENCODER_INTERFACE* encoder_interface;
   uint64_t encoder_interval_ms; /* Local copy of the encoder interval */
@@ -749,8 +747,6 @@ void btif_a2dp_source_on_idle(void) {
 void btif_a2dp_source_on_stopped(tBTA_AV_SUSPEND* p_av_suspend) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
 
-  btif_a2dp_source_cb.sw_audio_is_encoding = false;
-
   // allow using this API for other (acknowledgement and stopping media task)
   // than suspend
   if (p_av_suspend != nullptr && p_av_suspend->status != BTA_AV_SUCCESS) {
@@ -840,17 +836,11 @@ static void btif_a2dp_source_audio_tx_start_event(void) {
           base::BindRepeating(&btif_a2dp_source_audio_handle_timer),
           std::chrono::milliseconds(
                   btif_a2dp_source_cb.encoder_interface->get_encoder_interval_ms()));
-  btif_a2dp_source_cb.sw_audio_is_encoding = true;
 
   btif_a2dp_source_cb.stats.Reset();
-  // Assign session_start_us to 1 when
-  // bluetooth::common::time_get_os_boottime_us() is 0 to indicate
-  // btif_a2dp_source_start_audio_req() has been called
   btif_a2dp_source_cb.stats.session_start_us = bluetooth::common::time_get_os_boottime_us();
-  if (btif_a2dp_source_cb.stats.session_start_us == 0) {
-    btif_a2dp_source_cb.stats.session_start_us = 1;
-  }
   btif_a2dp_source_cb.stats.session_end_us = 0;
+
   A2dpCodecConfig* codec_config = bta_av_get_a2dp_current_codec();
   if (codec_config != nullptr) {
     btif_a2dp_source_cb.stats.codec_index = codec_config->codecIndex();
@@ -925,7 +915,7 @@ static void btif_a2dp_source_audio_handle_timer(void) {
 static uint32_t btif_a2dp_source_read_callback(uint8_t* p_buf, uint32_t len) {
   uint32_t bytes_read = bluetooth::audio::a2dp::read(p_buf, len);
 
-  if (btif_a2dp_source_cb.sw_audio_is_encoding && bytes_read < len) {
+  if (btif_a2dp_source_is_streaming() && bytes_read < len) {
     log::warn("UNDERFLOW: ONLY READ {} BYTES OUT OF {}", bytes_read, len);
     btif_a2dp_source_cb.stats.media_read_total_underflow_bytes += (len - bytes_read);
     btif_a2dp_source_cb.stats.media_read_total_underflow_count++;
