@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cb4f0ab_ea026cac",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-10-22T06:16:44Z",
+      "side": 1,
+      "message": "nit: Having a log::debug here would help differentiating the `GroupStop()` call caused by the timeout from the other stop calls.",
+      "range": {
+        "startLine": 385,
+        "startChar": 16,
+        "endLine": 385,
+        "endChar": 54
+      },
+      "revId": "cf4bfc9dfeca9ab1e3de93d7b6b0737ec140799a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
