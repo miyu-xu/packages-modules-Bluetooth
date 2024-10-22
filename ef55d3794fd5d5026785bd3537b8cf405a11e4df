@@ -86,6 +86,30 @@
       },
       "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55c8ceca_88523458",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-10-22T19:33:43Z",
+      "side": 1,
+      "message": "Sure, I think it\u0027s alright to leave out the check.",
+      "parentUuid": "a2339a65_19813aec",
+      "range": {
+        "startLine": 454,
+        "startChar": 22,
+        "endLine": 454,
+        "endChar": 51
+      },
+      "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
