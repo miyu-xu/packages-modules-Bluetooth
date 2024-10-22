@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87108ab0_d5a3980a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T20:25:13Z",
+      "side": 1,
+      "message": "Is this a new architecture around flag and new way to use them ?",
+      "revId": "0cfad76c2f3d85960fef16f95d667a6a6f19d844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
