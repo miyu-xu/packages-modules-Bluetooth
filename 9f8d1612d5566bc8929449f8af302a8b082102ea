@@ -22,6 +22,30 @@
       },
       "revId": "9f8d1612d5566bc8929449f8af302a8b082102ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e29a0d1_138719a4",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-22T23:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "382bed27_5ab452e8",
+      "range": {
+        "startLine": 103,
+        "startChar": 38,
+        "endLine": 103,
+        "endChar": 45
+      },
+      "revId": "9f8d1612d5566bc8929449f8af302a8b082102ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
