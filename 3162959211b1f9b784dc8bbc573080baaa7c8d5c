@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69e99325_46d55a8f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:44:49Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need to redefined the socket type as this is redundant with the BluetoothSocket definition.\n\nIf this is not possible\n```\n    /** @hide */\n    @IntDef(\n            prefix \u003d {\"BluetoothSocket.TYPE_\"},\n            value \u003d {\n                     BluetoothSocket.TYPE_RFCOMM,\n                     BluetoothSocket.TYPE_L2CAP,\n                     BluetoothSocket.TYPE_LE,\n                    })\n    @Retention(RetentionPolicy.SOURCE)\n    public @interface SocketType {}\n```\n\nThen maybe it would work with static import ?\n\n```\nimport static android.bluetooth.BluetoothSocket.TYPE_RFCOMM;\nimport static android.bluetooth.BluetoothSocket.TYPE_L2CAP;\nimport static android.bluetooth.BluetoothSocket.TYPE_LE;\n\n[...]\n\n    /** @hide */\n    @IntDef(\n            prefix \u003d {\"TYPE_\"},\n            value \u003d {\n                     TYPE_RFCOMM,\n                     TYPE_L2CAP,\n                     TYPE_LE,\n                    })\n    @Retention(RetentionPolicy.SOURCE)\n    public @interface SocketType {}\n```\n\nAnd if this doesn\u0027t work, we should define the intdef in BluetoothSocket and import it here",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "3162959211b1f9b784dc8bbc573080baaa7c8d5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

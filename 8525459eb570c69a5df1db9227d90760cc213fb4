@@ -588,6 +588,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60e11336_3a3bcd7d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:44:49Z",
+      "side": 1,
+      "message": "Wouldn\u0027t `setEncryptionEnabled(Boolean)` and `setAuthenticationEnabled(Boolean)` be the most descriptive ?\n\nPluse you will not have these 3 APIs:\n```\n  field public static final int SOCKET_SEC_LEVEL_ENCRYPTION_NO_AUTHENTICATION \u003d 1; // 0x1\n    field public static final int SOCKET_SEC_LEVEL_ENCRYPTION_WITH_AUTHENTICATION \u003d 2; // 0x2\n    field public static final int SOCKET_SEC_LEVEL_INSECURE \u003d 0; // 0x0\n```",
+      "parentUuid": "2a1b36ca_c3951038",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 80
+      },
+      "revId": "8525459eb570c69a5df1db9227d90760cc213fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc8d9edc_503345ed",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 9
