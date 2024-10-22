@@ -34,6 +34,23 @@
       "parentUuid": "f9454223_148120b6",
       "revId": "a77aa3e15f6dcb3aee47af233f554f56821c6290",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56173838_2be89838",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T17:24:09Z",
+      "side": 1,
+      "message": "I believe Henri has some useful context around wakelock",
+      "revId": "a77aa3e15f6dcb3aee47af233f554f56821c6290",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
