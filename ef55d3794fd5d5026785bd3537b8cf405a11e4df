@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5c66b0e_e5b1a178",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-22T11:57:43Z",
+      "side": 1,
+      "message": "LGTM. But it\u0027s getting late and probably not a good time for review. I\u0027ll come back tomorrow to see if I missed anything.",
+      "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58f6e5bc_5bb05108",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-22T11:57:43Z",
+      "side": 1,
+      "message": "nit: Maybe add a comment here that this message is sent when either HID, media, or GATT client, is disconnected as a whole. Therefore it will not be called when AVRCP is disconnected but not A2DP, as an example.",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 36
+      },
+      "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d8c1fd_dce1fc8b",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-22T11:57:43Z",
+      "side": 1,
+      "message": "Is checking the transport needed?\nI wonder if it\u0027s possible to not connect BAS when this sequence happens: LE connected, BREDR connected, device bonded.\nIn this case I imagine we won\u0027t connect BAS because transport is set to BREDR.",
+      "range": {
+        "startLine": 454,
+        "startChar": 22,
+        "endLine": 454,
+        "endChar": 51
+      },
+      "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
