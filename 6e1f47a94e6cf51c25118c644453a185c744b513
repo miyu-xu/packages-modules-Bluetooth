@@ -16,6 +16,24 @@
       "message": "I am not sure that the code is better after application of the errorprone.\nHere you do allow for EXTRA_MESSAGE_SENT_MSG_TYPE to be set in the intent where before the implicit assumption was that the value carried a valid message type value.",
       "revId": "6e1f47a94e6cf51c25118c644453a185c744b513",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4121a0dd_59d448bb",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4095,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-22T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a28f6f84_76d097e8",
+      "revId": "6e1f47a94e6cf51c25118c644453a185c744b513",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
