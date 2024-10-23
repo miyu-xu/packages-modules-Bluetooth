@@ -9,6 +9,7 @@
 
 #include <memory>
 
+#include "gd/hci/controller_interface_mock.h"
 #include "osi/include/alarm.h"
 #include "osi/test/alarm_mock.h"
 #include "security_device_record.h"
@@ -68,6 +69,13 @@ void ACL_IgnoreLeConnectionFrom(const tBLE_BD_ADDR& address) {
 }
 
 void ACL_IgnoreAllLeConnections() { return localAcceptlistMock->AcceptlistClear(); }
+
+testing::NiceMock<bluetooth::hci::testing::MockControllerInterface> controller;
+
+hci::ControllerInterface* GetController() {
+  ON_CALL(controller, GetLeFilterAcceptListSize).WillByDefault(Return(128));
+  return &controller;
+}
 
 }  // namespace shim
 }  // namespace bluetooth
@@ -259,6 +267,7 @@ TEST_F(BleConnectionManager, test_app_unregister) {
 
   EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address1, true)).WillOnce(Return(true));
   EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address2, false)).WillOnce(Return(true));
+  EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address2, true)).WillOnce(Return(true));
   EXPECT_TRUE(direct_connect_add(CLIENT1, address1));
   EXPECT_TRUE(background_connect_add(CLIENT1, address2));
   EXPECT_TRUE(direct_connect_add(CLIENT2, address2));
@@ -270,6 +279,8 @@ TEST_F(BleConnectionManager, test_app_unregister) {
 
   EXPECT_CALL(*localAcceptlistMock, AcceptlistRemove(address2)).Times(1);
   on_app_deregistered(CLIENT2);
+
+  Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
 }
 
 /** Verify adding device to both direct connection and background connection. */
