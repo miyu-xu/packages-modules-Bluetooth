@@ -70,6 +70,9 @@ protected:
   friend void ServiceStoppedCallback(int status, int server_if, int srvc_handle);
   friend void ServiceDeletedCallback(int status, int server_if, int srvc_handle);
 
+  // Disables and then reenables Bluetooth interface. Any registrations will be lost.
+  void DisableAndEnable();
+
   // Semaphores used to wait for specific callback execution. Each callback
   // has its own semaphore associated with it
   btsemaphore register_client_callback_sem_;

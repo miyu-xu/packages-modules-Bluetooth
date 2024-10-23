@@ -19,6 +19,7 @@
 #include "gatt/gatt_test.h"
 
 #include "adapter/bluetooth_test.h"
+#include "src/gatt/ffi.rs.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -34,6 +35,9 @@ void RegisterClientCallback(int status, int clientIf, const bluetooth::Uuid& /*a
 
 // GATT server callbacks
 void RegisterServerCallback(int status, int server_if, const bluetooth::Uuid& /*uuid*/) {
+  // This copies what happens in the JNI btgatts_register_app_cb function.
+  bluetooth::gatt::open_server(server_if);
+
   instance->status_ = status;
   instance->server_interface_id_ = server_if;
   semaphore_post(instance->register_server_callback_sem_);
@@ -108,6 +112,25 @@ void GattTest::TearDown() {
   ASSERT_EQ(bt_interface()->disable(), BT_STATUS_SUCCESS);
   semaphore_wait(adapter_state_changed_callback_sem_);
   BluetoothTest::TearDown();
+}
+
+void GattTest::DisableAndEnable() {
+  instance = nullptr;
+  gatt_interface_ = nullptr;
+
+  ASSERT_EQ(bt_interface()->disable(), BT_STATUS_SUCCESS);
+  semaphore_wait(adapter_state_changed_callback_sem_);
+
+  ASSERT_EQ(bt_interface()->enable(), BT_STATUS_SUCCESS);
+  semaphore_wait(adapter_state_changed_callback_sem_);
+  EXPECT_EQ(GetState(), BT_STATE_ON);
+
+  gatt_interface_ = reinterpret_cast<const btgatt_interface_t*>(
+          bt_interface()->get_profile_interface(BT_PROFILE_GATT_ID));
+  ASSERT_NE(nullptr, gatt_interface_);
+  instance = this;
+  auto status = gatt_interface_->init(&callbacks);
+  ASSERT_EQ(status, BT_STATUS_SUCCESS);
 }
 
 const BleScannerInterface* GattTest::gatt_scanner_interface() { return gatt_interface_->scanner; }

@@ -50,6 +50,22 @@ TEST_F(GattTest, GattServerRegister) {
   gatt_server_interface()->unregister_server(server_interface_id());
 }
 
+TEST_F(GattTest, GattServerRegisterAfterDisableAndEnable) {
+  // Registers gatt server.
+  bluetooth::Uuid gatt_server_uuid = bluetooth::Uuid::From128BitBE(
+          bluetooth::os::GenerateRandom<bluetooth::Uuid::kNumBytes128>());
+  gatt_server_interface()->register_server(gatt_server_uuid, false);
+  semaphore_wait(register_server_callback_sem_);
+  EXPECT_TRUE(status() == BT_STATUS_SUCCESS) << "Error registering GATT server app callback.";
+
+  DisableAndEnable();
+
+  // Register the server again.
+  gatt_server_interface()->register_server(gatt_server_uuid, false);
+  semaphore_wait(register_server_callback_sem_);
+  EXPECT_TRUE(status() == BT_STATUS_SUCCESS) << "Error registering GATT server app callback.";
+}
+
 TEST_F(GattTest, GattServerBuild) {
   // Registers gatt server.
   bluetooth::Uuid gatt_server_uuid = bluetooth::Uuid::From128BitBE(
