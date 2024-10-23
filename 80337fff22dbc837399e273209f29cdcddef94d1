@@ -130,6 +130,24 @@
       "message": "just curious, have we seen some case with source id",
       "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c07882ff_7019fe6b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T20:35:12Z",
+      "side": 1,
+      "message": "sent this in draft, was meant to ask any case source id could be invalid? it\u0027s from RS.",
+      "parentUuid": "cab08700_d7c7b34d",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
