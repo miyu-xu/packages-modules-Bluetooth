@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include <aics/api.h>
 #include <hardware/bt_vc.h>
 
 #include <algorithm>
@@ -28,6 +29,8 @@
 #include "osi/include/alarm.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+
+using bluetooth::aics::Mute;
 
 namespace bluetooth {
 namespace vc {
@@ -136,7 +139,7 @@ struct GainSettings {
 
 struct VolumeAudioInput {
   /* const */ uint8_t id;
-  uint8_t mute = 0x02;  // DISABLED
+  Mute mute = Mute::DISABLED;
   int8_t gain_value = 0;
   VolumeInputStatus status = VolumeInputStatus::Inactive;
   VolumeInputType type = VolumeInputType::Unspecified;
