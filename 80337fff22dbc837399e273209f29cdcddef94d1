@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82f64f0_c7feb0f7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "If PA_SYNC_STATE_SYNCINFO_REQUEST, SM would also start PAST first if sync info is available through getPeriodicAdvertisementResult. \n\nShould we avoid unnecessary sync and PAST here? Or handle this in SM?",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "761ed609_0141f499",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: This class should only be accessed from tests or within private scope [VisibleForTests]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    This class should only be accessed from tests or within private scope [VisibleForTests]\n                                    BassClientStateMachine sm \u003d getOrCreateStateMachine(sinkDevice);\n                                    ~~~~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P83267775/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 2194,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 96
+      },
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d24f48_c8d2f309",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3958,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "how about\nif (receiveState.getBroadcastId() \u003d\u003d broadcastId \u0026\u0026 !isReceiverActive(receiveState) ?",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90f43c30_b188796d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4081,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: This method should only be accessed from tests or within private scope [VisibleForTests]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    This method should only be accessed from tests or within private scope [VisibleForTests]\n                                BassClientStateMachine.REMOVE_BCAST_SOURCE,\n                                                       ~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P83267775/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 4081,
+        "startChar": 0,
+        "endLine": 4081,
+        "endChar": 0
+      },
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e296a36_395f7ed7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "If we\u0027re introducing this message for service\u003c-\u003esm, can we rename it to be something like?\n\nSEND_PAST -\u003e INITIATE_PA_SYNC_TRANSFER\nsendPast -\u003e initiatePaSyncTransfer",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24fbc31e_551bf7ad",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "Instead of checking in RS changed from service, have we considered to notify service from here? and then service will sync and initiate PAST?\n\nThe flow would be SM found no sync info for PAST -\u003e notify service to request resync -\u003e service sync and initiate PAST in SM.",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab08700_d7c7b34d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-23T18:44:20Z",
+      "side": 1,
+      "message": "just curious, have we seen some case with source id",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
