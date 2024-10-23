@@ -110,6 +110,30 @@
       },
       "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4b644e8_405f5c3e",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-10-23T00:27:45Z",
+      "side": 1,
+      "message": "Gotcha. I think this affects dual device behavior. Let me test with LR10",
+      "parentUuid": "55c8ceca_88523458",
+      "range": {
+        "startLine": 454,
+        "startChar": 22,
+        "endLine": 454,
+        "endChar": 51
+      },
+      "revId": "ef55d3794fd5d5026785bd3537b8cf405a11e4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
