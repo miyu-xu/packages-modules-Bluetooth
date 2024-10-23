@@ -22,6 +22,30 @@
       },
       "revId": "a3cbab4f34bd49e3e45cf1eca160e43c49cc0327",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9b7464_83ac90b2",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-23T09:06:34Z",
+      "side": 1,
+      "message": "offline sync: add comment to mention this is used as a key in AclInformation to retrieve the active profile.",
+      "parentUuid": "5dd05e35_0745455c",
+      "range": {
+        "startLine": 445,
+        "startChar": 4,
+        "endLine": 445,
+        "endChar": 20
+      },
+      "revId": "a3cbab4f34bd49e3e45cf1eca160e43c49cc0327",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
