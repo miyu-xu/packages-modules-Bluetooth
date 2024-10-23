@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dda50fbf_2a839ec2",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-23T09:10:21Z",
+      "side": 1,
+      "message": "Oh, my mistake!",
+      "parentUuid": "85d25a8f_d9116211",
+      "range": {
+        "startLine": 797,
+        "startChar": 76,
+        "endLine": 797,
+        "endChar": 81
+      },
+      "revId": "aa38c6f1f6150c7fbe7069b797147891b80db306",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdc5e5fa_483480e0",
