@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106c96c4_2daeda04",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-23T08:49:51Z",
+      "side": 1,
+      "message": "One thing might worth noting is that this is not only invoked upon disconnect command complete. If this is called in Sco connection complete (failed), the report will say the initiator is peer which is not quite accurate. It will be better if we can separate this case.",
+      "range": {
+        "startLine": 647,
+        "startChar": 7,
+        "endLine": 647,
+        "endChar": 28
+      },
+      "revId": "aa38c6f1f6150c7fbe7069b797147891b80db306",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3bea130_9243208a",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-23T08:49:51Z",
+      "side": 1,
+      "message": "If there is no such handle in `pending_disconnections`, it means the disconnection is likely initiated by the peer right? Don\u0027t we want to report in this case?",
+      "range": {
+        "startLine": 797,
+        "startChar": 76,
+        "endLine": 797,
+        "endChar": 81
+      },
+      "revId": "aa38c6f1f6150c7fbe7069b797147891b80db306",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc5e5fa_483480e0",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-23T08:49:51Z",
+      "side": 1,
+      "message": "nit: move this comment to the line above is_power_off or simply remove it?",
+      "range": {
+        "startLine": 897,
+        "startChar": 24,
+        "endLine": 897,
+        "endChar": 104
+      },
+      "revId": "aa38c6f1f6150c7fbe7069b797147891b80db306",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
