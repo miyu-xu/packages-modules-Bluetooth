@@ -21,6 +21,7 @@
 
 #include <string>
 
+#include "aics/api.h"
 #include "src/profiles/vc.rs.h"
 #include "types/raw_address.h"
 
@@ -30,6 +31,8 @@ namespace bluetooth {
 namespace topshim {
 namespace rust {
 namespace internal {
+
+using bluetooth::aics::MuteField;
 
 static VolumeControlIntf* g_vc_if;
 
@@ -136,9 +139,9 @@ public:
   }
 
   void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id, int8_t gain_val,
-                                uint8_t gain_mode_auto, uint8_t mute) {
+                                uint8_t gain_mode_auto, MuteField mute) {
     log::info("address={}, ext_input_id={}, gain_val={}, gain_mode_auto={}, mute={}", address,
-              ext_input_id, gain_val, gain_mode_auto, mute);
+              ext_input_id, gain_val, gain_mode_auto, (uint8_t)mute);
     log::info("Not implemented");
   }
 
