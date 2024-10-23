@@ -460,29 +460,31 @@ class BluetoothManagerService {
     }
 
     private void handleAirplaneModeChanged(boolean isAirplaneModeOn) {
-        synchronized (this) {
-            if (isBluetoothPersistedStateOn()) {
-                if (isAirplaneModeOn) {
-                    setBluetoothPersistedState(BLUETOOTH_ON_AIRPLANE);
-                } else {
-                    setBluetoothPersistedState(BLUETOOTH_ON_BLUETOOTH);
-                }
-            }
-
-            int currentState = mState.get();
-
-            Log.d(
-                    TAG,
-                    ("handleAirplaneModeChanged(" + isAirplaneModeOn + "):")
-                            + (" currentState=" + nameForState(currentState)));
-
+        boolean isPersistStateOn = isBluetoothPersistedStateOn();
+        if (isPersistStateOn) {
             if (isAirplaneModeOn) {
-                forceToOffFromModeChange(currentState, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
-            } else if (mEnableExternal) {
-                sendEnableMsg(mQuietEnableExternal, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
-            } else if (currentState != STATE_ON) {
-                autoOnSetupTimer();
+                setBluetoothPersistedState(BLUETOOTH_ON_AIRPLANE);
+            } else {
+                setBluetoothPersistedState(BLUETOOTH_ON_BLUETOOTH);
             }
+        }
+
+        int currentState = mState.get();
+
+        Log.d(
+                TAG,
+                ("handleAirplaneModeChanged(" + isAirplaneModeOn + "):")
+                        + (" mEnableExternal=" + mEnableExternal)
+                        + (" isPersistStateOn=" + isPersistStateOn)
+                        + (" currentState=" + nameForState(currentState)));
+
+        if (isAirplaneModeOn) {
+            forceToOffFromModeChange(currentState, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
+        } else if (mEnableExternal && currentState != STATE_ON && isPersistStateOn) {
+            // isPersistStateOn is checked to prevent race with RESTORE_USER_SETTING
+            sendEnableMsg(mQuietEnableExternal, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
+        } else if (currentState != STATE_ON) {
+            autoOnSetupTimer();
         }
     }
 
