@@ -541,6 +541,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd976d2_fb2e5629",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T21:55:22Z",
+      "side": 1,
+      "message": "I think we should take the time to change these two state machines to avoid doing that.",
+      "parentUuid": "3c866f5c_08b7ef71",
+      "range": {
+        "startLine": 1972,
+        "startChar": 20,
+        "endLine": 1973,
+        "endChar": 44
+      },
+      "revId": "f352c31c5318c9a810f7095a88a04deaf24fe355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9ea7c0c_9413830e",
