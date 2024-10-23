@@ -19,6 +19,7 @@
 #include "gatt/gatt_test.h"
 
 #include "adapter/bluetooth_test.h"
+#include "src/gatt/ffi.rs.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
