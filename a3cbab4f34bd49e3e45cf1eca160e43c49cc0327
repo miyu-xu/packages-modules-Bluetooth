@@ -46,6 +46,30 @@
       },
       "revId": "a3cbab4f34bd49e3e45cf1eca160e43c49cc0327",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "372e840f_6f468e2c",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-23T11:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec9b7464_83ac90b2",
+      "range": {
+        "startLine": 445,
+        "startChar": 4,
+        "endLine": 445,
+        "endChar": 20
+      },
+      "revId": "a3cbab4f34bd49e3e45cf1eca160e43c49cc0327",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
