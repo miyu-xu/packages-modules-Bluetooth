@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b3a834_96ffcaf9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-23T16:19:40Z",
+      "side": 1,
+      "message": "maybe not piece of this patch, but mDeviceQueue is never used, just assigned.",
+      "range": {
+        "startLine": 306,
+        "startChar": 16,
+        "endLine": 306,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "89fb0a36_a6d31793",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 306,
+                "startChar": 0,
+                "endLine": 306,
+                "endChar": 0
+              },
+              "replacement": "                // TODO(b/230391111): Remove mDeviceQueue\n"
+            }
+          ]
+        }
+      ],
+      "revId": "636011df0e4f7bd90eb5002888fce7d3c2ec5403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
