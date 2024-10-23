@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9145d35_004b00b9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-23T06:45:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b1b94ed_c8992b8e",
+      "range": {
+        "startLine": 910,
+        "startChar": 0,
+        "endLine": 910,
+        "endChar": 45
+      },
+      "revId": "47145dd78fc281eb0178989732b43ba54316deef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a5f9e63_22bac1de",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-22T17:30:16Z",
       "side": 1,
       "message": "assertThat can directly check that an array contains something (and the error message is quite amazing)\n\n```suggestion\n        assertThat(mService.getDevices()).contains(mDevice);\n```",
+      "range": {
+        "startLine": 916,
+        "startChar": 8,
+        "endLine": 916,
+        "endChar": 67
+      },
+      "revId": "47145dd78fc281eb0178989732b43ba54316deef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b83489a_67b6f85b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-23T06:45:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5f9e63_22bac1de",
       "range": {
         "startLine": 916,
         "startChar": 8,
@@ -84,6 +132,30 @@
           ]
         }
       ],
+      "revId": "47145dd78fc281eb0178989732b43ba54316deef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822787e2_f0149c2c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-23T06:45:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "484668bb_0b2c3455",
+      "range": {
+        "startLine": 920,
+        "startChar": 0,
+        "endLine": 920,
+        "endChar": 78
+      },
       "revId": "47145dd78fc281eb0178989732b43ba54316deef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
