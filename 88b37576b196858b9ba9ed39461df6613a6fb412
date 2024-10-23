@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11928b70_2d99ca8c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-23T17:07:38Z",
+      "side": 1,
+      "message": "`} else { } return;`",
+      "range": {
+        "startLine": 837,
+        "startChar": 8,
+        "endLine": 841,
+        "endChar": 13
+      },
+      "revId": "88b37576b196858b9ba9ed39461df6613a6fb412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
