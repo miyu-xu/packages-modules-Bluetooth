@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9112c6ae_d89e35e6",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-10-23T09:36:55Z",
+      "side": 1,
+      "message": "After thinking further, this is not a problem because when printing the timestamps and initiators we detect that the timestamps are the same for connection and disconnection.\nTherefore we only print the initiator of the connection and say failed.\n\nLet me add a comment to explain this case.",
+      "parentUuid": "624ee0ea_f8d6925c",
+      "range": {
+        "startLine": 647,
+        "startChar": 7,
+        "endLine": 647,
+        "endChar": 28
+      },
+      "revId": "aa38c6f1f6150c7fbe7069b797147891b80db306",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3bea130_9243208a",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
