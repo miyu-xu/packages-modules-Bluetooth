@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5a7f66ac_64334ac0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T17:53:02Z",
+      "side": 1,
+      "message": "I agree with the fix.\nI think in the long run we will prefer having the remoteDevice to run on one unique known thread rather than using race check behind synchronized lock. \nBut doing threading change will require a bigger change so let\u0027s keep it for another time",
+      "revId": "636011df0e4f7bd90eb5002888fce7d3c2ec5403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "11b3a834_96ffcaf9",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 2
