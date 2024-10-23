@@ -22,6 +22,30 @@
       },
       "revId": "291b9671a209597752794f44fd4c565e0ce35e76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bdfb604_a50288e6",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T21:50:36Z",
+      "side": 1,
+      "message": "RemoteExceptionFunction will throw a RemoteException.\n\nThis consumer will ignore the RemoteException.\n\nFor me they behave differently.\n\nAlso RemoteExceptionIgnoringConsumer is a already used name for this kind of consumer. I am simply importing the definition within the framework code.\n\nhttps://source.corp.google.com/search?q\u003dinterface%5C%20RemoteExceptionIgnoringConsumer\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nas you see, it is in the app, I want to migrate the app to use the framework definition in a second step",
+      "parentUuid": "3783e323_a3eb5f88",
+      "range": {
+        "startLine": 354,
+        "startChar": 21,
+        "endLine": 354,
+        "endChar": 52
+      },
+      "revId": "291b9671a209597752794f44fd4c565e0ce35e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
