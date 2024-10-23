@@ -46,6 +46,30 @@
       },
       "revId": "826f3f4ff62e06d986ba7528ca97f738f2b27dbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af801777_96be8123",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-23T18:21:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f8aec84f_1cd198b0",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 3
+      },
+      "revId": "826f3f4ff62e06d986ba7528ca97f738f2b27dbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
