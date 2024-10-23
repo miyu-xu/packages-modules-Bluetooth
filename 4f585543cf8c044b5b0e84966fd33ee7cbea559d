@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd205d83_1cbeb506",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060286
+      },
+      "writtenOn": "2024-10-23T21:10:45Z",
+      "side": 1,
+      "message": "Add a CTS test for this metric.",
+      "revId": "4f585543cf8c044b5b0e84966fd33ee7cbea559d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
