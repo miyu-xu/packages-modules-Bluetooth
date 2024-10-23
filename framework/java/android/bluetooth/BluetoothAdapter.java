@@ -1484,6 +1484,10 @@ public final class BluetoothAdapter {
                         throw e.rethrowAsRuntimeException();
                     }
                 }
+                @Override
+                public boolean shouldBypassQuery(Bluetooth serviceQuery) {
+                    return false;
+                }
             };
 
     private static final IpcDataCache.QueryHandler<IBluetoothManager, Integer>
@@ -1497,6 +1501,10 @@ public final class BluetoothAdapter {
                             } catch (RemoteException e) {
                                 throw e.rethrowAsRuntimeException();
                             }
+                        }
+                        @Override
+                        public boolean shouldBypassQuery(Bluetooth serviceQuery) {
+                            return false;
                         }
                     };
 
