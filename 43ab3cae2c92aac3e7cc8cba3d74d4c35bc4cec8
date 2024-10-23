@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2a2888_0d7dc7b8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/vcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-23T18:03:34Z",
+      "side": 1,
+      "message": "Missing description match. Can be done on follow up",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "43ab3cae2c92aac3e7cc8cba3d74d4c35bc4cec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
