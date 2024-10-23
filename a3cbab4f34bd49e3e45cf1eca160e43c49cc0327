@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd05e35_0745455c",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-10-23T07:57:08Z",
+      "side": 1,
+      "message": "Not related to this patch but upon reading the code I failed to understand what\u0027s the meaning of `OnePerConnection` and `L2capCid`. What\u0027s the reason we put them in a enum here? Can you please add some description here?",
+      "range": {
+        "startLine": 445,
+        "startChar": 4,
+        "endLine": 445,
+        "endChar": 20
+      },
+      "revId": "a3cbab4f34bd49e3e45cf1eca160e43c49cc0327",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
