@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31429c7f_b7cf3f57",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T18:24:57Z",
+      "side": 1,
+      "message": "done twice ?",
+      "range": {
+        "startLine": 506,
+        "startChar": 2,
+        "endLine": 508,
+        "endChar": 98
+      },
+      "revId": "3570f452abd8566a400d20517ef3b611d8b043fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

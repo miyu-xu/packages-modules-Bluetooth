@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85eeb382_a4451c4d",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T18:24:57Z",
+      "side": 0,
+      "message": "I would move this to another CL",
+      "range": {
+        "startLine": 896,
+        "startChar": 0,
+        "endLine": 909,
+        "endChar": 3
+      },
+      "revId": "089e788e20fe14254041e07e95ce907577b17b17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91df42b1_a9bb33be",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T18:24:57Z",
+      "side": 0,
+      "message": "idem",
+      "range": {
+        "startLine": 948,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 0
+      },
+      "revId": "089e788e20fe14254041e07e95ce907577b17b17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2a0a01b_2a367110",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1023,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-23T18:24:57Z",
+      "side": 0,
+      "message": "idem",
+      "range": {
+        "startLine": 1022,
+        "startChar": 1,
+        "endLine": 1023,
+        "endChar": 86
+      },
+      "revId": "089e788e20fe14254041e07e95ce907577b17b17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
