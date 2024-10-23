@@ -20,14 +20,28 @@
 #define LOG_TAG "bluetooth-a2dp"
 #define ATRACE_TAG ATRACE_TAG_AUDIO
 
-#include <base/run_loop.h>
+#include <base/functional/bind.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
+#include <stdio.h>
+
+#include <chrono>
+#include <cstdint>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include "a2dp_api.h"
+#include "a2dp_codec_api.h"
+#include "avdt_api.h"
+#include "bt_transport.h"
+#include "bta_av_api.h"
+#include "hardware/bt_av.h"
+
 #ifdef __ANDROID__
 #include <cutils/trace.h>
 #endif
 
-#include <limits.h>
 #include <string.h>
 
 #include <algorithm>

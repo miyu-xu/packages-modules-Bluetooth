@@ -22,9 +22,13 @@
 
 #include <base/functional/bind.h>
 #include <base/location.h>
-#include <hardware/bluetooth.h>
 #include <hardware/bt_hearing_aid.h>
 
+#include <cstdint>
+#include <memory>
+#include <utility>
+
+#include "avrcp.h"
 #include "bta_hearing_aid_api.h"
 #include "btif_common.h"
 #include "btif_profile_storage.h"
