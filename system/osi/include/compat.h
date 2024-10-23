@@ -18,20 +18,9 @@
 
 #pragma once
 
-#include <features.h>
 #include <sys/types.h>
 
-#if __GLIBC__
+#include <cstdint>
 
-#include <unistd.h>
-
-/* Get thread identification. */
-pid_t gettid(void) throw();
-
-/* glibc>=2.38 supplies its own strlcpy which conflicts with this declaration */
-#if !(__GLIBC_PREREQ(2, 38))
-/* Copy src to string dst of size siz. */
 size_t strlcpy(char* dst, const char* src, size_t siz);
-#endif /* !(__GLIBC_PREREQ(2, 38)) */
-
-#endif
+extern "C" pid_t gettid(void);
