@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8db5ca6a_000d3526",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T15:44:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "047573cd_f411beb3",
+      "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dc48c35_6bfebb9d",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a082a0_b8f5cb50",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T15:44:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3dc48c35_6bfebb9d",
+      "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c6823a4_e84a0817",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-10-24T12:18:02Z",
       "side": 1,
       "message": "...we\u0027re dereferencing `p_lcb` with our `p_lcb-\u003ech_state` usage.  This will crash.",
+      "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b58e5b38_83f5c0fa",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T15:44:11Z",
+      "side": 1,
+      "message": "aosp/3318516\n\nThanks! There is a mix of patterns where we return early or don\u0027t.",
+      "parentUuid": "8c6823a4_e84a0817",
       "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
