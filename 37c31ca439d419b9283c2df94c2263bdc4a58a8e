@@ -63,6 +63,30 @@
       },
       "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9e5f53_ff738f47",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T17:46:20Z",
+      "side": 1,
+      "message": "You are right, I forgot the call to L2CA_DisconnectReq, but I would not be against doing this in early return.\n\nYour call",
+      "parentUuid": "66a8949e_6a7b148c",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 1
+      },
+      "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
