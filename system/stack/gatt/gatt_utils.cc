@@ -1610,40 +1610,27 @@ void gatt_sr_update_prep_cnt(tGATT_TCB& tcb, tGATT_IF gatt_if, bool is_inc, bool
   }
 }
 
-static bool gatt_is_anybody_interested_in_connection(const RawAddress& bda) {
-  if (connection_manager::is_background_connection(bda)) {
-    log::debug("{} is in background connection", bda);
-    return true;
-  }
-
-  for (size_t i = 1; i <= GATT_MAX_APPS; i++) {
-    tGATT_REG* p_reg = &gatt_cb.cl_rcb[i - 1];
-    if (p_reg->in_use && p_reg->direct_connect_request.count(bda) > 0) {
-      log::debug("gatt_if {} interested in connection to {}", i, bda);
-      return true;
-    }
-  }
-  return false;
-}
-
 /** Cancel LE Create Connection request */
 bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
+  connection_manager::direct_connect_remove(gatt_if, bda);
+  connection_manager::background_connect_remove(gatt_if, bda);
+
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, BT_TRANSPORT_LE);
   if (!p_tcb) {
-    /* TCB is not allocated when trying to connect under this flag.
-     * but device address is storred in the tGATT_REG. Make sure to remove
-     * the address from the list when cancel is called.
-     */
-
+    /* TCB is not allocated when trying to connect */
     tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
     if (!p_reg) {
       log::error("Unable to find registered app gatt_if={}", gatt_if);
-    } else {
-      log::info("Removing {} from direct list", bda);
-      p_reg->direct_connect_request.erase(bda);
     }
-    if (!gatt_is_anybody_interested_in_connection(bda)) {
-      gatt_cancel_connect(bda, static_cast<tBT_TRANSPORT>(BT_TRANSPORT_LE));
+
+    if (!connection_manager::direct_connect_remove(gatt_if, bda)) {
+      if (!connection_manager::background_connect_remove(gatt_if, bda)) {
+        log::info("{} was not doing either direct or background connect to {}", gatt_if, bda);
+      }
+    }
+
+    if (connection_manager::get_apps_connecting_to(bda).empty()) {
+      gatt_cleanup_upon_disc(bda, GATT_CONN_TERMINATE_LOCAL_HOST, BT_TRANSPORT_LE);
     }
     return true;
   }
@@ -1662,20 +1649,8 @@ bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
   }
 
   if (!connection_manager::direct_connect_remove(gatt_if, bda)) {
-    if (!connection_manager::is_background_connection(bda)) {
-      if (!com::android::bluetooth::flags::gatt_fix_multiple_direct_connect() ||
-          p_tcb->app_hold_link.empty()) {
-        bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(bda));
-      }
-      log::info(
-              "Gatt connection manager has no background record but  removed "
-              "filter acceptlist gatt_if:{} peer:{}",
-              gatt_if, bda);
-    } else {
-      log::info(
-              "Gatt connection manager maintains a background record preserving "
-              "filter acceptlist gatt_if:{} peer:{}",
-              gatt_if, bda);
+    if (!connection_manager::background_connect_remove(gatt_if, bda)) {
+      log::info("{} was not doing either direct or background connect to {}", gatt_if, bda);
     }
   }
 
@@ -1857,12 +1832,6 @@ static void gatt_disconnect_complete_notify_user(const RawAddress& bda, tGATT_DI
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, bda, conn_id, kGattDisconnected, reason,
                                    transport);
       }
-
-      if (p_reg->direct_connect_request.count(bda) > 0) {
-        log::info("Removing device {} from the direct connect list of gatt_if {}", bda,
-                  p_reg->gatt_if);
-        p_reg->direct_connect_request.erase(bda);
-      }
     }
   } else {
     for (uint8_t i = 0; i < GATT_MAX_APPS; i++) {
@@ -1872,12 +1841,6 @@ static void gatt_disconnect_complete_notify_user(const RawAddress& bda, tGATT_DI
                 p_tcb ? gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if) : GATT_INVALID_CONN_ID;
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, bda, conn_id, kGattDisconnected, reason,
                                    transport);
-      }
-
-      if (p_reg->direct_connect_request.count(bda) > 0) {
-        log::info("Removing device {} from the direct connect list of gatt_if {}", bda,
-                  p_reg->gatt_if);
-        p_reg->direct_connect_request.erase(bda);
       }
     }
   }
