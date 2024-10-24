@@ -91,6 +91,7 @@ import java.util.concurrent.TimeUnit;
 
 /** Test cases for {@link BluetoothHidHost}. */
 @RunWith(AndroidJUnit4.class)
+@EmulatorOnly
 public class HidHostTest {
     private static final String TAG = HidHostTest.class.getSimpleName();
     private static final Duration INTENT_TIMEOUT = Duration.ofSeconds(10);
