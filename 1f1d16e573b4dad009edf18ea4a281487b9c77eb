@@ -16,6 +16,24 @@
       "message": "nit: maybe we could remove if from 355 and instead we could extend this check\n\n```\nif (GetCodecLocation() \u003d\u003d types::CodecLocation::ADSP \u0026\u0026 IsUsingCodecExtensibility()) {\n}\n```\n\nbtw consider rename `IsUsingCodecExtensibility` to `IsEnabledCodecExtensibility` as usage depends on codec location.\n\nOr inside `IsUsingCodecExtensibility` check codec location and return accordingly.",
       "revId": "1f1d16e573b4dad009edf18ea4a281487b9c77eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f30c383_e99f318d",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-10-24T08:53:54Z",
+      "side": 1,
+      "message": "As further discussed offline, moved the check for codec location to `IsUsingCodecExtensibility()`.",
+      "parentUuid": "1483a514_fbd49f9d",
+      "revId": "1f1d16e573b4dad009edf18ea4a281487b9c77eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
