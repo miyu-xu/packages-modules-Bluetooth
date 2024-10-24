@@ -332,6 +332,10 @@ alarm_t* alarm_new(const char* name) {
   inc_func_call_count(__func__);
   return (alarm_t*)new uint8_t[30];
 }
+alarm_t* alarm_new_monotonic(const char* name) {
+  inc_func_call_count(__func__);
+  return nullptr;
+}
 alarm_t* alarm_new_periodic(const char* name) {
   inc_func_call_count(__func__);
   return nullptr;

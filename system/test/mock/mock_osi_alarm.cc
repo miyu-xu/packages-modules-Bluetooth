@@ -41,6 +41,7 @@ struct alarm_free alarm_free;
 struct alarm_get_remaining_ms alarm_get_remaining_ms;
 struct alarm_is_scheduled alarm_is_scheduled;
 struct alarm_new alarm_new;
+struct alarm_new_monotonic alarm_new_monotonic;
 struct alarm_new_periodic alarm_new_periodic;
 struct alarm_set alarm_set;
 struct alarm_set_on_mloop alarm_set_on_mloop;
@@ -77,6 +78,10 @@ bool alarm_is_scheduled(const alarm_t* alarm) {
 alarm_t* alarm_new(const char* name) {
   inc_func_call_count(__func__);
   return test::mock::osi_alarm::alarm_new(name);
+}
+alarm_t* alarm_new_monotonic(const char* name) {
+  inc_func_call_count(__func__);
+  return test::mock::osi_alarm::alarm_new_monotonic(name);
 }
 alarm_t* alarm_new_periodic(const char* name) {
   inc_func_call_count(__func__);

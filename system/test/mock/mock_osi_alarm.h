@@ -105,6 +105,17 @@ struct alarm_new {
 };
 extern struct alarm_new alarm_new;
 
+// Name: alarm_new_monotonic
+// Params: const char* name
+// Return: alarm_t*
+struct alarm_new_monotonic {
+  alarm_t* return_value{0};
+  std::function<alarm_t*(const char* name)> body{
+          [this](const char* /* name */) { return return_value; }};
+  alarm_t* operator()(const char* name) { return body(name); }
+};
+extern struct alarm_new_monotonic alarm_new_monotonic;
+
 // Name: alarm_new_periodic
 // Params: const char* name
 // Return: alarm_t*
