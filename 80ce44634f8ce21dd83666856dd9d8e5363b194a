@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e898da4_2d177ba0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-24T14:55:57Z",
+      "side": 1,
+      "message": "Should you be printing the group_id ?",
+      "fixSuggestions": [
+        {
+          "fixId": "3aaaf5c6_2f1dbebe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 385,
+                "startChar": 0,
+                "endLine": 386,
+                "endChar": 0
+              },
+              "replacement": "                log::debug(\"No resume request received. Stop the group: {}\", PTR_TO_INT(data));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "80ce44634f8ce21dd83666856dd9d8e5363b194a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f276ee_d6712a7c",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2149,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-24T14:55:57Z",
+      "side": 1,
+      "message": "I often use this character during debugging. Can we not use it in regular logs just for clarity ?",
+      "range": {
+        "startLine": 2149,
+        "startChar": 17,
+        "endLine": 2149,
+        "endChar": 18
+      },
+      "revId": "80ce44634f8ce21dd83666856dd9d8e5363b194a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
