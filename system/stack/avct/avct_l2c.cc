@@ -112,7 +112,9 @@ void avct_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid, uint16
     p_lcb = avct_lcb_alloc(bd_addr);
     if (p_lcb == nullptr) {
       /* no ccb available, reject L2CAP connection */
-      result = tL2CAP_CONN::L2CAP_CONN_NO_RESOURCES;
+      log::info("Ignoring remote connection no link request peer:{} lcid:0x{:04x} res:{}", bd_addr,
+                lcid, l2cap_result_code_text(result));
+      return;
     }
   } else {
     /* else we already have a channel for this peer */
@@ -148,19 +150,16 @@ void avct_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid, uint16
 
     /* transition to configuration state */
     p_lcb->ch_state = AVCT_CH_CFG;
+
+    log::debug("Received remote connection request peer:{} lcid:0x{:04x} res:{} ch_state:{}",
+               bd_addr, lcid, l2cap_result_code_text(result), avct_ch_state_text(p_lcb->ch_state));
   } else {
     /* If we reject the connection, send DisconnectReq */
     if (!stack::l2cap::get_interface().L2CA_DisconnectReq(lcid)) {
       log::warn("Unable to send L2CAP disconnect request peer:{} lcid:0x{:04x}", bd_addr, lcid);
     }
-  }
-
-  if (p_lcb) {
-    log::debug("Received remote connection request peer:{} lcid:0x{:04x} res:{} ch_state:{}",
-               bd_addr, lcid, l2cap_result_code_text(result), avct_ch_state_text(p_lcb->ch_state));
-  } else {
-    log::info("Ignoring remote connection request peer:{} lcid:0x{:04x} res:{} ch_state:{}",
-              bd_addr, lcid, l2cap_result_code_text(result), avct_ch_state_text(p_lcb->ch_state));
+    log::info("Ignoring remote connection no link request peer:{} lcid:0x{:04x} res:{}", bd_addr,
+              lcid, l2cap_result_code_text(result));
   }
 }
 
