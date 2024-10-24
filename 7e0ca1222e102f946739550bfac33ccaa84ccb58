@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e0ca4d8_d3debf12",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 4518,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-24T21:59:47Z",
+      "side": 1,
+      "message": "it must provide",
+      "range": {
+        "startLine": 4517,
+        "startChar": 83,
+        "endLine": 4518,
+        "endChar": 17
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4fbab99_a966c118",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 20
@@ -65,6 +88,52 @@
         "startChar": 86,
         "endLine": 3198,
         "endChar": 87
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6169f109_5c2f5771",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3202,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-24T21:59:47Z",
+      "side": 1,
+      "message": "same as before",
+      "range": {
+        "startLine": 3202,
+        "startChar": 64,
+        "endLine": 3202,
+        "endChar": 74
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61545cca_409f9a54",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3204,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-24T21:59:47Z",
+      "side": 1,
+      "message": "same as before",
+      "range": {
+        "startLine": 3204,
+        "startChar": 66,
+        "endLine": 3204,
+        "endChar": 72
       },
       "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
