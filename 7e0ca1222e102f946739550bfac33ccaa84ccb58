@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d05e41c2_2e8beb69",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:01:01Z",
+      "side": 1,
+      "message": "It is weird to me that the FlaggedApi is not visible here.\n\nThe whole BluetoothSocketSettings is under FlaggedApi, therefor BluetoothSocketSettings.Builder is also under it.\n\n@girardier@google.com do you know if this is normal ?",
+      "range": {
+        "startLine": 1127,
+        "startChar": 2,
+        "endLine": 1137,
+        "endChar": 0
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4fbab99_a966c118",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 4561,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:01:01Z",
+      "side": 1,
+      "message": "I would simply throw here, no need to double log",
+      "range": {
+        "startLine": 4561,
+        "startChar": 0,
+        "endLine": 4561,
+        "endChar": 55
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbd2ce2_3097c0ef",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3198,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:01:01Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.\n\nDid the repo upload hook formatter didn\u0027t catch that ?",
+      "range": {
+        "startLine": 3198,
+        "startChar": 86,
+        "endLine": 3198,
+        "endChar": 87
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad60f644_3e70ddc8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:01:01Z",
+      "side": 1,
+      "message": "By direclty using a ParcelUuid we remove some weird null check\n\n```\nParcelUuid uuid \u003d null;\n...\n  uuid \u003d new ParcelUuid(settings.getUuid());\n...\nreturn new BluetoothSocket(\n                settings.getSocketType(),\n                settings.isAuthenticationEnabled(),\n                settings.isEncryptionEnabled(),\n                this,\n                psm,\n                uuid);\n```",
+      "range": {
+        "startLine": 3232,
+        "startChar": 0,
+        "endLine": 3232,
+        "endChar": 25
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64b210ac_621562ff",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:01:01Z",
+      "side": 1,
+      "message": "Remove in favor of the IOException",
+      "range": {
+        "startLine": 3236,
+        "startChar": 0,
+        "endLine": 3236,
+        "endChar": 63
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27853018_e54dca04",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3242,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:01:01Z",
+      "side": 1,
+      "message": "Remove in favor of the IOException",
+      "range": {
+        "startLine": 3242,
+        "startChar": 0,
+        "endLine": 3242,
+        "endChar": 62
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
