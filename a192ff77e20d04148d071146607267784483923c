@@ -22,6 +22,30 @@
       },
       "revId": "a192ff77e20d04148d071146607267784483923c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2036b098_a2a829d6",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T18:01:46Z",
+      "side": 1,
+      "message": "Yes...you found the other issue...there may actually be a link, but the error code is not granular enough to determine where in the upper conditions it failed 😞",
+      "parentUuid": "4961679f_4a9764e1",
+      "range": {
+        "startLine": 160,
+        "startChar": 20,
+        "endLine": 160,
+        "endChar": 50
+      },
+      "revId": "a192ff77e20d04148d071146607267784483923c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
