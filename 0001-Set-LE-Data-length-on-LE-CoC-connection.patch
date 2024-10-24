@@ -1,0 +1,307 @@
+From 87140a1c3752508e41f9bf8f4f474707fb83b674 Mon Sep 17 00:00:00 2001
+From: Bhakthavatsala Raghavendra <bhaktha@google.com>
+Date: Mon, 22 Jul 2024 16:58:14 +0000
+Subject: [PATCH] Set LE Data length on LE CoC connection
+
+- Set Max length as Data length for LE CoC sockets
+- Allow privileged clients to decrease the data length in order
+  to provide bandwidth for other ACLs (eg: ASHA)
+- Prioritize the privileged client's data length over other requests
+
+Test: mmm packages/modules/Bluetooth
+Flag: com.android.bluetooth.flags.set_max_data_length_for_lecoc
+Bug: 206487778
+Bug: 373726267
+
+Change-Id: Ia4a05b2c74dd7c025fc8e52ee9739dbcfabe340d
+---
+ system/bta/dm/bta_dm_act.cc                  |  2 +-
+ system/bta/hearing_aid/hearing_aid.cc        |  2 +-
+ system/btif/src/btif_sock_l2cap.cc           | 10 +++++++++-
+ system/stack/btm/btm_ble_sec.cc              | 19 ++++++++++++++++---
+ system/stack/btm/btm_dev.cc                  |  1 +
+ system/stack/btm/btm_sec.cc                  |  1 +
+ system/stack/btm/security_device_record.h    | 11 ++++++++---
+ system/stack/gatt/gatt_api.cc                |  2 +-
+ system/stack/gatt/gatt_cl.cc                 |  5 +++--
+ system/stack/gatt/gatt_sr.cc                 |  5 +++--
+ system/stack/include/btm_ble_api.h           |  9 +++++++--
+ system/stack/include/btm_client_interface.h  |  2 +-
+ system/stack/l2cap/l2c_ble.cc                |  2 +-
+ system/test/mock/mock_stack_btm_interface.cc |  5 ++---
+ 14 files changed, 55 insertions(+), 21 deletions(-)
+
+diff --git a/system/bta/dm/bta_dm_act.cc b/system/bta/dm/bta_dm_act.cc
+index 792aa44b6e..4cbb1eda91 100644
+--- a/system/bta/dm/bta_dm_act.cc
++++ b/system/bta/dm/bta_dm_act.cc
+@@ -1584,7 +1584,7 @@ void bta_dm_ble_set_data_length(const RawAddress& bd_addr) {
+   uint16_t max_len =
+           bluetooth::shim::GetController()->GetLeMaximumDataLength().supported_max_tx_octets_;
+ 
+-  if (get_btm_client_interface().ble.BTM_SetBleDataLength(bd_addr, max_len) !=
++  if (get_btm_client_interface().ble.BTM_SetBleDataLength(bd_addr, max_len, false) !=
+       tBTM_STATUS::BTM_SUCCESS) {
+     log::info("Unable to set ble data length:{}", max_len);
+   }
+diff --git a/system/bta/hearing_aid/hearing_aid.cc b/system/bta/hearing_aid/hearing_aid.cc
+index cb5974793d..e463463318 100644
+--- a/system/bta/hearing_aid/hearing_aid.cc
++++ b/system/bta/hearing_aid/hearing_aid.cc
+@@ -526,7 +526,7 @@ public:
+ 
+     // Set data length
+     // TODO(jpawlowski: for 16khz only 87 is required, optimize
+-    if (get_btm_client_interface().ble.BTM_SetBleDataLength(address, 167) !=
++    if (get_btm_client_interface().ble.BTM_SetBleDataLength(address, 167, true) !=
+         tBTM_STATUS::BTM_SUCCESS) {
+       log::warn("Unable to set BLE data length peer:{} size:{}", address, 167);
+     }
+diff --git a/system/btif/src/btif_sock_l2cap.cc b/system/btif/src/btif_sock_l2cap.cc
+index 3aa7162b78..68244fdf1b 100644
+--- a/system/btif/src/btif_sock_l2cap.cc
++++ b/system/btif/src/btif_sock_l2cap.cc
+@@ -16,11 +16,11 @@
+  */
+ 
+ #include <bluetooth/log.h>
++#include <com_android_bluetooth_flags.h>
+ #include <sys/ioctl.h>
+ #include <sys/socket.h>
+ #include <sys/types.h>
+ #include <unistd.h>
+-#include <com_android_bluetooth_flags.h>
+ 
+ #include <cstdint>
+ #include <cstring>
+@@ -39,6 +39,7 @@
+ #include "osi/include/allocator.h"
+ #include "osi/include/osi.h"
+ #include "stack/include/bt_hdr.h"
++#include "stack/include/btm_client_interface.h"
+ #include "stack/include/l2cdefs.h"
+ #include "types/raw_address.h"
+ 
+@@ -626,6 +627,13 @@ static void on_l2cap_connect(tBTA_JV* p_data, uint32_t id) {
+     } else {
+       on_srv_l2cap_psm_connect_l(psm_open, sock);
+     }
++    // Update data length to get better throughput on CoC
++    // if (com::android::bluetooth::flags::set_max_data_length_for_lecoc()) {
++    if (get_btm_client_interface().ble.BTM_SetBleDataLength(le_open->rem_bda, BTM_BLE_DATA_SIZE_MAX,
++                                                            false) != tBTM_STATUS::BTM_SUCCESS) {
++      log::info("Unable to set ble data length:{}", BTM_BLE_DATA_SIZE_MAX);
++    }
++    //}
+   } else {
+     log::error("Unable to open socket after receiving connection socket_id:{}", sock->id);
+     btsock_l2cap_free_l(sock);
+diff --git a/system/stack/btm/btm_ble_sec.cc b/system/stack/btm/btm_ble_sec.cc
+index a48e283511..850a5cd23e 100644
+--- a/system/stack/btm/btm_ble_sec.cc
++++ b/system/stack/btm/btm_ble_sec.cc
+@@ -582,7 +582,8 @@ bool BTM_ReadConnectedTransportAddress(RawAddress* remote_bda, tBT_TRANSPORT tra
+   return false;
+ }
+ 
+-tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length) {
++tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length,
++                                 bool priv_client) {
+   if (!bluetooth::shim::GetController()->SupportsBleDataPacketLengthExtension()) {
+     log::info("Local controller does not support le packet extension");
+     return tBTM_STATUS::BTM_ILLEGAL_VALUE;
+@@ -602,8 +603,17 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_leng
+     tx_pdu_length = BTM_BLE_DATA_SIZE_MIN;
+   }
+ 
+-  if (p_dev_rec->get_suggested_tx_octets() >= tx_pdu_length) {
+-    log::info("Suggested TX octet already set to controller {} >= {}",
++  if (p_dev_rec->is_datalen_set_by_priv_client() && !priv_client) {
++    log::info("Data length set by prev client can't be overridden");
++    return tBTM_STATUS::BTM_SUCCESS;
++  }
++
++  /* privileged client can override to have lesser Data length & this can happen
++   * multiple times from privileged clients.
++   *
++   */
++  if (p_dev_rec->get_suggested_tx_octets() >= tx_pdu_length && !priv_client) {
++    log::info("Suggested TX octect already set to controller {} >= {}",
+               p_dev_rec->get_suggested_tx_octets(), tx_pdu_length);
+     return tBTM_STATUS::BTM_SUCCESS;
+   }
+@@ -637,6 +647,9 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_leng
+ 
+   btsnd_hcic_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
+   p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
++  if (priv_client) {
++    p_dev_rec->set_is_datalen_set_by_priv_client(true);
++  }
+ 
+   return tBTM_STATUS::BTM_SUCCESS;
+ }
+diff --git a/system/stack/btm/btm_dev.cc b/system/stack/btm/btm_dev.cc
+index d4edde046c..c1f9b55875 100644
+--- a/system/stack/btm/btm_dev.cc
++++ b/system/stack/btm/btm_dev.cc
+@@ -658,6 +658,7 @@ tBTM_SEC_DEV_REC* btm_sec_allocate_dev_rec(void) {
+   p_dev_rec->timestamp = btm_sec_cb.dev_rec_count++;
+   p_dev_rec->sec_rec.rmt_io_caps = BTM_IO_CAP_UNKNOWN;
+   p_dev_rec->suggested_tx_octets = 0;
++  p_dev_rec->set_is_datalen_set_by_priv_client(false);
+ 
+   return p_dev_rec;
+ }
+diff --git a/system/stack/btm/btm_sec.cc b/system/stack/btm/btm_sec.cc
+index d19b9ae343..61df140f77 100644
+--- a/system/stack/btm/btm_sec.cc
++++ b/system/stack/btm/btm_sec.cc
+@@ -3886,6 +3886,7 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason, std::string comme
+             ~(BTM_SEC_LE_AUTHENTICATED | BTM_SEC_LE_ENCRYPTED | BTM_SEC_ROLE_SWITCHED);
+     p_dev_rec->sec_rec.enc_key_size = 0;
+     p_dev_rec->suggested_tx_octets = 0;
++    p_dev_rec->set_is_datalen_set_by_priv_client(false);
+ 
+     if ((p_dev_rec->sec_rec.sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) == 0) {
+       p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LE_LINK_KEY_AUTHED | BTM_SEC_LE_AUTHENTICATED);
+diff --git a/system/stack/btm/security_device_record.h b/system/stack/btm/security_device_record.h
+index e6608903a4..37538bdae5 100644
+--- a/system/stack/btm/security_device_record.h
++++ b/system/stack/btm/security_device_record.h
+@@ -316,6 +316,10 @@ public:
+   /* Data length extension */
+   void set_suggested_tx_octect(uint16_t octets) { suggested_tx_octets = octets; }
+ 
++  bool is_datalen_set_by_priv_client() const { return is_datalen_set_by_privclient; }
++
++  void set_is_datalen_set_by_priv_client(bool value) { is_datalen_set_by_privclient = value; }
++
+   uint16_t get_suggested_tx_octets() const { return suggested_tx_octets; }
+   bool IsLocallyInitiated() const { return is_originator; }
+ 
+@@ -352,9 +356,10 @@ public:
+   uint16_t hci_handle;     /* Handle to BR/EDR ACL connection when exists */
+   uint16_t ble_hci_handle; /* use in DUMO connection */
+ 
+-  uint16_t suggested_tx_octets; /* Recently suggested tx octets for data length extension */
+-  uint16_t clock_offset;        /* Latest known clock offset */
+-
++  uint16_t suggested_tx_octets; /* Recently suggested tx octets for data length
++                                   extension */
++  uint16_t clock_offset;        /* Latest known clock offset          */
++  bool is_datalen_set_by_privclient;
+   // whether the peer device can read GAP characteristics only visible in
+   // "discoverable" mode
+   bool can_read_discoverable{true};
+diff --git a/system/stack/gatt/gatt_api.cc b/system/stack/gatt/gatt_api.cc
+index 3f2c7136a9..59a7ce3d53 100644
+--- a/system/stack/gatt/gatt_api.cc
++++ b/system/stack/gatt/gatt_api.cc
+@@ -843,7 +843,7 @@ void GATTC_UpdateUserAttMtuIfNeeded(const RawAddress& remote_bda, tBT_TRANSPORT
+   }
+ 
+   p_tcb->max_user_mtu = user_mtu;
+-  if (get_btm_client_interface().ble.BTM_SetBleDataLength(remote_bda, user_mtu) !=
++  if (get_btm_client_interface().ble.BTM_SetBleDataLength(remote_bda, user_mtu, false) !=
+       tBTM_STATUS::BTM_SUCCESS) {
+     log::warn("Unable to set ble data length peer:{} mtu:{}", remote_bda, user_mtu);
+   }
+diff --git a/system/stack/gatt/gatt_cl.cc b/system/stack/gatt/gatt_cl.cc
+index 6093d572ee..7babb201e7 100644
+--- a/system/stack/gatt/gatt_cl.cc
++++ b/system/stack/gatt/gatt_cl.cc
+@@ -1158,8 +1158,9 @@ static void gatt_process_mtu_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, uint16_t le
+ 
+     log::info("MTU Exchange resulted in: {}", tcb.payload_size);
+ 
+-    if (get_btm_client_interface().ble.BTM_SetBleDataLength(
+-                tcb.peer_bda, tcb.max_user_mtu + L2CAP_PKT_OVERHEAD) != tBTM_STATUS::BTM_SUCCESS) {
++    if (get_btm_client_interface().ble.BTM_SetBleDataLength(tcb.peer_bda,
++                                                            tcb.max_user_mtu + L2CAP_PKT_OVERHEAD,
++                                                            false) != tBTM_STATUS::BTM_SUCCESS) {
+       log::warn("Unable to set BLE data length peer:{} mtu:{}", tcb.peer_bda,
+                 tcb.max_user_mtu + L2CAP_PKT_OVERHEAD);
+     }
+diff --git a/system/stack/gatt/gatt_sr.cc b/system/stack/gatt/gatt_sr.cc
+index 8b67f2e204..bd8366320d 100644
+--- a/system/stack/gatt/gatt_sr.cc
++++ b/system/stack/gatt/gatt_sr.cc
+@@ -867,8 +867,9 @@ static void gatts_process_mtu_req(tGATT_TCB& tcb, uint16_t cid, uint16_t len, ui
+   log::info("MTU {} request from remote ({}), resulted MTU {}", mtu, tcb.peer_bda,
+             tcb.payload_size);
+ 
+-  if (get_btm_client_interface().ble.BTM_SetBleDataLength(
+-              tcb.peer_bda, tcb.payload_size + L2CAP_PKT_OVERHEAD) != tBTM_STATUS::BTM_SUCCESS) {
++  if (get_btm_client_interface().ble.BTM_SetBleDataLength(tcb.peer_bda,
++                                                          tcb.payload_size + L2CAP_PKT_OVERHEAD,
++                                                          false) != tBTM_STATUS::BTM_SUCCESS) {
+     log::warn("Unable to set BLE data length peer:{} mtu:{}", tcb.peer_bda,
+               tcb.payload_size + L2CAP_PKT_OVERHEAD);
+   }
+diff --git a/system/stack/include/btm_ble_api.h b/system/stack/include/btm_ble_api.h
+index 50c74b89dd..0321baa855 100644
+--- a/system/stack/include/btm_ble_api.h
++++ b/system/stack/include/btm_ble_api.h
+@@ -306,10 +306,15 @@ tBTM_STATUS BTM_BleGetEnergyInfo(tBTM_BLE_ENERGY_INFO_CBACK* p_ener_cback);
+  *
+  * Description      Set the maximum BLE transmission packet size
+  *
+- * Returns          tBTM_STATUS::BTM_SUCCESS if success; otherwise failed.
++ * Parameters       bd_addr - BD address of the device
++ *                  tx_pdu_length - Required data length
++ *                  priv_client - privileged client
++ *
++ * Returns          BTM_SUCCESS if success; otherwise failed.
+  *
+  ******************************************************************************/
+-tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length);
++tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr, uint16_t tx_pdu_length,
++                                 bool priv_client);
+ 
+ /*******************************************************************************
+  *
+diff --git a/system/stack/include/btm_client_interface.h b/system/stack/include/btm_client_interface.h
+index c4ec232682..ddd650ea2a 100644
+--- a/system/stack/include/btm_client_interface.h
++++ b/system/stack/include/btm_client_interface.h
+@@ -94,7 +94,7 @@ struct btm_client_interface_t {
+                                                 tBTM_INQ_RESULTS_CB* p_results_cb,
+                                                 tBTM_CMPL_CB* p_cmpl_cb);
+     [[nodiscard]] tBTM_STATUS (*BTM_SetBleDataLength)(const RawAddress& bd_addr,
+-                                                      uint16_t tx_pdu_length);
++                                                      uint16_t tx_pdu_length, bool priv_client);
+     void (*BTM_BleReadControllerFeatures)(tBTM_BLE_CTRL_FEATURES_CBACK* p_vsc_cback);
+     void (*BTM_BleSetPhy)(const RawAddress& bd_addr, uint8_t tx_phys, uint8_t rx_phys,
+                           uint16_t phy_options);
+diff --git a/system/stack/l2cap/l2c_ble.cc b/system/stack/l2cap/l2c_ble.cc
+index 9d69e5ab36..06158ac9cd 100644
+--- a/system/stack/l2cap/l2c_ble.cc
++++ b/system/stack/l2cap/l2c_ble.cc
+@@ -1114,7 +1114,7 @@ void l2cble_update_data_length(tL2C_LCB* p_lcb) {
+ 
+   /* update TX data length if changed */
+   if (p_lcb->tx_data_len != tx_mtu) {
+-    if (get_btm_client_interface().ble.BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu) !=
++    if (get_btm_client_interface().ble.BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu, false) !=
+         tBTM_STATUS::BTM_SUCCESS) {
+       log::warn("Unable to set BLE data length peer:{} mtu:{}", p_lcb->remote_bd_addr, tx_mtu);
+     }
+diff --git a/system/test/mock/mock_stack_btm_interface.cc b/system/test/mock/mock_stack_btm_interface.cc
+index 116d2008af..dcdd923135 100644
+--- a/system/test/mock/mock_stack_btm_interface.cc
++++ b/system/test/mock/mock_stack_btm_interface.cc
+@@ -181,9 +181,8 @@ struct btm_client_interface_t default_btm_client_interface = {
+                   return tBTM_STATUS::BTM_SUCCESS;
+                 },
+                 .BTM_SetBleDataLength = [](const RawAddress& /* bd_addr */,
+-                                           uint16_t /* tx_pdu_length */) -> tBTM_STATUS {
+-                  return tBTM_STATUS::BTM_SUCCESS;
+-                },
++                                           uint16_t /* tx_pdu_length */, bool /* priv_client */)
++                        -> tBTM_STATUS { return tBTM_STATUS::BTM_SUCCESS; },
+                 .BTM_BleReadControllerFeatures =
+                         [](tBTM_BLE_CTRL_FEATURES_CBACK* /* p_vsc_cback */) {},
+                 .BTM_BleSetPhy = [](const RawAddress& /* bd_addr */, uint8_t /* tx_phys */,
+-- 
+2.47.0.338.g60cca15819-goog
+
