@@ -22,6 +22,30 @@
       },
       "revId": "43ab3cae2c92aac3e7cc8cba3d74d4c35bc4cec8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6709069_bb0b6619",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/vcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-10-24T05:22:44Z",
+      "side": 1,
+      "message": "I will submit follow up CL then",
+      "parentUuid": "cb2a2888_0d7dc7b8",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "43ab3cae2c92aac3e7cc8cba3d74d4c35bc4cec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
