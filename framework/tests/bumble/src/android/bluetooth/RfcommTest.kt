@@ -34,6 +34,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.Ignore
 import org.junit.runner.RunWith
 import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.eq
@@ -381,6 +382,90 @@ class RfcommTest {
         }
     }
 
+    /*
+        Test Steps:
+        1. Create an insecure socket
+        2. Connect to the socket
+        3. Verify that devices are connected
+        4. Write data to socket output stream
+        5. Verify bumble received that data
+    */
+    @Test
+    @RequiresFlagsEnabled(Flags.SOCKET_SETTINGS_API)
+    @Ignore
+    fun clientSendDataOverInsecureSocketUsingSocketSettings() {
+        startServer { serverId ->
+            val (insecureSocket, connection) = createConnectAcceptSocketUsingSettings(serverId)
+            val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
+            val socketOs = insecureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.SOCKET_SETTINGS_API)
+    @Ignore
+    fun clientSendDataOverEncryptedOnlySocketUsingSocketSettings() {
+        startServer { serverId ->
+            val (insecureSocket, connection) =
+                createConnectAcceptSocketUsingSettings(serverId, TEST_UUID, true, false)
+
+            val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
+            val socketOs = insecureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.SOCKET_SETTINGS_API)
+    @Ignore
+    fun clientSendDataOverSecureSocketUsingSocketSettings() {
+        startServer { serverId ->
+            val (insecureSocket, connection) =
+                createConnectAcceptSocketUsingSettings(serverId, TEST_UUID, true, false)
+            val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
+            val socketOs = insecureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    private fun createConnectAcceptSocketUsingSettings(
+        server: ServerId,
+        uuid: String = TEST_UUID,
+        isEncrypted: Boolean = false,
+        isAuthenticated: Boolean = false,
+    ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
+        val socket =
+            createClientSocketUsingSocketSettings(uuid, mRemoteDevice, isEncrypted, isAuthenticated)
+
+        val connection = acceptSocket(server)
+
+        Truth.assertThat(socket.isConnected).isTrue()
+
+        return Pair(socket, connection)
+    }
+
     private fun createConnectAcceptSocket(
         isSecure: Boolean,
         server: ServerId,
@@ -392,6 +477,27 @@ class RfcommTest {
         Truth.assertThat(socket.isConnected).isTrue()
 
         return Pair(socket, connection)
+    }
+
+    private fun createClientSocketUsingSocketSettings(
+        uuid: String,
+        remoteDevice: BluetoothDevice,
+        isEncrypted: Boolean = false,
+        isAuthenticated: Boolean = false,
+    ): BluetoothSocket {
+        var socket: BluetoothSocket
+
+        socket =
+            remoteDevice.createUsingSocketSettings(
+                BluetoothSocketSettings.Builder()
+                    .setSocketType(BluetoothSocket.TYPE_RFCOMM)
+                    .setEncryptionRequired(isEncrypted)
+                    .setAuthenticationRequired(isAuthenticated)
+                    .setRfcommUuid(UUID.fromString(uuid))
+                    .build()
+            )
+
+        return socket
     }
 
     private fun createSocket(
