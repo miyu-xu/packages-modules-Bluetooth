@@ -665,7 +665,7 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
   // TODO: The tGATT_CLCB memory and state management needs cleanup,
   // and then the timers can be allocated elsewhere.
   if (p_clcb->gatt_rsp_timer_ent == NULL) {
-    p_clcb->gatt_rsp_timer_ent = alarm_new("gatt.gatt_rsp_timer_ent");
+    p_clcb->gatt_rsp_timer_ent = alarm_new_monotonic("gatt.gatt_rsp_timer_ent");
   }
   alarm_set_on_mloop(p_clcb->gatt_rsp_timer_ent, timeout_ms, gatt_rsp_timeout, p_clcb);
 }

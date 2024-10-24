@@ -91,6 +91,7 @@ struct alarm_t {
   uint64_t deadline_ms;
   uint64_t prev_deadline_ms;  // Previous deadline - used for accounting of
                               // periodic timers
+  bool is_monotonic;
   bool is_periodic;
   fixed_queue_t* queue;  // The processing queue to add this alarm to
   alarm_callback_t callback;
@@ -110,11 +111,13 @@ static const clockid_t CLOCK_ID = CLOCK_BOOTTIME;
 
 // This mutex ensures that the |alarm_set|, |alarm_cancel|, and alarm callback
 // functions execute serially and not concurrently. As a result, this mutex
-// also protects the |alarms| list.
+// also protects both the |alarms| list and the |monotonic_alarms| list.
 static std::mutex alarms_mutex;
 static list_t* alarms;
+static list_t* monotonic_alarms;
 static timer_t timer;
 static timer_t wakeup_timer;
+static timer_t monotonic_timer;
 static bool timer_set;
 
 // All alarm callbacks are dispatched from |dispatcher_thread|
@@ -126,7 +129,7 @@ static semaphore_t* alarm_expired;
 static thread_t* default_callback_thread;
 static fixed_queue_t* default_callback_queue;
 
-static alarm_t* alarm_new_internal(const char* name, bool is_periodic);
+static alarm_t* alarm_new_internal(const char* name, bool is_periodic, bool is_monotonic);
 static bool lazy_initialize(void);
 static uint64_t now_ms(void);
 static void alarm_set_internal(alarm_t* alarm, uint64_t period_ms, alarm_callback_t cb, void* data,
@@ -134,11 +137,12 @@ static void alarm_set_internal(alarm_t* alarm, uint64_t period_ms, alarm_callbac
 static void alarm_cancel_internal(alarm_t* alarm);
 static void remove_pending_alarm(alarm_t* alarm);
 static void schedule_next_instance(alarm_t* alarm);
-static void reschedule_root_alarm(void);
+static void reschedule_root_alarms(void);
 static void alarm_queue_ready(fixed_queue_t* queue, void* context);
 static void timer_callback(void* data);
 static void callback_dispatch(void* context);
 static bool timer_create_internal(const clockid_t clock_id, timer_t* timer);
+static bool monotonic_alarm_is_next(void);
 static void update_scheduling_stats(alarm_stats_t* stats, uint64_t now_ms, uint64_t deadline_ms);
 // Registers |queue| for processing alarm callbacks on |thread|.
 // |queue| may not be NULL. |thread| may not be NULL.
@@ -152,13 +156,15 @@ static void update_stat(stat_t* stat, uint64_t delta_ms) {
   stat->count++;
 }
 
-alarm_t* alarm_new(const char* name) { return alarm_new_internal(name, false); }
+alarm_t* alarm_new(const char* name) { return alarm_new_internal(name, false, false); }
 
-alarm_t* alarm_new_periodic(const char* name) { return alarm_new_internal(name, true); }
+alarm_t* alarm_new_monotonic(const char* name) { return alarm_new_internal(name, false, true); }
 
-static alarm_t* alarm_new_internal(const char* name, bool is_periodic) {
+alarm_t* alarm_new_periodic(const char* name) { return alarm_new_internal(name, true, false); }
+
+static alarm_t* alarm_new_internal(const char* name, bool is_periodic, bool is_monotonic) {
   // Make sure we have a list we can insert alarms into.
-  if (!alarms && !lazy_initialize()) {
+  if (!monotonic_alarms && !alarms && !lazy_initialize()) {
     log::fatal("initialization failed");  // if initialization failed, we
                                           // should not continue
     return NULL;
@@ -168,6 +174,7 @@ static alarm_t* alarm_new_internal(const char* name, bool is_periodic) {
 
   std::shared_ptr<std::recursive_mutex> ptr(new std::recursive_mutex());
   ret->callback_mutex = ptr;
+  ret->is_monotonic = is_monotonic;
   ret->is_periodic = is_periodic;
   ret->stats.name = osi_strdup(name);
 
@@ -266,12 +273,12 @@ static void alarm_cancel_internal(alarm_t* alarm) {
   alarm->queue = NULL;
 
   if (needs_reschedule) {
-    reschedule_root_alarm();
+    reschedule_root_alarms();
   }
 }
 
 bool alarm_is_scheduled(const alarm_t* alarm) {
-  if ((alarms == NULL) || (alarm == NULL)) {
+  if ((alarms == NULL) || (monotonic_alarms == NULL) || (alarm == NULL)) {
     return false;
   }
   return alarm->callback != NULL;
@@ -300,23 +307,34 @@ void alarm_cleanup(void) {
   semaphore_free(alarm_expired);
   alarm_expired = NULL;
 
+  list_free(monotonic_alarms);
+  monotonic_alarms = NULL;
+
   list_free(alarms);
   alarms = NULL;
 }
 
 static bool lazy_initialize(void) {
   log::assert_that(alarms == NULL, "assert failed: alarms == NULL");
+  log::assert_that(monotonic_alarms == NULL, "assert failed: monotonic_alarms == NULL");
 
   // timer_t doesn't have an invalid value so we must track whether
   // the |timer| variable is valid ourselves.
   bool timer_initialized = false;
   bool wakeup_timer_initialized = false;
+  bool monotonic_timer_initialized = false;
 
   std::lock_guard<std::mutex> lock(alarms_mutex);
 
   alarms = list_new(NULL);
   if (!alarms) {
     log::error("unable to allocate alarm list.");
+    goto error;
+  }
+
+  monotonic_alarms = list_new(NULL);
+  if (!monotonic_alarms) {
+    log::error("unable to allocate monotonic_alarm list.");
     goto error;
   }
 
@@ -331,6 +349,11 @@ static bool lazy_initialize(void) {
     }
   }
   wakeup_timer_initialized = true;
+
+  if (!timer_create_internal(CLOCK_MONOTONIC, &monotonic_timer)) {
+    goto error;
+  }
+  monotonic_timer_initialized = true;
 
   alarm_expired = semaphore_new(0);
   if (!alarm_expired) {
@@ -375,6 +398,10 @@ error:
   semaphore_free(alarm_expired);
   alarm_expired = NULL;
 
+  if (monotonic_timer_initialized) {
+    timer_delete(monotonic_timer);
+  }
+
   if (wakeup_timer_initialized) {
     timer_delete(wakeup_timer);
   }
@@ -382,6 +409,9 @@ error:
   if (timer_initialized) {
     timer_delete(timer);
   }
+
+  list_free(monotonic_alarms);
+  monotonic_alarms = NULL;
 
   list_free(alarms);
   alarms = NULL;
@@ -419,9 +449,11 @@ static void remove_pending_alarm(alarm_t* alarm) {
 
 // Must be called with |alarms_mutex| held
 static void schedule_next_instance(alarm_t* alarm) {
+  list_t* alarms_list = alarm->is_monotonic ? monotonic_alarms : alarms;
+
   // If the alarm is currently set and it's at the start of the list,
   // we'll need to re-schedule since we've adjusted the earliest deadline.
-  bool needs_reschedule = (!list_is_empty(alarms) && list_front(alarms) == alarm);
+  bool needs_reschedule = (!list_is_empty(alarms_list) && list_front(alarms_list) == alarm);
   if (alarm->callback) {
     remove_pending_alarm(alarm);
   }
@@ -435,14 +467,14 @@ static void schedule_next_instance(alarm_t* alarm) {
   alarm->deadline_ms = just_now_ms + (alarm->period_ms - ms_into_period);
 
   // Add it into the timer list sorted by deadline (earliest deadline first).
-  if (list_is_empty(alarms) || ((alarm_t*)list_front(alarms))->deadline_ms > alarm->deadline_ms) {
-    list_prepend(alarms, alarm);
+  if (list_is_empty(alarms_list) || ((alarm_t*)list_front(alarms_list))->deadline_ms > alarm->deadline_ms) {
+    list_prepend(alarms_list, alarm);
   } else {
-    for (list_node_t* node = list_begin(alarms); node != list_end(alarms); node = list_next(node)) {
+    for (list_node_t* node = list_begin(alarms_list); node != list_end(alarms_list); node = list_next(node)) {
       list_node_t* next = list_next(node);
-      if (next == list_end(alarms) ||
+      if (next == list_end(alarms_list) ||
           ((alarm_t*)list_node(next))->deadline_ms > alarm->deadline_ms) {
-        list_insert_after(alarms, node, alarm);
+        list_insert_after(alarms_list, node, alarm);
         break;
       }
     }
@@ -450,38 +482,52 @@ static void schedule_next_instance(alarm_t* alarm) {
 
   // If the new alarm has the earliest deadline, we need to re-evaluate our
   // schedule.
-  if (needs_reschedule || (!list_is_empty(alarms) && list_front(alarms) == alarm)) {
-    reschedule_root_alarm();
+  if (needs_reschedule || (!list_is_empty(alarms_list) && list_front(alarms_list) == alarm)) {
+    reschedule_root_alarms();
   }
 }
 
 // NOTE: must be called with |alarms_mutex| held
-static void reschedule_root_alarm(void) {
+static void reschedule_root_alarms(void) {
   log::assert_that(alarms != NULL, "assert failed: alarms != NULL");
 
   const bool timer_was_set = timer_set;
-  alarm_t* next;
-  int64_t next_expiration;
+  alarm_t* next_wakeup;
+  alarm_t* next_monotonic;
+  int64_t next_wakeup_expiration;
 
   // If used in a zeroed state, disarms the timer.
   struct itimerspec timer_time;
   memset(&timer_time, 0, sizeof(timer_time));
 
+  if (!list_is_empty(monotonic_alarms)) {
+    next_monotonic = static_cast<alarm_t*>(list_front(monotonic_alarms));
+
+    struct itimerspec fire_time;
+    memset(&fire_time, 0, sizeof(fire_time));
+
+    fire_time.it_value.tv_sec = (next_monotonic->deadline_ms / 1000);
+    fire_time.it_value.tv_nsec = (next_monotonic->deadline_ms % 1000) * 1000000LL;
+    if (timer_settime(monotonic_timer, TIMER_ABSTIME, &fire_time, NULL) == -1) {
+      log::error("unable to set monotonic timer: {}", strerror(errno));
+    }
+  }
+
   if (list_is_empty(alarms)) {
     goto done;
   }
 
-  next = static_cast<alarm_t*>(list_front(alarms));
-  next_expiration = next->deadline_ms - now_ms();
-  if (next_expiration < TIMER_INTERVAL_FOR_WAKELOCK_IN_MS) {
+  next_wakeup = static_cast<alarm_t*>(list_front(alarms));
+  next_wakeup_expiration = next_wakeup->deadline_ms - now_ms();
+  if (next_wakeup_expiration < TIMER_INTERVAL_FOR_WAKELOCK_IN_MS) {
     if (!timer_set) {
       if (!wakelock_acquire()) {
         log::error("unable to acquire wake lock");
       }
     }
 
-    timer_time.it_value.tv_sec = (next->deadline_ms / 1000);
-    timer_time.it_value.tv_nsec = (next->deadline_ms % 1000) * 1000000LL;
+    timer_time.it_value.tv_sec = (next_wakeup->deadline_ms / 1000);
+    timer_time.it_value.tv_nsec = (next_wakeup->deadline_ms % 1000) * 1000000LL;
 
     // It is entirely unsafe to call timer_settime(2) with a zeroed timerspec
     // for timers with *_ALARM clock IDs. Although the man page states that the
@@ -506,8 +552,8 @@ static void reschedule_root_alarm(void) {
     struct itimerspec wakeup_time;
     memset(&wakeup_time, 0, sizeof(wakeup_time));
 
-    wakeup_time.it_value.tv_sec = (next->deadline_ms / 1000);
-    wakeup_time.it_value.tv_nsec = (next->deadline_ms % 1000) * 1000000LL;
+    wakeup_time.it_value.tv_sec = (next_wakeup->deadline_ms / 1000);
+    wakeup_time.it_value.tv_nsec = (next_wakeup->deadline_ms % 1000) * 1000000LL;
     if (timer_settime(wakeup_timer, TIMER_ABSTIME, &wakeup_time, NULL) == -1) {
       log::error("unable to set wakeup timer: {}", strerror(errno));
     }
@@ -608,7 +654,7 @@ static void alarm_queue_ready(fixed_queue_t* queue, void* /* context */) {
 static void timer_callback(void* /* ptr */) { semaphore_post(alarm_expired); }
 
 // Function running on |dispatcher_thread| that performs the following:
-//   (1) Receives a signal using |alarm_exired| that the alarm has expired
+//   (1) Receives a signal using |alarm_expired| that the alarm has expired
 //   (2) Dispatches the alarm callback for processing by the corresponding
 // thread for that alarm.
 static void callback_dispatch(void* /* context */) {
@@ -624,20 +670,31 @@ static void callback_dispatch(void* /* context */) {
     // Take into account that the alarm may get cancelled before we get to it.
     // We're done here if there are no alarms or the alarm at the front is in
     // the future. Exit right away since there's nothing left to do.
-    if (list_is_empty(alarms) ||
-        (alarm = static_cast<alarm_t*>(list_front(alarms)))->deadline_ms > now_ms()) {
-      reschedule_root_alarm();
+    if (list_is_empty(alarms) && list_is_empty(monotonic_alarms)) {
+      reschedule_root_alarms();
       continue;
     }
 
-    list_remove(alarms, alarm);
+    if (monotonic_alarm_is_next()) {
+      alarm = static_cast<alarm_t*>(list_front(monotonic_alarms));
+    }
+    else {
+      alarm = static_cast<alarm_t*>(list_front(alarms));
+    }
+    
+    if (alarm->deadline_ms > now_ms()) {
+      reschedule_root_alarms();
+      continue;
+    }
+
+    list_remove(alarm->is_monotonic ? monotonic_alarms : alarms, alarm);
 
     if (alarm->is_periodic) {
       alarm->prev_deadline_ms = alarm->deadline_ms;
       schedule_next_instance(alarm);
       alarm->stats.rescheduled_count++;
     }
-    reschedule_root_alarm();
+    reschedule_root_alarms();
 
     // Enqueue the alarm for processing
     if (alarm->for_msg_loop) {
@@ -688,6 +745,29 @@ static bool timer_create_internal(const clockid_t clock_id, timer_t* timer) {
   }
 
   return true;
+}
+
+static bool monotonic_alarm_is_next(void) {
+  if (!alarms || !monotonic_alarms) {
+    return false;
+  } else if (list_is_empty(monotonic_alarms)) {
+    return false;
+  } else if (list_is_empty(alarms)) {
+    return true;
+  }
+
+  alarm_t* next_wakeup;
+  alarm_t* next_monotonic;
+  int64_t next_wakeup_expiration;
+  int64_t next_monotonic_expiration;
+
+  next_wakeup = static_cast<alarm_t*>(list_front(alarms));
+  next_wakeup_expiration = next_wakeup->deadline_ms - now_ms();
+
+  next_monotonic = static_cast<alarm_t*>(list_front(monotonic_alarms));
+  next_monotonic_expiration = next_monotonic->deadline_ms - now_ms();
+
+  return next_monotonic_expiration < next_wakeup_expiration;
 }
 
 static void update_scheduling_stats(alarm_stats_t* stats, uint64_t now_ms, uint64_t deadline_ms) {

@@ -37,6 +37,16 @@ typedef void (*alarm_callback_t)(void* data);
 // failure.
 alarm_t* alarm_new(const char* name);
 
+// Creates a new one-time off alarm object with user-assigned
+// |name|. |name| may not be NULL, and a copy of the string will
+// be stored internally. The value of |name| has no semantic
+// meaning. It is recommended that the name is unique (for
+// better debuggability), but that is not enforced. The returned
+// object must be freed by calling |alarm_free|. Returns NULL on
+// failure. This alarm type does NOT wake the device up, and it
+// does NOT continue counting while the device is suspended.
+alarm_t* alarm_new_monotonic(const char* name);
+
 // Creates a new periodic alarm object with user-assigned |name|.
 // |name| may not be NULL, and a copy of the string will be
 // stored internally. The value of |name| has no semantic
