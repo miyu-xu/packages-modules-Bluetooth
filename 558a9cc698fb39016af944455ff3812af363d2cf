@@ -1,5 +1,57 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "047573cd_f411beb3",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-10-24T12:18:02Z",
+      "side": 1,
+      "message": "We\u0027re checking if `p_lcb` is non-null...",
+      "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc48c35_6bfebb9d",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-10-24T12:18:02Z",
+      "side": 1,
+      "message": "...and in the `else` case, where `p_lcb` is known to be null...",
+      "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c6823a4_e84a0817",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-10-24T12:18:02Z",
+      "side": 1,
+      "message": "...we\u0027re dereferencing `p_lcb` with our `p_lcb-\u003ech_state` usage.  This will crash.",
+      "revId": "558a9cc698fb39016af944455ff3812af363d2cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
