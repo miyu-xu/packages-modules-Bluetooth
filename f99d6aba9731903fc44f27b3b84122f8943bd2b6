@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ecc12e7_08ab8c1d",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-10-24T01:36:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09c8aa70_8b00d097",
+      "range": {
+        "startLine": 445,
+        "startChar": 0,
+        "endLine": 447,
+        "endChar": 3
+      },
+      "revId": "f99d6aba9731903fc44f27b3b84122f8943bd2b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8930e307_4398a8d5",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "let me remove it",
       "parentUuid": "8930e307_4398a8d5",
+      "revId": "f99d6aba9731903fc44f27b3b84122f8943bd2b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f233690_f49e405d",
+        "filename": "system/gd/os/linux_generic/thread.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-10-24T01:36:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7177460_7b762cfc",
       "revId": "f99d6aba9731903fc44f27b3b84122f8943bd2b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
