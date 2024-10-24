@@ -99,8 +99,7 @@ void Stack::StartEverything() {
                    "assert failed: stack_manager_.GetInstance<shim::Dumpsys>() != nullptr");
   if (stack_manager_.IsStarted<hci::Controller>()) {
     pimpl_->acl_ =
-            new Acl(stack_handler_, GetAclInterface(), GetController()->GetLeFilterAcceptListSize(),
-                    GetController()->GetLeResolvingListSize());
+            new Acl(stack_handler_, GetAclInterface(), GetController()->GetLeResolvingListSize());
   } else {
     log::error("Unable to create shim ACL layer as Controller has not started");
   }
