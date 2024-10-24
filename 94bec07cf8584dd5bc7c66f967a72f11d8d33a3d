@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0785aa7e_b34518e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-24T20:37:08Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "94bec07cf8584dd5bc7c66f967a72f11d8d33a3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
