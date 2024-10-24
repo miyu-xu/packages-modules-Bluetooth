@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f839a42_1cbe65c3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "We avoid it here by checking activeSyncedSrc, it is correlated with PeriodicAdvertisementResult. So if possible SM doing that, if not it is done here.\n\nNevertheless it is not relevant in new approach.",
+      "parentUuid": "d82f64f0_c7feb0f7",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "761ed609_0141f499",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-23T18:44:20Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: This class should only be accessed from tests or within private scope [VisibleForTests]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    This class should only be accessed from tests or within private scope [VisibleForTests]\n                                    BassClientStateMachine sm \u003d getOrCreateStateMachine(sinkDevice);\n                                    ~~~~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P83267775/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 2194,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 96
+      },
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e62a6f_4107cf2d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "761ed609_0141f499",
       "range": {
         "startLine": 2194,
         "startChar": 0,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "249a2e9e_882101f9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3958,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "sure, that left here because of adding isReceiverActive.\nthanks",
+      "parentUuid": "f8d24f48_c8d2f309",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90f43c30_b188796d",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-10-23T18:44:20Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: This method should only be accessed from tests or within private scope [VisibleForTests]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    This method should only be accessed from tests or within private scope [VisibleForTests]\n                                BassClientStateMachine.REMOVE_BCAST_SOURCE,\n                                                       ~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P83267775/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 4081,
+        "startChar": 0,
+        "endLine": 4081,
+        "endChar": 0
+      },
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb1e682_dac0dbca",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4081,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90f43c30_b188796d",
       "range": {
         "startLine": 4081,
         "startChar": 0,
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d00215_9e2b3d5a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "yea, sounds much better:)",
+      "parentUuid": "9e296a36_395f7ed7",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24fbc31e_551bf7ad",
@@ -111,6 +213,24 @@
       "writtenOn": "2024-10-23T18:44:20Z",
       "side": 1,
       "message": "Instead of checking in RS changed from service, have we considered to notify service from here? and then service will sync and initiate PAST?\n\nThe flow would be SM found no sync info for PAST -\u003e notify service to request resync -\u003e service sync and initiate PAST in SM.",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dafa751d_3147a8e4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "I thought about that and decided to go with simpler version but now... maybe better will be do with notification. Then BassClientService do not have to have any knowledge about how BassClientStateMachine handle a PAST and flow be more clear.\n\nFixed.",
+      "parentUuid": "24fbc31e_551bf7ad",
       "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -146,6 +266,24 @@
       "side": 1,
       "message": "sent this in draft, was meant to ask any case source id could be invalid? it\u0027s from RS.",
       "parentUuid": "cab08700_d7c7b34d",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2889a19_66527b8b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-10-24T10:44:19Z",
+      "side": 1,
+      "message": "I have never seen that but as it is pass to the method it is better to check it, as you do not know when someone can use it.",
+      "parentUuid": "c07882ff_7019fe6b",
       "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
