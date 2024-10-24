@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "418e32c2_07208fed",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 4535,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T23:43:47Z",
+      "side": 1,
+      "message": "remove as this is a new API",
+      "range": {
+        "startLine": 4535,
+        "startChar": 5,
+        "endLine": 4535,
+        "endChar": 38
+      },
+      "revId": "6461fda59196abe824138234fe7c2ef46ad0a405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adf87914_0caefc2a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T23:43:47Z",
+      "side": 1,
+      "message": "Not needed as this is not a legacy api",
+      "range": {
+        "startLine": 3218,
+        "startChar": 5,
+        "endLine": 3218,
+        "endChar": 38
+      },
+      "revId": "6461fda59196abe824138234fe7c2ef46ad0a405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72a80f02_9b8addb2",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3222,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T23:43:47Z",
+      "side": 1,
+      "message": "why was this added ?",
+      "range": {
+        "startLine": 3222,
+        "startChar": 0,
+        "endLine": 3222,
+        "endChar": 55
+      },
+      "revId": "6461fda59196abe824138234fe7c2ef46ad0a405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
