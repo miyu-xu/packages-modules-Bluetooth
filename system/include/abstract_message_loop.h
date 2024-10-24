@@ -16,7 +16,7 @@
 
 #pragma once
 
-#if defined(BASE_VER) && BASE_VER > 780000
+#if 1
 /* libchrome version < 780000 still has the old message loop. Android still uses
  * the old libchrome version so use the basic messageloop where that's required.
  * Elsewhere, use the SingleThreadTaskExecutor instead.
@@ -38,7 +38,7 @@
 
 namespace btbase {
 
-#if defined(BASE_VER) && BASE_VER > 780000
+#if 1
 
 class AbstractMessageLoop : public base::SingleThreadTaskExecutor {
 public:
