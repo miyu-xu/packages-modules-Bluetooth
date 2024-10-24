@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b286eec_78dc60b9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-10-24T00:13:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9b35e7f_1a26c89f",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 93
+      },
+      "revId": "3a27f5cf68fd9551fe98430e0870584433e2e563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5652f85e_90ab2202",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-09T22:51:18Z",
       "side": 1,
       "message": "I just realized the existing test (i.e., nothing to do with your CL) wasn\u0027t testing what it said it would, namely, also verifying the broadcast (which should also be done as part of the test). Could you see if the following works\n```\nprivate static final int CONNECTION_STATE_UNDEFINED \u003d -1;\n\n...\n\nint expectedFromState \u003d BluetoothProfile.STATE_CONNECTING;\nint expectedToState \u003d BluetoothProfile.STATE_CONNECTED;\nMessage msg \u003d Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);\nmMceStateMachine.sendMessage(msg);\nTestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());\nverify(mMockMapClientService, atLeastOnce())\n        .sendBroadcastMultiplePermissions(\n                mIntentArgument.capture(),\n                any(String[].class),\n                any(BroadcastOptions.class));\nIntent capturedIntent \u003d mIntentArgument.getValue();\nint intentFromState \u003d capturedIntent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, CONNECTION_STATE_UNDEFINED);\nint intentToState \u003d capturedIntent.getIntExtra(BluetoothProfile.EXTRA_STATE, CONNECTION_STATE_UNDEFINED);\nassertThat(intentFromState).isEqualTo(expectedFromState);\nassertThat(intentToState).isEqualTo(expectedToState);\nassertThat(mMceStateMachine.getState()).isEqualTo(expectedToState);\n\nexpectedFromState \u003d BluetoothProfile.STATE_CONNECTED;\nexpectedToState \u003d BluetoothProfile.STATE_DISCONNECTED;\nmsg \u003d Message.obtain(mHandler, MceStateMachine.MSG_MAS_DISCONNECTED);\nmMceStateMachine.sendMessage(msg);\nTestUtils.waitForLooperToFinishScheduledTask(mMceStateMachine.getHandler().getLooper());\nverify(mMockMapClientService, atLeastOnce())\n        .sendBroadcastMultiplePermissions(\n                mIntentArgument.capture(),\n                any(String[].class),\n                any(BroadcastOptions.class));\ncapturedIntent \u003d mIntentArgument.getValue();\nintentFromState \u003d capturedIntent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, CONNECTION_STATE_UNDEFINED);\nintentToState \u003d capturedIntent.getIntExtra(BluetoothProfile.EXTRA_STATE, CONNECTION_STATE_UNDEFINED);\nassertThat(intentFromState).isEqualTo(expectedFromState);\nassertThat(intentToState).isEqualTo(expectedToState);\nassertThat(mMceStateMachine.getState()).isEqualTo(expectedToState);\n```\nIf it works, can you apply it to the relevant parts of other tests? If there\u0027s enough instances, maybe make it into its own function (i.e., the above would count as 2 instances)?\n\nAnd maybe add a line to the commit message mentioning you also fixed tests that weren\u0027t testing the broadcast of state transitions.",
+      "range": {
+        "startLine": 334,
+        "startChar": 8,
+        "endLine": 334,
+        "endChar": 67
+      },
+      "revId": "3a27f5cf68fd9551fe98430e0870584433e2e563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67578b4e_2469b30f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-10-24T00:13:06Z",
+      "side": 1,
+      "message": "Hi Andrew, I will do this as a part of separate CL. I would like to get this CL uploaded with the changes that were pertinent to the original intent of this CL. What you have mentioned in this comment, as you said, is an unrelated issue to this CL. I will add a bug to track this issue.",
+      "parentUuid": "5652f85e_90ab2202",
       "range": {
         "startLine": 334,
         "startChar": 8,
