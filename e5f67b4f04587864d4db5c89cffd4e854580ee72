@@ -22,6 +22,30 @@
       },
       "revId": "e5f67b4f04587864d4db5c89cffd4e854580ee72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c4f4f95_0a4458de",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T21:09:08Z",
+      "side": 1,
+      "message": "I didn\u0027t know fmtlib was printing boolean nicely. That\u0027s good to know !",
+      "parentUuid": "5603c79f_e1e6c244",
+      "range": {
+        "startLine": 162,
+        "startChar": 26,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "e5f67b4f04587864d4db5c89cffd4e854580ee72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
