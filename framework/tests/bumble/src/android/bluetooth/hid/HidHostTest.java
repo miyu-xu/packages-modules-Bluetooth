@@ -45,6 +45,7 @@ import android.bluetooth.BluetoothHidDevice;
 import android.bluetooth.BluetoothHidHost;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.EmulatorOnly;
 import android.bluetooth.PandoraDevice;
 import android.bluetooth.cts.EnableBluetoothRule;
 import android.content.BroadcastReceiver;
@@ -91,6 +92,7 @@ import java.util.concurrent.TimeUnit;
 
 /** Test cases for {@link BluetoothHidHost}. */
 @RunWith(AndroidJUnit4.class)
+@EmulatorOnly
 public class HidHostTest {
     private static final String TAG = HidHostTest.class.getSimpleName();
     private static final Duration INTENT_TIMEOUT = Duration.ofSeconds(10);

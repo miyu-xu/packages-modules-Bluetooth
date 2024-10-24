@@ -48,6 +48,7 @@ import android.bluetooth.BluetoothHidHost;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
+import android.bluetooth.EmulatorOnly;
 import android.bluetooth.PandoraDevice;
 import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.content.BroadcastReceiver;
@@ -92,6 +93,7 @@ import java.util.Arrays;
 /** Test cases for {@link BluetoothHidHost}. */
 @SuppressLint("MissingPermission")
 @RunWith(AndroidJUnit4.class)
+@EmulatorOnly
 public class HidHostDualModeTest {
     private static final String TAG = HidHostDualModeTest.class.getSimpleName();
     private static final String BUMBLE_DEVICE_NAME = "Bumble";
