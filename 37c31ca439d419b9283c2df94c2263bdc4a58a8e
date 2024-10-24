@@ -22,6 +22,30 @@
       },
       "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a8949e_6a7b148c",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T17:36:54Z",
+      "side": 1,
+      "message": "An l2cap reject must still be issued so we can\u0027t immediately return.\n\nThe concept within the code was to aggregate the failures and then either reject the l2cap connection or continue.",
+      "parentUuid": "670310cb_0aa74d18",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 1
+      },
+      "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
