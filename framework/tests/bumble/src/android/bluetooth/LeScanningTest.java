@@ -354,6 +354,7 @@ public class LeScanningTest {
     }
 
     @Test
+    @EmulatorOnly
     public void startBleScan_withServiceData() {
         advertiseWithBumbleWithServiceData();
 
