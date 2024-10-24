@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670310cb_0aa74d18",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T17:30:17Z",
+      "side": 1,
+      "message": "What about returning early to not carry around the possibility of a null p_lcb ?\n\n(I would also return early within `if (!avct_l2c_is_passive(p_lcb) || (p_lcb-\u003ech_state \u003d\u003d AVCT_CH_OPEN)) {` and remove the   `if (result \u003d\u003d tL2CAP_CONN::L2CAP_CONN_OK) {`)\n\n```suggestion\nvoid avct_l2c_connect_ind_cback(const RawAddress\u0026 bd_addr, uint16_t lcid, uint16_t /* psm */,\n                                uint8_t /* id */) {\n  tL2CAP_CONN result \u003d tL2CAP_CONN::L2CAP_CONN_OK;\n\n  /* do we already have a channel for this peer? */\n  tAVCT_LCB* p_lcb \u003d avct_lcb_by_bd(bd_addr);\n  if (p_lcb \u003d\u003d nullptr) {\n    /* no, allocate lcb */\n    p_lcb \u003d avct_lcb_alloc(bd_addr);\n    if (p_lcb \u003d\u003d nullptr) {\n      /* no ccb available, reject L2CAP connection */\n      log::info(\"Ignoring remote connection no link request peer:{} lcid:0x{:04x} No ressource\", bd_addr, lcid);\n      return;\n    }\n  } else {\n    /* else we already have a channel for this peer */\n    if (!avct_l2c_is_passive(p_lcb) || (p_lcb-\u003ech_state \u003d\u003d AVCT_CH_OPEN)) {\n      /* this LCB included CT role - reject */\n      result \u003d tL2CAP_CONN::L2CAP_CONN_NO_RESOURCES;\n    } else {\n      /* TG role only - accept the connection from CT. move the channel ID to\n       * the conflict list */\n      p_lcb-\u003econflict_lcid \u003d p_lcb-\u003ech_lcid;\n      log::verbose(\"Accept connection from controller lcid:0x{:04x} conflict_lcid:0x{:04x}\", lcid,\n                   p_lcb-\u003econflict_lcid);\n    }\n  }\n\n  /* if result ok, proceed with connection */\n  if (result \u003d\u003d tL2CAP_CONN::L2CAP_CONN_OK) {\n    if (btif_av_src_sink_coexist_enabled()) {\n      tAVCT_CCB* p_ccb \u003d \u0026avct_cb.ccb[0];\n      for (int i \u003d 0; i \u003c AVCT_NUM_CONN; i++, p_ccb++) {\n        if (p_ccb \u0026\u0026 p_ccb-\u003eallocated \u0026\u0026 (p_ccb-\u003ep_lcb \u003d\u003d NULL) \u0026\u0026\n            (p_ccb-\u003ecc.role \u003d\u003d AVCT_ROLE_ACCEPTOR)) {\n          p_ccb-\u003ep_lcb \u003d p_lcb;\n          log::verbose(\n                  \"Source and sink coexistance enabled acceptor bind ccb to lcb idx:{} \"\n                  \"allocated:{} role {} pid 0x{:x}\",\n                  i, p_ccb-\u003eallocated, avct_role_text(p_ccb-\u003ecc.role), p_ccb-\u003ecc.pid);\n        }\n      }\n    }\n    /* store LCID */\n    p_lcb-\u003ech_lcid \u003d lcid;\n\n    /* transition to configuration state */\n    p_lcb-\u003ech_state \u003d AVCT_CH_CFG;\n  } else {\n    /* If we reject the connection, send DisconnectReq */\n    if (!stack::l2cap::get_interface().L2CA_DisconnectReq(lcid)) {\n      log::warn(\"Unable to send L2CAP disconnect request peer:{} lcid:0x{:04x}\", bd_addr, lcid);\n    }\n  }\n\n  log::debug(\"Received remote connection request peer:{} lcid:0x{:04x} res:{} ch_state:{}\",\n               bd_addr, lcid, l2cap_result_code_text(result), avct_ch_state_text(p_lcb-\u003ech_state));\n}\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 1
+      },
+      "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
