@@ -24,6 +24,8 @@ import android.platform.test.flag.junit.SetFlagsRule;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
+import bluetooth.constants.aics.MuteField;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -111,7 +113,7 @@ public class VolumeControlInputDescriptorTest {
     public void setState_withValidIdButIncorrectSettings_valueIsNotUpdated() {
         int newGainValue = 42;
         int newGainMode = 42;
-        int mute = 0;
+        int mute = MuteField.NOT_MUTED;
         mDescriptor.setState(VALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGain(VALID_ID)).isNotEqualTo(newGainValue);
@@ -128,7 +130,7 @@ public class VolumeControlInputDescriptorTest {
 
         int newGainValue = 42;
         int newGainMode = 42;
-        int mute = 1;
+        int mute = MuteField.MUTED;
         mDescriptor.setState(VALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGain(VALID_ID)).isEqualTo(newGainValue);
@@ -146,7 +148,7 @@ public class VolumeControlInputDescriptorTest {
 
         int newGainValue = 42;
         int newGainMode = 42;
-        int mute = 1;
+        int mute = MuteField.MUTED;
         mDescriptor.setState(INVALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGain(INVALID_ID)).isNotEqualTo(newGainValue);
