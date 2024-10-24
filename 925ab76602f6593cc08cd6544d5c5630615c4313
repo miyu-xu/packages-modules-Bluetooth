@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345654ed_69e1f08f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-24T08:30:09Z",
+      "side": 1,
+      "message": "could you please paste here example of the generated name ?",
+      "revId": "925ab76602f6593cc08cd6544d5c5630615c4313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
