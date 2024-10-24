@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea86304d_db3ee922",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1783,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-24T17:22:47Z",
+      "side": 1,
+      "message": "If this suggestion works, it would be preferable as we will not let the code reader think that phoneStateChanged is blocking and \"waiting unconditionally\" (as you fix seems to indicate we do not wait\n\n```suggestion\n        mHeadsetService.phoneStateChanged(\n                headsetCallState.mNumActive,\n                headsetCallState.mNumHeld,\n                headsetCallState.mCallState,\n                headsetCallState.mNumber,\n                headsetCallState.mType,\n                headsetCallState.mName,\n                false);\n        mTestLooper.dispatchAll();\n```",
+      "range": {
+        "startLine": 1773,
+        "startChar": 0,
+        "endLine": 1783,
+        "endChar": 34
+      },
+      "revId": "24e642503a1403403bdc9b3e436d5c3f6761bb82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
