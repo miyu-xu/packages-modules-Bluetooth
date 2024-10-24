@@ -122,17 +122,7 @@ class RfcommTest {
         mRemoteDevice = mBumble.remoteDevice
         mHost = Host(mContext)
 
-        // Set Bonding
-        val pairingConfig =
-            BumbleConfigProto.PairingConfig.newBuilder()
-                .setBonding(false)
-                .setMitm(false)
-                .setSc(false)
-                .setIdentityAddressType(HostProto.OwnAddressType.PUBLIC)
-                .build()
-        val overrideRequest =
-            BumbleConfigProto.OverrideRequest.newBuilder().setPairingConfig(pairingConfig).build()
-        mBumble.bumbleConfigBlocking().override(overrideRequest)
+        // updateSecurityConfig()
 
         val bluetoothA2dp = getProfileProxy(mContext, BluetoothProfile.A2DP) as BluetoothA2dp
         bluetoothA2dp.setConnectionPolicy(
@@ -187,6 +177,7 @@ class RfcommTest {
     */
     @Test
     fun clientConnectToOpenServerSocketSecure() {
+        updateSecurityConfig()
         startServer { serverId -> createConnectAcceptSocket(isSecure = true, serverId) }
     }
 
@@ -225,6 +216,7 @@ class RfcommTest {
     */
     @Test
     fun clientSendDataOverSecureSocket() {
+        updateSecurityConfig()
         startServer { serverId ->
             val (secureSocket, connection) = createConnectAcceptSocket(isSecure = true, serverId)
             val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
@@ -276,6 +268,7 @@ class RfcommTest {
     */
     @Test
     fun clientReceiveDataOverSecureSocket() {
+        updateSecurityConfig()
         startServer { serverId ->
             val (secureSocket, connection) = createConnectAcceptSocket(isSecure = true, serverId)
             val buffer = ByteArray(64)
@@ -350,6 +343,7 @@ class RfcommTest {
     */
     @Test
     fun connectTwoSecureClientsSimultaneously() {
+        updateSecurityConfig()
         startServer("ServerPort1", TEST_UUID) { serverId1 ->
             startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
                 val socket2 = createSocket(mRemoteDevice, isSecure = true, SERIAL_PORT_UUID)
@@ -373,6 +367,7 @@ class RfcommTest {
     */
     @Test
     fun connectTwoSecureClientsSequentially() {
+        updateSecurityConfig()
         startServer("ServerPort1", TEST_UUID) { serverId1 ->
             startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
                 val socket1 = createSocket(mRemoteDevice, isSecure = true, TEST_UUID)
@@ -396,6 +391,7 @@ class RfcommTest {
     @Test
     @Ignore("b/380091558")
     fun connectTwoMixedClientsInsecureThenSecure() {
+        updateSecurityConfig()
         startServer("ServerPort1", TEST_UUID) { serverId1 ->
             startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
                 val socket2 = createSocket(mRemoteDevice, isSecure = false, SERIAL_PORT_UUID)
@@ -418,6 +414,7 @@ class RfcommTest {
     */
     @Test
     fun connectTwoMixedClientsSecureThenInsecure() {
+        updateSecurityConfig()
         startServer("ServerPort1", TEST_UUID) { serverId1 ->
             startServer("ServerPort2", SERIAL_PORT_UUID) { serverId2 ->
                 val socket2 = createSocket(mRemoteDevice, isSecure = true, SERIAL_PORT_UUID)
@@ -439,6 +436,7 @@ class RfcommTest {
     @RequiresFlagsEnabled(Flags.FLAG_TRIGGER_SEC_PROC_ON_INC_ACCESS_REQ)
     @Test
     fun serverSecureConnectThenRemoteDisconnect() {
+        updateSecurityConfig()
         // step 1
         val (serverSock, connection) = connectRemoteToListeningSocket()
         val disconnectRequest =
@@ -456,11 +454,132 @@ class RfcommTest {
     @RequiresFlagsEnabled(Flags.FLAG_TRIGGER_SEC_PROC_ON_INC_ACCESS_REQ)
     @Test
     fun serverSecureConnectThenLocalDisconnect() {
+        updateSecurityConfig()
         // step 1
         val (serverSock, _) = connectRemoteToListeningSocket()
         // step 2
         serverSock.close()
         Truth.assertThat(serverSock.channel).isEqualTo(-1) // ensure disconnected at RFCOMM Layer
+    }
+
+    /*
+      Test Steps:
+        1. Create an insecure socket
+        2. Connect to the socket
+        3. Verify that devices are connected
+        4. Write data to socket output stream
+        5. Verify bumble received that data
+    */
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_SOCKET_SETTINGS_API)
+    fun clientSendDataOverInsecureSocketUsingSocketSettings() {
+        startServer { serverId ->
+            val (insecureSocket, connection) = createConnectAcceptSocketUsingSettings(serverId)
+            val data: ByteArray =
+                "Test data for clientSendDataOverInsecureSocketUsingSocketSettings".toByteArray()
+            val socketOs = insecureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    /*
+      Test Steps:
+        1. Create an encrypt only socket
+        2. Connect to the socket
+        3. Verify that devices are connected
+        4. Write data to socket output stream
+        5. Verify bumble received that data
+    */
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_SOCKET_SETTINGS_API)
+    fun clientSendDataOverEncryptedOnlySocketUsingSocketSettings() {
+        updateSecurityConfig(true, false)
+        startServer { serverId ->
+            val (encryptOnlySocket, connection) =
+                createConnectAcceptSocketUsingSettings(serverId, TEST_UUID, true, false)
+
+            val data: ByteArray =
+                "Test data for clientSendDataOverEncryptedOnlySocketUsingSocketSettings"
+                    .toByteArray()
+            val socketOs = encryptOnlySocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    /*
+     Test Steps:
+       1. Create an secure socket
+       2. Connect to the socket
+       3. Verify that devices are connected
+       4. Write data to socket output stream
+       5. Verify bumble received that data
+    */
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_SOCKET_SETTINGS_API)
+    fun clientSendDataOverSecureSocketUsingSocketSettings() {
+        updateSecurityConfig(true, true)
+        startServer { serverId ->
+            val (secureSocket, connection) =
+                createConnectAcceptSocketUsingSettings(serverId, TEST_UUID, true, false)
+            val data: ByteArray =
+                "Test data for clientSendDataOverSecureSocketUsingSocketSettings".toByteArray()
+            val socketOs = secureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    // helper to update the security config for remote bumble device
+    private fun updateSecurityConfig(
+        isEncrypted: Boolean = false,
+        isAuthenticated: Boolean = false,
+    ) {
+        val pairingConfig =
+            BumbleConfigProto.PairingConfig.newBuilder()
+                .setBonding(isEncrypted)
+                .setMitm(isAuthenticated)
+                .setSc(isEncrypted)
+                .setIdentityAddressType(HostProto.OwnAddressType.PUBLIC)
+                .build()
+        val overrideRequest =
+            BumbleConfigProto.OverrideRequest.newBuilder().setPairingConfig(pairingConfig).build()
+        mBumble.bumbleConfigBlocking().override(overrideRequest)
+    }
+
+    private fun createConnectAcceptSocketUsingSettings(
+        server: ServerId,
+        uuid: String = TEST_UUID,
+        isEncrypted: Boolean = false,
+        isAuthenticated: Boolean = false,
+    ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
+        val socket =
+            createClientSocketUsingSocketSettings(uuid, mRemoteDevice, isEncrypted, isAuthenticated)
+
+        val connection = acceptSocket(server)
+
+        Truth.assertThat(socket.isConnected).isTrue()
+
+        return Pair(socket, connection)
     }
 
     private fun createConnectAcceptSocket(
@@ -473,6 +592,47 @@ class RfcommTest {
         Truth.assertThat(socket.isConnected).isTrue()
 
         return Pair(socket, connection)
+    }
+
+    private fun createClientSocketUsingSocketSettings(
+        uuid: String,
+        remoteDevice: BluetoothDevice,
+        isEncrypted: Boolean = false,
+        isAuthenticated: Boolean = false,
+    ): BluetoothSocket {
+        var socket: BluetoothSocket
+
+        socket =
+            remoteDevice.createUsingSocketSettings(
+                BluetoothSocketSettings.Builder()
+                    .setSocketType(BluetoothSocket.TYPE_RFCOMM)
+                    .setEncryptionRequired(isEncrypted)
+                    .setAuthenticationRequired(isAuthenticated)
+                    .setRfcommUuid(UUID.fromString(uuid))
+                    .build()
+            )
+
+        runBlocking(mScope.coroutineContext) {
+            withTimeout(CONNECT_TIMEOUT.toMillis()) {
+                // We need to reply to the pairing request in the case where the devices aren't
+                // bonded yet
+                if (
+                    (isEncrypted || isAuthenticated) &&
+                        !mAdapter.bondedDevices.contains(remoteDevice)
+                ) {
+                    launch {
+                        Log.i(TAG, "Waiting for ACTION_PAIRING_REQUEST")
+                        mFlow
+                            .filter { it.action == BluetoothDevice.ACTION_PAIRING_REQUEST }
+                            .filter { it.getBluetoothDeviceExtra() == remoteDevice }
+                            .first()
+                        remoteDevice.setPairingConfirmation(true)
+                    }
+                }
+                socket.connect()
+            }
+        }
+        return socket
     }
 
     private fun createSocket(
