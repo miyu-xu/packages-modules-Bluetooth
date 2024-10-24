@@ -39,6 +39,7 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.Boolean
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -503,6 +504,82 @@ public class DckL2capTest() : Closeable {
         Log.d(TAG, "testReceiveOverEncryptedOnlySocketAsClient: done")
     }
 
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_SOCKET_SETTINGS_API)
+    /**
+     * Test:
+     * - Create Bond between Phone and Bumble (Just works)
+     * - Create L2cap Server on Bumble side (DCK server) and wait for connection
+     * - Create Encrypt Only socket using BluetoothSocketSettings interface
+     * - trigger connection from client socket on phone to l2cap server on Bumble
+     * - Ensure connection is established
+     * - Send sample data from Phone to Bumble & ensure It is received on bumble side as expected
+     * - close the connection
+     * - Ensure L2cap connection is disconnected and Socket state is disconnected
+     * - remote bonding
+     */
+    fun testSendOverEncryptedOnlySocketAsServer() {
+        Log.d(TAG, "testSendOverEncryptedOnlySocketAsServer")
+        val remoteDevice =
+            bluetoothAdapter.getRemoteLeDevice(
+                Utils.BUMBLE_RANDOM_ADDRESS,
+                BluetoothDevice.ADDRESS_TYPE_RANDOM,
+            )
+
+        host.createBondAndVerify(remoteDevice)
+
+        val (l2capServer, bluetoothSocket, channel) =
+            l2capServerOnPhoneAndConnectionFromBumbleUsingSocketSettingsUtil(false, true)
+
+        Log.d(TAG, "testSendOverEncryptedOnlySocketAsServer: send data from Bumble to Phone")
+        sendDataFromPhoneToBumbleAndVerifyUtil(bluetoothSocket, channel)
+        // disconnect from local
+        disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel)
+        assertThat((bluetoothSocket).isConnected()).isFalse()
+
+        l2capServer.close()
+        host.removeBondAndVerify(remoteDevice)
+        Log.d(TAG, "testSendOverEncryptedOnlySocketAsServer: done")
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_SOCKET_SETTINGS_API)
+    /**
+     * Test:
+     * - Create Bond between Phone and Bumble (Just works)
+     * - Create L2cap Server on Bumble side (DCK server) and wait for connection
+     * - Create Encrypt Only socket using BluetoothSocketSettings interface
+     * - trigger connection from client socket on phone to l2cap server on Bumble
+     * - Ensure connection is established
+     * - Send sample data from Bumble to phone & ensure It is received on bumble side as expected
+     * - close the connection
+     * - Ensure L2cap connection is disconnected and Socket state is disconnected
+     * - remote bonding
+     */
+    fun testReceiveOverEncryptedOnlySocketAsServer() {
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocketAsServer")
+        val remoteDevice =
+            bluetoothAdapter.getRemoteLeDevice(
+                Utils.BUMBLE_RANDOM_ADDRESS,
+                BluetoothDevice.ADDRESS_TYPE_RANDOM,
+            )
+
+        host.createBondAndVerify(remoteDevice)
+
+        val (l2capServer, bluetoothSocket, channel) =
+            l2capServerOnPhoneAndConnectionFromBumbleUsingSocketSettingsUtil(false, true)
+
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocketAsServer: send data from Bumble to Phone")
+        sendDataFromBumbleToPhoneAndVerifyUtil(bluetoothSocket, channel)
+        // disconnect from local
+        disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel)
+        assertThat((bluetoothSocket).isConnected()).isFalse()
+
+        l2capServer.close()
+        host.removeBondAndVerify(remoteDevice)
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocketAsServer: done")
+    }
+
     // Utility functions
     private fun clientSocketConnectUtil(isSecure: Boolean = false): Pair<BluetoothSocket, Channel> {
         val remoteDevice =
@@ -610,6 +687,23 @@ public class DckL2capTest() : Closeable {
         var bluetoothSocket: BluetoothSocket
         val channel: Channel
         val l2capServer = bluetoothAdapter.listenUsingInsecureL2capChannel()
+        val socketFlow = flow { emit(l2capServer.accept()) }
+        val connectResponse = createAndConnectL2capChannelWithBumble(l2capServer.psm)
+        runBlocking {
+            bluetoothSocket = socketFlow.first()
+            assertThat(connectResponse.hasChannel()).isTrue()
+        }
+
+        return SocketServerDetails(l2capServer, bluetoothSocket, connectResponse.channel)
+    }
+
+    private fun l2capServerOnPhoneAndConnectionFromBumbleUsingSocketSettingsUtil(
+        isAuthenticated: Boolean = false,
+        isEncrypted: Boolean = false,
+    ): SocketServerDetails {
+        var bluetoothSocket: BluetoothSocket
+        val channel: Channel
+        val l2capServer = createListeningChannelUsingSocketSettings(isEncrypted, isAuthenticated)
         val socketFlow = flow { emit(l2capServer.accept()) }
         val connectResponse = createAndConnectL2capChannelWithBumble(l2capServer.psm)
         runBlocking {
