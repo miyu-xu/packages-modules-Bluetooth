@@ -20,6 +20,9 @@ import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
 
+import bluetooth.constants.AudioInputType;
+import bluetooth.constants.aics.AudioInputStatus;
+
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
 
@@ -33,9 +36,9 @@ class VolumeControlInputDescriptor {
     }
 
     private static class Descriptor {
-        int mStatus = 0; // AudioInputStatus.INACTIVE;
+        int mStatus = AudioInputStatus.INACTIVE;
 
-        int mType = 0; // AudioInputType.UNSPECIFIED;
+        int mType = AudioInputType.UNSPECIFIED;
 
         int mGainValue = 0;
 
@@ -83,7 +86,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getStatus(int id) {
-        if (!validateId(id)) return 0; // AudioInputStatus.INACTIVE;
+        if (!validateId(id)) return AudioInputStatus.INACTIVE;
         return mVolumeInputs[id].mStatus;
     }
 
@@ -103,7 +106,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getType(int id) {
-        if (!validateId(id)) return 0; // AudioInputType.UNSPECIFIED;
+        if (!validateId(id)) return AudioInputType.UNSPECIFIED;
         return mVolumeInputs[id].mType;
     }
 
