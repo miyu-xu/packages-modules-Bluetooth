@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a51d26_b7291d6c",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T17:49:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a2c77cbd_d381d7b9",
+      "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "670310cb_0aa74d18",
@@ -79,6 +97,30 @@
       "side": 1,
       "message": "You are right, I forgot the call to L2CA_DisconnectReq, but I would not be against doing this in early return.\n\nYour call",
       "parentUuid": "66a8949e_6a7b148c",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 1
+      },
+      "revId": "37c31ca439d419b9283c2df94c2263bdc4a58a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a1e764_eb201eb7",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T17:49:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "da9e5f53_ff738f47",
       "range": {
         "startLine": 104,
         "startChar": 0,

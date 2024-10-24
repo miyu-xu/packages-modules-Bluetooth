@@ -22,6 +22,30 @@
       },
       "revId": "6a32ae239cc46a18e81505517f628635fa36b2fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eac31296_a736dec1",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-24T17:49:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "865f53dc_46d8ea1a",
+      "range": {
+        "startLine": 153,
+        "startChar": 31,
+        "endLine": 153,
+        "endChar": 60
+      },
+      "revId": "6a32ae239cc46a18e81505517f628635fa36b2fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
