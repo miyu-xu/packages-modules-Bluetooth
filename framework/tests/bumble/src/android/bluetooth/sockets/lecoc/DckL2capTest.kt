@@ -503,6 +503,44 @@ public class DckL2capTest() : Closeable {
         Log.d(TAG, "testReceiveOverEncryptedOnlySocketAsClient: done")
     }
 
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_SOCKET_SETTINGS_API)
+    fun testReceiveOverEncryptedOnlySocket() {
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocket: Connect L2CAP")
+        var bluetoothSocket: BluetoothSocket?
+        val l2capServer = createListeningChannelUsingSocketSettings(true, false)
+        val socketFlow = flow { emit(l2capServer.accept()) }
+        val connectResponse = createAndConnectL2capChannelWithBumble(l2capServer.psm)
+        runBlocking {
+            bluetoothSocket = socketFlow.first()
+            assertThat(connectResponse.hasChannel()).isTrue()
+        }
+
+        val inputStream = bluetoothSocket!!.inputStream
+        val sampleData: ByteString = ByteString.copyFromUtf8("cafe-baguette")
+        val buffer = ByteArray(sampleData.size())
+
+        val sendRequest =
+            SendRequest.newBuilder().setChannel(connectResponse.channel).setData(sampleData).build()
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocket: Send data from Bumble to Android")
+        mBumble.l2capBlocking().send(sendRequest)
+
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocket: Receive data on Android")
+        val read = inputStream.read(buffer)
+        assertThat(ByteString.copyFrom(buffer).substring(0, read)).isEqualTo(sampleData)
+
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocket: disconnect")
+        val disconnectRequest =
+            DisconnectRequest.newBuilder().setChannel(connectResponse.channel).build()
+        val disconnectResponse = mBumble.l2capBlocking().disconnect(disconnectRequest)
+        assertThat(disconnectResponse.hasSuccess()).isTrue()
+        inputStream.close()
+        bluetoothSocket?.close()
+        l2capServer.close()
+        host.removeBondAndVerify(remoteDevice)
+        Log.d(TAG, "testReceiveOverEncryptedOnlySocket: done")
+    }
+
     // Utility functions
     private fun clientSocketConnectUtil(isSecure: Boolean = false): Pair<BluetoothSocket, Channel> {
         val remoteDevice =
