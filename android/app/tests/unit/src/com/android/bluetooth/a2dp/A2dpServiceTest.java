@@ -141,7 +141,6 @@ public class A2dpServiceTest {
         doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
 
         mA2dpService = new A2dpService(mAdapterService, mMockNativeInterface, mLooper.getLooper());
-        mA2dpService.start();
         mA2dpService.setAvailable(true);
 
         // Override the timeout value to speed up the test

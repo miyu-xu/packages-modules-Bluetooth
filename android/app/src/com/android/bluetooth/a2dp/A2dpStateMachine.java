@@ -14,19 +14,30 @@
  * limitations under the License.
  */
 
-/**
- * Bluetooth A2DP StateMachine. There is one instance per remote device. - "Disconnected" and
- * "Connected" are steady states. - "Connecting" and "Disconnecting" are transient states until the
- * connection / disconnection is completed.
- *
- * <p>(Disconnected) | ^ CONNECT | | DISCONNECTED V | (Connecting)<--->(Disconnecting) | ^ CONNECTED
- * | | DISCONNECT V | (Connected) NOTES: - If state machine is in "Connecting" state and the remote
- * device sends DISCONNECT request, the state machine transitions to "Disconnecting" state. -
- * Similarly, if the state machine is in "Disconnecting" state and the remote device sends CONNECT
- * request, the state machine transitions to "Connecting" state.
- *
- * <p>DISCONNECT (Connecting) ---------------> (Disconnecting) <--------------- CONNECT
- */
+// Bluetooth A2DP StateMachine. There is one instance per remote device.
+//  - "Disconnected" and "Connected" are steady states.
+//  - "Connecting" and "Disconnecting" are transient states until the
+//     connection / disconnection is completed.
+
+//                        (Disconnected)
+//                           |       ^
+//                   CONNECT |       | DISCONNECTED
+//                           V       |
+//                 (Connecting)<--->(Disconnecting)
+//                           |       ^
+//                 CONNECTED |       | DISCONNECT
+//                           V       |
+//                          (Connected)
+// NOTES:
+//  - If state machine is in "Connecting" state and the remote device sends
+//    DISCONNECT request, the state machine transitions to "Disconnecting" state.
+//  - Similarly, if the state machine is in "Disconnecting" state and the remote device
+//    sends CONNECT request, the state machine transitions to "Connecting" state.
+
+//                    DISCONNECT
+//    (Connecting) ---------------> (Disconnecting)
+//                 <---------------
+//                      CONNECT
 package com.android.bluetooth.a2dp;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
@@ -69,24 +80,25 @@ final class A2dpStateMachine extends StateMachine {
     // NOTE: the value is not "final" - it is modified in the unit tests
     @VisibleForTesting static int sConnectTimeoutMs = 30000; // 30s
 
-    private Disconnected mDisconnected;
-    private Connecting mConnecting;
-    private Disconnecting mDisconnecting;
-    private Connected mConnected;
+    private final A2dpService mA2dpService;
+    private final A2dpNativeInterface mA2dpNativeInterface;
+    private final BluetoothDevice mDevice;
+    private final Disconnected mDisconnected;
+    private final Connecting mConnecting;
+    private final Disconnecting mDisconnecting;
+    private final Connected mConnected;
+    private final boolean mA2dpOffloadEnabled;
+
+    private boolean mIsPlaying = false;
     private int mConnectionState = BluetoothProfile.STATE_DISCONNECTED;
     private int mLastConnectionState = -1;
-
-    private A2dpService mA2dpService;
-    private A2dpNativeInterface mA2dpNativeInterface;
-    @VisibleForTesting boolean mA2dpOffloadEnabled = false;
-    private final BluetoothDevice mDevice;
-    private boolean mIsPlaying = false;
     private BluetoothCodecStatus mCodecStatus;
 
     A2dpStateMachine(
-            BluetoothDevice device,
             A2dpService a2dpService,
+            BluetoothDevice device,
             A2dpNativeInterface a2dpNativeInterface,
+            boolean a2dpOffloadEnabled,
             Looper looper) {
         super(TAG, looper);
 
@@ -107,21 +119,10 @@ final class A2dpStateMachine extends StateMachine {
         addState(mConnecting);
         addState(mDisconnecting);
         addState(mConnected);
-        mA2dpOffloadEnabled = mA2dpService.mA2dpOffloadEnabled;
+        mA2dpOffloadEnabled = a2dpOffloadEnabled;
 
         setInitialState(mDisconnected);
-    }
-
-    static A2dpStateMachine make(
-            BluetoothDevice device,
-            A2dpService a2dpService,
-            A2dpNativeInterface a2dpNativeInterface,
-            Looper looper) {
-        Log.i(TAG, "make for device " + device);
-        A2dpStateMachine a2dpSm =
-                new A2dpStateMachine(device, a2dpService, a2dpNativeInterface, looper);
-        a2dpSm.start();
-        return a2dpSm;
+        start();
     }
 
     public void doQuit() {
@@ -140,10 +141,6 @@ final class A2dpStateMachine extends StateMachine {
             broadcastAudioState(BluetoothA2dp.STATE_NOT_PLAYING, BluetoothA2dp.STATE_PLAYING);
         }
         quitNow();
-    }
-
-    public void cleanup() {
-        log("cleanup for device " + mDevice);
     }
 
     @VisibleForTesting

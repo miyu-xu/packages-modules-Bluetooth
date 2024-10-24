@@ -127,13 +127,13 @@ public class A2dpStateMachineTest {
         mHandlerThread.start();
         mA2dpStateMachine =
                 new A2dpStateMachine(
-                        mTestDevice,
                         mA2dpService,
+                        mTestDevice,
                         mA2dpNativeInterface,
+                        false,
                         mHandlerThread.getLooper());
         // Override the timeout value to speed up the test
         A2dpStateMachine.sConnectTimeoutMs = 1000; // 1s
-        mA2dpStateMachine.start();
     }
 
     @After
@@ -309,15 +309,20 @@ public class A2dpStateMachineTest {
      */
     @Test
     public void testProcessCodecConfigEvent_OffloadEnabled() {
+        // create mA2dpStateMachine with offload enabled
+        mA2dpStateMachine =
+                new A2dpStateMachine(
+                        mA2dpService,
+                        mTestDevice,
+                        mA2dpNativeInterface,
+                        true,
+                        mHandlerThread.getLooper());
+
         testProcessCodecConfigEventCase(true);
     }
 
     /** Helper methold to test processCodecConfigEvent() */
     public void testProcessCodecConfigEventCase(boolean offloadEnabled) {
-        if (offloadEnabled) {
-            mA2dpStateMachine.mA2dpOffloadEnabled = true;
-        }
-
         doNothing()
                 .when(mA2dpService)
                 .codecConfigUpdated(
@@ -375,7 +380,7 @@ public class A2dpStateMachineTest {
         mA2dpStateMachine.sendMessage(A2dpStateMachine.STACK_EVENT, connStCh);
 
         // Verify that the expected number of broadcasts are executed:
-        // - two calls to broadcastConnectionState(): Disconnected -> Conecting -> Connected
+        // - two calls to broadcastConnectionState(): Disconnected -> Connecting -> Connected
         // - one call to broadcastAudioState() when entering Connected state
         ArgumentCaptor<Intent> intentArgument2 = ArgumentCaptor.forClass(Intent.class);
         verify(mA2dpService, timeout(TIMEOUT_MS).times(2))
