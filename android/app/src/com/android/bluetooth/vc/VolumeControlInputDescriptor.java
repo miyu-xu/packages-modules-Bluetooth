@@ -20,6 +20,10 @@ import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
 
+import bluetooth.constants.AudioInputType;
+import bluetooth.constants.aics.AudioInputStatus;
+import bluetooth.constants.aics.MuteField;
+
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
 
@@ -34,9 +38,9 @@ class VolumeControlInputDescriptor {
     }
 
     private static class Descriptor {
-        int mStatus = 0; // AudioInputStatus.INACTIVE;
+        int mStatus = AudioInputStatus.INACTIVE;
 
-        int mType = 0; // AudioInputType.UNSPECIFIED;
+        int mType = AudioInputType.UNSPECIFIED;
 
         int mGainValue = 0;
 
@@ -50,7 +54,7 @@ class VolumeControlInputDescriptor {
          */
         int mGainMode = 0;
 
-        int mMute = 2; // DISABLED
+        int mMute = MuteField.DISABLED;
 
         /* See AICS 1.0
          * The Gain_Setting (mGainValue) field is a signed value for which a single increment or
@@ -84,7 +88,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getStatus(int id) {
-        if (!isValidId(id)) return 0; // AudioInputStatus.INACTIVE;
+        if (!isValidId(id)) return AudioInputStatus.INACTIVE;
         return mVolumeInputs[id].mStatus;
     }
 
@@ -104,7 +108,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getType(int id) {
-        if (!isValidId(id)) return 0; // AudioInputType.UNSPECIFIED;
+        if (!isValidId(id)) return AudioInputType.UNSPECIFIED;
         return mVolumeInputs[id].mType;
     }
 
@@ -114,7 +118,7 @@ class VolumeControlInputDescriptor {
     }
 
     int getMute(int id) {
-        if (!isValidId(id)) return 2; // MuteField.DISABLED
+        if (!isValidId(id)) return MuteField.DISABLED;
         return mVolumeInputs[id].mMute;
     }
 
