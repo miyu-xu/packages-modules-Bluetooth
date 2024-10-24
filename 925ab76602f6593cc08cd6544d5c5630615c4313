@@ -16,6 +16,24 @@
       "message": "could you please paste here example of the generated name ?",
       "revId": "925ab76602f6593cc08cd6544d5c5630615c4313",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90532c8_f61cefe4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-10-24T12:52:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "345654ed_69e1f08f",
+      "revId": "925ab76602f6593cc08cd6544d5c5630615c4313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
