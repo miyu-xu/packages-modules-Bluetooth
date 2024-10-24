@@ -235,6 +235,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a088bb96_381d8c31",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-24T18:25:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dafa751d_3147a8e4",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cab08700_d7c7b34d",
@@ -284,6 +302,24 @@
       "side": 1,
       "message": "I have never seen that but as it is pass to the method it is better to check it, as you do not know when someone can use it.",
       "parentUuid": "c07882ff_7019fe6b",
+      "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b67bfd8a_96781318",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-24T18:25:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2889a19_66527b8b",
       "revId": "80337fff22dbc837399e273209f29cdcddef94d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
