@@ -1779,7 +1779,7 @@ public class HeadsetServiceAndStateMachineTest {
                 headsetCallState.mType,
                 headsetCallState.mName,
                 false);
-        mTestLooper.stopAutoDispatch();
+        mTestLooper.stopAutoDispatchAndIgnoreExceptions();
         mTestLooper.dispatchAll();
         // HeadsetStateMachine completes processing CALL_STATE_CHANGED message
         verify(mNativeInterface).phoneStateChange(device, headsetCallState);
