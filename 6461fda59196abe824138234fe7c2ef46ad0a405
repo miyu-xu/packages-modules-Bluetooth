@@ -164,6 +164,30 @@
       },
       "revId": "6461fda59196abe824138234fe7c2ef46ad0a405",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df191094_faf062ef",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3222,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-25T00:18:31Z",
+      "side": 1,
+      "message": "mmmm...\n\nThe `BluetoothSocket` constructor require `@RequiresPermission(allOf \u003d {BLUETOOTH_CONNECT, LOCAL_MAC_ADDRESS})`, but the `LOCAL_MAC_ADDRESS` is only enforce when the device is null, which is impossible here as we are giving \"this\".\n\nThe annotation was added to `createInsecureL2capChannel` because it would have added a new permission without enforcing it.\n\nWe should look into creating 2 constructor, one with a non null device that only check for CONNECT, and one for local socket.\n\nBut that doesn\u0027t belong in this CL.\n\nIdeally we should do that prior to this CL, to never ever SuppressLint the permission lint on this new API, but since we just looked at it, I assume we can do it in follow-up",
+      "parentUuid": "cb6a9d7f_dd306c25",
+      "range": {
+        "startLine": 3222,
+        "startChar": 0,
+        "endLine": 3222,
+        "endChar": 55
+      },
+      "revId": "6461fda59196abe824138234fe7c2ef46ad0a405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
