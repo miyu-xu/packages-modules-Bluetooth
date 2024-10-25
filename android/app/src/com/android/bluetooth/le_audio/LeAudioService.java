@@ -25,6 +25,7 @@ import static com.android.bluetooth.bass_client.BassConstants.INVALID_BROADCAST_
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastPrimaryGroupSelection;
 import static com.android.bluetooth.flags.Flags.leaudioUseAudioModeListener;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -188,6 +189,8 @@ public class LeAudioService extends ProfileService {
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
     int mUnicastGroupIdDeactivatedForBroadcastTransition = LE_AUDIO_GROUP_ID_INVALID;
+    int mBroadcastPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
+    int mUserPreferredPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
     int mCurrentAudioMode = AudioManager.MODE_NORMAL;
     Optional<Integer> mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
     Optional<Boolean> mQueuedInCallValue = Optional.empty();
@@ -739,6 +742,8 @@ public class LeAudioService extends ProfileService {
         }
 
         mBroadcastDescriptors.clear();
+        mBroadcastPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
+        mUserPreferredPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
         logAllBroadcastSessionStatsAndCleanup();
 
         if (mLeAudioBroadcasterNativeInterface != null) {
@@ -1565,14 +1570,22 @@ public class LeAudioService extends ProfileService {
         if (descriptor == null) {
             return false;
         }
-
-        return descriptor.mGroupId == mUnicastGroupIdDeactivatedForBroadcastTransition;
+        if (leaudioBroadcastPrimaryGroupSelection()) {
+            return descriptor.mGroupId == mBroadcastPrimaryGroup;
+        } else {
+            return descriptor.mGroupId == mUnicastGroupIdDeactivatedForBroadcastTransition;
+        }
     }
 
     /** Return true if group is primary - is active or was active before switch to broadcast */
     public boolean isPrimaryGroup(int groupId) {
-        return groupId != IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID
-                && groupId == mUnicastGroupIdDeactivatedForBroadcastTransition;
+        if (leaudioBroadcastPrimaryGroupSelection()) {
+            return groupId != IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID
+                    && groupId == mBroadcastPrimaryGroup;
+        } else {
+            return groupId != IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID
+                    && groupId == mUnicastGroupIdDeactivatedForBroadcastTransition;
+        }
     }
 
     private boolean areBroadcastsAllStopped() {
@@ -2425,6 +2438,10 @@ public class LeAudioService extends ProfileService {
             // If broadcast is ongoing and need to update unicast fallback active group
             // we need to update the cached group id and skip changing the active device
             updateFallbackUnicastGroupIdForBroadcast(groupId);
+            if (leaudioBroadcastPrimaryGroupSelection() && groupId != LE_AUDIO_GROUP_ID_INVALID) {
+                mUserPreferredPrimaryGroup = groupId;
+                updatePrimaryGroupIdForBroadcast(groupId);
+            }
 
             if (fallbackGroupDescriptor != null) {
                 if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
@@ -2605,6 +2622,74 @@ public class LeAudioService extends ProfileService {
             }
         }
         return activeDevices;
+    }
+
+    /**
+     * Update primary group in local broadcast
+     *
+     * <p>When local broadcast has multiple active sinks, primary group will be used for handling
+     * unicast stream handovered from broadcast, like Calling during broadcast.
+     */
+    public void updatePrimaryGroupIfNeeded() {
+        BassClientService bassClientService = getBassClientService();
+        if (bassClientService == null) {
+            return;
+        }
+
+        Map<Integer, List<BluetoothDevice>> deviceGroupsInBroadcast =
+                bassClientService.getSinksActiveInLocalBroadcast().stream()
+                        .collect(Collectors.groupingBy(device -> getGroupId(device)));
+        if (deviceGroupsInBroadcast.isEmpty()) {
+            Log.d(TAG, "Skip updatePrimaryGroupIfNeeded due to no sinks in broadcast");
+            return;
+        }
+
+        int targetGroupId = LE_AUDIO_GROUP_ID_INVALID;
+        // Rule.1 Always honor user's selection if it's being set
+        if (mUserPreferredPrimaryGroup != LE_AUDIO_GROUP_ID_INVALID
+                && deviceGroupsInBroadcast.containsKey(mUserPreferredPrimaryGroup)) {
+            if (mUserPreferredPrimaryGroup == mBroadcastPrimaryGroup) {
+                Log.d(TAG, "Skip updatePrimaryGroupIfNeeded, already user preferred");
+                return;
+            } else {
+                targetGroupId = mUserPreferredPrimaryGroup;
+            }
+        }
+        // Rule.2 If no user preferred primary device, select the earliest connected
+        // device group as the primary group.
+        if (targetGroupId == LE_AUDIO_GROUP_ID_INVALID) {
+            targetGroupId = getEarliestConnectedDeviceGroup(deviceGroupsInBroadcast);
+            if (targetGroupId == LE_AUDIO_GROUP_ID_INVALID) {
+                Log.d(TAG, "Skip updatePrimaryGroupIfNeeded, no targetGroupId");
+                return;
+            }
+        }
+
+        Log.d(TAG, "updatePrimaryGroupIfNeeded, set primary group: " + targetGroupId);
+        updatePrimaryGroupIdForBroadcast(targetGroupId);
+    }
+
+    private int getEarliestConnectedDeviceGroup(Map<Integer, List<BluetoothDevice>> deviceGroups) {
+        DatabaseManager dbManager = mAdapterService.getDatabase();
+        if (dbManager == null) {
+            return LE_AUDIO_GROUP_ID_INVALID;
+        }
+        List<BluetoothDevice> devices = dbManager.getMostRecentlyConnectedDevices();
+        // Find the earliest connected device in broadcast session.
+        int targetDeviceIdx = -1;
+        int targetGroupId = LE_AUDIO_GROUP_ID_INVALID;
+        for (Map.Entry<Integer, List<BluetoothDevice>> entry : deviceGroups.entrySet()) {
+            for (BluetoothDevice device : entry.getValue()) {
+                if (devices.contains(device)) {
+                    int idx = devices.indexOf(device);
+                    if (idx > targetDeviceIdx) {
+                        targetDeviceIdx = idx;
+                        targetGroupId = entry.getKey();
+                    }
+                }
+            }
+        }
+        return targetGroupId;
     }
 
     void connectSet(BluetoothDevice device) {
@@ -3806,7 +3891,10 @@ public class LeAudioService extends ProfileService {
             } else {
                 mBroadcastDescriptors.remove(broadcastId);
             }
-
+            if (leaudioBroadcastPrimaryGroupSelection() && mBroadcastDescriptors.isEmpty()) {
+                mUserPreferredPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
+                updatePrimaryGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
+            }
             // TODO: Improve reason reporting or extend the native stack event with reason code
             mHandler.post(
                     () ->
@@ -4621,12 +4709,20 @@ public class LeAudioService extends ProfileService {
                 if (Flags.leaudioBroadcastVolumeControlPrimaryGroupOnly()) {
                     if (activeBroadcastSinks.stream()
                             .anyMatch(dev -> isPrimaryGroup(getGroupId(dev)))) {
-                        Log.d(
-                                TAG,
-                                "Setting volume for broadcast sink primary group: "
-                                        + mUnicastGroupIdDeactivatedForBroadcastTransition);
-                        volumeControlService.setGroupVolume(
-                                mUnicastGroupIdDeactivatedForBroadcastTransition, volume);
+                        if (leaudioBroadcastPrimaryGroupSelection()) {
+                            Log.d(
+                                    TAG,
+                                    "Setting volume for broadcast sink primary group: "
+                                            + mBroadcastPrimaryGroup);
+                            volumeControlService.setGroupVolume(mBroadcastPrimaryGroup, volume);
+                        } else {
+                            Log.d(
+                                    TAG,
+                                    "Setting volume for broadcast sink primary group: "
+                                            + mUnicastGroupIdDeactivatedForBroadcastTransition);
+                            volumeControlService.setGroupVolume(
+                                    mUnicastGroupIdDeactivatedForBroadcastTransition, volume);
+                        }
                     } else {
                         Log.w(TAG, "Setting volume when no active or broadcast primary group");
                     }
@@ -5082,7 +5178,21 @@ public class LeAudioService extends ProfileService {
                         + " to : "
                         + groupId);
         mUnicastGroupIdDeactivatedForBroadcastTransition = groupId;
+        if (!leaudioBroadcastPrimaryGroupSelection()) {
+            updatePrimaryGroupIdForBroadcast(groupId);
+        }
+    }
 
+    private void updatePrimaryGroupIdForBroadcast(int groupId) {
+        if (leaudioBroadcastPrimaryGroupSelection()) {
+            if (mBroadcastPrimaryGroup == groupId) {
+                Log.d(TAG, "Skip updatePrimaryGroupIdForBroadcast, already is primary");
+                return;
+            }
+
+            Log.i(TAG, "Update primary group from: " + mBroadcastPrimaryGroup + " to : " + groupId);
+            mBroadcastPrimaryGroup = groupId;
+        }
         // waive WRITE_SECURE_SETTINGS permission check
         final long callingIdentity = Binder.clearCallingIdentity();
         try {

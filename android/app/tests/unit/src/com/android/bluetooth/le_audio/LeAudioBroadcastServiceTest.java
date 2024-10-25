@@ -35,6 +35,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
+import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.MediumTest;
@@ -65,6 +66,7 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeoutException;
@@ -1591,6 +1593,43 @@ public class LeAudioBroadcastServiceTest {
         Assert.assertEquals(connInfos.size(), 1);
         Assert.assertFalse(connInfos.get(0).isLeOutput());
         Assert.assertEquals(mService.mUnicastGroupIdDeactivatedForBroadcastTransition, groupId2);
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION)
+    public void testUpdatePrimaryGroupIfNeeded() {
+        int groupId = 1;
+        int groupId2 = 2;
+
+        initializeNative();
+        prepareConnectedUnicastDevice(groupId, mDevice);
+        prepareConnectedUnicastDevice(groupId2, mDevice2);
+
+        mService.mBroadcastPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
+        when(mBassClientService.getSinksActiveInLocalBroadcast()).thenReturn(new ArrayList<>());
+
+        mService.updatePrimaryGroupIfNeeded();
+        Assert.assertEquals(mService.mBroadcastPrimaryGroup, LE_AUDIO_GROUP_ID_INVALID);
+
+        // Verify user preferred group 1 is selected even with group 2 as earliest connected group
+        mService.mUserPreferredPrimaryGroup = groupId;
+        when(mBassClientService.getSinksActiveInLocalBroadcast())
+                .thenReturn(List.of(mDevice, mDevice2));
+        when(mDatabaseManager.getMostRecentlyConnectedDevices())
+                .thenReturn(List.of(mDevice, mDevice2));
+
+        mService.updatePrimaryGroupIfNeeded();
+        Assert.assertEquals(mService.mBroadcastPrimaryGroup, groupId);
+
+        // Verify group 2 as earliest connected group is selected
+        mService.mUserPreferredPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
+        when(mBassClientService.getSinksActiveInLocalBroadcast())
+                .thenReturn(List.of(mDevice, mDevice2));
+        when(mDatabaseManager.getMostRecentlyConnectedDevices())
+                .thenReturn(List.of(mDevice, mDevice2));
+
+        mService.updatePrimaryGroupIfNeeded();
+        Assert.assertEquals(mService.mBroadcastPrimaryGroup, groupId2);
     }
 
     private class LeAudioIntentReceiver extends BroadcastReceiver {

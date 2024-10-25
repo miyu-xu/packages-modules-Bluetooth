@@ -4433,6 +4433,67 @@ public class BassClientServiceTest {
         expect.that(activeSinks.contains(mCurrentDevice1)).isTrue();
     }
 
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE,
+        Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION
+    })
+    public void testGetSinksActiveInLocalBroadcast() {
+        prepareConnectedDeviceGroup();
+        startSearchingForSources();
+        onScanResult(mSourceDevice, TEST_BROADCAST_ID);
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        BluetoothLeBroadcastMetadata metaNoBroadcast = createEmptyBroadcastMetadata();
+
+        verifyAddSourceForGroup(meta);
+        prepareRemoteSourceState(metaNoBroadcast, true, false);
+
+        // Verify getSinksActiveInLocalBroadcast returns empty device list if no broadcst source
+        assertThat(mBassClientService.getSinksActiveInLocalBroadcast().isEmpty()).isTrue();
+
+        // Update receiver state with broadcast ID
+        injectRemoteSourceStateChanged(meta, true, false);
+
+        // External broadcast check
+        doReturn(new ArrayList<BluetoothLeBroadcastMetadata>())
+                .when(mLeAudioService)
+                .getAllBroadcastMetadata();
+
+        // Verify getSinksActiveInLocalBroadcast returns empty device list if external broadcast
+        assertThat(mBassClientService.getSinksActiveInLocalBroadcast().isEmpty()).isTrue();
+
+        // Local broadcast check
+        doReturn(new ArrayList<BluetoothLeBroadcastMetadata>(Arrays.asList(meta)))
+                .when(mLeAudioService)
+                .getAllBroadcastMetadata();
+
+        List<BluetoothDevice> activeSinks = mBassClientService.getSinksActiveInLocalBroadcast();
+        // Verify getSyncedBroadcastSinks returns correct device list if no BIS synced
+        assertThat(activeSinks.size()).isEqualTo(2);
+        assertThat(activeSinks.contains(mCurrentDevice)).isTrue();
+        assertThat(activeSinks.contains(mCurrentDevice1)).isTrue();
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION)
+    public void testUpdatePrimaryGroupWhenSourceStateChanged() {
+        // Verify notifySourceAdded will trigger updatePrimaryGroupIfNeeded
+        prepareConnectedDeviceGroup();
+        verify(mLeAudioService, times(2)).updatePrimaryGroupIfNeeded();
+
+        clearInvocations(mLeAudioService);
+        // Verify notifySourceRemoved will trigger updatePrimaryGroupIfNeeded
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID + 1);
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID);
+            }
+        }
+        verify(mLeAudioService, times(2)).updatePrimaryGroupIfNeeded();
+    }
+
     private void prepareTwoSynchronizedDevicesForLocalBroadcast() {
         BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
 

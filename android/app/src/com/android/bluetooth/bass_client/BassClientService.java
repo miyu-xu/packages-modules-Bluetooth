@@ -25,6 +25,7 @@ import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastPrimaryGroupSelection;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastResyncHelper;
 import static com.android.bluetooth.flags.Flags.leaudioSortScansToSyncByFails;
 
@@ -1205,6 +1206,24 @@ public class BassClientService extends ProfileService {
             mLocalBroadcastReceivers.put(
                     broadcastId, new HashSet<BluetoothDevice>(Arrays.asList(sink)));
         }
+    }
+
+    private void localUpdatePrimaryGroupWhenSourceStateChanged(BluetoothDevice sink, int sourceId) {
+        if (getAllSources(sink).stream()
+                .filter(rs -> rs.getSourceId() == sourceId)
+                .anyMatch(rs -> !isLocalBroadcast(rs))) {
+            // only update primary group for local broadcast sinks
+            return;
+        }
+
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService == null) {
+            Log.d(
+                    TAG,
+                    "localUpdatePrimaryGroupWhenSourceStateChanged: No available LeAudioService");
+            return;
+        }
+        leAudioService.updatePrimaryGroupIfNeeded();
     }
 
     private void setSourceGroupManaged(BluetoothDevice sink, int sourceId, boolean isGroupOp) {
@@ -4001,6 +4020,23 @@ public class BassClientService extends ProfileService {
         return activeSinks;
     }
 
+    /** Get sink devices active in local broadcasts */
+    public List<BluetoothDevice> getSinksActiveInLocalBroadcast() {
+        return getConnectedDevices().stream()
+                .filter(
+                        device -> {
+                            List<BluetoothLeBroadcastReceiveState> sourceList =
+                                    getAllSources(device);
+                            return !sourceList.isEmpty()
+                                    && sourceList.stream()
+                                            .anyMatch(
+                                                    source ->
+                                                            isLocalBroadcast(
+                                                                    source.getBroadcastId()));
+                        })
+                .collect(Collectors.toList());
+    }
+
     /** Handle broadcast state changed */
     public void notifyBroadcastStateChanged(int state, int broadcastId) {
         switch (state) {
@@ -4251,6 +4287,11 @@ public class BassClientService extends ProfileService {
 
         void notifySourceAdded(
                 BluetoothDevice sink, BluetoothLeBroadcastReceiveState recvState, int reason) {
+            if (leaudioBroadcastPrimaryGroupSelection()) {
+                sService.localUpdatePrimaryGroupWhenSourceStateChanged(
+                        sink, recvState.getSourceId());
+            }
+
             sService.localNotifySourceAdded(sink, recvState);
 
             sEventLogger.logd(
@@ -4309,6 +4350,10 @@ public class BassClientService extends ProfileService {
         }
 
         void notifySourceRemoved(BluetoothDevice sink, int sourceId, int reason) {
+            if (leaudioBroadcastPrimaryGroupSelection()) {
+                sService.localUpdatePrimaryGroupWhenSourceStateChanged(sink, sourceId);
+            }
+
             sEventLogger.logd(
                     TAG,
                     "notifySourceRemoved: "
