@@ -97,6 +97,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "400a2fe0_bb56f0d7",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T20:56:57Z",
+      "side": 1,
+      "message": "After checking how it is being used in the later patches, you could probably implement the same behavior as RemoteExceptionFunction and let the caller (e.g. callService) catch the RemoteException.\n\nDoes that make sense ?",
+      "revId": "291b9671a209597752794f44fd4c565e0ce35e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8575f867_9d43cfea",
         "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
         "patchSetId": 1
