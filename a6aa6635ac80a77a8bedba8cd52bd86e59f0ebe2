@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "882018ae_2d14c88b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/EmulatorOnly.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-25T20:40:39Z",
+      "side": 1,
+      "message": "Maybe `VirtualOnly` would be a bit more meaningful?",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4dbc9c25_fc4f4ee1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/EmulatorOnly.java",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": "public @interface EmulatorOnly { // TODO: May be removed in the future.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a6aa6635ac80a77a8bedba8cd52bd86e59f0ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
