@@ -23,10 +23,8 @@ import static org.junit.Assert.assertThrows;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.content.Context;
 import android.content.Intent;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -56,25 +54,19 @@ public class AvrcpBipClientTest {
     @Mock private AdapterService mAdapterService;
     @Mock private AvrcpControllerNativeInterface mNativeInterface;
 
-    private BluetoothAdapter mAdapter;
-    private BluetoothDevice mTestDevice;
-    private AvrcpControllerService mService = null;
+    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothDevice mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
+
+    private AvrcpControllerService mService;
     private AvrcpCoverArtManager mArtManager;
     private AvrcpBipClient mClient;
 
     @Before
     public void setUp() throws Exception {
-        Context targetContext = InstrumentationRegistry.getTargetContext();
-        TestUtils.setAdapterService(mAdapterService);
-        AvrcpControllerNativeInterface.setInstance(mNativeInterface);
-        mService = new AvrcpControllerService(targetContext, mNativeInterface);
-        mService.start();
+        mService = new AvrcpControllerService(mAdapterService, mNativeInterface);
         final Intent bluetoothBrowserMediaServiceStartIntent =
                 TestUtils.prepareIntentToStartBluetoothBrowserMediaService();
         mBluetoothBrowserMediaServiceTestRule.startService(bluetoothBrowserMediaServiceStartIntent);
-
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
-        mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
 
         AvrcpCoverArtManager.Callback callback = (device, event) -> {};
         mArtManager = new AvrcpCoverArtManager(mService, callback);
@@ -87,10 +79,8 @@ public class AvrcpBipClientTest {
     @After
     public void tearDown() throws Exception {
         mService.stop();
-        AvrcpControllerNativeInterface.setInstance(null);
         mService = AvrcpControllerService.getAvrcpControllerService();
         assertThat(mService).isNull();
-        TestUtils.clearAdapterService(mAdapterService);
         mArtManager.cleanup();
     }
 

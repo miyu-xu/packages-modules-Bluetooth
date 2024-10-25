@@ -52,7 +52,7 @@ import java.util.Set;
 
 /**
  * Provides Bluetooth AVRCP Controller State Machine responsible for all remote control connections
- * and interactions with a remote controlable device.
+ * and interactions with a remote controllable device.
  */
 class AvrcpControllerStateMachine extends StateMachine {
     static final String TAG = AvrcpControllerStateMachine.class.getSimpleName();
@@ -114,6 +114,7 @@ class AvrcpControllerStateMachine extends StateMachine {
     private final AudioManager mAudioManager;
     private boolean mShouldSendPlayOnFocusRecovery = false;
     private final boolean mIsVolumeFixed;
+    private final AdapterService mAdapterService;
 
     protected final BluetoothDevice mDevice;
     protected final byte[] mDeviceAddress;
@@ -146,11 +147,13 @@ class AvrcpControllerStateMachine extends StateMachine {
     static final int ABS_VOL_TIMEOUT_MILLIS = 1000; // 1s
 
     AvrcpControllerStateMachine(
-            BluetoothDevice device,
+            AdapterService adapterService,
             AvrcpControllerService service,
+            BluetoothDevice device,
             AvrcpControllerNativeInterface nativeInterface,
             boolean isControllerAbsoluteVolumeEnabled) {
         super(TAG);
+        mAdapterService = adapterService;
         mDevice = device;
         mDeviceAddress = Utils.getByteAddress(mDevice);
         mService = service;
@@ -462,8 +465,9 @@ class AvrcpControllerStateMachine extends StateMachine {
         public void enter() {
             if (mMostRecentState == BluetoothProfile.STATE_CONNECTING) {
                 broadcastConnectionStateChanged(BluetoothProfile.STATE_CONNECTED);
-                mService.sBrowseTree.mRootNode.addChild(mBrowseTree.mRootNode);
-                BluetoothMediaBrowserService.onBrowseNodeChanged(mService.sBrowseTree.mRootNode);
+                mService.getBrowseTree().mRootNode.addChild(mBrowseTree.mRootNode);
+                BluetoothMediaBrowserService.onBrowseNodeChanged(
+                        mService.getBrowseTree().mRootNode);
                 connectCoverArt(); // only works if we have a valid PSM
             } else {
                 debug("Connected: Re-entering Connected ");
@@ -1191,10 +1195,8 @@ class AvrcpControllerStateMachine extends StateMachine {
             debug("Disconnecting: Entered Disconnecting");
             disconnectCoverArt();
             onBrowsingDisconnected();
-            if (mService.sBrowseTree != null) {
-                mService.sBrowseTree.mRootNode.removeChild(mBrowseTree.mRootNode);
-                BluetoothMediaBrowserService.onBrowseNodeChanged(mService.sBrowseTree.mRootNode);
-            }
+            mService.getBrowseTree().mRootNode.removeChild(mBrowseTree.mRootNode);
+            BluetoothMediaBrowserService.onBrowseNodeChanged(mService.getBrowseTree().mRootNode);
             broadcastConnectionStateChanged(BluetoothProfile.STATE_DISCONNECTING);
             transitionTo(mDisconnected);
         }
@@ -1410,11 +1412,8 @@ class AvrcpControllerStateMachine extends StateMachine {
             MetricsLogger.logProfileConnectionEvent(
                     BluetoothMetricsProto.ProfileId.AVRCP_CONTROLLER);
         }
-        AdapterService adapterService = AdapterService.getAdapterService();
-        if (adapterService != null) {
-            adapterService.updateProfileConnectionAdapterProperties(
-                    mDevice, BluetoothProfile.AVRCP_CONTROLLER, currentState, mMostRecentState);
-        }
+        mAdapterService.updateProfileConnectionAdapterProperties(
+                mDevice, BluetoothProfile.AVRCP_CONTROLLER, currentState, mMostRecentState);
 
         debug("Connection state : " + mMostRecentState + "->" + currentState);
         Intent intent = new Intent(BluetoothAvrcpController.ACTION_CONNECTION_STATE_CHANGED);
