@@ -16,6 +16,24 @@
       "message": "Cleanup can be applied now",
       "revId": "4b6fd2f8af956a9c06510abe1ffecbbe678e1a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b2a7b13_b48708ac",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-25T20:22:24Z",
+      "side": 1,
+      "message": "Thanks, will do",
+      "parentUuid": "e15ec0af_97069c79",
+      "revId": "4b6fd2f8af956a9c06510abe1ffecbbe678e1a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
