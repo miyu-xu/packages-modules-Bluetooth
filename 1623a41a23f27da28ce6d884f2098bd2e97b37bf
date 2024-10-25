@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33d20f64_7bb7aa12",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-10-25T22:40:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7da1f9e2_9b2685d3",
+      "range": {
+        "startLine": 818,
+        "startChar": 0,
+        "endLine": 825,
+        "endChar": 53
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b90d0c2_f207f764",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-25T21:30:28Z",
       "side": 1,
       "message": "The doc should specify that these should only be set/available for a car device.",
+      "range": {
+        "startLine": 827,
+        "startChar": 2,
+        "endLine": 832,
+        "endChar": 7
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee4ee1f1_ab0dd1b5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-10-25T22:40:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b90d0c2_f207f764",
       "range": {
         "startLine": 827,
         "startChar": 2,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74746aae_726d324c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-10-25T22:40:49Z",
+      "side": 1,
+      "message": "Done. Will be a name.",
+      "parentUuid": "8147f366_b77cc0c1",
+      "range": {
+        "startLine": 845,
+        "startChar": 28,
+        "endLine": 845,
+        "endChar": 52
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f840abe7_cb659ce3",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-10-25T21:30:28Z",
       "side": 1,
       "message": "What is the build? Is it the hardware version? If yes, I would rename it to `METADATA_HEAD_UNIT_HARDWARE_VERSION` for consistency.",
+      "range": {
+        "startLine": 855,
+        "startChar": 28,
+        "endLine": 855,
+        "endChar": 52
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ea81f10_92853efa",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-10-25T22:40:49Z",
+      "side": 1,
+      "message": "It is the build for the overall HU product, not the hardware version. Examples are KIA_US or KIA+KR.",
+      "parentUuid": "f840abe7_cb659ce3",
       "range": {
         "startLine": 855,
         "startChar": 28,
