@@ -21,6 +21,7 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.LOCAL_MAC_ADDRESS;
 
 import android.annotation.FlaggedApi;
+import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SystemApi;
@@ -258,9 +259,86 @@ public final class BluetoothSocket implements Closeable {
             // Server socket
             mAddress = BluetoothAdapter.getDefaultAdapter().getAddress();
         } else {
-            // Remote socket
-            mAddress = device.getAddress();
+            Log.e(TAG, "functional meant to be called with null : unexpected call");
         }
+
+        mInputStream = new BluetoothInputStream(this);
+        mOutputStream = new BluetoothOutputStream(this);
+        mSocketCreationLatencyNanos = System.nanoTime() - mSocketCreationTimeNanos;
+    }
+
+    /**
+     * Construct a BluetoothSocket.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param device remote device that this socket can connect to
+     * @param port remote port
+     * @param uuid SDP uuid
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    /*package*/ BluetoothSocket(
+            BluetoothDevice device,
+            int type,
+            boolean auth,
+            boolean encrypt,
+            int port,
+            ParcelUuid uuid)
+            throws IOException {
+        this(device, type, auth, encrypt, port, uuid, false, false);
+    }
+
+    /**
+     * Construct a BluetoothSocket.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param device remote device that this socket can connect to
+     * @param port remote port
+     * @param uuid SDP uuid
+     * @param mitm enforce person-in-the-middle protection.
+     * @param min16DigitPin enforce a minimum length of 16 digits for a sec mode 2 connection
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    /*package*/ BluetoothSocket(
+            @NonNull BluetoothDevice device,
+            int type,
+            boolean auth,
+            boolean encrypt,
+            int port,
+            ParcelUuid uuid,
+            boolean mitm,
+            boolean min16DigitPin)
+            throws IOException {
+        if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
+        mSocketCreationTimeNanos = System.nanoTime();
+        if (type == BluetoothSocket.TYPE_RFCOMM
+                && uuid == null
+                && port != BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
+            if (port < 1 || port > MAX_RFCOMM_CHANNEL) {
+                throw new IOException("Invalid RFCOMM channel: " + port);
+            }
+        }
+        if (uuid != null) {
+            mUuid = uuid;
+        } else {
+            mUuid = new ParcelUuid(new UUID(0, 0));
+        }
+        mType = type;
+        mAuth = auth;
+        mAuthMitm = mitm;
+        mMin16DigitPin = min16DigitPin;
+        mEncrypt = encrypt;
+        mDevice = device;
+        mPort = port;
+
+        mSocketState = SocketState.INIT;
+
+        // Remote socket
+        mAddress = device.getAddress();
+
         mInputStream = new BluetoothInputStream(this);
         mOutputStream = new BluetoothOutputStream(this);
         mSocketCreationLatencyNanos = System.nanoTime() - mSocketCreationTimeNanos;
