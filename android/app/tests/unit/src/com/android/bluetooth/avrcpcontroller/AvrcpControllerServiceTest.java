@@ -28,14 +28,12 @@ import static org.mockito.Mockito.when;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 import android.support.v4.media.session.PlaybackStateCompat;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -63,12 +61,6 @@ import java.util.List;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class AvrcpControllerServiceTest {
-    private static final String REMOTE_DEVICE_ADDRESS = "00:00:00:00:00:00";
-    private static final String REMOTE_DEVICE_ADDRESS_2 = "11:11:11:11:11:11";
-
-    private AvrcpControllerService mService = null;
-    private BluetoothAdapter mAdapter = null;
-
     @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
     @Rule
@@ -82,30 +74,24 @@ public class AvrcpControllerServiceTest {
     @Mock private AvrcpControllerStateMachine mStateMachine2;
     @Mock private AvrcpControllerNativeInterface mNativeInterface;
 
-    private BluetoothDevice mRemoteDevice;
-    private BluetoothDevice mRemoteDevice2;
+    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothDevice mRemoteDevice = mAdapter.getRemoteDevice("00:00:00:00:00:00");
+    private final BluetoothDevice mRemoteDevice2 = mAdapter.getRemoteDevice("11:11:11:11:11:11");
+
+    private AvrcpControllerService mService = null;
 
     @Before
     public void setUp() throws Exception {
-        Context targetContext = InstrumentationRegistry.getTargetContext();
-        TestUtils.setAdapterService(mAdapterService);
-        AvrcpControllerNativeInterface.setInstance(mNativeInterface);
-        mService = new AvrcpControllerService(targetContext, mNativeInterface);
-        mService.start();
-        // Try getting the Bluetooth adapter
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
-        assertThat(mAdapter).isNotNull();
+        mService = new AvrcpControllerService(mAdapterService, mNativeInterface);
         // Set a mock A2dpSinkService for audio focus calls
         A2dpSinkService.setA2dpSinkService(mA2dpSinkService);
 
-        mRemoteDevice = mAdapter.getRemoteDevice(REMOTE_DEVICE_ADDRESS);
         mService.mDeviceStateMap.put(mRemoteDevice, mStateMachine);
         final Intent bluetoothBrowserMediaServiceStartIntent =
                 TestUtils.prepareIntentToStartBluetoothBrowserMediaService();
         mBluetoothBrowserMediaServiceTestRule.startService(bluetoothBrowserMediaServiceStartIntent);
 
         // Set up device and state machine under test
-        mRemoteDevice2 = mAdapter.getRemoteDevice(REMOTE_DEVICE_ADDRESS_2);
         mService.mDeviceStateMap.put(mRemoteDevice2, mStateMachine2);
 
         when(mA2dpSinkService.setActiveDevice(any(BluetoothDevice.class))).thenReturn(true);
@@ -114,11 +100,9 @@ public class AvrcpControllerServiceTest {
     @After
     public void tearDown() throws Exception {
         mService.stop();
-        AvrcpControllerNativeInterface.setInstance(null);
         A2dpSinkService.setA2dpSinkService(null);
         mService = AvrcpControllerService.getAvrcpControllerService();
         assertThat(mService).isNull();
-        TestUtils.clearAdapterService(mAdapterService);
     }
 
     @Test
@@ -159,7 +143,7 @@ public class AvrcpControllerServiceTest {
     }
 
     @Test
-    public void setActiveDevice_whenA2dpSinkServiceIsNotInitailized_returnsFalse() {
+    public void setActiveDevice_whenA2dpSinkServiceIsNotInitialized_returnsFalse() {
         A2dpSinkService.setA2dpSinkService(null);
         assertThat(mService.setActiveDevice(mRemoteDevice)).isFalse();
 
@@ -237,7 +221,7 @@ public class AvrcpControllerServiceTest {
     @Test
     public void getContentsOneDeviceConnected_returnSuccessStatus() {
         String parentMediaId = BrowseTree.ROOT;
-        mService.sBrowseTree.onConnected(mRemoteDevice);
+        mService.getBrowseTree().onConnected(mRemoteDevice);
         BrowseResult result = mService.getContents(parentMediaId);
 
         assertThat(result.getStatus()).isEqualTo(BrowseResult.SUCCESS);
@@ -410,7 +394,7 @@ public class AvrcpControllerServiceTest {
                         eq(AvrcpControllerStateMachine.MESSAGE_PROCESS_TRACK_CHANGED),
                         captor.capture());
         AvrcpItem item = captor.getValue();
-        assertThat(item.getDevice().getAddress()).isEqualTo(REMOTE_DEVICE_ADDRESS);
+        assertThat(item.getDevice()).isEqualTo(mRemoteDevice);
         assertThat(item.getItemType()).isEqualTo(AvrcpItem.TYPE_MEDIA);
         assertThat(item.getUuid()).isNotNull(); // Random uuid
     }
