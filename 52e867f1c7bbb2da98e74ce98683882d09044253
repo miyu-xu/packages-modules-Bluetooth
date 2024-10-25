@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021b9719_616afb6a",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T15:17:28Z",
+      "side": 1,
+      "message": "`newValue.equals(\"0\") ? MESSAGE_RESTORE_USER_SETTING_OFF : MESSAGE_RESTORE_USER_SETTING_ON` ?",
+      "range": {
+        "startLine": 563,
+        "startChar": 31,
+        "endLine": 566,
+        "endChar": 91
+      },
+      "revId": "52e867f1c7bbb2da98e74ce98683882d09044253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "602e4d02_66d522d0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T15:17:28Z",
+      "side": 1,
+      "message": "\"Already disabled\" ?",
+      "range": {
+        "startLine": 1541,
+        "startChar": 62,
+        "endLine": 1541,
+        "endChar": 93
+      },
+      "revId": "52e867f1c7bbb2da98e74ce98683882d09044253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e88a1f_fc472c1d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T15:17:28Z",
+      "side": 1,
+      "message": "\"Already enabled\" ?",
+      "range": {
+        "startLine": 1552,
+        "startChar": 61,
+        "endLine": 1552,
+        "endChar": 91
+      },
+      "revId": "52e867f1c7bbb2da98e74ce98683882d09044253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
