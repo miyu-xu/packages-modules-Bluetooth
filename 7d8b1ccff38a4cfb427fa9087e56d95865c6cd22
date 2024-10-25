@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "218de9c5_01863327",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T21:02:30Z",
+      "side": 1,
+      "message": "There is no device",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 9
+      },
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3867b481_3bac2d8d",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T21:02:30Z",
+      "side": 1,
+      "message": "There is no device",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 9
+      },
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af81f0b6_0c82235e",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T21:02:30Z",
+      "side": 1,
+      "message": "device is not tagged `@NonNull`",
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5762949e_e330abba",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T21:02:30Z",
+      "side": 1,
+      "message": "The previous code did not validate the device here.\nSame for a couple of other APIs",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 555,
+        "endChar": 9
+      },
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
