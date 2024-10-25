@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6287713d_9f964996",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-25T05:31:43Z",
+      "side": 1,
+      "message": "About TestMappingSloChecker failure: this module is just renamed, was passing SLO under previous name so should be good.",
+      "revId": "a9e06b35ba40e952ae86185b71d16a176f4abc4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
