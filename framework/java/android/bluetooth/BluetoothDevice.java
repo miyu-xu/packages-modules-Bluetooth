@@ -543,7 +543,12 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 METADATA_LE_AUDIO,
                 METADATA_GMCS_CCCD,
                 METADATA_GTBS_CCCD,
-                METADATA_EXCLUSIVE_MANAGER
+                METADATA_EXCLUSIVE_MANAGER,
+                METADATA_MODEL_YEAR,
+                METADATA_HEAD_UNIT_MANUFACTURER,
+                METADATA_HEAD_UNIT_MODEL,
+                METADATA_HEAD_UNIT_BUILD,
+                METADATA_HEAD_UNIT_SOFTWARE_VERSION
             })
     @Retention(RetentionPolicy.SOURCE)
     public @interface MetadataKey {}
@@ -809,6 +814,55 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     public static final int METADATA_EXCLUSIVE_MANAGER = 29;
 
     private static final int METADATA_MAX_KEY = METADATA_EXCLUSIVE_MANAGER;
+
+    /**
+     * Model year of the Bluetooth device. Data type should be {@link String} as {@link Byte} array.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_REMOTE_DEVICE_METADATA)
+    @SystemApi
+    public static final int METADATA_MODEL_YEAR = 30;
+
+    /**
+     * Head unit manufacturer of the Bluetooth device. Data type should be {@link String} as {@link
+     * Byte} array.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_REMOTE_DEVICE_METADATA)
+    @SystemApi
+    public static final int METADATA_HEAD_UNIT_MANUFACTURER = 31;
+
+    /**
+     * Head unit model of the Bluetooth device. Data type should be {@link String} as {@link Byte}
+     * array.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_REMOTE_DEVICE_METADATA)
+    @SystemApi
+    public static final int METADATA_HEAD_UNIT_MODEL = 32;
+
+    /**
+     * Head unit build of the Bluetooth device. Data type should be {@link String} as {@link Byte}
+     * array.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_REMOTE_DEVICE_METADATA)
+    @SystemApi
+    public static final int METADATA_HEAD_UNIT_BUILD = 33;
+
+    /**
+     * Head unit software version of the Bluetooth device. Data type should be {@link String} as
+     * {@link Byte} array.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUPPORT_REMOTE_DEVICE_METADATA)
+    @SystemApi
+    public static final int METADATA_HEAD_UNIT_SOFTWARE_VERSION = 34;
 
     /**
      * Device type which is used in METADATA_DEVICE_TYPE Indicates this Bluetooth device is a
