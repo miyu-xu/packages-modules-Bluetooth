@@ -42,15 +42,12 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.util.Log;
 import android.util.Pair;
-
 import androidx.annotation.VisibleForTesting;
-
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
 import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.build.SdkLevel;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -651,7 +648,7 @@ class AdapterProperties {
                                         BluetoothAdapter.EXTRA_PREVIOUS_CONNECTION_STATE,
                                         prevAdapterState)
                                 .addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
-                logProfileConnectionStateChange(device, newState, prevState);
+                logProfileConnectionStateChange(device, profile, newState, prevState);
                 Log.d(TAG, "updateOnProfileConnectionChanged: " + logInfo);
                 mService.sendBroadcastAsUser(
                         intent,
@@ -662,15 +659,68 @@ class AdapterProperties {
         }
     }
 
-    private void logProfileConnectionStateChange(BluetoothDevice device, int state, int prevState) {
+    private int getProfileEnumFromProfileId(int profile) {
+        switch (profile) {
+      case BluetoothProfile.A2DP:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_A2DP;
+      case BluetoothProfile.A2DP_SINK:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_A2DP_SINK;
+      case BluetoothProfile.HEADSET:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_HEADSET;
+      case BluetoothProfile.HEADSET_CLIENT:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_HEADSET_CLIENT;
+      case BluetoothProfile.MAP_CLIENT:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_MAP_CLIENT;
+      case BluetoothProfile.HID_HOST:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_HID_HOST;
+      case BluetoothProfile.PAN:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_PAN;
+      case BluetoothProfile.PBAP_CLIENT:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_PBAP_CLIENT;
+      case BluetoothProfile.HEARING_AID:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_HEARING_AID;
+      case BluetoothProfile.HAP_CLIENT:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_HAP_CLIENT;
+      case BluetoothProfile.VOLUME_CONTROL:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_VOLUME_CONTROL;
+      case BluetoothProfile.CSIP_SET_COORDINATOR:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_CSIP_SET_COORDINATOR;
+      case BluetoothProfile.LE_AUDIO:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_LE_AUDIO;
+      case BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_LE_AUDIO_BROADCAST_ASSISTANT;
+      case BluetoothProfile.BATTERY:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_BATTERY;
+      default:
+        return BluetoothStatsLog
+            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION;
+    }
+    }
+
+    private void logProfileConnectionStateChange(
+            BluetoothDevice device, int profileId, int state, int prevState) {
 
         switch (state) {
             case BluetoothAdapter.STATE_CONNECTED:
                 MetricsLogger.getInstance()
                         .logBluetoothEvent(
                                 device,
-                                BluetoothStatsLog
-                                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION,
+                                getProfileEnumFromProfileId(profileId),
                                 BluetoothStatsLog
                                         .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SUCCESS,
                                 0);
@@ -680,8 +730,7 @@ class AdapterProperties {
                     MetricsLogger.getInstance()
                             .logBluetoothEvent(
                                     device,
-                                    BluetoothStatsLog
-                                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION,
+                                    getProfileEnumFromProfileId(profileId),
                                     BluetoothStatsLog
                                             .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__FAIL,
                                     0);
