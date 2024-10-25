@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81272d00_30494ad4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-25T01:34:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f23ccc9_a7f95906",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "55aa9c250a757bfad8e4e44a05f19b5639ebc008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edc7be0b_8e5da7a8",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-10-24T20:26:35Z",
       "side": 1,
       "message": "Would you be able to implement a test reproducing this race ?",
+      "revId": "55aa9c250a757bfad8e4e44a05f19b5639ebc008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c862d4f_5e75b329",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-25T01:34:15Z",
+      "side": 1,
+      "message": "It wasn\u0027t easy, but done !",
+      "parentUuid": "edc7be0b_8e5da7a8",
       "revId": "55aa9c250a757bfad8e4e44a05f19b5639ebc008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
