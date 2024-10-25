@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e1db90f_ac723f94",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T20:42:05Z",
+      "side": 1,
+      "message": "logs",
+      "range": {
+        "startLine": 351,
+        "startChar": 46,
+        "endLine": 351,
+        "endChar": 49
+      },
+      "revId": "291b9671a209597752794f44fd4c565e0ce35e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3783e323_a3eb5f88",
         "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
         "patchSetId": 1
