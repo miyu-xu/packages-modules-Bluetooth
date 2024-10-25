@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebfd5d26_7e502037",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-25T16:53:39Z",
+      "side": 1,
+      "message": "While we are here we should add\nthe .clang-tidy file to this line in OWNERS:\n```\n per-file PREUPLOAD.cfg,TEST_MAPPING,*.bp,*.xml,pyrightconfig.json\u003dfile:/OWNERS_build\n```",
+      "revId": "c9e468118803fb90617f016bce51b68f827dc078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9a8755d_af76ab8d",
+        "filename": "system/osi/src/compat.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-25T16:53:39Z",
+      "side": 1,
+      "message": "should this be removed too ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "c9e468118803fb90617f016bce51b68f827dc078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
