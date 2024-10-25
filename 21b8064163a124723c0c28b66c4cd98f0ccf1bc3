@@ -22,6 +22,30 @@
       },
       "revId": "21b8064163a124723c0c28b66c4cd98f0ccf1bc3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee0ae9d5_0d7c162c",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-10-25T04:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "243934d4_4f7c4f68",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 25
+      },
+      "revId": "21b8064163a124723c0c28b66c4cd98f0ccf1bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
