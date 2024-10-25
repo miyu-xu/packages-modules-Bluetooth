@@ -16,6 +16,24 @@
       "message": "@girardier@google.com for API review",
       "revId": "5cd9c5e8688abdbd0917c34d45baf4e89d9eb36a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d67670_af0fb990",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-25T17:25:48Z",
+      "side": 1,
+      "message": "+1, removing nullness annotations which should not be used for primitive types and void-returning methods. @asapperstein@google.com for +2.",
+      "parentUuid": "ec818711_d241d75b",
+      "revId": "5cd9c5e8688abdbd0917c34d45baf4e89d9eb36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
