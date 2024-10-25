@@ -19,7 +19,6 @@ filegroup {
         "raw_builder.cc",
         "view.cc",
     ],
-    visibility: ["//visibility:public"],
 }
 
 filegroup {
