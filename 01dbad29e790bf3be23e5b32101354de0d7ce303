@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "892bb6df_6b643f52",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T16:15:15Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 17
+      },
+      "revId": "01dbad29e790bf3be23e5b32101354de0d7ce303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae52573c_d57ef9d3",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T16:15:15Z",
+      "side": 1,
+      "message": "fix ordering of headers",
+      "revId": "01dbad29e790bf3be23e5b32101354de0d7ce303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "952e9fde_00c84da8",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T16:15:15Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 61,
+        "startChar": 10,
+        "endLine": 61,
+        "endChar": 23
+      },
+      "revId": "01dbad29e790bf3be23e5b32101354de0d7ce303",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
