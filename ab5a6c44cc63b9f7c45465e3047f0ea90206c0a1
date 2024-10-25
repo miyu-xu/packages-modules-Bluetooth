@@ -1,0 +1,201 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fb2b0e_1a6f3507",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T23:11:48Z",
+      "side": 1,
+      "message": "MESSAGE_CONNECT ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 21,
+        "endLine": 75,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "483a2bf8_7c20a5c7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "    static final int MESSAGE_CONNECT \u003d 1;\n    static final int MESSAGE_DISCONNECT \u003d 2;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 199,
+                "startChar": 0,
+                "endLine": 200,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_CONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 212,
+                "startChar": 0,
+                "endLine": 213,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_DISCONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 338,
+                "startChar": 0,
+                "endLine": 339,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_CONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 355,
+                "startChar": 0,
+                "endLine": 356,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_DISCONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 452,
+                "startChar": 0,
+                "endLine": 453,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_CONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 467,
+                "startChar": 0,
+                "endLine": 468,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_DISCONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 547,
+                "startChar": 0,
+                "endLine": 548,
+                "endChar": 0
+              },
+              "replacement": "            removeDeferredMessages(MESSAGE_CONNECT);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 579,
+                "startChar": 0,
+                "endLine": 580,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_CONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 582,
+                "startChar": 0,
+                "endLine": 583,
+                "endChar": 0
+              },
+              "replacement": "                case MESSAGE_DISCONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 861,
+                "startChar": 0,
+                "endLine": 862,
+                "endChar": 0
+              },
+              "replacement": "            case MESSAGE_CONNECT:\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 863,
+                "startChar": 0,
+                "endLine": 864,
+                "endChar": 0
+              },
+              "replacement": "            case MESSAGE_DISCONNECT:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ab5a6c44cc63b9f7c45465e3047f0ea90206c0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a954f15_5b31d350",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T23:11:48Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be necessary with the test looper now, is it ?",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 67
+      },
+      "revId": "ab5a6c44cc63b9f7c45465e3047f0ea90206c0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5860c6cd_483a7298",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T23:11:48Z",
+      "side": 1,
+      "message": "so start() in constructor going forward ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 13
+      },
+      "revId": "ab5a6c44cc63b9f7c45465e3047f0ea90206c0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
