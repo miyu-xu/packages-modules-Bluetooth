@@ -103,7 +103,7 @@ public final class BluetoothServerSocket implements Closeable {
         mSocketCreationTimeMillis = System.currentTimeMillis();
         mType = type;
         mChannel = port;
-        mSocket = new BluetoothSocket(type, auth, encrypt, null, port, null);
+        mSocket = new BluetoothSocket(type, auth, encrypt, port, null);
         if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
             mSocket.setExcludeSdp(true);
         }
@@ -127,7 +127,7 @@ public final class BluetoothServerSocket implements Closeable {
         mSocketCreationTimeMillis = System.currentTimeMillis();
         mType = type;
         mChannel = port;
-        mSocket = new BluetoothSocket(type, auth, encrypt, null, port, null, mitm, min16DigitPin);
+        mSocket = new BluetoothSocket(type, auth, encrypt, port, null, mitm, min16DigitPin);
         if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
             mSocket.setExcludeSdp(true);
         }
@@ -147,7 +147,7 @@ public final class BluetoothServerSocket implements Closeable {
             throws IOException {
         mSocketCreationTimeMillis = System.currentTimeMillis();
         mType = type;
-        mSocket = new BluetoothSocket(type, auth, encrypt, null, -1, uuid);
+        mSocket = new BluetoothSocket(type, auth, encrypt, -1, uuid);
         // TODO: This is the same as mChannel = -1 - is this intentional?
         mChannel = mSocket.getPort();
         mSocketCreationLatencyMillis = System.currentTimeMillis() - mSocketCreationTimeMillis;
