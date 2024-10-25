@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c524705f_bd8c8255",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-25T17:00:29Z",
+      "side": 1,
+      "message": "Put description instead of annotation character",
+      "range": {
+        "startLine": 173,
+        "startChar": 19,
+        "endLine": 173,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8eab0c39_d9d1de1c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 173,
+                "startChar": 0,
+                "endLine": 174,
+                "endChar": 0
+              },
+              "replacement": "         * @return @NonNull\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 187,
+                "startChar": 0,
+                "endLine": 188,
+                "endChar": 0
+              },
+              "replacement": "         * @return @NonNull\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ca517968cb1b6f5db5d7dbb2c4d49a3e2acd6015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
