@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da1f9e2_9b2685d3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-25T21:30:28Z",
+      "side": 1,
+      "message": "I would move it below `METADATA_MODEL_NAME`",
+      "range": {
+        "startLine": 818,
+        "startChar": 0,
+        "endLine": 825,
+        "endChar": 53
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b90d0c2_f207f764",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-25T21:30:28Z",
+      "side": 1,
+      "message": "The doc should specify that these should only be set/available for a car device.",
+      "range": {
+        "startLine": 827,
+        "startChar": 2,
+        "endLine": 832,
+        "endChar": 7
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8147f366_b77cc0c1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-25T21:30:28Z",
+      "side": 1,
+      "message": "I would rename it to `METADATA_HEAD_UNIT_MODEL_NAME` for consistency. Btw is it a name or an ID here?",
+      "range": {
+        "startLine": 845,
+        "startChar": 28,
+        "endLine": 845,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7b75b2ab_5616fb89",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 855,
+                "startChar": 0,
+                "endLine": 856,
+                "endChar": 0
+              },
+              "replacement": "    public static final int METADATA_HEAD_UNIT_MODEL \u003d 32;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f840abe7_cb659ce3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-25T21:30:28Z",
+      "side": 1,
+      "message": "What is the build? Is it the hardware version? If yes, I would rename it to `METADATA_HEAD_UNIT_HARDWARE_VERSION` for consistency.",
+      "range": {
+        "startLine": 855,
+        "startChar": 28,
+        "endLine": 855,
+        "endChar": 52
+      },
+      "revId": "1623a41a23f27da28ce6d884f2098bd2e97b37bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
