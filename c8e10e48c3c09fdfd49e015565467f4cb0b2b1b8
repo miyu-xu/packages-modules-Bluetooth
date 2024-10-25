@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea80607_7ec3577b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T16:20:17Z",
+      "side": 1,
+      "message": "Can you please quickly describe how config ids are used to help me read through the change ?",
+      "revId": "c8e10e48c3c09fdfd49e015565467f4cb0b2b1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a759c9f2_1c005d5b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T16:20:17Z",
+      "side": 1,
+      "message": "What does this mask represent ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 41
+      },
+      "revId": "c8e10e48c3c09fdfd49e015565467f4cb0b2b1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56584d3d_eb4831c8",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1821,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-25T16:20:17Z",
+      "side": 1,
+      "message": "assigned_config_ids_ ? used_config_ids_ ?",
+      "range": {
+        "startLine": 1821,
+        "startChar": 40,
+        "endLine": 1821,
+        "endChar": 56
+      },
+      "revId": "c8e10e48c3c09fdfd49e015565467f4cb0b2b1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
