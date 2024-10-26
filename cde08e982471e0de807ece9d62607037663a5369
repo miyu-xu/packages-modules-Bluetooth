@@ -22,6 +22,30 @@
       },
       "revId": "cde08e982471e0de807ece9d62607037663a5369",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dadf962f_c1d8281f",
+        "filename": "flags/avrcp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-26T15:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22fb2c28_e81f6a88",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "cde08e982471e0de807ece9d62607037663a5369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
