@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d80082_2f86d280",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:33:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "218de9c5_01863327",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 9
+      },
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3867b481_3bac2d8d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-25T21:02:30Z",
       "side": 1,
       "message": "There is no device",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 9
+      },
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "910bea16_7218b8cd",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:33:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3867b481_3bac2d8d",
       "range": {
         "startLine": 356,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59ce174c_cc5b4028",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:33:58Z",
+      "side": 1,
+      "message": "It should ^^\n\nSuuuurrrprise !",
+      "parentUuid": "af81f0b6_0c82235e",
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5762949e_e330abba",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-10-25T21:02:30Z",
       "side": 1,
       "message": "The previous code did not validate the device here.\nSame for a couple of other APIs",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 555,
+        "endChar": 9
+      },
+      "revId": "7d8b1ccff38a4cfb427fa9087e56d95865c6cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40135cb6_09bba96f",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:33:58Z",
+      "side": 1,
+      "message": "But we should have.\n\nThis doesn\u0027t change the API contract",
+      "parentUuid": "5762949e_e330abba",
       "range": {
         "startLine": 553,
         "startChar": 0,
