@@ -508,6 +508,7 @@ package android.bluetooth {
     method public void onGroupNodeRemoved(@NonNull android.bluetooth.BluetoothDevice, int);
     method public void onGroupStatusChanged(int, int);
     method public default void onGroupStreamStatusChanged(int, int);
+    method @FlaggedApi("com.android.bluetooth.flags.leaudio_broadcast_api_manage_primary_group") public default void onLeAudioPrimaryGroupChanged(int);
   }
 
   public final class BluetoothLeAudioCodecConfigMetadata implements android.os.Parcelable {
