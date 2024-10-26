@@ -16,6 +16,24 @@
       "message": "Should you test `requireNonNull(device)` ? In other APIs you do make this change.",
       "revId": "ad6bd332480697dc9131f614219192e2e757b33d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0eefcfa_b4ec5340",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:32:01Z",
+      "side": 1,
+      "message": "Unfortunately I can\u0027t as sending \"null\" to this api is attempted by the cts test.\n\nIt will require changing the cts first, waiting for the test to sink in then change the code",
+      "parentUuid": "93ac79b9_718be18b",
+      "revId": "ad6bd332480697dc9131f614219192e2e757b33d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
