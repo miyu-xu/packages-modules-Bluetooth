@@ -155,6 +155,20 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
                 Log.d(TAG, " onGroupStreamStatusChanged is not implemented.");
             }
         }
+
+        /**
+         * Callback invoked when Le Audio primary group is changes.
+         *
+         * @param groupId primary group id
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+        @SystemApi
+        default void onLeAudioPrimaryGroupChanged(int groupId) {
+            if (DBG) {
+                Log.d(TAG, "onLeAudioPrimaryGroupChanged is not implemented.");
+            }
+        }
     }
 
     private final CallbackWrapper<Callback, IBluetoothLeAudio> mCallbackWrapper;
@@ -188,6 +202,11 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
         public void onGroupStreamStatusChanged(int groupId, int groupStreamStatus) {
             mCallbackWrapper.forEach(
                     (cb) -> cb.onGroupStreamStatusChanged(groupId, groupStreamStatus));
+        }
+
+        @Override
+        public void onLeAudioPrimaryGroupChanged(int groupId) {
+            mCallbackWrapper.forEach((cb) -> cb.onLeAudioPrimaryGroupChanged(groupId));
         }
     }
 
