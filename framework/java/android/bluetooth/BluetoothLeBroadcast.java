@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -34,6 +35,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -163,6 +166,16 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
                                 () -> callback.onBroadcastMetadataChanged(broadcastId, metadata));
                     }
                 }
+
+                @Override
+                public void onBroadcastPrimaryGroupChanged(int groupId) {
+                    for (Map.Entry<BluetoothLeBroadcast.Callback, Executor> callbackExecutorEntry :
+                            mCallbackExecutorMap.entrySet()) {
+                        BluetoothLeBroadcast.Callback callback = callbackExecutorEntry.getKey();
+                        Executor executor = callbackExecutorEntry.getValue();
+                        executor.execute(() -> callback.onBroadcastPrimaryGroupChanged(groupId));
+                    }
+                }
             };
 
     /**
@@ -281,6 +294,16 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
         @SystemApi
         void onBroadcastMetadataChanged(
                 int broadcastId, @NonNull BluetoothLeBroadcastMetadata metadata);
+
+        /**
+         * Callback invoked when Broadcast primary group is updated
+         *
+         * @param groupId primary group id
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+        @SystemApi
+        default void onBroadcastPrimaryGroupChanged(int groupId) {}
     }
 
     /**
@@ -762,6 +785,44 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
             }
         }
         return 1;
+    }
+
+    /**
+     * Set primary group in broadcast
+     *
+     * <p>Primary group is set for handling the fallback unicast stream when local broadcast is
+     * active with multiple groups of devices.
+     *
+     * <p>On primary group changed, {@link Callback#onBroadcastPrimaryGroupChanged(int)} will be
+     * invoked.
+     *
+     * @param groupId the groupId, caller should set valid group id in active local broadcast
+     * @return false on immediate error, true otherwise
+     * @throws IllegalStateException if callback was not registered
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public boolean setBroadcastPrimaryGroup(int groupId) {
+        if (mCallbackExecutorMap.isEmpty()) {
+            throw new IllegalStateException("No callback was ever registered");
+        }
+
+        if (DBG) log("setBroadcastPrimaryGroup");
+        final IBluetoothLeAudio service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                return service.setBroadcastPrimaryGroup(groupId, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return false;
     }
 
     /**

@@ -32,4 +32,5 @@ oneway interface IBluetoothLeBroadcastCallback {
     void onBroadcastUpdated(in int reason, in int broadcastId);
     void onBroadcastUpdateFailed(in int reason, in int broadcastId);
     void onBroadcastMetadataChanged(in int broadcastId, in BluetoothLeBroadcastMetadata metadata);
+    void onBroadcastPrimaryGroupChanged(in int groupId);
 }
