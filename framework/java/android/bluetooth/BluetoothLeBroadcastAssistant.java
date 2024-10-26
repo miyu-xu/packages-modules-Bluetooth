@@ -21,7 +21,9 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
+import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresNoPermission;
@@ -39,6 +41,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1203,6 +1207,53 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             }
         }
         return defaultValue;
+    }
+
+    /**
+     * Get metadata {@link BluetoothLeBroadcastMetadata} of the source on this sink device
+     *
+     * <p>This method returns the local managed metadata for the source from Broadcast Receive State
+     * {@link BluetoothLeBroadcastReceiveState} stored in the Broadcast Sink, and returns null if no
+     * matching metadata found on assistant.
+     *
+     * <p>Source metadata is stored from the operation {@link #addSource(BluetoothDevice,
+     * BluetoothLeBroadcastMetadata, boolean)}, and may get updated from {@link
+     * #modifySource(BluetoothDevice, int, BluetoothLeBroadcastMetadata)}
+     *
+     * <p>Source id valid range is [0, 0xFF] as defined 3.2. Broadcast Receive State Broadcast Audio
+     * Scan Service 1.0.
+     *
+     * @param sink Broadcast Sink device
+     * @param sourceId Broadcast source ID
+     * @return metadata {@link BluetoothLeBroadcastMetadata}
+     * @throws NullPointerException when <var>sink</var> is null
+     * @throws IllegalArgumentException if sourceID is not [0, 0xFF]
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_GET_LOCAL_METADATA)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @Nullable BluetoothLeBroadcastMetadata getSourceMetadata(
+            @NonNull BluetoothDevice sink, @IntRange(from = 0x00, to = 0xFF) int sourceId) {
+        log("getSourceMetadata()");
+        Objects.requireNonNull(sink, "sink cannot be null");
+        if (sourceId < 0x00 || sourceId > 0xFF) {
+            throw new IllegalArgumentException(
+                    "sourceId " + sourceId + " does not fall between 0x00 and 0xFF");
+        }
+        final IBluetoothLeBroadcastAssistant service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (mBluetoothAdapter.isEnabled()) {
+            try {
+                return service.getSourceMetadata(sink, sourceId, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return null;
     }
 
     private static void log(@NonNull String msg) {
