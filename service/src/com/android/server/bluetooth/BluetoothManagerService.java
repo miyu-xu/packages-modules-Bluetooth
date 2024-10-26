@@ -157,8 +157,10 @@ class BluetoothManagerService {
     @VisibleForTesting static final int MESSAGE_GET_NAME_AND_ADDRESS = 200;
     @VisibleForTesting static final int MESSAGE_USER_SWITCHED = 300;
     @VisibleForTesting static final int MESSAGE_USER_UNLOCKED = 301;
-    @VisibleForTesting static final int MESSAGE_RESTORE_USER_SETTING_OFF = 501;
-    @VisibleForTesting static final int MESSAGE_RESTORE_USER_SETTING_ON = 502;
+    @VisibleForTesting static final int MESSAGE_RESTORE_USER_SETTING = 500;
+
+    private static final int RESTORE_SETTING_TO_ON = 1;
+    private static final int RESTORE_SETTING_TO_OFF = 0;
 
     private static final int MAX_ERROR_RESTART_RETRIES = 6;
     private static final int MAX_WAIT_FOR_ENABLE_DISABLE_RETRIES = 10;
@@ -555,15 +557,17 @@ class BluetoothManagerService {
                                             + (" prevValue=" + prevValue)
                                             + (" newValue=" + newValue));
 
-                            if ((newValue == null)
-                                    || (prevValue == null)
-                                    || prevValue.equals(newValue)) {
-                                return;
+                            if ((newValue != null)
+                                    && (prevValue != null)
+                                    && !prevValue.equals(newValue)) {
+                                mHandler.obtainMessage(
+                                                MESSAGE_RESTORE_USER_SETTING,
+                                                newValue.equals("0")
+                                                        ? RESTORE_SETTING_TO_OFF
+                                                        : RESTORE_SETTING_TO_ON,
+                                                0)
+                                        .sendToTarget();
                             }
-                            mHandler.sendEmptyMessage(
-                                    newValue.equals("0")
-                                            ? MESSAGE_RESTORE_USER_SETTING_OFF
-                                            : MESSAGE_RESTORE_USER_SETTING_ON);
                         }
                     } else if (action.equals(Intent.ACTION_SHUTDOWN)) {
                         Log.i(TAG, "Device is shutting down.");
@@ -1535,26 +1539,24 @@ class BluetoothManagerService {
                     }
                     break;
 
-                case MESSAGE_RESTORE_USER_SETTING_OFF:
-                    if (!mEnable) {
-                        Log.w(TAG, "RESTORE_USER_SETTING_OFF: Unhandled: already disabled");
-                        break;
+                case MESSAGE_RESTORE_USER_SETTING:
+                    if ((msg.arg1 == RESTORE_SETTING_TO_OFF) && mEnable) {
+                        Log.d(TAG, "MESSAGE_RESTORE_USER_SETTING: set Bluetooth state to disabled");
+                        setBluetoothPersistedState(BLUETOOTH_OFF);
+                        mEnableExternal = false;
+                        sendDisableMsg(ENABLE_DISABLE_REASON_RESTORE_USER_SETTING);
+                    } else if ((msg.arg1 == RESTORE_SETTING_TO_ON) && !mEnable) {
+                        Log.d(TAG, "MESSAGE_RESTORE_USER_SETTING: set Bluetooth state to enabled");
+                        mQuietEnableExternal = false;
+                        mEnableExternal = true;
+                        sendEnableMsg(false, ENABLE_DISABLE_REASON_RESTORE_USER_SETTING);
+                    } else {
+                        Log.w(
+                                TAG,
+                                "MESSAGE_RESTORE_USER_SETTING: Unhandled."
+                                        + (" mEnable=" + mEnable)
+                                        + (" msg.arg1=" + msg.arg1));
                     }
-                    Log.d(TAG, "RESTORE_USER_SETTING_OFF: set Bluetooth state to disabled");
-                    setBluetoothPersistedState(BLUETOOTH_OFF);
-                    mEnableExternal = false;
-                    sendDisableMsg(ENABLE_DISABLE_REASON_RESTORE_USER_SETTING);
-                    break;
-
-                case MESSAGE_RESTORE_USER_SETTING_ON:
-                    if (mEnable) {
-                        Log.w(TAG, "RESTORE_USER_SETTING_ON: Unhandled: already enabled");
-                        break;
-                    }
-                    Log.d(TAG, "RESTORE_USER_SETTING_ON: set Bluetooth state to enabled");
-                    mQuietEnableExternal = false;
-                    mEnableExternal = true;
-                    sendEnableMsg(false, ENABLE_DISABLE_REASON_RESTORE_USER_SETTING);
                     break;
 
                 case MESSAGE_BLUETOOTH_SERVICE_CONNECTED:
@@ -1616,10 +1618,14 @@ class BluetoothManagerService {
                     bluetoothStateChangeHandler(prevState, newState);
                     // handle error state transition case from TURNING_ON to OFF
                     // unbind and rebind bluetooth service and enable bluetooth
-                    if ((prevState == STATE_BLE_TURNING_ON) && (newState == STATE_OFF) && mEnable) {
+                    if ((prevState == STATE_BLE_TURNING_ON)
+                            && (newState == STATE_OFF)
+                            && mEnable) {
                         recoverBluetoothServiceFromError(false);
                     }
-                    if ((prevState == STATE_TURNING_ON) && (newState == STATE_BLE_ON) && mEnable) {
+                    if ((prevState == STATE_TURNING_ON)
+                            && (newState == STATE_BLE_ON)
+                            && mEnable) {
                         recoverBluetoothServiceFromError(true);
                     }
                     // If we tried to enable BT while BT was in the process of shutting down,
