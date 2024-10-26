@@ -399,30 +399,39 @@ class BluetoothManagerService {
     private static final Object ON_SWITCH_USER_TOKEN = new Object();
 
     Unit onAirplaneModeChanged(boolean isAirplaneModeOn) {
-        delayModeChangedIfNeeded(
+        mHandler.postDelayed(
+                () ->
+                        delayModeChangedIfNeeded(
+                                ON_AIRPLANE_MODE_CHANGED_TOKEN,
+                                () -> handleAirplaneModeChanged(isAirplaneModeOn),
+                                "onAirplaneModeChanged"),
                 ON_AIRPLANE_MODE_CHANGED_TOKEN,
-                () -> handleAirplaneModeChanged(isAirplaneModeOn),
-                "onAirplaneModeChanged");
+                0);
         return Unit.INSTANCE;
     }
 
     // TODO(b/289584302): Update to private once use_new_satellite_mode is enabled
     Unit onSatelliteModeChanged(boolean isSatelliteModeOn) {
-        delayModeChangedIfNeeded(
+        mHandler.postDelayed(
+                () ->
+                        delayModeChangedIfNeeded(
+                                ON_SATELLITE_MODE_CHANGED_TOKEN,
+                                () -> handleSatelliteModeChanged(isSatelliteModeOn),
+                                "onSatelliteModeChanged"),
                 ON_SATELLITE_MODE_CHANGED_TOKEN,
-                () -> handleSatelliteModeChanged(isSatelliteModeOn),
-                "onSatelliteModeChanged");
+                0);
         return Unit.INSTANCE;
     }
 
-    // Call is coming from the systemServer main thread and need to be post to avoid race
     void onSwitchUser(UserHandle userHandle) {
-        mHandler.post(
+        mHandler.postDelayed(
                 () ->
                         delayModeChangedIfNeeded(
                                 ON_SWITCH_USER_TOKEN,
                                 () -> handleSwitchUser(userHandle),
-                                "onSwitchUser"));
+                                "onSwitchUser"),
+                ON_SWITCH_USER_TOKEN,
+                0);
     }
 
     private void forceToOffFromModeChange(int currentState, int reason) {
@@ -449,30 +458,29 @@ class BluetoothManagerService {
     }
 
     private void handleAirplaneModeChanged(boolean isAirplaneModeOn) {
-        boolean isPersistStateOn = isBluetoothPersistedStateOn();
-        if (isPersistStateOn) {
-            if (isAirplaneModeOn) {
-                setBluetoothPersistedState(BLUETOOTH_ON_AIRPLANE);
-            } else {
-                setBluetoothPersistedState(BLUETOOTH_ON_BLUETOOTH);
+        synchronized (this) {
+            if (isBluetoothPersistedStateOn()) {
+                if (isAirplaneModeOn) {
+                    setBluetoothPersistedState(BLUETOOTH_ON_AIRPLANE);
+                } else {
+                    setBluetoothPersistedState(BLUETOOTH_ON_BLUETOOTH);
+                }
             }
-        }
 
-        int currentState = mState.get();
+            int currentState = mState.get();
 
-        Log.d(
-                TAG,
-                ("handleAirplaneModeChanged(" + isAirplaneModeOn + "):")
-                        + (" mEnableExternal=" + mEnableExternal)
-                        + (" isPersistStateOn=" + isPersistStateOn)
-                        + (" currentState=" + nameForState(currentState)));
+            Log.d(
+                    TAG,
+                    ("handleAirplaneModeChanged(" + isAirplaneModeOn + "):")
+                            + (" currentState=" + nameForState(currentState)));
 
-        if (isAirplaneModeOn) {
-            forceToOffFromModeChange(currentState, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
-        } else if (mEnableExternal) {
-            sendEnableMsg(mQuietEnableExternal, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
-        } else if (currentState != STATE_ON) {
-            autoOnSetupTimer();
+            if (isAirplaneModeOn) {
+                forceToOffFromModeChange(currentState, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
+            } else if (mEnableExternal) {
+                sendEnableMsg(mQuietEnableExternal, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
+            } else if (currentState != STATE_ON) {
+                autoOnSetupTimer();
+            }
         }
     }
 
