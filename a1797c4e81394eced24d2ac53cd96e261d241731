@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e136df2b_b3cf07b8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:24:15Z",
+      "side": 1,
+      "message": "Is the car the remote device ? or local device ?",
+      "range": {
+        "startLine": 829,
+        "startChar": 62,
+        "endLine": 829,
+        "endChar": 73
+      },
+      "revId": "a1797c4e81394eced24d2ac53cd96e261d241731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0cf5c66_9b60c9b3",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 4
