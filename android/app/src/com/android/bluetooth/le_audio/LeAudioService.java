@@ -26,6 +26,7 @@ import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastPrimaryGroupSelection;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastApiManagePrimaryGroup;
 import static com.android.bluetooth.flags.Flags.leaudioUseAudioModeListener;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -1543,6 +1544,36 @@ public class LeAudioService extends ProfileService {
     public int getMaximumSubgroupsPerBroadcast() {
         /* TODO: This is currently fixed to 1 */
         return 1;
+    }
+
+    /**
+     * Set primary group in broadcast
+     *
+     * @return true if success, false otherwise
+     */
+    public boolean setBroadcastPrimaryGroup(int groupId) {
+        if (!leaudioBroadcastApiManagePrimaryGroup()) {
+            return false;
+        }
+
+        if (groupId == LE_AUDIO_GROUP_ID_INVALID || !isBroadcastActive()) {
+            return false;
+        }
+
+        mUserPreferredPrimaryGroup = groupId;
+        updatePrimaryGroupIdForBroadcast(groupId);
+
+        LeAudioGroupDescriptor primaryGroupDescriptor = getGroupDescriptor(groupId);
+        if (primaryGroupDescriptor != null && mActiveAudioInDevice != null) {
+            updateActiveDevices(
+                    groupId,
+                    primaryGroupDescriptor.mDirection,
+                    AUDIO_DIRECTION_INPUT_BIT,
+                    false,
+                    primaryGroupDescriptor.mHasFallbackDeviceWhenGettingInactive,
+                    true);
+        }
+        return true;
     }
 
     /** Active Broadcast Assistant notification handler */
@@ -5164,6 +5195,20 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    private void notifyBroadcastPrimaryGroupChanged(int groupId) {
+        synchronized (mBroadcastCallbacks) {
+            int n = mBroadcastCallbacks.beginBroadcast();
+            for (int i = 0; i < n; i++) {
+                try {
+                    mBroadcastCallbacks.getBroadcastItem(i).onBroadcastPrimaryGroupChanged(groupId);
+                } catch (RemoteException e) {
+                    continue;
+                }
+            }
+            mBroadcastCallbacks.finishBroadcast();
+        }
+    }
+
     /**
      * Update the fallback unicast group id during the handover to broadcast Also store the fallback
      * group id in Settings store.
@@ -5206,6 +5251,10 @@ public class LeAudioService extends ProfileService {
                     groupId);
         } finally {
             Binder.restoreCallingIdentity(callingIdentity);
+        }
+
+        if (leaudioBroadcastApiManagePrimaryGroup()) {
+            mHandler.post(() -> notifyBroadcastPrimaryGroupChanged(groupId));
         }
     }
 
@@ -6000,6 +6049,17 @@ public class LeAudioService extends ProfileService {
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.isBroadcastActive();
+        }
+
+        @Override
+        public boolean setBroadcastPrimaryGroup(int groupId, AttributionSource source) {
+            LeAudioService service = getServiceAndEnforceConnect(source);
+            if (service == null) {
+                return false;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.setBroadcastPrimaryGroup(groupId);
         }
     }
 

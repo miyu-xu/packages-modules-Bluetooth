@@ -1596,11 +1596,17 @@ public class LeAudioBroadcastServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION)
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION,
+        Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP
+    })
     public void testUpdatePrimaryGroupIfNeeded() {
         int groupId = 1;
         int groupId2 = 2;
 
+        synchronized (mService.mBroadcastCallbacks) {
+            mService.mBroadcastCallbacks.register(mCallbacks);
+        }
         initializeNative();
         prepareConnectedUnicastDevice(groupId, mDevice);
         prepareConnectedUnicastDevice(groupId2, mDevice2);
@@ -1610,6 +1616,11 @@ public class LeAudioBroadcastServiceTest {
 
         mService.updatePrimaryGroupIfNeeded();
         Assert.assertEquals(mService.mBroadcastPrimaryGroup, LE_AUDIO_GROUP_ID_INVALID);
+        try {
+            verify(mCallbacks, times(0)).onBroadcastPrimaryGroupChanged(anyInt());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
 
         // Verify user preferred group 1 is selected even with group 2 as earliest connected group
         mService.mUserPreferredPrimaryGroup = groupId;
@@ -1621,6 +1632,13 @@ public class LeAudioBroadcastServiceTest {
         mService.updatePrimaryGroupIfNeeded();
         Assert.assertEquals(mService.mBroadcastPrimaryGroup, groupId);
 
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        try {
+            verify(mCallbacks).onBroadcastPrimaryGroupChanged(eq(groupId));
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+
         // Verify group 2 as earliest connected group is selected
         mService.mUserPreferredPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
         when(mBassClientService.getSinksActiveInLocalBroadcast())
@@ -1630,6 +1648,72 @@ public class LeAudioBroadcastServiceTest {
 
         mService.updatePrimaryGroupIfNeeded();
         Assert.assertEquals(mService.mBroadcastPrimaryGroup, groupId2);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        try {
+            verify(mCallbacks).onBroadcastPrimaryGroupChanged(eq(groupId2));
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+    public void testSetBroadcastPrimaryGroup() {
+        int groupId = 1;
+
+        synchronized (mService.mBroadcastCallbacks) {
+            mService.mBroadcastCallbacks.register(mCallbacks);
+        }
+        mService.mBroadcastPrimaryGroup = LE_AUDIO_GROUP_ID_INVALID;
+
+        // Verify no update if group id is invalid
+        mService.setBroadcastPrimaryGroup(LE_AUDIO_GROUP_ID_INVALID);
+        Assert.assertEquals(mService.mBroadcastPrimaryGroup, LE_AUDIO_GROUP_ID_INVALID);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        try {
+            verify(mCallbacks, times(0)).onBroadcastPrimaryGroupChanged(anyInt());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+
+        // Verify no update if no active broadcast
+        mService.setBroadcastPrimaryGroup(groupId);
+        Assert.assertEquals(mService.mBroadcastPrimaryGroup, LE_AUDIO_GROUP_ID_INVALID);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
+        try {
+            verify(mCallbacks, times(0)).onBroadcastPrimaryGroupChanged(anyInt());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+
+        BluetoothLeAudioContentMetadata.Builder meta_builder =
+                new BluetoothLeAudioContentMetadata.Builder();
+        meta_builder.setLanguage("ENG");
+        meta_builder.setProgramInfo("Public broadcast info");
+        BluetoothLeAudioContentMetadata meta = meta_builder.build();
+        mService.createBroadcast(buildBroadcastSettingsFromMetadata(meta, code, 1));
+
+        LeAudioStackEvent create_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED);
+        create_event.valueInt1 = broadcastId;
+        create_event.valueBool1 = true;
+        mService.messageFromNative(create_event);
+
+        // Inject metadata stack event and verify if getter API works as expected
+        LeAudioStackEvent state_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_METADATA_CHANGED);
+        state_event.valueInt1 = broadcastId;
+        state_event.broadcastMetadata = createBroadcastMetadata();
+        mService.messageFromNative(state_event);
+
+        mService.setBroadcastPrimaryGroup(groupId);
+        Assert.assertEquals(groupId, mService.mUserPreferredPrimaryGroup);
     }
 
     private class LeAudioIntentReceiver extends BroadcastReceiver {
