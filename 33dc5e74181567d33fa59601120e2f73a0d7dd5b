@@ -22,6 +22,30 @@
       },
       "revId": "33dc5e74181567d33fa59601120e2f73a0d7dd5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a018d2_34e2ef7e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6291,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-26T00:47:46Z",
+      "side": 1,
+      "message": "Since this is a method that reach external client using binder call, this post only help preventing a race condition when calling setCustomMetadata at the same time of registering / unregistering.\n\nAs you can guess, this is only impacting test scenario. In real life usage, the return true of setCustomMetadata is enough to validate it has worked as expected, and the callback is only useful from a remote change",
+      "parentUuid": "95fa810c_03ad0677",
+      "range": {
+        "startLine": 6291,
+        "startChar": 8,
+        "endLine": 6291,
+        "endChar": 75
+      },
+      "revId": "33dc5e74181567d33fa59601120e2f73a0d7dd5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
