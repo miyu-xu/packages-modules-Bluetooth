@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95fa810c_03ad0677",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6291,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-26T00:43:26Z",
+      "side": 1,
+      "message": "logging CL really ?",
+      "range": {
+        "startLine": 6291,
+        "startChar": 8,
+        "endLine": 6291,
+        "endChar": 75
+      },
+      "revId": "33dc5e74181567d33fa59601120e2f73a0d7dd5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
