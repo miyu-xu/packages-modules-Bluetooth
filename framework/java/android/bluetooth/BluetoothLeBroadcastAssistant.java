@@ -21,6 +21,7 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -39,6 +40,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1203,6 +1206,45 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             }
         }
         return defaultValue;
+    }
+
+    /**
+     * Get {@link BluetoothLeBroadcastMetadata} assistant source metadata on this sink device
+     *
+     * <p>This method returns the local managed metadata for the source from Broadcast Receive State
+     * {@link BluetoothLeBroadcastReceiveState} stored in the Broadcast Sink, and returns null if no
+     * matching metadata found on assistant.
+     *
+     * <p>Source metadata is stored from {@link #addSource(BluetoothDevice,
+     * BluetoothLeBroadcastMetadata, boolean)}
+     *
+     * @param sink Broadcast Sink device
+     * @param sourceId source ID as delivered in {@link Callback#onSourceAdded(BluetoothDevice, int,
+     *     int)}
+     * @return metadata {@link BluetoothLeBroadcastMetadata}
+     * @throws NullPointerException when <var>sink</var> is null
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_GET_LOCAL_METADATA)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @Nullable BluetoothLeBroadcastMetadata getSourceMetadata(
+            @NonNull BluetoothDevice sink, int sourceId) {
+        log("getSourceMetadata()");
+        Objects.requireNonNull(sink, "sink cannot be null");
+        final IBluetoothLeBroadcastAssistant service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (mBluetoothAdapter.isEnabled()) {
+            try {
+                return service.getSourceMetadata(sink, sourceId, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return null;
     }
 
     private static void log(@NonNull String msg) {
