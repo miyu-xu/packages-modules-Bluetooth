@@ -562,6 +562,7 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public int getMaximumSubgroupsPerBroadcast();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean isPlaying(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void registerCallback(@NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothLeBroadcast.Callback);
+    method @FlaggedApi("com.android.bluetooth.flags.leaudio_broadcast_api_manage_primary_group") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setBroadcastPrimaryGroup(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void startBroadcast(@NonNull android.bluetooth.BluetoothLeAudioContentMetadata, @Nullable byte[]);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void startBroadcast(@NonNull android.bluetooth.BluetoothLeBroadcastSettings);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void stopBroadcast(int);
@@ -572,6 +573,7 @@ package android.bluetooth {
 
   public static interface BluetoothLeBroadcast.Callback {
     method public void onBroadcastMetadataChanged(int, @NonNull android.bluetooth.BluetoothLeBroadcastMetadata);
+    method @FlaggedApi("com.android.bluetooth.flags.leaudio_broadcast_api_manage_primary_group") public default void onBroadcastPrimaryGroupChanged(int);
     method public void onBroadcastStartFailed(int);
     method public void onBroadcastStarted(int, int);
     method public void onBroadcastStopFailed(int);
