@@ -1038,7 +1038,11 @@ public class VolumeControlService extends ProfileService {
     }
 
     void onExtAudioInStateChanged(
-            BluetoothDevice device, int id, int gainSetting, int mute, int gainMode) {
+            BluetoothDevice device,
+            int id,
+            int gainSetting,
+            @AudioInputControl.Mute int mute,
+            @AudioInputControl.GainMode int gainMode) {
         String logInfo =
                 "onExtAudioInStateChanged("
                         + ("device:" + device)
@@ -1097,7 +1101,8 @@ public class VolumeControlService extends ProfileService {
         input.onSetGainModeFailed(id);
     }
 
-    void onExtAudioInStatusChanged(BluetoothDevice device, int id, int status) {
+    void onExtAudioInStatusChanged(
+            BluetoothDevice device, int id, @AudioInputControl.Status int status) {
         String logInfo =
                 "onExtAudioInStatusChanged("
                         + ("device:" + device)
@@ -1120,7 +1125,7 @@ public class VolumeControlService extends ProfileService {
         input.setStatus(id, status);
     }
 
-    void onExtAudioInTypeChanged(BluetoothDevice device, int id, int type) {
+    void onExtAudioInTypeChanged(BluetoothDevice device, int id, @AudioInputControl.Type int type) {
         String logInfo =
                 "onExtAudioInTypeChanged("
                         + ("device:" + device)
