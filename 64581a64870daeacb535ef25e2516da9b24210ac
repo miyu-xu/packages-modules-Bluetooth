@@ -16,6 +16,24 @@
       "message": "Is there a risk of new crashs being reported? (instead of being hidden before)",
       "revId": "64581a64870daeacb535ef25e2516da9b24210ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c38efacf_6194eade",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-28T17:53:52Z",
+      "side": 1,
+      "message": "This can only happen in the eventuality of the mManagerService throwing a RemoteException.\n\nThis has 2 possibility, either the binder transaction is too big (impossible here, we have very small call). Or the mManagerService binder died.\n\nSince mManagerService is running into the systemserver, it should always be available. If it is not, then your whole device has crashed, and throwing the exception will prevent thinking that we can still pursue an happy path.\n\n\nI don\u0027t expect this to have any consequences on debuggigng, it is just good practice and help to keep thins homogeneous",
+      "parentUuid": "2977ea66_5971b39a",
+      "revId": "64581a64870daeacb535ef25e2516da9b24210ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
