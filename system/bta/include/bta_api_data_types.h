@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -50,7 +50,7 @@ inline std::string bta_status_text(const tBTA_STATUS& status) {
     CASE_RETURN_TEXT(BTA_NO_RESOURCES);
     CASE_RETURN_TEXT(BTA_WRONG_MODE);
     default:
-      return base::StringPrintf("UNKNOWN[%d]", status);
+      return android::base::StringPrintf("UNKNOWN[%d]", status);
   }
 }
 

@@ -19,8 +19,8 @@
 
 #include "stack/btm/btm_ble_sec.h"
 
+#include <android-base/stringprintf.h>
 #include <android_bluetooth_sysprop.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
@@ -264,8 +264,9 @@ void BTM_SecurityGrant(const RawAddress& bd_addr, tBTM_STATUS res) {
   const tSMP_STATUS res_smp =
           (res == tBTM_STATUS::BTM_SUCCESS) ? SMP_SUCCESS : SMP_REPEATED_ATTEMPTS;
   log::verbose("bd_addr:{}, res:{}", bd_addr, smp_status_text(res_smp));
-  BTM_LogHistory(kBtmLogTag, bd_addr, "Granted",
-                 base::StringPrintf("passkey_status:%s", smp_status_text(res_smp).c_str()));
+  BTM_LogHistory(
+          kBtmLogTag, bd_addr, "Granted",
+          android::base::StringPrintf("passkey_status:%s", smp_status_text(res_smp).c_str()));
 
   SMP_SecurityGrant(bd_addr, res_smp);
 }
@@ -295,9 +296,9 @@ void BTM_BlePasskeyReply(const RawAddress& bd_addr, tBTM_STATUS res, uint32_t pa
   const tSMP_STATUS res_smp =
           (res == tBTM_STATUS::BTM_SUCCESS) ? SMP_SUCCESS : SMP_PASSKEY_ENTRY_FAIL;
   BTM_LogHistory(kBtmLogTag, bd_addr, "Passkey reply",
-                 base::StringPrintf("transport:%s authenticate_status:%s",
-                                    bt_transport_text(BT_TRANSPORT_LE).c_str(),
-                                    smp_status_text(res_smp).c_str()));
+                 android::base::StringPrintf("transport:%s authenticate_status:%s",
+                                             bt_transport_text(BT_TRANSPORT_LE).c_str(),
+                                             smp_status_text(res_smp).c_str()));
 
   p_dev_rec->sec_rec.sec_flags |= BTM_SEC_LE_AUTHENTICATED;
   SMP_PasskeyReply(bd_addr, res_smp, passkey);
@@ -325,10 +326,11 @@ void BTM_BleConfirmReply(const RawAddress& bd_addr, tBTM_STATUS res) {
   const tSMP_STATUS res_smp =
           (res == tBTM_STATUS::BTM_SUCCESS) ? SMP_SUCCESS : SMP_PASSKEY_ENTRY_FAIL;
 
-  BTM_LogHistory(kBtmLogTag, bd_addr, "Confirm reply",
-                 base::StringPrintf("transport:%s numeric_comparison_authenticate_status:%s",
-                                    bt_transport_text(BT_TRANSPORT_LE).c_str(),
-                                    smp_status_text(res_smp).c_str()));
+  BTM_LogHistory(
+          kBtmLogTag, bd_addr, "Confirm reply",
+          android::base::StringPrintf("transport:%s numeric_comparison_authenticate_status:%s",
+                                      bt_transport_text(BT_TRANSPORT_LE).c_str(),
+                                      smp_status_text(res_smp).c_str()));
 
   p_dev_rec->sec_rec.sec_flags |= BTM_SEC_LE_AUTHENTICATED;
   SMP_ConfirmReply(bd_addr, res_smp);
@@ -358,9 +360,9 @@ void BTM_BleOobDataReply(const RawAddress& bd_addr, tBTM_STATUS res, uint8_t len
 
   const tSMP_STATUS res_smp = (res == tBTM_STATUS::BTM_SUCCESS) ? SMP_SUCCESS : SMP_OOB_FAIL;
   BTM_LogHistory(kBtmLogTag, bd_addr, "Oob data reply",
-                 base::StringPrintf("transport:%s authenticate_status:%s",
-                                    bt_transport_text(BT_TRANSPORT_LE).c_str(),
-                                    smp_status_text(res_smp).c_str()));
+                 android::base::StringPrintf("transport:%s authenticate_status:%s",
+                                             bt_transport_text(BT_TRANSPORT_LE).c_str(),
+                                             smp_status_text(res_smp).c_str()));
 
   p_dev_rec->sec_rec.sec_flags |= BTM_SEC_LE_AUTHENTICATED;
   SMP_OobDataReply(bd_addr, res_smp, len, p_data);
@@ -386,8 +388,9 @@ void BTM_BleSecureConnectionOobDataReply(const RawAddress& bd_addr, uint8_t* p_c
     return;
   }
 
-  BTM_LogHistory(kBtmLogTag, bd_addr, "Oob data reply",
-                 base::StringPrintf("transport:%s", bt_transport_text(BT_TRANSPORT_LE).c_str()));
+  BTM_LogHistory(
+          kBtmLogTag, bd_addr, "Oob data reply",
+          android::base::StringPrintf("transport:%s", bt_transport_text(BT_TRANSPORT_LE).c_str()));
 
   p_dev_rec->sec_rec.sec_flags |= BTM_SEC_LE_AUTHENTICATED;
 
@@ -1864,7 +1867,7 @@ void BTM_BleSirkConfirmDeviceReply(const RawAddress& bd_addr, tBTM_STATUS res) {
   }
 
   BTM_LogHistory(kBtmLogTag, bd_addr, "SIRK confirmation",
-                 base::StringPrintf("status:%s", smp_status_text(res_smp).c_str()));
+                 android::base::StringPrintf("status:%s", smp_status_text(res_smp).c_str()));
   SMP_SirkConfirmDeviceReply(bd_addr, res_smp);
 }
 

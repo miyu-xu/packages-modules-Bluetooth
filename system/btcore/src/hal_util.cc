@@ -18,11 +18,11 @@
 
 #include "btcore/include/hal_util.h"
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <dlfcn.h>
 #include <hardware/bluetooth.h>
 
-using base::StringPrintf;
+using android::base::StringPrintf;
 
 extern bt_interface_t bluetoothInterface;
 

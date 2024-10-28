@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <gtest/gtest.h>
 #include <stdlib.h>
 
@@ -118,7 +118,7 @@ protected:
 
   void setup_thread() {
     for (size_t i = 0; i < kNumberOfThreads; i++) {
-      std::string name = base::StringPrintf("thread:%zu", i);
+      std::string name = android::base::StringPrintf("thread:%zu", i);
       threads[i] = thread_new(name.c_str());
     }
   }
