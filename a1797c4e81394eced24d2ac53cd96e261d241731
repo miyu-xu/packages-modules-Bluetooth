@@ -100,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b02a569d_d6b93acd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-28T22:44:34Z",
+      "side": 1,
+      "message": "Gotcha. Thanks for clarifying. Might be good to include an example in the javadoc itself.",
+      "parentUuid": "7ed93430_b01052bb",
+      "revId": "a1797c4e81394eced24d2ac53cd96e261d241731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0cf5c66_9b60c9b3",
