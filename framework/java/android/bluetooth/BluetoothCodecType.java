@@ -62,6 +62,9 @@ public final class BluetoothCodecType implements Parcelable {
     /** Opus codec identifier. See {@link BluetoothCodecType#getCodecId}. */
     public static final long CODEC_ID_OPUS = 0x000100e0ff;
 
+    /** LHDCv5 codec identifier. See {@link BluetoothCodecType#getCodecId}. */
+    public static final long CODEC_ID_LHDCV5 = 0x4c35053affL;
+
     /**
      * Create the bluetooth codec type from the static codec type index.
      *
