@@ -106,6 +106,7 @@ executable("mmc_service") {
   ]
   deps = [
     ":libmmc",
+    "libbase",
     "//bt/system/log:libbluetooth_log",
   ]
   libs = [
