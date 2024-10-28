@@ -25,10 +25,10 @@
 
 #define LOG_TAG "bt_bta_gattc"
 
+#include <android-base/stringprintf.h>
 #include <base/functional/bind.h>
 #include <base/functional/callback.h>
 #include <base/strings/string_number_conversions.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -55,7 +55,7 @@
 using namespace bluetooth::legacy::stack::sdp;
 using namespace bluetooth;
 
-using base::StringPrintf;
+using android::base::StringPrintf;
 using bluetooth::Uuid;
 using gatt::Characteristic;
 using gatt::Database;
