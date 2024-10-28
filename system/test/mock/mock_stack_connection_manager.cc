@@ -75,6 +75,10 @@ void connection_manager::on_connection_timed_out_from_shim(const RawAddress& /* 
   inc_func_call_count(__func__);
 }
 
+void connection_manager::on_device_unbonded(const RawAddress& /* address */) {
+  inc_func_call_count(__func__);
+}
+
 void connection_manager::reset(bool /* after_reset */) { inc_func_call_count(__func__); }
 
 bool connection_manager::is_background_connection(const RawAddress& /* address */) {
