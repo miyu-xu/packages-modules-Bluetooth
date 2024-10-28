@@ -83,4 +83,8 @@ void on_connection_timed_out_from_shim(const RawAddress& address);
 
 bool is_background_connection(const RawAddress& address);
 
+/* This method should be used when all connection attempts to given device should be stopped i.e.
+ * during bond removal. Regular clients should use direct_connect_remove or
+ * background_connect_remove */
+void stop_connecting_to(const RawAddress& address);
 }  // namespace connection_manager
