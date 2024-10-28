@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "959144b9_cacca94a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-10-28T07:46:04Z",
+      "side": 1,
+      "message": "Could you please elaborate the idea behind mBroadcastPrimaryGroup and mUserPreferredPrimaryGroup ?",
+      "revId": "bfeeb2ecd091d1056ff4e2cf843dbc5c4e7d6836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
