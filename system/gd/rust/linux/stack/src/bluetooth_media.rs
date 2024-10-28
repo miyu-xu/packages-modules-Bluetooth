@@ -472,6 +472,7 @@ pub struct BluetoothMedia {
     adapter: Arc<Mutex<Box<Bluetooth>>>,
     a2dp: A2dp,
     avrcp: Avrcp,
+    avrcp_address: Option<RawAddress>,
     avrcp_direction: BtConnectionDirection,
     a2dp_states: HashMap<RawAddress, BtavConnectionState>,
     a2dp_audio_state: HashMap<RawAddress, BtavAudioState>,
@@ -548,6 +549,7 @@ impl BluetoothMedia {
             adapter,
             a2dp,
             avrcp,
+            avrcp_address: None,
             avrcp_direction: BtConnectionDirection::Unknown,
             a2dp_states: HashMap::new(),
             a2dp_audio_state: HashMap::new(),
@@ -1307,6 +1309,13 @@ impl BluetoothMedia {
                     supported
                 );
 
+                if (self.avrcp_address.is_some()) {
+                    warn!("Another AVRCP connection exists. Disconnect {}", DisplayAddress(&addr));
+                    self.avrcp.disconnect(addr);
+                    return;
+                }
+                self.avrcp_address = Some(addr);
+
                 match self.uinput.create(self.adapter_get_remote_name(addr), addr.to_string()) {
                     Ok(()) => info!("uinput device created for: {}", DisplayAddress(&addr)),
                     Err(e) => warn!("{}", e),
@@ -1349,6 +1358,12 @@ impl BluetoothMedia {
             }
             AvrcpCallbacks::AvrcpDeviceDisconnected(addr) => {
                 info!("[{}]: avrcp disconnected.", DisplayAddress(&addr));
+
+                if (self.avrcp_address != Some(addr)) {
+                    // Ignore disconnection to address we don't care
+                    return;
+                }
+                self.avrcp_address = None;
 
                 self.uinput.close(addr.to_string());
 
@@ -3569,6 +3584,10 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn set_volume(&mut self, volume: u8) {
+        if (self.avrcp_address.is_none()) {
+            return;
+        }
+
         // Guard the range 0-127 by the try_from cast from u8 to i8.
         let vol = match i8::try_from(volume) {
             Ok(val) => val,
@@ -3578,7 +3597,7 @@ impl IBluetoothMedia for BluetoothMedia {
             }
         };
 
-        self.avrcp.set_volume(vol);
+        self.avrcp.set_volume(self.avrcp_address.unwrap(), vol);
     }
 
     fn set_hfp_volume(&mut self, volume: u8, addr: RawAddress) {
