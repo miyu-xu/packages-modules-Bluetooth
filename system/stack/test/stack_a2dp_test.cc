@@ -290,6 +290,9 @@ protected:
           // shared library installed.
           supported = has_shared_library(LDAC_ENCODER_LIB_NAME);
           break;
+        case BTAV_A2DP_CODEC_INDEX_SOURCE_LHDCV5:
+          supported = true;
+          break;
         case BTAV_A2DP_CODEC_INDEX_SINK_SBC:
           supported = true;
           break;
