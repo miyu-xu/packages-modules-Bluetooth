@@ -150,12 +150,18 @@ public final class ChannelSoundingParams implements Parcelable {
     private int mSightType;
     private int mLocationType;
     private int mCsSecurityLevel;
+    private boolean mIgnoreVendorSpecifcCharacteristics;
 
     /** @hide */
-    public ChannelSoundingParams(int sightType, int locationType, int csSecurityLevel) {
+    public ChannelSoundingParams(
+            int sightType,
+            int locationType,
+            int csSecurityLevel,
+            boolean ignoreVendorSpecifcCharacteristics) {
         mSightType = sightType;
         mLocationType = locationType;
         mCsSecurityLevel = csSecurityLevel;
+        mIgnoreVendorSpecifcCharacteristics = ignoreVendorSpecifcCharacteristics;
     }
 
     /**
@@ -192,6 +198,17 @@ public final class ChannelSoundingParams implements Parcelable {
     }
 
     /**
+     * Returns whether vendor specific characteristics should be ignore or not.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)
+    @SystemApi
+    public boolean getIgnoreVendorSpecifcCharacteristics() {
+        return mIgnoreVendorSpecifcCharacteristics;
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @hide
@@ -211,6 +228,7 @@ public final class ChannelSoundingParams implements Parcelable {
         out.writeInt(mSightType);
         out.writeInt(mLocationType);
         out.writeInt(mCsSecurityLevel);
+        out.writeBoolean(mIgnoreVendorSpecifcCharacteristics);
     }
 
     /** A {@link Parcelable.Creator} to create {@link ChannelSoundingParams} from parcel. */
@@ -222,6 +240,7 @@ public final class ChannelSoundingParams implements Parcelable {
                     builder.setSightType(in.readInt());
                     builder.setLocationType(in.readInt());
                     builder.setCsSecurityLevel(in.readInt());
+                    builder.setIgnoreVendorSpecifcCharacteristics(in.readBoolean());
                     return builder.build();
                 }
 
@@ -241,6 +260,7 @@ public final class ChannelSoundingParams implements Parcelable {
         private int mSightType = SIGHT_TYPE_UNKNOWN;
         private int mLocationType = LOCATION_TYPE_UNKNOWN;
         private int mCsSecurityLevel = CS_SECURITY_LEVEL_ONE;
+        private boolean mIgnoreVendorSpecifcCharacteristics = false;
 
         /**
          * Set sight type for the ChannelSoundingParams.
@@ -310,13 +330,35 @@ public final class ChannelSoundingParams implements Parcelable {
         }
 
         /**
+         * Set whether vendor specific characteristics should be ignore or not. If yes, the
+         * Bluetooth stack will not read and handle vendor specific characteristic when ranging
+         * service conncted.
+         *
+         * @param ignoreVendorSpecifcCharacteristics Controls whether vendor specific
+         *     characteristics should be ignore (true) or not (false).
+         * @return the same Builder instance
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)
+        @SystemApi
+        public @NonNull Builder setIgnoreVendorSpecifcCharacteristics(
+                boolean ignoreVendorSpecifcCharacteristics) {
+            mIgnoreVendorSpecifcCharacteristics = ignoreVendorSpecifcCharacteristics;
+            return this;
+        }
+
+        /**
          * Build the {@link ChannelSoundingParams} object.
          *
          * @hide
          */
         @SystemApi
         public @NonNull ChannelSoundingParams build() {
-            return new ChannelSoundingParams(mSightType, mLocationType, mCsSecurityLevel);
+            return new ChannelSoundingParams(
+                    mSightType,
+                    mLocationType,
+                    mCsSecurityLevel,
+                    mIgnoreVendorSpecifcCharacteristics);
         }
     }
 }

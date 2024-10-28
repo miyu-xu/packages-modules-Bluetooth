@@ -1260,6 +1260,7 @@ package android.bluetooth.le {
   @FlaggedApi("com.android.bluetooth.flags.channel_sounding") public final class ChannelSoundingParams implements android.os.Parcelable {
     method public int describeContents();
     method public int getCsSecurityLevel();
+    method @FlaggedApi("com.android.bluetooth.flags.channel_sounding_25q2_apis") public boolean getIgnoreVendorSpecifcCharacteristics();
     method public int getLocationType();
     method public int getSightType();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
@@ -1281,6 +1282,7 @@ package android.bluetooth.le {
     ctor public ChannelSoundingParams.Builder();
     method @NonNull public android.bluetooth.le.ChannelSoundingParams build();
     method @NonNull public android.bluetooth.le.ChannelSoundingParams.Builder setCsSecurityLevel(int);
+    method @FlaggedApi("com.android.bluetooth.flags.channel_sounding_25q2_apis") @NonNull public android.bluetooth.le.ChannelSoundingParams.Builder setIgnoreVendorSpecifcCharacteristics(boolean);
     method @NonNull public android.bluetooth.le.ChannelSoundingParams.Builder setLocationType(int);
     method @NonNull public android.bluetooth.le.ChannelSoundingParams.Builder setSightType(int);
   }
