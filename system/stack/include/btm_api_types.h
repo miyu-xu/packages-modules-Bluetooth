@@ -19,7 +19,7 @@
 #ifndef BTM_API_TYPES_H
 #define BTM_API_TYPES_H
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 
 #include <cstdint>
 #include <string>

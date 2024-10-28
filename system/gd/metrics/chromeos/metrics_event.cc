@@ -15,12 +15,12 @@
  */
 #include "metrics/chromeos/metrics_event.h"
 
+#include <android-base/stringprintf.h>
 #include <base/files/file_path.h>
 #include <base/files/file_util.h>
 #include <base/strings/pattern.h>
 #include <base/strings/string_number_conversions.h>
 #include <base/strings/string_util.h>
-#include <base/strings/stringprintf.h>
 
 #include <map>
 #include <utility>
@@ -675,7 +675,7 @@ static int64_t GetChipsetInfoId(const char* path, const char* file) {
 static std::string GetChipsetInfoModuleName() {
   std::string module;
   int adapter_index = GetAdapterIndex();
-  std::string path = base::StringPrintf(kChipsetInfoModaliasPath, adapter_index);
+  std::string path = android::base::StringPrintf(kChipsetInfoModaliasPath, adapter_index);
 
   if (base::ReadFileToString(base::FilePath(path), &module)) {
     return base::CollapseWhitespaceASCII(module, false);
@@ -688,7 +688,7 @@ static MetricTransportType GetChipsetInfoTransport(void) {
   base::FilePath module_realpath;
   std::string module_name;
   int adapter_index = GetAdapterIndex();
-  std::string path = base::StringPrintf(kChipInfoModuleDirPath, adapter_index);
+  std::string path = android::base::StringPrintf(kChipInfoModuleDirPath, adapter_index);
 
   // examples of module_realpath: /sys/module/btusb and /sys/module/hci_uart
   module_realpath = base::MakeAbsoluteFilePath(base::FilePath(path));

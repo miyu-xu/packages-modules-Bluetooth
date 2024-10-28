@@ -17,7 +17,7 @@
 #ifndef ANDROID_INCLUDE_BT_HH_H
 #define ANDROID_INCLUDE_BT_HH_H
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <ble_address_with_type.h>
 #include <raw_address.h>
 #include <stdint.h>
@@ -51,7 +51,7 @@ inline std::string bthh_connection_state_text(const bthh_connection_state_t& sta
     CASE_RETURN_TEXT(BTHH_CONN_STATE_ACCEPTING);
     CASE_RETURN_TEXT(BTHH_CONN_STATE_UNKNOWN);
     default:
-      return base::StringPrintf("UNKNOWN[%d]", state);
+      return android::base::StringPrintf("UNKNOWN[%d]", state);
   }
 }
 

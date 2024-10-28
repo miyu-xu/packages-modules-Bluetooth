@@ -25,8 +25,8 @@
 
 #define LOG_TAG "bt_bta_gattc"
 
+#include <android-base/stringprintf.h>
 #include <base/functional/bind.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
@@ -49,7 +49,7 @@
 // TODO(b/369381361) Enfore -Wmissing-prototypes
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
-using base::StringPrintf;
+using android::base::StringPrintf;
 using bluetooth::Uuid;
 using namespace bluetooth;
 
