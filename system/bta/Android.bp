@@ -933,6 +933,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libchrome",
+        "libdoubleconversion",
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
