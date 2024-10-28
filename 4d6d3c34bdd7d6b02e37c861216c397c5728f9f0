@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7071936e_d53ed756",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-28T14:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791352b0_eb3001c0",
+      "revId": "4d6d3c34bdd7d6b02e37c861216c397c5728f9f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7be120c8_f21f7a97",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-10-09T03:08:24Z",
       "side": 1,
       "message": "This should be device connection",
+      "revId": "4d6d3c34bdd7d6b02e37c861216c397c5728f9f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4cb4c47_54beb11c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-28T14:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7be120c8_f21f7a97",
       "revId": "4d6d3c34bdd7d6b02e37c861216c397c5728f9f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
