@@ -34,6 +34,24 @@
       ],
       "revId": "d48fedb4e2bbec9f23d47f93b1f9ee58da9f1592",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40fa6460_a875c88f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-10-28T14:13:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fa15e9f_c0bb39aa",
+      "revId": "d48fedb4e2bbec9f23d47f93b1f9ee58da9f1592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
