@@ -27,7 +27,7 @@
 
 #include "stack/btm/btm_sco.h"
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -816,7 +816,7 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig, uint16_t p
       log::debug("SCO connection successfully requested");
       if (p->state == SCO_ST_CONNECTING) {
         BTM_LogHistory(kBtmLogTag, *remote_bda, "Connecting",
-                       base::StringPrintf("local initiated acl:0x%04x", acl_handle));
+                       android::base::StringPrintf("local initiated acl:0x%04x", acl_handle));
       }
       return tBTM_STATUS::BTM_CMD_STARTED;
     }
@@ -1011,7 +1011,7 @@ void btm_sco_connected(const RawAddress& bda, uint16_t hci_handle, tBTM_ESCO_DAT
          (p->state == SCO_ST_W4_CONN_RSP)) &&
         (p->rem_bd_known) && (p->esco.data.bd_addr == bda)) {
       BTM_LogHistory(kBtmLogTag, bda, "Connection created",
-                     base::StringPrintf("sco_idx:%hu handle:0x%04x ", xx, hci_handle));
+                     android::base::StringPrintf("sco_idx:%hu handle:0x%04x ", xx, hci_handle));
       power_telemetry::GetInstance().LogLinkDetails(hci_handle, bda, true, false);
 
       if (p->state == SCO_ST_LISTENING) {
@@ -1021,9 +1021,9 @@ void btm_sco_connected(const RawAddress& bda, uint16_t hci_handle, tBTM_ESCO_DAT
       p->state = SCO_ST_CONNECTED;
       p->hci_handle = hci_handle;
 
-      BTM_LogHistory(
-              kBtmLogTag, bda, "Connection success",
-              base::StringPrintf("handle:0x%04x %s", hci_handle, (spt) ? "listener" : "initiator"));
+      BTM_LogHistory(kBtmLogTag, bda, "Connection success",
+                     android::base::StringPrintf("handle:0x%04x %s", hci_handle,
+                                                 (spt) ? "listener" : "initiator"));
       log::debug("Connected SCO link handle:0x{:04x} peer:{}", hci_handle, bda);
 
       if (!btm_cb.sco_cb.esco_supported) {
@@ -1086,7 +1086,7 @@ void btm_sco_create_command_status_failed(tHCI_STATUS hci_status) {
       (*p->p_disc_cb)(idx);
 
       BTM_LogHistory(kBtmLogTag, p->esco.data.bd_addr, "Connection failed",
-                     base::StringPrintf(
+                     android::base::StringPrintf(
                              "locally_initiated reason:%s",
                              hci_reason_code_text(static_cast<tHCI_REASON>(hci_status)).c_str()));
       return;
@@ -1095,10 +1095,10 @@ void btm_sco_create_command_status_failed(tHCI_STATUS hci_status) {
 
   log::warn("No context found for the SCO connection failed");
 
-  BTM_LogHistory(
-          kBtmLogTag, RawAddress::kEmpty, "Connection failed",
-          base::StringPrintf("locally_initiated reason:%s",
-                             hci_reason_code_text(static_cast<tHCI_REASON>(hci_status)).c_str()));
+  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Connection failed",
+                 android::base::StringPrintf(
+                         "locally_initiated reason:%s",
+                         hci_reason_code_text(static_cast<tHCI_REASON>(hci_status)).c_str()));
 }
 
 /*******************************************************************************
@@ -1139,7 +1139,7 @@ void btm_sco_connection_failed(tHCI_STATUS hci_status, const RawAddress& bda, ui
             (*p->p_disc_cb)(xx);
         }
         BTM_LogHistory(kBtmLogTag, bda, "Connection failed",
-                       base::StringPrintf(
+                       android::base::StringPrintf(
                                "locally_initiated reason:%s",
                                hci_reason_code_text(static_cast<tHCI_REASON>(hci_status)).c_str()));
       } else {
@@ -1155,7 +1155,7 @@ void btm_sco_connection_failed(tHCI_STATUS hci_status, const RawAddress& bda, ui
           }
         }
         BTM_LogHistory(kBtmLogTag, bda, "Connection failed",
-                       base::StringPrintf(
+                       android::base::StringPrintf(
                                "remote_initiated reason:%s",
                                hci_reason_code_text(static_cast<tHCI_REASON>(hci_status)).c_str()));
       }
@@ -1209,8 +1209,8 @@ tBTM_STATUS BTM_RemoveSco(uint16_t sco_inx) {
 
   log::debug("Disconnecting link sco_handle:0x{:04x} peer:{}", p->Handle(), p->esco.data.bd_addr);
   BTM_LogHistory(kBtmLogTag, p->esco.data.bd_addr, "Disconnecting",
-                 base::StringPrintf("local initiated handle:0x%04x previous_state:%s", p->Handle(),
-                                    sco_state_text(old_state).c_str()));
+                 android::base::StringPrintf("local initiated handle:0x%04x previous_state:%s",
+                                             p->Handle(), sco_state_text(old_state).c_str()));
   return tBTM_STATUS::BTM_CMD_STARTED;
 }
 
@@ -1294,8 +1294,8 @@ void btm_sco_on_disconnected(uint16_t hci_handle, tHCI_REASON reason) {
   (*p_sco->p_disc_cb)(btm_cb.sco_cb.get_index(p_sco));
   log::debug("Disconnected SCO link handle:{} reason:{}", hci_handle, hci_reason_code_text(reason));
   BTM_LogHistory(kBtmLogTag, bd_addr, "Disconnected",
-                 base::StringPrintf("handle:0x%04x reason:%s", hci_handle,
-                                    hci_reason_code_text(reason).c_str()));
+                 android::base::StringPrintf("handle:0x%04x reason:%s", hci_handle,
+                                             hci_reason_code_text(reason).c_str()));
 
   hfp_hal_interface::notify_sco_connection_change(
           bd_addr, /*is_connected=*/false,

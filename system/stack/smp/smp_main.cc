@@ -904,8 +904,8 @@ void smp_set_state(tSMP_STATE state) {
                smp_get_state_name(state), state);
     if (smp_cb.state != state) {
       BTM_LogHistory(kBtmLogTag, smp_cb.pairing_ble_bd_addr, "Security state changed",
-                     base::StringPrintf("%s => %s", smp_get_state_name(smp_cb.state),
-                                        smp_get_state_name(state)));
+                     android::base::StringPrintf("%s => %s", smp_get_state_name(smp_cb.state),
+                                                 smp_get_state_name(state)));
     }
     smp_cb.state = state;
   } else {

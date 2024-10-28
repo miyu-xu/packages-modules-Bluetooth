@@ -15,7 +15,7 @@
  */
 #pragma once
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 
 #include <string>
 
@@ -148,7 +148,7 @@ inline std::string FlatbufferTypeText(const flatbuffers::BaseType& type) {
     CASE_RETURN_TEXT(flatbuffers::BASE_TYPE_STRUCT);
     CASE_RETURN_TEXT(flatbuffers::BASE_TYPE_UNION);
     default:
-      return base::StringPrintf("UNKNOWN[%d]", (int)type);
+      return android::base::StringPrintf("UNKNOWN[%d]", (int)type);
   }
 }
 
