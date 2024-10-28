@@ -19,17 +19,8 @@
 #include <base/observer_list.h>
 
 namespace btbase {
-#if defined(BASE_VER) && BASE_VER > 780000
-
-// Checked Observers aren't supported in the older libchrome so use unchecked
-// ones instead to preserve behavior.
-template <class ObserverType>
-class AbstractObserverList : public base::ObserverList<ObserverType>::Unchecked {};
-
-#else
 
 template <class ObserverType>
 class AbstractObserverList : public base::ObserverList<ObserverType> {};
 
-#endif
 }  // namespace btbase
