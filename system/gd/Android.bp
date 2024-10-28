@@ -541,6 +541,7 @@ cc_test {
         "libbt-common",
         "libbt-jni-thread",
         "libchrome",
+        "libdoubleconversion",
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
