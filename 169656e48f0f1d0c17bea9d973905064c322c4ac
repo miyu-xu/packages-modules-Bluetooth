@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21370be7_ce7911c9",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 3199,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-10-28T20:38:05Z",
+      "side": 1,
+      "message": "Instead of Invalid UUID, shouldn\u0027t this just say missing or null uuid?",
+      "range": {
+        "startLine": 3199,
+        "startChar": 38,
+        "endLine": 3199,
+        "endChar": 54
+      },
+      "revId": "169656e48f0f1d0c17bea9d973905064c322c4ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
