@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf29f65_2e831dfb",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-28T18:58:16Z",
+      "side": 1,
+      "message": "should we replace mitm with pitm ? to comply with inclusive language lint ?",
+      "range": {
+        "startLine": 293,
+        "startChar": 14,
+        "endLine": 293,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ba471b1c_bfad0a69",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 216,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "     * @param pitm enforce person-in-the-middle protection.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 227,
+                "startChar": 0,
+                "endLine": 228,
+                "endChar": 0
+              },
+              "replacement": "            boolean pitm,\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 246,
+                "startChar": 0,
+                "endLine": 247,
+                "endChar": 0
+              },
+              "replacement": "        mAuthMitm \u003d pitm;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 293,
+                "startChar": 0,
+                "endLine": 294,
+                "endChar": 0
+              },
+              "replacement": "     * @param pitm enforce person-in-the-middle protection.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 304,
+                "startChar": 0,
+                "endLine": 305,
+                "endChar": 0
+              },
+              "replacement": "            boolean pitm,\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 323,
+                "startChar": 0,
+                "endLine": 324,
+                "endChar": 0
+              },
+              "replacement": "        mAuthMitm \u003d pitm;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "93bd30865ac0db82ed775b175efb32e10250c158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
