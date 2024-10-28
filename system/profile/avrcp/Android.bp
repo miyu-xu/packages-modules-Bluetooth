@@ -36,6 +36,7 @@ cc_library_static {
         "libcom.android.sysprop.bluetooth.wrapped",
     ],
     shared_libs: [
+        "libbase",
         "liblog",
     ],
     apex_available: [
@@ -67,6 +68,7 @@ cc_test {
     ],
     shared_libs: [
         "libaconfig_storage_read_api_cc",
+        "libbase",
         "server_configurable_flags",
     ],
     static_libs: [
@@ -75,7 +77,6 @@ cc_test {
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
-        "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbluetooth_log",
@@ -110,6 +111,7 @@ cc_fuzz {
     ],
     shared_libs: [
         "libaconfig_storage_read_api_cc",
+        "libbase",
         "server_configurable_flags",
     ],
     static_libs: [
@@ -118,7 +120,6 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
-        "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbluetooth_log",

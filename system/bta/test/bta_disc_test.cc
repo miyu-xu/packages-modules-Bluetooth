@@ -16,7 +16,7 @@
 
 #define LOG_TAG "bt_bta_dm_test"
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <base/test/bind_test_util.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
