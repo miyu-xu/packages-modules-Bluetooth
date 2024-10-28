@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d7789b9_9a8d4302",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-28T16:07:42Z",
+      "side": 1,
+      "message": "why do we need separate ones for HEAD_UNIT? Why not just use METADATA_MANUFACTURER_NAME, METADATA_MODEL_NAME?",
+      "revId": "a1797c4e81394eced24d2ac53cd96e261d241731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0cf5c66_9b60c9b3",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 4
