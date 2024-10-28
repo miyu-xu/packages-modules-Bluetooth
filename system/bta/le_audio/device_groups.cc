@@ -1061,6 +1061,37 @@ bool LeAudioDeviceGroup::ReloadAudioDirections(void) {
   return true;
 }
 
+AudioContexts LeAudioDeviceGroup::GetAllSupportedBidirectionalContextTypes(void) {
+  auto result = GetSupportedContexts(types::kLeAudioDirectionSink) &
+                GetSupportedContexts(types::kLeAudioDirectionSource);
+
+  result &= types::kLeAudioContextAllBidir;
+
+  return result;
+}
+
+AudioContexts LeAudioDeviceGroup::GetAllSupportedSingleDirectionOnlyContextTypes(
+        uint8_t direction) {
+  AudioContexts result;
+
+  auto bidirectional_for_this_group = GetAllSupportedBidirectionalContextTypes();
+  auto non_bidirectional_for_this_group =
+          types::kLeAudioContextAllBidir & ~bidirectional_for_this_group;
+
+  if (direction == types::kLeAudioDirectionSink) {
+    result = GetSupportedContexts(types::kLeAudioDirectionSink) &
+             (types::kLeAudioContextAllRemoteSinkOnly & ~bidirectional_for_this_group |
+              non_bidirectional_for_this_group);
+
+  } else {
+    result = GetSupportedContexts(types::kLeAudioDirectionSource) &
+             (types::kLeAudioContextAllRemoteSource & ~bidirectional_for_this_group |
+              non_bidirectional_for_this_group);
+  }
+
+  return result;
+}
+
 bool LeAudioDeviceGroup::IsInTransition(void) const { return in_transition_; }
 
 bool LeAudioDeviceGroup::IsStreaming(void) const {
@@ -1196,12 +1227,16 @@ void LeAudioDeviceGroup::CigConfiguration::GenerateCisIds(LeAudioContextType con
   uint8_t cis_count_unidir_sink = 0;
   uint8_t cis_count_unidir_source = 0;
   int group_size = group_->DesiredSize();
+  bool is_bidirectional = group_->GetAllSupportedBidirectionalContextTypes().test(context_type);
+  bool is_source_only =
+          group_->GetAllSupportedSingleDirectionOnlyContextTypes(types::kLeAudioDirectionSource)
+                  .test(context_type);
 
-  set_configurations::get_cis_count(context_type, group_size, group_->GetGroupSinkStrategy(),
-                                    group_->GetAseCount(types::kLeAudioDirectionSink),
-                                    group_->GetAseCount(types::kLeAudioDirectionSource),
-                                    cis_count_bidir, cis_count_unidir_sink,
-                                    cis_count_unidir_source);
+  set_configurations::get_cis_count(
+          context_type, is_bidirectional, is_source_only, group_size,
+          group_->GetGroupSinkStrategy(), group_->GetAseCount(types::kLeAudioDirectionSink),
+          group_->GetAseCount(types::kLeAudioDirectionSource), cis_count_bidir,
+          cis_count_unidir_sink, cis_count_unidir_source);
 
   uint8_t idx = 0;
   while (cis_count_bidir > 0) {
