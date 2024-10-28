@@ -162,7 +162,7 @@ typedef struct {
   tBTA_AG_RES result;
   tBTA_AG_RES_DATA data;
   std::string ToString() const {
-    return base::StringPrintf("result:%s", bta_ag_result_text(result).c_str());
+    return android::base::StringPrintf("result:%s", bta_ag_result_text(result).c_str());
   }
 } tBTA_AG_API_RESULT;
 
@@ -314,7 +314,7 @@ struct tBTA_AG_SCB {
                                                                HF indicators */
 
   std::string ToString() const {
-    return base::StringPrintf(
+    return android::base::StringPrintf(
             "codec_updated=%d, codec_fallback=%d, nrec=%d"
             "sco_codec=%d, peer_codec=%d, msbc_settings=%d, lc3_settings=%d, "
             "device=%s",

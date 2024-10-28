@@ -25,7 +25,7 @@
 #ifndef SDP_DEFS_H
 #define SDP_DEFS_H
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 
 #include <string>
 
@@ -122,7 +122,7 @@ inline std::string sdp_attr_id_text(const unsigned& id) {
     CASE_RETURN_TEXT(ATTR_ID_SERVICE_DESCRIPTION);
     CASE_RETURN_TEXT(ATTR_ID_PROVIDER_NAME);
     default:
-      return base::StringPrintf("SDP_ATTR_ID:[%u]", id);
+      return android::base::StringPrintf("SDP_ATTR_ID:[%u]", id);
   }
 }
 
@@ -152,7 +152,7 @@ inline std::string sdp_attr_type_text(const unsigned& type) {
     CASE_RETURN_TEXT(DATA_ELE_ALT_DESC_TYPE);
     CASE_RETURN_TEXT(URL_DESC_TYPE);
     default:
-      return base::StringPrintf("UNKNOWN[%u]", type);
+      return android::base::StringPrintf("UNKNOWN[%u]", type);
   }
 }
 
@@ -180,7 +180,7 @@ inline std::string sdp_attr_size_text(const unsigned& size) {
     CASE_RETURN_TEXT(SIZE_IN_NEXT_WORD);
     CASE_RETURN_TEXT(SIZE_IN_NEXT_LONG);
     default:
-      return base::StringPrintf("UNKNOWN[%u]", size);
+      return android::base::StringPrintf("UNKNOWN[%u]", size);
   }
 }
 
