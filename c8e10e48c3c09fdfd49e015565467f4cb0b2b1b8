@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc1557e4_c1bfde83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-28T16:47:27Z",
+      "side": 1,
+      "message": "for a measurement session, it can be controlled by different config parameters. and the spec defines the config id from 0 to 3 to tell which config is used for the measure, so you can see the config id is used by procedure enable, subevent result event.",
+      "parentUuid": "9ea80607_7ec3577b",
+      "revId": "c8e10e48c3c09fdfd49e015565467f4cb0b2b1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a759c9f2_1c005d5b",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 1
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a735d15_d5e171f2",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-28T16:47:27Z",
+      "side": 1,
+      "message": "use a byte to represent 4 config ids. each config id have 3 states, so I use 2bits\nxxooxxoo\n3 2 1 0 \n00 -not assigned, 01 assigned to requester, 10 assigned to",
+      "parentUuid": "a759c9f2_1c005d5b",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 41
+      },
+      "revId": "c8e10e48c3c09fdfd49e015565467f4cb0b2b1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56584d3d_eb4831c8",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 1
@@ -54,6 +96,30 @@
       "writtenOn": "2024-10-25T16:20:17Z",
       "side": 1,
       "message": "assigned_config_ids_ ? used_config_ids_ ?",
+      "range": {
+        "startLine": 1821,
+        "startChar": 40,
+        "endLine": 1821,
+        "endChar": 56
+      },
+      "revId": "c8e10e48c3c09fdfd49e015565467f4cb0b2b1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "785d0b7f_6e9d0571",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1821,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-28T16:47:27Z",
+      "side": 1,
+      "message": "seems \u0027used\u0027 is better.",
+      "parentUuid": "56584d3d_eb4831c8",
       "range": {
         "startLine": 1821,
         "startChar": 40,
