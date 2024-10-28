@@ -223,8 +223,8 @@ public:
                                  (jint)ext_output_id, description, addr.get());
   }
 
-  void OnExtAudioInStateChanged(const RawAddress& bd_addr, uint8_t ext_input_id, int8_t gain_val,
-                                uint8_t gain_mode, Mute mute) override {
+  void OnExtAudioInStateChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
+                                int8_t gain_setting, Mute mute, uint8_t gain_mode) override {
     log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
@@ -243,7 +243,7 @@ public:
     sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
                                      reinterpret_cast<const jbyte*>(&bd_addr));
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInStateChanged, (jint)ext_input_id,
-                                 (jint)gain_val, (jint)gain_mode, (jint)mute, addr.get());
+                                 (jint)gain_setting, (jint)mute, (jint)gain_mode, addr.get());
   }
 
   void OnExtAudioInStatusChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
@@ -783,7 +783,7 @@ static jboolean setExtAudioInDescriptionNative(JNIEnv* env, jobject /* object */
 }
 
 static jboolean setExtAudioInGainValueNative(JNIEnv* env, jobject /* object */, jbyteArray address,
-                                             jint ext_input_id, jint gain_val) {
+                                             jint ext_input_id, jint gain_setting) {
   log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) {
@@ -797,7 +797,7 @@ static jboolean setExtAudioInGainValueNative(JNIEnv* env, jobject /* object */, 
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInGainValue(*tmpraw, ext_input_id, gain_val);
+  sVolumeControlInterface->SetExtAudioInGainSetting(*tmpraw, ext_input_id, gain_setting);
   env->ReleaseByteArrayElements(address, addr, 0);
   return JNI_TRUE;
 }
