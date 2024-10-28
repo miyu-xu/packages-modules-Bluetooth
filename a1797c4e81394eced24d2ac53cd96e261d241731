@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e14f1d37_1a4fe8f6",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-10-28T22:35:18Z",
+      "side": 1,
+      "message": "Car is the remote device",
+      "parentUuid": "e136df2b_b3cf07b8",
+      "range": {
+        "startLine": 829,
+        "startChar": 62,
+        "endLine": 829,
+        "endChar": 73
+      },
+      "revId": "a1797c4e81394eced24d2ac53cd96e261d241731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d7789b9_9a8d4302",
@@ -54,6 +78,24 @@
       "writtenOn": "2024-10-28T16:07:42Z",
       "side": 1,
       "message": "why do we need separate ones for HEAD_UNIT? Why not just use METADATA_MANUFACTURER_NAME, METADATA_MODEL_NAME?",
+      "revId": "a1797c4e81394eced24d2ac53cd96e261d241731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ed93430_b01052bb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-10-28T22:35:18Z",
+      "side": 1,
+      "message": "Head unit is linked to a car. METADATA_MANUFACTURER_NAME and METADATA_MODEL_NAME will hold the values for the car, METADATA_HEAD_UNIT_MANUFACTURER_NAME and METADATA_HEAD_UNIT_MODEL_NAME will hold the values for the head unit (infotainment system) that is inside the car.\nFor example, a Kia Forte car can have Pioneer DMH-W3000NEX as the head unit.",
+      "parentUuid": "0d7789b9_9a8d4302",
       "revId": "a1797c4e81394eced24d2ac53cd96e261d241731",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
