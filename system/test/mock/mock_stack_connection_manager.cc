@@ -63,6 +63,9 @@ std::set<tAPP_ID> connection_manager::get_apps_connecting_to(const RawAddress& /
   inc_func_call_count(__func__);
   return std::set<tAPP_ID>();
 }
+void connection_manager::stop_connecting_to(const RawAddress& /* address */) {
+  inc_func_call_count(__func__);
+}
 void connection_manager::dump(int /* fd */) { inc_func_call_count(__func__); }
 void connection_manager::on_app_deregistered(uint8_t /* app_id */) {
   inc_func_call_count(__func__);
