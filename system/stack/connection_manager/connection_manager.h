@@ -64,4 +64,5 @@ void on_connection_timed_out_from_shim(const RawAddress& address);
 
 bool is_background_connection(const RawAddress& address);
 
+void on_device_unbonded(const RawAddress& address);
 }  // namespace connection_manager
