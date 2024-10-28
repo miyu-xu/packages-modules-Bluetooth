@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <android-base/stringprintf.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <hardware/bluetooth.h>
