@@ -16,6 +16,24 @@
       "message": "Could you please elaborate the idea behind mBroadcastPrimaryGroup and mUserPreferredPrimaryGroup ?",
       "revId": "bfeeb2ecd091d1056ff4e2cf843dbc5c4e7d6836",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe10f86_ae3b6b83",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-28T16:46:28Z",
+      "side": 1,
+      "message": "Basically the auto selection logic here is what implemented in UI at this moment.\nThis change is to move this selection logic from UI to stack. And as the 1st step in 25Q1, we\u0027d need to ensure no behavior change and ask UI to remove their side of logic.\n\nmUserPreferredPrimaryGroup is the primary group selected by application, stack or other app should not override this selection, so we should always honor this first.\nSo if this is set, mBroadcastPrimaryGroup should be the same as mUserPreferredPrimaryGroup. Then if this is not set, mBroadcastPrimaryGroup is the auto selected group and notify UI.\nLet\u0027s setup a meeting if needed to clarify further.",
+      "parentUuid": "959144b9_cacca94a",
+      "revId": "bfeeb2ecd091d1056ff4e2cf843dbc5c4e7d6836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
