@@ -26,7 +26,7 @@
 
 #include "stack/include/port_api.h"
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -218,15 +218,15 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn, bool is_serv
 
   // If this is not initiator of the connection need to just wait
   if (p_port->is_server) {
-    BTM_LogHistory(
-            kBtmLogTag, bd_addr, "Server started",
-            base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu mtu:%hu", *p_handle, scn, dlci, mtu));
+    BTM_LogHistory(kBtmLogTag, bd_addr, "Server started",
+                   android::base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu mtu:%hu", *p_handle,
+                                               scn, dlci, mtu));
     return PORT_SUCCESS;
   }
 
-  BTM_LogHistory(
-          kBtmLogTag, bd_addr, "Connection opened",
-          base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu mtu:%hu", *p_handle, scn, dlci, mtu));
+  BTM_LogHistory(kBtmLogTag, bd_addr, "Connection opened",
+                 android::base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu mtu:%hu", *p_handle,
+                                             scn, dlci, mtu));
 
   // Open will be continued after security checks are passed
   return port_open_continue(p_port);
@@ -305,10 +305,10 @@ int RFCOMM_RemoveConnection(uint16_t handle) {
 
   const RawAddress bd_addr =
           (p_port->rfc.p_mcb) ? (p_port->rfc.p_mcb->bd_addr) : (RawAddress::kEmpty);
-  BTM_LogHistory(
-          kBtmLogTag, bd_addr, "Connection closed",
-          base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu is_server:%s", handle, p_port->scn,
-                             p_port->dlci, p_port->is_server ? "true" : "false"));
+  BTM_LogHistory(kBtmLogTag, bd_addr, "Connection closed",
+                 android::base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu is_server:%s", handle,
+                                             p_port->scn, p_port->dlci,
+                                             p_port->is_server ? "true" : "false"));
 
   p_port->state = PORT_CONNECTION_STATE_CLOSING;
 
@@ -344,10 +344,10 @@ int RFCOMM_RemoveServer(uint16_t handle) {
 
   const RawAddress bd_addr =
           (p_port->rfc.p_mcb) ? (p_port->rfc.p_mcb->bd_addr) : (RawAddress::kEmpty);
-  BTM_LogHistory(
-          kBtmLogTag, bd_addr, "Server stopped",
-          base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu is_server:%s", handle, p_port->scn,
-                             p_port->dlci, p_port->is_server ? "true" : "false"));
+  BTM_LogHistory(kBtmLogTag, bd_addr, "Server stopped",
+                 android::base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu is_server:%s", handle,
+                                             p_port->scn, p_port->dlci,
+                                             p_port->is_server ? "true" : "false"));
 
   /* this port will be deallocated after closing */
   p_port->keep_port_handle = false;

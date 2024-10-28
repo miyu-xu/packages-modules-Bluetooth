@@ -22,8 +22,8 @@
  *
  ******************************************************************************/
 
+#include <android-base/stringprintf.h>
 #include <base/functional/callback.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <string.h>
@@ -195,10 +195,10 @@ static void hidh_l2cif_connect_ind(const RawAddress& bd_addr, uint16_t l2cap_cid
 
   tHID_CONN* p_hcon = &hh_cb.devices[i].conn;
 
-  BTM_LogHistory(
-          kBtmLogTag, hh_cb.devices[i].addr, "Connect request",
-          base::StringPrintf("%s state:%s", (psm == HID_PSM_CONTROL) ? "control" : "interrupt",
-                             hid_conn::state_text(p_hcon->conn_state).c_str()));
+  BTM_LogHistory(kBtmLogTag, hh_cb.devices[i].addr, "Connect request",
+                 android::base::StringPrintf("%s state:%s",
+                                             (psm == HID_PSM_CONTROL) ? "control" : "interrupt",
+                                             hid_conn::state_text(p_hcon->conn_state).c_str()));
 
   /* Check we are in the correct state for this */
   if (psm == HID_PSM_INTERRUPT) {
@@ -352,10 +352,10 @@ static void hidh_l2cif_connect_cfm(uint16_t l2cap_cid, tL2CAP_CONN result) {
   } else {
     p_hcon->conn_state = HID_CONN_STATE_CONFIG;
   }
-  BTM_LogHistory(
-          kBtmLogTag, hh_cb.devices[dhandle].addr, "Configuring",
-          base::StringPrintf("control:0x%04x interrupt:0x%04x state:%s", p_hcon->ctrl_cid,
-                             p_hcon->intr_cid, hid_conn::state_text(p_hcon->conn_state).c_str()));
+  BTM_LogHistory(kBtmLogTag, hh_cb.devices[dhandle].addr, "Configuring",
+                 android::base::StringPrintf("control:0x%04x interrupt:0x%04x state:%s",
+                                             p_hcon->ctrl_cid, p_hcon->intr_cid,
+                                             hid_conn::state_text(p_hcon->conn_state).c_str()));
   return;
 }
 
@@ -461,10 +461,10 @@ static void hidh_l2cif_config_cfm(uint16_t l2cap_cid, uint16_t /* initiator */,
 
     hh_cb.devices[dhandle].state = HID_DEV_CONNECTED;
     hh_cb.callback(dhandle, hh_cb.devices[dhandle].addr, HID_HDEV_EVT_OPEN, 0, NULL);
-    BTM_LogHistory(
-            kBtmLogTag, hh_cb.devices[dhandle].addr, "Connected",
-            base::StringPrintf("control:0x%04x interrupt:0x%04x state:%s", p_hcon->ctrl_cid,
-                               p_hcon->intr_cid, hid_conn::state_text(p_hcon->conn_state).c_str()));
+    BTM_LogHistory(kBtmLogTag, hh_cb.devices[dhandle].addr, "Connected",
+                   android::base::StringPrintf("control:0x%04x interrupt:0x%04x state:%s",
+                                               p_hcon->ctrl_cid, p_hcon->intr_cid,
+                                               hid_conn::state_text(p_hcon->conn_state).c_str()));
   }
 }
 
@@ -499,8 +499,8 @@ static void hidh_l2cif_disconnect_ind(uint16_t l2cap_cid, bool ack_needed) {
 
   p_hcon->conn_state = HID_CONN_STATE_DISCONNECTING;
   BTM_LogHistory(kBtmLogTag, hh_cb.devices[dhandle].addr, "Disconnecting",
-                 base::StringPrintf("%s channel",
-                                    (l2cap_cid == p_hcon->ctrl_cid) ? "control" : "interrupt"));
+                 android::base::StringPrintf(
+                         "%s channel", (l2cap_cid == p_hcon->ctrl_cid) ? "control" : "interrupt"));
 
   if (l2cap_cid == p_hcon->ctrl_cid) {
     p_hcon->ctrl_cid = 0;

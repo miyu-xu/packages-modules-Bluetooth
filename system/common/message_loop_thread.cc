@@ -16,9 +16,9 @@
 
 #include "message_loop_thread.h"
 
+#include <android-base/stringprintf.h>
 #include <base/functional/callback.h>
 #include <base/location.h>
-#include <base/strings/stringprintf.h>
 #include <base/time/time.h>
 #include <bluetooth/log.h>
 #include <sys/syscall.h>
@@ -130,7 +130,7 @@ std::string MessageLoopThread::GetName() const { return thread_name_; }
 
 std::string MessageLoopThread::ToString() const {
   std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
-  return base::StringPrintf("%s(%d)", thread_name_.c_str(), thread_id_);
+  return android::base::StringPrintf("%s(%d)", thread_name_.c_str(), thread_id_);
 }
 
 bool MessageLoopThread::IsRunning() const {
