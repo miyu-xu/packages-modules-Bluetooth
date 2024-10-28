@@ -224,7 +224,7 @@ public:
   }
 
   void OnExtAudioInStateChanged(const RawAddress& bd_addr, uint8_t ext_input_id, int8_t gain_val,
-                                uint8_t gain_mode, Mute mute) override {
+                                Mute mute, uint8_t gain_mode) override {
     log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
@@ -243,7 +243,7 @@ public:
     sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
                                      reinterpret_cast<const jbyte*>(&bd_addr));
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInStateChanged, (jint)ext_input_id,
-                                 (jint)gain_val, (jint)gain_mode, (jint)mute, addr.get());
+                                 (jint)gain_val, (jint)mute, (jint)gain_mode, addr.get());
   }
 
   void OnExtAudioInStatusChanged(const RawAddress& bd_addr, uint8_t ext_input_id,

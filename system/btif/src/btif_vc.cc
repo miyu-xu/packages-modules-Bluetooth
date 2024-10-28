@@ -105,9 +105,9 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface, public VolumeC
 
   /* Callbacks for Audio Input Stream (AIS) - Extended Audio Inputs */
   void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id, int8_t gain_val,
-                                uint8_t gain_mode, ::Mute mute) override {
+                                ::Mute mute, uint8_t gain_mode) override {
     do_in_jni_thread(Bind(&VolumeControlCallbacks::OnExtAudioInStateChanged, Unretained(callbacks_),
-                          address, ext_input_id, gain_val, gain_mode, mute));
+                          address, ext_input_id, gain_val, mute, gain_mode));
   }
 
   void OnExtAudioInStatusChanged(const RawAddress& address, uint8_t ext_input_id,

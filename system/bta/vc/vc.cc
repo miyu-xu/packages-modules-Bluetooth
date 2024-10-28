@@ -604,8 +604,8 @@ public:
       return;
     }
 
-    callbacks_->OnExtAudioInStateChanged(device->address, input->id, input->gain_value, input->mode,
-                                         input->mute);
+    callbacks_->OnExtAudioInStateChanged(device->address, input->id, input->gain_value, input->mute,
+                                         input->mode);
   }
 
   void OnExtAudioInTypeChanged(VolumeControlDevice* device, VolumeAudioInput* input, uint16_t len,
