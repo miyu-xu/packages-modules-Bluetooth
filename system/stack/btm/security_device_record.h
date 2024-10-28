@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -294,7 +294,7 @@ public:
   void increment_sign_counter(bool local);
 
   std::string ToString() const {
-    return base::StringPrintf(
+    return android::base::StringPrintf(
             "bredr_linkkey_known:%c,le_linkkey_known:%c,"
             "bond_type:%s,"
             "bredr_linkkey_type:%s,"
@@ -333,7 +333,7 @@ public:
   bool SupportsSecureConnections() const { return remote_supports_secure_connections; }
 
   std::string ToString() const {
-    return base::StringPrintf(
+    return android::base::StringPrintf(
             "%s %6s cod:%s remote_info:%-14s sm4:0x%02x SecureConn:%c name:\"%s\""
             "sec_prop:%s",
             ADDRESS_TO_LOGGABLE_CSTR(bd_addr), DeviceTypeText(device_type).c_str(),

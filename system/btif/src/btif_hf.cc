@@ -1403,9 +1403,9 @@ bt_status_t HeadsetInterface::PhoneStateChange(int num_active, int num_held,
         {
           std::string cell_number(number);
           BTM_LogHistory(kBtmLogTag, raw_address, "Call Incoming",
-                         base::StringPrintf("number:%s", PRIVATE_CELL(cell_number)));
+                         android::base::StringPrintf("number:%s", PRIVATE_CELL(cell_number)));
         }
-        // base::StringPrintf("number:%s", PRIVATE_CELL(number)));
+        // android::base::StringPrintf("number:%s", PRIVATE_CELL(number)));
         break;
       case BTHF_CALL_STATE_DIALING:
         if (!(num_active + num_held) && is_active_device(*bd_addr)) {
