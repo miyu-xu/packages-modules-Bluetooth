@@ -612,6 +612,16 @@ bool direct_connect_remove(uint8_t app_id, const RawAddress& address, bool conne
   return true;
 }
 
+void on_device_unbonded(const RawAddress& address) {
+  log::debug("address={}", address);
+  auto count = bgconn_dev.erase(address);
+  if (count > 0) {
+    log::debug("unbonding device while some apps were still interested {}", address);
+  }
+
+  bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
+}
+
 void dump(int fd) {
   dprintf(fd, "\nconnection_manager state:\n");
   if (bgconn_dev.empty()) {
