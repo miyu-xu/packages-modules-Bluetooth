@@ -16,8 +16,8 @@
 
 #include "main/shim/acl.h"
 
+#include <android-base/stringprintf.h>
 #include <base/location.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <time.h>
@@ -204,8 +204,8 @@ std::string EpochMillisToString(long long time_ms) {
   struct tm tm;
   localtime_r(&time_sec, &tm);
   std::string s = common::StringFormatTime(kConnectionDescriptorTimeFormat, tm);
-  return base::StringPrintf("%s.%03u", s.c_str(),
-                            static_cast<unsigned int>(time_ms % MillisPerSecond));
+  return android::base::StringPrintf("%s.%03u", s.c_str(),
+                                     static_cast<unsigned int>(time_ms % MillisPerSecond));
 }
 
 inline bool IsRpa(const hci::AddressWithType address_with_type) {
@@ -314,7 +314,7 @@ struct ConnectionDescriptor {
   virtual std::string GetPrivateRemoteAddress() const = 0;
   virtual ~ConnectionDescriptor() {}
   std::string ToString() const {
-    return base::StringPrintf(
+    return android::base::StringPrintf(
             "peer:%s handle:0x%04x is_locally_initiated:%s"
             " creation_time:%s teardown_time:%s disconnect_reason:%s",
             GetPrivateRemoteAddress().c_str(), handle_, is_locally_initiated_ ? "true" : "false",
@@ -658,10 +658,10 @@ public:
   void OnRoleChange(hci::ErrorCode hci_status, hci::Role new_role) override {
     TRY_POSTING_ON_MAIN(interface_.on_role_change, ToLegacyHciErrorCode(hci_status),
                         ToRawAddress(connection_->GetAddress()), ToLegacyRole(new_role));
-    BTM_LogHistory(
-            kBtmLogTag, ToRawAddress(connection_->GetAddress()), "Role change",
-            base::StringPrintf("classic New_role:%s status:%s", hci::RoleText(new_role).c_str(),
-                               hci::ErrorCodeText(hci_status).c_str()));
+    BTM_LogHistory(kBtmLogTag, ToRawAddress(connection_->GetAddress()), "Role change",
+                   android::base::StringPrintf("classic New_role:%s status:%s",
+                                               hci::RoleText(new_role).c_str(),
+                                               hci::ErrorCodeText(hci_status).c_str()));
   }
 
   void OnDisconnection(hci::ErrorCode reason) override {
@@ -1049,9 +1049,10 @@ struct shim::Acl::impl {
       auto remote_address = connection->second->GetRemoteAddress();
       connection->second->InitiateDisconnect(ToDisconnectReasonFromLegacy(reason));
       log::debug("Disconnection initiated classic remote:{} handle:{}", remote_address, handle);
-      BTM_LogHistory(kBtmLogTag, ToRawAddress(remote_address), "Disconnection initiated",
-                     base::StringPrintf("classic reason:%s comment:%s",
-                                        hci_status_code_text(reason).c_str(), comment.c_str()));
+      BTM_LogHistory(
+              kBtmLogTag, ToRawAddress(remote_address), "Disconnection initiated",
+              android::base::StringPrintf("classic reason:%s comment:%s",
+                                          hci_status_code_text(reason).c_str(), comment.c_str()));
       classic_acl_disconnect_reason_.Put(comment);
     } else {
       log::warn("Unable to disconnect unknown classic connection handle:0x{:04x}", handle);
@@ -1066,10 +1067,11 @@ struct shim::Acl::impl {
       connection->second->InitiateDisconnect(ToDisconnectReasonFromLegacy(reason));
       log::debug("Disconnection initiated le remote:{} handle:{}", remote_address_with_type,
                  handle);
-      BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(remote_address_with_type),
-                     "Disconnection initiated",
-                     base::StringPrintf("Le reason:%s comment:%s",
-                                        hci_status_code_text(reason).c_str(), comment.c_str()));
+      BTM_LogHistory(
+              kBtmLogTag, ToLegacyAddressWithType(remote_address_with_type),
+              "Disconnection initiated",
+              android::base::StringPrintf("Le reason:%s comment:%s",
+                                          hci_status_code_text(reason).c_str(), comment.c_str()));
       le_acl_disconnect_reason_.Put(comment);
     } else {
       log::warn("Unable to disconnect unknown le connection handle:0x{:04x}", handle);
@@ -1415,7 +1417,7 @@ void shim::Acl::OnClassicLinkDisconnected(HciHandle handle, hci::ErrorCode reaso
   log::debug("Disconnected classic link remote:{} handle:{} reason:{}", remote_address, handle,
              ErrorCodeText(reason));
   BTM_LogHistory(kBtmLogTag, ToRawAddress(remote_address), "Disconnected",
-                 base::StringPrintf("classic reason:%s", ErrorCodeText(reason).c_str()));
+                 android::base::StringPrintf("classic reason:%s", ErrorCodeText(reason).c_str()));
   pimpl_->connection_history_.Push(std::make_unique<ClassicConnectionDescriptor>(
           remote_address, creation_time, teardown_time, handle, is_locally_initiated, reason));
 }
@@ -1481,7 +1483,7 @@ void shim::Acl::OnLeLinkDisconnected(HciHandle handle, hci::ErrorCode reason) {
   log::debug("Disconnected le link remote:{} handle:{} reason:{}", remote_address_with_type, handle,
              ErrorCodeText(reason));
   BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(remote_address_with_type), "Disconnected",
-                 base::StringPrintf("Le reason:%s", ErrorCodeText(reason).c_str()));
+                 android::base::StringPrintf("Le reason:%s", ErrorCodeText(reason).c_str()));
   pimpl_->connection_history_.Push(std::make_unique<LeConnectionDescriptor>(
           remote_address_with_type, creation_time, teardown_time, handle, is_locally_initiated,
           reason));
@@ -1528,9 +1530,10 @@ void shim::Acl::OnConnectRequest(hci::Address address, hci::ClassOfDevice cod) {
   TRY_POSTING_ON_MAIN(acl_interface_.connection.classic.on_connect_request, bd_addr, cod);
   log::debug("Received connect request remote:{} gd_cod:{} legacy_dev_class:{}", address,
              cod.ToString(), dev_class_text(dev_class));
-  BTM_LogHistory(kBtmLogTag, ToRawAddress(address), "Connection request",
-                 base::StringPrintf("gd_cod:%s legacy_dev_class:%s", cod.ToString().c_str(),
-                                    dev_class_text(dev_class).c_str()));
+  BTM_LogHistory(
+          kBtmLogTag, ToRawAddress(address), "Connection request",
+          android::base::StringPrintf("gd_cod:%s legacy_dev_class:%s", cod.ToString().c_str(),
+                                      dev_class_text(dev_class).c_str()));
 }
 
 void shim::Acl::OnConnectFail(hci::Address address, hci::ErrorCode reason, bool locally_initiated) {
@@ -1539,8 +1542,9 @@ void shim::Acl::OnConnectFail(hci::Address address, hci::ErrorCode reason, bool 
                       ToLegacyHciErrorCode(reason), locally_initiated);
   log::warn("Connection failed classic remote:{} reason:{}", address, hci::ErrorCodeText(reason));
   metrics::LogAclCompletionEvent(address, reason, locally_initiated);
-  BTM_LogHistory(kBtmLogTag, ToRawAddress(address), "Connection failed",
-                 base::StringPrintf("classic reason:%s", hci::ErrorCodeText(reason).c_str()));
+  BTM_LogHistory(
+          kBtmLogTag, ToRawAddress(address), "Connection failed",
+          android::base::StringPrintf("classic reason:%s", hci::ErrorCodeText(reason).c_str()));
 }
 
 void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
@@ -1641,7 +1645,7 @@ void shim::Acl::OnLeConnectFail(hci::AddressWithType address_with_type, hci::Err
   pimpl_->shadow_acceptlist_.Remove(address_with_type);
   log::warn("Connection failed le remote:{}", address_with_type);
   BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type), "Connection failed",
-                 base::StringPrintf("le reason:%s", hci::ErrorCodeText(reason).c_str()));
+                 android::base::StringPrintf("le reason:%s", hci::ErrorCodeText(reason).c_str()));
 }
 
 void shim::Acl::DisconnectClassic(uint16_t handle, tHCI_STATUS reason, std::string comment) {

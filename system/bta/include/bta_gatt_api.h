@@ -25,8 +25,8 @@
 #ifndef BTA_GATT_API_H
 #define BTA_GATT_API_H
 
+#include <android-base/stringprintf.h>
 #include <base/functional/callback_forward.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <list>
@@ -95,7 +95,7 @@ inline std::string gatt_client_event_text(const tBTA_GATTC_EVT& event) {
     CASE_RETURN_TEXT(BTA_GATTC_CONN_UPDATE_EVT);
     CASE_RETURN_TEXT(BTA_GATTC_SUBRATE_CHG_EVT);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", event);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", event);
   }
 }
 
@@ -322,7 +322,7 @@ inline std::string gatt_server_event_text(const tBTA_GATTS_EVT& event) {
     CASE_RETURN_TEXT(BTA_GATTS_CONN_UPDATE_EVT);
     CASE_RETURN_TEXT(BTA_GATTS_SUBRATE_CHG_EVT);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", event);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", event);
   }
 }
 

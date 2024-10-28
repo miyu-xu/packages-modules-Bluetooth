@@ -24,7 +24,7 @@
 
 #define LOG_TAG "l2c_ble"
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
@@ -1151,8 +1151,9 @@ void l2cble_process_data_length_change_event(uint16_t handle, uint16_t tx_data_l
               "Received data length change event for device:{} tx_data_len:{} => "
               "{}",
               p_lcb->remote_bd_addr, p_lcb->tx_data_len, tx_data_len);
-      BTM_LogHistory(kBtmLogTag, p_lcb->remote_bd_addr, "LE Data length change",
-                     base::StringPrintf("tx_octets:%hu => %hu", p_lcb->tx_data_len, tx_data_len));
+      BTM_LogHistory(
+              kBtmLogTag, p_lcb->remote_bd_addr, "LE Data length change",
+              android::base::StringPrintf("tx_octets:%hu => %hu", p_lcb->tx_data_len, tx_data_len));
       p_lcb->tx_data_len = tx_data_len;
     } else {
       log::debug(

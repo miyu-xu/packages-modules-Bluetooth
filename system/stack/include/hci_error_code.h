@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 #include <hardware/bluetooth.h>
 
@@ -121,7 +121,7 @@ inline std::string hci_error_code_text(const tHCI_ERROR_CODE& error_code) {
     CASE_RETURN_TEXT(HCI_ERR_LIMIT_REACHED);
     CASE_RETURN_TEXT(HCI_ERR_CANCELLED_BY_LOCAL_HOST);
     default:
-      return base::StringPrintf("UNKNOWN[0x%02hx]", error_code);
+      return android::base::StringPrintf("UNKNOWN[0x%02hx]", error_code);
   }
 }
 
