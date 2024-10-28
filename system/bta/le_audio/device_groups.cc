@@ -1061,6 +1061,52 @@ bool LeAudioDeviceGroup::ReloadAudioDirections(void) {
   return true;
 }
 
+AudioContexts LeAudioDeviceGroup::GetAllSupportedBidirectionalContextTypes(void) {
+  auto result = GetSupportedContexts(types::kLeAudioDirectionSink) &
+                GetSupportedContexts(types::kLeAudioDirectionSource);
+
+  result &= types::kLeAudioContextAllBidir;
+
+  return result;
+}
+
+AudioContexts LeAudioDeviceGroup::GetAllSupportedSingleDirectionOnlyContextTypes(
+        uint8_t remote_direction) {
+  AudioContexts result;
+
+  /* Remote device present supported context types on the different directions.
+   * It might happen that some "single directional" contexts are exposed on both
+   * directions on the remote side.
+   * Android takes the decision on the stream configuration based on the contexts therefore
+   * there is defined list of possible real bidirectional directions and also possible
+   * sink only and source context types.
+   * This function helps to filter out some misconfigurations on the remote side and return
+   * single directional context types.
+   */
+
+  auto bidirectional_for_this_group = GetAllSupportedBidirectionalContextTypes();
+
+  /* This is a list of bidirectional contexts which are not bidirectional for this group
+   * e.g. Usually here we can have VoiceAssistant or GAME which Android usually treats as
+   * bidirectional but some devices might remove it on purpose
+   */
+  auto bidirectional_not_for_this_group =
+          types::kLeAudioContextAllBidir & ~bidirectional_for_this_group;
+
+  if (remote_direction == types::kLeAudioDirectionSink) {
+    result = GetSupportedContexts(types::kLeAudioDirectionSink) &
+             (types::kLeAudioContextAllRemoteSinkOnly & ~bidirectional_for_this_group |
+              bidirectional_not_for_this_group);
+
+  } else {
+    result = GetSupportedContexts(types::kLeAudioDirectionSource) &
+             (types::kLeAudioContextAllRemoteSource & ~bidirectional_for_this_group |
+              bidirectional_not_for_this_group);
+  }
+
+  return result;
+}
+
 bool LeAudioDeviceGroup::IsInTransition(void) const { return in_transition_; }
 
 bool LeAudioDeviceGroup::IsStreaming(void) const {
@@ -1197,11 +1243,21 @@ void LeAudioDeviceGroup::CigConfiguration::GenerateCisIds(LeAudioContextType con
   uint8_t cis_count_unidir_source = 0;
   int group_size = group_->DesiredSize();
 
-  set_configurations::get_cis_count(context_type, group_size, group_->GetGroupSinkStrategy(),
-                                    group_->GetAseCount(types::kLeAudioDirectionSink),
-                                    group_->GetAseCount(types::kLeAudioDirectionSource),
-                                    cis_count_bidir, cis_count_unidir_sink,
-                                    cis_count_unidir_source);
+  uint8_t expected_remote_directions;
+  if (group_->GetAllSupportedBidirectionalContextTypes().test(context_type)) {
+    expected_remote_directions = types::kLeAudioDirectionBoth;
+  } else if (group_->GetAllSupportedSingleDirectionOnlyContextTypes(types::kLeAudioDirectionSource)
+                     .test(context_type)) {
+    expected_remote_directions = types::kLeAudioDirectionSource;
+  } else {
+    expected_remote_directions = types::kLeAudioDirectionSink;
+  }
+
+  set_configurations::get_cis_count(
+          context_type, expected_remote_directions, group_size, group_->GetGroupSinkStrategy(),
+          group_->GetAseCount(types::kLeAudioDirectionSink),
+          group_->GetAseCount(types::kLeAudioDirectionSource), cis_count_bidir,
+          cis_count_unidir_sink, cis_count_unidir_source);
 
   uint8_t idx = 0;
   while (cis_count_bidir > 0) {
