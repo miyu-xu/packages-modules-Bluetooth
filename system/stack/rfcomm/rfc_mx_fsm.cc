@@ -28,6 +28,7 @@
 #include <cstdint>
 
 #include "osi/include/allocator.h"
+#include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/l2cap_interface.h"

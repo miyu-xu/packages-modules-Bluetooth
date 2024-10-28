@@ -25,8 +25,8 @@
 #ifndef BTA_API_H
 #define BTA_API_H
 
+#include <android-base/stringprintf.h>
 #include <base/functional/callback.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -124,7 +124,7 @@ inline std::string preferred_role_text(const tBTA_PREF_ROLES& role) {
     CASE_RETURN_TEXT(BTA_CENTRAL_ROLE_ONLY);
     CASE_RETURN_TEXT(BTA_PERIPHERAL_ROLE_ONLY);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", role);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", role);
   }
 }
 
@@ -218,7 +218,7 @@ inline std::string bta_dm_search_evt_text(const tBTA_DM_SEARCH_EVT& event) {
     CASE_RETURN_TEXT(BTA_DM_NAME_READ_EVT);
     CASE_RETURN_TEXT(BTA_DM_OBSERVE_CMPL_EVT);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", event);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", event);
   }
 }
 
