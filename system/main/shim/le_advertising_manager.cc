@@ -86,7 +86,7 @@ public:
       native_reg_id_map[client_id].erase(reg_id);
     }
     BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le advert stopped",
-                   base::StringPrintf("advert_id:%d", advertiser_id));
+                   android::base::StringPrintf("advert_id:%d", advertiser_id));
   }
 
   // ::BleAdvertiserInterface
@@ -173,7 +173,7 @@ public:
 
     log::info("create advertising set, client_id:{}, reg_id:{}", client_id, reg_id);
     BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le advert started",
-                   base::StringPrintf("reg_id:%d", reg_id));
+                   android::base::StringPrintf("reg_id:%d", reg_id));
 
     return;
   }

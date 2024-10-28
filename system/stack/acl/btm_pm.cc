@@ -31,7 +31,7 @@
 #include "main/shim/entry.h"
 #define LOG_TAG "bt_btm_pm"
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -104,10 +104,11 @@ static void send_sniff_subrating(uint16_t handle, const RawAddress& addr, uint16
   }
 
   btsnd_hcic_sniff_sub_rate(handle, max_lat, min_rmt_to, min_loc_to);
-  BTM_LogHistory(kBtmLogTag, addr, "Sniff subrating",
-                 base::StringPrintf("max_latency:%.2f peer_timeout:%.2f local_timeout:%.2f",
-                                    ticks_to_seconds(max_lat), ticks_to_seconds(min_rmt_to),
-                                    ticks_to_seconds(min_loc_to)));
+  BTM_LogHistory(
+          kBtmLogTag, addr, "Sniff subrating",
+          android::base::StringPrintf("max_latency:%.2f peer_timeout:%.2f local_timeout:%.2f",
+                                      ticks_to_seconds(max_lat), ticks_to_seconds(min_rmt_to),
+                                      ticks_to_seconds(min_loc_to)));
 }
 
 static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id, int link_ind,
@@ -557,9 +558,9 @@ static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id, int link_in
   log::info("Switching from {}[0x{:02x}] to {}[0x{:02x}]", power_mode_state_text(p_cb->state),
             p_cb->state, power_mode_state_text(md_res.mode), md_res.mode);
   BTM_LogHistory(kBtmLogTag, p_cb->bda_, "Power mode change",
-                 base::StringPrintf("%s[0x%02x] ==> %s[0x%02x]",
-                                    power_mode_state_text(p_cb->state).c_str(), p_cb->state,
-                                    power_mode_state_text(md_res.mode).c_str(), md_res.mode));
+                 android::base::StringPrintf(
+                         "%s[0x%02x] ==> %s[0x%02x]", power_mode_state_text(p_cb->state).c_str(),
+                         p_cb->state, power_mode_state_text(md_res.mode).c_str(), md_res.mode));
 
   switch (md_res.mode) {
     case BTM_PM_MD_ACTIVE:

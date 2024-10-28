@@ -212,7 +212,6 @@ cc_library_static {
         "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "libaconfig_storage_read_api_cc",
-        "libbase",
         "libbluetooth_hci_pdl",
         "libbluetooth_log",
         "libbt-audio-hal-interface",
@@ -222,6 +221,7 @@ cc_library_static {
         "server_configurable_flags",
     ],
     shared_libs: [
+        "libbase",
         "libcrypto",
     ],
     apex_available: [
@@ -288,6 +288,7 @@ cc_test {
     ],
     shared_libs: [
         "libaconfig_storage_read_api_cc",
+        "libbase",
         "libcrypto",
         "libcutils",
         "libhidlbase",
@@ -303,7 +304,6 @@ cc_test {
         "android.hardware.common.fmq-V1-ndk",
         "avrcp-target-service",
         "bluetooth_flags_c_lib_for_test",
-        "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
