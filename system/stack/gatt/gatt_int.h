@@ -19,8 +19,8 @@
 #ifndef GATT_INT_H
 #define GATT_INT_H
 
+#include <android-base/stringprintf.h>
 #include <base/functional/bind.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <deque>
@@ -64,7 +64,7 @@ inline std::string gatt_security_action_text(const tGATT_SEC_ACTION& action) {
     CASE_RETURN_TEXT(GATT_SEC_ENCRYPT_MITM);
     CASE_RETURN_TEXT(GATT_SEC_ENC_PENDING);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", action);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", action);
   }
 }
 
@@ -248,7 +248,7 @@ inline std::string gatt_channel_state_text(const tGATT_CH_STATE& state) {
     CASE_RETURN_TEXT(GATT_CH_CFG);
     CASE_RETURN_TEXT(GATT_CH_OPEN);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", state);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", state);
   }
 }
 
@@ -473,8 +473,8 @@ inline std::string EpochMillisToString(long long time_ms) {
   struct tm tm;
   localtime_r(&time_sec, &tm);
   std::string s = bluetooth::common::StringFormatTime(kTimeFormatString, tm);
-  return base::StringPrintf("%s.%03u", s.c_str(),
-                            static_cast<unsigned int>(time_ms % MillisPerSecond));
+  return android::base::StringPrintf("%s.%03u", s.c_str(),
+                                     static_cast<unsigned int>(time_ms % MillisPerSecond));
 }
 }  // namespace
 
@@ -484,9 +484,10 @@ struct tTCB_STATE_HISTORY {
   tGATT_CH_STATE state;
   std::string holders_info;
   std::string ToString() const {
-    return base::StringPrintf("%s, %s, state: %s, %s", ADDRESS_TO_LOGGABLE_CSTR(address),
-                              bt_transport_text(transport).c_str(),
-                              gatt_channel_state_text(state).c_str(), holders_info.c_str());
+    return android::base::StringPrintf("%s, %s, state: %s, %s", ADDRESS_TO_LOGGABLE_CSTR(address),
+                                       bt_transport_text(transport).c_str(),
+                                       gatt_channel_state_text(state).c_str(),
+                                       holders_info.c_str());
   }
 };
 

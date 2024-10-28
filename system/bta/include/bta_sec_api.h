@@ -18,8 +18,8 @@
 
 #pragma once
 
+#include <android-base/stringprintf.h>
 #include <base/functional/callback.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>

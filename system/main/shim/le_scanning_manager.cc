@@ -165,9 +165,9 @@ void BleScannerInterfaceImpl::Scan(bool start) {
     const unsigned long long duration_timestamp =
             timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_scan.start_time_ms;
     BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le scan stopped",
-                   base::StringPrintf("duration_s:%6.3f results:%-3lu",
-                                      (double)duration_timestamp / 1000.0,
-                                      btm_cb.neighbor.le_scan.results));
+                   android::base::StringPrintf("duration_s:%6.3f results:%-3lu",
+                                               (double)duration_timestamp / 1000.0,
+                                               btm_cb.neighbor.le_scan.results));
     btm_cb.ble_ctr_cb.reset_ble_observe();
     btm_cb.neighbor.le_scan = {};
   } else {

@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
+#include <android-base/stringprintf.h>
 #include <base/at_exit.h>
 #include <base/files/file_descriptor_watcher_posix.h>
 #include <base/files/file_util.h>
 #include <base/logging.h>
 #include <base/run_loop.h>
-#include <base/strings/stringprintf.h>
 #include <base/task/single_thread_task_executor.h>
 #include <bluetooth/log.h>
 #include <sys/syslog.h>
@@ -44,8 +44,8 @@ const int kSyslogCritical = LOG_CRIT;
 
 static bool MessageHandler(int severity, const char* file, int line, size_t message_start,
                            const std::string& message) {
-  const auto str =
-          base::StringPrintf("%s:%d - %s", file, line, message.substr(message_start).c_str());
+  const auto str = android::base::StringPrintf("%s:%d - %s", file, line,
+                                               message.substr(message_start).c_str());
 
   switch (severity) {
     case logging::LOGGING_INFO:
