@@ -163,7 +163,7 @@ public class VolumeControlNativeCallbackTest {
         int gainMode = 0;
         int mute = 0;
 
-        mNativeCallback.onExtAudioInStateChanged(externalInputId, gainValue, gainMode, mute, null);
+        mNativeCallback.onExtAudioInStateChanged(externalInputId, gainValue, mute, gainMode, null);
         verify(mService).messageFromNative(mEvent.capture());
         VolumeControlStackEvent event = mEvent.getValue();
 
