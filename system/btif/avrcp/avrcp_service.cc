@@ -536,7 +536,6 @@ void AvrcpService::ConnectDevice(const RawAddress& bdaddr) {
 }
 
 void AvrcpService::DisconnectDevice(const RawAddress& bdaddr) {
-  log::info("address={}", bdaddr);
   if (connection_handler_ == nullptr) {
     return;
   }
