@@ -80,8 +80,10 @@ import org.mockito.hamcrest.MockitoHamcrest;
 import org.mockito.stubbing.Answer;
 
 import pandora.HIDGrpc;
+import pandora.HidProto.HidServiceType;
 import pandora.HidProto.ProtocolModeEvent;
 import pandora.HidProto.ReportEvent;
+import pandora.HidProto.ServiceRequest;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -284,7 +286,10 @@ public class HidHostTest {
                 (BluetoothHeadset) verifyProfileServiceConnected(BluetoothProfile.HEADSET);
 
         mHidBlockingStub = mBumble.hidBlocking();
-
+        mHidBlockingStub.registerService(
+                ServiceRequest.newBuilder()
+                        .setServiceType(HidServiceType.SERVICE_TYPE_HID)
+                        .build());
         mDevice = mBumble.getRemoteDevice();
         // Remove bond if the device is already bonded
         if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
