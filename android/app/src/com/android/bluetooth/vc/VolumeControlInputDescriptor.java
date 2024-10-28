@@ -129,7 +129,7 @@ class VolumeControlInputDescriptor {
         mVolumeInputs[id].mGainSettingsMaxSetting = gainMax;
     }
 
-    void setState(int id, int gainValue, int gainMode, int mute) {
+    void setState(int id, int gainValue, int mute, int gainMode) {
         if (!isValidId(id)) return;
 
         Descriptor desc = mVolumeInputs[id];
