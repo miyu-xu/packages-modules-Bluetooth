@@ -21,23 +21,15 @@
 
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/gatt_api.h"
 #include "stack/include/l2cap_interface.h"
 #include "test/common/mock_functions.h"
 #include "types/raw_address.h"
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 void gatt_init(void) { inc_func_call_count(__func__); }
 bool gatt_act_connect(tGATT_REG* /* p_reg */, const RawAddress& /* bd_addr */,
                       tBLE_ADDR_TYPE /* addr_type */, tBT_TRANSPORT /* transport */,
                       int8_t /* initiating_phys */) {
-  inc_func_call_count(__func__);
-  return false;
-}
-bool gatt_connect(const RawAddress& /* rem_bda */, tGATT_TCB* /* p_tcb */,
-                  tBLE_ADDR_TYPE /* addr_type */, tBT_TRANSPORT /* transport */,
-                  uint8_t /* initiating_phys */, tGATT_IF /* gatt_if */) {
   inc_func_call_count(__func__);
   return false;
 }
