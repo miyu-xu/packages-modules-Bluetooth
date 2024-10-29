@@ -39,6 +39,30 @@
       },
       "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4d8c2c6_539d7d45",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-29T15:54:23Z",
+      "side": 1,
+      "message": "If there is a transmit browsing packet in-flight when this profile shuts down then the buffer is deallocated here to prevent memory leak.\n\nThis is effectively the same as `avct_bcb_dealloc` with regard to dynamic memory clean up.\n\nIdeally this cleanup code would be centralized in a future CL.",
+      "parentUuid": "0c67009f_3079e0e0",
+      "range": {
+        "startLine": 119,
+        "startChar": 41,
+        "endLine": 119,
+        "endChar": 56
+      },
+      "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
