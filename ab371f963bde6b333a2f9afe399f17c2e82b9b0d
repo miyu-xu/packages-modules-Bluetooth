@@ -86,6 +86,30 @@
       },
       "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24dec934_3f278612",
+        "filename": "system/stack/avct/avct_lcb.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-10-29T18:30:18Z",
+      "side": 1,
+      "message": "Incorrect.  This *patch* does change something but this additional line does not.\n\nIncluded here to pattern match the same behavior in `AVCT_Deregister` for further consolidation for dynamic memory management lifecycle in future.\n\nWill remove the offending line.",
+      "parentUuid": "c538468e_d1a95d00",
+      "range": {
+        "startLine": 329,
+        "startChar": 30,
+        "endLine": 333,
+        "endChar": 38
+      },
+      "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
