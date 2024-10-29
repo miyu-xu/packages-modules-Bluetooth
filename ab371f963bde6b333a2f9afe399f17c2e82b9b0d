@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cccc0590_d7411291",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-29T10:41:08Z",
+      "side": 1,
+      "message": "Added William as reviewer as I only have +1",
+      "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c67009f_3079e0e0",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-10-29T10:41:08Z",
+      "side": 1,
+      "message": "Out of curiosity, why do we also clear the bcb tx_msg here?",
+      "range": {
+        "startLine": 119,
+        "startChar": 41,
+        "endLine": 119,
+        "endChar": 56
+      },
+      "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
