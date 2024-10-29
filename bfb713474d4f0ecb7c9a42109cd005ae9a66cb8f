@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "395d35ae_b43e1166",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2024-10-29T16:24:17Z",
+      "side": 1,
+      "message": "Yep, Dayeong noticed this as well, I was intending to split this change into two to remove the `MAIN_THREAD_TX` later, but I can move that change into this CL instead, which will mean the loop stops in-order the same as before.\n\nI\u0027ll make that change and update today.",
+      "parentUuid": "19bb0596_30489d9f",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 53
+      },
+      "revId": "bfb713474d4f0ecb7c9a42109cd005ae9a66cb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ffa645d_21f81967",
         "filename": "system/rust/src/lib.rs",
         "patchSetId": 1
