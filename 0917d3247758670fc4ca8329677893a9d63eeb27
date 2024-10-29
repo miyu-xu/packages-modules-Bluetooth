@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce40e04_4f2f4ba4",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T00:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a6bbc8b_3fca1c1e",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 13
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c057ac0_2e93ba59",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-29T00:11:09Z",
       "side": 1,
       "message": "isValidId ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 20,
+        "endLine": 72,
+        "endChar": 30
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "753e463b_6ace4b54",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T00:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c057ac0_2e93ba59",
       "range": {
         "startLine": 72,
         "startChar": 20,
@@ -66,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95e5f45b_e1a700c2",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T00:20:49Z",
+      "side": 1,
+      "message": "0 is a valid ID. (cf line 30, the 0 instance is initialized)\n\nWhat let you think that ?",
+      "parentUuid": "17cf4a47_f6ba4569",
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ebe6368_359367bd",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 10
@@ -77,6 +143,30 @@
       "writtenOn": "2024-10-29T00:11:09Z",
       "side": 1,
       "message": "nit: `+ mute) + \")\";` (same for other logInfo instances)",
+      "range": {
+        "startLine": 1032,
+        "startChar": 44,
+        "endLine": 1032,
+        "endChar": 50
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d3f3e2_4f67c5a8",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T00:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ebe6368_359367bd",
       "range": {
         "startLine": 1032,
         "startChar": 44,
@@ -100,6 +190,30 @@
       "writtenOn": "2024-10-29T00:11:09Z",
       "side": 1,
       "message": "\u0026\u0026",
+      "range": {
+        "startLine": 1057,
+        "startChar": 24,
+        "endLine": 1057,
+        "endChar": 26
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ab65d1_5a1c7049",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T00:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a696744e_be75d2b5",
       "range": {
         "startLine": 1057,
         "startChar": 24,
