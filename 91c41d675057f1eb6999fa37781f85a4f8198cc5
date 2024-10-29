@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a849f1aa_c119ef05",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T18:07:33Z",
+      "side": 1,
+      "message": "is there a range to limit this or can it be any value ?",
+      "range": {
+        "startLine": 1233,
+        "startChar": 43,
+        "endLine": 1233,
+        "endChar": 56
+      },
+      "revId": "91c41d675057f1eb6999fa37781f85a4f8198cc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
