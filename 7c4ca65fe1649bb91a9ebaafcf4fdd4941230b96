@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf9cde94_a9ffc649",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T18:44:02Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be added to AdapterProperties.java.\nThe adapter is reporting a profile change, everything else is \"implementation detail\" for this class, and I would do this in metric logger\n\nI would do something similar as what I did in https://r.android.com/3306388 and migrate the metric related logic inside the metriclogger.",
+      "revId": "7c4ca65fe1649bb91a9ebaafcf4fdd4941230b96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "261ddc8d_2f1ffe6d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T18:44:02Z",
+      "side": 1,
+      "message": "this is not formatted correctly",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 27
+      },
+      "revId": "7c4ca65fe1649bb91a9ebaafcf4fdd4941230b96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf63d2d6_cb52b8d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T18:44:02Z",
+      "side": 1,
+      "message": "Format is not correct",
+      "range": {
+        "startLine": 660,
+        "startChar": 5,
+        "endLine": 713,
+        "endChar": 5
+      },
+      "revId": "7c4ca65fe1649bb91a9ebaafcf4fdd4941230b96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
