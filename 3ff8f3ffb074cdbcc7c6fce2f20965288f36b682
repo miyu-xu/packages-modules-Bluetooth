@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a1a9b2_8c405741",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T23:52:03Z",
+      "side": 1,
+      "message": "tries",
+      "range": {
+        "startLine": 13,
+        "startChar": 42,
+        "endLine": 13,
+        "endChar": 45
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d75649_1dc00666",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T23:52:03Z",
+      "side": 1,
+      "message": "its",
+      "range": {
+        "startLine": 13,
+        "startChar": 58,
+        "endLine": 13,
+        "endChar": 62
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b46bb52_74f0a983",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3700,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T23:52:03Z",
+      "side": 1,
+      "message": "I might prefer a pattern with : \n\n```\nprivate void onBluetoothServiceUpLocked(IBinder bluetoothService) {\n  // stuff common flag on/off\n}\n\npublic void onBluetoothServiceUp(IBinder bluetoothService) {\n  if (Flags.getProfileUseLock()) {\n    try {\n      sServiceLock.writeLock().lock();\n      onBluetoothServiceUpLocked(bluetoothService);\n    } finally {\n      sServiceLock.writeLock().unlock();\n    }\n  } else {\n    synchronize (sServiceLock) {\n      onBluetoothServiceUpLocked(bluetoothService);\n    }\n  }\n}\n```\nHere you duplicate the logic, though I can see why you did it this way.",
+      "range": {
+        "startLine": 3700,
+        "startChar": 29,
+        "endLine": 3700,
+        "endChar": 56
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64a3713_4df8cd83",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3876,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T23:52:03Z",
+      "side": 1,
+      "message": "W",
+      "range": {
+        "startLine": 3876,
+        "startChar": 70,
+        "endLine": 3876,
+        "endChar": 71
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
