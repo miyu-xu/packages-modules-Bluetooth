@@ -3164,16 +3164,16 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * Create Client Socket for the remote Server hosted using
-     * BluetoothAdapter#createListeningChannel. Use {@link BluetoothSocketSettings} to
-     * configure the settings of the socket as parameter.
+     * BluetoothAdapter#createListeningChannel. Use {@link BluetoothSocketSettings} to configure the
+     * settings of the socket as parameter.
      *
-     * This API supports BluetoothSocket#TYPE_RFCOMM and BluetoothSocket#TYPE_LE only.
-     * If The request is to create BluetoothSocket#TYPE_RFCOMM, It must provide the uuid
-     * using BluetoothSocketSettings#setUuid().
-     * If the request is to create BluetoothSocket#TYPE_LE, It must provide
-     * channel (psm) value using BluetoothSocketSettings#setChannel().
-     * <p>Application using this API is responsible for obtaining Channel (psm)
-     * value from remote device.
+     * <p>This API supports BluetoothSocket#TYPE_RFCOMM and BluetoothSocket#TYPE_LE only. If The
+     * request is to create BluetoothSocket#TYPE_RFCOMM, It must provide the uuid using
+     * BluetoothSocketSettings#setUuid(). If the request is to create BluetoothSocket#TYPE_LE, It
+     * must provide channel (psm) value using BluetoothSocketSettings#setChannel().
+     *
+     * <p>Application using this API is responsible for obtaining Channel (psm) value from remote
+     * device.
      *
      * <p>Use {@link BluetoothSocket#connect} to initiate the outgoing connection.
      *

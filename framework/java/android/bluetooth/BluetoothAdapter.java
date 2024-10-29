@@ -4537,14 +4537,15 @@ public final class BluetoothAdapter {
      * <p>Use {@link BluetoothServerSocket#accept} to retrieve incoming connections from a listening
      * {@link BluetoothServerSocket}.
      *
-     * This API supports BluetoothSocket#TYPE_RFCOMM and BluetoothSocket#TYPE_LE only.
-     * <p> If the request is to create socket of type BluetoothSocket#TYPE_RFCOMM, It must
-     * provide the uuid using BluetoothScoketSettings#setUuid()
+     * <p>This API supports BluetoothSocket#TYPE_RFCOMM and BluetoothSocket#TYPE_LE only.
      *
-     * <p>If socket is of BluetoothSocket#TYPE_LE The system will assign a dynamic PSM value.
-     * This PSM value can be read from the {@link BluetoothServerSocket#getPsm()} and this value
-     * will be released when this server socket is closed, Bluetooth is turned off, or the
-     * application exits unexpectedly.
+     * <p>If the request is to create socket of type BluetoothSocket#TYPE_RFCOMM, It must provide
+     * the uuid using BluetoothScoketSettings#setUuid()
+     *
+     * <p>If socket is of BluetoothSocket#TYPE_LE The system will assign a dynamic PSM value. This
+     * PSM value can be read from the {@link BluetoothServerSocket#getPsm()} and this value will be
+     * released when this server socket is closed, Bluetooth is turned off, or the application exits
+     * unexpectedly.
      *
      * <p>The mechanism of disclosing the assigned dynamic PSM value to the initiating peer is
      * defined and performed by the application.
@@ -4568,18 +4569,20 @@ public final class BluetoothAdapter {
             if (settings.getUuid() == null) {
                 throw new IOException("RFCOMM server missing UUID");
             }
-            return createNewRfcommSocketAndRecord(settings.getServiceName(),
-                                                  settings.getUuid(),
-                                                  settings.isAuthenticationEnabled(),
-                                                  settings.isEncryptionEnabled());
-        } else if  (type == BluetoothSocket.TYPE_LE) {
-            socket = new BluetoothServerSocket(
-                settings.getSocketType(),
-                settings.isAuthenticationEnabled(),
-                settings.isEncryptionEnabled(),
-                SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
-                false,
-                false);
+            return createNewRfcommSocketAndRecord(
+                    settings.getServiceName(),
+                    settings.getUuid(),
+                    settings.isAuthenticationEnabled(),
+                    settings.isEncryptionEnabled());
+        } else if (type == BluetoothSocket.TYPE_LE) {
+            socket =
+                    new BluetoothServerSocket(
+                            settings.getSocketType(),
+                            settings.isAuthenticationEnabled(),
+                            settings.isEncryptionEnabled(),
+                            SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                            false,
+                            false);
         } else {
             throw new IOException("Error: Invalid socket type: " + type);
         }

@@ -1122,6 +1122,10 @@ package android.bluetooth {
     method @Nullable public java.util.UUID getUuid();
     method public boolean isAuthenticationEnabled();
     method public boolean isEncryptionEnabled();
+    field public static final int DATA_PATH_HW_OFFLOAD = 1; // 0x1
+    field public static final int DATA_PATH_NO_OFFLOAD = 0; // 0x0
+    field public static final int L2CAP_MAX_PACKET_SIZE = 65535; // 0xffff
+    field public static final int L2CAP_MIN_PACKET_SIZE = 1024; // 0x400
   }
 
   public static final class BluetoothSocketSettings.Builder {

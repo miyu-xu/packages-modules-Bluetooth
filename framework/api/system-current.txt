@@ -1022,6 +1022,22 @@ package android.bluetooth {
     method @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getL2capRemoteChannelId() throws java.io.IOException;
   }
 
+  @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public final class BluetoothSocketSettings {
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public int getDataPath();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public long getEndpointId();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public long getHubId();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public int getL2capMaxRxPacketSize();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public String getSocketName();
+  }
+
+  public static final class BluetoothSocketSettings.Builder {
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setDataPath(int);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setEndpointId(long);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setHubId(long);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setL2capMaxRxPacketSize(int);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketName(@NonNull String);
+  }
+
   public final class BluetoothStatusCodes {
     field public static final int ALLOWED = 400; // 0x190
     field public static final int ERROR_ALREADY_IN_TARGET_STATE = 26; // 0x1a
