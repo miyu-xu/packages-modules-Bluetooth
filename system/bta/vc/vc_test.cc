@@ -152,7 +152,7 @@ private:
         builder.AddCharacteristic(0x0031, 0x0032, kVolumeAudioInputStateUuid,
                                   GATT_CHAR_PROP_BIT_READ);
         builder.AddDescriptor(0x0033, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
-        builder.AddCharacteristic(0x0034, 0x0035, kVolumeAudioInputGainSettingUuid,
+        builder.AddCharacteristic(0x0034, 0x0035, kVolumeAudioInputGainSettingPropertiesUuid,
                                   GATT_CHAR_PROP_BIT_READ);
         builder.AddCharacteristic(0x0036, 0x0037, kVolumeAudioInputTypeUuid,
                                   GATT_CHAR_PROP_BIT_READ);
@@ -171,7 +171,7 @@ private:
                                   GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
         builder.AddDescriptor(0x0053, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
         if (!aics_broken) {
-          builder.AddCharacteristic(0x0054, 0x0055, kVolumeAudioInputGainSettingUuid,
+          builder.AddCharacteristic(0x0054, 0x0055, kVolumeAudioInputGainSettingPropertiesUuid,
                                     GATT_CHAR_PROP_BIT_READ);
         }
         builder.AddCharacteristic(0x0056, 0x0057, kVolumeAudioInputTypeUuid,

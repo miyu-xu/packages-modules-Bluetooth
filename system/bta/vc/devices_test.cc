@@ -288,7 +288,7 @@ protected:
     builder.AddService(0x0020, 0x002e, kVolumeAudioInputUuid, false);
     builder.AddCharacteristic(0x0021, 0x0022, kVolumeAudioInputStateUuid, GATT_CHAR_PROP_BIT_READ);
     builder.AddDescriptor(0x0023, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
-    builder.AddCharacteristic(0x0024, 0x0025, kVolumeAudioInputGainSettingUuid,
+    builder.AddCharacteristic(0x0024, 0x0025, kVolumeAudioInputGainSettingPropertiesUuid,
                               GATT_CHAR_PROP_BIT_READ);
     builder.AddCharacteristic(0x0026, 0x0027, kVolumeAudioInputTypeUuid, GATT_CHAR_PROP_BIT_READ);
     builder.AddCharacteristic(0x0028, 0x0029, kVolumeAudioInputStatusUuid,
@@ -304,7 +304,7 @@ protected:
     builder.AddCharacteristic(0x0041, 0x0042, kVolumeAudioInputStateUuid,
                               GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
     builder.AddDescriptor(0x0043, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
-    builder.AddCharacteristic(0x0044, 0x0045, kVolumeAudioInputGainSettingUuid,
+    builder.AddCharacteristic(0x0044, 0x0045, kVolumeAudioInputGainSettingPropertiesUuid,
                               GATT_CHAR_PROP_BIT_READ);
     builder.AddCharacteristic(0x0046, 0x0047, kVolumeAudioInputTypeUuid, GATT_CHAR_PROP_BIT_READ);
     builder.AddCharacteristic(0x0048, 0x0049, kVolumeAudioInputStatusUuid,
@@ -387,7 +387,7 @@ TEST_F(VolumeControlDeviceTest, test_service_aics_incomplete) {
   builder.AddCharacteristic(0x000c, 0x000d, kVolumeAudioInputStateUuid,
                             GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
   builder.AddDescriptor(0x000e, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
-  builder.AddCharacteristic(0x000f, 0x0010, kVolumeAudioInputGainSettingUuid,
+  builder.AddCharacteristic(0x000f, 0x0010, kVolumeAudioInputGainSettingPropertiesUuid,
                             GATT_CHAR_PROP_BIT_READ);
   builder.AddCharacteristic(0x0011, 0x0012, kVolumeAudioInputTypeUuid, GATT_CHAR_PROP_BIT_READ);
   builder.AddCharacteristic(0x0013, 0x0014, kVolumeAudioInputStatusUuid,
@@ -423,7 +423,7 @@ TEST_F(VolumeControlDeviceTest, test_service_aics_found) {
   builder.AddCharacteristic(0x000c, 0x000d, kVolumeAudioInputStateUuid,
                             GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_NOTIFY);
   builder.AddDescriptor(0x000e, Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG));
-  builder.AddCharacteristic(0x000f, 0x0010, kVolumeAudioInputGainSettingUuid,
+  builder.AddCharacteristic(0x000f, 0x0010, kVolumeAudioInputGainSettingPropertiesUuid,
                             GATT_CHAR_PROP_BIT_READ);
   builder.AddCharacteristic(0x0011, 0x0012, kVolumeAudioInputTypeUuid, GATT_CHAR_PROP_BIT_READ);
   builder.AddCharacteristic(0x0013, 0x0014, kVolumeAudioInputStatusUuid,
