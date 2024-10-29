@@ -99,6 +99,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -215,7 +217,15 @@ public class GattService extends ProfileService {
                 getContentResolver(), "bluetooth_sanitized_exposure_notification_supported", 1);
 
         mNativeInterface = GattObjectsFactory.getInstance().getNativeInterface();
-        mNativeInterface.init(this);
+        CompletableFuture<Void> nativeInterfaceInitFuture = mNativeInterface.init(this);
+        if (Flags.scanManagerRefactor()) {
+            try {
+                nativeInterfaceInitFuture.get();
+            } catch (ExecutionException | InterruptedException e) {
+                Log.e(TAG, "mNativeInterface not yet initialized", e);
+            }
+        }
+
         mAdapterService = AdapterService.getAdapterService();
         mAdvertiseManager = new AdvertiseManager(this);
 

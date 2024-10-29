@@ -1034,6 +1034,7 @@ pub type OobData = bindings::bt_oob_data_s;
 #[derive(Clone, Debug)]
 pub enum BaseCallbacks {
     AdapterState(BtState),
+    RustModuleUp(),
     AdapterProperties(BtStatus, i32, Vec<BluetoothProperty>),
     RemoteDeviceProperties(BtStatus, RawAddress, i32, Vec<BluetoothProperty>),
     DeviceFound(i32, Vec<BluetoothProperty>),
@@ -1073,6 +1074,7 @@ pub struct BaseCallbacksDispatcher {
 type BaseCb = Arc<Mutex<BaseCallbacksDispatcher>>;
 
 cb_variant!(BaseCb, adapter_state_cb -> BaseCallbacks::AdapterState, u32 -> BtState);
+cb_variant!(BaseCb, rust_module_up -> BaseCallbacks::RustModuleUp);
 cb_variant!(BaseCb, adapter_properties_cb -> BaseCallbacks::AdapterProperties,
 u32 -> BtStatus, i32, *mut bindings::bt_property_t, {
     let _2 = ptr_to_vec(_2, _1 as usize);
@@ -1226,6 +1228,7 @@ impl BluetoothInterface {
         let mut callbacks = Box::new(bindings::bt_callbacks_t {
             size: std::mem::size_of::<bindings::bt_callbacks_t>(),
             adapter_state_changed_cb: Some(adapter_state_cb),
+            rust_module_up_cb: Some(rust_module_up),
             adapter_properties_cb: Some(adapter_properties_cb),
             remote_device_properties_cb: Some(remote_device_properties_cb),
             device_found_cb: Some(device_found_cb),

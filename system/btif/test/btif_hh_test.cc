@@ -99,6 +99,7 @@ std::promise<connection_state_cb_t> g_bthh_connection_state_promise;
 bt_callbacks_t bt_callbacks = {
         .size = sizeof(bt_callbacks_t),
         .adapter_state_changed_cb = nullptr,     // adapter_state_changed_callback
+        .rust_module_up_cb = nullptr,            // rust_module_up_callback
         .adapter_properties_cb = nullptr,        // adapter_properties_callback
         .remote_device_properties_cb = nullptr,  // remote_device_properties_callback
         .device_found_cb = nullptr,              // device_found_callback

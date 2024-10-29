@@ -74,6 +74,9 @@ void adapter_state_changed(bt_state_t state) {
   bt_state_ = state;
   adapter_state_cv_.notify_all();
 }
+
+void rust_module_up() { log::info("rust_module_up"); }
+
 void adapter_properties(bt_status_t status, int num_properties, ::bt_property_t* properties) {
   const size_t num_callbacks = interface_api_callback_map_.size();
   auto callback_list = interface_api_callback_map_.find(__func__);
@@ -211,6 +214,7 @@ bt_callbacks_t bt_callbacks{
         /** set to sizeof(bt_callbacks_t) */
         .size = sizeof(bt_callbacks_t),
         .adapter_state_changed_cb = adapter_state_changed,
+        .rust_module_up_cb = rust_module_up,
         .adapter_properties_cb = adapter_properties,
         .remote_device_properties_cb = remote_device_properties,
         .device_found_cb = device_found,

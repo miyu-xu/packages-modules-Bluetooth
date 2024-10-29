@@ -30,6 +30,7 @@ namespace testing {
 // complete, etc) and are what go to the Java layer.
 EventCallbacks mock_event_callbacks = {
         .invoke_adapter_state_changed_cb = [](bt_state_t /* state */) {},
+        .invoke_rust_module_up = []() {},
         .invoke_adapter_properties_cb = [](bt_status_t /* status */, int /* num_properties */,
                                            bt_property_t* /* properties */) {},
         .invoke_remote_device_properties_cb = [](bt_status_t /* status */, RawAddress /* bd_addr */,

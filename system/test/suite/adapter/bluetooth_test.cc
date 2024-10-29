@@ -40,6 +40,8 @@ void AdapterStateChangedCallback(bt_state_t new_state) {
   semaphore_post(instance->adapter_state_changed_callback_sem_);
 }
 
+void RustModuleUpCallback() {}
+
 void AdapterPropertiesCallback(bt_status_t /*status*/, int num_properties,
                                bt_property_t* new_properties) {
   property_free_array(instance->last_changed_properties_, instance->properties_changed_count_);
@@ -67,6 +69,7 @@ void DiscoveryStateChangedCallback(bt_discovery_state_t state) {
 static bt_callbacks_t callbacks = {
         .size = sizeof(bt_callbacks_t),
         .adapter_state_changed_cb = AdapterStateChangedCallback,
+        .rust_module_up_cb = RustModuleUpCallback,
         .adapter_properties_cb = AdapterPropertiesCallback,
         .remote_device_properties_cb = RemoteDevicePropertiesCallback,
         .discovery_state_changed_cb = DiscoveryStateChangedCallback,

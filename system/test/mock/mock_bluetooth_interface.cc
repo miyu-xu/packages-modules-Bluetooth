@@ -25,6 +25,7 @@
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 void invoke_adapter_state_changed_cb(bt_state_t /* state */) {}
+void invoke_rust_module_up() {}
 void invoke_adapter_properties_cb(bt_status_t /* status */, int /* num_properties */,
                                   bt_property_t* /* properties */) {}
 void invoke_remote_device_properties_cb(bt_status_t /* status */, RawAddress /* bd_addr */,

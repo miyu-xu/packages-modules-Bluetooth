@@ -105,6 +105,10 @@ class JniCallbacks {
         mAdapterService.stateChangeCallback(status);
     }
 
+    void rustModuleUpCallback() {
+        mAdapterService.rustModuleUpCallback();
+    }
+
     void discoveryStateChangeCallback(int state) {
         mAdapterProperties.discoveryStateChangeCallback(state);
     }

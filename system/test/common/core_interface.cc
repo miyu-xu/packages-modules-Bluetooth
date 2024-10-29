@@ -24,6 +24,7 @@ namespace {
 
 static bluetooth::core::EventCallbacks eventCallbacks = {
         .invoke_adapter_state_changed_cb = invoke_adapter_state_changed_cb,
+        .invoke_rust_module_up = invoke_rust_module_up,
         .invoke_adapter_properties_cb = invoke_adapter_properties_cb,
         .invoke_remote_device_properties_cb = invoke_remote_device_properties_cb,
         .invoke_device_found_cb = invoke_device_found_cb,

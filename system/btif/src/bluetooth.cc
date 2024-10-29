@@ -353,6 +353,7 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
 static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
   static bluetooth::core::EventCallbacks eventCallbacks{
           .invoke_adapter_state_changed_cb = invoke_adapter_state_changed_cb,
+          .invoke_rust_module_up = invoke_rust_module_up,
           .invoke_adapter_properties_cb = invoke_adapter_properties_cb,
           .invoke_remote_device_properties_cb = invoke_remote_device_properties_cb,
           .invoke_device_found_cb = invoke_device_found_cb,
@@ -1324,6 +1325,10 @@ void invoke_adapter_state_changed_cb(bt_state_t state) {
   do_in_jni_thread(base::BindOnce(
           [](bt_state_t state) { HAL_CBACK(bt_hal_cbacks, adapter_state_changed_cb, state); },
           state));
+}
+
+void invoke_rust_module_up() {
+  do_in_jni_thread(base::BindOnce([]() { HAL_CBACK(bt_hal_cbacks, rust_module_up_cb); }));
 }
 
 void invoke_adapter_properties_cb(bt_status_t status, int num_properties,

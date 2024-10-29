@@ -93,6 +93,7 @@ const jint INVALID_CID = -1;
 
 static jmethodID method_oobDataReceivedCallback;
 static jmethodID method_stateChangeCallback;
+static jmethodID method_rustModuleUpCallback;
 static jmethodID method_adapterPropertyChangedCallback;
 static jmethodID method_devicePropertyChangedCallback;
 static jmethodID method_deviceFoundCallback;
@@ -157,6 +158,11 @@ static void adapter_state_change_callback(bt_state_t status) {
   log::verbose("Status is: {}", status);
 
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_stateChangeCallback, (jint)status);
+}
+
+static void rust_module_up_callback() {
+  log::verbose("rust_module_up_callback");
+  callbackEnv->CallVoidMethod(sJniCallbacksObj, method_rustModuleUpCallback);
 }
 
 static int get_properties(int num_properties, bt_property_t* properties, jintArray* types,
@@ -883,6 +889,7 @@ static void energy_info_recv_callback(bt_activity_energy_info* p_energy_info,
 static bt_callbacks_t sBluetoothCallbacks = {
         sizeof(sBluetoothCallbacks),
         adapter_state_change_callback,
+        rust_module_up_callback,
         adapter_properties_callback,
         remote_device_properties_callback,
         device_found_callback,
@@ -2319,6 +2326,7 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
           {"oobDataReceivedCallback", "(ILandroid/bluetooth/OobData;)V",
            &method_oobDataReceivedCallback},
           {"stateChangeCallback", "(I)V", &method_stateChangeCallback},
+          {"rustModuleUpCallback", "()V", &method_rustModuleUpCallback},
           {"adapterPropertyChangedCallback", "([I[[B)V", &method_adapterPropertyChangedCallback},
           {"discoveryStateChangeCallback", "(I)V", &method_discoveryStateChangeCallback},
           {"devicePropertyChangedCallback", "([B[I[[B)V", &method_devicePropertyChangedCallback},

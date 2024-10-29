@@ -133,6 +133,8 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.btservice.storage.MetadataDatabase;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.gatt.GattNativeInterface;
+import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
@@ -1033,6 +1035,12 @@ public class AdapterService extends Service {
         } else {
             Log.e(TAG, "Incorrect status " + status + " in stateChangeCallback");
         }
+    }
+
+    void rustModuleUpCallback() {
+        GattNativeInterface gattNativeInterface =
+                GattObjectsFactory.getInstance().getNativeInterface();
+        gattNativeInterface.onRustModuleUp();
     }
 
     void startProfileServices() {

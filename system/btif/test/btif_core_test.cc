@@ -137,6 +137,7 @@ std::map<std::string, std::function<void()>> callback_map_;
     callback_map_[__func__]();
 
 void adapter_state_changed_callback(bt_state_t /* state */) {}
+void rust_module_up_callback() {}
 void adapter_properties_callback(bt_status_t /* status */, int /* num_properties */,
                                  bt_property_t* /* properties */) {}
 void remote_device_properties_callback(bt_status_t /* status */, RawAddress* /* bd_addr */,
@@ -179,6 +180,7 @@ void key_missing_callback(const RawAddress /* bd_addr */) {}
 bt_callbacks_t callbacks = {
         .size = sizeof(bt_callbacks_t),
         .adapter_state_changed_cb = adapter_state_changed_callback,
+        .rust_module_up_cb = rust_module_up_callback,
         .adapter_properties_cb = adapter_properties_callback,
         .remote_device_properties_cb = remote_device_properties_callback,
         .device_found_cb = device_found_callback,

@@ -493,6 +493,9 @@ typedef struct {
 /** Bluetooth Enable/Disable Callback. */
 typedef void (*adapter_state_changed_callback)(bt_state_t state);
 
+/** Rust Module Up Callback. */
+typedef void (*rust_module_up_callback)();
+
 /** GET/SET Adapter Properties callback */
 /* TODO: For the GET/SET property APIs/callbacks, we may need a session
  * identifier to associate the call with the callback. This would be needed
@@ -613,6 +616,7 @@ typedef struct {
   /** set to sizeof(bt_callbacks_t) */
   size_t size;
   adapter_state_changed_callback adapter_state_changed_cb;
+  rust_module_up_callback rust_module_up_cb;
   adapter_properties_callback adapter_properties_cb;
   remote_device_properties_callback remote_device_properties_cb;
   device_found_callback device_found_cb;

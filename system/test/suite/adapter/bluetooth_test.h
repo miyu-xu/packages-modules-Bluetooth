@@ -128,6 +128,9 @@ protected:
   // A callback that is called when the adapter state changes
   friend void AdapterStateChangedCallback(bt_state_t state);
 
+  // A callback that is called when the rust module starts up
+  friend void RustModuleUpCallback();
+
   // A callback that is called when the Discovery state changes
   friend void DiscoveryStateChangedCallback(bt_discovery_state_t state);
 

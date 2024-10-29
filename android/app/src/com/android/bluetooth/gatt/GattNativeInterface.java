@@ -22,12 +22,15 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /** GATT Profile Native Interface to/from JNI. */
 public class GattNativeInterface {
     private static final String TAG = GattNativeInterface.class.getSimpleName();
 
     private GattService mGattService;
+
+    private final CompletableFuture<Void> mNativeInterfaceInitFuture = new CompletableFuture<>();
 
     @GuardedBy("INSTANCE_LOCK")
     private static GattNativeInterface sInstance;
@@ -60,6 +63,11 @@ public class GattNativeInterface {
         synchronized (INSTANCE_LOCK) {
             sInstance = instance;
         }
+    }
+
+    /** Native layer callback when rust module is up */
+    public void onRustModuleUp() {
+        mNativeInterfaceInitFuture.complete(null);
     }
 
     /* Callbacks */
@@ -403,9 +411,10 @@ public class GattNativeInterface {
             int p5);
 
     /** Initialize the native interface and native components */
-    public void init(GattService gattService) {
+    public CompletableFuture<Void> init(GattService gattService) {
         mGattService = gattService;
         initializeNative();
+        return mNativeInterfaceInitFuture;
     }
 
     /** Clean up the native interface and native components */
