@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19bb0596_30489d9f",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T16:21:55Z",
+      "side": 1,
+      "message": "\u003e The channel is closed when all senders have been dropped, or when close is called.\n\nWe make a copy of the `UnboundedSender` half as a `MAIN_THREAD_TX`; it might not be enough to drop the sender from the `Running` state to close this loop.",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 53
+      },
+      "revId": "bfb713474d4f0ecb7c9a42109cd005ae9a66cb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ffa645d_21f81967",
         "filename": "system/rust/src/lib.rs",
         "patchSetId": 1
