@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6279144_af128ae8",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:21:54Z",
+      "side": 1,
+      "message": "getMute ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b086aa60_3677fe4c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStackEvent.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:21:54Z",
+      "side": 1,
+      "message": "`mute` ? or else `value !\u003d NOT_MUTED`",
+      "range": {
+        "startLine": 163,
+        "startChar": 25,
+        "endLine": 163,
+        "endChar": 30
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44c8366_37ca0325",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStackEvent.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:21:54Z",
+      "side": 1,
+      "message": "Do you need to update the mute definition here as well ?",
+      "range": {
+        "startLine": 172,
+        "startChar": 17,
+        "endLine": 172,
+        "endChar": 48
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e23ff15_0df4f825",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlInputDescriptorTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:21:54Z",
+      "side": 1,
+      "message": "Comment to document value ?",
+      "range": {
+        "startLine": 114,
+        "startChar": 18,
+        "endLine": 114,
+        "endChar": 21
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
