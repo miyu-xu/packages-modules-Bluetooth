@@ -15,6 +15,7 @@
  */
 
 #include <cstdint>
+#include <future>
 
 #include "btif/include/stack_manager_t.h"
 #include "hardware/bluetooth.h"
@@ -74,7 +75,7 @@ static void clean_up_stack(ProfileStopCallback /* stopProfiles */) {}
 
 static void start_up_rust_module_async() {}
 
-static void shut_down_rust_module_async() {}
+static void shut_down_rust_module_async(std::promise<void> /* promise */) {}
 
 static bool get_stack_is_running() { return true; }
 
