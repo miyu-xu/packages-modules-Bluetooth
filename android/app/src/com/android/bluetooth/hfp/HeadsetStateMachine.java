@@ -2389,6 +2389,16 @@ class HeadsetStateMachine extends StateMachine {
                 Log.d(TAG, "Processing command: " + atString);
                 if (processAndroidAtSinkAudioPolicy(args, device)) {
                     mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_OK, 0);
+
+                    if (getHfpCallAudioPolicy().getActiveDevicePolicyAfterConnection()
+                                    == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED
+                            && mDevice.equals(mHeadsetService.getActiveDevice())) {
+                        Log.d(
+                                TAG,
+                                "Remove the active because the connecting time policy is not"
+                                        + " allowed.");
+                        mHeadsetService.setActiveDevice(null);
+                    }
                 } else {
                     Log.w(TAG, "Invalid SinkAudioPolicy parameters!");
                     mNativeInterface.atResponseCode(

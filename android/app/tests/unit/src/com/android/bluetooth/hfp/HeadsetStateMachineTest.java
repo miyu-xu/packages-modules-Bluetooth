@@ -1924,6 +1924,14 @@ public class HeadsetStateMachineTest {
     }
 
     @Test
+    public void testCheckAndProcessAndroidAt_handleConnectingTimePolicyNotAllowed() {
+        when(mHeadsetService.getActiveDevice()).thenReturn(mTestDevice);
+        mHeadsetStateMachine.checkAndProcessAndroidAt(
+                "+ANDROID=SINKAUDIOPOLICY,0,2,0", mTestDevice);
+        verify(mHeadsetService, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setActiveDevice(null);
+    }
+
+    @Test
     public void testCheckAndProcessAndroidAt_replyAndroidAtFeatureRequest() {
         // Commands that will be handled
         Assert.assertTrue(mHeadsetStateMachine.checkAndProcessAndroidAt("+ANDROID=?", mTestDevice));
