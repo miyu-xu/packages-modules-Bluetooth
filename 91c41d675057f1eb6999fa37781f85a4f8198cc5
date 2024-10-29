@@ -22,6 +22,30 @@
       },
       "revId": "91c41d675057f1eb6999fa37781f85a4f8198cc5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74c678cf_c1599885",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1233,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-29T20:42:20Z",
+      "side": 1,
+      "message": "That\u0027s good call out, thanks.\nPer BASS spec 3.2. Broadcast Receive State, the range is Range: 0x00-0xFF, adding this check.",
+      "parentUuid": "a849f1aa_c119ef05",
+      "range": {
+        "startLine": 1233,
+        "startChar": 43,
+        "endLine": 1233,
+        "endChar": 56
+      },
+      "revId": "91c41d675057f1eb6999fa37781f85a4f8198cc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
