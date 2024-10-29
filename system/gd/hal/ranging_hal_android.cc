@@ -32,13 +32,24 @@
 
 using aidl::android::hardware::bluetooth::ranging::BluetoothChannelSoundingParameters;
 using aidl::android::hardware::bluetooth::ranging::BnBluetoothChannelSoundingSessionCallback;
+using aidl::android::hardware::bluetooth::ranging::Ch3cShapeType;
+using aidl::android::hardware::bluetooth::ranging::ChannelSelectionType;
 using aidl::android::hardware::bluetooth::ranging::ChannelSoudingRawData;
+using aidl::android::hardware::bluetooth::ranging::ChannelSoundingProcedureData;
 using aidl::android::hardware::bluetooth::ranging::ComplexNumber;
+using aidl::android::hardware::bluetooth::ranging::Config;
+using aidl::android::hardware::bluetooth::ranging::CsSyncPhyType;
 using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSounding;
 using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSoundingSession;
 using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSoundingSessionCallback;
+using aidl::android::hardware::bluetooth::ranging::ModeType;
+using aidl::android::hardware::bluetooth::ranging::ProcedureEnableConfig;
+using aidl::android::hardware::bluetooth::ranging::Role;
+using aidl::android::hardware::bluetooth::ranging::RttType;
 using aidl::android::hardware::bluetooth::ranging::StepTonePct;
+using aidl::android::hardware::bluetooth::ranging::SubModeType;
 using aidl::android::hardware::bluetooth::ranging::VendorSpecificData;
+// using aidl::android::hardware::bluetooth::ranging::
 
 namespace bluetooth {
 namespace hal {
@@ -234,6 +245,77 @@ public:
               raw_data.packet_quality_reflector.begin(), raw_data.packet_quality_reflector.end());
     }
     session_trackers_[connection_handle]->GetSession()->writeRawData(hal_raw_data);
+  }
+
+  void UpdateChannelSoundingConfig(
+          uint16_t connection_handle,
+          const hci::LeCsConfigCompleteView& leCsConfigCompleteView) override {
+    auto it = session_trackers_.find(connection_handle);
+    if (it == session_trackers_.end()) {
+      log::error("Can't find session for connection_handle:0x{:04x}", connection_handle);
+      return;
+    } else if (it->second->GetSession() == nullptr) {
+      log::error("Session not opened");
+      return;
+    }
+
+    Config csConfig;
+    csConfig.modeType =
+            static_cast<ModeType>(static_cast<int>(leCsConfigCompleteView.GetMainModeType()));
+    csConfig.subModeType =
+            static_cast<SubModeType>(static_cast<int>(leCsConfigCompleteView.GetSubModeType()));
+    csConfig.rttType = static_cast<RttType>(static_cast<int>(leCsConfigCompleteView.GetRttType()));
+    csConfig.channelMap = leCsConfigCompleteView.GetChannelMap();
+    csConfig.minMainModeSteps = leCsConfigCompleteView.GetMinMainModeSteps();
+    csConfig.maxMainModeSteps = leCsConfigCompleteView.GetMaxMainModeSteps();
+    csConfig.mainModeRepetition = leCsConfigCompleteView.GetMainModeRepetition();
+    csConfig.mode0Steps = leCsConfigCompleteView.GetMode0Steps();
+    csConfig.role = static_cast<Role>(static_cast<int>(leCsConfigCompleteView.GetRole()));
+    csConfig.csSyncPhyType =
+            static_cast<CsSyncPhyType>(static_cast<int>(leCsConfigCompleteView.GetCsSyncPhy()));
+    csConfig.channelSelectionType = static_cast<ChannelSelectionType>(
+            static_cast<int>(leCsConfigCompleteView.GetChannelSelectionType()));
+    csConfig.ch3cShapeType =
+            static_cast<Ch3cShapeType>(static_cast<int>(leCsConfigCompleteView.GetCh3cShape()));
+    csConfig.ch3cJump = leCsConfigCompleteView.GetCh3cJump();
+    csConfig.channelMapRepetition = leCsConfigCompleteView.GetChannelMapRepetition();
+    csConfig.tIp1TimeUs = leCsConfigCompleteView.GetTIp1Time();
+    csConfig.tIp2TimeUs = leCsConfigCompleteView.GetTIp2Time();
+    csConfig.tFcsTimeUs = leCsConfigCompleteView.GetTFcsTime();
+    csConfig.tPmTimeUs = leCsConfigCompleteView.GetTPmTime();
+    // TODO(b/378942784): specify the following values.
+    csConfig.tSwTimeUsSupportedByLocal = 0;
+    csConfig.tSwTimeUsSupportedByRemote = 0;
+    csConfig.bleConnInterval = 0;
+
+    it->second->GetSession()->updateChannelSoundingConfig(csConfig);
+  }
+
+  void UpdateProcedureEnableConfig(
+          uint16_t connection_handle,
+          const hci::LeCsProcedureEnableCompleteView& leCsProcedureEnableCompleteView) override {
+    auto it = session_trackers_.find(connection_handle);
+    if (it == session_trackers_.end()) {
+      log::error("Can't find session for connection_handle:0x{:04x}", connection_handle);
+      return;
+    } else if (it->second->GetSession() == nullptr) {
+      log::error("Session not opened");
+      return;
+    }
+
+    ProcedureEnableConfig pConfig;
+    pConfig.toneAntennaConfigSelection =
+            leCsProcedureEnableCompleteView.GetToneAntennaConfigSelection();
+    pConfig.subeventLenUs = leCsProcedureEnableCompleteView.GetSubeventLen();
+    pConfig.subeventsPerEvent = leCsProcedureEnableCompleteView.GetSubeventsPerEvent();
+    pConfig.subeventInterval = leCsProcedureEnableCompleteView.GetSubeventInterval();
+    pConfig.eventInterval = leCsProcedureEnableCompleteView.GetEventInterval();
+    pConfig.procedureInterval = leCsProcedureEnableCompleteView.GetProcedureInterval();
+    pConfig.procedureCount = leCsProcedureEnableCompleteView.GetProcedureCount();
+    // TODO(b/378942784): update the max procedure len, the current complete view does not have it.
+    pConfig.maxProcedureLen = 0;
+
+    it->second->GetSession()->updateProcedureEnableConfig(pConfig);
   }
 
   void CopyVendorSpecificData(const std::vector<hal::VendorSpecificCharacteristic>& source,
