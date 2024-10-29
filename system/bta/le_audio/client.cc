@@ -4130,10 +4130,20 @@ public:
       return;
     }
 
+    /* Check if resuming stream is contains not allowed context or configuration is preapred in case
+     * if metadata was cleared by AF.
+     */
     if (!group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink)
+                 .test_all(local_metadata_context_types_.source) ||
+        !group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink)
                  .test(configuration_context_type_)) {
-      log::warn("Block source resume request context type: {}",
-                ToHexString(configuration_context_type_));
+      log::warn(
+              "Block source resume request context types: {}, allowed context mask: {}, "
+              "configured: {}",
+              ToString(local_metadata_context_types_.source),
+              ToString(group->GetAllowedContextMask(
+                      bluetooth::le_audio::types::kLeAudioDirectionSink)),
+              ToString(configuration_context_type_));
       CancelLocalAudioSourceStreamingRequest();
       return;
     }
@@ -4339,6 +4349,15 @@ public:
     }
   }
 
+  void notifyAudioLocalSource(UnicastMonitorModeStatus status) {
+    if (source_monitor_notified_status_ != status) {
+      log::info("Source stream monitoring status changed to: {}", static_cast<int>(status));
+      source_monitor_notified_status_ = status;
+      callbacks_->OnUnicastMonitorModeStatus(bluetooth::le_audio::types::kLeAudioDirectionSource,
+                                             status);
+    }
+  }
+
   void OnLocalAudioSinkResume() {
     log::info("active group_id: {} IN: audio_receiver_state_: {}, audio_sender_state_: {}",
               active_group_id_, ToString(audio_receiver_state_), ToString(audio_sender_state_));
@@ -4384,10 +4403,20 @@ public:
       return;
     }
 
+    /* Check if resuming stream is contains not allowed context or configuration is preapred in case
+     * if metadata was cleared by AF.
+     */
     if (!group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSource)
+                 .test_all(local_metadata_context_types_.sink) ||
+        !group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSource)
                  .test(configuration_context_type_)) {
-      log::warn("Block sink resume request context type: {}",
-                ToHexString(configuration_context_type_));
+      log::warn(
+              "Block sink resume request context types: {} vs allowed context mask: {}, "
+              "configured: {}",
+              ToString(local_metadata_context_types_.sink),
+              ToString(group->GetAllowedContextMask(
+                      bluetooth::le_audio::types::kLeAudioDirectionSource)),
+              ToString(configuration_context_type_));
       CancelLocalAudioSourceStreamingRequest();
       return;
     }
@@ -4614,6 +4643,12 @@ public:
     return true;
   }
 
+  bool IsUpdatedContextAllowedToBeStreamed(AudioContexts local_contexts,
+                                           AudioContexts allowed_contexts) {
+    return allowed_contexts.test_any(local_contexts) &&
+           allowed_contexts.test(configuration_context_type_) && !local_contexts.none();
+  }
+
   void OnLocalAudioSourceMetadataUpdate(
           const std::vector<struct playback_track_metadata_v7>& source_metadata, DsaMode dsa_mode) {
     if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
@@ -4643,6 +4678,28 @@ public:
 
     /* Set the remote sink metadata context from the playback tracks metadata */
     local_metadata_context_types_.source = GetAudioContextsFromSourceMetadata(source_metadata);
+
+    if (group->IsStreaming() &&
+        !IsUpdatedContextAllowedToBeStreamed(
+                local_metadata_context_types_.source,
+                group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink))) {
+      log::info(
+              "Updated sink metadata contexts are not allowed context types: {} | configured: {} "
+              "vs allowed context mask: {}",
+              ToString(local_metadata_context_types_.source), ToString(configuration_context_type_),
+              ToString(group->GetAllowedContextMask(
+                      bluetooth::le_audio::types::kLeAudioDirectionSink)));
+
+      /* SuspendForReconfiguration and ReconfigurationComplete is a workaround method to let Audio
+       * Framework know that session is suspended. Strem resume would be handled from
+       * suspended session context with stopped group.
+       */
+      SuspendedForReconfiguration();
+      ReconfigurationComplete(bluetooth::le_audio::types::kLeAudioDirectionSink);
+      GroupStop(active_group_id_);
+
+      return;
+    }
 
     local_metadata_context_types_.source =
             ChooseMetadataContextType(local_metadata_context_types_.source);
@@ -4774,6 +4831,29 @@ public:
 
     /* Set remote source metadata context from the recording tracks metadata */
     local_metadata_context_types_.sink = GetAudioContextsFromSinkMetadata(sink_metadata);
+
+    if (group->IsStreaming() &&
+        !IsUpdatedContextAllowedToBeStreamed(
+                local_metadata_context_types_.sink,
+                group->GetAllowedContextMask(
+                        bluetooth::le_audio::types::kLeAudioDirectionSource))) {
+      log::warn(
+              "Updated sink metadata contexts are not allowed context types: {} | configured: {} "
+              " vs allowed context mask: {}",
+              ToString(local_metadata_context_types_.sink), ToString(configuration_context_type_),
+              ToString(group->GetAllowedContextMask(
+                      bluetooth::le_audio::types::kLeAudioDirectionSource)));
+
+      /* SuspendForReconfiguration and ReconfigurationComplete is a workaround method to let Audio
+       * Framework know that session is suspended. Strem resume would be handled from
+       * suspended session context with stopped group.
+       */
+      SuspendedForReconfiguration();
+      ReconfigurationComplete(bluetooth::le_audio::types::kLeAudioDirectionSource);
+      GroupStop(active_group_id_);
+
+      return;
+    }
 
     local_metadata_context_types_.sink =
             ChooseMetadataContextType(local_metadata_context_types_.sink);
