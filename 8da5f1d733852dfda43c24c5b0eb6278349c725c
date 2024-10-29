@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8c435715_36c802d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T21:35:39Z",
+      "side": 1,
+      "message": "It is not new, it\u0027s like this since we start using flag.\n\nAnd this CL is using the flag get_all_element_attributes_empty so you can reference the associated flag bug and magic will happen 😊",
+      "parentUuid": "2596af00_db141d27",
+      "revId": "8da5f1d733852dfda43c24c5b0eb6278349c725c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c163bfb8_bc7122e6",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 2
