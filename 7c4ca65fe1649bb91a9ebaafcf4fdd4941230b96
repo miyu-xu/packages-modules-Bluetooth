@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5520bd35_9230cb23",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-10-29T19:03:06Z",
+      "side": 1,
+      "message": "Agreed. Moved the implementation inside MetricsLogger",
+      "parentUuid": "bf9cde94_a9ffc649",
+      "revId": "7c4ca65fe1649bb91a9ebaafcf4fdd4941230b96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "261ddc8d_2f1ffe6d",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "379867d0_384ad4f9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-10-29T19:03:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "261ddc8d_2f1ffe6d",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 27
+      },
+      "revId": "7c4ca65fe1649bb91a9ebaafcf4fdd4941230b96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf63d2d6_cb52b8d3",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-10-29T18:44:02Z",
       "side": 1,
       "message": "Format is not correct",
+      "range": {
+        "startLine": 660,
+        "startChar": 5,
+        "endLine": 713,
+        "endChar": 5
+      },
+      "revId": "7c4ca65fe1649bb91a9ebaafcf4fdd4941230b96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc8e976_188bb9f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-10-29T19:03:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf63d2d6_cb52b8d3",
       "range": {
         "startLine": 660,
         "startChar": 5,
