@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6bbc8b_3fca1c1e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:11:09Z",
+      "side": 1,
+      "message": "nit: use dashes for greater legibility",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 13
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c057ac0_2e93ba59",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:11:09Z",
+      "side": 1,
+      "message": "isValidId ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 20,
+        "endLine": 72,
+        "endChar": 30
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17cf4a47_f6ba4569",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:11:09Z",
+      "side": 1,
+      "message": "The range of valid IDs seems to be 1..\u003dnumberOfExternalInputs from reading how this class is being used.",
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ebe6368_359367bd",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:11:09Z",
+      "side": 1,
+      "message": "nit: `+ mute) + \")\";` (same for other logInfo instances)",
+      "range": {
+        "startLine": 1032,
+        "startChar": 44,
+        "endLine": 1032,
+        "endChar": 50
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a696744e_be75d2b5",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:11:09Z",
+      "side": 1,
+      "message": "\u0026\u0026",
+      "range": {
+        "startLine": 1057,
+        "startChar": 24,
+        "endLine": 1057,
+        "endChar": 26
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6b90005_3607abec",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1079,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T00:11:09Z",
+      "side": 1,
+      "message": "so very magical",
+      "range": {
+        "startLine": 1079,
+        "startChar": 19,
+        "endLine": 1079,
+        "endChar": 20
+      },
+      "revId": "0917d3247758670fc4ca8329677893a9d63eeb27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
