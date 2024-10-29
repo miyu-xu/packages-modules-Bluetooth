@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d628e6ad_b59f82e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T21:56:28Z",
+      "side": 1,
+      "message": "When uploading the change, please use repo upload to run the appropriate hook for code formatting\n\nCurrently the formatter is not happy:\n```\nframework/java/android/bluetooth/BluetoothAdapter.java | 41 ++++++++++++++++++++++-------------------\nframework/java/android/bluetooth/BluetoothSocket.java  | 32 ++++++++++++++++----------------\n2 files changed, 38 insertions(+), 35 deletions(-)\n```",
+      "revId": "29a19655025fd1f658f582eac3e3ac3b5b4a85b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c959b2ce_8b86031b",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 4532,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T21:56:28Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 4532,
+        "startChar": 30,
+        "endLine": 4532,
+        "endChar": 53
+      },
+      "revId": "29a19655025fd1f658f582eac3e3ac3b5b4a85b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
