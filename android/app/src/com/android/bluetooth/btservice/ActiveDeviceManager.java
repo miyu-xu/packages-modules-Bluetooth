@@ -766,9 +766,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                             + device
                             + ", mLeAudioActiveDevice="
                             + mLeAudioActiveDevice);
-            if (device != null && !mLeAudioConnectedDevices.contains(device)) {
-                mLeAudioConnectedDevices.add(device);
-            }
+
             // Just assign locally the new value
             if (device != null && !Objects.equals(mLeAudioActiveDevice, device)) {
                 if (!Utils.isDualModeAudioEnabled()) {
