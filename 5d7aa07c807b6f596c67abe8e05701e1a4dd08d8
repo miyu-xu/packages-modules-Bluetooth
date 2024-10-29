@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a03fad6f_a0cedfd3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T21:34:10Z",
+      "side": 1,
+      "message": "You may have a way cleaner switch if you import statically the definition and then use the switch with array instead of multiplying return statetment.\n\nLike this:\n```\nimport static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_A2DP;\n\n[...]\n    private int getProfileEnumFromProfileId(int profile) {\n        return switch (profile) {\n            case BluetoothProfile.A2DP -\u003e\n                BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_A2DP;\n            case BluetoothProfile.A2DP_SINK-\u003e\n                BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_A2DP_SINK;\n```\n                        \netc..\n\nMaybe you\u0027ll even have way less check content du to long line too ^^",
+      "range": {
+        "startLine": 719,
+        "startChar": 8,
+        "endLine": 725,
+        "endChar": 58
+      },
+      "revId": "5d7aa07c807b6f596c67abe8e05701e1a4dd08d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
