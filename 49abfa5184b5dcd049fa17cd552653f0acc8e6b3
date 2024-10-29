@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8448a517_a5da7180",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T21:25:59Z",
+      "side": 0,
+      "message": "quick question,\n\nA lot of other profiles have 30 secondes here and not 10. Do we have the history of this difference ?",
+      "range": {
+        "startLine": 117,
+        "startChar": 64,
+        "endLine": 117,
+        "endChar": 69
+      },
+      "revId": "49abfa5184b5dcd049fa17cd552653f0acc8e6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
