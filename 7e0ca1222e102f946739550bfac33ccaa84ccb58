@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46e0e2b7_9a552be5",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-10-29T20:32:28Z",
+      "side": 1,
+      "message": "I have annotated the Builder class with flag now. May be this is needed as these are not nested classes and each are individual public interfaces.\n\nnow, entire class is shows under the flag in current.txt. please check this is good?",
+      "parentUuid": "d05e41c2_2e8beb69",
+      "range": {
+        "startLine": 1127,
+        "startChar": 2,
+        "endLine": 1137,
+        "endChar": 0
+      },
+      "revId": "7e0ca1222e102f946739550bfac33ccaa84ccb58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e0ca4d8_d3debf12",
