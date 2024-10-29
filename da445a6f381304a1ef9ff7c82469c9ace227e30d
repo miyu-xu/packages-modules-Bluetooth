@@ -33,6 +33,29 @@
       "message": "I am trying to understand how this change fixes the reported problem. As I understand the issue happens when SMP terminates the LE connection, the pairing failure is set as `SMP_CONN_TOUT` which does not reset the pairing state.",
       "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c493b110_16b882d4",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T21:49:54Z",
+      "side": 1,
+      "message": "Nice, i like the idea as this is very clear and direct",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 78
+      },
+      "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
