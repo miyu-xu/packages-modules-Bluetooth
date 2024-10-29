@@ -34,6 +34,24 @@
       "parentUuid": "959144b9_cacca94a",
       "revId": "bfeeb2ecd091d1056ff4e2cf843dbc5c4e7d6836",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d9bb63_750c855c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-29T20:59:55Z",
+      "side": 1,
+      "message": "Had some offline discussions, \nbased on below reasons, let\u0027s move forward with this change in 25Q1.\n\n1. I don\u0027t see a concrete counter solution at this point to get this addressed with UI team in 25Q1. To give UI team enough time to make their corresponding changes, we should take the action.\n2. This proposal has been well discussed with UI team, and keep all our current UX design remained untouched. This change only touched the primary group settings, not active device change. Also this CL is under flag, and will go through QA testings to ensure the quality. So this is safe solution for 25Q1.\n3. We\u0027d need to get this in to unblock the following 25Q2 API changes.\n\nIf we have some proposal to improve this, let\u0027s start with design first and target it for 25Q2 if needed.",
+      "parentUuid": "7fe10f86_ae3b6b83",
+      "revId": "bfeeb2ecd091d1056ff4e2cf843dbc5c4e7d6836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
