@@ -263,7 +263,12 @@ static void smp_br_connect_callback(uint16_t /* channel */, const RawAddress& bd
   log::info("BDA:{} pairing_bda:{}, connected:{}", bd_addr, p_cb->pairing_bda, connected);
 
   if (bd_addr != p_cb->pairing_bda) {
-    return;
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+    /* When pairing was initiated to RPA, and connection was on LE transport first using RPA, then
+     * we must check record pseudo address, it might be same device */
+    if (p_dev_rec == nullptr || p_dev_rec->RemoteAddress() != p_cb->pairing_bda) {
+      return;
+    }
   }
 
   /* Check if we already finished SMP pairing over LE, and are waiting to
