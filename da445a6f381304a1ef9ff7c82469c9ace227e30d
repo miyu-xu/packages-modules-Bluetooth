@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1735c943_76ff7c0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-29T21:01:51Z",
+      "side": 1,
+      "message": "Nit: Can you rephrase it?",
+      "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50095e1b_61002080",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-29T21:01:51Z",
+      "side": 1,
+      "message": "I am trying to understand how this change fixes the reported problem. As I understand the issue happens when SMP terminates the LE connection, the pairing failure is set as `SMP_CONN_TOUT` which does not reset the pairing state.",
+      "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
