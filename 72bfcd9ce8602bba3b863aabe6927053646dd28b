@@ -105,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20f9b82_d41a3893",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-29T06:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e2ac234_1948c2e6",
+      "range": {
+        "startLine": 50,
+        "startChar": 28,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "767b3ac3_5f20c82a",
@@ -193,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c811b0ad_302964d0",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-29T06:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f73411d_95a13815",
+      "range": {
+        "startLine": 345,
+        "startChar": 40,
+        "endLine": 345,
+        "endChar": 43
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeff655a_f478d73f",
@@ -234,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d9e0e34_50496e5d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-29T06:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aeff655a_f478d73f",
+      "range": {
+        "startLine": 390,
+        "startChar": 35,
+        "endLine": 390,
+        "endChar": 38
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5598afb4_0f54eed7",
@@ -247,6 +319,30 @@
       "writtenOn": "2024-10-18T17:00:48Z",
       "side": 1,
       "message": "Why do we want to expose this to API callers? Can this be determined automatically in the stack? \n\nSince caller will have fewer idea on which context hub to choose",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 0
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfbf6b61_57ffdf3f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-29T06:32:12Z",
+      "side": 1,
+      "message": "system app should have OOB communication with offload hub/endpoint so that they have to know the offload configuration.",
+      "parentUuid": "5598afb4_0f54eed7",
       "range": {
         "startLine": 412,
         "startChar": 0,
@@ -280,6 +376,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f81c9af_4781fe82",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-29T06:32:12Z",
+      "side": 1,
+      "message": "system app should have OOB communication with offload hub/endpoint so that they have to know the offload configuration.",
+      "parentUuid": "7691a34c_c8e5585a",
+      "range": {
+        "startLine": 426,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 9
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d8b4159_ba75690d",
@@ -293,6 +413,30 @@
       "writtenOn": "2024-10-18T17:00:48Z",
       "side": 1,
       "message": "If we have this, don\u0027t we also need a callback or event to see when the switch happened? Otherwise, how does a general API caller know when the switch happens?",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 9
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c340d28_4b376ee2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-29T06:32:12Z",
+      "side": 1,
+      "message": "setAutoDataPathSwitch API is deprecated",
+      "parentUuid": "0d8b4159_ba75690d",
       "range": {
         "startLine": 440,
         "startChar": 0,
