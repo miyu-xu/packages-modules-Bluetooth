@@ -184,6 +184,30 @@
       },
       "revId": "51bb65eaee7805acb4d6d51a7863f7f9854735e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01a218d7_40fa7981",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-10-29T01:04:47Z",
+      "side": 1,
+      "message": "Understood, no concern about the handler change.",
+      "parentUuid": "1a6653ad_f8364129",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 57
+      },
+      "revId": "51bb65eaee7805acb4d6d51a7863f7f9854735e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
