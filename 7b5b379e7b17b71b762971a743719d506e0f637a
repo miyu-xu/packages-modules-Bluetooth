@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31d6221_98e3c925",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3541,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T18:25:32Z",
+      "side": 1,
+      "message": "If there is already a phone call in progress, does calling this method should result in switching dynamically the mic routing ? or are we waiting for the next phone call to apply it ?\n\nI don\u0027t think the current implementation handle anything about being in a call",
+      "range": {
+        "startLine": 3541,
+        "startChar": 59,
+        "endLine": 3541,
+        "endChar": 89
+      },
+      "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
