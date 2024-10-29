@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c163bfb8_bc7122e6",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-29T18:48:58Z",
+      "side": 1,
+      "message": "FYI the flag `get_all_element_attributes_empty` hasn\u0027t started the rollout",
+      "range": {
+        "startLine": 767,
+        "startChar": 61,
+        "endLine": 767,
+        "endChar": 93
+      },
+      "revId": "8da5f1d733852dfda43c24c5b0eb6278349c725c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
