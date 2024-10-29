@@ -22,6 +22,30 @@
       },
       "revId": "5d7aa07c807b6f596c67abe8e05701e1a4dd08d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "944e6cd4_75419fd1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-10-29T23:18:00Z",
+      "side": 1,
+      "message": "I think that\u0027s a good idea. Went with the above definition",
+      "parentUuid": "a03fad6f_a0cedfd3",
+      "range": {
+        "startLine": 719,
+        "startChar": 8,
+        "endLine": 725,
+        "endChar": 58
+      },
+      "revId": "5d7aa07c807b6f596c67abe8e05701e1a4dd08d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
