@@ -63,6 +63,29 @@
       },
       "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c538468e_d1a95d00",
+        "filename": "system/stack/avct/avct_lcb.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-29T17:25:49Z",
+      "side": 1,
+      "message": "The control block is cleared at the end of the function, your patch does not change anything",
+      "range": {
+        "startLine": 329,
+        "startChar": 30,
+        "endLine": 333,
+        "endChar": 38
+      },
+      "revId": "ab371f963bde6b333a2f9afe399f17c2e82b9b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
