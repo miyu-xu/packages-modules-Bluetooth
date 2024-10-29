@@ -26,6 +26,8 @@
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
+void gatt_invoke_rust_module_up();
+
 void btif_to_bta_response(tGATTS_RSP* p_dest, btgatt_response_t* p_src);
 
 void btif_gatt_check_encrypted_link(RawAddress bd_addr, tBT_TRANSPORT transport);

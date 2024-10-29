@@ -30,6 +30,7 @@
 #include "btcore/include/osi_module.h"
 #include "btif/include/btif_api.h"
 #include "btif/include/btif_common.h"
+#include "btif/include/btif_gatt_util.h"
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "common/message_loop_thread.h"
@@ -130,6 +131,7 @@ static void event_shut_down_rust_module();
 
 static void event_signal_stack_up(void* context);
 static void event_signal_stack_down(void* context);
+static void event_signal_rust_module_up();
 
 static bluetooth::core::CoreInterface* interfaceToProfiles;
 
@@ -395,6 +397,9 @@ static void event_start_up_rust_module() {
   info("is bringing up the Rust module");
   module_start_up(get_local_module(RUST_MODULE));
   info("finished");
+  if (com::android::bluetooth::flags::scan_manager_refactor()) {
+    do_in_jni_thread(base::BindOnce(event_signal_rust_module_up));
+  }
 }
 
 static void event_shut_down_rust_module() {
@@ -455,6 +460,8 @@ static void event_signal_stack_down(void* /* context */) {
   GetInterfaceToProfiles()->events->invoke_adapter_state_changed_cb(BT_STATE_OFF);
   future_ready(stack_manager_get_hack_future(), FUTURE_SUCCESS);
 }
+
+static void event_signal_rust_module_up() { gatt_invoke_rust_module_up(); }
 
 static void ensure_manager_initialized() {
   if (management_thread.IsRunning()) {

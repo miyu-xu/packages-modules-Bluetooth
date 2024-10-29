@@ -89,6 +89,9 @@ typedef enum {
 
 /** BT-GATT Client callback structure. */
 
+/** Callback invoked when the Rust module is up. */
+typedef void (*rust_module_up_callback)();
+
 /** Callback invoked in response to register_client */
 typedef void (*register_client_callback)(int status, int client_if,
                                          const bluetooth::Uuid& app_uuid);
@@ -176,6 +179,7 @@ typedef void (*subrate_change_callback)(int conn_id, uint16_t subrate_factor, ui
                                         uint16_t cont_num, uint16_t timeout, uint8_t status);
 
 typedef struct {
+  rust_module_up_callback rust_module_up_cb;
   register_client_callback register_client_cb;
   connect_callback open_cb;
   disconnect_callback close_cb;

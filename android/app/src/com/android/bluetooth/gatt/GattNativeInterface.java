@@ -22,12 +22,15 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /** GATT Profile Native Interface to/from JNI. */
 public class GattNativeInterface {
     private static final String TAG = GattNativeInterface.class.getSimpleName();
 
     private GattService mGattService;
+
+    private final CompletableFuture<Void> mInitFuture = new CompletableFuture<>();
 
     @GuardedBy("INSTANCE_LOCK")
     private static GattNativeInterface sInstance;
@@ -63,6 +66,10 @@ public class GattNativeInterface {
     }
 
     /* Callbacks */
+
+    void onRustModuleUp() {
+        mInitFuture.complete(null);
+    }
 
     void onClientRegistered(int status, int clientIf, long uuidLsb, long uuidMsb)
             throws RemoteException {
@@ -403,9 +410,10 @@ public class GattNativeInterface {
             int p5);
 
     /** Initialize the native interface and native components */
-    public void init(GattService gattService) {
+    public CompletableFuture<Void> init(GattService gattService) {
         mGattService = gattService;
         initializeNative();
+        return mInitFuture;
     }
 
     /** Clean up the native interface and native components */

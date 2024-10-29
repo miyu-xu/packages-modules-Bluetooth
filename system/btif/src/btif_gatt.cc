@@ -77,6 +77,8 @@ static void btif_gatt_cleanup(void) {
   BTA_GATTS_Disable();
 }
 
+void gatt_invoke_rust_module_up() { HAL_CBACK(bt_gatt_callbacks, client->rust_module_up_cb); }
+
 static btgatt_interface_t btgattInterface = {
         .size = sizeof(btgattInterface),
 

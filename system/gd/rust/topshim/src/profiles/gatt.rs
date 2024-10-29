@@ -568,6 +568,7 @@ impl From<u8> for AdvertisingStatus {
 
 #[derive(Debug)]
 pub enum GattClientCallbacks {
+    RustModuleUp(),
     RegisterClient(GattStatus, i32, Uuid),
     Connect(i32, GattStatus, i32, RawAddress),
     Disconnect(i32, GattStatus, i32, RawAddress),
@@ -621,6 +622,11 @@ pub struct GattServerCallbacksDispatcher {
 
 type GattClientCb = Arc<Mutex<GattClientCallbacksDispatcher>>;
 type GattServerCb = Arc<Mutex<GattServerCallbacksDispatcher>>;
+
+cb_variant!(
+    GattClientCb,
+    gc_rust_module_up_cb -> GattClientCallbacks::RustModuleUp
+);
 
 cb_variant!(
     GattClientCb,
@@ -1824,6 +1830,7 @@ impl Gatt {
         }
 
         let gatt_client_callbacks = Box::new(btgatt_client_callbacks_t {
+            rust_module_up_cb: Some(gc_rust_module_up_cb),
             register_client_cb: Some(gc_register_client_cb),
             open_cb: Some(gc_open_cb),
             close_cb: Some(gc_close_cb),

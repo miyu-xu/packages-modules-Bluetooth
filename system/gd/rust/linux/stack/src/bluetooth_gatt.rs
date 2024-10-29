@@ -2726,6 +2726,9 @@ impl IBluetoothGatt for BluetoothGatt {
 
 #[btif_callbacks_dispatcher(dispatch_gatt_client_callbacks, GattClientCallbacks)]
 pub(crate) trait BtifGattClientCallbacks {
+    #[btif_callback(RustModuleUp)]
+    fn rust_module_up_cb(&mut self);
+
     #[btif_callback(RegisterClient)]
     fn register_client_cb(&mut self, status: GattStatus, client_id: i32, app_uuid: Uuid);
 

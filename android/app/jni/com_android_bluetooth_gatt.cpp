@@ -128,6 +128,7 @@ namespace android {
  * Client callback methods
  */
 static jmethodID method_onClientRegistered;
+static jmethodID method_onRustModuleUp;
 static jmethodID method_onConnected;
 static jmethodID method_onDisconnected;
 static jmethodID method_onReadCharacteristic;
@@ -236,6 +237,15 @@ static std::shared_mutex callbacks_mutex;
 /**
  * BTA client callbacks
  */
+
+void btgattl_rust_module_up_cb() {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mCallbacksObj) {
+    return;
+  }
+  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onRustModuleUp);
+}
 
 void btgattc_register_app_cb(int status, int clientIf, const Uuid& app_uuid) {
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
@@ -636,6 +646,7 @@ static const btgatt_scanner_callbacks_t sGattScannerCallbacks = {
 };
 
 static const btgatt_client_callbacks_t sGattClientCallbacks = {
+        btgattl_rust_module_up_cb,
         btgattc_register_app_cb,
         btgattc_open_cb,
         btgattc_close_cb,
@@ -3059,6 +3070,7 @@ static int register_com_android_bluetooth_gatt_(JNIEnv* env) {
 
   const JNIJavaMethod javaMethods[] = {
           // Client callbacks
+          {"onRustModuleUp", "()V", &method_onRustModuleUp},
           {"onClientRegistered", "(IIJJ)V", &method_onClientRegistered},
           {"onConnected", "(IIILjava/lang/String;)V", &method_onConnected},
           {"onDisconnected", "(IIILjava/lang/String;)V", &method_onDisconnected},
