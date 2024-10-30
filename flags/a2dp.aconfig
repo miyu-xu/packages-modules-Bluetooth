@@ -42,16 +42,6 @@ flag {
 }
 
 flag {
-    name: "avrcp_sdp_records"
-    namespace: "bluetooth"
-    description: "Update SDP records for AVRC"
-    bug: "341353017"
-    metadata {
-        purpose: PURPOSE_BUGFIX
-    }
-}
-
-flag {
     name: "a2dp_check_lea_iso_channel"
     namespace: "bluetooth"
     description: "Prevent A2DP stream from starting when LEA ISO channels are in use"
