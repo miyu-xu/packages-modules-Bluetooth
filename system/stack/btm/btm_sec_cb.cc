@@ -20,6 +20,7 @@
 #include "stack/btm/btm_sec_cb.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -275,7 +276,8 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     }
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
-    if (sec_level & BTM_SEC_OUT_ENCRYPT) {
+    if (!com::android::bluetooth::flags::donot_mandate_auth_along_with_encryption() &&
+        sec_level & BTM_SEC_OUT_ENCRYPT) {
       sec_level |= BTM_SEC_OUT_AUTHENTICATE;
     }
 
@@ -303,7 +305,8 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     }
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
-    if (sec_level & BTM_SEC_IN_ENCRYPT) {
+    if (!com::android::bluetooth::flags::donot_mandate_auth_along_with_encryption &&
+        sec_level & BTM_SEC_IN_ENCRYPT) {
       sec_level |= BTM_SEC_IN_AUTHENTICATE;
     }
   }
