@@ -22,6 +22,7 @@ import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.calls;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.isNull;
@@ -375,6 +376,30 @@ public class ActiveDeviceManagerTest {
         headsetDisconnected(mSecondaryAudioDevice);
         mTestLooper.dispatchAll();
         verify(mHeadsetService).setActiveDevice(mHeadsetDevice);
+    }
+
+    @Test
+    public void headsetLeAudioDeviceRemoveActive_fallbackDeviceActive() {
+        leAudioConnected(mLeAudioDevice);
+        headsetConnected(mHeadsetDevice, false);
+        mTestLooper.dispatchAll();
+        verify(mHeadsetService).setActiveDevice(mHeadsetDevice);
+
+        headsetActiveDeviceChanged(null);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService, calls(1)).setActiveDevice(mLeAudioDevice);
+    }
+
+    @Test
+    public void leAudioHeadsetDeviceRemoveActive_fallbackDeviceActive() {
+        headsetConnected(mHeadsetDevice, false);
+        leAudioConnected(mLeAudioDevice);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+
+        leAudioActiveDeviceChanged(null);
+        mTestLooper.dispatchAll();
+        verify(mHeadsetService, calls(2)).setActiveDevice(mHeadsetDevice);
     }
 
     @Test
