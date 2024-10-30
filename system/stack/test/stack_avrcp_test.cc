@@ -15,17 +15,24 @@
  */
 
 #include <arpa/inet.h>  // htons
+#include <base/functional/bind.h>
 #include <dlfcn.h>
 #include <gtest/gtest.h>
 
+#include "osi/include/allocator.h"
+#include "stack/avrc/avrc_int.h"
 #include "stack/include/avrc_api.h"
+#include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
+#include "test/fake/fake_osi.h"
 
 class StackAvrcpTest : public ::testing::Test {
 protected:
-  StackAvrcpTest() = default;
+  void SetUp() override { fake_osi_ = std::make_unique<::test::fake::FakeOsi>(); }
 
-  virtual ~StackAvrcpTest() = default;
+  void TearDown() override {}
+
+  std::unique_ptr<test::fake::FakeOsi> fake_osi_;
 };
 
 TEST_F(StackAvrcpTest, test_avrcp_ctrl_parse_vendor_rsp) {
@@ -190,4 +197,13 @@ TEST_F(StackAvrcpTest, test_avrcp_pdu_register_notification) {
     ASSERT_EQ((id == 0 || id > AVRC_NUM_NOTIF_EVENTS) ? AVRC_STS_BAD_PARAM : AVRC_STS_NO_ERROR,
               AVRC_Ctrl_ParsCommand(&msg, &result));
   } while (++id != 0);
+}
+
+TEST_F(StackAvrcpTest, AVRC_MsgReq) {
+  uint8_t handle{};
+  uint8_t pkt[AVRC_MIN_VENDOR_SIZE];
+  BT_HDR* bt_hdr = reinterpret_cast<BT_HDR*>(pkt);
+  bt_hdr->len = AVRC_MIN_META_HDR_SIZE;
+
+  ASSERT_EQ(AVRC_SUCCESS, AVRC_MsgReq(handle, {}, {}, bt_hdr, true /* is_new_avrcp */));
 }
