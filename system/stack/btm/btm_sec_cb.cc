@@ -276,8 +276,10 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     }
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
-    if (sec_level & BTM_SEC_OUT_ENCRYPT) {
+    if (false && sec_level & BTM_SEC_OUT_ENCRYPT) {
       sec_level |= BTM_SEC_OUT_AUTHENTICATE;
+    } else {
+        log::debug("dont mandate authentication");
     }
 
     /* outgoing connections usually set the security level right before
@@ -304,8 +306,10 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     }
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
-    if (sec_level & BTM_SEC_IN_ENCRYPT) {
+    if (false && sec_level & BTM_SEC_IN_ENCRYPT) {
       sec_level |= BTM_SEC_IN_AUTHENTICATE;
+    } else {
+      log::debug("IN: dont mandate authentication");
     }
   }
 
