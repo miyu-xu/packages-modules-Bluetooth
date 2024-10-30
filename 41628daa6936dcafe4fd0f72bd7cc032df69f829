@@ -34,6 +34,24 @@
       "parentUuid": "cb29a428_bad3364b",
       "revId": "41628daa6936dcafe4fd0f72bd7cc032df69f829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c57d4bb_92614194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-30T18:02:44Z",
+      "side": 1,
+      "message": "Oh, I\u0027m blind. I thought we had **/*.aconfig in there :(",
+      "parentUuid": "cb29a428_bad3364b",
+      "revId": "41628daa6936dcafe4fd0f72bd7cc032df69f829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
