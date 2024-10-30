@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ee6296_35cc9fa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-10-30T18:21:14Z",
+      "side": 1,
+      "message": "pass to new HFP area owner aarthibc@google.com",
+      "revId": "a398b8369153e66985fa4a45d37407228f115658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
