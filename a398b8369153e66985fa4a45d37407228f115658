@@ -16,6 +16,29 @@
       "message": "pass to new HFP area owner aarthibc@google.com",
       "revId": "a398b8369153e66985fa4a45d37407228f115658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6333b2b6_dde4e524",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2398,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-10-30T21:44:51Z",
+      "side": 1,
+      "message": "Can we use the actual text of the command \"Remove the active device because the active device policy after connection is not allowed\"",
+      "range": {
+        "startLine": 2398,
+        "startChar": 59,
+        "endLine": 2398,
+        "endChar": 86
+      },
+      "revId": "a398b8369153e66985fa4a45d37407228f115658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
