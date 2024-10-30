@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ebea705_a0068aa2",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1560,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-10-30T14:10:21Z",
+      "side": 1,
+      "message": "please check this cl - 3322440 for new HAL",
+      "parentUuid": "823558de_4e6ae97b",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d6bba5d_306efe4c",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 3
