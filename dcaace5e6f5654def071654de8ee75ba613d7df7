@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7f6677_631dbca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-30T02:54:24Z",
+      "side": 1,
+      "message": "API +1. Although declared, permissions were never enforced on these methods for creating a Bluetooth socket. This does not introduce any security issue as permissions are enforced when a caller wants to bind to such created socket. @asapperstein@google.com",
+      "revId": "dcaace5e6f5654def071654de8ee75ba613d7df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
