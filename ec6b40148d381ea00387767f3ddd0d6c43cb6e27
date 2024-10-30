@@ -16,6 +16,24 @@
       "message": "CONNECT previously has a log here.",
       "revId": "ec6b40148d381ea00387767f3ddd0d6c43cb6e27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9a8c79_fca1d364",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:57:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f37c4592_63fd54e5",
+      "revId": "ec6b40148d381ea00387767f3ddd0d6c43cb6e27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
