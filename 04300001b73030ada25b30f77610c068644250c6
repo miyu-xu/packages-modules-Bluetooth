@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34e27712_822069bf",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-30T17:14:49Z",
+      "side": 1,
+      "message": "Either move this to sGattServerCallbacks (since rust is for private GATT which is server), or you can have it as a top-level member of sGattCallbacks.\n\nPerhaps even cleaner would be to pass the callback into start_rust_module instead.",
+      "range": {
+        "startLine": 649,
+        "startChar": 8,
+        "endLine": 649,
+        "endChar": 33
+      },
+      "revId": "04300001b73030ada25b30f77610c068644250c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
