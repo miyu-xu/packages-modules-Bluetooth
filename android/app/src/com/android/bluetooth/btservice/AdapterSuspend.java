@@ -21,15 +21,17 @@ import static android.bluetooth.BluetoothAdapter.SCAN_MODE_NONE;
 
 import static java.util.Objects.requireNonNull;
 
-import android.hardware.display.DisplayManager;
+import android.annotation.NonNull;
+import android.hardware.devicestate.DeviceState;
+import android.hardware.devicestate.DeviceStateManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.Display;
 
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.Arrays;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
 
 public class AdapterSuspend {
     private static final String TAG = "BtAdapterSuspend";
@@ -39,43 +41,107 @@ public class AdapterSuspend {
     private static final long MASK_DISCONNECT_CMPLT = 1 << 4;
     private static final long MASK_MODE_CHANGE = 1 << 19;
 
+    private DeviceStateManager mDeviceStateManager;
+
+    public final DeviceStateManager.DeviceStateCallback mDeviceStateCallback =
+            new DeviceStateManager.DeviceStateCallback() {
+                @Override
+                public void onDeviceStateChanged(@NonNull DeviceState state) {
+                    String nextState = state.getName();
+                    Log.d(TAG, "Handle state transition: " + mCurrentState + " => " + nextState);
+                    if (mCurrentState.equals("None")) {
+                        mCurrentState = nextState;
+                        Log.i(TAG, "Initialize device state to " + nextState);
+                        return;
+                    }
+
+                    switch (nextState) {
+                        case "CLOSED":
+                            if (mCurrentState.equals("DISPLAY_OFF")) {
+                                Log.d(TAG, "No action for state " + nextState);
+                            } else {
+                                handleSuspend(false);
+                            }
+                            break;
+                        case "DISPLAY_OFF":
+                            switch (mCurrentState) {
+                                case "TABLET":
+                                    handleSuspend(false);
+                                    break;
+                                case "DOCKED":
+                                    // fall through
+                                case "LAPTOP":
+                                    handleSuspend(true);
+                                    break;
+                                default:
+                                    Log.d(TAG, "No action for state " + nextState);
+                            }
+                            break;
+                        case "LAPTOP":
+                            // fall through
+                        case "DOCKED":
+                            // fall through
+                        case "TABLET":
+                            switch (mCurrentState) {
+                                case "CLOSED":
+                                    // fall through
+                                case "DISPLAY_OFF":
+                                    handleResume();
+                                    break;
+                                default:
+                                    Log.d(TAG, "No action for state " + nextState);
+                            }
+                            break;
+                        default:
+                            Log.e(TAG, "Unknown state transition to " + nextState);
+                            return;
+                    }
+                    mCurrentState = nextState;
+                }
+            };
+
+    public static class HandlerExecutor implements Executor {
+        private final Handler mHandler;
+
+        public HandlerExecutor(@NonNull Handler handler) {
+            mHandler = handler;
+        }
+
+        @Override
+        public void execute(Runnable command) {
+            if (!mHandler.post(command)) {
+                throw new RejectedExecutionException(mHandler + " is shutting down");
+            }
+        }
+    }
+
+    public HandlerExecutor mExecutor;
+
     private boolean mSuspended = false;
+
+    // Value should be initialized at boot time
+    private String mCurrentState = "None";
 
     private final AdapterNativeInterface mAdapterNativeInterface;
     private final Handler mHandler;
 
-    private final DisplayManager mDisplayManager;
-    private final DisplayManager.DisplayListener mDisplayListener =
-            new DisplayManager.DisplayListener() {
-                @Override
-                public void onDisplayAdded(int displayId) {}
-
-                @Override
-                public void onDisplayRemoved(int displayId) {}
-
-                @Override
-                public void onDisplayChanged(int displayId) {
-                    if (isScreenOn()) {
-                        handleResume(0);
-                    } else {
-                        handleSuspend(0);
-                    }
-                }
-            };
-
     public AdapterSuspend(
             AdapterNativeInterface adapterNativeInterface,
             Looper looper,
-            DisplayManager displayManager) {
+            DeviceStateManager deviceStateManager) {
         mAdapterNativeInterface = requireNonNull(adapterNativeInterface);
         mHandler = new Handler(requireNonNull(looper));
-        mDisplayManager = requireNonNull(displayManager);
 
-        mDisplayManager.registerDisplayListener(mDisplayListener, mHandler);
+        mExecutor = new HandlerExecutor(mHandler);
+        mDeviceStateManager = requireNonNull(deviceStateManager);
+        mDeviceStateManager.registerCallback(mExecutor, mDeviceStateCallback);
     }
 
     void cleanup() {
-        mDisplayManager.unregisterDisplayListener(mDisplayListener);
+        if (mDeviceStateManager != null) {
+            mDeviceStateManager.unregisterCallback(mDeviceStateCallback);
+            mDeviceStateManager = null;
+        }
     }
 
     @VisibleForTesting
@@ -83,23 +149,13 @@ public class AdapterSuspend {
         return mSuspended;
     }
 
-    private boolean isScreenOn() {
-        return Arrays.stream(mDisplayManager.getDisplays())
-                .anyMatch(display -> display.getState() == Display.STATE_ON);
-    }
-
-    /**
-     * Determine if wake by BT is allowed according to suspend reason.
-     *
-     * @param reason sleep reason.
-     */
-    public void handleSuspend(int reason) {
-        // TODO determine if allowing BT wake here.
-        mHandler.post(() -> handleSuspendInternal(true));
+    /** Determine if wake by BT is allowed according to suspend reason. */
+    public void handleSuspend(boolean wakeByBt) {
+        mHandler.post(() -> handleSuspendInternal(wakeByBt));
     }
 
     @VisibleForTesting
-    void handleSuspendInternal(boolean allowBtWake) {
+    void handleSuspendInternal(boolean wakeByBt) {
         if (mSuspended) {
             return;
         }
@@ -118,19 +174,15 @@ public class AdapterSuspend {
         mAdapterNativeInterface.clearFilterAcceptList();
         mAdapterNativeInterface.disconnectAllAcls();
 
-        if (allowBtWake) {
+        if (wakeByBt) {
             mAdapterNativeInterface.allowWakeByHid();
             Log.i(TAG, "configure wake by hid");
         }
         Log.i(TAG, "ready to suspend");
     }
 
-    /**
-     * Prepare for resume.
-     *
-     * @param reason wakeup reason.
-     */
-    public void handleResume(int reason) {
+    /** Prepare for resume. */
+    public void handleResume() {
         mHandler.post(() -> handleResumeInternal());
     }
 
