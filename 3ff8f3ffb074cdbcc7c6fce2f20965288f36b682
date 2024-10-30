@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f45cbe13_2b76710a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T00:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83a1a9b2_8c405741",
+      "range": {
+        "startLine": 13,
+        "startChar": 42,
+        "endLine": 13,
+        "endChar": 45
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "248c0fa8_7bd9e6ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T00:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d75649_1dc00666",
+      "range": {
+        "startLine": 13,
+        "startChar": 58,
+        "endLine": 13,
+        "endChar": 62
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b46bb52_74f0a983",
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a686ca_34b00d58",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3700,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T00:23:13Z",
+      "side": 1,
+      "message": "Unfortunately, the logic has changed slightly.\n\nthe keySet is not supposed to contain null entry,\nthe callback can only throw a remoteException and not a generic Exception\n\nTherefor I can\u0027t have a common block",
+      "parentUuid": "6b46bb52_74f0a983",
+      "range": {
+        "startLine": 3700,
+        "startChar": 29,
+        "endLine": 3700,
+        "endChar": 56
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e64a3713_4df8cd83",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-29T23:52:03Z",
       "side": 1,
       "message": "W",
+      "range": {
+        "startLine": 3876,
+        "startChar": 70,
+        "endLine": 3876,
+        "endChar": 71
+      },
+      "revId": "3ff8f3ffb074cdbcc7c6fce2f20965288f36b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f6d095_cfcf8f91",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3876,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T00:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e64a3713_4df8cd83",
       "range": {
         "startLine": 3876,
         "startChar": 70,
