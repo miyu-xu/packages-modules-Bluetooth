@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b459aa_4ad2a886",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T02:51:55Z",
+      "side": 1,
+      "message": "Done. I wasn\u0027t sure about what I wanted to expose, but I believe that this will only be differentiated at framework level, to keep the whole stack in accordance with the spec values",
+      "parentUuid": "a6279144_af128ae8",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b086aa60_3677fe4c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-29T00:21:54Z",
       "side": 1,
       "message": "`mute` ? or else `value !\u003d NOT_MUTED`",
+      "range": {
+        "startLine": 163,
+        "startChar": 25,
+        "endLine": 163,
+        "endChar": 30
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00b884a_60da1dc9",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStackEvent.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T02:51:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b086aa60_3677fe4c",
       "range": {
         "startLine": 163,
         "startChar": 25,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11318120_f19268ea",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStackEvent.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T02:51:55Z",
+      "side": 1,
+      "message": "No, this isn\u0027t related with AICS, but it is a VCP mute report, and for VCP it seems correct as per vcs spec:\n\n```\n2.3.1.2 Mute field\nThe Mute field has two values: Not Muted (or the numeral “0”), and Muted (or the numeral “1”)....\n```\n\nWhich is not the same as the AICS mute field. (yep confusing ....)\n\nFYI In the next CL I am simply removing AICS from this file to prevent confusion and un-necessary serialization (aosp/3323436, aosp/3323774, aosp/3323775, aosp/3323776, aosp/3323777)",
+      "parentUuid": "a44c8366_37ca0325",
+      "range": {
+        "startLine": 172,
+        "startChar": 17,
+        "endLine": 172,
+        "endChar": 48
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e23ff15_0df4f825",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlInputDescriptorTest.java",
         "patchSetId": 8
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-29T00:21:54Z",
       "side": 1,
       "message": "Comment to document value ?",
+      "range": {
+        "startLine": 114,
+        "startChar": 18,
+        "endLine": 114,
+        "endChar": 21
+      },
+      "revId": "9e3f227808ac50a4813cd1a7752cd96b938031a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc07543_e1776ee3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlInputDescriptorTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T02:51:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e23ff15_0df4f825",
       "range": {
         "startLine": 114,
         "startChar": 18,
