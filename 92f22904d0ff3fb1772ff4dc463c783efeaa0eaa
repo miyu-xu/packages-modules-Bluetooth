@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4aee66df_c7573582",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T18:04:49Z",
+      "side": 1,
+      "message": "But according to go/android-flags-guidelines#flag-end-of-life\nIt is also possible to remove a flag if it is:\n```\nSmall bug fixes or other low-risk changes that can be validated on Trunkfood devices: after the flag has successfully been enabled in the Trunkfood release configuration for at least 4 weeks without changes (including while it\u0027s also in Nextfood).\n```\n\nIf this fit this criteria, then please proceede.\n\nAdding @girardier@google.com as FYI",
+      "parentUuid": "8a1a065a_60a83963",
+      "revId": "92f22904d0ff3fb1772ff4dc463c783efeaa0eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "356882f8_3b9cdc4d",
         "filename": "system/bta/ar/bta_ar.cc",
         "patchSetId": 1
