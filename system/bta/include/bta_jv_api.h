@@ -231,7 +231,7 @@ inline std::string bta_jv_event_text(const tBTA_JV_EVT& event) {
     CASE_RETURN_TEXT(BTA_JV_RFCOMM_SRV_OPEN_EVT);
     CASE_RETURN_TEXT(BTA_JV_MAX_EVT);
     default:
-      return base::StringPrintf("UNKNOWN[%hu]", event);
+      return android::base::StringPrintf("UNKNOWN[%hu]", event);
   }
 }
 
