@@ -16,6 +16,24 @@
       "message": "This is a bit too soon, we haven\u0027t ship 24Q4 yet",
       "revId": "e322309c7e143671822ca4d74da4ae89c441690d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c525aa3_df7121c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T18:05:01Z",
+      "side": 1,
+      "message": "But according to go/android-flags-guidelines#flag-end-of-life\nIt is also possible to remove a flag if it is:\n```\nSmall bug fixes or other low-risk changes that can be validated on Trunkfood devices: after the flag has successfully been enabled in the Trunkfood release configuration for at least 4 weeks without changes (including while it\u0027s also in Nextfood).\n```\n\nIf this fit this criteria, then please proceede.\n\nAdding @girardier@google.com as FYI",
+      "parentUuid": "511117f6_4c490644",
+      "revId": "e322309c7e143671822ca4d74da4ae89c441690d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
