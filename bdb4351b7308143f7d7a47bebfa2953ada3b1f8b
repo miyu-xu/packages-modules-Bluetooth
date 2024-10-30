@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44cb46d_da3cbb2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3653043
+      },
+      "writtenOn": "2024-10-30T01:39:24Z",
+      "side": 1,
+      "message": "I\u0027ve added laikatherine@ as the code owner. Please take a look. Thank you!",
+      "revId": "bdb4351b7308143f7d7a47bebfa2953ada3b1f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
