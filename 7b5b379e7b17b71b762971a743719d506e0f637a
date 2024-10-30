@@ -22,6 +22,30 @@
       },
       "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6fbd46_6af9023b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3541,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-10-30T04:13:39Z",
+      "side": 1,
+      "message": "No, it will not result in routing switch. It just a preference value, so caller needs to use this value to do the routing that want. Caller here is HearingAidDeviceManager in SettingsLib from SystemUI process. It will change input device to the phone\u0027s speaker when `is_preferred_microphone_for_calls` is false.\n\nDo you think I still need to mention what the HearingAidDeviceManager will do here? Or I need to mention caller needs to respect preference\u0027s value to set routing accordingly?",
+      "parentUuid": "e31d6221_98e3c925",
+      "range": {
+        "startLine": 3541,
+        "startChar": 59,
+        "endLine": 3541,
+        "endChar": 89
+      },
+      "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
