@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <base/strings/stringprintf.h>
+#include <android-base/stringprintf.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <sys/socket.h>
@@ -54,11 +54,11 @@ TEST_F(BtaDiscTest, gatt_history_callback) {
   };
 
   // C string
-  gatt_history_callback(base::StringPrintf("%s", a[0].c_str()));
+  gatt_history_callback(android::base::StringPrintf("%s", a[0].c_str()));
   // Cpp string
   gatt_history_callback(a[1]);
   // Third entry for "fun"
-  gatt_history_callback(base::StringPrintf("%s", a[2].c_str()));
+  gatt_history_callback(android::base::StringPrintf("%s", a[2].c_str()));
 
   std::vector<bluetooth::common::TimestampedEntry<std::string>> history =
           bluetooth::legacy::testing::PullCopyOfGattHistory();
