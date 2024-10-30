@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b063c5b_f0cf1aac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-10-30T21:12:58Z",
+      "side": 1,
+      "message": "The logic is passing as intended in the physical setup: \nhttps://fusion2.corp.google.com/invocations/8aa419a9-0984-46d8-93a9-813057a2aceb/targets/%2F%2Fwireless%2Fandroid%2Fbluetooth%2Fbcd:BumbleBluetoothTests/tests",
+      "revId": "8fb0b987966c917d14f9b2d21374747f8330049a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
