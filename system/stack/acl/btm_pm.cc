@@ -44,19 +44,16 @@
 #include "main/shim/entry.h"
 #include "osi/include/stack_power_telemetry.h"
 #include "stack/btm/btm_int_types.h"
+#include "stack/include/acl_api.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_status.h"
+#include "stack/include/l2cap_hci_link_interface.h"
+#include "stack/include/sco_hci_link_interface.h"
 #include "types/raw_address.h"
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using namespace bluetooth;
 
-void l2c_OnHciModeChangeSendPendingPackets(RawAddress remote);
-void btm_sco_chk_pend_unpark(tHCI_STATUS status, uint16_t handle);
-void btm_cont_rswitch_from_handle(uint16_t hci_handle);
 extern tBTM_CB btm_cb;
 
 namespace {
