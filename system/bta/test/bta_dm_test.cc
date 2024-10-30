@@ -426,10 +426,11 @@ TEST_F(BtaDmTest, bta_dm_search_evt_text) {
   for (const auto& event : events) {
     ASSERT_STREQ(event.second.c_str(), bta_dm_search_evt_text(event.first).c_str());
   }
-  ASSERT_STREQ(base::StringPrintf("UNKNOWN[%hhu]", std::numeric_limits<uint8_t>::max()).c_str(),
-               bta_dm_search_evt_text(
-                       static_cast<tBTA_DM_SEARCH_EVT>(std::numeric_limits<uint8_t>::max()))
-                       .c_str());
+  ASSERT_STREQ(
+          android::base::StringPrintf("UNKNOWN[%hhu]", std::numeric_limits<uint8_t>::max()).c_str(),
+          bta_dm_search_evt_text(
+                  static_cast<tBTA_DM_SEARCH_EVT>(std::numeric_limits<uint8_t>::max()))
+                  .c_str());
 }
 
 TEST_F(BtaDmTest, bta_dm_remote_name_cmpl) {
