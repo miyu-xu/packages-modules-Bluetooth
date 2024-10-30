@@ -82,6 +82,8 @@ static const uint8_t avrc_ctrl_event_map[] = {
 #define AVRC_MSG_MASK_IS_VENDOR_CMD 0x01
 #define AVRC_MSG_MASK_IS_CONTINUATION_RSP 0x02
 
+static void avrc_start_cmd_timer(uint8_t handle, uint8_t label, uint8_t msg_mask);
+
 /******************************************************************************
  *
  * Function         avrcp_absolute_volume_is_enabled
@@ -217,14 +219,18 @@ void avrc_send_next_vendor_cmd(uint8_t handle) {
  *
  *****************************************************************************/
 void avrc_start_cmd_timer(uint8_t handle, uint8_t label, uint8_t msg_mask) {
-  tAVRC_PARAM* param = static_cast<tAVRC_PARAM*>(osi_malloc(sizeof(tAVRC_PARAM)));
-  param->handle = handle;
-  param->label = label;
-  param->msg_mask = msg_mask;
+  if (avrc_cb.ccb_int[handle].tle) {
+    tAVRC_PARAM* param = static_cast<tAVRC_PARAM*>(osi_malloc(sizeof(tAVRC_PARAM)));
+    param->handle = handle;
+    param->label = label;
+    param->msg_mask = msg_mask;
 
-  log::verbose("AVRC: starting timer (handle=0x{:02x}, label=0x{:02x})", handle, label);
-
-  alarm_set_on_mloop(avrc_cb.ccb_int[handle].tle, AVRC_CMD_TOUT_MS, avrc_process_timeout, param);
+    log::verbose("AVRC: starting timer (handle=0x{:02x} label=0x{:02x})", handle, label);
+    alarm_set_on_mloop(avrc_cb.ccb_int[handle].tle, AVRC_CMD_TOUT_MS, avrc_process_timeout, param);
+  } else {
+    log::warn("Unable to start response timer handle=0x{:02x} label=0x{:02x} msg_mask:{}", handle,
+              label, msg_mask);
+  }
 }
 
 /******************************************************************************

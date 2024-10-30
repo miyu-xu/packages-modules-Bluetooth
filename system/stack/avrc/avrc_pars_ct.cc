@@ -456,6 +456,7 @@ static tAVRC_STS avrc_pars_browse_rsp(tAVRC_MSG_BROWSE* p_msg, tAVRC_RESPONSE* p
         BE_STREAM_TO_UINT16(attr_entry->name.str_len, p);
         min_len += attr_entry->name.str_len;
         if (pkt_len < min_len) {
+          osi_free(get_attr_rsp->p_attrs);
           goto browse_length_error;
         }
         attr_entry->name.p_str = (uint8_t*)osi_malloc(attr_entry->name.str_len * sizeof(uint8_t));
