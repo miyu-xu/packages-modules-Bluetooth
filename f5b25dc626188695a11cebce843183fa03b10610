@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e85670_8baa0038",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-10-30T05:22:46Z",
+      "side": 1,
+      "message": "Do we want to preserve the behavior of logging error for an unknown device type? Is that even possible?\n\nIf not I\u0027d prefer the ternary operator here.",
+      "range": {
+        "startLine": 337,
+        "startChar": 6,
+        "endLine": 337,
+        "endChar": 8
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fb071d88_7fb11a6e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_gatt_client.cc",
+              "range": {
+                "startLine": 337,
+                "startChar": 0,
+                "endLine": 342,
+                "endChar": 0
+              },
+              "replacement": "      transport \u003d (device_type \u003d\u003d BT_DEVICE_TYPE_BREDR) ? BT_TRANSPORT_BR_EDR\n                                                        : BT_TRANSPORT_LE;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f5b25dc626188695a11cebce843183fa03b10610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
