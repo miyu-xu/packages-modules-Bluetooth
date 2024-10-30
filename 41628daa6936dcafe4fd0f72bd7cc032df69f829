@@ -16,6 +16,24 @@
       "message": "you will need to modify the Android.bp as well",
       "revId": "41628daa6936dcafe4fd0f72bd7cc032df69f829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad5776d6_ce3b4627",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T18:00:18Z",
+      "side": 1,
+      "message": "unresolving",
+      "parentUuid": "cb29a428_bad3364b",
+      "revId": "41628daa6936dcafe4fd0f72bd7cc032df69f829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
