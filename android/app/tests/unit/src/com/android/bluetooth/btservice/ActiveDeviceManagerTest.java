@@ -378,6 +378,18 @@ public class ActiveDeviceManagerTest {
     }
 
     @Test
+    public void headsetLeAudioDeviceRemoveActive_fallbackDeviceActive() {
+        leAudioConnected(mLeAudioDevice);
+        headsetConnected(mHeadsetDevice, false);
+        mTestLooper.dispatchAll();
+        verify(mHeadsetService).setActiveDevice(mHeadsetDevice);
+
+        headsetActiveDeviceChanged(null);
+        mTestLooper.dispatchAll();
+        verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+    }
+
+    @Test
     public void a2dpConnectedButHeadsetNotConnected_setA2dpActive() {
         when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
         a2dpConnected(mA2dpHeadsetDevice, true);
