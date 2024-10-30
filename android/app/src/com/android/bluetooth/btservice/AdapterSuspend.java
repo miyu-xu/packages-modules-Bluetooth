@@ -21,15 +21,17 @@ import static android.bluetooth.BluetoothAdapter.SCAN_MODE_NONE;
 
 import static java.util.Objects.requireNonNull;
 
-import android.hardware.display.DisplayManager;
+import android.annotation.NonNull;
+import android.hardware.devicestate.DeviceState;
+import android.hardware.devicestate.DeviceStateManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.Display;
 
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.Arrays;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
 
 public class AdapterSuspend {
     private static final String TAG = "BtAdapterSuspend";
@@ -39,43 +41,141 @@ public class AdapterSuspend {
     private static final long MASK_DISCONNECT_CMPLT = 1 << 4;
     private static final long MASK_MODE_CHANGE = 1 << 19;
 
+    private DeviceStateManager mDeviceStateManager;
+
+    public final DeviceStateManager.DeviceStateCallback mDeviceStateCallback =
+            new DeviceStateManager.DeviceStateCallback() {
+                @Override
+                public void onDeviceStateChanged(@NonNull DeviceState state) {
+                    String nextState = state.getName();
+                    switch (mCurrentState) {
+                        case "None": // initalize
+                            switch (nextState) {
+                                case "LAPTOP":
+                                    mWakeByBt = true;
+                                    break;
+                                case "TABLET":
+                                    mWakeByBt = false;
+                                    break;
+                                default:
+                                    Log.i(TAG, "Unknown initial state " + nextState);
+                                    return;
+                            }
+                            break;
+                        case "CLOSED":
+                            switch (nextState) {
+                                case "DISPLAY_OFF":
+                                    mWakeByBt = true;
+                                    break;
+                                case "LAPTOP":
+                                    mWakeByBt = true;
+                                    // fall through
+                                case "TABLET":
+                                    handleResume();
+                                    break;
+                                default:
+                                    Log.i(TAG, "Ignore state " + nextState);
+                                    return;
+                            }
+                            break;
+                        case "DISPLAY_OFF":
+                            switch (nextState) {
+                                case "CLOSED":
+                                    mWakeByBt = false;
+                                    break;
+                                case "TABLET":
+                                    mWakeByBt = false;
+                                    // fall through
+                                case "LAPTOP":
+                                    handleResume();
+                                    break;
+                                default:
+                                    Log.i(TAG, "Ignore state " + nextState);
+                                    return;
+                            }
+                            break;
+                        case "LAPTOP":
+                            switch (nextState) {
+                                case "CLOSED":
+                                    mWakeByBt = false;
+                                    // fall through
+                                case "DISPLAY_OFF":
+                                    handleSuspend();
+                                    break;
+                                case "TABLET":
+                                    mWakeByBt = false;
+                                    break;
+                                default:
+                                    Log.i(TAG, "Ignore state " + nextState);
+                                    return;
+                            }
+                            break;
+                        case "TABLET":
+                            switch (nextState) {
+                                case "CLOSED":
+                                    // fall through
+                                case "DISPLAY_OFF":
+                                    handleSuspend();
+                                    break;
+                                case "LAPTOP":
+                                    mWakeByBt = true;
+                                    break;
+                                default:
+                                    Log.i(TAG, "Ignore state " + nextState);
+                                    return;
+                            }
+                            break;
+                        default:
+                            Log.e(TAG, "Unknown current state " + mCurrentState);
+                            return;
+                    }
+                    mCurrentState = nextState;
+                }
+            };
+
+    public static class HandlerExecutor implements Executor {
+        private final Handler mHandler;
+
+        public HandlerExecutor(@NonNull Handler handler) {
+            mHandler = handler;
+        }
+
+        @Override
+        public void execute(Runnable command) {
+            if (!mHandler.post(command)) {
+                throw new RejectedExecutionException(mHandler + " is shutting down");
+            }
+        }
+    }
+
+    public HandlerExecutor mExecutor;
+
     private boolean mSuspended = false;
+
+    // Value should be initialized at boot time
+    private String mCurrentState = "LAPTOP";
+    private boolean mWakeByBt = true;
 
     private final AdapterNativeInterface mAdapterNativeInterface;
     private final Handler mHandler;
 
-    private final DisplayManager mDisplayManager;
-    private final DisplayManager.DisplayListener mDisplayListener =
-            new DisplayManager.DisplayListener() {
-                @Override
-                public void onDisplayAdded(int displayId) {}
-
-                @Override
-                public void onDisplayRemoved(int displayId) {}
-
-                @Override
-                public void onDisplayChanged(int displayId) {
-                    if (isScreenOn()) {
-                        handleResume(0);
-                    } else {
-                        handleSuspend(0);
-                    }
-                }
-            };
-
     public AdapterSuspend(
             AdapterNativeInterface adapterNativeInterface,
             Looper looper,
-            DisplayManager displayManager) {
+            DeviceStateManager deviceStateManager) {
         mAdapterNativeInterface = requireNonNull(adapterNativeInterface);
         mHandler = new Handler(requireNonNull(looper));
-        mDisplayManager = requireNonNull(displayManager);
 
-        mDisplayManager.registerDisplayListener(mDisplayListener, mHandler);
+        mExecutor = new HandlerExecutor(mHandler);
+        mDeviceStateManager = requireNonNull(deviceStateManager);
+        mDeviceStateManager.registerCallback(mExecutor, mDeviceStateCallback);
     }
 
     void cleanup() {
-        mDisplayManager.unregisterDisplayListener(mDisplayListener);
+        if (mDeviceStateManager != null) {
+            mDeviceStateManager.unregisterCallback(mDeviceStateCallback);
+            mDeviceStateManager = null;
+        }
     }
 
     @VisibleForTesting
@@ -83,19 +183,9 @@ public class AdapterSuspend {
         return mSuspended;
     }
 
-    private boolean isScreenOn() {
-        return Arrays.stream(mDisplayManager.getDisplays())
-                .anyMatch(display -> display.getState() == Display.STATE_ON);
-    }
-
-    /**
-     * Determine if wake by BT is allowed according to suspend reason.
-     *
-     * @param reason sleep reason.
-     */
-    public void handleSuspend(int reason) {
-        // TODO determine if allowing BT wake here.
-        mHandler.post(() -> handleSuspendInternal(true));
+    /** Prepare suspend according to wake by BT status. */
+    public void handleSuspend() {
+        mHandler.post(() -> handleSuspendInternal(mWakeByBt));
     }
 
     @VisibleForTesting
@@ -125,12 +215,8 @@ public class AdapterSuspend {
         Log.i(TAG, "ready to suspend");
     }
 
-    /**
-     * Prepare for resume.
-     *
-     * @param reason wakeup reason.
-     */
-    public void handleResume(int reason) {
+    /** Prepare for resume. */
+    public void handleResume() {
         mHandler.post(() -> handleResumeInternal());
     }
 
