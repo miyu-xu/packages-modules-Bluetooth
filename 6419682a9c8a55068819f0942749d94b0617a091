@@ -22,6 +22,30 @@
       },
       "revId": "6419682a9c8a55068819f0942749d94b0617a091",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "969942c8_6f523957",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-10-30T14:30:56Z",
+      "side": 1,
+      "message": "Moved over to GATT JNI. Thank you.",
+      "parentUuid": "3fb7d5a7_9d88820f",
+      "range": {
+        "startLine": 163,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 35
+      },
+      "revId": "6419682a9c8a55068819f0942749d94b0617a091",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
