@@ -18,8 +18,8 @@
 
 #include "bta/dm/bta_dm_device_search.h"
 
+#include <android-base/stringprintf.h>
 #include <base/functional/bind.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <stddef.h>
@@ -344,10 +344,21 @@ static void bta_dm_inq_cmpl() {
 static void bta_dm_remote_name_cmpl(const tBTA_DM_REMOTE_NAME& remote_name_msg) {
   BTM_LogHistory(
           kBtmLogTag, remote_name_msg.bd_addr, "Remote name completed",
+<<<<<<< PATCH SET (3d7978 Replace libchrome StringPrintf with android-base's one)
+          android::base::StringPrintf("status:%s state:%s name:\"%s\"",
+                                      hci_status_code_text(remote_name_msg.hci_status).c_str(),
+                                      bta_dm_state_text(bta_dm_search_get_state()).c_str(),
+                                      PRIVATE_NAME(remote_name_msg.bd_name)));
+||||||| BASE
+                                    hci_status_code_text(remote_name_msg.hci_status).c_str(),
+                                    bta_dm_state_text(bta_dm_search_get_state()).c_str(),
+                                    PRIVATE_NAME(remote_name_msg.bd_name)));
+=======
           base::StringPrintf("status:%s state:%s name:\"%s\"",
                              hci_status_code_text(remote_name_msg.hci_status).c_str(),
                              bta_dm_state_text(bta_dm_search_get_state()).c_str(),
                              PRIVATE_NAME(reinterpret_cast<char const*>(remote_name_msg.bd_name))));
+>>>>>>> BASE      (47a964 Merge changes I7b0a2840,Id5ddfa65,I97e34389,I0decbb7f into m)
 
   tBTM_INQ_INFO* p_btm_inq_info =
           get_btm_client_interface().db.BTM_InqDbRead(remote_name_msg.bd_addr);
@@ -518,8 +529,9 @@ static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
        (bta_dm_search_cb.p_btm_inq_info &&
         (!bta_dm_search_cb.p_btm_inq_info->appl_knows_rem_name)))) {
     if (bta_dm_read_remote_device_name(bta_dm_search_cb.peer_bdaddr, transport)) {
-      BTM_LogHistory(kBtmLogTag, bta_dm_search_cb.peer_bdaddr, "Read remote name",
-                     base::StringPrintf("Transport:%s", bt_transport_text(transport).c_str()));
+      BTM_LogHistory(
+              kBtmLogTag, bta_dm_search_cb.peer_bdaddr, "Read remote name",
+              android::base::StringPrintf("Transport:%s", bt_transport_text(transport).c_str()));
       return;
     } else {
       log::error("Unable to start read remote device name");
@@ -755,8 +767,8 @@ std::string EpochMillisToString(long long time_ms) {
   struct tm tm;
   localtime_r(&time_sec, &tm);
   std::string s = bluetooth::common::StringFormatTime(kTimeFormatString, tm);
-  return base::StringPrintf("%s.%03u", s.c_str(),
-                            static_cast<unsigned int>(time_ms % MillisPerSecond));
+  return android::base::StringPrintf("%s.%03u", s.c_str(),
+                                     static_cast<unsigned int>(time_ms % MillisPerSecond));
 }
 
 }  // namespace
@@ -765,8 +777,8 @@ struct tSEARCH_STATE_HISTORY {
   const tBTA_DM_DEVICE_SEARCH_STATE state;
   const tBTA_DM_DEV_SEARCH_EVT event;
   std::string ToString() const {
-    return base::StringPrintf("state:%25s event:%s", bta_dm_state_text(state).c_str(),
-                              bta_dm_event_text(event).c_str());
+    return android::base::StringPrintf("state:%25s event:%s", bta_dm_state_text(state).c_str(),
+                                       bta_dm_event_text(event).c_str());
   }
 };
 
