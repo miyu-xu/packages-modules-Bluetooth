@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d48624c_82c723bf",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-10-30T13:39:03Z",
+      "side": 1,
+      "message": "These two fields aren\u0027t given default values here, nor are they initialized in the construction.  Since they\u0027re Plain Old Data, they end up with uninitialized values.  We should either assign them a default value inline here (like we do with the `aborted` field on line 133) or initialize them in the constructor (like we do with the `counter` field).",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 44
+      },
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "823558de_4e6ae97b",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 3
