@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84f2b49_4cecba03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-30T08:38:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1735c943_76ff7c0d",
+      "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50095e1b_61002080",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-29T21:01:51Z",
       "side": 1,
       "message": "I am trying to understand how this change fixes the reported problem. As I understand the issue happens when SMP terminates the LE connection, the pairing failure is set as `SMP_CONN_TOUT` which does not reset the pairing state.",
+      "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b54e348_e3f5b80c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-10-30T08:38:24Z",
+      "side": 1,
+      "message": "Updated the commit message. In b/369095269 I see this triggered by disconnection on Classic transport.",
+      "parentUuid": "50095e1b_61002080",
       "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
