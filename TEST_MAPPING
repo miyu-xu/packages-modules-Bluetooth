@@ -314,6 +314,9 @@
       "name": "net_test_stack_avctp"
     },
     {
+      "name": "net_test_stack_avrc"
+    },
+    {
       "name": "asrc_resampler_test"
     }
   ]
