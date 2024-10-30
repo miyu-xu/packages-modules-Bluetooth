@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "407b22b7_b24da8c5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-10-30T17:53:59Z",
+      "side": 1,
+      "message": "I think you should add the else here\n\nif (device !\u003d null) {\n}\nelse {\nyour code\n}\n             }",
+      "range": {
+        "startLine": 688,
+        "startChar": 0,
+        "endLine": 691,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "be475423_c2a5ef68",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 688,
+                "startChar": 0,
+                "endLine": 692,
+                "endChar": 0
+              },
+              "replacement": "                    setLeAudioActiveDevice(null, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e67bf399e82601dd280b2df1b76f8b2b5fd0277f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
