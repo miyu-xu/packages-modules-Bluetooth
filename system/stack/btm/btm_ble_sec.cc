@@ -751,7 +751,8 @@ tBTM_STATUS btm_ble_start_sec_check(const RawAddress& bd_addr, uint16_t psm, boo
     if ((p_serv_rec->security_flags & BTM_SEC_IN_ENCRYPT) && !is_encrypted) {
       log::error("BTM_NOT_ENCRYPTED. service security_flags=0x{:x}", p_serv_rec->security_flags);
       return tBTM_STATUS::BTM_NOT_ENCRYPTED;
-    } else if ((p_serv_rec->security_flags & BTM_SEC_IN_AUTHENTICATE) &&
+    } else if (!com::android::bluetooth::flags::donot_mandate_auth_along_with_encryption() &&
+               (p_serv_rec->security_flags & BTM_SEC_IN_AUTHENTICATE) &&
                !(is_link_key_authed || is_authenticated)) {
       log::error("tBTM_STATUS::BTM_NOT_AUTHENTICATED. service security_flags=0x{:x}",
                  p_serv_rec->security_flags);
@@ -1680,7 +1681,6 @@ static void btm_ble_consent_req(const RawAddress& bd_addr, tBTM_LE_EVT_DATA* p_d
 
 static void btm_ble_complete_evt(const RawAddress& bd_addr, tBTM_SEC_DEV_REC* p_dev_rec,
                                  tBTM_LE_EVT_DATA* p_data) {
-
   if (btm_ble_complete_evt_ignore(p_dev_rec, p_data)) {
     return;
   }
