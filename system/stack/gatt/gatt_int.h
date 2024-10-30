@@ -370,6 +370,7 @@ struct tGATT_CLCB {
   bool first_read_blob_after_read;
   tGATT_READ_INC_UUID128 read_uuid128;
   alarm_t* gatt_rsp_timer_ent; /* peer response timer */
+  alarm_t* gatt_rsp_timer_wake; /* peer response wake timer */
   uint8_t retry_count;
   uint16_t read_req_current_mtu; /* This is the MTU value that the read was
                                     initiated with */
@@ -557,6 +558,7 @@ void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb);
 void gatt_start_conf_timer(tGATT_TCB* p_tcb, uint16_t cid);
 void gatt_stop_conf_timer(tGATT_TCB& tcb, uint16_t cid);
 void gatt_rsp_timeout(void* data);
+void gatt_rsp_wake_timer_expired(void* data);
 void gatt_indication_confirmation_timeout(void* data);
 void gatt_ind_ack_timeout(void* data);
 void gatt_start_ind_ack_timer(tGATT_TCB& tcb, uint16_t cid);

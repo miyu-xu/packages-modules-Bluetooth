@@ -1374,6 +1374,7 @@ void GATT_Deregister(tGATT_IF gatt_if) {
     for (auto clcb_it = gatt_cb.clcb_queue.begin(); clcb_it != gatt_cb.clcb_queue.end();) {
       if ((clcb_it->p_reg->gatt_if == gatt_if) && (clcb_it->p_tcb->tcb_idx == p_tcb->tcb_idx)) {
         alarm_cancel(clcb_it->gatt_rsp_timer_ent);
+        alarm_cancel(clcb_it->gatt_rsp_timer_wake);
         gatt_clcb_invalidate(p_tcb, &(*clcb_it));
         clcb_it = gatt_cb.clcb_queue.erase(clcb_it);
       } else {

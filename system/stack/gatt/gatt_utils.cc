@@ -667,7 +667,13 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
   if (p_clcb->gatt_rsp_timer_ent == NULL) {
     p_clcb->gatt_rsp_timer_ent = alarm_new("gatt.gatt_rsp_timer_ent");
   }
+
+  if (p_clcb->gatt_rsp_timer_wake == NULL) {
+    p_clcb->gatt_rsp_timer_wake = alarm_new("gatt.gatt_rsp_timer_wake");
+  }
+
   alarm_set_on_mloop(p_clcb->gatt_rsp_timer_ent, timeout_ms, gatt_rsp_timeout, p_clcb);
+  alarm_set_on_mloop(p_clcb->gatt_rsp_timer_wake, 2500, gatt_rsp_wake_timer_expired, NULL);
 }
 
 /*******************************************************************************
@@ -679,7 +685,10 @@ void gatt_start_rsp_timer(tGATT_CLCB* p_clcb) {
  * Returns          void
  *
  ******************************************************************************/
-void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb) { alarm_cancel(p_clcb->gatt_rsp_timer_ent); }
+void gatt_stop_rsp_timer(tGATT_CLCB* p_clcb) {
+  alarm_cancel(p_clcb->gatt_rsp_timer_ent);
+  alarm_cancel(p_clcb->gatt_rsp_timer_wake);
+}
 
 /*******************************************************************************
  *
@@ -793,6 +802,8 @@ void gatt_rsp_timeout(void* data) {
     gatt_disconnect(p_clcb->p_tcb);
   }
 }
+
+void gatt_rsp_wake_timer_expired(void* /* data */) { log::error("2500ms have passed."); }
 
 void gatts_proc_srv_chg_ind_ack(tGATT_TCB tcb);
 
@@ -1255,6 +1266,7 @@ uint16_t gatt_tcb_get_payload_size(tGATT_TCB& tcb, uint16_t cid) {
 static void gatt_clcb_dealloc(tGATT_CLCB* p_clcb) {
   if (p_clcb) {
     alarm_free(p_clcb->gatt_rsp_timer_ent);
+    alarm_free(p_clcb->gatt_rsp_timer_wake);
     gatt_clcb_invalidate(p_clcb->p_tcb, p_clcb);
     for (auto clcb_it = gatt_cb.clcb_queue.begin(); clcb_it != gatt_cb.clcb_queue.end();
          clcb_it++) {
