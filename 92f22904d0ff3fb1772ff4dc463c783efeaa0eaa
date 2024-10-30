@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e319e4d_fb459faf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-30T18:12:47Z",
+      "side": 1,
+      "message": "Ah! I just noticed it was defaulted to on, and the bug was assigned to me and I wanted it off my plate.\n\nThis wasn\u0027t a big change IMO, but it does have an impact on phones. I\u0027ll let Henri decide if he\u0027s comfortable with it going through, otherwise it can wait and we can merge it later.",
+      "parentUuid": "8a1a065a_60a83963",
+      "revId": "92f22904d0ff3fb1772ff4dc463c783efeaa0eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "356882f8_3b9cdc4d",
         "filename": "system/bta/ar/bta_ar.cc",
         "patchSetId": 1
@@ -49,6 +67,30 @@
       "writtenOn": "2024-10-30T18:03:13Z",
       "side": 1,
       "message": "Can be removed",
+      "range": {
+        "startLine": 213,
+        "startChar": 2,
+        "endLine": 213,
+        "endChar": 8
+      },
+      "revId": "92f22904d0ff3fb1772ff4dc463c783efeaa0eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc53900e_955b6a3f",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-30T18:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "356882f8_3b9cdc4d",
       "range": {
         "startLine": 213,
         "startChar": 2,
@@ -72,6 +114,30 @@
       "writtenOn": "2024-10-30T18:03:13Z",
       "side": 1,
       "message": "Can be removed",
+      "range": {
+        "startLine": 239,
+        "startChar": 2,
+        "endLine": 239,
+        "endChar": 8
+      },
+      "revId": "92f22904d0ff3fb1772ff4dc463c783efeaa0eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "459e9c0e_732caf03",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-30T18:12:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e29f5ff_4c5db3d2",
       "range": {
         "startLine": 239,
         "startChar": 2,
