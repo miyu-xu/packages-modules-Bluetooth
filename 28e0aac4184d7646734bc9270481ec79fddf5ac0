@@ -22,6 +22,30 @@
       },
       "revId": "28e0aac4184d7646734bc9270481ec79fddf5ac0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ab058b_91355dfa",
+        "filename": "common/bluetooth/constants/aics/GainModeField.aidl",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:23:39Z",
+      "side": 1,
+      "message": "This is what is in the spec.\n\n3.4. Audio Input Status → Table 3.4: Audio Input Status values\n\n2.2.1.3. Gain_Mode field → Table 2.2: Gain_Mode field values",
+      "parentUuid": "862b5f82_ec42d32d",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "28e0aac4184d7646734bc9270481ec79fddf5ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
