@@ -52,6 +52,24 @@
       "parentUuid": "cb29a428_bad3364b",
       "revId": "41628daa6936dcafe4fd0f72bd7cc032df69f829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09b89dcc_0ba96960",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T18:07:14Z",
+      "side": 1,
+      "message": "We didn\u0027t initially, then we added it (i think you were the one that said it was nice to add it and you even did the CL) But then we added the support on FLOSS that require listing all the files (cause gn doesn\u0027t do globbing), so for consistency we also remove the glob in bp.\n\nThis way you have a quick failing message du to the If This Then That lint. (instead of having a failure a couple hours later)\n\nSorry it\u0027s not smooth :/",
+      "parentUuid": "4c57d4bb_92614194",
+      "revId": "41628daa6936dcafe4fd0f72bd7cc032df69f829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
