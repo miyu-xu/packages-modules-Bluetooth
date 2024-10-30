@@ -70,6 +70,78 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "456174c8_8c22e909",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1f47f3c_be90138f",
+      "range": {
+        "startLine": 170,
+        "startChar": 64,
+        "endLine": 170,
+        "endChar": 70
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc962dcc_652a43fb",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ac2c5b6_4eefcac9",
+      "range": {
+        "startLine": 170,
+        "startChar": 46,
+        "endLine": 170,
+        "endChar": 48
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "438d3587_aed20c08",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8032cb81_97acd5b8",
+      "range": {
+        "startLine": 170,
+        "startChar": 84,
+        "endLine": 170,
+        "endChar": 87
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1925c700_3b21d31e",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-30T17:02:21Z",
       "side": 1,
       "message": "Visibly the same issue exists with audio offset services.",
+      "range": {
+        "startLine": 552,
+        "startChar": 0,
+        "endLine": 553,
+        "endChar": 61
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a348f82d_3646f39a",
+        "filename": "system/bta/vc/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:56:08Z",
+      "side": 1,
+      "message": "Yes, but that is out of scope of me trying to implement aics API",
+      "parentUuid": "1925c700_3b21d31e",
       "range": {
         "startLine": 552,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "558fc68c_62a398c4",
+        "filename": "system/bta/vc/types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68660d0a_8a2ff49d",
+      "range": {
+        "startLine": 69,
+        "startChar": 63,
+        "endLine": 69,
+        "endChar": 66
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91f7f10e_4fd7c1eb",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-10-30T17:02:21Z",
       "side": 1,
       "message": "Isn\u0027t that supposed to be `1` ?",
+      "range": {
+        "startLine": 1483,
+        "startChar": 57,
+        "endLine": 1483,
+        "endChar": 59
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "519fc877_df0d53d1",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T20:56:08Z",
+      "side": 1,
+      "message": "it just need to match what is in the EXPECT_CALL just below.\n\nHere it doesn\u0027t care about 0 or 1, just need a valid index",
+      "parentUuid": "91f7f10e_4fd7c1eb",
       "range": {
         "startLine": 1483,
         "startChar": 57,
