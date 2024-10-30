@@ -46,6 +46,30 @@
       },
       "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "733a1dcb_273e2491",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3541,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T04:35:42Z",
+      "side": 1,
+      "message": "I think it would be beneficial to document this behavior yes. \nIt is not obvious who is responsible to respect the preference value.\n\nThere are 3 possibility too me:\n* The caller (here HearingAidDeviceManager, but could be any UI from any OEM) that call this and then need to switch the routing\n* The bluetooth, that intercept this call and change the routing depending on this value\n* The audio system server (?) that listen to the device metadata thanks to a registered metadatalistener\n\nI don\u0027t know which one would be the best.",
+      "parentUuid": "7c6fbd46_6af9023b",
+      "range": {
+        "startLine": 3541,
+        "startChar": 59,
+        "endLine": 3541,
+        "endChar": 89
+      },
+      "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
