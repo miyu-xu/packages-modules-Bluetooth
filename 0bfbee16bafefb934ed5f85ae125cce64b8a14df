@@ -1,5 +1,108 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d8e2af_25fb6c48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-10-30T07:16:45Z",
+      "side": 1,
+      "message": "Chienyuan, came across your latest patch posting these comments to align with spec and HAL for measurement.",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "823558de_4e6ae97b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1560,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-10-30T07:16:45Z",
+      "side": 1,
+      "message": "we should also send rssi_initiator and rssi_reflector with HAL",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6bba5d_306efe4c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1586,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-10-30T07:16:45Z",
+      "side": 1,
+      "message": "i think we should also share step mode too with HAL as they need in which orders steps (modes) received.",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ddb7fd_5a2b578c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-10-30T07:16:45Z",
+      "side": 1,
+      "message": "step_channel also need to be updated",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e08a4955_0ef7e8cd",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1619,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-10-30T07:16:45Z",
+      "side": 1,
+      "message": "parameters like packet quality, packet rssi are need to be sent to HAL for mode 0",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c7c97c_adcd31d9",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-10-30T07:16:45Z",
+      "side": 1,
+      "message": "for mode 2 we should also need to update antenna permutation index for both initiator and reflector too.",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
