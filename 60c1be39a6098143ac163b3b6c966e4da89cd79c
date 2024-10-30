@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe8ffdb0_fcaa92d9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4862,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-30T11:34:43Z",
+      "side": 1,
+      "message": "Make one function for sink and source",
+      "revId": "60c1be39a6098143ac163b3b6c966e4da89cd79c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
