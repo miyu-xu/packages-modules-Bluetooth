@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5cd3b51_6e3561f0",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T18:16:25Z",
+      "side": 1,
+      "message": "How can this be exported AND a bugfix ?\nI don\u0027t think it can be both",
+      "range": {
+        "startLine": 423,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 21
+      },
+      "revId": "3a726fdad9198345f64501404474bd2b94d516b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
