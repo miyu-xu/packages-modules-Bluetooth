@@ -24,6 +24,7 @@
 #ifndef BTA_GATTC_INT_H
 #define BTA_GATTC_INT_H
 
+#include <android-base/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -505,7 +506,7 @@ inline std::string bta_clcb_state_text(const tBTA_GATTC_STATE& state) {
     CASE_RETURN_TEXT(BTA_GATTC_CONN_ST);
     CASE_RETURN_TEXT(BTA_GATTC_DISCOVER_ST);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", state);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", state);
   }
 }
 
@@ -517,7 +518,7 @@ inline std::string bta_server_state_text(const tBTA_GATTC_SERV_STATE& state) {
     CASE_RETURN_TEXT(BTA_GATTC_SERV_DISC);
     CASE_RETURN_TEXT(BTA_GATTC_SERV_DISC_ACT);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", state);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", state);
   }
 }
 
@@ -528,7 +529,7 @@ inline std::string bta_gattc_state_text(const tBTA_GATTC_CB_STATE& state) {
     CASE_RETURN_TEXT(BTA_GATTC_STATE_ENABLED);
     CASE_RETURN_TEXT(BTA_GATTC_STATE_DISABLING);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", state);
+      return android::base::StringPrintf("UNKNOWN[%hhu]", state);
   }
 }
 
