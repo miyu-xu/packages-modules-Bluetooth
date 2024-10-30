@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36bf9ed7_26fd93ca",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-30T17:00:08Z",
+      "side": 1,
+      "message": "Replaced new name convention",
+      "parentUuid": "450816c5_826dc68b",
+      "range": {
+        "startLine": 38,
+        "startChar": 28,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d7b2b91_11791123",
@@ -72,6 +96,30 @@
       "writtenOn": "2024-10-18T17:00:48Z",
       "side": 1,
       "message": "maybe find a way so that it is easier to be understood by the developers",
+      "range": {
+        "startLine": 41,
+        "startChar": 54,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "72bfcd9ce8602bba3b863aabe6927053646dd28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6df492_3edb5bbc",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-10-30T17:00:08Z",
+      "side": 1,
+      "message": "Replaced new name convention",
+      "parentUuid": "3d7b2b91_11791123",
       "range": {
         "startLine": 41,
         "startChar": 54,
