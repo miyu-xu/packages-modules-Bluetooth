@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac2c5b6_4eefcac9",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-30T17:02:21Z",
+      "side": 1,
+      "message": "with",
+      "range": {
+        "startLine": 170,
+        "startChar": 46,
+        "endLine": 170,
+        "endChar": 48
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8032cb81_97acd5b8",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-30T17:02:21Z",
+      "side": 1,
+      "message": "`The aics service with handle {} will be ignored` ?",
+      "range": {
+        "startLine": 170,
+        "startChar": 84,
+        "endLine": 170,
+        "endChar": 87
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f47f3c_be90138f",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-30T17:02:21Z",
+      "side": 1,
+      "message": "handles",
+      "range": {
+        "startLine": 170,
+        "startChar": 64,
+        "endLine": 170,
+        "endChar": 70
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1925c700_3b21d31e",
+        "filename": "system/bta/vc/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-30T17:02:21Z",
+      "side": 1,
+      "message": "Visibly the same issue exists with audio offset services.",
+      "range": {
+        "startLine": 552,
+        "startChar": 0,
+        "endLine": 553,
+        "endChar": 61
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68660d0a_8a2ff49d",
+        "filename": "system/bta/vc/types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-30T17:02:21Z",
+      "side": 1,
+      "message": "Fix alignment ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 63,
+        "endLine": 69,
+        "endChar": 66
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f7f10e_4fd7c1eb",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-10-30T17:02:21Z",
+      "side": 1,
+      "message": "Isn\u0027t that supposed to be `1` ?",
+      "range": {
+        "startLine": 1483,
+        "startChar": 57,
+        "endLine": 1483,
+        "endChar": 59
+      },
+      "revId": "c19e7af8d5e06411fb1b92e758127adef8eddd45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
