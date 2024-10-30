@@ -1,0 +1,314 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "667c3559_6d04adf4",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/ParseException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "should it be in obex package according to path?",
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce692504_36e9d60f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapApplicationParameters.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "final ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 30
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d226218_4bd57b76",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapApplicationParameters.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "you can make that nice when using parenthesing:\n\n\n```suggestion\n        return \"\u003c\" + TAG\n         + (\" properties\u003d\" + propertiesToString(getPropertySelectorMask()))\n         + (\" format\u003d\" + getVcardFormat())\n         + (\" maxListCount\u003d\" + getMaxListCount())\n         + (\" listStartOffset\u003d\" + getListStartOffset())\n         + \"\u003e\";\n```",
+      "range": {
+        "startLine": 157,
+        "startChar": 7,
+        "endLine": 157,
+        "endChar": 212
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4589769_724eb4c0",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "2024 ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69824de_47d032ab",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "the associated variable being this lock should be annotated with GuardedBy",
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe23ee72_1dea08c7",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "can we have a more explicit name (unless you are only calling that with PbapClientObexClient.Callback everytime)",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 22
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c96f161e_9a55f0be",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "I assume you didn\u0027t run the formatter here. To prevent this to get crushed by it, you should comment with `// here`\n\nIt doesn\u0027t really matter in the end as this is internal documentation and not API javadoc",
+      "range": {
+        "startLine": 118,
+        "startChar": 3,
+        "endLine": 162,
+        "endChar": 11
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5051fb80_8c8f02a0",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "This seems like internal function, why does it require CONNECT ?",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 42
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46072e24_806a1fc6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "could be final",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 37
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df4a49c7_279f8944",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "could be final",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 4
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb6ca73_09047af2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "Do you really want to mock it ?\nCan\u0027t we have a real device state machine and simply put it in the correct state by generating the event prior to testing what we want to test",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 65
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a998a44b_c8a6b8e6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "we should not need to setAdapterService but pass it around as an injected dependency",
+      "range": {
+        "startLine": 106,
+        "startChar": 36,
+        "endLine": 106,
+        "endChar": 51
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d4c920_d880c7f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientSocketTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "Please only use truth !",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e50a4a51_5f967767",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientSocketTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-30T23:19:12Z",
+      "side": 1,
+      "message": "move to final varialbe",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 59
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
