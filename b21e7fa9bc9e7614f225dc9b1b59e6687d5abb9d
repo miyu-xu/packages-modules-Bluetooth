@@ -46,6 +46,98 @@
       },
       "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd58df98_e0cb4950",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5503,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-30T03:14:38Z",
+      "side": 1,
+      "message": "Theoretically, should be named `onCommandStatusReceived`. Source: go/android-api-guidelines#callback-tense. But I believe this would be just an overhead here. What do you think @asapperstein@google.com?",
+      "range": {
+        "startLine": 5503,
+        "startChar": 13,
+        "endLine": 5503,
+        "endChar": 28
+      },
+      "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a25b4f5_9b410294",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5571,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-30T03:14:38Z",
+      "side": 1,
+      "message": "Should be renamed to `unregisterFromService` for consistency with `registerToService`.",
+      "range": {
+        "startLine": 5571,
+        "startChar": 13,
+        "endLine": 5571,
+        "endChar": 30
+      },
+      "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e12fcb1_18abfece",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5651,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-30T03:14:38Z",
+      "side": 1,
+      "message": "Should be renamed to `registerBluetoothHciVendorSpecificCallback` for consistency and go/android-api-guidelines#registering-unregistering-callbacks.",
+      "range": {
+        "startLine": 5651,
+        "startChar": 16,
+        "endLine": 5651,
+        "endChar": 50
+      },
+      "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "200c0242_4e38070e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5698,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-30T03:14:38Z",
+      "side": 1,
+      "message": "Same here, should be renamed to `unregisterBluetoothHciVendorSpecificCallback`.",
+      "range": {
+        "startLine": 5698,
+        "startChar": 16,
+        "endLine": 5698,
+        "endChar": 52
+      },
+      "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
