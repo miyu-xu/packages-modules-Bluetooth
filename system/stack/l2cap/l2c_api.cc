@@ -1639,7 +1639,7 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status) {
     return;
   }
 
-  if (snoop_logger->GetBtSnoopMode() != snoop_logger->kBtSnoopLogModeFiltered) {
+  if (snoop_logger->GetCurrentSnoopMode() != snoop_logger->kBtSnoopLogModeFiltered) {
     return;
   }
 
