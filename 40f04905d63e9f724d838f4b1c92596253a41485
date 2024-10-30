@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98307684_56245402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-30T19:22:06Z",
+      "side": 1,
+      "message": "This shouldn\u0027t have an impact on AAOS vehicles. We were agnostic of empty or missing fields.",
+      "revId": "40f04905d63e9f724d838f4b1c92596253a41485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
