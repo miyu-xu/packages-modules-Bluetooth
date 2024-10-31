@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8582bc_350de30a",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2024-10-31T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "395d35ae_b43e1166",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 53
+      },
+      "revId": "bfb713474d4f0ecb7c9a42109cd005ae9a66cb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ffa645d_21f81967",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-10-25T20:36:22Z",
       "side": 1,
       "message": "Before the code change, it appears like we would short-circuit and drop the receiver if there is a \"Stop\" message. \nWith the code change, even after `stop` is called, it could be possible that existence of some previously-obtained senders may cause the receiver to never return an error in this loop.\nShould we add a check at L231 to check whether or not `GLOBAL_MODULE_RUNNER` is still running before calling `send`?",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 13
+      },
+      "revId": "bfb713474d4f0ecb7c9a42109cd005ae9a66cb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd748f07_50980bb3",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2024-10-31T16:04:21Z",
+      "side": 1,
+      "message": "Solved this by instead using the global to send at all times.  Once the global runner is stopped, any following calls will error.  We currently return the callback fn, but in future will call it with an error so the calling code can react appropriately.",
+      "parentUuid": "9ffa645d_21f81967",
       "range": {
         "startLine": 118,
         "startChar": 12,
