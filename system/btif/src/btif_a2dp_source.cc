@@ -383,6 +383,19 @@ class A2dpAudioPort : public bluetooth::audio::a2dp::BluetoothAudioPort {
     return BluetoothAudioStatus::PENDING;
   }
 
+  BluetoothAudioStatus StopStream() const override {
+    // Check if the stream is already suspended.
+    if (!btif_av_stream_started_ready(A2dpType::kSource)) {
+      btif_av_clear_remote_suspend_flag(A2dpType::kSource);
+      return;
+    }
+
+    // Post stop event. The stop request is pending, but completion is not
+    // notified to the HAL.
+    btif_av_stream_stop(RawAddress::kEmpty);
+    return BluetoothAudioStatus::PENDING;
+  }
+
   BluetoothAudioStatus SetLatencyMode(bool low_latency) const override {
     btif_av_set_low_latency(low_latency);
     return BluetoothAudioStatus::SUCCESS;
