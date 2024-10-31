@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd13a3df_1b56d837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "As I said, this is super WIP, so thanks for braving the grossness to take a look 😊\n\nI responded to a few things and left much of the tasks I know I need to do (final things, etc.) as open comments so I can close them when I finish them.\n\nThere\u0027s a bunch of little things left to do, and the preupload linter should help a lot once I start listening to it",
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "667c3559_6d04adf4",
@@ -14,6 +31,24 @@
       "writtenOn": "2024-10-30T23:19:12Z",
       "side": 1,
       "message": "should it be in obex package according to path?",
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0091f8b6_01795101",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/ParseException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "Other profiles (admittedly, \"automotive\" profiles though) have been using folder structure to organize without doing the \"Java thing\" of matching the package names to that folder structure. I was just following suit.\n\nIf I _can_ easily do that without impacting testability, I happily will. This is otherwise prett benign IMO",
+      "parentUuid": "667c3559_6d04adf4",
       "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -89,6 +124,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7867680e_68ab7513",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "Hmmm, this might be a victim of git not being able to determine this was a rename from `PbapClientConnectionHandler`. There must have been enough change that it thought the old one was straight up deleted and this one was brand new.",
+      "parentUuid": "f4589769_724eb4c0",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e69824de_47d032ab",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
         "patchSetId": 2
@@ -129,6 +188,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55e57bac_9afdad1f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "I think I\u0027ve been generally using qualified class names in code, i.e. `PbapClientObexClient.Callback` and then implementing the interface with an descriptive, locally defined class name, i.e. `public class PbapClientObexClientCallback implements /* ... */ {`.\n\nOtherwise, since I\u0027ve been consistently using callback interfaces for event driven object-to-object communication and calling them _all_ `Callback`, it would get super confusing who is who!",
+      "parentUuid": "fe23ee72_1dea08c7",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 22
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c96f161e_9a55f0be",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
         "patchSetId": 2
@@ -152,6 +235,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b5dc67a_47713750",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "As I said, work in progress 😊\n\nI have the errorprone linter off, and ignored the preupload validation so I can get my pending work saved. There was a lot of it and I become paranoid about \"what if my computer died.\"\n\nMy wonderful ASCII diagrams will be logged properly so they don\u0027t get yelled at or squashed!",
+      "parentUuid": "c96f161e_9a55f0be",
+      "range": {
+        "startLine": 118,
+        "startChar": 3,
+        "endLine": 162,
+        "endChar": 11
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5051fb80_8c8f02a0",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
         "patchSetId": 2
@@ -163,6 +270,30 @@
       "writtenOn": "2024-10-30T23:19:12Z",
       "side": 1,
       "message": "This seems like internal function, why does it require CONNECT ?",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 42
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4c8946_0189dc63",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "I think I pulled this from the old code as a copy paste, so maybe its not necessary.\n\nHowever, it does use the `BluetoothSocket` framework interfaces, so I suspect that\u0027s why it needs it.",
+      "parentUuid": "5051fb80_8c8f02a0",
       "range": {
         "startLine": 466,
         "startChar": 0,
@@ -244,6 +375,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ca9408f_2cf2d01d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "I do prefer mocking it I think.\n\nUnlike other profiles, where you can mock the native interface and drive the service and state machine through native events, OBEX based profiles don\u0027t have a native interface to mock, and mocking OBEX isn\u0027t easy (look at the hoops I had to jump through in the OBEX client test...). Much of the BluetoothSocket framework is final, which doesn\u0027t jive with our version of Mockito. We would also need to setup mock contacts storage, account storage, etc.\n\nIts a lot easier to inject a mock device and state machine for most tests.",
+      "parentUuid": "cbb6ca73_09047af2",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 65
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a998a44b_c8a6b8e6",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
         "patchSetId": 2
@@ -278,6 +433,30 @@
       "writtenOn": "2024-10-30T23:19:12Z",
       "side": 1,
       "message": "Please only use truth !",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "aa8330e00baa130bfae0c1957aab6807358f0373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bacc898_3c74d419",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientSocketTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T17:59:34Z",
+      "side": 1,
+      "message": "I need the preupload linter to remove all my unused dependencies for me 😊\n\nI don\u0027t think I actually use this. The _only_ Assert lib function I think I use is `assertThrows`, which IIRC doesn\u0027t have an equivalent in go/truth.",
+      "parentUuid": "81d4c920_d880c7f7",
       "range": {
         "startLine": 59,
         "startChar": 0,
