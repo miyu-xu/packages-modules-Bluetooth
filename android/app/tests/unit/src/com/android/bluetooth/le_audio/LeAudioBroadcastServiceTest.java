@@ -1604,6 +1604,38 @@ public class LeAudioBroadcastServiceTest {
         }
     }
 
+    @Test
+    public void testManagePrimaryDevice() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_LEAUDIO_USE_AUDIO_MODE_LISTENER);
+        int groupId = 1;
+        int groupId2 = 2;
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+
+        initializeNative();
+        prepareConnectedUnicastDevice(groupId2, mDevice2);
+        prepareHandoverStreamingBroadcast(groupId, broadcastId, code);
+
+        Assert.assertEquals(mService.mUnicastGroupIdDeactivatedForBroadcastTransition, groupId);
+
+        reset(mAudioManager);
+
+        /* Update fallback active device (only input is active) */
+        ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
+                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
+
+        mService.setPrimaryGroup(groupId2);
+
+        verify(mAudioManager)
+                .handleBluetoothActiveDeviceChanged(
+                        eq(mDevice2), eq(mDevice), connectionInfoArgumentCaptor.capture());
+        List<BluetoothProfileConnectionInfo> connInfos =
+                connectionInfoArgumentCaptor.getAllValues();
+        Assert.assertEquals(connInfos.size(), 1);
+        Assert.assertFalse(connInfos.get(0).isLeOutput());
+        Assert.assertEquals(mService.getPrimaryGroup(), groupId2);
+    }
+
     private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
             BluetoothLeAudioContentMetadata contentMetadata,
             @Nullable byte[] broadcastCode,
