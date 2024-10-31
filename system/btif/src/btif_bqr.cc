@@ -480,6 +480,11 @@ static void BqrVscCompleteCallback(hci::CommandCompleteView complete) {
     return;
   }
 
+  if (to_bind_ == null) {
+    log::info("Disabled");
+    return;
+  }
+
   if (vendor_cap_supported_version >= kBqrVndLogVersion) {
     command_complete_param_len = 13;
   }
