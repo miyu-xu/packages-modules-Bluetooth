@@ -16,6 +16,178 @@
       "message": "API +1 after addressed comments. Will let @asapperstein@google.com review and +2.",
       "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5430803_3f990c01",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5490,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "Are these opcodes and status codes defined anywhere? Can we link to them?\n\nRelated, and maybe there are too many, but if they\u0027re defined in the framework somewhere, instead of using IntRange, we would want to use @IntDef",
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13f01c30_57d682d6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5493,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "spell this out to opcodeCommandField. Same for the other methods",
+      "range": {
+        "startLine": 5493,
+        "startChar": 56,
+        "endLine": 5493,
+        "endChar": 59
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "777463c0_d5cd7cd4",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5506,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "nit: an event",
+      "range": {
+        "startLine": 5506,
+        "startChar": 24,
+        "endLine": 5506,
+        "endChar": 25
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d87da2_dde3b43f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5622,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "Please rewrite to:\n\n\"Set of vendor-specific event codes to listen for updates. Each vendor specific event code must be in the range 0x00 to 0x4f or 0x60 to 0xff. The range 0x50-0x5f is reserved for AOSP.\"\n\ntwo questions:\n1. are these ranges inclusive? If so, you should say so explicitly.\n2. should it be \"reserved for the system\"? What does reserved for AOSP even mean in this context?",
+      "range": {
+        "startLine": 5620,
+        "startChar": 27,
+        "endLine": 5622,
+        "endChar": 44
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d27515a4_9ba709a0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5627,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "what happens if you\u0027re already registered but you want to register for additional event codes? Do you have to unregister first?",
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d95227b_9291404d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5705,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "please rewrite to match the style above",
+      "range": {
+        "startLine": 5704,
+        "startChar": 60,
+        "endLine": 5705,
+        "endChar": 69
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83617853_7b512306",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5707,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "don\u0027t need to include this. @NonNull already implies this.",
+      "range": {
+        "startLine": 5707,
+        "startChar": 7,
+        "endLine": 5707,
+        "endChar": 57
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8bd56ea_9a568f3b",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5709,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T17:52:10Z",
+      "side": 1,
+      "message": "when a callback",
+      "range": {
+        "startLine": 5709,
+        "startChar": 37,
+        "endLine": 5709,
+        "endChar": 50
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
