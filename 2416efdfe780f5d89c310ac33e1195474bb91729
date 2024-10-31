@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55c97d8d_167ca15d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2620,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-31T11:51:26Z",
+      "side": 1,
+      "message": "What\u0027s the reason to move this ?",
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58fee2b8_06f9ac32",
         "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
         "patchSetId": 3
@@ -80,6 +97,41 @@
                 "endChar": 0
               },
               "replacement": "     * \u003cp\u003eSource metadata is stored via the operation {@link #addSource(BluetoothDevice,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b18e698e_ab138dd8",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1220,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-10-31T11:51:26Z",
+      "side": 1,
+      "message": "I\u0027m not sure if in this comment parameters of function should be mentioned - if API changes there would be more places to update parameters.",
+      "fixSuggestions": [
+        {
+          "fixId": "99c69089_d33e7aac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+              "range": {
+                "startLine": 1219,
+                "startChar": 0,
+                "endLine": 1222,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eSource metadata is stored from the operation {@link #addSource(BluetoothDevice, Metadata,\n     * boolean)}, and may get updated from {@link #modifySource(BluetoothDevice, int, Metadata)}\n"
             }
           ]
         }
