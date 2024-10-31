@@ -19,11 +19,15 @@ package android.bluetooth;
 import static android.bluetooth.BluetoothSocket.SocketType;
 
 import android.annotation.FlaggedApi;
+import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresNoPermission;
 
 import com.android.bluetooth.flags.Flags;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import java.util.UUID;
 
