@@ -3331,6 +3331,9 @@ void l2cu_send_peer_ble_credit_based_conn_res(tL2C_CCB* p_ccb, tL2CAP_LE_RESULT_
   p = (uint8_t*)(p_buf + 1) + L2CAP_SEND_CMD_OFFSET + HCI_DATA_PREAMBLE_SIZE + L2CAP_PKT_OVERHEAD +
       L2CAP_CMD_OVERHEAD;
 
+  log::verbose("local cid: {}, mtu: {}, mps: {}, initial credits: {}", p_ccb->local_cid,
+               p_ccb->local_conn_cfg.mtu, p_ccb->local_conn_cfg.mps, p_ccb->local_conn_cfg.credits);
+
   UINT16_TO_STREAM(p, p_ccb->local_cid);              /* Local CID */
   UINT16_TO_STREAM(p, p_ccb->local_conn_cfg.mtu);     /* MTU */
   UINT16_TO_STREAM(p, p_ccb->local_conn_cfg.mps);     /* MPS */
@@ -3385,7 +3388,7 @@ void l2cu_send_peer_ble_flow_control_credit(tL2C_CCB* p_ccb, uint16_t credit_val
 
 /*******************************************************************************
  *
- * Function         l2cu_send_peer_ble_credit_based_conn_req
+ * Function         l2cu_send_peer_ble_credit_based_disconn_req
  *
  * Description      Build and send a BLE packet to disconnect LE connection
  *                  oriented L2CAP channel.
