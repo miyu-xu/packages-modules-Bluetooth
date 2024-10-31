@@ -183,6 +183,7 @@ void DualModeController::HandleCommand(std::shared_ptr<std::vector<uint8_t>> pac
   // HCI Read Local Supported Commands is supported by default.
   // Vendor commands are supported when implemented.
   bool is_supported_command = (op_code == OpCode::READ_LOCAL_SUPPORTED_COMMANDS) ||
+                              (op_code == OpCode::REMOTE_NAME_REQUEST_CANCEL) ||
                               (is_vendor_command && is_implemented_command);
 
   // For other commands, query the Support Commands bit mask in
@@ -1680,6 +1681,20 @@ void DualModeController::RemoteNameRequest(CommandView command) {
           OpCode::REMOTE_NAME_REQUEST, command_view.bytes(), GetAddress(), bd_addr);
 
   send_event_(bluetooth::hci::RemoteNameRequestStatusBuilder::Create(status, kNumCommandPackets));
+}
+
+// implement RNR cancel and just send success but do nothing, to mimic what the controller did
+// on the RNR clash issue
+void DualModeController::RemoteNameRequestCancel(CommandView command) {
+  auto command_view = bluetooth::hci::RemoteNameRequestCancelView::Create(command);
+  CHECK_PACKET_VIEW(command_view);
+  Address bd_addr = command_view.GetBdAddr();
+
+  DEBUG(id_, "<< Remote Name Request Cancel");
+  DEBUG(id_, "   bd_addr={}", bd_addr);
+
+  send_event_(bluetooth::hci::RemoteNameRequestCancelCompleteBuilder::Create(
+          kNumCommandPackets, ErrorCode::SUCCESS, bd_addr));
 }
 
 void DualModeController::LeSetEventMask(CommandView command) {
@@ -3709,8 +3724,7 @@ const std::unordered_map<OpCode, DualModeController::CommandHandler>
                 {OpCode::CHANGE_CONNECTION_LINK_KEY, &DualModeController::ChangeConnectionLinkKey},
                 {OpCode::CENTRAL_LINK_KEY, &DualModeController::CentralLinkKey},
                 {OpCode::REMOTE_NAME_REQUEST, &DualModeController::RemoteNameRequest},
-                //{OpCode::REMOTE_NAME_REQUEST_CANCEL,
-                //&DualModeController::RemoteNameRequestCancel},
+                {OpCode::REMOTE_NAME_REQUEST_CANCEL, &DualModeController::RemoteNameRequestCancel},
                 {OpCode::READ_REMOTE_SUPPORTED_FEATURES,
                  &DualModeController::ReadRemoteSupportedFeatures},
                 {OpCode::READ_REMOTE_EXTENDED_FEATURES,

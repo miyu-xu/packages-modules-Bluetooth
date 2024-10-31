@@ -57,6 +57,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
+import com.google.common.util.concurrent.SettableFuture;
+
 import io.grpc.stub.StreamObserver;
 
 import org.hamcrest.Matcher;
@@ -84,6 +86,7 @@ import pandora.SecurityProto.SecureRequest;
 import pandora.SecurityProto.SecureResponse;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -128,6 +131,26 @@ public class PairingTest {
     private BluetoothDevice mBumbleDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
+
+    private SettableFuture<String> mFutureDiscoveryStartedIntent;
+    private SettableFuture<String> mFutureDiscoveryFinishedIntent;
+    private ArrayList<Intent> mDeviceFoundData;
+    private BroadcastReceiver mConnectionStateReceiver =
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(intent.getAction())) {
+                        mFutureDiscoveryStartedIntent.set(
+                                BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+                    } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(
+                            intent.getAction())) {
+                        mFutureDiscoveryFinishedIntent.set(
+                                BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+                    } else if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
+                        mDeviceFoundData.add(intent);
+                    }
+                }
+            };
 
     @Before
     public void setUp() throws Exception {
@@ -1141,5 +1164,37 @@ public class PairingTest {
         verify(mProfileServiceListener, timeout(BOND_INTENT_TIMEOUT.toMillis()))
                 .onServiceConnected(eq(profile), proxyCaptor.capture());
         return proxyCaptor.getValue();
+    }
+
+    // This is a mix and match for bonding and inquiry test.
+    // Honestly I don't know how to implement one so I just copy paste and tweak until it runs.
+    @Test
+    public void haha() throws Exception {
+        mFutureDiscoveryStartedIntent = SettableFuture.create();
+        mFutureDiscoveryFinishedIntent = SettableFuture.create();
+
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        sTargetContext.registerReceiver(mConnectionStateReceiver, filter);
+
+        assertThat(sAdapter.startDiscovery()).isTrue();
+        assertThat(mFutureDiscoveryStartedIntent.get())
+                .isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+
+        // Start bonding about 14.8s after we start inquiry. The reason is we want to start bonding
+        // at the same time when RNR is done by the device discovery module. It does inquiry for
+        // 12.8s, then we set delay for RNR to be exactly 3s in the tester. Therefore, at t=14.8s,
+        // we are still doing RNR.
+        // This also requires the tester not to page its name when we're doing RNR, otherwise we
+        // just skip the RNR. Therefore, we must also strip the inquiry response in set_discoverable
+        // function of bumble/bumble/device.py (in the bumble repo).
+        Thread.sleep(14800);
+        testStep_BondBredr();
+
+        // Wait for device discovery to complete
+        assertThat(mFutureDiscoveryFinishedIntent.get())
+                .isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+        sTargetContext.unregisterReceiver(mConnectionStateReceiver);
     }
 }

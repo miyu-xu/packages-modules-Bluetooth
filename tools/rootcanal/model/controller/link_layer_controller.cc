@@ -2435,8 +2435,14 @@ void LinkLayerController::IncomingRemoteNameRequest(model::packets::LinkLayerPac
   auto view = model::packets::RemoteNameRequestView::Create(incoming);
   ASSERT(view.IsValid());
 
-  SendLinkLayerPacket(model::packets::RemoteNameRequestResponseBuilder::Create(
-          incoming.GetDestinationAddress(), incoming.GetSourceAddress(), local_name_));
+  // Here we need to delay answering the name response, otherwise it's hard to time a bonding that
+  // happens to clash with RNR.
+  Address source = incoming.GetSourceAddress();
+  Address destination = incoming.GetDestinationAddress();
+  ScheduleTask(milliseconds(3000), [this, source, destination] {
+    SendLinkLayerPacket(model::packets::RemoteNameRequestResponseBuilder::Create(
+            destination, source, local_name_));
+  });
 }
 
 void LinkLayerController::IncomingRemoteNameRequestResponse(
@@ -2452,8 +2458,15 @@ void LinkLayerController::IncomingRemoteNameRequestResponse(
 
 void LinkLayerController::IncomingReadRemoteLmpFeatures(
         model::packets::LinkLayerPacketView incoming) {
-  SendLinkLayerPacket(model::packets::ReadRemoteLmpFeaturesResponseBuilder::Create(
-          incoming.GetDestinationAddress(), incoming.GetSourceAddress(), host_supported_features_));
+  // This happens on incoming RNR, so give this one delay for the same reason.
+  // If this comes before bonding, the initiator will know this device supports secure pairing
+  // and they will skip the RNR during secure bonding.
+  Address source = incoming.GetSourceAddress();
+  Address destination = incoming.GetDestinationAddress();
+  ScheduleTask(milliseconds(3000), [this, source, destination] {
+    SendLinkLayerPacket(model::packets::ReadRemoteLmpFeaturesResponseBuilder::Create(
+            destination, source, host_supported_features_));
+  });
 }
 
 void LinkLayerController::IncomingReadRemoteLmpFeaturesResponse(

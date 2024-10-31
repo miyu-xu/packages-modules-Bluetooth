@@ -147,6 +147,9 @@ public:
   // 7.1.19
   void RemoteNameRequest(CommandView command);
 
+  // 7.1.20
+  void RemoteNameRequestCancel(CommandView command);
+
   // 7.1.21
   void ReadRemoteSupportedFeatures(CommandView command);
 
