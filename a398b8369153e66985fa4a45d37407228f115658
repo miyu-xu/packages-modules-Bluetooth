@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b41cfda3_0142e4f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-10-31T05:56:17Z",
+      "side": 1,
+      "message": "Looks like she is not a owner now. I\u0027ll add william to help to approve the Code-Owners review.",
+      "parentUuid": "71ee6296_35cc9fa8",
+      "revId": "a398b8369153e66985fa4a45d37407228f115658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6333b2b6_dde4e524",
