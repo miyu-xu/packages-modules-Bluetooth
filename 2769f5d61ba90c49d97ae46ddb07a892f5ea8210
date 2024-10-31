@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b31d6212_6664b470",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5490,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Defined in the Bluetooth Core Specification. This field is coded on 10 bits.",
+      "parentUuid": "b5430803_3f990c01",
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13f01c30_57d682d6",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 16
@@ -60,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f83e4377_017d1898",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5493,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "I prefer not, it\u0027s specified and used as OCF, for all the standard commands.\n(https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-54/out/en/host-controller-interface/host-controller-interface-functional-specification.html#UUID-ee8bbec6-ebdd-b47d-41d5-a7e655cad979)",
+      "parentUuid": "13f01c30_57d682d6",
+      "range": {
+        "startLine": 5493,
+        "startChar": 56,
+        "endLine": 5493,
+        "endChar": 59
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "777463c0_d5cd7cd4",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 16
@@ -71,6 +113,30 @@
       "writtenOn": "2024-10-31T17:52:10Z",
       "side": 1,
       "message": "nit: an event",
+      "range": {
+        "startLine": 5506,
+        "startChar": 24,
+        "endLine": 5506,
+        "endChar": 25
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "397c1ea7_190add44",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5506,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "777463c0_d5cd7cd4",
       "range": {
         "startLine": 5506,
         "startChar": 24,
@@ -106,6 +172,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8e379c9_5adb300b",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5622,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Replaced by \"the system\". The already used codes are defined here: https://source.android.com/docs/core/connect/bluetooth/hci_requirements",
+      "parentUuid": "64d87da2_dde3b43f",
+      "range": {
+        "startLine": 5620,
+        "startChar": 27,
+        "endLine": 5622,
+        "endChar": 44
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d27515a4_9ba709a0",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 16
@@ -123,6 +213,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0349106c_69f50404",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5627,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Yes, you need to unregister first.\nThe `eventCodeSet` should not be dynamic, its a configuration parameter normally known at the start of the service.",
+      "parentUuid": "d27515a4_9ba709a0",
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d95227b_9291404d",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 16
@@ -134,6 +242,30 @@
       "writtenOn": "2024-10-31T17:52:10Z",
       "side": 1,
       "message": "please rewrite to match the style above",
+      "range": {
+        "startLine": 5704,
+        "startChar": 60,
+        "endLine": 5705,
+        "endChar": 69
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72cf0894_a7945827",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5705,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4d95227b_9291404d",
       "range": {
         "startLine": 5704,
         "startChar": 60,
@@ -167,6 +299,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bcbe04f_0f901de6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5707,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "83617853_7b512306",
+      "range": {
+        "startLine": 5707,
+        "startChar": 7,
+        "endLine": 5707,
+        "endChar": 57
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8bd56ea_9a568f3b",
@@ -180,6 +336,30 @@
       "writtenOn": "2024-10-31T17:52:10Z",
       "side": 1,
       "message": "when a callback",
+      "range": {
+        "startLine": 5709,
+        "startChar": 37,
+        "endLine": 5709,
+        "endChar": 50
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "097bc671_0b3f1035",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5709,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-10-31T18:49:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c8bd56ea_9a568f3b",
       "range": {
         "startLine": 5709,
         "startChar": 37,
