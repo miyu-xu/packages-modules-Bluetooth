@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ebedee3_3e234736",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5490,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T18:53:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b31d6212_6664b470",
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13f01c30_57d682d6",
@@ -90,6 +108,30 @@
       "side": 1,
       "message": "I prefer not, it\u0027s specified and used as OCF, for all the standard commands.\n(https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-54/out/en/host-controller-interface/host-controller-interface-functional-specification.html#UUID-ee8bbec6-ebdd-b47d-41d5-a7e655cad979)",
       "parentUuid": "13f01c30_57d682d6",
+      "range": {
+        "startLine": 5493,
+        "startChar": 56,
+        "endLine": 5493,
+        "endChar": 59
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "735615de_68acf4da",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5493,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T18:53:33Z",
+      "side": 1,
+      "message": "Ah, thanks for calling that out. That\u0027s an exception to the \"spell it out\" guidance, if it\u0027s a common acronym in the area.",
+      "parentUuid": "f83e4377_017d1898",
       "range": {
         "startLine": 5493,
         "startChar": 56,
@@ -194,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "517141b7_49e58fe7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5622,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T18:53:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b8e379c9_5adb300b",
+      "range": {
+        "startLine": 5620,
+        "startChar": 27,
+        "endLine": 5622,
+        "endChar": 44
+      },
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d27515a4_9ba709a0",
@@ -225,6 +291,24 @@
       "side": 1,
       "message": "Yes, you need to unregister first.\nThe `eventCodeSet` should not be dynamic, its a configuration parameter normally known at the start of the service.",
       "parentUuid": "d27515a4_9ba709a0",
+      "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4672618c_6f77bb64",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 5627,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-10-31T18:53:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0349106c_69f50404",
       "revId": "2769f5d61ba90c49d97ae46ddb07a892f5ea8210",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
