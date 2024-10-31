@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58fee2b8_06f9ac32",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-31T01:08:41Z",
+      "side": 1,
+      "message": "What does local managed metadata mean?",
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefd6359_8aa2d0fe",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-31T01:08:41Z",
+      "side": 1,
+      "message": "on the",
+      "fixSuggestions": [
+        {
+          "fixId": "928d4649_4a99d5a0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+              "range": {
+                "startLine": 1217,
+                "startChar": 0,
+                "endLine": 1218,
+                "endChar": 0
+              },
+              "replacement": "     * matching metadata found on the assistant.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0376b22b_347048d1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1219,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-10-31T01:08:41Z",
+      "side": 1,
+      "message": "through? via?",
+      "fixSuggestions": [
+        {
+          "fixId": "afa83340_06c26cf4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+              "range": {
+                "startLine": 1219,
+                "startChar": 0,
+                "endLine": 1220,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eSource metadata is stored via the operation {@link #addSource(BluetoothDevice,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
