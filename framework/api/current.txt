@@ -1119,9 +1119,13 @@ package android.bluetooth {
     method public int getL2capPsm();
     method @Nullable public String getRfcommServiceName();
     method @Nullable public java.util.UUID getRfcommUuid();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @Nullable public String getSocketName();
     method public int getSocketType();
     method public boolean isAuthenticationRequired();
     method public boolean isEncryptionRequired();
+    field public static final int DATA_PATH_HW_OFFLOAD = 1; // 0x1
+    field public static final int DATA_PATH_NO_OFFLOAD = 0; // 0x0
+    field public static final int PACKET_MAX_SIZE = 65535; // 0xffff
   }
 
   @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public static final class BluetoothSocketSettings.Builder {
@@ -1132,6 +1136,7 @@ package android.bluetooth {
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setL2capPsm(int);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setRfcommServiceName(@NonNull String);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setRfcommUuid(@NonNull java.util.UUID);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketName(@NonNull String);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketType(int);
   }
 
