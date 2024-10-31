@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ed8e2ae_74796e80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T16:18:34Z",
+      "side": 1,
+      "message": "Shall we leave it be then until 24Q4 goes out?\n\nFWIW, all this change did was centralize our SDP record so the target and controller can update a single record when concurrent source and sink are both enabled, Without it, we had an extra SDP record that was confusing devices.\n\nOn phones, you don\u0027t have concurrent source/sink, so this was more or less a mechanical refactor. It just changed the resting place of the SDP data.",
+      "parentUuid": "ca7d3e3f_22b82283",
+      "revId": "92f22904d0ff3fb1772ff4dc463c783efeaa0eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "356882f8_3b9cdc4d",
         "filename": "system/bta/ar/bta_ar.cc",
         "patchSetId": 1
