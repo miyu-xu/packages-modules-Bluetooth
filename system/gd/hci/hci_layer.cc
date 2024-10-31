@@ -39,6 +39,8 @@
 #include "packet/raw_builder.h"
 #include "storage/storage_module.h"
 
+std::string __bug_logs;
+
 namespace bluetooth {
 namespace hci {
 using bluetooth::common::BindOn;
@@ -58,6 +60,9 @@ using hci::ResetCompleteView;
 using os::Alarm;
 using os::Handler;
 using std::unique_ptr;
+
+static std::recursive_mutex life_cycle_guard;
+static bool life_cycle_stopped = true;
 
 static std::chrono::milliseconds getHciTimeoutMs() {
   static auto sHciTimeoutMs = std::chrono::milliseconds(bluetooth::os::GetSystemPropertyUint32Base(
@@ -197,7 +202,9 @@ struct HciLayer::impl {
     log::assert_that(response_view.IsValid(), "assert failed: response_view.IsValid()");
     command_credits_ = response_view.GetNumHciCommandPackets();
     OpCode op_code = response_view.GetCommandOpCode();
+    __bug_logs = fmt::format("{} {}", __func__, __LINE__);
     if (op_code == OpCode::NONE) {
+      __bug_logs = fmt::format("{} {}", __func__, __LINE__);
       send_next_command();
       return;
     }
@@ -260,10 +267,14 @@ struct HciLayer::impl {
     }
 #endif
 
+    __bug_logs = fmt::format("{} {}", __func__, __LINE__);
     command_queue_.pop_front();
+    __bug_logs = fmt::format("{} {}", __func__, __LINE__);
     waiting_command_ = OpCode::NONE;
     if (hci_timeout_alarm_ != nullptr) {
+      __bug_logs = fmt::format("{} {}", __func__, __LINE__);
       hci_timeout_alarm_->Cancel();
+      __bug_logs = fmt::format("{} {}", __func__, __LINE__);
       send_next_command();
     }
   }
@@ -318,6 +329,7 @@ struct HciLayer::impl {
     if (command_queue_.size() == 0) {
       return;
     }
+    __bug_logs = fmt::format("{} {}", __func__, __LINE__);
     std::shared_ptr<std::vector<uint8_t>> bytes = std::make_shared<std::vector<uint8_t>>();
     BitInserter bi(*bytes);
     command_queue_.front().command->Serialize(bi);
@@ -334,9 +346,11 @@ struct HciLayer::impl {
     waiting_command_ = op_code;
     command_credits_ = 0;  // Only allow one outstanding command
     if (hci_timeout_alarm_ != nullptr) {
+      __bug_logs = fmt::format("{} {}", __func__, __LINE__);
       hci_timeout_alarm_->Schedule(
               BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code),
               getHciTimeoutMs());
+      __bug_logs = fmt::format("{} {}", __func__, __LINE__);
     } else {
       log::warn("{} sent without an hci-timeout timer", OpCodeText(op_code));
     }
@@ -402,6 +416,8 @@ struct HciLayer::impl {
   }
 
   void on_hci_event(EventView event) {
+    std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+    if (life_cycle_stopped) return;
     log::assert_that(event.IsValid(), "assert failed: event.IsValid()");
     if (command_queue_.empty()) {
       auto event_code = event.GetEventCode();
@@ -542,6 +558,8 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   explicit hal_callbacks(HciLayer& module) : module_(module) {}
 
   void hciEventReceived(hal::HciPacket event_bytes) override {
+    std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+    if (life_cycle_stopped) return;
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(event_bytes));
     EventView event = EventView::Create(packet);
@@ -549,6 +567,8 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void aclDataReceived(hal::HciPacket data_bytes) override {
+    std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+    if (life_cycle_stopped) return;
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto acl = std::make_unique<AclView>(AclView::Create(packet));
@@ -556,6 +576,8 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void scoDataReceived(hal::HciPacket data_bytes) override {
+    std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+    if (life_cycle_stopped) return;
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto sco = std::make_unique<ScoView>(ScoView::Create(packet));
@@ -563,6 +585,8 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void isoDataReceived(hal::HciPacket data_bytes) override {
+    std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+    if (life_cycle_stopped) return;
     auto packet = packet::PacketView<packet::kLittleEndian>(
             std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto iso = std::make_unique<IsoView>(IsoView::Create(packet));
@@ -590,39 +614,55 @@ common::BidiQueueEnd<IsoBuilder, IsoView>* HciLayer::GetIsoQueueEnd() {
 
 void HciLayer::EnqueueCommand(unique_ptr<CommandBuilder> command,
                               ContextualOnceCallback<void(CommandCompleteView)> on_complete) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::enqueue_command<CommandCompleteView>, std::move(command),
          std::move(on_complete));
 }
 
 void HciLayer::EnqueueCommand(unique_ptr<CommandBuilder> command,
                               ContextualOnceCallback<void(CommandStatusView)> on_status) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::enqueue_command<CommandStatusView>, std::move(command),
          std::move(on_status));
 }
 
 void HciLayer::RegisterEventHandler(EventCode event, ContextualCallback<void(EventView)> handler) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::register_event, event, handler);
 }
 
 void HciLayer::UnregisterEventHandler(EventCode event) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::unregister_event, event);
 }
 
 void HciLayer::RegisterLeEventHandler(SubeventCode event,
                                       ContextualCallback<void(LeMetaEventView)> handler) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::register_le_event, event, handler);
 }
 
 void HciLayer::UnregisterLeEventHandler(SubeventCode event) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::unregister_le_event, event);
 }
 
 void HciLayer::RegisterVendorSpecificEventHandler(
         VseSubeventCode event, ContextualCallback<void(VendorSpecificEventView)> handler) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::register_vs_event, event, handler);
 }
 
 void HciLayer::UnregisterVendorSpecificEventHandler(VseSubeventCode event) {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
+  if (life_cycle_stopped) return;
   CallOn(impl_, &impl::unregister_vs_event, event);
 }
 
@@ -830,6 +870,7 @@ void HciLayer::ListDependencies(ModuleList* list) const {
 }
 
 void HciLayer::Start() {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
   auto hal = GetDependency<hal::HciHal>();
   impl_ = new impl(hal, *this);
   hal_callbacks_ = new hal_callbacks(*this);
@@ -844,6 +885,8 @@ void HciLayer::Start() {
   StartWithNoHalDependencies(handler);
   hal->registerIncomingPacketCallback(hal_callbacks_);
   EnqueueCommand(ResetBuilder::Create(), handler->BindOnce(&fail_if_reset_complete_not_success));
+
+  life_cycle_stopped = false;
 }
 
 // Initialize event handlers that don't depend on the HAL
@@ -860,6 +903,7 @@ void HciLayer::StartWithNoHalDependencies(Handler* handler) {
 }
 
 void HciLayer::Stop() {
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard);
   auto hal = GetDependency<hal::HciHal>();
   hal->unregisterIncomingPacketCallback();
   delete hal_callbacks_;
@@ -868,6 +912,8 @@ void HciLayer::Stop() {
   impl_->sco_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->iso_queue_.GetDownEnd()->UnregisterDequeue();
   delete impl_;
+
+  life_cycle_stopped = true;
 }
 
 }  // namespace hci
