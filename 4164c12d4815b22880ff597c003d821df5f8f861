@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d54e407_93a51815",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-31T22:59:01Z",
+      "side": 1,
+      "message": "A more descriptive name could be something like `verifyStateTransitionAndIntentBroadcast`",
+      "range": {
+        "startLine": 1182,
+        "startChar": 17,
+        "endLine": 1182,
+        "endChar": 27
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a3811d_09fc4d5a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-10-31T22:59:01Z",
+      "side": 0,
+      "message": "I think in this test we also want to verify the proper state transition Intent is being sent.",
+      "range": {
+        "startLine": 301,
+        "startChar": 24,
+        "endLine": 301,
+        "endChar": 39
+      },
+      "revId": "49abfa5184b5dcd049fa17cd552653f0acc8e6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
