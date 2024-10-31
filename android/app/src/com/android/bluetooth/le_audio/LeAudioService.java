@@ -5218,6 +5218,20 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * Get primary group
+     *
+     * <p>Primary group represents fallback group for broadcast handover case (Unicast is not active
+     * and Broadcast is) and active group when Unicast is active.
+     *
+     * @return ID of primary group
+     */
+    public int getPrimaryGroup() {
+        Log.d(TAG, "getPrimaryGroup()");
+
+        return LE_AUDIO_GROUP_ID_INVALID;
+    }
+
+    /**
      * Checks if the remote device supports LE Audio duplex (output and input).
      *
      * @param device the remote device to check
@@ -5902,6 +5916,17 @@ public class LeAudioService extends ProfileService {
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             service.setPrimaryGroup(groupId);
+        }
+
+        @Override
+        public int getPrimaryGroup(AttributionSource source) {
+            LeAudioService service = getServiceAndEnforceConnect(source);
+            if (service == null) {
+                return LE_AUDIO_GROUP_ID_INVALID;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.getPrimaryGroup();
         }
 
         @Override

@@ -1438,4 +1438,38 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
             }
         }
     }
+
+    /**
+     * Get primary group
+     *
+     * <p>Primary group represents fallback group for broadcast handover case (Unicast is not active
+     * and Broadcast is) and active group when Unicast is active.
+     *
+     * @throws IllegalStateException if callback was not registered
+     * @return ID of primary group
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public int getPrimaryGroup() {
+        if (DBG) Log.d(TAG, "getPrimaryGroup()");
+
+        final IBluetoothLeAudio service = getService();
+
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+            throw new IllegalStateException("Service is unavailable");
+        } else if (mAdapter.isEnabled()) {
+            try {
+                return service.getPrimaryGroup(mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+
+        return GROUP_ID_INVALID;
+    }
 }
