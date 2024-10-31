@@ -3262,13 +3262,30 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 throw new IllegalArgumentException("Invalid PSM/Channel value: " + psm);
             }
         }
-        return new BluetoothSocket(
-                this,
-                settings.getSocketType(),
-                settings.isAuthenticationRequired(),
-                settings.isEncryptionRequired(),
-                psm,
-                uuid);
+        if (!Flags.btOffloadSocketApi()) {
+            return new BluetoothSocket(
+                    this,
+                    settings.getSocketType(),
+                    settings.isAuthenticationRequired(),
+                    settings.isEncryptionRequired(),
+                    psm,
+                    uuid);
+        } else {
+            return new BluetoothSocket(
+                    this,
+                    settings.getSocketType(),
+                    settings.isAuthenticationRequired(),
+                    settings.isEncryptionRequired(),
+                    psm,
+                    uuid,
+                    false,
+                    false,
+                    settings.getDataPath(),
+                    settings.getSocketName(),
+                    settings.getHubId(),
+                    settings.getEndpointId(),
+                    settings.getMaximumPacketSize());
+        }
     }
 
     /**
