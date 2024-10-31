@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d4d049_a230f973",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-31T18:51:14Z",
+      "side": 1,
+      "message": "I have no idea about what I am saying here but, do we want to do the same thing for the shutdown ? or maybe it doesn\u0027t matter here ?",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 39
+      },
+      "revId": "773d3bfba2dc45116bc42f843a3a25d517809db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
