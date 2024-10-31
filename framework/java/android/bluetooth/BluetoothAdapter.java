@@ -3104,7 +3104,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingRfcommOn(int channel) throws IOException {
         return listenUsingRfcommOn(channel, false, false);
     }
@@ -3134,7 +3136,9 @@ public final class BluetoothAdapter {
     @UnsupportedAppUsage
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingRfcommOn(
             int channel, boolean mitm, boolean min16DigitPin) throws IOException {
         BluetoothServerSocket socket =
@@ -3181,7 +3185,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
         return createNewRfcommSocketAndRecord(name, uuid, true, true);
@@ -3352,7 +3358,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingInsecureRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
         return createNewRfcommSocketAndRecord(name, uuid, false, false);
@@ -3397,14 +3405,18 @@ public final class BluetoothAdapter {
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingEncryptedRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
         return createNewRfcommSocketAndRecord(name, uuid, false, true);
     }
 
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     private BluetoothServerSocket createNewRfcommSocketAndRecord(
             String name, UUID uuid, boolean auth, boolean encrypt) throws IOException {
         BluetoothServerSocket socket;
@@ -3432,7 +3444,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingInsecureRfcommOn(int port) throws IOException {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(BluetoothSocket.TYPE_RFCOMM, false, false, port);
@@ -3465,7 +3479,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingL2capOn(int port, boolean mitm, boolean min16DigitPin)
             throws IOException {
         BluetoothServerSocket socket =
@@ -3500,7 +3516,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingL2capOn(int port) throws IOException {
         return listenUsingL2capOn(port, false, false);
     }
@@ -3519,7 +3537,9 @@ public final class BluetoothAdapter {
      * @hide
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public BluetoothServerSocket listenUsingInsecureL2capOn(int port) throws IOException {
         Log.d(TAG, "listenUsingInsecureL2capOn: port=" + port);
         BluetoothServerSocket socket =
@@ -4546,7 +4566,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public @NonNull BluetoothServerSocket listenUsingL2capChannel() throws IOException {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(
@@ -4601,7 +4623,9 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     public @NonNull BluetoothServerSocket listenUsingInsecureL2capChannel() throws IOException {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(
@@ -4657,7 +4681,9 @@ public final class BluetoothAdapter {
      *     Connection-oriented Channel (CoC).
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
     public @NonNull BluetoothServerSocket listenUsingSocketSettings(
             @NonNull BluetoothSocketSettings settings) throws IOException {
@@ -4668,20 +4694,56 @@ public final class BluetoothAdapter {
             if (settings.getRfcommUuid() == null) {
                 throw new IllegalArgumentException("RFCOMM server missing UUID");
             }
-            return createNewRfcommSocketAndRecord(
-                    settings.getRfcommServiceName(),
-                    settings.getRfcommUuid(),
-                    settings.isAuthenticationRequired(),
-                    settings.isEncryptionRequired());
+            if (!Flags.btOffloadSocketApi()) {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                new ParcelUuid(settings.getRfcommUuid()));
+            } else {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                -1,
+                                new ParcelUuid(settings.getRfcommUuid()),
+                                false,
+                                false,
+                                settings.getDataPath(),
+                                settings.getSocketName(),
+                                settings.getHubId(),
+                                settings.getEndpointId(),
+                                settings.getMaximumPacketSize());
+            }
+            socket.setServiceName(settings.getRfcommServiceName());
         } else if (type == BluetoothSocket.TYPE_LE) {
-            socket =
-                    new BluetoothServerSocket(
-                            settings.getSocketType(),
-                            settings.isAuthenticationRequired(),
-                            settings.isEncryptionRequired(),
-                            SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
-                            false,
-                            false);
+            if (!Flags.btOffloadSocketApi()) {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                                false,
+                                false);
+            } else {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                                null,
+                                false,
+                                false,
+                                settings.getDataPath(),
+                                settings.getSocketName(),
+                                settings.getHubId(),
+                                settings.getEndpointId(),
+                                settings.getMaximumPacketSize());
+            }
         } else {
             throw new IOException("Error: Invalid socket type: " + type);
         }
