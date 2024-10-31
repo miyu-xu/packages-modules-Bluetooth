@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "285b33fd_a7306ec5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-10-31T18:15:55Z",
+      "side": 1,
+      "message": "you don\u0027t need this condition since the \"if\" is already checking that",
+      "range": {
+        "startLine": 691,
+        "startChar": 22,
+        "endLine": 691,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "65601abd_ec1fcbec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 691,
+                "startChar": 0,
+                "endLine": 692,
+                "endChar": 0
+              },
+              "replacement": "                    } else {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d824c57bfa7f743c172020ab06ad26f61dfde731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
