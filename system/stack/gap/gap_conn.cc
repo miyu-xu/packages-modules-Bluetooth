@@ -55,7 +55,9 @@ typedef struct {
 
   uint8_t service_id;     /* Used by BTM */
   uint16_t gap_handle;    /* GAP handle */
-  uint16_t connection_id; /* L2CAP CID */
+  uint16_t connection_id; /* Local L2CAP CID */
+  uint16_t rem_connection_id; /* Remote CID */
+  uint16_t acl_handle;        /* ACL handle */
   bool rem_addr_specified;
   uint8_t chan_mode_mask; /* Supported channel modes (FCR) */
   RawAddress rem_dev_address;
@@ -211,7 +213,8 @@ uint16_t GAP_ConnOpen(const char* /* p_serv_name */, uint8_t service_id, bool is
 
   /* Configure L2CAP COC, if transport is LE */
   if (transport == BT_TRANSPORT_LE) {
-    p_ccb->local_coc_cfg.credits = L2CA_LeCreditDefault();
+    p_ccb->local_coc_cfg.credits =
+            (p_ccb->cfg.init_credit_present) ? p_ccb->cfg.init_credit : L2CA_LeCreditDefault();
     p_ccb->local_coc_cfg.mtu = p_cfg->mtu;
 
     uint16_t max_mps = bluetooth::shim::GetController()->GetLeBufferSize().le_data_packet_length_;
@@ -577,6 +580,60 @@ uint16_t GAP_ConnGetL2CAPCid(uint16_t gap_handle) {
   }
 
   return p_ccb->connection_id;
+}
+
+/*******************************************************************************
+ *
+ * Function         GAP_GetLeChannelInfo
+ *
+ * Description      This function is called to get LE L2CAP channel information
+ *                  by the gap handle.
+ *
+ * Parameters:      handle        - Handle of the port returned in the Open
+ *                  local_mtu     - OUT local L2CAP MTU
+ *                  remote_mtu    - OUT remote L2CAP MTU
+ *                  local_mps     - OUT local L2CAP COC MPS
+ *                  remote_mps    - OUT remote L2CAP COC MPS
+ *                  local_credit  - OUT local L2CAP COC credit
+ *                  remote_credit - OUT remote L2CAP COC credit
+ *                  local_cid     - OUT local L2CAP CID
+ *                  remote_cid    - OUT remote L2CAP CID
+ *                  acl_handle    - OUT ACL handle
+ *
+ * Returns          true if request accepted
+ *
+ ******************************************************************************/
+bool GAP_GetLeChannelInfo(uint16_t gap_handle, uint16_t* local_mtu, uint16_t* remote_mtu,
+                          uint16_t* local_mps, uint16_t* remote_mps, uint16_t* local_credit,
+                          uint16_t* remote_credit, uint16_t* local_cid, uint16_t* remote_cid,
+                          uint16_t* acl_handle) {
+  tGAP_CCB* p_ccb;
+
+  p_ccb = gap_find_ccb_by_handle(gap_handle);
+  if (p_ccb == NULL) {
+    return false;
+  }
+
+  if (p_ccb->transport != BT_TRANSPORT_LE) {
+    return false;
+  }
+
+  uint16_t ahandle;
+  if (!stack::l2cap::get_interface().L2CA_GetAclHandle(p_ccb->connection_id, &ahandle)) {
+    return false;
+  }
+  p_ccb->acl_handle = ahandle;
+
+  *local_mtu = p_ccb->local_coc_cfg.mtu;
+  *remote_mtu = p_ccb->peer_coc_cfg.mtu;
+  *local_mps = p_ccb->local_coc_cfg.mps;
+  *remote_mps = p_ccb->peer_coc_cfg.mps;
+  *local_credit = p_ccb->local_coc_cfg.credits;
+  *remote_credit = p_ccb->peer_coc_cfg.credits;
+  *local_cid = p_ccb->connection_id;
+  *remote_cid = p_ccb->rem_connection_id;
+  *acl_handle = p_ccb->acl_handle;
+  return true;
 }
 
 /*******************************************************************************

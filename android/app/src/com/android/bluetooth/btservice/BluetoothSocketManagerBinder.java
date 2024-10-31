@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.bluetooth.BluetoothSocketSettings;
 import android.bluetooth.IBluetoothSocketManager;
 import android.content.AttributionSource;
 import android.os.Binder;
@@ -49,7 +50,16 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
 
     @Override
     public ParcelFileDescriptor connectSocket(
-            BluetoothDevice device, int type, ParcelUuid uuid, int port, int flag) {
+            BluetoothDevice device,
+            int type,
+            ParcelUuid uuid,
+            int port,
+            int flag,
+            int dataPath,
+            String socketName,
+            long hubId,
+            long endpointId,
+            int maximumPacketSize) {
 
         enforceActiveUser();
 
@@ -57,23 +67,40 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
             return null;
         }
 
+        if (dataPath != BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {
+            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+        }
+
         String brEdrAddress =
                 Flags.identityAddressNullIfNotKnown()
                         ? Utils.getBrEdrAddress(device)
                         : mService.getIdentityAddress(device.getAddress());
 
-        Log.i(
-                TAG,
-                "connectSocket: device="
-                        + device
-                        + ", type="
-                        + type
-                        + ", uuid="
-                        + uuid
-                        + ", port="
-                        + port
-                        + ", from "
-                        + Utils.getUidPidString());
+        StringBuilder builder = new StringBuilder("connectSocket{");
+        builder.append("device=");
+        builder.append(device);
+        builder.append(", type=");
+        builder.append(type);
+        builder.append(", uuid=");
+        builder.append(uuid);
+        builder.append(", port=");
+        builder.append(port);
+        builder.append(", from=");
+        builder.append(Utils.getUidPidString());
+        builder.append(", socketName=");
+        builder.append(socketName);
+        if (dataPath == BluetoothSocketSettings.DATA_PATH_HW_OFFLOAD) {
+            builder.append(", dataPath=");
+            builder.append(dataPath);
+            builder.append(", hubId=");
+            builder.append(hubId);
+            builder.append(", endpointId=");
+            builder.append(endpointId);
+            builder.append(", maximumPacketSize=");
+            builder.append(maximumPacketSize);
+        }
+        builder.append("}");
+        Log.i(TAG, builder.toString());
 
         return marshalFd(
                 mService.getNative()
@@ -86,12 +113,26 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                Binder.getCallingUid(),
+                                dataPath,
+                                socketName,
+                                hubId,
+                                endpointId,
+                                maximumPacketSize));
     }
 
     @Override
     public ParcelFileDescriptor createSocketChannel(
-            int type, String serviceName, ParcelUuid uuid, int port, int flag) {
+            int type,
+            String serviceName,
+            ParcelUuid uuid,
+            int port,
+            int flag,
+            int dataPath,
+            String socketName,
+            long hubId,
+            long endpointId,
+            int maximumPacketSize) {
 
         enforceActiveUser();
 
@@ -99,18 +140,35 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
             return null;
         }
 
-        Log.i(
-                TAG,
-                "createSocketChannel: type="
-                        + type
-                        + ", serviceName="
-                        + serviceName
-                        + ", uuid="
-                        + uuid
-                        + ", port="
-                        + port
-                        + ", from "
-                        + Utils.getUidPidString());
+        if (dataPath != BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {
+            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+        }
+
+        StringBuilder builder = new StringBuilder("createSocketChannel{");
+        builder.append(", type=");
+        builder.append(type);
+        builder.append(", serviceName=");
+        builder.append(serviceName);
+        builder.append(", uuid=");
+        builder.append(uuid);
+        builder.append(", port=");
+        builder.append(port);
+        builder.append(", from=");
+        builder.append(Utils.getUidPidString());
+        builder.append(", socketName=");
+        builder.append(socketName);
+        if (dataPath == BluetoothSocketSettings.DATA_PATH_HW_OFFLOAD) {
+            builder.append(", dataPath=");
+            builder.append(dataPath);
+            builder.append(", hubId=");
+            builder.append(hubId);
+            builder.append(", endpointId=");
+            builder.append(endpointId);
+            builder.append(", maximumPacketSize=");
+            builder.append(maximumPacketSize);
+        }
+        builder.append("}");
+        Log.i(TAG, builder.toString());
 
         return marshalFd(
                 mService.getNative()
@@ -120,7 +178,12 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                Binder.getCallingUid(),
+                                dataPath,
+                                socketName,
+                                hubId,
+                                endpointId,
+                                maximumPacketSize));
     }
 
     @Override
