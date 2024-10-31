@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd47b915_9794dae0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2620,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T16:55:37Z",
+      "side": 1,
+      "message": "only want to move the public APIs together, nothing specific",
+      "parentUuid": "55c97d8d_167ca15d",
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58fee2b8_06f9ac32",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-31T01:08:41Z",
       "side": 1,
       "message": "What does local managed metadata mean?",
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83454b24_53511105",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T16:55:37Z",
+      "side": 1,
+      "message": "It means this metadata is found by this assistant device, and managed through adding/modifying source operations. There is another case, the sinks might have external source, and assistant won\u0027t have the metadata without scanning.",
+      "parentUuid": "58fee2b8_06f9ac32",
       "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -70,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0a2023_e5aa90b0",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T16:55:37Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "cefd6359_8aa2d0fe",
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0376b22b_347048d1",
@@ -105,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2937cfc5_90b961e8",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1219,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T16:55:37Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "0376b22b_347048d1",
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b18e698e_ab138dd8",
@@ -136,6 +208,24 @@
           ]
         }
       ],
+      "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e41d76cb_45112936",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1220,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T16:55:37Z",
+      "side": 1,
+      "message": "no need for that, you can see the above examples.",
+      "parentUuid": "b18e698e_ab138dd8",
       "revId": "2416efdfe780f5d89c310ac33e1195474bb91729",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
