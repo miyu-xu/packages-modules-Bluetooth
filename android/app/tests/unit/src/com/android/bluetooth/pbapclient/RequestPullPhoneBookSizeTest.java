@@ -36,9 +36,15 @@ public class RequestPullPhoneBookSizeTest {
 
     @Before
     public void setUp() {
+        PbapApplicationParameters params =
+                new PbapApplicationParameters(
+                        PbapApplicationParameters.PROPERTIES_ALL,
+                        PbapPhonebook.FORMAT_VCARD_30,
+                        PbapApplicationParameters.MAX_PHONEBOOK_SIZE,
+                        /* startOffset= */ 0);
         mRequest =
                 new RequestPullPhoneBookSize(
-                        /* pbName= */ "phonebook", /* filter= */ 1);
+                        /* pbName= */ "phonebook", /* params= */ params);
     }
 
     @Test
