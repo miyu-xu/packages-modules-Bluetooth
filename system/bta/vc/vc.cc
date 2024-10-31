@@ -194,7 +194,7 @@ public:
     /* Make sure to remove device from background connect.
      * It will be added back if needed, when device got disconnected
      */
-    BTA_GATTC_CancelOpen(gatt_if_, address, false);
+    BTA_GATTC_CancelOpen(gatt_if_, address, true);
 
     if (device->IsEncryptionEnabled()) {
       OnEncryptionComplete(address, tBTM_STATUS::BTM_SUCCESS);
@@ -809,7 +809,7 @@ public:
     bluetooth::log::info("{}", address);
 
     /* Removes all registrations for connection. */
-    BTA_GATTC_CancelOpen(gatt_if_, address, false);
+    BTA_GATTC_CancelOpen(gatt_if_, address, true);
 
     Disconnect(address);
     volume_control_devices_.Remove(address);
@@ -817,6 +817,8 @@ public:
 
   void OnGattDisconnected(tCONN_ID connection_id, tGATT_IF /*client_if*/, RawAddress remote_bda,
                           tGATT_DISCONN_REASON reason) {
+    (void)reason;
+
     VolumeControlDevice* device = volume_control_devices_.FindByConnId(connection_id);
     if (!device) {
       bluetooth::log::error("Skipping unknown device disconnect, connection_id={:#x}",
@@ -837,9 +839,7 @@ public:
     bool notify = device->IsReady() || device->connecting_actively;
     device_cleanup_helper(device, notify);
 
-    if (reason != GATT_CONN_TERMINATE_LOCAL_HOST && device->connecting_actively) {
-      StartOpportunisticConnect(remote_bda);
-    }
+    StartOpportunisticConnect(remote_bda);
   }
 
   void RemoveDeviceFromOperationList(const RawAddress& addr) {
