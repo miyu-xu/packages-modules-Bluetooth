@@ -1118,10 +1118,13 @@ package android.bluetooth {
   @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public final class BluetoothSocketSettings {
     method public int getChannel();
     method @NonNull public String getServiceName();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public String getSocketName();
     method public int getSocketType();
     method @Nullable public java.util.UUID getUuid();
     method public boolean isAuthenticationEnabled();
     method public boolean isEncryptionEnabled();
+    field public static final int DATA_PATH_HW_OFFLOAD = 1; // 0x1
+    field public static final int DATA_PATH_NO_OFFLOAD = 0; // 0x0
   }
 
   @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public static final class BluetoothSocketSettings.Builder {
@@ -1131,6 +1134,7 @@ package android.bluetooth {
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setChannel(int);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setEncryptionEnabled(boolean);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setServiceName(@NonNull String);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketName(@NonNull String);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setSocketType(int);
     method @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setUuid(@NonNull java.util.UUID);
   }
