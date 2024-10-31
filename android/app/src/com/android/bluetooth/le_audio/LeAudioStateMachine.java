@@ -131,9 +131,6 @@ final class LeAudioStateMachine extends StateMachine {
             if (mLastConnectionState != -1) {
                 // Don't broadcast during startup
                 broadcastConnectionState(BluetoothProfile.STATE_DISCONNECTED, mLastConnectionState);
-                if (Flags.audioRoutingCentralization()) {
-                    mService.deviceDisconnected(mDevice, false);
-                }
             }
         }
 
@@ -450,9 +447,6 @@ final class LeAudioStateMachine extends StateMachine {
                             + messageWhatToString(getCurrentMessage().what));
             mConnectionState = BluetoothProfile.STATE_CONNECTED;
             removeDeferredMessages(CONNECT);
-            if (Flags.audioRoutingCentralization()) {
-                mService.deviceConnected(mDevice);
-            }
             broadcastConnectionState(BluetoothProfile.STATE_CONNECTED, mLastConnectionState);
         }
 
