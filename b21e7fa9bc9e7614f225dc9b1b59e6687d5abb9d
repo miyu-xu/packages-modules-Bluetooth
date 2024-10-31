@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d13d9c_1fda2ac1",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5503,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-10-31T16:44:01Z",
+      "side": 1,
+      "message": "I\u0027m ok with the current naming so closing this. Feel free to re-open.",
+      "parentUuid": "dd58df98_e0cb4950",
+      "range": {
+        "startLine": 5503,
+        "startChar": 13,
+        "endLine": 5503,
+        "endChar": 28
+      },
+      "revId": "b21e7fa9bc9e7614f225dc9b1b59e6687d5abb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a25b4f5_9b410294",
