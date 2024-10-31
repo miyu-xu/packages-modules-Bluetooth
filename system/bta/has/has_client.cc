@@ -429,7 +429,13 @@ public:
       ClearDeviceInformationAndStartSearch(device);
     } else {
       log::error("Devices {}: Control point not usable. Disconnecting!", device->addr);
-      BTA_GATTC_Close(device->conn_id);
+      auto device_iter =
+              std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(device->addr));
+      if (device_iter != devices_.end()) {
+        DoDisconnectCleanUp(*device_iter);
+        devices_.erase(device_iter);
+      }
+      BTA_GATTC_Close(conn_id);
     }
   }
 
@@ -475,7 +481,13 @@ public:
       ClearDeviceInformationAndStartSearch(device);
     } else {
       log::error("Devices {}: Control point not usable. Disconnecting!", device->addr);
-      BTA_GATTC_Close(device->conn_id);
+      auto device_iter =
+              std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(device->addr));
+      if (device_iter != devices_.end()) {
+        DoDisconnectCleanUp(*device_iter);
+        devices_.erase(device_iter);
+      }
+      BTA_GATTC_Close(conn_id);
     }
   }
 
@@ -1137,6 +1149,12 @@ private:
       /* Both of these CCC are mandatory */
       if (enabling_ntf && (status != GATT_SUCCESS)) {
         log::error("Failed to register for notifications on handle=0x{:x}", handle);
+        auto device_iter = std::find_if(devices_.begin(), devices_.end(),
+                                        HasDevice::MatchAddress(device->addr));
+        if (device_iter != devices_.end()) {
+          DoDisconnectCleanUp(*device_iter);
+          devices_.erase(device_iter);
+        }
         BTA_GATTC_Close(conn_id);
         return;
       }
@@ -1189,20 +1207,34 @@ private:
       return;
     }
 
+    tCONN_ID conn_id = device->conn_id;
+
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}", device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
-        BTA_GATTC_Close(device->conn_id);
+        auto device_iter = std::find_if(devices_.begin(), devices_.end(),
+                                        HasDevice::MatchAddress(device->addr));
+        if (device_iter != devices_.end()) {
+          DoDisconnectCleanUp(*device_iter);
+          devices_.erase(device_iter);
+        }
+        BTA_GATTC_Close(conn_id);
       }
       return;
     }
 
     if (len != 1) {
       log::error("Invalid features value length={} at handle=0x{:x}", len, handle);
-      BTA_GATTC_Close(device->conn_id);
+      auto device_iter =
+              std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(device->addr));
+      if (device_iter != devices_.end()) {
+        DoDisconnectCleanUp(*device_iter);
+        devices_.erase(device_iter);
+      }
+      BTA_GATTC_Close(conn_id);
       return;
     }
 
@@ -1565,9 +1597,17 @@ private:
 
   void OnHasCtpValueNotification(HasDevice* device, uint16_t len, const uint8_t* value) {
     auto ntf_opt = HasCtpNtf::FromCharacteristicValue(len, value);
+    tCONN_ID conn_id = device->conn_id;
+
     if (!ntf_opt.has_value()) {
       log::error("Unhandled notification for device: {}", *device);
-      BTA_GATTC_Close(device->conn_id);
+      auto device_iter =
+              std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(device->addr));
+      if (device_iter != devices_.end()) {
+        DoDisconnectCleanUp(*device_iter);
+        devices_.erase(device_iter);
+      }
+      BTA_GATTC_Close(conn_id);
       return;
     }
 
@@ -1591,19 +1631,34 @@ private:
       return;
     }
 
+    tCONN_ID conn_id = device->conn_id;
+
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}", device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
-        BTA_GATTC_Close(device->conn_id);
+        auto device_iter = std::find_if(devices_.begin(), devices_.end(),
+                                        HasDevice::MatchAddress(device->addr));
+        if (device_iter != devices_.end()) {
+          DoDisconnectCleanUp(*device_iter);
+          devices_.erase(device_iter);
+        }
+        BTA_GATTC_Close(conn_id);
+        return;
       }
     }
 
     if (len != 1) {
       log::error("Invalid preset value length={} at handle=0x{:x}", len, handle);
-      BTA_GATTC_Close(device->conn_id);
+      auto device_iter =
+              std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(device->addr));
+      if (device_iter != devices_.end()) {
+        DoDisconnectCleanUp(*device_iter);
+        devices_.erase(device_iter);
+      }
+      BTA_GATTC_Close(conn_id);
       return;
     }
 
