@@ -776,12 +776,13 @@ public class VolumeControlService extends ProfileService {
                             + (", flags: " + flags));
             /* We are here, because system has just started and LeAudio device is connected. If
              * remote device has User Persistent flag set, Android sets the volume to local cache
-             * and to the audio system.
+             * and to the audio system if not already streaming to other devices.
              * If Reset Flag is set, then Android sets to remote devices either cached volume volume
              * taken from audio manager.
              * Note, to match BR/EDR behavior, don't show volume change in UI here
              */
-            if ((flags & VOLUME_FLAGS_PERSISTED_USER_SET_VOLUME_MASK) == 0x01) {
+            if (((flags & VOLUME_FLAGS_PERSISTED_USER_SET_VOLUME_MASK) == 0x01)
+                    && (getConnectedDevices().size() == 1)) {
                 updateGroupCacheAndAudioSystem(groupId, volume, mute, false);
                 return;
             }
@@ -1133,17 +1134,6 @@ public class VolumeControlService extends ProfileService {
 
     void messageFromNative(VolumeControlStackEvent stackEvent) {
         Log.d(TAG, "messageFromNative: " + stackEvent);
-
-        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED) {
-            handleVolumeControlChanged(
-                    stackEvent.device,
-                    stackEvent.valueInt1,
-                    stackEvent.valueInt2,
-                    stackEvent.valueInt3,
-                    stackEvent.valueBool1,
-                    stackEvent.valueBool2);
-            return;
-        }
 
         requireNonNull(stackEvent.device);
 

@@ -262,6 +262,10 @@ class VolumeControlStateMachine extends StateMachine {
                         case VolumeControlStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED -> {
                             processConnectionEvent(event.valueInt1);
                         }
+                        case VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED -> {
+                            Log.w(TAG, "Defer volume change received while connecting: " + mDevice);
+                            deferMessage(message);
+                        }
                         default -> Log.e(TAG, "Connecting: ignoring stack event: " + event);
                     }
                 }
@@ -450,6 +454,15 @@ class VolumeControlStateMachine extends StateMachine {
                     switch (event.type) {
                         case VolumeControlStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED -> {
                             processConnectionEvent(event.valueInt1);
+                        }
+                        case VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED -> {
+                            mService.handleVolumeControlChanged(
+                                    event.device,
+                                    event.valueInt1,
+                                    event.valueInt2,
+                                    event.valueInt3,
+                                    event.valueBool1,
+                                    event.valueBool2);
                         }
                         default -> {
                             Log.e(TAG, "Connected: ignoring stack event: " + event);
