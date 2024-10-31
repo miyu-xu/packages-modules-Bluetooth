@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1081581a_ae8b141b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-10-31T16:20:44Z",
+      "side": 1,
+      "message": "SGTM. I\u0027ll put something in my calendar so I don\u0027t forget 😊",
+      "parentUuid": "2efa23b6_65460667",
+      "revId": "92f22904d0ff3fb1772ff4dc463c783efeaa0eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "356882f8_3b9cdc4d",
         "filename": "system/bta/ar/bta_ar.cc",
         "patchSetId": 1
