@@ -19,6 +19,7 @@ package android.bluetooth;
 import static android.bluetooth.BluetoothSocket.SocketType;
 
 import android.annotation.FlaggedApi;
+import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresNoPermission;
