@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "759ac2b2_97fdb12c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3805,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T02:31:08Z",
+      "side": 1,
+      "message": "indent doesn\u0027t look right here",
+      "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2058a57e_24162f09",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-10-31T02:31:08Z",
+      "side": 1,
+      "message": "Why equals to input/output means primary?\nI\u0027m worried this might break other use cases.",
+      "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
