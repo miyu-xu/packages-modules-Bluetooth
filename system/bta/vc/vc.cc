@@ -194,7 +194,7 @@ public:
     /* Make sure to remove device from background connect.
      * It will be added back if needed, when device got disconnected
      */
-    BTA_GATTC_CancelOpen(gatt_if_, address, false);
+    BTA_GATTC_CancelOpen(gatt_if_, address, true);
 
     if (device->IsEncryptionEnabled()) {
       OnEncryptionComplete(address, tBTM_STATUS::BTM_SUCCESS);
@@ -809,7 +809,7 @@ public:
     bluetooth::log::info("{}", address);
 
     /* Removes all registrations for connection. */
-    BTA_GATTC_CancelOpen(gatt_if_, address, false);
+    BTA_GATTC_CancelOpen(gatt_if_, address, true);
 
     Disconnect(address);
     volume_control_devices_.Remove(address);
