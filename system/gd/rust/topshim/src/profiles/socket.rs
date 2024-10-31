@@ -164,6 +164,12 @@ impl BtSocket {
         let name = CString::new(service_name).expect("Service name has null in it.");
         let name_ptr = LTCheckedPtr::from(&name);
 
+        let data_path: i32 = 0;
+        let sock_name = CString::new("test").expect("Socket name has null in it");
+        let hub_id: u64 = 0;
+        let endpoint_id: u64 = 0;
+        let max_rx_packet_size: i32 = 0;
+
         let status: BtStatus = ccall!(
             self,
             listen,
@@ -173,7 +179,12 @@ impl BtSocket {
             channel,
             sockfd_ptr.into(),
             flags,
-            calling_uid
+            calling_uid,
+            data_path,
+            sock_name.as_ptr(),
+            hub_id,
+            endpoint_id,
+            max_rx_packet_size
         )
         .into();
 
@@ -194,6 +205,12 @@ impl BtSocket {
         let uuid_ptr = LTCheckedPtr::from(&service_uuid);
         let addr_ptr = LTCheckedPtr::from_ref(&addr);
 
+        let data_path: i32 = 0;
+        let sock_name = CString::new("test").expect("Socket name has null in it");
+        let hub_id: u64 = 0;
+        let endpoint_id: u64 = 0;
+        let max_rx_packet_size: i32 = 0;
+
         let status: BtStatus = ccall!(
             self,
             connect,
@@ -203,7 +220,12 @@ impl BtSocket {
             channel,
             sockfd_ptr.into(),
             flags,
-            calling_uid
+            calling_uid,
+            data_path,
+            sock_name.as_ptr(),
+            hub_id,
+            endpoint_id,
+            max_rx_packet_size
         )
         .into();
 
