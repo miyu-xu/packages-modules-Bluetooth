@@ -570,7 +570,7 @@ protected:
   }
 
   void TestRemove(const RawAddress& address, uint16_t conn_id) {
-    EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, false));
+    EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, true));
     if (conn_id) {
       EXPECT_CALL(gatt_interface, Close(conn_id));
     } else {
@@ -896,7 +896,7 @@ TEST_F(VolumeControlTest, test_reconnect_after_timeout) {
   // Disconnect not connected device - upper layer times out and needs a
   // disconnection event to leave the transient Connecting state
   EXPECT_CALL(*callbacks, OnConnectionState(ConnectionState::DISCONNECTED, address));
-  EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, false)).Times(0);
+  EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, _)).Times(0);
   TestDisconnect(address, 0);
 
   // Above the device was not connected and we got Disconnect request from the
