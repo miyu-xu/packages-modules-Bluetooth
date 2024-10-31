@@ -16,6 +16,23 @@
       "message": "Should system/btif/src/btif_bqr.cc be updated too ?",
       "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c6485a_26abdbab",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-10-31T19:07:18Z",
+      "side": 1,
+      "message": "Are the HCI requirement for partner and OEM updated too ?",
+      "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
