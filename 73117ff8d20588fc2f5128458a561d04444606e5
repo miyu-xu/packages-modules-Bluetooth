@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7985125_d11ef7a6",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-11-01T06:36:43Z",
+      "side": 1,
+      "message": "nit: remove this",
+      "range": {
+        "startLine": 980,
+        "startChar": 9,
+        "endLine": 980,
+        "endChar": 10
+      },
+      "revId": "73117ff8d20588fc2f5128458a561d04444606e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
