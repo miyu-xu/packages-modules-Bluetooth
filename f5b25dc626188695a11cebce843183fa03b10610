@@ -40,6 +40,30 @@
       ],
       "revId": "f5b25dc626188695a11cebce843183fa03b10610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "396620c9_d30c099f",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-01T21:25:40Z",
+      "side": 1,
+      "message": "I don\u0027t see any advantage in logging that.\n\nI have replaced the if block with ternary operator now.",
+      "parentUuid": "74e85670_8baa0038",
+      "range": {
+        "startLine": 337,
+        "startChar": 6,
+        "endLine": 337,
+        "endChar": 8
+      },
+      "revId": "f5b25dc626188695a11cebce843183fa03b10610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
