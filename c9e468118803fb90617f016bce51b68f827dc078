@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77f1992_c47122cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T23:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebfd5d26_7e502037",
+      "revId": "c9e468118803fb90617f016bce51b68f827dc078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9a8755d_af76ab8d",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-25T16:53:39Z",
       "side": 1,
       "message": "should this be removed too ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "c9e468118803fb90617f016bce51b68f827dc078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74ae74e_ad12c5da",
+        "filename": "system/osi/src/compat.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T23:31:13Z",
+      "side": 1,
+      "message": "Reverted the change to these files",
+      "parentUuid": "c9a8755d_af76ab8d",
       "range": {
         "startLine": 61,
         "startChar": 0,
