@@ -1604,6 +1604,7 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_hci_pdl",
         "libbluetooth_log",
+        "libbluetooth_ras_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libchrome",
