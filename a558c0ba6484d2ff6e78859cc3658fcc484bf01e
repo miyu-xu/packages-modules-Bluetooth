@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c47cf9_d447460c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:25:37Z",
+      "side": 1,
+      "message": "Do you plan to remove the entire dependency on libchrome ?\n\nThat would be awesome !\n\nI think the more complexe part is about the threading model used (bind_once \u0026 co)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 60
+      },
+      "revId": "a558c0ba6484d2ff6e78859cc3658fcc484bf01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b16bc903_6cc31773",
@@ -14,6 +37,23 @@
       "writtenOn": "2024-11-01T02:32:23Z",
       "side": 1,
       "message": "I\u0027ve added wescande@ as the code owner. Please take a look. Thank you!",
+      "revId": "a558c0ba6484d2ff6e78859cc3658fcc484bf01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "082261b4_cfc08af9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:25:37Z",
+      "side": 1,
+      "message": "This seems ok, but bluetooth is using fmtlib to format it\u0027s logging and I believe that this would be a perfect fit here.",
       "revId": "a558c0ba6484d2ff6e78859cc3658fcc484bf01e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
