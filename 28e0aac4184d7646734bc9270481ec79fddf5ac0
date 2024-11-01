@@ -70,6 +70,30 @@
       },
       "revId": "28e0aac4184d7646734bc9270481ec79fddf5ac0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d856a5_5d2fd2e5",
+        "filename": "common/bluetooth/constants/aics/GainModeField.aidl",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T00:11:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18fc3b63_fbded459",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "28e0aac4184d7646734bc9270481ec79fddf5ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
