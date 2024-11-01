@@ -70,6 +70,30 @@
       },
       "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7f6996_7b84ca39",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3541,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-01T10:43:09Z",
+      "side": 1,
+      "message": "I add comment to mention \"Caller should change the audio input routing according to the preference value.\", so we don\u0027t need to mention who is the real caller which might be changed in the future. PTAL.",
+      "parentUuid": "733a1dcb_273e2491",
+      "range": {
+        "startLine": 3541,
+        "startChar": 59,
+        "endLine": 3541,
+        "endChar": 89
+      },
+      "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
