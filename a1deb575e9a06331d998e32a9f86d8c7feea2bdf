@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20571ade_b531b11e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T21:21:12Z",
+      "side": 1,
+      "message": "The name of the accessor methods should strictly follow the name of the field; that would give setEncryptionRequired / getEncryptionRequired. Not the most intuitive, but the most straightforward...",
+      "parentUuid": "ae1ff1ee_cedaf2a9",
+      "range": {
+        "startLine": 41,
+        "startChar": 20,
+        "endLine": 41,
+        "endChar": 38
+      },
+      "revId": "a1deb575e9a06331d998e32a9f86d8c7feea2bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f732886_e8875a57",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 38

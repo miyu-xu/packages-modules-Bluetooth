@@ -1,0 +1,98 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e112cf_9c75fe22",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T21:21:12Z",
+      "side": 1,
+      "message": "If this information is not purely for debugging purposes, you must ensure that it is set by the user. In this case the default value should be null.\n\nIf this information is used for debugging purposes, I would use a nicer default name. You could generate it in the `build()` method using the uuid information, e.g. `Rfcomm Service {uuid}`",
+      "range": {
+        "startLine": 39,
+        "startChar": 32,
+        "endLine": 39,
+        "endChar": 59
+      },
+      "revId": "dd1b8e424fd0cc2a6fcb703469808f61ad6e8e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06a2fe39_8057aced",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T21:21:12Z",
+      "side": 1,
+      "message": "Please update the parameter name to match the field name (same for others).",
+      "range": {
+        "startLine": 132,
+        "startChar": 16,
+        "endLine": 132,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2d4b3843_d6115864",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 132,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "            int l2capPsm,\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 137,
+                "endChar": 0
+              },
+              "replacement": "            String rfcommServiceName,\n            UUID rfcommUuid) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": "        mL2capPsm \u003d l2capPsm;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 141,
+                "startChar": 0,
+                "endLine": 143,
+                "endChar": 0
+              },
+              "replacement": "        mRfcommUuid \u003d rfcommUuid;\n        mRfcommServiceName \u003d rfcommServiceName;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dd1b8e424fd0cc2a6fcb703469808f61ad6e8e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
