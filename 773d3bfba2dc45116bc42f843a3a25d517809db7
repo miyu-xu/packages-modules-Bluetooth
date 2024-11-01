@@ -22,6 +22,30 @@
       },
       "revId": "773d3bfba2dc45116bc42f843a3a25d517809db7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bc3a62_58bfecac",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-01T03:17:18Z",
+      "side": 1,
+      "message": "I did think about this and look into it but from what I\u0027ve seen, there is no order requirement in the shutdown process. So the current `async` / parallel process of shutdown native gatt and rust module does not create any issues. For performance wise, it seems more optimal to keep it as is and have each \"module\" shut down as soon as possible instead of chaining them. As there is no known requirement to do so.\n\nAlthough I\u0027m happy to implement that if needed as well. Perhaps we can get input from Omair on this as well.\n\nThank you.",
+      "parentUuid": "28d4d049_a230f973",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 39
+      },
+      "revId": "773d3bfba2dc45116bc42f843a3a25d517809db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
