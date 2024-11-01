@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb07d092_c67b4c53",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 4548,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-01T23:29:29Z",
+      "side": 1,
+      "message": "Other functions throw appropriate IOException because they are after bindListen. Here you are just checking whether the arguments are valid or not, so it should be an IllegalArgumentException.",
+      "parentUuid": "d7d09272_07d2b952",
+      "range": {
+        "startLine": 4547,
+        "startChar": 27,
+        "endLine": 4548,
+        "endChar": 51
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1af5503_0d8b0be1",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 37
@@ -250,6 +274,30 @@
       "side": 1,
       "message": "All the existing APIs in this file just throws an IOException. I just aligned with it. Do I need to have more elaborate exceptions for this API ?",
       "parentUuid": "2c665cab_856958ae",
+      "range": {
+        "startLine": 4560,
+        "startChar": 26,
+        "endLine": 4560,
+        "endChar": 37
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcf0b44_e291a262",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 4560,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-01T23:29:29Z",
+      "side": 1,
+      "message": "Other functions throw appropriate `IOException` because they are after `bindListen`. Here you are just checking whether the arguments are valid or not, so it should be an `IllegalArgumentException`.",
+      "parentUuid": "690fc4bf_70c313f5",
       "range": {
         "startLine": 4560,
         "startChar": 26,
@@ -1256,6 +1304,30 @@
       "side": 1,
       "message": "Do you really think It needs an exception?\n\nSetting some unwanted params can be silently ignored without breaking anything. Sometimes It is inconvenient for the users if things fail to build itself because of an extra parameter..\n\nCurrently I have kept the builder simple \u0026 throw exception when built object used wrong from the server and client functions. please let me know your thought on this",
       "parentUuid": "dc43aa8f_9c1f3c76",
+      "range": {
+        "startLine": 233,
+        "startChar": 39,
+        "endLine": 233,
+        "endChar": 44
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cef161f_0eb72390",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-01T23:29:29Z",
+      "side": 1,
+      "message": "I\u0027m fine only checking the socket settings later when creating the socket.",
+      "parentUuid": "738654dc_b7b2ec0e",
       "range": {
         "startLine": 233,
         "startChar": 39,
