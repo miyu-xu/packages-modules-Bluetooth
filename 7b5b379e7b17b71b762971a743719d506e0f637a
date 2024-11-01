@@ -94,6 +94,30 @@
       },
       "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0ba8baa_452b8deb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3541,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T18:12:32Z",
+      "side": 1,
+      "message": "Acknowledged\n\nAt least we are setting the expectation that bluetooth does nothing about that.",
+      "parentUuid": "2f7f6996_7b84ca39",
+      "range": {
+        "startLine": 3541,
+        "startChar": 59,
+        "endLine": 3541,
+        "endChar": 89
+      },
+      "revId": "7b5b379e7b17b71b762971a743719d506e0f637a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
