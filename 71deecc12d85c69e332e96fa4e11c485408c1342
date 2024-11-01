@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7c7ceed_3473c9e1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2948,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T17:46:31Z",
+      "side": 1,
+      "message": "FYI: This synchronized is not necessary. (and in other method too).\nit should be cleanup in the whole file",
+      "range": {
+        "startLine": 2948,
+        "startChar": 0,
+        "endLine": 2948,
+        "endChar": 39
+      },
+      "revId": "71deecc12d85c69e332e96fa4e11c485408c1342",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
