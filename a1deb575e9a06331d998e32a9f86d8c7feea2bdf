@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae1ff1ee_cedaf2a9",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-01T19:13:21Z",
+      "side": 1,
+      "message": "I can update. I believe the methods be isEncryptionEnabled() is fine as It reflects what is being checked",
+      "parentUuid": "db4ba769_e1f324b9",
+      "range": {
+        "startLine": 41,
+        "startChar": 20,
+        "endLine": 41,
+        "endChar": 38
+      },
+      "revId": "a1deb575e9a06331d998e32a9f86d8c7feea2bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f732886_e8875a57",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b4e873b_c6df6978",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-01T19:13:21Z",
+      "side": 1,
+      "message": "I can update. I believe the methods be isAuthenticationEnabled() is fine as It reflects what is being checked",
+      "parentUuid": "7f732886_e8875a57",
+      "range": {
+        "startLine": 44,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 42
+      },
+      "revId": "a1deb575e9a06331d998e32a9f86d8c7feea2bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89eb0364_2d697d1a",
@@ -125,6 +173,30 @@
       "writtenOn": "2024-11-01T00:34:12Z",
       "side": 1,
       "message": "I think encryption should be the default.",
+      "range": {
+        "startLine": 138,
+        "startChar": 24,
+        "endLine": 138,
+        "endChar": 42
+      },
+      "revId": "a1deb575e9a06331d998e32a9f86d8c7feea2bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aca054d_72e2fed3",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-01T19:13:21Z",
+      "side": 1,
+      "message": "I can change it, But that would need extra documentation to say one has to clear this flag to get an insecure socket. Could you please thing and suggest? I feel It is not obvious to user",
+      "parentUuid": "89eb0364_2d697d1a",
       "range": {
         "startLine": 138,
         "startChar": 24,
