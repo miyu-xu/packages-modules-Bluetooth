@@ -46,6 +46,30 @@
       },
       "revId": "773d3bfba2dc45116bc42f843a3a25d517809db7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5698d6_38bb6694",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:17:10Z",
+      "side": 1,
+      "message": "That may not be necessary, you are right",
+      "parentUuid": "71bc3a62_58bfecac",
+      "range": {
+        "startLine": 191,
+        "startChar": 12,
+        "endLine": 191,
+        "endChar": 39
+      },
+      "revId": "773d3bfba2dc45116bc42f843a3a25d517809db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
