@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3af40172_42886732",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 3302247
+      },
+      "writtenOn": "2024-11-01T18:52:41Z",
+      "side": 1,
+      "message": "Are these supposed to indicate BT spec\u0027s allowed values? If not, how are we determining them (in particular the min of 1024 which is more than BT spec min).",
+      "parentUuid": "81e75d98_fd1ff89e",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 72
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40bff083_167fbc76",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 4
