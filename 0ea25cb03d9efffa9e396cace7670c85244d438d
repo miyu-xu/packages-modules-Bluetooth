@@ -16,6 +16,24 @@
       "message": "Do you know if any device has shipped with the first version of the HAL ?\nIf that\u0027s not the case I think you can discuss with the platform team to ditch the first version. Ideally we shouldn\u0027t have to support an API that has not shipped anywhere...",
       "revId": "0ea25cb03d9efffa9e396cace7670c85244d438d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4ef2807_99b1758f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-01T21:49:12Z",
+      "side": 1,
+      "message": "not yet, but qcom may use ver 1 and pixel is using the ver 1 too, we can not wait for the ver 2 to be released. it\u0027ll block pixel\u0027s dogfood food and release plan. I\u0027ll follow up to see if we should make the ver 2 be enforced on android B; we will see if we can deprecate ver 1 totally by the time.",
+      "parentUuid": "56d653dd_c4ab12c2",
+      "revId": "0ea25cb03d9efffa9e396cace7670c85244d438d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
