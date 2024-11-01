@@ -33,6 +33,42 @@
       "message": "Are the HCI requirement for partner and OEM updated too ?",
       "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5334b4ee_6e54461c",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3280768
+      },
+      "writtenOn": "2024-11-01T01:13:40Z",
+      "side": 1,
+      "message": "Thanks for the reminder. Currently, the health monitor is mainly used in the BT HAL. Therefore, I just update the bit mask here and expect the implementation of btif_bqr.cc will likely be integrated into the stack after the completion of other features in bqrv7 phase 2.",
+      "parentUuid": "bc841dfa_e6971911",
+      "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36543275_5889c04e",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3280768
+      },
+      "writtenOn": "2024-11-01T01:13:40Z",
+      "side": 1,
+      "message": "We plan update the HCI requirement to public until all the bqrv7 features implementation done.",
+      "parentUuid": "56c6485a_26abdbab",
+      "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
