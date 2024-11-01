@@ -16,6 +16,24 @@
       "message": "hold it until the pixel firmware is updated. @chienyuanhuang@google.com who\u0027s tracking the FW update.",
       "revId": "d6c95dbb3fe81c33cd4f6296915669821b1e0439",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a15ed39_d818fdf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-01T16:42:36Z",
+      "side": 1,
+      "message": "Please check bug 369478232 for the FW update schedule.\nThanks!",
+      "parentUuid": "520b3a80_f15c4258",
+      "revId": "d6c95dbb3fe81c33cd4f6296915669821b1e0439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
