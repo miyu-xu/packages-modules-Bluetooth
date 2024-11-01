@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8822299a_3c9ebcea",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-01T02:23:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "285b33fd_a7306ec5",
+      "range": {
+        "startLine": 691,
+        "startChar": 22,
+        "endLine": 691,
+        "endChar": 62
+      },
+      "revId": "d824c57bfa7f743c172020ab06ad26f61dfde731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36686791_ab6f8092",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-10-31T18:29:28Z",
       "side": 1,
       "message": "Why is this called twice ? shouldn\u0027t it be only one ?",
+      "range": {
+        "startLine": 390,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 74
+      },
+      "revId": "d824c57bfa7f743c172020ab06ad26f61dfde731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69bb1561_a2dfcf17",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-01T02:23:31Z",
+      "side": 1,
+      "message": "At Line 383... is the first time. Lemme check times(1) right after 383.",
+      "parentUuid": "36686791_ab6f8092",
       "range": {
         "startLine": 390,
         "startChar": 0,
