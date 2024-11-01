@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "663330ac_f0e725f1",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:51:26Z",
+      "side": 1,
+      "message": "Is this necessary ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81e75d98_fd1ff89e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:51:26Z",
+      "side": 1,
+      "message": "I am not sure we need these constants added to the API.\n\n1. these are used I expect for input validation, not as default values.\n2. you will not be able to update them in the future without an API bump (say you want to change the min RX packet size).",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 72
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40bff083_167fbc76",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:51:26Z",
+      "side": 1,
+      "message": "The name should be the one from the specification: `mL2capMaximumPacketSize`, or the shorter version `mL2capMps` if you prefer. \n\nRfcomm has a similar notion of `Maximum Frame Size`, we could also use `mMaximumPacketSize` and document that it will represent either based on the selected socket type.",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 37
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06a6d62a_7d44afdc",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:51:26Z",
+      "side": 1,
+      "message": "Really this information is useful for any and all sockets; there is no need to restrict it to HW offload.",
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b75d69_20c65d7f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:51:26Z",
+      "side": 1,
+      "message": "Parameter validation should be delayed until build() is invoked.",
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aff7e598_cd263f18",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:51:26Z",
+      "side": 1,
+      "message": "Check the reverse condition as well :\n\n```\nif (mDataPath !\u003d DATA_PATH_HW_OFFLOAD \u0026\u0026\n    (mHubId !\u003d INVALID_HUB_ID || mEndpointId !\u003d INVALID_ENDPOINT_ID)) {\n  throw IllegalArgumentException(\"Hub ID and endpoint ID may not be set for software data path\");\n}\n```",
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
