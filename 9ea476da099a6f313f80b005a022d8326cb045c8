@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc57e711_b4fda2be",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-01T18:53:34Z",
+      "side": 1,
+      "message": "As per api guidelines, @hide is required for @IntDef when they are exported as interface. go/android-api-guidelines#framework-hide-typedefs",
+      "parentUuid": "663330ac_f0e725f1",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81e75d98_fd1ff89e",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1191804d_2df23d43",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-01T18:53:34Z",
+      "side": 1,
+      "message": "1. that\u0027s right. changed it to private\n2. good point. updated that the framework only checks the maximum value, since the actual value of Rx MTU is determined by the host stack based on the capabilities of the offload stack.",
+      "parentUuid": "81e75d98_fd1ff89e",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 72
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40bff083_167fbc76",
@@ -84,6 +132,30 @@
       "writtenOn": "2024-11-01T00:51:26Z",
       "side": 1,
       "message": "The name should be the one from the specification: `mL2capMaximumPacketSize`, or the shorter version `mL2capMps` if you prefer. \n\nRfcomm has a similar notion of `Maximum Frame Size`, we could also use `mMaximumPacketSize` and document that it will represent either based on the selected socket type.",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 37
+      },
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2675c177_71d49bfe",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-01T18:53:34Z",
+      "side": 1,
+      "message": "That makes sense. Updated document and used `mMaximumRxPacketSize` to specify the maximum packet size is for Rx.",
+      "parentUuid": "40bff083_167fbc76",
       "range": {
         "startLine": 108,
         "startChar": 16,
@@ -111,6 +183,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f79b647_4d575b03",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-01T18:53:34Z",
+      "side": 1,
+      "message": "Updated for public API",
+      "parentUuid": "06a6d62a_7d44afdc",
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51b75d69_20c65d7f",
@@ -128,6 +218,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a450547_228fd43b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-01T18:53:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51b75d69_20c65d7f",
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aff7e598_cd263f18",
@@ -141,6 +249,24 @@
       "writtenOn": "2024-11-01T00:51:26Z",
       "side": 1,
       "message": "Check the reverse condition as well :\n\n```\nif (mDataPath !\u003d DATA_PATH_HW_OFFLOAD \u0026\u0026\n    (mHubId !\u003d INVALID_HUB_ID || mEndpointId !\u003d INVALID_ENDPOINT_ID)) {\n  throw IllegalArgumentException(\"Hub ID and endpoint ID may not be set for software data path\");\n}\n```",
+      "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bba32ed9_a31a429d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-01T18:53:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aff7e598_cd263f18",
       "revId": "9ea476da099a6f313f80b005a022d8326cb045c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
