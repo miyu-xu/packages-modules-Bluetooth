@@ -1459,6 +1459,10 @@ static tBTM_STATUS btm_ble_io_capabilities_req(tBTM_SEC_DEV_REC* p_dev_rec,
     p_data->auth_req &= ~BTM_LE_AUTH_REQ_MITM;
   }
 
+  log::debug("sec_flags: {:x}", p_dev_rec->sec_rec.security_required);
+  //Force no MITM
+  p_data->auth_req &= ~BTM_LE_AUTH_REQ_MITM;
+
   if (!(p_data->auth_req & SMP_SC_SUPPORT_BIT)) {
     /* if Secure Connections are not supported then remove LK derivation,
     ** and keypress notifications.
