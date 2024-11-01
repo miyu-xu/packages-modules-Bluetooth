@@ -29,15 +29,15 @@ import com.android.obex.HeaderSet;
  * This can receive:
  *   - Phonebook Size
  */
-final class RequestPullPhoneBookMetadata extends PbapClientRequest {
-    private static final String TAG = RequestPullPhoneBookMetadata.class.getSimpleName();
+final class RequestPullPhonebookMetadata extends PbapClientRequest {
+    private static final String TAG = RequestPullPhonebookMetadata.class.getSimpleName();
 
     private static final String TYPE = "x-bt/phonebook";
 
     private final String mPhonebook;
     private PbapPhonebookMetadata mResponse;
 
-    RequestPullPhoneBookMetadata(String phonebook, PbapApplicationParameters params) {
+    RequestPullPhonebookMetadata(String phonebook, PbapApplicationParameters params) {
         mPhonebook = phonebook;
         mHeaderSet.setHeader(HeaderSet.NAME, phonebook);
         mHeaderSet.setHeader(HeaderSet.TYPE, TYPE);
