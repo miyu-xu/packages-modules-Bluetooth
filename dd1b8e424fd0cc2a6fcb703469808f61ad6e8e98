@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b371e6d2_3ba14948",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-01T23:19:14Z",
+      "side": 1,
+      "message": "Current API listenUsingEncryptedRfcommWithServiceRecord works fine with null service name. Service name is not really mandatory one. I can keep it initialized to null by default",
+      "parentUuid": "39e112cf_9c75fe22",
+      "range": {
+        "startLine": 39,
+        "startChar": 32,
+        "endLine": 39,
+        "endChar": 59
+      },
+      "revId": "dd1b8e424fd0cc2a6fcb703469808f61ad6e8e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06a2fe39_8057aced",
@@ -91,6 +115,30 @@
           ]
         }
       ],
+      "revId": "dd1b8e424fd0cc2a6fcb703469808f61ad6e8e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba597147_1d30cab0",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-01T23:19:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06a2fe39_8057aced",
+      "range": {
+        "startLine": 132,
+        "startChar": 16,
+        "endLine": 132,
+        "endChar": 23
+      },
       "revId": "dd1b8e424fd0cc2a6fcb703469808f61ad6e8e98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
