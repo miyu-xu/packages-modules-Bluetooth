@@ -187,6 +187,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d0aae2c_1e047ba5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 3186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:34:12Z",
+      "side": 1,
+      "message": "The symmetric for listenUsingSocketSettings would be connectUsingSocketSettings, maybe",
+      "parentUuid": "0f6a6da3_7fe4fe56",
+      "range": {
+        "startLine": 3186,
+        "startChar": 36,
+        "endLine": 3186,
+        "endChar": 54
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36217b72_67532225",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 37
@@ -267,6 +291,30 @@
       "writtenOn": "2024-10-31T19:16:07Z",
       "side": 1,
       "message": "Should be renamed to `mL2capPsm`. The PSM is not the L2CAP channel identifier (which is the CID). Since this parameter will only be used when creating an L2CAP socket, I believe the L2CAP prefix is important.",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32efec2a_c4ca2faf",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-01T00:34:12Z",
+      "side": 1,
+      "message": "RFCOMM sockets will use this field for the port number, if I am not wrong.\nEven then, this naming is confusing since usually the channel ID will designate a connected socket, not the address port / PSM.",
+      "parentUuid": "b3a7d39b_f9fdff35",
       "range": {
         "startLine": 47,
         "startChar": 16,
