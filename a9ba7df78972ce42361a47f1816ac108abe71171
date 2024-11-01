@@ -69,6 +69,24 @@
       "parentUuid": "56c6485a_26abdbab",
       "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd952b9_c347102d",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3280768
+      },
+      "writtenOn": "2024-11-01T05:59:38Z",
+      "side": 1,
+      "message": "We want to align the bit-mask firstly in our code between the bthal and btstack about the new bqrv7 phase 1 feature. For the detail you also can reference the design doc via the bug-id link. Thanks a lot for the help.",
+      "parentUuid": "5334b4ee_6e54461c",
+      "revId": "a9ba7df78972ce42361a47f1816ac108abe71171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
