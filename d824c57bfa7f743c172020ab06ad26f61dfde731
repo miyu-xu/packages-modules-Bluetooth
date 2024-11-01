@@ -111,6 +111,30 @@
       },
       "revId": "d824c57bfa7f743c172020ab06ad26f61dfde731",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb564c3_cd96704d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T17:53:21Z",
+      "side": 1,
+      "message": "Oh yeah, of course !\nSorry I should I\u0027ve seen that",
+      "parentUuid": "69bb1561_a2dfcf17",
+      "range": {
+        "startLine": 390,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 74
+      },
+      "revId": "d824c57bfa7f743c172020ab06ad26f61dfde731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
