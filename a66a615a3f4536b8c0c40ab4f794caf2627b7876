@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "394f0ddd_20443385",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:13:25Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "a66a615a3f4536b8c0c40ab4f794caf2627b7876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f7c0a68_ffb7146e",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:13:25Z",
+      "side": 1,
+      "message": "I am not familiar with this code but is `one fragment` \u003d\u003d `one packet` ?\n\nI am trying to understand why we have a `number_of_sent_packets_` that is matching the `fragments_to_send_`",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 53
+      },
+      "revId": "a66a615a3f4536b8c0c40ab4f794caf2627b7876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51a5acba_e5d9ef99",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:13:25Z",
+      "side": 1,
+      "message": "nit, we could access to the fragments_to_send_ less if we simply pop the fragment at the start\n\n```suggestion\n  while (!fragments_to_send_.empty()) {\n    auto\u0026 fragment \u003d fragments_to_send_.pop();\n\n    if (fragment.handle_ \u003d\u003d acl_handle) {\n      // This fragment is not sent to the controller.\n      acl_queue_handler-\u003esecond.number_of_sent_packets_--;\n    } else {\n      new_fragments_to_send.push(packet_fragment{fragment.connection_type_, fragment.handle_,\n                                                 fragment.priority_, std::move(fragment.packet_)},\n                                 fragment.priority_);\n    }\n```",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 29
+      },
+      "revId": "a66a615a3f4536b8c0c40ab4f794caf2627b7876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e58efe5_14523b95",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:13:25Z",
+      "side": 1,
+      "message": "nit, What do you think of checking new_fragments_to_send instead ?\nIt took me a couple second to understand this and I feel it\u0027s cleaner like this.\n\nBut this is just personal opinion so do as you prefer\n\n```suggestion\n\n  if (!new_fragments_to_send.empty()) {\n    fragments_to_send_.swap(new_fragments_to_send);\n  } else {\n    if (enqueue_registered_.exchange(false)) {\n      hci_queue_end_-\u003eUnregisterEnqueue();\n    }\n  }\n```",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 3
+      },
+      "revId": "a66a615a3f4536b8c0c40ab4f794caf2627b7876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d755271_74904bc0",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-01T19:13:25Z",
+      "side": 1,
+      "message": "First time I am looking at this.\nThis looks to complexe for what it does.\ncould we have done something like:\n```\nstd::queue\u003cpacket_fragment\u003e high_priority_fragments_to_send\nstd::queue\u003cpacket_fragment\u003e low_priority_fragments_to_send\n```\n\n(just asking to see if I am understanding this correctly)",
+      "range": {
+        "startLine": 75,
+        "startChar": 10,
+        "endLine": 75,
+        "endChar": 28
+      },
+      "revId": "a66a615a3f4536b8c0c40ab4f794caf2627b7876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
