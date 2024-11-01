@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6581ddb_d46ce2c0",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-11-01T05:37:05Z",
+      "side": 1,
+      "message": "How about moving this scenario in a new arm of the parent state?\n\nProcessState::TurningOn | ProcessState::PendingRestart if !present \u003d\u003e {\n...\n}",
+      "range": {
+        "startLine": 1615,
+        "startChar": 20,
+        "endLine": 1615,
+        "endChar": 27
+      },
+      "revId": "b00fba0c7e2861daef2196916223b1465d7b00c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
