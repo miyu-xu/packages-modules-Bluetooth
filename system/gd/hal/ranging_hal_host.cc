@@ -54,6 +54,9 @@ public:
           const hci::LeCsProcedureEnableCompleteView& /* leCsProcedureEnableCompleteView */)
           override {}
 
+  void WriteProcedureData(uint16_t /* connection_handle */, hci::CsRole /* local_cs_role */,
+                          const CsProcedureData& /* procedure_data */) {}
+
 protected:
   void ListDependencies(ModuleList* /*list*/) const {}
 
