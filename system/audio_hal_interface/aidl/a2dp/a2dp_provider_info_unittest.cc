@@ -567,7 +567,7 @@ TEST_F(ProviderInfoTest, TestCodecCapabilitiesSbc) {
 
   ASSERT_TRUE(provider_info->CodecCapabilities(BTAV_A2DP_CODEC_INDEX_SOURCE_SBC, &result_codec_id,
                                                result_codec_info, &result_codec_config));
-  ASSERT_EQ(result_codec_id, A2DP_CODEC_ID_SBC);
+  ASSERT_EQ(result_codec_id, bluetooth::a2dp::CodecId::SBC);
   ASSERT_EQ(std::memcmp(result_codec_info, test_sbc_codec_info.data(), test_sbc_codec_info.size()),
             0);
   ASSERT_TRUE(result_codec_config.channel_mode ==
@@ -588,7 +588,7 @@ TEST_F(ProviderInfoTest, TestCodecCapabilitiesAac) {
 
   ASSERT_TRUE(provider_info->CodecCapabilities(BTAV_A2DP_CODEC_INDEX_SOURCE_AAC, &result_codec_id,
                                                result_codec_info, &result_codec_config));
-  ASSERT_EQ(result_codec_id, A2DP_CODEC_ID_AAC);
+  ASSERT_EQ(result_codec_id, bluetooth::a2dp::CodecId::AAC);
   ASSERT_EQ(std::memcmp(result_codec_info, test_aac_codec_info.data(), test_aac_codec_info.size()),
             0);
   ASSERT_TRUE(result_codec_config.channel_mode ==
@@ -609,7 +609,7 @@ TEST_F(ProviderInfoTest, TestCodecCapabilitiesOpus) {
 
   ASSERT_TRUE(provider_info->CodecCapabilities(BTAV_A2DP_CODEC_INDEX_SOURCE_OPUS, &result_codec_id,
                                                result_codec_info, &result_codec_config));
-  ASSERT_EQ(result_codec_id, A2DP_CODEC_ID_OPUS);
+  ASSERT_EQ(result_codec_id, bluetooth::a2dp::CodecId::OPUS);
   ASSERT_EQ(
           std::memcmp(result_codec_info, test_opus_codec_info.data(), test_opus_codec_info.size()),
           0);
