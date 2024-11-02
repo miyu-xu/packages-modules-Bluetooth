@@ -60,7 +60,7 @@ static void init_btav_a2dp_codec_config(btav_a2dp_codec_config_t* codec_config,
   codec_config->codec_priority = codec_priority;
 }
 
-A2dpCodecConfig::A2dpCodecConfig(btav_a2dp_codec_index_t codec_index, tA2DP_CODEC_ID codec_id,
+A2dpCodecConfig::A2dpCodecConfig(btav_a2dp_codec_index_t codec_index, a2dp::CodecId codec_id,
                                  const std::string& name, btav_a2dp_codec_priority_t codec_priority)
     : codec_index_(codec_index),
       codec_id_(codec_id),
