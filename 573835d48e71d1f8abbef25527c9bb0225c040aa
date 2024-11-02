@@ -33,6 +33,190 @@
       "message": "Adding Thomas to do a first pass API review",
       "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a5b920_02a660f5",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "I\u0027d suggest clarify the description title: `Get the metadata of a specified source added to this Broadcast Sink.`",
+      "range": {
+        "startLine": 1213,
+        "startChar": 7,
+        "endLine": 1213,
+        "endChar": 90
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d9c21a_3fdf43e7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "locally",
+      "range": {
+        "startLine": 1215,
+        "startChar": 34,
+        "endLine": 1215,
+        "endChar": 39
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4aaa67_d02ee0a3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "To remove",
+      "range": {
+        "startLine": 1215,
+        "startChar": 77,
+        "endLine": 1215,
+        "endChar": 100
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8e22d5_562fc9dc",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "specified source",
+      "range": {
+        "startLine": 1215,
+        "startChar": 65,
+        "endLine": 1215,
+        "endChar": 71
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95b6a237_8d55f553",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "`{@link BluetoothLeBroadcastMetadata}` instead",
+      "range": {
+        "startLine": 1215,
+        "startChar": 48,
+        "endLine": 1215,
+        "endChar": 56
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b5abba_f013db0d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "Since `Sink` starts with a upper case, source should as well.",
+      "range": {
+        "startLine": 1227,
+        "startChar": 33,
+        "endLine": 1227,
+        "endChar": 39
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88bb610b_58b3dd79",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1229,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "Remove, `@NonNull` already implies this.",
+      "range": {
+        "startLine": 1229,
+        "startChar": 5,
+        "endLine": 1229,
+        "endChar": 64
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9df650bb_1161f130",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-02T00:13:30Z",
+      "side": 1,
+      "message": "In general, clarify description (use Gemini!). For instance:\n\n```\n * Get the metadata of a specified Broadcast Source added to this Broadcast Sink.\n *\n * \u003cp\u003eThis method retrieves the locally managed {@link BluetoothLeBroadcastMetadata} for the specified broadcast source. \n * This metadata is stored in the Broadcast Sink\u0027s {@link BluetoothLeBroadcastReceiveState} \n * and is managed using {@link #addSource(BluetoothDevice, BluetoothLeBroadcastMetadata, boolean)} \n * and {@link #modifySource(BluetoothDevice, int, BluetoothLeBroadcastMetadata)}.\n *\n * \u003cp\u003eIf no matching metadata is found for the given `sourceId`, this method returns null.\n *\n * @param sink The Broadcast Sink device.\n * @param sourceId The Broadcast Source ID. Valid range is [0, 0xFF] as defined in the \n *                 Broadcast Audio Scan Service specification 1.0 (3.2. Broadcast Receive State).\n * @return The {@link BluetoothLeBroadcastMetadata} for the source, or null if not found.\n * @throws IllegalArgumentException If `sourceId` is outside the valid range [0, 0xFF].\n```",
+      "range": {
+        "startLine": 1216,
+        "startChar": 0,
+        "endLine": 1231,
+        "endChar": 12
+      },
+      "revId": "573835d48e71d1f8abbef25527c9bb0225c040aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
