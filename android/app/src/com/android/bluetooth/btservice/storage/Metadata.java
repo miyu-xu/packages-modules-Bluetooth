@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "metadata")
-@VisibleForTesting
 public class Metadata {
     @PrimaryKey @NonNull private String address;
 
@@ -117,7 +116,6 @@ public class Metadata {
         }
     }
 
-    @VisibleForTesting
     public String getAddress() {
         return address;
     }
