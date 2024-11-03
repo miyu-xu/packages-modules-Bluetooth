@@ -28,14 +28,11 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.android.internal.annotations.VisibleForTesting;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "metadata")
-@VisibleForTesting
-public class Metadata {
+class Metadata {
     @PrimaryKey @NonNull private String address;
 
     public boolean migrated;
@@ -117,8 +114,7 @@ public class Metadata {
         }
     }
 
-    @VisibleForTesting
-    public String getAddress() {
+    String getAddress() {
         return address;
     }
 
@@ -131,7 +127,7 @@ public class Metadata {
      * @return Anonymized bluetooth hardware address as string
      */
     @NonNull
-    public String getAnonymizedAddress() {
+    String getAnonymizedAddress() {
         return BluetoothUtils.toAnonymizedAddress(address);
     }
 
@@ -205,8 +201,7 @@ public class Metadata {
         }
     }
 
-    @VisibleForTesting
-    public int getProfileConnectionPolicy(int profile) {
+    int getProfileConnectionPolicy(int profile) {
         switch (profile) {
             case BluetoothProfile.A2DP:
                 return profileConnectionPolicies.a2dp_connection_policy;
@@ -345,8 +340,7 @@ public class Metadata {
         }
     }
 
-    @VisibleForTesting
-    public byte[] getCustomizedMeta(int key) {
+    byte[] getCustomizedMeta(int key) {
         byte[] value = null;
         switch (key) {
             case BluetoothDevice.METADATA_MANUFACTURER_NAME:
