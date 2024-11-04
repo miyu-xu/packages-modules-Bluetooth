@@ -215,10 +215,10 @@ static void Fuzz(const uint8_t* data, size_t size) {
                    "assert failed: L2CA_RegisterFixedChannel(L2CAP_ATT_CID, &reg)");
   log::assert_that(stack::l2cap::get_interface().L2CA_ConnectFixedChnl(L2CAP_ATT_CID, kAttAddr),
                    "assert failed: L2CA_ConnectFixedChnl(L2CAP_ATT_CID, kAttAddr)");
-  log::assert_that(
-          l2cble_conn_comp(kAttHndl, HCI_ROLE_CENTRAL, kAttAddr, BLE_ADDR_PUBLIC, 100, 100, 100),
-          "assert failed: l2cble_conn_comp(kAttHndl, HCI_ROLE_CENTRAL, kAttAddr, "
-          "BLE_ADDR_PUBLIC, 100, 100, 100)");
+  log::assert_that(l2cble_conn_comp(kAttHndl, HCI_ROLE_CENTRAL, kAttAddr, BLE_ADDR_PUBLIC, 100, 100,
+                                    100, false),
+                   "assert failed: l2cble_conn_comp(kAttHndl, HCI_ROLE_CENTRAL, kAttAddr, "
+                   "BLE_ADDR_PUBLIC, 100, 100, 100)");
 
   log::assert_that(stack::l2cap::get_interface().L2CA_RegisterFixedChannel(L2CAP_SMP_BR_CID, &reg),
                    "assert failed: L2CA_RegisterFixedChannel(L2CAP_SMP_BR_CID, &reg)");

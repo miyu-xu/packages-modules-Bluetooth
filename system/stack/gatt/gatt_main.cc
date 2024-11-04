@@ -705,11 +705,15 @@ void gatt_notify_phy_updated(tHCI_STATUS status, uint16_t handle, uint8_t tx_phy
 
 void gatt_notify_conn_update(const RawAddress& remote, uint16_t interval, uint16_t latency,
                              uint16_t timeout, tHCI_STATUS status) {
+  log::info("XXX");
+
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(remote, BT_TRANSPORT_LE);
 
   if (!p_tcb) {
     return;
   }
+
+  log::info("XXX: Notifying gatt conn update to java layer. interval={}", interval);
 
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {

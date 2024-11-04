@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
@@ -92,6 +93,11 @@ public class GattClientTest {
             UUID.fromString("00000000-0000-0000-0000-00000000000");
     private static final UUID TEST_CHARACTERISTIC_UUID =
             UUID.fromString("00010001-0000-0000-0000-000000000000");
+
+    private static final int CONN_INTERVAL_RELAXED_MIN = 0x0018;
+    private static final int CONN_INTERVAL_RELAXED_MAX = 0x0028;
+    private static final int CONN_INTERVAL_AGGRESSIVE_MIN = 0x0006;
+    private static final int CONN_INTERVAL_AGGRESSIVE_MAX = 0x0008;
 
     @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
@@ -170,6 +176,109 @@ public class GattClientTest {
         BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
         BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback, autoConnect);
         disconnectAndWaitDisconnection(gatt, gattCallback);
+    }
+
+    //    @RequiresFlagsEnabled(Flags.INITIAL_CONN_PARAMS_P1)
+    @Test
+    public void onConnectionUpdatedIsCalledOnlyOnceForRelaxingConnectionParameters_noGattCache() {
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        ArgumentCaptor<Integer> connectionIntervalCaptor = ArgumentCaptor.forClass(Integer.class);
+
+        BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback, false);
+
+        // Wait until service discovery is done and parameters are relaxed.
+        verify(gattCallback, timeout(10_000).times(1))
+                .onConnectionUpdated(
+                        any(), connectionIntervalCaptor.capture(), anyInt(), anyInt(), anyInt());
+
+        List<Integer> capturedConnectionIntervals = connectionIntervalCaptor.getAllValues();
+        assertThat(capturedConnectionIntervals).hasSize(1);
+
+        int relaxedConnIntervalAfterServiceDiscovery = capturedConnectionIntervals.get(0);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtLeast(CONN_INTERVAL_RELAXED_MIN);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtMost(CONN_INTERVAL_RELAXED_MAX);
+
+        //        int secondConnInterval = capturedConnectionIntervals.get(1);
+        //        assertThat(secondConnInterval).isAtLeast(CONN_INTERVAL_RELAXED_MIN);
+        //        assertThat(secondConnInterval).isAtMost(CONN_INTERVAL_RELAXED_MAX);
+
+        disconnectAndWaitDisconnection(gatt, gattCallback);
+    }
+
+    //    @RequiresFlagsEnabled(Flags.INITIAL_CONN_PARAMS_P1)
+    @Test
+    public void onConnectionUpdatedIsCalledOnlyOnceForRelaxingConnectionParameters_withGattCache() {
+        createLeBondAndWaitBonding(mRemoteLeDevice);
+        disconnectAndVerify(mRemoteLeDevice);
+
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        ArgumentCaptor<Integer> connectionIntervalCaptor = ArgumentCaptor.forClass(Integer.class);
+
+        BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback, false);
+
+        // Wait until service discovery is done and parameters are relaxed.
+        verify(gattCallback, timeout(10_000).times(1))
+                .onConnectionUpdated(
+                        any(), connectionIntervalCaptor.capture(), anyInt(), anyInt(), anyInt());
+
+        List<Integer> capturedConnectionIntervals = connectionIntervalCaptor.getAllValues();
+        assertThat(capturedConnectionIntervals).hasSize(1);
+
+        int relaxedConnIntervalAfterServiceDiscovery = capturedConnectionIntervals.get(0);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtLeast(CONN_INTERVAL_RELAXED_MIN);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtMost(CONN_INTERVAL_RELAXED_MAX);
+
+        //        int secondConnInterval = capturedConnectionIntervals.get(1);
+        //        assertThat(secondConnInterval).isAtLeast(CONN_INTERVAL_RELAXED_MIN);
+        //        assertThat(secondConnInterval).isAtMost(CONN_INTERVAL_RELAXED_MAX);
+
+        disconnectAndWaitDisconnection(gatt, gattCallback);
+    }
+
+    @Test
+    public void connectionParameters_whenCacheExists() throws Exception {
+        createLeBondAndWaitBonding(mRemoteLeDevice);
+
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback, false);
+
+        //        // Wait until service discovery is done and parameters are relaxed.
+        //        verify(gattCallback, timeout(10_000))
+        //                .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+        //        Log.i("XXX", "onServicesDiscovered called!");
+
+        Log.i("XXX", "Sleeping 10 seconds for service discovery fininsh!");
+        Thread.sleep(10_000);
+
+        // Disconnect GATT
+        Log.i("XXX", "Calling disconnect!");
+        disconnectAndWaitDisconnection(gatt, gattCallback);
+
+        Log.i("XXX", "Sleeping 5 seconds for complete disconnect (Why this is needed??)!");
+        Thread.sleep(5_000);
+
+        // Reconnect
+        clearInvocations(gattCallback);
+        Log.i("XXX", "Calling connect again!!");
+        connectGattAndWaitConnection(gattCallback, false);
+
+        // Wait shorter time then before, since the service discovery is skipped.
+        ArgumentCaptor<Integer> connectionIntervalCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(gattCallback, timeout(10_000).times(2))
+                .onConnectionUpdated(
+                        any(), connectionIntervalCaptor.capture(), anyInt(), anyInt(), anyInt());
+
+        List<Integer> capturedConnectionIntervals = connectionIntervalCaptor.getAllValues();
+        assertThat(capturedConnectionIntervals).hasSize(2);
+
+        int relaxedConnIntervalAfterServiceDiscovery = capturedConnectionIntervals.get(0);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery)
+                .isAtLeast(CONN_INTERVAL_AGGRESSIVE_MIN);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtMost(CONN_INTERVAL_AGGRESSIVE_MAX);
+
+        int secondConnInterval = capturedConnectionIntervals.get(1);
+        assertThat(secondConnInterval).isAtLeast(CONN_INTERVAL_RELAXED_MIN);
+        assertThat(secondConnInterval).isAtMost(CONN_INTERVAL_RELAXED_MAX);
     }
 
     @Test
