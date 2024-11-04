@@ -769,26 +769,9 @@ protected:
     auto configuration_done = configuration_promise.get_future();
     EXPECT_CALL(hci_,
                 EnqueueCommand(_, Matcher<ContextualOnceCallback<void(CommandCompleteView)>>(_)))
-            .WillOnce(
-                    // Replace with real PDL for 0xfc17
-                    [&configuration_promise](
-                            std::unique_ptr<CommandBuilder> cmd,
-                            ContextualOnceCallback<void(CommandCompleteView)> callback) {
-                      auto cmd_view = VendorCommandView::Create(
-                              CommandView::Create(BuilderToView(std::move(cmd))));
-                      EXPECT_TRUE(cmd_view.IsValid());
-                      auto response = CommandCompleteView::Create(
-                              EventView::Create(BuilderToView(CommandCompleteBuilder::Create(
-                                      1, cmd_view.GetOpCode(), std::make_unique<RawBuilder>()))));
-                      EXPECT_TRUE(response.IsValid());
-                      callback(response);
-                      configuration_promise.set_value();
-                    })
-            .RetiresOnSaturation();
-    EXPECT_CALL(hci_,
-                EnqueueCommand(_, Matcher<ContextualOnceCallback<void(CommandCompleteView)>>(_)))
-            .WillOnce([](std::unique_ptr<CommandBuilder> cmd,
-                         ContextualOnceCallback<void(CommandCompleteView)> callback) {
+            .WillOnce([&configuration_promise](
+                              std::unique_ptr<CommandBuilder> cmd,
+                              ContextualOnceCallback<void(CommandCompleteView)> callback) {
               auto cmd_view = ControllerBqrView::Create(VendorCommandView::Create(
                       CommandView::Create(BuilderToView(std::move(cmd)))));
               EXPECT_TRUE(cmd_view.IsValid());
@@ -797,6 +780,7 @@ protected:
                               1, ErrorCode::SUCCESS, cmd_view.GetBqrQualityEventMask())))));
               EXPECT_TRUE(response.IsValid());
               callback(response);
+              configuration_promise.set_value();
             })
             .RetiresOnSaturation();
     EXPECT_CALL(hci_, RegisterVendorSpecificEventHandler(VseSubeventCode::BQR_EVENT, _))
