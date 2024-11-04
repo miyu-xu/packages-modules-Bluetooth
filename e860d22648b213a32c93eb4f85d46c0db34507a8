@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad92561_85f84023",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3559,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:20:10Z",
+      "side": 1,
+      "message": "To replace by:\n\n```\n/**\n * Sets whether this {@link BluetoothDevice} should be the preferred microphone for calls.\n *\n * \u003cp\u003eThis API only sets a preference. The caller is responsible for changing the audio\n * input routing to reflect the preference.\n *\n * @param enabled {@code true} to set the device as the preferred microphone for calls,\n *                {@code false} otherwise.\n * @return Whether the preferred microphone for calls was set properly.\n * @throws IllegalArgumentException if the {@link BluetoothDevice} object has an invalid address.\n * @hide\n */\n```",
+      "range": {
+        "startLine": 3548,
+        "startChar": 4,
+        "endLine": 3559,
+        "endChar": 7
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b8d000_2c8e4f78",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3564,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:20:10Z",
+      "side": 1,
+      "message": "Should this specify that it only impacts on audio devices?",
+      "range": {
+        "startLine": 3564,
+        "startChar": 12,
+        "endLine": 3564,
+        "endChar": 54
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "892380e5_1acc31ca",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3594,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:20:10Z",
+      "side": 1,
+      "message": "To rephrase:\n\n```\n/**\n * Gets whether this {@link BluetoothDevice} should be the preferred microphone for calls.\n *\n * \u003cp\u003eThis method returns the configured preference for whether this device should be the\n * preferred microphone for calls. It does not reflect the current audio routing.\n *\n * @return {@code true} if the device is the preferred microphone for calls,\n *         {@code false} otherwise.\n * @hide\n */\n ```",
+      "range": {
+        "startLine": 3585,
+        "startChar": 4,
+        "endLine": 3594,
+        "endChar": 7
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59e9e52d_31a6596e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3612,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:20:10Z",
+      "side": 1,
+      "message": "Should this return true in this case? Or throw an exception?",
+      "range": {
+        "startLine": 3612,
+        "startChar": 8,
+        "endLine": 3612,
+        "endChar": 20
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

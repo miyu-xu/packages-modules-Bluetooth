@@ -277,6 +277,30 @@
       },
       "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e037219f_81416846",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3529,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:20:10Z",
+      "side": 1,
+      "message": "I think it\u0027s fine not requiring `MODIFY_PHONE_STATE` permission.",
+      "parentUuid": "3c24aa13_8969f820",
+      "range": {
+        "startLine": 3529,
+        "startChar": 0,
+        "endLine": 3529,
+        "endChar": 74
+      },
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
