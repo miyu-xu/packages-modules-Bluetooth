@@ -615,6 +615,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b392e7d7_6fd67a08",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T23:28:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16a23dbe_d9e0a71f",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 40
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0052641_7371db37",
@@ -1376,6 +1400,30 @@
       "side": 1,
       "message": "I\u0027m fine only checking the socket settings later when creating the socket.",
       "parentUuid": "738654dc_b7b2ec0e",
+      "range": {
+        "startLine": 233,
+        "startChar": 39,
+        "endLine": 233,
+        "endChar": 44
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "646dd741_d9f36c51",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T23:28:59Z",
+      "side": 1,
+      "message": "Re-opening this comment just for @asapperstein@google.com to give his guidance.",
+      "parentUuid": "7cef161f_0eb72390",
       "range": {
         "startLine": 233,
         "startChar": 39,

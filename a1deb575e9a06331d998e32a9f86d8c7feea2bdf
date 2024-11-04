@@ -253,6 +253,30 @@
       },
       "revId": "a1deb575e9a06331d998e32a9f86d8c7feea2bdf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44899b55_6a4c314a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T23:28:59Z",
+      "side": 1,
+      "message": "Agree with Henri, and this should indeed documented in both setters and getters. Please document all default values in setters and getters in general with something like:\n\n```\n\u003cp\u003eDefaults to {@code ...}.\n```",
+      "parentUuid": "2aca054d_72e2fed3",
+      "range": {
+        "startLine": 138,
+        "startChar": 24,
+        "endLine": 138,
+        "endChar": 42
+      },
+      "revId": "a1deb575e9a06331d998e32a9f86d8c7feea2bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
