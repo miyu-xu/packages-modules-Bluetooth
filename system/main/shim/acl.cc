@@ -1597,6 +1597,8 @@ void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
   uint16_t conn_interval = connection->interval_;
   uint16_t conn_latency = connection->latency_;
   uint16_t conn_timeout = connection->supervision_timeout_;
+  bool relax_conn_params_after_service_discovery =
+          connection->relax_conn_params_after_service_discovery_;
 
   RawAddress local_rpa = ToRawAddress(connection->local_resolvable_private_address_);
   RawAddress peer_rpa = ToRawAddress(connection->peer_resolvable_private_address_);
@@ -1653,7 +1655,8 @@ void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
 
   TRY_POSTING_ON_MAIN(acl_interface_.connection.le.on_connected, legacy_address_with_type, handle,
                       ToLegacyRole(connection_role), conn_interval, conn_latency, conn_timeout,
-                      local_rpa, peer_rpa, peer_addr_type, can_read_discoverable_characteristics);
+                      local_rpa, peer_rpa, peer_addr_type, can_read_discoverable_characteristics,
+                      relax_conn_params_after_service_discovery);
 
   log::debug("Connection successful le remote:{} handle:{} initiator:{}", address_with_type, handle,
              (locally_initiated) ? "local" : "remote");
