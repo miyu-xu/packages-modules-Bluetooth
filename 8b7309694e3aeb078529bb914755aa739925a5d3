@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "243d029a_8d945757",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T17:58:01Z",
+      "side": 1,
+      "message": "You need to give more information as to the different between these two, and where each is being used.",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 46
+      },
+      "revId": "8b7309694e3aeb078529bb914755aa739925a5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ece5320_7c2d6029",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T17:58:01Z",
+      "side": 1,
+      "message": "This comment is useful, but maybe should be placed at the declaration site of \n `config_id_marks_`",
+      "range": {
+        "startLine": 191,
+        "startChar": 2,
+        "endLine": 194,
+        "endChar": 86
+      },
+      "revId": "8b7309694e3aeb078529bb914755aa739925a5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "777b01d2_9d198a97",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T17:58:01Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be an issue to overwrite the config for an existing config id ?\nShould this method be allowed to fail ?",
+      "range": {
+        "startLine": 206,
+        "startChar": 9,
+        "endLine": 206,
+        "endChar": 13
+      },
+      "revId": "8b7309694e3aeb078529bb914755aa739925a5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7757dba9_186537c9",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1857,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T17:58:01Z",
+      "side": 1,
+      "message": "This state seems redundant with information held in the trackers maps ?",
+      "range": {
+        "startLine": 1857,
+        "startChar": 40,
+        "endLine": 1857,
+        "endChar": 56
+      },
+      "revId": "8b7309694e3aeb078529bb914755aa739925a5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
