@@ -16,6 +16,69 @@
       "message": "3306387: AdapterProperties use correct looper | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3306387",
       "revId": "a8648ba3d225ff48b5df940359ceadaf500c438c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3963d91_6fedb0fd",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-04T17:20:28Z",
+      "side": 1,
+      "message": "is_not_same_identity_or_pseudo_address ?",
+      "range": {
+        "startLine": 352,
+        "startChar": 12,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "a8648ba3d225ff48b5df940359ceadaf500c438c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7bf5ff0_93022a3c",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-04T17:20:28Z",
+      "side": 1,
+      "message": "is_not_rpa_match",
+      "range": {
+        "startLine": 367,
+        "startChar": 12,
+        "endLine": 367,
+        "endChar": 29
+      },
+      "revId": "a8648ba3d225ff48b5df940359ceadaf500c438c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc93df2_7bae7be4",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-04T17:20:28Z",
+      "side": 1,
+      "message": "Can we add comment like this:\n\n```\n/* first search for records matching by identity address and pseudo address. Then search for record match by IRK */\n```",
+      "revId": "a8648ba3d225ff48b5df940359ceadaf500c438c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
