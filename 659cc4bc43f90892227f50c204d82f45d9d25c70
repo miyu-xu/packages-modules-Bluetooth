@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597d75cc_cda952f1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-04T20:23:33Z",
+      "side": 1,
+      "message": "@delwiche@google.com do we need to redact the local address as well?",
+      "fixSuggestions": [
+        {
+          "fixId": "1f63f65a_c44e3b15",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1080,
+                "startChar": 0,
+                "endLine": 1081,
+                "endChar": 0
+              },
+              "replacement": "        writer.println(\"  \" + \"Address: \" + Utils.getAddressStringFromByte(mAddress));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "659cc4bc43f90892227f50c204d82f45d9d25c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
