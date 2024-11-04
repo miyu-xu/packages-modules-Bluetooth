@@ -541,6 +541,7 @@ cc_test {
         "libbt-common",
         "libbt-jni-thread",
         "libchrome",
+        "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
