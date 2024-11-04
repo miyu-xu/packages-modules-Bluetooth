@@ -50,6 +50,14 @@ using common::BindOnce;
 
 constexpr uint16_t kConnIntervalMin = 0x0018;
 constexpr uint16_t kConnIntervalMax = 0x0028;
+
+constexpr uint16_t kConnIntervalRelaxedMin = 0x0018;     // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalRelaxedMax = 0x0028;     // 40, *1.25 becomes 50ms
+constexpr uint16_t kConnIntervalBalancedMin = 0x0010;    // 16, *1.25 becomes 20ms
+constexpr uint16_t kConnIntervalBalancedMax = 0x0018;    // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalAggressiveMin = 0x0006;  // 6, *1.25 becomes 7.5ms
+constexpr uint16_t kConnIntervalAggressiveMax = 0x0008;  // 8, *1.25 becomes 10ms
+
 constexpr uint16_t kConnLatency = 0x0000;
 constexpr uint16_t kSupervisionTimeout = 0x01f4;
 constexpr uint16_t kScanIntervalFast = 0x0060;          /* 30 ~ 60 ms (use 60)  = 96 *0.625 */
@@ -100,6 +108,8 @@ enum class ConnectabilityState {
   ARMED = 2,
   DISARMING = 3,
 };
+
+enum class ConnectionMode { RELAXED = 0, BALANCED = 1, AGGRESSIVE = 2 };
 
 inline std::string connectability_state_machine_text(const ConnectabilityState& state) {
   switch (state) {
@@ -203,6 +213,10 @@ private:
 
   public:
     bool crash_on_unknown_handle_ = false;
+    int size() const {
+      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
+      return le_acl_connections_.size();
+    }
     bool is_empty() const {
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       return le_acl_connections_.empty();
@@ -833,13 +847,45 @@ public:
     InitiatorFilterPolicy initiator_filter_policy = InitiatorFilterPolicy::USE_FILTER_ACCEPT_LIST;
     OwnAddressType own_address_type = static_cast<OwnAddressType>(
             le_address_manager_->GetInitiatorAddress().GetAddressType());
+
+    uint16_t conn_interval_min_candidate;
+    uint16_t conn_interval_max_candidate;
+
+    if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+      ConnectionMode connectionMode = ConnectionMode::RELAXED;
+
+      if (connections.size() < 2) {
+        log::info("Using ConnectionMode::AGGRESSIVE");
+        connectionMode = ConnectionMode::AGGRESSIVE;
+      }
+
+      switch (connectionMode) {
+        case ConnectionMode::RELAXED:
+          conn_interval_min_candidate = kConnIntervalRelaxedMin;
+          conn_interval_max_candidate = kConnIntervalRelaxedMax;
+          break;
+        case ConnectionMode::BALANCED:
+          conn_interval_min_candidate = kConnIntervalBalancedMin;
+          conn_interval_max_candidate = kConnIntervalBalancedMax;
+          break;
+        case ConnectionMode::AGGRESSIVE:
+          conn_interval_min_candidate = kConnIntervalAggressiveMin;
+          conn_interval_max_candidate = kConnIntervalAggressiveMax;
+          break;
+      }
+    } else {
+      conn_interval_min_candidate = kConnIntervalMin;
+      conn_interval_max_candidate = kConnIntervalMax;
+    }
+
     uint16_t conn_interval_min =
-            os::GetSystemPropertyUint32(kPropertyMinConnInterval, kConnIntervalMin);
+            os::GetSystemPropertyUint32(kPropertyMinConnInterval, conn_interval_min_candidate);
     uint16_t conn_interval_max =
-            os::GetSystemPropertyUint32(kPropertyMaxConnInterval, kConnIntervalMax);
+            os::GetSystemPropertyUint32(kPropertyMaxConnInterval, conn_interval_max_candidate);
     uint16_t conn_latency = os::GetSystemPropertyUint32(kPropertyConnLatency, kConnLatency);
     uint16_t supervision_timeout =
             os::GetSystemPropertyUint32(kPropertyConnSupervisionTimeout, kSupervisionTimeout);
+
     log::assert_that(
             check_connection_parameters(conn_interval_min, conn_interval_max, conn_latency,
                                         supervision_timeout),
