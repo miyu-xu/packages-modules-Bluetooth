@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b2178e7_2c6a750c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44847fc6_6efaad5a",
+      "range": {
+        "startLine": 1213,
+        "startChar": 7,
+        "endLine": 1213,
+        "endChar": 10
+      },
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6512bff3_042035f1",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e778b95e_0ec599d6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6512bff3_042035f1",
+      "range": {
+        "startLine": 1225,
+        "startChar": 19,
+        "endLine": 1225,
+        "endChar": 40
+      },
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db612d33_3ada4bdb",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-11-04T19:34:34Z",
       "side": 1,
       "message": "nit: align indentation with `sourceID ...`",
+      "range": {
+        "startLine": 1227,
+        "startChar": 5,
+        "endLine": 1227,
+        "endChar": 11
+      },
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f8735cc_5531215c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:52:18Z",
+      "side": 1,
+      "message": "the java formatter will correct this indentation like this. \nshould I just keep it as this suggested by formatter?",
+      "parentUuid": "db612d33_3ada4bdb",
       "range": {
         "startLine": 1227,
         "startChar": 5,
@@ -125,6 +197,30 @@
           ]
         }
       ],
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e3cc1f3_8bda570b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1229,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76a50c2e_c135b8b2",
+      "range": {
+        "startLine": 1229,
+        "startChar": 67,
+        "endLine": 1229,
+        "endChar": 68
+      },
       "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
