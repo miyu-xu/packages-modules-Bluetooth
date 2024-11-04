@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad991c4d_54222b03",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:20:04Z",
+      "side": 1,
+      "message": "* @throws IllegalStateException if LE Audio Service is null",
+      "fixSuggestions": [
+        {
+          "fixId": "9b5fe4a2_d5f6d089",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1417,
+                "startChar": 0,
+                "endLine": 1418,
+                "endChar": 0
+              },
+              "replacement": "     * @throws IllegalStateException if LE Audio Service is null\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e95bb9d_d9764fe1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:20:04Z",
+      "side": 1,
+      "message": "As we agreed offline, should we name it as setLeAudioPrimaryGroup to align with the callback API name?",
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
