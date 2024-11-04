@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "485ef61d_77bfe239",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-04T22:30:51Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "ad991c4d_54222b03",
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e95bb9d_d9764fe1",
@@ -66,6 +84,24 @@
       "writtenOn": "2024-11-04T19:20:04Z",
       "side": 1,
       "message": "As we agreed offline, should we name it as setLeAudioPrimaryGroup to align with the callback API name?",
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde68337_6329c074",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-04T22:30:51Z",
+      "side": 1,
+      "message": "Hmm I thought that we\u0027ve agreed about having this in LeAudio module vs Broadcast. There are no method that doubles meaning of module - so for me more consistent with this module is simply setPrimaryGroup.\n\n@rlukasz@google.com what do you think ?",
+      "parentUuid": "6e95bb9d_d9764fe1",
       "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
