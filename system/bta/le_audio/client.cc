@@ -293,8 +293,34 @@ public:
     DeviceGroups::Get()->Initialize(device_group_callbacks);
   }
 
+  void ClearVbcConfiguration(LeAudioDeviceGroup* group) {
+    if (!group) {
+      log::warn("Group is null");
+      return;
+    }
+
+    log::debug(" group_id: {}", group->group_id_);
+
+    /* Test the existing metadata against the recent availability */
+    local_metadata_context_types_.source &=
+            group->GetAvailableContexts(bluetooth::le_audio::types::kLeAudioDirectionSink);
+    if (local_metadata_context_types_.source.none()) {
+      log::warn("invalid/unknown context metadata, using 'MEDIA' instead");
+      local_metadata_context_types_.source = AudioContexts(LeAudioContextType::MEDIA);
+    }
+
+    /* Choose the right configuration context */
+    auto new_configuration_context =
+            ChooseConfigurationContextType(local_metadata_context_types_.source);
+
+    log::debug("new_configuration_context= {}", ToString(new_configuration_context));
+    ReconfigureOrUpdateMetadata(group, new_configuration_context,
+                                {.sink = local_metadata_context_types_.source,
+                                 .source = local_metadata_context_types_.sink});
+  }
+
   void ReconfigureAfterVbcClose() {
-    log::debug("VBC close timeout");
+    log::debug("");
 
     if (IsInVoipCall()) {
       SetInVoipCall(false);
@@ -321,28 +347,13 @@ public:
       log::info("Keeping the old configuration as no HQ Media playback is needed right now.");
       return;
     }
-
-    /* Test the existing metadata against the recent availability */
-    local_metadata_context_types_.source &=
-            group->GetAvailableContexts(bluetooth::le_audio::types::kLeAudioDirectionSink);
-    if (local_metadata_context_types_.source.none()) {
-      log::warn("invalid/unknown context metadata, using 'MEDIA' instead");
-      local_metadata_context_types_.source = AudioContexts(LeAudioContextType::MEDIA);
-    }
-
-    /* Choose the right configuration context */
-    auto new_configuration_context =
-            ChooseConfigurationContextType(local_metadata_context_types_.source);
-
-    log::debug("new_configuration_context= {}", ToString(new_configuration_context));
-    ReconfigureOrUpdateMetadata(group, new_configuration_context,
-                                {.sink = local_metadata_context_types_.source,
-                                 .source = local_metadata_context_types_.sink});
+    ClearVbcConfiguration(group);
   }
 
   void StartVbcCloseTimeout() {
     if (alarm_is_scheduled(close_vbc_timeout_)) {
-      StopVbcCloseTimeout();
+      log::info("close_vbc_timeout_ already scheduled");
+      return;
     }
 
     static const uint64_t timeoutMs = 2000;
@@ -4393,6 +4404,11 @@ public:
       log::error("invalid resume request for context type: {}",
                  ToHexString(configuration_context_type_));
       CancelLocalAudioSinkStreamingRequest();
+
+      if (audio_receiver_state_ == AudioState::IDLE) {
+        // Clear configuration which was applied above
+        ClearVbcConfiguration(group);
+      }
       return;
     }
 
@@ -4401,6 +4417,10 @@ public:
       log::warn("Block sink resume request context type: {}",
                 ToHexString(configuration_context_type_));
       CancelLocalAudioSourceStreamingRequest();
+      if (audio_receiver_state_ == AudioState::IDLE) {
+        // Clear configuration which was applied above
+        ClearVbcConfiguration(group);
+      }
       return;
     }
 
@@ -4421,6 +4441,7 @@ public:
               audio_receiver_state_ = AudioState::READY_TO_START;
             } else {
               CancelLocalAudioSinkStreamingRequest();
+              ClearVbcConfiguration(group);
             }
             break;
           case AudioState::READY_TO_START:
