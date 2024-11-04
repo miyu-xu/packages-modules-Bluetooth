@@ -27,6 +27,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.accounts.Account;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
@@ -54,6 +55,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+
+import java.util.Arrays;
+import java.util.ArrayList;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -222,7 +226,7 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    public void broadcastReceiver_withActionAclDisconnectedLeTransport_doesNotCallDisconnect() {
+    public void aclDisconnected_withActionAclDisconnectedLeTransport_doesNotCallDisconnect() {
         int connectionState = BluetoothProfile.STATE_CONNECTED;
         PbapClientStateMachine sm = mock(PbapClientStateMachine.class);
         mService.mPbapClientStateMachineMap.put(mRemoteDevice, sm);
@@ -235,7 +239,7 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    public void broadcastReceiver_withActionAclDisconnectedBrEdrTransport_callsDisconnect() {
+    public void aclDisconnected_withActionAclDisconnectedBrEdrTransport_callsDisconnect() {
         int connectionState = BluetoothProfile.STATE_CONNECTED;
         PbapClientStateMachine sm = mock(PbapClientStateMachine.class);
         mService.mPbapClientStateMachineMap.put(mRemoteDevice, sm);
@@ -248,15 +252,28 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    public void broadcastReceiver_withActionUserUnlocked_callsTryDownloadIfConnected() {
+    public void onAccountsChanged_fromNulltoEmpty_tryDownloadIfConnectedCalled() {
         PbapClientStateMachine sm = mock(PbapClientStateMachine.class);
         mService.mPbapClientStateMachineMap.put(mRemoteDevice, sm);
 
-        Intent intent = new Intent(Intent.ACTION_USER_UNLOCKED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mRemoteDevice);
-        mService.mPbapBroadcastReceiver.onReceive(mService, intent);
+        PbapClientService.PbapClientAccountManagerCallback callback =
+                mService.new PbapClientAccountManagerCallback();
+        callback.onAccountsChanged(null, new ArrayList<Account>());
 
         verify(sm).tryDownloadIfConnected();
+    }
+
+    @Test
+    public void onAccountsChanged_fromEmptyToOne_tryDownloadIfConnectedNotCalled() {
+        PbapClientStateMachine sm = mock(PbapClientStateMachine.class);
+        mService.mPbapClientStateMachineMap.put(mRemoteDevice, sm);
+
+        PbapClientService.PbapClientAccountManagerCallback callback =
+                mService.new PbapClientAccountManagerCallback();
+        Account acc = mock(Account.class);
+        callback.onAccountsChanged(new ArrayList<Account>(), new ArrayList<>(Arrays.asList(acc)));
+
+        verify(sm, never()).tryDownloadIfConnected();
     }
 
     @Test
