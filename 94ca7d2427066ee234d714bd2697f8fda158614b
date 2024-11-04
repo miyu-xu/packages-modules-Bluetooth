@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aeaa147_d1d8105c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-04T21:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c71f5ed5_6c45fc78",
+      "range": {
+        "startLine": 173,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35cc67f3_acd08266",
@@ -131,6 +155,30 @@
       "writtenOn": "2024-11-04T18:27:24Z",
       "side": 1,
       "message": "To rephrase:\n\n```\n/**\n * Sets the encryption requirement for the Bluetooth socket.\n *\n * @param encryptionRequired {@code true} if encryption is required for this socket, {@code false} otherwise.\n * @return This builder.\n */\n```",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 197,
+        "endChar": 9
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df8a8660_5bf3a14f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-04T21:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35cc67f3_acd08266",
       "range": {
         "startLine": 186,
         "startChar": 8,
@@ -295,6 +343,30 @@
       "writtenOn": "2024-11-04T18:27:24Z",
       "side": 1,
       "message": "To replace:\n\n```\n/**\n * Builds a {@link BluetoothSocketSettings} object.\n *\n * @return A new {@link BluetoothSocketSettings} object with the configured parameters.\n */\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ced728a_14678e83",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-04T21:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd49ac94_b74ed638",
       "range": {
         "startLine": 237,
         "startChar": 8,
