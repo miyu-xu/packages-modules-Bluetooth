@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6708fe69_1a2507f8",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T19:56:02Z",
+      "side": 1,
+      "message": "It seems this is for an API.\n\nShould this be is_exported \u003d true ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "29b7f2c243466290850de01347451bdcde5be31c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
