@@ -16,6 +16,24 @@
       "message": "You want to set it to disabled, probably: `btsnoop_mode_ \u003d kBtSnoopLogModeDisabled`",
       "revId": "13d80834f08eac2365c0321e6129653f9f2f95ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1615c8d6_7d6d8f65",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T19:41:24Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a6bb34d7_f40f964e",
+      "revId": "13d80834f08eac2365c0321e6129653f9f2f95ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

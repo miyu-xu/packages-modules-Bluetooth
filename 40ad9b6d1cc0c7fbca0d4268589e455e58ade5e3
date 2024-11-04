@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc3f942_e4075825",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T19:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea5fb78f_d38d9a1d",
+      "range": {
+        "startLine": 1353,
+        "startChar": 4,
+        "endLine": 1358,
+        "endChar": 5
+      },
+      "revId": "40ad9b6d1cc0c7fbca0d4268589e455e58ade5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "746e0b46_c73fa081",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-04T19:03:56Z",
       "side": 1,
       "message": "```\nbtsnoop_mode \u003d os::GetSystemProperty(SnoopLogger::kBtSnoopLogModeProperty)\n    .value_or(btsnoop_mode);\n```",
+      "range": {
+        "startLine": 1362,
+        "startChar": 2,
+        "endLine": 1365,
+        "endChar": 3
+      },
+      "revId": "40ad9b6d1cc0c7fbca0d4268589e455e58ade5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391a2989_4ea9048d",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1365,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T19:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "746e0b46_c73fa081",
       "range": {
         "startLine": 1362,
         "startChar": 2,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ce8251_c308245f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1374,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T19:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c650a68d_23cc18ab",
+      "range": {
+        "startLine": 1373,
+        "startChar": 0,
+        "endLine": 1374,
+        "endChar": 46
+      },
+      "revId": "40ad9b6d1cc0c7fbca0d4268589e455e58ade5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c39fdc2_f3121d52",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-04T19:03:56Z",
       "side": 1,
       "message": "??",
+      "range": {
+        "startLine": 27,
+        "startChar": 22,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "40ad9b6d1cc0c7fbca0d4268589e455e58ade5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7293a8b4_7391c4ab",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T19:41:24Z",
+      "side": 1,
+      "message": "cpplint require to include your own .h",
+      "parentUuid": "3c39fdc2_f3121d52",
       "range": {
         "startLine": 27,
         "startChar": 22,
