@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdb75f1c_ad428b6c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T18:19:08Z",
+      "side": 1,
+      "message": "Does this need to be public ? can we restrict to be \"package private\" instead ?, same for getAddress below",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "cd4b073a09cdab1cfe59368e5e9b10fe3e9bb8d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
