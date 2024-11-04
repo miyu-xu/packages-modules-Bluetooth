@@ -160,6 +160,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52005404_0d004afb",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:54:31Z",
+      "side": 1,
+      "message": "Keep the suggestion by the formatter (although I think it could be better being aligned 😄)",
+      "parentUuid": "2f8735cc_5531215c",
+      "range": {
+        "startLine": 1227,
+        "startChar": 5,
+        "endLine": 1227,
+        "endChar": 11
+      },
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76a50c2e_c135b8b2",
