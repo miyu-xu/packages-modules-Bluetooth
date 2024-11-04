@@ -1,0 +1,132 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44847fc6_6efaad5a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:34:34Z",
+      "side": 1,
+      "message": "nit: `Gets`",
+      "range": {
+        "startLine": 1213,
+        "startChar": 7,
+        "endLine": 1213,
+        "endChar": 10
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "672f7fed_8680d713",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+              "range": {
+                "startLine": 1213,
+                "startChar": 0,
+                "endLine": 1214,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the {@link BluetoothLeBroadcastMetadata} of a specified source added to this Broadcast\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6512bff3_042035f1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:34:34Z",
+      "side": 1,
+      "message": "nit: `Broadcast Sink device.`",
+      "range": {
+        "startLine": 1225,
+        "startChar": 19,
+        "endLine": 1225,
+        "endChar": 40
+      },
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db612d33_3ada4bdb",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:34:34Z",
+      "side": 1,
+      "message": "nit: align indentation with `sourceID ...`",
+      "range": {
+        "startLine": 1227,
+        "startChar": 5,
+        "endLine": 1227,
+        "endChar": 11
+      },
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a50c2e_c135b8b2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1229,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T19:34:34Z",
+      "side": 1,
+      "message": "nit: `].`",
+      "range": {
+        "startLine": 1229,
+        "startChar": 67,
+        "endLine": 1229,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d4845202_a0f3fc3b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+              "range": {
+                "startLine": 1229,
+                "startChar": 0,
+                "endLine": 1230,
+                "endChar": 0
+              },
+              "replacement": "     * @throws IllegalArgumentException if sourceID is not [0, 0xFF].\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6b13b2a828c3c85e46fda75daf0d320fda12d34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
