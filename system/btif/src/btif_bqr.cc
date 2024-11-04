@@ -514,42 +514,6 @@ static void BqrVscCompleteCallback(hci::CommandCompleteView complete) {
   ConfigureBqrCmpl(current_quality_event_mask);
 }
 
-static void ConfigBqrA2dpScoThreshold() {
-  uint8_t sub_opcode = 0x16;
-  uint16_t a2dp_choppy_threshold = 0;
-  uint16_t sco_choppy_threshold = 0;
-
-  char bqr_prop_threshold[PROPERTY_VALUE_MAX] = {0};
-  osi_property_get(kpPropertyChoppyThreshold, bqr_prop_threshold, "");
-
-  sscanf(bqr_prop_threshold, "%hu,%hu", &a2dp_choppy_threshold, &sco_choppy_threshold);
-
-  log::info("a2dp_choppy_threshold: {}, sco_choppy_threshold: {}", a2dp_choppy_threshold,
-            sco_choppy_threshold);
-
-  auto payload = std::make_unique<packet::RawBuilder>();
-  payload->AddOctets1(sub_opcode);
-
-  // A2dp glitch ID
-  payload->AddOctets1(QUALITY_REPORT_ID_A2DP_AUDIO_CHOPPY);
-  // A2dp glitch config data length
-  payload->AddOctets1(2);
-  // A2dp glitch threshold
-  payload->AddOctets2(a2dp_choppy_threshold == 0 ? 1 : a2dp_choppy_threshold);
-
-  // Sco glitch ID
-  payload->AddOctets1(QUALITY_REPORT_ID_SCO_VOICE_CHOPPY);
-  // Sco glitch config data length
-  payload->AddOctets1(2);
-  // Sco glitch threshold
-  payload->AddOctets2(sco_choppy_threshold == 0 ? 1 : sco_choppy_threshold);
-
-  shim::GetHciLayer()->EnqueueCommand(
-          hci::CommandBuilder::Create(static_cast<hci::OpCode>(HCI_VS_HOST_LOG_OPCODE),
-                                      std::move(payload)),
-          to_bind_->BindOnce([](hci::CommandCompleteView) {}));
-}
-
 // Invoked on completion of Bluetooth Quality Report configuration. Then it will
 // Register/Unregister for receiving VSE - Bluetooth Quality Report sub-event.
 //
@@ -557,10 +521,6 @@ static void ConfigBqrA2dpScoThreshold() {
 //   the Bluetooth controller.
 static void ConfigureBqrCmpl(uint32_t current_evt_mask) {
   log::info("current_evt_mask: 0x{:x}", current_evt_mask);
-
-  if (current_evt_mask > kQualityEventMaskAllOff) {
-    ConfigBqrA2dpScoThreshold();
-  }
 
   if (LmpLlMessageTraceLogFd != INVALID_FD &&
       (current_evt_mask & kQualityEventMaskLmpMessageTrace) == 0) {
