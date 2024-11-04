@@ -93,6 +93,9 @@ public class GattClientTest {
     private static final UUID TEST_CHARACTERISTIC_UUID =
             UUID.fromString("00010001-0000-0000-0000-000000000000");
 
+    private static final int CONN_INTERVAL_RELAXED_MIN = 0x0018;
+    private static final int CONN_INTERVAL_RELAXED_MAX = 0x0028;
+
     @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
 
@@ -169,6 +172,31 @@ public class GattClientTest {
         }
         BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
         BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback, autoConnect);
+        disconnectAndWaitDisconnection(gatt, gattCallback);
+    }
+
+    @RequiresFlagsEnabled(Flags.FLAG_INITIAL_CONN_PARAMS_P1)
+    @Test
+    public void onConnectionUpdatedIsCalledOnlyOnceForRelaxingConnectionParameters_noGattCache() {
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        ArgumentCaptor<Integer> connectionIntervalCaptor = ArgumentCaptor.forClass(Integer.class);
+
+        BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback, false);
+
+        // Wait until service discovery is done and parameters are relaxed.
+        verify(gattCallback, timeout(10_000).times(1))
+                .onConnectionUpdated(
+                        any(), connectionIntervalCaptor.capture(), anyInt(), anyInt(), anyInt());
+
+        List<Integer> capturedConnectionIntervals = connectionIntervalCaptor.getAllValues();
+        assertThat(capturedConnectionIntervals).hasSize(1);
+
+        // Since aggressive parameters are used in the initial connection,
+        // there should be only one connection parameters update event for relaxing them.
+        int relaxedConnIntervalAfterServiceDiscovery = capturedConnectionIntervals.get(0);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtLeast(CONN_INTERVAL_RELAXED_MIN);
+        assertThat(relaxedConnIntervalAfterServiceDiscovery).isAtMost(CONN_INTERVAL_RELAXED_MAX);
+
         disconnectAndWaitDisconnection(gatt, gattCallback);
     }
 
