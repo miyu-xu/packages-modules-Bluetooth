@@ -50,6 +50,14 @@ using common::BindOnce;
 
 constexpr uint16_t kConnIntervalMin = 0x0018;
 constexpr uint16_t kConnIntervalMax = 0x0028;
+// TODO: Remove empty line here
+constexpr uint16_t kConnIntervalRelaxedMin = 0x0018;     // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalRelaxedMax = 0x0028;     // 40, *1.25 becomes 50ms
+constexpr uint16_t kConnIntervalBalancedMin = 0x0010;    // 16, *1.25 becomes 20ms
+constexpr uint16_t kConnIntervalBalancedMax = 0x0018;    // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalAggressiveMin = 0x0006;  // 6, *1.25 becomes 7.5ms
+constexpr uint16_t kConnIntervalAggressiveMax = 0x0008;  // 8, *1.25 becomes 10ms
+// TODO: Remove empty line here
 constexpr uint16_t kConnLatency = 0x0000;
 constexpr uint16_t kSupervisionTimeout = 0x01f4;
 constexpr uint16_t kScanIntervalFast = 0x0060;          /* 30 ~ 60 ms (use 60)  = 96 *0.625 */
@@ -100,6 +108,8 @@ enum class ConnectabilityState {
   ARMED = 2,
   DISARMING = 3,
 };
+
+enum class ConnectionMode { RELAXED = 0, BALANCED = 1, AGGRESSIVE = 2 };
 
 inline std::string connectability_state_machine_text(const ConnectabilityState& state) {
   switch (state) {
@@ -203,6 +213,10 @@ private:
 
   public:
     bool crash_on_unknown_handle_ = false;
+    int size() const {
+      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
+      return le_acl_connections_.size();
+    }
     bool is_empty() const {
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       return le_acl_connections_.empty();
@@ -368,6 +382,7 @@ public:
       conn_latency = connection_complete.GetConnLatency();
       supervision_timeout = connection_complete.GetSupervisionTimeout();
       remote_address = AddressWithType(address, peer_address_type);
+      log::info("[Normal] connection_interval={}", conn_interval);
     } else if (packet.GetSubeventCode() == SubeventCode::ENHANCED_CONNECTION_COMPLETE) {
       LeEnhancedConnectionCompleteView connection_complete =
               LeEnhancedConnectionCompleteView::Create(packet);
@@ -381,6 +396,7 @@ public:
       conn_interval = connection_complete.GetConnInterval();
       conn_latency = connection_complete.GetConnLatency();
       supervision_timeout = connection_complete.GetSupervisionTimeout();
+      log::info("[Enhanced] connection_interval={}", conn_interval);
       AddressType remote_address_type;
       switch (peer_address_type) {
         case AddressType::PUBLIC_DEVICE_ADDRESS:
@@ -393,6 +409,7 @@ public:
           break;
       }
       remote_address = AddressWithType(address, remote_address_type);
+      log::info("[Enhanced] remote_address={}", remote_address);
     } else {
       log::fatal("Bad subevent code:{:02x}", packet.GetSubeventCode());
       return;
@@ -849,6 +866,34 @@ public:
     AddressWithType address_with_type = connection_peer_address_with_type_;
     if (initiator_filter_policy == InitiatorFilterPolicy::USE_FILTER_ACCEPT_LIST) {
       address_with_type = AddressWithType();
+    }
+
+    // TODO: Add flag
+    bool flag = true;
+    if (flag) {
+      ConnectionMode connectionMode = ConnectionMode::RELAXED;
+      int connectionCount = connections.size();
+      log::info("connectionCount={}", connections.size());
+      if (connectionCount < 2) {
+        log::info("Using ConnectionMode::AGGRESSIVE");
+        connectionMode = ConnectionMode::AGGRESSIVE;
+      }
+
+      // When there is up to 1 ongoing connection, connectionMode will be AGGRESSIVE
+      switch (connectionMode) {
+        case ConnectionMode::RELAXED:
+          conn_interval_min = kConnIntervalRelaxedMin;
+          conn_interval_max = kConnIntervalRelaxedMax;
+          break;
+        case ConnectionMode::BALANCED:
+          conn_interval_min = kConnIntervalBalancedMin;
+          conn_interval_max = kConnIntervalBalancedMax;
+          break;
+        case ConnectionMode::AGGRESSIVE:
+          conn_interval_min = kConnIntervalAggressiveMin;
+          conn_interval_max = kConnIntervalAggressiveMax;
+          break;
+      }
     }
 
     if (controller_->IsSupported(OpCode::LE_EXTENDED_CREATE_CONNECTION)) {
