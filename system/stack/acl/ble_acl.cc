@@ -44,7 +44,8 @@ static bool acl_ble_common_connection(const tBLE_BD_ADDR& address_with_type, uin
                                       tHCI_ROLE role, bool is_in_security_db,
                                       uint16_t conn_interval, uint16_t conn_latency,
                                       uint16_t conn_timeout,
-                                      bool can_read_discoverable_characteristics) {
+                                      bool can_read_discoverable_characteristics,
+                                      bool relax_conn_params_after_service_discovery) {
   if (role == HCI_ROLE_CENTRAL) {
     btm_cb.ble_ctr_cb.set_connection_state_idle();
     btm_ble_clear_topology_mask(BTM_BLE_STATE_INIT_BIT);
@@ -63,7 +64,7 @@ static bool acl_ble_common_connection(const tBLE_BD_ADDR& address_with_type, uin
 
   // Inform l2cap of a potential connection.
   if (!l2cble_conn_comp(handle, role, address_with_type.bda, address_with_type.type, conn_interval,
-                        conn_latency, conn_timeout)) {
+                        conn_latency, conn_timeout, relax_conn_params_after_service_discovery)) {
     btm_sec_disconnect(handle, HCI_ERR_PEER_USER, "stack::acl::ble_acl fail");
     log::warn("Unable to complete l2cap connection");
     return false;
@@ -80,10 +81,11 @@ void acl_ble_enhanced_connection_complete(const tBLE_BD_ADDR& address_with_type,
                                           uint16_t conn_latency, uint16_t conn_timeout,
                                           const RawAddress& /* local_rpa */,
                                           const RawAddress& peer_rpa, tBLE_ADDR_TYPE peer_addr_type,
-                                          bool can_read_discoverable_characteristics) {
+                                          bool can_read_discoverable_characteristics,
+                                          bool relax_conn_params_after_service_discovery) {
   if (!acl_ble_common_connection(address_with_type, handle, role, match, conn_interval,
-                                 conn_latency, conn_timeout,
-                                 can_read_discoverable_characteristics)) {
+                                 conn_latency, conn_timeout, can_read_discoverable_characteristics,
+                                 relax_conn_params_after_service_discovery)) {
     log::warn("Unable to create enhanced ble acl connection");
     return;
   }
@@ -107,7 +109,8 @@ void acl_ble_enhanced_connection_complete_from_shim(
         const tBLE_BD_ADDR& address_with_type, uint16_t handle, tHCI_ROLE role,
         uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
         const RawAddress& local_rpa, const RawAddress& peer_rpa, tBLE_ADDR_TYPE peer_addr_type,
-        bool can_read_discoverable_characteristics) {
+        bool can_read_discoverable_characteristics,
+        bool relax_conn_params_after_service_discovery) {
   connection_manager::on_connection_complete(address_with_type.bda);
 
   tBLE_BD_ADDR resolved_address_with_type;
@@ -117,7 +120,8 @@ void acl_ble_enhanced_connection_complete_from_shim(
   acl_set_locally_initiated(role == tHCI_ROLE::HCI_ROLE_CENTRAL);
   acl_ble_enhanced_connection_complete(
           resolved_address_with_type, handle, role, is_in_security_db, conn_interval, conn_latency,
-          conn_timeout, local_rpa, peer_rpa, peer_addr_type, can_read_discoverable_characteristics);
+          conn_timeout, local_rpa, peer_rpa, peer_addr_type, can_read_discoverable_characteristics,
+          relax_conn_params_after_service_discovery);
 
   // The legacy stack continues the LE connection after the read remote
   // version complete has been received.
