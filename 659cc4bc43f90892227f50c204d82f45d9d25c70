@@ -34,6 +34,24 @@
       ],
       "revId": "659cc4bc43f90892227f50c204d82f45d9d25c70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1942dbf_4148e344",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:18:41Z",
+      "side": 1,
+      "message": "Yes, the address is redacted in log and partner want it redacted too",
+      "parentUuid": "597d75cc_cda952f1",
+      "revId": "659cc4bc43f90892227f50c204d82f45d9d25c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
