@@ -477,6 +477,64 @@ cc_test {
 }
 
 cc_test {
+    name: "bluetooth_test_gdx_unit",
+    test_suites: ["device-tests"],
+    defaults: [
+        "aconfig_lib_cc_shared_link.defaults",
+        "gd_defaults",
+        "mts_defaults",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/types",
+    ],
+    host_supported: true,
+    srcs: [
+        ":BluetoothDumpsysTestSources",
+        ":BluetoothShimTestSources",
+        ":TestCommonMockFunctions",
+        ":TestMockMainShimStack",
+        "module_gdx_unittest.cc",
+        "module_jniloop_unittest.cc",
+        "module_mainloop_unittest.cc",
+        "module_state_dumper_unittest.cc",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedDumpsysInternalTestData_h",
+        "BluetoothGeneratedDumpsysTestData_h",
+    ],
+    static_libs: [
+        "bluetooth_flags_c_lib_for_test",
+        "libbase",
+        "libbluetooth-dumpsys",
+        "libbluetooth-dumpsys-test",
+        "libbluetooth-dumpsys-unittest",
+        "libbluetooth-gdx",
+        "libbluetooth_gd",
+        "libbluetooth_log",
+        "libbt-btu-main-thread",
+        "libbt-common",
+        "libbt-jni-thread",
+        "libchrome",
+        "libcom.android.sysprop.bluetooth.wrapped",
+        "libevent",
+        "libflatbuffers-cpp",
+        "libgmock",
+        "liblog",
+        "libosi",
+        "server_configurable_flags",
+    ],
+    sanitize: {
+        address: true,
+    },
+    min_sdk_version: "Tiramisu",
+}
+
+cc_test {
     name: "bluetooth_packet_parser_test",
     test_suites: ["general-tests"],
     defaults: [
