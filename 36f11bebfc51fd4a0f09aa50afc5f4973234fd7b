@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53c7a8f4_cf80f195",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T19:36:53Z",
+      "side": 0,
+      "message": "You can cleanup this static as well.",
+      "range": {
+        "startLine": 523,
+        "startChar": 19,
+        "endLine": 523,
+        "endChar": 44
+      },
+      "revId": "36f11bebfc51fd4a0f09aa50afc5f4973234fd7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
