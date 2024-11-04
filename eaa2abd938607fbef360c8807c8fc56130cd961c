@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bcdd747_6e88d5d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-04T05:01:34Z",
+      "side": 1,
+      "message": "Note that the setter is correctly called in line:1142 of the same file for function `addressConsolidateCallback` but was missing in this function.",
+      "revId": "eaa2abd938607fbef360c8807c8fc56130cd961c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
