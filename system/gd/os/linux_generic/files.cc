@@ -104,7 +104,8 @@ bool WriteToFile(const std::string& path, const std::string& data) {
   // - fsync() to ensure content is written to disk
 
   // Build temp config file based on config file (e.g. bt_config.conf.new).
-  const std::string temp_path = path + ".new";
+  int userid = getuid()/100000;
+  const std::string temp_path = path + "." + std::to_string(userid) + ".new";
 
   // Extract directory from file path (e.g. /data/misc/bluedroid).
   // TODO: switch to std::filesystem::path::parent_path
