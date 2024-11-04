@@ -523,6 +523,8 @@ public:
   uint16_t min_ce_len;
   uint16_t max_ce_len;
 
+  bool relax_conn_params_after_service_discovery;
+
 #define L2C_BLE_SUBRATE_REQ_DISABLE 0x1  // disable subrate req
 #define L2C_BLE_NEW_SUBRATE_PARAM 0x2    // new subrate req parameter to be set
 #define L2C_BLE_SUBRATE_REQ_PENDING 0x4  // waiting for subrate to be completed
