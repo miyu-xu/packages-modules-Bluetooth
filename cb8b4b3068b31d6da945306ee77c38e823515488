@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a188f2d0_3efc5b10",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1445,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:31:34Z",
+      "side": 1,
+      "message": "same as the setter API, we\u0027d better to provide more context.",
+      "revId": "cb8b4b3068b31d6da945306ee77c38e823515488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d498477_726a666a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1448,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:31:34Z",
+      "side": 1,
+      "message": "* @throws IllegalStateException if LE Audio Service is null",
+      "fixSuggestions": [
+        {
+          "fixId": "31b6e5bf_9f701243",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1448,
+                "startChar": 0,
+                "endLine": 1449,
+                "endChar": 0
+              },
+              "replacement": "     * @throws IllegalStateException if LE Audio Service is null\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cb8b4b3068b31d6da945306ee77c38e823515488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db6b5d50_c7424f93",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1449,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:31:34Z",
+      "side": 1,
+      "message": "* @return ID of primary group, {@link #GROUP_ID_INVALID} when primary group is not set",
+      "fixSuggestions": [
+        {
+          "fixId": "d0eba8cf_10612775",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1449,
+                "startChar": 0,
+                "endLine": 1450,
+                "endChar": 0
+              },
+              "replacement": "     * @return ID of primary group, {@link #GROUP_ID_INVALID} when primary group is not set\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cb8b4b3068b31d6da945306ee77c38e823515488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b703bb1b_5c93fda6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T19:31:34Z",
+      "side": 1,
+      "message": "naming getLeAudioPrimaryGroup?",
+      "revId": "cb8b4b3068b31d6da945306ee77c38e823515488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
