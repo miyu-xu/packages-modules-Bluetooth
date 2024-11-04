@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e50ced_fe588f76",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To rephrase:\n\n```\n/**\n * Defines parameters for creating Bluetooth server and client socket channels.\n *\n * \u003cp\u003eUsed with {@link BluetoothAdapter#listenUsingSocketSettings} to create a server socket\n * and {@link BluetoothDevice#createUsingSocketSettings} to create a client socket.\n *\n * @see BluetoothAdapter#listenUsingSocketSettings\n * @see BluetoothDevice#createUsingSocketSettings\n */\n```",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 3
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc14a7d_f09ee405",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To rephrase:\n\n```\n/**\n * Sets the socket type.\n *\n * \u003cp\u003eMust be one of:\n * \u003cul\u003e\n *   \u003cli\u003e{@link BluetoothSocket#TYPE_RFCOMM}\u003c/li\u003e\n *   \u003cli\u003e{@link BluetoothSocket#TYPE_L2CAP}\u003c/li\u003e\n * \u003c/ul\u003e\n *\n * @param socketType The type of socket.\n * @return This builder.\n * @throws IllegalArgumentException If {@code socketType} is invalid.\n */\n```",
+      "range": {
+        "startLine": 154,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71f5ed5_6c45fc78",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To rephrase:\n\n```\n/**\n * Sets the L2CAP PSM (Protocol/Service Multiplexer) for the Bluetooth socket.\n *\n * \u003cp\u003eThis is only used for {@link BluetoothSocket#TYPE_L2CAP} sockets.\n *\n * @param l2capPsm The L2CAP PSM value.\n * @return This builder.\n */\n```",
+      "range": {
+        "startLine": 173,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35cc67f3_acd08266",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To rephrase:\n\n```\n/**\n * Sets the encryption requirement for the Bluetooth socket.\n *\n * @param encryptionRequired {@code true} if encryption is required for this socket, {@code false} otherwise.\n * @return This builder.\n */\n```",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 197,
+        "endChar": 9
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "985be9bf_8602a128",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To replace by:\n\n```\n/**\n * Sets the authentication requirement for the Bluetooth socket.\n *\n * @param authenticationRequired {@code true} if authentication is required for this socket, {@code false} otherwise.\n * @return This builder.\n */\n```",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 205,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cd2a58b_e81499c3",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To replace:\n\n```\n/**\n * Sets the RFCOMM service name associated with the Bluetooth socket.\n *\n * \u003cp\u003eThis name is used to identify the service when a remote device searches for it using SDP.\n *\n * \u003cp\u003eThis is only used for {@link BluetoothSocket#TYPE_RFCOMM} sockets.\n *\n * @param rfcommServiceName The RFCOMM service name.\n * @return This builder. \n */\n ```",
+      "range": {
+        "startLine": 213,
+        "startChar": 8,
+        "endLine": 217,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236e8cc0_ec3847c5",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To replace:\n\n```\n/**\n * Sets the RFCOMM service UUID associated with the Bluetooth socket.\n *\n * \u003cp\u003eThis UUID is used to uniquely identify the service when a remote device searches for it using SDP.\n *\n * \u003cp\u003eThis is only used for {@link BluetoothSocket#TYPE_RFCOMM} sockets.\n *\n * @param rfcommUuid The RFCOMM service UUID.\n * @return This builder.\n */\n```",
+      "range": {
+        "startLine": 225,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd49ac94_b74ed638",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-04T18:27:24Z",
+      "side": 1,
+      "message": "To replace:\n\n```\n/**\n * Builds a {@link BluetoothSocketSettings} object.\n *\n * @return A new {@link BluetoothSocketSettings} object with the configured parameters.\n */\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 11
+      },
+      "revId": "94ca7d2427066ee234d714bd2697f8fda158614b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
