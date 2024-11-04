@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd881474_f344e533",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T21:35:55Z",
+      "side": 1,
+      "message": "I think we should provide more context regarding the \u0027handover\u0027, what do you think of some format like below?\n \n * This primary group represents the fallback group when broadcast handover occurs \n * (i.e., when Unicast is inactive and Broadcast is active). It becomes \n * the active group when Unicast is back to be active.\n *\n * \u003cp\u003eA broadcast handover happens when [briefly explain the scenario]. \n * In this case, the primary group ensures [explain the benefit/function]",
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad991c4d_54222b03",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
         "patchSetId": 1
