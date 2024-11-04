@@ -16,6 +16,24 @@
       "message": "We can reuse this instead of finding it again later.\n\n```\ntBTM_SEC_DEV_REC* p_dev_rec \u003d btm_find_dev(bd_addr);\n\nif (p_dev_rec !\u003d nullptr) {\nif (p_cb-\u003epairing_bda !\u003d p_dev_rec-\u003ebd_addr \u0026\u0026 p_cb-\u003epairing_bda !\u003d p_dev_rec-\u003eble.pseudo_addr) { return;}\n} else { return;}\n```",
       "revId": "88b832a0ce1df412734f685069300b530b7df81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ab8b0ab_bfd0d3a2",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-04T21:33:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fc95e5dd_a6ce63ea",
+      "revId": "88b832a0ce1df412734f685069300b530b7df81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
