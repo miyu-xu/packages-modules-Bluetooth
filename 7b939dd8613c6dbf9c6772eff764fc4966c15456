@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4c1820_f31adff0",
+        "filename": "system/btif/src/btif_hci_vs.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-11-04T19:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bda09ea_9df89e31",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 32
+      },
+      "revId": "7b939dd8613c6dbf9c6772eff764fc4966c15456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a16cac9b_5cd06354",
