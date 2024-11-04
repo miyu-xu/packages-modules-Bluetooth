@@ -2416,40 +2416,13 @@ public class LeAudioService extends ProfileService {
                         + ", mExposedActiveDevice: "
                         + mExposedActiveDevice);
 
+        /* While updating active device and there is no active Unicast group, let's update Primary
+         * device which would be a fallback device and possibly monitoring sink device.
+         */
         if (isBroadcastActive()
                 && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
                 && mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID) {
-
-            LeAudioGroupDescriptor fallbackGroupDescriptor = getGroupDescriptor(groupId);
-
-            // If broadcast is ongoing and need to update unicast fallback active group
-            // we need to update the cached group id and skip changing the active device
-            updateFallbackUnicastGroupIdForBroadcast(groupId);
-
-            if (fallbackGroupDescriptor != null) {
-                if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
-                    /* In case of removing fallback unicast group, monitoring input device should be
-                     * removed from active devices.
-                     */
-                    updateActiveDevices(
-                            groupId,
-                            fallbackGroupDescriptor.mDirection,
-                            AUDIO_DIRECTION_NONE,
-                            false,
-                            fallbackGroupDescriptor.mHasFallbackDeviceWhenGettingInactive,
-                            false);
-                } else {
-                    if (mActiveAudioInDevice != null) {
-                        updateActiveDevices(
-                                groupId,
-                                fallbackGroupDescriptor.mDirection,
-                                AUDIO_DIRECTION_INPUT_BIT,
-                                false,
-                                fallbackGroupDescriptor.mHasFallbackDeviceWhenGettingInactive,
-                                true);
-                    }
-                }
-            }
+            setPrimaryGroup(groupId);
 
             return true;
         }
@@ -5215,6 +5188,50 @@ public class LeAudioService extends ProfileService {
      */
     public void setPrimaryGroup(int groupId) {
         Log.d(TAG, "setPrimaryGroup(" + groupId + ")");
+
+        if (getPrimaryGroup() == groupId) {
+            Log.w(TAG, "Group " + groupId + ", is already Primary");
+            return;
+        }
+
+        if (isBroadcastActive()) {
+            LeAudioGroupDescriptor fallbackGroupDescriptor = getGroupDescriptor(groupId);
+
+            /* If broadcast is ongoing and need to update unicast fallback active group
+             * we need to update the cached group id and skip changing the active device.
+             */
+            updateFallbackUnicastGroupIdForBroadcast(groupId);
+
+            /* Update sink monitoring device (for recording case) if changed to another non invalid
+             * group or to none if primary group should be invalid.
+             */
+            if (fallbackGroupDescriptor != null) {
+                if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+                    /* In case of removing fallback unicast group, monitoring input device should be
+                     * removed from active devices.
+                     */
+                    updateActiveDevices(
+                            groupId,
+                            fallbackGroupDescriptor.mDirection,
+                            AUDIO_DIRECTION_NONE,
+                            false,
+                            fallbackGroupDescriptor.mHasFallbackDeviceWhenGettingInactive,
+                            false);
+                } else {
+                    if (mActiveAudioInDevice != null) {
+                        updateActiveDevices(
+                                groupId,
+                                fallbackGroupDescriptor.mDirection,
+                                AUDIO_DIRECTION_INPUT_BIT,
+                                false,
+                                fallbackGroupDescriptor.mHasFallbackDeviceWhenGettingInactive,
+                                true);
+                    }
+                }
+            }
+        } else {
+            setActiveDevice(getConnectedGroupLeadDevice(groupId));
+        }
     }
 
     /**
@@ -5226,9 +5243,13 @@ public class LeAudioService extends ProfileService {
      * @return ID of primary group
      */
     public int getPrimaryGroup() {
-        Log.d(TAG, "getPrimaryGroup()");
+        Log.v(TAG, "getPrimaryGroup()");
 
-        return LE_AUDIO_GROUP_ID_INVALID;
+        if (isBroadcastActive()) {
+            return mUnicastGroupIdDeactivatedForBroadcastTransition;
+        } else {
+            return getActiveGroupId();
+        }
     }
 
     /**
