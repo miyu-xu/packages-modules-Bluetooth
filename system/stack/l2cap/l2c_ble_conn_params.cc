@@ -26,6 +26,7 @@
 #define LOG_TAG "l2c_ble_conn_params"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
@@ -34,6 +35,7 @@
 #include "internal_include/stack_config.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
+#include "osi/include/properties.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/btm_ble_api_types.h"
@@ -46,8 +48,24 @@
 
 using namespace bluetooth;
 
+// TODO: Merge this with ones in le_impl.h
+constexpr uint16_t kConnIntervalMinRelaxed = 0x0018;     // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalMaxRelaxed = 0x0028;     // 40, *1.25 becomes 50ms
+constexpr uint16_t kConnIntervalMinAggressive = 0x0006;  // 6, *1.25 becomes 7.5ms
+constexpr uint16_t kConnIntervalMaxAggressive = 0x0008;  // 8, *1.25 becomes 10ms
+
+static const std::string kPropertyMinConnIntervalRelaxed =
+        "bluetooth.core.le.min_connection_interval_relaxed";
+static const std::string kPropertyMaxConnIntervalRelaxed =
+        "bluetooth.core.le.max_connection_interval_relaxed";
+static const std::string kPropertyMinConnIntervalAggressive =
+        "bluetooth.core.le.min_connection_interval_aggressive";
+static const std::string kPropertyMaxConnIntervalAggressive =
+        "bluetooth.core.le.max_connection_interval_aggressive";
+
 void l2cble_start_conn_update(tL2C_LCB* p_lcb);
 static void l2cble_start_subrate_change(tL2C_LCB* p_lcb);
+static bool is_aggressive_connection_interval(uint16_t conn_interval);
 
 /*******************************************************************************
  *
@@ -117,7 +135,16 @@ void L2CA_LockBleConnParamsForServiceDiscovery(const RawAddress& rem_bda, bool l
 
   if (lock == p_lcb->conn_update_blocked_by_service_discovery) {
     log::warn("{} service discovery already locked/unlocked conn params: {}", rem_bda, lock);
-    return;
+
+    if (!lock && com::android::bluetooth::flags::initial_conn_params_p1() &&
+        is_aggressive_connection_interval(p_lcb->min_interval)) {
+      // This handles the case where the service discovery is skipped due to GATT cache.
+      p_lcb->conn_update_mask &= ~L2C_BLE_NOT_DEFAULT_PARAM;
+      p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
+      log::info("Service discovery is skipped. Relaxing connection parameters...");
+    } else {
+      return;
+    }
   }
 
   p_lcb->conn_update_blocked_by_service_discovery = lock;
@@ -217,11 +244,26 @@ void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
     /* application requests to disable parameters update.
        If parameters are already updated, lets set them
        up to what has been requested during connection establishement */
-    if (p_lcb->conn_update_mask & L2C_BLE_NOT_DEFAULT_PARAM &&
-        /* current connection interval is greater than default min */
-        p_lcb->min_interval > BTM_BLE_CONN_INT_MIN) {
-      /* use 7.5 ms as fast connection parameter, 0 peripheral latency */
-      min_conn_int = max_conn_int = BTM_BLE_CONN_INT_MIN;
+    if (p_lcb->conn_update_mask & L2C_BLE_NOT_DEFAULT_PARAM) {
+      if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+        if (is_aggressive_connection_interval(p_lcb->min_interval)) {
+          // Skip updating connection parameters for service discovery if we are already
+          // using aggressive parameters.
+          p_lcb->conn_update_mask &= ~L2C_BLE_NOT_DEFAULT_PARAM;
+          p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
+          return;
+        }
+        min_conn_int = kConnIntervalMinAggressive;
+        max_conn_int = kConnIntervalMaxAggressive;
+      } else {
+        if (p_lcb->min_interval <= BTM_BLE_CONN_INT_MIN) {
+          // Skip updating connection parameters for service discovery if we are already
+          // using default minimum interval.
+          return;
+        }
+        /* use 7.5 ms as fast connection parameter, 0 peripheral latency */
+        min_conn_int = max_conn_int = BTM_BLE_CONN_INT_MIN;
+      }
 
       stack::l2cap::get_interface().L2CA_AdjustConnectionIntervals(&min_conn_int, &max_conn_int,
                                                                    BTM_BLE_CONN_INT_MIN);
@@ -250,6 +292,13 @@ void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
       if (p_lcb->IsLinkRoleCentral() ||
           (bluetooth::shim::GetController()->SupportsBleConnectionParametersRequest() &&
            acl_peer_supports_ble_connection_parameters_request(p_lcb->remote_bd_addr))) {
+        if (com::android::bluetooth::flags::initial_conn_params_p1() &&
+            is_aggressive_connection_interval(p_lcb->min_interval)) {
+          log::info("Relaxing connection parameters! addr={}", p_lcb->remote_bd_addr);
+          p_lcb->min_interval = kConnIntervalMinRelaxed;
+          p_lcb->max_interval = kConnIntervalMaxRelaxed;
+        }
+
         acl_ble_connection_parameters_request(p_lcb->Handle(), p_lcb->min_interval,
                                               p_lcb->max_interval, p_lcb->latency, p_lcb->timeout,
                                               p_lcb->min_ce_len, p_lcb->max_ce_len);
@@ -550,4 +599,26 @@ void l2cble_process_subrate_change_evt(uint16_t handle, uint8_t status,
 
   log::verbose("conn_update_mask={} , subrate_req_mask={}", p_lcb->conn_update_mask,
                p_lcb->subrate_req_mask);
+}
+
+/*******************************************************************************
+ *
+ *  Function        is_aggressive_connection_interval
+ *
+ *  Description     Returns whether the given connection interval
+ *                  is an aggressive connection parameter.
+ *
+ *  Parameters:     connection interval
+ *
+ *  Return value:   none
+ *
+ ******************************************************************************/
+bool is_aggressive_connection_interval(uint16_t conn_interval) {
+  uint16_t conn_interval_max_aggressive = osi_property_get_int32(
+          kPropertyMaxConnIntervalAggressive.c_str(), kConnIntervalMaxAggressive);
+
+  bool is_aggressive = conn_interval <= conn_interval_max_aggressive;
+  log::info("conn_interval={}, conn_interval_max_aggressive={}, is_aggressive={}", conn_interval,
+            conn_interval_max_aggressive, is_aggressive);
+  return is_aggressive;
 }
