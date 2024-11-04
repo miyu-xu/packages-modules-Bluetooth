@@ -161,11 +161,6 @@ static constexpr const char* kpBtSchedulingTraceLogPath =
 // Path of the last Bluetooth Multi-profile/Coex scheduling trace log file.
 static constexpr const char* kpBtSchedulingTraceLastLogPath =
         "/data/misc/bluetooth/logs/bt_scheduling_trace.log.last";
-// The Property of BQR a2dp choppy report and sco choppy report thresholds.
-// A2dp choppy will be reported only when a2dp choppy times is >=
-// a2dp_choppy_threshold. The default value in firmware side is 1. It is same
-// for sco choppy. Value format is a2dp_choppy_threshold,sco_choppy_threshold
-static constexpr const char* kpPropertyChoppyThreshold = "persist.bluetooth.bqr.choppy_threshold";
 
 // The version supports ISO packets start from v1.01(257)
 static constexpr uint16_t kBqrIsoVersion = 0x101;
