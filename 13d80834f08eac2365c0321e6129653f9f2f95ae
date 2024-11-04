@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6bb34d7_f40f964e",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T19:03:56Z",
+      "side": 0,
+      "message": "You want to set it to disabled, probably: `btsnoop_mode_ \u003d kBtSnoopLogModeDisabled`",
+      "revId": "13d80834f08eac2365c0321e6129653f9f2f95ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
