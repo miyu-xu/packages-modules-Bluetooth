@@ -69,7 +69,8 @@ class BluetoothQualityReportInterfaceImpl;
 std::unique_ptr<BluetoothQualityReportInterface> bluetoothQualityReportInstance;
 
 namespace {
-common::PostableContext* to_bind_ = nullptr;
+static std::recursive_mutex life_cycle_guard_;
+static common::PostableContext* to_bind_ = nullptr;
 }
 
 void BqrVseSubEvt::ParseBqrLinkQualityEvt(uint8_t length, const uint8_t* p_param_buf) {
@@ -385,6 +386,7 @@ void EnableBtQualityReport(common::PostableContext* to_bind) {
 
 void DisableBtQualityReport() {
   log::info("");
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard_);
   if (to_bind_ == nullptr) {
     log::warn("Skipping second call (Lifecycle issue).");
     return;
@@ -478,6 +480,14 @@ static void BqrVscCompleteCallback(hci::CommandCompleteView complete) {
   if (status != HCI_SUCCESS) {
     log::error("Fail to configure BQR. status: 0x{:x}", status);
     return;
+  }
+
+  std::unique_lock<std::recursive_mutex> lock(life_cycle_guard_);
+  {
+    if (to_bind_ == nullptr) {
+      log::info("Disabled");
+      return;
+    }
   }
 
   if (vendor_cap_supported_version >= kBqrVndLogVersion) {
