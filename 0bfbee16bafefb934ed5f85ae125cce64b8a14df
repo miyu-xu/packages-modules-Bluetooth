@@ -78,6 +78,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b4f9d9c_574d1146",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1560,
+      "author": {
+        "id": 3376855
+      },
+      "writtenOn": "2024-11-04T06:25:30Z",
+      "side": 1,
+      "message": "agree there would new HAL coming in. but change should support old HAL too. \nfor customer using OLD HAL. they require above parameters for there ALGO to process measurements",
+      "parentUuid": "7ebea705_a0068aa2",
+      "revId": "0bfbee16bafefb934ed5f85ae125cce64b8a14df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d6bba5d_306efe4c",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 3
