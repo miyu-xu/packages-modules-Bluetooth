@@ -16,6 +16,144 @@
       "message": "For TEST_MAPPING",
       "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9ad218_29a24d10",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1322,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:08:16Z",
+      "side": 1,
+      "message": "Why do we need a new target ? can\u0027t we keep the test together ?",
+      "range": {
+        "startLine": 1322,
+        "startChar": 11,
+        "endLine": 1322,
+        "endChar": 30
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e992c62f_4c22a4ab",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:08:16Z",
+      "side": 1,
+      "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 278,
+        "startChar": 27,
+        "endLine": 278,
+        "endChar": 37
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee14267_4327c961",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:08:16Z",
+      "side": 1,
+      "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 374,
+        "startChar": 42,
+        "endLine": 374,
+        "endChar": 52
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9bc175_c3f4d8d2",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:08:16Z",
+      "side": 1,
+      "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 382,
+        "startChar": 39,
+        "endLine": 382,
+        "endChar": 49
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb5e7e9_92b04735",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:08:16Z",
+      "side": 1,
+      "message": "I agree with the fix but it is not alligned with the commit message and it applies only partially a fix that seems needed in other places too in this same function.\n\nAlso, do we need to set the ptr back to null ?",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 42
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a77d2d4_3f0c523e",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-04T22:08:16Z",
+      "side": 1,
+      "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 497,
+        "startChar": 27,
+        "endLine": 497,
+        "endChar": 37
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
