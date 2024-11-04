@@ -22,6 +22,30 @@
       },
       "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50946c9f_739737f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-04T21:57:45Z",
+      "side": 1,
+      "message": "Android flagging policy does not sound so strict to me. Intention is to manage risky changes. I don\u0027t think this is a risky change. I don\u0027t want to suffer from unnecessary bookkeeping just for the sake of it.",
+      "parentUuid": "f3627c95_7697bf1f",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
