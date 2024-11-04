@@ -73,6 +73,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "280d1856_1e907ddc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-04T18:42:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9b54e348_e3f5b80c",
+      "revId": "da445a6f381304a1ef9ff7c82469c9ace227e30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c493b110_16b882d4",
         "filename": "system/stack/smp/smp_l2c.cc",
         "patchSetId": 4
