@@ -127,7 +127,7 @@ void l2cble_notify_le_connection(const RawAddress& bda) {
  */
 bool l2cble_conn_comp(uint16_t handle, tHCI_ROLE role, const RawAddress& bda,
                       tBLE_ADDR_TYPE /* type */, uint16_t conn_interval, uint16_t conn_latency,
-                      uint16_t conn_timeout) {
+                      uint16_t conn_timeout, bool relax_conn_params_after_service_discovery) {
   // role == HCI_ROLE_CENTRAL => scanner completed connection
   // role == HCI_ROLE_PERIPHERAL => advertiser completed connection
 
@@ -179,6 +179,10 @@ bool l2cble_conn_comp(uint16_t handle, tHCI_ROLE role, const RawAddress& bda,
   p_lcb->conn_update_mask = L2C_BLE_NOT_DEFAULT_PARAM;
   p_lcb->conn_update_blocked_by_profile_connection = false;
   p_lcb->conn_update_blocked_by_service_discovery = false;
+
+  if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+    p_lcb->relax_conn_params_after_service_discovery = relax_conn_params_after_service_discovery;
+  }
 
   p_lcb->subrate_req_mask = 0;
   p_lcb->subrate_min = 1;

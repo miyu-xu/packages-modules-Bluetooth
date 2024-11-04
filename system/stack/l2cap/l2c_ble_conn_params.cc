@@ -26,6 +26,7 @@
 #define LOG_TAG "l2c_ble_conn_params"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
@@ -45,6 +46,12 @@
 #include "types/raw_address.h"
 
 using namespace bluetooth;
+
+// Also defined in system/gd/hci/acl_manager/le_impl.h
+constexpr uint16_t kConnIntervalRelaxedMin = 0x0018;     // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalRelaxedMax = 0x0028;     // 40, *1.25 becomes 50ms
+constexpr uint16_t kConnIntervalAggressiveMin = 0x0006;  // 6, *1.25 becomes 7.5ms
+constexpr uint16_t kConnIntervalAggressiveMax = 0x0008;  // 8, *1.25 becomes 10ms
 
 void l2cble_start_conn_update(tL2C_LCB* p_lcb);
 static void l2cble_start_subrate_change(tL2C_LCB* p_lcb);
@@ -117,7 +124,16 @@ void L2CA_LockBleConnParamsForServiceDiscovery(const RawAddress& rem_bda, bool l
 
   if (lock == p_lcb->conn_update_blocked_by_service_discovery) {
     log::warn("{} service discovery already locked/unlocked conn params: {}", rem_bda, lock);
-    return;
+
+    if (!lock && p_lcb->relax_conn_params_after_service_discovery &&
+        com::android::bluetooth::flags::initial_conn_params_p1()) {
+      // This handles the case where the service discovery is skipped due to GATT cache.
+      p_lcb->conn_update_mask &= ~L2C_BLE_NOT_DEFAULT_PARAM;
+      p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
+      log::info("Service discovery is skipped. Relaxing connection parameters...");
+    } else {
+      return;
+    }
   }
 
   p_lcb->conn_update_blocked_by_service_discovery = lock;
@@ -217,11 +233,26 @@ void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
     /* application requests to disable parameters update.
        If parameters are already updated, lets set them
        up to what has been requested during connection establishement */
-    if (p_lcb->conn_update_mask & L2C_BLE_NOT_DEFAULT_PARAM &&
-        /* current connection interval is greater than default min */
-        p_lcb->min_interval > BTM_BLE_CONN_INT_MIN) {
-      /* use 7.5 ms as fast connection parameter, 0 peripheral latency */
-      min_conn_int = max_conn_int = BTM_BLE_CONN_INT_MIN;
+    if (p_lcb->conn_update_mask & L2C_BLE_NOT_DEFAULT_PARAM) {
+      if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+        if (p_lcb->relax_conn_params_after_service_discovery) {
+          // Skip updating connection parameters for service discovery if we are already
+          // using aggressive parameters.
+          p_lcb->conn_update_mask &= ~L2C_BLE_NOT_DEFAULT_PARAM;
+          p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
+          return;
+        }
+        min_conn_int = kConnIntervalAggressiveMin;
+        max_conn_int = kConnIntervalAggressiveMax;
+      } else {
+        if (p_lcb->min_interval <= BTM_BLE_CONN_INT_MIN) {
+          // Skip updating connection parameters for service discovery if we are already
+          // using default minimum interval.
+          return;
+        }
+        /* use 7.5 ms as fast connection parameter, 0 peripheral latency */
+        min_conn_int = max_conn_int = BTM_BLE_CONN_INT_MIN;
+      }
 
       stack::l2cap::get_interface().L2CA_AdjustConnectionIntervals(&min_conn_int, &max_conn_int,
                                                                    BTM_BLE_CONN_INT_MIN);
@@ -250,6 +281,14 @@ void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
       if (p_lcb->IsLinkRoleCentral() ||
           (bluetooth::shim::GetController()->SupportsBleConnectionParametersRequest() &&
            acl_peer_supports_ble_connection_parameters_request(p_lcb->remote_bd_addr))) {
+        if (com::android::bluetooth::flags::initial_conn_params_p1() &&
+            p_lcb->relax_conn_params_after_service_discovery) {
+          log::info("Relaxing connection parameters! addr={}", p_lcb->remote_bd_addr);
+          p_lcb->min_interval = kConnIntervalRelaxedMin;
+          p_lcb->max_interval = kConnIntervalRelaxedMax;
+          p_lcb->relax_conn_params_after_service_discovery = false;
+        }
+
         acl_ble_connection_parameters_request(p_lcb->Handle(), p_lcb->min_interval,
                                               p_lcb->max_interval, p_lcb->latency, p_lcb->timeout,
                                               p_lcb->min_ce_len, p_lcb->max_ce_len);
