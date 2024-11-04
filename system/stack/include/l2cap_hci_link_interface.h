@@ -31,7 +31,8 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason);
 void l2c_link_role_changed(const RawAddress* bd_addr, tHCI_ROLE role, tHCI_STATUS hci_status);
 
 bool l2cble_conn_comp(uint16_t handle, tHCI_ROLE role, const RawAddress& bda, tBLE_ADDR_TYPE type,
-                      uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout);
+                      uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
+                      bool relax_conn_params_after_service_discovery);
 
 void l2cble_process_conn_update_evt(uint16_t handle, uint8_t status, uint16_t interval,
                                     uint16_t latency, uint16_t timeout);

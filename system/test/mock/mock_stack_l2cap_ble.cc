@@ -98,10 +98,12 @@ void l2cble_notify_le_connection(const RawAddress& bda) {
   test::mock::stack_l2cap_ble::l2cble_notify_le_connection(bda);
 }
 bool l2cble_conn_comp(uint16_t handle, tHCI_ROLE role, const RawAddress& bda, tBLE_ADDR_TYPE type,
-                      uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout) {
+                      uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
+                      bool relax_conn_params_after_service_discovery) {
   inc_func_call_count(__func__);
   return test::mock::stack_l2cap_ble::l2cble_conn_comp(handle, role, bda, type, conn_interval,
-                                                       conn_latency, conn_timeout);
+                                                       conn_latency, conn_timeout,
+                                                       relax_conn_params_after_service_discovery);
 }
 void l2cble_process_conn_update_evt(uint16_t handle, uint8_t status, uint16_t interval,
                                     uint16_t latency, uint16_t timeout) {
