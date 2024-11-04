@@ -34,6 +34,24 @@
       "parentUuid": "fc95e5dd_a6ce63ea",
       "revId": "88b832a0ce1df412734f685069300b530b7df81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "137f7b0d_8d0515dc",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-04T21:35:28Z",
+      "side": 1,
+      "message": "This is a corner case, for code clarity let\u0027s not overoptimize that.",
+      "parentUuid": "0ab8b0ab_bfd0d3a2",
+      "revId": "88b832a0ce1df412734f685069300b530b7df81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
