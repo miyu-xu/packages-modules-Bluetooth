@@ -104,6 +104,24 @@
       "parentUuid": "6e95bb9d_d9764fe1",
       "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc15dc0_bb48ce48",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T22:41:15Z",
+      "side": 1,
+      "message": "I have this aosp/3320060 for the callback based on what we agreed.\nWe should keep those 3 APIs aligned with naming.",
+      "parentUuid": "fde68337_6329c074",
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
