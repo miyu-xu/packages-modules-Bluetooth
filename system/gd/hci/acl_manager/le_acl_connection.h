@@ -92,6 +92,10 @@ public:
   // Time Range: 100 ms to 32 s
   uint16_t supervision_timeout_;
 
+  // True if connection parameters should be relaxed after service discovery is completed
+  // Also applies when the service discovery is skipped.
+  bool relax_conn_params_after_service_discovery_;
+
   // True if connection address was in the filter accept list, false otherwise
   bool in_filter_accept_list_;
   bool IsInFilterAcceptList() const { return in_filter_accept_list_; }
