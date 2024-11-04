@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "235d703e_a8c003d8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "nit: I\u0027m guessing \"WithMasConnected\" was added to symmetrize with the \"WithMasDisconnected\" test?\n\nI\u0027d actually change it the other way, i.e., get rid of the \"WithMasDisconnected\" from the other test, since there\u0027s no alternate tests of state transitions using different mechanisms other than `MSG_MAS_(DIS)CONNECTED`.\n\nSo for the three state transitions tests:\n\n1. `testStateTransitionFromConnectingToDisconnected`\n2. `testStateTransitionFromConnectingToConnected`\n3. `testStateTransitionFromConnectedToDisconnected`",
+      "range": {
+        "startLine": 309,
+        "startChar": 60,
+        "endLine": 309,
+        "endChar": 76
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3900467_9d9a9010",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "nit: since you\u0027re alraedy touching this test, I would also clarify the comment to be `MceStateMachine#disconnect`",
+      "range": {
+        "startLine": 370,
+        "startChar": 13,
+        "endLine": 370,
+        "endChar": 23
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8e96b5_66318bd8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "We can delete this method; `sendMasMsg` is essentially a generalization of this method.",
+      "range": {
+        "startLine": 1115,
+        "startChar": 4,
+        "endLine": 1119,
+        "endChar": 5
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e06cb52_97fb6128",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1178,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "Q: would the tests still work if this were replaced with `TestUtils.waitForLooperToFinishScheduledTask`? (If so, then `assertCurrentStateOnIdle` would also need to be renamed)",
+      "range": {
+        "startLine": 1178,
+        "startChar": 18,
+        "endLine": 1178,
+        "endChar": 39
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d54e407_93a51815",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
         "patchSetId": 8
@@ -19,6 +111,76 @@
         "startChar": 17,
         "endLine": 1182,
         "endChar": 27
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2977c2d1_d7862be9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "`Message` might not be needed to be passed in, since the only `expectedToState` and `Messages` are:\n\n1. `STATE_CONNECTED` / `MSG_MAS_CONNECTED`\n2. `STATE_DISCONNECTED` / `MSG_MAS_DISCONNECTED`\n\nE.g., we can do something like:\n```\nMessage msg;\nif (expectedToState \u003d\u003d BluetoothProfile.STATE_CONNECTED) {\n    msg \u003d Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);\n} else if (expectedToState \u003d\u003d BluetoothProfile.STATE_DISCONNECTED) {\n    msg \u003d Message.obtain(mHandler, MceStateMachine.MSG_MAS_DISCONNECTED);\n} else {\n    log an error\n}\n```",
+      "range": {
+        "startLine": 1182,
+        "startChar": 72,
+        "endLine": 1182,
+        "endChar": 83
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad69c74d_4f579c5f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "alternate suggestion: `initiateAndVerifyStateTransitionAndIntent`",
+      "parentUuid": "2d54e407_93a51815",
+      "range": {
+        "startLine": 1182,
+        "startChar": 17,
+        "endLine": 1182,
+        "endChar": 27
+      },
+      "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6eb50cb_0d273192",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-04T18:41:02Z",
+      "side": 1,
+      "message": "If `waitForLooperToBeIdle` could be replaced with `waitForLooperToFinishScheduledTask` in `assertCurrentStateOnIdle` (c.f. comment above), then we could replace this line (and `assertThat(mMceStateMachine.getState()).isEqualTo(expectedToState);` below) with just `assertCurrentStateOnIdle`",
+      "range": {
+        "startLine": 1184,
+        "startChar": 8,
+        "endLine": 1184,
+        "endChar": 96
       },
       "revId": "4164c12d4815b22880ff597c003d821df5f8f861",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
