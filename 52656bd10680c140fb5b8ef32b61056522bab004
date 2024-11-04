@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7769e9_66222af3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-04T17:54:09Z",
+      "side": 1,
+      "message": "Can you help to explain a bit why do we need to connect BASS profile at disconnection?\n\nUpon reconnection, BASS will connect here with other LEA profile.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/PhonePolicy.java;l\u003d984?q\u003dphonepolicy\u0026ct\u003dos\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main",
+      "parentUuid": "e9e1366c_b2ab59ea",
+      "revId": "52656bd10680c140fb5b8ef32b61056522bab004",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "73ab7246_b4422cb9",
