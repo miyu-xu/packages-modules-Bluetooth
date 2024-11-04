@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dffa9dbb_a92df05a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T21:48:04Z",
+      "side": 1,
+      "message": "Do specify the name of the sysprop in the commit message to help future searches",
+      "range": {
+        "startLine": 12,
+        "startChar": 26,
+        "endLine": 12,
+        "endChar": 33
+      },
+      "revId": "a974ca18bf9e186b3b8b9b33011b5a5c79600eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f93170f_9d9b4cbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-04T21:48:04Z",
+      "side": 1,
+      "message": "Add a Flag statement :\n\n`Flag: EXEMPT, behavior controller by sysprop`",
+      "revId": "a974ca18bf9e186b3b8b9b33011b5a5c79600eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
