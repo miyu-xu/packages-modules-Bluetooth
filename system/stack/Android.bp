@@ -294,6 +294,7 @@ cc_library_static {
         "l2cap/l2c_main.cc",
         "l2cap/l2c_utils.cc",
         "l2cap/l2cap_api.cc",
+        "l2cap/le_conn_params.cc",
         "metrics/stack_metrics_logging.cc",
         "rfcomm/port_api.cc",
         "rfcomm/port_rfc.cc",
@@ -2145,6 +2146,7 @@ cc_test {
         "l2cap/l2c_main.cc",
         "l2cap/l2c_utils.cc",
         "l2cap/l2cap_api.cc",
+        "l2cap/le_conn_params.cc",
         "test/stack_l2cap_test.cc",
     ],
     static_libs: [
