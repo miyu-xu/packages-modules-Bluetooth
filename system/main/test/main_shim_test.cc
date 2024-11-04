@@ -143,7 +143,8 @@ void mock_connection_le_on_connected(const tBLE_BD_ADDR& /*address_with_type*/, 
                                      const RawAddress& /*local_rpa*/,
                                      const RawAddress& /*peer_rpa*/,
                                      tBLE_ADDR_TYPE /*peer_addr_type*/,
-                                     bool /*can_read_discoverable_characteristics*/) {}
+                                     bool /*can_read_discoverable_characteristics*/,
+                                     bool /*relax_conn_params_after_service_discovery*/) {}
 void mock_connection_le_on_failed(const tBLE_BD_ADDR& /*address_with_type*/, uint16_t /*handle*/,
                                   bool /*enhanced*/, tHCI_STATUS /*status*/) {}
 static std::promise<uint16_t> mock_connection_le_on_disconnected_promise;

@@ -50,6 +50,13 @@ using common::BindOnce;
 
 constexpr uint16_t kConnIntervalMin = 0x0018;
 constexpr uint16_t kConnIntervalMax = 0x0028;
+
+// Also defined in system/stack/l2cap/l2c_ble_conn_params.cc
+constexpr uint16_t kConnIntervalRelaxedMin = 0x0018;     // 24, *1.25 becomes 30ms
+constexpr uint16_t kConnIntervalRelaxedMax = 0x0028;     // 40, *1.25 becomes 50ms
+constexpr uint16_t kConnIntervalAggressiveMin = 0x0006;  // 6, *1.25 becomes 7.5ms
+constexpr uint16_t kConnIntervalAggressiveMax = 0x0008;  // 8, *1.25 becomes 10ms
+
 constexpr uint16_t kConnLatency = 0x0000;
 constexpr uint16_t kSupervisionTimeout = 0x01f4;
 constexpr uint16_t kScanIntervalFast = 0x0060;          /* 30 ~ 60 ms (use 60)  = 96 *0.625 */
@@ -100,6 +107,8 @@ enum class ConnectabilityState {
   ARMED = 2,
   DISARMING = 3,
 };
+
+enum class ConnectionMode { RELAXED = 0, BALANCED = 1, AGGRESSIVE = 2, CUSTOM = 100 };
 
 inline std::string connectability_state_machine_text(const ConnectabilityState& state) {
   switch (state) {
@@ -203,6 +212,10 @@ private:
 
   public:
     bool crash_on_unknown_handle_ = false;
+    size_t size() const {
+      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
+      return le_acl_connections_.size();
+    }
     bool is_empty() const {
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       return le_acl_connections_.empty();
@@ -299,6 +312,21 @@ private:
       return false;
     }
   } connections;
+
+  std::string connection_mode_to_string(ConnectionMode connection_mode) {
+    switch (connection_mode) {
+      case ConnectionMode::RELAXED:
+        return "RELAXED";
+      case ConnectionMode::BALANCED:
+        return "BALANCED";
+      case ConnectionMode::AGGRESSIVE:
+        return "AGGRESSIVE";
+      case ConnectionMode::CUSTOM:
+        return "CUSTOM";
+      default:
+        return "UNKNOWN";
+    }
+  }
 
 public:
   void enqueue_command(std::unique_ptr<CommandBuilder> command_packet) {
@@ -486,6 +514,14 @@ public:
     connection->supervision_timeout_ = supervision_timeout;
     connection->in_filter_accept_list_ = in_filter_accept_list;
     connection->locally_initiated_ = (role == hci::Role::CENTRAL);
+
+    if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+      if (connection_mode_ == ConnectionMode::AGGRESSIVE) {
+        log::info("Connection params will be relaxed after service discovery. addr={}",
+                  remote_address);
+        connection->relax_conn_params_after_service_discovery_ = true;
+      }
+    }
 
     if (packet.GetSubeventCode() == SubeventCode::ENHANCED_CONNECTION_COMPLETE) {
       LeEnhancedConnectionCompleteView connection_complete =
@@ -839,10 +875,18 @@ public:
     InitiatorFilterPolicy initiator_filter_policy = InitiatorFilterPolicy::USE_FILTER_ACCEPT_LIST;
     OwnAddressType own_address_type = static_cast<OwnAddressType>(
             le_address_manager_->GetInitiatorAddress().GetAddressType());
-    uint16_t conn_interval_min =
-            os::GetSystemPropertyUint32(kPropertyMinConnInterval, kConnIntervalMin);
-    uint16_t conn_interval_max =
-            os::GetSystemPropertyUint32(kPropertyMaxConnInterval, kConnIntervalMax);
+
+    uint16_t conn_interval_min;
+    uint16_t conn_interval_max;
+
+    if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+      connection_mode_ = choose_connection_mode(conn_interval_min, conn_interval_max);
+      log::info("Connection mode is set to: {}", connection_mode_to_string(connection_mode_));
+    } else {
+      conn_interval_min = os::GetSystemPropertyUint32(kPropertyMinConnInterval, kConnIntervalMin);
+      conn_interval_max = os::GetSystemPropertyUint32(kPropertyMaxConnInterval, kConnIntervalMax);
+    }
+
     uint16_t conn_latency = os::GetSystemPropertyUint32(kPropertyConnLatency, kConnLatency);
     uint16_t supervision_timeout =
             os::GetSystemPropertyUint32(kPropertyConnSupervisionTimeout, kSupervisionTimeout);
@@ -923,6 +967,39 @@ public:
                       supervision_timeout, 0x00, 0x00),
               handler_->BindOnce(&le_impl::on_create_connection, common::Unretained(this)));
     }
+  }
+
+  // Choose which connection mode should be used based on the number of ongoing LE connections.
+  // According to the connection mode, connection interval min/max values are set.
+  ConnectionMode choose_connection_mode(uint16_t& conn_interval_min, uint16_t& conn_interval_max) {
+    ConnectionMode connection_mode = ConnectionMode::RELAXED;
+    // When there are small number of ongoing connections, use aggressive parameters.
+    if (connections.size() < 2) {
+      connection_mode = ConnectionMode::AGGRESSIVE;
+    }
+
+    switch (connection_mode) {
+      case ConnectionMode::AGGRESSIVE:
+        conn_interval_min = kConnIntervalAggressiveMin;
+        conn_interval_max = kConnIntervalAggressiveMax;
+        break;
+      case ConnectionMode::RELAXED:
+      default:
+        conn_interval_min = kConnIntervalRelaxedMin;
+        conn_interval_max = kConnIntervalRelaxedMax;
+        break;
+    }
+
+    if (os::GetSystemProperty(kPropertyMinConnInterval).has_value()) {
+      connection_mode = ConnectionMode::CUSTOM;
+      conn_interval_min = os::GetSystemPropertyUint32(kPropertyMinConnInterval, conn_interval_min);
+    }
+    if (os::GetSystemProperty(kPropertyMaxConnInterval).has_value()) {
+      connection_mode = ConnectionMode::CUSTOM;
+      conn_interval_max = os::GetSystemPropertyUint32(kPropertyMaxConnInterval, conn_interval_max);
+    }
+
+    return connection_mode;
   }
 
   void disarm_connectability() {
@@ -1251,6 +1328,7 @@ public:
   bool system_suspend_ = false;
   ConnectabilityState connectability_state_{ConnectabilityState::DISARMED};
   std::map<AddressWithType, os::Alarm> create_connection_timeout_alarms_{};
+  ConnectionMode connection_mode_ = ConnectionMode::RELAXED;
 };
 
 }  // namespace acl_manager

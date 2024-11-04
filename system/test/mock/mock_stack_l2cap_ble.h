@@ -99,17 +99,22 @@ struct l2cble_notify_le_connection {
 extern struct l2cble_notify_le_connection l2cble_notify_le_connection;
 // Name: l2cble_conn_comp
 // Params: uint16_t handle, uint8_t role, const RawAddress& bda, tBLE_ADDR_TYPE
-// type, uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout
+// type, uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
+// bool relax_conn_params_after_service_discovery
 // Returns: bool
 struct l2cble_conn_comp {
   std::function<bool(uint16_t handle, uint8_t role, const RawAddress& bda, tBLE_ADDR_TYPE type,
-                     uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout)>
+                     uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
+                     bool relax_conn_params_after_service_discovery)>
           body{[](uint16_t /* handle */, uint8_t /* role */, const RawAddress& /* bda */,
                   tBLE_ADDR_TYPE /* type */, uint16_t /* conn_interval */,
-                  uint16_t /* conn_latency */, uint16_t /* conn_timeout */) { return false; }};
+                  uint16_t /* conn_latency */, uint16_t /* conn_timeout */,
+                  bool /* relax_conn_params_after_service_discovery */) { return false; }};
   bool operator()(uint16_t handle, uint8_t role, const RawAddress& bda, tBLE_ADDR_TYPE type,
-                  uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout) {
-    return body(handle, role, bda, type, conn_interval, conn_latency, conn_timeout);
+                  uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
+                  bool relax_conn_params_after_service_discovery) {
+    return body(handle, role, bda, type, conn_interval, conn_latency, conn_timeout,
+                relax_conn_params_after_service_discovery);
   }
 };
 extern struct l2cble_conn_comp l2cble_conn_comp;
