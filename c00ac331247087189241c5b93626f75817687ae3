@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab1d371_8edfe211",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-04T19:00:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a4eebe5_bccb1b91",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 4
+      },
+      "revId": "c00ac331247087189241c5b93626f75817687ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97d765bc_53a6a7e2",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-04T16:31:21Z",
       "side": 1,
       "message": "nit: prefer early return pattern:\n\n```\nif (! ..) {\n  log::warn(..);\n  return ..;\n}\n```",
+      "range": {
+        "startLine": 222,
+        "startChar": 2,
+        "endLine": 222,
+        "endChar": 4
+      },
+      "revId": "c00ac331247087189241c5b93626f75817687ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f83cacf9_49c439ae",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-04T19:00:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97d765bc_53a6a7e2",
       "range": {
         "startLine": 222,
         "startChar": 2,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d161363_486cab33",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-04T19:00:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfc5eaba_392f49f2",
+      "range": {
+        "startLine": 231,
+        "startChar": 86,
+        "endLine": 231,
+        "endChar": 88
+      },
+      "revId": "c00ac331247087189241c5b93626f75817687ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9dd69af_0d984226",
@@ -83,6 +155,24 @@
       "writtenOn": "2024-11-04T16:31:21Z",
       "side": 1,
       "message": "You might need to free p_attrs here as well.",
+      "revId": "c00ac331247087189241c5b93626f75817687ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b750cb39_b06948f9",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-04T19:00:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9dd69af_0d984226",
       "revId": "c00ac331247087189241c5b93626f75817687ae3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -118,6 +208,24 @@
           ]
         }
       ],
+      "revId": "c00ac331247087189241c5b93626f75817687ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7926cc9_2d2fffbb",
+        "filename": "system/stack/test/stack_avrcp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-04T19:00:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d00ccaa_ebc7090f",
       "revId": "c00ac331247087189241c5b93626f75817687ae3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
