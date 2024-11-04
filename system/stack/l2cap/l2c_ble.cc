@@ -57,6 +57,7 @@
 #include "stack/include/l2cap_hci_link_interface.h"
 #include "stack/include/l2cap_interface.h"
 #include "stack/include/l2cdefs.h"
+#include "stack/include/le_conn_params.h"
 #include "stack/include/main_thread.h"
 #include "stack/l2cap/l2c_int.h"
 #include "types/raw_address.h"
@@ -177,6 +178,19 @@ bool l2cble_conn_comp(uint16_t handle, tHCI_ROLE role, const RawAddress& bda,
   p_lcb->timeout = conn_timeout;
   p_lcb->latency = conn_latency;
   p_lcb->conn_update_mask = L2C_BLE_NOT_DEFAULT_PARAM;
+  if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+    uint16_t conn_interval_max_aggressive = osi_property_get_int32(
+            kPropertyMaxConnIntervalAggressive.c_str(), kMaxConnIntervalAggressive);
+
+    bool is_aggressive_initial_param = conn_interval <= conn_interval_max_aggressive;
+    log::info("conn_interval={}, conn_interval_max_aggressive={}, is_aggressive_initial_param={}",
+              conn_interval, conn_interval_max_aggressive, is_aggressive_initial_param);
+
+    if (is_aggressive_initial_param) {
+      p_lcb->conn_update_mask |= L2C_BLE_AGGRESSIVE_INITIAL_PARAM;
+    }
+  }
+
   p_lcb->conn_update_blocked_by_profile_connection = false;
   p_lcb->conn_update_blocked_by_service_discovery = false;
 
@@ -328,6 +342,9 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
           p_lcb->latency = latency;
           p_lcb->timeout = timeout;
           p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
+          if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+            p_lcb->conn_update_mask &= ~L2C_BLE_AGGRESSIVE_INITIAL_PARAM;
+          }
 
           l2cble_start_conn_update(p_lcb);
         }
