@@ -1,0 +1,231 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e831584_87e92e65",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "sizeo",
+      "range": {
+        "startLine": 125,
+        "startChar": 49,
+        "endLine": 125,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b754fa98_7ab5e6ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/include/btif_bqr.h",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "static constexpr uint8_t kRFStatsParamTotalLen \u003d sizeof(BqrRFStatsEvent);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115764e9_a63ff59c",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "Should we enforce the size match to prevent further edit:\n\n```\nstatic_assert (sizeof(BqrEnergyMonitorEvent) \u003d\u003d kEnergyMonitorParamTotalLen, \"BqrEnergyMonitorEvent Size is not correct\");\n```",
+      "range": {
+        "startLine": 394,
+        "startChar": 2,
+        "endLine": 394,
+        "endChar": 23
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb66977_d68aa9ec",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "variable is set but never read",
+      "range": {
+        "startLine": 497,
+        "startChar": 24,
+        "endLine": 497,
+        "endChar": 49
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e83930f_330e9f79",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 499,
+        "startChar": 18,
+        "endLine": 499,
+        "endChar": 37
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "798571bc_3445e1db",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "skip temp variable and directly put `RawAddress:Any` in the method call ?",
+      "range": {
+        "startLine": 794,
+        "startChar": 0,
+        "endLine": 794,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ef8d70c5_3662b9c3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 794,
+                "startChar": 0,
+                "endLine": 795,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 801,
+                "startChar": 0,
+                "endLine": 803,
+                "endChar": 0
+              },
+              "replacement": "    bqrItf-\u003ebqr_delivery_event(RawAddress::kAny, p_energy_monitor_event, length);\n"
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 810,
+                "startChar": 0,
+                "endLine": 811,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 817,
+                "startChar": 0,
+                "endLine": 819,
+                "endChar": 0
+              },
+              "replacement": "    bqrItf-\u003ebqr_delivery_event(RawAddress::kAny, p_rf_stats_event, length);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c500da8_c409eaa5",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "If there is a failure in the parsing...",
+      "range": {
+        "startLine": 796,
+        "startChar": 0,
+        "endLine": 796,
+        "endChar": 72
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d39b854_0dde6b4f",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:40:17Z",
+      "side": 1,
+      "message": "... we are still reporting the event\n\nShould we discard it instead ?",
+      "range": {
+        "startLine": 802,
+        "startChar": 0,
+        "endLine": 802,
+        "endChar": 72
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
