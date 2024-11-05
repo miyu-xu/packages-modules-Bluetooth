@@ -948,7 +948,7 @@ public class VolumeControlService extends ProfileService {
             return;
         }
 
-        mAudioInputs.put(device, new VolumeControlInputDescriptor(numberOfExternalInputs));
+        mAudioInputs.put(device, new VolumeControlInputDescriptor(device, numberOfExternalInputs));
     }
 
     void handleDeviceAvailable(
@@ -1117,7 +1117,7 @@ public class VolumeControlService extends ProfileService {
         }
 
         Log.d(TAG, logInfo);
-        input.setDescription(id, description);
+        input.onDescriptionChanged(id, description);
     }
 
     void onExtAudioInGainPropsChanged(BluetoothDevice device, int id, int unit, int min, int max) {
