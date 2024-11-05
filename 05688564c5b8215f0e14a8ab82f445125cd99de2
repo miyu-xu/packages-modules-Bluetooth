@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2293c7f1_e6997e0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-05T09:42:41Z",
+      "side": 1,
+      "message": "Hi, could you review this CL? Thanks!\nProbably the test are going to fail - I will fix it later.",
+      "revId": "05688564c5b8215f0e14a8ab82f445125cd99de2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
