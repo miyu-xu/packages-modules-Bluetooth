@@ -22,6 +22,30 @@
       },
       "revId": "cd4b073a09cdab1cfe59368e5e9b10fe3e9bb8d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eca60d1_5b9729ee",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-05T11:20:46Z",
+      "side": 1,
+      "message": "Yes, they only be accessed from module/Bluetooth. I also modified other @VisibleForTesting and change them to package-private in Metadata.java",
+      "parentUuid": "fdb75f1c_ad428b6c",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "cd4b073a09cdab1cfe59368e5e9b10fe3e9bb8d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
