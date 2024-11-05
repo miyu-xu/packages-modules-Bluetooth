@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36758a2b_4faa976c",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T00:02:45Z",
+      "side": 1,
+      "message": "Do we want to extend the scope of the mutex to the whole method execution ? to prevent a eventual second call to disable after this check has been done",
+      "revId": "f48e6d241c3f5d59356ff01a062b87741afed7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
