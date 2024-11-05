@@ -159,6 +159,21 @@ class VolumeControlNativeCallback {
     }
 
     @VisibleForTesting
+    void onExtAudioInSetGainSettingFailed(int id, byte[] address) {
+        sendMessageToService(s -> s.onExtAudioInSetGainSettingFailed(getDevice(address), id));
+    }
+
+    @VisibleForTesting
+    void onExtAudioInSetMuteFailed(int id, byte[] address) {
+        sendMessageToService(s -> s.onExtAudioInSetMuteFailed(getDevice(address), id));
+    }
+
+    @VisibleForTesting
+    void onExtAudioInSetGainModeFailed(int id, byte[] address) {
+        sendMessageToService(s -> s.onExtAudioInSetGainModeFailed(getDevice(address), id));
+    }
+
+    @VisibleForTesting
     void onExtAudioInStatusChanged(int id, int status, byte[] address) {
         sendMessageToService(s -> s.onExtAudioInStatusChanged(getDevice(address), id, status));
     }

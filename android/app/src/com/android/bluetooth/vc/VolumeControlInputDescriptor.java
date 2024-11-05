@@ -132,7 +132,7 @@ class VolumeControlInputDescriptor {
         mVolumeInputs[id].mGainSettingsMaxSetting = gainMax;
     }
 
-    void setState(int id, int gainSetting, int mute, int gainMode) {
+    void onStateChanged(int id, int gainSetting, int mute, int gainMode) {
         if (!isValidId(id)) return;
 
         Descriptor desc = mVolumeInputs[id];
@@ -156,7 +156,9 @@ class VolumeControlInputDescriptor {
                 || gainSetting < desc.mGainSettingsMinSetting) {
             throw new IllegalArgumentException("Illegal gainSetting argument: " + gainSetting);
         }
-        nativeInterface.setExtAudioInGainSetting(mDevice, id, gainSetting);
+        if (!nativeInterface.setExtAudioInGainSetting(mDevice, id, gainSetting)) {
+            // TODO call error callback if it was registered
+        }
     }
 
     void setMute(int id, int mute, VolumeControlNativeInterface nativeInterface) {
@@ -167,7 +169,9 @@ class VolumeControlInputDescriptor {
             throw new IllegalStateException("Audio input is currently disabled");
         }
 
-        nativeInterface.setExtAudioInMute(mDevice, id, mute);
+        if (!nativeInterface.setExtAudioInMute(mDevice, id, mute)) {
+            // TODO call error callback if it was registered
+        }
     }
 
     void setGainMode(int id, int gainMode, VolumeControlNativeInterface nativeInterface) {
@@ -179,7 +183,24 @@ class VolumeControlInputDescriptor {
             throw new IllegalStateException("Audio input gain mode is: " + desc.mGainMode);
         }
 
-        nativeInterface.setExtAudioInGainMode(mDevice, id, gainMode);
+        if (!nativeInterface.setExtAudioInGainMode(mDevice, id, gainMode)) {
+            // TODO call error callback if it was registered
+        }
+    }
+
+    void onSetGainSettingFailed(int id) {
+        if (!isValidId(id)) return;
+        // TODO call error callback if it was registered
+    }
+
+    void onSetMuteFailed(int id) {
+        if (!isValidId(id)) return;
+        // TODO call error callback if it was registered
+    }
+
+    void onSetGainModeFailed(int id) {
+        if (!isValidId(id)) return;
+        // TODO call error callback if it was registered
     }
 
     void dump(StringBuilder sb) {

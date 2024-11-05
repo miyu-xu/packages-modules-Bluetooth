@@ -78,6 +78,10 @@ public:
   /* Callbacks for Audio Input Stream (AIS) - Extended Audio Inputs */
   virtual void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id,
                                         int8_t gain_setting, ::Mute mute, ::GainMode gain_mode) = 0;
+  virtual void OnExtAudioInSetGainSettingFailed(const RawAddress& address,
+                                                uint8_t ext_input_id) = 0;
+  virtual void OnExtAudioInSetMuteFailed(const RawAddress& address, uint8_t ext_input_id) = 0;
+  virtual void OnExtAudioInSetGainModeFailed(const RawAddress& address, uint8_t ext_input_id) = 0;
 
   virtual void OnExtAudioInStatusChanged(const RawAddress& address, uint8_t ext_input_id,
                                          VolumeInputStatus status) = 0;
@@ -135,11 +139,11 @@ public:
   virtual void GetExtAudioInDescription(const RawAddress& address, uint8_t ext_input_id) = 0;
   virtual bool SetExtAudioInDescription(const RawAddress& address, uint8_t ext_input_id,
                                         std::string descr) = 0;
-  virtual void SetExtAudioInGainSetting(const RawAddress& address, uint8_t ext_input_id,
+  virtual bool SetExtAudioInGainSetting(const RawAddress& address, uint8_t ext_input_id,
                                         int8_t gain_setting) = 0;
-  virtual void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
+  virtual bool SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
                                      ::GainMode gain_mode) = 0;
-  virtual void SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id, ::Mute mute) = 0;
+  virtual bool SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id, ::Mute mute) = 0;
 };
 
 } /* namespace vc */

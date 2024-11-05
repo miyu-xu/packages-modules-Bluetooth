@@ -51,6 +51,9 @@ static jmethodID method_onExtAudioOutVolumeOffsetChanged;
 static jmethodID method_onExtAudioOutLocationChanged;
 static jmethodID method_onExtAudioOutDescriptionChanged;
 static jmethodID method_onExtAudioInStateChanged;
+static jmethodID method_onExtAudioInSetGainSettingFailed;
+static jmethodID method_onExtAudioInSetMuteFailed;
+static jmethodID method_onExtAudioInSetGainModeFailed;
 static jmethodID method_onExtAudioInStatusChanged;
 static jmethodID method_onExtAudioInTypeChanged;
 static jmethodID method_onExtAudioInGainPropsChanged;
@@ -244,6 +247,71 @@ public:
                                      reinterpret_cast<const jbyte*>(&bd_addr));
     sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInStateChanged, (jint)ext_input_id,
                                  (jint)gain_setting, (jint)mute, (jint)gain_mode, addr.get());
+  }
+
+  void OnExtAudioInSetGainSettingFailed(const RawAddress& bd_addr, uint8_t ext_input_id) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to get addr for {}", bd_addr);
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
+                                     reinterpret_cast<const jbyte*>(&bd_addr));
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInSetGainSettingFailed,
+                                 (jint)ext_input_id, addr.get());
+  }
+
+  void OnExtAudioInSetMuteFailed(const RawAddress& bd_addr, uint8_t ext_input_id) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to get addr for {}", bd_addr);
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
+                                     reinterpret_cast<const jbyte*>(&bd_addr));
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInSetMuteFailed,
+                                 (jint)ext_input_id, addr.get());
+  }
+  void OnExtAudioInSetGainModeFailed(const RawAddress& bd_addr, uint8_t ext_input_id) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to get addr for {}", bd_addr);
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
+                                     reinterpret_cast<const jbyte*>(&bd_addr));
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInSetGainModeFailed,
+                                 (jint)ext_input_id, addr.get());
   }
 
   void OnExtAudioInStatusChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
@@ -798,9 +866,9 @@ static jboolean setExtAudioInGainSettingNative(JNIEnv* env, jobject /* object */
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInGainSetting(*tmpraw, ext_input_id, gain_setting);
+  bool ret = sVolumeControlInterface->SetExtAudioInGainSetting(*tmpraw, ext_input_id, gain_setting);
   env->ReleaseByteArrayElements(address, addr, 0);
-  return JNI_TRUE;
+  return ret ? JNI_TRUE : JNI_FALSE;
 }
 
 static jboolean setExtAudioInGainModeNative(JNIEnv* env, jobject /* object */, jbyteArray address,
@@ -818,10 +886,10 @@ static jboolean setExtAudioInGainModeNative(JNIEnv* env, jobject /* object */, j
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInGainMode(*tmpraw, ext_input_id,
-                                                 bluetooth::aics::parseGainModeField(gain_mode));
+  bool ret = sVolumeControlInterface->SetExtAudioInGainMode(
+          *tmpraw, ext_input_id, bluetooth::aics::parseGainModeField(gain_mode));
   env->ReleaseByteArrayElements(address, addr, 0);
-  return JNI_TRUE;
+  return ret ? JNI_TRUE : JNI_FALSE;
 }
 
 static jboolean setExtAudioInMuteNative(JNIEnv* env, jobject /* object */, jbyteArray address,
@@ -839,10 +907,10 @@ static jboolean setExtAudioInMuteNative(JNIEnv* env, jobject /* object */, jbyte
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInMute(*tmpraw, ext_input_id,
-                                             bluetooth::aics::parseMuteField(mute));
+  bool ret = sVolumeControlInterface->SetExtAudioInMute(*tmpraw, ext_input_id,
+                                                        bluetooth::aics::parseMuteField(mute));
   env->ReleaseByteArrayElements(address, addr, 0);
-  return JNI_TRUE;
+  return ret ? JNI_TRUE : JNI_FALSE;
 }
 
 int register_com_android_bluetooth_vc(JNIEnv* env) {
@@ -909,6 +977,9 @@ int register_com_android_bluetooth_vc(JNIEnv* env) {
           {"onExtAudioOutDescriptionChanged", "(ILjava/lang/String;[B)V",
            &method_onExtAudioOutDescriptionChanged},
           {"onExtAudioInStateChanged", "(IIII[B)V", &method_onExtAudioInStateChanged},
+          {"onExtAudioInSetGainSettingFailed", "(I[B)V", &method_onExtAudioInSetGainSettingFailed},
+          {"onExtAudioInSetMuteFailed", "(I[B)V", &method_onExtAudioInSetMuteFailed},
+          {"onExtAudioInSetGainModeFailed", "(I[B)V", &method_onExtAudioInSetGainModeFailed},
           {"onExtAudioInStatusChanged", "(II[B)V", &method_onExtAudioInStatusChanged},
           {"onExtAudioInTypeChanged", "(II[B)V", &method_onExtAudioInTypeChanged},
           {"onExtAudioInGainPropsChanged", "(IIII[B)V", &method_onExtAudioInGainPropsChanged},
