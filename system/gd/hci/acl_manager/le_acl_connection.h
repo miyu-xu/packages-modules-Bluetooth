@@ -143,10 +143,12 @@ protected:
   RoleSpecificData role_specific_data_;
 
 private:
+  void OnDisconnectStatus(CommandStatusView status);
   void OnLeSubrateRequestStatus(CommandStatusView status);
   virtual bool check_connection_parameters(uint16_t conn_interval_min, uint16_t conn_interval_max,
                                            uint16_t expected_conn_latency,
                                            uint16_t expected_supervision_timeout);
+  bool is_disconnecting_;
   struct impl;
   struct impl* pimpl_ = nullptr;
 };

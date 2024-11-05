@@ -185,21 +185,31 @@ void LeAclConnection::RegisterCallbacks(LeConnectionManagementCallbacks* callbac
   return pimpl_->tracker.RegisterCallbacks(callbacks, handler);
 }
 
+void LeAclConnection::OnDisconnectStatus(CommandStatusView status) {
+  log::assert_that(status.IsValid(), "assert failed: status.IsValid()");
+  log::assert_that(status.GetCommandOpCode() == OpCode::DISCONNECT,
+                   "assert failed: status.GetCommandOpCode() == OpCode::DISCONNECT");
+  auto disconnect_status = DisconnectStatusView::Create(status);
+  log::assert_that(disconnect_status.IsValid(), "assert failed: disconnect_status.IsValid()");
+  auto error_code = disconnect_status.GetStatus();
+  if (error_code != ErrorCode::SUCCESS) {
+    log::info("Disconnect status {}", ErrorCodeText(error_code));
+    is_disconnecting_ = false;
+  }
+}
+
 void LeAclConnection::Disconnect(DisconnectReason reason) {
+  if (true /* some aflag */) {
+    if (is_disconnecting_) {
+      log::info("Already disconnecting {}", remote_address_.ToRedactedStringForLogging());
+      return;
+    }
+  }
+
+  is_disconnecting_ = true;
   pimpl_->tracker.le_acl_connection_interface_->EnqueueCommand(
           DisconnectBuilder::Create(handle_, reason),
-          pimpl_->tracker.client_handler_->BindOnce([](CommandStatusView status) {
-            log::assert_that(status.IsValid(), "assert failed: status.IsValid()");
-            log::assert_that(status.GetCommandOpCode() == OpCode::DISCONNECT,
-                             "assert failed: status.GetCommandOpCode() == OpCode::DISCONNECT");
-            auto disconnect_status = DisconnectStatusView::Create(status);
-            log::assert_that(disconnect_status.IsValid(),
-                             "assert failed: disconnect_status.IsValid()");
-            auto error_code = disconnect_status.GetStatus();
-            if (error_code != ErrorCode::SUCCESS) {
-              log::info("Disconnect status {}", ErrorCodeText(error_code));
-            }
-          }));
+          pimpl_->tracker.client_handler_->BindOnceOn(this, &LeAclConnection::OnDisconnectStatus));
 }
 
 void LeAclConnection::OnLeSubrateRequestStatus(CommandStatusView status) {
