@@ -171,7 +171,7 @@ public class VolumeControlInputDescriptorTest {
     @Test
     public void setDescription_withValidId_valueIsUpdated() {
         String newDescription = "what a nice description";
-        mDescriptor.setDescription(VALID_ID, newDescription);
+        mDescriptor.onDescriptionChanged(VALID_ID, newDescription);
 
         assertThat(mDescriptor.getDescription(VALID_ID)).isEqualTo(newDescription);
     }
@@ -179,7 +179,7 @@ public class VolumeControlInputDescriptorTest {
     @Test
     public void setDescription_withInvalidId_valueIsNotUpdated() {
         String newDescription = "what a nice description";
-        mDescriptor.setDescription(INVALID_ID, newDescription);
+        mDescriptor.onDescriptionChanged(INVALID_ID, newDescription);
 
         assertThat(mDescriptor.getDescription(INVALID_ID)).isNotEqualTo(newDescription);
     }

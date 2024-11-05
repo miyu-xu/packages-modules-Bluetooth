@@ -777,9 +777,9 @@ static jboolean setExtAudioInDescriptionNative(JNIEnv* env, jobject /* object */
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInDescription(*tmpraw, ext_input_id, description);
+  bool ret = sVolumeControlInterface->SetExtAudioInDescription(*tmpraw, ext_input_id, description);
   env->ReleaseByteArrayElements(address, addr, 0);
-  return JNI_TRUE;
+  return ret ? JNI_TRUE : JNI_FALSE;
 }
 
 static jboolean setExtAudioInGainSettingNative(JNIEnv* env, jobject /* object */,

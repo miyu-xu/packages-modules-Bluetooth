@@ -88,9 +88,15 @@ class VolumeControlInputDescriptor {
         return mVolumeInputs[id].mStatus;
     }
 
-    void setDescription(int id, String description) {
+    void onDescriptionChanged(int id, String description) {
         if (!isValidId(id)) return;
         mVolumeInputs[id].mDescription = description;
+    }
+
+    boolean setDescription(
+            int id, String description, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return false;
+        return nativeInterface.setExtAudioInDescription(mDevice, id, description);
     }
 
     String getDescription(int id) {
