@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3451725_fb94782f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T00:37:11Z",
+      "side": 1,
+      "message": "This is not true, you don\u0027t have test for this scenario",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 31
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4baf2716_d94626eb",
@@ -55,6 +78,30 @@
       "side": 1,
       "message": "The other target mixes gatt api and stack a2dp and is not build for host use, while this target *is* built for host host use and conforms to the single unittest per module.",
       "parentUuid": "da9ad218_29a24d10",
+      "range": {
+        "startLine": 1322,
+        "startChar": 11,
+        "endLine": 1322,
+        "endChar": 30
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db7797f_edd34d6a",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1322,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T00:37:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "311eef2b_c37ec318",
       "range": {
         "startLine": 1322,
         "startChar": 11,
@@ -255,6 +302,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8859011_20fd13de",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T00:37:11Z",
+      "side": 1,
+      "message": "Why would we fix one leak and not all of them at once ?\n\n\u003e the test enforces checks of dynamic memory leaks\n\nWhat test is enforcing that ?\n\n\u003e the use of ptr null/non-null in conditions elsewhere within this module is outside scope of this CL.\n\nSince the memory is free, not re-initializing the variable can create a use after free on a non-null pointer. Making sure that we need or to not to restore it to null is 100% the scope of this CL",
+      "parentUuid": "22bd005c_d5bcba99",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 42
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a77d2d4_3f0c523e",
         "filename": "system/stack/avrc/avrc_pars_ct.cc",
         "patchSetId": 4
@@ -295,6 +366,29 @@
         "startChar": 27,
         "endLine": 497,
         "endChar": 37
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e1e6b1a_c894b6cd",
+        "filename": "system/stack/test/stack_avrcp_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T00:37:11Z",
+      "side": 1,
+      "message": "what is this trying to test ?",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 88
       },
       "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
