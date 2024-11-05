@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca45b9f_cc867c26",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-05T02:08:35Z",
+      "side": 1,
+      "message": "gain_setting",
+      "range": {
+        "startLine": 226,
+        "startChar": 88,
+        "endLine": 226,
+        "endChar": 96
+      },
+      "revId": "69580783aa0e6e4db1b1547081063d98e511bea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
