@@ -24,6 +24,7 @@ filegroup {
         "blocking_queue_unittest.cc",
         "byte_array_test.cc",
         "circular_buffer_test.cc",
+        "journal_test.cc",
         "list_map_test.cc",
         "lru_cache_test.cc",
         "metric_id_manager_unittest.cc",
