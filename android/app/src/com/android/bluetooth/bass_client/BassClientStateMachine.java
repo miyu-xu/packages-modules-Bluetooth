@@ -1916,7 +1916,8 @@ class BassClientStateMachine extends StateMachine {
         res[offset++] = (byte) numSubGroups;
 
         for (int i = 0; i < numSubGroups; i++) {
-            int bisIndexValue = existingState.getBisSyncState().get(i).intValue();
+            int bisIndexValue =
+                    metaData != null ? 0 : existingState.getBisSyncState().get(i).intValue();
             if (paSync == BassConstants.PA_SYNC_DO_NOT_SYNC) {
                 bisIndexValue = 0;
             } else if (metaData != null
