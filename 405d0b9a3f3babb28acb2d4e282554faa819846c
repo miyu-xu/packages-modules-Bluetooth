@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38654a54_684d1472",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-05T15:18:18Z",
+      "side": 1,
+      "message": "`onBroadcastToUnicastFallbackGroupChanged`",
+      "range": {
+        "startLine": 1417,
+        "startChar": 10,
+        "endLine": 1417,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2ea251ed_f2edeee5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1417,
+                "startChar": 0,
+                "endLine": 1418,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eOn primary group changed, {@link Callback#onBroadcastToUnicastFallbackGroupChanged} will\n     * be invoked.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "405d0b9a3f3babb28acb2d4e282554faa819846c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2af24be_ab4501ba",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-05T15:18:18Z",
+      "side": 1,
+      "message": "groupId ?",
+      "range": {
+        "startLine": 1455,
+        "startChar": 15,
+        "endLine": 1455,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5c41f52b_3c9ac606",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1455,
+                "startChar": 0,
+                "endLine": 1456,
+                "endChar": 0
+              },
+              "replacement": "     * @return groupId of primary group\n"
+            }
+          ]
+        }
+      ],
+      "revId": "405d0b9a3f3babb28acb2d4e282554faa819846c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
