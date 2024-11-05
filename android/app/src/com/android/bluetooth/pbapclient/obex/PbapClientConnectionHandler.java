@@ -32,6 +32,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.ObexAppParameters;
 import com.android.bluetooth.R;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.ClientSession;
 import com.android.obex.HeaderSet;
@@ -95,7 +96,7 @@ class PbapClientConnectionHandler extends Handler {
     private ClientSession mObexSession;
     private Context mContext;
     private PbapClientObexAuthenticator mAuth = null;
-    private final PbapClientStateMachine mPbapClientStateMachine;
+    private final PbapClientStateMachineOld mPbapClientStateMachine;
     private boolean mAccountCreated;
 
     /**
@@ -105,6 +106,11 @@ class PbapClientConnectionHandler extends Handler {
      */
     PbapClientConnectionHandler(Builder pceHandlerbuild) {
         super(pceHandlerbuild.mLooper);
+
+        if (Flags.pbapClientStorageRefactor()) {
+            Log.w(TAG, "This object is no longer used in this configuration");
+        }
+
         mDevice = pceHandlerbuild.mDevice;
         mLocalSupportedFeatures = pceHandlerbuild.mLocalSupportedFeatures;
         mContext = pceHandlerbuild.mContext;
@@ -123,7 +129,7 @@ class PbapClientConnectionHandler extends Handler {
         private Context mContext;
         private BluetoothDevice mDevice;
         private int mLocalSupportedFeatures;
-        private PbapClientStateMachine mClientStateMachine;
+        private PbapClientStateMachineOld mClientStateMachine;
 
         public Builder setLooper(Looper loop) {
             this.mLooper = loop;
@@ -135,7 +141,7 @@ class PbapClientConnectionHandler extends Handler {
             return this;
         }
 
-        public Builder setClientSM(PbapClientStateMachine clientStateMachine) {
+        public Builder setClientSM(PbapClientStateMachineOld clientStateMachine) {
             this.mClientStateMachine = clientStateMachine;
             return this;
         }
@@ -169,16 +175,16 @@ class PbapClientConnectionHandler extends Handler {
                 } else {
                     Log.w(TAG, "Socket CONNECT Failure ");
                     mPbapClientStateMachine.sendMessage(
-                            PbapClientStateMachine.MSG_CONNECTION_FAILED);
+                            PbapClientStateMachineOld.MSG_CONNECTION_FAILED);
                     return;
                 }
 
                 if (connectObexSession()) {
                     mPbapClientStateMachine.sendMessage(
-                            PbapClientStateMachine.MSG_CONNECTION_COMPLETE);
+                            PbapClientStateMachineOld.MSG_CONNECTION_COMPLETE);
                 } else {
                     mPbapClientStateMachine.sendMessage(
-                            PbapClientStateMachine.MSG_CONNECTION_FAILED);
+                            PbapClientStateMachineOld.MSG_CONNECTION_FAILED);
                 }
                 break;
 
@@ -202,7 +208,8 @@ class PbapClientConnectionHandler extends Handler {
                 }
                 removeCallLog();
 
-                mPbapClientStateMachine.sendMessage(PbapClientStateMachine.MSG_CONNECTION_CLOSED);
+                mPbapClientStateMachine.sendMessage(
+                        PbapClientStateMachineOld.MSG_CONNECTION_CLOSED);
                 break;
 
             case MSG_DOWNLOAD:
