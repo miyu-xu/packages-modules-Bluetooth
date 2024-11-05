@@ -3479,15 +3479,14 @@ public:
     log::debug("left_cis_handle: {} right_cis_handle: {}", left_cis_handle, right_cis_handle);
     /* Send data to the controller */
     if (left_cis_handle) {
-      IsoManager::GetInstance()->SendIsoData(
-              left_cis_handle, (const uint8_t*)sw_enc_left->GetDecodedSamples().data(),
-              sw_enc_left->GetDecodedSamples().size() * 2);
+      IsoManager::GetInstance()->SendIsoData(left_cis_handle, sw_enc_left->GetEncodedData().data(),
+                                             sw_enc_left->GetEncodedData().size());
     }
 
     if (right_cis_handle) {
-      IsoManager::GetInstance()->SendIsoData(
-              right_cis_handle, (const uint8_t*)sw_enc_right->GetDecodedSamples().data(),
-              sw_enc_right->GetDecodedSamples().size() * 2);
+      IsoManager::GetInstance()->SendIsoData(right_cis_handle,
+                                             sw_enc_right->GetEncodedData().data(),
+                                             sw_enc_right->GetEncodedData().size());
     }
   }
 
@@ -3519,15 +3518,14 @@ public:
               mono_blend(data, bytes_per_sample, number_of_required_samples_per_channel);
       sw_enc_left->Encode(mono.data(), 1, byte_count);
     } else {
-      sw_enc_left->Encode((const uint8_t*)data.data(), 2, byte_count);
+      sw_enc_left->Encode(data.data(), 2, byte_count);
       // Output to the left channel buffer with `byte_count` offset
-      sw_enc_right->Encode((const uint8_t*)data.data() + 2, 2, byte_count,
-                           &sw_enc_left->GetDecodedSamples(), byte_count);
+      sw_enc_right->Encode(data.data() + 2, 2, byte_count,
+                           &sw_enc_left->GetEncodedData(), byte_count);
     }
 
-    IsoManager::GetInstance()->SendIsoData(cis_handle,
-                                           (const uint8_t*)sw_enc_left->GetDecodedSamples().data(),
-                                           sw_enc_left->GetDecodedSamples().size() * 2);
+    IsoManager::GetInstance()->SendIsoData(cis_handle, sw_enc_left->GetEncodedData().data(),
+                                           sw_enc_left->GetEncodedData().size());
   }
 
   const struct bluetooth::le_audio::stream_configuration* GetStreamSinkConfiguration(

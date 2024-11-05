@@ -1275,8 +1275,8 @@ private:
       for (uint8_t chan = 0; chan < encoders.size(); ++chan) {
         IsoManager::GetInstance()->SendIsoData(
                 config->connection_handles[chan],
-                (const uint8_t*)encoders[chan]->GetDecodedSamples().data(),
-                encoders[chan]->GetDecodedSamples().size() * 2);
+                (const uint8_t*)encoders[chan]->GetEncodedData().data(),
+                encoders[chan]->GetEncodedData().size());
       }
     }
 
