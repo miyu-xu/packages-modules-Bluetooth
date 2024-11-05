@@ -19,16 +19,16 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
-import android.platform.test.flag.junit.SetFlagsRule;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.platform.test.flag.junit.SetFlagsRule;
+
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import bluetooth.constants.aics.Mute;
-
 import com.android.bluetooth.TestUtils;
+
+import bluetooth.constants.aics.Mute;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -121,7 +121,7 @@ public class VolumeControlInputDescriptorTest {
         int newGainValue = 42;
         int newGainMode = 42;
         int mute = Mute.NOT_MUTED;
-        mDescriptor.setState(VALID_ID, newGainMode, newGainMode, mute);
+        mDescriptor.onStateChanged(VALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGainSetting(VALID_ID)).isNotEqualTo(newGainValue);
         // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
@@ -138,7 +138,7 @@ public class VolumeControlInputDescriptorTest {
         int newGainValue = 42;
         int newGainMode = 42;
         int mute = Mute.MUTED;
-        mDescriptor.setState(VALID_ID, newGainMode, mute, newGainMode);
+        mDescriptor.onStateChanged(VALID_ID, newGainMode, mute, newGainMode);
 
         assertThat(mDescriptor.getGainSetting(VALID_ID)).isEqualTo(newGainValue);
         // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
@@ -156,7 +156,7 @@ public class VolumeControlInputDescriptorTest {
         int newGainValue = 42;
         int newGainMode = 42;
         int mute = Mute.MUTED;
-        mDescriptor.setState(INVALID_ID, newGainMode, newGainMode, mute);
+        mDescriptor.onStateChanged(INVALID_ID, newGainMode, newGainMode, mute);
 
         assertThat(mDescriptor.getGainSetting(INVALID_ID)).isNotEqualTo(newGainValue);
         // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
