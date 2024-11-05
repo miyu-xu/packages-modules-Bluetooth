@@ -19,16 +19,16 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
-import android.platform.test.flag.junit.SetFlagsRule;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.platform.test.flag.junit.SetFlagsRule;
+
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import bluetooth.constants.aics.Mute;
-
 import com.android.bluetooth.TestUtils;
+
+import bluetooth.constants.aics.Mute;
 
 import org.junit.Before;
 import org.junit.Rule;

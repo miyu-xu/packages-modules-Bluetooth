@@ -131,7 +131,7 @@ class VolumeControlInputDescriptor {
         mVolumeInputs[id].mGainSettingsMaxSetting = gainMax;
     }
 
-    void setState(int id, int gainSetting, int mute, int gainMode) {
+    void onStateChange(int id, int gainSetting, int mute, int gainMode) {
         if (!isValidId(id)) return;
 
         Descriptor desc = mVolumeInputs[id];
@@ -145,6 +145,34 @@ class VolumeControlInputDescriptor {
         desc.mGainSetting = gainSetting;
         desc.mGainMode = gainMode;
         desc.mMute = mute;
+    }
+
+    void setGainSetting(int id, int gainSetting, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+
+        Descriptor desc = mVolumeInputs[id];
+        if (gainSetting > desc.mGainSettingsMaxSetting
+                || gainSetting < desc.mGainSettingsMinSetting) {
+            throw new IllegalArgumentException("Illegal gainSetting argument: " + gainSetting);
+        }
+        if (!nativeInterface.setExtAudioInGainSetting(mDevice, id, gainSetting)) {
+            // TODO call error callback if it was registered
+        }
+    }
+
+    void onSetGainSettingFailed(int id) {
+        if (!isValidId(id)) return;
+        // TODO call error callback if it was registered
+    }
+
+    void onSetMuteFailed(int id) {
+        if (!isValidId(id)) return;
+        // TODO call error callback if it was registered
+    }
+
+    void onSetGainModeFailed(int id) {
+        if (!isValidId(id)) return;
+        // TODO call error callback if it was registered
     }
 
     void dump(StringBuilder sb) {

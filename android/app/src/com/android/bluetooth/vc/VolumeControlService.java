@@ -1048,7 +1048,48 @@ public class VolumeControlService extends ProfileService {
         }
 
         Log.d(TAG, logInfo);
-        input.setState(id, gainSetting, mute, gainMode);
+        input.onStateChange(id, gainSetting, mute, gainMode);
+    }
+
+    void onExtAudioInSetGainSettingFailed(BluetoothDevice device, int id) {
+        String logInfo =
+                "onExtAudioInSetGainSettingFailed(" + ("device:" + device) + (", id" + id) + ")";
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(TAG, logInfo + " This device has no audio input control");
+            return;
+        }
+
+        Log.d(TAG, logInfo);
+        input.onSetGainSettingFailed(id);
+    }
+
+    void onExtAudioInSetMuteFailed(BluetoothDevice device, int id) {
+        String logInfo = "onExtAudioInSetMuteFailed(" + ("device:" + device) + (", id" + id) + ")";
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(TAG, logInfo + " This device has no audio input control");
+            return;
+        }
+
+        Log.d(TAG, logInfo);
+        input.onSetMuteFailed(id);
+    }
+
+    void onExtAudioInSetGainModeFailed(BluetoothDevice device, int id) {
+        String logInfo =
+                "onExtAudioInSetGainModeFailed(" + ("device:" + device) + (", id" + id) + ")";
+
+        VolumeControlInputDescriptor input = mAudioInputs.get(device);
+        if (input == null) {
+            Log.e(TAG, logInfo + " This device has no audio input control");
+            return;
+        }
+
+        Log.d(TAG, logInfo);
+        input.onSetGainModeFailed(id);
     }
 
     void onExtAudioInStatusChanged(BluetoothDevice device, int id, int status) {
