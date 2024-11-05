@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfd65ba3_8b08ebe3",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-05T16:10:24Z",
+      "side": 1,
+      "message": "`GetSupportedContexts()` can handle `kLeAudioDirectionBoth` and it is actually the default function argument value.",
+      "range": {
+        "startLine": 1065,
+        "startChar": 16,
+        "endLine": 1066,
+        "endChar": 69
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ea6b0e_a4f71854",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1078,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-05T16:10:24Z",
+      "side": 1,
+      "message": "naming issue",
+      "range": {
+        "startLine": 1078,
+        "startChar": 7,
+        "endLine": 1078,
+        "endChar": 39
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a1da80_bc3c3d62",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-05T16:10:24Z",
+      "side": 1,
+      "message": "I can\u0027t wrap my min around this. Please explain if possible.",
+      "range": {
+        "startLine": 1081,
+        "startChar": 2,
+        "endLine": 1090,
+        "endChar": 3
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "144fc4c4_bc01c4b4",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-05T16:10:24Z",
+      "side": 1,
+      "message": "Can we pass the direction here instead of these two flags?",
+      "range": {
+        "startLine": 1279,
+        "startChar": 59,
+        "endLine": 1280,
+        "endChar": 39
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
