@@ -59,7 +59,7 @@ public class PbapClientService extends ProfileService {
     private static final int MAXIMUM_DEVICES = 10;
 
     @VisibleForTesting
-    final Map<BluetoothDevice, PbapClientStateMachine> mPbapClientStateMachineMap =
+    final Map<BluetoothDevice, PbapClientStateMachineOld> mPbapClientStateMachineOldMap =
             new ConcurrentHashMap<>();
 
     private static PbapClientService sPbapClientService;
@@ -74,8 +74,8 @@ public class PbapClientService extends ProfileService {
             Log.i(TAG, "onAccountsChanged: old=" + oldAccounts + ", new=" + newAccounts);
             if (oldAccounts == null) {
                 removeUncleanAccounts();
-                for (PbapClientStateMachine stateMachine : mPbapClientStateMachineMap.values()) {
-                    stateMachine.tryDownloadIfConnected();
+                for (PbapClientStateMachineOld smOld : mPbapClientStateMachineOldMap.values()) {
+                    smOld.tryDownloadIfConnected();
                 }
             }
         }
@@ -126,10 +126,10 @@ public class PbapClientService extends ProfileService {
         setPbapClientService(null);
         cleanUpSdpRecord();
 
-        for (PbapClientStateMachine pbapClientStateMachine : mPbapClientStateMachineMap.values()) {
-            pbapClientStateMachine.doQuit();
+        for (PbapClientStateMachineOld smOld : mPbapClientStateMachineOldMap.values()) {
+            smOld.doQuit();
         }
-        mPbapClientStateMachineMap.clear();
+        mPbapClientStateMachineOldMap.clear();
 
         // Unregister Handler and stop all queued messages.
         if (mHandler != null) {
@@ -187,11 +187,11 @@ public class PbapClientService extends ProfileService {
 
     void cleanupDevice(BluetoothDevice device) {
         Log.d(TAG, "Cleanup device: " + device);
-        synchronized (mPbapClientStateMachineMap) {
-            PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
-            if (pbapClientStateMachine != null) {
-                mPbapClientStateMachineMap.remove(device);
-                pbapClientStateMachine.doQuit();
+        synchronized (mPbapClientStateMachineOldMap) {
+            PbapClientStateMachineOld smOld = mPbapClientStateMachineOldMap.get(device);
+            if (smOld != null) {
+                mPbapClientStateMachineOldMap.remove(device);
+                smOld.doQuit();
             }
         }
     }
@@ -300,8 +300,8 @@ public class PbapClientService extends ProfileService {
     @Override
     public void dump(StringBuilder sb) {
         super.dump(sb);
-        for (PbapClientStateMachine stateMachine : mPbapClientStateMachineMap.values()) {
-            stateMachine.dump(sb);
+        for (PbapClientStateMachineOld smOld : mPbapClientStateMachineOldMap.values()) {
+            smOld.dump(sb);
         }
         ProfileService.println(sb, mPbapClientAccountManager.dump());
     }
@@ -360,16 +360,15 @@ public class PbapClientService extends ProfileService {
                         + BluetoothUuid.PBAP_PSE.toString()
                         + ")");
         if (uuid.equals(BluetoothUuid.PBAP_PSE)) {
-            PbapClientStateMachine stateMachine = mPbapClientStateMachineMap.get(device);
-            if (stateMachine == null) {
+            PbapClientStateMachineOld smOld = mPbapClientStateMachineOldMap.get(device);
+            if (smOld == null) {
                 Log.e(TAG, "No Statemachine found for the device=" + device.toString());
                 return;
             }
             SdpPseRecord pseRecord = (SdpPseRecord) record;
             if (pseRecord != null) {
-                stateMachine
-                        .obtainMessage(
-                                PbapClientStateMachine.MSG_SDP_COMPLETE,
+                smOld.obtainMessage(
+                                PbapClientStateMachineOld.MSG_SDP_COMPLETE,
                                 new PbapSdpRecord(device, pseRecord))
                         .sendToTarget();
             } else {
@@ -420,13 +419,12 @@ public class PbapClientService extends ProfileService {
         if (getConnectionPolicy(device) <= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return false;
         }
-        synchronized (mPbapClientStateMachineMap) {
-            PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
-            if (pbapClientStateMachine == null
-                    && mPbapClientStateMachineMap.size() < MAXIMUM_DEVICES) {
-                pbapClientStateMachine = new PbapClientStateMachine(this, device);
-                pbapClientStateMachine.start();
-                mPbapClientStateMachineMap.put(device, pbapClientStateMachine);
+        synchronized (mPbapClientStateMachineOldMap) {
+            PbapClientStateMachineOld smOld = mPbapClientStateMachineOldMap.get(device);
+            if (smOld == null && mPbapClientStateMachineOldMap.size() < MAXIMUM_DEVICES) {
+                smOld = new PbapClientStateMachineOld(this, device);
+                smOld.start();
+                mPbapClientStateMachineOldMap.put(device, smOld);
                 return true;
             } else {
                 Log.w(TAG, "Received connect request while already connecting/connected.");
@@ -445,9 +443,9 @@ public class PbapClientService extends ProfileService {
         if (device == null) {
             throw new IllegalArgumentException("Null device");
         }
-        PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
-        if (pbapClientStateMachine != null) {
-            pbapClientStateMachine.disconnect(device);
+        PbapClientStateMachineOld smOld = mPbapClientStateMachineOldMap.get(device);
+        if (smOld != null) {
+            smOld.disconnect(device);
             return true;
         } else {
             Log.w(TAG, "disconnect() called on unconnected device.");
@@ -474,12 +472,12 @@ public class PbapClientService extends ProfileService {
      */
     public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         List<BluetoothDevice> deviceList = new ArrayList<BluetoothDevice>(0);
-        for (Map.Entry<BluetoothDevice, PbapClientStateMachine> stateMachineEntry :
-                mPbapClientStateMachineMap.entrySet()) {
-            int currentDeviceState = stateMachineEntry.getValue().getConnectionState();
+        for (Map.Entry<BluetoothDevice, PbapClientStateMachineOld> stateMachineEntryOld :
+                mPbapClientStateMachineOldMap.entrySet()) {
+            int currentDeviceState = stateMachineEntryOld.getValue().getConnectionState();
             for (int state : states) {
                 if (currentDeviceState == state) {
-                    deviceList.add(stateMachineEntry.getKey());
+                    deviceList.add(stateMachineEntryOld.getKey());
                     break;
                 }
             }
@@ -500,11 +498,11 @@ public class PbapClientService extends ProfileService {
         if (device == null) {
             throw new IllegalArgumentException("Null device");
         }
-        PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
-        if (pbapClientStateMachine == null) {
+        PbapClientStateMachineOld smOld = mPbapClientStateMachineOldMap.get(device);
+        if (smOld == null) {
             return BluetoothProfile.STATE_DISCONNECTED;
         } else {
-            return pbapClientStateMachine.getConnectionState(device);
+            return smOld.getConnectionState(device);
         }
     }
 
