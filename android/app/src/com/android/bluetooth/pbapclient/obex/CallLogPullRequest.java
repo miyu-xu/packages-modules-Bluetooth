@@ -53,6 +53,10 @@ public class CallLogPullRequest extends PullRequest {
 
     public CallLogPullRequest(
             Context context, String path, Map<String, Integer> map, Account account) {
+        if (Flags.pbapClientStorageRefactor()) {
+            Log.w(TAG, "This object should not be used. Use PbapClientContactsStorage");
+        }
+
         mContext = context;
         this.path = path;
         mCallCounter = map;

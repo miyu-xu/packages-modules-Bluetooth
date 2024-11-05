@@ -38,6 +38,10 @@ public class PhonebookPullRequest extends PullRequest {
     public boolean complete = false;
 
     public PhonebookPullRequest(Context context) {
+        if (Flags.pbapClientStorageRefactor()) {
+            Log.w(TAG, "This object should not be used. Use PbapClientContactsStorage");
+        }
+
         mContext = context;
         path = PbapPhonebook.LOCAL_PHONEBOOK_PATH;
     }
