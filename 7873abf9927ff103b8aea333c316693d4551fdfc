@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87dc9b85_9b3de8c0",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-05T00:58:06Z",
+      "side": 1,
+      "message": "I think you should only provide one constructor here:\n\n* If you think that `socketType` should always be given by the user (and not use the default value) then use the second constructor (FYI, in this case, `mSocketType \u003d socketType`).\n* Otherwise, only provide the first constructor.",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 0
+      },
+      "revId": "7873abf9927ff103b8aea333c316693d4551fdfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5075649a_dffb81fe",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-05T00:58:06Z",
+      "side": 1,
+      "message": "nit: remove space",
+      "range": {
+        "startLine": 234,
+        "startChar": 39,
+        "endLine": 234,
+        "endChar": 40
+      },
+      "revId": "7873abf9927ff103b8aea333c316693d4551fdfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
