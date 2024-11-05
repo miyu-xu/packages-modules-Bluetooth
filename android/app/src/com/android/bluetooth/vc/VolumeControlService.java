@@ -1048,7 +1048,7 @@ public class VolumeControlService extends ProfileService {
         }
 
         Log.d(TAG, logInfo);
-        input.setState(id, gainSetting, mute, gainMode);
+        input.onStateChange(id, gainSetting, mute, gainMode);
     }
 
     void onExtAudioInStatusChanged(BluetoothDevice device, int id, int status) {

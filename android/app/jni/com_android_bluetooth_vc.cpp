@@ -246,6 +246,27 @@ public:
                                  (jint)gain_setting, (jint)mute, (jint)gain_mode, addr.get());
   }
 
+  void OnExtAudioInSetGainSettingFailed(const RawAddress& bd_addr, uint8_t ext_input_id) override {
+    log::info("");
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) {
+      return;
+    }
+
+    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(),
+                                    sCallbackEnv->NewByteArray(sizeof(RawAddress)));
+    if (!addr.get()) {
+      log::error("Failed to get addr for {}/{}", bd_addr,ext_input_id);
+      return;
+    }
+
+    sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
+                                     reinterpret_cast<const jbyte*>(&bd_addr));
+    // sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onExtAudioInSetGainSettingFailed, (jint)ext_input_id, addr.get());
+  }
+
   void OnExtAudioInStatusChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
                                  VolumeInputStatus status) override {
     log::info("");
@@ -798,9 +819,9 @@ static jboolean setExtAudioInGainSettingNative(JNIEnv* env, jobject /* object */
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInGainSetting(*tmpraw, ext_input_id, gain_setting);
+  bool ret = sVolumeControlInterface->SetExtAudioInGainSetting(*tmpraw, ext_input_id, gain_setting);
   env->ReleaseByteArrayElements(address, addr, 0);
-  return JNI_TRUE;
+  return ret ? JNI_TRUE : JNI_FALSE;
 }
 
 static jboolean setExtAudioInGainModeNative(JNIEnv* env, jobject /* object */, jbyteArray address,
