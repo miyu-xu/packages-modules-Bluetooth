@@ -24,15 +24,19 @@ import static android.bluetooth.BluetoothUtils.logRemoteException;
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
+import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
+
+import com.android.bluetooth.flags.Flags;
 
 import bluetooth.constants.AudioInputType;
 import bluetooth.constants.aics.AudioInputStatus;
@@ -50,6 +54,8 @@ import java.util.stream.Collectors;
  * @see BluetoothVolumeControl#getAudioInputControlPoints
  * @hide
  */
+@FlaggedApi(Flags.FLAG_AICS_API)
+@SystemApi
 public final class AudioInputControl {
     private static final String TAG = AudioInputControl.class.getSimpleName();
 
@@ -237,20 +243,26 @@ public final class AudioInputControl {
      *
      * @hide
      */
+    @SystemApi
     public interface AudioInputCallback {
         /** @hide */
+        @SystemApi
         default void onDescriptionChanged(@NonNull String description) {}
 
         /** @hide */
+        @SystemApi
         default void onStatusChanged(@Status int status) {}
 
         /** @hide */
+        @SystemApi
         default void onGainModeChanged(@GainMode int gainMode) {}
 
         /** @hide */
+        @SystemApi
         default void onMuteChanged(@Mute int mute) {}
 
         /** @hide */
+        @SystemApi
         default void onGainSettingChanged(int gainSetting) {}
     }
 
@@ -267,6 +279,7 @@ public final class AudioInputControl {
      * @throws IllegalArgumentException if a null executor, or callback is given
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void registerCallback(
@@ -286,6 +299,7 @@ public final class AudioInputControl {
      * @throws IllegalArgumentException when callback is null or when no callback is registered
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void unregisterCallback(@NonNull AudioInputCallback callback) {
