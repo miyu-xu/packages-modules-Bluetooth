@@ -1292,11 +1292,30 @@ public:
     device->SetExtAudioInDescription(ext_input_id, descr);
   }
 
-  void SetExtAudioInGainSetting(const RawAddress& address, uint8_t ext_input_id,
-                                int8_t gain_setting) override {
+  void SetExtAudioInGainSetting(const RawAddress& address, uint8_t ext_input_id, int8_t gain_setting) override {
     std::vector<uint8_t> arg({(uint8_t)gain_setting});
-    ext_audio_in_control_point_helper(address, ext_input_id, kVolumeInputControlPointOpcodeSetGain,
-                                      &arg);
+    bluetooth::log::info("{}, input_id={:#x}", address, ext_input_id);
+
+    VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
+    if (!device) {
+      bluetooth::log::error("{}, no such device!", address);
+      callbacks_->OnExtAudioInSetGainSettingFailed(address, ext_input_id);
+      return;
+    }
+
+    if (!device->ExtAudioInControlPointOperation(
+            ext_input_id, kVolumeInputControlPointOpcodeSetGain, &arg,
+            [](uint16_t /*connection_id*/, tGATT_STATUS status, uint16_t /*handle*/, uint16_t /*len*/,
+            // [ext_input_id, device, this](uint16_t /*connection_id*/, tGATT_STATUS status, uint16_t /*handle*/, uint16_t /*len*/,
+               const uint8_t* /*value*/, void* /*data*/) {
+              if (status == GATT_SUCCESS) {
+                return;
+              }
+              // callbacks_->OnExtAudioInSetGainSettingFailed(device->address, ext_input_id);
+            },
+            nullptr)) {
+      callbacks_->OnExtAudioInSetGainSettingFailed(address, ext_input_id);
+    }
   }
 
   void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
