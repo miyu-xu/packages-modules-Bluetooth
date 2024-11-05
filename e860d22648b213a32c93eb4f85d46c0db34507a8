@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fddd4e0_1f6c8d7c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3559,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-05T04:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ad92561_85f84023",
+      "range": {
+        "startLine": 3548,
+        "startChar": 4,
+        "endLine": 3559,
+        "endChar": 7
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4b8d000_2c8e4f78",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-04T19:20:10Z",
       "side": 1,
       "message": "Should this specify that it only impacts on audio devices?",
+      "range": {
+        "startLine": 3564,
+        "startChar": 12,
+        "endLine": 3564,
+        "endChar": 54
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7352d0_cf1fa78d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3564,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-05T04:06:23Z",
+      "side": 1,
+      "message": "It should only impact audio device, but I think we should change function name again to include that.\nsetAudioDeviceMicrophonePreferredForCalls, a little too long~ \nOr we mention microphone already that implies device should be audio device already?\nHDYT?",
+      "parentUuid": "b4b8d000_2c8e4f78",
       "range": {
         "startLine": 3564,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfdab481_375cb6eb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3594,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-05T04:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "892380e5_1acc31ca",
+      "range": {
+        "startLine": 3585,
+        "startChar": 4,
+        "endLine": 3594,
+        "endChar": 7
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59e9e52d_31a6596e",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-04T19:20:10Z",
       "side": 1,
       "message": "Should this return true in this case? Or throw an exception?",
+      "range": {
+        "startLine": 3612,
+        "startChar": 8,
+        "endLine": 3612,
+        "endChar": 20
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd78416_fcb8257d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3612,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-05T04:06:23Z",
+      "side": 1,
+      "message": "This is just preference value not the core behavior, so I expect if something error happened inside service, this should still return default value \u0027true\u0027 with Log.e\n\nOr do you think it should throw exception here, or expand the return value to \u0027int\u0027 to include error code here?",
+      "parentUuid": "59e9e52d_31a6596e",
       "range": {
         "startLine": 3612,
         "startChar": 8,
