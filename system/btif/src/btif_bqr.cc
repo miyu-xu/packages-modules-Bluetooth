@@ -148,6 +148,77 @@ void BqrVseSubEvt::ParseBqrLinkQualityEvt(uint8_t length, const uint8_t* p_param
   localtime_r(&now, &tm_timestamp_);
 }
 
+void BqrVseSubEvt::ParseBqrEnergyMonitorEvt(uint8_t length, const uint8_t* p_param_buf) {
+  if (length < kEnergyMonitorParamTotalLen) {
+    log::fatal(
+            "Parameter total length: {} is abnormal. It shall be not shorter than: "
+            "{}",
+            length, kEnergyMonitorParamTotalLen);
+    return;
+  }
+
+  STREAM_TO_UINT8(bqr_energy_monitor_event_.quality_report_id, p_param_buf);
+  bqr_link_quality_event_.quality_report_id = bqr_energy_monitor_event_.quality_report_id;
+  STREAM_TO_UINT16(bqr_energy_monitor_event_.avg_current_consume, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.idle_total_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.idle_state_enter_count, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.active_total_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.active_state_enter_count, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.bredr_tx_total_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.bredr_tx_state_enter_count, p_param_buf);
+  STREAM_TO_UINT8(bqr_energy_monitor_event_.bredr_tx_avg_power_lv, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.bredr_rx_total_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.bredr_rx_state_enter_count, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.le_tx_total_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.le_tx_state_enter_count, p_param_buf);
+  STREAM_TO_UINT8(bqr_energy_monitor_event_.le_tx_avg_power_lv, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.le_rx_total_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.le_rx_state_enter_count, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.tm_period, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.rx_active_one_chain_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.rx_active_two_chain_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.tx_ipa_active_one_chain_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.tx_ipa_active_two_chain_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.tx_epa_active_one_chain_time, p_param_buf);
+  STREAM_TO_UINT32(bqr_energy_monitor_event_.tx_epa_active_two_chain_time, p_param_buf);
+}
+
+void BqrVseSubEvt::ParseBqrRFStatsEvt(uint8_t length, const uint8_t* p_param_buf) {
+  if (length < kRFStatsParamTotalLen) {
+    log::fatal(
+            "Parameter total length: {} is abnormal. It shall be not shorter than: "
+            "{}",
+            length, kRFStatsParamTotalLen);
+    return;
+  }
+
+  STREAM_TO_UINT8(bqr_rf_stats_event_.quality_report_id, p_param_buf);
+  bqr_link_quality_event_.quality_report_id = bqr_rf_stats_event_.quality_report_id;
+  STREAM_TO_UINT8(bqr_rf_stats_event_.ext_info, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.tm_period, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.tx_pw_ipa_bf, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.tx_pw_epa_bf, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.tx_pw_ipa_div, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.tx_pw_epa_div, p_param_buf);
+
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_50, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_50_55, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_55_60, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_60_65, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_65_70, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_70_75, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_75_80, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_80_85, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_85_90, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_ch_90, p_param_buf);
+
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_delta_2_down, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_delta_2_5, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_delta_5_8, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_delta_8_11, p_param_buf);
+  STREAM_TO_UINT32(bqr_rf_stats_event_.rssi_delta_11_up, p_param_buf);
+}
+
 void BqrVseSubEvt::WriteLmpLlTraceLogFile(int fd, uint8_t length, const uint8_t* p_param_buf) {
   const auto now = system_clock::to_time_t(system_clock::now());
   localtime_r(&now, &tm_timestamp_);
@@ -241,6 +312,10 @@ static std::string QualityReportIdToString(uint8_t quality_report_id) {
       return "LE Audio Choppy";
     case QUALITY_REPORT_ID_CONNECT_FAIL:
       return "Connect Fail";
+    case QUALITY_REPORT_ID_ENERGY_MONITOR:
+      return "Energy Monitor";
+    case QUALITY_REPORT_ID_RF_STATS:
+      return "RF Stats";
     default:
       return "Invalid";
   }
@@ -571,6 +646,9 @@ static void ConfigureBqrCmpl(uint32_t current_evt_mask) {
 }
 
 static void AddLinkQualityEventToQueue(uint8_t length, const uint8_t* p_link_quality_event);
+static void AddEnergyMonitorEventToQueue(uint8_t length, const uint8_t* p_link_quality_event);
+static void AddRFStatsEventToQueue(uint8_t length, const uint8_t* p_link_quality_event);
+static void AddLinkQualityEventToQueue(uint8_t length, const uint8_t* p_link_quality_event);
 // Categorize the incoming Bluetooth Quality Report.
 //
 // @param length Lengths of the quality report sent from the Bluetooth
@@ -611,6 +689,30 @@ static void CategorizeBqrEvent(uint8_t length, const uint8_t* p_bqr_event) {
     case QUALITY_REPORT_ID_CONTROLLER_DBG_INFO:
     case QUALITY_REPORT_ID_VENDOR_SPECIFIC_TRACE:
       log::warn("Unexpected ID: 0x{:x}", quality_report_id);
+      break;
+
+    case QUALITY_REPORT_ID_ENERGY_MONITOR:
+      if (length < kEnergyMonitorParamTotalLen) {
+        log::fatal(
+                "Parameter total length: {} is abnormal. It shall be not shorter "
+                "than: {}",
+                length, kEnergyMonitorParamTotalLen);
+        return;
+      }
+
+      AddEnergyMonitorEventToQueue(length, p_bqr_event);
+      break;
+
+    case QUALITY_REPORT_ID_RF_STATS:
+      if (length < kRFStatsParamTotalLen) {
+        log::fatal(
+                "Parameter total length: {} is abnormal. It shall be not shorter "
+                "than: {}",
+                length, kRFStatsParamTotalLen);
+        return;
+      }
+
+      AddRFStatsEventToQueue(length, p_bqr_event);
       break;
 
     default:
@@ -685,6 +787,38 @@ static void AddLinkQualityEventToQueue(uint8_t length, const uint8_t* p_link_qua
   }
 
   kpBqrEventQueue.Enqueue(p_bqr_event.release());
+}
+
+static void AddEnergyMonitorEventToQueue(uint8_t length, const uint8_t* p_energy_monitor_event) {
+  std::unique_ptr<BqrVseSubEvt> p_bqr_event = std::make_unique<BqrVseSubEvt>();
+  RawAddress bd_addr;
+
+  p_bqr_event->ParseBqrEnergyMonitorEvt(length, p_energy_monitor_event);
+
+  BluetoothQualityReportInterface* bqrItf = getBluetoothQualityReportInterface();
+
+  if (bqrItf != NULL) {
+    bd_addr = RawAddress::kAny;
+    bqrItf->bqr_delivery_event(bd_addr, p_energy_monitor_event, length);
+  } else {
+    log::warn("failed to deliver BQR, bqrItf is NULL");
+  }
+}
+
+static void AddRFStatsEventToQueue(uint8_t length, const uint8_t* p_rf_stats_event) {
+  std::unique_ptr<BqrVseSubEvt> p_bqr_event = std::make_unique<BqrVseSubEvt>();
+  RawAddress bd_addr;
+
+  p_bqr_event->ParseBqrRFStatsEvt(length, p_rf_stats_event);
+
+  BluetoothQualityReportInterface* bqrItf = getBluetoothQualityReportInterface();
+
+  if (bqrItf != NULL) {
+    bd_addr = RawAddress::kAny;
+    bqrItf->bqr_delivery_event(bd_addr, p_rf_stats_event, length);
+  } else {
+    log::warn("failed to deliver BQR, bqrItf is NULL");
+  }
 }
 
 static int OpenLmpLlTraceLogFile();
