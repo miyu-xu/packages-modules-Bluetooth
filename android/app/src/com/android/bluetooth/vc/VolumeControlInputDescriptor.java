@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.vc;
 
+import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
@@ -28,9 +29,11 @@ import bluetooth.constants.aics.Mute;
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
 
+    final BluetoothDevice mDevice;
     final Descriptor[] mVolumeInputs;
 
-    VolumeControlInputDescriptor(int numberOfExternalInputs) {
+    VolumeControlInputDescriptor(BluetoothDevice device, int numberOfExternalInputs) {
+        mDevice = device;
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         // Stack delivers us number of audio inputs. ids are countinous from [0;n[
         for (int i = 0; i < numberOfExternalInputs; i++) {
@@ -85,9 +88,14 @@ class VolumeControlInputDescriptor {
         return mVolumeInputs[id].mStatus;
     }
 
-    void setDescription(int id, String description) {
+    void onDescriptionChanged(int id, String description) {
         if (!isValidId(id)) return;
         mVolumeInputs[id].mDescription = description;
+    }
+
+    void setDescription(int id, String description, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+        nativeInterface.setExtAudioInDescription(mDevice, id, description);
     }
 
     String getDescription(int id) {
