@@ -1139,7 +1139,8 @@ public class HeadsetClientStateMachine extends StateMachine {
             switch (state) {
                 case HeadsetClientHalConstants.CONNECTION_STATE_CONNECTED:
                     warn("HFPClient Connecting from Disconnected state");
-                    if (okToConnect(device)) {
+                    boolean maxDevicesReached = mService.isMaxConnectedDevicesReached();
+                    if (okToConnect(device) && !maxDevicesReached) {
                         info("Incoming AG accepted");
                         mCurrentDevice = device;
                         transitionTo(mConnecting);
@@ -1148,16 +1149,19 @@ public class HeadsetClientStateMachine extends StateMachine {
                                 "Incoming AG rejected. connectionPolicy="
                                         + mService.getConnectionPolicy(device)
                                         + " bondState="
-                                        + mAdapterService.getBondState(device));
+                                        + mAdapterService.getBondState(device)
+                                        + " maxDevicesReached=" + maxDevicesReached);
                         // reject the connection and stay in Disconnected state
                         // itself
                         mNativeInterface.disconnect(device);
-                        // the other profile connection should be initiated
-                        // No state transition is involved, fire broadcast immediately
-                        broadcastConnectionState(
-                                device,
-                                BluetoothProfile.STATE_DISCONNECTED,
-                                BluetoothProfile.STATE_DISCONNECTED);
+                        if (!maxDevicesReached) {
+                           // the other profile connection should be initiated
+                           // No state transition is involved, fire broadcast immediately
+                           broadcastConnectionState(
+                                   device,
+                                   BluetoothProfile.STATE_DISCONNECTED,
+                                   BluetoothProfile.STATE_DISCONNECTED);
+	               }
                     }
                     break;
                 case HeadsetClientHalConstants.CONNECTION_STATE_CONNECTING:

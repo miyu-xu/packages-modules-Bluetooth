@@ -126,6 +126,7 @@ public class HeadsetClientStateMachineTest {
         doReturn(mMockHfpResources).when(mHeadsetClientService).getResources();
         doReturn(mPackageManager).when(mHeadsetClientService).getPackageManager();
         doReturn(CONNECTION_POLICY_ALLOWED).when(mHeadsetClientService).getConnectionPolicy(any());
+        doReturn(false).when(mHeadsetClientService).isMaxConnectedDevicesReached();
 
         doReturn(true).when(mMockHfpResources).getBoolean(eq(R.bool.hfp_clcc_poll_during_call));
         doReturn(2000)
@@ -1110,6 +1111,18 @@ public class HeadsetClientStateMachineTest {
         sendMessageAndVerifyTransition(
                 mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event),
                 HeadsetClientStateMachine.Disconnected.class);
+    }
+
+    @Test
+    public void testStackEvent_toConnectingState_maxConnectedDevices_onDisconnectedState() {
+        allowConnection(true);
+        doReturn(true).when(mHeadsetClientService).isMaxConnectedDevicesReached();
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.CONNECTION_STATE_CONNECTED;
+        event.device = mTestDevice;
+        sendMessage(mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        assertThat(mHeadsetClientStateMachine.getCurrentState())
+                .isInstanceOf(HeadsetClientStateMachine.Disconnected.class);
     }
 
     @Test

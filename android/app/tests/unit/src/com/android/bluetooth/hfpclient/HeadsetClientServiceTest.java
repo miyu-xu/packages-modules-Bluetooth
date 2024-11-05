@@ -25,12 +25,15 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.content.Context;
 import android.content.Intent;
@@ -82,6 +85,7 @@ public class HeadsetClientServiceTest {
 
     private static final int STANDARD_WAIT_MILLIS = 1000;
     private static final int SERVICE_START_WAIT_MILLIS = 100;
+    private static final int MAX_CONNECTIONS = 5;
 
     private AudioManager mMockAudioManager;
 
@@ -95,6 +99,7 @@ public class HeadsetClientServiceTest {
         mockGetSystemService(Context.BATTERY_SERVICE, BatteryManager.class);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
+        doReturn(MAX_CONNECTIONS).when(mAdapterService).getMaxConnectedAudioDevices();
         NativeInterface.setInstance(mNativeInterface);
     }
 
@@ -261,6 +266,38 @@ public class HeadsetClientServiceTest {
             // Convert back from collected AM to HF and check if equal the saved HF value
             Assert.assertEquals(service.amToHfVol((int) entry.getValue()), entry.getKey());
         }
+    }
+
+    /**
+     * Test to verify that {@link HeadsetClientService#connect(BluetoothDevice)}
+     * fails after {@link #MAX_CONNECTIONS} connected devices
+     */
+    @Test
+    public void testConnectDeviceAboveLimit() throws Exception {
+        startService();
+
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        BluetoothDevice device;
+        HeadsetClientStateMachine stateMachine;
+
+        doReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED).when(mDatabaseManager)
+                .getProfileConnectionPolicy(any(BluetoothDevice.class),
+                        eq(BluetoothProfile.HEADSET_CLIENT));
+        for (int i = 0; i < MAX_CONNECTIONS; i++) {
+            device = TestUtils.getTestDevice(adapter, i);
+            stateMachine = mock(HeadsetClientStateMachine.class);
+            mService.getStateMachineMap().put(device, stateMachine);
+            Assert.assertTrue(mService.connect(device));
+            verify(stateMachine, times(1)).sendMessage(HeadsetClientStateMachine.CONNECT, device);
+            doReturn(BluetoothProfile.STATE_CONNECTED).when(stateMachine).
+                    getConnectionState(device);
+        }
+        // Connect the next device will fail
+        device = TestUtils.getTestDevice(adapter, MAX_CONNECTIONS);
+        stateMachine = mock(HeadsetClientStateMachine.class);
+            mService.getStateMachineMap().put(device, stateMachine);
+        Assert.assertFalse(mService.connect(device));
+        verify(stateMachine, times(0)).sendMessage(HeadsetClientStateMachine.CONNECT, device);
     }
 
     private void startService() throws Exception {
