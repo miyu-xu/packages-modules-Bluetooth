@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7c783fe_d8641ec1",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-05T17:53:31Z",
+      "side": 1,
+      "message": "If we are trying to fix a race, we need to prevent getActivePlayer() that can become null after being null checked\n\n```suggestion\n        int previousActivePlayerId \u003d mActivePlayerId;\n        MediaPlayerWrapper previousPlayer \u003d getActivePlayer();\n\n        if (playerId \u003d\u003d mActivePlayerId) {\n            if (previousPlayer !\u003d null) {\n                Log.w(TAG, previousPlayer.getPackageName() + \" is already the active player\");\n            }\n            return;\n        }\n\n        if (mActivePlayerId !\u003d NO_ACTIVE_PLAYER \u0026\u0026 previousPlayer !\u003d null) {\n            previousPlayer.unregisterCallback();\n        }\n\n        mActivePlayerId \u003d playerId;\n\n        MediaPlayerWrapper player \u003d getActivePlayer();\n        if (player \u003d\u003d null) return;\n```",
+      "range": {
+        "startLine": 974,
+        "startChar": 0,
+        "endLine": 988,
+        "endChar": 35
+      },
+      "revId": "93480a1b8294d906497a4355169a83748a633d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
