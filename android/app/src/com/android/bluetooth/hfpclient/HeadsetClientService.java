@@ -79,6 +79,7 @@ public class HeadsetClientService extends ProfileService {
             new HashMap<>();
 
     private static HeadsetClientService sHeadsetClientService;
+    private int mMaxConnectedHfpClientDevices;
 
     private final HandlerThread mSmThread;
     private final AdapterService mAdapterService;
@@ -101,6 +102,7 @@ public class HeadsetClientService extends ProfileService {
         mAudioManager = requireNonNull(getSystemService(AudioManager.class));
         mMaxAmVcVol = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL);
         mMinAmVcVol = mAudioManager.getStreamMinVolume(AudioManager.STREAM_VOICE_CALL);
+        mMaxConnectedHfpClientDevices = AdapterService.getAdapterService().getMaxConnectedAudioDevices();
 
         // Setup the JNI service
         mNativeInterface = NativeInterface.getInstance();
@@ -665,6 +667,17 @@ public class HeadsetClientService extends ProfileService {
             Log.e(TAG, "Cannot allocate SM for device " + device);
             return false;
         }
+        int connectionState = sm.getConnectionState(device);
+        if (connectionState == BluetoothProfile.STATE_CONNECTING
+                || connectionState == BluetoothProfile.STATE_CONNECTED) {
+            Log.d(TAG, "Received connect request while already connecting/connected");
+            return false;
+        }
+        if (isMaxConnectedDevicesReached()) {
+            Log.d(TAG, "connect " + device + " rejected: max number of connected devices reached: "
+                    + mMaxConnectedHfpClientDevices);
+            return false;
+        }
 
         sm.sendMessage(HeadsetClientStateMachine.CONNECT, device);
         return true;
@@ -1197,6 +1210,24 @@ public class HeadsetClientService extends ProfileService {
             return null;
         }
         return sm.getCurrentAgFeatures();
+    }
+
+    public boolean isMaxConnectedDevicesReached() {
+        int connectedDevices = 0;
+        synchronized (mStateMachineMap) {
+            HeadsetClientStateMachine sm;
+            for (BluetoothDevice device : mStateMachineMap.keySet()) {
+                sm = getStateMachine(device);
+                if (sm != null) {
+                    int connectionState = sm.getConnectionState(device);
+                    if (connectionState == BluetoothProfile.STATE_CONNECTING
+                            || connectionState == BluetoothProfile.STATE_CONNECTED) {
+                        connectedDevices++;
+                    }
+                }
+            }
+        }
+        return connectedDevices >= mMaxConnectedHfpClientDevices;
     }
 
     // Handle messages from native (JNI) to java
