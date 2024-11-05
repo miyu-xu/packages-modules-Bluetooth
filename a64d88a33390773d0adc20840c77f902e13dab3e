@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5af9830b_5b1773ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-05T01:12:18Z",
+      "side": 1,
+      "message": "API +1, but a couple of open comments where I\u0027d like @asapperstein@google.com opinion.",
+      "revId": "a64d88a33390773d0adc20840c77f902e13dab3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
