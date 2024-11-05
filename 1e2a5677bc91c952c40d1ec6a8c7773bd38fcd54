@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "311eef2b_c37ec318",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1322,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-05T00:20:45Z",
+      "side": 1,
+      "message": "The other target mixes gatt api and stack a2dp and is not build for host use, while this target *is* built for host host use and conforms to the single unittest per module.",
+      "parentUuid": "da9ad218_29a24d10",
+      "range": {
+        "startLine": 1322,
+        "startChar": 11,
+        "endLine": 1322,
+        "endChar": 30
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e992c62f_4c22a4ab",
         "filename": "system/stack/avrc/avrc_pars_ct.cc",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-04T22:08:16Z",
       "side": 1,
       "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 278,
+        "startChar": 27,
+        "endLine": 278,
+        "endChar": 37
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be940e71_1ad6eca4",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-05T00:20:45Z",
+      "side": 1,
+      "message": "Agreed but currently there is no test for this leak at the moment.  Future CLs may add tests to address this leak.",
+      "parentUuid": "e992c62f_4c22a4ab",
       "range": {
         "startLine": 278,
         "startChar": 27,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c03a05a_b569fad9",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-05T00:20:45Z",
+      "side": 1,
+      "message": "Agreed but currently there is no test for this leak at the moment.  Future CLs may add tests to address this leak.",
+      "parentUuid": "5ee14267_4327c961",
+      "range": {
+        "startLine": 374,
+        "startChar": 42,
+        "endLine": 374,
+        "endChar": 52
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e9bc175_c3f4d8d2",
         "filename": "system/stack/avrc/avrc_pars_ct.cc",
         "patchSetId": 4
@@ -100,6 +172,30 @@
       "writtenOn": "2024-11-04T22:08:16Z",
       "side": 1,
       "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 382,
+        "startChar": 39,
+        "endLine": 382,
+        "endChar": 49
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc7e577_78872061",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-05T00:20:45Z",
+      "side": 1,
+      "message": "Agreed but currently there is no test for this leak at the moment.  Future CLs may add tests to address this leak.",
+      "parentUuid": "7e9bc175_c3f4d8d2",
       "range": {
         "startLine": 382,
         "startChar": 39,
@@ -135,6 +231,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22bd005c_d5bcba99",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-05T00:20:45Z",
+      "side": 1,
+      "message": "Agreed but currently there is no test for this leak at the moment.  Future CLs may add tests to address this leak.\n\n`do we need to set the ptr back to null` maybe...the test enforces checks of dynamic memory leaks but the use of ptr null/non-null in conditions elsewhere within this module is outside scope of this CL.\n\nA future CL/test could examine that code path.",
+      "parentUuid": "9cb5e7e9_92b04735",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 42
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a77d2d4_3f0c523e",
         "filename": "system/stack/avrc/avrc_pars_ct.cc",
         "patchSetId": 4
@@ -146,6 +266,30 @@
       "writtenOn": "2024-11-04T22:08:16Z",
       "side": 1,
       "message": "This alloc is also never freed in case of error",
+      "range": {
+        "startLine": 497,
+        "startChar": 27,
+        "endLine": 497,
+        "endChar": 37
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a17e9933_993d81c4",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-05T00:20:45Z",
+      "side": 1,
+      "message": "Agreed but currently there is no test for this leak at the moment.  Future CLs may add tests to address this leak.",
+      "parentUuid": "9a77d2d4_3f0c523e",
       "range": {
         "startLine": 497,
         "startChar": 27,
