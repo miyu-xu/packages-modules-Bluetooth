@@ -33,7 +33,7 @@ public:
                const bluetooth::le_audio::LeAudioCodecConfiguration& pcm_config),
               (override));
   MOCK_METHOD((bluetooth::le_audio::CodecInterface::Status), Encode,
-              (const uint8_t* data, int stride, uint16_t out_size, std::vector<int16_t>* out_buffer,
+              (const uint8_t* data, int stride, uint16_t out_size, std::vector<uint8_t>* out_buffer,
                uint16_t out_offset),
               (override));
   MOCK_METHOD((bluetooth::le_audio::CodecInterface::Status), Decode,
@@ -43,6 +43,7 @@ public:
   MOCK_METHOD((uint16_t), GetNumOfSamplesPerChannel, (), (override));
   MOCK_METHOD((uint8_t), GetNumOfBytesPerSample, (), (override));
   MOCK_METHOD((std::vector<int16_t>&), GetDecodedSamples, (), (override));
+  MOCK_METHOD((std::vector<uint8_t>&), GetEncodedData, (), (override));
 };
 
 class MockCodecFactory : public bluetooth::le_audio::CodecFactoryInterface {

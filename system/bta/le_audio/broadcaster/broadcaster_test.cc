@@ -363,14 +363,14 @@ protected:
   }
 
   void SetUpMockCodecFactory() {
-    output_channel_data_.resize(1);
+    encoded_data_.resize(1);
 
     ON_CALL(mock_codec_factory_, Create(_))
             .WillByDefault([this](const types::LeAudioCodecId& /* codec_id */)
                                    -> std::unique_ptr<CodecInterface> {
               auto mock = new MockCodecInterface();
-              ON_CALL(*mock, GetDecodedSamples())
-                      .WillByDefault(testing::ReturnRef(this->output_channel_data_));
+              ON_CALL(*mock, GetEncodedData())
+                      .WillByDefault(testing::ReturnRef(this->encoded_data_));
               return std::unique_ptr<CodecInterface>(mock);
             });
 
@@ -474,7 +474,7 @@ protected:
   MockCodecManager* mock_codec_manager_ = nullptr;
 
   testing::NiceMock<MockCodecFactory> mock_codec_factory_;
-  std::vector<int16_t> output_channel_data_;
+  std::vector<uint8_t> encoded_data_;
 
   alarm_t* big_terminate_timer_ = nullptr;
   alarm_t* broadcast_stop_timer_ = nullptr;

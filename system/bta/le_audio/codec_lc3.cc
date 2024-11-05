@@ -101,13 +101,14 @@ CodecInterface::Status CodecLc3::InitDecoder(const LeAudioCodecConfiguration& co
   // Prepare the decoded output buffer
   auto num_samples =
           lc3_frame_samples(bt_codec_config_.data_interval_us, pcm_config_->sample_rate);
-  if (num_samples == -1) {
+  if (num_samples < 0) {
     log::error("Could not determine the sample count for data_interval: {}, sample_rate: {}",
                bt_codec_config_.data_interval_us, pcm_config_->sample_rate);
     return CodecInterface::Status::STATUS_ERR_CODEC_NOT_READY;
   }
-  output_channel_samples_ = num_samples;
-  adjustOutputBufferSizeIfNeeded(&output_channel_data_);
+  if (decoded_samples_.size() < static_cast<size_t>(num_samples)) {
+    decoded_samples_.resize(num_samples);
+  }
 
   // Prepare the decoder
   const auto decoder_size =
@@ -127,9 +128,8 @@ CodecInterface::Status CodecLc3::Decode(uint8_t* data, uint16_t size) {
   }
 
   // For now only LC3 is supported
-  adjustOutputBufferSizeIfNeeded(&output_channel_data_);
-  auto err = lc3_decode(pImpl_->decoder_, data, size, pImpl_->pcm_format_,
-                        output_channel_data_.data(), 1 /* stride */);
+  auto err = lc3_decode(pImpl_->decoder_, data, size, pImpl_->pcm_format_, decoded_samples_.data(),
+                        1 /* stride */);
   if (err < 0) {
     log::error("bad decoding parameters: {}", static_cast<int>(err));
     return CodecInterface::Status::STATUS_ERR_CODING_ERROR;
@@ -139,7 +139,7 @@ CodecInterface::Status CodecLc3::Decode(uint8_t* data, uint16_t size) {
 }
 
 CodecInterface::Status CodecLc3::Encode(const uint8_t* data, int stride, uint16_t out_size,
-                                        std::vector<int16_t>* out_buffer, uint16_t out_offset) {
+                                        std::vector<uint8_t>* out_buffer, uint16_t out_offset) {
   if (!IsReady()) {
     log::error("decoder not ready");
     return CodecInterface::Status::STATUS_ERR_CODEC_NOT_READY;
@@ -152,16 +152,12 @@ CodecInterface::Status CodecLc3::Encode(const uint8_t* data, int stride, uint16_
 
   // Prepare the encoded output buffer
   if (out_buffer == nullptr) {
-    out_buffer = &output_channel_data_;
+    out_buffer = &encoded_data_;
   }
 
-  // We have two bytes per sample in the buffer, while out_size and
-  // out_offset are in bytes
-  size_t channel_samples = (out_offset + out_size) / 2;
-  if (output_channel_samples_ < channel_samples) {
-    output_channel_samples_ = channel_samples;
+  if (out_buffer->size() < out_size) {
+    out_buffer->resize(out_size);
   }
-  adjustOutputBufferSizeIfNeeded(out_buffer);
 
   // Encode
   auto err = lc3_encode(pImpl_->encoder_, pImpl_->pcm_format_, data, stride, out_size,
@@ -177,8 +173,8 @@ CodecInterface::Status CodecLc3::Encode(const uint8_t* data, int stride, uint16_
 void CodecLc3::Cleanup() {
   pcm_config_ = std::nullopt;
   pImpl_->Cleanup();
-  output_channel_data_.clear();
-  output_channel_samples_ = 0;
+  encoded_data_.clear();
+  decoded_samples_.clear();
 }
 
 uint16_t CodecLc3::GetNumOfSamplesPerChannel() {
@@ -189,7 +185,7 @@ uint16_t CodecLc3::GetNumOfSamplesPerChannel() {
 
   auto num_samples =
           lc3_frame_samples(bt_codec_config_.data_interval_us, pcm_config_->sample_rate);
-  if (num_samples == -1) {
+  if (num_samples < 0) {
     log::error("Could not determine the sample count for data_interval: {}, sample_rate: {}",
                bt_codec_config_.data_interval_us, pcm_config_->sample_rate);
     return 0;

@@ -53,7 +53,7 @@ public:
   virtual CodecInterface::Status InitDecoder(const LeAudioCodecConfiguration& codec_config,
                                              const LeAudioCodecConfiguration& pcm_config) = 0;
   virtual CodecInterface::Status Encode(const uint8_t* data, int stride, uint16_t out_size,
-                                        std::vector<int16_t>* out_buffer = nullptr,
+                                        std::vector<uint8_t>* out_buffer = nullptr,
                                         uint16_t out_offset = 0) = 0;
   virtual CodecInterface::Status Decode(uint8_t* data, uint16_t size) = 0;
   virtual void Cleanup() = 0;
@@ -61,6 +61,7 @@ public:
   virtual uint16_t GetNumOfSamplesPerChannel() = 0;
   virtual uint8_t GetNumOfBytesPerSample() = 0;
   virtual std::vector<int16_t>& GetDecodedSamples() = 0;
+  virtual std::vector<uint8_t>& GetEncodedData() = 0;
 };
 
 class CodecFactoryInterface {

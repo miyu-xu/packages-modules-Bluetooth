@@ -1492,14 +1492,17 @@ protected:
   }
 
   void SetUpMockCodecFactory() {
-    output_channel_data_.resize(1);
+    decoded_samples_.resize(1);
+    encoded_data_.resize(1);
 
     ON_CALL(mock_codec_factory_, Create(_))
             .WillByDefault([this](const types::LeAudioCodecId& /*codec_id*/)
                                    -> std::unique_ptr<CodecInterface> {
               auto mock = new MockCodecInterface();
               ON_CALL(*mock, GetDecodedSamples())
-                      .WillByDefault(testing::ReturnRef(this->output_channel_data_));
+                      .WillByDefault(testing::ReturnRef(this->decoded_samples_));
+              ON_CALL(*mock, GetEncodedData())
+                      .WillByDefault(testing::ReturnRef(this->encoded_data_));
               return std::unique_ptr<CodecInterface>(mock);
             });
 
@@ -2727,7 +2730,8 @@ protected:
   MockCodecManager* mock_codec_manager_;
 
   NiceMock<MockCodecFactory> mock_codec_factory_;
-  std::vector<int16_t> output_channel_data_;
+  std::vector<uint8_t> encoded_data_;
+  std::vector<int16_t> decoded_samples_;
 
   uint16_t available_snk_context_types_ = 0xffff;
   uint16_t available_src_context_types_ = 0xffff;
@@ -12600,7 +12604,9 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
             auto mock = new MockCodecInterface();
 
             ON_CALL(*mock, GetDecodedSamples())
-                    .WillByDefault(testing::ReturnRef(this->output_channel_data_));
+                    .WillByDefault(testing::ReturnRef(this->decoded_samples_));
+            ON_CALL(*mock, GetEncodedData())
+                    .WillByDefault(testing::ReturnRef(this->encoded_data_));
             ON_CALL(*mock, GetNumOfSamplesPerChannel()).WillByDefault(Return(960));
             ON_CALL(*mock, GetNumOfBytesPerSample()).WillByDefault(Return(2));  // 16bits samples
             ON_CALL(*mock, Encode(_, _, _, _, _))
