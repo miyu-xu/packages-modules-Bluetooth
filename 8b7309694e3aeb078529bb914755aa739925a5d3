@@ -211,6 +211,30 @@
       },
       "revId": "8b7309694e3aeb078529bb914755aa739925a5d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beee48bb_7e81fd78",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1857,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-05T22:20:31Z",
+      "side": 1,
+      "message": "yes, we can. we can do that.",
+      "parentUuid": "ff4a4b2a_8e44a63a",
+      "range": {
+        "startLine": 1857,
+        "startChar": 40,
+        "endLine": 1857,
+        "endChar": 56
+      },
+      "revId": "8b7309694e3aeb078529bb914755aa739925a5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

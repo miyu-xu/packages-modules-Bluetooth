@@ -22,6 +22,30 @@
       },
       "revId": "02fa4ce5987f64c8b7e01b1c5c8635649414c32e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa696864_8b91ecfe",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-05T22:20:31Z",
+      "side": 1,
+      "message": "ok, one is send from host to controller, another one is notified from controller to host.",
+      "parentUuid": "bddef3c7_d2834b58",
+      "range": {
+        "startLine": 185,
+        "startChar": 7,
+        "endLine": 185,
+        "endChar": 80
+      },
+      "revId": "02fa4ce5987f64c8b7e01b1c5c8635649414c32e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
