@@ -377,6 +377,14 @@ void ClassicAclConnection::RegisterCallbacks(ConnectionManagementCallbacks* call
 }
 
 bool ClassicAclConnection::Disconnect(DisconnectReason reason) {
+  if (true /* some aflag */) {
+    if (is_disconnecting_) {
+      log::info("Already disconnecting {}", address_);
+      return true;
+    }
+  }
+
+  is_disconnecting_ = true;
   acl_connection_interface_->EnqueueCommand(
           DisconnectBuilder::Create(handle_, reason),
           pimpl_->tracker.client_handler_->BindOnce(check_status<DisconnectStatusView>));
