@@ -75,7 +75,7 @@ public class PbapClientConnectionHandlerTest {
 
     private PbapClientService mService;
 
-    @Mock private PbapClientStateMachine mStateMachine;
+    @Mock private PbapClientStateMachineOld mStateMachine;
 
     private PbapClientConnectionHandler mHandler;
 
@@ -182,6 +182,6 @@ public class PbapClientConnectionHandlerTest {
     public void createAndDisconnectWithoutAddingAccount_doesNotCrash() {
         mHandler.obtainMessage(PbapClientConnectionHandler.MSG_DISCONNECT).sendToTarget();
         TestUtils.waitForLooperToFinishScheduledTask(mHandler.getLooper());
-        verify(mStateMachine).sendMessage(PbapClientStateMachine.MSG_CONNECTION_CLOSED);
+        verify(mStateMachine).sendMessage(PbapClientStateMachineOld.MSG_CONNECTION_CLOSED);
     }
 }
