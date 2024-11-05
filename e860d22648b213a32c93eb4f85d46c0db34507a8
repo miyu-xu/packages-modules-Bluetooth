@@ -211,6 +211,30 @@
       },
       "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d18a5ce2_dfedfe13",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3612,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-05T11:35:50Z",
+      "side": 1,
+      "message": "Sine this function start with \u0027is\u0027, caller would expect they will get boolean return value. I prefer keep it return boolean and simple true or false for this simple getter function. We can throw exception on functions that will impact user\u0027s behavior.",
+      "parentUuid": "caccd171_39df8445",
+      "range": {
+        "startLine": 3612,
+        "startChar": 8,
+        "endLine": 3612,
+        "endChar": 20
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
