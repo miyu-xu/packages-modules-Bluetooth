@@ -1404,4 +1404,78 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
             }
         }
     }
+
+    /**
+     * Set Broadcast to Unicast fallback group
+     *
+     * <p>In Broadcast handover situations where Unicast is unavailable, this group acts as the
+     * fallback.
+     *
+     * <p>A broadcast handover can occur when a {@link BluetoothLeBroadcast#startBroadcast} call is
+     * successful and there's an active Unicast group.
+     *
+     * <p>On primary group changed, {@link Callback#onLeAudioPrimaryGroupChanged} will be invoked.
+     *
+     * @param groupId the groupId
+     * @throws IllegalStateException if LE Audio Service is null
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public void setBroadcastToUnicastFallbackGroup(int groupId) {
+        if (DBG) Log.d(TAG, "setBroadcastToUnicastFallbackGroup(" + groupId + ")");
+
+        final IBluetoothLeAudio service = getService();
+
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+            throw new IllegalStateException("Service is unavailable");
+        } else if (mAdapter.isEnabled()) {
+            try {
+                service.setBroadcastToUnicastFallbackGroup(groupId, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Get Broadcast to Unicast fallback group
+     *
+     * <p>In Broadcast handover situations where Unicast is unavailable, this group acts as the
+     * fallback.
+     *
+     * <p>A broadcast handover can occur when a {@link BluetoothLeBroadcast#startBroadcast} call is
+     * successful and there's an active Unicast group.
+     *
+     * @throws IllegalStateException if LE Audio Service is null
+     * @return ID of primary group
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public int getBroadcastToUnicastFallbackGroup() {
+        if (DBG) Log.d(TAG, "getBroadcastToUnicastFallbackGroup()");
+
+        final IBluetoothLeAudio service = getService();
+
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+            throw new IllegalStateException("Service is unavailable");
+        } else if (mAdapter.isEnabled()) {
+            try {
+                return service.getBroadcastToUnicastFallbackGroup(mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+
+        return GROUP_ID_INVALID;
+    }
 }
