@@ -83,11 +83,13 @@ public:
 
 private:
   AclConnectionInterface* acl_connection_interface_;
+  bool is_disconnecting_;
 
 protected:
   Address address_;
 
 private:
+  void OnDisconnectStatus(CommandStatusView status);
   struct impl;
   struct impl* pimpl_ = nullptr;
 };

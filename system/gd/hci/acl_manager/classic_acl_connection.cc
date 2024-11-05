@@ -376,10 +376,38 @@ void ClassicAclConnection::RegisterCallbacks(ConnectionManagementCallbacks* call
   return pimpl_->tracker.RegisterCallbacks(callbacks, handler);
 }
 
+void ClassicAclConnection::OnDisconnectStatus(CommandStatusView view) {
+  DisconnectStatusView disconnect = DisconnectStatusView::Create(view);
+  if (!disconnect.IsValid()) {
+    log::error("Invalid packet, opcode {}", OpCodeText(view.GetCommandOpCode()));
+    return;
+  }
+  OpCode op_code = disconnect.GetCommandOpCode();
+  if (op_code != OpCode::DISCONNECT) {
+    log::error("Expecting status for disconnect, received {}", OpCodeText(op_code));
+    return;
+  }
+  ErrorCode status = disconnect.GetStatus();
+  if (status != ErrorCode::SUCCESS) {
+    log::error("Error code {}, opcode {}", ErrorCodeText(status), OpCodeText(op_code));
+    is_disconnecting_ = false;
+    return;
+  }
+}
+
 bool ClassicAclConnection::Disconnect(DisconnectReason reason) {
+  if (true /* some aflag */) {
+    if (is_disconnecting_) {
+      log::info("Already disconnecting {}", address_.ToRedactedStringForLogging());
+      return false;
+    }
+  }
+
+  is_disconnecting_ = true;
   acl_connection_interface_->EnqueueCommand(
           DisconnectBuilder::Create(handle_, reason),
-          pimpl_->tracker.client_handler_->BindOnce(check_status<DisconnectStatusView>));
+          pimpl_->tracker.client_handler_->BindOnceOn(this,
+                                                      &ClassicAclConnection::OnDisconnectStatus));
   return true;
 }
 
