@@ -140,6 +140,24 @@
       "parentUuid": "fde68337_6329c074",
       "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d99497_a4c4a88f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-05T13:17:07Z",
+      "side": 1,
+      "message": "As we discussed offline, `setPrimaryGroup()` is too much for Broadcast To Unicast scenario. We might want to have this API at some point but we need to figure out all the use cases  e.g.\n1. How to treat Primary Group in Unicast use cases e.g. phone calls?\n2. Should we give it prioritization for Recording or media as well e.g. when new LeAudio device is connecting ?\n\ninstead we believe Api `setBroadcastToUnicastFallbackGroup()` should satisfy this use case",
+      "parentUuid": "7cc15dc0_bb48ce48",
+      "revId": "c68c65c17e338dc2f76f0ae85f72d46edec82987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

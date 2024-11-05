@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "409d8a29_38725d4b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5186,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-05T13:17:07Z",
+      "side": 1,
+      "message": "Primary group is considered as a fallback group to a phone call scenario from other scenarios ?",
+      "range": {
+        "startLine": 5184,
+        "startChar": 12,
+        "endLine": 5186,
+        "endChar": 6
+      },
+      "revId": "d74b611074f41eec9064d362f59bfff7501f5cd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
