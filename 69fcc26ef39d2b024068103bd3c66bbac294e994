@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70e1bbf8_2393d1ea",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-06T16:52:25Z",
+      "side": 1,
+      "message": "It is clear for me that we are interested on device if not only synced to BIS but if managed at all but why we are interested only on primary device? Originally any device cause assistant activation.",
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0f16a36_32af8943",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 5
