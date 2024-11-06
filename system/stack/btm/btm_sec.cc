@@ -2445,7 +2445,7 @@ void btm_io_capabilities_req(RawAddress p) {
       auto p_dev_rec = btm_find_dev(p);
       if (p_dev_rec != NULL) {
         btm_sec_disconnect(p_dev_rec->hci_handle, HCI_ERR_AUTH_FAILURE,
-                           "btm_io_capabilities_req Security failure");
+                           "btm_io_capabilities_req for bonded device");
       }
       return;
     }
@@ -2618,10 +2618,19 @@ void btm_io_capabilities_req(RawAddress p) {
  *
  ******************************************************************************/
 void btm_io_capabilities_rsp(const tBTM_SP_IO_RSP evt_data) {
-  tBTM_SEC_DEV_REC* p_dev_rec;
-
   /* Allocate a new device record or reuse the oldest one */
-  p_dev_rec = btm_find_or_alloc_dev(evt_data.bd_addr);
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(evt_data.bd_addr);
+
+  if (com::android::bluetooth::flags::key_missing_classic_device()) {
+    log::warn("Incoming bond request, but {} is already bonded (notifying user)", evt_data.bd_addr);
+    bta_dm_remote_key_missing(evt_data.bd_addr);
+
+    if (p_dev_rec != NULL) {
+      btm_sec_disconnect(p_dev_rec->hci_handle, HCI_ERR_AUTH_FAILURE,
+                         "btm_io_capabilities_rsp for bonded device");
+    }
+    return;
+  }
 
   /* If no security is in progress, this indicates incoming security */
   if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_IDLE) {
