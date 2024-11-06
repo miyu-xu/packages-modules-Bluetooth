@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "472758fb_ae5d2f45",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-06T17:04:42Z",
+      "side": 1,
+      "message": "please double check if there is no need to reset it somewhere, to be sure that we not miss any callback in some disconnect/reconnect/recover scenario.",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 39
+      },
+      "revId": "9318f8ed55d55a8382c7c935a90daf05abf4b5e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
