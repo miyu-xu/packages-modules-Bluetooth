@@ -94,6 +94,24 @@
       ],
       "revId": "4c6f369b7bd4963f41aca1c3674b830e94b6a894",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b2d33f3_5bddb5ed",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T18:36:00Z",
+      "side": 1,
+      "message": "Updated name per the request to keep the group of APIs aligned on naming.",
+      "parentUuid": "85214a36_8d4d2f68",
+      "revId": "4c6f369b7bd4963f41aca1c3674b830e94b6a894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
