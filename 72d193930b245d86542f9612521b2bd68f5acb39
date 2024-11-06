@@ -16,6 +16,24 @@
       "message": "This could be factorized with a helper function that configures the active device for LeAudio based on a classic profile state change.\n\n```\nprivate void updateLeAudioActiveDeviceIfDualMode(BluetoothDevice previousActiveDevice, BluetoothDevice nextActiveDevice) {\n   // checks here\n} \n```",
       "revId": "72d193930b245d86542f9612521b2bd68f5acb39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17a80c17_7f63a2f6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T19:55:02Z",
+      "side": 1,
+      "message": "it behaves differently for A2DP and HFP so it will not look that nice but here at least it is more readable. I would keep it if you agree",
+      "parentUuid": "34c925d4_da22ccff",
+      "revId": "72d193930b245d86542f9612521b2bd68f5acb39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
