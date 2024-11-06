@@ -76,6 +76,7 @@ public:
   bool Start(const LeAudioCodecConfiguration& codec_configuration,
              LeAudioSourceAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes) override;
   void Stop() override;
+  void UpdateDataInterval(uint32_t data_interval_us) override;
   void ConfirmStreamingRequest() override;
   void CancelStreamingRequest() override;
   void UpdateRemoteDelay(uint16_t remote_delay_ms) override;
@@ -112,10 +113,26 @@ public:
 
   bluetooth::common::MessageLoopThread* worker_thread_;
   bluetooth::common::RepeatingTimer audio_timer_;
-  LeAudioCodecConfiguration source_codec_config_;
+  uint16_t data_interval_us_;
+  audio::le_audio::LeAudioClientInterface::PcmParameters pcmParameters_;
+  bool Start(const audio::le_audio::LeAudioClientInterface::PcmParameters& pcmParameters,
+             uint16_t data_interval_us, LeAudioSourceAudioHalClient::Callbacks* audioReceiver,
+             DsaModes dsa_modes);
   void StartAudioTicks();
   void StopAudioTicks();
   void SendAudioData();
+
+  uint8_t GetBytesPerSample() const {
+    // 24 bit audio is aligned to 32bit
+    return (pcmParameters_.bits_per_sample == 24) ? 4 : (pcmParameters_.bits_per_sample / 8);
+  }
+
+  uint32_t GetBytesPerTick() const {
+    uint32_t bytes_per_second =
+            pcmParameters_.channels_count * pcmParameters_.sample_rate * GetBytesPerSample();
+
+    return (bytes_per_second * data_interval_us_) / 1000000;
+  }
 
   bool is_broadcaster_;
 
@@ -211,13 +228,7 @@ void SourceImpl::SendAudioData() {
     return;
   }
 
-  // 24 bit audio is aligned to 32bit
-  int bytes_per_sample = (source_codec_config_.bits_per_sample == 24)
-                                 ? 4
-                                 : (source_codec_config_.bits_per_sample / 8);
-  uint32_t bytes_per_tick = (source_codec_config_.num_channels * source_codec_config_.sample_rate *
-                             source_codec_config_.data_interval_us / 1000 * bytes_per_sample) /
-                            1000;
+  uint32_t bytes_per_tick = GetBytesPerTick();
   std::vector<uint8_t> data(bytes_per_tick);
 
   uint32_t bytes_read = halSinkInterface_->Read(data.data(), bytes_per_tick);
@@ -269,13 +280,13 @@ void SourceImpl::StartAudioTicks() {
   wakelock_acquire();
   if (com::android::bluetooth::flags::leaudio_hal_client_asrc()) {
     asrc_ = std::make_unique<bluetooth::audio::asrc::SourceAudioHalAsrc>(
-            worker_thread_, source_codec_config_.num_channels, source_codec_config_.sample_rate,
-            source_codec_config_.bits_per_sample, source_codec_config_.data_interval_us);
+            worker_thread_, pcmParameters_.channels_count, pcmParameters_.sample_rate,
+            pcmParameters_.bits_per_sample, data_interval_us_);
   }
   audio_timer_.SchedulePeriodic(
           worker_thread_->GetWeakPtr(), FROM_HERE,
           base::BindRepeating(&SourceImpl::SendAudioData, weak_factory_.GetWeakPtr()),
-          std::chrono::microseconds(source_codec_config_.data_interval_us));
+          std::chrono::microseconds(data_interval_us_));
 }
 
 void SourceImpl::StopAudioTicks() {
@@ -335,6 +346,19 @@ bool SourceImpl::OnMetadataUpdateReq(const source_metadata_v7_t& source_metadata
 
 bool SourceImpl::Start(const LeAudioCodecConfiguration& codec_configuration,
                        LeAudioSourceAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes) {
+  audio::le_audio::LeAudioClientInterface::PcmParameters pcmParameters = {
+          .data_interval_us = codec_configuration.data_interval_us,
+          .sample_rate = codec_configuration.sample_rate,
+          .bits_per_sample = codec_configuration.bits_per_sample,
+          .channels_count = codec_configuration.num_channels,
+  };
+
+  return Start(pcmParameters, codec_configuration.data_interval_us, audioReceiver, dsa_modes);
+}
+
+bool SourceImpl::Start(const audio::le_audio::LeAudioClientInterface::PcmParameters& pcmParameters,
+                       uint16_t data_interval_us,
+                       LeAudioSourceAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes) {
   if (!halSinkInterface_) {
     log::error("Audio HAL Audio sink interface not acquired");
     return false;
@@ -345,21 +369,17 @@ bool SourceImpl::Start(const LeAudioCodecConfiguration& codec_configuration,
     return false;
   }
 
-  log::info("bit rate: {}, num channels: {}, sample rate: {}, data interval: {}",
-            codec_configuration.bits_per_sample, codec_configuration.num_channels,
-            codec_configuration.sample_rate, codec_configuration.data_interval_us);
-
   sStats.Reset();
 
   /* Global config for periodic audio data */
-  source_codec_config_ = codec_configuration;
-  audio::le_audio::LeAudioClientInterface::PcmParameters pcmParameters = {
-          .data_interval_us = codec_configuration.data_interval_us,
-          .sample_rate = codec_configuration.sample_rate,
-          .bits_per_sample = codec_configuration.bits_per_sample,
-          .channels_count = codec_configuration.num_channels};
+  data_interval_us_ = data_interval_us;
+  pcmParameters_ = pcmParameters;
 
-  halSinkInterface_->SetPcmParameters(pcmParameters);
+  log::info("bit rate: {}, num channels: {}, sample rate: {}, data interval: {}",
+            pcmParameters_.bits_per_sample, pcmParameters_.channels_count,
+            pcmParameters_.sample_rate, data_interval_us_);
+
+  halSinkInterface_->SetPcmParameters(pcmParameters_);
   audio::le_audio::LeAudioClientInterface::Get()->SetAllowedDsaModes(dsa_modes);
   halSinkInterface_->StartSession();
 
@@ -396,6 +416,35 @@ void SourceImpl::Stop() {
 
   std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
   audioSourceCallbacks_ = nullptr;
+}
+
+void SourceImpl::UpdateDataInterval(uint32_t data_interval_us) {
+  auto hal_state = le_audio_sink_hal_state_;
+
+  if (hal_state == HAL_STARTED) {
+    if (com::android::bluetooth::flags::run_ble_audio_ticks_in_worker_thread()) {
+      worker_thread_->DoInThread(
+              FROM_HERE, base::BindOnce(&SourceImpl::StopAudioTicks, weak_factory_.GetWeakPtr()));
+    } else {
+      StopAudioTicks();
+    }
+  }
+
+  /* Global config for periodic audio data */
+  data_interval_us_ = data_interval_us;
+
+  log::info("bit rate: {}, num channels: {}, sample rate: {}, data interval: {}",
+            pcmParameters_.bits_per_sample, pcmParameters_.channels_count,
+            pcmParameters_.sample_rate, data_interval_us_);
+
+  if (hal_state == HAL_STARTED) {
+    if (com::android::bluetooth::flags::run_ble_audio_ticks_in_worker_thread()) {
+      worker_thread_->DoInThread(
+              FROM_HERE, base::BindOnce(&SourceImpl::StartAudioTicks, weak_factory_.GetWeakPtr()));
+    } else {
+      StartAudioTicks();
+    }
+  }
 }
 
 void SourceImpl::ConfirmStreamingRequest() {
