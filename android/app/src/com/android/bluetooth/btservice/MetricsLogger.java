@@ -96,7 +96,10 @@ public class MetricsLogger {
     private static final String TAG = "BluetoothMetricsLogger";
     private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth";
     private static final String BLOOMFILTER_FILE = "/devices_for_metrics_v3";
+    private static final String MEDICAL_DEVICE_BLOOMFILTER_FILE = "/medical_devices_for_metrics_v1";
     public static final String BLOOMFILTER_FULL_PATH = BLOOMFILTER_PATH + BLOOMFILTER_FILE;
+    public static final String MEDICAL_DEVICE_BLOOMFILTER_FULL_PATH =
+            BLOOMFILTER_PATH + MEDICAL_DEVICE_BLOOMFILTER_FILE;
 
     // 6 hours timeout for counter metrics
     private static final long BLUETOOTH_COUNTER_METRICS_ACTION_DURATION_MILLIS = 6L * 3600L * 1000L;
@@ -113,6 +116,11 @@ public class MetricsLogger {
     private static final Object sLock = new Object();
     private BloomFilter<byte[]> mBloomFilter = null;
     protected boolean mBloomFilterInitialized = false;
+
+    @SuppressWarnings("unused")
+    private BloomFilter<byte[]> mMedicalDeviceBloomFilter = null;
+
+    protected boolean mMedicalDeviceBloomFilterInitialized = false;
 
     private AlarmManager.OnAlarmListener mOnAlarmListener =
             new AlarmManager.OnAlarmListener() {
@@ -185,8 +193,46 @@ public class MetricsLogger {
         return true;
     }
 
+    /** Initialize medical device bloom filter */
+    public boolean initMedicalDeviceBloomFilter(String path) {
+        try {
+            File medicalDeviceFile = new File(path);
+            if (!medicalDeviceFile.exists()) {
+                Log.w(TAG, "MetricsLogger is creating a new medical device Bloomfilter file");
+                MedicalDeviceBloomfilterGenerator.generateDefaultBloomfilter(path);
+            }
+
+            FileInputStream inputStream = new FileInputStream(new File(path));
+            mMedicalDeviceBloomFilter =
+                    BloomFilter.readFrom(inputStream, Funnels.byteArrayFunnel());
+            mMedicalDeviceBloomFilterInitialized = true;
+        } catch (IOException e1) {
+            Log.w(TAG, "MetricsLogger can't read the medical device BloomFilter file.");
+            byte[] bloomfilterData =
+                    MedicalDeviceBloomfilterGenerator.hexStringToByteArray(
+                            MedicalDeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
+            try {
+                mMedicalDeviceBloomFilter =
+                        BloomFilter.readFrom(
+                                new ByteArrayInputStream(bloomfilterData),
+                                Funnels.byteArrayFunnel());
+                mMedicalDeviceBloomFilterInitialized = true;
+                Log.i(TAG, "The medical device bloomfilter is used");
+                return true;
+            } catch (IOException e2) {
+                Log.w(TAG, "The medical device bloomfilter can't be used.");
+            }
+            return false;
+        }
+        return true;
+    }
+
     protected void setBloomfilter(BloomFilter bloomfilter) {
         mBloomFilter = bloomfilter;
+    }
+
+    protected void setMedicalDeviceBloomfilter(BloomFilter bloomfilter) {
+        mMedicalDeviceBloomFilter = bloomfilter;
     }
 
     void init(AdapterService adapterService, RemoteDevices remoteDevices) {
@@ -199,6 +245,12 @@ public class MetricsLogger {
         scheduleDrains();
         if (!initBloomFilter(BLOOMFILTER_FULL_PATH)) {
             Log.w(TAG, "MetricsLogger can't initialize the bloomfilter");
+            // The class is for multiple metrics tasks.
+            // We still want to use this class even if the bloomfilter isn't initialized
+            // so still return true here.
+        }
+        if (!initMedicalDeviceBloomFilter(MEDICAL_DEVICE_BLOOMFILTER_FULL_PATH)) {
+            Log.w(TAG, "MetricsLogger can't initialize the medical device bloomfilter");
             // The class is for multiple metrics tasks.
             // We still want to use this class even if the bloomfilter isn't initialized
             // so still return true here.
@@ -417,6 +469,7 @@ public class MetricsLogger {
         mAdapterService = null;
         mInitialized = false;
         mBloomFilterInitialized = false;
+        mMedicalDeviceBloomFilterInitialized = false;
     }
 
     protected void cancelPendingDrain() {
