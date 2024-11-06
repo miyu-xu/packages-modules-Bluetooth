@@ -140,6 +140,8 @@ typedef struct btle_audio_codec_config {
   btle_audio_frame_duration_index_t frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_NONE;
   uint16_t octets_per_frame = 0;
   int32_t codec_priority = 0;
+  uint16_t min_octets_per_frame = 0;
+  uint16_t max_octets_per_frame = 0;
 
   bool operator!=(const btle_audio_codec_config& other) const {
     if (codec_type != other.codec_type) {
@@ -163,6 +165,12 @@ typedef struct btle_audio_codec_config {
     if (codec_priority != other.codec_priority) {
       return true;
     }
+    if (min_octets_per_frame != other.min_octets_per_frame) {
+      return true;
+    }
+    if (max_octets_per_frame != other.max_octets_per_frame) {
+      return true;
+    }
     return false;
   }
   bool operator==(const btle_audio_codec_config& other) const { return !(*this != other); }
@@ -175,6 +183,8 @@ typedef struct btle_audio_codec_config {
     std::string frame_duration_str;
     std::string octets_per_frame_str;
     std::string codec_priority_str;
+    std::string min_octets_per_frame_str;
+    std::string max_octets_per_frame_str;
 
     switch (codec_type) {
       case LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
@@ -293,10 +303,27 @@ typedef struct btle_audio_codec_config {
       codec_priority_str = std::to_string(codec_priority);
     }
 
+    if (min_octets_per_frame < 0) {
+      min_octets_per_frame_str =
+              "Unknown LE min octets per frame " + std::to_string(min_octets_per_frame);
+    } else {
+      min_octets_per_frame_str = std::to_string(min_octets_per_frame);
+    }
+
+    if (max_octets_per_frame < 0) {
+      max_octets_per_frame_str =
+              "Unknown LE max octets per frame " + std::to_string(max_octets_per_frame);
+    } else {
+      max_octets_per_frame_str = std::to_string(max_octets_per_frame);
+    }
+
     return "codec: " + codec_name_str + ", sample rate: " + sample_rate_str +
            ", bits per sample: " + bits_per_sample_str + ", channel count: " + channel_count_str +
            ", frame duration: " + frame_duration_str +
-           ", octets per frame: " + octets_per_frame_str + ", codec priroty: " + codec_priority_str;
+           ", octets per frame: " + octets_per_frame_str +
+           ", codec priroty: " + codec_priority_str +
+           ", min octets per frame: " + min_octets_per_frame_str +
+           ", max octets per frame: " + max_octets_per_frame_str;
   }
 
 } btle_audio_codec_config_t;
