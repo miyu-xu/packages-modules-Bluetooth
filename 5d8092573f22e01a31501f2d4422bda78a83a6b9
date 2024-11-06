@@ -209,6 +209,24 @@
       "message": "can we link GROUP_ID_INVALID to the javadoc?",
       "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da52e995_f4ed6332",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-06T21:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89a41761_48ce6770",
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
