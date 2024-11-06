@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff50e6a_ac2dac44",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2439,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T01:07:39Z",
+      "side": 1,
+      "message": "I\u0027m assuming the new way of handling mUnicastGroupIdDeactivatedForBroadcastTransition is only for showcase of the plan? \n\nTo make a smooth transition here, we might want to execute this in order\n1. Introduce the new APIs first with API flag, keep this change only for new APIs, and advance the API flag. \n2. Introduce \u0027auto selection\u0027 logics in stack with the bugfix flag. leaudio_broadcast_primary_group_selection, and we should keep the original logic path.\n3. Ask UI team to move forward with new API and clean-up their autoselection logics\n4. Advance our leaudio_broadcast_primary_group_selection.\n\nOtherwise, if we make this change together here, once we merge this change or advance API flag, the flow will break without UI team\u0027s change.",
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b33efe0_5a688359",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5223,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T01:07:39Z",
+      "side": 1,
+      "message": "nit: fallback group?",
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f300edd0_1a61dcd6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T01:07:39Z",
+      "side": 1,
+      "message": "tbh I\u0027m not quite clear while reading this if I\u0027m not familiar with broadcast.\ncan we describe with the unicast interrupt ongoing broadcast case?",
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b819b383_3cd0844b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1420,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T01:07:39Z",
+      "side": 1,
+      "message": "* @param groupId the ID of fallback group",
+      "fixSuggestions": [
+        {
+          "fixId": "13b8b7d0_82eb7919",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1420,
+                "startChar": 0,
+                "endLine": 1421,
+                "endChar": 0
+              },
+              "replacement": "     * @param groupId the ID of the fallback group\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96aef87a_6f258249",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T01:07:39Z",
+      "side": 1,
+      "message": "* @param groupId the ID of fallback group",
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a41761_48ce6770",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T01:07:39Z",
+      "side": 1,
+      "message": "can we link GROUP_ID_INVALID to the javadoc?",
+      "revId": "5d8092573f22e01a31501f2d4422bda78a83a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
