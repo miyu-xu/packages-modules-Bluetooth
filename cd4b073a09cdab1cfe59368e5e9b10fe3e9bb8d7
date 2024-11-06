@@ -46,6 +46,30 @@
       },
       "revId": "cd4b073a09cdab1cfe59368e5e9b10fe3e9bb8d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73eca5e4_cd27b45c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-06T03:31:54Z",
+      "side": 1,
+      "message": "Sorry from same module but not from same package.\n\n`com.android.bluetooth.btservice.DataMigrationTest#testBluetoothDbMigration()` still need to access those get functions in `com.android.bluetooth.btservice.storage`.\n\nI will keep them public without @VisibleForTesting.",
+      "parentUuid": "0eca60d1_5b9729ee",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "cd4b073a09cdab1cfe59368e5e9b10fe3e9bb8d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
