@@ -47,28 +47,40 @@ public:
     STATUS_OK = 0,
   };
 
-  CodecInterface(const types::LeAudioCodecId& codec_id);
-  virtual ~CodecInterface();
-  static std::unique_ptr<CodecInterface> CreateInstance(const types::LeAudioCodecId& codec_id) {
-    return std::make_unique<CodecInterface>(codec_id);
-  }
+  virtual ~CodecInterface(){};
   virtual CodecInterface::Status InitEncoder(const LeAudioCodecConfiguration& pcm_config,
-                                             const LeAudioCodecConfiguration& codec_config);
+                                             const LeAudioCodecConfiguration& codec_config) = 0;
   virtual CodecInterface::Status InitDecoder(const LeAudioCodecConfiguration& codec_config,
-                                             const LeAudioCodecConfiguration& pcm_config);
+                                             const LeAudioCodecConfiguration& pcm_config) = 0;
   virtual CodecInterface::Status Encode(const uint8_t* data, int stride, uint16_t out_size,
                                         std::vector<int16_t>* out_buffer = nullptr,
-                                        uint16_t out_offset = 0);
-  virtual CodecInterface::Status Decode(uint8_t* data, uint16_t size);
-  virtual void Cleanup();
-  virtual bool IsReady();
-  virtual uint16_t GetNumOfSamplesPerChannel();
-  virtual uint8_t GetNumOfBytesPerSample();
-  virtual std::vector<int16_t>& GetDecodedSamples();
+                                        uint16_t out_offset = 0) = 0;
+  virtual CodecInterface::Status Decode(uint8_t* data, uint16_t size) = 0;
+  virtual void Cleanup() = 0;
+  virtual bool IsReady() = 0;
+  virtual uint16_t GetNumOfSamplesPerChannel() = 0;
+  virtual uint8_t GetNumOfBytesPerSample() = 0;
+  virtual std::vector<int16_t>& GetDecodedSamples() = 0;
+};
+
+class CodecFactoryInterface {
+public:
+  virtual std::unique_ptr<CodecInterface> Create(
+          const bluetooth::le_audio::types::LeAudioCodecId& codec_id) = 0;
+  virtual ~CodecFactoryInterface() = default;
+};
+
+class CodecFactory : public CodecFactoryInterface {
+public:
+  static CodecFactoryInterface& Get();
+  std::unique_ptr<CodecInterface> Create(const types::LeAudioCodecId& codec_id) override;
+
+protected:
+  CodecFactory() = default;
 
 private:
-  struct Impl;
-  Impl* impl;
+  CodecFactory(const CodecFactory&) = delete;
+  CodecFactory& operator=(const CodecFactory&) = delete;
 };
 
 }  // namespace bluetooth::le_audio

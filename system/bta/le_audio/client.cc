@@ -3867,7 +3867,7 @@ public:
       if (sw_enc_left || sw_enc_right) {
         log::warn("The encoder instance should have been already released.");
       }
-      sw_enc_left = bluetooth::le_audio::CodecInterface::CreateInstance(stream_conf->codec_id);
+      sw_enc_left = bluetooth::le_audio::CodecFactory::Get().Create(stream_conf->codec_id);
       auto codec_status =
               sw_enc_left->InitEncoder(audio_framework_source_config, current_encoder_config_);
       if (codec_status != bluetooth::le_audio::CodecInterface::Status::STATUS_OK) {
@@ -3876,7 +3876,7 @@ public:
         return;
       }
 
-      sw_enc_right = bluetooth::le_audio::CodecInterface::CreateInstance(stream_conf->codec_id);
+      sw_enc_right = bluetooth::le_audio::CodecFactory::Get().Create(stream_conf->codec_id);
       codec_status =
               sw_enc_right->InitEncoder(audio_framework_source_config, current_encoder_config_);
       if (codec_status != bluetooth::le_audio::CodecInterface::Status::STATUS_OK) {
@@ -3936,7 +3936,7 @@ public:
       if (sw_dec_left.get() || sw_dec_right.get()) {
         log::warn("The decoder instance should have been already released.");
       }
-      sw_dec_left = bluetooth::le_audio::CodecInterface::CreateInstance(stream_conf->codec_id);
+      sw_dec_left = bluetooth::le_audio::CodecFactory::Get().Create(stream_conf->codec_id);
       auto codec_status =
               sw_dec_left->InitDecoder(current_decoder_config_, audio_framework_sink_config);
       if (codec_status != bluetooth::le_audio::CodecInterface::Status::STATUS_OK) {
@@ -3945,7 +3945,7 @@ public:
         return;
       }
 
-      sw_dec_right = bluetooth::le_audio::CodecInterface::CreateInstance(stream_conf->codec_id);
+      sw_dec_right = bluetooth::le_audio::CodecFactory::Get().Create(stream_conf->codec_id);
       codec_status =
               sw_dec_right->InitDecoder(current_decoder_config_, audio_framework_sink_config);
       if (codec_status != bluetooth::le_audio::CodecInterface::Status::STATUS_OK) {

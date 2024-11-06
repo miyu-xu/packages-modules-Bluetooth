@@ -31,6 +31,7 @@
 #include "bta/le_audio/broadcaster/mock_state_machine.h"
 #include "bta/le_audio/content_control_id_keeper.h"
 #include "bta/le_audio/le_audio_types.h"
+#include "bta/le_audio/mock_codec_interface.h"
 #include "bta/le_audio/mock_codec_manager.h"
 #include "hci/controller_interface_mock.h"
 #include "stack/include/btm_iso_api.h"
@@ -324,6 +325,7 @@ protected:
     uint8_t random[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
     generator_cb.Run(random);
 
+    SetUpMockCodecFactory();
     ConfigCodecManagerMock(types::CodecLocation::HOST);
 
     ON_CALL(*mock_codec_manager_, UpdateActiveUnicastAudioHalClient(_, _, _))
@@ -358,6 +360,21 @@ protected:
     mock_codec_manager_ = MockCodecManager::GetInstance();
     ASSERT_NE(mock_codec_manager_, nullptr);
     ON_CALL(*mock_codec_manager_, GetCodecLocation()).WillByDefault(Return(location));
+  }
+
+  void SetUpMockCodecFactory() {
+    output_channel_data_.resize(1);
+
+    ON_CALL(mock_codec_factory_, Create(_))
+            .WillByDefault([this](const types::LeAudioCodecId& /* codec_id */)
+                                   -> std::unique_ptr<CodecInterface> {
+              auto mock = new MockCodecInterface();
+              ON_CALL(*mock, GetDecodedSamples())
+                      .WillByDefault(testing::ReturnRef(this->output_channel_data_));
+              return std::unique_ptr<CodecInterface>(mock);
+            });
+
+    MockCodecFactory::SetMockInstanceForTesting(&mock_codec_factory_);
   }
 
   void TearDown() override {
@@ -455,6 +472,9 @@ protected:
 
   le_audio::CodecManager* codec_manager_ = nullptr;
   MockCodecManager* mock_codec_manager_ = nullptr;
+
+  testing::NiceMock<MockCodecFactory> mock_codec_factory_;
+  std::vector<int16_t> output_channel_data_;
 
   alarm_t* big_terminate_timer_ = nullptr;
   alarm_t* broadcast_stop_timer_ = nullptr;
