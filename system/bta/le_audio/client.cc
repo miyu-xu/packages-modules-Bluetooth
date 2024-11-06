@@ -19,7 +19,6 @@
 #include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
-#include <lc3.h>
 
 #include <deque>
 #include <map>
