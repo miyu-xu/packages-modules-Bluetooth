@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e33fa31_a97c31f3",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:03:40Z",
+      "side": 1,
+      "message": "remote_direction",
+      "range": {
+        "startLine": 1074,
+        "startChar": 16,
+        "endLine": 1074,
+        "endChar": 25
+      },
+      "revId": "1bf3b844da7095ba180bb653359104385a2a8ac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

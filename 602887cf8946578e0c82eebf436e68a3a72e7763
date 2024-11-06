@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4743660_32a650f8",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:03:40Z",
+      "side": 1,
+      "message": "GetSupportedContexts() for both will return sum of supported contexts.\nWe want to get here common part of what is in sink and source on the remote side to find bidirectional contexts according to the remote device.\n\nDoes it makes sense?",
+      "parentUuid": "cfd65ba3_8b08ebe3",
+      "range": {
+        "startLine": 1065,
+        "startChar": 16,
+        "endLine": 1066,
+        "endChar": 69
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5ea6b0e_a4f71854",
         "filename": "system/bta/le_audio/device_groups.cc",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-05T16:10:24Z",
       "side": 1,
       "message": "naming issue",
+      "range": {
+        "startLine": 1078,
+        "startChar": 7,
+        "endLine": 1078,
+        "endChar": 39
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0230a009_3b813ce3",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1078,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:03:40Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "e5ea6b0e_a4f71854",
       "range": {
         "startLine": 1078,
         "startChar": 7,
@@ -66,6 +114,71 @@
         "endLine": 1090,
         "endChar": 3
       },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e1cd22_34e57a63",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:03:40Z",
+      "side": 1,
+      "message": "Explanation added.",
+      "parentUuid": "a4a1da80_bc3c3d62",
+      "range": {
+        "startLine": 1081,
+        "startChar": 2,
+        "endLine": 1090,
+        "endChar": 3
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "079bd482_e965ece7",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:03:40Z",
+      "side": 1,
+      "message": "simplify it  -- maybe provide exptected_remote_direction",
+      "range": {
+        "startLine": 49,
+        "startChar": 52,
+        "endLine": 49,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8c41ee81_10383b11",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/le_audio_types.cc",
+              "range": {
+                "startLine": 49,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "void get_cis_count(LeAudioContextType context_type, bool is_bidirectional,\n                   bool is_source_only, int expected_device_cnt,\n                   types::LeAudioConfigurationStrategy strategy,\n"
+            }
+          ]
+        }
+      ],
       "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
