@@ -22,6 +22,30 @@
       },
       "revId": "c4b38dfdd3f289f5ddb65908f8bc09afbcdeaf4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6836533_e7854e10",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T14:20:45Z",
+      "side": 1,
+      "message": "Actually your version looks simpler.",
+      "parentUuid": "b479bf08_0025c0d3",
+      "range": {
+        "startLine": 1093,
+        "startChar": 0,
+        "endLine": 1105,
+        "endChar": 3
+      },
+      "revId": "c4b38dfdd3f289f5ddb65908f8bc09afbcdeaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
