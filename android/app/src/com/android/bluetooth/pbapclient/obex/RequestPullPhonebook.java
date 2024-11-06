@@ -40,6 +40,11 @@ final class RequestPullPhonebook extends PbapClientRequest {
 
     private PbapPhonebook mResponse;
 
+    @Override
+    public int getType() {
+        return TYPE_PULL_PHONEBOOK;
+    }
+
     RequestPullPhonebook(String phonebook, PbapApplicationParameters params, Account account) {
         byte format = params.getVcardFormat();
         if (format != PbapPhonebook.FORMAT_VCARD_21
@@ -85,10 +90,7 @@ final class RequestPullPhonebook extends PbapClientRequest {
 
     @Override
     protected void readResponse(InputStream stream) throws IOException {
-        Log.v(TAG, "readResponse");
-
         mResponse = new PbapPhonebook(mPhonebook, mFormat, mListStartOffset, mAccount, stream);
-        Log.d(TAG, "Read " + mResponse.getCount() + " entries");
     }
 
     public String getPhonebook() {
