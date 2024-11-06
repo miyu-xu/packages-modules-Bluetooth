@@ -48,6 +48,7 @@ public:
   virtual bool SecIsSecurityPending(const RawAddress& bd_addr) = 0;
   virtual void RequestPeerSCA(RawAddress const& bd_addr, tBT_TRANSPORT transport) = 0;
   virtual uint16_t GetHCIConnHandle(RawAddress const& bd_addr, tBT_TRANSPORT transport) = 0;
+  virtual bool SecIsLeSecurityPending(const RawAddress& bd_addr) = 0;
   virtual void AclDisconnectFromHandle(uint16_t handle, tHCI_STATUS reason) = 0;
   virtual tBTM_INQ_INFO* BTM_InqDbFirst() = 0;
   virtual tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur) = 0;
@@ -88,6 +89,7 @@ public:
   MOCK_METHOD((uint16_t), GetHCIConnHandle, (RawAddress const& bd_addr, tBT_TRANSPORT transport),
               (override));
   MOCK_METHOD((void), AclDisconnectFromHandle, (uint16_t handle, tHCI_STATUS reason), (override));
+  MOCK_METHOD(bool, SecIsLeSecurityPending, const RawAddress& bd_addr, override);
   MOCK_METHOD((tBTM_INQ_INFO*), BTM_InqDbFirst, (), (override));
   MOCK_METHOD((tBTM_INQ_INFO*), BTM_InqDbNext, (tBTM_INQ_INFO * p_cur), (override));
   MOCK_METHOD((std::optional<Octet16>), BTM_BleGetPeerLTK, (const RawAddress address), (override));
