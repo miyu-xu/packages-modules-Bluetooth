@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18aff724_d3ef4b05",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2624,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-06T21:27:30Z",
+      "side": 1,
+      "message": "Can you also check that the link is not encrypted? Re-pairing over the encrypted link is a security upgrade scenario, not a bond loss scenario.",
+      "revId": "0f11d1608b53310bcd7134568c12e7a7be59f91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
