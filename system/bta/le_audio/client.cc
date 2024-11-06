@@ -2593,6 +2593,7 @@ public:
     if (BTM_SecIsLeSecurityPending(address)) {
       /* if security collision happened, wait for encryption done
        * (BTA_GATTC_ENC_CMPL_CB_EVT) */
+      log::warn("{} Security Collision. Security is not completed", address);
       return;
     }
 
