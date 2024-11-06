@@ -1,0 +1,99 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85214a36_8d4d2f68",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T08:28:47Z",
+      "side": 1,
+      "message": "Based on our offline discussion which end up with API change here aosp/3332922  could you please adjust this callback as well ?\n\n`onBroadcastToUnicastFallbackGroupChanged`\n\nSorry for this change, but we believe this API fits more. Thanks",
+      "fixSuggestions": [
+        {
+          "fixId": "c7c8297f_04e7b6ae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "         * Callback invoked when the Le Audio broadcast to unicast fallback group changes.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "         * \u003cp\u003eThis callback provides the new broadcast to unicast fallback group ID. It is invoked\n         * when the broadcast to unicast fallback group is initially set, or when it subsequently\n         * changes.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "         * @param groupId The ID of the new broadcast to unicast fallback group.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 170,
+                "startChar": 0,
+                "endLine": 171,
+                "endChar": 0
+              },
+              "replacement": "        default void onBroadcastToUnicastFallbackGroupChanged(int groupId) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "                Log.d(TAG, \"onBroadcastToUnicastFallbackGroupChanged is not implemented.\");\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 211,
+                "startChar": 0,
+                "endLine": 212,
+                "endChar": 0
+              },
+              "replacement": "        public void onBroadcastToUnicastFallbackGroupChanged(int groupId) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 213,
+                "startChar": 0,
+                "endLine": 214,
+                "endChar": 0
+              },
+              "replacement": "                mCallbackWrapper.forEach(\n                        (cb) -\u003e cb.onBroadcastToUnicastFallbackGroupChanged(groupId));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4c6f369b7bd4963f41aca1c3674b830e94b6a894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
