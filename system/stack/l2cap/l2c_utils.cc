@@ -54,6 +54,10 @@
 
 using namespace bluetooth;
 
+namespace {
+constexpr uint8_t kOutOfBoundSignalId = 250;
+}
+
 /* The offset in a buffer that L2CAP will use when building commands.
  */
 #define L2CAP_SEND_CMD_OFFSET 0
@@ -346,8 +350,10 @@ static BT_HDR* l2cu_build_header(tL2C_LCB* p_lcb, uint16_t len, uint8_t cmd, uin
  *
  ******************************************************************************/
 static void l2cu_adj_id(tL2C_LCB* p_lcb) {
-  if (p_lcb->signal_id == 0) {
-    p_lcb->signal_id++;
+  const uint8_t out_of_bound_signal_id =
+          (com::android::bluetooth::flags::bt_offload_socket_api()) ? kOutOfBoundSignalId : 0;
+  if (p_lcb->signal_id == out_of_bound_signal_id) {
+    p_lcb->signal_id = 1;
   }
 }
 
