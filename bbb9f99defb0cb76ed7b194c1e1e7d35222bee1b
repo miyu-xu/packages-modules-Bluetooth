@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75bb559b_6199c6d9",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "Thank you for your suggestion, done.",
+      "parentUuid": "8e831584_87e92e65",
+      "range": {
+        "startLine": 125,
+        "startChar": 49,
+        "endLine": 125,
+        "endChar": 51
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "115764e9_a63ff59c",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-11-05T17:40:17Z",
       "side": 1,
       "message": "Should we enforce the size match to prevent further edit:\n\n```\nstatic_assert (sizeof(BqrEnergyMonitorEvent) \u003d\u003d kEnergyMonitorParamTotalLen, \"BqrEnergyMonitorEvent Size is not correct\");\n```",
+      "range": {
+        "startLine": 394,
+        "startChar": 2,
+        "endLine": 394,
+        "endChar": 23
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "894f0a29_7a04447e",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "Thank you for your suggestion, agreed with you, fixed",
+      "parentUuid": "115764e9_a63ff59c",
       "range": {
         "startLine": 394,
         "startChar": 2,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2d46ea_2e445620",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "read variable in the class toString() function",
+      "parentUuid": "cbb66977_d68aa9ec",
+      "range": {
+        "startLine": 497,
+        "startChar": 24,
+        "endLine": 497,
+        "endChar": 49
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e83930f_330e9f79",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-11-05T17:40:17Z",
       "side": 1,
       "message": "idem",
+      "range": {
+        "startLine": 499,
+        "startChar": 18,
+        "endLine": 499,
+        "endChar": 37
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e2cf78_3415ab4c",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "read variable in the class toString() function",
+      "parentUuid": "7e83930f_330e9f79",
       "range": {
         "startLine": 499,
         "startChar": 18,
@@ -182,6 +278,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc81751f_e4a66f64",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "Thanks for review, fixed.",
+      "parentUuid": "798571bc_3445e1db",
+      "range": {
+        "startLine": 794,
+        "startChar": 0,
+        "endLine": 794,
+        "endChar": 21
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c500da8_c409eaa5",
@@ -205,6 +325,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fb3537c_5a96c2fd",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "add the fail case of parse function and without upload the data to the framework.",
+      "parentUuid": "3c500da8_c409eaa5",
+      "range": {
+        "startLine": 796,
+        "startChar": 0,
+        "endLine": 796,
+        "endChar": 72
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d39b854_0dde6b4f",
@@ -218,6 +362,30 @@
       "writtenOn": "2024-11-05T17:40:17Z",
       "side": 1,
       "message": "... we are still reporting the event\n\nShould we discard it instead ?",
+      "range": {
+        "startLine": 802,
+        "startChar": 0,
+        "endLine": 802,
+        "endChar": 72
+      },
+      "revId": "bbb9f99defb0cb76ed7b194c1e1e7d35222bee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e175320_bc6b55fc",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:27:38Z",
+      "side": 1,
+      "message": "add the fail case of parse function and without upload the data to the framework.",
+      "parentUuid": "5d39b854_0dde6b4f",
       "range": {
         "startLine": 802,
         "startChar": 0,
