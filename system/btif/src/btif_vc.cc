@@ -41,6 +41,7 @@
 
 using base::Bind;
 using base::Unretained;
+using bluetooth::aics::GainMode;
 using bluetooth::aics::Mute;
 using bluetooth::vc::ConnectionState;
 using bluetooth::vc::VolumeControlCallbacks;
@@ -111,7 +112,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface, public VolumeC
 
   /* Callbacks for Audio Input Stream (AIS) - Extended Audio Inputs */
   void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id,
-                                int8_t gain_setting, ::Mute mute, uint8_t gain_mode) override {
+                                int8_t gain_setting, ::Mute mute, ::GainMode gain_mode) override {
     do_in_jni_thread(Bind(&VolumeControlCallbacks::OnExtAudioInStateChanged, Unretained(callbacks_),
                           address, ext_input_id, gain_setting, mute, gain_mode));
   }
@@ -373,7 +374,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface, public VolumeC
   }
 
   void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
-                             bool automatic) override {
+                             ::GainMode gain_mode) override {
     if (!initialized || !VolumeControl::IsVolumeControlRunning()) {
       bluetooth::log::verbose(
               "call ignored, due to already started cleanup procedure or service "
@@ -382,10 +383,10 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface, public VolumeC
     }
 
     do_in_main_thread(Bind(&VolumeControl::SetExtAudioInGainMode, Unretained(VolumeControl::Get()),
-                           address, ext_input_id, automatic));
+                           address, ext_input_id, gain_mode));
   }
 
-  void SetExtAudioInGainMute(const RawAddress& address, uint8_t ext_input_id, bool mute) override {
+  void SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id, ::Mute mute) override {
     if (!initialized || !VolumeControl::IsVolumeControlRunning()) {
       bluetooth::log::verbose(
               "call ignored, due to already started cleanup procedure or service "
@@ -393,7 +394,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface, public VolumeC
       return;
     }
 
-    do_in_main_thread(Bind(&VolumeControl::SetExtAudioInGainMute, Unretained(VolumeControl::Get()),
+    do_in_main_thread(Bind(&VolumeControl::SetExtAudioInMute, Unretained(VolumeControl::Get()),
                            address, ext_input_id, mute));
   }
 

@@ -24,10 +24,11 @@
 #include <string>
 #include <variant>
 
+using bluetooth::aics::GainMode;
+using bluetooth::aics::Mute;
+
 namespace bluetooth {
 namespace vc {
-
-using bluetooth::aics::Mute;
 
 // Must be kept in sync with BluetoothProfile.java
 enum class ConnectionState { DISCONNECTED = 0, CONNECTING, CONNECTED, DISCONNECTING };
@@ -76,7 +77,7 @@ public:
 
   /* Callbacks for Audio Input Stream (AIS) - Extended Audio Inputs */
   virtual void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id,
-                                        int8_t gain_setting, Mute mute, uint8_t gain_mode_auto) = 0;
+                                        int8_t gain_setting, ::Mute mute, ::GainMode gain_mode) = 0;
 
   virtual void OnExtAudioInStatusChanged(const RawAddress& address, uint8_t ext_input_id,
                                          VolumeInputStatus status) = 0;
@@ -137,9 +138,8 @@ public:
   virtual void SetExtAudioInGainSetting(const RawAddress& address, uint8_t ext_input_id,
                                         int8_t gain_setting) = 0;
   virtual void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
-                                     bool automatic) = 0;
-  virtual void SetExtAudioInGainMute(const RawAddress& address, uint8_t ext_input_id,
-                                     bool mute) = 0;
+                                     ::GainMode gain_mode) = 0;
+  virtual void SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id, ::Mute mute) = 0;
 };
 
 } /* namespace vc */

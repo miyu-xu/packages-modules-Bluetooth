@@ -590,14 +590,19 @@ public:
     }
     input->mute = bluetooth::aics::parseMuteField(mute);
 
-    STREAM_TO_UINT8(input->mode, pp);
+    uint8_t gain_mode;
+    STREAM_TO_UINT8(gain_mode, pp);
+    if (!bluetooth::aics::isValidAudioInputGainModeValue(gain_mode)) {
+      bluetooth::log::error("{} Invalid GainMode value: {:#x}", device->address, gain_mode);
+      return;
+    }
+    input->mode = bluetooth::aics::parseGainModeField(gain_mode);
     STREAM_TO_UINT8(input->change_counter, pp);
 
     bluetooth::log::verbose("{}, data:{}", device->address, base::HexEncode(value, len));
     bluetooth::log::info(
-            "{} id={:#x}gain_setting {:#x}, mute: {:#x}, mode: {:#x}, "
-            "change_counter: {}",
-            device->address, input->id, input->gain_setting, mute, input->mode,
+            "{} id={:#x}gain_setting {:#x}, mute: {:#x}, mode: {:#x}, change_counter: {}",
+            device->address, input->id, input->gain_setting, mute, gain_mode,
             input->change_counter);
 
     if (!device->device_ready) {
@@ -1300,18 +1305,21 @@ public:
   }
 
   void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
-                             bool automatic) override {
+                             bluetooth::aics::GainMode gain_mode) override {
     ext_audio_in_control_point_helper(address, ext_input_id,
-                                      automatic ? kVolumeInputControlPointOpcodeSetAutoGainMode
-                                                : kVolumeInputControlPointOpcodeSetManualGainMode,
+                                      gain_mode == bluetooth::aics::GainMode::AUTOMATIC
+                                              ? kVolumeInputControlPointOpcodeSetAutoGainMode
+                                              : kVolumeInputControlPointOpcodeSetManualGainMode,
                                       nullptr);
   }
 
-  void SetExtAudioInGainMute(const RawAddress& address, uint8_t ext_input_id, bool mute) override {
-    ext_audio_in_control_point_helper(
-            address, ext_input_id,
-            mute ? kVolumeInputControlPointOpcodeMute : kVolumeInputControlPointOpcodeUnmute,
-            nullptr);
+  void SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id,
+                         bluetooth::aics::Mute mute) override {
+    ext_audio_in_control_point_helper(address, ext_input_id,
+                                      mute == bluetooth::aics::Mute::MUTED
+                                              ? kVolumeInputControlPointOpcodeMute
+                                              : kVolumeInputControlPointOpcodeUnmute,
+                                      nullptr);
   }
 
   void CleanUp() {

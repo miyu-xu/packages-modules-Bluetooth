@@ -948,7 +948,7 @@ public class VolumeControlService extends ProfileService {
             return;
         }
 
-        mAudioInputs.put(device, new VolumeControlInputDescriptor(numberOfExternalInputs));
+        mAudioInputs.put(device, new VolumeControlInputDescriptor(device, numberOfExternalInputs));
     }
 
     void handleDeviceAvailable(

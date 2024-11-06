@@ -19,10 +19,14 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
+
+import com.android.bluetooth.TestUtils;
 
 import bluetooth.constants.aics.Mute;
 
@@ -34,19 +38,22 @@ import org.junit.runner.RunWith;
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class VolumeControlInputDescriptorTest {
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+
     private static final int NUMBER_OF_INPUT = 3;
     private static final int NUMBER_OF_FIELD_IN_STRUCT = 9;
     private static final int VALID_ID = 1;
     private static final int INVALID_ID = NUMBER_OF_INPUT;
     private static final int INVALID_ID2 = -1;
 
-    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothDevice mDevice = TestUtils.getTestDevice(mAdapter, 0x42);
 
     private VolumeControlInputDescriptor mDescriptor;
 
     @Before
     public void setUp() {
-        mDescriptor = new VolumeControlInputDescriptor(NUMBER_OF_INPUT);
+        mDescriptor = new VolumeControlInputDescriptor(mDevice, NUMBER_OF_INPUT);
     }
 
     @Test

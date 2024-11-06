@@ -138,9 +138,10 @@ public:
 
   void OnExtAudioInStateChanged(const RawAddress& address, uint8_t ext_input_id,
                                 int8_t gain_setting, bluetooth::aics::Mute mute,
-                                uint8_t gain_mode_auto) {
-    log::info("address={}, ext_input_id={}, gain_setting={}, gain_mode_auto={}, mute={}", address,
-              ext_input_id, gain_setting, gain_mode_auto, static_cast<uint8_t>(mute));
+                                bluetooth::aics::GainMode gain_mode) {
+    log::info("address={}, ext_input_id={}, gain_setting={}, mute={}, gain_mode={}", address,
+              ext_input_id, gain_setting, static_cast<uint8_t>(mute),
+              static_cast<uint8_t>(gain_mode));
     log::info("Not implemented");
   }
 

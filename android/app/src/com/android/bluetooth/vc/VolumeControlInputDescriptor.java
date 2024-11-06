@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.vc;
 
+import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
@@ -28,9 +29,11 @@ import bluetooth.constants.aics.Mute;
 class VolumeControlInputDescriptor {
     private static final String TAG = VolumeControlInputDescriptor.class.getSimpleName();
 
+    final BluetoothDevice mDevice;
     final Descriptor[] mVolumeInputs;
 
-    VolumeControlInputDescriptor(int numberOfExternalInputs) {
+    VolumeControlInputDescriptor(BluetoothDevice device, int numberOfExternalInputs) {
+        mDevice = device;
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
         // Stack delivers us number of audio inputs. ids are countinous from [0;n[
         for (int i = 0; i < numberOfExternalInputs; i++) {
@@ -135,8 +138,42 @@ class VolumeControlInputDescriptor {
         }
 
         desc.mGainSetting = gainSetting;
-        desc.mGainMode = gainMode;
         desc.mMute = mute;
+        desc.mGainMode = gainMode;
+    }
+
+    void setGainSetting(int id, int gainSetting, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+
+        Descriptor desc = mVolumeInputs[id];
+        if (gainSetting > desc.mGainSettingsMaxSetting
+                || gainSetting < desc.mGainSettingsMinSetting) {
+            throw new IllegalArgumentException("Illegal gainSetting argument: " + gainSetting);
+        }
+        nativeInterface.setExtAudioInGainSetting(mDevice, id, gainSetting);
+    }
+
+    void setMute(int id, int mute, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+
+        Descriptor desc = mVolumeInputs[id];
+        if (desc.mMute == bluetooth.constants.aics.Mute.DISABLED) {
+            throw new IllegalStateException("Audio input is currently disabled");
+        }
+
+        nativeInterface.setExtAudioInMute(mDevice, id, mute);
+    }
+
+    void setGainMode(int id, int gainMode, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+
+        Descriptor desc = mVolumeInputs[id];
+        if (desc.mGainMode == bluetooth.constants.aics.GainMode.MANUAL_ONLY
+                || desc.mGainMode == bluetooth.constants.aics.GainMode.AUTOMATIC_ONLY) {
+            throw new IllegalStateException("Audio input gain mode is: " + desc.mGainMode);
+        }
+
+        nativeInterface.setExtAudioInGainMode(mDevice, id, gainMode);
     }
 
     void dump(StringBuilder sb) {

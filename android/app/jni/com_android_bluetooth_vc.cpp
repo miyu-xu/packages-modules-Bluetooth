@@ -224,7 +224,7 @@ public:
   }
 
   void OnExtAudioInStateChanged(const RawAddress& bd_addr, uint8_t ext_input_id,
-                                int8_t gain_setting, Mute mute, uint8_t gain_mode) override {
+                                int8_t gain_setting, Mute mute, GainMode gain_mode) override {
     log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
@@ -804,7 +804,7 @@ static jboolean setExtAudioInGainSettingNative(JNIEnv* env, jobject /* object */
 }
 
 static jboolean setExtAudioInGainModeNative(JNIEnv* env, jobject /* object */, jbyteArray address,
-                                            jint ext_input_id, jboolean mode_auto) {
+                                            jint ext_input_id, jint gain_mode) {
   log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) {
@@ -818,13 +818,14 @@ static jboolean setExtAudioInGainModeNative(JNIEnv* env, jobject /* object */, j
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInGainMode(*tmpraw, ext_input_id, mode_auto);
+  sVolumeControlInterface->SetExtAudioInGainMode(*tmpraw, ext_input_id,
+                                                 bluetooth::aics::parseGainModeField(gain_mode));
   env->ReleaseByteArrayElements(address, addr, 0);
   return JNI_TRUE;
 }
 
-static jboolean setExtAudioInGainMuteNative(JNIEnv* env, jobject /* object */, jbyteArray address,
-                                            jint ext_input_id, jboolean mute) {
+static jboolean setExtAudioInMuteNative(JNIEnv* env, jobject /* object */, jbyteArray address,
+                                        jint ext_input_id, jint mute) {
   log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) {
@@ -838,7 +839,8 @@ static jboolean setExtAudioInGainMuteNative(JNIEnv* env, jobject /* object */, j
   }
 
   RawAddress* tmpraw = reinterpret_cast<RawAddress*>(addr);
-  sVolumeControlInterface->SetExtAudioInGainMute(*tmpraw, ext_input_id, mute);
+  sVolumeControlInterface->SetExtAudioInMute(*tmpraw, ext_input_id,
+                                             bluetooth::aics::parseMuteField(mute));
   env->ReleaseByteArrayElements(address, addr, 0);
   return JNI_TRUE;
 }
@@ -881,10 +883,9 @@ int register_com_android_bluetooth_vc(JNIEnv* env) {
            reinterpret_cast<void*>(setExtAudioInDescriptionNative)},
           {"setExtAudioInGainSettingNative", "([BII)Z",
            reinterpret_cast<void*>(setExtAudioInGainSettingNative)},
-          {"setExtAudioInGainModeNative", "([BIZ)Z",
+          {"setExtAudioInGainModeNative", "([BII)Z",
            reinterpret_cast<void*>(setExtAudioInGainModeNative)},
-          {"setExtAudioInGainMuteNative", "([BIZ)Z",
-           reinterpret_cast<void*>(setExtAudioInGainMuteNative)},
+          {"setExtAudioInMuteNative", "([BII)Z", reinterpret_cast<void*>(setExtAudioInMuteNative)},
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/vc/VolumeControlNativeInterface", methods);
