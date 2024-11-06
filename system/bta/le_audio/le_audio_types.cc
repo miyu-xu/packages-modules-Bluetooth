@@ -142,6 +142,16 @@ uint32_t CodecConfigSetting::GetDataIntervalUs() const {
   }
 }
 
+uint8_t CodecConfigSetting::GetCodecFrameBlocksPerSdu() const {
+    switch (id.coding_format) {
+    case kLeAudioCodingFormatLC3:
+      return params.GetAsCoreCodecConfig().GetCodecFrameBlocksPerSdu();
+    default:
+      log::warn(", invalid codec id: 0x{:02x}", id.coding_format);
+      return 1;
+  }
+}
+
 uint8_t CodecConfigSetting::GetBitsPerSample() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
