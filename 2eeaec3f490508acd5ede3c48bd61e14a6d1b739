@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d2ebc0_5bf4dce6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-06T17:34:37Z",
+      "side": 1,
+      "message": "Please keep the default value as CsSyncAntennaSelection::ANTENNAS_IN_ORDER",
+      "range": {
+        "startLine": 50,
+        "startChar": 90,
+        "endLine": 50,
+        "endChar": 99
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3220a724_3c845eb1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": " static constexpr CsSyncAntennaSelection kCsSyncAntennaSelection \u003d CsSyncAntennaSelection::ANTENNA_IN_ORDER;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2eeaec3f490508acd5ede3c48bd61e14a6d1b739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
