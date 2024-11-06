@@ -68,6 +68,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4354c28a_778aba1f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T23:33:54Z",
+      "side": 1,
+      "message": "It is still there",
+      "parentUuid": "4f57b763_d664ea30",
+      "range": {
+        "startLine": 1417,
+        "startChar": 10,
+        "endLine": 1417,
+        "endChar": 35
+      },
+      "revId": "405d0b9a3f3babb28acb2d4e282554faa819846c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2af24be_ab4501ba",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
         "patchSetId": 2
