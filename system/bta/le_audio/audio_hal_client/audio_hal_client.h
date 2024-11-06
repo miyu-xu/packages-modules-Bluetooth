@@ -44,6 +44,8 @@ struct LeAudioCodecConfiguration {
   static constexpr uint8_t kBitsPerSample24 = bluetooth::audio::le_audio::kBitsPerSample24;
   static constexpr uint8_t kBitsPerSample32 = bluetooth::audio::le_audio::kBitsPerSample32;
 
+  static constexpr uint32_t kInterval2500Us = 2500;
+  static constexpr uint32_t kInterval5000Us = 5000;
   static constexpr uint32_t kInterval7500Us = 7500;
   static constexpr uint32_t kInterval10000Us = 10000;
 
@@ -154,6 +156,7 @@ public:
   virtual bool Start(const LeAudioCodecConfiguration& codecConfiguration, Callbacks* audioReceiver,
                      DsaModes dsa_modes = {DsaMode::DISABLED}) = 0;
   virtual void Stop() = 0;
+  virtual void UpdateDataInterval(uint32_t data_interval_us) = 0;
   virtual size_t SendData(uint8_t* /*data*/, uint16_t /*size*/) { return 0; }
   virtual void ConfirmStreamingRequest() = 0;
   virtual void CancelStreamingRequest() = 0;

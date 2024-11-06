@@ -4016,6 +4016,7 @@ public:
     }
 
     le_audio_source_hal_client_->UpdateRemoteDelay(remote_delay_ms);
+    le_audio_source_hal_client_->UpdateDataInterval(current_encoder_config_.data_interval_us);
     ConfirmLocalAudioSourceStreamingRequest();
 
     if (!LeAudioHalVerifier::SupportsStreamActiveApi()) {
@@ -6083,7 +6084,7 @@ private:
           .num_channels = 2,
           .sample_rate = bluetooth::audio::le_audio::kSampleRate48000,
           .bits_per_sample = bluetooth::audio::le_audio::kBitsPerSample16,
-          .data_interval_us = LeAudioCodecConfiguration::kInterval10000Us,
+          .data_interval_us = LeAudioCodecConfiguration::kInterval2500Us,
   };
 
   LeAudioCodecConfiguration audio_framework_sink_config = {
