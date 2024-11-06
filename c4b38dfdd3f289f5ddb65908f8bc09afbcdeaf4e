@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b479bf08_0025c0d3",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-06T14:05:02Z",
+      "side": 1,
+      "message": "That helps a bit, but maybe unwraping this to some intermediate variables could help to understand this easier.\n\nIs this equal to\n```\n  auto group_single_dir_only_contexts \u003d GetSupportedContexts(remote_direction) \u0026 ~GetAllSupportedBidirectionalContextTypes();\n\n  if (remote_direction \u003d\u003d types::kLeAudioDirectionSink) {\n    auto host_all_sink_contexts \u003d types::kLeAudioContextAllRemoteSinkOnly | types::kLeAudioContextAllBidir;\n    result \u003d host_all_sink_contexts \u0026 group_single_dir_only_contexts;\n\n  } else {\n    auto host_all_source_contexts \u003d types::kLeAudioContextAllRemoteSource | types::kLeAudioContextAllBidir;\n    result \u003d host_all_source_contexts \u0026 group_single_dir_only_contexts;\n  }\n```\n?",
+      "range": {
+        "startLine": 1093,
+        "startChar": 0,
+        "endLine": 1105,
+        "endChar": 3
+      },
+      "revId": "c4b38dfdd3f289f5ddb65908f8bc09afbcdeaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
