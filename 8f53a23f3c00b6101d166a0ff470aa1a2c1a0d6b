@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c1f2977_23cd65d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3653043
+      },
+      "writtenOn": "2024-11-06T05:40:03Z",
+      "side": 1,
+      "message": "I\u0027ve added okamil@ as the DrNo-Reviewer. Please take a look. Thank you!",
+      "revId": "8f53a23f3c00b6101d166a0ff470aa1a2c1a0d6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
