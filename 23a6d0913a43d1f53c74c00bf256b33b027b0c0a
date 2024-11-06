@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7535bdf_e0cd1122",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-06T17:37:01Z",
+      "side": 1,
+      "message": "Yamei Du, Could you please update the BR for this case?",
+      "revId": "23a6d0913a43d1f53c74c00bf256b33b027b0c0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
