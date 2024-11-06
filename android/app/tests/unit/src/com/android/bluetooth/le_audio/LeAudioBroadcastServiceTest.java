@@ -66,6 +66,7 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeoutException;
@@ -1656,6 +1657,47 @@ public class LeAudioBroadcastServiceTest {
                 Assert.fail("Cannot add Intent to the queue: " + e.getMessage());
             }
         }
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION,
+        Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP,
+        Flags.FLAG_LEAUDIO_USE_AUDIO_MODE_LISTENER
+    })
+    public void testManageBroadcastToUnicastFallbackGroup() {
+        int groupId = 1;
+        int groupId2 = 2;
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+        List<BluetoothDevice> devices = new ArrayList<>();
+
+        when(mDatabaseManager.getMostRecentlyConnectedDevices()).thenReturn(devices);
+
+        initializeNative();
+        devices.add(mDevice);
+        prepareHandoverStreamingBroadcast(groupId, broadcastId, code);
+        devices.add(mDevice2);
+        prepareConnectedUnicastDevice(groupId2, mDevice2);
+
+        Assert.assertEquals(mService.mUnicastGroupIdDeactivatedForBroadcastTransition, groupId);
+
+        reset(mAudioManager);
+
+        /* Update fallback active device (only input is active) */
+        ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
+                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
+
+        mService.setBroadcastToUnicastFallbackGroup(groupId2);
+
+        verify(mAudioManager)
+                .handleBluetoothActiveDeviceChanged(
+                        eq(mDevice2), eq(mDevice), connectionInfoArgumentCaptor.capture());
+        List<BluetoothProfileConnectionInfo> connInfos =
+                connectionInfoArgumentCaptor.getAllValues();
+        Assert.assertEquals(connInfos.size(), 1);
+        Assert.assertFalse(connInfos.get(0).isLeOutput());
+        Assert.assertEquals(mService.getBroadcastToUnicastFallbackGroup(), groupId2);
     }
 
     private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
