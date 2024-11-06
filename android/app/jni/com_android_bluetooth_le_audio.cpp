@@ -86,6 +86,8 @@ static struct {
   jmethodID getFrameDuration;
   jmethodID getOctetsPerFrame;
   jmethodID getCodecPriority;
+  jmethodID getMinOctetsPerFrame;
+  jmethodID getMaxOctetsPerFrame;
 } android_bluetooth_BluetoothLeAudioCodecConfig;
 
 static struct {
@@ -133,17 +135,20 @@ static std::shared_timed_mutex callbacks_mutex;
 jobject prepareCodecConfigObj(JNIEnv* env, btle_audio_codec_config_t codecConfig) {
   log::info(
           "ct: {}, codec_priority: {}, sample_rate: {}, bits_per_sample: {}, "
-          "channel_count: {}, frame_duration: {}, octets_per_frame: {}",
+          "channel_count: {}, frame_duration: {}, octets_per_frame: {}, min_octets_per_frame: {}, "
+          "max_octets_per_frame: {}",
           codecConfig.codec_type, codecConfig.codec_priority, codecConfig.sample_rate,
           codecConfig.bits_per_sample, codecConfig.channel_count, codecConfig.frame_duration,
-          codecConfig.octets_per_frame);
+          codecConfig.octets_per_frame, codecConfig.min_octets_per_frame,
+          codecConfig.max_octets_per_frame);
 
   jobject codecConfigObj = env->NewObject(
           android_bluetooth_BluetoothLeAudioCodecConfig.clazz,
           android_bluetooth_BluetoothLeAudioCodecConfig.constructor, (jint)codecConfig.codec_type,
           (jint)codecConfig.codec_priority, (jint)codecConfig.sample_rate,
           (jint)codecConfig.bits_per_sample, (jint)codecConfig.channel_count,
-          (jint)codecConfig.frame_duration, (jint)codecConfig.octets_per_frame, 0, 0);
+          (jint)codecConfig.frame_duration, (jint)codecConfig.octets_per_frame,
+          (jint)codecConfig.min_octets_per_frame, (jint)codecConfig.max_octets_per_frame);
   return codecConfigObj;
 }
 
@@ -629,6 +634,12 @@ static void setCodecConfigPreferenceNative(JNIEnv* env, jobject /* object */, ji
   jint inputCodecPriority = env->CallIntMethod(
           inputCodecConfig, android_bluetooth_BluetoothLeAudioCodecConfig.getCodecPriority);
 
+  jint inputMinOctetsPerFrame = env->CallIntMethod(
+          inputCodecConfig, android_bluetooth_BluetoothLeAudioCodecConfig.getMinOctetsPerFrame);
+
+  jint inputMaxOctetsPerFrame = env->CallIntMethod(
+          inputCodecConfig, android_bluetooth_BluetoothLeAudioCodecConfig.getMaxOctetsPerFrame);
+
   btle_audio_codec_config_t input_codec_config = {
           .codec_type = static_cast<btle_audio_codec_index_t>(inputCodecType),
           .sample_rate = static_cast<btle_audio_sample_rate_index_t>(inputSampleRate),
@@ -637,6 +648,8 @@ static void setCodecConfigPreferenceNative(JNIEnv* env, jobject /* object */, ji
           .frame_duration = static_cast<btle_audio_frame_duration_index_t>(inputFrameDuration),
           .octets_per_frame = static_cast<uint16_t>(inputOctetsPerFrame),
           .codec_priority = static_cast<int32_t>(inputCodecPriority),
+          .min_octets_per_frame = static_cast<uint16_t>(inputMinOctetsPerFrame),
+          .max_octets_per_frame = static_cast<uint16_t>(inputMaxOctetsPerFrame),
   };
 
   jint outputCodecType = env->CallIntMethod(
@@ -660,6 +673,12 @@ static void setCodecConfigPreferenceNative(JNIEnv* env, jobject /* object */, ji
   jint outputCodecPriority = env->CallIntMethod(
           outputCodecConfig, android_bluetooth_BluetoothLeAudioCodecConfig.getCodecPriority);
 
+  jint outputMinOctetsPerFrame = env->CallIntMethod(
+          outputCodecConfig, android_bluetooth_BluetoothLeAudioCodecConfig.getMinOctetsPerFrame);
+
+  jint outputMaxOctetsPerFrame = env->CallIntMethod(
+          outputCodecConfig, android_bluetooth_BluetoothLeAudioCodecConfig.getMaxOctetsPerFrame);
+
   btle_audio_codec_config_t output_codec_config = {
           .codec_type = static_cast<btle_audio_codec_index_t>(outputCodecType),
           .sample_rate = static_cast<btle_audio_sample_rate_index_t>(outputSampleRate),
@@ -668,6 +687,8 @@ static void setCodecConfigPreferenceNative(JNIEnv* env, jobject /* object */, ji
           .frame_duration = static_cast<btle_audio_frame_duration_index_t>(outputFrameDuration),
           .octets_per_frame = static_cast<uint16_t>(outputOctetsPerFrame),
           .codec_priority = static_cast<int32_t>(outputCodecPriority),
+          .min_octets_per_frame = static_cast<uint16_t>(outputMinOctetsPerFrame),
+          .max_octets_per_frame = static_cast<uint16_t>(outputMaxOctetsPerFrame),
   };
 
   sLeAudioClientInterface->SetCodecConfigPreference(group_id, input_codec_config,
@@ -1610,6 +1631,10 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
            &android_bluetooth_BluetoothLeAudioCodecConfig.getOctetsPerFrame},
           {"getCodecPriority", "()I",
            &android_bluetooth_BluetoothLeAudioCodecConfig.getCodecPriority},
+          {"getMinOctetsPerFrame", "()I",
+           &android_bluetooth_BluetoothLeAudioCodecConfig.getMinOctetsPerFrame},
+          {"getMaxOctetsPerFrame", "()I",
+           &android_bluetooth_BluetoothLeAudioCodecConfig.getMaxOctetsPerFrame},
   };
   GET_JAVA_METHODS(env, "android/bluetooth/BluetoothLeAudioCodecConfig", javaLeAudioCodecMethods);
 

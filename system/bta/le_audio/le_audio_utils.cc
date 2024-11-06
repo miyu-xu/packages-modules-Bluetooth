@@ -393,6 +393,8 @@ static void fillRemotePacsCapabilitiesToBtLeAudioCodecConfig(
                 .channel_count = utils::translateToBtLeAudioCodecConfigChannelCount(1),
                 .frame_duration = utils::translateToBtLeAudioCodecConfigFrameDuration(
                         types::LeAudioCoreCodecConfig::GetFrameDurationUs(fd_bit)),
+                .min_octets_per_frame = capa.supported_min_octets_per_codec_frame.value_or(0),
+                .max_octets_per_frame = capa.supported_max_octets_per_codec_frame.value_or(0),
         };
         vec.push_back(config);
       } else {
@@ -410,6 +412,8 @@ static void fillRemotePacsCapabilitiesToBtLeAudioCodecConfig(
                   .channel_count = utils::translateToBtLeAudioCodecConfigChannelCount(chan_bit),
                   .frame_duration = utils::translateToBtLeAudioCodecConfigFrameDuration(
                           types::LeAudioCoreCodecConfig::GetFrameDurationUs(fd_bit)),
+                  .min_octets_per_frame = capa.supported_min_octets_per_codec_frame.value_or(0),
+                  .max_octets_per_frame = capa.supported_max_octets_per_codec_frame.value_or(0),
           };
           vec.push_back(config);
         }
