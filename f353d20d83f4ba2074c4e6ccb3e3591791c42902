@@ -34,6 +34,24 @@
       "parentUuid": "19d3d39b_c446173a",
       "revId": "f353d20d83f4ba2074c4e6ccb3e3591791c42902",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7d1aff9_efa580ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-06T21:47:53Z",
+      "side": 1,
+      "message": "Right. According to the current Android BT stack, the L2CAP_FLOW_CONTROL_CREDIT_IND identifier does not seem to have any effect. Assuming we do not consider other BT stacks, this fix seems unnecessary.",
+      "parentUuid": "6804d15f_702f50fc",
+      "revId": "f353d20d83f4ba2074c4e6ccb3e3591791c42902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
