@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cd680f4_3c604c2f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4287,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-06T22:57:13Z",
+      "side": 1,
+      "message": "re-opening as the check from caller is still missing\n\n```\n if (!callerIsSystemOrActiveOrManagedUser(service, TAG, \"getActiveAudioDevicePolicy\")) {\n                throw new IllegalStateException(\n                        \"Caller is not the system or part of the active/managed user\");\n            }\n```",
+      "parentUuid": "36a66d88_73aec889",
+      "range": {
+        "startLine": 4287,
+        "startChar": 0,
+        "endLine": 4287,
+        "endChar": 63
+      },
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6716d5d6_60821392",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 4
