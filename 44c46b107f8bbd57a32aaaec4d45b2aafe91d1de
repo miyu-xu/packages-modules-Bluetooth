@@ -147,6 +147,24 @@
       "parentUuid": "5808e618_fb783712",
       "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95932d39_ddf4d7fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-06T22:54:28Z",
+      "side": 1,
+      "message": "Almost all existing system test cases which perform connection cover this already.",
+      "parentUuid": "6fa19e41_06ac547e",
+      "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
