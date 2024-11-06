@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1646140_6b515e63",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-06T16:19:56Z",
+      "side": 1,
+      "message": "Lack of flag and code is not flagged at all.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f16a36_32af8943",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3791,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-06T16:19:56Z",
+      "side": 1,
+      "message": "If you add another loop (for) then you cannot remove iterator here, only continue. Same in below continuous.",
+      "range": {
+        "startLine": 3791,
+        "startChar": 0,
+        "endLine": 3791,
+        "endChar": 42
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba6fcc7d_731c1d37",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3874,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-06T16:19:56Z",
+      "side": 1,
+      "message": "It should be outside the for loop.",
+      "range": {
+        "startLine": 3873,
+        "startChar": 0,
+        "endLine": 3874,
+        "endChar": 34
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
