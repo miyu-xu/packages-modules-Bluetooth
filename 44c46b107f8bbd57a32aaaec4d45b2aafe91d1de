@@ -165,6 +165,24 @@
       "parentUuid": "6fa19e41_06ac547e",
       "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f6c917_d0e55842",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-06T22:56:09Z",
+      "side": 1,
+      "message": "Then how did this bug happen in the first place if it\u0027s already covered by tests?",
+      "parentUuid": "95932d39_ddf4d7fb",
+      "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
