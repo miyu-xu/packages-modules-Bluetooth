@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b5a172_0dc56533",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 4637,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-06T20:55:04Z",
+      "side": 1,
+      "message": "@link both of these",
+      "range": {
+        "startLine": 4637,
+        "startChar": 28,
+        "endLine": 4637,
+        "endChar": 83
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12dff714_a544c4b8",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 4656,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-06T20:55:04Z",
+      "side": 1,
+      "message": "insufficient permissions should not throw an IOException. It should throw a SecurityException instead",
+      "range": {
+        "startLine": 4655,
+        "startChar": 74,
+        "endLine": 4656,
+        "endChar": 22
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f00ae40f_ba2cb113",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 3242,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-06T20:55:04Z",
+      "side": 1,
+      "message": "should be SecurityException for insufficient permissions.",
+      "range": {
+        "startLine": 3241,
+        "startChar": 77,
+        "endLine": 3242,
+        "endChar": 23
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "353b6685_d6b8e577",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-06T20:55:04Z",
+      "side": 1,
+      "message": "is there a range of ints? Should we use @IntRange for this?",
+      "range": {
+        "startLine": 75,
+        "startChar": 11,
+        "endLine": 75,
+        "endChar": 14
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cf4bc1_f13f2132",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-06T20:55:04Z",
+      "side": 1,
+      "message": "is there an acceptable range of this int?",
+      "range": {
+        "startLine": 217,
+        "startChar": 35,
+        "endLine": 217,
+        "endChar": 38
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

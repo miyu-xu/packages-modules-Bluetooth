@@ -1432,6 +1432,30 @@
       },
       "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98100e0a_7361c876",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-06T20:55:04Z",
+      "side": 1,
+      "message": "In general, for something like this, where it\u0027s a developer error, we recommend failing as fast as possible.\n\nSo I would generally recommend throwing an exception here if there\u0027s an invalid configuration. That also has the benefit that when it fails, it will be more obvious where to fix the issue.",
+      "parentUuid": "646dd741_d9f36c51",
+      "range": {
+        "startLine": 233,
+        "startChar": 39,
+        "endLine": 233,
+        "endChar": 44
+      },
+      "revId": "2201ea94256c547f9f7c7ad9d62b528c0da6365e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
