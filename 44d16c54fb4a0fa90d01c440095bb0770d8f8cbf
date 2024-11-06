@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2877bd_afa28085",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-06T23:35:08Z",
+      "side": 1,
+      "message": "Can you remove `API` as in android this mean a very specific thing and this is not what this CL is about here.\n\nMaybe rename the description to mention this is bumble and rfcomm related only ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "44d16c54fb4a0fa90d01c440095bb0770d8f8cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e9d1fc_d7944ac8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-06T23:35:08Z",
+      "side": 1,
+      "message": "My first thought seeing this method is that we are rewriting the wheel.\nIs this the first time ever we are using an address in bumble test ?\n\nPlus does this method works for any address ? I have doubt about handling 0xFF that would be a negative Byte value instead of 255\n\n---\n\n\nCan we use some kotlin specific method ?\n\n```\nval format \u003d HexFormat {\n    bytes {\n        byteSeparator \u003d \":\"\n    }\n}\nreturn bdAddr.hexToByteArray(format).toByteString()\n```\n\nplease double check as we may need to specify some more parameter in the format ?",
+      "range": {
+        "startLine": 513,
+        "startChar": 2,
+        "endLine": 531,
+        "endChar": 5
+      },
+      "revId": "44d16c54fb4a0fa90d01c440095bb0770d8f8cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
