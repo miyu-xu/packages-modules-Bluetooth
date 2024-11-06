@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5abd1f29_8ef15126",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T00:08:58Z",
+      "side": 1,
+      "message": "If we\u0027re changing the return to be non-boolean, can we update the name accoringly?\nisDuplicateSourceAddition -\u003e checkAndGetDuplicatedSourceId or something",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34157cf3_4593277d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T00:08:58Z",
+      "side": 1,
+      "message": "synchronized (mStateMachines) {\n            stateMachine \u003d getOrCreateStateMachine(device);\n        }\n        if (stateMachine \u003d\u003d null) {",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021de75b_e7a3cfe0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3849,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T00:08:58Z",
+      "side": 1,
+      "message": "in this case, we\u0027re not removing the iteration any more\n\niterator.remove();",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a6bd6c_9909fbc8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T00:08:58Z",
+      "side": 1,
+      "message": "in case of UPDATE_BCAST_SOURCE + paSync \u003d BassConstants.INVALID_PA_SYNC_VALUE, we should use the original RS value \u0027xistingState.getBisSyncState().get(i).intValue();\u0027.\n\nIf we used 0 here, that would break the modify source operation.\n\nwe had some offline discussions around this issue, but I\u0027m still not clear why metadata doesn\u0027t match the RS in this case leading to the out-of-bound exception. Is the root cause in somewhere else?",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
