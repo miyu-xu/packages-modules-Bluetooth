@@ -70,6 +70,24 @@
       "parentUuid": "2dc3e3a4_f4b51704",
       "revId": "72d193930b245d86542f9612521b2bd68f5acb39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9171917b_e8304f2e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-06T22:33:52Z",
+      "side": 1,
+      "message": "You can add that following a call to this helper method, it does not have to be in the same condition block.",
+      "parentUuid": "b0d6c20e_cdf7422e",
+      "revId": "72d193930b245d86542f9612521b2bd68f5acb39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
