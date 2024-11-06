@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c50bd5_3d015bac",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3564,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-06T20:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cedc9439_e22e254c",
+      "range": {
+        "startLine": 3564,
+        "startChar": 12,
+        "endLine": 3564,
+        "endChar": 54
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "892380e5_1acc31ca",
@@ -275,6 +299,30 @@
       "side": 1,
       "message": "Let\u0027s just document that this function is returning true by default in case of error.",
       "parentUuid": "d18a5ce2_dfedfe13",
+      "range": {
+        "startLine": 3612,
+        "startChar": 8,
+        "endLine": 3612,
+        "endChar": 20
+      },
+      "revId": "e860d22648b213a32c93eb4f85d46c0db34507a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57590ea0_acc49a5b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3612,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-06T20:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac362c0f_f635a98e",
       "range": {
         "startLine": 3612,
         "startChar": 8,
