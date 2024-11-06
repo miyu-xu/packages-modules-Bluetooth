@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00aa5be_79c4decd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-06T08:25:30Z",
+      "side": 1,
+      "message": "This change should check for remote\u0027s A2DP sync support before delaying the play event. If two remote devices are connected and one doesn\u0027t support A2DP sync and is used only to control media, it should be able to start media playing without SHO.",
+      "revId": "f5ffd8c319ecd0a233ac8cc9c7139da439d57aac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
