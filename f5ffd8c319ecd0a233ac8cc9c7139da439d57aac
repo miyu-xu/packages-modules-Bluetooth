@@ -33,6 +33,52 @@
       "message": "Please modify the commit message to rename `Bugs` to `Bug`",
       "revId": "f5ffd8c319ecd0a233ac8cc9c7139da439d57aac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa7d62d_9cd6924f",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-06T08:28:24Z",
+      "side": 1,
+      "message": "This is not related with the delayed play and is a significant behavioral change, this should be done and reviewed in a separate commit.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 5
+      },
+      "revId": "f5ffd8c319ecd0a233ac8cc9c7139da439d57aac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86fc095d_5fc2dadd",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-06T08:28:24Z",
+      "side": 1,
+      "message": "Same, this is not related with the delayed play and is a significant behavioral change, this should be done and reviewed in a separate commit.",
+      "range": {
+        "startLine": 900,
+        "startChar": 0,
+        "endLine": 903,
+        "endChar": 19
+      },
+      "revId": "f5ffd8c319ecd0a233ac8cc9c7139da439d57aac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
