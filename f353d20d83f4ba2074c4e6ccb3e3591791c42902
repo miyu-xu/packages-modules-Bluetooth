@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19d3d39b_c446173a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-06T20:17:25Z",
+      "side": 1,
+      "message": "L2CAP_FLOW_CONTROL_CREDIT_IND does not actually use a response, it might be ok to use any value for the identifier.",
+      "revId": "f353d20d83f4ba2074c4e6ccb3e3591791c42902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
