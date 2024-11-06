@@ -45,11 +45,14 @@
 #include "bta/sys/bta_sys.h"
 #include "btif/include/btif_dm.h"
 #include "btif/include/stack_manager_t.h"
+#include "common/metrics.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/entry.h"
+#include "main/shim/helpers.h"
+#include "metrics/bluetooth_event.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
 #include "stack/gatt/connection_manager.h"
@@ -801,6 +804,10 @@ static void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport, ui
     log::warn("Unable to allocate device resources for new connection");
     return;
   }
+  bluetooth::os::LogMetricBluetoothEvent(
+          ToGdAddress(bd_addr), android::bluetooth::EventType::CONNECTION_TRANSPORT,
+          transport == BT_TRANSPORT_BR_EDR ? android::bluetooth::State::CLASSIC : android::bluetooth::State::LE);
+
   log::info("Acl connected peer:{} transport:{} handle:{}", bd_addr, bt_transport_text(transport),
             acl_handle);
   device->pref_role = BTA_ANY_ROLE;
