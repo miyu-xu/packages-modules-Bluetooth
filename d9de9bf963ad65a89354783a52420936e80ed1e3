@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e40e7f17_7721f80a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T23:13:08Z",
+      "side": 1,
+      "message": "i got the synchronized part.\nbut I think we still need to check the null here?\nstateMachine is also being used in below codes other than areValidParametersToModifySource.",
+      "parentUuid": "eb0256eb_3b163680",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "because in this method there is no iterator. It stop execution and iterator is removed in place when it is used. Line: 3836",
       "parentUuid": "021de75b_e7a3cfe0",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc764367_b88d0755",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3849,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T23:13:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5d722c4a_0cc235c9",
       "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "got it. Still there is need to guard reading from existingState if there is no subgroups so I put it at the end as it was before your change.",
       "parentUuid": "09a6bd6c_9909fbc8",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99735c76_f1aa67a2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T23:13:08Z",
+      "side": 1,
+      "message": "talked offline with some suggestions.",
+      "parentUuid": "0ed7e24f_9ee0c61a",
       "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
