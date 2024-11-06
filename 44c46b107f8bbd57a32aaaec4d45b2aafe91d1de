@@ -111,6 +111,24 @@
       "message": "Can you provide a corresponding automated test?",
       "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5808e618_fb783712",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-06T21:31:26Z",
+      "side": 1,
+      "message": "There is no automated test for this.\nThis function is called multiple times for each device before, during and after the connection. It would have been quite apparent if it did not work properly.",
+      "parentUuid": "224fcdb8_b329f714",
+      "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
