@@ -49,6 +49,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c08f00b8_3d977fae",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 4674,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-06T22:43:38Z",
+      "side": 1,
+      "message": "I think we can replace this part with the same way with BluetoothSocket.TYPE_LE.\n\n```\nsocket \u003d\n        new BluetoothServerSocket(\n                    settings.getSocketType(),\n                    settings.isAuthenticationRequired(),\n                    settings.isEncryptionRequired(),\n                    new ParcelUuid(settings.getRfcommUuid()));\nsocket.setServiceName(settings.getRfcommServiceName());\n```",
+      "range": {
+        "startLine": 4670,
+        "startChar": 0,
+        "endLine": 4674,
+        "endChar": 53
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f2f91e70_86763d00",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothAdapter.java",
+              "range": {
+                "startLine": 4670,
+                "startChar": 0,
+                "endLine": 4675,
+                "endChar": 0
+              },
+              "replacement": "            socket \u003d\n                    new BluetoothServerSocket(\n                            settings.getSocketType(),\n                            settings.isAuthenticationRequired(),\n                            settings.isEncryptionRequired(),\n                            SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,\n                            false,\n                            false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f00ae40f_ba2cb113",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 49
