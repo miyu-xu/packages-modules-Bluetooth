@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86c40cb2_893ca1cd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "General comment for this file, can we move the changes with leaudioBroadcastPrimaryGroupSelection flag to another separate CL? so we can keep two flags control the CLs independently.",
+      "revId": "e843e39182f2b1906c9c4c409adfd0cb5e08a51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6069bb4_506954f5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 5277,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "check FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP and if disabled return?",
+      "revId": "e843e39182f2b1906c9c4c409adfd0cb5e08a51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c81ce72_3f311da2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 5337,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "check FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP and if disabled return INVALID group id?",
+      "revId": "e843e39182f2b1906c9c4c409adfd0cb5e08a51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d61314f_c2843d64",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1457,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "```suggestion\n     * @return groupId the ID of the fallback group, {@link #GROUP_ID_INVALID} when adapter is disabled\n```",
+      "range": {
+        "startLine": 1455,
+        "startChar": 0,
+        "endLine": 1457,
+        "endChar": 23
+      },
+      "revId": "e843e39182f2b1906c9c4c409adfd0cb5e08a51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

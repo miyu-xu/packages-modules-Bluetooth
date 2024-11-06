@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c5cdf7_234bfaa3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "Instead of setting flags here, this is the preferred way of test flagging.\n\n    @Test\n    @EnableFlags({\n        Flags.FLAG_LEAUDIO_USE_AUDIO_MODE_LISTENER,\n        Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION\n    })",
+      "revId": "82dbb80bb9d4f6f702497415beaa38d26e6c4daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "916a950c_e803436e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3623,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "@Test\n@EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION)",
+      "revId": "82dbb80bb9d4f6f702497415beaa38d26e6c4daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcb1b8de_047352c3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1409,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "nit: Sets Broadcast to Unicast fallback group.\n```suggestion\n     * Sets Broadcast to Unicast fallback group.\n```",
+      "revId": "82dbb80bb9d4f6f702497415beaa38d26e6c4daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d027a8_73a98ad4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-06T21:57:52Z",
+      "side": 1,
+      "message": "nit: Gets Broadcast to Unicast fallback group.\n```suggestion\n     * Gets Broadcast to Unicast fallback group.\n```",
+      "revId": "82dbb80bb9d4f6f702497415beaa38d26e6c4daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
