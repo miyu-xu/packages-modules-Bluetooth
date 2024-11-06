@@ -19,6 +19,7 @@ package com.android.bluetooth.btservice.storage;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -83,8 +84,6 @@ public final class DatabaseManagerTest {
     private BluetoothDevice mTestDevice;
     private BluetoothDevice mTestDevice2;
     private BluetoothDevice mTestDevice3;
-    private BluetoothDevice mTestDevice4;
-    private BluetoothDevice mTestDevice5;
 
     private static final String LOCAL_STORAGE = "LocalStorage";
     private static final String TEST_BT_ADDR = "11:22:33:44:55:66";
@@ -94,7 +93,7 @@ public final class DatabaseManagerTest {
     private static final String OTHER_BT_ADDR2 = "22:22:22:22:22:22";
     private static final String DB_NAME = "test_db";
     private static final int A2DP_SUPPORT_OP_CODEC_TEST = 0;
-    private static final int A2DP_ENABLED_OP_CODEC_TEST = 1;
+    private static final int A2DP_ENALBED_OP_CODEC_TEST = 1;
     private static final int MAX_META_ID = 16;
     private static final byte[] TEST_BYTE_ARRAY = "TEST_VALUE".getBytes();
 
@@ -114,8 +113,6 @@ public final class DatabaseManagerTest {
         mTestDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR);
         mTestDevice2 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR2);
         mTestDevice3 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR3);
-        mTestDevice4 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(OTHER_BT_ADDR1);
-        mTestDevice5 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(OTHER_BT_ADDR2);
 
         // Create a memory database for DatabaseManager instead of use a real database.
         mDatabase =
@@ -134,7 +131,7 @@ public final class DatabaseManagerTest {
 
         BluetoothDevice[] bondedDevices = {mTestDevice};
         doReturn(bondedDevices).when(mAdapterService).getBondedDevices();
-        doNothing().when(mAdapterService).onMetadataChanged(any(), anyInt(), any());
+        doNothing().when(mAdapterService).metadataChanged(anyString(), anyInt(), any(byte[].class));
 
         restartDatabaseManagerHelper();
     }
@@ -274,44 +271,44 @@ public final class DatabaseManagerTest {
 
         // Cases of device not in database
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 false,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN);
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 false,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN);
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 false,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN);
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 false,
                 badValue,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN);
 
         // Cases of device already in database
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 true,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN);
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 true,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED);
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 true,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED);
         testSetGetA2dpOptionalCodecsCase(
-                A2DP_ENABLED_OP_CODEC_TEST,
+                A2DP_ENALBED_OP_CODEC_TEST,
                 true,
                 badValue,
                 BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN);
@@ -336,7 +333,7 @@ public final class DatabaseManagerTest {
         TestUtils.waitForLooperToFinishScheduledTask(mDatabaseManager.getHandlerLooper());
 
         // Check removed device report metadata changed to null
-        verify(mAdapterService).onMetadataChanged(mTestDevice4, 0, null);
+        verify(mAdapterService).metadataChanged(OTHER_BT_ADDR1, 0, null);
 
         List<Metadata> list = mDatabase.load();
 
@@ -377,14 +374,18 @@ public final class DatabaseManagerTest {
         mDatabase.insert(otherData2);
 
         // Add OTHER_BT_ADDR1 OTHER_BT_ADDR2 to bonded devices
-        BluetoothDevice[] bondedDevices = {mTestDevice4, mTestDevice5};
+        BluetoothDevice otherDevice1 =
+                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(OTHER_BT_ADDR1);
+        BluetoothDevice otherDevice2 =
+                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(OTHER_BT_ADDR2);
+        BluetoothDevice[] bondedDevices = {otherDevice1, otherDevice2};
         doReturn(bondedDevices).when(mAdapterService).getBondedDevices();
 
         mDatabaseManager.removeUnusedMetadata();
         TestUtils.waitForLooperToFinishScheduledTask(mDatabaseManager.getHandlerLooper());
 
         // Check TEST_BT_ADDR report metadata changed to null
-        verify(mAdapterService).onMetadataChanged(mTestDevice, 0, null);
+        verify(mAdapterService).metadataChanged(TEST_BT_ADDR, 0, null);
 
         // Check number of metadata in the database
         List<Metadata> list = mDatabase.load();
@@ -1691,14 +1692,14 @@ public final class DatabaseManagerTest {
             mDatabase.insert(data);
             Assert.assertEquals(
                     expectedResult, mDatabaseManager.setCustomMeta(mTestDevice, key, testValue));
-            verify(mAdapterService).onMetadataChanged(mTestDevice, key, testValue);
+            verify(mAdapterService).metadataChanged(TEST_BT_ADDR, key, testValue);
             verifyTime++;
         }
         Assert.assertEquals(
                 expectedResult, mDatabaseManager.setCustomMeta(mTestDevice, key, value));
         if (expectedResult) {
             // Check for callback and get value
-            verify(mAdapterService, times(verifyTime)).onMetadataChanged(mTestDevice, key, value);
+            verify(mAdapterService, times(verifyTime)).metadataChanged(TEST_BT_ADDR, key, value);
             Assert.assertEquals(value, mDatabaseManager.getCustomMeta(mTestDevice, key));
         } else {
             Assert.assertNull(mDatabaseManager.getCustomMeta(mTestDevice, key));
@@ -1840,7 +1841,9 @@ public final class DatabaseManagerTest {
                     return null;
                 };
 
-        doAnswer(answer).when(mAdapterService).onMetadataChanged(any(), anyInt(), any());
+        doAnswer(answer)
+                .when(mAdapterService)
+                .metadataChanged(any(String.class), anyInt(), any(byte[].class));
 
         mDatabaseManager.setCustomMeta(mTestDevice, key, newValue);
 

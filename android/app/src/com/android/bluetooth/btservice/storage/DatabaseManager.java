@@ -244,7 +244,7 @@ public class DatabaseManager {
             Metadata data = mMetadataCache.get(address);
             byte[] oldValue = data.getCustomizedMeta(key);
             if (oldValue != null && Arrays.equals(oldValue, newValue)) {
-                Log.d(TAG, "setCustomMeta: metadata not changed.");
+                Log.v(TAG, "setCustomMeta: metadata not changed.");
                 return true;
             }
             logManufacturerInfo(device, key, newValue);
@@ -253,7 +253,7 @@ public class DatabaseManager {
 
             updateDatabase(data);
         }
-        mAdapterService.onMetadataChanged(device, key, newValue);
+        mAdapterService.metadataChanged(address, key, newValue);
         return true;
     }
 
@@ -1198,12 +1198,13 @@ public class DatabaseManager {
                                 && !Arrays.asList(bondedDevices).stream()
                                         .anyMatch(device -> address.equals(device.getAddress()))) {
                             List<Integer> list = metadata.getChangedCustomizedMeta();
-                            BluetoothDevice device =
-                                    BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
                             for (int key : list) {
-                                mAdapterService.onMetadataChanged(device, key, null);
+                                mAdapterService.metadataChanged(address, key, null);
                             }
-                            Log.i(TAG, "remove unpaired device from database " + device);
+                            Log.i(
+                                    TAG,
+                                    "remove unpaired device from database "
+                                            + metadata.getAnonymizedAddress());
                             deleteDatabase(mMetadataCache.get(address));
                         }
                     });
