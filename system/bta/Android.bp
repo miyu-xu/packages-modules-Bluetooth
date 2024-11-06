@@ -111,6 +111,7 @@ cc_library_static {
         "le_audio/client.cc",
         "le_audio/client_parser.cc",
         "le_audio/codec_interface.cc",
+        "le_audio/codec_lc3.cc",
         "le_audio/codec_manager.cc",
         "le_audio/content_control_id_keeper.cc",
         "le_audio/device_groups.cc",

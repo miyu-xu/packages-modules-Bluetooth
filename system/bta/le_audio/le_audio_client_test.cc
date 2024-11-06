@@ -1468,6 +1468,7 @@ protected:
     SetUpMockAudioHal();
     SetUpMockGroups();
     SetUpMockGatt();
+    SetUpMockCodecFactory();
     SetUpMockCodecManager(codec_location);
 
     stay_at_qos_config_in_start_stream = false;
@@ -1482,6 +1483,21 @@ protected:
 
     bluetooth::le_audio::AudioSetConfigurationProvider::Initialize(codec_location);
     ASSERT_FALSE(LeAudioClient::IsLeAudioClientRunning());
+  }
+
+  void SetUpMockCodecFactory() {
+    output_channel_data_.resize(1);
+
+    ON_CALL(mock_codec_factory_, Create(_))
+            .WillByDefault([this](const types::LeAudioCodecId& /*codec_id*/)
+                                   -> std::unique_ptr<CodecInterface> {
+              auto mock = new MockCodecInterface();
+              ON_CALL(*mock, GetDecodedSamples())
+                      .WillByDefault(testing::ReturnRef(this->output_channel_data_));
+              return std::unique_ptr<CodecInterface>(mock);
+            });
+
+    MockCodecFactory::SetMockInstanceForTesting(&mock_codec_factory_);
   }
 
   void SetUpMockCodecManager(types::CodecLocation location) {
@@ -2704,6 +2720,9 @@ protected:
   bluetooth::le_audio::CodecManager* codec_manager_;
   MockCodecManager* mock_codec_manager_;
 
+  NiceMock<MockCodecFactory> mock_codec_factory_;
+  std::vector<int16_t> output_channel_data_;
+
   uint16_t available_snk_context_types_ = 0xffff;
   uint16_t available_src_context_types_ = 0xffff;
   uint16_t supported_snk_context_types_ = 0xffff;
@@ -2772,8 +2791,6 @@ protected:
   }
 
   void TearDown() override {
-    MockCodecInterface::ClearMockInstanceHookList();
-
     // Clear the default actions before the parent class teardown is called
     Mock::VerifyAndClear(&mock_btm_interface_);
     Mock::VerifyAndClear(&mock_gatt_interface_);
@@ -12410,22 +12427,21 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
   auto const max_codec_frames_per_sdu = 2;
   uint32_t data_len = 1920;
 
-  // Register a on-the-fly hook for codec interface mock mutation to prepare the
-  // codec mock for encoding
-  std::list<MockCodecInterface*> codec_mocks;
-  MockCodecInterface::RegisterMockInstanceHook([&](MockCodecInterface* mock, bool is_destroyed) {
-    if (is_destroyed) {
-      log::debug("Codec Interface Destroyed: {}", (long)mock);
-      codec_mocks.remove(mock);
-    } else {
-      log::debug("Codec Interface Created: {}", (long)mock);
-      ON_CALL(*mock, GetNumOfSamplesPerChannel()).WillByDefault(Return(960));
-      ON_CALL(*mock, GetNumOfBytesPerSample()).WillByDefault(Return(2));  // 16bits samples
-      ON_CALL(*mock, Encode(_, _, _, _, _))
-              .WillByDefault(Return(CodecInterface::Status::STATUS_OK));
-      codec_mocks.push_back(mock);
-    }
-  });
+  EXPECT_CALL(mock_codec_factory_, Create(_))
+          .Times(AtLeast(1))
+          .WillOnce([this](const types::LeAudioCodecId& /*codec_id*/)
+                            -> std::unique_ptr<CodecInterface> {
+            auto mock = new MockCodecInterface();
+
+            ON_CALL(*mock, GetDecodedSamples())
+                    .WillByDefault(testing::ReturnRef(this->output_channel_data_));
+            ON_CALL(*mock, GetNumOfSamplesPerChannel()).WillByDefault(Return(960));
+            ON_CALL(*mock, GetNumOfBytesPerSample()).WillByDefault(Return(2));  // 16bits samples
+            ON_CALL(*mock, Encode(_, _, _, _, _))
+                    .WillByDefault(Return(CodecInterface::Status::STATUS_OK));
+
+            return std::unique_ptr<CodecInterface>(mock);
+          });
 
   // Add a frame block PAC passing provider
   bool is_fb2_passed_as_requirement = false;
@@ -12567,8 +12583,6 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
   constexpr uint8_t cis_count_in = 0;
   TestAudioDataTransfer(group_id, cis_count_out, cis_count_in,
                         data_len * device_configured_codec_frame_blocks_per_sdu);
-
-  ASSERT_NE(codec_mocks.size(), 0ul);
 
   // Verify that the initially started session was updated with the new params
   ASSERT_EQ(codec_manager_stream_params.sink.codec_frames_blocks_per_sdu, max_codec_frames_per_sdu);

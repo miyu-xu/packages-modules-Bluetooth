@@ -1242,7 +1242,7 @@ private:
       /* TODO: We should act smart and reuse current configurations */
       sw_enc_.clear();
       while (sw_enc_.size() != subgroup_config.GetNumChannelsTotal()) {
-        auto codec = bluetooth::le_audio::CodecInterface::CreateInstance(codec_id);
+        auto codec = bluetooth::le_audio::CodecFactory::Get().Create(codec_id);
 
         auto codec_status = codec->InitEncoder(codec_config, codec_config);
         if (codec_status != bluetooth::le_audio::CodecInterface::Status::STATUS_OK) {
