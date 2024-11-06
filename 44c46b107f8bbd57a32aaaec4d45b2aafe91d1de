@@ -129,6 +129,24 @@
       "parentUuid": "224fcdb8_b329f714",
       "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa19e41_06ac547e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-06T22:39:26Z",
+      "side": 1,
+      "message": "Sorry my question was: can you build one to verify your bug fix?",
+      "parentUuid": "5808e618_fb783712",
+      "revId": "44c46b107f8bbd57a32aaaec4d45b2aafe91d1de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
