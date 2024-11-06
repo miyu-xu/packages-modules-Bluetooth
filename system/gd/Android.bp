@@ -189,6 +189,7 @@ cc_library_static {
     static_libs: [
         "bluetooth_flags_c_lib",
         "libchrome",
+        "libdoubleconversion",
     ],
 }
 
@@ -212,6 +213,7 @@ cc_library_static {
         "libbluetooth-types",
         "libbt-common",
         "libchrome",
+        "libdoubleconversion",
         "libosi",
     ],
 }
@@ -235,6 +237,7 @@ cc_library_static {
         "libbluetooth-types",
         "libbt-common",
         "libchrome",
+        "libdoubleconversion",
         "libosi",
     ],
 }
@@ -288,6 +291,7 @@ cc_binary {
         "libbluetooth_smp_pdl",
         "libbt-common",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libflatbuffers-cpp",
         "libosi",
@@ -364,6 +368,7 @@ cc_test {
         "bluetooth_flags_c_lib_for_test",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
         "libgmock",
         "server_configurable_flags",
     ],
@@ -458,6 +463,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libflagtest",
         "libflatbuffers-cpp",
@@ -539,6 +545,7 @@ cc_defaults {
         "libbluetooth_log",
         "libbt-common",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "libgtest",
@@ -629,6 +636,7 @@ cc_benchmark {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
         "liblog",
         "server_configurable_flags",
     ],
