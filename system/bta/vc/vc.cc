@@ -1340,8 +1340,12 @@ public:
   }
 
   void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
-                             bool automatic) override {
-    bluetooth::log::info("{}, input_id={:#x}", address, ext_input_id);
+                             bluetooth::aics::GainMode gain_mode) override {
+    bluetooth::log::info("{}, input_id={:#x} gain_mode={:#x}", address, ext_input_id,
+                         (uint8_t)gain_mode);
+    bluetooth::log::assert_that(gain_mode != bluetooth::aics::GainMode::MANUAL_ONLY &&
+                                        gain_mode != bluetooth::aics::GainMode::AUTOMATIC_ONLY,
+                                "Invalid gain_mode value");
 
     VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
     if (!device) {
@@ -1352,8 +1356,9 @@ public:
 
     if (!device->ExtAudioInControlPointOperation(
                 ext_input_id,
-                automatic ? kVolumeInputControlPointOpcodeSetAutoGainMode
-                          : kVolumeInputControlPointOpcodeSetManualGainMode,
+                gain_mode == bluetooth::aics::GainMode::AUTOMATIC
+                        ? kVolumeInputControlPointOpcodeSetAutoGainMode
+                        : kVolumeInputControlPointOpcodeSetManualGainMode,
                 nullptr,
                 [](uint16_t connection_id, tGATT_STATUS status, uint16_t handle, uint16_t /*len*/,
                    const uint8_t* /*value*/, void* data) {
@@ -1368,8 +1373,10 @@ public:
     }
   }
 
-  void SetExtAudioInGainMute(const RawAddress& address, uint8_t ext_input_id, bool mute) override {
-    bluetooth::log::info("{}, input_id={:#x}", address, ext_input_id);
+  void SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id,
+                         bluetooth::aics::Mute mute) override {
+    bluetooth::log::info("{}, input_id={:#x} mute{:#x}", address, ext_input_id, (uint8_t)mute);
+    bluetooth::log::assert_that(mute != bluetooth::aics::Mute::DISABLED, "Invalid mute value");
 
     VolumeControlDevice* device = volume_control_devices_.FindByAddress(address);
     if (!device) {
@@ -1380,7 +1387,8 @@ public:
 
     if (!device->ExtAudioInControlPointOperation(
                 ext_input_id,
-                mute ? kVolumeInputControlPointOpcodeMute : kVolumeInputControlPointOpcodeUnmute,
+                mute == bluetooth::aics::Mute::MUTED ? kVolumeInputControlPointOpcodeMute
+                                                     : kVolumeInputControlPointOpcodeUnmute,
                 nullptr,
                 [](uint16_t connection_id, tGATT_STATUS status, uint16_t handle, uint16_t /*len*/,
                    const uint8_t* /*value*/, void* data) {

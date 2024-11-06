@@ -14,6 +14,7 @@
 #pragma once
 
 #ifndef TARGET_FLOSS
+#include <bluetooth/constants/aics/GainMode.h>
 #include <bluetooth/constants/aics/Mute.h>
 #endif
 
@@ -23,9 +24,16 @@ namespace bluetooth::aics {
 
 #ifndef TARGET_FLOSS
 using Mute = bluetooth::constants::aics::Mute;
+using GainMode = bluetooth::constants::aics::GainMode;
 #else
 // TODO: b/376941621 Support the aidl generation in FLOSS
-enum class Mute : int8_t { NOT_MUTED = 0, MUTED = 1, DISABLED = 2 };
+enum class Mute : uint8_t { NOT_MUTED = 0x00, MUTED = 0x01, DISABLED = 0x02 };
+enum class GainMode : uint8_t {
+  MANUAL_ONLY = 0x00,
+  AUTOMATIC_ONLY = 0x01,
+  MANUAL = 0x02,
+  AUTOMATIC = 0x03
+};
 #endif
 
 /** Check if the data is a correct Mute value */
@@ -33,4 +41,10 @@ bool isValidAudioInputMuteValue(uint8_t data);
 
 /** Convert valid data into a Mute value. Abort if data is not valid */
 Mute parseMuteField(uint8_t data);
+
+/** Check if the data is a correct GainMode value */
+bool isValidAudioInputGainModeValue(uint8_t data);
+
+/** Convert valid data into a Mute value. Abort if data is not valid */
+GainMode parseGainModeField(uint8_t data);
 }  // namespace bluetooth::aics

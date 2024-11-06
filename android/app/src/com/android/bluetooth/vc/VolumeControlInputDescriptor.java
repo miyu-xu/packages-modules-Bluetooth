@@ -143,8 +143,8 @@ class VolumeControlInputDescriptor {
         }
 
         desc.mGainSetting = gainSetting;
-        desc.mGainMode = gainMode;
         desc.mMute = mute;
+        desc.mGainMode = gainMode;
     }
 
     void setGainSetting(int id, int gainSetting, VolumeControlNativeInterface nativeInterface) {
@@ -156,6 +156,32 @@ class VolumeControlInputDescriptor {
             throw new IllegalArgumentException("Illegal gainSetting argument: " + gainSetting);
         }
         if (!nativeInterface.setExtAudioInGainSetting(mDevice, id, gainSetting)) {
+            // TODO call error callback if it was registered
+        }
+    }
+
+    void setMute(int id, int mute, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+
+        Descriptor desc = mVolumeInputs[id];
+        if (desc.mMute == Mute.DISABLED) {
+            throw new IllegalStateException("Audio input is currently disabled");
+        }
+
+        if (!nativeInterface.setExtAudioInMute(mDevice, id, mute)) {
+            // TODO call error callback if it was registered
+        }
+    }
+
+    void setGainMode(int id, int gainMode, VolumeControlNativeInterface nativeInterface) {
+        if (!isValidId(id)) return;
+
+        Descriptor desc = mVolumeInputs[id];
+        if (desc.mGainMode == GainMode.MANUAL_ONLY || desc.mGainMode == GainMode.AUTOMATIC_ONLY) {
+            throw new IllegalStateException("Audio input gain mode is: " + desc.mGainMode);
+        }
+
+        if (!nativeInterface.setExtAudioInGainMode(mDevice, id, gainMode)) {
             // TODO call error callback if it was registered
         }
     }

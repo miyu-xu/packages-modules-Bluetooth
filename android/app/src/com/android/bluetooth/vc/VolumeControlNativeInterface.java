@@ -138,12 +138,12 @@ public class VolumeControlNativeInterface {
         return setExtAudioInGainSettingNative(getByteAddress(device), externalInputId, gainSetting);
     }
 
-    boolean setExtAudioInGainMode(BluetoothDevice device, int externalInputId, boolean autoMode) {
-        return setExtAudioInGainModeNative(getByteAddress(device), externalInputId, autoMode);
+    boolean setExtAudioInGainMode(BluetoothDevice device, int externalInputId, int gainMode) {
+        return setExtAudioInGainModeNative(getByteAddress(device), externalInputId, gainMode);
     }
 
-    boolean setExtAudioInGainMute(BluetoothDevice device, int externalInputId, boolean mute) {
-        return setExtAudioInGainMuteNative(getByteAddress(device), externalInputId, mute);
+    boolean setExtAudioInMute(BluetoothDevice device, int externalInputId, int mute) {
+        return setExtAudioInMuteNative(getByteAddress(device), externalInputId, mute);
     }
 
     // Native methods that call into the JNI interface
@@ -182,26 +182,20 @@ public class VolumeControlNativeInterface {
     private native boolean setExtAudioOutDescriptionNative(
             byte[] address, int externalOutputId, String descr);
 
-    /* Native methods for external audio inputs */
+    /* Native methods for audio inputs control service */
     private native boolean getExtAudioInStateNative(byte[] address, int externalInputId);
 
     private native boolean getExtAudioInStatusNative(byte[] address, int externalInputId);
-
     private native boolean getExtAudioInTypeNative(byte[] address, int externalInputId);
-
     private native boolean getExtAudioInGainPropsNative(byte[] address, int externalInputId);
-
     private native boolean getExtAudioInDescriptionNative(byte[] address, int externalInputId);
-
     private native boolean setExtAudioInDescriptionNative(
             byte[] address, int externalInputId, String descr);
-
     private native boolean setExtAudioInGainSettingNative(
             byte[] address, int externalInputId, int gainSetting);
 
     private native boolean setExtAudioInGainModeNative(
-            byte[] address, int externalInputId, boolean modeAuto);
+            byte[] address, int externalInputId, int gainMode);
 
-    private native boolean setExtAudioInGainMuteNative(
-            byte[] address, int externalInputId, boolean mute);
+    private native boolean setExtAudioInMuteNative(byte[] address, int externalInputId, int mute);
 }

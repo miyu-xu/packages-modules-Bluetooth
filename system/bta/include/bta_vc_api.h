@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include <aics/api.h>
 #include <hardware/bt_vc.h>
 
 #include <string>
@@ -69,7 +70,7 @@ public:
   virtual void SetExtAudioInGainSetting(const RawAddress& address, uint8_t ext_input_id,
                                         int8_t gain_setting) = 0;
   virtual void SetExtAudioInGainMode(const RawAddress& address, uint8_t ext_input_id,
-                                     bool auto_mode) = 0;
-  virtual void SetExtAudioInGainMute(const RawAddress& address, uint8_t ext_input_id,
-                                     bool mute) = 0;
+                                     bluetooth::aics::GainMode gain_mode) = 0;
+  virtual void SetExtAudioInMute(const RawAddress& address, uint8_t ext_input_id,
+                                 bluetooth::aics::Mute mute) = 0;
 };

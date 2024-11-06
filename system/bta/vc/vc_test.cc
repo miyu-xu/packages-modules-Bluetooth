@@ -1868,21 +1868,21 @@ TEST_F(VolumeControlValueSetTest, test_set_ext_audio_in_gain_setting) {
 }
 
 TEST_F(VolumeControlValueSetTest, test_set_ext_audio_in_gain_mode) {
-  std::vector<uint8_t> mode_manual({0x04, 0x00});
+  std::vector<uint8_t> mode_manual({0x04, 0x00});  // 0x04 is the opcode for Manual
   EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id, 0x005c, mode_manual, GATT_WRITE, _, _));
-  VolumeControl::Get()->SetExtAudioInGainMode(test_address, 1, false);
-  std::vector<uint8_t> mode_automatic({0x05, 0x00});
+  VolumeControl::Get()->SetExtAudioInGainMode(test_address, 1, GainMode::MANUAL);
+  std::vector<uint8_t> mode_automatic({0x05, 0x00});  // 0x05 is the opcode for Automatic
   EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id, 0x005c, mode_automatic, GATT_WRITE, _, _));
-  VolumeControl::Get()->SetExtAudioInGainMode(test_address, 1, true);
+  VolumeControl::Get()->SetExtAudioInGainMode(test_address, 1, GainMode::AUTOMATIC);
 }
 
 TEST_F(VolumeControlValueSetTest, test_set_ext_audio_in_gain_mute) {
-  std::vector<uint8_t> mute({0x03, 0x00});
+  std::vector<uint8_t> mute({0x03, 0x00});  // 0x03 is the opcode for Mute
   EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id, 0x005c, mute, GATT_WRITE, _, _));
-  VolumeControl::Get()->SetExtAudioInGainMute(test_address, 1, true);
-  std::vector<uint8_t> unmute({0x02, 0x00});
+  VolumeControl::Get()->SetExtAudioInMute(test_address, 1, Mute::MUTED);
+  std::vector<uint8_t> unmute({0x02, 0x00});  // 0x02 is the opcode for UnMute
   EXPECT_CALL(gatt_queue, WriteCharacteristic(conn_id, 0x005c, unmute, GATT_WRITE, _, _));
-  VolumeControl::Get()->SetExtAudioInGainMute(test_address, 1, false);
+  VolumeControl::Get()->SetExtAudioInMute(test_address, 1, Mute::NOT_MUTED);
 }
 
 class VolumeControlCsis : public VolumeControlTest {
