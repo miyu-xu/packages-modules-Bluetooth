@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "918c29cf_f42a35e1",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:57:37Z",
+      "side": 1,
+      "message": "Fixed, thank you.",
+      "parentUuid": "42072230_b492aca1",
+      "range": {
+        "startLine": 1348,
+        "startChar": 31,
+        "endLine": 1348,
+        "endChar": 33
+      },
+      "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9568787_70087675",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-05T18:14:01Z",
       "side": 1,
       "message": "directly return instead of having str",
+      "range": {
+        "startLine": 2755,
+        "startChar": 1,
+        "endLine": 2756,
+        "endChar": 17
+      },
+      "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2bf922e_eefef331",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2756,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:57:37Z",
+      "side": 1,
+      "message": "Thank you for your suggestion, fixed.",
+      "parentUuid": "f9568787_70087675",
       "range": {
         "startLine": 2755,
         "startChar": 1,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6c2729a_8f6e7797",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2758,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:57:37Z",
+      "side": 1,
+      "message": "Fixed, thank you.",
+      "parentUuid": "f2be490e_1117d155",
+      "range": {
+        "startLine": 2758,
+        "startChar": 31,
+        "endLine": 2758,
+        "endChar": 32
+      },
+      "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da52f75c_e26376be",
@@ -83,6 +155,24 @@
       "writtenOn": "2024-11-05T18:14:01Z",
       "side": 1,
       "message": "```suggestion\n                            + \",  mIdleTotalTime: \"\n```",
+      "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d622b16_c714bfc1",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2760,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:57:37Z",
+      "side": 1,
+      "message": "Fixed, thank you.",
+      "parentUuid": "da52f75c_e26376be",
       "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ba93827_456062e0",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2769,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:57:37Z",
+      "side": 1,
+      "message": "Fixed, thank you.",
+      "parentUuid": "3fd5ae1d_5c67eac5",
+      "range": {
+        "startLine": 2769,
+        "startChar": 31,
+        "endLine": 2769,
+        "endChar": 33
+      },
+      "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c7c226b_51d5dd94",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-11-05T18:14:01Z",
       "side": 1,
       "message": "there is no comma to separate value but there are some in other case. \n\nI am fine with either way but can we keep consistency?",
+      "range": {
+        "startLine": 3191,
+        "startChar": 16,
+        "endLine": 3215,
+        "endChar": 46
+      },
+      "revId": "7a9af4c18cd1dc807ae7407678105b37463ddaa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40f5cfd1_fbd60c7b",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3215,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-06T09:57:37Z",
+      "side": 1,
+      "message": "Align with previous format, all use the comma to separate value.",
+      "parentUuid": "0c7c226b_51d5dd94",
       "range": {
         "startLine": 3191,
         "startChar": 16,
