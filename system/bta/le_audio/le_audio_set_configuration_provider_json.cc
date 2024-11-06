@@ -344,15 +344,12 @@ private:
                         const QosConfigSetting& qos_setting,
                         std::vector<AseConfiguration>& subconfigs, types::CodecLocation location) {
     SetConfigurationFromFlatSubconfig(&subconfig, qos_setting, subconfigs, location);
-
-    // Recalculate some qos params based on the Core Codec Configuration
+    // Recalculate additional qos parameters
     for (auto& subconfig : subconfigs) {
-      const auto& core_config = subconfig.codec.params.GetAsCoreCodecConfig();
       subconfig.qos.maxSdu = subconfig.codec.GetChannelCountPerIsoStream() *
-                             core_config.octets_per_codec_frame.value_or(0) *
-                             core_config.codec_frames_blocks_per_sdu.value_or(1);
-      subconfig.qos.sduIntervalUs = core_config.GetFrameDurationUs() *
-                                    core_config.codec_frames_blocks_per_sdu.value_or(1);
+                            subconfig.codec.GetOctetsPerFrame() *
+                            subconfig.codec.GetCodecFrameBlocksPerSdu();
+      subconfig.qos.sduIntervalUs = subconfig.codec.GetDataIntervalUs();
     }
   }
 

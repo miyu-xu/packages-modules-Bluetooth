@@ -603,6 +603,10 @@ struct LeAudioCoreCodecConfig {
 
     return 0;
   }
+
+  uint8_t GetCodecFrameBlocksPerSdu() const {
+    return codec_frames_blocks_per_sdu.value_or(1);
+  }
 };
 
 struct LeAudioCoreCodecCapabilities {
@@ -1193,6 +1197,8 @@ struct CodecConfigSetting {
   uint32_t GetSamplingFrequencyHz() const;
   /* Data fetch/feed interval for codec in microseconds */
   uint32_t GetDataIntervalUs() const;
+  /* Codec frame blocks per SDU */
+  uint8_t GetCodecFrameBlocksPerSdu() const;
   /* Audio bit depth required for codec */
   uint8_t GetBitsPerSample() const;
   /* Audio channels number for a device */
