@@ -183,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d19d162_b3ddedd8",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "079bd482_e965ece7",
+      "range": {
+        "startLine": 49,
+        "startChar": 52,
+        "endLine": 49,
+        "endChar": 56
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "144fc4c4_bc01c4b4",
@@ -196,6 +220,30 @@
       "writtenOn": "2024-11-05T16:10:24Z",
       "side": 1,
       "message": "Can we pass the direction here instead of these two flags?",
+      "range": {
+        "startLine": 1279,
+        "startChar": 59,
+        "endLine": 1280,
+        "endChar": 39
+      },
+      "revId": "602887cf8946578e0c82eebf436e68a3a72e7763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "046cebfe_c668de2e",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-06T13:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "144fc4c4_bc01c4b4",
       "range": {
         "startLine": 1279,
         "startChar": 59,
