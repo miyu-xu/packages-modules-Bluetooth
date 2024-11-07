@@ -16,6 +16,24 @@
       "message": "We don\u0027t want to expose bluetooth internal flags to vendor or platform",
       "revId": "f93dd45276b596a27d404c22b17c0c4ba44089bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5463eae_29919f94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1979021
+      },
+      "writtenOn": "2024-11-07T07:02:22Z",
+      "side": 1,
+      "message": "Got it, thanks.",
+      "parentUuid": "3e8e6d1c_e27a62ed",
+      "revId": "f93dd45276b596a27d404c22b17c0c4ba44089bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
