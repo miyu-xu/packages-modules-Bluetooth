@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "803b77f3_1be61eb7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5272,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T03:47:52Z",
+      "side": 1,
+      "message": "We can remove this TODO, and just do this instead. And the other callback CL will invoke callback in the method.\n```suggestion\n        updateFallbackUnicastGroupIdForBroadcast(groupId);\n```",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "86224c55_0e6b74f1",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 11
