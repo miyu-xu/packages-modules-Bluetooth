@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a2f15d4_bee11b79",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 4655,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T17:56:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b2ae7bd_ce09da97",
+      "range": {
+        "startLine": 4655,
+        "startChar": 0,
+        "endLine": 4655,
+        "endChar": 23
+      },
+      "revId": "23a90a7f8d4927c23ea9897252c02149cfb276a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76635fdd_c9ae374f",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-11-07T15:13:57Z",
       "side": 1,
       "message": "Please fix this WARNING reported by AndroidLint: [Range] Value must be ≥ 1 (was -1)\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[Range] Value must be ≥ 1 (was -1)\n\n                psm \u003d settings.getL2capPsm();\n                ~~~\n\nSome parameters are required to be in a particular numerical range; this check makes sure that arguments passed fall within the range. For arrays, Strings and collections this refers to the size or length.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 3261,
+        "startChar": 13,
+        "endLine": 3261,
+        "endChar": 41
+      },
+      "revId": "23a90a7f8d4927c23ea9897252c02149cfb276a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5243360d_ed40238a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 3261,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T17:56:23Z",
+      "side": 1,
+      "message": "Fixed this now. After looking further, It make sense to limit this range between 0x80 to 0xFF as we only support LE CoC dynamic channels with this API.\n\nUpdate the range and related check accordingly.",
+      "parentUuid": "76635fdd_c9ae374f",
       "range": {
         "startLine": 3261,
         "startChar": 13,
