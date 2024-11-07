@@ -320,9 +320,10 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
     security |= BTM_SEC_IN_MIN_16_DIGIT_PIN;
   }
 
-  // For Floss, set socket as SOCK_STREAM
-  // TODO(b:271828292): Set SOCK_STREAM for everyone after verification tests
 #if TARGET_FLOSS
+  // Socket type is been changed to SOCK_STREAM to address a platform issue on FLOSS and It is not
+  // recommended. SOCK_SEQPACKET is the ideal one for L2cap LE CoC channels as It ensures L2CAP
+  // packet boundaries.
   sock_type = SOCK_STREAM;
 #endif
   if (socketpair(AF_LOCAL, sock_type, 0, fds)) {
