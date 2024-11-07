@@ -23,16 +23,22 @@
 
 #include <bluetooth/log.h>
 #include <limits.h>
+#include <stdio.h>
 #include <string.h>
 
 #include <cinttypes>
+#include <cstdint>
 
+#include "a2dp_api.h"
+#include "a2dp_codec_api.h"
 #include "a2dp_sbc.h"
+#include "a2dp_sbc_constants.h"
 #include "a2dp_sbc_up_sample.h"
+#include "android-base/macros.h"
+#include "avdt_api.h"
 #include "common/time_util.h"
 #include "embdrv/sbc/encoder/include/sbc_encoder.h"
 #include "internal_include/bt_target.h"
-#include "os/logging/log_adapter.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 
