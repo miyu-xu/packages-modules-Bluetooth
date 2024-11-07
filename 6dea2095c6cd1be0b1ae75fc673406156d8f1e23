@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2d4bca7_9d668c78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T07:05:07Z",
+      "side": 1,
+      "message": "@eruffieux@google.com, please re-vote as the patchset upload got ride of your code review.\n\n@quic_wentjin@quicinc.com please ask for Qualcomm-Review approval",
+      "revId": "6dea2095c6cd1be0b1ae75fc673406156d8f1e23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
