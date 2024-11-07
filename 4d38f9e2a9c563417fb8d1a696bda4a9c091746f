@@ -22,6 +22,30 @@
       },
       "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "524a8ed7_58a77fcf",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:48:13Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t meant to send the comment like this.\n\nI am willing to help updating the code if we can prevent adding this extra dependency to the bluetooth build.\nBut I don\u0027t know what part of the code is making used of it\n\n(Of course, this apply for all target, not just thi one specifically)",
+      "parentUuid": "66ee6ac9_6753db99",
+      "range": {
+        "startLine": 173,
+        "startChar": 9,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
