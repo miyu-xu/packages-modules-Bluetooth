@@ -45,7 +45,7 @@ class VolumeControlInputDescriptor {
         mNativeInterface = requireNonNull(nativeInterface);
         mDevice = requireNonNull(device);
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
-        // Stack delivers us number of audio inputs. ids are countinous from [0;n[
+        // Stack delivers us number of AICSs. ids are countinous from [0;n[
         for (int i = 0; i < numberOfExternalInputs; i++) {
             mVolumeInputs[i] = new Descriptor();
         }
@@ -242,7 +242,7 @@ class VolumeControlInputDescriptor {
         if (!isValidId(id)) return false;
 
         if (mVolumeInputs[id].mMute == bluetooth.constants.aics.Mute.DISABLED) {
-            throw new IllegalStateException("Audio input is currently disabled");
+            throw new IllegalStateException("AICS is currently disabled");
         }
 
         return mNativeInterface.setExtAudioInMute(mDevice, id, mute);
@@ -266,7 +266,7 @@ class VolumeControlInputDescriptor {
 
         if (desc.mGainMode == bluetooth.constants.aics.GainMode.MANUAL_ONLY
                 || desc.mGainMode == bluetooth.constants.aics.GainMode.AUTOMATIC_ONLY) {
-            throw new IllegalStateException("Audio input gain mode is: " + desc.mGainMode);
+            throw new IllegalStateException("AICS gain mode is: " + desc.mGainMode);
         }
 
         return mNativeInterface.setExtAudioInGainMode(mDevice, id, gainMode);
