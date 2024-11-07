@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c55f2c3_9dcac4e3",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-07T07:06:51Z",
+      "side": 1,
+      "message": "Added helper",
+      "parentUuid": "aff7889d_dedeb442",
+      "range": {
+        "startLine": 432,
+        "startChar": 6,
+        "endLine": 437,
+        "endChar": 7
+      },
+      "revId": "9fa01083a34bc29cd926900fed06570923c39dd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25528ac6_91ce27a0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-06T16:17:18Z",
       "side": 1,
       "message": "Should you reference the device by its conn_id instead ?",
+      "range": {
+        "startLine": 485,
+        "startChar": 61,
+        "endLine": 485,
+        "endChar": 98
+      },
+      "revId": "9fa01083a34bc29cd926900fed06570923c39dd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41989cdb_8a1966b2",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-07T07:06:51Z",
+      "side": 1,
+      "message": "I think either works, changed to conn_id matcher and helper function argument.",
+      "parentUuid": "25528ac6_91ce27a0",
       "range": {
         "startLine": 485,
         "startChar": 61,
