@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2ae7bd_ce09da97",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 4655,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-07T15:13:57Z",
+      "side": 1,
+      "message": "Let\u0027s remove the permission part from this javadoc as well",
+      "range": {
+        "startLine": 4655,
+        "startChar": 0,
+        "endLine": 4655,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2c2ea6e9_54446e61",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothAdapter.java",
+              "range": {
+                "startLine": 4658,
+                "startChar": 0,
+                "endLine": 4659,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "23a90a7f8d4927c23ea9897252c02149cfb276a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76635fdd_c9ae374f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 3261,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-07T15:13:57Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [Range] Value must be ≥ 1 (was -1)\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[Range] Value must be ≥ 1 (was -1)\n\n                psm \u003d settings.getL2capPsm();\n                ~~~\n\nSome parameters are required to be in a particular numerical range; this check makes sure that arguments passed fall within the range. For arrays, Strings and collections this refers to the size or length.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 3261,
+        "startChar": 13,
+        "endLine": 3261,
+        "endChar": 41
+      },
+      "revId": "23a90a7f8d4927c23ea9897252c02149cfb276a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
