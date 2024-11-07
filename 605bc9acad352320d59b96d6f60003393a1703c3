@@ -34,6 +34,24 @@
       "parentUuid": "05792522_2ac3dd2c",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee2fbb0_b3e98982",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2024-11-07T23:37:23Z",
+      "side": 1,
+      "message": "I think no. `bluetooth_prop` is not allowed to be set by `vendor_init` by default. `bluetooth_config_prop` is allowed in https://source.corp.google.com/h/googleplex-android/platform/superproject/udc/+/udc-tv-dev:system/sepolicy/public/vendor_init.te;drc\u003d3d7093fd7bc1dffa49db5436081c6f4e49947f26;l\u003d234",
+      "parentUuid": "b8674f2f_495acb73",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
