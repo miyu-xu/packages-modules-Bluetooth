@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a86818b_b0009a5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-07T09:39:41Z",
+      "side": 1,
+      "message": "After further testing it doesn\u0027t solve the issue completly. Need to investigate further.",
+      "revId": "0f11d1608b53310bcd7134568c12e7a7be59f91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18aff724_d3ef4b05",
@@ -14,6 +31,42 @@
       "writtenOn": "2024-11-06T21:27:30Z",
       "side": 1,
       "message": "Can you also check that the link is not encrypted? Re-pairing over the encrypted link is a security upgrade scenario, not a bond loss scenario.",
+      "revId": "0f11d1608b53310bcd7134568c12e7a7be59f91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c7218a_95c6907e",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2624,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-07T09:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18aff724_d3ef4b05",
+      "revId": "0f11d1608b53310bcd7134568c12e7a7be59f91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03e08de9_6e685d6f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2624,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-07T09:39:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18aff724_d3ef4b05",
       "revId": "0f11d1608b53310bcd7134568c12e7a7be59f91b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
