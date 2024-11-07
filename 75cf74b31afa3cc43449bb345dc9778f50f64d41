@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "806116b1_f06d7c06",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 4637,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T01:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42b5a172_0dc56533",
+      "range": {
+        "startLine": 4637,
+        "startChar": 28,
+        "endLine": 4637,
+        "endChar": 83
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12dff714_a544c4b8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-06T20:55:04Z",
       "side": 1,
       "message": "insufficient permissions should not throw an IOException. It should throw a SecurityException instead",
+      "range": {
+        "startLine": 4655,
+        "startChar": 74,
+        "endLine": 4656,
+        "endChar": 22
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33c0fe56_974ef250",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 4656,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T01:42:03Z",
+      "side": 1,
+      "message": "It will actually throw the security exception and I dont think we need to explicitly mention in the API doc. I just derived from the other existing APIs.\n\nI will remove this part from this API, for the existing APIs - I will track separately and remove based on discussion with team later.",
+      "parentUuid": "12dff714_a544c4b8",
       "range": {
         "startLine": 4655,
         "startChar": 74,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ee8c1b_f7ec7deb",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 4674,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T01:42:03Z",
+      "side": 1,
+      "message": "Wanted to reuse the existing helper function as It already take care of setting service Name as needed. please restructure as needed for offload.",
+      "parentUuid": "c08f00b8_3d977fae",
+      "range": {
+        "startLine": 4670,
+        "startChar": 0,
+        "endLine": 4674,
+        "endChar": 53
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f00ae40f_ba2cb113",
@@ -101,6 +173,30 @@
       "writtenOn": "2024-11-06T20:55:04Z",
       "side": 1,
       "message": "should be SecurityException for insufficient permissions.",
+      "range": {
+        "startLine": 3241,
+        "startChar": 77,
+        "endLine": 3242,
+        "endChar": 23
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39908bc_8597a279",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 3242,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T01:42:03Z",
+      "side": 1,
+      "message": "This is not relevant anymore, as we dont need any permission for this create API. I will remove",
+      "parentUuid": "f00ae40f_ba2cb113",
       "range": {
         "startLine": 3241,
         "startChar": 77,
@@ -134,6 +230,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2ae3df_4a05c5e8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T01:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "353b6685_d6b8e577",
+      "range": {
+        "startLine": 75,
+        "startChar": 11,
+        "endLine": 75,
+        "endChar": 14
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77cf4bc1_f13f2132",
@@ -147,6 +267,30 @@
       "writtenOn": "2024-11-06T20:55:04Z",
       "side": 1,
       "message": "is there an acceptable range of this int?",
+      "range": {
+        "startLine": 217,
+        "startChar": 35,
+        "endLine": 217,
+        "endChar": 38
+      },
+      "revId": "75cf74b31afa3cc43449bb345dc9778f50f64d41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de07add9_11030160",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-07T01:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77cf4bc1_f13f2132",
       "range": {
         "startLine": 217,
         "startChar": 35,
