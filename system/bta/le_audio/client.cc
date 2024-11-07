@@ -639,6 +639,10 @@ public:
       return;
     }
 
+    AseState target_state = group->GetTargetState();
+
+    bool state_reached_for_any_dev = false;
+
     bool check_if_recovery_needed =
             group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
 
@@ -650,7 +654,7 @@ public:
     log::error(
             "State not achieved on time for group: group id {}, current state {}, "
             "target state: {}, check_if_recovery_needed: {}",
-            group_id, ToString(group->GetState()), ToString(group->GetTargetState()),
+            group_id, ToString(group->GetState()), ToString(target_state),
             check_if_recovery_needed);
     group->PrintDebugState();
     group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
@@ -684,12 +688,21 @@ public:
       }
     }
 
+    /* Decide on whether to disconnect active and inactive devices from group */
+    leAudioDevice = group->GetFirstDevice();
     do {
-      DisconnectDevice(leAudioDevice, true, recovery);
-      leAudioDevice = group->GetNextActiveDevice(leAudioDevice);
+      if (!leAudioDevice->IsAsesStateReached(target_state)) {
+        DisconnectDevice(leAudioDevice, true, recovery);
+      }
+      if (!state_reached_for_any_dev && leAudioDevice->IsAsesStateReached(target_state)) {
+        log::info("Device: {} reached target state", leAudioDevice->address_);
+        state_reached_for_any_dev = true;
+      }
+      leAudioDevice = group->GetNextDevice(leAudioDevice);
     } while (leAudioDevice);
 
-    if (recovery) {
+    if (recovery && !state_reached_for_any_dev) {
+      log::info("No device reached state, group becoming inactive");
       /* Both devices will  be disconnected soon. Notify upper layer that group
        * is inactive */
       groupSetAndNotifyInactive();

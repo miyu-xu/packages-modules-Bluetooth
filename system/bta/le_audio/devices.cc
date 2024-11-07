@@ -882,6 +882,18 @@ bool LeAudioDevice::HaveAllActiveAsesCisEst(void) const {
   return iter == ases_.end() && has_active_ase;
 }
 
+bool LeAudioDevice::IsAsesStateReached(types::AseState state) {
+  for (auto const ase : ases_) {
+    if (!(ase.state == state ||
+          (state == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE &&
+           (ase.state == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE ||
+            ase.state == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED)))) {
+      return false;
+    }
+  }
+  return true;
+}
+
 bool LeAudioDevice::HaveAnyCisConnected(void) {
   /* Pending and Disconnecting is considered as connected in this function */
   for (auto const ase : ases_) {
