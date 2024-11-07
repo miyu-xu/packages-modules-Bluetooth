@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c181fa52_848b37d8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5253,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-07T19:55:54Z",
+      "side": 1,
+      "message": "in future patches please extract this to some special function which is for monitor purposes.",
+      "range": {
+        "startLine": 5244,
+        "startChar": 24,
+        "endLine": 5253,
+        "endChar": 39
+      },
+      "revId": "03ddef13ed28bcce1ce828d6e2c6a9b66c6da50f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
