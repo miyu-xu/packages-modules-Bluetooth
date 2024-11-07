@@ -34,6 +34,24 @@
       "parentUuid": "49cb628e_86bfe7e9",
       "revId": "a6dd8bedc6260c5304a6984e47a977eedc655d1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3adae766_004482df",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1480931
+      },
+      "writtenOn": "2024-11-07T23:49:54Z",
+      "side": 1,
+      "message": "I agree with Himanshu that there is value in indicating E0 (weak) vs AES (strong) encryption in this particular intent. When the transport is LE, then it\u0027s always AES so it\u0027s enough to just look at the transport property. But for BR/EDR, it could be either and this information is not reflected in this intent right now.\n\nThere should be a new intent (unrelated to this CL) to indicate pairing and its properties, like Legacy vs Secure Connections and MITM protection.",
+      "parentUuid": "e534dd27_544dd664",
+      "revId": "a6dd8bedc6260c5304a6984e47a977eedc655d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
