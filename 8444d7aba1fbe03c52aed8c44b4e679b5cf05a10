@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f61ccda_251db0a1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:27:46Z",
+      "side": 1,
+      "message": "Thank You for review! Please check updated version.",
+      "parentUuid": "183594bf_a2188a9d",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e0188e7_decce1e2",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72968a8c_37f0231a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:27:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a51ff692_e7052a2c",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5953ad6d_3e0350a6",
@@ -66,6 +102,24 @@
       "writtenOn": "2024-11-07T02:57:05Z",
       "side": 1,
       "message": "do we need the API flag for this test as well?",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02610d6c_ce6b28b7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1609,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:27:46Z",
+      "side": 1,
+      "message": "I don\u0027t think so since this is using service API.",
+      "parentUuid": "5953ad6d_3e0350a6",
       "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -87,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc04af68_68430c8f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:27:46Z",
+      "side": 1,
+      "message": "If so, lets do that.",
+      "parentUuid": "105a207f_dc932781",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6a8c422_65d50438",
@@ -100,6 +172,24 @@
       "writtenOn": "2024-11-07T02:57:05Z",
       "side": 1,
       "message": "do we need the API flag for this test as well?",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15396b02_f26e8f3a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3626,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:27:46Z",
+      "side": 1,
+      "message": "Test is on service level - I think this is ok to flag only with broadcast primary group selection.",
+      "parentUuid": "e6a8c422_65d50438",
       "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
