@@ -914,7 +914,8 @@ public class AdapterService extends Service {
         int metricId = getMetricId(device);
         long currentTime = System.nanoTime();
         long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
-        byte[] remoteDeviceInfoBytes = MetricsLogger.getInstance().getRemoteDeviceInfoProto(device);
+        byte[] remoteDeviceInfoBytes =
+                MetricsLogger.getInstance().getRemoteDeviceInfoProto(device, false);
         BluetoothStatsLog.write(
                 BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
                 metricId,
