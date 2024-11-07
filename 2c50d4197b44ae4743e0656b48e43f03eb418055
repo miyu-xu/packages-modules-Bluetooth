@@ -16,6 +16,24 @@
       "message": "Where is the new unit test to cover this?",
       "revId": "2c50d4197b44ae4743e0656b48e43f03eb418055",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bdf3381_5263092c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-07T00:14:11Z",
+      "side": 1,
+      "message": "I started to write unit tests and it turns out that making this error path is not that easy so maybe we don;t need this fix now. Also I realize that we need some cleaning here  and scheduled it do to here b/377755714.\n\nFor now we can skip it.",
+      "parentUuid": "f0e77c9d_eab88586",
+      "revId": "2c50d4197b44ae4743e0656b48e43f03eb418055",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
