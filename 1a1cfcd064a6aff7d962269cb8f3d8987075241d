@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7adf09ab_926c413c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T17:33:13Z",
+      "side": 1,
+      "message": "I\u0027m not quite sure if we should change this from this utils, or there is a better solution. Maybe Grzegorz can help to confirm.\n\nAdding @rlukasz@google.com @tyszkowski@google.com for some inputs as well.",
+      "revId": "1a1cfcd064a6aff7d962269cb8f3d8987075241d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
