@@ -16,6 +16,24 @@
       "message": "Just noticed this new change, how would this help to resolve the issue? if existingState doesn\u0027t have any subgroup, we will still get out-of-bound right?",
       "revId": "4b92dba3ad4a07ce4ddf9e9e22e213ce20e25f95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b2afa0_878542d6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1933,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-07T07:17:42Z",
+      "side": 1,
+      "message": "For case I found, it helps as metadata is available and paSync is PA_SYNC_PAST_AVAILABLE. Reading from existingState is needed only when called public modifySource method (INVALID_PA_SYNC_VALUE).\nThere is risk that someone will call it when in RS there is no subgroups so I will guard it.",
+      "parentUuid": "a282fbff_f6b01377",
+      "revId": "4b92dba3ad4a07ce4ddf9e9e22e213ce20e25f95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

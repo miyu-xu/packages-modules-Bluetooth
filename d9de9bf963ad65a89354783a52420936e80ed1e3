@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "706829cf_b33faa4e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-07T07:17:42Z",
+      "side": 1,
+      "message": "null for stateMachine and other parameters are checked in areValidParametersToModifySource and status with error code is returned.",
+      "parentUuid": "e40e7f17_7721f80a",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
