@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cf0483d_f57f924b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-07T15:26:20Z",
+      "side": 1,
+      "message": "\"overridden to false\"",
+      "range": {
+        "startLine": 300,
+        "startChar": 68,
+        "endLine": 300,
+        "endChar": 76
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "633fb9dc_0fd1cbb1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 300,
+                "startChar": 0,
+                "endLine": 301,
+                "endChar": 0
+              },
+              "replacement": "            Log.i(TAG, \"shouldEnableHapByDefault: SystemProperty is overridden to false\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c04f7e8525cae3e44c0cb30997c680aded13d04e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
