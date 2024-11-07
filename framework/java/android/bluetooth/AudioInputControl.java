@@ -24,13 +24,18 @@ import static android.bluetooth.BluetoothUtils.logRemoteException;
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
+import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
+import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
 import android.os.RemoteException;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -45,35 +50,45 @@ import java.util.stream.IntStream;
  * @see BluetoothVolumeControl#getAudioInputControlPoints
  * @hide
  */
+@FlaggedApi(Flags.FLAG_AICS_API)
+@SystemApi
 public final class AudioInputControl {
     private static final String TAG = AudioInputControl.class.getSimpleName();
 
-    /** Unspecified Input */
+    /** Unspecified Input @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_UNSPECIFIED =
             bluetooth.constants.AudioInputType.UNSPECIFIED;
 
-    /** Bluetooth Audio Stream */
+    /** Bluetooth Audio Stream @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_BLUETOOTH =
             bluetooth.constants.AudioInputType.BLUETOOTH;
 
-    /** Microphone */
+    /** Microphone @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_MICROPHONE =
             bluetooth.constants.AudioInputType.MICROPHONE;
 
-    /** Analog Interface */
+    /** Analog Interface @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_ANALOG = bluetooth.constants.AudioInputType.ANALOG;
 
-    /** Digital Interface */
+    /** Digital Interface @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_DIGITAL = bluetooth.constants.AudioInputType.DIGITAL;
 
-    /** AM/FM/XM/etc. */
+    /** AM/FM/XM/etc. @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_RADIO = bluetooth.constants.AudioInputType.RADIO;
 
-    /** Streaming Audio Source */
+    /** Streaming Audio Source @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_STREAMING =
             bluetooth.constants.AudioInputType.STREAMING;
 
-    /** Transparency/Pass-through */
+    /** Transparency/Pass-through @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_AMBIENT = bluetooth.constants.AudioInputType.AMBIENT;
 
     /** @hide */
@@ -92,11 +107,13 @@ public final class AudioInputControl {
             })
     public @interface AudioInputType {}
 
-    /** Inactive */
+    /** Inactive @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_STATUS_INACTIVE =
             bluetooth.constants.aics.AudioInputStatus.INACTIVE;
 
-    /** Active */
+    /** Active @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_STATUS_ACTIVE =
             bluetooth.constants.aics.AudioInputStatus.ACTIVE;
 
@@ -110,14 +127,14 @@ public final class AudioInputControl {
             })
     public @interface AudioInputStatus {}
 
-    /** Not Muted */
-    public static final int MUTE_NOT_MUTED = bluetooth.constants.aics.Mute.NOT_MUTED;
+    /** Not Muted @hide */
+    @SystemApi public static final int MUTE_NOT_MUTED = bluetooth.constants.aics.Mute.NOT_MUTED;
 
-    /** Muted */
-    public static final int MUTE_MUTED = bluetooth.constants.aics.Mute.MUTED;
+    /** Muted @hide */
+    @SystemApi public static final int MUTE_MUTED = bluetooth.constants.aics.Mute.MUTED;
 
-    /** Disabled */
-    public static final int MUTE_DISABLED = bluetooth.constants.aics.Mute.DISABLED;
+    /** Disabled @hide */
+    @SystemApi public static final int MUTE_DISABLED = bluetooth.constants.aics.Mute.DISABLED;
 
     /** @hide */
     @Retention(RetentionPolicy.SOURCE)
@@ -130,17 +147,20 @@ public final class AudioInputControl {
             })
     public @interface Mute {}
 
-    /** Manual Only */
+    /** Manual Only @hide */
+    @SystemApi
     public static final int GAIN_MODE_MANUAL_ONLY = bluetooth.constants.aics.GainMode.MANUAL_ONLY;
 
-    /** Automatic Only */
+    /** Automatic Only @hide */
+    @SystemApi
     public static final int GAIN_MODE_AUTOMATIC_ONLY =
             bluetooth.constants.aics.GainMode.AUTOMATIC_ONLY;
 
-    /** Manual */
-    public static final int GAIN_MODE_MANUAL = bluetooth.constants.aics.GainMode.MANUAL;
+    /** Manual @hide */
+    @SystemApi public static final int GAIN_MODE_MANUAL = bluetooth.constants.aics.GainMode.MANUAL;
 
-    /** Automatic */
+    /** Automatic @hide */
+    @SystemApi
     public static final int GAIN_MODE_AUTOMATIC = bluetooth.constants.aics.GainMode.AUTOMATIC;
 
     /** @hide */
@@ -155,14 +175,16 @@ public final class AudioInputControl {
             })
     public @interface GainMode {}
 
+    /** Local identifier of the AICS */
+    private final int mInstanceId;
+
     private final IBluetoothVolumeControl mService;
     private final @NonNull BluetoothDevice mDevice;
-    private final int mInstanceId;
     private final AttributionSource mAttributionSource;
     private final CallbackWrapper<AudioInputCallback, IBluetoothVolumeControl> mCallbackWrapper;
 
     /** @hide */
-    public AudioInputControl(
+    AudioInputControl(
             @NonNull BluetoothDevice device,
             int id,
             @NonNull IBluetoothVolumeControl service,
@@ -237,6 +259,7 @@ public final class AudioInputControl {
                 }
             };
 
+    /** Return the list of control object to perform AICS operation for a specific remote device. */
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     static List<AudioInputControl> getAudioInputControlPoints(
             @NonNull IBluetoothVolumeControl service,
@@ -257,49 +280,62 @@ public final class AudioInputControl {
     }
 
     /**
-     * This class provides a callback that is invoked when value changes on the remote device.
+     * This class provides a callback that is invoked when a value changes on the remote device.
      *
      * @hide
      */
+    @SystemApi
     public interface AudioInputCallback {
-        /** @hide */
+        /** see {@link #setDescription(String)} @hide */
+        @SystemApi
         default void onDescriptionChanged(@NonNull String description) {}
 
-        /** @hide */
+        /** see {@link #getStatus()} @hide */
+        @SystemApi
         default void onStatusChanged(@AudioInputStatus int status) {}
 
-        /** @hide */
-        default void onGainModeChanged(@GainMode int gainMode) {}
-
-        /** @hide */
-        default void onMuteChanged(@Mute int mute) {}
-
-        /** @hide */
+        /** see {@link #setGainSetting(int)} @hide */
+        @SystemApi
         default void onGainSettingChanged(int gainSetting) {}
 
-        /** @hide */
+        /** see {@link #setGainSetting(int)} @hide */
+        @SystemApi
         default void onSetGainSettingFailed() {}
 
-        /** @hide */
-        default void onSetGainModeFailed() {}
+        /** see {@link #setMute(int)} @hide */
+        @SystemApi
+        default void onMuteChanged(@Mute int mute) {}
 
-        /** @hide */
+        /** see {@link #setMute(int)} @hide */
+        @SystemApi
         default void onSetMuteFailed() {}
+
+        /** see {@link #setGainMode(int)} @hide */
+        @SystemApi
+        default void onGainModeChanged(@GainMode int gainMode) {}
+
+        /** see {@link #setGainMode(int)} @hide */
+        @SystemApi
+        default void onSetGainModeFailed() {}
     }
 
     /**
-     * Register a {@link AudioInputCallback}
+     * Register an {@link AudioInputCallback} to receive callbacks when the state of the AICS on the
+     * remote device changes.
      *
-     * <p>Repeated registration of the same <var>callback</var> object will have no effect after the
-     * first call to this method, even when the <var>executor</var> is different. API caller would
-     * have to call {@link #unregisterCallback(Callback)} with the same callback object before
-     * registering it again.
+     * <p>Repeated registration of the same callback object will have no effect after the first call
+     * to this method, even when the executor is different. API caller would have to call {@link
+     * #unregisterCallback(AudioInputCallback)} with the same callback object before registering it
+     * again.
+     *
+     * <p>Callbacks are automatically unregistered when application process goes away
      *
      * @param executor an {@link Executor} to execute given callback
      * @param callback user implementation of the {@link AudioInputCallback}
      * @throws IllegalArgumentException if callback is already registered
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void registerCallback(
@@ -308,7 +344,7 @@ public final class AudioInputControl {
     }
 
     /**
-     * Unregister the specified {@link AudioInputCallback}.
+     * Unregister the {@link AudioInputCallback}.
      *
      * <p>The same {@link AudioInputCallback} object used when calling {@link
      * #registerCallback(Executor, AudioInputCallback)} must be used.
@@ -319,6 +355,7 @@ public final class AudioInputControl {
      * @throws IllegalArgumentException when no callback is registered
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void unregisterCallback(@NonNull AudioInputCallback callback) {
@@ -326,9 +363,12 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Type as defined in Audio Input Control Service 1.0 - 3.3.
+     * Get the Audio Input Type.
+     *
+     * @return The Audio Input Type as defined in AICS 1.0 - 3.3.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @AudioInputType int getType() {
@@ -339,12 +379,15 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
+     * Get the Gain Setting Units.
+     *
+     * @return The Gain Setting Units as defined in AICS 1.0 - 3.2.1.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
-    public int getGainSettingUnit() {
+    public @IntRange(from = 0, to = 0xFF) int getGainSettingUnit() {
         return callService(
                 mService,
                 s -> s.getAudioInputGainSettingUnit(mAttributionSource, mDevice, mInstanceId),
@@ -352,12 +395,15 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
+     * Get the minimum value for the Gain Setting.
+     *
+     * @return The minimum Gain Setting as defined in AICS 1.0 - 3.2.2.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
-    public int getGainSettingMax() {
+    public @IntRange(from = -128, to = 127) int getGainSettingMin() {
         return callService(
                 mService,
                 s -> s.getAudioInputGainSettingMin(mAttributionSource, mDevice, mInstanceId),
@@ -365,12 +411,15 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
+     * Get the maximum value for the Gain Setting.
+     *
+     * @return The maximum Gain Setting as defined in AICS 1.0 - 3.2.3.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
-    public int getGainSettingMin() {
+    public @IntRange(from = -128, to = 127) int getGainSettingMax() {
         return callService(
                 mService,
                 s -> s.getAudioInputGainSettingMax(mAttributionSource, mDevice, mInstanceId),
@@ -378,9 +427,15 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
+     * Get the description.
+     *
+     * <p>Register an {@link AudioInputCallback} to be notified via {@link
+     * AudioInputCallback#onDescriptionChanged} when the description changed.
+     *
+     * @return The description as defined in AICS 1.0 - 3.6.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @NonNull String getDescription() {
@@ -391,9 +446,12 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
+     * Check whether the description is writable as defined in AICS 1.0 - 3.6.
+     *
+     * @return true if the description can be written to, false otherwise.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean isDescriptionWritable() {
@@ -404,12 +462,25 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
+     * Sets the description as defined in AICS 1.0 - 3.6.
+     *
+     * <p>The operation will fail if the description is not writable. This can be verified with
+     * {@link #isDescriptionWritable}
+     *
+     * <p>Register an {@link AudioInputCallback} to be notified via {@link
+     * AudioInputCallback#onDescriptionChanged} when the description changed is applied on remote
+     * device.
+     *
+     * @param description The description of the AICS.
+     * @return true if the operation is successfully initiated, false otherwise.
+     * @throws IllegalStateException if the description is not writable
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setDescription(@NonNull String description) {
+        requireNonNull(description);
         return callService(
                 mService,
                 s ->
@@ -419,9 +490,15 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Get the current status.
+     *
+     * <p>Register an {@link AudioInputCallback} to be notified via {@link
+     * AudioInputCallback#onStatusChanged} when the status changed.
+     *
+     * @return The status as defined in AICS 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @AudioInputStatus int getStatus() {
@@ -432,12 +509,18 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Get the current gain setting.
+     *
+     * <p>Register an {@link AudioInputCallback} to be notified via {@link
+     * AudioInputCallback#onGainSettingChanged} when the gain setting changed.
+     *
+     * @return The current gain setting as defined in AICS 1.0 - 2.2.1.1.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
-    public int getGainSetting() {
+    public @IntRange(from = -128, to = 127) int getGainSetting() {
         return callService(
                 mService,
                 s -> s.getAudioInputGainSetting(mAttributionSource, mDevice, mInstanceId),
@@ -445,12 +528,33 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Sets the gain setting as defined in AICS 1.0 - 3.5.2.1.
+     *
+     * <p>This method is only applicable when the gain mode is set to {@link #MANUAL} or {@link
+     * #MANUAL_ONLY}. If the gain mode is {@link #AUTOMATIC} or {@link #AUTOMATIC_ONLY} or if an
+     * invalid gain setting value is provided, the operation will fail.
+     *
+     * <p>Register an {@link AudioInputControl.AudioInputCallback} to be notified via
+     *
+     * <ul>
+     *   <li>{@link AudioInputCallback#onGainSettingChanged()} when the gain setting is changed by
+     *       the remote device.
+     *   <li>{@link AudioInputCallback#onSetGainSettingFailed} if the gain setting cannot be set.
+     * </ul>
+     *
+     * @param gainSetting The desired gain setting value. Refer to {@link #getGainSettingMin()} and
+     *     {@link #getGainSettingMax()} for the allowable range.
+     * @return true if the operation is successfully initiated, false otherwise. The callback {@link
+     *     AudioInputCallback#onSetGainSettingFailed()} will not be call if false is returned
+     * @throws IllegalStateException if the gain mode is {@link #AUTOMATIC} or {@link
+     *     #AUTOMATIC_ONLY}
+     * @throws IllegalArgumentException if the gain setting is not in range
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
-    public boolean setGainSetting(int gainSetting) {
+    public boolean setGainSetting(@IntRange(from = -128, to = 127) int gainSetting) {
         return callService(
                 mService,
                 s ->
@@ -460,9 +564,15 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Get the current gain mode.
+     *
+     * <p>Register an {@link AudioInputCallback} to be notified via {@link
+     * AudioInputCallback#onGainModeChanged} when the gain mode changed.
+     *
+     * @return The current gain mode as defined in AICS 1.0 - 2.2.1.3.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @GainMode int getGainMode() {
@@ -473,13 +583,38 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Sets the gain mode as defined in AICS 1.0 - 3.5.2.4/5.
+     *
+     * <p>This method is only applicable when the gain mode is set to {@link #MANUAL} or {@link
+     * #AUTOMATIC}. If the gain mode is {@link #MANUAL_ONLY} or {@link #AUTOMATIC_ONLY} the
+     * operation will fail.
+     *
+     * <p>Register an {@link AudioInputControl.AudioInputCallback} to be notified via
+     *
+     * <ul>
+     *   <li>{@link AudioInputCallback#onGainModeChanged()} when the gain setting is changed by the
+     *       remote device.
+     *   <li>{@link AudioInputCallback#onSetGainModeFailed} if the gain mode cannot be set.
+     * </ul>
+     *
+     * @param gainMode The desired gain mode, one of:
+     *     <ul>
+     *       <li>{@link #GAIN_MODE_MANUAL}
+     *       <li>{@link #GAIN_MODE_AUTOMATIC}
+     *     </ul>
+     *
+     * @return true if the operation is successfully initiated, false otherwise. The callback {@link
+     *     AudioInputCallback#onSetGainModeFailed()} will not be call if false is returned
+     * @throws IllegalStateException if the gain mode is {@link #MANUAL_ONLY} or {@link
+     *     #AUTOMATIC_ONLY}
+     * @throws IllegalArgumentException if the gain mode value is invalid.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setGainMode(@GainMode int gainMode) {
-        if (gainMode < GAIN_MODE_MANUAL_ONLY || gainMode > GAIN_MODE_AUTOMATIC) {
+        if (gainMode != GAIN_MODE_MANUAL && gainMode != GAIN_MODE_AUTOMATIC) {
             throw new IllegalArgumentException("Illegal GainMode value: " + gainMode);
         }
         return callService(
@@ -489,26 +624,53 @@ public final class AudioInputControl {
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Get the mute state.
+     *
+     * <p>Register an {@link AudioInputCallback} to be notified via {@link
+     * AudioInputCallback#onMuteChanged} when the mute state changed.
+     *
+     * @return The current mute state as defined in AICS 1.0 - 2.2.1.2.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @Mute int getMute() {
         return callService(
                 mService,
-                s -> s.getAudioInputGainMode(mAttributionSource, mDevice, mInstanceId),
+                s -> s.getAudioInputMute(mAttributionSource, mDevice, mInstanceId),
                 (int) bluetooth.constants.aics.Mute.DISABLED);
     }
 
     /**
-     * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
+     * Set the mute state as defined in AICS 1.0 - 3.5.2.2/3.
+     *
+     * <p>The operation will fail if the mute is {@link #MUTE_DISABLED}.
+     *
+     * <p>Register an {@link AudioInputControl.AudioInputCallback} to be notified via
+     *
+     * <ul>
+     *   <li>{@link AudioInputCallback#onMuteChanged()} when the mute state is changed by the remote
+     *       device.
+     *   <li>{@link AudioInputCallback#onSetMuteFailed} if the mute state cannot be set.
+     * </ul>
+     *
+     * @param mute the new mute state. One of
+     *     <ul>
+     *       <li>{@link #MUTE_MUTED}
+     *       <li>{@link #MUTE_NOT_MUTED}
+     *     </ul>
+     *
+     * @return true on success, false otherwise.
+     * @throws IllegalStateException if the mute state is {@link #MUTE_DISABLED}
+     * @throws IllegalArgumentException if the provided {@code mute} is not valid
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setMute(@Mute int mute) {
-        if (mute < MUTE_NOT_MUTED || mute > MUTE_MUTED) {
+        if (mute != MUTE_NOT_MUTED && mute != MUTE_MUTED) {
             throw new IllegalArgumentException("Illegal mute value: " + mute);
         }
         return callService(
