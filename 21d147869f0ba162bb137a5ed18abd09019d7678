@@ -33,6 +33,24 @@
       "message": "I think it makes sense to call it only when all devices from the group are disconnected.\n\n\nAlso, when user choose the group to be a fallback one, it looks like stack can change it when the chosen group is is disconnected. \n\nIs this intentional?\n\nI was under impression that when user choose something, this is sticky.",
       "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b36fbb_3414ea89",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4276,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T21:47:17Z",
+      "side": 1,
+      "message": "@gkolodziejczyk@google.com please correct me if I\u0027m wrong.\n\nthis is to handle the case sharing audio with two sets, and one set got disconnected. we\u0027d need the logic to change fallback to the existing set per product requirement.\n\nonly when user/UI change through setBroadcastToUnicastFallbackGroup API, the selection is sticky till the fallback device disconnected or new device connected.\n\nfrom my understanding, we should have this.",
+      "parentUuid": "b1637bab_ede81bdf",
+      "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
