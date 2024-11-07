@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a6894f6_5181dfe0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T19:08:53Z",
+      "side": 1,
+      "message": "I got this has been checked in areValidParametersToModifySource.\nBut my point is this is not the best practice IMO, stateMachine is defined in resumeSource() while stateMachine got validated inside another helper function.\n\nIt\u0027s confusing for others while reading this part of code. and you have to explain further this is done inside the function, then they will get this.\n\nWhy not check this before calling areValidParametersToModifySource? any concerns?",
+      "parentUuid": "706829cf_b33faa4e",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
@@ -209,6 +227,24 @@
       "side": 1,
       "message": "talked offline with some suggestions.",
       "parentUuid": "0ed7e24f_9ee0c61a",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "082da136_81aceeca",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T19:08:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99735c76_f1aa67a2",
       "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
