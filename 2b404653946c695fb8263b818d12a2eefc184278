@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d8e907_09ccb475",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4344,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T23:06:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff166060_f6dab56e",
+      "range": {
+        "startLine": 4342,
+        "startChar": 13,
+        "endLine": 4344,
+        "endChar": 45
+      },
+      "revId": "2b404653946c695fb8263b818d12a2eefc184278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8552e18b_e60fa77f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-07T20:07:58Z",
       "side": 1,
       "message": "Don\u0027t put comments in the middle of the condition.",
+      "range": {
+        "startLine": 572,
+        "startChar": 15,
+        "endLine": 575,
+        "endChar": 84
+      },
+      "revId": "2b404653946c695fb8263b818d12a2eefc184278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c464c5_30fa3280",
+        "filename": "system/stack/gatt/gatt_db.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T23:06:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8552e18b_e60fa77f",
       "range": {
         "startLine": 572,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe0cec9_1ca92e37",
+        "filename": "system/stack/gatt/gatt_db.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T23:06:58Z",
+      "side": 1,
+      "message": "Fixed but that is another cpplint ^^",
+      "parentUuid": "1e5762e9_f2a11251",
+      "range": {
+        "startLine": 610,
+        "startChar": 1,
+        "endLine": 611,
+        "endChar": 3
+      },
+      "revId": "2b404653946c695fb8263b818d12a2eefc184278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3171d29_e1f49b06",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-07T20:07:58Z",
       "side": 1,
       "message": "don\u0027t put comments in the middle of the condition",
+      "range": {
+        "startLine": 515,
+        "startChar": 18,
+        "endLine": 516,
+        "endChar": 26
+      },
+      "revId": "2b404653946c695fb8263b818d12a2eefc184278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "418783d0_5e3f8523",
+        "filename": "system/stack/rfcomm/port_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T23:06:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3171d29_e1f49b06",
       "range": {
         "startLine": 515,
         "startChar": 18,
