@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61287d34_06027edd",
+        "filename": "flags/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T18:39:31Z",
+      "side": 1,
+      "message": "There is already an exported library of the flag:\n`bluetooth_exported_flags_java_lib` that settings should depend on.\n\nYou still need to change the visibility but for bluetooth_exported_flags_java_lib instead",
+      "parentUuid": "114d9209_dfe2bca7",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "c707bdd0781c6c063e20849c296c4dc314ec62fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "400ac31f_8ce74f7a",
         "filename": "flags/Android.bp",
         "patchSetId": 26
