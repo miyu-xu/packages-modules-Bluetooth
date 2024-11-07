@@ -92,9 +92,12 @@ cc_aconfig_library {
     host_supported: true,
     visibility: [
         "//packages/modules/Bluetooth:__subpackages__",
+        "//vendor:__subpackages__",
     ],
     apex_available: [
         "com.android.btservices",
+        "vendor.google.whitechapel.audio.hal.audio",
+        "//apex_available:platform",
     ],
     min_sdk_version: "Tiramisu",
 }
