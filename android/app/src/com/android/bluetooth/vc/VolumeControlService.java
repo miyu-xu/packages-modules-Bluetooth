@@ -32,6 +32,7 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElseGet;
 
 import android.annotation.RequiresPermission;
+import android.bluetooth.AudioInputControl;
 import android.bluetooth.AudioInputControl.GainMode;
 import android.bluetooth.AudioInputControl.Mute;
 import android.bluetooth.AudioInputControl.Status;
@@ -1127,7 +1128,7 @@ public class VolumeControlService extends ProfileService {
         input.onStatusChanged(id, status);
     }
 
-    void onExtAudioInTypeChanged(BluetoothDevice device, int id, int type) {
+    void onExtAudioInTypeChanged(BluetoothDevice device, int id, @AudioInputControl.Type int type) {
         String logInfo =
                 "onExtAudioInTypeChanged("
                         + ("device=" + device)
@@ -1830,6 +1831,13 @@ public class VolumeControlService extends ProfileService {
                 AttributionSource source, BluetoothDevice device, int instanceId) {
             return aics_wrapper(
                     source, device, i -> i.getStatus(instanceId), (int) AudioInputStatus.INACTIVE);
+        }
+
+        @Override
+        public @AudioInputControl.Type int getAudioInputType(
+                AttributionSource source, BluetoothDevice device, int instanceId) {
+            return aics_wrapper(
+                    source, device, i -> i.getType(instanceId), AudioInputType.UNSPECIFIED);
         }
 
         @Override

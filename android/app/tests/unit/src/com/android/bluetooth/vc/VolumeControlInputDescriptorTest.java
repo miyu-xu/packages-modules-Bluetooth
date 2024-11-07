@@ -19,6 +19,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
+import android.bluetooth.AudioInputControl;
 import android.bluetooth.AudioInputControl.GainMode;
 import android.bluetooth.AudioInputControl.Mute;
 import android.bluetooth.AudioInputControl.Status;
@@ -31,8 +32,9 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 
-import bluetooth.constants.aics.Mute;
+import bluetooth.constants.AudioInputType;
 import bluetooth.constants.aics.AudioInputStatus;
+import bluetooth.constants.aics.Mute;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -107,23 +109,23 @@ public class VolumeControlInputDescriptorTest {
 
     @Test
     public void getType_whenNeverSet_defaultToUnspecified() {
-        assertThat(mDescriptor.getType(VALID_ID)).isEqualTo(0); // AudioInputType.UNSPECIFIED);
+        assertThat(mDescriptor.getType(VALID_ID)).isEqualTo(AudioInputType.UNSPECIFIED);
     }
 
     @Test
     public void setType_withValidId_valueIsUpdated() {
-        int newType = 7; // AudioInputType.AMBIENT;
-        mDescriptor.setType(VALID_ID, newType);
+        @AudioInputControl.Type int type = AudioInputType.AMBIENT;
+        mDescriptor.setType(VALID_ID, type);
 
-        assertThat(mDescriptor.getType(VALID_ID)).isEqualTo(newType);
+        assertThat(mDescriptor.getType(VALID_ID)).isEqualTo(type);
     }
 
     @Test
     public void setType_withInvalidId_valueIsNotUpdated() {
-        int newType = 1; // AudioInputType.BLUETOOTH;
-        mDescriptor.setType(INVALID_ID2, newType);
+        @AudioInputControl.Type int type = AudioInputType.BLUETOOTH;
+        mDescriptor.setType(INVALID_ID2, type);
 
-        assertThat(mDescriptor.getType(INVALID_ID2)).isNotEqualTo(newType);
+        assertThat(mDescriptor.getType(INVALID_ID2)).isNotEqualTo(type);
     }
 
     @Test
