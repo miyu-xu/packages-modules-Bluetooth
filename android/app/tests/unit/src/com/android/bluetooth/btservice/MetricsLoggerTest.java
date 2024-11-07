@@ -255,8 +255,10 @@ public class MetricsLoggerTest {
         BluetoothDevice bluetoothDevice =
                 TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
 
+        boolean isDeIdentifiedLogging = false;
         byte[] remoteDeviceInformationBytes =
-                mTestableMetricsLogger.getRemoteDeviceInfoProto(bluetoothDevice);
+                mTestableMetricsLogger.getRemoteDeviceInfoProto(
+                        bluetoothDevice, isDeIdentifiedLogging);
 
         try {
             BluetoothRemoteDeviceInformation bluetoothRemoteDeviceInformation =
@@ -267,6 +269,32 @@ public class MetricsLoggerTest {
         } catch (InvalidProtocolBufferException e) {
             Assert.assertNull(e.getMessage()); // test failure here
         }
+    }
+
+    @Test
+    public void testGetAllowlistedDeviceNameHashForMedicalDevice() {
+        String deviceName = "Sam's rphonak hearing aid";
+        boolean isDeIdentifiedLogging = true;
+        String expectMedicalDeviceSha256 = MetricsLogger.getSha256String("rphonakhearingaid");
+
+        String actualMedicalDeviceSha256 =
+                mTestableMetricsLogger.getAllowlistedDeviceNameHash(
+                        deviceName, isDeIdentifiedLogging);
+
+        Assert.assertEquals(expectMedicalDeviceSha256, actualMedicalDeviceSha256);
+    }
+
+    @Test
+    public void testGetAllowlistedDeviceNameHashForMedicalDeviceIdentifiedLogging() {
+        String deviceName = "Sam's rphonak hearing aid";
+        boolean isDeIdentifiedLogging = false;
+        String expectMedicalDeviceSha256 = "";
+
+        String actualMedicalDeviceSha256 =
+                mTestableMetricsLogger.getAllowlistedDeviceNameHash(
+                        deviceName, isDeIdentifiedLogging);
+
+        Assert.assertEquals(expectMedicalDeviceSha256, actualMedicalDeviceSha256);
     }
 
     @Test
