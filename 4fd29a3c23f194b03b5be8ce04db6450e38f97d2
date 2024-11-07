@@ -1,0 +1,160 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529d9f49_8ec6598c",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:33:47Z",
+      "side": 1,
+      "message": "since kEnergyMonitorParamTotalLen is defined by a sizeof, we don\u0027t need this assert anymore (and the assert is not checking the variable anymore)",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 59
+      },
+      "revId": "4fd29a3c23f194b03b5be8ce04db6450e38f97d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f8a9fe_59545c91",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:33:47Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 450,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 53
+      },
+      "revId": "4fd29a3c23f194b03b5be8ce04db6450e38f97d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f93c34_1fcc79e9",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:33:47Z",
+      "side": 1,
+      "message": "unused parameter",
+      "range": {
+        "startLine": 808,
+        "startChar": 13,
+        "endLine": 808,
+        "endChar": 20
+      },
+      "revId": "4fd29a3c23f194b03b5be8ce04db6450e38f97d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5579013_d865e117",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:33:47Z",
+      "side": 1,
+      "message": "Can you write error early return instead ?\nThis limit the increasing nesting of the method\n\n```suggestion\n  if (!p_bqr_event-\u003eParseBqrEnergyMonitorEvt(length, p_energy_monitor_event)) {\n    log::warn(\"failed to parse BQR energy monitor event\");\n    return;\n  }\n  BluetoothQualityReportInterface* bqrItf \u003d getBluetoothQualityReportInterface();\n\n  if (bqrItf \u003d\u003d NULL) {\n    log::warn(\"failed to deliver BQR, bqrItf is NULL\");\n    return;\n  }\n\n  bqrItf-\u003ebqr_delivery_event(RawAddress::kAny, p_energy_monitor_event, length);\n```",
+      "range": {
+        "startLine": 810,
+        "startChar": 1,
+        "endLine": 822,
+        "endChar": 3
+      },
+      "revId": "4fd29a3c23f194b03b5be8ce04db6450e38f97d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce05eb72_ca460ad9",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:33:47Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 827,
+        "startChar": 13,
+        "endLine": 827,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c79c8caf_240309e0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_bqr.cc",
+              "range": {
+                "startLine": 827,
+                "startChar": 0,
+                "endLine": 828,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4fd29a3c23f194b03b5be8ce04db6450e38f97d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c7cc35_39231270",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:33:47Z",
+      "side": 1,
+      "message": "same regarding to nesting",
+      "range": {
+        "startLine": 829,
+        "startChar": 0,
+        "endLine": 841,
+        "endChar": 3
+      },
+      "revId": "4fd29a3c23f194b03b5be8ce04db6450e38f97d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
