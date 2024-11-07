@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e35b2b_06ca24b9",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-07T18:01:25Z",
+      "side": 1,
+      "message": "should log the instance id as well.",
+      "range": {
+        "startLine": 618,
+        "startChar": 17,
+        "endLine": 618,
+        "endChar": 18
+      },
+      "revId": "dca30c3129ed0a3f14810c2b96b8cfde1272f32b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
