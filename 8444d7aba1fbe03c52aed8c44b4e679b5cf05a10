@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f066b1d4_79823359",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T17:48:54Z",
+      "side": 1,
+      "message": "In the new version, if dbManager \u003d\u003d null, we\u0027re still setting mUnicastGroupIdDeactivatedForBroadcastTransition \u003d -1, which we should not IMO.\n\ne.g. if fallback is with active group2, then there is an update call setDefaultBroadcastToUnicastFallbackGroup, but due to dbManager is null, we reset the fallback to -1.\n\ndbManager read should not cause fallback group change, but please correct me if this is intended.\n\nShould we just do this? \n        if (dbManager \u003d\u003d null) {\n            Log.e(TAG, \"dbManager is null, skip updating fallback group\");\n            return;\n        }",
+      "parentUuid": "9f61ccda_251db0a1",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e0188e7_decce1e2",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -91,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "afa4ddaf_bc046962",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T17:48:54Z",
+      "side": 1,
+      "message": "I meant we might still want to make this change,\n\nso that the callback will be invoked.\n```suggestion\n        updateFallbackUnicastGroupIdForBroadcast(targetGroupId);\n```",
+      "parentUuid": "72968a8c_37f0231a",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5953ad6d_3e0350a6",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 2
@@ -120,6 +156,24 @@
       "side": 1,
       "message": "I don\u0027t think so since this is using service API.",
       "parentUuid": "5953ad6d_3e0350a6",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd379628_076024fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1609,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T17:48:54Z",
+      "side": 1,
+      "message": "Acknowledged, let\u0027s run presubmit to check.",
+      "parentUuid": "02610d6c_ce6b28b7",
       "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -190,6 +244,24 @@
       "side": 1,
       "message": "Test is on service level - I think this is ok to flag only with broadcast primary group selection.",
       "parentUuid": "e6a8c422_65d50438",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "485c811e_057ead94",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3626,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T17:48:54Z",
+      "side": 1,
+      "message": "I meant the API flag will change the behavior in setBroadcastToUnicastFallbackGroup(). But it\u0027s okay with the new version.",
+      "parentUuid": "15396b02_f26e8f3a",
       "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
