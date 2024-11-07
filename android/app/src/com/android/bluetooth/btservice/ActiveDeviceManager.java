@@ -594,6 +594,35 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
     }
 
     /**
+     * Update the LE Audio active device following a change of (dual mode compatible) active device
+     * in a classic audio profile such as A2DP or HFP.
+     *
+     * @param previousActiveDevice previous active device of the classic profile
+     * @param nextActiveDevice current active device of the classic profile
+     */
+    private void updateLeAudioActiveDeviceIfDualMode(
+            @Nullable BluetoothDevice previousActiveDevice, @Nullable BluetoothDevice nextActiveDevice) {
+        if (!Utils.isDualModeAudioEnabled()) {
+            return;
+        }
+
+        if (nextActiveDevice != null) {
+            boolean isDualModeDevice =
+                    mAdapterService.isAllSupportedClassicAudioProfilesActive(nextActiveDevice);
+            if (isDualModeDevice) {
+                setLeAudioActiveDevice(nextActiveDevice);
+            }
+        } else {
+            boolean wasDualModeDevice =
+                    mAdapterService.isAllSupportedClassicAudioProfilesActive(
+                            previousActiveDevice);
+            if (wasDualModeDevice) {
+                setLeAudioActiveDevice(null, true);
+            }
+        }
+    }
+
+    /**
      * Handles the active device logic for when the A2DP active device changes. Does the following:
      * 1. Clear the active hearing aid. 2. If dual mode is enabled and all supported classic audio
      * profiles are enabled, makes this device active for LE Audio. If not, clear the LE Audio
@@ -614,26 +643,9 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                 if (device != null) {
                     setHearingAidActiveDevice(null, true);
                 }
-
-                if (Utils.isDualModeAudioEnabled()) {
-                    if (device != null) {
-                        boolean isDualModeDevice =
-                                mAdapterService.isAllSupportedClassicAudioProfilesActive(device);
-                        if (isDualModeDevice) {
-                            setLeAudioActiveDevice(device);
-                        }
-                    } else {
-                        boolean wasDualModeDevice =
-                                mAdapterService.isAllSupportedClassicAudioProfilesActive(
-                                        mA2dpActiveDevice);
-                        if (wasDualModeDevice) {
-                            // remove LE audio active device when it was actived as dual mode device
-                            // before
-                            setLeAudioActiveDevice(null, true);
-                        }
-                    }
-                }
+                updateLeAudioActiveDeviceIfDualMode(mA2dpActiveDevice, device);
             }
+
             // Just assign locally the new value
             mA2dpActiveDevice = device;
 
@@ -696,29 +708,9 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                     setHearingAidActiveDevice(null, true);
                 }
 
-                if (Utils.isDualModeAudioEnabled()) {
-                    if (device != null) {
-                        boolean isDualModeDevice =
-                                mAdapterService.isAllSupportedClassicAudioProfilesActive(device);
-                        if (isDualModeDevice) {
-                            setLeAudioActiveDevice(device);
-                        }
-                    } else {
-                        boolean wasDualModeDevice =
-                                mAdapterService.isAllSupportedClassicAudioProfilesActive(
-                                        mA2dpActiveDevice);
-                        if (wasDualModeDevice) {
-                            // remove LE audio active device when it was actived as dual mode device
-                            // before
-                            setLeAudioActiveDevice(null, true);
-                        }
+                updateLeAudioActiveDeviceIfDualMode();
 
-                        Log.d(TAG, "HFP active device is null. Try to fallback to le audio device");
-                        synchronized (mLock) {
-                            setFallbackDeviceActiveLocked(null);
-                        }
-                    }
-                } else {
+                if (!Utils.isDualModeAudioEnabled() || device == null) {
                     Log.d(TAG, "HFP active device is null. Try to fallback to le audio device");
                     synchronized (mLock) {
                         setFallbackDeviceActiveLocked(null);
