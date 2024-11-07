@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270d386b_6289d8cf",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-07T17:49:22Z",
+      "side": 1,
+      "message": "nit: Generally, the full name is written first then the shorthand\n\n`Audio Input Control Service (AICS)`",
+      "range": {
+        "startLine": 28,
+        "startChar": 48,
+        "endLine": 28,
+        "endChar": 81
+      },
+      "revId": "017080b16ae01fc57d4eb234ffcfd5c6d6860eb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d0b650a_4dbb0645",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-07T17:49:22Z",
+      "side": 1,
+      "message": "nit: AudioInputType ?\n\nEach tag value is prefixed with AUDIO_INPUT_TYPE_ so it might make more sense.\nSame for Status",
+      "range": {
+        "startLine": 72,
+        "startChar": 22,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "017080b16ae01fc57d4eb234ffcfd5c6d6860eb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
