@@ -1847,14 +1847,14 @@ public class VolumeControlService extends ProfileService {
         public int getAudioInputGainSettingMin(
                 AttributionSource source, BluetoothDevice device, int instanceId) {
             Log.d(TAG, "getAudioInputGainSettingMin(" + device + ", " + instanceId + ")");
-            return aicsWrapper(source, device, i -> i.getGainSettingMax(instanceId), 0);
+            return aicsWrapper(source, device, i -> i.getGainSettingMin(instanceId), 0);
         }
 
         @Override
         public int getAudioInputGainSettingMax(
                 AttributionSource source, BluetoothDevice device, int instanceId) {
             Log.d(TAG, "getAudioInputGainSettingMax(" + device + ", " + instanceId + ")");
-            return aicsWrapper(source, device, i -> i.getGainSettingMin(instanceId), 0);
+            return aicsWrapper(source, device, i -> i.getGainSettingMax(instanceId), 0);
         }
 
         @Override
