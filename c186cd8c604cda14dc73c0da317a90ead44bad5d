@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6849bec2_d18f9af0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T05:15:34Z",
+      "side": 1,
+      "message": "this does not need to be public",
+      "range": {
+        "startLine": 5220,
+        "startChar": 4,
+        "endLine": 5220,
+        "endChar": 10
+      },
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "803b77f3_1be61eb7",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 11
@@ -65,6 +88,47 @@
       "writtenOn": "2024-11-07T02:46:55Z",
       "side": 1,
       "message": "nit: should we update this as well?",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef61fa3_cbc676c2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T05:15:34Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 1456,
+        "startChar": 11,
+        "endLine": 1456,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f44a486b_3e8f8121",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1456,
+                "startChar": 0,
+                "endLine": 1457,
+                "endChar": 0
+              },
+              "replacement": "     *     disabled\n"
+            }
+          ]
+        }
+      ],
       "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
