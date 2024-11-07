@@ -25,6 +25,7 @@ import static android.bluetooth.BluetoothUtils.executeFromBinder;
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -42,6 +43,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 
 import java.util.Arrays;
@@ -708,6 +710,8 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * @return The list of {@code AudioInputControl} associated with a device
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_AICS_API)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @NonNull List<AudioInputControl> getAudioInputControlPoints(
