@@ -594,6 +594,7 @@ class HeadsetStateMachine extends StateMachine {
                                 device,
                                 BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProfile.STATE_DISCONNECTED);
+                        boolean isDeIdentifiedLogging = false;
                         BluetoothStatsLog.write(
                                 BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
                                 BluetoothProfile.HEADSET,
@@ -601,7 +602,8 @@ class HeadsetStateMachine extends StateMachine {
                                 BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProtoEnums.REASON_NATIVE_LAYER_REJECTED,
-                                MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
+                                MetricsLogger.getInstance()
+                                        .getRemoteDeviceInfoProto(mDevice, isDeIdentifiedLogging));
                         break;
                     }
                     transitionTo(mConnecting);
@@ -670,6 +672,7 @@ class HeadsetStateMachine extends StateMachine {
                                 mDevice,
                                 BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProfile.STATE_DISCONNECTED);
+                        boolean isDeIdentifiedLogging = false;
                         BluetoothStatsLog.write(
                                 BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
                                 BluetoothProfile.HEADSET,
@@ -677,7 +680,8 @@ class HeadsetStateMachine extends StateMachine {
                                 BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProtoEnums.REASON_INCOMING_CONN_REJECTED,
-                                MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
+                                MetricsLogger.getInstance()
+                                        .getRemoteDeviceInfoProto(mDevice, isDeIdentifiedLogging));
                     }
                     break;
                 case HeadsetHalConstants.CONNECTION_STATE_DISCONNECTING:
@@ -698,6 +702,7 @@ class HeadsetStateMachine extends StateMachine {
                                 ? BluetoothProtoEnums.RESULT_FAILURE
                                 : BluetoothProtoEnums.RESULT_UNKNOWN;
 
+                boolean isDeIdentifiedLogging = false;
                 BluetoothStatsLog.write(
                         BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
                         BluetoothProfile.HEADSET,
@@ -705,7 +710,8 @@ class HeadsetStateMachine extends StateMachine {
                         mPrevState.getConnectionStateInt(),
                         BluetoothProfile.STATE_DISCONNECTED,
                         BluetoothProtoEnums.REASON_UNEXPECTED_STATE,
-                        MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
+                        MetricsLogger.getInstance()
+                                .getRemoteDeviceInfoProto(mDevice, isDeIdentifiedLogging));
             }
         }
     }
@@ -1423,6 +1429,7 @@ class HeadsetStateMachine extends StateMachine {
 
         private void logSuccessIfNeeded() {
             if (mPrevState == mConnecting || mPrevState == mDisconnected) {
+                boolean isDeIdentifiedLogging = false;
                 BluetoothStatsLog.write(
                         BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
                         BluetoothProfile.HEADSET,
@@ -1430,7 +1437,8 @@ class HeadsetStateMachine extends StateMachine {
                         mPrevState.getConnectionStateInt(),
                         BluetoothProfile.STATE_CONNECTED,
                         BluetoothProtoEnums.REASON_SUCCESS,
-                        MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
+                        MetricsLogger.getInstance()
+                                .getRemoteDeviceInfoProto(mDevice, isDeIdentifiedLogging));
             }
         }
     }

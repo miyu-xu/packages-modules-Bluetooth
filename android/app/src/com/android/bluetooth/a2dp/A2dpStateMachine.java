@@ -275,6 +275,8 @@ final class A2dpStateMachine extends StateMachine {
                                 ? BluetoothProtoEnums.RESULT_FAILURE
                                 : BluetoothProtoEnums.RESULT_UNKNOWN;
 
+                boolean isDeIdentifiedLogging = false;
+
                 BluetoothStatsLog.write(
                         BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
                         BluetoothProfile.A2DP,
@@ -282,7 +284,8 @@ final class A2dpStateMachine extends StateMachine {
                         mLastConnectionState,
                         STATE_DISCONNECTED,
                         BluetoothProtoEnums.REASON_UNEXPECTED_STATE,
-                        MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
+                        MetricsLogger.getInstance()
+                                .getRemoteDeviceInfoProto(mDevice, isDeIdentifiedLogging));
             }
         }
     }
@@ -616,6 +619,7 @@ final class A2dpStateMachine extends StateMachine {
         private void logSuccessIfNeeded() {
             if (mLastConnectionState == STATE_CONNECTING
                     || mLastConnectionState == STATE_DISCONNECTED) {
+                boolean isDeIdentifiedLogging = false;
                 BluetoothStatsLog.write(
                         BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
                         BluetoothProfile.A2DP,
@@ -623,7 +627,8 @@ final class A2dpStateMachine extends StateMachine {
                         mLastConnectionState,
                         STATE_CONNECTED,
                         BluetoothProtoEnums.REASON_SUCCESS,
-                        MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
+                        MetricsLogger.getInstance()
+                                .getRemoteDeviceInfoProto(mDevice, isDeIdentifiedLogging));
             }
         }
     }
