@@ -78,6 +78,8 @@ interface IBluetoothVolumeControl {
     // AICS related methods:
 
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    int getAudioInputControlPointsCountForDevice(in AttributionSource attributionSource, in BluetoothDevice device);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     void registerAudioInputControlCallback(in AttributionSource attributionSource, in BluetoothDevice device, int instanceId, in IAudioInputCallback callback);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     void unregisterAudioInputControlCallback(in AttributionSource attributionSource, in BluetoothDevice device, int instanceId, in IAudioInputCallback callback);
