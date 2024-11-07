@@ -685,12 +685,14 @@ public:
       }
     }
 
+    /* Decide on whether to disconnect active and inactive devices from group */
     do {
       DisconnectDevice(leAudioDevice, true, recovery);
       leAudioDevice = group->GetNextActiveDevice(leAudioDevice);
     } while (leAudioDevice);
 
-    if (recovery) {
+    if (recovery && !group->NumOfConnected()) {
+      log::info("All devices disconnected, group becomes inactive");
       /* Both devices will  be disconnected soon. Notify upper layer that group
        * is inactive */
       groupSetAndNotifyInactive();
