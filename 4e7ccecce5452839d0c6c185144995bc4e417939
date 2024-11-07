@@ -16,6 +16,24 @@
       "message": "What would happen if I have one LE audio device connected but reporting no audio/call context available (so theoretically not available for streaming) and one active A2DP device?",
       "revId": "4e7ccecce5452839d0c6c185144995bc4e417939",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8132b0d_c832cd13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-07T17:32:33Z",
+      "side": 1,
+      "message": "It will be played on the speaker. But this is other issue. This should be also fixed in  b/312396770\n\nBut I\u0027m adding followup patch for this.",
+      "parentUuid": "7dbe203b_874379b4",
+      "revId": "4e7ccecce5452839d0c6c185144995bc4e417939",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
