@@ -31,10 +31,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <cstdint>
+
+#include "hid_conn.h"
 #include "hiddefs.h"
 #include "hidh_int.h"
 #include "internal_include/bt_target.h"
+#include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
+#include "sdp_api.h"
+#include "sdp_discovery_db.h"
+#include "sdp_status.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/sdpdefs.h"
