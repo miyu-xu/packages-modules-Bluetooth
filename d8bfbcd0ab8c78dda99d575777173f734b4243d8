@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb36da2b_19d70a9b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1700,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T22:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18d4138e_ad42c3af",
+      "range": {
+        "startLine": 1700,
+        "startChar": 22,
+        "endLine": 1700,
+        "endChar": 34
+      },
+      "revId": "d8bfbcd0ab8c78dda99d575777173f734b4243d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bae0144_243f513d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-07T17:44:01Z",
       "side": 1,
       "message": "You won\u0027t have any context for this log should it be printed, because AIDL entrypoints are not logger.",
+      "range": {
+        "startLine": 1716,
+        "startChar": 16,
+        "endLine": 1716,
+        "endChar": 60
+      },
+      "revId": "d8bfbcd0ab8c78dda99d575777173f734b4243d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b9d8371_77354a9f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1716,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T22:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bae0144_243f513d",
       "range": {
         "startLine": 1716,
         "startChar": 16,
