@@ -532,6 +532,8 @@ public:
       return;
     }
 
+    AseState target_state = group->GetTargetState();
+
     bool check_if_recovery_needed =
             group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
 
@@ -543,7 +545,7 @@ public:
     log::error(
             "State not achieved on time for group: group id {}, current state {}, "
             "target state: {}, check_if_recovery_needed: {}",
-            group_id, ToString(group->GetState()), ToString(group->GetTargetState()),
+            group_id, ToString(group->GetState()), ToString(target_state),
             check_if_recovery_needed);
     group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
     group->ClearAllCises();
@@ -578,7 +580,9 @@ public:
     }
 
     do {
-      DisconnectDevice(leAudioDevice, true, recovery);
+      if (!leAudioDevice->IsAsesStateReached(target_state)) {
+        DisconnectDevice(leAudioDevice, true, recovery);
+      }
       leAudioDevice = group->GetNextActiveDevice(leAudioDevice);
     } while (leAudioDevice);
 
