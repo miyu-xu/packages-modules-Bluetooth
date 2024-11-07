@@ -70,6 +70,30 @@
       },
       "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18d543dc_deeb3d3f",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3596272
+      },
+      "writtenOn": "2024-11-07T00:57:40Z",
+      "side": 1,
+      "message": "Any help is appreciated.\n\nIf you feel strongly about removing this dependency, I think it\u0027s probably brought in by logging floating point numbers using `libchrome` methods. You could instead use Android native functions to do that.\n\nHowever, my understanding is that the Bluetooth package shares code between ChromeOS and Android, so the use of `libchrome` removes the need for a lot of duplicated code.\n\nCan you help me understand why it\u0027s important not to introduce this dependency? A lot of its features are already part of the version of libchrome currently shipped in Android.",
+      "parentUuid": "85a743c2_eed8bded",
+      "range": {
+        "startLine": 173,
+        "startChar": 9,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
