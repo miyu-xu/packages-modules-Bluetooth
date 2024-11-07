@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83aba191_74f5b527",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4287,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-07T13:44:43Z",
+      "side": 1,
+      "message": "Sorry. I tested them in main branch but forget to copy them into aosp_main here.\nAdded.",
+      "parentUuid": "9cd680f4_3c604c2f",
+      "range": {
+        "startLine": 4287,
+        "startChar": 0,
+        "endLine": 4287,
+        "endChar": 63
+      },
+      "revId": "5dd99ecf150ff2a7876da9a13238278df47d7d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6716d5d6_60821392",

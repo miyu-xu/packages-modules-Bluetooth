@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "114d9209_dfe2bca7",
+        "filename": "flags/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-07T13:44:43Z",
+      "side": 1,
+      "message": "I will use com.android.bluetooth.flags.Flags.metadataApiMicrophoneForCallEnabled() in SettingsLib, and it will be the build error if I don\u0027t add visibility here.\n\nWhat I changed in SettingsLib/Android.bp:\n```\njava_aconfig_library {\n    name: \"bluetooth_flags\",\n    aconfig_declarations: \"bluetooth_aconfig_flags\",\n    mode: \"exported\",\n}\n```\n\n\nError message:\n```\nerror: frameworks/base/packages/SettingsLib/Android.bp:125:1: module \"bluetooth_flags\" variant \"android_common\": depends on //packages/modules/Bluetooth/flags:bluetooth_aconfig_\nflags which is not visible to this module\nYou may need to add \"//frameworks/base/packages/SettingsLib\" to its visibility\n```",
+      "parentUuid": "6ca6fdb2_d5001c3e",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "c707bdd0781c6c063e20849c296c4dc314ec62fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "400ac31f_8ce74f7a",
         "filename": "flags/Android.bp",
         "patchSetId": 26
