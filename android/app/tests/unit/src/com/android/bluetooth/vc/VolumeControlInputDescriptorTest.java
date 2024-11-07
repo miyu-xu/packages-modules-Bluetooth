@@ -19,6 +19,8 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
+import android.bluetooth.AudioInputControl.GainMode;
+import android.bluetooth.AudioInputControl.Mute;
 import android.bluetooth.AudioInputControl.Status;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -126,48 +128,42 @@ public class VolumeControlInputDescriptorTest {
 
     @Test
     public void setState_withValidIdButIncorrectSettings_valueIsNotUpdated() {
-        int newGainValue = 42;
-        int newGainMode = 42;
-        int mute = Mute.NOT_MUTED;
-        mDescriptor.setState(VALID_ID, newGainMode, newGainMode, mute);
+        mDescriptor.onStateChanged(VALID_ID, 34, Mute.NOT_MUTED, GainMode.MANUAL);
 
-        assertThat(mDescriptor.getGainSetting(VALID_ID)).isNotEqualTo(newGainValue);
-        // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
-        assertThat(mDescriptor.getMute(VALID_ID)).isNotEqualTo(mute);
+        assertThat(mDescriptor.getGainSetting(VALID_ID)).isEqualTo(0);
+        assertThat(mDescriptor.getGainMode(VALID_ID)).isEqualTo(GainMode.MANUAL_ONLY);
+        assertThat(mDescriptor.getMute(VALID_ID)).isEqualTo(Mute.DISABLED);
     }
 
     @Test
     public void setState_withValidIdAndCorrectSettings_valueIsUpdated() {
-        int newMax = 100;
-        int newMin = 0;
-        int newUnit = 1;
-        mDescriptor.setPropSettings(VALID_ID, newUnit, newMin, newMax);
+        int max = 100;
+        int min = 0;
+        int unit = 1;
+        mDescriptor.setPropSettings(VALID_ID, unit, min, max);
 
-        int newGainValue = 42;
-        int newGainMode = 42;
-        int mute = Mute.MUTED;
-        mDescriptor.setState(VALID_ID, newGainMode, mute, newGainMode);
+        int gainSetting = 42;
+        @Mute int mute = Mute.MUTED;
+        @GainMode int gainMode = GainMode.MANUAL;
+        mDescriptor.onStateChanged(VALID_ID, gainSetting, mute, gainMode);
 
-        assertThat(mDescriptor.getGainSetting(VALID_ID)).isEqualTo(newGainValue);
-        // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
+        assertThat(mDescriptor.getGainSetting(VALID_ID)).isEqualTo(gainSetting);
+        assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(gainMode);
         assertThat(mDescriptor.getMute(VALID_ID)).isEqualTo(mute);
     }
 
     @Test
     public void setState_withInvalidId_valueIsNotUpdated() {
-        int newMax = 100;
-        int newMin = 0;
-        int newUnit = 1;
+        int max = 100;
+        int min = 0;
+        int unit = 1;
         // Should be no-op but we want to copy the working case test, just with an invalid id
-        mDescriptor.setPropSettings(INVALID_ID, newUnit, newMin, newMax);
+        mDescriptor.setPropSettings(INVALID_ID, unit, min, max);
 
-        int newGainValue = 42;
-        int newGainMode = 42;
-        int mute = Mute.MUTED;
-        mDescriptor.setState(INVALID_ID, newGainMode, newGainMode, mute);
+        mDescriptor.onStateChanged(INVALID_ID, 35, Mute.MUTED, GainMode.MANUAL);
 
-        assertThat(mDescriptor.getGainSetting(INVALID_ID)).isNotEqualTo(newGainValue);
-        // assertThat(mDescriptor.getGainMode(VALID_ID)).isNotEqualTo(newGainMode);
+        assertThat(mDescriptor.getGainSetting(INVALID_ID)).isEqualTo(0);
+        assertThat(mDescriptor.getGainMode(INVALID_ID)).isEqualTo(GainMode.MANUAL_ONLY);
         assertThat(mDescriptor.getMute(INVALID_ID)).isEqualTo(Mute.DISABLED);
     }
 
