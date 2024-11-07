@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5953ad6d_3e0350a6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1609,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T02:57:05Z",
+      "side": 1,
+      "message": "do we need the API flag for this test as well?",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "105a207f_dc932781",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T02:57:05Z",
+      "side": 1,
+      "message": "also just noticed required this flag to be disabled.\nthis flag is released in Q4, in this case, this won\u0027t run.\npossible we can update this test for FLAG_LEAUDIO_USE_AUDIO_MODE_LISTENER enabled case?",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a8c422_65d50438",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3626,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T02:57:05Z",
+      "side": 1,
+      "message": "do we need the API flag for this test as well?",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
