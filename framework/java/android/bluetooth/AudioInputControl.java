@@ -24,13 +24,17 @@ import static android.bluetooth.BluetoothUtils.logRemoteException;
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
+import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
 import android.os.RemoteException;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -45,35 +49,45 @@ import java.util.stream.IntStream;
  * @see BluetoothVolumeControl#getAudioInputControlPoints
  * @hide
  */
+@FlaggedApi(Flags.FLAG_AICS_API)
+@SystemApi
 public final class AudioInputControl {
     private static final String TAG = AudioInputControl.class.getSimpleName();
 
-    /** Unspecified Input */
+    /** Unspecified Input @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_UNSPECIFIED =
             bluetooth.constants.AudioInputType.UNSPECIFIED;
 
-    /** Bluetooth Audio Stream */
+    /** Bluetooth Audio Stream @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_BLUETOOTH =
             bluetooth.constants.AudioInputType.BLUETOOTH;
 
-    /** Microphone */
+    /** Microphone @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_MICROPHONE =
             bluetooth.constants.AudioInputType.MICROPHONE;
 
-    /** Analog Interface */
+    /** Analog Interface @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_ANALOG = bluetooth.constants.AudioInputType.ANALOG;
 
-    /** Digital Interface */
+    /** Digital Interface @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_DIGITAL = bluetooth.constants.AudioInputType.DIGITAL;
 
-    /** AM/FM/XM/etc. */
+    /** AM/FM/XM/etc. @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_RADIO = bluetooth.constants.AudioInputType.RADIO;
 
-    /** Streaming Audio Source */
+    /** Streaming Audio Source @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_STREAMING =
             bluetooth.constants.AudioInputType.STREAMING;
 
-    /** Transparency/Pass-through */
+    /** Transparency/Pass-through @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_TYPE_AMBIENT = bluetooth.constants.AudioInputType.AMBIENT;
 
     /** @hide */
@@ -92,11 +106,13 @@ public final class AudioInputControl {
             })
     public @interface AudioInputType {}
 
-    /** Inactive */
+    /** Inactive @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_STATUS_INACTIVE =
             bluetooth.constants.aics.AudioInputStatus.INACTIVE;
 
-    /** Active */
+    /** Active @hide */
+    @SystemApi
     public static final int AUDIO_INPUT_STATUS_ACTIVE =
             bluetooth.constants.aics.AudioInputStatus.ACTIVE;
 
@@ -110,14 +126,14 @@ public final class AudioInputControl {
             })
     public @interface AudioInputStatus {}
 
-    /** Not Muted */
-    public static final int MUTE_NOT_MUTED = bluetooth.constants.aics.Mute.NOT_MUTED;
+    /** Not Muted @hide */
+    @SystemApi public static final int MUTE_NOT_MUTED = bluetooth.constants.aics.Mute.NOT_MUTED;
 
-    /** Muted */
-    public static final int MUTE_MUTED = bluetooth.constants.aics.Mute.MUTED;
+    /** Muted @hide */
+    @SystemApi public static final int MUTE_MUTED = bluetooth.constants.aics.Mute.MUTED;
 
-    /** Disabled */
-    public static final int MUTE_DISABLED = bluetooth.constants.aics.Mute.DISABLED;
+    /** Disabled @hide */
+    @SystemApi public static final int MUTE_DISABLED = bluetooth.constants.aics.Mute.DISABLED;
 
     /** @hide */
     @Retention(RetentionPolicy.SOURCE)
@@ -130,17 +146,20 @@ public final class AudioInputControl {
             })
     public @interface Mute {}
 
-    /** Manual Only */
+    /** Manual Only @hide */
+    @SystemApi
     public static final int GAIN_MODE_MANUAL_ONLY = bluetooth.constants.aics.GainMode.MANUAL_ONLY;
 
-    /** Automatic Only */
+    /** Automatic Only @hide */
+    @SystemApi
     public static final int GAIN_MODE_AUTOMATIC_ONLY =
             bluetooth.constants.aics.GainMode.AUTOMATIC_ONLY;
 
-    /** Manual */
-    public static final int GAIN_MODE_MANUAL = bluetooth.constants.aics.GainMode.MANUAL;
+    /** Manual @hide */
+    @SystemApi public static final int GAIN_MODE_MANUAL = bluetooth.constants.aics.GainMode.MANUAL;
 
-    /** Automatic */
+    /** Automatic @hide */
+    @SystemApi
     public static final int GAIN_MODE_AUTOMATIC = bluetooth.constants.aics.GainMode.AUTOMATIC;
 
     /** @hide */
@@ -162,7 +181,7 @@ public final class AudioInputControl {
     private final CallbackWrapper<AudioInputCallback, IBluetoothVolumeControl> mCallbackWrapper;
 
     /** @hide */
-    public AudioInputControl(
+    AudioInputControl(
             @NonNull BluetoothDevice device,
             int id,
             @NonNull IBluetoothVolumeControl service,
@@ -261,29 +280,38 @@ public final class AudioInputControl {
      *
      * @hide
      */
+    @SystemApi
     public interface AudioInputCallback {
         /** @hide */
+        @SystemApi
         default void onDescriptionChanged(@NonNull String description) {}
 
         /** @hide */
+        @SystemApi
         default void onStatusChanged(@AudioInputStatus int status) {}
 
         /** @hide */
+        @SystemApi
         default void onGainModeChanged(@GainMode int gainMode) {}
 
         /** @hide */
+        @SystemApi
         default void onMuteChanged(@Mute int mute) {}
 
         /** @hide */
+        @SystemApi
         default void onGainSettingChanged(int gainSetting) {}
 
         /** @hide */
+        @SystemApi
         default void onSetGainSettingFailed() {}
 
         /** @hide */
+        @SystemApi
         default void onSetGainModeFailed() {}
 
         /** @hide */
+        @SystemApi
         default void onSetMuteFailed() {}
     }
 
@@ -300,6 +328,7 @@ public final class AudioInputControl {
      * @throws IllegalArgumentException if callback is already registered
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void registerCallback(
@@ -319,6 +348,7 @@ public final class AudioInputControl {
      * @throws IllegalArgumentException when no callback is registered
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public void unregisterCallback(@NonNull AudioInputCallback callback) {
@@ -329,6 +359,7 @@ public final class AudioInputControl {
      * @return The Audio Input Type as defined in Audio Input Control Service 1.0 - 3.3.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @AudioInputType int getType() {
@@ -342,6 +373,7 @@ public final class AudioInputControl {
      * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public int getGainSettingUnit() {
@@ -355,6 +387,7 @@ public final class AudioInputControl {
      * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public int getGainSettingMax() {
@@ -368,6 +401,7 @@ public final class AudioInputControl {
      * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public int getGainSettingMin() {
@@ -381,6 +415,7 @@ public final class AudioInputControl {
      * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @NonNull String getDescription() {
@@ -394,6 +429,7 @@ public final class AudioInputControl {
      * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean isDescriptionWritable() {
@@ -407,6 +443,7 @@ public final class AudioInputControl {
      * @return The Gain Setting Units as defined in Audio Input Control Service 1.0 - 3.2.1
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setDescription(@NonNull String description) {
@@ -422,6 +459,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @AudioInputStatus int getStatus() {
@@ -435,6 +473,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public int getGainSetting() {
@@ -448,6 +487,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setGainSetting(int gainSetting) {
@@ -463,6 +503,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @GainMode int getGainMode() {
@@ -476,6 +517,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setGainMode(@GainMode int gainMode) {
@@ -492,6 +534,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @Mute int getMute() {
@@ -505,6 +548,7 @@ public final class AudioInputControl {
      * @return The Audio Input Status as defined in Audio Input Control Service 1.0 - 3.4.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean setMute(@Mute int mute) {
