@@ -32,9 +32,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <cstdint>
+
+#include "hid_conn.h"
 #include "hidd_int.h"
 #include "hiddefs.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/allocator.h"
+#include "sdp_discovery_db.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
