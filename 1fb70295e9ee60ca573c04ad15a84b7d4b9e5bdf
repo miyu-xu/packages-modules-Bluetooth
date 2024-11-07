@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90d399ed_506b1ea4",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-07T21:03:41Z",
+      "side": 1,
+      "message": "Hi William, do you mean that I should use the connecting timeout value for disconnecting timeout use cases because the value is the same? I have both right now for better readability in the code",
+      "parentUuid": "6b6a33fa_6e4c57d0",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ca5fb70_66db2721",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 17
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-28T21:16:14Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 65
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9776fca6_a0e549fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-07T21:03:41Z",
+      "side": 1,
+      "message": "Got it.",
+      "parentUuid": "6ca5fb70_66db2721",
       "range": {
         "startLine": 156,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7281a2ba_d0fbcad5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-07T21:03:41Z",
+      "side": 1,
+      "message": "Sorry, forgot to comment this back in.",
+      "parentUuid": "e67f1223_0da52ba2",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 35
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86dcdb1d_932fcee7",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-28T21:16:14Z",
       "side": 1,
       "message": "not needed, moveTimeForward can jump any amount of time",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 54
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ff2abb5_5b9af0c0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-07T21:03:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86dcdb1d_932fcee7",
       "range": {
         "startLine": 225,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65ee471b_993113f6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1332,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-07T21:03:41Z",
+      "side": 1,
+      "message": "Yes, I forgot to uncomment, thanks for catching that!",
+      "parentUuid": "b711f90c_13ad1aca",
+      "range": {
+        "startLine": 1332,
+        "startChar": 0,
+        "endLine": 1332,
+        "endChar": 61
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d231892b_b612b7e7",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-10-28T21:16:14Z",
       "side": 1,
       "message": "since this is expected to be the default behavior (unless explicitly testing negative path).\nShould we move this in the setup, and have disconnect to return true by default ?",
+      "range": {
+        "startLine": 1569,
+        "startChar": 0,
+        "endLine": 1569,
+        "endChar": 85
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeff4f30_2f513c7f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-07T21:03:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d231892b_b612b7e7",
       "range": {
         "startLine": 1569,
         "startChar": 0,
