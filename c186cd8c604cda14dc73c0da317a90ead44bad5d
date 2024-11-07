@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c694def7_094cf07d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T02:46:55Z",
+      "side": 1,
+      "message": "same here for new callback name.",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86224c55_0e6b74f1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5278,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T02:46:55Z",
+      "side": 1,
+      "message": "nit: should we update this as well?",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

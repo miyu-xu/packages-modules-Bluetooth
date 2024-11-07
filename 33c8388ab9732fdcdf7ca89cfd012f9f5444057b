@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bac36fb1_ea2179ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T02:46:55Z",
+      "side": 1,
+      "message": "lgtm, the LeAudioService unit tests are added in the next CL.\nadding @we",
+      "revId": "33c8388ab9732fdcdf7ca89cfd012f9f5444057b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
