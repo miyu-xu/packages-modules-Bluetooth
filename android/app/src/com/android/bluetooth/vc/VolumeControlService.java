@@ -33,6 +33,7 @@ import static java.util.Objects.requireNonNullElseGet;
 
 import android.annotation.RequiresPermission;
 import android.bluetooth.AudioInputControl.AudioInputStatus;
+import android.bluetooth.AudioInputControl.AudioInputType;
 import android.bluetooth.AudioInputControl.GainMode;
 import android.bluetooth.AudioInputControl.Mute;
 import android.bluetooth.BluetoothAdapter;
@@ -68,8 +69,6 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import libcore.util.SneakyThrow;
-
-import bluetooth.constants.AudioInputType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1127,7 +1126,7 @@ public class VolumeControlService extends ProfileService {
         input.onStatusChanged(id, status);
     }
 
-    void onExtAudioInTypeChanged(BluetoothDevice device, int id, int type) {
+    void onExtAudioInTypeChanged(BluetoothDevice device, int id, @AudioInputType int type) {
         String logInfo =
                 "onExtAudioInTypeChanged("
                         + ("device=" + device)
@@ -1141,7 +1140,7 @@ public class VolumeControlService extends ProfileService {
             return;
         }
 
-        if (type > AudioInputType.AMBIENT) {
+        if (type > bluetooth.constants.AudioInputType.AMBIENT) {
             Log.e(TAG, logInfo + ": Invalid type argument");
             return;
         }
@@ -1847,6 +1846,17 @@ public class VolumeControlService extends ProfileService {
                     device,
                     i -> i.getStatus(instanceId),
                     (int) bluetooth.constants.aics.AudioInputStatus.INACTIVE);
+        }
+
+        @Override
+        public @AudioInputType int getAudioInputType(
+                AttributionSource source, BluetoothDevice device, int instanceId) {
+            Log.d(TAG, "getAudioInputType(" + device + ", " + instanceId + ")");
+            return aicsWrapper(
+                    source,
+                    device,
+                    i -> i.getType(instanceId),
+                    bluetooth.constants.AudioInputType.UNSPECIFIED);
         }
 
         @Override
