@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dbe203b_874379b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-07T17:08:20Z",
+      "side": 1,
+      "message": "What would happen if I have one LE audio device connected but reporting no audio/call context available (so theoretically not available for streaming) and one active A2DP device?",
+      "revId": "4e7ccecce5452839d0c6c185144995bc4e417939",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
