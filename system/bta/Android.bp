@@ -388,7 +388,6 @@ cc_test {
         ":TestMockMainShim",
         ":TestMockMainShimEntry",
         ":TestMockStack",
-        "test/bta_hf_client_security_test.cc",
     ],
     shared_libs: [
         "libaconfig_storage_read_api_cc",
@@ -415,6 +414,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtcore",
+        "libbte",
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
@@ -438,6 +438,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
+        ":TestMockBtaDm",
         ":TestMockBtaRfcMetrics",
         ":TestMockBtaSys",
         ":TestMockBtif",
