@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05792522_2ac3dd2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2024-11-07T22:46:45Z",
+      "side": 1,
+      "message": "qq, shouldn\u0027t there one sepolicy change to allow this property to be set by vendor partition like https://source.corp.google.com/h/googleplex-android/platform/superproject/udc/+/udc-tv-dev:system/sepolicy/private/property_contexts;drc\u003d87296bfaa9d17851e048a04b1995bf54ce2d7cce;l\u003d536?\n\nThis is a hardware related property, ideally it should only be set by vendor partition?",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
