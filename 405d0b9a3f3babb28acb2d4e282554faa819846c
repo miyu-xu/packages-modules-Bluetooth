@@ -90,6 +90,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "045a2ac0_adc7b66c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:26:19Z",
+      "side": 1,
+      "message": "sorry, I must lose it while rebasing.",
+      "parentUuid": "4354c28a_778aba1f",
+      "range": {
+        "startLine": 1417,
+        "startChar": 10,
+        "endLine": 1417,
+        "endChar": 35
+      },
+      "revId": "405d0b9a3f3babb28acb2d4e282554faa819846c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2af24be_ab4501ba",

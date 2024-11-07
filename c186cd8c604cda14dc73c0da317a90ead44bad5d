@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38a8ce32_dfd432ff",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:26:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c694def7_094cf07d",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6849bec2_d18f9af0",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-11-07T05:15:34Z",
       "side": 1,
       "message": "this does not need to be public",
+      "range": {
+        "startLine": 5220,
+        "startChar": 4,
+        "endLine": 5220,
+        "endChar": 10
+      },
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cb6610a_218d8217",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5220,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:26:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6849bec2_d18f9af0",
       "range": {
         "startLine": 5220,
         "startChar": 4,
@@ -75,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14490c98_01865e8d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5272,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:26:19Z",
+      "side": 1,
+      "message": "yeah, make sense - but I think that later (when flags would be removed) this helper function may be not needed and the functionality moved here.",
+      "parentUuid": "803b77f3_1be61eb7",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86224c55_0e6b74f1",
@@ -88,6 +148,24 @@
       "writtenOn": "2024-11-07T02:46:55Z",
       "side": 1,
       "message": "nit: should we update this as well?",
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac50ff48_d054b7a2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5278,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:26:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "86224c55_0e6b74f1",
       "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -129,6 +207,30 @@
           ]
         }
       ],
+      "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b15e5e90_3e62b37d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-07T12:26:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cef61fa3_cbc676c2",
+      "range": {
+        "startLine": 1456,
+        "startChar": 11,
+        "endLine": 1456,
+        "endChar": 18
+      },
       "revId": "c186cd8c604cda14dc73c0da317a90ead44bad5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
