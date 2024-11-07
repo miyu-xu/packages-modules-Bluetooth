@@ -46,6 +46,30 @@
       },
       "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85a743c2_eed8bded",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3596272
+      },
+      "writtenOn": "2024-11-07T00:48:38Z",
+      "side": 1,
+      "message": "For the same reason why `libevent` is here, as a dependency of `libchrome`. \u003d)\n\nWe\u0027re upreving `libchrome` in Android and the newer versions depend on `libdoubleconversion`.",
+      "parentUuid": "66ee6ac9_6753db99",
+      "range": {
+        "startLine": 173,
+        "startChar": 9,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
