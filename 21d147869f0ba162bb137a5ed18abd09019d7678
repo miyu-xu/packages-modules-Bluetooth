@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59084c42_a02e76f2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-07T20:31:43Z",
+      "side": 1,
+      "message": "please add log showing what was previous groupId.",
+      "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1637bab_ede81bdf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4276,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-07T20:31:43Z",
+      "side": 1,
+      "message": "I think it makes sense to call it only when all devices from the group are disconnected.\n\n\nAlso, when user choose the group to be a fallback one, it looks like stack can change it when the chosen group is is disconnected. \n\nIs this intentional?\n\nI was under impression that when user choose something, this is sticky.",
+      "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
