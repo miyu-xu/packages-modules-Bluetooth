@@ -1781,6 +1781,14 @@ public class VolumeControlService extends ProfileService {
         }
 
         @Override
+        public int getAudioInputControlPointsCountForDevice(
+                AttributionSource source, BluetoothDevice device) {
+            validateBluetoothDevice(device);
+            Log.d(TAG, "getAudioInputControlPointsCountForDevice(" + device + ")");
+            return aicsWrapper(source, device, i -> i.size(), 0);
+        }
+
+        @Override
         public void registerAudioInputControlCallback(
                 AttributionSource source,
                 BluetoothDevice device,
