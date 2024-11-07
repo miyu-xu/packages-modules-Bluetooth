@@ -16,6 +16,24 @@
       "message": "qq, shouldn\u0027t there one sepolicy change to allow this property to be set by vendor partition like https://source.corp.google.com/h/googleplex-android/platform/superproject/udc/+/udc-tv-dev:system/sepolicy/private/property_contexts;drc\u003d87296bfaa9d17851e048a04b1995bf54ce2d7cce;l\u003d536?\n\nThis is a hardware related property, ideally it should only be set by vendor partition?",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8674f2f_495acb73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T23:11:55Z",
+      "side": 1,
+      "message": "Isn\u0027t this enough?\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/udc/+/udc-tv-dev:system/sepolicy/private/property_contexts;l\u003d32;drc\u003d87296bfaa9d17851e048a04b1995bf54ce2d7cce",
+      "parentUuid": "05792522_2ac3dd2c",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
