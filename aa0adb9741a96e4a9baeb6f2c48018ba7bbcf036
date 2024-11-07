@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a520dfd_adf1f3df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T01:08:43Z",
+      "side": 1,
+      "message": "@eruffieux@google.com do you plan to flag the change ?",
+      "revId": "aa0adb9741a96e4a9baeb6f2c48018ba7bbcf036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22ef05fc_71c4868f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T01:08:43Z",
+      "side": 1,
+      "message": "CL is not formatted.\n\nPlease run the repo hook that will automatically prompt to fix the format",
+      "revId": "aa0adb9741a96e4a9baeb6f2c48018ba7bbcf036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a055fdf2_a5a400d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T01:08:43Z",
+      "side": 1,
+      "message": "This happened to me so many time when connecting to my car. Thanks for the change ^^",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 57
+      },
+      "revId": "aa0adb9741a96e4a9baeb6f2c48018ba7bbcf036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced05b73_e9825ae9",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T01:08:43Z",
+      "side": 1,
+      "message": "doesn\u0027t build, should be \n```suggestion\n    do_in_main_thread(base::BindOnce(\u0026Device::HandlePendingPlay, device.get()-\u003eGet()));\n```",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 575,
+        "endChar": 84
+      },
+      "revId": "aa0adb9741a96e4a9baeb6f2c48018ba7bbcf036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b917388b_a5990cd1",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3594,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T01:08:43Z",
+      "side": 1,
+      "message": "I believe the address should never be empty, but can be equal to `RawAddress::kEmpty` Is this what we want to check instead ? or both ?",
+      "range": {
+        "startLine": 3594,
+        "startChar": 8,
+        "endLine": 3594,
+        "endChar": 31
+      },
+      "revId": "aa0adb9741a96e4a9baeb6f2c48018ba7bbcf036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e420f57b_e57480ea",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T01:08:43Z",
+      "side": 1,
+      "message": "this does not exist in the stack, but it is 1000 times better than `0x44`.\n\nCan you upload the whole OperationID definition ?",
+      "range": {
+        "startLine": 127,
+        "startChar": 48,
+        "endLine": 127,
+        "endChar": 59
+      },
+      "revId": "aa0adb9741a96e4a9baeb6f2c48018ba7bbcf036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
