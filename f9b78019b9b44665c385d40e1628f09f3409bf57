@@ -117,6 +117,24 @@
       "parentUuid": "f699be1d_8f072269",
       "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "521b5f83_71ddcffe",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-07T21:08:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72023827_f49575eb",
+      "revId": "f9b78019b9b44665c385d40e1628f09f3409bf57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
