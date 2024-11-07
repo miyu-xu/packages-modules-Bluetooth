@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e0188e7_decce1e2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-07T03:35:43Z",
+      "side": 1,
+      "message": "TODO: We need to invoke callback if this got changed\n\n```suggestion\n        if (mUnicastGroupIdDeactivatedForBroadcastTransition !\u003d targetGroupId) {\n                Log.d(\n                        TAG,\n                        \"Update fallback group from: \"\n                                + mUnicastGroupIdDeactivatedForBroadcastTransition\n                                + \", to: \"\n                        + targetGroupId);\n                mUnicastGroupIdDeactivatedForBroadcastTransition \u003d targetGroupId;\n                if (leaudioBroadcastApiManagePrimaryGroup()) {\n                        // invoke onBroadcastToUnicastFallbackGroupChanged callback\n                }\n        }\n```",
+      "revId": "8444d7aba1fbe03c52aed8c44b4e679b5cf05a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5953ad6d_3e0350a6",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 2
