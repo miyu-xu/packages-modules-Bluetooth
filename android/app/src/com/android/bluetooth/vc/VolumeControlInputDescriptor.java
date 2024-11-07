@@ -179,6 +179,21 @@ class VolumeControlInputDescriptor {
         mVolumeInputs[id].mGainSettingsMax = gainMax;
     }
 
+    int getGainSettingUnit(int id) {
+        if (!isValidId(id)) return 0;
+        return mVolumeInputs[id].mGainSettingsUnits;
+    }
+
+    int getGainSettingMin(int id) {
+        if (!isValidId(id)) return 0;
+        return mVolumeInputs[id].mGainSettingsMin;
+    }
+
+    int getGainSettingMax(int id) {
+        if (!isValidId(id)) return 0;
+        return mVolumeInputs[id].mGainSettingsMax;
+    }
+
     void onStateChanged(int id, int gainSetting, @Mute int mute, @GainMode int gainMode) {
         if (!isValidId(id)) return;
 

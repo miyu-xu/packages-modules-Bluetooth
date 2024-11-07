@@ -1804,6 +1804,24 @@ public class VolumeControlService extends ProfileService {
         }
 
         @Override
+        public int getAudioInputGainSettingUnit(
+                AttributionSource source, BluetoothDevice device, int instanceId) {
+            return aics_wrapper(source, device, i -> i.getGainSettingUnit(instanceId), 0);
+        }
+
+        @Override
+        public int getAudioInputGainSettingMin(
+                AttributionSource source, BluetoothDevice device, int instanceId) {
+            return aics_wrapper(source, device, i -> i.getGainSettingMax(instanceId), 0);
+        }
+
+        @Override
+        public int getAudioInputGainSettingMax(
+                AttributionSource source, BluetoothDevice device, int instanceId) {
+            return aics_wrapper(source, device, i -> i.getGainSettingMin(instanceId), 0);
+        }
+
+        @Override
         public String getAudioInputDescription(
                 AttributionSource source, BluetoothDevice device, int instanceId) {
             return aics_wrapper(source, device, i -> i.getDescription(instanceId), "");
