@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66ee6ac9_6753db99",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-07T00:43:14Z",
+      "side": 1,
+      "message": "What ? why this become a new dependency ?\n\nCan we just remove the need for this library ?",
+      "range": {
+        "startLine": 173,
+        "startChar": 9,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "4d38f9e2a9c563417fb8d1a696bda4a9c091746f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
