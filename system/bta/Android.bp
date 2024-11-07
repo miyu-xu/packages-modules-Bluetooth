@@ -388,7 +388,6 @@ cc_test {
         ":TestMockMainShim",
         ":TestMockMainShimEntry",
         ":TestMockStack",
-        "test/bta_hf_client_security_test.cc",
     ],
     shared_libs: [
         "libaconfig_storage_read_api_cc",
@@ -420,6 +419,7 @@ cc_test {
         "libgmock",
         "libosi",
         "libstatslog_bt",
+        "libbte",
     ],
 }
 
@@ -446,6 +446,7 @@ cc_test {
         ":TestMockStackL2cap",
         ":TestMockStackRfcomm",
         ":TestMockStackSdp",
+        ":TestMockBtaDm",
         "jv/bta_jv_act.cc",
         "rfcomm/bta_rfcomm_scn.cc",
         "test/bta_rfcomm_scn_test.cc",

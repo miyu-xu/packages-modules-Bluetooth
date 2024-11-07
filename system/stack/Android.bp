@@ -1380,6 +1380,7 @@ cc_test {
         "liblog",
         "libopus",
         "libosi",
+        "bluetooth_flags_c_lib",
     ],
     whole_static_libs: [
         "libaptx_enc",
