@@ -63,7 +63,7 @@ TEST(StringsTest, to_hex_string_from_number) {
     ASSERT_EQ(ToHexString(LONG_MIN), "LONG_MIN");
     ASSERT_EQ(ToHexString(LONG_MIN + 1L), "-0x7fffffff");
   } else if (is_arch64()) {
-    ASSERT_EQ(ToHexString((signed long)INT_MIN), "-0x0000000080000000");
+    ASSERT_EQ(ToHexString((int64_t)INT_MIN), "-0x0000000080000000");
     ASSERT_EQ(ToHexString(1 + INT_MAX), "INT_MIN");      // Rolled over
     ASSERT_EQ(ToHexString(2 + INT_MAX), "-0x7fffffff");  // Rolled over
     ASSERT_EQ(ToHexString(1L + INT_MAX), "0x0000000080000000");
