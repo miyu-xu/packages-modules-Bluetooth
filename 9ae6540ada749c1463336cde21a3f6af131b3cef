@@ -1,0 +1,206 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f4288ed_6b50dbfd",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1612,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "I think this line here can have side effect. I would defer only within the \n```\n  if (Flags.hfpClientDisconnectingState()) {\n     transitionTo(mDisconnecting);\n     deferMessage(message);\n```\n\nIn order to:\n* keep the change under flag and not defer when the flag is off\n* not defer a message to state CONNECTING or STATE DISCONNECTED or STATE_DISCONNECTING",
+      "range": {
+        "startLine": 1612,
+        "startChar": 0,
+        "endLine": 1612,
+        "endChar": 48
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5708ce9_1c3f058d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2026,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "This will always fall through and print a warn. I don\u0027t think this was intended",
+      "range": {
+        "startLine": 2026,
+        "startChar": 0,
+        "endLine": 2026,
+        "endChar": 35
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a23c2c_54ab6f9f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 2117,
+        "startChar": 28,
+        "endLine": 2117,
+        "endChar": 40
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a99b0938_39535949",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "This should not be needed",
+      "range": {
+        "startLine": 1324,
+        "startChar": 0,
+        "endLine": 1324,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9442c3d3_5a609cf8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+              "range": {
+                "startLine": 1324,
+                "startChar": 0,
+                "endLine": 1325,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4316b089_7da6a280",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1384,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "```suggestion\n        sendMessageAndVerifyTransition(\n                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event),\n                HeadsetClientStateMachine.Disconnected.class);\n```\n\nin follow-up we should have something like `generateConnectionMessageFromNative` in A2dpStateMachineTest as this is a very good wrapper used intensively in the test file.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpStateMachineTest.java;l\u003d350;drc\u003da39ff179e772388f03193c939dd5ae03e6f947e2",
+      "range": {
+        "startLine": 1379,
+        "startChar": 8,
+        "endLine": 1384,
+        "endChar": 76
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e3183fe_ea82a667",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "```suggestion\n        sendMessage(HeadsetClientStateMachine.DISCONNECT)\n```\n\nand shouldn\u0027t this message have a devie ? (i saw this is sent line 1074 without a device too :/)",
+      "range": {
+        "startLine": 1430,
+        "startChar": 8,
+        "endLine": 1433,
+        "endChar": 34
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63461627_0158a8af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1468,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "```suggestion\n        sendMessage(HeadsetClientStateMachine.NO_ACTION)\n```",
+      "range": {
+        "startLine": 1465,
+        "startChar": 8,
+        "endLine": 1468,
+        "endChar": 34
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74d1069e_46879faf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 1493,
+        "startChar": 3,
+        "endLine": 1494,
+        "endChar": 65
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

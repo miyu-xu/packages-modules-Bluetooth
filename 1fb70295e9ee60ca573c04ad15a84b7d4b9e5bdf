@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "278f2068_5353e3de",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:01:06Z",
+      "side": 1,
+      "message": "I was looking at other profiles / states machines and they always use the same variable for connection and disconnection.\nI guess you can do as you prefer here.\n\nBut you can keep the variable final as you don\u0027t need to modify them in test anymore thanks to the test looper",
+      "parentUuid": "90d399ed_506b1ea4",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "1fb70295e9ee60ca573c04ad15a84b7d4b9e5bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ca5fb70_66db2721",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 17
