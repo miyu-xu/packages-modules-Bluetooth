@@ -420,6 +420,8 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
+        "libevent",
         "libosi",
     ],
     shared_libs: [
@@ -612,6 +614,7 @@ cc_test {
             static_libs: [
                 "android.hardware.common-V2-ndk",
                 "android.hardware.common.fmq-V1-ndk",
+		"libdoubleconversion",
             ],
             shared_libs: [
                 "libaaudio",

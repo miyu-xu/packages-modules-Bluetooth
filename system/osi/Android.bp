@@ -145,6 +145,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libchrome",
+        "libdoubleconversion",
         "libevent",
         "libgmock",
         "libosi",

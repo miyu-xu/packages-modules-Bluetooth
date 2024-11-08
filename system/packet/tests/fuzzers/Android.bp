@@ -26,6 +26,7 @@ cc_defaults {
         "lib-bt-packets-base",
         "libbluetooth_log",
         "libchrome",
+        "libevent",
         "libgmock",
     ],
     cflags: [
