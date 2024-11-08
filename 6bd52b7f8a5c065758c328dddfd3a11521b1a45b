@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02a13368_78404ff8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:36:45Z",
+      "side": 1,
+      "message": "remove empty line ?",
+      "fixSuggestions": [
+        {
+          "fixId": "fe2b4481_3e9309ff",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 520,
+                "startChar": 0,
+                "endLine": 521,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6bd52b7f8a5c065758c328dddfd3a11521b1a45b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
