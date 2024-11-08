@@ -142,6 +142,24 @@
       "parentUuid": "123c2029_5b4f229f",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e8bd6c_f2564027",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:52:28Z",
+      "side": 1,
+      "message": "Yes both change are independent. you can already merge the property usage, and later (or before) merge the change of sepolicy",
+      "parentUuid": "aee54efa_7e46a354",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
