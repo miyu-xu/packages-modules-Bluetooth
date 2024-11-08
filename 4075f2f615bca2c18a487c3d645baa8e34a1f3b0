@@ -171,6 +171,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6374f840_87789222",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T23:11:24Z",
+      "side": 1,
+      "message": "Ack, I agree, sometimes giving a \"ready build\" is better.",
+      "parentUuid": "156be410_16726567",
+      "range": {
+        "startLine": 630,
+        "startChar": 15,
+        "endLine": 630,
+        "endChar": 22
+      },
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a43e6412_7a459263",
