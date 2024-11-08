@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f1c277_ee79fe4e",
+        "filename": "flags/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-08T06:40:01Z",
+      "side": 1,
+      "message": "OK. Solved.\n\nI don\u0027t need to declare java_aconfig_library in SettingsLib/Android.bp\nI just need to add \"bluetooth_exported_flags_java_lib\" into SettingsLib/Android.bp static_libs",
+      "parentUuid": "61287d34_06027edd",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "c707bdd0781c6c063e20849c296c4dc314ec62fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "400ac31f_8ce74f7a",
@@ -102,6 +126,30 @@
       "writtenOn": "2024-11-06T22:57:13Z",
       "side": 1,
       "message": "add visibility instead",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "c707bdd0781c6c063e20849c296c4dc314ec62fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d92722d6_8e339836",
+        "filename": "flags/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-08T06:40:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "400ac31f_8ce74f7a",
       "range": {
         "startLine": 86,
         "startChar": 0,
