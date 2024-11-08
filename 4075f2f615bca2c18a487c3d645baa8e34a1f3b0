@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e04fa653_f5065545",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-08T22:48:49Z",
+      "side": 1,
+      "message": "b/206487778 this bug is started for something, but main concern is about not taking advantage of DLE",
+      "parentUuid": "fd18d2a5_17e229a1",
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc16767f_448fd0d3",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 23
