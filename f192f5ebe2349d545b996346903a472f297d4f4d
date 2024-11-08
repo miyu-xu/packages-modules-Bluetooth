@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8155519e_3109f009",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2626,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-11-08T15:44:43Z",
+      "side": 1,
+      "message": "Here we are unconditionally dereferencing `p_dev_rec`...",
+      "revId": "f192f5ebe2349d545b996346903a472f297d4f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bce7c7a_bcfc2dc9",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2631,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-11-08T15:44:43Z",
+      "side": 1,
+      "message": "...and here we are checking if `p_dev_rec` is NULL, suggesting that\u0027s a possibility.  If it is NULL, we\u0027ll already have crashed from the earlier dereference.",
+      "revId": "f192f5ebe2349d545b996346903a472f297d4f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
