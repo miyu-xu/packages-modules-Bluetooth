@@ -19,12 +19,12 @@
 
 #include <base/strings/stringprintf.h>
 #include <ble_address_with_type.h>
-#include <raw_address.h>
 #include <stdint.h>
 
 #include <string>
 
 #include "macros.h"
+#include "types/raw_address.h"
 
 __BEGIN_DECLS
 
