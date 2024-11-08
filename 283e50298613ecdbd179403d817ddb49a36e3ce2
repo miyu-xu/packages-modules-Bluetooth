@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b342f2_757ea5a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-08T17:27:18Z",
+      "side": 1,
+      "message": "lgtm, will let @wescande@google.com help to review and vote from owner\u0027s pov.",
+      "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
