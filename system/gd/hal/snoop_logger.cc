@@ -23,6 +23,7 @@
 #include <com_android_bluetooth_flags.h>
 #ifdef __ANDROID__
 #include <cutils/trace.h>
+#include <perfetto/tracing.h>
 #endif  // __ANDROID__
 #include <sys/stat.h>
 
@@ -34,6 +35,9 @@
 #include "common/circular_buffer.h"
 #include "common/strings.h"
 #include "hal/snoop_logger_common.h"
+#ifdef __ANDROID__
+#include "hal/snoop_logger_tracing.h"
+#endif  // __ANDROID__
 #include "hci/hci_packets.h"
 #include "os/files.h"
 #include "os/parameter_provider.h"
@@ -1128,15 +1132,15 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
   HciPacket& packet = mutable_packet;
   //////////////////////////////////////////////////////////////////////////
 
-  #ifdef __ANDROID__
-  if (com::android::bluetooth::flags::snoop_logger_tracing()) {
-    LogTracePoint(packet, direction, type);
-  }
-#endif  // __ANDROID__
-
   uint64_t timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(
                                   std::chrono::system_clock::now().time_since_epoch())
                                   .count();
+#ifdef __ANDROID__
+  if (com::android::bluetooth::flags::snoop_logger_tracing()) {
+    LogTracePoint(timestamp_us, packet, direction, type);
+  }
+#endif  // __ANDROID__
+
   std::bitset<32> flags = 0;
   switch (type) {
     case PacketType::CMD:
@@ -1290,6 +1294,11 @@ void SnoopLogger::Start() {
       snoop_logger_socket_thread_ = nullptr;
     }
   }
+
+#ifdef __ANDROID__
+  SnoopLoggerTracing::InitializePerfetto();
+#endif //__ANDROID__
+
   alarm_ = std::make_unique<os::RepeatingAlarm>(GetHandler());
   alarm_->Schedule(common::Bind(&delete_old_btsnooz_files, snooz_log_path_, snooz_log_life_time_),
                    snooz_log_delete_alarm_interval_);
@@ -1402,7 +1411,73 @@ const ModuleFactory SnoopLogger::Factory = ModuleFactory([]() {
 });
 
 #ifdef __ANDROID__
-void SnoopLogger::LogTracePoint(const HciPacket& packet, Direction direction, PacketType type) {
+BundleKey::BundleKey(const HciPacket& packet, uint8_t direction, uint8_t type)
+        : packet_type(type), direction(direction), length(packet.size()) {
+  switch (type) {
+    case SnoopLogger::PacketType::EVT: {
+      uint8_t evt_code = packet[0];
+      event_code = evt_code;
+
+      if (evt_code == static_cast<uint8_t>(hci::EventCode::LE_META_EVENT) ||
+          evt_code == static_cast<uint8_t>(hci::EventCode::VENDOR_SPECIFIC)) {
+        uint8_t subevt_code = packet[2];
+        subevent_code = subevt_code;
+      }
+    } break;
+    case SnoopLogger::PacketType::CMD: {
+      op_code = packet[0] | (packet[1] << 8);
+    } break;
+    case SnoopLogger::PacketType::ACL: {
+      handle = (packet[0] | (packet[1] << 8)) & 0x0fff;
+    } break;
+    case SnoopLogger::PacketType::ISO:
+    case SnoopLogger::PacketType::SCO:
+      break;
+  }
+}
+
+#define AGG_FIELDS(x) \
+(x).packet_type, (x).direction, (x).event_code, (x).subevent_code, (x).op_code, (x).handle
+
+bool BundleKey::operator==(const BundleKey& b) const {
+  return std::tie(AGG_FIELDS(*this)) == std::tie(AGG_FIELDS(b));
+}
+
+template <typename T, typename... Rest>
+void HashCombine(std::size_t& seed, const T& val, const Rest&... rest) {
+  seed ^= std::hash<T>()(val) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+  (HashCombine(seed, rest), ...);
+}
+
+std::size_t BundleHash::operator()(const BundleKey& a) const {
+  std::size_t seed = 0;
+  HashCombine(seed, AGG_FIELDS(a));
+  return seed;
+}
+
+void SnoopLogger::LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, Direction direction,
+                                PacketType type) {
+
+  if (!SkipTracePoint(packet, type)) {
+    BundleKey key(packet, static_cast<uint8_t>(direction), static_cast<uint8_t>(type));
+
+    BundleDetails& bundle = bttrace_bundles_[key];
+    bundle.count++;
+    bundle.length += key.length;
+
+    uint64_t elapsed_timestamp_ms = (timestamp_us - last_timestamp_us) / 1000;
+
+    if (elapsed_timestamp_ms > 100) {
+      for (const auto& key : bttrace_bundles_) {
+        SnoopLoggerTracing::TracePacket(key.first, key.second.count, key.second.length,
+                                        elapsed_timestamp_ms);
+      }
+
+      bttrace_bundles_.clear();
+      last_timestamp_us = timestamp_us;
+    }
+  }
+
   switch (type) {
     case PacketType::EVT: {
       uint8_t evt_code = packet[0];
