@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ed502bf_8be6c66b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-08T23:18:29Z",
+      "side": 1,
+      "message": "I Imagined, we might have more clients similar to ASHA who uses LE CoC transport and need to be given high priority over the applications.\nBasically to prioritize in house profiles over the direction application usages. But not sure if that is needed at the moment.",
+      "parentUuid": "be29659c_e32a3eaf",
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc16767f_448fd0d3",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 23
