@@ -1172,6 +1172,8 @@ public class BassClientService extends ProfileService {
                             broadcastId, MESSAGE_BIG_MONITOR_TIMEOUT, sBigMonitorTimeout);
                 }
             }
+        } else if (isHostPauseType(broadcastId)) {
+            stopBigMonitoring(broadcastId, true);
         } else if (isEmptyBluetoothDevice(receiveState.getSourceDevice())) {
             synchronized (mSinksWaitingForPast) {
                 mSinksWaitingForPast.remove(sink);
@@ -2488,6 +2490,26 @@ public class BassClientService extends ProfileService {
         BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
         mSyncHandleToDeviceMap.remove(syncHandle);
         int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
+        synchronized (mPendingSourcesToAdd) {
+            Iterator<AddSourceData> iterator = mPendingSourcesToAdd.iterator();
+            while (iterator.hasNext()) {
+                AddSourceData pendingSourcesToAdd = iterator.next();
+                if (pendingSourcesToAdd.mSourceMetadata.getBroadcastId() == broadcastId) {
+                    iterator.remove();
+                }
+            }
+        }
+        synchronized (mSinksWaitingForPast) {
+            Iterator<Map.Entry<BluetoothDevice, Pair<Integer, Integer>>> iterator =
+                    mSinksWaitingForPast.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<BluetoothDevice, Pair<Integer, Integer>> entry = iterator.next();
+                int broadcastIdForPast = entry.getValue().first;
+                if (broadcastId == broadcastIdForPast) {
+                    iterator.remove();
+                }
+            }
+        }
         mSyncHandleToBroadcastIdMap.remove(syncHandle);
         if (srcDevice != null) {
             mPeriodicAdvertisementResultMap.get(srcDevice).remove(broadcastId);
@@ -3836,7 +3858,21 @@ public class BassClientService extends ProfileService {
         synchronized (mSearchScanCallbackLock) {
             // when searching is stopped then stop active sync
             if (mSearchScanCallback == null) {
-                cancelActiveSync(getSyncHandleForBroadcastId(broadcastId));
+                boolean waitingForPast = false;
+                synchronized (mSinksWaitingForPast) {
+                    Iterator<Map.Entry<BluetoothDevice, Pair<Integer, Integer>>> iterator =
+                            mSinksWaitingForPast.entrySet().iterator();
+                    while (iterator.hasNext()) {
+                        Map.Entry<BluetoothDevice, Pair<Integer, Integer>> entry = iterator.next();
+                        int broadcastIdForPast = entry.getValue().first;
+                        if (broadcastId == broadcastIdForPast) {
+                            waitingForPast = true;
+                        }
+                    }
+                }
+                if (!waitingForPast) {
+                    cancelActiveSync(getSyncHandleForBroadcastId(broadcastId));
+                }
             }
         }
         logPausedBroadcastsAndSinks();
@@ -3998,7 +4034,7 @@ public class BassClientService extends ProfileService {
         mUnicastSourceStreamStatus = Optional.of(status);
 
         if (status == STATUS_LOCAL_STREAM_REQUESTED) {
-            if (areReceiversReceivingOnlyExternalBroadcast(getConnectedDevices())) {
+            if (hasPrimaryDeviceManagedExternalBroadcast()) {
                 if (leaudioBroadcastAssistantPeripheralEntrustment()) {
                     cacheSuspendingSources(BassConstants.INVALID_BROADCAST_ID);
                     List<Pair<BluetoothLeBroadcastReceiveState, BluetoothDevice>> sourcesToStop =
@@ -4043,13 +4079,11 @@ public class BassClientService extends ProfileService {
     }
 
     /** Check if any sink receivers are receiving broadcast stream */
-    public boolean isAnyReceiverReceivingBroadcast(List<BluetoothDevice> devices) {
+    public boolean isAnyReceiverActive(List<BluetoothDevice> devices) {
         for (BluetoothDevice device : devices) {
             for (BluetoothLeBroadcastReceiveState receiveState : getAllSources(device)) {
-                for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
-                    if (isSyncedToBroadcastStream(receiveState.getBisSyncState().get(i))) {
-                        return true;
-                    }
+                if (isReceiverActive(receiveState)) {
+                    return true;
                 }
             }
         }
