@@ -19,7 +19,17 @@
 
 #include <bluetooth/log.h>
 
+#include <cstdint>
+#include <cstring>
+#include <optional>
+#include <ostream>
+#include <type_traits>
+#include <variant>
+#include <vector>
+
+#include "has_preset.h"
 #include "os/logging/log_adapter.h"
+#include "raw_address.h"
 #include "stack/include/bt_types.h"
 
 using namespace bluetooth;
