@@ -113,6 +113,7 @@ cc_defaults {
             ],
             static_libs: [
                 "libexpresslog",
+                "libperfetto_client_experimental",
                 "libstatslog_express",
                 "libtextclassifier_hash_static",
             ],
@@ -263,11 +264,11 @@ cc_test {
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
+        "libaconfig_storage_read_api_cc",
         "libbluetooth_log",
         "libchrome",
         "libgmock",
         "server_configurable_flags",
-        "libaconfig_storage_read_api_cc",
     ],
     shared_libs: [
         "libbase",
@@ -315,6 +316,7 @@ cc_test {
                 "android.hardware.bluetooth@1.1",
                 "android.system.suspend-V1-ndk",
                 "android.system.suspend.control-V1-ndk",
+                "libperfetto_client_experimental",
                 "libstatslog_bt",
             ],
             shared_libs: [
@@ -510,6 +512,17 @@ cc_fuzz {
     fuzz_config: {
         cc: ["android-bluetooth-security@google.com"],
         componentid: 27441,
+    },
+    target: {
+        android: {
+            static_libs: [
+                "android.hardware.bluetooth@1.0",
+                "android.hardware.bluetooth@1.1",
+                "android.hardware.common-V2-ndk",
+                "android.hardware.common.fmq-V1-ndk",
+                "libperfetto_client_experimental",
+            ],
+        },
     },
 }
 
