@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc16767f_448fd0d3",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-08T18:47:30Z",
+      "side": 1,
+      "message": "to be keep under flag. commented to run the required tests with the change",
+      "range": {
+        "startLine": 630,
+        "startChar": 15,
+        "endLine": 630,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a6ebbda6_2ff244d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 630,
+                "startChar": 0,
+                "endLine": 631,
+                "endChar": 0
+              },
+              "replacement": "    if (com::android::bluetooth::flags::set_max_data_length_for_lecoc()) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 635,
+                "startChar": 0,
+                "endLine": 636,
+                "endChar": 0
+              },
+              "replacement": "    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
