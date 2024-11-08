@@ -62,7 +62,7 @@ Alarm::~Alarm() {
 
 void Alarm::Schedule(OnceClosure task, std::chrono::milliseconds delay) {
   std::lock_guard<std::mutex> lock(mutex_);
-  long delay_ms = delay.count();
+  long delay_ms = delay.count();  // NOLINT: timespec require to use long
   itimerspec timer_itimerspec{{/* interval for periodic timer */},
                               {delay_ms / 1000, delay_ms % 1000 * 1000000}};
   int result = TIMERFD_SETTIME(fd_, 0, &timer_itimerspec, nullptr);

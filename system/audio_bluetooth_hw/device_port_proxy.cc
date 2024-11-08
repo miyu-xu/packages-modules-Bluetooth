@@ -546,7 +546,9 @@ bool BluetoothAudioPortAidl::GetPresentationPosition(uint64_t* delay_ns, uint64_
   *timestamp = {
           .tv_sec = static_cast<__kernel_old_time_t>(
                   presentation_position.transmittedOctetsTimestamp.tvSec),
-          .tv_nsec = static_cast<long>(presentation_position.transmittedOctetsTimestamp.tvNSec)};
+          .tv_nsec = static_cast<long>(  // NOLINT: timespec.tv_nsec take a long
+                  presentation_position.transmittedOctetsTimestamp.tvNSec),
+  };
   LOG(VERBOSE) << __func__
                << ": session_type=" << StringPrintf("%#x", static_cast<unsigned>(session_type_))
                << ", cookie=" << StringPrintf("%#hx", cookie_) << ", state=" << state_

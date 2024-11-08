@@ -41,8 +41,8 @@ using bluetooth::common::ToHexString;
 using bluetooth::common::ToString;
 using bluetooth::common::Uint64FromString;
 
-static inline bool is_arch32() { return sizeof(long) == 4; }
-static inline bool is_arch64() { return sizeof(long) == 8; }
+static inline bool is_arch32() { return sizeof(long) == 4; }  // NOLINT: long usage on purpose
+static inline bool is_arch64() { return sizeof(long) == 8; }  // NOLINT: long usage on purpose
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winteger-overflow"
