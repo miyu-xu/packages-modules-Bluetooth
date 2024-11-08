@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e18e52ee_937582f5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3197,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-08T09:28:18Z",
+      "side": 1,
+      "message": "Null check of stateMachine should be done directly after getting stateMachine",
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0f16a36_32af8943",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 5
