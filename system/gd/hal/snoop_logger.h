@@ -29,6 +29,7 @@
 #include "hal/snoop_logger_socket_interface.h"
 #include "hal/snoop_logger_socket_thread.h"
 #include "hal/syscall_wrapper_impl.h"
+#include "hci/hci_packets.h"
 #include "module.h"
 #include "os/repeating_alarm.h"
 
@@ -137,6 +138,34 @@ private:
     uint8_t scn;
   } profiles[FILTER_PROFILE_MAX];
   profile_type_t current_profile;
+};
+
+// BundleKey is used to group packets into bundles organized by direction, type,
+// and eventual op_code or event_code
+struct BundleKey {
+  explicit BundleKey(const HciPacket& packet, uint8_t direction, uint8_t type);
+
+  uint8_t packet_type;
+  uint8_t direction;
+  std::optional<uint16_t> op_code;
+  std::optional<uint8_t> event_code;
+  std::optional<uint8_t> subevent_code;
+  std::optional<uint16_t> handle;
+
+  bool operator==(const BundleKey& b) const;
+};
+
+// BundleHash is used to hash BundleKeys.
+struct BundleHash {
+  std::size_t operator()(const BundleKey& a) const;
+};
+
+// BundleDetails contains information about a bundle.
+struct BundleDetails {
+  uint32_t count;
+  uint32_t total_length;
+  uint64_t start_ts = std::numeric_limits<uint64_t>::max();
+  uint64_t end_ts = std::numeric_limits<uint64_t>::min();
 };
 
 class SnoopLogger : public ::bluetooth::Module {
@@ -320,7 +349,25 @@ protected:
   std::unique_ptr<SnoopLoggerSocketThread> snoop_logger_socket_thread_;
 
 #ifdef __ANDROID__
-  void LogTracePoint(const HciPacket& packet, Direction direction, PacketType type);
+  void LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, Direction direction,
+                     PacketType type);
+  inline bool SkipTracePoint(const HciPacket& packet, PacketType type) {
+    bool skip_trace = false;
+
+    if (type == PacketType::EVT) {
+      uint8_t evt_code = packet[0];
+
+      // Below set of commands does not provide further insight into bluetooth
+      // behavior. Skip these to save bluetooth tracing from becoming too large.
+      if (evt_code == static_cast<uint8_t>(hci::EventCode::NUMBER_OF_COMPLETED_PACKETS) ||
+          evt_code == static_cast<uint8_t>(hci::EventCode::COMMAND_COMPLETE) ||
+          evt_code == static_cast<uint8_t>(hci::EventCode::COMMAND_STATUS)) {
+        skip_trace = true;
+      }
+    }
+
+    return skip_trace;
+  }
 #endif  // __ANDROID__
 
 private:
@@ -339,6 +386,8 @@ private:
   SnoopLoggerSocketInterface* socket_;
   SyscallWrapperImpl syscall_if;
   bool snoop_log_persists = false;
+  std::unordered_map<BundleKey, BundleDetails, BundleHash> bttrace_bundles_;
+  uint64_t last_bttrace_timestamp_us;
 };
 
 }  // namespace hal
