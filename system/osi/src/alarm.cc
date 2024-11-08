@@ -711,8 +711,8 @@ static void dump_stat(int fd, stat_t* stat, const char* description) {
     average_time_ms = stat->total_ms / stat->count;
   }
 
-  dprintf(fd, "%-51s: %llu / %llu / %llu\n", description, (unsigned long long)stat->total_ms,
-          (unsigned long long)stat->max_ms, (unsigned long long)average_time_ms);
+  dprintf(fd, "%-51s: %lu / %lu / %lu\n", description, stat->total_ms, stat->max_ms,
+          average_time_ms);
 }
 
 void alarm_debug_dump(int fd) {
@@ -743,9 +743,9 @@ void alarm_debug_dump(int fd) {
     dprintf(fd, "%-51s: %zu / %zu\n", "    Deviation counts (overdue/premature)",
             stats->overdue_scheduling.count, stats->premature_scheduling.count);
 
-    dprintf(fd, "%-51s: %llu / %llu / %lld\n", "    Time in ms (since creation/interval/remaining)",
-            (unsigned long long)(just_now_ms - alarm->creation_time_ms),
-            (unsigned long long)alarm->period_ms, (long long)(alarm->deadline_ms - just_now_ms));
+    dprintf(fd, "%-51s: %lu / %lu / %ld\n", "    Time in ms (since creation/interval/remaining)",
+            (just_now_ms - alarm->creation_time_ms), alarm->period_ms,
+            (alarm->deadline_ms - just_now_ms));
 
     dump_stat(fd, &stats->overdue_scheduling, "    Overdue scheduling time in ms (total/max/avg)");
 

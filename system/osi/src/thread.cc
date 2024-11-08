@@ -212,7 +212,7 @@ static void* run_thread(void* start_arg) {
 
   log::assert_that(thread != NULL, "assert failed: thread != NULL");
 
-  if (prctl(PR_SET_NAME, (unsigned long)thread->name) == -1) {
+  if (prctl(PR_SET_NAME, (unsigned long)thread->name) == -1) {  // NOLINT: prctl take a long
     log::error("unable to set thread name: {}", strerror(errno));
     start->error = errno;
     semaphore_post(start->start_sem);
