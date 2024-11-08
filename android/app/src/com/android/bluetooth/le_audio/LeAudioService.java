@@ -2925,7 +2925,7 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        return bassClientService.isAnyReceiverReceivingBroadcast(getGroupDevices(groupId));
+        return bassClientService.isAnyReceiverActive(getGroupDevices(groupId));
     }
 
     private void notifyGroupStreamStatusChanged(int groupId, int groupStreamStatus) {
