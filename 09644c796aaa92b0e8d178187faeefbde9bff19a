@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7cdecca_d0840ef4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T20:15:12Z",
+      "side": 1,
+      "message": "I\u0027m aware of this recommendation, but the code in Settings that\u0027s receiving this broadcast is now receiving just broadcasts, I would prefer to not introduce callbacks in it as first one. Plus I want to expose it in similar manner as existing bond state changes are exposed.",
+      "parentUuid": "0480b4aa_a71ff01b",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-08T19:58:41Z",
       "side": 1,
       "message": "why do we need to check for V ?",
+      "range": {
+        "startLine": 1455,
+        "startChar": 12,
+        "endLine": 1455,
+        "endChar": 22
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3911256_1fd06117",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T20:15:12Z",
+      "side": 1,
+      "message": "wasn\u0027t there a thing where if you try to run APEX on older android versions, it would crash when you check flag value, so we had to add this checks? I\u0027ll just remove it now, and add it if it causes troubles.",
+      "parentUuid": "895ef918_f2a51c5a",
       "range": {
         "startLine": 1455,
         "startChar": 12,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-08T19:58:41Z",
       "side": 1,
       "message": "Since you are exposing new api, this should be exported",
+      "range": {
+        "startLine": 93,
+        "startChar": 3,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a07e3337_ecacacb0",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T20:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4766931_4b14551d",
       "range": {
         "startLine": 93,
         "startChar": 3,
