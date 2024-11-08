@@ -60,6 +60,7 @@ cc_library_static {
     srcs: ["src/btif_jni_task.cc"],
     static_libs: [
         "libbluetooth_log",
+        "libdoubleconversion",
         "libosi",
     ],
     shared_libs: [
@@ -336,6 +337,7 @@ cc_test {
         "libbtif",
         "libbtif-core",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libflags_rust_cpp_bridge",
@@ -403,6 +405,7 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
         "libosi",
     ],
     shared_libs: [
@@ -437,6 +440,8 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
+        "libevent",
         "libosi",
     ],
     shared_libs: [
@@ -481,6 +486,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libchrome",
+        "libdoubleconversion",
         "libevent",
     ],
     target: {
@@ -522,6 +528,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-platform-protos-lite",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
     ],
@@ -621,6 +628,7 @@ cc_test {
         "libbtif",
         "libbtif-core",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libgmock",
@@ -633,6 +641,7 @@ cc_test {
             static_libs: [
                 "android.hardware.common-V2-ndk",
                 "android.hardware.common.fmq-V1-ndk",
+		"libdoubleconversion",
             ],
             shared_libs: [
                 "libaaudio",
@@ -748,6 +757,7 @@ cc_test {
         "libbtif",
         "libbtif-core",
         "libchrome",
+        "libdoubleconversion",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libflatbuffers-cpp",

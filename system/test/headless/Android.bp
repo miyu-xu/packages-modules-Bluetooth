@@ -106,6 +106,7 @@ cc_binary {
         "libbtif",
         "libbtif-core",
         "libchrome",
+        "libdoubleconversion",
         "libevent",
         "libflags_rust_cpp_bridge",
         "libflatbuffers-cpp",

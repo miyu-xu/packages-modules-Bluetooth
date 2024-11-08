@@ -18,6 +18,8 @@ cc_fuzz {
         "libbase",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
+        "libevent",
         "liblog",
         "libosi",
     ],
