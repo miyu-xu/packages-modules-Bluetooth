@@ -24,6 +24,13 @@ cc_fuzz {
     srcs: [
         "fuzz_a2dp_codec.cc",
     ],
+    target: {
+        android: {
+            static_libs: [
+                "libperfetto_client_experimental",
+            ],
+        },
+    },
 }
 
 cc_fuzz {
@@ -42,4 +49,11 @@ cc_fuzz {
     srcs: [
         "fuzz_a2dp_codec_config.cc",
     ],
+    target: {
+        android: {
+            static_libs: [
+                "libperfetto_client_experimental",
+            ],
+        },
+    },
 }
