@@ -23,6 +23,7 @@
 #include <com_android_bluetooth_flags.h>
 #ifdef __ANDROID__
 #include <cutils/trace.h>
+#include <perfetto/tracing.h>
 #endif  // __ANDROID__
 #include <sys/stat.h>
 
@@ -35,6 +36,9 @@
 #include "common/circular_buffer.h"
 #include "common/strings.h"
 #include "hal/snoop_logger_common.h"
+#ifdef __ANDROID__
+#include "hal/snoop_logger_tracing.h"
+#endif  // __ANDROID__
 #include "hci/hci_packets.h"
 #include "os/files.h"
 #include "os/parameter_provider.h"
@@ -273,6 +277,9 @@ constexpr uint16_t PROFILE_UUID_PBAP = 0x112f;
 constexpr uint16_t PROFILE_UUID_MAP = 0x1132;
 constexpr uint16_t PROFILE_UUID_HFP_HS = 0x1112;
 constexpr uint16_t PROFILE_UUID_HFP_HF = 0x111f;
+
+// The Perfetto trace flush interval in microseconds.
+constexpr uint64_t TRACE_FLUSH_INTERVAL_MICROS = 100000;
 
 uint64_t htonll(uint64_t ll) {
   if constexpr (isLittleEndian) {
@@ -1156,15 +1163,15 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
   HciPacket& packet = mutable_packet;
   //////////////////////////////////////////////////////////////////////////
 
-  #ifdef __ANDROID__
-  if (com::android::bluetooth::flags::snoop_logger_tracing()) {
-    LogTracePoint(packet, direction, type);
-  }
-#endif  // __ANDROID__
-
   uint64_t timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(
                                   std::chrono::system_clock::now().time_since_epoch())
                                   .count();
+#ifdef __ANDROID__
+  if (com::android::bluetooth::flags::snoop_logger_tracing()) {
+    LogTracePoint(timestamp_us, packet, direction, type);
+  }
+#endif  // __ANDROID__
+
   std::bitset<32> flags = 0;
   switch (type) {
     case PacketType::CMD:
@@ -1315,6 +1322,11 @@ void SnoopLogger::Start() {
       snoop_logger_socket_thread_ = nullptr;
     }
   }
+
+#ifdef __ANDROID__
+  SnoopLoggerTracing::InitializePerfetto();
+#endif  // __ANDROID__
+
   alarm_ = std::make_unique<os::RepeatingAlarm>(GetHandler());
   alarm_->Schedule(common::Bind(&delete_old_btsnooz_files, snooz_log_path_, snooz_log_life_time_),
                    snooz_log_delete_alarm_interval_);
@@ -1427,7 +1439,49 @@ const ModuleFactory SnoopLogger::Factory = ModuleFactory([]() {
 });
 
 #ifdef __ANDROID__
-void SnoopLogger::LogTracePoint(const HciPacket& packet, Direction direction, PacketType type) {
+BundleKey::BundleKey(const HciPacket& packet, uint8_t direction, uint8_t type)
+    : packet_type(type), direction(direction) {
+  switch (type) {
+    case SnoopLogger::PacketType::EVT: {
+      event_code = packet[0];
+
+      if (event_code == static_cast<uint8_t>(hci::EventCode::LE_META_EVENT) ||
+          event_code == static_cast<uint8_t>(hci::EventCode::VENDOR_SPECIFIC)) {
+        subevent_code = packet[2];
+      }
+    } break;
+    case SnoopLogger::PacketType::CMD: {
+      op_code = packet[0] | (packet[1] << 8);
+    } break;
+    case SnoopLogger::PacketType::ACL:
+    case SnoopLogger::PacketType::ISO:
+    case SnoopLogger::PacketType::SCO: {
+      handle = (packet[0] | (packet[1] << 8)) & 0x0fff;
+    } break;
+  }
+}
+
+#define AGG_FIELDS(x) \
+  (x).packet_type, (x).direction, (x).event_code, (x).subevent_code, (x).op_code, (x).handle
+
+bool BundleKey::operator==(const BundleKey& b) const {
+  return std::tie(AGG_FIELDS(*this)) == std::tie(AGG_FIELDS(b));
+}
+
+template <typename T, typename... Rest>
+void HashCombine(std::size_t& seed, const T& val, const Rest&... rest) {
+  seed ^= std::hash<T>()(val) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+  (HashCombine(seed, rest), ...);
+}
+
+std::size_t BundleHash::operator()(const BundleKey& a) const {
+  std::size_t seed = 0;
+  HashCombine(seed, AGG_FIELDS(a));
+  return seed;
+}
+
+void SnoopLogger::LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, Direction direction,
+                                PacketType type) {
   switch (type) {
     case PacketType::EVT: {
       uint8_t evt_code = packet[0];
@@ -1473,6 +1527,29 @@ void SnoopLogger::LogTracePoint(const HciPacket& packet, Direction direction, Pa
       ATRACE_INSTANT_FOR_TRACK(LOG_TAG, message.c_str());
     } break;
   }
+
+  if (SkipTracePoint(packet, type)) {
+    return;
+  }
+
+  BundleKey key(packet, static_cast<uint8_t>(direction), static_cast<uint8_t>(type));
+
+  BundleDetails& bundle = bttrace_bundles_[key];
+  bundle.count++;
+  bundle.total_length += packet.size();
+  bundle.start_ts = std::min(bundle.start_ts, timestamp_us);
+  bundle.end_ts = std::max(bundle.end_ts, timestamp_us);
+
+  if ((timestamp_us - last_bttrace_timestamp_us) < TRACE_FLUSH_INTERVAL_MICROS) {
+    return;
+  }
+
+  for (const auto& [key, value] : bttrace_bundles_) {
+    SnoopLoggerTracing::TracePacket(key, value);
+  }
+
+  bttrace_bundles_.clear();
+  last_bttrace_timestamp_us = timestamp_us;
 }
 #endif  // __ANDROID__
 
