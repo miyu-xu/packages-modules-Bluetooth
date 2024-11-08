@@ -22,6 +22,30 @@
       },
       "revId": "03ddef13ed28bcce1ce828d6e2c6a9b66c6da50f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccad1b4f_31c0f8c7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5253,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-08T10:40:01Z",
+      "side": 1,
+      "message": "I\u0027ll try to investigate if there is possibility to monitor for recording case without active input session on Unicast - if not possible I\u0027ll extract it.",
+      "parentUuid": "c181fa52_848b37d8",
+      "range": {
+        "startLine": 5244,
+        "startChar": 24,
+        "endLine": 5253,
+        "endChar": 39
+      },
+      "revId": "03ddef13ed28bcce1ce828d6e2c6a9b66c6da50f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
