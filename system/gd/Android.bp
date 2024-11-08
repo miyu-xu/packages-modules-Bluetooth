@@ -121,6 +121,7 @@ cc_defaults {
                 "android.hardware.bluetooth.ranging-V2-ndk",
                 "android.hardware.bluetooth.socket-V1-ndk",
                 "android.hardware.contexthub-V4-ndk",
+                "libperfetto_client_experimental",
             ],
         },
     },
@@ -263,11 +264,11 @@ cc_test {
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
+        "libaconfig_storage_read_api_cc",
         "libbluetooth_log",
         "libchrome",
         "libgmock",
         "server_configurable_flags",
-        "libaconfig_storage_read_api_cc",
     ],
     shared_libs: [
         "libbase",
