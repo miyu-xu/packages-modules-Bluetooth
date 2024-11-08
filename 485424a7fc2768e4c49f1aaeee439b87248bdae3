@@ -22,6 +22,30 @@
       },
       "revId": "485424a7fc2768e4c49f1aaeee439b87248bdae3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19e0f136_f83ccf06",
+        "filename": "system/embdrv/sbc/encoder/include/sbc_dct.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T21:50:04Z",
+      "side": 1,
+      "message": "Sorry, this is what clang-format want :/",
+      "parentUuid": "d8ea6e40_835d7bc1",
+      "range": {
+        "startLine": 32,
+        "startChar": 61,
+        "endLine": 33,
+        "endChar": 66
+      },
+      "revId": "485424a7fc2768e4c49f1aaeee439b87248bdae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
