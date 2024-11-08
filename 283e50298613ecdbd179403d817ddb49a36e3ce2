@@ -16,6 +16,70 @@
       "message": "lgtm, will let @wescande@google.com help to review and vote from owner\u0027s pov.",
       "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cbd09a2_daace1a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T20:16:02Z",
+      "side": 1,
+      "message": "thank you for the ping, I wouldn\u0027t have check the CL if it wasn\u0027t for that.\n\nLeft some nit",
+      "parentUuid": "24b342f2_757ea5a9",
+      "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea800c8c_e4ba86a7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5281,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T20:16:02Z",
+      "side": 1,
+      "message": "Why are we checking `mActiveAudioInDevice !\u003d null` ? it doesn\u0027t seems to be used in the method.\n\nIf the check is needed Should we do it at the start of the method ?\n```\n   void setBroadcastToUnicastFallbackGroup(int groupId) {\n        if (!leaudioBroadcastApiManagePrimaryGroup()) {\n            return;\n        }\n\n        Log.d(TAG, \"setBroadcastToUnicastFallbackGroup(\" + groupId + \")\");\n\n        mGroupReadLock.lock();\n        try {\n            if (!mGroupDescriptorsView.containsKey(groupId)) {\n                Log.w(TAG, \"There is no group with requested ID: \" + groupId);\n                return;\n            }\n            if (mActiveAudioInDevice \u003d\u003d null) {\n                Log.w(TAG, \"There is no active audio in\"); // or something\n                return;\n            }\n[...]\n\n```\n\nAnd if you us some local variable you can only write once the call to updateActiveDevices in order to have a easier to read difference between using LE_AUDIO_GROUP_ID_INVALID vs a valid one\n```\n\n                LeAudioGroupDescriptor fallbackGroupDescriptor \u003d\n                        getGroupDescriptor(mUnicastGroupIdDeactivatedForBroadcastTransition);\n                        \n                if (fallbackGroupDescriptor \u003d\u003d null) {\n                    Log.d(TAG, \"no fallback group descriptor \");\n                    return;\n                }\n\n                int direction \u003d AUDIO_DIRECTION_NONE;\n                boolean notifyAndUpdateInactiveOutDeviceOnly \u003d false;\n                if (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n                    direction \u003d AUDIO_DIRECTION_NONE;\n                    notifyAndUpdateInactiveOutDeviceOnly \u003d true;\n                }\n                updateActiveDevices(\n                        groupId,\n                        fallbackGroupDescriptor.mDirection,\n                        direction,\n                        false, // isActive\n                        fallbackGroupDescriptor.mHasFallbackDeviceWhenGettingInactive,\n                        notifyAndUpdateInactiveOutDeviceOnly);\n```",
+      "range": {
+        "startLine": 5281,
+        "startChar": 28,
+        "endLine": 5281,
+        "endChar": 48
+      },
+      "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44651b38_d4769579",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T20:16:02Z",
+      "side": 1,
+      "message": "I don\u0027t think you should throw.\n\nas user if I do:\n\n```\nif (bluetoothisEnabled()) {\n  setBroadcastToUnicastFallbackGroup()\n}\n```\n\nNothing prevent the bluetooth from being shutdown in between.\n\nThis is the same case as the catch on the remote exception.\n\nI see that there are other occurence in this file, I believe they should be fix.\n\nbut that can be do in a follow-up",
+      "range": {
+        "startLine": 1461,
+        "startChar": 22,
+        "endLine": 1461,
+        "endChar": 43
+      },
+      "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
