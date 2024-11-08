@@ -106,6 +106,24 @@
       "parentUuid": "18a532c6_fff7af82",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee54efa_7e46a354",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:51:43Z",
+      "side": 1,
+      "message": "No, this would be giving the vendor the possibility to set each and everyone of the bluetooth property which is not desired.\n\nI believe we should add \n`bluetooth.hardware.wakeup_supported                   u:object_r:bluetooth_config_prop:s0 exact int`\ninto system/sepolicy/private/property_contexts\n\nnext to other `bluetooth.hardware.xxx`",
+      "parentUuid": "18a532c6_fff7af82",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
