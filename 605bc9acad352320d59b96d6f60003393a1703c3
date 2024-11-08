@@ -88,6 +88,24 @@
       "parentUuid": "01337642_a29bffa1",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "123c2029_5b4f229f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3311688
+      },
+      "writtenOn": "2024-11-08T00:50:35Z",
+      "side": 1,
+      "message": "As I understand it, this change would be independent of that (implementing the fix vs. how to deliver the sysprop), right?",
+      "parentUuid": "18a532c6_fff7af82",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
