@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2537e429_2e156579",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-08T11:33:44Z",
+      "side": 1,
+      "message": "As areValidParametersToModifySource is called directly after getOrCreateStateMachine and gives statusCode which can cause notifySourceModifyFailed, IMHO it is clear for developers that this check (all checks) is done there. Maybe we should ask 3rd person;) @gkolodziejczyk@google.com\n\nareValidParametersToModifySource is used in modifySource method in the same way.\nBefore my change, stateMachine was completely not checked in resumeReceiversSourceSynchronization and it is still not checked as in few other places.\nFull list:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;drc\u003d90a75ade1f4ad06907dce0f59f7c98d9c040da70;l\u003d1247\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;drc\u003d90a75ade1f4ad06907dce0f59f7c98d9c040da70;l\u003d2202\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;drc\u003d90a75ade1f4ad06907dce0f59f7c98d9c040da70;l\u003d3610\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;drc\u003d90a75ade1f4ad06907dce0f59f7c98d9c040da70;l\u003d3772\n\nIt could/should be fixed in another commit.",
+      "parentUuid": "9a6894f6_5181dfe0",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
