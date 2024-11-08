@@ -113,6 +113,7 @@ cc_defaults {
             ],
             static_libs: [
                 "libexpresslog",
+                "libperfetto_client_experimental",
                 "libstatslog_express",
                 "libtextclassifier_hash_static",
             ],
@@ -313,6 +314,7 @@ cc_test {
                 "android.hardware.bluetooth@1.1",
                 "android.system.suspend-V1-ndk",
                 "android.system.suspend.control-V1-ndk",
+                "libperfetto_client_experimental",
                 "libstatslog_bt",
             ],
             shared_libs: [
@@ -469,6 +471,9 @@ cc_defaults {
                 "libhidlbase",
                 "libstatslog_bt",
                 "libutils",
+            ],
+            static_libs: [
+                "libperfetto_client_experimental",
             ],
         },
     },
