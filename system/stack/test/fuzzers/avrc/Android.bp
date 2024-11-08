@@ -14,4 +14,11 @@ cc_fuzz {
         "fuzz_avrc.cc",
     ],
     static_libs: ["libchrome"],
+    target: {
+        android: {
+            static_libs: [
+                "libperfetto_client_experimental",
+            ],
+        },
+    },
 }
