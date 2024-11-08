@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58dbaa16_a4be1be9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-08T13:21:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "59084c42_a02e76f2",
+      "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1637bab_ede81bdf",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "@gkolodziejczyk@google.com please correct me if I\u0027m wrong.\n\nthis is to handle the case sharing audio with two sets, and one set got disconnected. we\u0027d need the logic to change fallback to the existing set per product requirement.\n\nonly when user/UI change through setBroadcastToUnicastFallbackGroup API, the selection is sticky till the fallback device disconnected or new device connected.\n\nfrom my understanding, we should have this.",
       "parentUuid": "b1637bab_ede81bdf",
+      "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0bd1a86_b20a7c4d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4276,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-08T13:21:22Z",
+      "side": 1,
+      "message": "Hi Rongxuan!\n\nThe idea is most likely as you described.\n\n\u003e only when user/UI change through setBroadcastToUnicastFallbackGroup API, the selection is sticky till the fallback device disconnected or new device connected.\n\nIf all devices from set fallback group disconnects, code picks earliest connected (connected in meaning that are currently connected), so this make sense only for disconnection scenario. If device is connected there would be no change of fallback device if previous fallback device was different that INVALID e.g. this is first connected device.\n\n@rongxuan@google.com Is this ok ?\n\n@rlukasz@google.com \n\n\u003e I think it makes sense to call it only when all devices from the group are disconnected.\n\nIt is already covered - please take a look on line https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3340973/3/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java#4256",
+      "parentUuid": "10b36fbb_3414ea89",
       "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
