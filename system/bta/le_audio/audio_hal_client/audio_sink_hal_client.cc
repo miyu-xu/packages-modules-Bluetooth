@@ -20,12 +20,21 @@
 
 #include <bluetooth/log.h>
 
+#include <cstddef>
+#include <cstdint>
+#include <functional>
+#include <memory>
+#include <utility>
+#include <vector>
+
 #include "audio_hal_client.h"
 #include "audio_hal_interface/le_audio_software.h"
 #include "bta/le_audio/codec_manager.h"
-#include "common/time_util.h"
-#include "osi/include/wakelock.h"
+#include "bta_le_audio_api.h"
+#include "hardware/bluetooth.h"
+#include "le_audio/le_audio_types.h"
 #include "stack/include/main_thread.h"
+#include "system/audio.h"
 
 namespace bluetooth::le_audio {
 namespace {

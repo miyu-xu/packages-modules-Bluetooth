@@ -17,12 +17,30 @@
 #include <base/functional/bind.h>
 #include <base/functional/callback.h>
 
+#include <algorithm>
+#include <cstdint>
+#include <list>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+#include "ble_address_with_type.h"
+#include "bluetooth/log.h"
+#include "bluetooth/uuid.h"
+#include "bt_transport.h"
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_ras_api.h"
 #include "bta/ras/ras_types.h"
+#include "btm_ble_api_types.h"
+#include "gatt/database.h"
+#include "gatt_api.h"
+#include "gattdefs.h"
 #include "gd/hci/controller_interface.h"
 #include "main/shim/entry.h"
-#include "os/logging/log_adapter.h"
+#include "osi/include/alarm.h"
+#include "raw_address.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_ble_addr.h"
 #include "stack/include/gap_api.h"
