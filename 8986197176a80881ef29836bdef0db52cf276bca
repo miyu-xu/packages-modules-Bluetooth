@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14cd35f6_4864cecf",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T22:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7cdc4d0_76e413f4",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 56,
+        "endChar": 90
+      },
+      "revId": "8986197176a80881ef29836bdef0db52cf276bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5d4d781_a396e564",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I believe it is the same as using the constant would be the same as the annotation evaluate the value.\n\nBut here, since there is a Wrapper I am not sure any validation can be done at all at it may be dismissed by the template",
       "parentUuid": "b5d4d781_a396e564",
+      "range": {
+        "startLine": 1804,
+        "startChar": 25,
+        "endLine": 1804,
+        "endChar": 76
+      },
+      "revId": "8986197176a80881ef29836bdef0db52cf276bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e73f2db1_5e8d1b9e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T22:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc6c83bd_8c65978a",
       "range": {
         "startLine": 1804,
         "startChar": 25,
