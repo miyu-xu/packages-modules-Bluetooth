@@ -62,7 +62,7 @@ Alarm::~Alarm() {
 
 void Alarm::Schedule(OnceClosure task, std::chrono::milliseconds delay) {
   std::lock_guard<std::mutex> lock(mutex_);
-  long delay_ms = delay.count();
+  long delay_ms = delay.count();  // NOLINT: timespec require to use long
   itimerspec timer_itimerspec{{/* interval for periodic timer */},
                               {delay_ms / 1000, delay_ms % 1000 * 1000000}};
   int result = TIMERFD_SETTIME(fd_, 0, &timer_itimerspec, nullptr);
@@ -95,8 +95,7 @@ void Alarm::on_fire() {
 
   log::assert_that(bytes_read == static_cast<ssize_t>(sizeof(uint64_t)),
                    "assert failed: bytes_read == static_cast<ssize_t>(sizeof(uint64_t))");
-  log::assert_that(times_invoked == static_cast<uint64_t>(1), "Invoked number of times:{} fd:{}",
-                   (unsigned long)times_invoked, fd_);
+  log::assert_that(times_invoked == 1u, "Invoked number of times:{} fd:{}", times_invoked, fd_);
   std::move(task).Run();
 }
 

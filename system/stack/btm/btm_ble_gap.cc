@@ -592,7 +592,7 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
       }
     }
   } else if (btm_cb.ble_ctr_cb.is_ble_observe_active()) {
-    const unsigned long long duration_timestamp =
+    const uint64_t duration_timestamp =
             timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_observe.start_time_ms;
     BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le observe stopped",
                    base::StringPrintf("duration_s:%6.3f results:%-3lu",
@@ -2421,7 +2421,7 @@ static void btm_ble_stop_scan(void) {
   btm_cb.ble_ctr_cb.inq_var.scan_type = BTM_BLE_SCAN_MODE_NONE;
 
   /* stop discovery now */
-  const unsigned long long duration_timestamp =
+  const uint64_t duration_timestamp =
           timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_legacy_scan.start_time_ms;
   BTM_LogHistory(
           kBtmLogTag, RawAddress::kEmpty, "Le legacy scan stopped",
@@ -2443,7 +2443,7 @@ static void btm_ble_stop_scan(void) {
 void btm_ble_stop_inquiry(void) {
   alarm_cancel(btm_cb.ble_ctr_cb.inq_var.inquiry_timer);
 
-  const unsigned long long duration_timestamp =
+  const uint64_t duration_timestamp =
           timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_inquiry.start_time_ms;
   BTM_LogHistory(
           kBtmLogTag, RawAddress::kEmpty, "Le inquiry stopped",

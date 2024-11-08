@@ -688,11 +688,9 @@ void PAN_Dumpsys(int fd) {
     }
     LOG_DUMPSYS(fd, "  Id:%d peer:%s", i, ADDRESS_TO_LOGGABLE_CSTR(pcb->rem_bda));
     LOG_DUMPSYS(fd, "    rx_packets:%-5lu rx_octets:%-8lu rx_errors:%-5lu rx_drops:%-5lu",
-                (unsigned long)pcb->read.packets, (unsigned long)pcb->read.octets,
-                (unsigned long)pcb->read.errors, (unsigned long)pcb->read.drops);
+                pcb->read.packets, pcb->read.octets, pcb->read.errors, pcb->read.drops);
     LOG_DUMPSYS(fd, "    tx_packets:%-5lu tx_octets:%-8lu tx_errors:%-5lu tx_drops:%-5lu",
-                (unsigned long)pcb->write.packets, (unsigned long)pcb->write.octets,
-                (unsigned long)pcb->write.errors, (unsigned long)pcb->write.drops);
+                pcb->write.packets, pcb->write.octets, pcb->write.errors, pcb->write.drops);
     LOG_DUMPSYS(fd,
                 "    src_uuid:0x%04x[prev:0x%04x] dst_uuid:0x%04x[prev:0x%04x] "
                 "bad_pkts:%hu",

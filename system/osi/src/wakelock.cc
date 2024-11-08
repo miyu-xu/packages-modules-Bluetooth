@@ -128,7 +128,7 @@ static bt_status_t wakelock_acquire_native(void) {
     return BT_STATUS_PARM_INVALID;
   }
 
-  long lock_name_len = strlen(WAKE_LOCK_ID);
+  int64_t lock_name_len = strlen(WAKE_LOCK_ID);
   locked_id_len = write(wake_lock_fd, WAKE_LOCK_ID, lock_name_len);
   if (locked_id_len == -1) {
     log::error("wake lock not acquired: {}", strerror(errno));
@@ -362,11 +362,10 @@ void wakelock_debug_dump(int fd) {
           wakelock_stats.released_errors);
   dprintf(fd, "  Last acquire/release error code: %d / %d\n", wakelock_stats.last_acquired_error,
           wakelock_stats.last_released_error);
-  dprintf(fd, "  Last acquired time (ms)        : %llu\n", (unsigned long long)last_interval_ms);
-  dprintf(fd, "  Acquired time min/max/avg (ms) : %llu / %llu / %llu\n",
-          (unsigned long long)min_interval_ms, (unsigned long long)max_interval_ms,
-          (unsigned long long)avg_interval_ms);
-  dprintf(fd, "  Total acquired time (ms)       : %llu\n", (unsigned long long)total_interval_ms);
-  dprintf(fd, "  Total run time (ms)            : %llu\n",
-          (unsigned long long)(just_now_ms - wakelock_stats.last_reset_timestamp_ms));
+  dprintf(fd, "  Last acquired time (ms)        : %lu\n", last_interval_ms);
+  dprintf(fd, "  Acquired time min/max/avg (ms) : %lu / %lu / %lu\n", min_interval_ms,
+          max_interval_ms, avg_interval_ms);
+  dprintf(fd, "  Total acquired time (ms)       : %lu\n", total_interval_ms);
+  dprintf(fd, "  Total run time (ms)            : %lu\n",
+          (just_now_ms - wakelock_stats.last_reset_timestamp_ms));
 }

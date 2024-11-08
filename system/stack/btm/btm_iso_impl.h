@@ -861,9 +861,8 @@ struct iso_impl {
     dprintf(fd, "          Credits underflow (count): %zu\n", stats.credits_underflow_count);
     dprintf(fd, "          Credits underflow (bytes): %zu\n", stats.credits_underflow_bytes);
     dprintf(fd, "          Last underflow time ago (ms): %llu\n",
-            (stats.credits_last_underflow_us > 0
-                     ? (unsigned long long)(now_us - stats.credits_last_underflow_us) / 1000
-                     : 0llu));
+            (stats.credits_last_underflow_us > 0 ? (now_us - stats.credits_last_underflow_us) / 1000
+                                                 : 0llu));
   }
 
   static void dump_event_stats(int fd, const iso_base::event_stats& stats) {
@@ -873,9 +872,7 @@ struct iso_impl {
     dprintf(fd, "          Sequence number mismatch (count): %zu\n", stats.seq_nb_mismatch_count);
     dprintf(fd, "          Event lost (count): %zu\n", stats.evt_lost_count);
     dprintf(fd, "          Last event lost time ago (ms): %llu\n",
-            (stats.evt_last_lost_us > 0
-                     ? (unsigned long long)(now_us - stats.evt_last_lost_us) / 1000
-                     : 0llu));
+            (stats.evt_last_lost_us > 0 ? (now_us - stats.evt_last_lost_us) / 1000 : 0llu));
   }
 
   void dump(int fd) const {
@@ -884,7 +881,7 @@ struct iso_impl {
     dprintf(fd, "    Available credits: %d\n", iso_credits_.load());
     dprintf(fd, "    Controller buffer size: %d\n", iso_buffer_size_);
     dprintf(fd, "    Num of ISO traffic callbacks: %lu\n",
-            static_cast<unsigned long>(on_iso_traffic_active_callbacks_list_.size()));
+            on_iso_traffic_active_callbacks_list_.size());
     dprintf(fd, "    CISes:\n");
     for (auto const& cis_pair : conn_hdl_to_cis_map_) {
       dprintf(fd, "      CIS Connection handle: %d\n", cis_pair.first);
