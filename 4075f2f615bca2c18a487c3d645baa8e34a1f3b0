@@ -54,6 +54,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dbf8e3f_d5906b9d",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T20:02:35Z",
+      "side": 1,
+      "message": "What are the test you want to run ?\nIt may be possible to activate the flag at test time, and maybe to run it twice, one with and one without the flag",
+      "parentUuid": "dc16767f_448fd0d3",
+      "range": {
+        "startLine": 630,
+        "startChar": 15,
+        "endLine": 630,
+        "endChar": 22
+      },
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a43e6412_7a459263",
         "filename": "system/stack/btm/security_device_record.h",
         "patchSetId": 23
