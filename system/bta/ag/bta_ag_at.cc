@@ -140,7 +140,7 @@ static void bta_ag_process_at(tBTA_AG_AT_CB* p_cb, char* p_end) {
           if (p_cb->p_at_tbl[idx].command_id == BTA_AG_LOCAL_EVT_BRSF) {
             // Per HFP v1.9 BRSF could be 32-bit integer and we should ignore
             // all reserved bits rather than responding ERROR.
-            long long int_arg_ll = std::atoll(p_arg);
+            long long int_arg_ll = std::atoll(p_arg);  // NOLINT: atoll return a long long
             if (int_arg_ll >= (1ll << 32) || int_arg_ll < 0) {
               int_arg_ll = -1;
             }

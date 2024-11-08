@@ -54,21 +54,21 @@ std::string ToHexString(T x) {
   }
   std::stringstream tmp;
   tmp << "0x" << std::internal << std::hex << std::setfill('0') << std::setw(sizeof(T) * 2)
-      << (unsigned long)x;
+      << (uint64_t)x;
   return tmp.str();
 }
 
 template <>
-inline std::string ToHexString<>(signed long x) {
+inline std::string ToHexString<>(int64_t x) {
   if (x < 0) {
     if (x == LONG_MIN) {
       return "LONG_MIN";
     }
-    return "-" + ToHexString<signed long>(-x);
+    return "-" + ToHexString<int64_t>(-x);
   }
   std::stringstream tmp;
-  tmp << "0x" << std::internal << std::hex << std::setfill('0')
-      << std::setw(sizeof(signed long) * 2) << (unsigned long)x;
+  tmp << "0x" << std::internal << std::hex << std::setfill('0') << std::setw(sizeof(int64_t) * 2)
+      << (uint64_t)x;
   return tmp.str();
 }
 
@@ -76,7 +76,7 @@ template <>
 inline std::string ToHexString<>(unsigned int x) {
   std::stringstream tmp;
   tmp << "0x" << std::internal << std::hex << std::setfill('0')
-      << std::setw(sizeof(unsigned int) * 2) << (unsigned long)x;
+      << std::setw(sizeof(unsigned int) * 2) << (uint64_t)x;
   return tmp.str();
 }
 
