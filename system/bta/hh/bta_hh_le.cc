@@ -22,15 +22,31 @@
 #include <base/functional/callback.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
+#include <string.h>
 
+#include <cstddef>
 #include <cstdint>
+#include <cstring>
+#include <list>
+#include <utility>
 #include <vector>
 
+#include "ble_address_with_type.h"
+#include "bt_transport.h"
 #include "bta/hh/bta_hh_int.h"
 #include "bta/include/bta_gatt_queue.h"
 #include "bta/include/bta_hh_co.h"
 #include "bta/include/bta_le_audio_api.h"
+#include "bta_gatt_api.h"
+#include "bta_hh_api.h"
+#include "btm_ble_api_types.h"
+#include "btm_sec_api_types.h"
 #include "device/include/interop.h"
+#include "gatt/database.h"
+#include "gatt_api.h"
+#include "gattdefs.h"
+#include "hardware/bt_gatt_types.h"
+#include "hiddefs.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"    // ARRAY_SIZE
 #include "stack/btm/btm_sec.h"  // BTM_
