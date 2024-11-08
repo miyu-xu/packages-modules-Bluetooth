@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8932aa87_07be8e6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-08T16:55:29Z",
+      "side": 1,
+      "message": "This *is* the test.  The only test added fails without the production code patch and passed with the production code patch.",
+      "parentUuid": "e3451725_fb94782f",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 31
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4baf2716_d94626eb",
@@ -326,6 +350,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f48848fb_e3b5d982",
+        "filename": "system/stack/avrc/avrc_pars_ct.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-08T16:55:29Z",
+      "side": 1,
+      "message": "Agreed as a general concept.  However, the memory checker only called out memory leaks not use after free so is unenforceable.",
+      "parentUuid": "d8859011_20fd13de",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 42
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a77d2d4_3f0c523e",
         "filename": "system/stack/avrc/avrc_pars_ct.cc",
         "patchSetId": 4
@@ -384,6 +432,30 @@
       "writtenOn": "2024-11-05T00:37:11Z",
       "side": 1,
       "message": "what is this trying to test ?",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 88
+      },
+      "revId": "1e2a5677bc91c952c40d1ec6a8c7773bd38fcd54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d02067_afaae1d5",
+        "filename": "system/stack/test/stack_avrcp_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-08T16:55:29Z",
+      "side": 1,
+      "message": "This was testing that there was no alarm erroneously set with no alarm.",
+      "parentUuid": "0e1e6b1a_c894b6cd",
       "range": {
         "startLine": 210,
         "startChar": 0,
