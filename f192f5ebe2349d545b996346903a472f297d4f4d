@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38f11350_644faed9",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2626,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T16:20:19Z",
+      "side": 1,
+      "message": "if device is bonded (first check) it must have a p_dev_rec. Besides, it\u0027s used in this function without any null checks because it must be in at least bonding state.",
+      "parentUuid": "8155519e_3109f009",
+      "revId": "f192f5ebe2349d545b996346903a472f297d4f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bce7c7a_bcfc2dc9",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-08T15:44:43Z",
       "side": 1,
       "message": "...and here we are checking if `p_dev_rec` is NULL, suggesting that\u0027s a possibility.  If it is NULL, we\u0027ll already have crashed from the earlier dereference.",
+      "revId": "f192f5ebe2349d545b996346903a472f297d4f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0da97ac_b6dd98c1",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2631,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T16:20:19Z",
+      "side": 1,
+      "message": "This is copy-paste, aosp/3342479",
+      "parentUuid": "0bce7c7a_bcfc2dc9",
       "revId": "f192f5ebe2349d545b996346903a472f297d4f4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
