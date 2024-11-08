@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7065064_d760c199",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-08T22:21:57Z",
+      "side": 1,
+      "message": "You also need to add the new param in the documentation.",
+      "range": {
+        "startLine": 504,
+        "startChar": 7,
+        "endLine": 504,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "81f55248_0734d7e2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 505,
+                "startChar": 0,
+                "endLine": 505,
+                "endChar": 0
+              },
+              "replacement": "     * @param isDeIdentifiedLogging The boolean to indicate whether the logging is de-identified.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1eeeb688ce8bbb7301814105fc194d692a45826c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1917c83_0e5c37fa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-08T22:21:57Z",
+      "side": 1,
+      "message": "You should overload this method and keep a similar method with just `device` as parameter (and `includeMedicalDevices` to `false by default). This will avoid having to modify all the other files.",
+      "range": {
+        "startLine": 507,
+        "startChar": 18,
+        "endLine": 507,
+        "endChar": 97
+      },
+      "revId": "1eeeb688ce8bbb7301814105fc194d692a45826c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "495c6dc8_df0e259c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-08T22:21:57Z",
+      "side": 1,
+      "message": "It should be probably renamed to `includeMedicalDevices` since we could also use standard device names with de-identified logging.",
+      "range": {
+        "startLine": 624,
+        "startChar": 76,
+        "endLine": 624,
+        "endChar": 97
+      },
+      "revId": "1eeeb688ce8bbb7301814105fc194d692a45826c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d659c5f_4a6ec3ee",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-08T22:21:57Z",
+      "side": 1,
+      "message": "Just put `false` here (same for every call, you don\u0027t need to declare a temp var for that)",
+      "range": {
+        "startLine": 780,
+        "startChar": 49,
+        "endLine": 780,
+        "endChar": 70
+      },
+      "revId": "1eeeb688ce8bbb7301814105fc194d692a45826c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
