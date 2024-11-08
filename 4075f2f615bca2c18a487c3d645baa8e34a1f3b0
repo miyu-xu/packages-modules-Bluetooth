@@ -284,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bbe1dab_486c352c",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-08T23:32:02Z",
+      "side": 1,
+      "message": "thanks, I will check.\nI just derived from this field - suggested_tx_octets",
+      "parentUuid": "a43e6412_7a459263",
+      "range": {
+        "startLine": 363,
+        "startChar": 7,
+        "endLine": 363,
+        "endChar": 35
+      },
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fde40570_bf4d1556",
         "filename": "system/stack/include/btm_ble_api.h",
         "patchSetId": 23
@@ -295,6 +319,30 @@
       "writtenOn": "2024-11-08T19:27:16Z",
       "side": 1,
       "message": "prev -\u003e priv ?\n\nin 2 years noone would remember what a \"privileged\" means in this context.\n\nHow about just add a \"FixDataLengthForHearingAid\" method ?\nAnd then have a field called \"dataLengthFixedForHearingAid\" ?\n\nAs a bonus you don\u0027t have to modify every call to BTM_SetBleDataLength. Setting default value for priv_client woudl also do the trick.",
+      "range": {
+        "startLine": 311,
+        "startChar": 20,
+        "endLine": 311,
+        "endChar": 24
+      },
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99eb2d2c_d5974de2",
+        "filename": "system/stack/include/btm_ble_api.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-08T23:32:02Z",
+      "side": 1,
+      "message": "prev -\u003e priv : Agree.\n\nI was thinking we might have more clients similar to ASHA which need to be given priority over the application. Hence I came up with this so that It may be extensible for future.\n\nThis also serves the purpose, where App connects first and LE CoC connects later - in that case we need to overrider the ASHA values. Where as if the ASHA connects first \u0026 application try to override - will be ignored.\nIf I understand correctly, with the current implementation one can throttle the ASHA bandwidth by creating an LE CoC \u0026 set Max MTU with huge transfer.",
+      "parentUuid": "fde40570_bf4d1556",
       "range": {
         "startLine": 311,
         "startChar": 20,
