@@ -50,6 +50,80 @@
       ],
       "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a43e6412_7a459263",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T19:27:16Z",
+      "side": 1,
+      "message": "tL2C_LCB would be better place to keep such property. Security record should not deal with link parameters negotiation.",
+      "range": {
+        "startLine": 363,
+        "startChar": 7,
+        "endLine": 363,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "289ed820_c1d71780",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/security_device_record.h",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 324,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/security_device_record.h",
+              "range": {
+                "startLine": 363,
+                "startChar": 0,
+                "endLine": 364,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde40570_bf4d1556",
+        "filename": "system/stack/include/btm_ble_api.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T19:27:16Z",
+      "side": 1,
+      "message": "prev -\u003e priv ?\n\nin 2 years noone would remember what a \"privileged\" means in this context.\n\nHow about just add a \"FixDataLengthForHearingAid\" method ?\nAnd then have a field called \"dataLengthFixedForHearingAid\" ?\n\nAs a bonus you don\u0027t have to modify every call to BTM_SetBleDataLength. Setting default value for priv_client woudl also do the trick.",
+      "range": {
+        "startLine": 311,
+        "startChar": 20,
+        "endLine": 311,
+        "endChar": 24
+      },
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
