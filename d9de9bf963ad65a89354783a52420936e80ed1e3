@@ -163,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a344c280_7c002a25",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-08T21:37:16Z",
+      "side": 1,
+      "message": "But I got your points on the other callers, if you\u0027re planning to do some clean-ups together with others in a separate CL. I\u0027m also okay with that. \nCurrently some places are checked, some are not, this is quite confusing.",
+      "parentUuid": "60ed142e_e1856204",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
