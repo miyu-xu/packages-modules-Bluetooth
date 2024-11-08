@@ -19,10 +19,16 @@
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
+#include <cstdint>
+
 #include "bta/hh/bta_hh_int.h"
+#include "bta_hh_api.h"
 #include "btif/include/btif_storage.h"
-#include "stack/include/bt_types.h"
-#include "stack/include/bt_uuid16.h"
+#include "gatt/database.h"
+#include "gatt_api.h"
+#include "gattdefs.h"
+#include "hardware/bluetooth.h"
+#include "raw_address.h"
 #include "types/bluetooth/uuid.h"
 
 using bluetooth::Uuid;

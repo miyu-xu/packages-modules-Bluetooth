@@ -9,6 +9,7 @@ CheckOptions:
         sys/endian.h|\
         sys/ioctl.h|\
         arpa/inet.h|\
+        linux/time.h|\
         linux/if.h|\
         linux/sockios.h|\
         netinet/in.h|\
