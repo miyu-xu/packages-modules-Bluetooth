@@ -524,7 +524,7 @@ void LeAudioSourceAudioHalClient::DebugDump(int fd) {
          << sStats.media_read_total_underflow_bytes
          << "\n    Last update time ago in ms (underflow)                  : "
          << (sStats.media_read_last_underflow_us > 0
-                     ? (unsigned long long)(now_us - sStats.media_read_last_underflow_us) / 1000
+                     ? (uint64_t)(now_us - sStats.media_read_last_underflow_us) / 1000
                      : 0)
          << std::endl;
   dprintf(fd, "%s", stream.str().c_str());

@@ -449,7 +449,7 @@ static void* uipc_read_task(void* arg) {
   int ch_id;
   int result;
 
-  prctl(PR_SET_NAME, (unsigned long)"uipc-main", 0, 0, 0);
+  prctl(PR_SET_NAME, (unsigned long)"uipc-main", 0, 0, 0);  // NOLINT: prctl take a long
 
   while (uipc.running) {
     uipc.read_set = uipc.active_set;

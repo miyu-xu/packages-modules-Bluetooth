@@ -20,6 +20,7 @@
 
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
+#include <stdint.h>
 #include <sys/stat.h>
 #include <time.h>
 
@@ -712,8 +713,8 @@ void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {
     }
     dprintf(fd, "%-22s %-22s %-12d %-12ld %-12d %-12ld\n",
             GetTimeString(ldc.lifetime.begin).c_str(), GetTimeString(ldc.lifetime.end).c_str(),
-            ldc.acl_pkt_ds.tx.pkt_count, (long)ldc.acl_pkt_ds.tx.byte_count,
-            ldc.acl_pkt_ds.rx.pkt_count, (long)ldc.acl_pkt_ds.rx.byte_count);
+            ldc.acl_pkt_ds.tx.pkt_count, ldc.acl_pkt_ds.tx.byte_count, ldc.acl_pkt_ds.rx.pkt_count,
+            ldc.acl_pkt_ds.rx.byte_count);
   }
 
   dprintf(fd, "\nHCI CMD/EVT Details:\n");
@@ -758,8 +759,8 @@ void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {
                 GetTimeString(channel_details.duration.end).c_str(),
                 (channel_details.state == State::kDisconnected) ? "DISCONNECTED" : "CONNECTED");
         if (pimpl_->log_per_channel_ == true) {
-          dprintf(fd, "%-10ld %-10ld %-22s %-22s", (long)channel_details.data_transfer.tx.bytes,
-                  (long)channel_details.data_transfer.rx.bytes,
+          dprintf(fd, "%-10ld %-10ld %-22s %-22s", channel_details.data_transfer.tx.bytes,
+                  channel_details.data_transfer.rx.bytes,
                   GetTimeString(channel_details.tx.last_data_sent).c_str(),
                   GetTimeString(channel_details.rx.last_data_sent).c_str());
         }
@@ -776,8 +777,7 @@ void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {
       continue;
     }
     dprintf(fd, "%-22s %-22s %-10ld %-10ld\n", GetTimeString(ldc.lifetime.begin).c_str(),
-            GetTimeString(ldc.lifetime.end).c_str(), (long)ldc.l2c_data.tx.bytes,
-            (long)ldc.l2c_data.rx.bytes);
+            GetTimeString(ldc.lifetime.end).c_str(), ldc.l2c_data.tx.bytes, ldc.l2c_data.rx.bytes);
   }
 
   dprintf(fd, "\nRfcomm Data Traffic\n");
@@ -787,8 +787,7 @@ void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {
       continue;
     }
     dprintf(fd, "%-22s %-22s %-10ld %-10ld\n", GetTimeString(ldc.lifetime.begin).c_str(),
-            GetTimeString(ldc.lifetime.end).c_str(), (long)ldc.rfc_data.tx.bytes,
-            (long)ldc.rfc_data.rx.bytes);
+            GetTimeString(ldc.lifetime.end).c_str(), ldc.rfc_data.tx.bytes, ldc.rfc_data.rx.bytes);
   }
 
   dprintf(fd, "\n\nSniff Activity Details\n");
@@ -800,8 +799,7 @@ void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {
       SniffData sniff_data = itr.second;
       dprintf(fd, "%-8d %-19s %-19d %-24ld %-19d %-24ld\n", handle,
               ADDRESS_TO_LOGGABLE_CSTR(sniff_data.bd_addr), sniff_data.active_count,
-              (long)sniff_data.active_duration_ts, sniff_data.sniff_count,
-              (long)sniff_data.sniff_duration_ts);
+              sniff_data.active_duration_ts, sniff_data.sniff_count, sniff_data.sniff_duration_ts);
     }
   }
 

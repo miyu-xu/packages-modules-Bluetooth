@@ -199,7 +199,7 @@ using OnDisconnect = std::function<void(HciHandle, hci::ErrorCode reason)>;
 constexpr char kConnectionDescriptorTimeFormat[] = "%Y-%m-%d %H:%M:%S";
 
 constexpr unsigned MillisPerSecond = 1000;
-std::string EpochMillisToString(long long time_ms) {
+std::string EpochMillisToString(uint64_t time_ms) {
   time_t time_sec = time_ms / MillisPerSecond;
   struct tm tm;
   localtime_r(&time_sec, &tm);
@@ -1282,7 +1282,7 @@ void DumpsysNeighbor(int fd) {
   LOG_DUMPSYS(fd, "Last %zu inquiry scans:", copy.size());
   for (const auto& it : copy) {
     LOG_DUMPSYS(fd,
-                "  %s - %s duration_ms:%-5llu num_resp:%-2u"
+                "  %s - %s duration_ms:%-5lu num_resp:%-2u"
                 " std:%-2u rssi:%-2u ext:%-2u %12s",
                 EpochMillisToString(it.entry.start_time_ms).c_str(),
                 EpochMillisToString(it.timestamp).c_str(), it.timestamp - it.entry.start_time_ms,
