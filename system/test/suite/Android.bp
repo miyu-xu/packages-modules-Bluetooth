@@ -130,6 +130,7 @@ cc_test {
         "libchrome",
         "libevent",
         "libflags_rust_cpp_bridge",
+        "libperfetto_client_experimental",
         "libprotobuf-cpp-lite",
     ],
     aidl: {
