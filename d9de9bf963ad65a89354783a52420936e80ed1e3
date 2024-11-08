@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60ed142e_e1856204",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-08T17:50:38Z",
+      "side": 1,
+      "message": "Okay, let\u0027s talk about the optimal code design of this flow \n\n1. please rename resumeSource to be something like updateSourceToResumeBroadcast.\n\n2. then move areValidParametersToModifySource our of resumeSource, because this method should only be used to validate modifying source parameters aka. metadata. Why do we need to validate modifying source parameter in \u0027resume source\u0027?\n\n3. With this said, stateMachine is not a passed-in parameter, it should not be validated inside this function.\n\n4. you get stateMachine from getOrCreateStateMachine and inside resumeSource, validating stateMachine should be done right after this, not later or in another helper function, unless you have some helper functions called validateStateMachine().",
+      "parentUuid": "2537e429_2e156579",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
