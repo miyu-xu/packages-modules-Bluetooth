@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f0fdec2_c6d7a4ac",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T19:12:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1db8b03_d6c43f65",
+      "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40015f25_0f825186",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fec2eac_86589427",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T19:12:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40015f25_0f825186",
+      "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57a1f78f_9ecf432c",
@@ -66,6 +102,24 @@
       "writtenOn": "2024-11-08T18:03:23Z",
       "side": 1,
       "message": "Description does not match the implementation. We are sending boolean.",
+      "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27651052_9105c084",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-08T19:12:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57a1f78f_9ecf432c",
       "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
