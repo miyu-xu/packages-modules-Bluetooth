@@ -222,6 +222,13 @@ cc_test {
             undefined: true,
         },
     },
+    target: {
+        android: {
+            static_libs: [
+                "libperfetto_client_experimental",
+            ],
+        },
+    },
     min_sdk_version: "Tiramisu",
     header_libs: ["libbluetooth_headers"],
 }
