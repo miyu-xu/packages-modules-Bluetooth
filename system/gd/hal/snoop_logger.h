@@ -139,6 +139,34 @@ private:
   profile_type_t current_profile;
 };
 
+struct BundleKey {
+  explicit BundleKey(const HciPacket& packet, uint8_t direction, uint8_t type);
+
+  uint8_t packet_type;
+  uint8_t direction;
+  uint32_t length;
+  std::optional<uint16_t> op_code;
+  std::optional<uint8_t> event_code;
+  std::optional<uint8_t> subevent_code;
+  std::optional<uint16_t> handle;
+};
+
+struct BundleEq {
+  bool operator()(const BundleKey& a, const BundleKey& b) const;
+};
+
+struct BundleHash {
+  std::size_t operator()(const BundleKey& a) const;
+};
+
+struct BundleDetails {
+  uint32_t count;
+  uint32_t length;
+  uint64_t minTs = std::numeric_limits<uint64_t>::max();
+  uint64_t maxTs = std::numeric_limits<uint64_t>::min();
+  uint32_t bytes = 0;
+};
+
 class SnoopLogger : public ::bluetooth::Module {
 public:
   static const ModuleFactory Factory;
@@ -320,7 +348,9 @@ protected:
   std::unique_ptr<SnoopLoggerSocketThread> snoop_logger_socket_thread_;
 
 #ifdef __ANDROID__
-  void LogTracePoint(const HciPacket& packet, Direction direction, PacketType type);
+  void LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, Direction direction,
+                     PacketType type);
+  bool SkipTracePoint(const HciPacket& packet, PacketType type);
 #endif  // __ANDROID__
 
 private:
@@ -339,6 +369,8 @@ private:
   SnoopLoggerSocketInterface* socket_;
   SyscallWrapperImpl syscall_if;
   bool snoop_log_persists = false;
+  std::unordered_map<BundleKey, BundleDetails, BundleHash, BundleEq> bttrace_bundles_;
+  uint64_t last_timestamp_us;
 };
 
 }  // namespace hal
