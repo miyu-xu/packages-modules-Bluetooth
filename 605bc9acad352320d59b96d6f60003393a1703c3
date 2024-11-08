@@ -70,6 +70,24 @@
       "parentUuid": "dee2fbb0_b3e98982",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18a532c6_fff7af82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3222738
+      },
+      "writtenOn": "2024-11-08T00:40:29Z",
+      "side": 1,
+      "message": "So, the needed change is to add a line `set_prop(vendor_init, bluetooth_prop)` right after the line `set_prop(vendor_init, bluetooth_config_prop)` there?\nCan you confirm?",
+      "parentUuid": "01337642_a29bffa1",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
