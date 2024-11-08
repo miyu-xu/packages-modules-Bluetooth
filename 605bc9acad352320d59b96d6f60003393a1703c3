@@ -52,6 +52,24 @@
       "parentUuid": "b8674f2f_495acb73",
       "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01337642_a29bffa1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T00:25:27Z",
+      "side": 1,
+      "message": "I see, Then I think you are right and the sepolicy should be updated if we want vendor to be able to set it",
+      "parentUuid": "dee2fbb0_b3e98982",
+      "revId": "605bc9acad352320d59b96d6f60003393a1703c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
