@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be29659c_e32a3eaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-08T23:07:37Z",
+      "side": 1,
+      "message": "Wondering about your notion of privileged client; do you anticipate that more clients will exist than ASHA ? If not it might be simpler to have some logic in BTM \nto cap the data length if an ASHA stream is opened.",
+      "parentUuid": "e04fa653_f5065545",
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc16767f_448fd0d3",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 23
