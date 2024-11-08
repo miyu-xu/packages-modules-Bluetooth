@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1db8b03_d6c43f65",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-08T18:03:23Z",
+      "side": 1,
+      "message": "Missing algorithm field description",
+      "fixSuggestions": [
+        {
+          "fixId": "552c736e_7d9ca3f8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 312,
+                "startChar": 0,
+                "endLine": 312,
+                "endChar": 0
+              },
+              "replacement": "    /**\n     * Broadcast Action: Indicates that encryption state changed\n     *\n     * \u003cp\u003eOnly registered receivers will receive this intent.\n     *\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_DEVICE}\n     *\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_TRANSPORT}\n     *\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_ENCRYPTION_STATUS}\n     *\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_ENCRYPTION_ENABLED}\n     *\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_KEY_SIZE}\n     *\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_ENCRYPTION_ALGORITHM}\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_ENCRYPTION_ALGORITHM}\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_ENCRYPTION_ENABLED}\n     * \u003cp\u003eAlways contains the extra field {@link #EXTRA_KEY_SIZE}\n     * @hide\n     */\n    @SuppressLint(\"ActionValue\")\n    @RequiresPermission(allOf \u003d {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})\n    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)\n    @SystemApi\n    @BroadcastBehavior(includeBackground \u003d true, protectedBroadcast \u003d true)\n    public static final String ACTION_KEY_MISSING \u003d \"android.bluetooth.device.action.KEY_MISSING\";\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40015f25_0f825186",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-08T18:03:23Z",
+      "side": 1,
+      "message": "It should 2",
+      "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a1f78f_9ecf432c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-08T18:03:23Z",
+      "side": 1,
+      "message": "Description does not match the implementation. We are sending boolean.",
+      "revId": "55fd9b5d0bb6a2135a3a6d4a324a6e30f0d88bc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
