@@ -84,6 +84,7 @@ cc_defaults {
         "libbtif-core",
         "libchrome",
         "libcutils",
+        "libdoubleconversion",
         "libevent",
         "libexpresslog",
         "libflags_rust_cpp_bridge",
