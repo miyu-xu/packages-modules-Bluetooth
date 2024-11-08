@@ -87,6 +87,24 @@
       "parentUuid": "10b36fbb_3414ea89",
       "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a41ae625_8253dd75",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4276,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-08T17:34:07Z",
+      "side": 1,
+      "message": "yea, this sounds good to me, let\u0027s move forward with this first and verify with UI\u0027s change.",
+      "parentUuid": "c0bd1a86_b20a7c4d",
+      "revId": "21d147869f0ba162bb137a5ed18abd09019d7678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
