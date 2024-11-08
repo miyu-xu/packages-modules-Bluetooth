@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d566b88_a41a586e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T23:08:29Z",
+      "side": 1,
+      "message": "I don\u0027t like this argument as there will always be a first.\nSince we introduce new public API (not even system API) I believe we should have something align with the current recommendation.\n\nI will let @asapperstein@google.com decide if this is ok or not as this is very much API related.",
+      "parentUuid": "f7cdecca_d0840ef4",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14
