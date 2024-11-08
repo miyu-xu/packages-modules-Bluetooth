@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bb8b832_5bf7eb9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-08T22:09:23Z",
+      "side": 1,
+      "message": "This change is not necessary for implementing b/206487778.\nThe MTU controls the size of SDUs at the profile level, SDUs will get fragmented over the air at the discretion of the controller.",
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc16767f_448fd0d3",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 23
