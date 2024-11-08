@@ -86,6 +86,9 @@ void ais_request_cback(tCONN_ID conn_id, uint32_t trans_id, tGATTS_REQ_TYPE type
     } else {
       status = GATT_NOT_FOUND;
     }
+  } else if (type == GATTS_REQ_TYPE_MTU) {
+    // Ignore MTU exchange, don't send GATT response.
+    return;
   } else {
     warn("Unknown/unexpected LE AIS ATT request: 0x{:02x}", type);
   }
