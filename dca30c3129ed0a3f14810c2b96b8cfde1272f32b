@@ -22,6 +22,30 @@
       },
       "revId": "dca30c3129ed0a3f14810c2b96b8cfde1272f32b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7139b38a_b33a0a59",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-08T02:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0e35b2b_06ca24b9",
+      "range": {
+        "startLine": 618,
+        "startChar": 17,
+        "endLine": 618,
+        "endChar": 18
+      },
+      "revId": "dca30c3129ed0a3f14810c2b96b8cfde1272f32b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
