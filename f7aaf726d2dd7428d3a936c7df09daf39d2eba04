@@ -16,6 +16,311 @@
       "message": "@girardier@google.com, can you start looking at the API ?",
       "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ddc6e3b_94489bdc",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "nit: `AICS (`",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5607bd1a_b0f4b44e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": " * This class provides APIs to control a remote AICS (`Audio Input Control Service`)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1e4bebd_0512024d",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "nit: `Returns`",
+      "range": {
+        "startLine": 261,
+        "startChar": 8,
+        "endLine": 261,
+        "endChar": 14
+      },
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d457aaab_fed77153",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "`a value of an AICS settings` to be clearer?",
+      "range": {
+        "startLine": 282,
+        "startChar": 61,
+        "endLine": 282,
+        "endChar": 66
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9864c40b_4e2c381d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 282,
+                "startChar": 0,
+                "endLine": 283,
+                "endChar": 0
+              },
+              "replacement": "     * This class provides a callback that is invoked when a value of an AICS settings changes on\n     * the remote device.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0965d19_90418ca6",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "nit: `away.`",
+      "range": {
+        "startLine": 330,
+        "startChar": 81,
+        "endLine": 330,
+        "endChar": 85
+      },
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb6fe60f_d4c00aef",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "nit: `away.`",
+      "range": {
+        "startLine": 351,
+        "startChar": 81,
+        "endLine": 351,
+        "endChar": 85
+      },
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aae521b8_d61e383f",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "nit: `Gets`. Use 3rd person instead.",
+      "range": {
+        "startLine": 365,
+        "startChar": 7,
+        "endLine": 365,
+        "endChar": 10
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4179418e_d1fefff4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 365,
+                "startChar": 0,
+                "endLine": 366,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the Audio Input Type.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 381,
+                "startChar": 0,
+                "endLine": 382,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the Gain Setting Units.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 397,
+                "startChar": 0,
+                "endLine": 398,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the minimum value for the Gain Setting.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 413,
+                "startChar": 0,
+                "endLine": 414,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the maximum value for the Gain Setting.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 429,
+                "startChar": 0,
+                "endLine": 430,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the description.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 448,
+                "startChar": 0,
+                "endLine": 449,
+                "endChar": 0
+              },
+              "replacement": "     * Checks whether the description is writable as defined in AICS 1.0 - 3.6.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 492,
+                "startChar": 0,
+                "endLine": 493,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the current status.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 511,
+                "startChar": 0,
+                "endLine": 512,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the current gain setting.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 566,
+                "startChar": 0,
+                "endLine": 567,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the current gain mode.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 626,
+                "startChar": 0,
+                "endLine": 627,
+                "endChar": 0
+              },
+              "replacement": "     * Gets the mute state.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62be8e6_162f165e",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T01:05:41Z",
+      "side": 1,
+      "message": "nit: `Sets`",
+      "range": {
+        "startLine": 645,
+        "startChar": 7,
+        "endLine": 645,
+        "endChar": 10
+      },
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
