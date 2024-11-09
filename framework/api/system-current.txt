@@ -1254,15 +1254,27 @@ package android.bluetooth.le {
   }
 
   public final class AdvertisingSetParameters implements android.os.Parcelable {
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public boolean getDirected();
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public int getDirectedAdvertisingType();
     method public int getOwnAddressType();
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") @Nullable public String getPeerAddress();
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public int getPeerAddressType();
     field public static final int ADDRESS_TYPE_DEFAULT = -1; // 0xffffffff
     field public static final int ADDRESS_TYPE_PUBLIC = 0; // 0x0
     field public static final int ADDRESS_TYPE_RANDOM = 1; // 0x1
     field public static final int ADDRESS_TYPE_RANDOM_NON_RESOLVABLE = 2; // 0x2
+    field @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public static final int DIRECTED_ADVERTISING_TYPE_HIGH_DUTY_CYCLE = 1; // 0x1
+    field @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public static final int DIRECTED_ADVERTISING_TYPE_LOW_DUTY_CYCLE = 0; // 0x0
+    field @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public static final int PEER_ADDRESS_TYPE_PUBLIC = 0; // 0x0
+    field @FlaggedApi("com.android.bluetooth.flags.directed_advertising") public static final int PEER_ADDRESS_TYPE_RANDOM = 1; // 0x1
   }
 
   public static final class AdvertisingSetParameters.Builder {
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") @NonNull public android.bluetooth.le.AdvertisingSetParameters.Builder setDirected(boolean);
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") @NonNull public android.bluetooth.le.AdvertisingSetParameters.Builder setDirectedAdvertisingType(int);
     method @NonNull public android.bluetooth.le.AdvertisingSetParameters.Builder setOwnAddressType(int);
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") @NonNull public android.bluetooth.le.AdvertisingSetParameters.Builder setPeerAddress(@NonNull String);
+    method @FlaggedApi("com.android.bluetooth.flags.directed_advertising") @NonNull public android.bluetooth.le.AdvertisingSetParameters.Builder setPeerAddressType(int);
   }
 
   public final class BluetoothLeAdvertiser {

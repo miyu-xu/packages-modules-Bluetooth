@@ -1,0 +1,10 @@
+package: "com.android.bluetooth.flags"
+container: "com.android.btservices"
+
+flag {
+    name: "directed_advertising"
+    namespace: "bluetooth"
+    is_exported: true
+    description: "Add new API for directed advertising"
+    bug: "378230500"
+}
