@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe77f8d2_2c582f28",
+        "filename": "android/app/aidl/android/bluetooth/IAudioInputCallback.aidl",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-09T02:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b742f84_7f4c6d9f",
+      "range": {
+        "startLine": 27,
+        "startChar": 9,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "786fdcfe49c7f5cca8f8387b78faa10e77599c3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "877239d7_b5ec2140",
