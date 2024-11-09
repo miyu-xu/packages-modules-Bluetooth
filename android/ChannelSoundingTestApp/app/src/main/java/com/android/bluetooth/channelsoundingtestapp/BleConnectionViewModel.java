@@ -141,6 +141,7 @@ public class BleConnectionViewModel extends AndroidViewModel {
         if (mIsAdvertising.getValue()) {
             return;
         }
+        BluetoothDevice btDevice = mBluetoothAdapter.getRemoteDevice(mTargetBtAddress);
         BluetoothLeAdvertiser advertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
         AdvertisingSetParameters parameters =
                 new AdvertisingSetParameters.Builder()
@@ -148,6 +149,7 @@ public class BleConnectionViewModel extends AndroidViewModel {
                         .setConnectable(true)
                         .setInterval(AdvertisingSetParameters.INTERVAL_LOW)
                         .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MEDIUM)
+                        .setDirectAdvertising(btDevice.getAddress(), 1, 1)
                         .build();
 
         BluetoothGattServerCallback gattServerCallback =

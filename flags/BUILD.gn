@@ -6,6 +6,7 @@ aconfig("bluetooth_flags_c_lib") {
     "a2dp.aconfig",
     "active_device_manager.aconfig",
     "adapter.aconfig",
+    "advertising.aconfig",
     "asha.aconfig",
     "audio_routing.aconfig",
     "avrcp.aconfig",

@@ -16,16 +16,21 @@
 
 package android.bluetooth.le;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
+import android.annotation.Nullable;
 import android.annotation.SystemApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.android.bluetooth.flags.Flags;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Objects;
 
 /**
  * The {@link AdvertisingSetParameters} provide a way to adjust advertising preferences for each
@@ -94,6 +99,26 @@ public final class AdvertisingSetParameters implements Parcelable {
     @Retention(RetentionPolicy.SOURCE)
     public @interface AddressTypeStatus {}
 
+    /** @hide */
+    @IntDef(
+            prefix = "PEER_ADDRESS_TYPE_",
+            value = {
+                PEER_ADDRESS_TYPE_PUBLIC,
+                PEER_ADDRESS_TYPE_RANDOM,
+            })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface PeerAddressType {}
+
+    /** @hide */
+    @IntDef(
+            prefix = "DIRECTED_ADVERTISING_TYPE_",
+            value = {
+                DIRECTED_ADVERTISING_TYPE_HIGH_DUTY_CYCLE,
+                DIRECTED_ADVERTISING_TYPE_LOW_DUTY_CYCLE,
+            })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface DirectedAdvertisingType {}
+
     /**
      * Advertise own address type that corresponds privacy settings of the device.
      *
@@ -122,6 +147,42 @@ public final class AdvertisingSetParameters implements Parcelable {
      */
     @SystemApi public static final int ADDRESS_TYPE_RANDOM_NON_RESOLVABLE = 2;
 
+    /**
+     * Peer Address type is Public Device Address or Public Identity Address.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public static final int PEER_ADDRESS_TYPE_PUBLIC = 0;
+
+    /**
+     * Peer Address type is Random Device Address or Random (static) Identity Address.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public static final int PEER_ADDRESS_TYPE_RANDOM = 1;
+
+    /**
+     * Advertise with Advertising type ADV_DIRECT_IND, low duty cycle.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public static final int DIRECTED_ADVERTISING_TYPE_LOW_DUTY_CYCLE = 0;
+
+    /**
+     * Advertise with Advertising type ADV_DIRECT_IND, high duty cycle.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public static final int DIRECTED_ADVERTISING_TYPE_HIGH_DUTY_CYCLE = 1;
+
     private final boolean mIsLegacy;
     private final boolean mIsAnonymous;
     private final boolean mIncludeTxPower;
@@ -133,6 +194,10 @@ public final class AdvertisingSetParameters implements Parcelable {
     private final int mInterval;
     private final int mTxPowerLevel;
     private final int mOwnAddressType;
+    private final boolean mIsDirected;
+    private final String mPeerAddress;
+    private final int mPeerAddressType;
+    private final int mDirectedAdvertisingType;
 
     private AdvertisingSetParameters(
             boolean connectable,
@@ -145,7 +210,11 @@ public final class AdvertisingSetParameters implements Parcelable {
             int secondaryPhy,
             int interval,
             int txPowerLevel,
-            @AddressTypeStatus int ownAddressType) {
+            @AddressTypeStatus int ownAddressType,
+            boolean isDirected,
+            String peerAddress,
+            int peerAddressType,
+            int directedAdvertisingType) {
         mConnectable = connectable;
         mDiscoverable = discoverable;
         mScannable = scannable;
@@ -157,6 +226,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         mInterval = interval;
         mTxPowerLevel = txPowerLevel;
         mOwnAddressType = ownAddressType;
+        mIsDirected = isDirected;
+        mPeerAddress = peerAddress;
+        mPeerAddressType = peerAddressType;
+        mDirectedAdvertisingType = directedAdvertisingType;
     }
 
     private AdvertisingSetParameters(Parcel in) {
@@ -171,6 +244,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         mTxPowerLevel = in.readInt();
         mOwnAddressType = in.readInt();
         mDiscoverable = in.readInt() != 0;
+        mIsDirected = in.readBoolean();
+        mPeerAddress = in.readString();
+        mPeerAddressType = in.readInt();
+        mDirectedAdvertisingType = in.readInt();
     }
 
     /** Returns whether the advertisement will be connectable. */
@@ -232,6 +309,46 @@ public final class AdvertisingSetParameters implements Parcelable {
         return mOwnAddressType;
     }
 
+    /**
+     * @return whether the advertisement will be directed
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public boolean isDirected() {
+        return mIsDirected;
+    }
+
+    /**
+     * @return Peer address for directed advertising
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public @Nullable String getPeerAddress() {
+        return mPeerAddress;
+    }
+
+    /**
+     * @return Peer address type for directed advertising
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public @PeerAddressType int getPeerAddressType() {
+        return mPeerAddressType;
+    }
+
+    /**
+     * @return Advertising type for for directed advertising
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+    @SystemApi
+    public @DirectedAdvertisingType int getDirectedAdvertisingType() {
+        return mDirectedAdvertisingType;
+    }
+
     @Override
     public String toString() {
         return "AdvertisingSetParameters [connectable="
@@ -254,6 +371,14 @@ public final class AdvertisingSetParameters implements Parcelable {
                 + mTxPowerLevel
                 + ", ownAddressType="
                 + mOwnAddressType
+                + ", isDirected="
+                + mIsDirected
+                + ", peerAddress="
+                + mPeerAddress
+                + ", peerAddressType="
+                + mPeerAddressType
+                + ", directAdvertisingType="
+                + mDirectedAdvertisingType
                 + "]";
     }
 
@@ -275,6 +400,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         dest.writeInt(mTxPowerLevel);
         dest.writeInt(mOwnAddressType);
         dest.writeInt(mDiscoverable ? 1 : 0);
+        dest.writeBoolean(mIsDirected);
+        android.bluetooth.BluetoothUtils.writeStringToParcel(dest, mPeerAddress);
+        dest.writeInt(mPeerAddressType);
+        dest.writeInt(mDirectedAdvertisingType);
     }
 
     public static final @android.annotation.NonNull Parcelable.Creator<AdvertisingSetParameters>
@@ -304,6 +433,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         private int mInterval = INTERVAL_LOW;
         private int mTxPowerLevel = TX_POWER_MEDIUM;
         private int mOwnAddressType = ADDRESS_TYPE_DEFAULT;
+        private boolean mIsDirected = false;
+        private String mPeerAddress = null;
+        private int mPeerAddressType = PEER_ADDRESS_TYPE_PUBLIC;
+        private int mDirectedAdvertisingType = DIRECTED_ADVERTISING_TYPE_LOW_DUTY_CYCLE;
 
         /**
          * Set whether the advertisement type should be connectable or non-connectable. Legacy
@@ -482,6 +615,47 @@ public final class AdvertisingSetParameters implements Parcelable {
         }
 
         /**
+         * Set parameters for directed advertising.
+         *
+         * @param peerAddress peer address for the directed advertising
+         * @param peerAddressType peer address type for the directed advertising
+         * @param directedAdvertisingType advertising tpye for the directed advertising
+         * @throws NullPointerException if peerAddress is null
+         * @throws IllegalArgumentException if {@code peerAddressType} or {@code
+         *     directedAdvertisingType} is invalid
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING)
+        @SystemApi
+        public @NonNull Builder setDirectAdvertising(
+                @NonNull String peerAddress,
+                @PeerAddressType int peerAddressType,
+                @DirectedAdvertisingType int directedAdvertisingType) {
+            Objects.requireNonNull(peerAddress, "peerAddress is null");
+            mIsDirected = true;
+            mPeerAddress = peerAddress;
+            switch (peerAddressType) {
+                case PEER_ADDRESS_TYPE_PUBLIC:
+                case PEER_ADDRESS_TYPE_RANDOM:
+                    mPeerAddressType = peerAddressType;
+                    break;
+                default:
+                    throw new IllegalArgumentException(
+                            "unknown peer address type " + peerAddressType);
+            }
+            switch (directedAdvertisingType) {
+                case DIRECTED_ADVERTISING_TYPE_LOW_DUTY_CYCLE:
+                case DIRECTED_ADVERTISING_TYPE_HIGH_DUTY_CYCLE:
+                    mDirectedAdvertisingType = directedAdvertisingType;
+                    break;
+                default:
+                    throw new IllegalArgumentException(
+                            "unknown directed advertising type " + directedAdvertisingType);
+            }
+            return this;
+        }
+
+        /**
          * Build the {@link AdvertisingSetParameters} object.
          *
          * @throws IllegalStateException if invalid combination of parameters is used.
@@ -524,7 +698,11 @@ public final class AdvertisingSetParameters implements Parcelable {
                     mSecondaryPhy,
                     mInterval,
                     mTxPowerLevel,
-                    mOwnAddressType);
+                    mOwnAddressType,
+                    mIsDirected,
+                    mPeerAddress,
+                    mPeerAddressType,
+                    mDirectedAdvertisingType);
         }
     }
 }
