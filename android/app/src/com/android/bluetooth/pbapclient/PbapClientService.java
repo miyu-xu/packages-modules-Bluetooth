@@ -106,9 +106,11 @@ public class PbapClientService extends ProfileService {
                                 TAG,
                                 "Service ready! Clean up old accounts and try contacts downloads");
                         removeUncleanAccounts();
-                        for (PbapClientStateMachine stateMachine :
-                                mPbapClientStateMachineMap.values()) {
-                            stateMachine.tryDownloadIfConnected();
+                        synchronized (mPbapClientStateMachineMap) {
+                            for (PbapClientStateMachine stateMachine :
+                                    mPbapClientStateMachineMap.values()) {
+                                stateMachine.tryDownloadIfConnected();
+                            }
                         }
                     } else if (mAccountVisibilityCheckTries < ACCOUNT_VISIBILITY_CHECK_TRIES_MAX) {
                         mAccountVisibilityCheckTries += 1;
@@ -177,10 +179,13 @@ public class PbapClientService extends ProfileService {
         } catch (Exception e) {
             Log.w(TAG, "Unable to unregister pbapclient receiver", e);
         }
-        for (PbapClientStateMachine pbapClientStateMachine : mPbapClientStateMachineMap.values()) {
-            pbapClientStateMachine.doQuit();
+        synchronized (mPbapClientStateMachineMap) {
+            for (PbapClientStateMachine pbapClientStateMachine :
+                    mPbapClientStateMachineMap.values()) {
+                pbapClientStateMachine.doQuit();
+            }
+            mPbapClientStateMachineMap.clear();
         }
-        mPbapClientStateMachineMap.clear();
 
         // Unregister Handler and stop all queued messages.
         if (mHandler != null) {
@@ -324,8 +329,11 @@ public class PbapClientService extends ProfileService {
             String action = intent.getAction();
             Log.v(TAG, "onReceive" + action);
             if (action.equals(Intent.ACTION_USER_UNLOCKED)) {
-                for (PbapClientStateMachine stateMachine : mPbapClientStateMachineMap.values()) {
-                    stateMachine.tryDownloadIfConnected();
+                synchronized (mPbapClientStateMachineMap) {
+                    for (PbapClientStateMachine stateMachine :
+                            mPbapClientStateMachineMap.values()) {
+                        stateMachine.tryDownloadIfConnected();
+                    }
                 }
             }
         }
@@ -530,13 +538,15 @@ public class PbapClientService extends ProfileService {
         if (device == null) {
             throw new IllegalArgumentException("Null device");
         }
-        PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
-        if (pbapClientStateMachine != null) {
-            pbapClientStateMachine.disconnect(device);
-            return true;
-        } else {
-            Log.w(TAG, "disconnect() called on unconnected device.");
-            return false;
+        synchronized (mPbapClientStateMachineMap) {
+            PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
+            if (pbapClientStateMachine != null) {
+                pbapClientStateMachine.disconnect(device);
+                return true;
+            } else {
+                Log.w(TAG, "disconnect() called on unconnected device.");
+                return false;
+            }
         }
     }
 
@@ -548,22 +558,37 @@ public class PbapClientService extends ProfileService {
     @VisibleForTesting
     List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         List<BluetoothDevice> deviceList = new ArrayList<BluetoothDevice>(0);
-        for (Map.Entry<BluetoothDevice, PbapClientStateMachine> stateMachineEntry :
-                mPbapClientStateMachineMap.entrySet()) {
-            int currentDeviceState = stateMachineEntry.getValue().getConnectionState();
-            for (int state : states) {
-                if (currentDeviceState == state) {
-                    deviceList.add(stateMachineEntry.getKey());
-                    break;
+        synchronized (mPbapClientStateMachineMap) {
+            for (Map.Entry<BluetoothDevice, PbapClientStateMachine> stateMachineEntry :
+                    mPbapClientStateMachineMap.entrySet()) {
+                int currentDeviceState = stateMachineEntry.getValue().getConnectionState();
+                for (int state : states) {
+                    if (currentDeviceState == state) {
+                        deviceList.add(stateMachineEntry.getKey());
+                        break;
+                    }
                 }
             }
         }
         return deviceList;
     }
 
+    /**
+     * Callback when an SDP record is received.
+     *
+     * <p>If the uuid is a PBAP server equipment UUID and a record is available with successful
+     * status start the phonebook and call log request state machine.
+     *
+     * @param device is the remote bluetooth device
+     * @param status Bluetooth status of SDP request
+     * @param record Underlying record for the SDP request
+     * @param uuid The UUID of the SDP record request
+     */
     public void receiveSdpSearchRecord(
             BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
-        PbapClientStateMachine stateMachine = mPbapClientStateMachineMap.get(device);
+        synchronized (mPbapClientStateMachineMap) {
+            PbapClientStateMachine stateMachine = mPbapClientStateMachineMap.get(device);
+        }
         if (stateMachine == null) {
             Log.e(TAG, "No Statemachine found for the device=" + device.toString());
             return;
@@ -576,9 +601,9 @@ public class PbapClientService extends ProfileService {
                         + BluetoothUuid.PBAP_PSE.toString()
                         + ")");
         if (uuid.equals(BluetoothUuid.PBAP_PSE)) {
-            stateMachine
-                    .obtainMessage(PbapClientStateMachine.MSG_SDP_COMPLETE, record)
-                    .sendToTarget();
+            // Check if we have a valid SDP record.
+            Log.d(TAG, "SDP complete, status: " + status + ", record:" + record);
+            stateMachine.sendSdpResult(status, record);
         }
     }
 
@@ -595,7 +620,9 @@ public class PbapClientService extends ProfileService {
         if (device == null) {
             throw new IllegalArgumentException("Null device");
         }
-        PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
+        synchronized (mPbapClientStateMachineMap) {
+            PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
+        }
         if (pbapClientStateMachine == null) {
             return BluetoothProfile.STATE_DISCONNECTED;
         } else {
@@ -656,8 +683,10 @@ public class PbapClientService extends ProfileService {
     public void dump(StringBuilder sb) {
         super.dump(sb);
         ProfileService.println(sb, "isAuthServiceReady: " + isAuthenticationServiceReady());
-        for (PbapClientStateMachine stateMachine : mPbapClientStateMachineMap.values()) {
-            stateMachine.dump(sb);
+        synchronized (mPbapClientStateMachineMap) {
+            for (PbapClientStateMachine stateMachine : mPbapClientStateMachineMap.values()) {
+                stateMachine.dump(sb);
+            }
         }
     }
 }
