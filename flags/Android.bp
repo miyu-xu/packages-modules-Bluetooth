@@ -15,6 +15,7 @@ aconfig_declarations {
         "a2dp.aconfig",
         "active_device_manager.aconfig",
         "adapter.aconfig",
+        "advertising.aconfig",
         "asha.aconfig",
         "audio_routing.aconfig",
         "avrcp.aconfig",
