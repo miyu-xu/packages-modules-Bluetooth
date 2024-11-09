@@ -206,7 +206,16 @@ class PbapClientStateMachine extends StateMachine {
                         connectionHandler
                                 .obtainMessage(PbapClientConnectionHandler.MSG_CONNECT, message.obj)
                                 .sendToTarget();
+                    } else {
+                        Log.w(TAG, "Received SDP complete without connection handler");
                     }
+                    break;
+
+                case MSG_RESUME_DOWNLOAD:
+                    Log.i(
+                            TAG,
+                            "Received request to download phonebook but still in state "
+                                    + this.getName());
                     break;
 
                 default:
