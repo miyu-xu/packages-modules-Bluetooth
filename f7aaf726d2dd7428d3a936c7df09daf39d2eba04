@@ -213,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c13f7831_02e6d39f",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-09T03:16:29Z",
+      "side": 1,
+      "message": "LGTM!",
+      "parentUuid": "613ed5d9_3fcbff61",
+      "range": {
+        "startLine": 282,
+        "startChar": 61,
+        "endLine": 282,
+        "endChar": 66
+      },
+      "revId": "f7aaf726d2dd7428d3a936c7df09daf39d2eba04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0965d19_90418ca6",
