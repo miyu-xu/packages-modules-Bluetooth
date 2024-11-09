@@ -31,6 +31,7 @@ public class RoleSelectionFragment extends Fragment {
 
     private Button mButtonInitiator;
     private Button mButtonReflector;
+    private Button mButtonTest;
 
     @Override
     public View onCreateView(
@@ -39,6 +40,7 @@ public class RoleSelectionFragment extends Fragment {
 
         mButtonInitiator = (Button) root.findViewById(R.id.button_initiator);
         mButtonReflector = (Button) root.findViewById(R.id.button_reflector);
+        mButtonTest = (Button) root.findViewById(R.id.button_test);
         return root;
     }
 
