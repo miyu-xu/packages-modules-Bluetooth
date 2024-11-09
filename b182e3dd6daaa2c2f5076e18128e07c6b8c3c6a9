@@ -50,6 +50,23 @@
       "message": "Validated tests passing as follows:\n\natest BumbleBluetoothTests\natest pts-bot:GATT",
       "revId": "b182e3dd6daaa2c2f5076e18128e07c6b8c3c6a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d672077e_2d6bccec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-09T06:17:19Z",
+      "side": 1,
+      "message": "Waiting on some manual tests to verify as well.",
+      "revId": "b182e3dd6daaa2c2f5076e18128e07c6b8c3c6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
