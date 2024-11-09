@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f00376_15a4674e",
+        "filename": "system/bta/include/bta_vc_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-09T02:28:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "877239d7_b5ec2140",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "786fdcfe49c7f5cca8f8387b78faa10e77599c3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61453b77_bc9c4176",
@@ -84,6 +108,30 @@
       "writtenOn": "2024-11-09T02:19:26Z",
       "side": 1,
       "message": "no using in headers in global namespace.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "786fdcfe49c7f5cca8f8387b78faa10e77599c3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39fdba40_b506fe86",
+        "filename": "system/include/hardware/bt_vc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-09T02:28:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61453b77_bc9c4176",
       "range": {
         "startLine": 27,
         "startChar": 0,
