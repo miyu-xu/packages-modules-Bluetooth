@@ -198,7 +198,10 @@ class PbapClientConnectionHandler extends Handler {
         Log.d(TAG, "Handling Message = " + msg.what);
         switch (msg.what) {
             case MSG_CONNECT:
-                mPseRec = (SdpPseRecord) msg.obj;
+                setPseRecord((SdpPseRecord) msg.obj);
+                if (mPseRec == null) {
+                    Log.w(TAG, "SDP provided an invalid PSE record");
+                }
                 /* To establish a connection, first open a socket and then create an OBEX session */
                 if (connectSocket()) {
                     Log.d(TAG, "Socket connected");

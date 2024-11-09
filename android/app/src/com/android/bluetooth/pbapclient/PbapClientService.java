@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothPbapClient;
+import android.bluetooth.SdpPseRecord;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -561,6 +562,17 @@ public class PbapClientService extends ProfileService {
         return deviceList;
     }
 
+    /**
+     * Callback when an SDP record is received.
+     *
+     * <p>If the uuid is a PBAP server equipment UUID and a record is available with successful
+     * status start the phonebook and call log request state machine.
+     *
+     * @param device is the remote bluetooth device
+     * @param status Bluetooth status of SDP request
+     * @param record Underlying record for the SDP request
+     * @param uuid The UUID of the SDP record request
+     */
     public void receiveSdpSearchRecord(
             BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
         PbapClientStateMachine stateMachine = mPbapClientStateMachineMap.get(device);
@@ -568,17 +580,10 @@ public class PbapClientService extends ProfileService {
             Log.e(TAG, "No Statemachine found for the device=" + device.toString());
             return;
         }
-        Log.v(
-                TAG,
-                "Received SDP record for UUID="
-                        + uuid.toString()
-                        + " (expected UUID="
-                        + BluetoothUuid.PBAP_PSE.toString()
-                        + ")");
         if (uuid.equals(BluetoothUuid.PBAP_PSE)) {
-            stateMachine
-                    .obtainMessage(PbapClientStateMachine.MSG_SDP_COMPLETE, record)
-                    .sendToTarget();
+            // Check if we have a valid SDP record.
+            Log.d(TAG, "SDP complete, status: " + status + ", record:" + record);
+            stateMachine.sendSdpResult(status, (SdpPseRecord) record);
         }
     }
 
