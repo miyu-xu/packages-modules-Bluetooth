@@ -31,6 +31,9 @@ import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVEN
 import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_PAN;
 import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_PBAP_CLIENT;
 import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_VOLUME_CONTROL;
+import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__BOND;
+import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__STATE_BONDED;
+import static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__STATE_NONE;
 import static com.android.bluetooth.BtRestrictedStatsLog.RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED;
 
 import android.app.AlarmManager;
@@ -814,6 +817,23 @@ public class MetricsLogger {
                 latencySessionStreamingMs,
                 sessionStatus);
     }
+
+    /** Logs Bond State Machine event */
+    public void logBondStateMachineEvent(BluetoothDevice device,
+            int bondState) {
+        switch (bondState) {
+            case BluetoothDevice.BOND_NONE:
+                logBluetoothEvent(device, BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__BOND, BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__STATE_NONE, 0);
+                break;
+            case BluetoothDevice.BOND_BONDED:
+                logBluetoothEvent(device, BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__BOND, BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__STATE_BONDED, 0);
+                break;
+            default:
+        }
+
+    }
+
+
 
     /** Logs LE Audio Broadcast audio sync. */
     public void logLeAudioBroadcastAudioSync(
