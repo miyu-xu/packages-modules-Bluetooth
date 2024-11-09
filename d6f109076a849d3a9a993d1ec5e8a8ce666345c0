@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bfb66a6_bcafa678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 57
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-09T01:03:29Z",
+      "side": 1,
+      "message": "Javadoc is updated in imediat follow-up CL that also expose API to system app",
+      "revId": "d6f109076a849d3a9a993d1ec5e8a8ce666345c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
