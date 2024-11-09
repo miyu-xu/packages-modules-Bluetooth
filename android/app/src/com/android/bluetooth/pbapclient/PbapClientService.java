@@ -43,6 +43,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AbstractionLayer;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -561,6 +562,17 @@ public class PbapClientService extends ProfileService {
         return deviceList;
     }
 
+    /**
+     * Callback when an SDP record is received.
+     *
+     * <p>If the uuid is a PBAP server equipment UUID and a record is available with successful
+     * status start the phonebook and call log request state machine.
+     *
+     * @param device is the remote bluetooth device
+     * @param status Bluetooth status of SDP request
+     * @param record Underlying record for the SDP request
+     * @param uuid The UUID of the SDP record request
+     */
     public void receiveSdpSearchRecord(
             BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
         PbapClientStateMachine stateMachine = mPbapClientStateMachineMap.get(device);
@@ -576,9 +588,59 @@ public class PbapClientService extends ProfileService {
                         + BluetoothUuid.PBAP_PSE.toString()
                         + ")");
         if (uuid.equals(BluetoothUuid.PBAP_PSE)) {
-            stateMachine
-                    .obtainMessage(PbapClientStateMachine.MSG_SDP_COMPLETE, record)
-                    .sendToTarget();
+            Log.d(
+                    TAG,
+                    "Received SDP PBAP PSE record"
+                            + " device:"
+                            + device
+                            + " status:"
+                            + status
+                            + " record:"
+                            + record
+                            + " uuid:"
+                            + uuid);
+            switch (status) {
+                case AbstractionLayer.BT_STATUS_SUCCESS:
+                    if (record == null) {
+                        Log.w(
+                                TAG,
+                                "SDP record is missing"
+                                        + " uuid:"
+                                        + BluetoothUuid.PBAP_PSE.toString());
+                    }
+                    stateMachine
+                            .obtainMessage(PbapClientStateMachine.MSG_SDP_COMPLETE, record)
+                            .sendToTarget();
+                    break;
+
+                case AbstractionLayer.BT_STATUS_NOT_READY:
+                    Log.i(
+                            TAG,
+                            "Restarting as SDP record not yet available"
+                                    + " device:"
+                                    + device
+                                    + " uuid:"
+                                    + BluetoothUuid.PBAP_PSE.toString());
+                    cleanupDevice(device);
+                    stateMachine = new PbapClientStateMachine(this, device);
+                    synchronized (mPbapClientStateMachineMap) {
+                        stateMachine.start();
+                        mPbapClientStateMachineMap.put(device, stateMachine);
+                    }
+                    break;
+
+                default:
+                    Log.w(
+                            TAG,
+                            "SDP record with unexpected status"
+                                    + " device:"
+                                    + device
+                                    + " uuid:"
+                                    + BluetoothUuid.PBAP_PSE.toString()
+                                    + " status:"
+                                    + status);
+                    break;
+            }
         }
     }
 
