@@ -93,7 +93,7 @@ public class HidHostServiceTest {
                 mTestDevice,
                 BluetoothDevice.BOND_NONE,
                 BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                false);
+                true);
         testOkToConnectCase(
                 mTestDevice,
                 BluetoothDevice.BOND_NONE,
@@ -103,13 +103,13 @@ public class HidHostServiceTest {
                 mTestDevice,
                 BluetoothDevice.BOND_NONE,
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED,
-                false);
+                true);
         testOkToConnectCase(mTestDevice, BluetoothDevice.BOND_NONE, badPriorityValue, false);
         testOkToConnectCase(
                 mTestDevice,
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                false);
+                true);
         testOkToConnectCase(
                 mTestDevice,
                 BluetoothDevice.BOND_BONDING,
@@ -119,7 +119,7 @@ public class HidHostServiceTest {
                 mTestDevice,
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED,
-                false);
+                true);
         testOkToConnectCase(mTestDevice, BluetoothDevice.BOND_BONDING, badPriorityValue, false);
         testOkToConnectCase(
                 mTestDevice,
