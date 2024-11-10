@@ -210,7 +210,7 @@ public class HeadsetServiceTest {
                 mCurrentDevice,
                 BluetoothDevice.BOND_NONE,
                 BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                false);
+                true);
         testOkToAcceptConnectionCase(
                 mCurrentDevice,
                 BluetoothDevice.BOND_NONE,
@@ -220,14 +220,14 @@ public class HeadsetServiceTest {
                 mCurrentDevice,
                 BluetoothDevice.BOND_NONE,
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED,
-                false);
+                true);
         testOkToAcceptConnectionCase(
                 mCurrentDevice, BluetoothDevice.BOND_NONE, badPriorityValue, false);
         testOkToAcceptConnectionCase(
                 mCurrentDevice,
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                false);
+                true);
         testOkToAcceptConnectionCase(
                 mCurrentDevice,
                 BluetoothDevice.BOND_BONDING,
@@ -237,7 +237,7 @@ public class HeadsetServiceTest {
                 mCurrentDevice,
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED,
-                false);
+                true);
         testOkToAcceptConnectionCase(
                 mCurrentDevice, BluetoothDevice.BOND_BONDING, badPriorityValue, false);
         testOkToAcceptConnectionCase(

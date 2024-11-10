@@ -240,7 +240,7 @@ public class A2dpServiceTest {
                 sTestDevice,
                 BluetoothDevice.BOND_NONE,
                 BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                false);
+                true);
         testOkToConnectCase(
                 sTestDevice,
                 BluetoothDevice.BOND_NONE,
@@ -250,13 +250,13 @@ public class A2dpServiceTest {
                 sTestDevice,
                 BluetoothDevice.BOND_NONE,
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED,
-                false);
+                true);
         testOkToConnectCase(sTestDevice, BluetoothDevice.BOND_NONE, badPriorityValue, false);
         testOkToConnectCase(
                 sTestDevice,
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                false);
+                true);
         testOkToConnectCase(
                 sTestDevice,
                 BluetoothDevice.BOND_BONDING,
@@ -266,7 +266,7 @@ public class A2dpServiceTest {
                 sTestDevice,
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED,
-                false);
+                true);
         testOkToConnectCase(sTestDevice, BluetoothDevice.BOND_BONDING, badPriorityValue, false);
         testOkToConnectCase(
                 sTestDevice,
