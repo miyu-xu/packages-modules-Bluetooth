@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d0a967_a7417ee3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T23:14:59Z",
+      "side": 1,
+      "message": "There are more API related to this flag:\n\n```\nframework/java/android/bluetooth/le/ChannelSoundingParams.java\n38:@FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n\nframework/java/android/bluetooth/le/DistanceMeasurementResult.java\n67:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n76:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n85:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n94:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n103:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n112:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n121:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n130:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n272:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n285:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n298:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n313:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n326:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)\n535:        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n554:        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n576:        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n604:        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n618:        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)\n\nframework/java/android/bluetooth/le/DistanceMeasurementMethod.java\n76:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n94:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)\n107:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)\n\nframework/java/android/bluetooth/le/DistanceMeasurementParams.java\n146:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n315:        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n\nframework/java/android/bluetooth/le/DistanceMeasurementManager.java\n172:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n203:    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n```\n\nAnd you will need to update the associated baseline",
+      "revId": "ad8ae9ef15591a2435c6e45da45eeb1d5196d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
