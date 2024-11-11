@@ -283,7 +283,7 @@ android_app {
         "net-utils-services-common",
         "networkstack-client",
         "sap-api-java-static",
-        "android.media.audio-aconfig-java",
+        "android.media.audio-aconfig-exported",
     ],
 
     plugins: [
@@ -392,6 +392,13 @@ java_library {
     ],
     min_sdk_version: "Tiramisu",
     sdk_version: "module_current",
+}
+
+java_aconfig_library {
+    name: "com.android.media.audio-aconfig-exported",
+    aconfig_declarations: "com.android.media.audio-aconfig",
+    min_sdk_version: "Tiramisu",
+    mode: "exported",
 }
 
 genrule {
