@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "027f792f_3a71f37c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "564cb929_441a9fd4",
+      "range": {
+        "startLine": 1012,
+        "startChar": 57,
+        "endLine": 1012,
+        "endChar": 65
+      },
+      "revId": "b47d52d4e3368ceba62c5dd8fff36cf44f8be9dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ed6d952_235d6202",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db887c76_142356d3",
+        "filename": "system/gd/common/strings.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ed6d952_235d6202",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "b47d52d4e3368ceba62c5dd8fff36cf44f8be9dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "810e8da5_241a4aaf",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-11T22:36:59Z",
       "side": 1,
       "message": "Same, drop this change.",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 34
+      },
+      "revId": "b47d52d4e3368ceba62c5dd8fff36cf44f8be9dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "843eb9cc_ba7f52bd",
+        "filename": "system/gd/common/strings_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "810e8da5_241a4aaf",
       "range": {
         "startLine": 66,
         "startChar": 27,
