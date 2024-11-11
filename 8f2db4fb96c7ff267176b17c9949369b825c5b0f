@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b751df14_e6f91ec3",
+        "filename": "system/blueberry/facade/hci/controller_facade.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-11T20:13:33Z",
+      "side": 1,
+      "message": "Spurious change",
+      "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29f12c9d_fdf8983c",
+        "filename": "system/gd/hci/facade/controller_facade.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-11T20:13:33Z",
+      "side": 1,
+      "message": "Spurious change",
+      "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
