@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20e23076_9c166058",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 1788,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-11T17:36:55Z",
+      "side": 1,
+      "message": "Is the precision \u0027ForDevice\u0027 really necessary ? I don\u0027t see another getter that would create ambiguity. A bit confused by the denomination `ControlPoint` since it is the name for a characteristic usually and not the service. Would suggest `getAudioInputControlServiceCount` or `getNumberOfAudioInputControlServices`",
+      "range": {
+        "startLine": 1788,
+        "startChar": 19,
+        "endLine": 1788,
+        "endChar": 59
+      },
+      "revId": "fd7e53ad3cf50b28ea911f583388edfd797a3c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0ae117_2e22b672",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-11T17:36:55Z",
+      "side": 1,
+      "message": "Why this change ? You don\u0027t use the helper elsewhere.",
+      "range": {
+        "startLine": 384,
+        "startChar": 3,
+        "endLine": 387,
+        "endChar": 5
+      },
+      "revId": "fd7e53ad3cf50b28ea911f583388edfd797a3c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
