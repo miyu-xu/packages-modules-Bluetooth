@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "223c1840_21fa944c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T21:40:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af299872_00fd5c7c",
+      "range": {
+        "startLine": 48,
+        "startChar": 39,
+        "endLine": 48,
+        "endChar": 44
+      },
+      "revId": "ba9617f5f0ef1b5302177b28ab771ff68ce7d107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "860f7286_d1fe0a8a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-11T17:16:43Z",
       "side": 1,
       "message": "Should it be setGainSettings ?",
+      "range": {
+        "startLine": 171,
+        "startChar": 9,
+        "endLine": 171,
+        "endChar": 24
+      },
+      "revId": "ba9617f5f0ef1b5302177b28ab771ff68ce7d107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8b9cd84_bf35fc05",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T21:40:51Z",
+      "side": 1,
+      "message": "Acknowledged -\u003e Should be `onGainSettingsPropertiesChanged`",
+      "parentUuid": "860f7286_d1fe0a8a",
       "range": {
         "startLine": 171,
         "startChar": 9,
