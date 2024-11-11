@@ -263,6 +263,7 @@ android_app {
         "BluetoothApiShims",
         "android.hardware.radio-V1.0-java",
         "android.hardware.radio.sap-V1-java",
+        "android.media.audio-aconfig-exported-java",
         "androidx.annotation_annotation",
         "androidx.core_core",
         "androidx.lifecycle_lifecycle-livedata",
@@ -355,6 +356,17 @@ android_app {
     min_sdk_version: "Tiramisu",
     sdk_version: "module_current",
     updatable: true,
+}
+
+java_aconfig_library {
+    name: "android.media.audio-aconfig-exported-java",
+    aconfig_declarations: "android.media.audio-aconfig",
+    defaults: ["framework-minus-apex-aconfig-java-defaults"],
+    min_sdk_version: "Tiramisu",
+    mode: "exported",
+    apex_available: [
+        "com.android.btservices",
+    ],
 }
 
 java_library {
