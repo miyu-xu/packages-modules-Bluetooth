@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a50d75b_95d05e76",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-11T16:14:05Z",
+      "side": 1,
+      "message": "What is the goal of restarting? Is it just to force SDP + OBEX again?\n\nIf so, perhaps following what MAP Client does is a better model, as it lets the state machine abstract all this away? I haven\u0027t seen someone just restart a state machine like this when simple messages would do. It feels like a big hammer. For example:\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java;l\u003d584-607;drc\u003df09d62f71f548b87dbb4bd2eef6e0e3c48875d2c\n\nWe made an `MSG_SDP_UNSUCCESSFUL` message, (which, could be RECEIVED_SDP_RESULTS, etc. Semantics I suppose, but I think I picked what I did so I didn\u0027t need to pass and cast a special object with a code and a record), and the state machine can look at the result and decide to restart SDP and/or the timeout if we want. \n\nAn aside, but in the case of PBAP, we technically _can_ connect over RFCOMM with the service UUID, but we would be missing the supported repositories (which must be the overall root cause the bug, huh?). We would probably want to either:\n\n1) Just \"not do that\" (i.e. we don\u0027t have features, so we don\u0027t know what to request, so why try?)\n2) Change logic up to try to download everything regardless of supported repositories, as the PullPhonebook function from the server should *hopefully* return us an OBEX_NOT_FOUND error code (Section 6.2.3) if we ask for something they don\u0027t actually support (Section 5.1).\n\nWe will probably want to be careful around timeouts vs. last ditch RFCOMM + UUID attempts to connect also",
+      "range": {
+        "startLine": 627,
+        "startChar": 24,
+        "endLine": 627,
+        "endChar": 45
+      },
+      "revId": "d5223d056b4d6518ae0c5d95a41a85526bb8271d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
