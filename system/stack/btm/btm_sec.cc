@@ -2632,8 +2632,11 @@ void btm_io_capabilities_rsp(const tBTM_SP_IO_RSP evt_data) {
       com::android::bluetooth::flags::key_missing_classic_device()) {
     log::warn("Incoming bond request, but {} is already bonded (notifying user)", evt_data.bd_addr);
     bta_dm_remote_key_missing(evt_data.bd_addr);
-    btm_sec_disconnect(p_dev_rec->hci_handle, HCI_ERR_AUTH_FAILURE,
-                       "btm_io_capabilities_rsp for bonded device");
+
+    if (p_dev_rec != NULL) {
+      btm_sec_disconnect(p_dev_rec->hci_handle, HCI_ERR_AUTH_FAILURE,
+                         "btm_io_capabilities_rsp for bonded device");
+    }
     return;
   }
 
