@@ -117,6 +117,30 @@
       },
       "revId": "371362f6cf97411bf793ac92751a01576349e4af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b574d6ba_1f052b10",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T20:03:55Z",
+      "side": 1,
+      "message": "yes, should be no issue. I\u0027m ok to remove this check.",
+      "parentUuid": "6e8a63dc_dc61b20a",
+      "range": {
+        "startLine": 264,
+        "startChar": 2,
+        "endLine": 268,
+        "endChar": 3
+      },
+      "revId": "371362f6cf97411bf793ac92751a01576349e4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
