@@ -22,6 +22,30 @@
       },
       "revId": "d5223d056b4d6518ae0c5d95a41a85526bb8271d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aff6126_5597db81",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-11T17:17:50Z",
+      "side": 1,
+      "message": "`What is the goal of restarting? Is it just to force SDP + OBEX again?`\n\nExactly.\n\nSince the state machine is run outside of the app this allowed existing state machine semantics.\n\nIt seems the direction from u\u003d\u003ev\u003d\u003emain is to pull more logic outside of the statemachine w.r.t. calling `receiveSdpSearchRecord`\n\nIt appeared to me from the reading the state machine runs one cycle then ends, so re-entering the `connecting` is not possible.  The same state machine could have been used, just restarted, but destroying/creating another seemed just as useful.",
+      "parentUuid": "6a50d75b_95d05e76",
+      "range": {
+        "startLine": 627,
+        "startChar": 24,
+        "endLine": 627,
+        "endChar": 45
+      },
+      "revId": "d5223d056b4d6518ae0c5d95a41a85526bb8271d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
