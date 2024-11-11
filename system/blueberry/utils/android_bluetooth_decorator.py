@@ -892,7 +892,7 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Raises:
       Error: If the pattern search failed.
     """
-        cmd = 'dumpsys audio | grep "STREAM_BLUETOOTH_SCO" | tail -1'
+        cmd = 'dumpsys audio | grep "STREAM_BLUETOOTH_SCO|STREAM_VOICE_CALL" | tail -1'
         out = self._ad.adb.shell(cmd).decode()
         pattern = r'(?<=SCO index:)\d+'
         result = re.search(pattern, out)
