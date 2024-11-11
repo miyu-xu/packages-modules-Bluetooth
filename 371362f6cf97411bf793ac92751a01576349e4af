@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "145f5b9d_75364185",
+        "filename": "system/blueberry/facade/hci/controller_facade.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T19:49:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3d0fda61_02261ad6",
+      "range": {
+        "startLine": 80,
+        "startChar": 6,
+        "endLine": 80,
+        "endChar": 32
+      },
+      "revId": "371362f6cf97411bf793ac92751a01576349e4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17e51218_5c2aa6ec",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-11T19:19:51Z",
       "side": 1,
       "message": "Is it necessary to have this duplicate check here ?",
+      "range": {
+        "startLine": 264,
+        "startChar": 2,
+        "endLine": 268,
+        "endChar": 3
+      },
+      "revId": "371362f6cf97411bf793ac92751a01576349e4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e2cd00_0a90c82b",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T19:49:42Z",
+      "side": 1,
+      "message": "duplicated? it is to avoid register callback. see DistanceMeasurementInterfaceImpl#Init",
+      "parentUuid": "17e51218_5c2aa6ec",
       "range": {
         "startLine": 264,
         "startChar": 2,
