@@ -28,6 +28,7 @@ import android.app.AppOpsManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothUtils;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.IPeriodicAdvertisingCallback;
 import android.bluetooth.le.IScannerCallback;
@@ -67,6 +68,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -142,6 +144,7 @@ public class TransitionalScanHelper {
     private AdapterService mAdapterService;
 
     private ScannerMap mScannerMap = new ScannerMap();
+    private HashMap<Integer, Integer> mFilterIndexToMsftAdvMonitorMap = new HashMap<>();
     private String mExposureNotificationPackage;
 
     public ScannerMap getScannerMap() {
@@ -340,7 +343,7 @@ public class TransitionalScanHelper {
                         + ", addressType="
                         + addressType
                         + ", address="
-                        + address
+                        + BluetoothUtils.toAnonymizedAddress(address)
                         + ", primaryPhy="
                         + primaryPhy
                         + ", secondaryPhy="
@@ -461,12 +464,7 @@ public class TransitionalScanHelper {
                 }
             } catch (RemoteException | PendingIntent.CanceledException e) {
                 Log.e(TAG, "Exception: " + e);
-                if (Flags.leScanFixRemoteException()) {
-                    handleDeadScanClient(client);
-                } else {
-                    mScannerMap.remove(client.scannerId);
-                    mScanManager.stopScan(client.scannerId);
-                }
+                handleDeadScanClient(client);
             }
         }
     }
@@ -770,12 +768,7 @@ public class TransitionalScanHelper {
             }
         } catch (RemoteException | PendingIntent.CanceledException e) {
             Log.e(TAG, "Exception: " + e);
-            if (Flags.leScanFixRemoteException()) {
-                handleDeadScanClient(client);
-            } else {
-                mScannerMap.remove(client.scannerId);
-                mScanManager.stopScan(client.scannerId);
-            }
+            handleDeadScanClient(client);
         }
     }
 
@@ -1048,6 +1041,49 @@ public class TransitionalScanHelper {
         }
     }
 
+    public int msftMonitorHandleFromFilterIndex(int filter_index) {
+        if (!mFilterIndexToMsftAdvMonitorMap.containsKey(filter_index)) {
+            Log.e(TAG, "Monitor with filter_index'" + filter_index + "' does not exist");
+            return -1;
+        }
+        return mFilterIndexToMsftAdvMonitorMap.get(filter_index);
+    }
+
+    public void onMsftAdvMonitorAdd(int filter_index, int monitor_handle, int status) {
+        if (status != 0) {
+            Log.e(
+                    TAG,
+                    "Error adding advertisement monitor with filter index '" + filter_index + "'");
+            return;
+        }
+        if (mFilterIndexToMsftAdvMonitorMap.containsKey(filter_index)) {
+            Log.e(TAG, "Monitor with filter_index'" + filter_index + "' already added");
+            return;
+        }
+        mFilterIndexToMsftAdvMonitorMap.put(filter_index, monitor_handle);
+    }
+
+    public void onMsftAdvMonitorRemove(int filter_index, int status) {
+        if (status != 0) {
+            Log.e(
+                    TAG,
+                    "Error removing advertisement monitor with filter index '"
+                            + filter_index
+                            + "'");
+        }
+        if (!mFilterIndexToMsftAdvMonitorMap.containsKey(filter_index)) {
+            Log.e(TAG, "Monitor with filter_index'" + filter_index + "' does not exist");
+            return;
+        }
+        mFilterIndexToMsftAdvMonitorMap.remove(filter_index);
+    }
+
+    public void onMsftAdvMonitorEnable(int status) {
+        if (status != 0) {
+            Log.e(TAG, "Error enabling advertisement monitor");
+        }
+    }
+
     /**************************************************************************
      * GATT Service functions - Shared CLIENT/SERVER
      *************************************************************************/
@@ -1210,7 +1246,13 @@ public class TransitionalScanHelper {
             if (cbApp != null) {
                 isCallbackScan = cbApp.mCallback != null;
             }
-            app.recordScanStart(settings, filters, isFilteredScan, isCallbackScan, scannerId);
+            app.recordScanStart(
+                    settings,
+                    filters,
+                    isFilteredScan,
+                    isCallbackScan,
+                    scannerId,
+                    cbApp == null ? null : cbApp.mAttributionTag);
         }
 
         mScanManager.startScan(scanClient);
@@ -1317,7 +1359,12 @@ public class TransitionalScanHelper {
             scanClient.stats = scanStats;
             boolean isFilteredScan = (piInfo.filters != null) && !piInfo.filters.isEmpty();
             scanStats.recordScanStart(
-                    piInfo.settings, piInfo.filters, isFilteredScan, false, scannerId);
+                    piInfo.settings,
+                    piInfo.filters,
+                    isFilteredScan,
+                    false,
+                    scannerId,
+                    app.mAttributionTag);
         }
 
         mScanManager.startScan(scanClient);
@@ -1473,15 +1520,7 @@ public class TransitionalScanHelper {
 
             ScanClient client = getScanClient(mScannerId);
             if (client != null) {
-                if (Flags.leScanFixRemoteException()) {
-                    handleDeadScanClient(client);
-                } else {
-                    client.appDied = true;
-                    if (client.stats != null) {
-                        client.stats.isAppDead = true;
-                    }
-                    stopScanInternal(client.scannerId);
-                }
+                handleDeadScanClient(client);
             }
         }
 

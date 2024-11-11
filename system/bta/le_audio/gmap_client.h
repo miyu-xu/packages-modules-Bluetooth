@@ -20,6 +20,7 @@
 #include <hardware/bluetooth.h>
 
 #include <bitset>
+#include <sstream>
 
 namespace bluetooth::le_audio {
 
@@ -28,13 +29,13 @@ public:
   void AddFromStorage(const RawAddress& addr, const uint8_t role, const uint16_t role_handle,
                       const uint8_t UGT_feature, const uint16_t UGT_feature_handle);
 
-  void DebugDump(int fd);
+  void DebugDump(std::stringstream& stream);
 
   static bool IsGmapClientEnabled();
 
   static void UpdateGmapOffloaderSupport(bool value);
 
-  GmapClient(const RawAddress& addr) : addr_(addr) {}
+  GmapClient(const RawAddress& addr) : role_handle_(0), UGT_feature_handle_(0), addr_(addr) {}
 
   bool parseAndSaveGmapRole(uint16_t len, const uint8_t* value);
 

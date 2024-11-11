@@ -564,6 +564,16 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
 
   if (pairing_cb.bond_type == BOND_TYPE_TEMPORARY) {
     state = BT_BOND_STATE_NONE;
+  } else {
+    if (state == BT_BOND_STATE_NONE) {
+      bluetooth::os::LogMetricBluetoothEvent(ToGdAddress(bd_addr),
+                                             android::bluetooth::EventType::BOND,
+                                             android::bluetooth::State::STATE_NONE);
+    } else if (state == BT_BOND_STATE_BONDED) {
+      bluetooth::os::LogMetricBluetoothEvent(ToGdAddress(bd_addr),
+                                             android::bluetooth::EventType::BOND,
+                                             android::bluetooth::State::STATE_BONDED);
+    }
   }
 
   log::info(
@@ -802,6 +812,10 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr, tBT_TRANSPORT trans
 
   /*  Track originator of bond creation  */
   pairing_cb.is_local_initiated = true;
+  bluetooth::os::LogMetricBluetoothEvent(
+          ToGdAddress(bd_addr), android::bluetooth::EventType::TRANSPORT,
+          transport == BT_TRANSPORT_LE ? android::bluetooth::State::LE
+                                       : android::bluetooth::State::CLASSIC);
   BTA_DmBond(bd_addr, addr_type, transport, device_type);
 }
 
@@ -972,7 +986,8 @@ static void btif_dm_pin_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
     }
   }
   BTM_LogHistory(kBtmLogTagCallback, bd_addr, "Pin request",
-                 base::StringPrintf("name:\"%s\" min16:%c", PRIVATE_NAME(bd_name.name),
+                 base::StringPrintf("name:\"%s\" min16:%c",
+                                    PRIVATE_NAME(reinterpret_cast<char const*>(bd_name.name)),
                                     (p_pin_req->min_16_digit) ? 'T' : 'F'));
   GetInterfaceToProfiles()->events->invoke_pin_request_cb(bd_addr, bd_name, cod,
                                                           p_pin_req->min_16_digit);
@@ -3544,7 +3559,8 @@ static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
   cod = COD_UNCLASSIFIED;
 
   BTM_LogHistory(kBtmLogTagCallback, bd_addr, "PIN request",
-                 base::StringPrintf("name:'%s'", PRIVATE_NAME(bd_name.name)));
+                 base::StringPrintf("name:'%s'",
+                                    PRIVATE_NAME(reinterpret_cast<char const*>(bd_name.name))));
 
   GetInterfaceToProfiles()->events->invoke_pin_request_cb(bd_addr, bd_name, cod, false);
 }

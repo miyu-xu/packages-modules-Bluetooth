@@ -99,10 +99,12 @@ public:
 
     stream << "    volume: " << +volume << "\n"
            << "    mute: " << +mute << "\n"
+           << "    change_counter: " << +change_counter << "\n"
            << "    flags: " << +flags << "\n"
-           << "    device read: " << device_ready << "\n"
+           << "    device ready: " << device_ready << "\n"
            << "    connecting_actively: " << connecting_actively << "\n"
-           << "    change_counter: " << +change_counter << "\n";
+           << "    is encrypted: " << IsEncryptionEnabled() << "\n"
+           << "    GATT operations pending: " << handles_pending.size() << "\n";
 
     dprintf(fd, "%s", stream.str().c_str());
     audio_offsets.Dump(fd);
@@ -156,7 +158,7 @@ private:
   /*
    * This is used to track the pending GATT operation handles. Once the list is
    * empty the device is assumed ready and connected. We are doing it because we
-   * want to make sure all the required characteristics and descritors are
+   * want to make sure all the required characteristics and descriptors are
    * available on server side.
    */
   std::unordered_set<uint16_t> handles_pending;

@@ -174,7 +174,7 @@ public class TransitionalScanHelperTest {
         mScanHelper.continuePiStartScan(scannerId, mApp);
 
         verify(appScanStats)
-                .recordScanStart(mPiInfo.settings, mPiInfo.filters, false, false, scannerId);
+                .recordScanStart(mPiInfo.settings, mPiInfo.filters, false, false, scannerId, null);
         verify(mScanManager).startScan(any());
     }
 
@@ -192,7 +192,7 @@ public class TransitionalScanHelperTest {
         mScanHelper.continuePiStartScan(scannerId, mApp);
 
         verify(appScanStats)
-                .recordScanStart(mPiInfo.settings, mPiInfo.filters, false, false, scannerId);
+                .recordScanStart(mPiInfo.settings, mPiInfo.filters, false, false, scannerId, null);
         verify(mScanManager)
                 .startScan(
                         argThat(
@@ -291,7 +291,6 @@ public class TransitionalScanHelperTest {
 
     @Test
     public void onScanResult_remoteException_clientDied() throws Exception {
-        mSetFlagsRule.enableFlags(Flags.FLAG_LE_SCAN_FIX_REMOTE_EXCEPTION);
         int scannerId = 1;
 
         int eventType = 0;

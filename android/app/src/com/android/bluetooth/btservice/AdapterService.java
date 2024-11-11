@@ -73,6 +73,7 @@ import android.bluetooth.IBluetooth;
 import android.bluetooth.IBluetoothActivityEnergyInfoListener;
 import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothConnectionCallback;
+import android.bluetooth.IBluetoothHciVendorSpecificCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
 import android.bluetooth.IBluetoothPreferredAudioProfilesCallback;
@@ -171,6 +172,12 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Duration;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -182,6 +189,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -266,6 +274,13 @@ public class AdapterService extends Service {
     private final EvictingQueue<String> mScanModeChanges = EvictingQueue.create(10);
 
     private final DeviceConfigListener mDeviceConfigListener = new DeviceConfigListener();
+
+    private final BluetoothHciVendorSpecificDispatcher mBluetoothHciVendorSpecificDispatcher =
+            new BluetoothHciVendorSpecificDispatcher();
+    private final BluetoothHciVendorSpecificNativeInterface
+            mBluetoothHciVendorSpecificNativeInterface =
+                    new BluetoothHciVendorSpecificNativeInterface(
+                            mBluetoothHciVendorSpecificDispatcher);
 
     private final Looper mLooper;
     private final AdapterServiceHandler mHandler;
@@ -362,17 +377,6 @@ public class AdapterService extends Service {
             return mValue;
         }
     };
-
-    static {
-        if (!Flags.avoidStaticLoadingOfNative()) {
-            Log.d(TAG, "Loading JNI Library");
-            if (Utils.isInstrumentationTestMode()) {
-                Log.w(TAG, "App is instrumented. Skip loading the native");
-            } else {
-                System.loadLibrary("bluetooth_jni");
-            }
-        }
-    }
 
     // Keep a constructor for ActivityThread.handleCreateService
     AdapterService() {
@@ -623,10 +627,6 @@ public class AdapterService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate()");
-        if (!Flags.fastBindToApp()) {
-            init();
-            return;
-        }
         // OnCreate must perform the minimum of infaillible and mandatory initialization
         mRemoteDevices = new RemoteDevices(this, mLooper);
         mAdapterProperties = new AdapterProperties(this, mRemoteDevices, mLooper);
@@ -646,27 +646,10 @@ public class AdapterService extends Service {
         Config.init(this);
         mDeviceConfigListener.start();
 
-        if (!Flags.fastBindToApp()) {
-            // Moved to OnCreate
-            mUserManager = getNonNullSystemService(UserManager.class);
-            mAppOps = getNonNullSystemService(AppOpsManager.class);
-            mPowerManager = getNonNullSystemService(PowerManager.class);
-            mBatteryStatsManager = getNonNullSystemService(BatteryStatsManager.class);
-            mCompanionDeviceManager = getNonNullSystemService(CompanionDeviceManager.class);
-            mRemoteDevices = new RemoteDevices(this, mLooper);
-        }
         MetricsLogger.getInstance().init(this, mRemoteDevices);
 
         clearDiscoveringPackages();
-        if (!Flags.fastBindToApp()) {
-            mBinder = new AdapterServiceBinder(this);
-        }
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (!Flags.fastBindToApp()) {
-            // Moved to OnCreate
-            mAdapterProperties = new AdapterProperties(this, mRemoteDevices, mLooper);
-            mAdapterStateMachine = new AdapterState(this, mLooper);
-        }
         boolean isCommonCriteriaMode =
                 getNonNullSystemService(DevicePolicyManager.class)
                         .isCommonCriteriaModeEnabled(null);
@@ -684,13 +667,11 @@ public class AdapterService extends Service {
                 getApplicationContext()
                         .getPackageManager()
                         .hasSystemFeature(PackageManager.FEATURE_LEANBACK_ONLY);
-        if (Flags.avoidStaticLoadingOfNative()) {
-            if (Utils.isInstrumentationTestMode()) {
-                Log.w(TAG, "This Bluetooth App is instrumented. ** Skip loading the native **");
-            } else {
-                Log.d(TAG, "Loading JNI Library");
-                System.loadLibrary("bluetooth_jni");
-            }
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "This Bluetooth App is instrumented. ** Skip loading the native **");
+        } else {
+            Log.d(TAG, "Loading JNI Library");
+            System.loadLibrary("bluetooth_jni");
         }
         mNativeInterface.init(
                 this,
@@ -713,11 +694,11 @@ public class AdapterService extends Service {
                         "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
         mBluetoothQualityReportNativeInterface.init();
 
-        if (Flags.fastBindToApp()) {
-            mSdpManager = new SdpManager(this, mLooper);
-        } else {
-            mSdpManager = new SdpManager(this);
+        if (Flags.hciVendorSpecificExtension()) {
+            mBluetoothHciVendorSpecificNativeInterface.init();
         }
+
+        mSdpManager = new SdpManager(this, mLooper);
 
         mDatabaseManager.start(MetadataDatabase.createDatabase(this));
 
@@ -757,10 +738,6 @@ public class AdapterService extends Service {
             mAdapterSuspend =
                     new AdapterSuspend(
                             mNativeInterface, mLooper, getSystemService(DisplayManager.class));
-        }
-
-        if (!Flags.fastBindToApp()) {
-            setAdapterService(this);
         }
 
         invalidateBluetoothCaches();
@@ -4171,6 +4148,84 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void registerHciVendorSpecificCallback(
+                IBluetoothHciVendorSpecificCallback callback, int[] eventCodes) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "registerHciVendorSpecificCallback")) {
+                throw new SecurityException("not allowed");
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            requireNonNull(callback);
+            requireNonNull(eventCodes);
+
+            Set<Integer> eventCodesSet =
+                    Arrays.stream(eventCodes).boxed().collect(Collectors.toSet());
+            if (eventCodesSet.stream()
+                    .anyMatch((n) -> (n < 0) || (n >= 0x50 && n < 0x60) || (n > 0xff))) {
+                throw new IllegalArgumentException("invalid vendor-specific event code");
+            }
+
+            service.mBluetoothHciVendorSpecificDispatcher.register(callback, eventCodesSet);
+        }
+
+        @Override
+        public void unregisterHciVendorSpecificCallback(
+                IBluetoothHciVendorSpecificCallback callback) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "unregisterHciVendorSpecificCallback")) {
+                throw new SecurityException("not allowed");
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            requireNonNull(callback);
+
+            service.mBluetoothHciVendorSpecificDispatcher.unregister(callback);
+        }
+
+        @Override
+        public void sendHciVendorSpecificCommand(
+                int ocf, byte[] parameters, IBluetoothHciVendorSpecificCallback callback) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "sendHciVendorSpecificCommand")) {
+                throw new SecurityException("not allowed");
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            // Open this no-op android command for test purpose
+            int getVendorCapabilitiesOcf = 0x153;
+            if (ocf < 0
+                    || (ocf >= 0x150 && ocf < 0x160 && ocf != getVendorCapabilitiesOcf)
+                    || (ocf > 0x3ff)) {
+                throw new IllegalArgumentException("invalid vendor-specific event code");
+            }
+            requireNonNull(parameters);
+            if (parameters.length > 255) {
+                throw new IllegalArgumentException("Parameters size is too big");
+            }
+
+            Optional<byte[]> cookie =
+                    service.mBluetoothHciVendorSpecificDispatcher.getRegisteredCookie(callback);
+            if (!cookie.isPresent()) {
+                Log.e(TAG, "send command without registered callback");
+                throw new IllegalStateException("callback not registered");
+            }
+
+            service.mBluetoothHciVendorSpecificNativeInterface.sendCommand(
+                    ocf, parameters, cookie.get());
+        }
+
+        @Override
         public int getOffloadedTransportDiscoveryDataScanSupported(AttributionSource source) {
             AdapterService service = getService();
             if (service == null
@@ -4271,6 +4326,55 @@ public class AdapterService extends Service {
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.mDatabaseManager.getActiveAudioDevicePolicy(device);
+        }
+
+        @Override
+        public int setMicrophonePreferredForCalls(
+                BluetoothDevice device, boolean enabled, AttributionSource source) {
+            requireNonNull(device);
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "setMicrophonePreferredForCalls")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
+                throw new IllegalArgumentException("device cannot have an invalid address");
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, source, "AdapterService setMicrophonePreferredForCalls")) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.setMicrophonePreferredForCalls(device, enabled);
+        }
+
+        @Override
+        public boolean isMicrophonePreferredForCalls(
+                BluetoothDevice device, AttributionSource source) {
+            requireNonNull(device);
+            AdapterService service = getService();
+            if (service == null) {
+                return true;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "isMicrophonePreferredForCalls")) {
+                throw new IllegalStateException(
+                        "Caller is not the system or part of the active/managed user");
+            }
+            if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
+                throw new IllegalArgumentException("device cannot have an invalid address");
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, source, "AdapterService isMicrophonePreferredForCalls")) {
+                return true;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.isMicrophonePreferredForCalls(device);
         }
     }
 
@@ -4677,10 +4781,8 @@ public class AdapterService extends Service {
             Log.d(TAG, "offToBleOn() called when Bluetooth was disallowed");
             return;
         }
-        if (Flags.fastBindToApp()) {
-            // The call to init must be done on the main thread
-            mHandler.post(() -> init());
-        }
+        // The call to init must be done on the main thread
+        mHandler.post(() -> init());
 
         Log.i(TAG, "offToBleOn() - Enable called with quiet mode status =  " + quietMode);
         mQuietmode = quietMode;
@@ -5112,6 +5214,10 @@ public class AdapterService extends Service {
                  */
                 mLeAudioService.removeActiveDevice(true /* hasFallbackDevice */);
             } else {
+                if (mA2dpService != null && mA2dpService.getActiveDevice() != null) {
+                    // TODO:  b/312396770
+                    mA2dpService.removeActiveDevice(false);
+                }
                 mLeAudioService.setActiveDevice(device);
             }
         }
@@ -5863,6 +5969,10 @@ public class AdapterService extends Service {
             mBtCompanionManager.factoryReset();
         }
 
+        if (Flags.gattClearCacheOnFactoryReset()) {
+            clearStorage();
+        }
+
         return mNativeInterface.factoryReset();
     }
 
@@ -6277,24 +6387,30 @@ public class AdapterService extends Service {
 
     /** Update metadata change to registered listeners */
     @VisibleForTesting
-    public void metadataChanged(String address, int key, byte[] value) {
-        BluetoothDevice device = mRemoteDevices.getDevice(Utils.getBytesFromAddress(address));
+    public void onMetadataChanged(BluetoothDevice device, int key, byte[] value) {
+        mHandler.post(() -> onMetadataChangedInternal(device, key, value));
+    }
+
+    private void onMetadataChangedInternal(BluetoothDevice device, int key, byte[] value) {
+        String info = "onMetadataChangedInternal(" + device + ", " + key + ")";
 
         // pass just interesting metadata to native, to reduce spam
         if (key == BluetoothDevice.METADATA_LE_AUDIO) {
-            mNativeInterface.metadataChanged(Utils.getBytesFromAddress(address), key, value);
+            mNativeInterface.metadataChanged(device, key, value);
         }
 
         RemoteCallbackList<IBluetoothMetadataListener> list = mMetadataListeners.get(device);
         if (list == null) {
+            Log.d(TAG, info + ": No registered listener");
             return;
         }
         int n = list.beginBroadcast();
+        Log.d(TAG, info + ": Broadcast to " + n + " receivers");
         for (int i = 0; i < n; i++) {
             try {
                 list.getBroadcastItem(i).onMetadataChanged(device, key, value);
             } catch (RemoteException e) {
-                Log.d(TAG, "metadataChanged() - Callback #" + i + " failed (" + e + ")");
+                Log.d(TAG, info + ": Callback #" + i + " failed (" + e + ")");
             }
         }
         list.finishBroadcast();
@@ -6951,6 +7067,48 @@ public class AdapterService extends Service {
         }
         if (mPhonePolicy != null) {
             mPhonePolicy.onUuidsDiscovered(device, uuids);
+        }
+    }
+
+    /** Clear storage */
+    void clearStorage() {
+        deleteDirectoryContents("/data/misc/bluedroid/");
+        deleteDirectoryContents("/data/misc/bluetooth/");
+    }
+
+    private void deleteDirectoryContents(String dirPath) {
+        Path directoryPath = Paths.get(dirPath);
+        try {
+            Files.walkFileTree(
+                    directoryPath,
+                    new SimpleFileVisitor<Path>() {
+                        @Override
+                        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+                                throws IOException {
+                            Files.delete(file);
+                            return FileVisitResult.CONTINUE;
+                        }
+
+                        @Override
+                        public FileVisitResult postVisitDirectory(Path dir, IOException ex)
+                                throws IOException {
+                            if (ex != null) {
+                                Log.e(TAG, "Error happened while removing contents. ", ex);
+                            }
+
+                            if (!dir.equals(directoryPath)) {
+                                try {
+                                    Files.delete(dir);
+                                } catch (Exception e) {
+                                    Log.e(TAG, "Error happened while removing directory: ", e);
+                                }
+                            }
+                            return FileVisitResult.CONTINUE;
+                        }
+                    });
+            Log.i(TAG, "deleteDirectoryContents() completed. Path: " + dirPath);
+        } catch (Exception e) {
+            Log.e(TAG, "Error happened while removing contents: ", e);
         }
     }
 }

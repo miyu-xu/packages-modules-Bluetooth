@@ -570,7 +570,7 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
                       ? BTM_BLE_SCAN_MODE_ACTI
                       : btm_cb.ble_ctr_cb.inq_var.scan_type;
       btm_send_hci_set_scan_params(btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)ll_scan_interval,
-                                   (uint8_t)scan_phy, (uint16_t)ll_scan_window,
+                                   (uint8_t)ll_scan_window, (uint16_t)scan_phy,
                                    btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type,
                                    BTM_BLE_DEFAULT_SFP);
 
@@ -1176,11 +1176,9 @@ static uint8_t btm_set_conn_mode_adv_init_addr(RawAddress& p_peer_addr_ptr,
       /* resolving list is empty, not enabled */
       *p_own_addr_type = BLE_ADDR_RANDOM;
     }
-  }
-  /* privacy 1.1, or privacy 1.2, general discoverable/connectable mode, disable
-     privacy in */
-  /* controller fall back to host based privacy */
-  else if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE) {
+  } else if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE) {
+    /* privacy 1.1, or privacy 1.2, general discoverable/connectable mode, disable privacy in */
+    /* controller fall back to host based privacy */
     *p_own_addr_type = BLE_ADDR_RANDOM;
   }
 

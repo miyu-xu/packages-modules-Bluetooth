@@ -39,11 +39,9 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_status.h"
+#include "stack/include/smp_api.h"
 #include "stack/include/smp_api_types.h"
 #include "types/raw_address.h"
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using namespace bluetooth;
 
@@ -1298,11 +1296,10 @@ void smp_check_auth_req(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     /* if failed for encryption after pairing, send callback */
     if (p_cb->flags & SMP_PAIR_FLAG_ENC_AFTER_PAIR) {
       smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
-    }
-    /* if enc failed for old security information */
-    /* if central device, clean up and abck to idle; peripheral device do
-     * nothing */
-    else if (p_cb->role == HCI_ROLE_CENTRAL) {
+    } else if (p_cb->role == HCI_ROLE_CENTRAL) {
+      /* if enc failed for old security information */
+      /* if central device, clean up and abck to idle; peripheral device do
+       * nothing */
       smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
     }
   }
