@@ -447,7 +447,7 @@ public class HeadsetService extends ProfileService {
                                 int streamType =
                                         intent.getIntExtra(
                                                 AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
-                                if (streamType == AudioManager.STREAM_BLUETOOTH_SCO) {
+                                if (streamType == AudioManager.STREAM_BLUETOOTH_SCO || streamType == AudioManager.STREAM_VOICE_CALL) {
                                     doForEachConnectedStateMachine(
                                             stateMachine ->
                                                     stateMachine.sendMessage(

@@ -279,6 +279,7 @@ android_app {
         "net-utils-services-common",
         "networkstack-client",
         "sap-api-java-static",
+        "android.media.audio-aconfig-java",
     ],
 
     plugins: [
