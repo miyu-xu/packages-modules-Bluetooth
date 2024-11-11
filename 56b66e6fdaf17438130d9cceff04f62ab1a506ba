@@ -45,6 +45,54 @@
       },
       "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b53e52b2_eac1d30a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-11-11T23:03:05Z",
+      "side": 1,
+      "message": "Yeah, I agree -  will remove the check",
+      "parentUuid": "2c43f0a2_d4e609c5",
+      "range": {
+        "startLine": 701,
+        "startChar": 12,
+        "endLine": 701,
+        "endChar": 18
+      },
+      "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b78bca4_c0bb67cf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-11-11T23:03:05Z",
+      "side": 1,
+      "message": "I see it being set here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java;drc\u003dcd5641a199e2f4f1676193773168fc5377b2f866;l\u003d88. Did you mean mAdapterService.init() is not being called?",
+      "parentUuid": "dff07b0c_1cc6a827",
+      "range": {
+        "startLine": 701,
+        "startChar": 30,
+        "endLine": 701,
+        "endChar": 45
+      },
+      "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
