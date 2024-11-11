@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f014788_12f030b6",
+        "filename": "system/blueberry/facade/hci/controller_facade.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T20:23:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b751df14_e6f91ec3",
+      "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29f12c9d_fdf8983c",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "TBH, I don\u0027t know what this is, for ADB shell?, should I remove it too?",
       "parentUuid": "29f12c9d_fdf8983c",
+      "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d276caf2_126ebcbe",
+        "filename": "system/gd/hci/facade/controller_facade.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T20:23:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c35f4749_2cd69c07",
       "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
