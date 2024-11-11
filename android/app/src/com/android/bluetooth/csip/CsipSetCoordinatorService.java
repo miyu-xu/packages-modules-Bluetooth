@@ -911,16 +911,6 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     /** Process a change in the bonding state for a device */
     public void handleBondStateChanged(BluetoothDevice device, int fromState, int toState) {
-        if (mHandler == null) {
-            Log.e(
-                    TAG,
-                    "mHandler is null, service is stopped. Ignore Bond State for "
-                            + device
-                            + " to state: "
-                            + toState);
-            return;
-        }
-
         mHandler.post(() -> bondStateChanged(device, toState));
     }
 
@@ -982,15 +972,6 @@ public class CsipSetCoordinatorService extends ProfileService {
     }
 
     void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
-        if (mHandler == null) {
-            Log.e(
-                    TAG,
-                    "mHandler is null, service is stopped. Ignore Connection State for "
-                            + device
-                            + " to state: "
-                            + toState);
-            return;
-        }
         mHandler.post(() -> connectionStateChanged(device, fromState, toState));
     }
 
