@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17bc4f7f_8d0a27c9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-11T23:15:17Z",
+      "side": 1,
+      "message": "You should still do it now I believe, since this simplifies the usage.",
+      "parentUuid": "2dd63834_ead1f391",
+      "range": {
+        "startLine": 507,
+        "startChar": 18,
+        "endLine": 507,
+        "endChar": 97
+      },
+      "revId": "1eeeb688ce8bbb7301814105fc194d692a45826c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "495c6dc8_df0e259c",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 2
