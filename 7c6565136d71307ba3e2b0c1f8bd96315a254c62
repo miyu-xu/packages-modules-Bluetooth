@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91858fe4_a0d21731",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:26:07Z",
+      "side": 1,
+      "message": "add a bugnumber in the TODO in order to have something actionnable",
+      "range": {
+        "startLine": 207,
+        "startChar": 11,
+        "endLine": 207,
+        "endChar": 15
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a092c18_c6de9509",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:26:07Z",
+      "side": 1,
+      "message": "This flag is already in nextfood and should be deleted prior to do any change here.\nThat mean that we need to deprecate using another flag (`channel_sounding_25q2_apis`).\n\nCan you please do this change in 2 CLs, the first one to remove the channel_sounding flag, the second one to deprecate the API?",
+      "range": {
+        "startLine": 1307,
+        "startChar": 64,
+        "endLine": 1307,
+        "endChar": 80
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85f9eed2_d03ae54c",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
         "patchSetId": 2
@@ -44,6 +90,154 @@
         "endLine": 171,
         "endChar": 49
       },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713e93ef_74fddc76",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:26:07Z",
+      "side": 1,
+      "message": "`the list of supported security levels`",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 233,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e70bec71_9b7ab28f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 232,
+                "startChar": 0,
+                "endLine": 234,
+                "endChar": 0
+              },
+              "replacement": "     * @return the list of supported security levels, empty when Channel Sounding is not supported\n     *     or encounters an internal error.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1be6e66_cfeb1864",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:26:07Z",
+      "side": 1,
+      "message": "should this be a Set as it seems this is returning an ensemble of different security level vale\ngo/android-api-guidelines#classes-collections:\n```\nan API whose collection must be ordered should use List and an API whose collection must consist of unique elements should use Set.\n```\n\nif a list is ok, then I believe we want to have an `int[]` as return type as per:\ngo/android-api-guidelines#exception-for-primitives",
+      "range": {
+        "startLine": 240,
+        "startChar": 20,
+        "endLine": 240,
+        "endChar": 24
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03540e34_e6b66ec8",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:26:07Z",
+      "side": 1,
+      "message": "are the value the same as @CsSecurityLevel ? Does this works:\n```\n    public @NonNull List\u003c@CsSecurityLevel Integer\u003e getChannelSoundingSupportedSecurityLevels() {\n```\n\nIf not, we should put it in the doc",
+      "range": {
+        "startLine": 240,
+        "startChar": 20,
+        "endLine": 240,
+        "endChar": 33
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403a7a9a_0a3ced58",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:26:07Z",
+      "side": 1,
+      "message": "```\n        return Collections.emptyList();\n```",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2c3abbc4_a78ba93e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "import java.util.Collections;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 245,
+                "startChar": 0,
+                "endLine": 246,
+                "endChar": 0
+              },
+              "replacement": "                return Collections.emptyList();\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 253,
+                "startChar": 0,
+                "endLine": 254,
+                "endChar": 0
+              },
+              "replacement": "        return Collections.emptyList();\n"
+            }
+          ]
+        }
+      ],
       "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
