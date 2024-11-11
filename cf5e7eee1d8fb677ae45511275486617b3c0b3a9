@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9e842f9_af960d12",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-11T19:11:04Z",
+      "side": 1,
+      "message": "will the test work with this `verify` removed as well?",
+      "range": {
+        "startLine": 967,
+        "startChar": 8,
+        "endLine": 971,
+        "endChar": 53
+      },
+      "revId": "cf5e7eee1d8fb677ae45511275486617b3c0b3a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
