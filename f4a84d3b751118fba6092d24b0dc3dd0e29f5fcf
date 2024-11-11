@@ -22,6 +22,30 @@
       },
       "revId": "f4a84d3b751118fba6092d24b0dc3dd0e29f5fcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f48e51c_1ce12e6a",
+        "filename": "CPPLINT.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T19:37:43Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "d2d5fedb_1c7af591",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "f4a84d3b751118fba6092d24b0dc3dd0e29f5fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
