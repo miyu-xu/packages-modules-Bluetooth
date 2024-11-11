@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c43f0a2_d4e609c5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:52:25Z",
+      "side": 1,
+      "message": "When is this possible ?\n\nI don\u0027t expect device to ever be null when this method is invoked",
+      "range": {
+        "startLine": 701,
+        "startChar": 12,
+        "endLine": 701,
+        "endChar": 18
+      },
+      "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dff07b0c_1cc6a827",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T22:52:25Z",
+      "side": 1,
+      "message": "Test fail because `mAdapterService` is null.\n\nIt must be set in order for the test to pass",
+      "range": {
+        "startLine": 701,
+        "startChar": 30,
+        "endLine": 701,
+        "endChar": 45
+      },
+      "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
