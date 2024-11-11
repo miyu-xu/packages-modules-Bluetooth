@@ -33,6 +33,24 @@
       "message": "Spurious change",
       "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c35f4749_2cd69c07",
+        "filename": "system/gd/hci/facade/controller_facade.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T20:15:05Z",
+      "side": 1,
+      "message": "TBH, I don\u0027t know what this is, for ADB shell?, should I remove it too?",
+      "parentUuid": "29f12c9d_fdf8983c",
+      "revId": "8f2db4fb96c7ff267176b17c9949369b825c5b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
