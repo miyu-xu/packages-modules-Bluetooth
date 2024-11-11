@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2be2288_f95f2a1f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 1788,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T21:44:27Z",
+      "side": 1,
+      "message": "I like your second proposition better.\nDone !",
+      "parentUuid": "20e23076_9c166058",
+      "range": {
+        "startLine": 1788,
+        "startChar": 19,
+        "endLine": 1788,
+        "endChar": 59
+      },
+      "revId": "fd7e53ad3cf50b28ea911f583388edfd797a3c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff0ae117_2e22b672",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-11T17:36:55Z",
       "side": 1,
       "message": "Why this change ? You don\u0027t use the helper elsewhere.",
+      "range": {
+        "startLine": 384,
+        "startChar": 3,
+        "endLine": 387,
+        "endChar": 5
+      },
+      "revId": "fd7e53ad3cf50b28ea911f583388edfd797a3c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c101121_278ea6db",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T21:44:27Z",
+      "side": 1,
+      "message": "It is used in AudioInputControl, for all method that are calling the binder.",
+      "parentUuid": "ff0ae117_2e22b672",
       "range": {
         "startLine": 384,
         "startChar": 3,
