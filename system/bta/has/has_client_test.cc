@@ -1195,7 +1195,20 @@ TEST_F(HasClientTest, test_connect_after_remove) {
   Mock::VerifyAndClearExpectations(&callbacks);
 }
 
+TEST_F(HasClientTest,
+       test_disconnect_non_connected_without_hap_connect_only_requested_device_flag) {
+  com::android::bluetooth::flags::provider_->hap_connect_only_requested_device(false);
+  const RawAddress test_address = GetTestAddress(1);
+
+  /* Override the default action to prevent us sendind the connected event */
+  EXPECT_CALL(gatt_interface, Open(gatt_if, test_address, BTM_BLE_DIRECT_CONNECTION, _))
+          .WillOnce(Return());
+  HasClient::Get()->Connect(test_address);
+  TestDisconnect(test_address, GATT_INVALID_CONN_ID);
+}
+
 TEST_F(HasClientTest, test_disconnect_non_connected) {
+  com::android::bluetooth::flags::provider_->hap_connect_only_requested_device(true);
   const RawAddress test_address = GetTestAddress(1);
 
   /* Override the default action to prevent us sendind the connected event */
@@ -1585,6 +1598,41 @@ TEST_F(HasClientTest, test_discovery_has_broken_no_active_preset_ntf) {
   EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _)).Times(0);
   EXPECT_CALL(*callbacks, OnFeaturesUpdate(test_address, _)).Times(0);
   EXPECT_CALL(*callbacks, OnConnectionState(ConnectionState::DISCONNECTED, test_address));
+
+  TestConnect(test_address);
+}
+
+TEST_F(HasClientTest, test_cp_not_usable_read_all_presets) {
+  osi_property_set_bool("persist.bluetooth.has.always_use_preset_cache", false);
+
+  const RawAddress test_address = GetTestAddress(1);
+  std::set<HasPreset, HasPreset::ComparatorDesc> has_presets = {{
+          HasPreset(1, HasPreset::kPropertyAvailable, "Universal"),
+          HasPreset(2, HasPreset::kPropertyAvailable | HasPreset::kPropertyWritable, "Preset2"),
+  }};
+
+  SetSampleDatabaseHasPresetsNtf(test_address,
+                                 bluetooth::has::kFeatureBitHearingAidTypeBanded |
+                                         bluetooth::has::kFeatureBitWritablePresets |
+                                         bluetooth::has::kFeatureBitDynamicPresets,
+                                 has_presets);
+
+  ON_CALL(gatt_queue, ReadCharacteristic(_, HasDbBuilder::kActivePresetIndexValHdl, _, _))
+          .WillByDefault(Invoke([&](uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb,
+                                    void* cb_data) -> void {
+            std::vector<uint8_t> value;
+
+            tGATT_STATUS status = GATT_ERROR;
+            if (cb) {
+              cb(conn_id, status, handle, value.size(), value.data(), cb_data);
+            }
+          }));
+
+  EXPECT_CALL(*callbacks,
+              OnDeviceAvailable(test_address, bluetooth::has::kFeatureBitHearingAidTypeBanded |
+                                                      bluetooth::has::kFeatureBitWritablePresets |
+                                                      bluetooth::has::kFeatureBitDynamicPresets));
+  EXPECT_CALL(gatt_queue, Clean(1)).Times(1);
 
   TestConnect(test_address);
 }

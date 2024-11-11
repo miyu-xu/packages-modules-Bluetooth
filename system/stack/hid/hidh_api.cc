@@ -34,7 +34,6 @@
 #include "hiddefs.h"
 #include "hidh_int.h"
 #include "internal_include/bt_target.h"
-#include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
@@ -495,9 +494,7 @@ tHID_STATUS HID_HostWriteDev(uint8_t dev_handle, uint8_t t_type, uint8_t param, 
             android::bluetooth::CodePathCounterKeyEnum::HIDH_ERR_INVALID_PARAM_AT_HOST_WRITE_DEV,
             1);
     status = HID_ERR_INVALID_PARAM;
-  }
-
-  else if (hh_cb.devices[dev_handle].state != HID_DEV_CONNECTED) {
+  } else if (hh_cb.devices[dev_handle].state != HID_DEV_CONNECTED) {
     log::error("HID_ERR_NO_CONNECTION dev_handle {}", dev_handle);
     log_counter_metrics(
             android::bluetooth::CodePathCounterKeyEnum::HIDH_ERR_NO_CONNECTION_AT_HOST_WRITE_DEV,

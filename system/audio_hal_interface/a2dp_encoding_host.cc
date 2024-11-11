@@ -27,7 +27,6 @@
 #include "btif/include/btif_a2dp_source.h"
 #include "btif/include/btif_av.h"
 #include "btif/include/btif_hf.h"
-#include "os/log.h"
 #include "stack/include/avdt_api.h"
 #include "types/raw_address.h"
 #include "udrv/include/uipc.h"
@@ -329,7 +328,7 @@ std::optional<const char*> codec_index_str(btav_a2dp_codec_index_t /*codec_index
 bool supports_codec(btav_a2dp_codec_index_t /*codec_index*/) { return false; }
 
 // Return the A2DP capabilities for the selected codec.
-bool codec_info(btav_a2dp_codec_index_t /*codec_index*/, uint64_t* /*codec_id*/,
+bool codec_info(btav_a2dp_codec_index_t /*codec_index*/, bluetooth::a2dp::CodecId* /*codec_id*/,
                 uint8_t* /*codec_info*/, btav_a2dp_codec_config_t* /*codec_config*/) {
   return false;
 }

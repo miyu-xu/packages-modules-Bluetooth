@@ -46,6 +46,8 @@ enum class BluetoothAudioStatus {
 /// Implements callbacks for the BT Audio HAL to start, suspend and configure
 /// the audio stream. Completion of the requested operation is indicated
 /// by the methods ack_stream_started, ack_stream_suspended.
+///
+/// The callbacks are always invoked from one of the binder threads.
 class BluetoothAudioPort {
 public:
   virtual ~BluetoothAudioPort() {}
@@ -53,6 +55,7 @@ public:
     return BluetoothAudioStatus::FAILURE;
   }
   virtual BluetoothAudioStatus SuspendStream() const { return BluetoothAudioStatus::FAILURE; }
+  virtual BluetoothAudioStatus StopStream() const { return SuspendStream(); }
   virtual BluetoothAudioStatus SetLatencyMode(bool /*low_latency*/) const {
     return BluetoothAudioStatus::FAILURE;
   }
@@ -122,8 +125,8 @@ bool supports_codec(btav_a2dp_codec_index_t codec_index);
 // Return the A2DP capabilities for the selected codec.
 // `codec_info` returns the OTA codec capabilities, `codec_config`
 // returns the supported capabilities in a generic format.
-bool codec_info(btav_a2dp_codec_index_t codec_index, uint64_t* codec_id, uint8_t* codec_info,
-                btav_a2dp_codec_config_t* codec_config);
+bool codec_info(btav_a2dp_codec_index_t codec_index, bluetooth::a2dp::CodecId* codec_id,
+                uint8_t* codec_info, btav_a2dp_codec_config_t* codec_config);
 
 struct a2dp_configuration {
   int remote_seid;

@@ -33,7 +33,6 @@
 #include "bta/include/bta_rfcomm_scn.h"
 #include "bta/sys/bta_sys.h"
 #include "internal_include/bt_target.h"
-#include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
@@ -336,9 +335,8 @@ void bta_hf_client_do_disc(tBTA_HF_CLIENT_CB* client_cb) {
     attr_list[3] = ATTR_ID_SUPPORTED_FEATURES;
     num_attr = 4;
     uuid_list[0] = Uuid::From16Bit(UUID_SERVCLASS_AG_HANDSFREE);
-  }
-  /* acceptor; get features */
-  else {
+  } else {
+    /* acceptor; get features */
     attr_list[0] = ATTR_ID_SERVICE_CLASS_ID_LIST;
     attr_list[1] = ATTR_ID_BT_PROFILE_DESC_LIST;
     attr_list[2] = ATTR_ID_SUPPORTED_FEATURES;

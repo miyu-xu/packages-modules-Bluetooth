@@ -37,7 +37,7 @@
 #include "osi/include/allocator.h"
 #include "stack/arbiter/acl_arbiter.h"
 #include "stack/btm/btm_dev.h"
-#include "stack/gatt/connection_manager.h"
+#include "stack/connection_manager/connection_manager.h"
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/ais_api.h"
 #include "stack/include/bt_hdr.h"
@@ -51,9 +51,6 @@
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
-
 using namespace bluetooth::legacy::stack::sdp;
 using namespace bluetooth;
 
@@ -63,7 +60,7 @@ using bluetooth::Uuid;
  * Add a service handle range to the list in descending order of the start
  * handle. Return reference to the newly added element.
  **/
-tGATT_HDL_LIST_ELEM& gatt_add_an_item_to_list(uint16_t s_handle) {
+static tGATT_HDL_LIST_ELEM& gatt_add_an_item_to_list(uint16_t s_handle) {
   auto lst_ptr = gatt_cb.hdl_list_info;
   auto it = lst_ptr->begin();
   for (; it != lst_ptr->end(); it++) {
@@ -353,7 +350,7 @@ tGATT_STATUS GATTS_AddService(tGATT_IF gatt_if, btgatt_db_element_t* service, in
   return GATT_SERVICE_STARTED;
 }
 
-bool is_active_service(const Uuid& app_uuid128, Uuid* p_svc_uuid, uint16_t start_handle) {
+static bool is_active_service(const Uuid& app_uuid128, Uuid* p_svc_uuid, uint16_t start_handle) {
   for (auto& info : *gatt_cb.srv_list_info) {
     Uuid* p_this_uuid = gatts_get_service_uuid(info.p_db);
 

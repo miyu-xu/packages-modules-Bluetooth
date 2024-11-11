@@ -17,21 +17,31 @@
 
 #define LOG_TAG "BluetoothServiceJni"
 
-#include <dlfcn.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <hardware/bluetooth.h>
+#include <android/log.h>
+#include <bluetooth/log.h>
+#include <jni.h>
+#include <nativehelper/JNIHelp.h>
 #include <nativehelper/JNIPlatformHelp.h>
+#include <nativehelper/scoped_local_ref.h>
 #include <pthread.h>
-#include <string.h>
 #include <sys/prctl.h>
-#include <sys/stat.h>
 
+#include <array>
+#include <cerrno>
+#include <cstdint>
+#include <cstring>
+#include <mutex>
 #include <shared_mutex>
+#include <string>
+#include <utility>
+#include <vector>
 
-#include "./com_android_bluetooth.h"
+#include "com_android_bluetooth.h"
+#include "hardware/bluetooth.h"
 #include "hardware/bt_sock.h"
+#include "types/bluetooth/uuid.h"
 #include "types/bt_transport.h"
+#include "types/raw_address.h"
 
 // TODO(b/369381361) Enfore -Wmissing-prototypes
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
@@ -2496,6 +2506,12 @@ jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
   status = android::register_com_android_bluetooth_btservice_BluetoothQualityReport(e);
   if (status < 0) {
     log::error("jni bluetooth quality report registration failure: {}", status);
+    return JNI_ERR;
+  }
+
+  status = android::register_com_android_bluetooth_btservice_BluetoothHciVendorSpecific(e);
+  if (status < 0) {
+    log::error("jni bluetooth hci vendor-specific registration failure: {}", status);
     return JNI_ERR;
   }
 

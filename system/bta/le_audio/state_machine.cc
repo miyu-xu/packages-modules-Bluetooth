@@ -156,8 +156,8 @@ public:
      */
     if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING ||
         group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
-      log::error("group {} no in correct streaming state: {} or target state: {}", group->group_id_,
-                 ToString(group->GetState()), ToString(group->GetTargetState()));
+      log::error("Group {} is not streaming or is in transition, state: {}, target state: {}",
+                 group->group_id_, ToString(group->GetState()), ToString(group->GetTargetState()));
       return false;
     }
 
@@ -1228,14 +1228,14 @@ public:
          * In such an event, there is need to notify upper layer about state
          * from here.
          */
-        cancel_watchdog_if_needed(group->group_id_);
-
         if (current_group_state == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
+          cancel_watchdog_if_needed(group->group_id_);
           log::info("Cises disconnected for group {}, we are good in Idle state.",
                     group->group_id_);
           ReleaseCisIds(group);
           state_machine_callbacks_->StatusReportCb(group->group_id_, GroupStreamStatus::IDLE);
         } else if (current_group_state == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED) {
+          cancel_watchdog_if_needed(group->group_id_);
           auto reconfig = group->IsPendingConfiguration();
           log::info(
                   "Cises disconnected for group: {}, we are good in Configured "
@@ -2944,6 +2944,11 @@ private:
       log::info("Still waiting for the bidirectional ase {} to be released ({})",
                 bidirection_ase->id, bluetooth::common::ToString(bidirection_ase->state));
       return CIS_STILL_NEEDED;
+    }
+
+    ase->cis_state = CisState::DISCONNECTING;
+    if (bidirection_ase) {
+      bidirection_ase->cis_state = CisState::DISCONNECTING;
     }
 
     group->RemoveCisFromStreamIfNeeded(leAudioDevice, ase->cis_conn_hdl);

@@ -33,7 +33,6 @@
 #include "gap_api.h"
 #include "gatt_api.h"
 #include "internal_include/bt_trace.h"
-#include "os/log.h"
 #include "osi/include/properties.h"
 #include "stack/include/bt_types.h"
 
@@ -52,15 +51,13 @@ void GmapClient::AddFromStorage(const RawAddress &addr, const uint8_t role,
   UGT_feature_handle_ = UGT_feature_handle;
 }
 
-void GmapClient::DebugDump(int fd) {
-  std::stringstream stream;
+void GmapClient::DebugDump(std::stringstream &stream) {
   if (!IsGmapClientEnabled()) {
-    dprintf(fd, "%s", "GmapClient not enabled");
+    stream << "GmapClient not enabled\n";
     return;
   }
   stream << "GmapClient device: " << addr_ << ", Role: " << role_ << ", ";
   stream << "UGT Feature: " << UGT_feature_ << "\n";
-  dprintf(fd, "%s", stream.str().c_str());
 }
 
 bool GmapClient::IsGmapClientEnabled() {

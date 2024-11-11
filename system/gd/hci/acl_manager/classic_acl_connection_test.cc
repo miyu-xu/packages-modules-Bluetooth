@@ -33,7 +33,6 @@
 #include "hci/address.h"
 #include "hci/hci_packets.h"
 #include "os/handler.h"
-#include "os/log.h"
 #include "os/thread.h"
 
 using namespace bluetooth;
@@ -141,6 +140,13 @@ private:
       prom->set_value();
       delete prom;
     }
+  }
+
+  void EnqueueCommand(
+          std::unique_ptr<hci::AclCommandBuilder> /* command */,
+          common::ContextualOnceCallback<
+                  void(hci::CommandStatusOrCompleteView)> /* on_status_or_complete */) override {
+    FAIL();
   }
 
 public:
