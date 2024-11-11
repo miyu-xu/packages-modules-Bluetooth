@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b2df7e_6175d448",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T23:07:34Z",
+      "side": 1,
+      "message": "I would move this code into the audio bp file.\n\nBluetooth shouldn\u0027t have to export the audio library, instead, I would let audio export the library and simply depend on the exported module in bluetooth (like you did above)",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 403,
+        "endChar": 0
+      },
+      "revId": "412d8ad156fa51ab85049466402a68edf5f7d863",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
