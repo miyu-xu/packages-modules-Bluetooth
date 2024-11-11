@@ -22,6 +22,30 @@
       },
       "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f53205a1_f6dfc42c",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-11T22:08:56Z",
+      "side": 1,
+      "message": "there is no alternative API. this one is meaningless.",
+      "parentUuid": "85f9eed2_d03ae54c",
+      "range": {
+        "startLine": 171,
+        "startChar": 20,
+        "endLine": 171,
+        "endChar": 49
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
