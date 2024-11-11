@@ -25,8 +25,10 @@ import android.os.Parcelable;
 
 import com.android.bluetooth.flags.Flags;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * The {@link ChannelSoundingParams} provide a way to adjust distance measurement preferences for
@@ -55,6 +57,7 @@ public final class ChannelSoundingParams implements Parcelable {
     @interface LocationType {}
 
     /** @hide */
+    @Target(ElementType.TYPE_USE)
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(
             value = {
