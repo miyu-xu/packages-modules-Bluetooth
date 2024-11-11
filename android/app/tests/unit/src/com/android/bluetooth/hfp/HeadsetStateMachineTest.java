@@ -19,6 +19,7 @@ package com.android.bluetooth.hfp;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import static org.mockito.Mockito.*;
+import static android.media.audio.Flags.deprecateStreamBtSco;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -1807,6 +1808,20 @@ public class HeadsetStateMachineTest {
 
         Assert.assertEquals(mHeadsetStateMachine.mSpeakerVolume, 2);
         verify(mockAudioManager).setStreamVolume(AudioManager.STREAM_BLUETOOTH_SCO, 2, 0);
+    }
+
+    @EnableFlags(Flags.deprecateStreamBtSco)
+    @Test
+    public void testProcessVolumeEvent_withVolumeTypeSpkAndStreamVoiceCall() {
+        when(mHeadsetService.getActiveDevice()).thenReturn(mTestDevice);
+        AudioManager mockAudioManager = mock(AudioManager.class);
+        when(mockAudioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL)).thenReturn(1);
+        when(mSystemInterface.getAudioManager()).thenReturn(mockAudioManager);
+
+        mHeadsetStateMachine.processVolumeEvent(HeadsetHalConstants.VOLUME_TYPE_SPK, 2);
+
+        Assert.assertEquals(mHeadsetStateMachine.mSpeakerVolume, 2);
+        verify(mockAudioManager).setStreamVolume(AudioManager.STREAM_VOICE_CALL, 2, 0);
     }
 
     @Test

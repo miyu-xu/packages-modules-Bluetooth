@@ -19,6 +19,8 @@ package com.android.bluetooth.hfp;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.MODIFY_PHONE_STATE;
+import static android.media.AudioDeviceInfo.TYPE_BLUETOOTH_SCO;
+import static android.media.audio.Flags.deprecateStreamBtSco;
 
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -447,7 +449,13 @@ public class HeadsetService extends ProfileService {
                                 int streamType =
                                         intent.getIntExtra(
                                                 AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
-                                if (streamType == AudioManager.STREAM_BLUETOOTH_SCO) {
+                                boolean isScoConnected = true;
+                                int volStream = AudioManager.STREAM_BLUETOOTH_SCO;
+                                if (deprecateStreamBtSco()) {
+                                    isScoConnected = mSystemInterface.getAudioManager().getCommunicationDevice().getType() == TYPE_BLUETOOTH_SCO;
+                                    volStream = AudioManager.STREAM_VOICE_CALL;
+                                }
+                                if (streamType == volStream && isScoConnected) {
                                     doForEachConnectedStateMachine(
                                             stateMachine ->
                                                     stateMachine.sendMessage(
