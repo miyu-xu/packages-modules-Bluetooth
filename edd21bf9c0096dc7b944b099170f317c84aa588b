@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf5353e_39da9193",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T23:16:06Z",
+      "side": 1,
+      "message": "I thought it wasn\u0027t but by looking now, I see there is a check done already.\nI am removing the java check.",
+      "parentUuid": "329240f9_aa5e27c2",
+      "range": {
+        "startLine": 1144,
+        "startChar": 8,
+        "endLine": 1147,
+        "endChar": 9
+      },
+      "revId": "edd21bf9c0096dc7b944b099170f317c84aa588b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37c3e225_3f1284d0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-11T17:14:57Z",
       "side": 1,
       "message": "Is this cast still necessary ?",
+      "range": {
+        "startLine": 1865,
+        "startChar": 20,
+        "endLine": 1865,
+        "endChar": 25
+      },
+      "revId": "edd21bf9c0096dc7b944b099170f317c84aa588b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe1504b_f818be8d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-11T23:16:06Z",
+      "side": 1,
+      "message": "It is as the type of INACTIVE is a byte, but the whole stack consider it is an int.\n\nNot casting it here is making the `aicsWrapper` complain about inconsistency.\n\nIt is a bit out of scope to try to fix all the data passed around, but I can do a follow-up to make this more homogenized",
+      "parentUuid": "37c3e225_3f1284d0",
       "range": {
         "startLine": 1865,
         "startChar": 20,
