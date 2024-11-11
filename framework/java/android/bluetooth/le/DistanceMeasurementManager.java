@@ -39,6 +39,7 @@ import android.util.Log;
 import com.android.bluetooth.flags.Flags;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -167,9 +168,11 @@ public final class DistanceMeasurementManager {
      * @param remoteDevice remote device of channel sounding
      * @return max supported security level, {@link ChannelSoundingParams#CS_SECURITY_LEVEL_UNKNOWN}
      *     when Channel Sounding is not supported or encounters an internal error.
+     * @deprecated do not use it, not meaningful.
      * @hide
      */
     @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @Deprecated
     @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
@@ -198,9 +201,11 @@ public final class DistanceMeasurementManager {
      *
      * @return max supported security level, {@link ChannelSoundingParams#CS_SECURITY_LEVEL_UNKNOWN}
      *     when Channel Sounding is not supported or encounters an internal error.
+     * @deprecated use {@link #getChannelSoundingSupportedSecurityLevels} instead.
      * @hide
      */
     @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @Deprecated
     @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
@@ -217,6 +222,35 @@ public final class DistanceMeasurementManager {
             Log.e(TAG, "Failed to get supported security Level - ", e);
         }
         return defaultValue;
+    }
+
+    /**
+     * Get the supported security levels of channel sounding.
+     *
+     * <p>See: https://bluetooth.com/specifications/specs/core60-html/
+     *
+     * @return the list supported security levels, empty when Channel Sounding is not supported or
+     *     encounters an internal error.
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @NonNull List<Integer> getChannelSoundingSupportedSecurityLevels() {
+        try {
+            IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
+            if (gatt == null) {
+                Log.e(TAG, "Bluetooth GATT is null");
+                return new ArrayList<>();
+            }
+            return Arrays.stream(gatt.getChannelSoundingSupportedSecurityLevels(mAttributionSource))
+                    .boxed()
+                    .toList();
+        } catch (RemoteException e) {
+            Log.e(TAG, "Failed to get supported security Level - ", e);
+        }
+        return new ArrayList<>();
     }
 
     @SuppressLint("AndroidFrameworkBluetoothPermission")
