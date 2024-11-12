@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34452ac8_11e3d7ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1570284
+      },
+      "writtenOn": "2024-11-12T23:33:06Z",
+      "side": 1,
+      "message": "I think you might need to first upload this CL to internal and mark as merged-in in order to avoid the auto-merge conflict",
+      "revId": "f88b75ae1ea5106d515aabfd540ba5c46b385c8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
