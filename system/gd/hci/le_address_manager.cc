@@ -21,6 +21,7 @@
 
 #include <ctime>
 
+#include "hci/controller.h"
 #include "hci/octets.h"
 #include "include/macros.h"
 #include "os/rand.h"
@@ -153,13 +154,29 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
         log::info("minimum_rotation_time_={}ms, maximum_rotation_time_={}ms",
                   minimum_rotation_time_.count(), maximum_rotation_time_.count());
       }
-      if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
-        address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_, true);
-        address_rotation_non_wake_alarm_ = std::make_unique<os::Alarm>(handler_, false);
+      if (com::android::bluetooth::flags::rpa_offload_to_bt_controller()) {
+        Controller controller_;
+        if (controller_.IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
+          log::info("Support RPA offload");
+        } else {
+          log::info("Not support RPA offload");
+          if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
+            address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_, true);
+            address_rotation_non_wake_alarm_ = std::make_unique<os::Alarm>(handler_, false);
+          } else {
+            address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_);
+          }
+          set_random_address();
+        }
       } else {
-        address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_);
+        if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
+          address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_, true);
+          address_rotation_non_wake_alarm_ = std::make_unique<os::Alarm>(handler_, false);
+        } else {
+          address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_);
+        }
+        set_random_address();
       }
-      set_random_address();
       break;
     case AddressPolicy::POLICY_NOT_SET:
       log::fatal("invalid parameters");
@@ -205,13 +222,29 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddressForTest(
       maximum_rotation_time_ = maximum_rotation_time;
       log::info("minimum_rotation_time_={}ms, maximum_rotation_time_={}ms",
                 minimum_rotation_time_.count(), maximum_rotation_time_.count());
-      if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
-        address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_, true);
-        address_rotation_non_wake_alarm_ = std::make_unique<os::Alarm>(handler_, false);
+      if (com::android::bluetooth::flags::rpa_offload_to_bt_controller()) {
+        Controller controller_;
+        if (controller_.IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
+          log::info("Support RPA offload");
+        } else {
+          log::info("Not support RPA offload");
+          if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
+            address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_, true);
+            address_rotation_non_wake_alarm_ = std::make_unique<os::Alarm>(handler_, false);
+          } else {
+            address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_);
+          }
+          set_random_address();
+        }
       } else {
-        address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_);
+        if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
+          address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_, true);
+          address_rotation_non_wake_alarm_ = std::make_unique<os::Alarm>(handler_, false);
+        } else {
+          address_rotation_wake_alarm_ = std::make_unique<os::Alarm>(handler_);
+        }
+        set_random_address();
       }
-      set_random_address();
       break;
     case AddressPolicy::POLICY_NOT_SET:
       log::fatal("invalid parameters");
@@ -237,8 +270,16 @@ void LeAddressManager::register_client(LeAddressManagerCallback* callback) {
   } else if (address_policy_ == AddressPolicy::USE_RESOLVABLE_ADDRESS ||
              address_policy_ == AddressPolicy::USE_NON_RESOLVABLE_ADDRESS) {
     if (registered_clients_.size() == 1) {
-      schedule_rotate_random_address();
-      log::info("Scheduled address rotation for first client registered");
+      if (com::android::bluetooth::flags::rpa_offload_to_bt_controller()) {
+        Controller controller_;
+        if (!controller_.IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
+          schedule_rotate_random_address();
+          log::info("Scheduled address rotation for first client registered");
+        }
+      } else {
+        schedule_rotate_random_address();
+        log::info("Scheduled address rotation for first client registered");
+      }
     }
   }
   log::info("Client registered");
