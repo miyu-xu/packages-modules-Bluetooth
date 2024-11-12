@@ -181,6 +181,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1361668a_923e15b4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-12T13:46:12Z",
+      "side": 1,
+      "message": "1. OK.\n2. before my CL areValidParametersToModifySource was used in modifySource and resumeReceiversSourceSynchronization as well, and on both notifySourceModifyFailed was sent (which is bed for resume as nobody from upper layer send modifySource). If I remove areValidParametersToModifySource from updateSourceToResumeBroadcast, then I will go back to what was done with this helper aosp/3020123. Even worse, as my CL add it to the addSource...\n3. So it should be removed completely from areValidParametersToModifySource and checked directly in modifySource/resumeReceiversSourceSynchronization\n4. Looking for above, areValidParametersToModifySource does not have sense at all as there is only one checker for metadata (broadcastCode). Rest of them is checking stateMachine, stateMachinePendingOperation, deviceConnectionState...\n\nOk, I prepared version which should be fine from all perspective.\nWe have a bunch of validateParametersForSourceOperation to use in different places.\nNotify is not sent if not needed.\n\nOnly thing which is the same as previously is that I checked stateMachine inside helper but with new name it should be fine.",
+      "parentUuid": "a344c280_7c002a25",
+      "revId": "d9de9bf963ad65a89354783a52420936e80ed1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021de75b_e7a3cfe0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
