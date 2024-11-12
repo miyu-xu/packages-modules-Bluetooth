@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af70d991_4c361714",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-12T05:29:48Z",
+      "side": 1,
+      "message": "I prefer something a bit shorter to make it easier to use in code.\n\nHow about initial_conn_params_p1?",
+      "range": {
+        "startLine": 262,
+        "startChar": 11,
+        "endLine": 262,
+        "endChar": 61
+      },
+      "revId": "b0acae32b9f18548ee90da6117328cb198c1ca05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
