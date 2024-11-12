@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fafcc4d5_0583a5d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T23:43:41Z",
+      "side": 1,
+      "message": "lgtm, please etienne, help with the flag as I don\u0027t think Qualcomm contributor have all the access to do that",
+      "revId": "ad6d181e4d7643582234818ab67ea6d3271c28b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
