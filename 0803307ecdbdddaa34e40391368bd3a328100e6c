@@ -189,6 +189,30 @@
       },
       "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ced8bb2f_d068c7c0",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-11-12T11:45:09Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "184c4e61_8899f500",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
