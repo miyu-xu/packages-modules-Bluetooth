@@ -259,6 +259,7 @@ flag {
 }
 
 flag {
+<<<<<<< HEAD
     name: "initial_conn_params_p1"
     namespace: "bluetooth"
     description: "Use aggressive connection parameters when <2 connections exist. go/initial-connection-parameter-optimization"
@@ -267,3 +268,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+=======
+    name: "rpa_offload_to_bt_controller"
+    namespace: "bluetooth"
+    description: "Offload LE RPA rotation to BT controller. go/rpa-offload-to-bt-controller"
+    bug: "378398874"
+}
+>>>>>>> 15142dc7b6 (flags: Add rpa_offload_to_bt_controller)
