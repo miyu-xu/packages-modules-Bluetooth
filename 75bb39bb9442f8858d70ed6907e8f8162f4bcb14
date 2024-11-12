@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ec9e122_3c06491d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2024-11-12T03:01:00Z",
+      "side": 1,
+      "message": "Sorry to cause this. It should be fixed in b/378400528#comment23",
+      "revId": "75bb39bb9442f8858d70ed6907e8f8162f4bcb14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
