@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89312e7_95bba264",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-12T23:40:44Z",
+      "side": 1,
+      "message": "How do we restore this if removeBond() fails?",
+      "range": {
+        "startLine": 1167,
+        "startChar": 16,
+        "endLine": 1167,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3a1a4bdb_9c037366",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+              "range": {
+                "startLine": 1163,
+                "startChar": 0,
+                "endLine": 1163,
+                "endChar": 0
+              },
+              "replacement": "        // TODO(b/265331111): Restore the connection policies if removeBond() fails.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4ff9dccdff997c6c41534a43775991366ee955b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
