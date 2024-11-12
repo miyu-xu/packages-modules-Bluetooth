@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f552a9_1d844739",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db758017_74da1aa4",
+      "range": {
+        "startLine": 237,
+        "startChar": 66,
+        "endLine": 237,
+        "endChar": 71
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3fb83ed_409fd777",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d9c987d_c91d0e7c",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3fb83ed_409fd777",
+      "range": {
+        "startLine": 268,
+        "startChar": 55,
+        "endLine": 268,
+        "endChar": 61
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "366b0ffd_c9c7b123",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-12T00:15:11Z",
       "side": 1,
       "message": "Status",
+      "range": {
+        "startLine": 300,
+        "startChar": 33,
+        "endLine": 300,
+        "endChar": 38
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fa43cdc_70712b0e",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "366b0ffd_c9c7b123",
       "range": {
         "startLine": 300,
         "startChar": 33,
@@ -111,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "856e8aa9_b0e89cd6",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "This formulation is \"widely\" used:\n\n```\nframework/java/android/bluetooth/BluetoothHapClient.java\n525:     * \u003cvar\u003eexecutor\u003c/var\u003e is different. API caller would have to call {@link\n\nframework/java/android/bluetooth/AudioInputControl.java\n332:     * to this method, even when the executor is different. API caller would have to call {@link\n\nframework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java\n726:     * \u003cvar\u003eexecutor\u003c/var\u003e is different. API caller would have to call {@link\n\nframework/java/android/bluetooth/BluetoothLeBroadcast.java\n350:     * \u003cvar\u003eexecutor\u003c/var\u003e is different. API caller would have to call {@link\n```\n\nI prefer to keep with current writing",
+      "parentUuid": "4823a3da_8478c0d0",
+      "range": {
+        "startLine": 332,
+        "startChar": 71,
+        "endLine": 332,
+        "endChar": 84
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "024a9111_f480da4e",
@@ -124,6 +220,30 @@
       "writtenOn": "2024-11-12T00:15:11Z",
       "side": 1,
       "message": "the",
+      "range": {
+        "startLine": 336,
+        "startChar": 55,
+        "endLine": 336,
+        "endChar": 56
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2c03658_a5add9ba",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "same as before\n```\n  rg \"are automatically unregistered when application\"\nframework/java/android/bluetooth/AudioInputControl.java\n336:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away.\n357:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away.\n\nframework/java/android/bluetooth/BluetoothLeAudio.java\n1017:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away\n\nframework/java/android/bluetooth/BluetoothHapClient.java\n549:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away\n\nframework/java/android/bluetooth/BluetoothVolumeControl.java\n458:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away\n\nframework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java\n778:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away.\n\nframework/java/android/bluetooth/BluetoothLeBroadcast.java\n403:     * \u003cp\u003eCallbacks are automatically unregistered when application process goes away\n```",
+      "parentUuid": "024a9111_f480da4e",
       "range": {
         "startLine": 336,
         "startChar": 55,
@@ -157,6 +277,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89f781ad_99e3e7e1",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0eb2c97b_64699731",
+      "range": {
+        "startLine": 357,
+        "startChar": 55,
+        "endLine": 357,
+        "endChar": 56
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "349341e3_572832b3",
@@ -170,6 +314,30 @@
       "writtenOn": "2024-11-12T00:15:11Z",
       "side": 1,
       "message": "255 ? Not sure that hex representation is meaningful here.",
+      "range": {
+        "startLine": 395,
+        "startChar": 36,
+        "endLine": 395,
+        "endChar": 40
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c9fa6a_93ac92f0",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "This doesn\u0027t change the end value.",
+      "parentUuid": "349341e3_572832b3",
       "range": {
         "startLine": 395,
         "startChar": 36,
@@ -203,6 +371,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3213bef9_d10c17a1",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88fa52aa_329e1b58",
+      "range": {
+        "startLine": 438,
+        "startChar": 69,
+        "endLine": 438,
+        "endChar": 76
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4d7d631_ad4596fb",
@@ -226,6 +418,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a2676e_ad475b9b",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4d7d631_ad4596fb",
+      "range": {
+        "startLine": 454,
+        "startChar": 7,
+        "endLine": 454,
+        "endChar": 12
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d555454e_89ef920d",
@@ -239,6 +455,30 @@
       "writtenOn": "2024-11-12T00:15:11Z",
       "side": 1,
       "message": "change",
+      "range": {
+        "startLine": 476,
+        "startChar": 69,
+        "endLine": 476,
+        "endChar": 76
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76989c40_0686ce59",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d555454e_89ef920d",
       "range": {
         "startLine": 476,
         "startChar": 69,
@@ -295,6 +535,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9eaeda4_6c3d808e",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d897aaa_3a81ae7b",
+      "range": {
+        "startLine": 501,
+        "startChar": 68,
+        "endLine": 501,
+        "endChar": 75
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbb61e6a_c848dc76",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff5652f6_885990b3",
+      "range": {
+        "startLine": 501,
+        "startChar": 38,
+        "endLine": 501,
+        "endChar": 43
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f792ed04_fbb3365b",
@@ -308,6 +596,30 @@
       "writtenOn": "2024-11-12T00:15:11Z",
       "side": 1,
       "message": "changes",
+      "range": {
+        "startLine": 520,
+        "startChar": 70,
+        "endLine": 520,
+        "endChar": 77
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a555dbd_91d1011a",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f792ed04_fbb3365b",
       "range": {
         "startLine": 520,
         "startChar": 70,
@@ -341,6 +653,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00499826_5b54d980",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f76bce1_e6bbea3d",
+      "range": {
+        "startLine": 551,
+        "startChar": 48,
+        "endLine": 551,
+        "endChar": 57
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd9fd26a_fb230d69",
@@ -364,6 +700,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e41a6e7_e33eee39",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd9fd26a_fb230d69",
+      "range": {
+        "startLine": 575,
+        "startChar": 64,
+        "endLine": 575,
+        "endChar": 71
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "424b0d9d_f6cbb28c",
@@ -377,6 +737,30 @@
       "writtenOn": "2024-11-12T00:15:11Z",
       "side": 1,
       "message": "changes",
+      "range": {
+        "startLine": 635,
+        "startChar": 61,
+        "endLine": 635,
+        "endChar": 68
+      },
+      "revId": "174d384d93bbbef9b13093d94a4aff01012ebe04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7763984e_c5db4feb",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "424b0d9d_f6cbb28c",
       "range": {
         "startLine": 635,
         "startChar": 61,
