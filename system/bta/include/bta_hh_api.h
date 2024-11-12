@@ -404,7 +404,7 @@ void BTA_HhOpen(const tAclLinkSpec& link_spec);
  * Returns          void
  *
  ******************************************************************************/
-void BTA_HhClose(uint8_t dev_handle);
+void BTA_HhClose(uint8_t dev_handle, bool reconnect_allowed);
 
 /*******************************************************************************
  *
