@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f0f267a_2a6f98e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-12T05:37:52Z",
+      "side": 1,
+      "message": "I need to understand more about when this intended to be fired and who should be able to receive it.\n\nThe docs on it say only registered receivers would get it but the annotation says that manifest receivers can get it. \n\nIn general, we do prefer callbacks because it helps enforce that only registered receivers get it.\n\nIs there a CL where this broadcast is actually fired?",
+      "parentUuid": "9d566b88_a41a586e",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14

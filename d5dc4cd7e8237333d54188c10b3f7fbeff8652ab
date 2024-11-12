@@ -16,6 +16,23 @@
       "message": "API +1. Will let @asapperstein@google.com review and +2.",
       "revId": "d5dc4cd7e8237333d54188c10b3f7fbeff8652ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "849456b1_54491718",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-12T05:37:52Z",
+      "side": 1,
+      "message": "this does not align with your @BroadcastBehavior which specifies `includeBackground \u003d true`. That means manifest receivers will get it. https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/libs/modules-utils/java/android/annotation/BroadcastBehavior.java;l\u003d48?q\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main%20BroadcastBehavior",
+      "revId": "d5dc4cd7e8237333d54188c10b3f7fbeff8652ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
