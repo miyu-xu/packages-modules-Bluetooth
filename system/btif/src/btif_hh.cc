@@ -467,11 +467,27 @@ static bthh_connection_state_t hh_get_state_on_disconnect(tAclLinkSpec& link_spe
   }
 }
 
+static bool hh_connection_allowed(const tAclLinkSpec& link_spec) {
+  /* Accept connection only if reconnection is allowed for the known device, or outgoing connection
+   * was requested */
+  btif_hh_added_device_t* added_dev = btif_hh_find_added_dev(link_spec);
+  if (added_dev != nullptr && added_dev->reconnect_allowed) {
+    return true;
+  } else if (std::find(btif_hh_cb.pending_connections.begin(), btif_hh_cb.pending_connections.end(),
+                       link_spec) != btif_hh_cb.pending_connections.end()) {
+    log::verbose("Device connection was pending for: {}, status: {}", link_spec,
+                 btif_hh_status_text(btif_hh_cb.status).c_str());
+    return true;
+  }
+
+  return false;
+}
+
 static void hh_connect_complete(tBTA_HH_CONN& conn, bthh_connection_state_t state) {
   if (state != BTHH_CONN_STATE_CONNECTED) {
     if (!com::android::bluetooth::flags::close_hid_only_if_connected() ||
         conn.status == BTA_HH_OK) {
-      BTA_HhClose(conn.handle);
+      BTA_HhClose(conn.handle, hh_connection_allowed(conn.link_spec));
     }
   }
   BTHH_STATE_UPDATE(conn.link_spec, state);
@@ -556,7 +572,8 @@ static void hh_disable_handler(tBTA_HH_STATUS& status) {
   }
 }
 
-static void hh_open_handler(tBTA_HH_CONN& conn) {
+// TODO: Remove this function when hogp_reconnection flag is fully launched
+static void hh_open_handler_(tBTA_HH_CONN& conn) {
   log::debug("link spec = {}, status = {}, handle = {}", conn.link_spec, conn.status, conn.handle);
 
   if (com::android::bluetooth::flags::allow_switching_hid_and_hogp()) {
@@ -593,7 +610,7 @@ static void hh_open_handler(tBTA_HH_CONN& conn) {
         hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
         return;
       }
-      BTA_HhClose(conn.handle);
+      BTA_HhClose(conn.handle, hh_connection_allowed(conn.link_spec));
       return;
     }
   }
@@ -649,6 +666,54 @@ static void hh_open_handler(tBTA_HH_CONN& conn) {
       BTA_HhSetIdle(conn.handle, 0);
     }
   }
+  BTA_HhGetDscpInfo(conn.handle);
+}
+
+static void hh_open_handler(tBTA_HH_CONN& conn) {
+  if (!com::android::bluetooth::flags::hogp_reconnection()) {
+    hh_open_handler_(conn);
+    return;
+  }
+
+  if (!hh_connection_allowed(conn.link_spec)) {
+    log::warn("Reject Incoming HID Connection, device: {}", conn.link_spec);
+    log_counter_metrics_btif(
+            android::bluetooth::CodePathCounterKeyEnum::HIDH_COUNT_INCOMING_CONNECTION_REJECTED, 1);
+
+    BTA_HhClose(conn.handle, false);
+    return;
+  }
+
+  log::debug("link spec = {}, status = {}, handle = {}", conn.link_spec, conn.status, conn.handle);
+  btif_hh_cb.pending_connections.remove(conn.link_spec);
+
+  if (conn.status != BTA_HH_OK) {
+    btif_dm_hh_open_failed(&conn.link_spec.addrt.bda);
+    btif_hh_device_t* p_dev = btif_hh_find_dev_by_link_spec(conn.link_spec);
+    if (p_dev != nullptr) {
+      btif_hh_stop_vup_timer(p_dev->link_spec);
+      p_dev->dev_status = hh_get_state_on_disconnect(p_dev->link_spec);
+    }
+    hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
+    return;
+  }
+
+  if (btif_hh_find_connected_dev_by_handle(conn.handle) == nullptr) {
+    log::error("Cannot find device with handle {}, device: {}", conn.handle, conn.link_spec);
+    hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
+    return;
+  }
+
+  /* Initialize device driver */
+  if (!bta_hh_co_open(conn.handle, conn.sub_class, conn.attr_mask, conn.app_id, conn.link_spec)) {
+    log::warn("Failed to find the uhid driver");
+    hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
+    return;
+  }
+
+  log::info("Found device, getting dscp info for handle {}, device {}", conn.handle,
+            conn.link_spec);
+  hh_connect_complete(conn, BTHH_CONN_STATE_CONNECTED);
   BTA_HhGetDscpInfo(conn.handle);
 }
 
@@ -1019,7 +1084,7 @@ bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec) {
       BTA_HhSendCtrl(p_dev->dev_handle, BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG);
     } else {
       log::info("Virtual unplug not supported, disconnecting device: {}", link_spec);
-      BTA_HhClose(p_dev->dev_handle);
+      BTA_HhClose(p_dev->dev_handle, false);
     }
     return BT_STATUS_SUCCESS;
   }
@@ -1144,7 +1209,7 @@ static void btif_hh_disconnect(const tAclLinkSpec& link_spec) {
     return;
   }
   log::debug("Disconnect and close request for HID device:{}", link_spec);
-  BTA_HhClose(p_dev->dev_handle);
+  BTA_HhClose(p_dev->dev_handle, hh_connection_allowed(link_spec));
 }
 
 /*******************************************************************************
