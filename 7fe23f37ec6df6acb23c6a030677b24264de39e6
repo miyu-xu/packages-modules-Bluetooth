@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7a92d2e_0ca6abc2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 5274,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T18:16:51Z",
+      "side": 1,
+      "message": "Is this always true because of `mGroupDescriptorsView.containsKey(groupId)` line 5256 ?\n\nOr can the map contains INVALID group id ?",
+      "range": {
+        "startLine": 5274,
+        "startChar": 24,
+        "endLine": 5274,
+        "endChar": 61
+      },
+      "revId": "7fe23f37ec6df6acb23c6a030677b24264de39e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e252492_02aa4c4d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T18:16:51Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1446,
+        "startChar": 0,
+        "endLine": 1446,
+        "endChar": 64
+      },
+      "revId": "7fe23f37ec6df6acb23c6a030677b24264de39e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d54c83e_86a278b0",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T18:16:51Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1479,
+        "startChar": 0,
+        "endLine": 1479,
+        "endChar": 64
+      },
+      "revId": "7fe23f37ec6df6acb23c6a030677b24264de39e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
