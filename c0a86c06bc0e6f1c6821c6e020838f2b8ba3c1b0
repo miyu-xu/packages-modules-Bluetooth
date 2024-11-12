@@ -33,6 +33,24 @@
       "message": "this seems to be not related to the patch.",
       "revId": "c0a86c06bc0e6f1c6821c6e020838f2b8ba3c1b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b33fcb9f_2e3bf484",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-12T15:10:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ffad40e_1971902c",
+      "revId": "c0a86c06bc0e6f1c6821c6e020838f2b8ba3c1b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
