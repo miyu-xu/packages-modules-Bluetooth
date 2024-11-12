@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5256e106_3bdc7bbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-12T10:34:15Z",
+      "side": 1,
+      "message": "The broadcast is fired from this CL:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3284434/17/android/app/src/com/android/bluetooth/btservice/RemoteDevices.java#1454\n\nIt\u0027s wired through Bluetooth stack in some already merged CLs.\n\nThe goal is so that any application or system service can receive a broadcast and know what is the encryption status of Bluetooth conection.\nFor Bonded devices, this would be fired right after connection. For non bonded devices, it would be fired if pairing is triggered.",
+      "parentUuid": "2f0f267a_2a6f98e0",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14
