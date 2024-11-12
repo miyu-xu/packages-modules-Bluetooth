@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d3eb681_379b2129",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 5281,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-12T08:48:32Z",
+      "side": 1,
+      "message": "\u003e Why are we checking mActiveAudioInDevice !\u003d null ?\n\nInitial idea was to update this monitoring input device only when it is set some, but removing this should not change behavior since updateActiveDevices will handle both cases.\n\nSo I remove it and apply suggested change.",
+      "parentUuid": "ea800c8c_e4ba86a7",
+      "range": {
+        "startLine": 5281,
+        "startChar": 28,
+        "endLine": 5281,
+        "endChar": 48
+      },
+      "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44651b38_d4769579",
@@ -72,6 +96,30 @@
       "writtenOn": "2024-11-08T20:16:02Z",
       "side": 1,
       "message": "I don\u0027t think you should throw.\n\nas user if I do:\n\n```\nif (bluetoothisEnabled()) {\n  setBroadcastToUnicastFallbackGroup()\n}\n```\n\nNothing prevent the bluetooth from being shutdown in between.\n\nThis is the same case as the catch on the remote exception.\n\nI see that there are other occurence in this file, I believe they should be fix.\n\nbut that can be do in a follow-up",
+      "range": {
+        "startLine": 1461,
+        "startChar": 22,
+        "endLine": 1461,
+        "endChar": 43
+      },
+      "revId": "283e50298613ecdbd179403d817ddb49a36e3ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3d0894c_ac91a489",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-12T08:48:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "44651b38_d4769579",
       "range": {
         "startLine": 1461,
         "startChar": 22,
