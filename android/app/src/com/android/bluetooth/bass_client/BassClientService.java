@@ -28,6 +28,7 @@ import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeriphe
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastResyncHelper;
 import static com.android.bluetooth.flags.Flags.leaudioSortScansToSyncByFails;
+import static com.android.bluetooth.flags.Flags.leaudioStopUpdatedToNotAvailableContextStream;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
@@ -1159,8 +1160,12 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        boolean isAssistantActive =
-                areReceiversReceivingOnlyExternalBroadcast(getConnectedDevices());
+        boolean isAssistantActive;
+        if (leaudioStopUpdatedToNotAvailableContextStream()) {
+            isAssistantActive = hasPrimaryDeviceManagedExternalBroadcast();
+        } else {
+            isAssistantActive = areReceiversReceivingOnlyExternalBroadcast(getConnectedDevices());
+        }
 
         if (isAssistantActive) {
             /* Assistant become active */
@@ -3959,6 +3964,37 @@ public class BassClientService extends ProfileService {
                     }
                 }
             }
+        }
+
+        return false;
+    }
+
+    public boolean hasPrimaryDeviceManagedExternalBroadcast() {
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+
+        if (leAudioService == null) {
+            Log.e(TAG, "no LeAudioService");
+            return false;
+        }
+
+        for (BluetoothDevice device : getConnectedDevices()) {
+            if (!leAudioService.isPrimaryDevice(device)) {
+                continue;
+            }
+
+            Map<Integer, BluetoothLeBroadcastMetadata> entry = mBroadcastMetadataMap.get(device);
+
+            /* null means that this source was not added or modified by assistant */
+            if (entry == null) {
+                break;
+            }
+
+            /* Assistant manages some external broadcast */
+            if (entry.values().stream().anyMatch(e -> !isLocalBroadcast(e))) {
+                return true;
+            }
+
+            break;
         }
 
         return false;
