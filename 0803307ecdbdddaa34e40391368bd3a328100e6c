@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c83e29d_33bdc949",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-11-12T07:32:16Z",
+      "side": 1,
+      "message": "Gentle ping",
+      "parentUuid": "6ef2bc7a_c48cdedb",
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43d9dc7d_33efdb05",
         "filename": "system/stack/btm/btm_ble_addr.cc",
         "patchSetId": 5
