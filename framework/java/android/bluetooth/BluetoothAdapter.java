@@ -3569,14 +3569,10 @@ public final class BluetoothAdapter {
     }
 
     /**
-     * Get the profile proxy object associated with the profile.
+     * same as {@link #getProfileProxy(Context, int, Executor, BluetoothProfile.ServiceListener)}
+     * with the application main looper as an executor
      *
-     * <p> The ServiceListener's methods will be invoked on the application's main looper
-     *
-     * @param context Context of the application
-     * @param listener The service listener for connection callbacks.
-     * @param profile The Bluetooth profile to listen for status change
-     * @return true on success, false on error
+     * @see #getProfileProxy(Context, int, Executor, BluetoothProfile.ServiceListener)
      */
     @SuppressLint({
         "AndroidFrameworkRequiresPermission",
@@ -3597,14 +3593,27 @@ public final class BluetoothAdapter {
             throw new SecurityException("Need BLUETOOTH permission");
         }
 
-        return getProfileProxy(context, listener, profile, mMainHandler::post);
+        return getProfileProxy(context, profile, mMainHandler::post, listener);
     }
 
-    private boolean getProfileProxy(
+    /**
+     * Get the profile proxy object associated with the profile.
+     *
+     * <p>The ServiceListener's methods will be invoked on the specified executor
+     *
+     * @param context Context of the application
+     * @param listener The service listener for connection callbacks.
+     * @param profile The Bluetooth profile to listen for status change
+     * @param executor an {@link Executor} to execute the ServiceListener callbacks
+     * @return true on success, false on error
+     */
+    @FlaggedApi(Flags.FLAG_GET_PROFILE_USE_LOCK_API)
+    @RequiresNoPermission
+    public boolean getProfileProxy(
             @NonNull Context context,
-            @NonNull BluetoothProfile.ServiceListener listener,
             int profile,
-            @NonNull @CallbackExecutor Executor executor) {
+            @NonNull @CallbackExecutor Executor executor,
+            @NonNull BluetoothProfile.ServiceListener listener) {
         requireNonNull(context);
         requireNonNull(listener);
         requireNonNull(executor);
