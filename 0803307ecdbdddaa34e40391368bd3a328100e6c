@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "445fa755_defdd3b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-11-12T11:33:25Z",
+      "side": 1,
+      "message": "Hi Hyondo, thanks for the reminder, yep I agree with you, waiting on @siyuanh@google.com feedback 😊",
+      "parentUuid": "5c83e29d_33bdc949",
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43d9dc7d_33efdb05",
         "filename": "system/stack/btm/btm_ble_addr.cc",
         "patchSetId": 5
@@ -145,6 +163,30 @@
           ]
         }
       ],
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184c4e61_8899f500",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-11-12T11:33:25Z",
+      "side": 1,
+      "message": "Yep that could be done, will update that shortly.",
+      "parentUuid": "43d9dc7d_33efdb05",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 23
+      },
       "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
