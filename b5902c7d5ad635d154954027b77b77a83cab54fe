@@ -16,6 +16,24 @@
       "message": "This is a pretty large API surface. Is there a design doc I can review?",
       "revId": "b5902c7d5ad635d154954027b77b77a83cab54fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58d2794_cb0e0cea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T08:08:04Z",
+      "side": 1,
+      "message": "Hi Andrew,\n\nThere is a bluedoc here with a small section that list the APIs exposed. The part about the api should be up to date.\nhttps://docs.google.com/document/d/1LfQ1UMZEcuP4RF33Nq-bk2TKaVTI1Ib6V4zcHLwcA-E/edit?pli\u003d1\u0026resourcekey\u003d0-iezUoqE5BgTQm43kKJ4XSw\u0026tab\u003dt.0#heading\u003dh.xzptrog8pyxf\n\nTL:DR;\nThis CL is exposing Audio Input control, in order to manage the ambient volume of Hearing aid device directly from the os settings.\n\n---\n\nThe design around the API try to follow the bluetooth AICS specification as much as possible (on the naming and on the control given).\n\nThe VolumeControlProfile(VCP) can expose some AICS instances that correspond to a specific audio input, for example on an HearingAid, this could be the ambient sound, but also the telecoil (a broadcast mechanism for hearing devices).\nThen each AICS give some settings information and control in order to change the value of the gain (what is the dB unit use, the minimal/maximal value, the status, etc...)\n\nSome useful link if you need to dig deeper:\nAICS spec: https://www.bluetooth.com/specifications/specs/aics-1-0/\nVCP spec: https://www.bluetooth.com/specifications/specs/vcp-1-0/\n\nIf this is still a bit too much, feel free to set a slot in my calendar so we can go over them",
+      "parentUuid": "b6a36704_08d7e474",
+      "revId": "b5902c7d5ad635d154954027b77b77a83cab54fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
