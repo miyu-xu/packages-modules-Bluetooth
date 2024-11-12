@@ -65,6 +65,14 @@ flag {
 }
 
 flag {
+    name: "get_profile_use_lock_api"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Instead of bloating the main thread, offer an alternative with a provided executor"
+    bug: "378576731"
+}
+
+flag {
     name: "support_remote_device_metadata"
     is_exported: true
     namespace: "bluetooth"
