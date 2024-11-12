@@ -74,7 +74,7 @@ static void bta_sys_event(BT_HDR_RIGID* p_msg) {
   uint8_t id = (uint8_t)(p_msg->event >> 8);
 
   /* verify id and call subsystem event handler */
-  if ((id < BTA_ID_MAX) && (bta_sys_cb.reg[id] != NULL)) {
+  if ((id < BTA_ID_MAX) && bta_sys_cb.is_reg[id] && (bta_sys_cb.reg[id] != NULL)) {
     freebuf = (*bta_sys_cb.reg[id]->evt_hdlr)(p_msg);
   } else {
     log::info("Ignoring receipt of unregistered event id:{}[{}]",
