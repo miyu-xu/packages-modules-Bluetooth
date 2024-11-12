@@ -41,7 +41,7 @@ constexpr uint8_t CAPABILITY_CSIS = 0x04;
 constexpr uint8_t CAPABILITY_RESERVED = 0xF8;
 
 // Number of retry for phy update. This targets to reduce phy update collision.
-const static uint8_t kPhyUpdateRetryLimit = 5;
+static const uint8_t kPhyUpdateRetryLimit = 5;
 
 /** Implementations of HearingAid will also implement this interface */
 class HearingAidAudioReceiver {

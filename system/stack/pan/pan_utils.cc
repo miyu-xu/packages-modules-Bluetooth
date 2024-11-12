@@ -47,12 +47,11 @@ static const uint8_t pan_proto_elem_data[] = {
         0x00, /* UUID for L2CAP - 0x0100 */
         0x09, 0x00,
         0x0F,       /* PSM for BNEP - 0x000F */
-        0x35, 0x0E, /* data element seqence for BNEP descriptor */
+        0x35, 0x0E, /* data element sequence for BNEP descriptor */
         0x19, 0x00,
         0x0F, /* UUID for BNEP - 0x000F */
         0x09, 0x01,
-        0x00,       /* BNEP specific parameter 0 -- Version of BNEP = version 1 = 0x0001
-                     */
+        0x00,       /* BNEP specific parameter 0 -- Version of BNEP = version 1 = 0x0001 */
         0x35, 0x06, /* BNEP specific parameter 1 -- Supported network packet type list */
         0x09, 0x08,
         0x00, /* network packet type IPv4 = 0x0800 */

@@ -217,8 +217,7 @@ struct tBTM_INQUIRY_VAR_ST {
   uint16_t per_min_delay; /* Current periodic minimum delay */
   uint16_t per_max_delay; /* Current periodic maximum delay */
   /* inquiry that has been cancelled*/
-  uint8_t inqfilt_type; /* Contains the inquiry filter type (BD ADDR, COD, or
-                           Clear) */
+  uint8_t inqfilt_type; /* Contains the inquiry filter type (BD ADDR, COD, or Clear) */
 
 #define BTM_INQ_INACTIVE_STATE 0
 #define BTM_INQ_ACTIVE_STATE 3 /* Actual inquiry or periodic inquiry is in progress */

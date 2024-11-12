@@ -59,8 +59,8 @@ struct callback_data_t {
   virtual std::string ToString() const = 0;
 
 protected:
-  callback_data_t(const char* name, Callback callback_type_)
-      : name_(name), callback_type_(callback_type_), timestamp_ms_(GetTimestampMs()) {}
+  callback_data_t(const char* name, Callback callback_type)
+      : name_(name), callback_type_(callback_type), timestamp_ms_(GetTimestampMs()) {}
 
 private:
   const char* name_;

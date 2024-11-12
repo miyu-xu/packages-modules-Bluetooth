@@ -246,15 +246,13 @@ typedef struct {
 
 /* DI control block */
 typedef struct {
-  uint8_t di_num;                     /* total local DI record number */
-  uint32_t di_handle[BTA_DI_NUM_MAX]; /* local DI record handle, the first one
-                                         is primary record */
+  uint8_t di_num;                      // total local DI record number
+  uint32_t di_handle[BTA_DI_NUM_MAX];  // local DI record handle, the first one is primary record
 } tBTA_DM_DI_CB;
 
 typedef struct {
-  uint16_t page_timeout; /* timeout for page in slots */
-  bool avoid_scatter;    /* true to avoid scatternet when av is streaming (be the
-                            central) */
+  uint16_t page_timeout;  // timeout for page in slots
+  bool avoid_scatter;     // true to avoid scatternet when av is streaming (be the central)
 } tBTA_DM_CFG;
 
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];

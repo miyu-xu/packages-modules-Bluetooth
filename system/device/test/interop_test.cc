@@ -67,7 +67,7 @@ A0:E9:DB = Address_Based                                                        
 Motorola Keyboard KZ500 = Name_Based                                                         \n\
 0x22b8-0x093D = Vndr_Prdt_Based                                                              \n\
                                                                                              \n\
-# some remote hid devices cannot work properly as they load special hid usb driver in kernel,\n\
+# some remote hid devices cannot work properly as they load special hid usb driver in kernel \n\
 # so modify their vid/pid so that generic hid driver are loaded.                             \n\
 [INTEROP_CHANGE_HID_VID_PID]                                                                 \n\
 CK87BT = Name_Based                                                                          \n\
@@ -85,7 +85,7 @@ CK87BT = Name_Based                                                             
                                                                                              \n\
 # Devices requiring this workaround do not handle SSR max latency values as mentioned,       \n\
 # in their SDP HID Record properly and lead to connection timeout or lags. To prevent        \n\
-# such scenarios, device requiring this workaorund need to use specific ssr max latency      \n\
+# such scenarios, device requiring this workaround need to use specific ssr max latency      \n\
 # values.                                                                                    \n\
 [INTEROP_UPDATE_HID_SSR_MAX_LAT]                                                             \n\
 00:1B:DC-0x0012 = SSR_Max_Lat_Based                                                          \n\

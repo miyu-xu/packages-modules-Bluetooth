@@ -221,7 +221,7 @@ TEST_F(StackGattTest, gatt_status_text) {
   ASSERT_STREQ(unknown.c_str(), gatt_status_text(static_cast<tGATT_STATUS>(0xfc)).c_str());
 }
 
-const static std::map<uint8_t, uint16_t> gatt_min_value_cmd_size{
+static const std::map<uint8_t, uint16_t> gatt_min_value_cmd_size{
         {GATT_RSP_READ_BY_TYPE, 4},  // op_code (1) + pair_len (1) + handle (2)
         {GATT_RSP_READ_BLOB, 1},     // op_code (1)
         {GATT_RSP_READ, 1},

@@ -26,7 +26,7 @@ static const std::filesystem::path kConfigFile =
 static const char* CONFIG_FILE = kConfigFile.c_str();
 static const char CONFIG_FILE_CONTENT[] =
         "                                                                                \n\
-first_key=value                                                                      \n\
+first_key = value                                                                    \n\
                                                                                      \n\
 # Device ID (DID) configuration                                                      \n\
 [DID]                                                                                \n\

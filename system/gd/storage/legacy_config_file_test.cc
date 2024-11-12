@@ -129,7 +129,7 @@ TEST(LegacyConfigFileTest, write_test) {
 
 static const std::string kConfigWithDuplicateSectionAndKey =
         "                                                                                \n\
-first_key=value                                                                      \n\
+first_key = value                                                                    \n\
                                                                                      \n\
 # Device ID (DID) configuration                                                      \n\
 [DID]                                                                                \n\

@@ -70,15 +70,12 @@ typedef uint16_t tBTA_HF_CLIENT_PEER_FEAT;
 
 /* HFP HF extended call handling - masks not related to any spec */
 #define BTA_HF_CLIENT_CHLD_REL 0x00000001 /* 0  Release waiting call or held calls */
-#define BTA_HF_CLIENT_CHLD_REL_ACC                                             \
-  0x00000002 /* 1  Release active calls and accept other (waiting or held) cal \
-              */
+#define BTA_HF_CLIENT_CHLD_REL_ACC \
+  0x00000002 /* 1  Release active calls and accept other (waiting or held) cal */
 #define BTA_HF_CLIENT_CHLD_REL_X 0x00000004    /* 1x Release x call*/
 #define BTA_HF_CLIENT_CHLD_HOLD_ACC 0x00000008 /* 2  Active calls on hold and accept other call */
 #define BTA_HF_CLIENT_CHLD_PRIV_X 0x00000010   /* 2x Active multiparty call on hold except call x */
-#define BTA_HF_CLIENT_CHLD_MERGE                                                     \
-  0x00000020                                       /* 3  Add held call to multiparty \
-                                                    */
+#define BTA_HF_CLIENT_CHLD_MERGE 0x00000020    /* 3  Add held call to multiparty */
 #define BTA_HF_CLIENT_CHLD_MERGE_DETACH 0x00000040 /* 4  Add held call to multiparty */
 
 typedef uint16_t tBTA_HF_CLIENT_CHLD_FEAT;
@@ -115,11 +112,9 @@ typedef uint8_t tBTA_HF_CLIENT_AT_RESULT_TYPE;
 #define BTA_HF_CLIENT_CLCC_EVT 16           /* current call event */
 #define BTA_HF_CLIENT_CNUM_EVT 17           /* subscriber information event */
 #define BTA_HF_CLIENT_BTRH_EVT 18           /* bluetooth response and hold event */
-#define BTA_HF_CLIENT_BSIR_EVT                                                      \
-  19                                     /* in-band ring tone setting changed event \
-                                          */
-#define BTA_HF_CLIENT_BINP_EVT 20        /* binp number event */
-#define BTA_HF_CLIENT_RING_INDICATION 21 /* HF Client ring indication */
+#define BTA_HF_CLIENT_BSIR_EVT 19           /* in-band ring tone setting changed event */
+#define BTA_HF_CLIENT_BINP_EVT 20           /* binp number event */
+#define BTA_HF_CLIENT_RING_INDICATION 21    /* HF Client ring indication */
 
 #define BTA_HF_CLIENT_UNKNOWN_EVT 22        /* Unknown or vendor specific Event */
 #define BTA_HF_CLIENT_AUDIO_LC3_OPEN_EVT 23 /* Audio connection with LC3 codec open */
@@ -278,10 +273,10 @@ typedef void(tBTA_HF_CLIENT_CBACK)(tBTA_HF_CLIENT_EVT event, tBTA_HF_CLIENT* p_d
  *
  * Function         BTA_HfClientEnable
  *
- * Description      Enable the HF CLient service. When the enable
+ * Description      Enable the HF Client service. When the enable
  *                  operation is complete the callback function will be
  *                  called with a BTA_HF_CLIENT_ENABLE_EVT. This function must
- *                  be called before other function in the HF CLient API are
+ *                  be called before other function in the HF Client API are
  *                  called.
  *
  * Returns          BTA_SUCCESS if OK, BTA_FAILURE otherwise.

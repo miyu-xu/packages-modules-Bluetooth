@@ -28,7 +28,7 @@ namespace bluetooth::le_audio {
 using bluetooth::le_audio::ConnectionState;
 using bluetooth::le_audio::types::LeAudioContextType;
 
-const static metrics::ClockTimePoint kInvalidTimePoint{};
+static const metrics::ClockTimePoint kInvalidTimePoint{};
 
 MetricsCollector* MetricsCollector::instance = nullptr;
 
@@ -40,7 +40,7 @@ inline int64_t get_timedelta_nanos(const metrics::ClockTimePoint& t1,
   return std::abs(std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t2).count());
 }
 
-const static std::unordered_map<LeAudioContextType, LeAudioMetricsContextType> kContextTypeTable = {
+static const std::unordered_map<LeAudioContextType, LeAudioMetricsContextType> kContextTypeTable = {
         {LeAudioContextType::UNINITIALIZED, LeAudioMetricsContextType::INVALID},
         {LeAudioContextType::UNSPECIFIED, LeAudioMetricsContextType::UNSPECIFIED},
         {LeAudioContextType::CONVERSATIONAL, LeAudioMetricsContextType::COMMUNICATION},
