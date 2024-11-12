@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db76bbfb_7312b54b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-12T15:31:02Z",
+      "side": 1,
+      "message": "Can be simplified by:\n\n```\nreturn mInitialized ? buildRemoteDeviceInfoProto(device, false) : null;\n```",
+      "range": {
+        "startLine": 509,
+        "startChar": 7,
+        "endLine": 517,
+        "endChar": 42
+      },
+      "revId": "649439209d767555def2a8e13e0699fdbb353687",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e503ee_80ee1ad3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-12T15:31:02Z",
+      "side": 1,
+      "message": "Can be simplified by:\n\n```\nreturn mInitialized \n       ? buildRemoteDeviceInfoProto(device, includeMedicalDevices) \n       : null;\n```",
+      "range": {
+        "startLine": 530,
+        "startChar": 8,
+        "endLine": 536,
+        "endChar": 42
+      },
+      "revId": "649439209d767555def2a8e13e0699fdbb353687",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
