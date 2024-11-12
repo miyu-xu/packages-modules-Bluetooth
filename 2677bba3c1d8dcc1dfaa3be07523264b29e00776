@@ -1,5 +1,41 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86f2b95c_29966ae5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-12T21:20:59Z",
+      "side": 1,
+      "message": "@shiheric@google.com this is causing a regression issue while we\u0027re in Broadcast, b/378613666. \nWe might need to do something like this. Could you please help to take a look with some solution?",
+      "fixSuggestions": [
+        {
+          "fixId": "0c7e3e8a_a0c02f3c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 793,
+                "startChar": 0,
+                "endLine": 794,
+                "endChar": 0
+              },
+              "replacement": "            if (device \u003d\u003d null\n                    \u0026\u0026 !Utils.isDualModeAudioEnabled()\n                    \u0026\u0026 !isBroadcastingAudio()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2677bba3c1d8dcc1dfaa3be07523264b29e00776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
