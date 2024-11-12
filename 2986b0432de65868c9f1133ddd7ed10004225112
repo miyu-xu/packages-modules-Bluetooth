@@ -33,6 +33,24 @@
       "message": "Any follow-up plan to build a corresponding test case?",
       "revId": "2986b0432de65868c9f1133ddd7ed10004225112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c770bc34_a2a1be01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-12T21:03:07Z",
+      "side": 1,
+      "message": "I wrote better commit message with detailed description.",
+      "parentUuid": "d07b30bb_78bacbc8",
+      "revId": "2986b0432de65868c9f1133ddd7ed10004225112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
