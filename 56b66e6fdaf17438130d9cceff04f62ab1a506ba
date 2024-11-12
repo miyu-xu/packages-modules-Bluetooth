@@ -117,6 +117,30 @@
       },
       "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db0d36f_d346a162",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T00:06:42Z",
+      "side": 1,
+      "message": "\u003e Did you mean mAdapterService.init() is not being called?\n\nNo I meant `MetricsLogger.getInstance().init(this, mRemoteDevices)` is not called\n\nThe last patchset should also fix the issue.",
+      "parentUuid": "408ed6a9_e3da8a2b",
+      "range": {
+        "startLine": 701,
+        "startChar": 30,
+        "endLine": 701,
+        "endChar": 45
+      },
+      "revId": "56b66e6fdaf17438130d9cceff04f62ab1a506ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
