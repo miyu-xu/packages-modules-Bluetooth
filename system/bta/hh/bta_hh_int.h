@@ -87,6 +87,11 @@ typedef struct {
 
 typedef struct {
   BT_HDR_RIGID hdr;
+  bool reconnect_allowed; // Allow reconnection after disconnection for HOGP
+} tBTA_HH_API_CLOSE;
+
+typedef struct {
+  BT_HDR_RIGID hdr;
   tAclLinkSpec link_spec;
   tBTA_HH_PROTO_MODE mode;
 } tBTA_HH_API_CONN;
@@ -124,6 +129,7 @@ typedef struct {
 /* union of all event data types */
 typedef union {
   BT_HDR_RIGID hdr;
+  tBTA_HH_API_CLOSE api_close;
   tBTA_HH_API_CONN api_conn;
   tBTA_HH_CMD_DATA api_sndcmd;
   tBTA_HH_CBACK_DATA hid_cback;
@@ -225,6 +231,7 @@ typedef struct {
   bool security_pending;
 
   tSDP_DISCOVERY_DB* p_disc_db;
+  bool reconnect_allowed; /* Allow reconnection after HOGP disconnection */
 } tBTA_HH_DEV_CB;
 
 /******************************************************************************
@@ -294,7 +301,7 @@ tBTA_HH_STATUS bta_hh_read_ssr_param(const tAclLinkSpec& link_spec, uint16_t* p_
 void bta_hh_le_enable(void);
 void bta_hh_le_deregister(void);
 void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb);
-void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb);
+void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb, bool reconnect_allowed);
 void bta_hh_le_get_dscp_act(tBTA_HH_DEV_CB* p_cb);
 void bta_hh_le_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data);
 uint8_t bta_hh_le_add_device(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_MAINT_DEV* p_dev_info);
