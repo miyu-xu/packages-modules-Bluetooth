@@ -16,6 +16,23 @@
       "message": "I can only +1 but should be considered as +2, thanks Jakub!",
       "revId": "2986b0432de65868c9f1133ddd7ed10004225112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07b30bb_78bacbc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-12T19:17:47Z",
+      "side": 1,
+      "message": "Any follow-up plan to build a corresponding test case?",
+      "revId": "2986b0432de65868c9f1133ddd7ed10004225112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
