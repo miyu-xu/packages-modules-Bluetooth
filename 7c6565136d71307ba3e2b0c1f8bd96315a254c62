@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf29e6bf_e3fdf21c",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-12T19:06:28Z",
+      "side": 1,
+      "message": "re-opening since we will need to change that in order to merge this CL.\nWe should close this comment once b/378557006 is solved",
+      "parentUuid": "69fde2c7_63c6bbfd",
+      "range": {
+        "startLine": 1307,
+        "startChar": 64,
+        "endLine": 1307,
+        "endChar": 80
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85f9eed2_d03ae54c",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
         "patchSetId": 2
