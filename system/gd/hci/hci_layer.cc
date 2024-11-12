@@ -39,6 +39,8 @@
 #include "packet/raw_builder.h"
 #include "storage/storage_module.h"
 
+std::string __bug_logs;
+
 namespace bluetooth {
 namespace hci {
 using bluetooth::common::BindOn;
@@ -263,8 +265,10 @@ struct HciLayer::impl {
 
       (*command_queue_.front().GetCallback<TResponse>())(std::move(response_view));
     } else {
+      __bug_logs = fmt::format("{} {} {:04x}", __func__, __LINE__, op_code);
       (*command_queue_.front().GetCallback<CommandStatusOrCompleteView>())(
               std::move(response_view));
+      __bug_logs = fmt::format("{} {}", __func__, __LINE__);
     }
 
 #ifdef TARGET_FLOSS
