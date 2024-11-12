@@ -452,6 +452,12 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
   /// Generates an address for the advertiser
   AddressWithType new_advertiser_address(AdvertiserId id) {
+    if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+        controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
+      log::info("Support RPA offload, set adv addr type NONRESOLVABLE_RANDOM");
+      advertising_sets_[id].address_type = AdvertiserAddressType::NONRESOLVABLE_RANDOM;
+    }
+
     switch (advertising_sets_[id].address_type) {
       case AdvertiserAddressType::PUBLIC:
         if (le_address_manager_->GetAddressPolicy() ==
@@ -659,41 +665,44 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       // or non-rpa requested by leaudio(since static random addresses don't rotate)
       if (advertising_sets_[id].address_type != AdvertiserAddressType::PUBLIC &&
           !leaudio_requested_nrpa) {
-        // start timer for random address
-        log::info("Scheduling address rotation for advertiser_id={}", id);
-        if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
-          advertising_sets_[id].address_rotation_wake_alarm_ =
-                  std::make_unique<os::Alarm>(module_handler_, true);
-          advertising_sets_[id].address_rotation_non_wake_alarm_ =
-                  std::make_unique<os::Alarm>(module_handler_, false);
+        if (!com::android::bluetooth::flags::rpa_offload_to_bt_controller() ||
+          !controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
+          // start timer for random address
+          log::info("Scheduling address rotation for advertiser_id={}", id);
+          if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation()) {
+            advertising_sets_[id].address_rotation_wake_alarm_ =
+                    std::make_unique<os::Alarm>(module_handler_, true);
+            advertising_sets_[id].address_rotation_non_wake_alarm_ =
+                    std::make_unique<os::Alarm>(module_handler_, false);
 
-          std::string client_name = "advertising_set_" + std::to_string(id);
-          auto privateAddressIntervalRange =
-                  le_address_manager_->GetNextPrivateAddressIntervalRange(client_name);
+            std::string client_name = "advertising_set_" + std::to_string(id);
+            auto privateAddressIntervalRange =
+                    le_address_manager_->GetNextPrivateAddressIntervalRange(client_name);
 
-          advertising_sets_[id].address_rotation_wake_alarm_->Schedule(
-                  common::BindOnce([]() {
-                    log::info("deadline wakeup in create_extended_advertiser_with_id");
-                  }),
-                  privateAddressIntervalRange.max);
-          advertising_sets_[id].address_rotation_non_wake_alarm_->Schedule(
-                  common::BindOnce(&impl::set_advertising_set_random_address_on_timer,
-                                   common::Unretained(this), id),
-                  privateAddressIntervalRange.min);
+            advertising_sets_[id].address_rotation_wake_alarm_->Schedule(
+                    common::BindOnce([]() {
+                      log::info("deadline wakeup in create_extended_advertiser_with_id");
+                    }),
+                    privateAddressIntervalRange.max);
+            advertising_sets_[id].address_rotation_non_wake_alarm_->Schedule(
+                    common::BindOnce(&impl::set_advertising_set_random_address_on_timer,
+                                    common::Unretained(this), id),
+                    privateAddressIntervalRange.min);
 
-          // Update the expected range here.
-          auto now = std::chrono::system_clock::now();
-          advertising_sets_[id].address_rotation_interval_min.emplace(
-                  now + privateAddressIntervalRange.min);
-          advertising_sets_[id].address_rotation_interval_max.emplace(
-                  now + privateAddressIntervalRange.max);
-        } else {
-          advertising_sets_[id].address_rotation_wake_alarm_ =
-                  std::make_unique<os::Alarm>(module_handler_);
-          advertising_sets_[id].address_rotation_wake_alarm_->Schedule(
-                  common::BindOnce(&impl::set_advertising_set_random_address_on_timer,
-                                   common::Unretained(this), id),
-                  le_address_manager_->GetNextPrivateAddressIntervalMs());
+            // Update the expected range here.
+            auto now = std::chrono::system_clock::now();
+            advertising_sets_[id].address_rotation_interval_min.emplace(
+                    now + privateAddressIntervalRange.min);
+            advertising_sets_[id].address_rotation_interval_max.emplace(
+                    now + privateAddressIntervalRange.max);
+          } else {
+            advertising_sets_[id].address_rotation_wake_alarm_ =
+                    std::make_unique<os::Alarm>(module_handler_);
+            advertising_sets_[id].address_rotation_wake_alarm_->Schedule(
+                    common::BindOnce(&impl::set_advertising_set_random_address_on_timer,
+                                    common::Unretained(this), id),
+                    le_address_manager_->GetNextPrivateAddressIntervalMs());
+          }
         }
       }
     }
@@ -903,6 +912,13 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     // based on logic in new_advertiser_address
     auto own_address_type = static_cast<OwnAddressType>(
             advertising_sets_[advertiser_id].current_address.GetAddressType());
+
+    if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+        controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2) &&
+        own_address_type != OwnAddressType::PUBLIC_DEVICE_ADDRESS) {
+      log::info("Support RPA offload, , set own address type RESOLVABLE_OR_RANDOM_ADDRESS");
+      own_address_type = OwnAddressType::RESOLVABLE_OR_RANDOM_ADDRESS;
+    }
 
     switch (advertising_api_type_) {
       case (AdvertisingApiType::LEGACY): {
