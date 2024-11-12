@@ -31,6 +31,7 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public String getName();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getProfileConnectionState(int);
     method public boolean getProfileProxy(android.content.Context, android.bluetooth.BluetoothProfile.ServiceListener, int);
+    method @FlaggedApi("com.android.bluetooth.flags.get_profile_use_lock_api") public boolean getProfileProxy(@NonNull android.content.Context, int, @NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothProfile.ServiceListener);
     method public android.bluetooth.BluetoothDevice getRemoteDevice(String);
     method public android.bluetooth.BluetoothDevice getRemoteDevice(byte[]);
     method @NonNull public android.bluetooth.BluetoothDevice getRemoteLeDevice(@NonNull String, int);
