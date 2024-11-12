@@ -40,6 +40,30 @@
       ],
       "revId": "4ff9dccdff997c6c41534a43775991366ee955b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c8a6b7_e7d32dc7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-12T23:43:58Z",
+      "side": 1,
+      "message": "Only way I know `removeBond()` can fail is if the BT turned off (crashed?). Users must attempt to remove the device again if that happens.",
+      "parentUuid": "b89312e7_95bba264",
+      "range": {
+        "startLine": 1167,
+        "startChar": 16,
+        "endLine": 1167,
+        "endChar": 31
+      },
+      "revId": "4ff9dccdff997c6c41534a43775991366ee955b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
