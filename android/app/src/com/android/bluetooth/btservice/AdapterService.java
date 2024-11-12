@@ -3141,7 +3141,7 @@ public class AdapterService extends Service {
                 return false;
             }
             service.logUserBondResponse(
-                    device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_PIN_REPLIED);
+                    device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_PIN_REPLIED, source);
             Log.i(
                     TAG,
                     "setPin: device="
@@ -3180,7 +3180,7 @@ public class AdapterService extends Service {
                 return false;
             }
             service.logUserBondResponse(
-                    device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED);
+                    device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED, source);
             Log.i(
                     TAG,
                     "setPasskey: device="
@@ -3215,7 +3215,7 @@ public class AdapterService extends Service {
                 return false;
             }
             service.logUserBondResponse(
-                    device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED);
+                    device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED, source);
             Log.i(
                     TAG,
                     "setPairingConfirmation: device="
@@ -5658,9 +5658,20 @@ public class AdapterService extends Service {
         }
     }
 
-    void logUserBondResponse(BluetoothDevice device, boolean accepted, int event) {
+    void logUserBondResponse(
+            BluetoothDevice device, boolean accepted, int event, AttributionSource source) {
         final long token = Binder.clearCallingIdentity();
         try {
+            if (!accepted) {
+                MetricsLogger.getInstance()
+                        .logBluetoothEvent(
+                                device,
+                                BluetoothStatsLog
+                                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__USER_CONF_REQUEST,
+                                        BluetoothStatsLog
+                                                .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__FAIL,
+                                source.getUid());
+            }
             BluetoothStatsLog.write(
                     BluetoothStatsLog.BLUETOOTH_BOND_STATE_CHANGED,
                     obfuscateAddress(device),
