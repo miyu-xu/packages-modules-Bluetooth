@@ -588,6 +588,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c55b8eb_500c8830",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-13T11:44:55Z",
+      "side": 1,
+      "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
+      "parentUuid": "5ab778ce_ffef0031",
+      "range": {
+        "startLine": 456,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 0
+      },
+      "revId": "25e5095da69ea7b0f3437087ae5370fa550ae600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e17c782_1448d832",
@@ -648,6 +672,30 @@
       "writtenOn": "2024-11-08T23:53:04Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: Field QUALITY_REPORT_ID_ENERGY_MONITOR is a flagged API and should be inside an if (Flags.supportBluetoothQualityReportV6()) check (or annotate the surrounding method writeToParcel with @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPOR...\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    Field QUALITY_REPORT_ID_ENERGY_MONITOR is a flagged API and should be inside an if (Flags.supportBluetoothQualityReportV6()) check (or annotate the surrounding method writeToParcel with @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6) to transfer requirement to caller) [FlaggedApi]\n            } else if (id \u003d\u003d QUALITY_REPORT_ID_ENERGY_MONITOR) {\n                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P84295540/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 512,
+        "startChar": 0,
+        "endLine": 512,
+        "endChar": 0
+      },
+      "revId": "25e5095da69ea7b0f3437087ae5370fa550ae600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b011d7c2_c6b1b302",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-13T11:44:55Z",
+      "side": 1,
+      "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
+      "parentUuid": "a785681d_26348aed",
       "range": {
         "startLine": 512,
         "startChar": 0,
@@ -822,6 +870,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8936a89_5a1c00ba",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-13T11:44:55Z",
+      "side": 1,
+      "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
+      "parentUuid": "01b9bb41_7e183306",
+      "range": {
+        "startLine": 545,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 0
+      },
+      "revId": "25e5095da69ea7b0f3437087ae5370fa550ae600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16913d5f_44577e90",
@@ -986,6 +1058,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19bf2dbb_b74521d2",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-13T11:44:55Z",
+      "side": 1,
+      "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
+      "parentUuid": "c0655f0b_58bfc857",
+      "range": {
+        "startLine": 756,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 0
+      },
+      "revId": "25e5095da69ea7b0f3437087ae5370fa550ae600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e2200e_1a1a0a11",
@@ -1023,6 +1119,30 @@
       "side": 1,
       "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
       "parentUuid": "11e2200e_1a1a0a11",
+      "range": {
+        "startLine": 846,
+        "startChar": 0,
+        "endLine": 846,
+        "endChar": 54
+      },
+      "revId": "25e5095da69ea7b0f3437087ae5370fa550ae600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee778a6c_0650fb56",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-13T11:44:55Z",
+      "side": 1,
+      "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
+      "parentUuid": "5e24126b_bab3672e",
       "range": {
         "startLine": 846,
         "startChar": 0,
@@ -1093,6 +1213,30 @@
       "writtenOn": "2024-11-08T23:53:04Z",
       "side": 1,
       "message": "Please use Gemini to review and correct typos in your descriptions.",
+      "range": {
+        "startLine": 1123,
+        "startChar": 8,
+        "endLine": 1206,
+        "endChar": 11
+      },
+      "revId": "25e5095da69ea7b0f3437087ae5370fa550ae600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2df091_12d1d34e",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-13T11:44:55Z",
+      "side": 1,
+      "message": "Thanks, fixe the issue, separate the code by the if (Flags.supportBluetoothQualityReportV6()) condition.",
+      "parentUuid": "094dca67_222c5cc8",
       "range": {
         "startLine": 1123,
         "startChar": 8,
