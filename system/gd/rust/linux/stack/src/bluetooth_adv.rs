@@ -231,7 +231,7 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
 
         match val.discoverable {
             LeDiscMode::GeneralDiscoverable => {
-                props |= 0x04;
+                props |= 0x80;
             }
             _ => {}
         }
@@ -248,6 +248,8 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
             secondary_advertising_phy: val.secondary_phy.into(),
             scan_request_notification_enable: 0_u8, // false
             own_address_type: val.own_address_type as i8,
+            peer_address: RawAddress { address: [0; 6] },
+            peer_address_type: val.peer_address_type as i8,
         }
     }
 }
