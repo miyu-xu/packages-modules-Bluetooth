@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e62607d_870df6f0",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-13T10:04:20Z",
+      "side": 1,
+      "message": "Thanks, I didn\u0027t know that",
+      "parentUuid": "1d32cced_bfe996f9",
+      "range": {
+        "startLine": 204,
+        "startChar": 60,
+        "endLine": 204,
+        "endChar": 88
+      },
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca555106_7aca22b8",
         "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
         "patchSetId": 2
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6902ed2_e92031fb",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-13T10:04:20Z",
+      "side": 1,
+      "message": "I think it\u0027s possible here the controller replies with command status fail - In this case there won\u0027t be a disconnection event, so probably we would need to revert the state to \"connected\" to sync with the controller.",
+      "parentUuid": "ca555106_7aca22b8",
+      "range": {
+        "startLine": 212,
+        "startChar": 78,
+        "endLine": 212,
+        "endChar": 96
+      },
       "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
