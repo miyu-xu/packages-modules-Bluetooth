@@ -387,7 +387,7 @@ void bta_hh_hdl_failure(tBTA_HH_INT_EVT event, const tBTA_HH_DATA* p_data) {
     case BTA_HH_API_CLOSE_EVT:
       cback_event = BTA_HH_CLOSE_EVT;
       cback_data.dev_status.status = BTA_HH_ERR_HDL;
-      cback_data.dev_status.handle = (uint8_t)p_data->api_sndcmd.hdr.layer_specific;
+      cback_data.dev_status.handle = (uint8_t)p_data->api_close.hdr.layer_specific;
       break;
 
     default:

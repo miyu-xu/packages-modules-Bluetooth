@@ -233,7 +233,7 @@ static void uhid_ready_disconn_timeout(void* data) {
   int dev_handle = PTR_TO_INT(data);
 
   log::verbose("UHID ready disconn timeout evt");
-  BTA_HhClose(dev_handle);
+  BTA_HhClose(dev_handle, true);
 }
 
 static void uhid_on_open(btif_hh_uhid_t* p_uhid) {

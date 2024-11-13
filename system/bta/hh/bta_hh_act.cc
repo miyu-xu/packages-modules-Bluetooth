@@ -519,12 +519,12 @@ void bta_hh_api_disc_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     log::debug("Host initiating close to le device:{}", p_cb->link_spec);
-
-    bta_hh_le_api_disc_act(p_cb);
+    bool reconnect_allowed = p_data != nullptr ? p_data->api_close.reconnect_allowed : true;
+    bta_hh_le_api_disc_act(p_cb, reconnect_allowed);
 
   } else {
     const uint8_t hid_handle = (p_data != nullptr)
-                                       ? static_cast<uint8_t>(p_data->hdr.layer_specific)
+                                       ? static_cast<uint8_t>(p_data->api_close.hdr.layer_specific)
                                        : p_cb->hid_handle;
     tHID_STATUS status = HID_HostCloseDev(hid_handle);
     if (status != HID_SUCCESS) {

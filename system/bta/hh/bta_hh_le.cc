@@ -271,8 +271,8 @@ void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb) {
     return;
   }
 
+  p_cb->reconnect_allowed = true;
   bta_hh_cb.le_cb_index[BTA_HH_GET_LE_CB_IDX(p_cb->hid_handle)] = p_cb->index;  // Update index map
-
   BTA_GATTC_Open(bta_hh_cb.gatt_if, p_cb->link_spec.addrt.bda, BTM_BLE_DIRECT_CONNECTION, false);
 }
 
@@ -542,16 +542,18 @@ static void bta_hh_le_register_input_notif(tBTA_HH_DEV_CB* p_dev_cb, uint8_t pro
       if (register_ba && p_rpt->uuid == GATT_UUID_BATTERY_LEVEL) {
         BTA_GATTC_RegisterForNotifications(bta_hh_cb.gatt_if, p_dev_cb->link_spec.addrt.bda,
                                            p_rpt->char_inst_id);
-      } else if (proto_mode == BTA_HH_PROTO_BOOT_MODE) {
-        /* boot mode, deregister report input notification */
+      }
+      /* boot mode, deregister report input notification */
+      else if (proto_mode == BTA_HH_PROTO_BOOT_MODE) {
         if (p_rpt->uuid == GATT_UUID_HID_REPORT &&
             p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
           log::verbose("---> Deregister Report ID:{}", p_rpt->rpt_id);
           BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if, p_dev_cb->link_spec.addrt.bda,
                                                p_rpt->char_inst_id);
-        } else if (p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT ||
-                   /* register boot reports notification */
-                   p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) {
+        }
+        /* register boot reports notification */
+        else if (p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT ||
+                 p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) {
           log::verbose("<--- Register Boot Report ID:{}", p_rpt->rpt_id);
           BTA_GATTC_RegisterForNotifications(bta_hh_cb.gatt_if, p_dev_cb->link_spec.addrt.bda,
                                              p_rpt->char_inst_id);
@@ -1024,15 +1026,16 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* /* p_buf */)
       if (!bta_hh_le_set_protocol_mode(p_cb, p_cb->mode)) {
         bta_hh_le_open_cmpl(p_cb);
       }
-    } else {
-      /* start primary service discovery for HID service */
+    }
+    /* start primary service discovery for HID service */
+    else {
       log::verbose("Starting service discovery");
       bta_hh_le_pri_service_discovery(p_cb);
     }
   } else if (p_cb->btm_status == tBTM_STATUS::BTM_ERR_KEY_MISSING) {
     log::error("Received encryption failed status:{} btm_status:{}",
                bta_hh_status_text(p_cb->status), btm_status_text(p_cb->btm_status));
-    bta_hh_le_api_disc_act(p_cb);
+    bta_hh_le_api_disc_act(p_cb, true);
   } else {
     log::error("Encryption failed status:{} btm_status:{}", bta_hh_status_text(p_cb->status),
                btm_status_text(p_cb->btm_status));
@@ -1040,7 +1043,7 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* /* p_buf */)
           (p_cb->btm_status == tBTM_STATUS::BTM_ERR_PROCESSING ||
            p_cb->btm_status == tBTM_STATUS::BTM_FAILED_ON_SECURITY ||
            p_cb->btm_status == tBTM_STATUS::BTM_WRONG_MODE))) {
-      bta_hh_le_api_disc_act(p_cb);
+      bta_hh_le_api_disc_act(p_cb, true);
     }
   }
 }
@@ -1100,8 +1103,9 @@ void bta_hh_start_security(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* /* p_buf */
     log::debug("addr:{} already encrypted", p_cb->link_spec.addrt.bda);
     p_cb->status = BTA_HH_OK;
     bta_hh_sm_execute(p_cb, BTA_HH_ENC_CMPL_EVT, NULL);
-  } else if (BTM_IsLinkKeyKnown(p_cb->link_spec.addrt.bda, BT_TRANSPORT_LE)) {
-    /* if bonded and link not encrypted */
+  }
+  /* if bonded and link not encrypted */
+  else if (BTM_IsLinkKeyKnown(p_cb->link_spec.addrt.bda, BT_TRANSPORT_LE)) {
     log::debug("addr:{} bonded, not encrypted", p_cb->link_spec.addrt.bda);
     p_cb->status = BTA_HH_ERR_AUTH_FAILED;
     BTM_SetEncryption(p_cb->link_spec.addrt.bda, BT_TRANSPORT_LE, bta_hh_le_encrypt_cback, NULL,
@@ -1142,8 +1146,9 @@ void bta_hh_gatt_open(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_buf) {
   if (p_data->status == GATT_SUCCESS) {
     p_cb->hid_handle = bta_hh_le_get_le_dev_hdl(p_cb->index);
     if (p_cb->hid_handle == BTA_HH_IDX_INVALID) {
+      log::error("HID handle not found for {}", p_cb->link_spec);
       p_cb->conn_id = p_data->conn_id;
-      bta_hh_le_api_disc_act(p_cb);
+      bta_hh_le_api_disc_act(p_cb, false);
       return;
     }
     p_cb->in_use = true;
@@ -1237,7 +1242,7 @@ static void bta_hh_le_gatt_disc_cmpl(tBTA_HH_DEV_CB* p_cb, tBTA_HH_STATUS status
   } else /* error, close the GATT connection */
   {
     /* close GATT connection if it's on */
-    bta_hh_le_api_disc_act(p_cb);
+    bta_hh_le_api_disc_act(p_cb, true);
   }
 }
 
@@ -1549,7 +1554,7 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
   if (p_data->status != GATT_SUCCESS) {
     log::error("Service discovery failed {}", p_data->status);
     p_dev_cb->status = BTA_HH_ERR_SDP;
-    bta_hh_le_api_disc_act(p_dev_cb);
+    bta_hh_le_api_disc_act(p_dev_cb, false);
     return;
   }
 
@@ -1598,7 +1603,7 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
   } else {
     log::error("HID service not found");
     p_dev_cb->status = BTA_HH_ERR_SDP;
-    bta_hh_le_api_disc_act(p_dev_cb);
+    bta_hh_le_api_disc_act(p_dev_cb, false);
     return;
   }
 
@@ -1767,6 +1772,15 @@ void bta_hh_gatt_close(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   if (bta_hh_cb.cnt_num == 0 && bta_hh_cb.w4_disable) {
     bta_hh_disc_cmpl();
   } else {
+    if (com::android::bluetooth::flags::hogp_reconnection() && p_cb->reconnect_allowed) {
+      if (p_cb->in_use && p_cb->hid_srvc.state == BTA_HH_SERVICE_DISCOVERED) {
+        log::debug("Allow reconnection from {} after disconnection due to reason {}",
+                   p_cb->link_spec, gatt_disconnection_reason_text(le_close->reason));
+        bta_hh_le_add_dev_bg_conn(p_cb);
+      }
+      return;
+    }
+
     switch (le_close->reason) {
       case GATT_CONN_FAILED_ESTABLISHMENT:
       case GATT_CONN_TERMINATE_PEER_USER:
@@ -1802,7 +1816,7 @@ void bta_hh_gatt_close(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  * Returns          void
  *
  ******************************************************************************/
-void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb) {
+void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb, bool reconnect_allowed) {
   if (p_cb->conn_id == GATT_INVALID_CONN_ID) {
     log::error("Tried to disconnect HID device with invalid id");
     return;
@@ -1810,9 +1824,9 @@ void bta_hh_le_api_disc_act(tBTA_HH_DEV_CB* p_cb) {
 
   BtaGattQueue::Clean(p_cb->conn_id);
   BTA_GATTC_Close(p_cb->conn_id);
-  /* remove device from background connection if intended to disconnect,
-     do not allow reconnection */
+  /* Remove device from background connection list */
   bta_hh_le_remove_dev_bg_conn(p_cb);
+  p_cb->reconnect_allowed = reconnect_allowed;
 }
 
 /*******************************************************************************
