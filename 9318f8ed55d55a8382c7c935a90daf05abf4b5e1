@@ -22,6 +22,30 @@
       },
       "revId": "9318f8ed55d55a8382c7c935a90daf05abf4b5e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07dadb5f_406b9ba8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:06:43Z",
+      "side": 1,
+      "message": "Thanks for review, yeah - I\u0027ve add some more reset places for this to tie it with sink monitoring.",
+      "parentUuid": "472758fb_ae5d2f45",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 39
+      },
+      "revId": "9318f8ed55d55a8382c7c935a90daf05abf4b5e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
