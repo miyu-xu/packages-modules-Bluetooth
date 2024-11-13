@@ -849,6 +849,29 @@ void btm_process_remote_ext_features(tACL_CONN* p_acl_cb, uint8_t max_page_numbe
     log::warn("Checking remote features but remote feature read is incomplete");
   }
 
+  p_dev_rec = btm_find_dev(p_acl_cb->remote_addr);
+
+  if (p_dev_rec == nullptr) {
+    log::warn("Unable to find p_dev_rec");
+    return;
+  }
+
+  if (p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) {
+    /* Name is know, unset it so that name is retrieved again
+    * from security procedure. This will ensure, that if remote device
+    * has updated its name since last connection, we will have
+    * update name of remote device. */
+    p_dev_rec->sec_rec.sec_flags &= ~BTM_SEC_NAME_KNOWN;
+    p_dev_rec->sec_bd_name[0] = '\0';
+  }
+  if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) || p_dev_rec->is_originator)
+  {
+    log::debug("Calling Next Security Procedure");
+    if ((status = btm_sec_execute_procedure(p_dev_rec)) != tBTM_STATUS::BTM_CMD_STARTED) {
+      btm_sec_dev_rec_cback_event(p_dev_rec, status, FALSE);
+    }
+  }
+
   bool ssp_supported = HCI_SSP_HOST_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[1]);
   bool secure_connections_supported = HCI_SC_HOST_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[1]);
   bool role_switch_supported = HCI_SWITCH_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[0]);
