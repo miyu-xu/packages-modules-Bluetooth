@@ -22,6 +22,30 @@
       },
       "revId": "49cd0022d6b3d10782999fdd29cb13548d97a27e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28691087_fed4065c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-13T09:06:59Z",
+      "side": 1,
+      "message": "@wescande@google.com\n\nSorry to let you misunderstand something. I added the comment. I\u0027ll keep it simple and add the real case in the code and leave for background information  right here.\n\n---\n\nThe main idea is to try to fallback the active device when the active device is null. Somehow the current logic only covers this case when [disconnecting](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java;l\u003d503;drc\u003da4e7e0113226fab235b0bb6a81f4d2c21efd6e21?q\u003dsetFallbackDeviceActiveLocked\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain).\n\nHowever, there\u0027s a case that remote device is connected but HFP Service or other application remove the HFP active device. So we also need to try to fallback to another active device. \n\nSo I added this cl. aosp/3324694\n\n---\n\n[This cl]\nI didn\u0027t consider the le broadcast case. This is kinda like a special case to me. It\u0027ll set the active device to null when broadcasting. If in this moment we fallback to another active device, we might break the audio routing logic.\n\nSo I make this change for this case.",
+      "parentUuid": "4c37335d_96003c35",
+      "range": {
+        "startLine": 793,
+        "startChar": 70,
+        "endLine": 793,
+        "endChar": 93
+      },
+      "revId": "49cd0022d6b3d10782999fdd29cb13548d97a27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
