@@ -54,11 +54,11 @@ TEST_F(BtaDiscTest, gatt_history_callback) {
   };
 
   // C string
-  gatt_history_callback(fmt::format("{}", a[0].c_str()));
+  gatt_history_callback(std::format("{}", a[0].c_str()));
   // Cpp string
   gatt_history_callback(a[1]);
   // Third entry for "fun"
-  gatt_history_callback(fmt::format("{}", a[2].c_str()));
+  gatt_history_callback(std::format("{}", a[2].c_str()));
 
   std::vector<bluetooth::common::TimestampedEntry<std::string>> history =
           bluetooth::legacy::testing::PullCopyOfGattHistory();

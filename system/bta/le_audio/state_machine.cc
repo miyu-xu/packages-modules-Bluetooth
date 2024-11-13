@@ -222,7 +222,8 @@ public:
         ReleaseCisIds(group);
 
         /* If configuration is needed */
-        FALLTHROUGH_INTENDED;
+        [[fallthrough]];
+
       case AseState::BTA_LE_AUDIO_ASE_STATE_IDLE:
         if (!group->Configure(context_type, metadata_context_types, ccid_lists)) {
           log::error("failed to set ASE configuration");
@@ -520,7 +521,7 @@ public:
                      ToString(group->cig.GetState()));
 
     group->cig.SetState(CigState::CREATED);
-    log::info("Group: {}, id: {} cig state: {}, number of cis handles: {}", fmt::ptr(group),
+    log::info("Group: {}, id: {} cig state: {}, number of cis handles: {}", std::format_ptr(group),
               group->group_id_, ToString(group->cig.GetState()),
               static_cast<int>(conn_handles.size()));
 
@@ -772,17 +773,17 @@ public:
   }
 
   void RemoveCigForGroup(LeAudioDeviceGroup* group) {
-    log::debug("Group: {}, id: {} cig state: {}", fmt::ptr(group), group->group_id_,
+    log::debug("Group: {}, id: {} cig state: {}", std::format_ptr(group), group->group_id_,
                ToString(group->cig.GetState()));
     if (group->cig.GetState() != CigState::CREATED) {
-      log::warn("Group: {}, id: {} cig state: {} cannot be removed", fmt::ptr(group),
+      log::warn("Group: {}, id: {} cig state: {} cannot be removed", std::format_ptr(group),
                 group->group_id_, ToString(group->cig.GetState()));
       return;
     }
 
     group->cig.SetState(CigState::REMOVING);
     IsoManager::GetInstance()->RemoveCig(group->group_id_);
-    log::debug("Group: {}, id: {} cig state: {}", fmt::ptr(group), group->group_id_,
+    log::debug("Group: {}, id: {} cig state: {}", std::format_ptr(group), group->group_id_,
                ToString(group->cig.GetState()));
     log_history_->AddLogHistory(kLogStateMachineTag, group->group_id_, RawAddress::kEmpty,
                                 kLogCigRemoveOp);
@@ -1480,12 +1481,12 @@ private:
     uint8_t packing, framing, sca;
     std::vector<EXT_CIS_CFG> cis_cfgs;
 
-    log::debug("Group: {}, id: {} cig state: {}", fmt::ptr(group), group->group_id_,
+    log::debug("Group: {}, id: {} cig state: {}", std::format_ptr(group), group->group_id_,
                ToString(group->cig.GetState()));
 
     if (group->cig.GetState() != CigState::NONE) {
-      log::warn("Group {}, id: {} has invalid cig state: {}", fmt::ptr(group), group->group_id_,
-                ToString(group->cig.GetState()));
+      log::warn("Group {}, id: {} has invalid cig state: {}", std::format_ptr(group),
+                group->group_id_, ToString(group->cig.GetState()));
       return false;
     }
 
@@ -1599,7 +1600,7 @@ private:
 
     group->cig.SetState(CigState::CREATING);
     IsoManager::GetInstance()->CreateCig(group->group_id_, std::move(param));
-    log::debug("Group: {}, id: {} cig state: {}", fmt::ptr(group), group->group_id_,
+    log::debug("Group: {}, id: {} cig state: {}", std::format_ptr(group), group->group_id_,
                ToString(group->cig.GetState()));
     return true;
   }
@@ -2243,7 +2244,8 @@ private:
                 ToString(AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED),
                 ToString(AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED));
         group->PrintDebugState();
-        FMT_FALLTHROUGH;
+        [[fallthrough]];
+
       case AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED: {
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED);
 
