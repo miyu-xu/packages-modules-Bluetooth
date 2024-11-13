@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c37335d_96003c35",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T07:25:31Z",
+      "side": 1,
+      "message": "I don\u0027t understand why we need to check the broadcast status.\nCan we put a comment that explain why we need to check for that ?\n\nAlso, why is there no check for a2dp, hfp, hap devices?\n\nAlso I see line 334 that isBroadcastingAudio is preventing to connect hfp, does that mean that it is not possible to switch to headset if there is a broadcast in progress ?\n\n---\n\nInstead of checking if there is a broadcast in progress, shouldn\u0027t we check if mLeAudioActiveDevice is the current active device ?\n\nsomething like:\n```\nif (mLeAudioActiveDevice !\u003d null \u0026\u0026 device \u003d\u003d null) {\n try fallback\n}\n```\n\nOr can there be broadcast but in the same time leaudio is active ?",
+      "range": {
+        "startLine": 793,
+        "startChar": 70,
+        "endLine": 793,
+        "endChar": 93
+      },
+      "revId": "49cd0022d6b3d10782999fdd29cb13548d97a27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
