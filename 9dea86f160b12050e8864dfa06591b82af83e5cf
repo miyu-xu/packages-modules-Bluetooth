@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ee278d2_2e2bface",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-13T17:41:39Z",
+      "side": 1,
+      "message": "We have to update `own_address_type` for all the relevant commands.",
+      "revId": "9dea86f160b12050e8864dfa06591b82af83e5cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
