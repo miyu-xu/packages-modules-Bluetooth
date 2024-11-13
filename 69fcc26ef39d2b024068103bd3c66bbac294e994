@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fa5885d_1d461d6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "Thanks, added leaudio_monitor_unicast_source_when_managed_by_broadcast_delegator https://buganizer.corp.google.com/issues/378661060",
+      "parentUuid": "d1646140_6b515e63",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70e1bbf8_2393d1ea",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 5
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a087ff75_d29f3dca",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "\u003e Originally any device cause assistant activation.\n\nActually there is nothing other than primary device monitoring (what is only for primary device https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d573b2d3074e4fa3110e3c4b5a4fe75624553c6ef;l\u003d1553) behind this code, so I think reasonable is to do monitoring for this device.",
+      "parentUuid": "70e1bbf8_2393d1ea",
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e18e52ee_937582f5",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 5
@@ -54,6 +96,24 @@
       "writtenOn": "2024-11-08T09:28:18Z",
       "side": 1,
       "message": "Null check of stateMachine should be done directly after getting stateMachine",
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d630ca88_f22ad97e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3197,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e18e52ee_937582f5",
       "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad8494cd_f8e28f5f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3791,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d0f16a36_32af8943",
+      "range": {
+        "startLine": 3791,
+        "startChar": 0,
+        "endLine": 3791,
+        "endChar": 42
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba6fcc7d_731c1d37",
@@ -94,6 +178,30 @@
       "writtenOn": "2024-11-06T16:19:56Z",
       "side": 1,
       "message": "It should be outside the for loop.",
+      "range": {
+        "startLine": 3873,
+        "startChar": 0,
+        "endLine": 3874,
+        "endChar": 34
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bacbecf3_cb8d52ad",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3874,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ba6fcc7d_731c1d37",
       "range": {
         "startLine": 3873,
         "startChar": 0,

@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d64e9893_f147a8d6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3805,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "759ac2b2_97fdb12c",
+      "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2058a57e_24162f09",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-31T02:31:08Z",
       "side": 1,
       "message": "Why equals to input/output means primary?\nI\u0027m worried this might break other use cases.",
+      "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac58098a_875735b8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:07:29Z",
+      "side": 1,
+      "message": "Thank You for review! Actually my understanding of primary device is that this is a \"owner\"/\"main\" group or device from this group so:\n- `(descriptor.mGroupId \u003d\u003d mUnicastGroupIdDeactivatedForBroadcastTransition)` - this covers only case when broadcast is local\n- `|| device.equals(mActiveAudioInDevice)\n                || device.equals(mActiveAudioOutDevice)` - this covers case when broadcast in external or input (monitoring case)\n\nI think that was just missing thing here. Don\u0027t know why it wasn\u0027t here from begining... \n\nI don\u0027t think it would break something do you have any scenarios that may be possible touched with this ?",
+      "parentUuid": "2058a57e_24162f09",
       "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
