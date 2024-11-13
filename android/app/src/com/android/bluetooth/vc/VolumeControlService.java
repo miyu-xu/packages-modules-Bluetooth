@@ -32,6 +32,7 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static android.bluetooth.IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME;
 
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastVolumeControlPrimaryGroupOnly;
+import static com.android.bluetooth.flags.Flags.leaudioConfigProfileEnabling;
 import static com.android.bluetooth.flags.Flags.vcpDeviceVolumeApiImprovements;
 
 import static java.util.Objects.requireNonNull;
@@ -67,6 +68,7 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -162,7 +164,10 @@ public class VolumeControlService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
+        if (!leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isVcpVolumeControllerEnabled();
     }
 
     @Override

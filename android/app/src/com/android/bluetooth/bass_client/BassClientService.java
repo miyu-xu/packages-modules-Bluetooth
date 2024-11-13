@@ -30,6 +30,7 @@ import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeriphe
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastPreventResumeInterruption;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastResyncHelper;
+import static com.android.bluetooth.flags.Flags.leaudioConfigProfileEnabling;
 import static com.android.bluetooth.flags.Flags.leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator;
 import static com.android.bluetooth.flags.Flags.leaudioSortScansToSyncByFails;
 
@@ -80,6 +81,7 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.le_scan.ScanController;
 import com.android.internal.annotations.GuardedBy;
@@ -521,7 +523,10 @@ public class BassClientService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileBapBroadcastAssistEnabled().orElse(false);
+        if (!leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileBapBroadcastAssistEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isBapBroadcastAssistantEnabled();
     }
 
     private static class SourceSyncRequest {
