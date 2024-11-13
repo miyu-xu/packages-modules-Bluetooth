@@ -790,7 +790,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                 mLeHearingAidActiveDevice = device;
             }
 
-            if (device == null && !Utils.isDualModeAudioEnabled()) {
+            if (device == null && !Utils.isDualModeAudioEnabled() && !isBroadcastingAudio()) {
                 Log.d(TAG, "LE audio active device is null. Try to fallback to hfp active device.");
                 synchronized (mLock) {
                     setFallbackDeviceActiveLocked(device);
