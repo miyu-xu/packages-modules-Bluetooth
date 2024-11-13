@@ -16,6 +16,117 @@
       "message": "I am _very_ excited about this. It\u0027s been a long time coming. Thank you for seeing this through!",
       "revId": "0e056ae39c37467cc63ad26104fae329dd8f3c16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43478303_50434e33",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T19:24:38Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 1089,
+        "startChar": 0,
+        "endLine": 1089,
+        "endChar": 4
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4da83f05_e0523adc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1089,
+                "startChar": 0,
+                "endLine": 1090,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1097,
+                "startChar": 0,
+                "endLine": 1098,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1108,
+                "startChar": 0,
+                "endLine": 1109,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1116,
+                "startChar": 0,
+                "endLine": 1117,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1124,
+                "startChar": 0,
+                "endLine": 1125,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1132,
+                "startChar": 0,
+                "endLine": 1133,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1140,
+                "startChar": 0,
+                "endLine": 1141,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+              "range": {
+                "startLine": 1151,
+                "startChar": 0,
+                "endLine": 1152,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0e056ae39c37467cc63ad26104fae329dd8f3c16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
