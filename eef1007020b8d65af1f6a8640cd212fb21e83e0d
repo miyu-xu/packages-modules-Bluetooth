@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "810c6fac_98aa87bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-13T21:42:43Z",
+      "side": 1,
+      "message": "I should hopefully have this all taken care of in the new refactor object too, albeit in a tiny bit different looking way.\n\nPerhaps the map locking deserves to be in its own change, though I think it all looks just fine/will work.",
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f8d6ff_46641ac8",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-13T21:42:43Z",
+      "side": 1,
+      "message": "For functions where we just need a snapshot of devices to operate on in a thread safe manor, we might be able to use ConcurrentHashMap#forEach() instead of locking.\n\nThe moment we look one, we put ourselves in the position where we need to lock all of them. At that point, maybe we shouldn\u0027t use a ConcurrentHashMap anymore? Perhaps this is better done factored out into its own change too?",
+      "range": {
+        "startLine": 562,
+        "startChar": 11,
+        "endLine": 571,
+        "endChar": 13
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a2c727b_3b3afccf",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-13T21:42:43Z",
+      "side": 1,
+      "message": "I noticed we\u0027re using a concurrent hash map here, which IIRC should make concurrent gets and puts safe.\n\nIf anything, we only need to lock around the initial object retrieval. Anything else I think is overkill.",
+      "range": {
+        "startLine": 589,
+        "startChar": 8,
+        "endLine": 589,
+        "endChar": 51
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb3aaa5e_56c20523",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-13T21:42:43Z",
+      "side": 1,
+      "message": "Out of curiosity, are there benefits to handling and dropping this explicitly versus just letting the default case handle it and drop it?",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 242,
+        "endChar": 26
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
