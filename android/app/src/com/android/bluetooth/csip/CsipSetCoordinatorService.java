@@ -20,6 +20,9 @@ package com.android.bluetooth.csip;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNullElseGet;
+
 import android.annotation.CallbackExecutor;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -33,9 +36,7 @@ import android.bluetooth.IBluetoothCsipSetCoordinator;
 import android.bluetooth.IBluetoothCsipSetCoordinatorCallback;
 import android.bluetooth.IBluetoothCsipSetCoordinatorLockCallback;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -60,7 +61,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -76,15 +76,16 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     private static CsipSetCoordinatorService sCsipSetCoordinatorService;
 
-    private Handler mHandler = null;
+    private final AdapterService mAdapterService;
+    private final DatabaseManager mDatabaseManager;
+    private final Handler mHandler;
+    private final HandlerThread mStateMachinesThread;
+    private final Looper mStateMachinesLooper;
 
-    private AdapterService mAdapterService;
     private LeAudioService mLeAudioService;
-    private DatabaseManager mDatabaseManager;
-    private HandlerThread mStateMachinesThread;
     @VisibleForTesting ServiceFactory mServiceFactory = new ServiceFactory();
 
-    @VisibleForTesting CsipSetCoordinatorNativeInterface mCsipSetCoordinatorNativeInterface;
+    private final CsipSetCoordinatorNativeInterface mNativeInterface;
 
     @GuardedBy("mStateMachines")
     private final Map<BluetoothDevice, CsipSetCoordinatorStateMachine> mStateMachines =
@@ -103,8 +104,40 @@ public class CsipSetCoordinatorService extends ProfileService {
     private final Map<Integer, Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback>> mLocks =
             new ConcurrentHashMap<>();
 
-    public CsipSetCoordinatorService(Context ctx) {
-        super(ctx);
+    public CsipSetCoordinatorService(AdapterService adapterService) {
+        this(adapterService, null, null);
+    }
+
+    @VisibleForTesting
+    CsipSetCoordinatorService(
+            AdapterService adapterService,
+            Looper looper,
+            CsipSetCoordinatorNativeInterface nativeInterface) {
+        super(requireNonNull(adapterService));
+        mAdapterService = adapterService;
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mNativeInterface =
+                requireNonNullElseGet(
+                        nativeInterface, () -> new CsipSetCoordinatorNativeInterface());
+        if (looper == null) {
+            mHandler = new Handler(requireNonNull(Looper.getMainLooper()));
+            mStateMachinesThread = new HandlerThread("CsipSetCoordinatorService.StateMachines");
+            mStateMachinesThread.start();
+            mStateMachinesLooper = mStateMachinesThread.getLooper();
+        } else {
+            mHandler = new Handler(looper);
+            mStateMachinesThread = null;
+            mStateMachinesLooper = looper;
+        }
+
+        // Get LE Audio service (can be null)
+        mLeAudioService = mServiceFactory.getLeAudioService();
+
+        // Mark service as started
+        setCsipSetCoordinatorService(this);
+
+        // Initialize native interface
+        mNativeInterface.init();
     }
 
     public static boolean isEnabled() {
@@ -117,55 +150,6 @@ public class CsipSetCoordinatorService extends ProfileService {
     }
 
     @Override
-    public void start() {
-        Log.d(TAG, "start()");
-        if (sCsipSetCoordinatorService != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
-        // Get AdapterService, DatabaseManager, CsipSetCoordinatorNativeInterface.
-        // None of them can be null.
-        mAdapterService =
-                Objects.requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when CsipSetCoordinatorService starts");
-        mDatabaseManager =
-                Objects.requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when CsipSetCoordinatorService starts");
-        mCsipSetCoordinatorNativeInterface =
-                Objects.requireNonNull(
-                        CsipSetCoordinatorNativeInterface.getInstance(),
-                        "CsipSetCoordinatorNativeInterface cannot be null when"
-                                .concat("CsipSetCoordinatorService starts"));
-
-        // Setup Handler.
-        mHandler = new Handler(Looper.getMainLooper());
-
-        // Get LE Audio service (can be null)
-        mLeAudioService = mServiceFactory.getLeAudioService();
-
-        synchronized (mStateMachines) {
-            mStateMachines.clear();
-        }
-
-        // Start handler thread for state machines
-        mStateMachinesThread = new HandlerThread("CsipSetCoordinatorService.StateMachines");
-        mStateMachinesThread.start();
-
-        // Setup broadcast receivers
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-
-        // Mark service as started
-        setCsipSetCoordinatorService(this);
-
-        // Initialize native interface
-        mCsipSetCoordinatorNativeInterface.init();
-    }
-
-    @Override
     public void stop() {
         Log.d(TAG, "stop()");
         if (sCsipSetCoordinatorService == null) {
@@ -174,8 +158,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
 
         // Cleanup native interface
-        mCsipSetCoordinatorNativeInterface.cleanup();
-        mCsipSetCoordinatorNativeInterface = null;
+        mNativeInterface.cleanup();
 
         // Mark service as stopped
         setCsipSetCoordinatorService(null);
@@ -193,17 +176,13 @@ public class CsipSetCoordinatorService extends ProfileService {
             try {
                 mStateMachinesThread.quitSafely();
                 mStateMachinesThread.join(SM_THREAD_JOIN_TIMEOUT_MS);
-                mStateMachinesThread = null;
             } catch (InterruptedException e) {
                 // Do not rethrow as we are shutting down anyway
             }
         }
 
         // Unregister Handler and stop all queued messages.
-        if (mHandler != null) {
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler = null;
-        }
+        mHandler.removeCallbacksAndMessages(null);
 
         mDeviceGroupIdRankMap.clear();
         mCallbacks.clear();
@@ -213,10 +192,6 @@ public class CsipSetCoordinatorService extends ProfileService {
         mGroupIdToUuidMap.clear();
 
         mLocks.clear();
-
-        // Clear AdapterService, CsipSetCoordinatorNativeInterface
-        mCsipSetCoordinatorNativeInterface = null;
-        mAdapterService = null;
     }
 
     @Override
@@ -515,7 +490,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
 
         Log.d(TAG, "lockGroup(): locking group: " + groupId);
-        mCsipSetCoordinatorNativeInterface.groupLockSet(groupId, true);
+        mNativeInterface.groupLockSet(groupId, true);
         return uuid;
     }
 
@@ -536,7 +511,7 @@ public class CsipSetCoordinatorService extends ProfileService {
                 Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback> uuidCbPair = entry.getValue();
                 if (uuidCbPair.first.equals(lockUuid)) {
                     Log.d(TAG, "unlockGroup(): unlocking ... " + lockUuid);
-                    mCsipSetCoordinatorNativeInterface.groupLockSet(entry.getKey(), false);
+                    mNativeInterface.groupLockSet(entry.getKey(), false);
                     return;
                 }
             }
@@ -823,7 +798,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         Intent intent = null;
         int groupId = stackEvent.valueInt1;
         if (stackEvent.type == CsipSetCoordinatorStackEvent.EVENT_TYPE_DEVICE_AVAILABLE) {
-            Objects.requireNonNull(device);
+            requireNonNull(device);
 
             intent = new Intent(BluetoothCsipSetCoordinator.ACTION_CSIS_DEVICE_AVAILABLE);
             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, stackEvent.device);
@@ -841,7 +816,7 @@ public class CsipSetCoordinatorService extends ProfileService {
                     stackEvent.valueInt2);
         } else if (stackEvent.type
                 == CsipSetCoordinatorStackEvent.EVENT_TYPE_SET_MEMBER_AVAILABLE) {
-            Objects.requireNonNull(device);
+            requireNonNull(device);
             if (!mFoundSetMemberToGroupId.containsKey(device)) {
                 mFoundSetMemberToGroupId.put(device, groupId);
             }
@@ -900,10 +875,7 @@ public class CsipSetCoordinatorService extends ProfileService {
             Log.d(TAG, "Creating a new state machine for " + device);
             sm =
                     CsipSetCoordinatorStateMachine.make(
-                            device,
-                            this,
-                            mCsipSetCoordinatorNativeInterface,
-                            mStateMachinesThread.getLooper());
+                            device, this, mNativeInterface, mStateMachinesLooper);
             mStateMachines.put(device, sm);
             return sm;
         }
@@ -911,16 +883,6 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     /** Process a change in the bonding state for a device */
     public void handleBondStateChanged(BluetoothDevice device, int fromState, int toState) {
-        if (mHandler == null) {
-            Log.e(
-                    TAG,
-                    "mHandler is null, service is stopped. Ignore Bond State for "
-                            + device
-                            + " to state: "
-                            + toState);
-            return;
-        }
-
         mHandler.post(() -> bondStateChanged(device, toState));
     }
 
@@ -982,15 +944,6 @@ public class CsipSetCoordinatorService extends ProfileService {
     }
 
     void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
-        if (mHandler == null) {
-            Log.e(
-                    TAG,
-                    "mHandler is null, service is stopped. Ignore Connection State for "
-                            + device
-                            + " to state: "
-                            + toState);
-            return;
-        }
         mHandler.post(() -> connectionStateChanged(device, fromState, toState));
     }
 
@@ -1074,7 +1027,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         @Override
         public List<BluetoothDevice> getConnectedDevices(AttributionSource source) {
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1087,7 +1040,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         @Override
         public List<BluetoothDevice> getDevicesMatchingConnectionStates(
                 int[] states, AttributionSource source) {
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1099,8 +1052,8 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         @Override
         public int getConnectionState(BluetoothDevice device, AttributionSource source) {
-            Objects.requireNonNull(device, "device cannot be null");
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(device);
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1113,8 +1066,8 @@ public class CsipSetCoordinatorService extends ProfileService {
         @Override
         public boolean setConnectionPolicy(
                 BluetoothDevice device, int connectionPolicy, AttributionSource source) {
-            Objects.requireNonNull(device, "device cannot be null");
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(device);
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1126,8 +1079,8 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         @Override
         public int getConnectionPolicy(BluetoothDevice device, AttributionSource source) {
-            Objects.requireNonNull(device, "device cannot be null");
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(device);
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1142,8 +1095,8 @@ public class CsipSetCoordinatorService extends ProfileService {
                 int groupId,
                 @NonNull IBluetoothCsipSetCoordinatorLockCallback callback,
                 AttributionSource source) {
-            Objects.requireNonNull(callback, "callback cannot be null");
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(callback);
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1156,8 +1109,8 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         @Override
         public void unlockGroup(@NonNull ParcelUuid lockUuid, AttributionSource source) {
-            Objects.requireNonNull(lockUuid, "lockUuid cannot be null");
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(lockUuid);
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
@@ -1169,8 +1122,8 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         @Override
         public List<Integer> getAllGroupIds(ParcelUuid uuid, AttributionSource source) {
-            Objects.requireNonNull(uuid, "uuid cannot be null");
-            Objects.requireNonNull(source, "source cannot be null");
+            requireNonNull(uuid);
+            requireNonNull(source);
 
             CsipSetCoordinatorService service = getService(source);
             if (service == null) {
