@@ -172,6 +172,14 @@ final class BondStateMachine extends StateMachine {
                             sendMessageDelayed(new_msg, BOND_RETRY_DELAY_MS);
                             return true;
                         } else {
+                            MetricsLogger.getInstance()
+                                    .logBluetoothEvent(
+                                            dev,
+                                            BluetoothStatsLog
+                                                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__BOND_RETRY,
+                                            BluetoothStatsLog
+                                                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__FAIL,
+                                            0);
                             Log.w(TAG, "Native was busy - the bond will most likely fail!");
                         }
                     }
