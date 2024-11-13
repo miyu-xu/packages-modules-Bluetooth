@@ -22,6 +22,30 @@
       },
       "revId": "5fde1d6ee514961b6542a39bc4bcdda8b23c13b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a1c142_a0ecc45e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-13T15:37:26Z",
+      "side": 1,
+      "message": "btw. spec says: \"The server shall not accept a Remove Source operation for a Source_ID value that matches the\nSource_ID written by the client in the Remove Source operation if the server is synchronized to the PA\nand/or any BIS as defined by the values of the PA_Sync_State and BIS_Sync_State fields in the\nBroadcast Receive State characteristic containing that Source_ID value.\"\n\nSo I believe that SYNCINFO request means that server is not synced and the same for other than `0x02: Synchronized to PA` so I believe this is good",
+      "parentUuid": "dd6549a6_648cd17f",
+      "range": {
+        "startLine": 1245,
+        "startChar": 54,
+        "endLine": 1245,
+        "endChar": 73
+      },
+      "revId": "5fde1d6ee514961b6542a39bc4bcdda8b23c13b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
