@@ -1236,6 +1236,9 @@ struct Controller::impl {
   }
 #undef OP_CODE_MAPPING
 
+  template <typename OutputT>
+  void dump(OutputT&& out) const;
+
   Controller& module_;
 
   HciLayer* hci_;
@@ -1653,6 +1656,120 @@ DumpsysDataFinisher Controller::GetDumpsysData(flatbuffers::FlatBufferBuilder* f
   return [dumpsys_data](DumpsysDataBuilder* dumpsys_builder) {
     dumpsys_builder->add_hci_controller_dumpsys_data(dumpsys_data);
   };
+}
+
+template <typename OutputT>
+void Controller::impl::dump(OutputT&& out) const {
+  fmt::format_to(out, "\nHCI Controller Dumpsys:\n");
+
+  fmt::format_to(out,
+                 "    local_version_information:\n"
+                 "        hci_version: {}\n"
+                 "        hci_revision: 0x{:x}\n"
+                 "        lmp_version: {}\n"
+                 "        lmp_subversion: 0x{:x}\n"
+                 "        manufacturer_name: {}\n",
+                 HciVersionText(local_version_information_.hci_version_),
+                 local_version_information_.hci_revision_,
+                 LmpVersionText(local_version_information_.lmp_version_),
+                 local_version_information_.lmp_subversion_,
+                 local_version_information_.manufacturer_name_);
+
+  fmt::format_to(out,
+                 "    buffer_size:\n"
+                 "        acl_data_packet_length: {}\n"
+                 "        total_num_acl_data_packets: {}\n"
+                 "        sco_data_packet_length: {}\n"
+                 "        total_num_sco_data_packets: {}\n",
+                 acl_buffer_length_, acl_buffers_, sco_buffer_length_, sco_buffers_);
+
+  fmt::format_to(out,
+                 "    le_buffer_size:\n"
+                 "        le_acl_data_packet_length: {}\n"
+                 "        total_num_le_acl_data_packets: {}\n"
+                 "        iso_data_packet_length: {}\n"
+                 "        total_num_iso_data_packets: {}\n",
+                 le_buffer_size_.le_data_packet_length_, le_buffer_size_.total_num_le_packets_,
+                 iso_buffer_size_.le_data_packet_length_, iso_buffer_size_.total_num_le_packets_);
+
+  fmt::format_to(out,
+                 "    le_maximum_data_length:\n"
+                 "        supported_max_tx_octets: {}\n"
+                 "        supported_max_tx_time: {}\n"
+                 "        supported_max_rx_octets: {}\n"
+                 "        supported_max_rx_time: {}\n",
+                 le_maximum_data_length_.supported_max_tx_octets_,
+                 le_maximum_data_length_.supported_max_tx_time_,
+                 le_maximum_data_length_.supported_max_rx_octets_,
+                 le_maximum_data_length_.supported_max_rx_time_);
+
+  fmt::format_to(out,
+                 "    le_accept_list_size: {}\n"
+                 "    le_resolving_list_size: {}\n"
+                 "    le_maximum_advertising_data_length: {}\n"
+                 "    le_suggested_default_data_length: {}\n"
+                 "    le_number_supported_advertising_sets: {}\n"
+                 "    le_periodic_advertiser_list_size: {}\n",
+                 le_accept_list_size_, le_resolving_list_size_, le_maximum_advertising_data_length_,
+                 le_suggested_default_data_length_, le_number_supported_advertising_sets_,
+                 le_periodic_advertiser_list_size_);
+
+  /*
+    std::vector<LocalSupportedCommandsData> local_supported_commands_vector;
+    for (uint8_t index = 0; index < local_supported_commands_.size(); index++) {
+      local_supported_commands_vector.push_back(
+              LocalSupportedCommandsData(index, local_supported_commands_[index]));
+    }
+    auto local_supported_commands_data =
+            fb_builder->CreateVectorOfStructs(local_supported_commands_vector);
+
+    auto vendor_capabilities_data = VendorCapabilitiesData(
+            vendor_capabilities_.is_supported_, vendor_capabilities_.max_advt_instances_,
+            vendor_capabilities_.offloaded_resolution_of_private_address_,
+            vendor_capabilities_.total_scan_results_storage_, vendor_capabilities_.max_irk_list_sz_,
+            vendor_capabilities_.filtering_support_, vendor_capabilities_.max_filter_,
+            vendor_capabilities_.activity_energy_info_support_,
+            vendor_capabilities_.version_supported_,
+  vendor_capabilities_.total_num_of_advt_tracked_, vendor_capabilities_.extended_scan_support_,
+            vendor_capabilities_.debug_logging_supported_,
+            vendor_capabilities_.le_address_generation_offloading_support_,
+            vendor_capabilities_.a2dp_source_offload_capability_mask_,
+            vendor_capabilities_.bluetooth_quality_report_support_);
+
+    auto extended_lmp_features_vector = fb_builder->CreateVector(extended_lmp_features_array_);
+
+      local_supported_commands:
+  extended_lmp_features_array: [
+        9753459619217276671,
+        2,
+        853
+      ],
+      le_local_supported_features: 614163675647,
+      le_supported_states: 4398046511103,
+      vendor_capabilities: {
+        is_supported: 1,
+        max_advt_instances: 16,
+        offloaded_resolution_of_private_address: 1,
+        total_scan_results_storage: 10240,
+        max_irk_list_sz: 32,
+        filtering_support: 1,
+        max_filter: 64,
+        activity_energy_info_support: 1,
+        version_supported: 98,
+        total_num_of_advt_tracked: 64,
+        extended_scan_support: 1,
+        debug_logging_supported: 1,
+        le_address_generation_offloading_support: 0,
+        a2dp_source_offload_capability_mask: 31,
+        bluetooth_quality_report_support: 1
+      }
+  */
+}
+
+void Controller::Dump(int fd) const {
+  std::string out;
+  impl_->dump(std::back_inserter(out));
+  dprintf(fd, "%s", out.c_str());
 }
 
 }  // namespace hci

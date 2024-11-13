@@ -36,6 +36,8 @@ public:
   Controller(const Controller&) = delete;
   Controller& operator=(const Controller&) = delete;
 
+  void Dump(int fd) const override;
+
   virtual ~Controller();
 
   virtual void RegisterCompletedAclPacketsCallback(CompletedAclPacketsCallback cb) override;
