@@ -267,3 +267,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "directed_advertising_api"
+    namespace: "bluetooth"
+    is_exported: true
+    description: "Add new API for directed advertising"
+    bug: "378230500"
+}
