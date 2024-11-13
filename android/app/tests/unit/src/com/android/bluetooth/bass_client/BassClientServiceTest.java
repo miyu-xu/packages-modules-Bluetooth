@@ -112,14 +112,25 @@ import java.util.stream.Collectors;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class BassClientServiceTest {
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
+    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+    @Rule public Expect expect = Expect.create();
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+
+    @Spy private BassObjectsFactory mObjectsFactory = BassObjectsFactory.getInstance();
+    @Mock private AdapterService mAdapterService;
+    @Mock private DatabaseManager mDatabaseManager;
+    @Mock private BluetoothLeScannerWrapper mBluetoothLeScannerWrapper;
+    @Mock private ServiceFactory mServiceFactory;
+    @Mock private CsipSetCoordinatorService mCsipService;
+    @Mock private LeAudioService mLeAudioService;
+    @Mock private IBluetoothLeBroadcastAssistantCallback mCallback;
+    @Mock private Binder mBinder;
+    @Mock private BluetoothMethodProxy mMethodProxy;
 
     private static final int TIMEOUT_MS = 1000;
 
     private static final ParcelUuid[] FAKE_SERVICE_UUIDS = {BluetoothUuid.BASS};
 
-    private static final String TEST_MAC_ADDRESS = "00:11:22:33:44:55";
-    private static final String TEST_MAC_ADDRESS_2 = "00:11:22:33:44:66";
     private static final int TEST_BROADCAST_ID = 42;
     private static final int TEST_ADVERTISER_SID = 1234;
     private static final int TEST_PA_SYNC_INTERVAL = 100;
@@ -145,33 +156,23 @@ public class BassClientServiceTest {
     private final HashMap<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
     private final BlockingQueue<Intent> mIntentQueue = new LinkedBlockingQueue<>();
 
-    private Context mTargetContext;
+    private final Context mTargetContext = InstrumentationRegistry.getTargetContext();
+    private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothDevice mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+    private final BluetoothDevice mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+
     private BassClientService mBassClientService;
-    private BluetoothAdapter mBluetoothAdapter;
-    private BluetoothDevice mCurrentDevice;
-    private BluetoothDevice mCurrentDevice1;
     private BassIntentReceiver mBassIntentReceiver;
 
-    private BluetoothDevice mSourceDevice;
-    private BluetoothDevice mSourceDevice2;
+    private final BluetoothDevice mSourceDevice =
+            mBluetoothAdapter.getRemoteLeDevice(
+                    "00:11:22:33:44:55", BluetoothDevice.ADDRESS_TYPE_RANDOM);
+    private final BluetoothDevice mSourceDevice2 =
+            mBluetoothAdapter.getRemoteLeDevice(
+                    "00:11:22:33:44:66", BluetoothDevice.ADDRESS_TYPE_RANDOM);
     private ArgumentCaptor<ScanCallback> mCallbackCaptor;
 
     private InOrder mInOrderMethodProxy;
-
-    @Spy private BassObjectsFactory mObjectsFactory = BassObjectsFactory.getInstance();
-    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-    @Rule public Expect expect = Expect.create();
-    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
-
-    @Mock private AdapterService mAdapterService;
-    @Mock private DatabaseManager mDatabaseManager;
-    @Mock private BluetoothLeScannerWrapper mBluetoothLeScannerWrapper;
-    @Mock private ServiceFactory mServiceFactory;
-    @Mock private CsipSetCoordinatorService mCsipService;
-    @Mock private LeAudioService mLeAudioService;
-    @Mock private IBluetoothLeBroadcastAssistantCallback mCallback;
-    @Mock private Binder mBinder;
-    @Mock private BluetoothMethodProxy mMethodProxy;
 
     BluetoothLeBroadcastSubgroup createBroadcastSubgroup() {
         BluetoothLeAudioCodecConfigMetadata codecMetadata =
@@ -240,12 +241,6 @@ public class BassClientServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
-
-        mTargetContext = InstrumentationRegistry.getTargetContext();
-        TestUtils.setAdapterService(mAdapterService);
         BassObjectsFactory.setInstanceForTesting(mObjectsFactory);
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
 
@@ -260,7 +255,6 @@ public class BassClientServiceTest {
                 .when(mAdapterService)
                 .getRemoteUuids(any(BluetoothDevice.class));
         // This line must be called to make sure relevant objects are initialized properly
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Mock methods in AdapterService
         doReturn(FAKE_SERVICE_UUIDS)
@@ -302,8 +296,7 @@ public class BassClientServiceTest {
                 .when(mObjectsFactory)
                 .getBluetoothLeScannerWrapper(any());
 
-        mBassClientService = new BassClientService(mTargetContext);
-        mBassClientService.start();
+        mBassClientService = new BassClientService(mAdapterService);
         mBassClientService.setAvailable(true);
 
         mBassClientService.mServiceFactory = mServiceFactory;
@@ -321,39 +314,19 @@ public class BassClientServiceTest {
         mBassIntentReceiver = new BassIntentReceiver();
         mTargetContext.registerReceiver(mBassIntentReceiver, filter, Context.RECEIVER_EXPORTED);
 
-        mSourceDevice =
-                mBluetoothAdapter.getRemoteLeDevice(
-                        TEST_MAC_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
-        mSourceDevice2 =
-                mBluetoothAdapter.getRemoteLeDevice(
-                        TEST_MAC_ADDRESS_2, BluetoothDevice.ADDRESS_TYPE_RANDOM);
-
         mInOrderMethodProxy = inOrder(mMethodProxy);
     }
 
     @After
     public void tearDown() throws Exception {
-        if (mBassClientService == null) {
-            return;
-        }
         mTargetContext.unregisterReceiver(mBassIntentReceiver);
         mBassClientService.unregisterCallback(mCallback);
 
         mBassClientService.stop();
-        mBassClientService = BassClientService.getBassClientService();
-        assertThat(mBassClientService).isNull();
+        assertThat(BassClientService.getBassClientService()).isNull();
         mStateMachines.clear();
-        mCurrentDevice = null;
-        mCurrentDevice1 = null;
-        mSourceDevice = null;
-        mSourceDevice2 = null;
         mIntentQueue.clear();
         BassObjectsFactory.setInstanceForTesting(null);
-        TestUtils.clearAdapterService(mAdapterService);
-
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
     }
 
     private class BassIntentReceiver extends BroadcastReceiver {
@@ -377,7 +350,6 @@ public class BassClientServiceTest {
     public void testGetBassClientService() {
         assertThat(mBassClientService).isEqualTo(BassClientService.getBassClientService());
         // Verify default connection and audio states
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
         assertThat(mBassClientService.getConnectionState(mCurrentDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
     }
@@ -403,7 +375,6 @@ public class BassClientServiceTest {
                         any(BluetoothDevice.class),
                         eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
 
         assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
         verify(mObjectsFactory)
@@ -436,7 +407,6 @@ public class BassClientServiceTest {
                         any(BluetoothDevice.class),
                         eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
         assertThat(mCurrentDevice).isNotNull();
 
         assertThat(mBassClientService.connect(mCurrentDevice)).isFalse();
@@ -482,8 +452,6 @@ public class BassClientServiceTest {
                         any(BluetoothDevice.class),
                         eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
-        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
 
         // Mock the CSIP group
         List<BluetoothDevice> groupDevices = new ArrayList<>();
@@ -661,7 +629,7 @@ public class BassClientServiceTest {
         mBassClientService.stopSearchingForSources();
 
         // Start searching again
-        startSearchingForSources();
+        mBassClientService = new BassClientService(mAdapterService);
 
         // Sync the same device again
         onScanResult(mSourceDevice, TEST_BROADCAST_ID);
