@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d32cced_bfe996f9",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-13T09:54:58Z",
+      "side": 1,
+      "message": "You dont\u0027 need to call \"ToRedactedStringForLogging\" , I think it\u0027s done by default when you print address with {}",
+      "range": {
+        "startLine": 204,
+        "startChar": 60,
+        "endLine": 204,
+        "endChar": 88
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a2094ac9_8bec2736",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_acl_connection.cc",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": "      log::info(\"Already disconnecting {}\", remote_address_);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca555106_7aca22b8",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-13T09:54:58Z",
+      "side": 1,
+      "message": "When we disconnect, the connection is removed from le_acl_connections_ in le_impl.h . Is there a value in keeping this object in \"disconnecting\" state ? Wouldn\u0027t it be simpler to just delete the connection when we are in \"disconnecting\" ?",
+      "range": {
+        "startLine": 212,
+        "startChar": 78,
+        "endLine": 212,
+        "endChar": 96
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "effa7469_3ccf87ba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_acl_connection.cc",
+              "range": {
+                "startLine": 210,
+                "startChar": 0,
+                "endLine": 211,
+                "endChar": 0
+              },
+              "replacement": "  pimpl_-\u003etracker.le_acl_connection_interface_-\u003eEnqueueCommandWithStatus(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
