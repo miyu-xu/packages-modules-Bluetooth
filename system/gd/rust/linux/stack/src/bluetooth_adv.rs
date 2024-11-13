@@ -231,7 +231,7 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
 
         match val.discoverable {
             LeDiscMode::GeneralDiscoverable => {
-                props |= 0x04;
+                props |= 0x80;
             }
             _ => {}
         }

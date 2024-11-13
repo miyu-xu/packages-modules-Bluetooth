@@ -16,16 +16,22 @@
 
 package android.bluetooth.le;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
+import android.annotation.Nullable;
 import android.annotation.SystemApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothDevice.AddressType;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.android.bluetooth.flags.Flags;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Objects;
 
 /**
  * The {@link AdvertisingSetParameters} provide a way to adjust advertising preferences for each
@@ -122,6 +128,24 @@ public final class AdvertisingSetParameters implements Parcelable {
      */
     @SystemApi public static final int ADDRESS_TYPE_RANDOM_NON_RESOLVABLE = 2;
 
+    /**
+     * Advertise with Advertising type ADV_DIRECT_IND, low duty cycle.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+    @SystemApi
+    public static final int DIRECTED_ADVERTISING_TYPE_LOW_DUTY_CYCLE = 0;
+
+    /**
+     * Advertise with Advertising type ADV_DIRECT_IND, high duty cycle.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+    @SystemApi
+    public static final int DIRECTED_ADVERTISING_TYPE_HIGH_DUTY_CYCLE = 1;
+
     private final boolean mIsLegacy;
     private final boolean mIsAnonymous;
     private final boolean mIncludeTxPower;
@@ -133,6 +157,10 @@ public final class AdvertisingSetParameters implements Parcelable {
     private final int mInterval;
     private final int mTxPowerLevel;
     private final int mOwnAddressType;
+    private final boolean mIsDirected;
+    private final boolean mIsHighDutyCycle;
+    private final String mPeerAddress;
+    private final int mPeerAddressType;
 
     private AdvertisingSetParameters(
             boolean connectable,
@@ -145,7 +173,11 @@ public final class AdvertisingSetParameters implements Parcelable {
             int secondaryPhy,
             int interval,
             int txPowerLevel,
-            @AddressTypeStatus int ownAddressType) {
+            @AddressTypeStatus int ownAddressType,
+            boolean isDirected,
+            boolean isHighDutyCycle,
+            String peerAddress,
+            int peerAddressType) {
         mConnectable = connectable;
         mDiscoverable = discoverable;
         mScannable = scannable;
@@ -157,6 +189,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         mInterval = interval;
         mTxPowerLevel = txPowerLevel;
         mOwnAddressType = ownAddressType;
+        mIsDirected = isDirected;
+        mIsHighDutyCycle = isHighDutyCycle;
+        mPeerAddress = peerAddress;
+        mPeerAddressType = peerAddressType;
     }
 
     private AdvertisingSetParameters(Parcel in) {
@@ -171,6 +207,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         mTxPowerLevel = in.readInt();
         mOwnAddressType = in.readInt();
         mDiscoverable = in.readInt() != 0;
+        mIsDirected = in.readBoolean();
+        mIsHighDutyCycle = in.readBoolean();
+        mPeerAddress = in.readString();
+        mPeerAddressType = in.readInt();
     }
 
     /** Returns whether the advertisement will be connectable. */
@@ -232,6 +272,46 @@ public final class AdvertisingSetParameters implements Parcelable {
         return mOwnAddressType;
     }
 
+    /**
+     * @return whether the advertisement will be directed
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+    @SystemApi
+    public boolean isDirected() {
+        return mIsDirected;
+    }
+
+    /**
+     * @return whether the advertisement is high duty cycle or not
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+    @SystemApi
+    public boolean isHighDutyCycle() {
+        return mIsHighDutyCycle;
+    }
+
+    /**
+     * @return Peer address for directed advertising
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+    @SystemApi
+    public @Nullable String getPeerAddress() {
+        return mPeerAddress;
+    }
+
+    /**
+     * @return Peer address type for directed advertising
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+    @SystemApi
+    public @AddressType int getPeerAddressType() {
+        return mPeerAddressType;
+    }
+
     @Override
     public String toString() {
         return "AdvertisingSetParameters [connectable="
@@ -254,6 +334,14 @@ public final class AdvertisingSetParameters implements Parcelable {
                 + mTxPowerLevel
                 + ", ownAddressType="
                 + mOwnAddressType
+                + ", isDirected="
+                + mIsDirected
+                + ", isHighDutyCycle="
+                + mIsHighDutyCycle
+                + ", peerAddress="
+                + mPeerAddress
+                + ", peerAddressType="
+                + mPeerAddressType
                 + "]";
     }
 
@@ -275,6 +363,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         dest.writeInt(mTxPowerLevel);
         dest.writeInt(mOwnAddressType);
         dest.writeInt(mDiscoverable ? 1 : 0);
+        dest.writeBoolean(mIsDirected);
+        dest.writeBoolean(mIsHighDutyCycle);
+        android.bluetooth.BluetoothUtils.writeStringToParcel(dest, mPeerAddress);
+        dest.writeInt(mPeerAddressType);
     }
 
     public static final @android.annotation.NonNull Parcelable.Creator<AdvertisingSetParameters>
@@ -304,6 +396,10 @@ public final class AdvertisingSetParameters implements Parcelable {
         private int mInterval = INTERVAL_LOW;
         private int mTxPowerLevel = TX_POWER_MEDIUM;
         private int mOwnAddressType = ADDRESS_TYPE_DEFAULT;
+        private boolean mIsDirected = false;
+        private boolean mIsHighDutyCycle = false;
+        private String mPeerAddress = null;
+        private int mPeerAddressType = BluetoothDevice.ADDRESS_TYPE_PUBLIC;
 
         /**
          * Set whether the advertisement type should be connectable or non-connectable. Legacy
@@ -482,6 +578,73 @@ public final class AdvertisingSetParameters implements Parcelable {
         }
 
         /**
+         * Set whether the advertisement is a directed advertising.
+         *
+         * @param isDirected Controls whether the advertisement is directed or not
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+        @SystemApi
+        public @NonNull Builder setDirected(boolean isDirected) {
+            mIsDirected = isDirected;
+            return this;
+        }
+
+        /**
+         * Set whether the advertisement is high duty cycle or not.
+         *
+         * @param isHighDutyCycle Controls whether the advertisement high duty cycle or not
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+        @SystemApi
+        public @NonNull Builder setHighDutyCycle(boolean isHighDutyCycle) {
+            mIsHighDutyCycle = isHighDutyCycle;
+            return this;
+        }
+
+        /**
+         * Set peer address for directed advertising.
+         *
+         * @param peerAddress peer address for the directed advertising
+         * @throws IllegalArgumentException peer addressis invalid
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+        @SystemApi
+        public @NonNull Builder setPeerAddress(@NonNull String peerAddress) {
+            Objects.requireNonNull(peerAddress, "peerAddress is null");
+            if (!BluetoothAdapter.checkBluetoothAddress(peerAddress)) {
+                throw new IllegalArgumentException(
+                        peerAddress + " is not a valid Bluetooth address");
+            }
+            mPeerAddress = peerAddress;
+            return this;
+        }
+
+        /**
+         * Set peer address type for directed advertising.
+         *
+         * @param peerAddressType peer address type for the directed advertising
+         * @throws IllegalArgumentException if {@code peerAddressType} is invalid
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)
+        @SystemApi
+        public @NonNull Builder setPeerAddressType(@AddressType int peerAddressType) {
+            switch (peerAddressType) {
+                case BluetoothDevice.ADDRESS_TYPE_PUBLIC:
+                case BluetoothDevice.ADDRESS_TYPE_RANDOM:
+                    mPeerAddressType = peerAddressType;
+                    break;
+                default:
+                    throw new IllegalArgumentException(
+                            "unknown peer address type " + peerAddressType);
+            }
+            return this;
+        }
+
+        /**
          * Build the {@link AdvertisingSetParameters} object.
          *
          * @throws IllegalStateException if invalid combination of parameters is used.
@@ -492,9 +655,20 @@ public final class AdvertisingSetParameters implements Parcelable {
                     throw new IllegalArgumentException("Legacy advertising can't be anonymous");
                 }
 
-                if (mConnectable && !mScannable) {
+                if (mIsDirected && !mConnectable) {
                     throw new IllegalStateException(
-                            "Legacy advertisement can't be connectable and non-scannable");
+                            "Legacy directed advertisement shall be connectable");
+                }
+
+                if (mIsDirected && mScannable) {
+                    throw new IllegalStateException(
+                            "Legacy directed advertisement can't be scannable");
+                }
+
+                if (!mIsDirected && mConnectable && !mScannable) {
+                    throw new IllegalStateException(
+                            "Non-directed legacy advertisement can't be connectable and"
+                                    + " non-scannable");
                 }
 
                 if (mIncludeTxPower) {
@@ -511,6 +685,16 @@ public final class AdvertisingSetParameters implements Parcelable {
                     throw new IllegalStateException(
                             "Advertising can't be both connectable and anonymous");
                 }
+
+                if (mIsHighDutyCycle) {
+                    throw new IllegalStateException(
+                            "Non-legacy Advertising can't be high duty cycle");
+                }
+            }
+
+            if (mIsDirected && mPeerAddress == null) {
+                throw new IllegalStateException(
+                        "Peer address should not be null for directed Advertising");
             }
 
             return new AdvertisingSetParameters(
@@ -524,7 +708,11 @@ public final class AdvertisingSetParameters implements Parcelable {
                     mSecondaryPhy,
                     mInterval,
                     mTxPowerLevel,
-                    mOwnAddressType);
+                    mOwnAddressType,
+                    mIsDirected,
+                    mIsHighDutyCycle,
+                    mPeerAddress,
+                    mPeerAddressType);
         }
     }
 }
