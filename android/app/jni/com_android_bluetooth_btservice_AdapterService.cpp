@@ -825,7 +825,7 @@ static void callback_thread_event(bt_cb_thread_evt event) {
     vm->AttachCurrentThread(&callbackEnv, &args);
     sHaveCallbackThread = true;
     sCallbackThread = pthread_self();
-    log::verbose("Callback thread attached: {}", fmt::ptr(callbackEnv));
+    log::verbose("Callback thread attached: {}", std::format_ptr(callbackEnv));
   } else if (event == DISASSOCIATE_JVM) {
     if (!isCallbackThread()) {
       log::error("Callback: '' is not called on the correct thread");

@@ -36,14 +36,14 @@
 using base::FilePath;
 using namespace bluetooth;
 
-namespace fmt {
+namespace std {
 template <>
 struct formatter<tUIPC_EVENT> : enum_formatter<tUIPC_EVENT> {};
 template <>
 struct formatter<tHEARING_AID_CTRL_ACK> : enum_formatter<tHEARING_AID_CTRL_ACK> {};
 template <>
 struct formatter<tHEARING_AID_CTRL_CMD> : enum_formatter<tHEARING_AID_CTRL_CMD> {};
-}  // namespace fmt
+}  // namespace std
 
 namespace {
 #define CASE_RETURN_STR(const) \

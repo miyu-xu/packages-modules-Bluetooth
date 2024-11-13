@@ -27,8 +27,8 @@ TEST(TruncatingBufferTest, 1byte) {
   EXPECT_EQ(sizeof("ab"), 3);
   truncating_buffer<2> buffer_1;
   truncating_buffer<3> buffer_2;
-  fmt::format_to(std::back_insert_iterator(buffer_1), "ab");
-  fmt::format_to(std::back_insert_iterator(buffer_2), "ab");
+  std::format_to(std::back_insert_iterator(buffer_1), "ab");
+  std::format_to(std::back_insert_iterator(buffer_2), "ab");
   EXPECT_STREQ(buffer_1.c_str(), "a");
   EXPECT_STREQ(buffer_2.c_str(), "ab");
 }
@@ -38,9 +38,9 @@ TEST(TruncatingBufferTest, 2bytes) {
   truncating_buffer<3> buffer_1;
   truncating_buffer<4> buffer_2;
   truncating_buffer<5> buffer_3;
-  fmt::format_to(std::back_insert_iterator(buffer_1), "αβ");
-  fmt::format_to(std::back_insert_iterator(buffer_2), "αβ");
-  fmt::format_to(std::back_insert_iterator(buffer_3), "αβ");
+  std::format_to(std::back_insert_iterator(buffer_1), "αβ");
+  std::format_to(std::back_insert_iterator(buffer_2), "αβ");
+  std::format_to(std::back_insert_iterator(buffer_3), "αβ");
   EXPECT_STREQ(buffer_1.c_str(), "α");
   EXPECT_STREQ(buffer_2.c_str(), "α");
   EXPECT_STREQ(buffer_3.c_str(), "αβ");
@@ -52,10 +52,10 @@ TEST(TruncatingBufferTest, 3bytes) {
   truncating_buffer<5> buffer_2;
   truncating_buffer<6> buffer_3;
   truncating_buffer<7> buffer_4;
-  fmt::format_to(std::back_insert_iterator(buffer_1), "ພຮ");
-  fmt::format_to(std::back_insert_iterator(buffer_2), "ພຮ");
-  fmt::format_to(std::back_insert_iterator(buffer_3), "ພຮ");
-  fmt::format_to(std::back_insert_iterator(buffer_4), "ພຮ");
+  std::format_to(std::back_insert_iterator(buffer_1), "ພຮ");
+  std::format_to(std::back_insert_iterator(buffer_2), "ພຮ");
+  std::format_to(std::back_insert_iterator(buffer_3), "ພຮ");
+  std::format_to(std::back_insert_iterator(buffer_4), "ພຮ");
   EXPECT_STREQ(buffer_1.c_str(), "ພ");
   EXPECT_STREQ(buffer_2.c_str(), "ພ");
   EXPECT_STREQ(buffer_3.c_str(), "ພ");
@@ -69,11 +69,11 @@ TEST(TruncatingBufferTest, 4bytes) {
   truncating_buffer<7> buffer_3;
   truncating_buffer<8> buffer_4;
   truncating_buffer<9> buffer_5;
-  fmt::format_to(std::back_insert_iterator(buffer_1), "𐎡𐎪");
-  fmt::format_to(std::back_insert_iterator(buffer_2), "𐎡𐎪");
-  fmt::format_to(std::back_insert_iterator(buffer_3), "𐎡𐎪");
-  fmt::format_to(std::back_insert_iterator(buffer_4), "𐎡𐎪");
-  fmt::format_to(std::back_insert_iterator(buffer_5), "𐎡𐎪");
+  std::format_to(std::back_insert_iterator(buffer_1), "𐎡𐎪");
+  std::format_to(std::back_insert_iterator(buffer_2), "𐎡𐎪");
+  std::format_to(std::back_insert_iterator(buffer_3), "𐎡𐎪");
+  std::format_to(std::back_insert_iterator(buffer_4), "𐎡𐎪");
+  std::format_to(std::back_insert_iterator(buffer_5), "𐎡𐎪");
   EXPECT_STREQ(buffer_1.c_str(), "𐎡");
   EXPECT_STREQ(buffer_2.c_str(), "𐎡");
   EXPECT_STREQ(buffer_3.c_str(), "𐎡");
