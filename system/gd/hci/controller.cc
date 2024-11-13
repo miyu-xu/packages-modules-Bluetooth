@@ -1236,6 +1236,9 @@ struct Controller::impl {
   }
 #undef OP_CODE_MAPPING
 
+  template <typename OutputT>
+  void dump(OutputT&& out) const;
+
   Controller& module_;
 
   HciLayer* hci_;
@@ -1653,6 +1656,123 @@ DumpsysDataFinisher Controller::GetDumpsysData(flatbuffers::FlatBufferBuilder* f
   return [dumpsys_data](DumpsysDataBuilder* dumpsys_builder) {
     dumpsys_builder->add_hci_controller_dumpsys_data(dumpsys_data);
   };
+}
+
+template <typename OutputT>
+void Controller::impl::dump(OutputT&& out) const {
+  fmt::format_to(out, "\nHCI Controller Dumpsys:\n");
+
+  fmt::format_to(out,
+                 "    local_version_information:\n"
+                 "        hci_version: {}\n"
+                 "        hci_revision: 0x{:x}\n"
+                 "        lmp_version: {}\n"
+                 "        lmp_subversion: 0x{:x}\n"
+                 "        manufacturer_name: {}\n",
+                 HciVersionText(local_version_information_.hci_version_),
+                 local_version_information_.hci_revision_,
+                 LmpVersionText(local_version_information_.lmp_version_),
+                 local_version_information_.lmp_subversion_,
+                 local_version_information_.manufacturer_name_);
+
+  fmt::format_to(out,
+                 "    buffer_size:\n"
+                 "        acl_data_packet_length: {}\n"
+                 "        total_num_acl_data_packets: {}\n"
+                 "        sco_data_packet_length: {}\n"
+                 "        total_num_sco_data_packets: {}\n",
+                 acl_buffer_length_, acl_buffers_, sco_buffer_length_, sco_buffers_);
+
+  fmt::format_to(out,
+                 "    le_buffer_size:\n"
+                 "        le_acl_data_packet_length: {}\n"
+                 "        total_num_le_acl_data_packets: {}\n"
+                 "        iso_data_packet_length: {}\n"
+                 "        total_num_iso_data_packets: {}\n",
+                 le_buffer_size_.le_data_packet_length_, le_buffer_size_.total_num_le_packets_,
+                 iso_buffer_size_.le_data_packet_length_, iso_buffer_size_.total_num_le_packets_);
+
+  fmt::format_to(out,
+                 "    le_maximum_data_length:\n"
+                 "        supported_max_tx_octets: {}\n"
+                 "        supported_max_tx_time: {}\n"
+                 "        supported_max_rx_octets: {}\n"
+                 "        supported_max_rx_time: {}\n",
+                 le_maximum_data_length_.supported_max_tx_octets_,
+                 le_maximum_data_length_.supported_max_tx_time_,
+                 le_maximum_data_length_.supported_max_rx_octets_,
+                 le_maximum_data_length_.supported_max_rx_time_);
+
+  fmt::format_to(out,
+                 "    le_accept_list_size: {}\n"
+                 "    le_resolving_list_size: {}\n"
+                 "    le_maximum_advertising_data_length: {}\n"
+                 "    le_suggested_default_data_length: {}\n"
+                 "    le_number_supported_advertising_sets: {}\n"
+                 "    le_periodic_advertiser_list_size: {}\n"
+                 "    le_supported_states: 0x{:016x}\n",
+                 le_accept_list_size_, le_resolving_list_size_, le_maximum_advertising_data_length_,
+                 le_suggested_default_data_length_, le_number_supported_advertising_sets_,
+                 le_periodic_advertiser_list_size_, le_supported_states_);
+
+  fmt::format_to(out,
+                 "    local_supported_features:\n"
+                 "        page0: 0x{:016x}\n"
+                 "        page1: 0x{:016x}\n"
+                 "        page2: 0x{:016x}\n"
+                 "    le_local_supported_features:\n"
+                 "        page0: 0x{:016x}\n",
+                 extended_lmp_features_array_[0], extended_lmp_features_array_[1],
+                 extended_lmp_features_array_[2], le_local_supported_features_);
+
+  fmt::format_to(out, "local_supported_commands: [");
+  for (size_t i = 0; i < local_supported_commands_.size(); i++) {
+    if ((i % 8) == 0) {
+      fmt::format_to(out, "\n       ");
+    }
+    fmt::format_to(out, " {:08x},", local_supported_commands_[i]);
+  }
+  fmt::format_to(out, "]\n");
+
+  fmt::format_to(
+          out,
+          "    vendor_capabilities:\n"
+          "        is_supported: {}\n"
+          "        max_adv_instances: {}\n"
+          "        offloaded_resolution_of_private_addresses: {}\n"
+          "        total_scan_result_storage: {}\n"
+          "        max_irk_list_size: {}\n"
+          "        filtering_support: {}\n"
+          "        max_filter: {}\n"
+          "        activity_energy_info_support: {}\n"
+          "        version_supported: {}\n"
+          "        total_num_of_advt_tracked: {}\n"
+          "        extended_scan_support: {}\n"
+          "        debug_logging_supported: {}\n"
+          "        le_address_generation_offloading_support: {}\n"
+          "        a2dp_source_offload_capability_mask: {}\n"
+          "        bluetooth_quality_report_support: {}\n"
+          "        dynamic_audio_buffer_support: {}\n"
+          "        a2dp_offload_v2_support: {}\n",
+          vendor_capabilities_.is_supported_, vendor_capabilities_.max_advt_instances_,
+          vendor_capabilities_.offloaded_resolution_of_private_address_,
+          vendor_capabilities_.total_scan_results_storage_, vendor_capabilities_.max_irk_list_sz_,
+          vendor_capabilities_.filtering_support_, vendor_capabilities_.max_filter_,
+          vendor_capabilities_.activity_energy_info_support_,
+          vendor_capabilities_.version_supported_, vendor_capabilities_.total_num_of_advt_tracked_,
+          vendor_capabilities_.extended_scan_support_,
+          vendor_capabilities_.debug_logging_supported_,
+          vendor_capabilities_.le_address_generation_offloading_support_,
+          vendor_capabilities_.a2dp_source_offload_capability_mask_,
+          vendor_capabilities_.bluetooth_quality_report_support_,
+          vendor_capabilities_.dynamic_audio_buffer_support_,
+          vendor_capabilities_.a2dp_offload_v2_support_);
+}
+
+void Controller::Dump(int fd) const {
+  std::string out;
+  impl_->dump(std::back_inserter(out));
+  dprintf(fd, "%s", out.c_str());
 }
 
 }  // namespace hci
