@@ -16,6 +16,24 @@
       "message": "Thanks for checking this. I think this CL should be able to fix the issue I found in broadcast. But I\u0027d like to understand why do we even need this logic to be handled here. I\u0027m worried about this will conflict with our LEA routing flows.\n\nI will be OOO soon, could you check with @rlukasz@google.com and @gkolodziejczyk@google.com and get their review vote? If they\u0027re fine with this, I\u0027m okay from LEA side.\n\nGoing forward, when modifying the LE Audio related logics, would be great if you can loop us in as the reviewers. Thank you.",
       "revId": "4561f2454b651f65ea991a53b59589cd927291b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8679f2d_ece2c1d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-13T23:03:44Z",
+      "side": 1,
+      "message": "I explain very details in the last comment! Check [here](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3343537/comment/4c37335d_96003c35/)",
+      "parentUuid": "4e42d229_619f00fe",
+      "revId": "4561f2454b651f65ea991a53b59589cd927291b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
