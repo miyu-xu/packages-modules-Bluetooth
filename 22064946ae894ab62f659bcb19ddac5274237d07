@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be03623b_35806052",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2436,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "Out of the scope of this CL, but I think it is a good idea to make this change:\nisDiscoverable has nothing to do with advertising event properties; it will affect the contents of the advertising data itself. It would be preferable to use a single, separate, boolean flag to AdvertiseParameters to carry the value.",
+      "range": {
+        "startLine": 2434,
+        "startChar": 2,
+        "endLine": 2436,
+        "endChar": 3
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8646734f_2809f95c",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "These constants are no longer used.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 74
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "367ca534_c31e5655",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "`@AddressType`",
+      "range": {
+        "startLine": 163,
+        "startChar": 18,
+        "endLine": 163,
+        "endChar": 21
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e75d187_6f27da04",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "Should specify the type for the peer address type parameter: `@AddressType`",
+      "range": {
+        "startLine": 180,
+        "startChar": 12,
+        "endLine": 180,
+        "endChar": 15
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654bf7c3_d90df404",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "`@AddressType`",
+      "range": {
+        "startLine": 402,
+        "startChar": 16,
+        "endLine": 402,
+        "endChar": 19
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fee6f775_4e108483",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "`unsupported` would be a better message for `ADDRESS_TYPE_ANONYMOUS` / `ADDRESS_TYPE_UNKNOWN`",
+      "range": {
+        "startLine": 642,
+        "startChar": 29,
+        "endLine": 642,
+        "endChar": 36
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06eb5d54_601c1488",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "Only directed legacy advertising events may be high duty cycle.\n\n```\nif (!mIsDirected \u0026\u0026 mIsHighDutyCycle) { .. }\n```",
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2ae14b_e9d0ff91",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "Same here, the discoverable mode should not be saved on to the advertising event properties.",
+      "range": {
+        "startLine": 234,
+        "startChar": 16,
+        "endLine": 234,
+        "endChar": 30
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c926b3b_55d48c52",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-13T16:53:46Z",
+      "side": 1,
+      "message": "Should be `high_duty_cycle`.",
+      "range": {
+        "startLine": 361,
+        "startChar": 11,
+        "endLine": 361,
+        "endChar": 41
+      },
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
