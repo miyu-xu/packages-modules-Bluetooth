@@ -16,6 +16,24 @@
       "message": "Hi, looking into the bug, does this mean that this log made the device sluggish?\n\nDid this log made a regression?",
       "revId": "25ae1191bf503d551b37960e0e01f13ac948a08b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adce0ebc_3160ee93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-11-13T05:13:54Z",
+      "side": 1,
+      "message": "Talked online. Marking as resolved.",
+      "parentUuid": "cdf0747d_4f0be01e",
+      "revId": "25ae1191bf503d551b37960e0e01f13ac948a08b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
