@@ -51,6 +51,7 @@ import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -89,7 +90,11 @@ public class HapClientService extends ProfileService {
     @VisibleForTesting ServiceFactory mFactory = new ServiceFactory();
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileHapClientEnabled().orElse(false);
+        if (!Flags.leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileHapClientEnabled().orElse(false);
+        }
+
+        return LeAudioProfileConfig.isHapHearingAidUnicastClientEnabled();
     }
 
     @VisibleForTesting

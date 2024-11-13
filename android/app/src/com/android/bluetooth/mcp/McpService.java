@@ -33,6 +33,7 @@ import android.util.Log;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -65,7 +66,10 @@ public class McpService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileMcpServerEnabled().orElse(false);
+        if (!Flags.leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileMcpServerEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isMcpMediaControlServerEnabled();
     }
 
     private static synchronized void setMcpService(McpService instance) {
