@@ -68,22 +68,22 @@ import java.util.concurrent.TimeUnit;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class HeadsetClientServiceTest {
-    private HeadsetClientService mService = null;
+    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+
+    @Mock private AdapterService mAdapterService;
+    @Mock private HeadsetClientStateMachine mStateMachine;
+    @Mock private NativeInterface mNativeInterface;
+    @Mock private DatabaseManager mDatabaseManager;
+    @Mock private RemoteDevices mRemoteDevices;
+
+    private HeadsetClientService mService;
     private boolean mIsHeadsetClientServiceStarted;
 
     private static final int STANDARD_WAIT_MILLIS = 1000;
     private static final int SERVICE_START_WAIT_MILLIS = 100;
 
-    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-
-    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
-
-    @Mock private AdapterService mAdapterService;
     private AudioManager mMockAudioManager;
-    @Mock private HeadsetClientStateMachine mStateMachine;
-    @Mock private NativeInterface mNativeInterface;
-    @Mock private DatabaseManager mDatabaseManager;
-    @Mock private RemoteDevices mRemoteDevices;
 
     <T> T mockGetSystemService(String serviceName, Class<T> serviceClass) {
         return TestUtils.mockGetSystemService(mAdapterService, serviceName, serviceClass);
@@ -267,7 +267,6 @@ public class HeadsetClientServiceTest {
 
     private void startService() throws Exception {
         mService = new HeadsetClientService(mAdapterService);
-        mService.start();
         mService.setAvailable(true);
         mIsHeadsetClientServiceStarted = true;
     }
