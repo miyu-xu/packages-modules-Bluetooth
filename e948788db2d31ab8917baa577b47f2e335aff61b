@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4f9d4f_e2c5943a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-13T20:55:01Z",
+      "side": 1,
+      "message": "Added mock_btif_sock_l2cap.h and mock_btif_sock_l2cap.cc",
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
