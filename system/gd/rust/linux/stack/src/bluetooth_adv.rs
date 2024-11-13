@@ -213,6 +213,7 @@ pub const INVALID_REG_ID: i32 = -1;
 impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertiseParameters {
     fn from(val: AdvertisingSetParameters) -> Self {
         let mut props: u16 = 0;
+        let mut is_discoverable = false;
         if val.connectable {
             props |= 0x01;
         }
@@ -230,9 +231,7 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
         }
 
         match val.discoverable {
-            LeDiscMode::GeneralDiscoverable => {
-                props |= 0x04;
-            }
+            LeDiscMode::GeneralDiscoverable => is_discoverable = true,
             _ => {}
         }
 
@@ -248,6 +247,7 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
             secondary_advertising_phy: val.secondary_phy.into(),
             scan_request_notification_enable: 0_u8, // false
             own_address_type: val.own_address_type as i8,
+            discoverable: is_discoverable,
         }
     }
 }
