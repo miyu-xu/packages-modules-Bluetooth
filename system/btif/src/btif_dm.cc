@@ -2753,9 +2753,15 @@ DEV_CLASS btif_dm_get_local_class_of_device() {
   // Device (CoD) field Major Service Class bit 14 to 0b1 when Unicast Server,
   // Unicast Client, Broadcast Source, Broadcast Sink, Scan Delegator, or
   // Broadcast Assistant is supported on this device
-  if (android::sysprop::BluetoothProperties::isProfileBapUnicastClientEnabled().value_or(false) ||
-      android::sysprop::BluetoothProperties::isProfileBapBroadcastAssistEnabled().value_or(false) ||
-      android::sysprop::BluetoothProperties::isProfileBapBroadcastSourceEnabled().value_or(false)) {
+  if (android::sysprop::BluetoothProperties::isProfileTmapCallGatewayEnabled()
+          .value_or(false) ||
+      android::sysprop::BluetoothProperties::isProfileTmapUnicastMediaSenderEnabled()
+          .value_or(false) ||
+      android::sysprop::BluetoothProperties::isProfileTmapBroadcastMediaSenderEnabled()
+          .value_or(false)) {
+  // if (android::sysprop::BluetoothProperties::isProfileBapUnicastClientEnabled().value_or(false) ||
+  //     android::sysprop::BluetoothProperties::isProfileBapBroadcastAssistEnabled().value_or(false) ||
+  //     android::sysprop::BluetoothProperties::isProfileBapBroadcastSourceEnabled().value_or(false)) {
     device_class[1] |= 0x01 << 6;
   } else {
     device_class[1] &= ~(0x01 << 6);
