@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fec88b58_e597d2db",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-11-13T14:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4888a970_d644ead3",
+      "revId": "82a35c33c38c789e259a2dff4a6666c1ef757f9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73dd64f8_7a6a69b6",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-12T16:55:26Z",
       "side": 1,
       "message": "You can combine the two else blocks.\n```\nif (!flag || !supported()) {\n  // existing code\n  break;\n}\n\n// new code\nbreak;\n```",
+      "revId": "82a35c33c38c789e259a2dff4a6666c1ef757f9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca656f72_80f8e1f7",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-11-13T14:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73dd64f8_7a6a69b6",
       "revId": "82a35c33c38c789e259a2dff4a6666c1ef757f9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
