@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ba7a4f9_6d0fd70b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1055,
+        "startChar": 16,
+        "endLine": 1055,
+        "endChar": 44
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51e98227_6ddc92c9",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1076,
+        "startChar": 16,
+        "endLine": 1076,
+        "endChar": 43
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb47e73e_9a149149",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1097,
+        "startChar": 16,
+        "endLine": 1097,
+        "endChar": 48
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a72dc965_a4f9c7be",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1429,
+        "startChar": 14,
+        "endLine": 1429,
+        "endChar": 39
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da1598a6_9812fd39",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1436,
+        "startChar": 14,
+        "endLine": 1436,
+        "endChar": 38
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "285302c2_eaaebac9",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1443,
+        "startChar": 14,
+        "endLine": 1443,
+        "endChar": 42
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "239955fa_77a1513c",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T18:54:55Z",
+      "side": 1,
+      "message": "I expect all of these to have the exact same issue.\n\nWhy are we applying a fix only on some and not all methods?",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 1
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
