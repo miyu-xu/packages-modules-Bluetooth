@@ -24,8 +24,8 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static com.android.bluetooth.bass_client.BassConstants.INVALID_BROADCAST_ID;
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
-import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastApiManagePrimaryGroup;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioUseAudioModeListener;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -515,11 +515,17 @@ public class LeAudioService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false);
+        if (!Flags.leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isBapUnicastClientEnabled();
     }
 
     public static boolean isBroadcastEnabled() {
-        return BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false);
+        if (!Flags.leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isBapBroadcastSourceEnabled();
     }
 
     private boolean registerTmap() {
