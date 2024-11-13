@@ -46,6 +46,30 @@
       },
       "revId": "d5223d056b4d6518ae0c5d95a41a85526bb8271d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb7fe802_c9674c18",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-13T01:01:04Z",
+      "side": 1,
+      "message": "I opened another API in the state machine similar to map client as suggested.\n\nI do worry about the timeouts and infinite retries when SDP is continuously busy.",
+      "parentUuid": "1aff6126_5597db81",
+      "range": {
+        "startLine": 627,
+        "startChar": 24,
+        "endLine": 627,
+        "endChar": 45
+      },
+      "revId": "d5223d056b4d6518ae0c5d95a41a85526bb8271d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
