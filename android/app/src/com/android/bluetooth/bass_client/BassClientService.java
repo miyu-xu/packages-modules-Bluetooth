@@ -3942,10 +3942,7 @@ public class BassClientService extends ProfileService {
         for (BluetoothDevice device : devices) {
             for (BluetoothLeBroadcastReceiveState receiveState : getAllSources(device)) {
                 for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
-                    Long syncState = receiveState.getBisSyncState().get(i);
-                    /* Synced to BIS */
-                    if (syncState != BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
-                            && syncState != BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {
+                    if (isSyncedToBroadcastStream(receiveState.getBisSyncState().get(i))) {
                         return true;
                     }
                 }
@@ -3962,10 +3959,7 @@ public class BassClientService extends ProfileService {
         for (BluetoothDevice device : devices) {
             for (BluetoothLeBroadcastReceiveState receiveState : getAllSources(device)) {
                 for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
-                    Long syncState = receiveState.getBisSyncState().get(i);
-                    /* Synced to BIS */
-                    if (syncState != BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
-                            && syncState != BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {
+                    if (isSyncedToBroadcastStream(receiveState.getBisSyncState().get(i))) {
                         if (isLocalBroadcast(receiveState)) {
                             return false;
                         } else {
@@ -3995,10 +3989,7 @@ public class BassClientService extends ProfileService {
             return true;
         } else {
             for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
-                Long syncState = receiveState.getBisSyncState().get(i);
-                /* Synced to BIS */
-                if (syncState != BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
-                        && syncState != BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {
+                if (isSyncedToBroadcastStream(receiveState.getBisSyncState().get(i))) {
                     return true;
                 }
             }
@@ -4048,19 +4039,17 @@ public class BassClientService extends ProfileService {
                         .anyMatch(
                                 receiveState ->
                                         (receiveState.getBisSyncState().stream()
-                                                .anyMatch(
-                                                        syncState ->
-                                                                syncState
-                                                                                != BassConstants
-                                                                                        .BIS_SYNC_NOT_SYNC_TO_BIS
-                                                                        && syncState
-                                                                                != BassConstants
-                                                                                        .BIS_SYNC_FAILED_SYNC_TO_BIG)))) {
+                                                .anyMatch(this::isSyncedToBroadcastStream)))) {
                     activeSinks.add(device);
                 }
             }
         }
         return activeSinks;
+    }
+
+    private boolean isSyncedToBroadcastStream(Long syncState) {
+        return syncState != BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
+                && syncState != BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG;
     }
 
     /** Handle broadcast state changed */
